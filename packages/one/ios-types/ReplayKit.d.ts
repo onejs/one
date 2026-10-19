@@ -45,30 +45,27 @@ export declare class RPBroadcastActivityViewController extends SDKHandle {
      * @availability iOS 10.0+
      * @deprecated iOS 27.0
      */
-    static loadHandler(handler: $SDK2): void;
+    static loadHandler(handler: $SDK2): Promise<void>;
     /**
      * class func load(withPreferredExtension preferredExtension: String?, handler: @escaping (RPBroadcastActivityViewController?, (any Error)?) -> Void)
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static loadWithPreferredExtensionHandler(preferredExtension: (string) | null, handler: $SDK2): void;
+    static loadWithPreferredExtensionHandler(preferredExtension: (string) | null, handler: $SDK2): Promise<void>;
     /** init() */
-    static init(): RPBroadcastActivityViewController;
+    static init(): Promise<RPBroadcastActivityViewController>;
     /**
      * weak var delegate: (any RPBroadcastActivityViewControllerDelegate)? { get set }
      * @availability iOS 10.0+
      * @deprecated iOS 27.0
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<RPBroadcastActivityViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<RPBroadcastActivityViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)RPBroadcastActivityViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /**
@@ -352,22 +349,19 @@ export declare const RPCameraPosition: {
  */
 export declare class RPPreviewViewController extends SDKHandle {
     /** init() */
-    static init(): RPPreviewViewController;
+    static init(): Promise<RPPreviewViewController>;
     /**
      * weak var previewControllerDelegate: (any RPPreviewViewControllerDelegate)? { get set }
      * @availability iOS 9.0+
      * @deprecated iOS 27.0
      */
-    get previewControllerDelegate(): (SDKHandle) | null;
-    set previewControllerDelegate(value: (Implements<RPPreviewViewControllerDelegate> | SDKHandle) | null);
+    get previewControllerDelegate(): Promise<(SDKHandle) | null>;
+    setPreviewControllerDelegate(value?: (Implements<RPPreviewViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)RPPreviewViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "previewControllerDelegate": true;
     };
 }
 /**
@@ -581,30 +575,26 @@ export interface RPScreenRecorderDelegate {
  */
 export declare class RPSystemBroadcastPickerView extends SDKHandle {
     /** init() */
-    static init(): RPSystemBroadcastPickerView;
+    static init(): Promise<RPSystemBroadcastPickerView>;
     /**
      * var preferredExtension: String? { get set }
      * @availability iOS 12.0+
      * @deprecated iOS 27.0
      */
-    get preferredExtension(): (string) | null;
-    set preferredExtension(value: (string) | null);
+    get preferredExtension(): Promise<(string) | null>;
+    setPreferredExtension(value?: (string) | null): Promise<void>;
     /**
      * var showsMicrophoneButton: Bool { get set }
      * @availability iOS 12.0+
      * @deprecated iOS 27.0
      */
-    get showsMicrophoneButton(): boolean;
-    set showsMicrophoneButton(value: boolean);
+    get showsMicrophoneButton(): Promise<boolean>;
+    setShowsMicrophoneButton(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)RPSystemBroadcastPickerView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "preferredExtension": true;
-        "showsMicrophoneButton": true;
     };
 }
 /**

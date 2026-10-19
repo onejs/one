@@ -16,7 +16,7 @@ export declare const MessageComposeResult: {
 /** class MFComposeAssistantViewController */
 export declare class MFComposeAssistantViewController extends SDKHandle {
     /** init(delegate: any MFComposeAssistantViewControllerDelegate) */
-    static init(delegate: Implements<MFComposeAssistantViewControllerDelegate> | SDKHandle): MFComposeAssistantViewController;
+    static init(delegate: Implements<MFComposeAssistantViewControllerDelegate> | SDKHandle): Promise<MFComposeAssistantViewController>;
     readonly $type: {
         "c:objc(cs)MFComposeAssistantViewController": true;
         "c:objc(cs)UIViewController": true;
@@ -192,86 +192,79 @@ export declare class MFMessageComposeViewController extends SDKHandle {
      * class func canSendAttachments() -> Bool
      * @availability iOS 7.0+
      */
-    static canSendAttachments(): boolean;
+    static canSendAttachments(): Promise<boolean>;
     /**
      * class func canSendSubject() -> Bool
      * @availability iOS 7.0+
      */
-    static canSendSubject(): boolean;
+    static canSendSubject(): Promise<boolean>;
     /**
      * class func canSendText() -> Bool
      * @availability iOS 4.0+
      */
-    static canSendText(): boolean;
+    static canSendText(): Promise<boolean>;
     /**
      * class func isSupportedAttachmentUTI(_ uti: String) -> Bool
      * @availability iOS 7.0+
      */
-    static isSupportedAttachmentUTI(uti: string): boolean;
+    static isSupportedAttachmentUTI(uti: string): Promise<boolean>;
     /**
      * func addAttachmentData(_ attachmentData: Data, typeIdentifier uti: String, filename: String) -> Bool
      * @availability iOS 7.0+
      */
-    addAttachmentData(attachmentData: ArrayBuffer, uti: string, filename: string): boolean;
+    addAttachmentData(attachmentData: ArrayBuffer, uti: string, filename: string): Promise<boolean>;
     /**
      * func addAttachmentURL(_ attachmentURL: URL, withAlternateFilename alternateFilename: String?) -> Bool
      * @availability iOS 7.0+
      */
-    addAttachmentURL(attachmentURL: string, alternateFilename?: (string) | null): boolean;
+    addAttachmentURL(attachmentURL: string, alternateFilename?: (string) | null): Promise<boolean>;
     /**
      * func disableUserAttachments()
      * @availability iOS 7.0+
      */
-    disableUserAttachments(): void;
+    disableUserAttachments(): Promise<void>;
     /** init() */
-    static init(): MFMessageComposeViewController;
+    static init(): Promise<MFMessageComposeViewController>;
     /**
      * func insertCollaborationItemProvider(_ itemProvider: NSItemProvider) -> Bool
      * @availability iOS 16.0+
      */
-    insertCollaborationItemProvider(itemProvider: _Foundation_NSItemProvider): boolean;
+    insertCollaborationItemProvider(itemProvider: _Foundation_NSItemProvider): Promise<boolean>;
     /**
      * var attachments: [[AnyHashable : Any]]? { get }
      * @availability iOS 7.0+
      */
-    get attachments(): (Array<NativeMap<unknown, unknown>>) | null;
+    get attachments(): Promise<(Array<NativeMap<unknown, unknown>>) | null>;
     /**
      * var body: String? { get set }
      * @availability iOS 4.0+
      */
-    get body(): (string) | null;
-    set body(value: (string) | null);
+    get body(): Promise<(string) | null>;
+    setBody(value?: (string) | null): Promise<void>;
     /**
      * weak var messageComposeDelegate: (any MFMessageComposeViewControllerDelegate)? { get set }
      * @availability iOS 4.0+
      */
-    get messageComposeDelegate(): (SDKHandle) | null;
-    set messageComposeDelegate(value: (Implements<MFMessageComposeViewControllerDelegate> | SDKHandle) | null);
+    get messageComposeDelegate(): Promise<(SDKHandle) | null>;
+    setMessageComposeDelegate(value?: (Implements<MFMessageComposeViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var recipients: [String]? { get set }
      * @availability iOS 4.0+
      */
-    get recipients(): (Array<string>) | null;
-    set recipients(value: (Array<string>) | null);
+    get recipients(): Promise<(Array<string>) | null>;
+    setRecipients(value?: (Array<string>) | null): Promise<void>;
     /**
      * var subject: String? { get set }
      * @availability iOS 7.0+
      */
-    get subject(): (string) | null;
-    set subject(value: (string) | null);
+    get subject(): Promise<(string) | null>;
+    setSubject(value?: (string) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MFMessageComposeViewController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "attachments": true;
-        "body": true;
-        "messageComposeDelegate": true;
-        "recipients": true;
-        "subject": true;
     };
 }
 /**
@@ -283,28 +276,28 @@ export declare class MFMessageComposeViewController_TextMessageAvailabilityDidCh
      * static func makeMessage(_ notification: Notification) -> MFMessageComposeViewController.TextMessageAvailabilityDidChangeMessage?
      * @availability iOS 27.0+
      */
-    static makeMessage(notification: _Foundation_Notification): (MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage) | null;
+    static makeMessage(notification: _Foundation_Notification): Promise<(MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage) | null>;
     /**
      * init(canSendText: Bool)
      * @availability iOS 27.0+
      */
-    static init(canSendText: boolean): MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage;
+    static init(canSendText: boolean): Promise<MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage>;
     /**
      * var canSendText: Bool
      * @availability iOS 27.0+
      */
-    get canSendText(): boolean;
-    set canSendText(value: boolean);
+    get canSendText(): Promise<boolean>;
+    setCanSendText(value: boolean): Promise<void>;
     /**
      * static func makeNotification(_ message: MFMessageComposeViewController.TextMessageAvailabilityDidChangeMessage) -> Notification
      * @availability iOS 27.0+
      */
-    static makeNotification(message: MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage): _Foundation_Notification;
+    static makeNotification(message: MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage): Promise<_Foundation_Notification>;
     /**
      * static var name: Notification.Name { get }
      * @availability iOS 27.0+
      */
-    static get nameValue(): _Foundation_NSNotification_Name;
+    static get nameValue(): Promise<_Foundation_NSNotification_Name>;
     readonly $type: {
         "s:So30MFMessageComposeViewControllerC9MessageUIE04Texte21AvailabilityDidChangeE0V": true;
     };

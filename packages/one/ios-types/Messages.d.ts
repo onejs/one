@@ -389,94 +389,89 @@ export declare class MSMessagesAppViewController extends SDKHandle {
      * func didBecomeActive(with conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    didBecomeActive(conversation: MSConversation): void;
+    didBecomeActive(conversation: MSConversation): Promise<void>;
     /**
      * func didCancelSending(_ message: MSMessage, conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    didCancelSending(message: MSMessage, conversation: MSConversation): void;
+    didCancelSending(message: MSMessage, conversation: MSConversation): Promise<void>;
     /**
      * func didReceive(_ message: MSMessage, conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    didReceive(message: MSMessage, conversation: MSConversation): void;
+    didReceive(message: MSMessage, conversation: MSConversation): Promise<void>;
     /**
      * func didResignActive(with conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    didResignActive(conversation: MSConversation): void;
+    didResignActive(conversation: MSConversation): Promise<void>;
     /**
      * func didSelect(_ message: MSMessage, conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    didSelect(message: MSMessage, conversation: MSConversation): void;
+    didSelect(message: MSMessage, conversation: MSConversation): Promise<void>;
     /**
      * func didStartSending(_ message: MSMessage, conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    didStartSending(message: MSMessage, conversation: MSConversation): void;
+    didStartSending(message: MSMessage, conversation: MSConversation): Promise<void>;
     /**
      * func didTransition(to presentationStyle: MSMessagesAppPresentationStyle)
      * @availability iOS 10.0+
      */
-    didTransition(presentationStyle: MSMessagesAppPresentationStyle): void;
+    didTransition(presentationStyle: MSMessagesAppPresentationStyle): Promise<void>;
     /**
      * func dismiss()
      * @availability iOS 10.0+
      */
-    dismiss(): void;
+    dismiss(): Promise<void>;
     /** init() */
-    static init(): MSMessagesAppViewController;
+    static init(): Promise<MSMessagesAppViewController>;
     /**
      * func requestPresentationStyle(_ presentationStyle: MSMessagesAppPresentationStyle)
      * @availability iOS 10.0+
      */
-    requestPresentationStyle(presentationStyle: MSMessagesAppPresentationStyle): void;
+    requestPresentationStyle(presentationStyle: MSMessagesAppPresentationStyle): Promise<void>;
     /**
      * func willBecomeActive(with conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    willBecomeActive(conversation: MSConversation): void;
+    willBecomeActive(conversation: MSConversation): Promise<void>;
     /**
      * func willResignActive(with conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    willResignActive(conversation: MSConversation): void;
+    willResignActive(conversation: MSConversation): Promise<void>;
     /**
      * func willSelect(_ message: MSMessage, conversation: MSConversation)
      * @availability iOS 10.0+
      */
-    willSelect(message: MSMessage, conversation: MSConversation): void;
+    willSelect(message: MSMessage, conversation: MSConversation): Promise<void>;
     /**
      * func willTransition(to presentationStyle: MSMessagesAppPresentationStyle)
      * @availability iOS 10.0+
      */
-    willTransition(presentationStyle: MSMessagesAppPresentationStyle): void;
+    willTransition(presentationStyle: MSMessagesAppPresentationStyle): Promise<void>;
     /**
      * var activeConversation: MSConversation? { get }
      * @availability iOS 10.0+
      */
-    get activeConversation(): (MSConversation) | null;
+    get activeConversation(): Promise<(MSConversation) | null>;
     /**
      * var presentationContext: MSMessagesAppPresentationContext { get }
      * @availability iOS 12.0+
      */
-    get presentationContext(): MSMessagesAppPresentationContext;
+    get presentationContext(): Promise<MSMessagesAppPresentationContext>;
     /**
      * var presentationStyle: MSMessagesAppPresentationStyle { get }
      * @availability iOS 10.0+
      */
-    get presentationStyle(): MSMessagesAppPresentationStyle;
+    get presentationStyle(): Promise<MSMessagesAppPresentationStyle>;
     readonly $type: {
         "c:objc(cs)MSMessagesAppViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "activeConversation": true;
-        "presentationContext": true;
-        "presentationStyle": true;
     };
 }
 declare const MSMessageTemplateLayout_base: Omit<typeof MSMessageLayout, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MSMessageLayout);
@@ -621,56 +616,50 @@ export declare class MSStickerBrowserView extends SDKHandle {
      * init(frame: CGRect)
      * @availability iOS 10.0+
      */
-    static initFrame(frame: $SDK4): MSStickerBrowserView;
+    static initFrame(frame: $SDK4): Promise<MSStickerBrowserView>;
     /**
      * init(frame: CGRect, stickerSize: MSStickerSize)
      * @availability iOS 10.0+
      */
-    static initFrameStickerSize(frame: $SDK4, stickerSize: MSStickerSize): MSStickerBrowserView;
+    static initFrameStickerSize(frame: $SDK4, stickerSize: MSStickerSize): Promise<MSStickerBrowserView>;
     /**
      * func reloadData()
      * @availability iOS 10.0+
      */
-    reloadData(): void;
+    reloadData(): Promise<void>;
     /**
      * func setContentOffset(_ contentOffset: CGPoint, animated: Bool)
      * @availability iOS 10.0+
      */
-    setContentOffset(contentOffset: $SDK5, animated: boolean): void;
+    setContentOffset(contentOffset: $SDK5, animated: boolean): Promise<void>;
     /**
      * var contentInset: UIEdgeInsets { get set }
      * @availability iOS 10.0+
      */
-    get contentInset(): $SDK6;
-    set contentInset(value: $SDK6);
+    get contentInset(): Promise<$SDK6>;
+    setContentInset(value: $SDK6): Promise<void>;
     /**
      * var contentOffset: CGPoint { get set }
      * @availability iOS 10.0+
      */
-    get contentOffset(): $SDK5;
-    set contentOffset(value: $SDK5);
+    get contentOffset(): Promise<$SDK5>;
+    setContentOffset87345(value: $SDK5): Promise<void>;
     /**
      * weak var dataSource: (any MSStickerBrowserViewDataSource)? { get set }
      * @availability iOS 10.0+
      */
-    get dataSource(): (SDKHandle) | null;
-    set dataSource(value: (SDKHandle) | null);
+    get dataSource(): Promise<(SDKHandle) | null>;
+    setDataSource(value?: (SDKHandle) | null): Promise<void>;
     /**
      * var stickerSize: MSStickerSize { get }
      * @availability iOS 10.0+
      */
-    get stickerSize(): MSStickerSize;
+    get stickerSize(): Promise<MSStickerSize>;
     readonly $type: {
         "c:objc(cs)MSStickerBrowserView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "contentInset": true;
-        "contentOffset": true;
-        "dataSource": true;
-        "stickerSize": true;
     };
 }
 /**
@@ -682,26 +671,22 @@ export declare class MSStickerBrowserViewController extends SDKHandle {
      * init(stickerSize: MSStickerSize)
      * @availability iOS 10.0+
      */
-    static init(stickerSize: MSStickerSize): MSStickerBrowserViewController;
+    static init(stickerSize: MSStickerSize): Promise<MSStickerBrowserViewController>;
     /**
      * var stickerBrowserView: MSStickerBrowserView { get }
      * @availability iOS 10.0+
      */
-    get stickerBrowserView(): MSStickerBrowserView;
+    get stickerBrowserView(): Promise<MSStickerBrowserView>;
     /**
      * var stickerSize: MSStickerSize { get }
      * @availability iOS 10.0+
      */
-    get stickerSize(): MSStickerSize;
+    get stickerSize(): Promise<MSStickerSize>;
     readonly $type: {
         "c:objc(cs)MSStickerBrowserViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "stickerBrowserView": true;
-        "stickerSize": true;
     };
 }
 /**
@@ -741,42 +726,38 @@ export declare class MSStickerView extends SDKHandle {
      * init(frame: CGRect, sticker: MSSticker?)
      * @availability iOS 10.0+
      */
-    static init(frame: $SDK4, sticker?: (MSSticker) | null): MSStickerView;
+    static init(frame: $SDK4, sticker?: (MSSticker) | null): Promise<MSStickerView>;
     /**
      * func isAnimating() -> Bool
      * @availability iOS 10.0+
      */
-    isAnimating(): boolean;
+    isAnimating(): Promise<boolean>;
     /**
      * func startAnimating()
      * @availability iOS 10.0+
      */
-    startAnimating(): void;
+    startAnimating(): Promise<void>;
     /**
      * func stopAnimating()
      * @availability iOS 10.0+
      */
-    stopAnimating(): void;
+    stopAnimating(): Promise<void>;
     /**
      * var animationDuration: TimeInterval { get }
      * @availability iOS 10.0+
      */
-    get animationDuration(): number;
+    get animationDuration(): Promise<number>;
     /**
      * var sticker: MSSticker? { get set }
      * @availability iOS 10.0+
      */
-    get sticker(): (MSSticker) | null;
-    set sticker(value: (MSSticker) | null);
+    get sticker(): Promise<(MSSticker) | null>;
+    setSticker(value?: (MSSticker) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MSStickerView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "animationDuration": true;
-        "sticker": true;
     };
 }
 /**

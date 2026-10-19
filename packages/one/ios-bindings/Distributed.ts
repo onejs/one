@@ -23,12 +23,12 @@ export class DistributedActorCodingError extends SDKHandle {
    * init(message: String)
    * @availability iOS 16.0+
    */
-  static init(message: string): DistributedActorCodingError { return callSDK<DistributedActorCodingError>("Distributed_90ad0eb69cc6bf4a", 2991467486245542, undefined, [message]); }
+  static init(message: string): DistributedActorCodingError { return callSDK<DistributedActorCodingError>("Distributed_067acaa3e5f56b46", 2991467486245542, undefined, [message]); }
   /**
    * let message: String
    * @availability iOS 16.0+
    */
-  get message(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 4327429309122903, this, []); }
+  get message(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 4327429309122903, this, []); }
   declare readonly $type: { "s:11Distributed0A16ActorCodingErrorV": true };
 }
 
@@ -177,22 +177,22 @@ export class ExecuteDistributedTargetError extends SDKHandle {
    * init(message: String, errorCode: ExecuteDistributedTargetError.ErrorCode)
    * @availability iOS 16.0+
    */
-  static initMessageErrorCode(message: string, errorCode: ExecuteDistributedTargetError_ErrorCode): ExecuteDistributedTargetError { return callSDK<ExecuteDistributedTargetError>("Distributed_90ad0eb69cc6bf4a", 3329648745763155, undefined, [message, errorCode]); }
+  static initMessageErrorCode(message: string, errorCode: ExecuteDistributedTargetError_ErrorCode): ExecuteDistributedTargetError { return callSDK<ExecuteDistributedTargetError>("Distributed_067acaa3e5f56b46", 3329648745763155, undefined, [message, errorCode]); }
   /**
    * init(message: String)
    * @availability iOS 16.0+
    */
-  static initMessage(message: string): ExecuteDistributedTargetError { return callSDK<ExecuteDistributedTargetError>("Distributed_90ad0eb69cc6bf4a", 3221975221954935, undefined, [message]); }
+  static initMessage(message: string): ExecuteDistributedTargetError { return callSDK<ExecuteDistributedTargetError>("Distributed_067acaa3e5f56b46", 3221975221954935, undefined, [message]); }
   /**
    * let message: String
    * @availability iOS 16.0+
    */
-  get message(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 4287063767656440, this, []); }
+  get message(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 4287063767656440, this, []); }
   /**
    * let errorCode: ExecuteDistributedTargetError.ErrorCode
    * @availability iOS 16.0+
    */
-  get errorCode(): ExecuteDistributedTargetError_ErrorCode { return callSDK<ExecuteDistributedTargetError_ErrorCode>("Distributed_90ad0eb69cc6bf4a", 1698638018943799, this, []); }
+  get errorCode(): ExecuteDistributedTargetError_ErrorCode { return callSDK<ExecuteDistributedTargetError_ErrorCode>("Distributed_067acaa3e5f56b46", 1698638018943799, this, []); }
   declare readonly $type: { "s:11Distributed07ExecuteA11TargetErrorV": true };
 }
 
@@ -217,22 +217,22 @@ export class LocalTestingActorID extends SDKHandle {
    * init(id: String)
    * @availability iOS 16.0+
    */
-  static initId(id: string): LocalTestingActorID { return callSDK<LocalTestingActorID>("Distributed_90ad0eb69cc6bf4a", 1259067977788120, undefined, [id]); }
+  static initId(id: string): LocalTestingActorID { return callSDK<LocalTestingActorID>("Distributed_067acaa3e5f56b46", 1259067977788120, undefined, [id]); }
   /**
    * let id: String
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 3775911249166038, this, []); }
+  get id(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 3775911249166038, this, []); }
   /**
    * init(parse id: String)
    * @availability iOS 16.0+
    */
-  static initParse(id: string): LocalTestingActorID { return callSDK<LocalTestingActorID>("Distributed_90ad0eb69cc6bf4a", 92867587389337, undefined, [id]); }
+  static initParse(id: string): LocalTestingActorID { return callSDK<LocalTestingActorID>("Distributed_067acaa3e5f56b46", 92867587389337, undefined, [id]); }
   /**
    * var address: String { get }
    * @availability iOS 16.0+
    */
-  get address(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 4469722110918210, this, []); }
+  get address(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 4469722110918210, this, []); }
   declare readonly $type: { "s:11Distributed19LocalTestingActorIDV": true };
 }
 
@@ -245,17 +245,17 @@ export class LocalTestingDistributedActorSystem extends SDKHandle {
    * final func makeInvocationEncoder() -> LocalTestingDistributedActorSystem.InvocationEncoder
    * @availability iOS 16.0+
    */
-  makeInvocationEncoder(): LocalTestingInvocationEncoder { return callSDK<LocalTestingInvocationEncoder>("Distributed_90ad0eb69cc6bf4a", 2005420694519784, this, []); }
+  makeInvocationEncoder(): LocalTestingInvocationEncoder { return callSDK<LocalTestingInvocationEncoder>("Distributed_067acaa3e5f56b46", 2005420694519784, this, []); }
   /**
    * final func resignID(_ id: LocalTestingDistributedActorSystem.ActorID)
    * @availability iOS 16.0+
    */
-  resignID(id: LocalTestingActorID): void { return callSDK<void>("Distributed_90ad0eb69cc6bf4a", 4257680474572771, this, [id]); }
+  resignID(id: LocalTestingActorID): void { return callSDK<void>("Distributed_067acaa3e5f56b46", 4257680474572771, this, [id]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): LocalTestingDistributedActorSystem { return callSDK<LocalTestingDistributedActorSystem>("Distributed_90ad0eb69cc6bf4a", 1796311545359179, undefined, []); }
+  static init(): LocalTestingDistributedActorSystem { return callSDK<LocalTestingDistributedActorSystem>("Distributed_067acaa3e5f56b46", 1796311545359179, undefined, []); }
   declare readonly $type: { "s:11Distributed012LocalTestingA11ActorSystemC": true };
 }
 
@@ -298,12 +298,12 @@ export class LocalTestingDistributedActorSystemError extends SDKHandle {
    * init(message: String)
    * @availability iOS 16.0+
    */
-  static init(message: string): LocalTestingDistributedActorSystemError { return callSDK<LocalTestingDistributedActorSystemError>("Distributed_90ad0eb69cc6bf4a", 400745663085181, undefined, [message]); }
+  static init(message: string): LocalTestingDistributedActorSystemError { return callSDK<LocalTestingDistributedActorSystemError>("Distributed_067acaa3e5f56b46", 400745663085181, undefined, [message]); }
   /**
    * let message: String
    * @availability iOS 16.0+
    */
-  get message(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 4485321396917784, this, []); }
+  get message(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 4485321396917784, this, []); }
   declare readonly $type: { "s:11Distributed012LocalTestingA16ActorSystemErrorV": true };
 }
 
@@ -316,7 +316,7 @@ export class LocalTestingInvocationDecoder extends SDKHandle {
    * final func decodeNextArgument<Argument>() throws -> Argument where Argument : Decodable, Argument : Encodable
    * @availability iOS 16.0+
    */
-  decodeNextArgument(): number { return callSDK<number>("Distributed_90ad0eb69cc6bf4a", 30817504833765, this, []); }
+  decodeNextArgument(): number { return callSDK<number>("Distributed_067acaa3e5f56b46", 30817504833765, this, []); }
   declare readonly $type: { "s:11Distributed29LocalTestingInvocationDecoderC": true };
 }
 
@@ -335,17 +335,17 @@ export class LocalTestingInvocationEncoder extends SDKHandle {
    * mutating func doneRecording() throws
    * @availability iOS 16.0+
    */
-  doneRecording(): void { return callSDK<void>("Distributed_90ad0eb69cc6bf4a", 3831710522519231, this, []); }
+  doneRecording(): void { return callSDK<void>("Distributed_067acaa3e5f56b46", 3831710522519231, this, []); }
   /**
    * mutating func recordArgument<Value>(_ argument: RemoteCallArgument<Value>) throws where Value : Decodable, Value : Encodable
    * @availability iOS 16.0+
    */
-  recordArgument(argument: RemoteCallArgument<number>): void { return callSDK<void>("Distributed_90ad0eb69cc6bf4a", 3350934002295325, this, [argument]); }
+  recordArgument(argument: RemoteCallArgument<number>): void { return callSDK<void>("Distributed_067acaa3e5f56b46", 3350934002295325, this, [argument]); }
   /**
    * mutating func recordReturnType<R>(_ type: R.Type) throws where R : Decodable, R : Encodable
    * @availability iOS 16.0+
    */
-  recordReturnType(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): void { return callSDK<void>("Distributed_90ad0eb69cc6bf4a", 3158677635017229, this, [type]); }
+  recordReturnType(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): void { return callSDK<void>("Distributed_067acaa3e5f56b46", 3158677635017229, this, [type]); }
   declare readonly $type: { "s:11Distributed29LocalTestingInvocationEncoderV": true };
 }
 
@@ -364,17 +364,17 @@ export class LocalTestingInvocationResultHandler extends SDKHandle {
    * func onReturnVoid() async throws
    * @availability iOS 16.0+
    */
-  onReturnVoid(): Promise<void> { return callSDKAsync<void>("Distributed_90ad0eb69cc6bf4a", 2013495920629540, this, []); }
+  onReturnVoid(): Promise<void> { return callSDKAsync<void>("Distributed_067acaa3e5f56b46", 2013495920629540, this, []); }
   /**
    * func onThrow<Err>(error: Err) async throws where Err : Error
    * @availability iOS 16.0+
    */
-  onThrow(error: NativeError): Promise<void> { return callSDKAsync<void>("Distributed_90ad0eb69cc6bf4a", 4331374595704796, this, [error]); }
+  onThrow(error: NativeError): Promise<void> { return callSDKAsync<void>("Distributed_067acaa3e5f56b46", 4331374595704796, this, [error]); }
   /**
    * func onReturn<Success>(value: Success) async throws where Success : Decodable, Success : Encodable
    * @availability iOS 16.0+
    */
-  onReturn(value: number): Promise<void> { return callSDKAsync<void>("Distributed_90ad0eb69cc6bf4a", 928832606561694, this, [value]); }
+  onReturn(value: number): Promise<void> { return callSDKAsync<void>("Distributed_067acaa3e5f56b46", 928832606561694, this, [value]); }
   declare readonly $type: { "s:11Distributed35LocalTestingInvocationResultHandlerV": true };
 }
 
@@ -393,27 +393,27 @@ export class RemoteCallArgument<Value = unknown> extends SDKHandle {
    * var effectiveLabel: String { get }
    * @availability iOS 16.0+
    */
-  get effectiveLabel(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 1606454385399606, this, []); }
+  get effectiveLabel(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 1606454385399606, this, []); }
   /**
    * let name: String
    * @availability iOS 16.0+
    */
-  get name(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 2943313100483237, this, []); }
+  get name(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 2943313100483237, this, []); }
   /**
    * init(label: String?, name: String, value: Value)
    * @availability iOS 16.0+
    */
-  static init(label: (string) | null, name: string, value: unknown): RemoteCallArgument<unknown> { return callSDK<RemoteCallArgument<unknown>>("Distributed_90ad0eb69cc6bf4a", 4137102632299449, undefined, [label, name, value]); }
+  static init(label: (string) | null, name: string, value: unknown): RemoteCallArgument<unknown> { return callSDK<RemoteCallArgument<unknown>>("Distributed_067acaa3e5f56b46", 4137102632299449, undefined, [label, name, value]); }
   /**
    * let label: String?
    * @availability iOS 16.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Distributed_90ad0eb69cc6bf4a", 3848342730731694, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("Distributed_067acaa3e5f56b46", 3848342730731694, this, []); }
   /**
    * let value: Value
    * @availability iOS 16.0+
    */
-  get value(): unknown { return callSDK<unknown>("Distributed_90ad0eb69cc6bf4a", 2323134247607408, this, []); }
+  get value(): unknown { return callSDK<unknown>("Distributed_067acaa3e5f56b46", 2323134247607408, this, []); }
   declare readonly $type: { "s:11Distributed18RemoteCallArgumentV": true };
 }
 
@@ -426,33 +426,33 @@ export class RemoteCallTarget extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 4199768679483381, this, []); }
+  get identifier(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 4199768679483381, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Distributed_90ad0eb69cc6bf4a", 3849960340015581, this, []); }
+  get description(): string { return callSDK<string>("Distributed_067acaa3e5f56b46", 3849960340015581, this, []); }
   /**
    * init(_ identifier: String)
    * @availability iOS 16.0+
    */
-  static init(identifier: string): RemoteCallTarget { return callSDK<RemoteCallTarget>("Distributed_90ad0eb69cc6bf4a", 2913608315585375, undefined, [identifier]); }
+  static init(identifier: string): RemoteCallTarget { return callSDK<RemoteCallTarget>("Distributed_067acaa3e5f56b46", 2913608315585375, undefined, [identifier]); }
   declare readonly $type: { "s:11Distributed16RemoteCallTargetV": true };
 }
 
 registerSDKProtocol("s:11Distributed0A5ActorP", {"resolveIdUsing":"resolve(id:using:)"});
-registerSDKClass("Distributed.DistributedActorCodingError", DistributedActorCodingError, { module: "Distributed_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("Distributed.DistributedActorCodingError", DistributedActorCodingError, { module: "Distributed_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:11Distributed0A11ActorSystemP", {"resolveIdAs":"resolve(id:as:)","assignID":"assignID(_:)","actorReady":"actorReady(_:)","resignID":"resignID(_:)","makeInvocationEncoder":"makeInvocationEncoder()","remoteCallOnTargetInvocationThrowingReturning":"remoteCall(on:target:invocation:throwing:returning:)","remoteCallVoidOnTargetInvocationThrowing":"remoteCallVoid(on:target:invocation:throwing:)","invokeHandlerOnReturnHandlerResultBufferMetatype":"invokeHandlerOnReturn(handler:resultBuffer:metatype:)"});
 registerSDKProtocol("s:11Distributed0A16ActorSystemErrorP", {});
 registerSDKProtocol("s:11Distributed0A23TargetInvocationDecoderP", {"decodeGenericSubstitutions":"decodeGenericSubstitutions()","decodeNextArgument":"decodeNextArgument()","decodeErrorType":"decodeErrorType()","decodeReturnType":"decodeReturnType()"});
 registerSDKProtocol("s:11Distributed0A23TargetInvocationEncoderP", {"recordGenericSubstitution":"recordGenericSubstitution(_:)","recordArgument":"recordArgument(_:)","recordErrorType":"recordErrorType(_:)","recordReturnType":"recordReturnType(_:)","doneRecording":"doneRecording()"});
 registerSDKProtocol("s:11Distributed0A29TargetInvocationResultHandlerP", {"onReturnValue":"onReturn(value:)","onReturnVoid":"onReturnVoid()","onThrowError":"onThrow(error:)"});
-registerSDKClass("Distributed.ExecuteDistributedTargetError", ExecuteDistributedTargetError, { module: "Distributed_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("Distributed.LocalTestingActorID", LocalTestingActorID, { module: "Distributed_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("Distributed.LocalTestingDistributedActorSystem", LocalTestingDistributedActorSystem, { module: "Distributed_90ad0eb69cc6bf4a", properties: {}, methods: {"makeInvocationEncoder":{"id":2005420694519784},"resignID":{"id":4257680474572771}} });
-registerSDKClass("Distributed.LocalTestingDistributedActorSystemError", LocalTestingDistributedActorSystemError, { module: "Distributed_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("Distributed.LocalTestingInvocationDecoder", LocalTestingInvocationDecoder, { module: "Distributed_90ad0eb69cc6bf4a", properties: {}, methods: {"decodeNextArgument":{"id":30817504833765}} });
-registerSDKClass("Distributed.LocalTestingInvocationEncoder", LocalTestingInvocationEncoder, { module: "Distributed_90ad0eb69cc6bf4a", properties: {}, methods: {"doneRecording":{"id":3831710522519231},"recordArgument":{"id":3350934002295325},"recordReturnType":{"id":3158677635017229}} });
-registerSDKClass("Distributed.LocalTestingInvocationResultHandler", LocalTestingInvocationResultHandler, { module: "Distributed_90ad0eb69cc6bf4a", properties: {}, methods: {"onReturnVoid":{"id":2013495920629540},"onThrow":{"id":4331374595704796},"onReturn":{"id":928832606561694}} });
-registerSDKClass("Distributed.RemoteCallArgument", RemoteCallArgument, { module: "Distributed_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("Distributed.RemoteCallTarget", RemoteCallTarget, { module: "Distributed_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("Distributed.ExecuteDistributedTargetError", ExecuteDistributedTargetError, { module: "Distributed_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Distributed.LocalTestingActorID", LocalTestingActorID, { module: "Distributed_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Distributed.LocalTestingDistributedActorSystem", LocalTestingDistributedActorSystem, { module: "Distributed_067acaa3e5f56b46", properties: {}, methods: {"makeInvocationEncoder":{"id":2005420694519784},"resignID":{"id":4257680474572771}} });
+registerSDKClass("Distributed.LocalTestingDistributedActorSystemError", LocalTestingDistributedActorSystemError, { module: "Distributed_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Distributed.LocalTestingInvocationDecoder", LocalTestingInvocationDecoder, { module: "Distributed_067acaa3e5f56b46", properties: {}, methods: {"decodeNextArgument":{"id":30817504833765}} });
+registerSDKClass("Distributed.LocalTestingInvocationEncoder", LocalTestingInvocationEncoder, { module: "Distributed_067acaa3e5f56b46", properties: {}, methods: {"doneRecording":{"id":3831710522519231},"recordArgument":{"id":3350934002295325},"recordReturnType":{"id":3158677635017229}} });
+registerSDKClass("Distributed.LocalTestingInvocationResultHandler", LocalTestingInvocationResultHandler, { module: "Distributed_067acaa3e5f56b46", properties: {}, methods: {"onReturnVoid":{"id":2013495920629540},"onThrow":{"id":4331374595704796},"onReturn":{"id":928832606561694}} });
+registerSDKClass("Distributed.RemoteCallArgument", RemoteCallArgument, { module: "Distributed_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Distributed.RemoteCallTarget", RemoteCallTarget, { module: "Distributed_067acaa3e5f56b46", properties: {} });

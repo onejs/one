@@ -69,60 +69,53 @@ export declare class PHLivePhotoView extends SDKHandle {
      * class func livePhotoBadgeImage(options badgeOptions: PHLivePhotoBadgeOptions = []) -> UIImage
      * @availability iOS 9.1+
      */
-    static livePhotoBadgeImage(badgeOptions?: PHLivePhotoBadgeOptions): _UIKit_UIImage;
+    static livePhotoBadgeImage(badgeOptions?: PHLivePhotoBadgeOptions): Promise<_UIKit_UIImage>;
     /** init() */
-    static init(): PHLivePhotoView;
+    static init(): Promise<PHLivePhotoView>;
     /**
      * func startPlayback(with playbackStyle: PHLivePhotoViewPlaybackStyle)
      * @availability iOS 9.1+
      */
-    startPlayback(playbackStyle: PHLivePhotoViewPlaybackStyle): void;
+    startPlayback(playbackStyle: PHLivePhotoViewPlaybackStyle): Promise<void>;
     /**
      * func stopPlayback()
      * @availability iOS 9.1+
      */
-    stopPlayback(): void;
+    stopPlayback(): Promise<void>;
     /**
      * var contentsRect: CGRect { get set }
      * @availability iOS 17.0+
      */
-    get contentsRect(): $SDK1;
-    set contentsRect(value: $SDK1);
+    get contentsRect(): Promise<$SDK1>;
+    setContentsRect(value: $SDK1): Promise<void>;
     /**
      * weak var delegate: (any PHLivePhotoViewDelegate)? { get set }
      * @availability iOS 9.1+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PHLivePhotoViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PHLivePhotoViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var livePhoto: PHLivePhoto? { get set }
      * @availability iOS 9.1+
      */
-    get livePhoto(): $SDK3;
-    set livePhoto(value: $SDK3);
+    get livePhoto(): Promise<$SDK3>;
+    setLivePhoto(value?: $SDK3): Promise<void>;
     /**
      * var isMuted: Bool { get set }
      * @availability iOS 9.1+
      */
-    get isMuted(): boolean;
-    set isMuted(value: boolean);
+    get isMuted(): Promise<boolean>;
+    setIsMuted(value: boolean): Promise<void>;
     /**
      * var playbackGestureRecognizer: UIGestureRecognizer { get }
      * @availability iOS 9.1+
      */
-    get playbackGestureRecognizer(): _UIKit_UIGestureRecognizer;
+    get playbackGestureRecognizer(): Promise<_UIKit_UIGestureRecognizer>;
     readonly $type: {
         "c:objc(cs)PHLivePhotoView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "contentsRect": true;
-        "delegate": true;
-        "livePhoto": true;
-        "isMuted": true;
-        "playbackGestureRecognizer": true;
     };
 }
 /**
@@ -529,27 +522,27 @@ export declare class PHPickerViewController extends SDKHandle {
      * func deselectAssets(withIdentifiers identifiers: [String])
      * @availability iOS 16.0+
      */
-    deselectAssets(identifiers: Array<string>): void;
+    deselectAssets(identifiers: Array<string>): Promise<void>;
     /**
      * func moveAsset(withIdentifier identifier: String, afterAssetWithIdentifier afterIdentifier: String?)
      * @availability iOS 16.0+
      */
-    moveAsset(identifier: string, afterIdentifier?: (string) | null): void;
+    moveAsset(identifier: string, afterIdentifier?: (string) | null): Promise<void>;
     /**
      * func scrollToInitialPosition()
      * @availability iOS 17.0+
      */
-    scrollToInitialPosition(): void;
+    scrollToInitialPosition(): Promise<void>;
     /**
      * func zoomIn()
      * @availability iOS 17.0+
      */
-    zoomIn(): void;
+    zoomIn(): Promise<void>;
     /**
      * func zoomOut()
      * @availability iOS 17.0+
      */
-    zoomOut(): void;
+    zoomOut(): Promise<void>;
     /**
      * @MainActor @preconcurrency func updatePicker(using configuration: PHPickerConfiguration.Update)
      * @availability iOS 17.0+
@@ -665,13 +658,13 @@ export declare class PHSharedAlbumCreationViewController extends SDKHandle {
      * @NSCopying var creationResult: __PHSharedAlbumCreationResult? { get }
      * @availability iOS 27.0+
      */
-    get creationResult(): (SDKHandle) | null;
+    get creationResult(): Promise<(SDKHandle) | null>;
     /**
      * weak var delegate: (any PHSharedAlbumCreationViewController.Delegate)? { get set }
      * @availability iOS 27.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PHSharedAlbumCreationViewController_Delegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PHSharedAlbumCreationViewController_Delegate> | SDKHandle) | null): Promise<void>;
     /**
      * @MainActor @preconcurrency convenience init(configuration: PHSharedAlbumCreationConfiguration)
      * @availability iOS 27.0+
@@ -682,10 +675,6 @@ export declare class PHSharedAlbumCreationViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "creationResult": true;
-        "delegate": true;
     };
 }
 /**
@@ -708,27 +697,23 @@ export declare class PHSharedAlbumCustomizationViewController extends SDKHandle 
      * init(albumIdentifier: String, photoLibrary: PHPhotoLibrary)
      * @availability iOS 27.0+
      */
-    static init(albumIdentifier: string, photoLibrary: _Photos_PHPhotoLibrary): PHSharedAlbumCustomizationViewController;
+    static init(albumIdentifier: string, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumCustomizationViewController>;
     /**
      * var albumIdentifier: String { get }
      * @availability iOS 27.0+
      */
-    get albumIdentifier(): string;
+    get albumIdentifier(): Promise<string>;
     /**
      * weak var delegate: (any PHSharedAlbumCustomizationViewController.Delegate)? { get set }
      * @availability iOS 27.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PHSharedAlbumCustomizationViewController_Delegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PHSharedAlbumCustomizationViewController_Delegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)PHSharedAlbumCustomizationViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "albumIdentifier": true;
-        "delegate": true;
     };
 }
 /**
@@ -751,13 +736,13 @@ export declare class PHSharedAlbumPostingViewController extends SDKHandle {
      * var albumIdentifier: String? { get }
      * @availability iOS 27.0+
      */
-    get albumIdentifier(): (string) | null;
+    get albumIdentifier(): Promise<(string) | null>;
     /**
      * weak var delegate: (any PHSharedAlbumPostingViewController.Delegate)? { get set }
      * @availability iOS 27.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PHSharedAlbumPostingViewController_Delegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PHSharedAlbumPostingViewController_Delegate> | SDKHandle) | null): Promise<void>;
     /**
      * @MainActor @preconcurrency convenience init(items: [PHPickerResult], defaultAlbumIdentifier: String?, photoLibrary: PHPhotoLibrary)
      * @availability iOS 27.0+
@@ -768,10 +753,6 @@ export declare class PHSharedAlbumPostingViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "albumIdentifier": true;
-        "delegate": true;
     };
 }
 /**

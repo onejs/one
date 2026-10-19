@@ -19,7 +19,7 @@ export type CLAccuracyAuthorization = "fullAccuracy" | "reducedAccuracy";
 
 export const CLAccuracyAuthorization = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CLAccuracyAuthorization) | null { return callSDK<(CLAccuracyAuthorization) | null>("CoreLocation_90ad0eb69cc6bf4a", 1859624294656973, undefined, [rawValue]); }
+  init(rawValue: number): (CLAccuracyAuthorization) | null { return callSDK<(CLAccuracyAuthorization) | null>("CoreLocation_067acaa3e5f56b46", 1859624294656973, undefined, [rawValue]); }
 };
 
 /** enum CLActivityType */
@@ -27,7 +27,7 @@ export type CLActivityType = "other" | "automotiveNavigation" | "fitness" | "oth
 
 export const CLActivityType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CLActivityType) | null { return callSDK<(CLActivityType) | null>("CoreLocation_90ad0eb69cc6bf4a", 2678361603952098, undefined, [rawValue]); }
+  init(rawValue: number): (CLActivityType) | null { return callSDK<(CLActivityType) | null>("CoreLocation_067acaa3e5f56b46", 2678361603952098, undefined, [rawValue]); }
 };
 
 /** enum CLAuthorizationStatus */
@@ -39,9 +39,9 @@ export const CLAuthorizationStatus = {
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get authorized(): CLAuthorizationStatus { return callSDK<CLAuthorizationStatus>("CoreLocation_90ad0eb69cc6bf4a", 2508969211171877, undefined, []); },
+  get authorized(): CLAuthorizationStatus { return callSDK<CLAuthorizationStatus>("CoreLocation_067acaa3e5f56b46", 2508969211171877, undefined, []); },
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CLAuthorizationStatus) | null { return callSDK<(CLAuthorizationStatus) | null>("CoreLocation_90ad0eb69cc6bf4a", 4123188134301807, undefined, [rawValue]); }
+  init(rawValue: number): (CLAuthorizationStatus) | null { return callSDK<(CLAuthorizationStatus) | null>("CoreLocation_067acaa3e5f56b46", 4123188134301807, undefined, [rawValue]); }
 };
 
 /**
@@ -53,17 +53,17 @@ export class CLBackgroundActivitySession extends SDKHandle {
    * final func invalidate()
    * @availability iOS 17.0+
    */
-  invalidate(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 7920334799304, this, []); }
+  invalidate(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 7920334799304, this, []); }
   /**
    * final var diagnostics: CLBackgroundActivitySession.Diagnostics { get }
    * @availability iOS 18.0+
    */
-  get diagnostics(): CLBackgroundActivitySession_Diagnostics { return callSDK<CLBackgroundActivitySession_Diagnostics>("CoreLocation_90ad0eb69cc6bf4a", 95792468508598, this, []); }
+  get diagnostics(): CLBackgroundActivitySession_Diagnostics { return callSDK<CLBackgroundActivitySession_Diagnostics>("CoreLocation_067acaa3e5f56b46", 95792468508598, this, []); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): CLBackgroundActivitySession { return callSDK<CLBackgroundActivitySession>("CoreLocation_90ad0eb69cc6bf4a", 2085183477876747, undefined, []); }
+  static init(): CLBackgroundActivitySession { return callSDK<CLBackgroundActivitySession>("CoreLocation_067acaa3e5f56b46", 2085183477876747, undefined, []); }
   declare readonly $type: { "s:12CoreLocation27CLBackgroundActivitySessionC": true };
 }
 
@@ -76,32 +76,32 @@ export class CLBackgroundActivitySession_Diagnostic extends SDKHandle {
    * var serviceSessionRequired: Bool { get }
    * @availability iOS 18.0+
    */
-  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2014830447437110, this, []); }
+  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2014830447437110, this, []); }
   /**
    * var authorizationDenied: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2339967237575832, this, []); }
+  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2339967237575832, this, []); }
   /**
    * var insufficientlyInUse: Bool { get }
    * @availability iOS 18.0+
    */
-  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2491402764094474, this, []); }
+  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2491402764094474, this, []); }
   /**
    * var authorizationRestricted: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2035963074334165, this, []); }
+  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2035963074334165, this, []); }
   /**
    * var authorizationDeniedGlobally: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3206395687943716, this, []); }
+  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3206395687943716, this, []); }
   /**
    * var authorizationRequestInProgress: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 561593178579022, this, []); }
+  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 561593178579022, this, []); }
   declare readonly $type: { "s:12CoreLocation27CLBackgroundActivitySessionC10DiagnosticV": true };
 }
 
@@ -114,7 +114,7 @@ export class CLBackgroundActivitySession_Diagnostics extends SDKHandle {
    * final func makeAsyncIterator() -> CLBackgroundActivitySession.Diagnostics.Iterator
    * @availability iOS 18.0+
    */
-  makeAsyncIterator(): CLBackgroundActivitySession_Diagnostics_Iterator { return callSDK<CLBackgroundActivitySession_Diagnostics_Iterator>("CoreLocation_90ad0eb69cc6bf4a", 2823116906785506, this, []); }
+  makeAsyncIterator(): CLBackgroundActivitySession_Diagnostics_Iterator { return callSDK<CLBackgroundActivitySession_Diagnostics_Iterator>("CoreLocation_067acaa3e5f56b46", 2823116906785506, this, []); }
   declare readonly $type: { "s:12CoreLocation27CLBackgroundActivitySessionC11DiagnosticsC": true };
   declare readonly $element: CLBackgroundActivitySession_Diagnostic;
 }
@@ -140,7 +140,7 @@ export class CLBackgroundActivitySession_Diagnostics_Iterator extends SDKHandle 
    * mutating func next() async throws -> CLBackgroundActivitySession.Diagnostics.Element?
    * @availability iOS 18.0+
    */
-  next(): Promise<(CLBackgroundActivitySession_Diagnostic) | null> { return callSDKAsync<(CLBackgroundActivitySession_Diagnostic) | null>("CoreLocation_90ad0eb69cc6bf4a", 4404981099063283, this, []); }
+  next(): Promise<(CLBackgroundActivitySession_Diagnostic) | null> { return callSDKAsync<(CLBackgroundActivitySession_Diagnostic) | null>("CoreLocation_067acaa3e5f56b46", 4404981099063283, this, []); }
   declare readonly $type: { "s:12CoreLocation27CLBackgroundActivitySessionC11DiagnosticsC8IteratorV": true };
 }
 
@@ -156,48 +156,48 @@ export type CLBackgroundActivitySession_Diagnostics_Iterator_Element = CLBackgro
  */
 export class CLBeacon extends SDKHandle {
   /** init() */
-  static init(): CLBeacon { return callSDK<CLBeacon>("CoreLocation_90ad0eb69cc6bf4a", 342234771282209, undefined, []); }
+  static init(): CLBeacon { return callSDK<CLBeacon>("CoreLocation_067acaa3e5f56b46", 342234771282209, undefined, []); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 13.0+
    */
-  get uuid(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 1636289902220977, this, []); }
+  get uuid(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 1636289902220977, this, []); }
   /**
    * var accuracy: CLLocationAccuracy { get }
    * @availability iOS 7.0+
    */
-  get accuracy(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 3708323001716155, this, []); }
+  get accuracy(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 3708323001716155, this, []); }
   /**
    * @NSCopying var major: NSNumber { get }
    * @availability iOS 7.0+
    */
-  get major(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreLocation_90ad0eb69cc6bf4a", 1483029750766778, this, []); }
+  get major(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreLocation_067acaa3e5f56b46", 1483029750766778, this, []); }
   /**
    * @NSCopying var minor: NSNumber { get }
    * @availability iOS 7.0+
    */
-  get minor(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreLocation_90ad0eb69cc6bf4a", 3132664602138781, this, []); }
+  get minor(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreLocation_067acaa3e5f56b46", 3132664602138781, this, []); }
   /**
    * var proximity: CLProximity { get }
    * @availability iOS 7.0+
    */
-  get proximity(): CLProximity { return callSDK<CLProximity>("CoreLocation_90ad0eb69cc6bf4a", 1075829279542345, this, []); }
+  get proximity(): CLProximity { return callSDK<CLProximity>("CoreLocation_067acaa3e5f56b46", 1075829279542345, this, []); }
   /**
    * var proximityUUID: UUID { get }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get proximityUUID(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 177297139957255, this, []); }
+  get proximityUUID(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 177297139957255, this, []); }
   /**
    * var rssi: Int { get }
    * @availability iOS 7.0+
    */
-  get rssi(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 3977390436705677, this, []); }
+  get rssi(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 3977390436705677, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 13.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_90ad0eb69cc6bf4a", 1214366997028413, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_067acaa3e5f56b46", 1214366997028413, this, []); }
   declare readonly $type: { "c:objc(cs)CLBeacon": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "accuracy": true; "major": true; "minor": true; "proximity": true; "proximityUUID": true; "rssi": true; "timestamp": true };
 }
@@ -212,12 +212,12 @@ export class CLBeaconIdentityConstraint extends SDKHandle {
    * var major: UInt16? { get }
    * @availability iOS 13.0+
    */
-  get major(): (number) | null { return callSDK<(number) | null>("CoreLocation_90ad0eb69cc6bf4a", 559492598606715, this, []); }
+  get major(): (number) | null { return callSDK<(number) | null>("CoreLocation_067acaa3e5f56b46", 559492598606715, this, []); }
   /**
    * var minor: UInt16? { get }
    * @availability iOS 13.0+
    */
-  get minor(): (number) | null { return callSDK<(number) | null>("CoreLocation_90ad0eb69cc6bf4a", 792347365346142, this, []); }
+  get minor(): (number) | null { return callSDK<(number) | null>("CoreLocation_067acaa3e5f56b46", 792347365346142, this, []); }
   declare readonly $type: { "c:objc(cs)CLBeaconIdentityConstraint": true };
 }
 
@@ -233,24 +233,24 @@ export type CLBeaconMinorValue = number;
  */
 export class CLRegion extends SDKHandle {
   /** init() */
-  static init(): CLRegion { return callSDK<CLRegion>("CoreLocation_90ad0eb69cc6bf4a", 3976229231114214, undefined, []); }
+  static init(): CLRegion { return callSDK<CLRegion>("CoreLocation_067acaa3e5f56b46", 3976229231114214, undefined, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 4.0+
    */
-  get identifier(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 344653624534159, this, []); }
+  get identifier(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 344653624534159, this, []); }
   /**
    * var notifyOnEntry: Bool { get set }
    * @availability iOS 7.0+
    */
-  get notifyOnEntry(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1800512801421644, this, []); }
-  set notifyOnEntry(value: boolean) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 928225789851662, this, [value]); }
+  get notifyOnEntry(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1800512801421644, this, []); }
+  set notifyOnEntry(value: boolean) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 928225789851662, this, [value]); }
   /**
    * var notifyOnExit: Bool { get set }
    * @availability iOS 7.0+
    */
-  get notifyOnExit(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 166350835174864, this, []); }
-  set notifyOnExit(value: boolean) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2375640324095630, this, [value]); }
+  get notifyOnExit(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 166350835174864, this, []); }
+  set notifyOnExit(value: boolean) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 2375640324095630, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLRegion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "notifyOnEntry": true; "notifyOnExit": true };
 }
@@ -266,86 +266,86 @@ export class CLBeaconRegion extends CLRegion {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initBeaconIdentityConstraintIdentifier(beaconIdentityConstraint: CLBeaconIdentityConstraint, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 2530771768594656, undefined, [beaconIdentityConstraint, identifier]); }
+  static initBeaconIdentityConstraintIdentifier(beaconIdentityConstraint: CLBeaconIdentityConstraint, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 2530771768594656, undefined, [beaconIdentityConstraint, identifier]); }
   /**
    * init(proximityUUID: UUID, identifier: String)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initProximityUUIDIdentifier(proximityUUID: string, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 3023316116929375, undefined, [proximityUUID, identifier]); }
+  static initProximityUUIDIdentifier(proximityUUID: string, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 3023316116929375, undefined, [proximityUUID, identifier]); }
   /**
    * init(proximityUUID: UUID, major: CLBeaconMajorValue, identifier: String)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initProximityUUIDMajorIdentifier(proximityUUID: string, major: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 2337360119118678, undefined, [proximityUUID, major, identifier]); }
+  static initProximityUUIDMajorIdentifier(proximityUUID: string, major: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 2337360119118678, undefined, [proximityUUID, major, identifier]); }
   /**
    * init(proximityUUID: UUID, major: CLBeaconMajorValue, minor: CLBeaconMinorValue, identifier: String)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initProximityUUIDMajorMinorIdentifier(proximityUUID: string, major: number, minor: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 3042177613531820, undefined, [proximityUUID, major, minor, identifier]); }
+  static initProximityUUIDMajorMinorIdentifier(proximityUUID: string, major: number, minor: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 3042177613531820, undefined, [proximityUUID, major, minor, identifier]); }
   /**
    * init(uuid: UUID, identifier: String)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initUuidIdentifier(uuid: string, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 3571132646747141, undefined, [uuid, identifier]); }
+  static initUuidIdentifier(uuid: string, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 3571132646747141, undefined, [uuid, identifier]); }
   /**
    * init(uuid: UUID, major: CLBeaconMajorValue, identifier: String)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initUuidMajorIdentifier(uuid: string, major: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 3980974273924984, undefined, [uuid, major, identifier]); }
+  static initUuidMajorIdentifier(uuid: string, major: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 3980974273924984, undefined, [uuid, major, identifier]); }
   /**
    * init(uuid: UUID, major: CLBeaconMajorValue, minor: CLBeaconMinorValue, identifier: String)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static initUuidMajorMinorIdentifier(uuid: string, major: number, minor: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_90ad0eb69cc6bf4a", 2253424467796894, undefined, [uuid, major, minor, identifier]); }
+  static initUuidMajorMinorIdentifier(uuid: string, major: number, minor: number, identifier: string): CLBeaconRegion { return callSDK<CLBeaconRegion>("CoreLocation_067acaa3e5f56b46", 2253424467796894, undefined, [uuid, major, minor, identifier]); }
   /**
    * func peripheralData(withMeasuredPower measuredPower: NSNumber?) -> NSMutableDictionary
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  peripheralData(measuredPower?: $SDK1): _Foundation_NSMutableDictionary { return callSDK<_Foundation_NSMutableDictionary>("CoreLocation_90ad0eb69cc6bf4a", 3226911957148377, this, [measuredPower]); }
+  peripheralData(measuredPower?: $SDK1): _Foundation_NSMutableDictionary { return callSDK<_Foundation_NSMutableDictionary>("CoreLocation_067acaa3e5f56b46", 3226911957148377, this, [measuredPower]); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get uuid(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 3845669548076993, this, []); }
+  get uuid(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 3845669548076993, this, []); }
   /**
    * @NSCopying var beaconIdentityConstraint: CLBeaconIdentityConstraint { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get beaconIdentityConstraint(): CLBeaconIdentityConstraint { return callSDK<CLBeaconIdentityConstraint>("CoreLocation_90ad0eb69cc6bf4a", 560317074991964, this, []); }
+  get beaconIdentityConstraint(): CLBeaconIdentityConstraint { return callSDK<CLBeaconIdentityConstraint>("CoreLocation_067acaa3e5f56b46", 560317074991964, this, []); }
   /**
    * @NSCopying var major: NSNumber? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get major(): $SDK1 { return callSDK<$SDK1>("CoreLocation_90ad0eb69cc6bf4a", 2364505455302941, this, []); }
+  get major(): $SDK1 { return callSDK<$SDK1>("CoreLocation_067acaa3e5f56b46", 2364505455302941, this, []); }
   /**
    * @NSCopying var minor: NSNumber? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get minor(): $SDK1 { return callSDK<$SDK1>("CoreLocation_90ad0eb69cc6bf4a", 4365377372697585, this, []); }
+  get minor(): $SDK1 { return callSDK<$SDK1>("CoreLocation_067acaa3e5f56b46", 4365377372697585, this, []); }
   /**
    * var notifyEntryStateOnDisplay: Bool { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get notifyEntryStateOnDisplay(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2387076833893862, this, []); }
-  set notifyEntryStateOnDisplay(value: boolean) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2924495050811617, this, [value]); }
+  get notifyEntryStateOnDisplay(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2387076833893862, this, []); }
+  set notifyEntryStateOnDisplay(value: boolean) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 2924495050811617, this, [value]); }
   /**
    * var proximityUUID: UUID { get }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get proximityUUID(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 592115925560886, this, []); }
+  get proximityUUID(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 592115925560886, this, []); }
   declare readonly $type: { "c:objc(cs)CLBeaconRegion": true; "c:objc(cs)CLRegion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "notifyOnEntry": true; "notifyOnExit": true; "uuid": true; "beaconIdentityConstraint": true; "major": true; "minor": true; "notifyEntryStateOnDisplay": true; "proximityUUID": true };
 }
@@ -369,25 +369,25 @@ export class CLCircularRegion extends (CLRegion as unknown as Omit<typeof CLRegi
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  contains(coordinate: $SDK2): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3463002619560789, this, [coordinate]); }
+  contains(coordinate: $SDK2): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3463002619560789, this, [coordinate]); }
   /**
    * init(center: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String)
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  static init(center: $SDK2, radius: number, identifier: string): CLCircularRegion { return callSDK<CLCircularRegion>("CoreLocation_90ad0eb69cc6bf4a", 428856755301638, undefined, [center, radius, identifier]); }
+  static init(center: $SDK2, radius: number, identifier: string): CLCircularRegion { return callSDK<CLCircularRegion>("CoreLocation_067acaa3e5f56b46", 428856755301638, undefined, [center, radius, identifier]); }
   /**
    * var center: CLLocationCoordinate2D { get }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get center(): $SDK2 { return callSDK<$SDK2>("CoreLocation_90ad0eb69cc6bf4a", 687974291432470, this, []); }
+  get center(): $SDK2 { return callSDK<$SDK2>("CoreLocation_067acaa3e5f56b46", 687974291432470, this, []); }
   /**
    * var radius: CLLocationDistance { get }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get radius(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2398786189788723, this, []); }
+  get radius(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 2398786189788723, this, []); }
   declare readonly $type: { "c:objc(cs)CLCircularRegion": true; "c:objc(cs)CLRegion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "notifyOnEntry": true; "notifyOnExit": true; "center": true; "radius": true };
 }
@@ -405,53 +405,53 @@ export type CLDeviceOrientation = "unknown" | "portrait" | "portraitUpsideDown" 
 
 export const CLDeviceOrientation = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CLDeviceOrientation) | null { return callSDK<(CLDeviceOrientation) | null>("CoreLocation_90ad0eb69cc6bf4a", 4350071472756445, undefined, [rawValue]); }
+  init(rawValue: number): (CLDeviceOrientation) | null { return callSDK<(CLDeviceOrientation) | null>("CoreLocation_067acaa3e5f56b46", 4350071472756445, undefined, [rawValue]); }
 };
 
 /** struct CLError */
 export class CLError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 2942647440133049, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 2942647440133049, undefined, []); }
   /** static var deferredFailed: CLError.Code { get } */
-  static get deferredFailed(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 194183079449473, undefined, []); }
+  static get deferredFailed(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 194183079449473, undefined, []); }
   /** static var headingFailure: CLError.Code { get } */
-  static get headingFailure(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 310538023513160, undefined, []); }
+  static get headingFailure(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 310538023513160, undefined, []); }
   /** static var promptDeclined: CLError.Code { get } */
-  static get promptDeclined(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 2641134408349664, undefined, []); }
+  static get promptDeclined(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 2641134408349664, undefined, []); }
   /** static var rangingFailure: CLError.Code { get } */
-  static get rangingFailure(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 24989006595654, undefined, []); }
+  static get rangingFailure(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 24989006595654, undefined, []); }
   /** static var geocodeCanceled: CLError.Code { get } */
-  static get geocodeCanceled(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 4067980619073785, undefined, []); }
+  static get geocodeCanceled(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 4067980619073785, undefined, []); }
   /** static var locationUnknown: CLError.Code { get } */
-  static get locationUnknown(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 216575789445449, undefined, []); }
+  static get locationUnknown(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 216575789445449, undefined, []); }
   /** static var deferredCanceled: CLError.Code { get } */
-  static get deferredCanceled(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 2418361750762339, undefined, []); }
+  static get deferredCanceled(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 2418361750762339, undefined, []); }
   /** static var rangingUnavailable: CLError.Code { get } */
-  static get rangingUnavailable(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 1435895038158189, undefined, []); }
+  static get rangingUnavailable(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 1435895038158189, undefined, []); }
   /** static var geocodeFoundNoResult: CLError.Code { get } */
-  static get geocodeFoundNoResult(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 633259642136527, undefined, []); }
+  static get geocodeFoundNoResult(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 633259642136527, undefined, []); }
   /** static var deferredAccuracyTooLow: CLError.Code { get } */
-  static get deferredAccuracyTooLow(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 3899931476058220, undefined, []); }
+  static get deferredAccuracyTooLow(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 3899931476058220, undefined, []); }
   /** static var regionMonitoringDenied: CLError.Code { get } */
-  static get regionMonitoringDenied(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 1615702352709344, undefined, []); }
+  static get regionMonitoringDenied(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 1615702352709344, undefined, []); }
   /** static var historicalLocationError: CLError.Code { get } */
-  static get historicalLocationError(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 718754757335622, undefined, []); }
+  static get historicalLocationError(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 718754757335622, undefined, []); }
   /** static var regionMonitoringFailure: CLError.Code { get } */
-  static get regionMonitoringFailure(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 510771933855961, undefined, []); }
+  static get regionMonitoringFailure(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 510771933855961, undefined, []); }
   /** static var deferredDistanceFiltered: CLError.Code { get } */
-  static get deferredDistanceFiltered(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 3629433587298386, undefined, []); }
+  static get deferredDistanceFiltered(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 3629433587298386, undefined, []); }
   /** static var geocodeFoundPartialResult: CLError.Code { get } */
-  static get geocodeFoundPartialResult(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 917296754484128, undefined, []); }
+  static get geocodeFoundPartialResult(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 917296754484128, undefined, []); }
   /** static var deferredNotUpdatingLocation: CLError.Code { get } */
-  static get deferredNotUpdatingLocation(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 3103349361401789, undefined, []); }
+  static get deferredNotUpdatingLocation(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 3103349361401789, undefined, []); }
   /** static var regionMonitoringSetupDelayed: CLError.Code { get } */
-  static get regionMonitoringSetupDelayed(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 318553901358496, undefined, []); }
+  static get regionMonitoringSetupDelayed(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 318553901358496, undefined, []); }
   /** static var regionMonitoringResponseDelayed: CLError.Code { get } */
-  static get regionMonitoringResponseDelayed(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 1547175306521987, undefined, []); }
+  static get regionMonitoringResponseDelayed(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 1547175306521987, undefined, []); }
   /** static var denied: CLError.Code { get } */
-  static get denied(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 186921277480179, undefined, []); }
+  static get denied(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 186921277480179, undefined, []); }
   /** static var network: CLError.Code { get } */
-  static get network(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_90ad0eb69cc6bf4a", 2150636630182351, undefined, []); }
+  static get network(): CLError_Code { return callSDK<CLError_Code>("CoreLocation_067acaa3e5f56b46", 2150636630182351, undefined, []); }
   declare readonly $type: { "s:SC7CLErrorLeV": true };
 }
 
@@ -460,7 +460,7 @@ export type CLError_Code = "locationUnknown" | "denied" | "network" | "headingFa
 
 export const CLError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CLError_Code) | null { return callSDK<(CLError_Code) | null>("CoreLocation_90ad0eb69cc6bf4a", 1864669693122976, undefined, [rawValue]); }
+  init(rawValue: number): (CLError_Code) | null { return callSDK<(CLError_Code) | null>("CoreLocation_067acaa3e5f56b46", 1864669693122976, undefined, [rawValue]); }
 };
 
 /** typealias CLGeocodeCompletionHandler = ([CLPlacemark]?, (any Error)?) -> Void */
@@ -477,63 +477,63 @@ export class CLGeocoder extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 26.0
    */
-  cancelGeocode(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 3234963265604239, this, []); }
+  cancelGeocode(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 3234963265604239, this, []); }
   /**
    * func geocodeAddressDictionary(_ addressDictionary: [AnyHashable : Any], completionHandler: @escaping @Sendable ([CLPlacemark]?, (any Error)?) -> Void)
    * @availability iOS 5.0+
    * @deprecated iOS 11.0
    */
-  geocodeAddressDictionary(addressDictionary: NativeMap<unknown, unknown>, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2545685183264997, this, [addressDictionary, completionHandler], [null,{"callback":{"out":[]}}]); }
+  geocodeAddressDictionary(addressDictionary: NativeMap<unknown, unknown>, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 2545685183264997, this, [addressDictionary, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func geocodeAddressString(_ addressString: String) async throws -> [CLPlacemark]
    * @availability iOS 5.0+
    * @deprecated iOS 26.0
    */
-  geocodeAddressStringCompletionHandler(addressString: string, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2355900799628308, this, [addressString, completionHandler], [null,{"callback":{"out":[]}}]); }
+  geocodeAddressStringCompletionHandler(addressString: string, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 2355900799628308, this, [addressString, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func geocodeAddressString(_ addressString: String, in region: CLRegion?) async throws -> [CLPlacemark]
    * @availability iOS 5.0+
    * @deprecated iOS 26.0
    */
-  geocodeAddressStringInCompletionHandler(addressString: string, region: (CLRegion) | null, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 4312146671728208, this, [addressString, region, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  geocodeAddressStringInCompletionHandler(addressString: string, region: (CLRegion) | null, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 4312146671728208, this, [addressString, region, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func geocodeAddressString(_ addressString: String, in region: CLRegion?, preferredLocale locale: Locale?) async throws -> [CLPlacemark]
    * @availability iOS 11.0+
    * @deprecated iOS 26.0
    */
-  geocodeAddressStringInPreferredLocaleCompletionHandler(addressString: string, region: (CLRegion) | null, locale: $SDK6, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 4475529391846915, this, [addressString, region, locale, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  geocodeAddressStringInPreferredLocaleCompletionHandler(addressString: string, region: (CLRegion) | null, locale: $SDK6, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 4475529391846915, this, [addressString, region, locale, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func geocodePostalAddress(_ postalAddress: CNPostalAddress) async throws -> [CLPlacemark]
    * @availability iOS 11.0+
    * @deprecated iOS 26.0
    */
-  geocodePostalAddressCompletionHandler(postalAddress: _Contacts_CNPostalAddress, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 380179462680992, this, [postalAddress, completionHandler], [null,{"callback":{"out":[]}}]); }
+  geocodePostalAddressCompletionHandler(postalAddress: _Contacts_CNPostalAddress, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 380179462680992, this, [postalAddress, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func geocodePostalAddress(_ postalAddress: CNPostalAddress, preferredLocale locale: Locale?) async throws -> [CLPlacemark]
    * @availability iOS 11.0+
    * @deprecated iOS 26.0
    */
-  geocodePostalAddressPreferredLocaleCompletionHandler(postalAddress: _Contacts_CNPostalAddress, locale: $SDK6, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 934248828226581, this, [postalAddress, locale, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  geocodePostalAddressPreferredLocaleCompletionHandler(postalAddress: _Contacts_CNPostalAddress, locale: $SDK6, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 934248828226581, this, [postalAddress, locale, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CLGeocoder { return callSDK<CLGeocoder>("CoreLocation_90ad0eb69cc6bf4a", 3978320518430515, undefined, []); }
+  static init(): CLGeocoder { return callSDK<CLGeocoder>("CoreLocation_067acaa3e5f56b46", 3978320518430515, undefined, []); }
   /**
    * func reverseGeocodeLocation(_ location: CLLocation) async throws -> [CLPlacemark]
    * @availability iOS 5.0+
    * @deprecated iOS 26.0
    */
-  reverseGeocodeLocationCompletionHandler(location: __LocationEssentials_CLLocation, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1949471982011609, this, [location, completionHandler], [null,{"callback":{"out":[]}}]); }
+  reverseGeocodeLocationCompletionHandler(location: __LocationEssentials_CLLocation, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1949471982011609, this, [location, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func reverseGeocodeLocation(_ location: CLLocation, preferredLocale locale: Locale?) async throws -> [CLPlacemark]
    * @availability iOS 11.0+
    * @deprecated iOS 26.0
    */
-  reverseGeocodeLocationPreferredLocaleCompletionHandler(location: __LocationEssentials_CLLocation, locale: $SDK6, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 3417523362834163, this, [location, locale, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  reverseGeocodeLocationPreferredLocaleCompletionHandler(location: __LocationEssentials_CLLocation, locale: $SDK6, completionHandler: $SDK5): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 3417523362834163, this, [location, locale, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var isGeocoding: Bool { get }
    * @availability iOS 5.0+
    * @deprecated iOS 26.0
    */
-  get isGeocoding(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2793640076466709, this, []); }
+  get isGeocoding(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2793640076466709, this, []); }
   declare readonly $type: { "c:objc(cs)CLGeocoder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isGeocoding": true };
 }
@@ -544,42 +544,42 @@ export class CLGeocoder extends SDKHandle {
  */
 export class CLHeading extends SDKHandle {
   /** init() */
-  static init(): CLHeading { return callSDK<CLHeading>("CoreLocation_90ad0eb69cc6bf4a", 328985852989722, undefined, []); }
+  static init(): CLHeading { return callSDK<CLHeading>("CoreLocation_067acaa3e5f56b46", 328985852989722, undefined, []); }
   /**
    * var headingAccuracy: CLLocationDirection { get }
    * @availability iOS 3.0+
    */
-  get headingAccuracy(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 629154444972947, this, []); }
+  get headingAccuracy(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 629154444972947, this, []); }
   /**
    * var magneticHeading: CLLocationDirection { get }
    * @availability iOS 3.0+
    */
-  get magneticHeading(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 1377849437181087, this, []); }
+  get magneticHeading(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 1377849437181087, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 3.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_90ad0eb69cc6bf4a", 3235256242891590, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_067acaa3e5f56b46", 3235256242891590, this, []); }
   /**
    * var trueHeading: CLLocationDirection { get }
    * @availability iOS 3.0+
    */
-  get trueHeading(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2021468095075614, this, []); }
+  get trueHeading(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 2021468095075614, this, []); }
   /**
    * var x: CLHeadingComponentValue { get }
    * @availability iOS 3.0+
    */
-  get x(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2292446065547737, this, []); }
+  get x(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 2292446065547737, this, []); }
   /**
    * var y: CLHeadingComponentValue { get }
    * @availability iOS 3.0+
    */
-  get y(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2558466243935267, this, []); }
+  get y(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 2558466243935267, this, []); }
   /**
    * var z: CLHeadingComponentValue { get }
    * @availability iOS 3.0+
    */
-  get z(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2269761757207222, this, []); }
+  get z(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 2269761757207222, this, []); }
   declare readonly $type: { "c:objc(cs)CLHeading": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "headingAccuracy": true; "magneticHeading": true; "timestamp": true; "trueHeading": true; "x": true; "y": true; "z": true };
 }
@@ -597,279 +597,279 @@ export class CLLocationManager extends SDKHandle {
    * @availability iOS 4.2+
    * @deprecated iOS 14.0
    */
-  static authorizationStatus(): CLAuthorizationStatus { return callSDK<CLAuthorizationStatus>("CoreLocation_90ad0eb69cc6bf4a", 2626252544445213, undefined, []); }
+  static authorizationStatus(): CLAuthorizationStatus { return callSDK<CLAuthorizationStatus>("CoreLocation_067acaa3e5f56b46", 2626252544445213, undefined, []); }
   /**
    * class func deferredLocationUpdatesAvailable() -> Bool
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  static deferredLocationUpdatesAvailable(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 52936135268653, undefined, []); }
+  static deferredLocationUpdatesAvailable(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 52936135268653, undefined, []); }
   /**
    * class func headingAvailable() -> Bool
    * @availability iOS 4.0+
    */
-  static headingAvailable(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2948412276115101, undefined, []); }
+  static headingAvailable(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2948412276115101, undefined, []); }
   /**
    * class func isMonitoringAvailable(for regionClass: AnyClass) -> Bool
    * @availability iOS 7.0+
    */
-  static isMonitoringAvailable(regionClass: string): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3554596290909404, undefined, [regionClass]); }
+  static isMonitoringAvailable(regionClass: string): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3554596290909404, undefined, [regionClass]); }
   /**
    * class func isRangingAvailable() -> Bool
    * @availability iOS 7.0+
    */
-  static isRangingAvailable(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 639938566836201, undefined, []); }
+  static isRangingAvailable(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 639938566836201, undefined, []); }
   /**
    * class func locationServicesEnabled() -> Bool
    * @availability iOS 4.0+
    */
-  static locationServicesEnabled(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1998382518276885, undefined, []); }
+  static locationServicesEnabled(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1998382518276885, undefined, []); }
   /**
    * class func significantLocationChangeMonitoringAvailable() -> Bool
    * @availability iOS 4.0+
    */
-  static significantLocationChangeMonitoringAvailable(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1594291197016671, undefined, []); }
+  static significantLocationChangeMonitoringAvailable(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1594291197016671, undefined, []); }
   /**
    * func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance, timeout: TimeInterval)
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  allowDeferredLocationUpdates(distance: number, timeout: number): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1820739416773327, this, [distance, timeout]); }
+  allowDeferredLocationUpdates(distance: number, timeout: number): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1820739416773327, this, [distance, timeout]); }
   /**
    * func disallowDeferredLocationUpdates()
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  disallowDeferredLocationUpdates(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1280804958703933, this, []); }
+  disallowDeferredLocationUpdates(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1280804958703933, this, []); }
   /**
    * func dismissHeadingCalibrationDisplay()
    * @availability iOS 3.0+
    */
-  dismissHeadingCalibrationDisplay(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1525401724520218, this, []); }
+  dismissHeadingCalibrationDisplay(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1525401724520218, this, []); }
   /** init() */
-  static init(): CLLocationManager { return callSDK<CLLocationManager>("CoreLocation_90ad0eb69cc6bf4a", 1295469393653344, undefined, []); }
+  static init(): CLLocationManager { return callSDK<CLLocationManager>("CoreLocation_067acaa3e5f56b46", 1295469393653344, undefined, []); }
   /**
    * func requestAlwaysAuthorization()
    * @availability iOS 8.0+
    */
-  requestAlwaysAuthorization(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 3101668886809190, this, []); }
+  requestAlwaysAuthorization(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 3101668886809190, this, []); }
   /**
    * func requestLocation()
    * @availability iOS 9.0+
    */
-  requestLocation(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 4190233298043987, this, []); }
+  requestLocation(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 4190233298043987, this, []); }
   /**
    * func requestState(for region: CLRegion)
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  requestState(region: CLRegion): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2917209475947470, this, [region]); }
+  requestState(region: CLRegion): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 2917209475947470, this, [region]); }
   /**
    * func requestTemporaryFullAccuracyAuthorization(withPurposeKey purposeKey: String)
    * @availability iOS 14.0+
    */
-  requestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey: string): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1044330309843130, this, [purposeKey]); }
+  requestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey: string): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1044330309843130, this, [purposeKey]); }
   /**
    * func requestTemporaryFullAccuracyAuthorization(withPurposeKey purposeKey: String) async throws
    * @availability iOS 14.0+
    */
-  requestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey: string, completion?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 415931780632186, this, [purposeKey, completion], [null,{"callback":{"out":[]}}]); }
+  requestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey: string, completion?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 415931780632186, this, [purposeKey, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestWhenInUseAuthorization()
    * @availability iOS 8.0+
    */
-  requestWhenInUseAuthorization(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1396347517082454, this, []); }
+  requestWhenInUseAuthorization(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1396347517082454, this, []); }
   /**
    * func startMonitoring(for region: CLRegion)
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  startMonitoring(region: CLRegion): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2161356699562542, this, [region]); }
+  startMonitoring(region: CLRegion): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 2161356699562542, this, [region]); }
   /**
    * func startMonitoringLocationPushes() async throws -> Data
    * @availability iOS 15.0+
    */
-  startMonitoringLocationPushes(completion?: (((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 147349047642282, this, [completion], [{"callback":{"out":[]}}]); }
+  startMonitoringLocationPushes(completion?: (((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 147349047642282, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func startMonitoringSignificantLocationChanges()
    * @availability iOS 4.0+
    */
-  startMonitoringSignificantLocationChanges(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1163978873574981, this, []); }
+  startMonitoringSignificantLocationChanges(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1163978873574981, this, []); }
   /**
    * func startMonitoringVisits()
    * @availability iOS 8.0+
    */
-  startMonitoringVisits(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 4466948899868588, this, []); }
+  startMonitoringVisits(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 4466948899868588, this, []); }
   /**
    * func startRangingBeacons(in region: CLBeaconRegion)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  startRangingBeaconsIn(region: CLBeaconRegion): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1574350236440849, this, [region]); }
+  startRangingBeaconsIn(region: CLBeaconRegion): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1574350236440849, this, [region]); }
   /**
    * func startRangingBeacons(satisfying constraint: CLBeaconIdentityConstraint)
    * @availability iOS 13.0+
    */
-  startRangingBeaconsSatisfying(constraint: CLBeaconIdentityConstraint): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 3689910440652444, this, [constraint]); }
+  startRangingBeaconsSatisfying(constraint: CLBeaconIdentityConstraint): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 3689910440652444, this, [constraint]); }
   /**
    * func startUpdatingHeading()
    * @availability iOS 3.0+
    */
-  startUpdatingHeading(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 196583997652227, this, []); }
+  startUpdatingHeading(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 196583997652227, this, []); }
   /**
    * func startUpdatingLocation()
    * @availability iOS 2.0+
    */
-  startUpdatingLocation(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 3881207745842508, this, []); }
+  startUpdatingLocation(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 3881207745842508, this, []); }
   /**
    * func stopMonitoring(for region: CLRegion)
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  stopMonitoring(region: CLRegion): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2326657746247228, this, [region]); }
+  stopMonitoring(region: CLRegion): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 2326657746247228, this, [region]); }
   /**
    * func stopMonitoringLocationPushes()
    * @availability iOS 15.0+
    */
-  stopMonitoringLocationPushes(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 493059575834945, this, []); }
+  stopMonitoringLocationPushes(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 493059575834945, this, []); }
   /**
    * func stopMonitoringSignificantLocationChanges()
    * @availability iOS 4.0+
    */
-  stopMonitoringSignificantLocationChanges(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 121996450565482, this, []); }
+  stopMonitoringSignificantLocationChanges(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 121996450565482, this, []); }
   /**
    * func stopMonitoringVisits()
    * @availability iOS 8.0+
    */
-  stopMonitoringVisits(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2636440021341800, this, []); }
+  stopMonitoringVisits(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 2636440021341800, this, []); }
   /**
    * func stopRangingBeacons(in region: CLBeaconRegion)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  stopRangingBeaconsIn(region: CLBeaconRegion): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1870110341233625, this, [region]); }
+  stopRangingBeaconsIn(region: CLBeaconRegion): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1870110341233625, this, [region]); }
   /**
    * func stopRangingBeacons(satisfying constraint: CLBeaconIdentityConstraint)
    * @availability iOS 13.0+
    */
-  stopRangingBeaconsSatisfying(constraint: CLBeaconIdentityConstraint): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1078219142662200, this, [constraint]); }
+  stopRangingBeaconsSatisfying(constraint: CLBeaconIdentityConstraint): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1078219142662200, this, [constraint]); }
   /**
    * func stopUpdatingHeading()
    * @availability iOS 3.0+
    */
-  stopUpdatingHeading(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1314014251040535, this, []); }
+  stopUpdatingHeading(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1314014251040535, this, []); }
   /**
    * func stopUpdatingLocation()
    * @availability iOS 2.0+
    */
-  stopUpdatingLocation(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 698737723297563, this, []); }
+  stopUpdatingLocation(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 698737723297563, this, []); }
   /**
    * var accuracyAuthorization: CLAccuracyAuthorization { get }
    * @availability iOS 14.0+
    */
-  get accuracyAuthorization(): CLAccuracyAuthorization { return callSDK<CLAccuracyAuthorization>("CoreLocation_90ad0eb69cc6bf4a", 2902829397606729, this, []); }
+  get accuracyAuthorization(): CLAccuracyAuthorization { return callSDK<CLAccuracyAuthorization>("CoreLocation_067acaa3e5f56b46", 2902829397606729, this, []); }
   /**
    * var activityType: CLActivityType { get set }
    * @availability iOS 6.0+
    */
-  get activityType(): CLActivityType { return callSDK<CLActivityType>("CoreLocation_90ad0eb69cc6bf4a", 670199897101293, this, []); }
-  set activityType(value: CLActivityType) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 249290318485663, this, [value]); }
+  get activityType(): CLActivityType { return callSDK<CLActivityType>("CoreLocation_067acaa3e5f56b46", 670199897101293, this, []); }
+  set activityType(value: CLActivityType) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 249290318485663, this, [value]); }
   /**
    * var allowsBackgroundLocationUpdates: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsBackgroundLocationUpdates(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3726550626051223, this, []); }
-  set allowsBackgroundLocationUpdates(value: boolean) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 2614664623983948, this, [value]); }
+  get allowsBackgroundLocationUpdates(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3726550626051223, this, []); }
+  set allowsBackgroundLocationUpdates(value: boolean) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 2614664623983948, this, [value]); }
   /**
    * var authorizationStatus: CLAuthorizationStatus { get }
    * @availability iOS 14.0+
    */
-  get authorizationStatus2871(): CLAuthorizationStatus { return callSDK<CLAuthorizationStatus>("CoreLocation_90ad0eb69cc6bf4a", 3226457896808899, this, []); }
+  get authorizationStatus2871(): CLAuthorizationStatus { return callSDK<CLAuthorizationStatus>("CoreLocation_067acaa3e5f56b46", 3226457896808899, this, []); }
   /**
    * var isAuthorizedForWidgetUpdates: Bool { get }
    * @availability iOS 14.0+
    */
-  get isAuthorizedForWidgetUpdates(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3400269923496999, this, []); }
+  get isAuthorizedForWidgetUpdates(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3400269923496999, this, []); }
   /**
    * weak var delegate: (any CLLocationManagerDelegate)? { get set }
    * @availability iOS 2.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreLocation_90ad0eb69cc6bf4a", 2893152789669075, this, []); }
-  set delegate(value: (Implements<CLLocationManagerDelegate> | SDKHandle) | null) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 78251921730907, this, [value], [{"protocol":"c:objc(pl)CLLocationManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreLocation_067acaa3e5f56b46", 2893152789669075, this, []); }
+  set delegate(value: (Implements<CLLocationManagerDelegate> | SDKHandle) | null) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 78251921730907, this, [value], [{"protocol":"c:objc(pl)CLLocationManagerDelegate"}]); }
   /**
    * var desiredAccuracy: CLLocationAccuracy { get set }
    * @availability iOS 2.0+
    */
-  get desiredAccuracy(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 3127289096326225, this, []); }
-  set desiredAccuracy(value: number) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 3801276003463391, this, [value]); }
+  get desiredAccuracy(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 3127289096326225, this, []); }
+  set desiredAccuracy(value: number) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 3801276003463391, this, [value]); }
   /**
    * var distanceFilter: CLLocationDistance { get set }
    * @availability iOS 2.0+
    */
-  get distanceFilter(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 1582595293711482, this, []); }
-  set distanceFilter(value: number) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 4476937687048497, this, [value]); }
+  get distanceFilter(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 1582595293711482, this, []); }
+  set distanceFilter(value: number) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 4476937687048497, this, [value]); }
   /**
    * @NSCopying var heading: CLHeading? { get }
    * @availability iOS 4.0+
    */
-  get heading(): (CLHeading) | null { return callSDK<(CLHeading) | null>("CoreLocation_90ad0eb69cc6bf4a", 1111726473046296, this, []); }
+  get heading(): (CLHeading) | null { return callSDK<(CLHeading) | null>("CoreLocation_067acaa3e5f56b46", 1111726473046296, this, []); }
   /**
    * var headingBody: (any CLBodyIdentifiable)? { get set }
    * @availability iOS 27.0+
    */
-  get headingBody(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreLocation_90ad0eb69cc6bf4a", 3945011078619120, this, []); }
-  set headingBody(value: (Implements<CLBodyIdentifiable> | SDKHandle) | null) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1680155859841284, this, [value], [{"protocol":"c:objc(pl)CLBodyIdentifiable"}]); }
+  get headingBody(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreLocation_067acaa3e5f56b46", 3945011078619120, this, []); }
+  set headingBody(value: (Implements<CLBodyIdentifiable> | SDKHandle) | null) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 1680155859841284, this, [value], [{"protocol":"c:objc(pl)CLBodyIdentifiable"}]); }
   /**
    * var headingFilter: CLLocationDegrees { get set }
    * @availability iOS 3.0+
    */
-  get headingFilter(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2808951212649084, this, []); }
-  set headingFilter(value: number) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1701697647234688, this, [value]); }
+  get headingFilter(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 2808951212649084, this, []); }
+  set headingFilter(value: number) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 1701697647234688, this, [value]); }
   /**
    * var headingOrientation: CLDeviceOrientation { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 27.0
    */
-  get headingOrientation(): CLDeviceOrientation { return callSDK<CLDeviceOrientation>("CoreLocation_90ad0eb69cc6bf4a", 923002146664908, this, []); }
-  set headingOrientation(value: CLDeviceOrientation) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 4441041115024144, this, [value]); }
+  get headingOrientation(): CLDeviceOrientation { return callSDK<CLDeviceOrientation>("CoreLocation_067acaa3e5f56b46", 923002146664908, this, []); }
+  set headingOrientation(value: CLDeviceOrientation) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 4441041115024144, this, [value]); }
   /**
    * @NSCopying var location: CLLocation? { get }
    * @availability iOS 2.0+
    */
-  get location(): $SDK11 { return callSDK<$SDK11>("CoreLocation_90ad0eb69cc6bf4a", 4459698623704185, this, []); }
+  get location(): $SDK11 { return callSDK<$SDK11>("CoreLocation_067acaa3e5f56b46", 4459698623704185, this, []); }
   /**
    * var maximumRegionMonitoringDistance: CLLocationDistance { get }
    * @availability iOS 4.0+
    */
-  get maximumRegionMonitoringDistance(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 3009533413222961, this, []); }
+  get maximumRegionMonitoringDistance(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 3009533413222961, this, []); }
   /**
    * var monitoredRegions: Set<CLRegion> { get }
    * @availability iOS 4.0+
    */
-  get monitoredRegions(): Array<CLRegion> { return callSDK<Array<CLRegion>>("CoreLocation_90ad0eb69cc6bf4a", 3548749253405386, this, []); }
+  get monitoredRegions(): Array<CLRegion> { return callSDK<Array<CLRegion>>("CoreLocation_067acaa3e5f56b46", 3548749253405386, this, []); }
   /**
    * var pausesLocationUpdatesAutomatically: Bool { get set }
    * @availability iOS 6.0+
    */
-  get pausesLocationUpdatesAutomatically(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1986879035348659, this, []); }
-  set pausesLocationUpdatesAutomatically(value: boolean) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 851793785193200, this, [value]); }
+  get pausesLocationUpdatesAutomatically(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1986879035348659, this, []); }
+  set pausesLocationUpdatesAutomatically(value: boolean) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 851793785193200, this, [value]); }
   /**
    * var rangedBeaconConstraints: Set<CLBeaconIdentityConstraint> { get }
    * @availability iOS 13.0+
    */
-  get rangedBeaconConstraints(): Array<CLBeaconIdentityConstraint> { return callSDK<Array<CLBeaconIdentityConstraint>>("CoreLocation_90ad0eb69cc6bf4a", 2055124066227562, this, []); }
+  get rangedBeaconConstraints(): Array<CLBeaconIdentityConstraint> { return callSDK<Array<CLBeaconIdentityConstraint>>("CoreLocation_067acaa3e5f56b46", 2055124066227562, this, []); }
   /**
    * var rangedRegions: Set<CLRegion> { get }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get rangedRegions(): Array<CLRegion> { return callSDK<Array<CLRegion>>("CoreLocation_90ad0eb69cc6bf4a", 4303191092914655, this, []); }
+  get rangedRegions(): Array<CLRegion> { return callSDK<Array<CLRegion>>("CoreLocation_067acaa3e5f56b46", 4303191092914655, this, []); }
   /**
    * var showsBackgroundLocationIndicator: Bool { get set }
    * @availability iOS 11.0+
    */
-  get showsBackgroundLocationIndicator(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1697830629981458, this, []); }
-  set showsBackgroundLocationIndicator(value: boolean) { callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 683556825882121, this, [value]); }
+  get showsBackgroundLocationIndicator(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1697830629981458, this, []); }
+  set showsBackgroundLocationIndicator(value: boolean) { callSDK<void>("CoreLocation_067acaa3e5f56b46", 683556825882121, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLLocationManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accuracyAuthorization": true; "activityType": true; "allowsBackgroundLocationUpdates": true; "authorizationStatus2871": true; "isAuthorizedForWidgetUpdates": true; "delegate": true; "desiredAccuracy": true; "distanceFilter": true; "heading": true; "headingBody": true; "headingFilter": true; "headingOrientation": true; "location": true; "maximumRegionMonitoringDistance": true; "monitoredRegions": true; "pausesLocationUpdatesAutomatically": true; "rangedBeaconConstraints": true; "rangedRegions": true; "showsBackgroundLocationIndicator": true };
 }
@@ -980,32 +980,32 @@ export class CLLocationPushServiceError extends SDKHandle {
    * static var missingPushServerEnvironment: CLLocationPushServiceError.Code { get }
    * @availability iOS 15.0+
    */
-  static get missingPushServerEnvironment(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_90ad0eb69cc6bf4a", 2086847795931791, undefined, []); }
+  static get missingPushServerEnvironment(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_067acaa3e5f56b46", 2086847795931791, undefined, []); }
   /**
    * static var missingPushExtension: CLLocationPushServiceError.Code { get }
    * @availability iOS 15.0+
    */
-  static get missingPushExtension(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_90ad0eb69cc6bf4a", 1416063183257972, undefined, []); }
+  static get missingPushExtension(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_067acaa3e5f56b46", 1416063183257972, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 15.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 3229238907364220, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 3229238907364220, undefined, []); }
   /**
    * static var missingEntitlement: CLLocationPushServiceError.Code { get }
    * @availability iOS 15.0+
    */
-  static get missingEntitlement(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_90ad0eb69cc6bf4a", 3052423501710565, undefined, []); }
+  static get missingEntitlement(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_067acaa3e5f56b46", 3052423501710565, undefined, []); }
   /**
    * static var unsupportedPlatform: CLLocationPushServiceError.Code { get }
    * @availability iOS 15.0+
    */
-  static get unsupportedPlatform(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_90ad0eb69cc6bf4a", 2567953448062068, undefined, []); }
+  static get unsupportedPlatform(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_067acaa3e5f56b46", 2567953448062068, undefined, []); }
   /**
    * static var unknown: CLLocationPushServiceError.Code { get }
    * @availability iOS 15.0+
    */
-  static get unknown(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_90ad0eb69cc6bf4a", 3597201853818207, undefined, []); }
+  static get unknown(): CLLocationPushServiceError_Code { return callSDK<CLLocationPushServiceError_Code>("CoreLocation_067acaa3e5f56b46", 3597201853818207, undefined, []); }
   declare readonly $type: { "s:SC26CLLocationPushServiceErrorLeV": true };
 }
 
@@ -1020,7 +1020,7 @@ export const CLLocationPushServiceError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (CLLocationPushServiceError_Code) | null { return callSDK<(CLLocationPushServiceError_Code) | null>("CoreLocation_90ad0eb69cc6bf4a", 2574785852597354, undefined, [rawValue]); }
+  init(rawValue: number): (CLLocationPushServiceError_Code) | null { return callSDK<(CLLocationPushServiceError_Code) | null>("CoreLocation_067acaa3e5f56b46", 2574785852597354, undefined, [rawValue]); }
 };
 
 /**
@@ -1049,62 +1049,62 @@ export class CLLocationUpdate extends SDKHandle {
    * var stationary: Bool { get }
    * @availability iOS 18.0+
    */
-  get stationary(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1201319773473002, this, []); }
+  get stationary(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1201319773473002, this, []); }
   /**
    * static func liveUpdates(_ configuration: CLLocationUpdate.LiveConfiguration = .default) -> CLLocationUpdate.Updates
    * @availability iOS 17.0+
    */
-  static liveUpdates(configuration?: CLLocationUpdate_LiveConfiguration): CLLocationUpdate_Updates { return callSDK<CLLocationUpdate_Updates>("CoreLocation_90ad0eb69cc6bf4a", 1801277252505424, undefined, [configuration]); }
+  static liveUpdates(configuration?: CLLocationUpdate_LiveConfiguration): CLLocationUpdate_Updates { return callSDK<CLLocationUpdate_Updates>("CoreLocation_067acaa3e5f56b46", 1801277252505424, undefined, [configuration]); }
   /**
    * var isStationary: Bool { get }
    * @availability iOS 17.0+
    */
-  get isStationary(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2417295988124945, this, []); }
+  get isStationary(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2417295988124945, this, []); }
   /**
    * var accuracyLimited: Bool { get }
    * @availability iOS 18.0+
    */
-  get accuracyLimited(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2179205484605670, this, []); }
+  get accuracyLimited(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2179205484605670, this, []); }
   /**
    * var authorizationDenied: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3505719611839796, this, []); }
+  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3505719611839796, this, []); }
   /**
    * var insufficientlyInUse: Bool { get }
    * @availability iOS 18.0+
    */
-  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 187780606918583, this, []); }
+  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 187780606918583, this, []); }
   /**
    * var locationUnavailable: Bool { get }
    * @availability iOS 18.0+
    */
-  get locationUnavailable(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1670523087313852, this, []); }
+  get locationUnavailable(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1670523087313852, this, []); }
   /**
    * var serviceSessionRequired: Bool { get }
    * @availability iOS 18.0+
    */
-  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1436629216399167, this, []); }
+  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1436629216399167, this, []); }
   /**
    * var authorizationRestricted: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1258360859931983, this, []); }
+  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1258360859931983, this, []); }
   /**
    * var authorizationDeniedGlobally: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2738203446108151, this, []); }
+  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2738203446108151, this, []); }
   /**
    * var authorizationRequestInProgress: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2243610078696627, this, []); }
+  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2243610078696627, this, []); }
   /**
    * var location: CLLocation? { get }
    * @availability iOS 17.0+
    */
-  get location(): $SDK11 { return callSDK<$SDK11>("CoreLocation_90ad0eb69cc6bf4a", 2356026833103256, this, []); }
+  get location(): $SDK11 { return callSDK<$SDK11>("CoreLocation_067acaa3e5f56b46", 2356026833103256, this, []); }
   declare readonly $type: { "s:12CoreLocation16CLLocationUpdateV": true };
 }
 
@@ -1123,7 +1123,7 @@ export class CLLocationUpdate_Updates extends SDKHandle {
    * func makeAsyncIterator() -> CLLocationUpdate.Updates.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): CLLocationUpdate_Updates_Iterator { return callSDK<CLLocationUpdate_Updates_Iterator>("CoreLocation_90ad0eb69cc6bf4a", 4243873641860581, this, []); }
+  makeAsyncIterator(): CLLocationUpdate_Updates_Iterator { return callSDK<CLLocationUpdate_Updates_Iterator>("CoreLocation_067acaa3e5f56b46", 4243873641860581, this, []); }
   declare readonly $type: { "s:12CoreLocation16CLLocationUpdateV7UpdatesV": true };
   declare readonly $element: CLLocationUpdate;
 }
@@ -1149,7 +1149,7 @@ export class CLLocationUpdate_Updates_Iterator extends SDKHandle {
    * mutating func next() async throws -> CLLocationUpdate.Updates.Element?
    * @availability iOS 17.0+
    */
-  next(): Promise<(CLLocationUpdate) | null> { return callSDKAsync<(CLLocationUpdate) | null>("CoreLocation_90ad0eb69cc6bf4a", 1237292585716760, this, []); }
+  next(): Promise<(CLLocationUpdate) | null> { return callSDKAsync<(CLLocationUpdate) | null>("CoreLocation_067acaa3e5f56b46", 1237292585716760, this, []); }
   declare readonly $type: { "s:12CoreLocation16CLLocationUpdateV7UpdatesV8IteratorV": true };
 }
 
@@ -1168,12 +1168,12 @@ export class CLMonitor extends SDKHandle {
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 17.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("CoreLocation_90ad0eb69cc6bf4a", 1689371617647916, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("CoreLocation_067acaa3e5f56b46", 1689371617647916, this, []); }
   /**
    * init(_ name: String) async
    * @availability iOS 17.0+
    */
-  static init(name: string): Promise<CLMonitor> { return callSDKAsync<CLMonitor>("CoreLocation_90ad0eb69cc6bf4a", 1430286880554467, undefined, [name]); }
+  static init(name: string): Promise<CLMonitor> { return callSDKAsync<CLMonitor>("CoreLocation_067acaa3e5f56b46", 1430286880554467, undefined, [name]); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC": true };
 }
 
@@ -1186,32 +1186,32 @@ export class CLMonitor_BeaconIdentityCondition extends SDKHandle {
    * let uuid: UUID
    * @availability iOS 17.0+
    */
-  get uuid(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 2338981317373954, this, []); }
+  get uuid(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 2338981317373954, this, []); }
   /**
    * init(uuid: UUID, major: UInt16, minor: UInt16)
    * @availability iOS 17.0+
    */
-  static initUuidMajorMinor(uuid: string, major: number, minor: number): CLMonitor_BeaconIdentityCondition { return callSDK<CLMonitor_BeaconIdentityCondition>("CoreLocation_90ad0eb69cc6bf4a", 3871768597270093, undefined, [uuid, major, minor]); }
+  static initUuidMajorMinor(uuid: string, major: number, minor: number): CLMonitor_BeaconIdentityCondition { return callSDK<CLMonitor_BeaconIdentityCondition>("CoreLocation_067acaa3e5f56b46", 3871768597270093, undefined, [uuid, major, minor]); }
   /**
    * init(uuid: UUID, major: UInt16)
    * @availability iOS 17.0+
    */
-  static initUuidMajor(uuid: string, major: number): CLMonitor_BeaconIdentityCondition { return callSDK<CLMonitor_BeaconIdentityCondition>("CoreLocation_90ad0eb69cc6bf4a", 334149863336797, undefined, [uuid, major]); }
+  static initUuidMajor(uuid: string, major: number): CLMonitor_BeaconIdentityCondition { return callSDK<CLMonitor_BeaconIdentityCondition>("CoreLocation_067acaa3e5f56b46", 334149863336797, undefined, [uuid, major]); }
   /**
    * init(uuid: UUID)
    * @availability iOS 17.0+
    */
-  static initUuid(uuid: string): CLMonitor_BeaconIdentityCondition { return callSDK<CLMonitor_BeaconIdentityCondition>("CoreLocation_90ad0eb69cc6bf4a", 2835607616585722, undefined, [uuid]); }
+  static initUuid(uuid: string): CLMonitor_BeaconIdentityCondition { return callSDK<CLMonitor_BeaconIdentityCondition>("CoreLocation_067acaa3e5f56b46", 2835607616585722, undefined, [uuid]); }
   /**
    * let major: UInt16?
    * @availability iOS 17.0+
    */
-  get major(): (number) | null { return callSDK<(number) | null>("CoreLocation_90ad0eb69cc6bf4a", 1229781188596732, this, []); }
+  get major(): (number) | null { return callSDK<(number) | null>("CoreLocation_067acaa3e5f56b46", 1229781188596732, this, []); }
   /**
    * let minor: UInt16?
    * @availability iOS 17.0+
    */
-  get minor(): (number) | null { return callSDK<(number) | null>("CoreLocation_90ad0eb69cc6bf4a", 2561902839003958, this, []); }
+  get minor(): (number) | null { return callSDK<(number) | null>("CoreLocation_067acaa3e5f56b46", 2561902839003958, this, []); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC23BeaconIdentityConditionV": true };
 }
 
@@ -1224,17 +1224,17 @@ export class CLMonitor_CircularGeographicCondition extends SDKHandle {
    * init(center: CLLocationCoordinate2D, radius: CLLocationDistance)
    * @availability iOS 17.0+
    */
-  static init(center: $SDK2, radius: number): CLMonitor_CircularGeographicCondition { return callSDK<CLMonitor_CircularGeographicCondition>("CoreLocation_90ad0eb69cc6bf4a", 1163451607771171, undefined, [center, radius]); }
+  static init(center: $SDK2, radius: number): CLMonitor_CircularGeographicCondition { return callSDK<CLMonitor_CircularGeographicCondition>("CoreLocation_067acaa3e5f56b46", 1163451607771171, undefined, [center, radius]); }
   /**
    * let center: CLLocationCoordinate2D
    * @availability iOS 17.0+
    */
-  get center(): $SDK2 { return callSDK<$SDK2>("CoreLocation_90ad0eb69cc6bf4a", 629354246977521, this, []); }
+  get center(): $SDK2 { return callSDK<$SDK2>("CoreLocation_067acaa3e5f56b46", 629354246977521, this, []); }
   /**
    * let radius: CLLocationDistance
    * @availability iOS 17.0+
    */
-  get radius(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 3499707248087085, this, []); }
+  get radius(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 3499707248087085, this, []); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC27CircularGeographicConditionV": true };
 }
 
@@ -1247,72 +1247,72 @@ export class CLMonitor_Event extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 17.0+
    */
-  get identifier(): string { return callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 2071513819425358, this, []); }
+  get identifier(): string { return callSDK<string>("CoreLocation_067acaa3e5f56b46", 2071513819425358, this, []); }
   /**
    * let refinement: (any CLCondition)?
    * @availability iOS 17.0+
    */
-  get refinement(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreLocation_90ad0eb69cc6bf4a", 2250698217820337, this, []); }
+  get refinement(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreLocation_067acaa3e5f56b46", 2250698217820337, this, []); }
   /**
    * var accuracyLimited: Bool { get }
    * @availability iOS 18.0+
    */
-  get accuracyLimited(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 4161509287308052, this, []); }
+  get accuracyLimited(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 4161509287308052, this, []); }
   /**
    * var authorizationDenied: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2352991654293187, this, []); }
+  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2352991654293187, this, []); }
   /**
    * var insufficientlyInUse: Bool { get }
    * @availability iOS 18.0+
    */
-  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3563094855103229, this, []); }
+  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3563094855103229, this, []); }
   /**
    * var conditionUnsupported: Bool { get }
    * @availability iOS 18.0+
    */
-  get conditionUnsupported(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2843720771019192, this, []); }
+  get conditionUnsupported(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2843720771019192, this, []); }
   /**
    * var conditionLimitExceeded: Bool { get }
    * @availability iOS 18.0+
    */
-  get conditionLimitExceeded(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2608678041914665, this, []); }
+  get conditionLimitExceeded(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2608678041914665, this, []); }
   /**
    * var persistenceUnavailable: Bool { get }
    * @availability iOS 18.0+
    */
-  get persistenceUnavailable(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3772648743494539, this, []); }
+  get persistenceUnavailable(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3772648743494539, this, []); }
   /**
    * var serviceSessionRequired: Bool { get }
    * @availability iOS 18.0+
    */
-  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2324059311569109, this, []); }
+  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2324059311569109, this, []); }
   /**
    * var authorizationRestricted: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1823729888785186, this, []); }
+  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1823729888785186, this, []); }
   /**
    * var authorizationDeniedGlobally: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1464820451568496, this, []); }
+  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1464820451568496, this, []); }
   /**
    * var authorizationRequestInProgress: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 149982221086555, this, []); }
+  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 149982221086555, this, []); }
   /**
    * var date: Date { get }
    * @availability iOS 17.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_90ad0eb69cc6bf4a", 2670030867775670, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_067acaa3e5f56b46", 2670030867775670, this, []); }
   /**
    * var state: CLMonitor.Event.State { get }
    * @availability iOS 17.0+
    */
-  get state(): CLMonitor_Event { return callSDK<CLMonitor_Event>("CoreLocation_90ad0eb69cc6bf4a", 2970412548672048, this, []); }
+  get state(): CLMonitor_Event { return callSDK<CLMonitor_Event>("CoreLocation_067acaa3e5f56b46", 2970412548672048, this, []); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC5EventV": true };
 }
 
@@ -1331,7 +1331,7 @@ export class CLMonitor_Events extends SDKHandle {
    * func makeAsyncIterator() -> CLMonitor.Events.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): CLMonitor_Events_Iterator { return callSDK<CLMonitor_Events_Iterator>("CoreLocation_90ad0eb69cc6bf4a", 627448143463100, this, []); }
+  makeAsyncIterator(): CLMonitor_Events_Iterator { return callSDK<CLMonitor_Events_Iterator>("CoreLocation_067acaa3e5f56b46", 627448143463100, this, []); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC6EventsV": true };
   declare readonly $element: CLMonitor_Event;
 }
@@ -1357,7 +1357,7 @@ export class CLMonitor_Events_Iterator extends SDKHandle {
    * mutating func next() async throws -> CLMonitor.Events.Element?
    * @availability iOS 17.0+
    */
-  next(): Promise<(CLMonitor_Event) | null> { return callSDKAsync<(CLMonitor_Event) | null>("CoreLocation_90ad0eb69cc6bf4a", 153511568615134, this, []); }
+  next(): Promise<(CLMonitor_Event) | null> { return callSDKAsync<(CLMonitor_Event) | null>("CoreLocation_067acaa3e5f56b46", 153511568615134, this, []); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC6EventsV8IteratorV": true };
 }
 
@@ -1376,12 +1376,12 @@ export class CLMonitor_Record extends SDKHandle {
    * let condition: any CLCondition
    * @availability iOS 17.0+
    */
-  get condition(): SDKHandle { return callSDK<SDKHandle>("CoreLocation_90ad0eb69cc6bf4a", 2228939925823631, this, []); }
+  get condition(): SDKHandle { return callSDK<SDKHandle>("CoreLocation_067acaa3e5f56b46", 2228939925823631, this, []); }
   /**
    * let lastEvent: CLMonitor.Event
    * @availability iOS 17.0+
    */
-  get lastEvent(): CLMonitor_Event { return callSDK<CLMonitor_Event>("CoreLocation_90ad0eb69cc6bf4a", 2365591231695373, this, []); }
+  get lastEvent(): CLMonitor_Event { return callSDK<CLMonitor_Event>("CoreLocation_067acaa3e5f56b46", 2365591231695373, this, []); }
   declare readonly $type: { "s:12CoreLocation9CLMonitorC6RecordV": true };
 }
 
@@ -1396,115 +1396,115 @@ export class CLPlacemark extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  static init(placemark: CLPlacemark): CLPlacemark { return callSDK<CLPlacemark>("CoreLocation_90ad0eb69cc6bf4a", 389644228114302, undefined, [placemark]); }
+  static init(placemark: CLPlacemark): CLPlacemark { return callSDK<CLPlacemark>("CoreLocation_067acaa3e5f56b46", 389644228114302, undefined, [placemark]); }
   /**
    * var isoCountryCode: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 4160955229363486, this, []); }
+  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 4160955229363486, this, []); }
   /**
    * var addressDictionary: [AnyHashable : Any]? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 11.0
    */
-  get addressDictionary(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("CoreLocation_90ad0eb69cc6bf4a", 2912932831221792, this, []); }
+  get addressDictionary(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("CoreLocation_067acaa3e5f56b46", 2912932831221792, this, []); }
   /**
    * var administrativeArea: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get administrativeArea(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 3448897226193370, this, []); }
+  get administrativeArea(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 3448897226193370, this, []); }
   /**
    * var areasOfInterest: [String]? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get areasOfInterest(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreLocation_90ad0eb69cc6bf4a", 3799079020463122, this, []); }
+  get areasOfInterest(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreLocation_067acaa3e5f56b46", 3799079020463122, this, []); }
   /**
    * var country: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get country(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 3359303048032057, this, []); }
+  get country(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 3359303048032057, this, []); }
   /**
    * var inlandWater: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get inlandWater(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 69467692356112, this, []); }
+  get inlandWater(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 69467692356112, this, []); }
   /**
    * var locality: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get locality(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 4238041714457365, this, []); }
+  get locality(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 4238041714457365, this, []); }
   /**
    * @NSCopying var location: CLLocation? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get location(): $SDK11 { return callSDK<$SDK11>("CoreLocation_90ad0eb69cc6bf4a", 3653569769549533, this, []); }
+  get location(): $SDK11 { return callSDK<$SDK11>("CoreLocation_067acaa3e5f56b46", 3653569769549533, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 2482110113466556, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 2482110113466556, this, []); }
   /**
    * var ocean: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get ocean(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 2663730943373281, this, []); }
+  get ocean(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 2663730943373281, this, []); }
   /**
    * var postalAddress: CNPostalAddress? { get }
    * @availability iOS 11.0+
    * @deprecated iOS 100000.0
    */
-  get postalAddress(): (_Contacts_CNPostalAddress) | null { return callSDK<(_Contacts_CNPostalAddress) | null>("CoreLocation_90ad0eb69cc6bf4a", 3330827864324957, this, []); }
+  get postalAddress(): (_Contacts_CNPostalAddress) | null { return callSDK<(_Contacts_CNPostalAddress) | null>("CoreLocation_067acaa3e5f56b46", 3330827864324957, this, []); }
   /**
    * var postalCode: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get postalCode(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 460972634100844, this, []); }
+  get postalCode(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 460972634100844, this, []); }
   /**
    * @NSCopying var region: CLRegion? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get region(): (CLRegion) | null { return callSDK<(CLRegion) | null>("CoreLocation_90ad0eb69cc6bf4a", 696797963511772, this, []); }
+  get region(): (CLRegion) | null { return callSDK<(CLRegion) | null>("CoreLocation_067acaa3e5f56b46", 696797963511772, this, []); }
   /**
    * var subAdministrativeArea: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get subAdministrativeArea(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 2597966054300785, this, []); }
+  get subAdministrativeArea(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 2597966054300785, this, []); }
   /**
    * var subLocality: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get subLocality(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 2173318223530792, this, []); }
+  get subLocality(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 2173318223530792, this, []); }
   /**
    * var subThoroughfare: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get subThoroughfare(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 1839206085029860, this, []); }
+  get subThoroughfare(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 1839206085029860, this, []); }
   /**
    * var thoroughfare: String? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 100000.0
    */
-  get thoroughfare(): (string) | null { return callSDK<(string) | null>("CoreLocation_90ad0eb69cc6bf4a", 3661816690667356, this, []); }
+  get thoroughfare(): (string) | null { return callSDK<(string) | null>("CoreLocation_067acaa3e5f56b46", 3661816690667356, this, []); }
   /**
    * var timeZone: TimeZone? { get }
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  get timeZone(): (_Foundation_TimeZone) | null { return callSDK<(_Foundation_TimeZone) | null>("CoreLocation_90ad0eb69cc6bf4a", 1795114704410509, this, []); }
+  get timeZone(): (_Foundation_TimeZone) | null { return callSDK<(_Foundation_TimeZone) | null>("CoreLocation_067acaa3e5f56b46", 1795114704410509, this, []); }
   declare readonly $type: { "c:objc(cs)CLPlacemark": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isoCountryCode": true; "addressDictionary": true; "administrativeArea": true; "areasOfInterest": true; "country": true; "inlandWater": true; "locality": true; "location": true; "name": true; "ocean": true; "postalAddress": true; "postalCode": true; "region": true; "subAdministrativeArea": true; "subLocality": true; "subThoroughfare": true; "thoroughfare": true; "timeZone": true };
 }
@@ -1520,7 +1520,7 @@ export const CLProximity = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (CLProximity) | null { return callSDK<(CLProximity) | null>("CoreLocation_90ad0eb69cc6bf4a", 429308247241692, undefined, [rawValue]); }
+  init(rawValue: number): (CLProximity) | null { return callSDK<(CLProximity) | null>("CoreLocation_067acaa3e5f56b46", 429308247241692, undefined, [rawValue]); }
 };
 
 /**
@@ -1534,7 +1534,7 @@ export const CLRegionState = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (CLRegionState) | null { return callSDK<(CLRegionState) | null>("CoreLocation_90ad0eb69cc6bf4a", 3626420007344467, undefined, [rawValue]); }
+  init(rawValue: number): (CLRegionState) | null { return callSDK<(CLRegionState) | null>("CoreLocation_067acaa3e5f56b46", 3626420007344467, undefined, [rawValue]); }
 };
 
 /**
@@ -1546,22 +1546,22 @@ export class CLServiceSession extends SDKHandle {
    * final func invalidate()
    * @availability iOS 18.0+
    */
-  invalidate(): void { return callSDK<void>("CoreLocation_90ad0eb69cc6bf4a", 1487632398929564, this, []); }
+  invalidate(): void { return callSDK<void>("CoreLocation_067acaa3e5f56b46", 1487632398929564, this, []); }
   /**
    * final var diagnostics: CLServiceSession.Diagnostics { get }
    * @availability iOS 18.0+
    */
-  get diagnostics(): CLServiceSession_Diagnostics { return callSDK<CLServiceSession_Diagnostics>("CoreLocation_90ad0eb69cc6bf4a", 885669116612200, this, []); }
+  get diagnostics(): CLServiceSession_Diagnostics { return callSDK<CLServiceSession_Diagnostics>("CoreLocation_067acaa3e5f56b46", 885669116612200, this, []); }
   /**
    * init(authorization: CLServiceSession.AuthorizationRequirement, fullAccuracyPurposeKey: String)
    * @availability iOS 18.0+
    */
-  static initAuthorizationFullAccuracyPurposeKey(authorization: CLServiceSession_AuthorizationRequirement, fullAccuracyPurposeKey: string): CLServiceSession { return callSDK<CLServiceSession>("CoreLocation_90ad0eb69cc6bf4a", 1504927081969756, undefined, [authorization, fullAccuracyPurposeKey]); }
+  static initAuthorizationFullAccuracyPurposeKey(authorization: CLServiceSession_AuthorizationRequirement, fullAccuracyPurposeKey: string): CLServiceSession { return callSDK<CLServiceSession>("CoreLocation_067acaa3e5f56b46", 1504927081969756, undefined, [authorization, fullAccuracyPurposeKey]); }
   /**
    * init(authorization: CLServiceSession.AuthorizationRequirement)
    * @availability iOS 18.0+
    */
-  static initAuthorization(authorization: CLServiceSession_AuthorizationRequirement): CLServiceSession { return callSDK<CLServiceSession>("CoreLocation_90ad0eb69cc6bf4a", 69915108800511, undefined, [authorization]); }
+  static initAuthorization(authorization: CLServiceSession_AuthorizationRequirement): CLServiceSession { return callSDK<CLServiceSession>("CoreLocation_067acaa3e5f56b46", 69915108800511, undefined, [authorization]); }
   declare readonly $type: { "s:12CoreLocation16CLServiceSessionC": true };
 }
 
@@ -1580,42 +1580,42 @@ export class CLServiceSession_Diagnostic extends SDKHandle {
    * var serviceSessionRequired: Bool { get }
    * @availability iOS 18.0+
    */
-  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1243496478938493, this, []); }
+  get serviceSessionRequired(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1243496478938493, this, []); }
   /**
    * var fullAccuracyDenied: Bool { get }
    * @availability iOS 18.0+
    */
-  get fullAccuracyDenied(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 2455676802303285, this, []); }
+  get fullAccuracyDenied(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 2455676802303285, this, []); }
   /**
    * var authorizationDenied: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 4384839344250061, this, []); }
+  get authorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 4384839344250061, this, []); }
   /**
    * var insufficientlyInUse: Bool { get }
    * @availability iOS 18.0+
    */
-  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1468255787094601, this, []); }
+  get insufficientlyInUse(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1468255787094601, this, []); }
   /**
    * var authorizationRestricted: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 1405640491973880, this, []); }
+  get authorizationRestricted(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 1405640491973880, this, []); }
   /**
    * var alwaysAuthorizationDenied: Bool { get }
    * @availability iOS 18.0+
    */
-  get alwaysAuthorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3781372007002244, this, []); }
+  get alwaysAuthorizationDenied(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3781372007002244, this, []); }
   /**
    * var authorizationDeniedGlobally: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 4074861221364976, this, []); }
+  get authorizationDeniedGlobally(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 4074861221364976, this, []); }
   /**
    * var authorizationRequestInProgress: Bool { get }
    * @availability iOS 18.0+
    */
-  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_90ad0eb69cc6bf4a", 3246629657682941, this, []); }
+  get authorizationRequestInProgress(): boolean { return callSDK<boolean>("CoreLocation_067acaa3e5f56b46", 3246629657682941, this, []); }
   declare readonly $type: { "s:12CoreLocation16CLServiceSessionC10DiagnosticV": true };
 }
 
@@ -1628,7 +1628,7 @@ export class CLServiceSession_Diagnostics extends SDKHandle {
    * final func makeAsyncIterator() -> CLServiceSession.Diagnostics.Iterator
    * @availability iOS 18.0+
    */
-  makeAsyncIterator(): CLServiceSession_Diagnostics_Iterator { return callSDK<CLServiceSession_Diagnostics_Iterator>("CoreLocation_90ad0eb69cc6bf4a", 637693875865087, this, []); }
+  makeAsyncIterator(): CLServiceSession_Diagnostics_Iterator { return callSDK<CLServiceSession_Diagnostics_Iterator>("CoreLocation_067acaa3e5f56b46", 637693875865087, this, []); }
   declare readonly $type: { "s:12CoreLocation16CLServiceSessionC11DiagnosticsC": true };
   declare readonly $element: CLServiceSession_Diagnostic;
 }
@@ -1654,7 +1654,7 @@ export class CLServiceSession_Diagnostics_Iterator extends SDKHandle {
    * mutating func next() async throws -> CLServiceSession.Diagnostics.Element?
    * @availability iOS 18.0+
    */
-  next(): Promise<(CLServiceSession_Diagnostic) | null> { return callSDKAsync<(CLServiceSession_Diagnostic) | null>("CoreLocation_90ad0eb69cc6bf4a", 4100897900699320, this, []); }
+  next(): Promise<(CLServiceSession_Diagnostic) | null> { return callSDKAsync<(CLServiceSession_Diagnostic) | null>("CoreLocation_067acaa3e5f56b46", 4100897900699320, this, []); }
   declare readonly $type: { "s:12CoreLocation16CLServiceSessionC11DiagnosticsC8IteratorV": true };
 }
 
@@ -1670,27 +1670,27 @@ export type CLServiceSession_Diagnostics_Iterator_Element = CLServiceSession_Dia
  */
 export class CLVisit extends SDKHandle {
   /** init() */
-  static init(): CLVisit { return callSDK<CLVisit>("CoreLocation_90ad0eb69cc6bf4a", 3401571197530419, undefined, []); }
+  static init(): CLVisit { return callSDK<CLVisit>("CoreLocation_067acaa3e5f56b46", 3401571197530419, undefined, []); }
   /**
    * var arrivalDate: Date { get }
    * @availability iOS 8.0+
    */
-  get arrivalDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_90ad0eb69cc6bf4a", 2553021776459166, this, []); }
+  get arrivalDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_067acaa3e5f56b46", 2553021776459166, this, []); }
   /**
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 8.0+
    */
-  get coordinate(): $SDK2 { return callSDK<$SDK2>("CoreLocation_90ad0eb69cc6bf4a", 391899201449662, this, []); }
+  get coordinate(): $SDK2 { return callSDK<$SDK2>("CoreLocation_067acaa3e5f56b46", 391899201449662, this, []); }
   /**
    * var departureDate: Date { get }
    * @availability iOS 8.0+
    */
-  get departureDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_90ad0eb69cc6bf4a", 3566081177634627, this, []); }
+  get departureDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreLocation_067acaa3e5f56b46", 3566081177634627, this, []); }
   /**
    * var horizontalAccuracy: CLLocationAccuracy { get }
    * @availability iOS 8.0+
    */
-  get horizontalAccuracy(): number { return callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 986987120402366, this, []); }
+  get horizontalAccuracy(): number { return callSDK<number>("CoreLocation_067acaa3e5f56b46", 986987120402366, this, []); }
   declare readonly $type: { "c:objc(cs)CLVisit": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "arrivalDate": true; "coordinate": true; "departureDate": true; "horizontalAccuracy": true };
 }
@@ -1699,54 +1699,54 @@ export class CLVisit extends SDKHandle {
  * let CLLocationPushServiceErrorDomain: String
  * @availability iOS 15.0+
  */
-export const CLLocationPushServiceErrorDomain: string = callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 3559282514099073, undefined, []);
+export const CLLocationPushServiceErrorDomain: string = callSDK<string>("CoreLocation_067acaa3e5f56b46", 3559282514099073, undefined, []);
 
 /** let kCLErrorDomain: String */
-export const kCLErrorDomain: string = callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 2542435072739476, undefined, []);
+export const kCLErrorDomain: string = callSDK<string>("CoreLocation_067acaa3e5f56b46", 2542435072739476, undefined, []);
 
 /**
  * let kCLErrorUserInfoAlternateRegionKey: String
  * @availability iOS 5.0+
  */
-export const kCLErrorUserInfoAlternateRegionKey: string = callSDK<string>("CoreLocation_90ad0eb69cc6bf4a", 1627990350671086, undefined, []);
+export const kCLErrorUserInfoAlternateRegionKey: string = callSDK<string>("CoreLocation_067acaa3e5f56b46", 1627990350671086, undefined, []);
 
 /** let kCLHeadingFilterNone: CLLocationDegrees */
-export const kCLHeadingFilterNone: number = callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 2294512041576008, undefined, []);
+export const kCLHeadingFilterNone: number = callSDK<number>("CoreLocation_067acaa3e5f56b46", 2294512041576008, undefined, []);
 
 /** var CL_TARGET_SUPPORTS_CONDITIONS: Int32 { get } */
-export const CL_TARGET_SUPPORTS_CONDITIONS: number = callSDK<number>("CoreLocation_90ad0eb69cc6bf4a", 4418809345127351, undefined, []);
+export const CL_TARGET_SUPPORTS_CONDITIONS: number = callSDK<number>("CoreLocation_067acaa3e5f56b46", 4418809345127351, undefined, []);
 
-registerSDKClass("CoreLocation.CLBackgroundActivitySession", CLBackgroundActivitySession, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"invalidate":{"id":7920334799304}} });
-registerSDKClass("CoreLocation.CLBackgroundActivitySession.Diagnostic", CLBackgroundActivitySession_Diagnostic, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLBackgroundActivitySession.Diagnostics", CLBackgroundActivitySession_Diagnostics, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":2823116906785506}} });
-registerSDKClass("CoreLocation.CLBackgroundActivitySession.Diagnostics.Iterator", CLBackgroundActivitySession_Diagnostics_Iterator, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":4404981099063283}} });
-registerSDKClass("CLBeacon", CLBeacon, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"uuid":1636289902220977,"accuracy":3708323001716155,"major":1483029750766778,"minor":3132664602138781,"proximity":1075829279542345,"proximityUUID":177297139957255,"rssi":3977390436705677,"timestamp":1214366997028413} });
-registerSDKClass("CLBeaconIdentityConstraint", CLBeaconIdentityConstraint, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CLRegion", CLRegion, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"identifier":344653624534159,"notifyOnEntry":1800512801421644,"notifyOnExit":166350835174864} });
-registerSDKClass("CLBeaconRegion", CLBeaconRegion, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"uuid":3845669548076993,"beaconIdentityConstraint":560317074991964,"major":2364505455302941,"minor":4365377372697585,"notifyEntryStateOnDisplay":2387076833893862,"proximityUUID":592115925560886}, methods: {"peripheralData":{"id":3226911957148377}} });
+registerSDKClass("CoreLocation.CLBackgroundActivitySession", CLBackgroundActivitySession, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"invalidate":{"id":7920334799304}} });
+registerSDKClass("CoreLocation.CLBackgroundActivitySession.Diagnostic", CLBackgroundActivitySession_Diagnostic, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLBackgroundActivitySession.Diagnostics", CLBackgroundActivitySession_Diagnostics, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"makeAsyncIterator":{"id":2823116906785506}} });
+registerSDKClass("CoreLocation.CLBackgroundActivitySession.Diagnostics.Iterator", CLBackgroundActivitySession_Diagnostics_Iterator, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"next":{"id":4404981099063283}} });
+registerSDKClass("CLBeacon", CLBeacon, { module: "CoreLocation_067acaa3e5f56b46", properties: {"uuid":1636289902220977,"accuracy":3708323001716155,"major":1483029750766778,"minor":3132664602138781,"proximity":1075829279542345,"proximityUUID":177297139957255,"rssi":3977390436705677,"timestamp":1214366997028413} });
+registerSDKClass("CLBeaconIdentityConstraint", CLBeaconIdentityConstraint, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CLRegion", CLRegion, { module: "CoreLocation_067acaa3e5f56b46", properties: {"identifier":344653624534159,"notifyOnEntry":1800512801421644,"notifyOnExit":166350835174864} });
+registerSDKClass("CLBeaconRegion", CLBeaconRegion, { module: "CoreLocation_067acaa3e5f56b46", properties: {"uuid":3845669548076993,"beaconIdentityConstraint":560317074991964,"major":2364505455302941,"minor":4365377372697585,"notifyEntryStateOnDisplay":2387076833893862,"proximityUUID":592115925560886}, methods: {"peripheralData":{"id":3226911957148377}} });
 registerSDKProtocol("c:objc(pl)CLBodyIdentifiable", {});
-registerSDKClass("CLCircularRegion", CLCircularRegion, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"center":687974291432470,"radius":2398786189788723}, methods: {"contains":{"id":3463002619560789}} });
+registerSDKClass("CLCircularRegion", CLCircularRegion, { module: "CoreLocation_067acaa3e5f56b46", properties: {"center":687974291432470,"radius":2398786189788723}, methods: {"contains":{"id":3463002619560789}} });
 registerSDKProtocol("s:12CoreLocation11CLConditionP", {});
-registerSDKClass("CoreLocation.CLError", CLError, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CLGeocoder", CLGeocoder, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"isGeocoding":2793640076466709}, methods: {"cancelGeocode":{"id":3234963265604239},"geocodeAddressDictionary":{"id":2545685183264997,"hints":[null,{"callback":{"out":[]}}]},"geocodeAddressStringCompletionHandler":{"id":2355900799628308,"hints":[null,{"callback":{"out":[]}}]},"geocodeAddressStringInCompletionHandler":{"id":4312146671728208,"hints":[null,null,{"callback":{"out":[]}}]},"geocodeAddressStringInPreferredLocaleCompletionHandler":{"id":4475529391846915,"hints":[null,null,null,{"callback":{"out":[]}}]},"geocodePostalAddressCompletionHandler":{"id":380179462680992,"hints":[null,{"callback":{"out":[]}}]},"geocodePostalAddressPreferredLocaleCompletionHandler":{"id":934248828226581,"hints":[null,null,{"callback":{"out":[]}}]},"reverseGeocodeLocationCompletionHandler":{"id":1949471982011609,"hints":[null,{"callback":{"out":[]}}]},"reverseGeocodeLocationPreferredLocaleCompletionHandler":{"id":3417523362834163,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CLHeading", CLHeading, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"headingAccuracy":629154444972947,"magneticHeading":1377849437181087,"timestamp":3235256242891590,"trueHeading":2021468095075614,"x":2292446065547737,"y":2558466243935267,"z":2269761757207222} });
-registerSDKClass("CLLocationManager", CLLocationManager, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"accuracyAuthorization":2902829397606729,"activityType":670199897101293,"allowsBackgroundLocationUpdates":3726550626051223,"authorizationStatus2871":3226457896808899,"isAuthorizedForWidgetUpdates":3400269923496999,"delegate":2893152789669075,"desiredAccuracy":3127289096326225,"distanceFilter":1582595293711482,"heading":1111726473046296,"headingBody":3945011078619120,"headingFilter":2808951212649084,"headingOrientation":923002146664908,"location":4459698623704185,"maximumRegionMonitoringDistance":3009533413222961,"monitoredRegions":3548749253405386,"pausesLocationUpdatesAutomatically":1986879035348659,"rangedBeaconConstraints":2055124066227562,"rangedRegions":4303191092914655,"showsBackgroundLocationIndicator":1697830629981458}, methods: {"allowDeferredLocationUpdates":{"id":1820739416773327},"disallowDeferredLocationUpdates":{"id":1280804958703933},"dismissHeadingCalibrationDisplay":{"id":1525401724520218},"requestAlwaysAuthorization":{"id":3101668886809190},"requestLocation":{"id":4190233298043987},"requestState":{"id":2917209475947470},"requestTemporaryFullAccuracyAuthorizationWithPurposeKey":{"id":1044330309843130},"requestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion":{"id":415931780632186,"hints":[null,{"callback":{"out":[]}}]},"requestWhenInUseAuthorization":{"id":1396347517082454},"startMonitoring":{"id":2161356699562542},"startMonitoringLocationPushes":{"id":147349047642282,"hints":[{"callback":{"out":[]}}]},"startMonitoringSignificantLocationChanges":{"id":1163978873574981},"startMonitoringVisits":{"id":4466948899868588},"startRangingBeaconsIn":{"id":1574350236440849},"startRangingBeaconsSatisfying":{"id":3689910440652444},"startUpdatingHeading":{"id":196583997652227},"startUpdatingLocation":{"id":3881207745842508},"stopMonitoring":{"id":2326657746247228},"stopMonitoringLocationPushes":{"id":493059575834945},"stopMonitoringSignificantLocationChanges":{"id":121996450565482},"stopMonitoringVisits":{"id":2636440021341800},"stopRangingBeaconsIn":{"id":1870110341233625},"stopRangingBeaconsSatisfying":{"id":1078219142662200},"stopUpdatingHeading":{"id":1314014251040535},"stopUpdatingLocation":{"id":698737723297563}} });
+registerSDKClass("CoreLocation.CLError", CLError, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CLGeocoder", CLGeocoder, { module: "CoreLocation_067acaa3e5f56b46", properties: {"isGeocoding":2793640076466709}, methods: {"cancelGeocode":{"id":3234963265604239},"geocodeAddressDictionary":{"id":2545685183264997,"hints":[null,{"callback":{"out":[]}}]},"geocodeAddressStringCompletionHandler":{"id":2355900799628308,"hints":[null,{"callback":{"out":[]}}]},"geocodeAddressStringInCompletionHandler":{"id":4312146671728208,"hints":[null,null,{"callback":{"out":[]}}]},"geocodeAddressStringInPreferredLocaleCompletionHandler":{"id":4475529391846915,"hints":[null,null,null,{"callback":{"out":[]}}]},"geocodePostalAddressCompletionHandler":{"id":380179462680992,"hints":[null,{"callback":{"out":[]}}]},"geocodePostalAddressPreferredLocaleCompletionHandler":{"id":934248828226581,"hints":[null,null,{"callback":{"out":[]}}]},"reverseGeocodeLocationCompletionHandler":{"id":1949471982011609,"hints":[null,{"callback":{"out":[]}}]},"reverseGeocodeLocationPreferredLocaleCompletionHandler":{"id":3417523362834163,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CLHeading", CLHeading, { module: "CoreLocation_067acaa3e5f56b46", properties: {"headingAccuracy":629154444972947,"magneticHeading":1377849437181087,"timestamp":3235256242891590,"trueHeading":2021468095075614,"x":2292446065547737,"y":2558466243935267,"z":2269761757207222} });
+registerSDKClass("CLLocationManager", CLLocationManager, { module: "CoreLocation_067acaa3e5f56b46", properties: {"accuracyAuthorization":2902829397606729,"activityType":670199897101293,"allowsBackgroundLocationUpdates":3726550626051223,"authorizationStatus2871":3226457896808899,"isAuthorizedForWidgetUpdates":3400269923496999,"delegate":2893152789669075,"desiredAccuracy":3127289096326225,"distanceFilter":1582595293711482,"heading":1111726473046296,"headingBody":3945011078619120,"headingFilter":2808951212649084,"headingOrientation":923002146664908,"location":4459698623704185,"maximumRegionMonitoringDistance":3009533413222961,"monitoredRegions":3548749253405386,"pausesLocationUpdatesAutomatically":1986879035348659,"rangedBeaconConstraints":2055124066227562,"rangedRegions":4303191092914655,"showsBackgroundLocationIndicator":1697830629981458}, methods: {"allowDeferredLocationUpdates":{"id":1820739416773327},"disallowDeferredLocationUpdates":{"id":1280804958703933},"dismissHeadingCalibrationDisplay":{"id":1525401724520218},"requestAlwaysAuthorization":{"id":3101668886809190},"requestLocation":{"id":4190233298043987},"requestState":{"id":2917209475947470},"requestTemporaryFullAccuracyAuthorizationWithPurposeKey":{"id":1044330309843130},"requestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion":{"id":415931780632186,"hints":[null,{"callback":{"out":[]}}]},"requestWhenInUseAuthorization":{"id":1396347517082454},"startMonitoring":{"id":2161356699562542},"startMonitoringLocationPushes":{"id":147349047642282,"hints":[{"callback":{"out":[]}}]},"startMonitoringSignificantLocationChanges":{"id":1163978873574981},"startMonitoringVisits":{"id":4466948899868588},"startRangingBeaconsIn":{"id":1574350236440849},"startRangingBeaconsSatisfying":{"id":3689910440652444},"startUpdatingHeading":{"id":196583997652227},"startUpdatingLocation":{"id":3881207745842508},"stopMonitoring":{"id":2326657746247228},"stopMonitoringLocationPushes":{"id":493059575834945},"stopMonitoringSignificantLocationChanges":{"id":121996450565482},"stopMonitoringVisits":{"id":2636440021341800},"stopRangingBeaconsIn":{"id":1870110341233625},"stopRangingBeaconsSatisfying":{"id":1078219142662200},"stopUpdatingHeading":{"id":1314014251040535},"stopUpdatingLocation":{"id":698737723297563}} });
 registerSDKProtocol("c:objc(pl)CLLocationManagerDelegate", {"locationManagerDidUpdateLocations":"locationManager(_:didUpdateLocations:)","locationManagerDidUpdateHeading":"locationManager(_:didUpdateHeading:)","locationManagerDidDetermineStateFor":"locationManager(_:didDetermineState:for:)","locationManagerDidRangeBeaconsIn":"locationManager(_:didRangeBeacons:in:)","locationManagerRangingBeaconsDidFailForWithError":"locationManager(_:rangingBeaconsDidFailFor:withError:)","locationManagerDidRangeSatisfying":"locationManager(_:didRange:satisfying:)","locationManagerDidFailRangingForError":"locationManager(_:didFailRangingFor:error:)","locationManagerDidEnterRegion":"locationManager(_:didEnterRegion:)","locationManagerDidExitRegion":"locationManager(_:didExitRegion:)","locationManagerDidFailWithError":"locationManager(_:didFailWithError:)","locationManagerMonitoringDidFailForWithError":"locationManager(_:monitoringDidFailFor:withError:)","locationManagerDidChangeAuthorization":"locationManager(_:didChangeAuthorization:)","locationManagerDidChangeAuthorization12":"locationManagerDidChangeAuthorization(_:)","locationManagerDidStartMonitoringFor":"locationManager(_:didStartMonitoringFor:)","locationManagerDidPauseLocationUpdates":"locationManagerDidPauseLocationUpdates(_:)","locationManagerDidResumeLocationUpdates":"locationManagerDidResumeLocationUpdates(_:)","locationManagerDidFinishDeferredUpdatesWithError":"locationManager(_:didFinishDeferredUpdatesWithError:)","locationManagerDidVisit":"locationManager(_:didVisit:)"});
-registerSDKClass("CoreLocation.CLLocationPushServiceError", CLLocationPushServiceError, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreLocation.CLLocationPushServiceError", CLLocationPushServiceError, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)CLLocationPushServiceExtension", {"didReceiveLocationPushPayload":"didReceiveLocationPushPayload(_:)","serviceExtensionWillTerminate":"serviceExtensionWillTerminate()"});
-registerSDKClass("CoreLocation.CLLocationUpdate", CLLocationUpdate, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLLocationUpdate.Updates", CLLocationUpdate_Updates, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":4243873641860581}} });
-registerSDKClass("CoreLocation.CLLocationUpdate.Updates.Iterator", CLLocationUpdate_Updates_Iterator, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":1237292585716760}} });
-registerSDKClass("CoreLocation.CLMonitor", CLMonitor, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLMonitor.BeaconIdentityCondition", CLMonitor_BeaconIdentityCondition, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLMonitor.CircularGeographicCondition", CLMonitor_CircularGeographicCondition, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLMonitor.Event", CLMonitor_Event, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLMonitor.Events", CLMonitor_Events, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":627448143463100}} });
-registerSDKClass("CoreLocation.CLMonitor.Events.Iterator", CLMonitor_Events_Iterator, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":153511568615134}} });
-registerSDKClass("CoreLocation.CLMonitor.Record", CLMonitor_Record, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CLPlacemark", CLPlacemark, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"isoCountryCode":4160955229363486,"addressDictionary":2912932831221792,"administrativeArea":3448897226193370,"areasOfInterest":3799079020463122,"country":3359303048032057,"inlandWater":69467692356112,"locality":4238041714457365,"location":3653569769549533,"name":2482110113466556,"ocean":2663730943373281,"postalAddress":3330827864324957,"postalCode":460972634100844,"region":696797963511772,"subAdministrativeArea":2597966054300785,"subLocality":2173318223530792,"subThoroughfare":1839206085029860,"thoroughfare":3661816690667356,"timeZone":1795114704410509} });
-registerSDKClass("CoreLocation.CLServiceSession", CLServiceSession, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"invalidate":{"id":1487632398929564}} });
-registerSDKClass("CoreLocation.CLServiceSession.Diagnostic", CLServiceSession_Diagnostic, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("CoreLocation.CLServiceSession.Diagnostics", CLServiceSession_Diagnostics, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":637693875865087}} });
-registerSDKClass("CoreLocation.CLServiceSession.Diagnostics.Iterator", CLServiceSession_Diagnostics_Iterator, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":4100897900699320}} });
-registerSDKClass("CLVisit", CLVisit, { module: "CoreLocation_90ad0eb69cc6bf4a", properties: {"arrivalDate":2553021776459166,"coordinate":391899201449662,"departureDate":3566081177634627,"horizontalAccuracy":986987120402366} });
+registerSDKClass("CoreLocation.CLLocationUpdate", CLLocationUpdate, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLLocationUpdate.Updates", CLLocationUpdate_Updates, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"makeAsyncIterator":{"id":4243873641860581}} });
+registerSDKClass("CoreLocation.CLLocationUpdate.Updates.Iterator", CLLocationUpdate_Updates_Iterator, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"next":{"id":1237292585716760}} });
+registerSDKClass("CoreLocation.CLMonitor", CLMonitor, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLMonitor.BeaconIdentityCondition", CLMonitor_BeaconIdentityCondition, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLMonitor.CircularGeographicCondition", CLMonitor_CircularGeographicCondition, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLMonitor.Event", CLMonitor_Event, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLMonitor.Events", CLMonitor_Events, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"makeAsyncIterator":{"id":627448143463100}} });
+registerSDKClass("CoreLocation.CLMonitor.Events.Iterator", CLMonitor_Events_Iterator, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"next":{"id":153511568615134}} });
+registerSDKClass("CoreLocation.CLMonitor.Record", CLMonitor_Record, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CLPlacemark", CLPlacemark, { module: "CoreLocation_067acaa3e5f56b46", properties: {"isoCountryCode":4160955229363486,"addressDictionary":2912932831221792,"administrativeArea":3448897226193370,"areasOfInterest":3799079020463122,"country":3359303048032057,"inlandWater":69467692356112,"locality":4238041714457365,"location":3653569769549533,"name":2482110113466556,"ocean":2663730943373281,"postalAddress":3330827864324957,"postalCode":460972634100844,"region":696797963511772,"subAdministrativeArea":2597966054300785,"subLocality":2173318223530792,"subThoroughfare":1839206085029860,"thoroughfare":3661816690667356,"timeZone":1795114704410509} });
+registerSDKClass("CoreLocation.CLServiceSession", CLServiceSession, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"invalidate":{"id":1487632398929564}} });
+registerSDKClass("CoreLocation.CLServiceSession.Diagnostic", CLServiceSession_Diagnostic, { module: "CoreLocation_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreLocation.CLServiceSession.Diagnostics", CLServiceSession_Diagnostics, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"makeAsyncIterator":{"id":637693875865087}} });
+registerSDKClass("CoreLocation.CLServiceSession.Diagnostics.Iterator", CLServiceSession_Diagnostics_Iterator, { module: "CoreLocation_067acaa3e5f56b46", properties: {}, methods: {"next":{"id":4100897900699320}} });
+registerSDKClass("CLVisit", CLVisit, { module: "CoreLocation_067acaa3e5f56b46", properties: {"arrivalDate":2553021776459166,"coordinate":391899201449662,"departureDate":3566081177634627,"horizontalAccuracy":986987120402366} });

@@ -35,49 +35,42 @@ export interface CNContactPickerDelegate {
  */
 export declare class CNContactPickerViewController extends SDKHandle {
     /** init() */
-    static init(): CNContactPickerViewController;
+    static init(): Promise<CNContactPickerViewController>;
     /**
      * weak var delegate: (any CNContactPickerDelegate)? { get set }
      * @availability iOS 9.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<CNContactPickerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<CNContactPickerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var displayedPropertyKeys: [String]? { get set }
      * @availability iOS 9.0+
      */
-    get displayedPropertyKeys(): (Array<string>) | null;
-    set displayedPropertyKeys(value: (Array<string>) | null);
+    get displayedPropertyKeys(): Promise<(Array<string>) | null>;
+    setDisplayedPropertyKeys(value?: (Array<string>) | null): Promise<void>;
     /**
      * @NSCopying var predicateForEnablingContact: NSPredicate? { get set }
      * @availability iOS 9.0+
      */
-    get predicateForEnablingContact(): $SDK3;
-    set predicateForEnablingContact(value: $SDK3);
+    get predicateForEnablingContact(): Promise<$SDK3>;
+    setPredicateForEnablingContact(value?: $SDK3): Promise<void>;
     /**
      * @NSCopying var predicateForSelectionOfContact: NSPredicate? { get set }
      * @availability iOS 9.0+
      */
-    get predicateForSelectionOfContact(): $SDK3;
-    set predicateForSelectionOfContact(value: $SDK3);
+    get predicateForSelectionOfContact(): Promise<$SDK3>;
+    setPredicateForSelectionOfContact(value?: $SDK3): Promise<void>;
     /**
      * @NSCopying var predicateForSelectionOfProperty: NSPredicate? { get set }
      * @availability iOS 9.0+
      */
-    get predicateForSelectionOfProperty(): $SDK3;
-    set predicateForSelectionOfProperty(value: $SDK3);
+    get predicateForSelectionOfProperty(): Promise<$SDK3>;
+    setPredicateForSelectionOfProperty(value?: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)CNContactPickerViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
-        "displayedPropertyKeys": true;
-        "predicateForEnablingContact": true;
-        "predicateForSelectionOfContact": true;
-        "predicateForSelectionOfProperty": true;
     };
 }
 /**
@@ -89,110 +82,97 @@ export declare class CNContactViewController extends SDKHandle {
      * class func descriptorForRequiredKeys() -> any CNKeyDescriptor
      * @availability iOS 9.0+
      */
-    static descriptorForRequiredKeys(): SDKHandle;
+    static descriptorForRequiredKeys(): Promise<SDKHandle>;
     /**
      * convenience init(for contact: CNContact)
      * @availability iOS 9.0+
      */
-    static initFor(contact: _Contacts_CNContact): CNContactViewController;
+    static initFor(contact: _Contacts_CNContact): Promise<CNContactViewController>;
     /**
      * convenience init(forNewContact contact: CNContact?)
      * @availability iOS 9.0+
      */
-    static initForNewContact(contact?: $SDK4): CNContactViewController;
+    static initForNewContact(contact?: $SDK4): Promise<CNContactViewController>;
     /**
      * convenience init(forUnknownContact contact: CNContact)
      * @availability iOS 9.0+
      */
-    static initForUnknownContact(contact: _Contacts_CNContact): CNContactViewController;
+    static initForUnknownContact(contact: _Contacts_CNContact): Promise<CNContactViewController>;
     /**
      * func highlightProperty(withKey key: String, identifier: String?)
      * @availability iOS 9.0+
      */
-    highlightProperty(key: string, identifier?: (string) | null): void;
+    highlightProperty(key: string, identifier?: (string) | null): Promise<void>;
     /**
      * var allowsActions: Bool { get set }
      * @availability iOS 9.0+
      */
-    get allowsActions(): boolean;
-    set allowsActions(value: boolean);
+    get allowsActions(): Promise<boolean>;
+    setAllowsActions(value: boolean): Promise<void>;
     /**
      * var allowsEditing: Bool { get set }
      * @availability iOS 9.0+
      */
-    get allowsEditing(): boolean;
-    set allowsEditing(value: boolean);
+    get allowsEditing(): Promise<boolean>;
+    setAllowsEditing(value: boolean): Promise<void>;
     /**
      * var alternateName: String? { get set }
      * @availability iOS 9.0+
      */
-    get alternateName(): (string) | null;
-    set alternateName(value: (string) | null);
+    get alternateName(): Promise<(string) | null>;
+    setAlternateName(value?: (string) | null): Promise<void>;
     /**
      * var contact: CNContact { get }
      * @availability iOS 9.0+
      */
-    get contact(): _Contacts_CNContact;
+    get contact(): Promise<_Contacts_CNContact>;
     /**
      * var contactStore: CNContactStore? { get set }
      * @availability iOS 9.0+
      */
-    get contactStore(): $SDK5;
-    set contactStore(value: $SDK5);
+    get contactStore(): Promise<$SDK5>;
+    setContactStore(value?: $SDK5): Promise<void>;
     /**
      * weak var delegate: (any CNContactViewControllerDelegate)? { get set }
      * @availability iOS 9.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<CNContactViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<CNContactViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var displayedPropertyKeys: [Any]? { get set }
      * @availability iOS 9.0+
      */
-    get displayedPropertyKeys(): (Array<unknown>) | null;
-    set displayedPropertyKeys(value: (Array<unknown>) | null);
+    get displayedPropertyKeys(): Promise<(Array<unknown>) | null>;
+    setDisplayedPropertyKeys(value?: (Array<unknown>) | null): Promise<void>;
     /**
      * var message: String? { get set }
      * @availability iOS 9.0+
      */
-    get message(): (string) | null;
-    set message(value: (string) | null);
+    get message(): Promise<(string) | null>;
+    setMessage(value?: (string) | null): Promise<void>;
     /**
      * var parentContainer: CNContainer? { get set }
      * @availability iOS 9.0+
      */
-    get parentContainer(): $SDK7;
-    set parentContainer(value: $SDK7);
+    get parentContainer(): Promise<$SDK7>;
+    setParentContainer(value?: $SDK7): Promise<void>;
     /**
      * var parentGroup: CNGroup? { get set }
      * @availability iOS 9.0+
      */
-    get parentGroup(): (_Contacts_CNGroup) | null;
-    set parentGroup(value: (_Contacts_CNGroup) | null);
+    get parentGroup(): Promise<(_Contacts_CNGroup) | null>;
+    setParentGroup(value?: (_Contacts_CNGroup) | null): Promise<void>;
     /**
      * var shouldShowLinkedContacts: Bool { get set }
      * @availability iOS 9.0+
      */
-    get shouldShowLinkedContacts(): boolean;
-    set shouldShowLinkedContacts(value: boolean);
+    get shouldShowLinkedContacts(): Promise<boolean>;
+    setShouldShowLinkedContacts(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)CNContactViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsActions": true;
-        "allowsEditing": true;
-        "alternateName": true;
-        "contact": true;
-        "contactStore": true;
-        "delegate": true;
-        "displayedPropertyKeys": true;
-        "message": true;
-        "parentContainer": true;
-        "parentGroup": true;
-        "shouldShowLinkedContacts": true;
     };
 }
 /**

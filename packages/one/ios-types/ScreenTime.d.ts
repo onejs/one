@@ -128,60 +128,52 @@ export declare const STWebHistory_ProfileIdentifier: {
  */
 export declare class STWebpageController extends SDKHandle {
     /** init() */
-    static init(): STWebpageController;
+    static init(): Promise<STWebpageController>;
     /**
      * func setBundleIdentifier(_ bundleIdentifier: String) throws
      * @availability iOS 14.0+
      */
-    setBundleIdentifier(bundleIdentifier: string): void;
+    setBundleIdentifier(bundleIdentifier: string): Promise<void>;
     /**
      * var url: URL? { get set }
      * @availability iOS 14.0+
      */
-    get url(): (string) | null;
-    set url(value: (string) | null);
+    get url(): Promise<(string) | null>;
+    setUrl(value?: (string) | null): Promise<void>;
     /**
      * var urlIsBlocked: Bool { get }
      * @availability iOS 14.0+
      */
-    get urlIsBlocked(): boolean;
+    get urlIsBlocked(): Promise<boolean>;
     /**
      * var urlIsPictureInPicture: Bool { get set }
      * @availability iOS 14.0+
      */
-    get urlIsPictureInPicture(): boolean;
-    set urlIsPictureInPicture(value: boolean);
+    get urlIsPictureInPicture(): Promise<boolean>;
+    setUrlIsPictureInPicture(value: boolean): Promise<void>;
     /**
      * var urlIsPlayingVideo: Bool { get set }
      * @availability iOS 14.0+
      */
-    get urlIsPlayingVideo(): boolean;
-    set urlIsPlayingVideo(value: boolean);
+    get urlIsPlayingVideo(): Promise<boolean>;
+    setUrlIsPlayingVideo(value: boolean): Promise<void>;
     /**
      * var profileIdentifier: STWebHistory.ProfileIdentifier? { get set }
      * @availability iOS 18.4+
      */
-    get profileIdentifier(): $SDK2;
-    set profileIdentifier(value: $SDK2);
+    get profileIdentifier(): Promise<$SDK2>;
+    setProfileIdentifier(value?: $SDK2): Promise<void>;
     /**
      * var suppressUsageRecording: Bool { get set }
      * @availability iOS 14.0+
      */
-    get suppressUsageRecording(): boolean;
-    set suppressUsageRecording(value: boolean);
+    get suppressUsageRecording(): Promise<boolean>;
+    setSuppressUsageRecording(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)STWebpageController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "url": true;
-        "urlIsBlocked": true;
-        "urlIsPictureInPicture": true;
-        "urlIsPlayingVideo": true;
-        "profileIdentifier": true;
-        "suppressUsageRecording": true;
     };
 }
 export {};

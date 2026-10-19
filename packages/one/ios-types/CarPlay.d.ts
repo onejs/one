@@ -4859,28 +4859,23 @@ export declare class CPTemplateApplicationDashboardScene extends SDKHandle {
      * var dashboardController: CPDashboardController { get }
      * @availability iOS 13.4+
      */
-    get dashboardController(): CPDashboardController;
+    get dashboardController(): Promise<CPDashboardController>;
     /**
      * var dashboardWindow: UIWindow { get }
      * @availability iOS 13.4+
      */
-    get dashboardWindow(): _UIKit_UIWindow;
+    get dashboardWindow(): Promise<_UIKit_UIWindow>;
     /**
      * var delegate: (any CPTemplateApplicationDashboardSceneDelegate)? { get set }
      * @availability iOS 13.4+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<CPTemplateApplicationDashboardSceneDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<CPTemplateApplicationDashboardSceneDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)CPTemplateApplicationDashboardScene": true;
         "c:objc(cs)UIScene": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "dashboardController": true;
-        "dashboardWindow": true;
-        "delegate": true;
     };
 }
 /**
@@ -4920,28 +4915,23 @@ export declare class CPTemplateApplicationInstrumentClusterScene extends SDKHand
      * var contentStyle: UIUserInterfaceStyle { get }
      * @availability iOS 15.4+
      */
-    get contentStyle(): _UIKit_UIUserInterfaceStyle;
+    get contentStyle(): Promise<_UIKit_UIUserInterfaceStyle>;
     /**
      * var delegate: (any CPTemplateApplicationInstrumentClusterSceneDelegate)? { get set }
      * @availability iOS 15.4+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<CPTemplateApplicationInstrumentClusterSceneDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<CPTemplateApplicationInstrumentClusterSceneDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var instrumentClusterController: CPInstrumentClusterController { get }
      * @availability iOS 15.4+
      */
-    get instrumentClusterController(): CPInstrumentClusterController;
+    get instrumentClusterController(): Promise<CPInstrumentClusterController>;
     readonly $type: {
         "c:objc(cs)CPTemplateApplicationInstrumentClusterScene": true;
         "c:objc(cs)UIScene": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "contentStyle": true;
-        "delegate": true;
-        "instrumentClusterController": true;
     };
 }
 /**
@@ -4986,34 +4976,28 @@ export declare class CPTemplateApplicationScene extends SDKHandle {
      * var carWindow: CPWindow { get }
      * @availability iOS 13.0+
      */
-    get carWindow(): CPWindow;
+    get carWindow(): Promise<CPWindow>;
     /**
      * var contentStyle: UIUserInterfaceStyle { get }
      * @availability iOS 15.4+
      */
-    get contentStyle(): _UIKit_UIUserInterfaceStyle;
+    get contentStyle(): Promise<_UIKit_UIUserInterfaceStyle>;
     /**
      * var delegate: (any CPTemplateApplicationSceneDelegate)? { get set }
      * @availability iOS 13.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<CPTemplateApplicationSceneDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<CPTemplateApplicationSceneDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var interfaceController: CPInterfaceController { get }
      * @availability iOS 13.0+
      */
-    get interfaceController(): CPInterfaceController;
+    get interfaceController(): Promise<CPInterfaceController>;
     readonly $type: {
         "c:objc(cs)CPTemplateApplicationScene": true;
         "c:objc(cs)UIScene": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "carWindow": true;
-        "contentStyle": true;
-        "delegate": true;
-        "interfaceController": true;
     };
 }
 /**
@@ -5476,28 +5460,24 @@ export declare class CPVoiceControlTemplate extends CPVoiceControlTemplate_base 
  */
 export declare class CPWindow extends SDKHandle {
     /** init() */
-    static init(): CPWindow;
+    static init(): Promise<CPWindow>;
     /**
      * var mapButtonSafeAreaLayoutGuide: UILayoutGuide { get }
      * @availability iOS 12.0+
      */
-    get mapButtonSafeAreaLayoutGuide(): _UIKit_UILayoutGuide;
+    get mapButtonSafeAreaLayoutGuide(): Promise<_UIKit_UILayoutGuide>;
     /**
      * weak var templateApplicationScene: CPTemplateApplicationScene? { get set }
      * @availability iOS 12.0+
      */
-    get templateApplicationScene(): $SDK77;
-    set templateApplicationScene(value: $SDK77);
+    get templateApplicationScene(): Promise<$SDK77>;
+    setTemplateApplicationScene(value?: $SDK77): Promise<void>;
     readonly $type: {
         "c:objc(cs)CPWindow": true;
         "c:objc(cs)UIWindow": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "mapButtonSafeAreaLayoutGuide": true;
-        "templateApplicationScene": true;
     };
 }
 export type UISceneSession_Role = "carTemplateApplication" | "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});

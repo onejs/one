@@ -32,26 +32,23 @@ export declare class ILClassificationUIExtensionViewController extends SDKHandle
      * func classificationResponse(for request: ILClassificationRequest) -> ILClassificationResponse
      * @availability iOS 12.0+
      */
-    classificationResponse(request: _IdentityLookup_ILClassificationRequest): _IdentityLookup_ILClassificationResponse;
+    classificationResponse(request: _IdentityLookup_ILClassificationRequest): Promise<_IdentityLookup_ILClassificationResponse>;
     /** init() */
-    static init(): ILClassificationUIExtensionViewController;
+    static init(): Promise<ILClassificationUIExtensionViewController>;
     /**
      * func prepare(for request: ILClassificationRequest)
      * @availability iOS 12.0+
      */
-    prepare(request: _IdentityLookup_ILClassificationRequest): void;
+    prepare(request: _IdentityLookup_ILClassificationRequest): Promise<void>;
     /**
      * var extensionContext: ILClassificationUIExtensionContext { get }
      * @availability iOS 12.0+
      */
-    get extensionContext(): ILClassificationUIExtensionContext;
+    get extensionContext(): Promise<ILClassificationUIExtensionContext>;
     readonly $type: {
         "c:objc(cs)ILClassificationUIExtensionViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "extensionContext": true;
     };
 }

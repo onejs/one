@@ -44,7 +44,7 @@ export type Array_Body<Element = unknown> = never;
  */
 export declare class EXAppExtensionBrowserViewController extends SDKHandle {
     /** init() */
-    static init(): EXAppExtensionBrowserViewController;
+    static init(): Promise<EXAppExtensionBrowserViewController>;
     readonly $type: {
         "c:objc(cs)EXAppExtensionBrowserViewController": true;
         "c:objc(cs)UIViewController": true;
@@ -58,24 +58,24 @@ export declare class EXAppExtensionBrowserViewController extends SDKHandle {
  */
 export declare class EXHostViewController extends SDKHandle {
     /** init() */
-    static init(): EXHostViewController;
+    static init(): Promise<EXHostViewController>;
     /**
      * func makeXPCConnection() throws -> NSXPCConnection
      * @availability iOS 26.0+
      */
-    makeXPCConnection(): _Foundation_NSXPCConnection;
+    makeXPCConnection(): Promise<_Foundation_NSXPCConnection>;
     /**
      * weak var delegate: (any EXHostViewControllerDelegate)? { get set }
      * @availability iOS 26.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<EXHostViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<EXHostViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var placeholderView: UIView { get set }
      * @availability iOS 26.0+
      */
-    get placeholderView(): _UIKit_UIView;
-    set placeholderView(value: _UIKit_UIView);
+    get placeholderView(): Promise<_UIKit_UIView>;
+    setPlaceholderView(value: _UIKit_UIView): Promise<void>;
     /**
      * @MainActor @preconcurrency var configuration: EXHostViewController.Configuration? { get set }
      * @availability iOS 26.0+
@@ -88,10 +88,6 @@ export declare class EXHostViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
-    readonly $observable: {
-        "delegate": true;
-        "placeholderView": true;
-    };
 }
 /**
  * struct Configuration
@@ -102,19 +98,19 @@ export declare class EXHostViewController_Configuration extends SDKHandle {
      * var appExtension: AppExtensionIdentity
      * @availability iOS 26.0+
      */
-    get appExtension(): _ExtensionFoundation_AppExtensionIdentity;
-    set appExtension(value: _ExtensionFoundation_AppExtensionIdentity);
+    get appExtension(): Promise<_ExtensionFoundation_AppExtensionIdentity>;
+    setAppExtension(value: _ExtensionFoundation_AppExtensionIdentity): Promise<void>;
     /**
      * init(appExtension: AppExtensionIdentity, sceneID: String)
      * @availability iOS 26.0+
      */
-    static init(appExtension: _ExtensionFoundation_AppExtensionIdentity, sceneID: string): EXHostViewController_Configuration;
+    static init(appExtension: _ExtensionFoundation_AppExtensionIdentity, sceneID: string): Promise<EXHostViewController_Configuration>;
     /**
      * var sceneID: String
      * @availability iOS 26.0+
      */
-    get sceneID(): string;
-    set sceneID(value: string);
+    get sceneID(): Promise<string>;
+    setSceneID(value: string): Promise<void>;
     readonly $type: {
         "s:So20EXHostViewControllerC12ExtensionKitE13ConfigurationV": true;
     };

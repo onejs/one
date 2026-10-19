@@ -751,7 +751,7 @@ export interface AVPictureInPictureSampleBufferPlaybackDelegate {
  */
 export declare class AVPictureInPictureVideoCallViewController extends SDKHandle {
     /** init() */
-    static init(): AVPictureInPictureVideoCallViewController;
+    static init(): Promise<AVPictureInPictureVideoCallViewController>;
     readonly $type: {
         "c:objc(cs)AVPictureInPictureVideoCallViewController": true;
         "c:objc(cs)UIViewController": true;
@@ -1349,42 +1349,36 @@ export interface AVPlayerViewControllerDelegate {
  */
 export declare class AVRoutePickerView extends SDKHandle {
     /** init() */
-    static init(): AVRoutePickerView;
+    static init(): Promise<AVRoutePickerView>;
     /**
      * var activeTintColor: UIColor! { get set }
      * @availability iOS 11.0+
      */
-    get activeTintColor(): (_UIKit_UIColor) | null;
-    set activeTintColor(value: (_UIKit_UIColor) | null);
+    get activeTintColor(): Promise<(_UIKit_UIColor) | null>;
+    setActiveTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
      * var customRoutingController: AVCustomRoutingController? { get set }
      * @availability iOS 16.0+
      */
-    get customRoutingController(): $SDK26;
-    set customRoutingController(value: $SDK26);
+    get customRoutingController(): Promise<$SDK26>;
+    setCustomRoutingController(value?: $SDK26): Promise<void>;
     /**
      * weak var delegate: (any AVRoutePickerViewDelegate)? { get set }
      * @availability iOS 11.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<AVRoutePickerViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<AVRoutePickerViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var prioritizesVideoDevices: Bool { get set }
      * @availability iOS 13.0+
      */
-    get prioritizesVideoDevices(): boolean;
-    set prioritizesVideoDevices(value: boolean);
+    get prioritizesVideoDevices(): Promise<boolean>;
+    setPrioritizesVideoDevices(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)AVRoutePickerView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "activeTintColor": true;
-        "customRoutingController": true;
-        "delegate": true;
-        "prioritizesVideoDevices": true;
     };
 }
 /**

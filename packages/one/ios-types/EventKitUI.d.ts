@@ -8,35 +8,28 @@ type $SDK4 = (_EventKit_EKEventStore) | null;
 /** class EKCalendarChooser */
 export declare class EKCalendarChooser extends SDKHandle {
     /** init(selectionStyle style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: EKEntityType, eventStore: EKEventStore) */
-    static initSelectionStyleDisplayStyleEntityTypeEventStore(style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: _EventKit_EKEntityType, eventStore: _EventKit_EKEventStore): EKCalendarChooser;
+    static initSelectionStyleDisplayStyleEntityTypeEventStore(style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: _EventKit_EKEntityType, eventStore: _EventKit_EKEventStore): Promise<EKCalendarChooser>;
     /** init(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: EKEventStore) */
-    static initSelectionStyleDisplayStyleEventStore(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: _EventKit_EKEventStore): EKCalendarChooser;
+    static initSelectionStyleDisplayStyleEventStore(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: _EventKit_EKEventStore): Promise<EKCalendarChooser>;
     /** weak var delegate: (any EKCalendarChooserDelegate)? { get set } */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<EKCalendarChooserDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<EKCalendarChooserDelegate> | SDKHandle) | null): Promise<void>;
     /** var selectedCalendars: Set<EKCalendar> { get set } */
-    get selectedCalendars(): $SDK1;
-    set selectedCalendars(value: $SDK1);
+    get selectedCalendars(): Promise<$SDK1>;
+    setSelectedCalendars(value: $SDK1): Promise<void>;
     /** var selectionStyle: EKCalendarChooserSelectionStyle { get } */
-    get selectionStyle(): EKCalendarChooserSelectionStyle;
+    get selectionStyle(): Promise<EKCalendarChooserSelectionStyle>;
     /** var showsCancelButton: Bool { get set } */
-    get showsCancelButton(): boolean;
-    set showsCancelButton(value: boolean);
+    get showsCancelButton(): Promise<boolean>;
+    setShowsCancelButton(value: boolean): Promise<void>;
     /** var showsDoneButton: Bool { get set } */
-    get showsDoneButton(): boolean;
-    set showsDoneButton(value: boolean);
+    get showsDoneButton(): Promise<boolean>;
+    setShowsDoneButton(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)EKCalendarChooser": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
-        "selectedCalendars": true;
-        "selectionStyle": true;
-        "showsCancelButton": true;
-        "showsDoneButton": true;
     };
 }
 /** protocol EKCalendarChooserDelegate : NSObjectProtocol */
@@ -77,38 +70,33 @@ export declare class EKEventEditViewController extends SDKHandle {
      * func cancelEditing()
      * @availability iOS 4.0+
      */
-    cancelEditing(): void;
+    cancelEditing(): Promise<void>;
     /** init() */
-    static init(): EKEventEditViewController;
+    static init(): Promise<EKEventEditViewController>;
     /**
      * weak var editViewDelegate: (any EKEventEditViewDelegate)? { get set }
      * @availability iOS 4.0+
      */
-    get editViewDelegate(): (SDKHandle) | null;
-    set editViewDelegate(value: (Implements<EKEventEditViewDelegate> | SDKHandle) | null);
+    get editViewDelegate(): Promise<(SDKHandle) | null>;
+    setEditViewDelegate(value?: (Implements<EKEventEditViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var event: EKEvent? { get set }
      * @availability iOS 4.0+
      */
-    get event(): $SDK3;
-    set event(value: $SDK3);
+    get event(): Promise<$SDK3>;
+    setEvent(value?: $SDK3): Promise<void>;
     /**
      * var eventStore: EKEventStore! { get set }
      * @availability iOS 4.0+
      */
-    get eventStore(): $SDK4;
-    set eventStore(value: $SDK4);
+    get eventStore(): Promise<$SDK4>;
+    setEventStore(value?: $SDK4): Promise<void>;
     readonly $type: {
         "c:objc(cs)EKEventEditViewController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "editViewDelegate": true;
-        "event": true;
-        "eventStore": true;
     };
 }
 /** protocol EKEventEditViewDelegate : NSObjectProtocol */
@@ -131,42 +119,36 @@ export declare const EKEventViewAction: {
  */
 export declare class EKEventViewController extends SDKHandle {
     /** init() */
-    static init(): EKEventViewController;
+    static init(): Promise<EKEventViewController>;
     /**
      * var allowsCalendarPreview: Bool { get set }
      * @availability iOS 4.0+
      */
-    get allowsCalendarPreview(): boolean;
-    set allowsCalendarPreview(value: boolean);
+    get allowsCalendarPreview(): Promise<boolean>;
+    setAllowsCalendarPreview(value: boolean): Promise<void>;
     /**
      * var allowsEditing: Bool { get set }
      * @availability iOS 4.0+
      */
-    get allowsEditing(): boolean;
-    set allowsEditing(value: boolean);
+    get allowsEditing(): Promise<boolean>;
+    setAllowsEditing(value: boolean): Promise<void>;
     /**
      * weak var delegate: (any EKEventViewDelegate)? { get set }
      * @availability iOS 4.2+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<EKEventViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<EKEventViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var event: EKEvent! { get set }
      * @availability iOS 4.0+
      */
-    get event(): $SDK3;
-    set event(value: $SDK3);
+    get event(): Promise<$SDK3>;
+    setEvent(value?: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)EKEventViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsCalendarPreview": true;
-        "allowsEditing": true;
-        "delegate": true;
-        "event": true;
     };
 }
 /** protocol EKEventViewDelegate : NSObjectProtocol */

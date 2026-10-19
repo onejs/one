@@ -230,184 +230,161 @@ export declare class MKAnnotationView extends SDKHandle {
      * init(annotation: (any MKAnnotation)?, reuseIdentifier: String?)
      * @availability iOS 3.0+
      */
-    static initAnnotationReuseIdentifier(annotation?: (SDKHandle) | null, reuseIdentifier?: (string) | null): MKAnnotationView;
+    static initAnnotationReuseIdentifier(annotation?: (SDKHandle) | null, reuseIdentifier?: (string) | null): Promise<MKAnnotationView>;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 3.0+
      */
-    static initCoder(aDecoder: _Foundation_NSCoder): (MKAnnotationView) | null;
+    static initCoder(aDecoder: _Foundation_NSCoder): Promise<(MKAnnotationView) | null>;
     /**
      * func prepareForDisplay()
      * @availability iOS 11.0+
      */
-    prepareForDisplay(): void;
+    prepareForDisplay(): Promise<void>;
     /**
      * func prepareForReuse()
      * @availability iOS 3.0+
      */
-    prepareForReuse(): void;
+    prepareForReuse(): Promise<void>;
     /**
      * func setDragState(_ newDragState: MKAnnotationView.DragState, animated: Bool)
      * @availability iOS 4.2+
      */
-    setDragState(newDragState: MKAnnotationView_DragState, animated: boolean): void;
+    setDragState(newDragState: MKAnnotationView_DragState, animated: boolean): Promise<void>;
     /**
      * func setSelected(_ selected: Bool, animated: Bool)
      * @availability iOS 3.0+
      */
-    setSelected(selected: boolean, animated: boolean): void;
+    setSelected(selected: boolean, animated: boolean): Promise<void>;
     /**
      * var accessoryOffset: CGPoint { get set }
      * @availability iOS 18.0+
      */
-    get accessoryOffset(): $SDK1;
-    set accessoryOffset(value: $SDK1);
+    get accessoryOffset(): Promise<$SDK1>;
+    setAccessoryOffset(value: $SDK1): Promise<void>;
     /**
      * var annotation: (any MKAnnotation)? { get set }
      * @availability iOS 3.0+
      */
-    get annotation(): (SDKHandle) | null;
-    set annotation(value: (SDKHandle) | null);
+    get annotation(): Promise<(SDKHandle) | null>;
+    setAnnotation(value?: (SDKHandle) | null): Promise<void>;
     /**
      * var calloutOffset: CGPoint { get set }
      * @availability iOS 3.0+
      */
-    get calloutOffset(): $SDK1;
-    set calloutOffset(value: $SDK1);
+    get calloutOffset(): Promise<$SDK1>;
+    setCalloutOffset(value: $SDK1): Promise<void>;
     /**
      * var canShowCallout: Bool { get set }
      * @availability iOS 3.0+
      */
-    get canShowCallout(): boolean;
-    set canShowCallout(value: boolean);
+    get canShowCallout(): Promise<boolean>;
+    setCanShowCallout(value: boolean): Promise<void>;
     /**
      * var centerOffset: CGPoint { get set }
      * @availability iOS 3.0+
      */
-    get centerOffset(): $SDK1;
-    set centerOffset(value: $SDK1);
+    get centerOffset(): Promise<$SDK1>;
+    setCenterOffset(value: $SDK1): Promise<void>;
     /**
      * weak var cluster: MKAnnotationView? { get }
      * @availability iOS 11.0+
      */
-    get cluster(): $SDK2;
+    get cluster(): Promise<$SDK2>;
     /**
      * var clusteringIdentifier: String? { get set }
      * @availability iOS 11.0+
      */
-    get clusteringIdentifier(): (string) | null;
-    set clusteringIdentifier(value: (string) | null);
+    get clusteringIdentifier(): Promise<(string) | null>;
+    setClusteringIdentifier(value?: (string) | null): Promise<void>;
     /**
      * var collisionMode: MKAnnotationView.CollisionMode { get set }
      * @availability iOS 11.0+
      */
-    get collisionMode(): MKAnnotationView_CollisionMode;
-    set collisionMode(value: MKAnnotationView_CollisionMode);
+    get collisionMode(): Promise<MKAnnotationView_CollisionMode>;
+    setCollisionMode(value: MKAnnotationView_CollisionMode): Promise<void>;
     /**
      * var detailCalloutAccessoryView: UIView? { get set }
      * @availability iOS 9.0+
      */
-    get detailCalloutAccessoryView(): (_UIKit_UIView) | null;
-    set detailCalloutAccessoryView(value: (_UIKit_UIView) | null);
+    get detailCalloutAccessoryView(): Promise<(_UIKit_UIView) | null>;
+    setDetailCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void>;
     /**
      * var displayPriority: MKFeatureDisplayPriority { get set }
      * @availability iOS 11.0+
      */
-    get displayPriority(): MKFeatureDisplayPriority;
-    set displayPriority(value: MKFeatureDisplayPriority);
+    get displayPriority(): Promise<MKFeatureDisplayPriority>;
+    setDisplayPriority(value: MKFeatureDisplayPriority): Promise<void>;
     /**
      * var dragState: MKAnnotationView.DragState { get set }
      * @availability iOS 4.0+
      */
-    get dragState(): MKAnnotationView_DragState;
-    set dragState(value: MKAnnotationView_DragState);
+    get dragState(): Promise<MKAnnotationView_DragState>;
+    setDragState76552(value: MKAnnotationView_DragState): Promise<void>;
     /**
      * var isDraggable: Bool { get set }
      * @availability iOS 4.0+
      */
-    get isDraggable(): boolean;
-    set isDraggable(value: boolean);
+    get isDraggable(): Promise<boolean>;
+    setIsDraggable(value: boolean): Promise<void>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 3.0+
      */
-    get isEnabled(): boolean;
-    set isEnabled(value: boolean);
+    get isEnabled(): Promise<boolean>;
+    setIsEnabled(value: boolean): Promise<void>;
     /**
      * var isHighlighted: Bool { get set }
      * @availability iOS 3.0+
      */
-    get isHighlighted(): boolean;
-    set isHighlighted(value: boolean);
+    get isHighlighted(): Promise<boolean>;
+    setIsHighlighted(value: boolean): Promise<void>;
     /**
      * var image: UIImage? { get set }
      * @availability iOS 3.0+
      */
-    get image(): (_UIKit_UIImage) | null;
-    set image(value: (_UIKit_UIImage) | null);
+    get image(): Promise<(_UIKit_UIImage) | null>;
+    setImage(value?: (_UIKit_UIImage) | null): Promise<void>;
     /**
      * var leftCalloutAccessoryView: UIView? { get set }
      * @availability iOS 3.0+
      */
-    get leftCalloutAccessoryView(): (_UIKit_UIView) | null;
-    set leftCalloutAccessoryView(value: (_UIKit_UIView) | null);
+    get leftCalloutAccessoryView(): Promise<(_UIKit_UIView) | null>;
+    setLeftCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void>;
     /**
      * var reuseIdentifier: String? { get }
      * @availability iOS 3.0+
      */
-    get reuseIdentifier(): (string) | null;
+    get reuseIdentifier(): Promise<(string) | null>;
     /**
      * var rightCalloutAccessoryView: UIView? { get set }
      * @availability iOS 3.0+
      */
-    get rightCalloutAccessoryView(): (_UIKit_UIView) | null;
-    set rightCalloutAccessoryView(value: (_UIKit_UIView) | null);
+    get rightCalloutAccessoryView(): Promise<(_UIKit_UIView) | null>;
+    setRightCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void>;
     /**
      * var isSelected: Bool { get set }
      * @availability iOS 3.0+
      */
-    get isSelected(): boolean;
-    set isSelected(value: boolean);
+    get isSelected(): Promise<boolean>;
+    setIsSelected(value: boolean): Promise<void>;
     /**
      * var selectedZPriority: MKAnnotationViewZPriority { get set }
      * @availability iOS 14.0+
      */
-    get selectedZPriority(): MKAnnotationViewZPriority;
-    set selectedZPriority(value: MKAnnotationViewZPriority);
+    get selectedZPriority(): Promise<MKAnnotationViewZPriority>;
+    setSelectedZPriority(value: MKAnnotationViewZPriority): Promise<void>;
     /**
      * var zPriority: MKAnnotationViewZPriority { get set }
      * @availability iOS 14.0+
      */
-    get zPriority(): MKAnnotationViewZPriority;
-    set zPriority(value: MKAnnotationViewZPriority);
+    get zPriority(): Promise<MKAnnotationViewZPriority>;
+    setZPriority(value: MKAnnotationViewZPriority): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKAnnotationView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "accessoryOffset": true;
-        "annotation": true;
-        "calloutOffset": true;
-        "canShowCallout": true;
-        "centerOffset": true;
-        "cluster": true;
-        "clusteringIdentifier": true;
-        "collisionMode": true;
-        "detailCalloutAccessoryView": true;
-        "displayPriority": true;
-        "dragState": true;
-        "isDraggable": true;
-        "isEnabled": true;
-        "isHighlighted": true;
-        "image": true;
-        "leftCalloutAccessoryView": true;
-        "reuseIdentifier": true;
-        "rightCalloutAccessoryView": true;
-        "isSelected": true;
-        "selectedZPriority": true;
-        "zPriority": true;
     };
 }
 /**
@@ -420,7 +397,7 @@ export declare const MKAnnotationView_CollisionMode: {
      * init?(rawValue: Int)
      * @availability iOS 11.0+
      */
-    init(rawValue: number): (MKAnnotationView_CollisionMode) | null;
+    init(rawValue: number): Promise<(MKAnnotationView_CollisionMode) | null>;
 };
 /**
  * enum DragState
@@ -432,7 +409,7 @@ export declare const MKAnnotationView_DragState: {
      * init?(rawValue: UInt)
      * @availability iOS 4.0+
      */
-    init(rawValue: number): (MKAnnotationView_DragState) | null;
+    init(rawValue: number): Promise<(MKAnnotationView_DragState) | null>;
 };
 /**
  * struct MKAnnotationViewZPriority
@@ -811,7 +788,7 @@ export declare class MKCircleRenderer extends MKCircleRenderer_base {
  */
 export declare class MKOverlayView extends SDKHandle {
     /** init() */
-    static init(): MKOverlayView;
+    static init(): Promise<MKOverlayView>;
     readonly $type: {
         "c:objc(cs)MKOverlayView": true;
         "c:objc(cs)UIView": true;
@@ -827,7 +804,7 @@ declare const MKOverlayPathView_base: Omit<typeof MKOverlayView, "init" | "proto
  */
 export declare class MKOverlayPathView extends MKOverlayPathView_base {
     /** init() */
-    static init(): MKOverlayPathView;
+    static init(): Promise<MKOverlayPathView>;
     readonly $type: {
         "c:objc(cs)MKOverlayPathView": true;
         "c:objc(cs)MKOverlayView": true;
@@ -844,7 +821,7 @@ declare const MKCircleView_base: Omit<typeof MKOverlayPathView, "init" | "protot
  */
 export declare class MKCircleView extends MKCircleView_base {
     /** init() */
-    static init(): MKCircleView;
+    static init(): Promise<MKCircleView>;
     readonly $type: {
         "c:objc(cs)MKCircleView": true;
         "c:objc(cs)MKOverlayPathView": true;
@@ -900,28 +877,24 @@ export declare class MKCompassButton extends SDKHandle {
      * convenience init(mapView: MKMapView?)
      * @availability iOS 11.0+
      */
-    static init(mapView?: (MKMapView) | null): MKCompassButton;
+    static init(mapView?: (MKMapView) | null): Promise<MKCompassButton>;
     /**
      * var compassVisibility: MKFeatureVisibility { get set }
      * @availability iOS 11.0+
      */
-    get compassVisibility(): MKFeatureVisibility;
-    set compassVisibility(value: MKFeatureVisibility);
+    get compassVisibility(): Promise<MKFeatureVisibility>;
+    setCompassVisibility(value: MKFeatureVisibility): Promise<void>;
     /**
      * weak var mapView: MKMapView? { get set }
      * @availability iOS 11.0+
      */
-    get mapView(): (MKMapView) | null;
-    set mapView(value: (MKMapView) | null);
+    get mapView(): Promise<(MKMapView) | null>;
+    setMapView(value?: (MKMapView) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKCompassButton": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "compassVisibility": true;
-        "mapView": true;
     };
 }
 /** struct MKCoordinateRegion */
@@ -2413,66 +2386,58 @@ export declare class MKLookAroundViewController extends SDKHandle {
      * init?(coder: NSCoder)
      * @availability iOS 16.0+
      */
-    static initCoder(coder: _Foundation_NSCoder): (MKLookAroundViewController) | null;
+    static initCoder(coder: _Foundation_NSCoder): Promise<(MKLookAroundViewController) | null>;
     /**
      * init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
      * @availability iOS 16.0+
      */
-    static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): MKLookAroundViewController;
+    static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): Promise<MKLookAroundViewController>;
     /**
      * init(scene: MKLookAroundScene)
      * @availability iOS 16.0+
      */
-    static initScene(scene: MKLookAroundScene): MKLookAroundViewController;
+    static initScene(scene: MKLookAroundScene): Promise<MKLookAroundViewController>;
     /**
      * var badgePosition: MKLookAroundBadgePosition { get set }
      * @availability iOS 16.0+
      */
-    get badgePosition(): MKLookAroundBadgePosition;
-    set badgePosition(value: MKLookAroundBadgePosition);
+    get badgePosition(): Promise<MKLookAroundBadgePosition>;
+    setBadgePosition(value: MKLookAroundBadgePosition): Promise<void>;
     /**
      * @IBOutlet weak var delegate: (any MKLookAroundViewControllerDelegate)? { get set }
      * @availability iOS 16.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<MKLookAroundViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<MKLookAroundViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var isNavigationEnabled: Bool { get set }
      * @availability iOS 16.0+
      */
-    get isNavigationEnabled(): boolean;
-    set isNavigationEnabled(value: boolean);
+    get isNavigationEnabled(): Promise<boolean>;
+    setIsNavigationEnabled(value: boolean): Promise<void>;
     /**
      * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
      * @availability iOS 16.0+
      */
-    get pointOfInterestFilter(): $SDK16;
-    set pointOfInterestFilter(value: $SDK16);
+    get pointOfInterestFilter(): Promise<$SDK16>;
+    setPointOfInterestFilter(value?: $SDK16): Promise<void>;
     /**
      * @NSCopying var scene: MKLookAroundScene? { get set }
      * @availability iOS 16.0+
      */
-    get scene(): (MKLookAroundScene) | null;
-    set scene(value: (MKLookAroundScene) | null);
+    get scene(): Promise<(MKLookAroundScene) | null>;
+    setScene(value?: (MKLookAroundScene) | null): Promise<void>;
     /**
      * var showsRoadLabels: Bool { get set }
      * @availability iOS 16.0+
      */
-    get showsRoadLabels(): boolean;
-    set showsRoadLabels(value: boolean);
+    get showsRoadLabels(): Promise<boolean>;
+    setShowsRoadLabels(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKLookAroundViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "badgePosition": true;
-        "delegate": true;
-        "isNavigationEnabled": true;
-        "pointOfInterestFilter": true;
-        "scene": true;
-        "showsRoadLabels": true;
     };
 }
 /**
@@ -2841,33 +2806,29 @@ export declare class MKMapItemDetailViewController extends SDKHandle {
      * init(mapItem: MKMapItem?)
      * @availability iOS 18.0+
      */
-    static initMapItem(mapItem?: (MKMapItem) | null): MKMapItemDetailViewController;
+    static initMapItem(mapItem?: (MKMapItem) | null): Promise<MKMapItemDetailViewController>;
     /**
      * init(mapItem: MKMapItem?, displaysMap: Bool)
      * @availability iOS 18.0+
      */
-    static initMapItemDisplaysMap(mapItem: (MKMapItem) | null, displaysMap: boolean): MKMapItemDetailViewController;
+    static initMapItemDisplaysMap(mapItem: (MKMapItem) | null, displaysMap: boolean): Promise<MKMapItemDetailViewController>;
     /**
      * weak var delegate: (any MKMapItemDetailViewControllerDelegate)? { get set }
      * @availability iOS 18.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<MKMapItemDetailViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<MKMapItemDetailViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var mapItem: MKMapItem? { get set }
      * @availability iOS 18.0+
      */
-    get mapItem(): (MKMapItem) | null;
-    set mapItem(value: (MKMapItem) | null);
+    get mapItem(): Promise<(MKMapItem) | null>;
+    setMapItem(value?: (MKMapItem) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKMapItemDetailViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
-        "mapItem": true;
     };
 }
 /**
@@ -3287,432 +3248,400 @@ export declare class MKMapView extends SDKHandle {
      * func addAnnotation(_ annotation: any MKAnnotation)
      * @availability iOS 3.0+
      */
-    addAnnotation(annotation: SDKHandle): void;
+    addAnnotation(annotation: SDKHandle): Promise<void>;
     /**
      * func addAnnotations(_ annotations: [any MKAnnotation])
      * @availability iOS 3.0+
      */
-    addAnnotations(annotations: Array<SDKHandle>): void;
+    addAnnotations(annotations: Array<SDKHandle>): Promise<void>;
     /**
      * func addOverlay(_ overlay: any MKOverlay)
      * @availability iOS 4.0+
      */
-    addOverlay(overlay: SDKHandle): void;
+    addOverlay(overlay: SDKHandle): Promise<void>;
     /**
      * func addOverlay(_ overlay: any MKOverlay, level: MKOverlayLevel)
      * @availability iOS 7.0+
      */
-    addOverlayLevel(overlay: SDKHandle, level: MKOverlayLevel): void;
+    addOverlayLevel(overlay: SDKHandle, level: MKOverlayLevel): Promise<void>;
     /**
      * func addOverlays(_ overlays: [any MKOverlay])
      * @availability iOS 4.0+
      */
-    addOverlays(overlays: Array<SDKHandle>): void;
+    addOverlays(overlays: Array<SDKHandle>): Promise<void>;
     /**
      * func addOverlays(_ overlays: [any MKOverlay], level: MKOverlayLevel)
      * @availability iOS 7.0+
      */
-    addOverlaysLevel(overlays: Array<SDKHandle>, level: MKOverlayLevel): void;
+    addOverlaysLevel(overlays: Array<SDKHandle>, level: MKOverlayLevel): Promise<void>;
     /**
      * func annotations(in mapRect: MKMapRect) -> Set<AnyHashable>
      * @availability iOS 4.2+
      */
-    annotationsIn(mapRect: MKMapRect): Array<unknown>;
+    annotationsIn(mapRect: MKMapRect): Promise<Array<unknown>>;
     /**
      * func convert(_ coordinate: CLLocationCoordinate2D, toPointTo view: UIView?) -> CGPoint
      * @availability iOS 3.0+
      */
-    convertToPointTo(coordinate: $SDK3, view?: (_UIKit_UIView) | null): $SDK1;
+    convertToPointTo(coordinate: $SDK3, view?: (_UIKit_UIView) | null): Promise<$SDK1>;
     /**
      * func convert(_ point: CGPoint, toCoordinateFrom view: UIView?) -> CLLocationCoordinate2D
      * @availability iOS 3.0+
      */
-    convertToCoordinateFrom(point: $SDK1, view?: (_UIKit_UIView) | null): $SDK3;
+    convertToCoordinateFrom(point: $SDK1, view?: (_UIKit_UIView) | null): Promise<$SDK3>;
     /**
      * func convert(_ rect: CGRect, toRegionFrom view: UIView?) -> MKCoordinateRegion
      * @availability iOS 3.0+
      */
-    convertToRegionFrom(rect: $SDK4, view?: (_UIKit_UIView) | null): MKCoordinateRegion;
+    convertToRegionFrom(rect: $SDK4, view?: (_UIKit_UIView) | null): Promise<MKCoordinateRegion>;
     /**
      * func convert(_ region: MKCoordinateRegion, toRectTo view: UIView?) -> CGRect
      * @availability iOS 3.0+
      */
-    convertToRectTo(region: MKCoordinateRegion, view?: (_UIKit_UIView) | null): $SDK4;
+    convertToRectTo(region: MKCoordinateRegion, view?: (_UIKit_UIView) | null): Promise<$SDK4>;
     /**
      * func dequeueReusableAnnotationView(withIdentifier identifier: String) -> MKAnnotationView?
      * @availability iOS 3.0+
      */
-    dequeueReusableAnnotationViewWithIdentifier(identifier: string): $SDK2;
+    dequeueReusableAnnotationViewWithIdentifier(identifier: string): Promise<$SDK2>;
     /**
      * func dequeueReusableAnnotationView(withIdentifier identifier: String, for annotation: any MKAnnotation) -> MKAnnotationView
      * @availability iOS 11.0+
      */
-    dequeueReusableAnnotationViewWithIdentifierFor(identifier: string, annotation: SDKHandle): MKAnnotationView;
+    dequeueReusableAnnotationViewWithIdentifierFor(identifier: string, annotation: SDKHandle): Promise<MKAnnotationView>;
     /**
      * func deselectAnnotation(_ annotation: (any MKAnnotation)?, animated: Bool)
      * @availability iOS 3.0+
      */
-    deselectAnnotation(annotation: (SDKHandle) | null, animated: boolean): void;
+    deselectAnnotation(annotation: (SDKHandle) | null, animated: boolean): Promise<void>;
     /**
      * func exchangeOverlay(_ overlay1: any MKOverlay, with overlay2: any MKOverlay)
      * @availability iOS 7.0+
      */
-    exchangeOverlayWith(overlay1: SDKHandle, overlay2: SDKHandle): void;
+    exchangeOverlayWith(overlay1: SDKHandle, overlay2: SDKHandle): Promise<void>;
     /**
      * func exchangeOverlay(at index1: Int, withOverlayAt index2: Int)
      * @availability iOS 4.0+
      */
-    exchangeOverlayAtWithOverlayAt(index1: number, index2: number): void;
+    exchangeOverlayAtWithOverlayAt(index1: number, index2: number): Promise<void>;
     /** init() */
-    static init(): MKMapView;
+    static init(): Promise<MKMapView>;
     /**
      * func insertOverlay(_ overlay: any MKOverlay, above sibling: any MKOverlay)
      * @availability iOS 4.0+
      */
-    insertOverlayAbove(overlay: SDKHandle, sibling: SDKHandle): void;
+    insertOverlayAbove(overlay: SDKHandle, sibling: SDKHandle): Promise<void>;
     /**
      * func insertOverlay(_ overlay: any MKOverlay, at index: Int)
      * @availability iOS 4.0+
      */
-    insertOverlayAt(overlay: SDKHandle, index: number): void;
+    insertOverlayAt(overlay: SDKHandle, index: number): Promise<void>;
     /**
      * func insertOverlay(_ overlay: any MKOverlay, at index: Int, level: MKOverlayLevel)
      * @availability iOS 7.0+
      */
-    insertOverlayAtLevel(overlay: SDKHandle, index: number, level: MKOverlayLevel): void;
+    insertOverlayAtLevel(overlay: SDKHandle, index: number, level: MKOverlayLevel): Promise<void>;
     /**
      * func insertOverlay(_ overlay: any MKOverlay, below sibling: any MKOverlay)
      * @availability iOS 4.0+
      */
-    insertOverlayBelow(overlay: SDKHandle, sibling: SDKHandle): void;
+    insertOverlayBelow(overlay: SDKHandle, sibling: SDKHandle): Promise<void>;
     /**
      * func mapRectThatFits(_ mapRect: MKMapRect) -> MKMapRect
      * @availability iOS 3.0+
      */
-    mapRectThatFits(mapRect: MKMapRect): MKMapRect;
+    mapRectThatFits(mapRect: MKMapRect): Promise<MKMapRect>;
     /**
      * func mapRectThatFits(_ mapRect: MKMapRect, edgePadding insets: UIEdgeInsets) -> MKMapRect
      * @availability iOS 3.0+
      */
-    mapRectThatFitsEdgePadding(mapRect: MKMapRect, insets: $SDK42): MKMapRect;
+    mapRectThatFitsEdgePadding(mapRect: MKMapRect, insets: $SDK42): Promise<MKMapRect>;
     /**
      * func overlays(in level: MKOverlayLevel) -> [any MKOverlay]
      * @availability iOS 7.0+
      */
-    overlaysIn(level: MKOverlayLevel): Array<SDKHandle>;
+    overlaysIn(level: MKOverlayLevel): Promise<Array<SDKHandle>>;
     /**
      * func regionThatFits(_ region: MKCoordinateRegion) -> MKCoordinateRegion
      * @availability iOS 3.0+
      */
-    regionThatFits(region: MKCoordinateRegion): MKCoordinateRegion;
+    regionThatFits(region: MKCoordinateRegion): Promise<MKCoordinateRegion>;
     /**
      * func register(_ viewClass: AnyClass?, forAnnotationViewWithReuseIdentifier identifier: String)
      * @availability iOS 11.0+
      */
-    register(viewClass: (string) | null, identifier: string): void;
+    register(viewClass: (string) | null, identifier: string): Promise<void>;
     /**
      * func removeAnnotation(_ annotation: any MKAnnotation)
      * @availability iOS 3.0+
      */
-    removeAnnotation(annotation: SDKHandle): void;
+    removeAnnotation(annotation: SDKHandle): Promise<void>;
     /**
      * func removeAnnotations(_ annotations: [any MKAnnotation])
      * @availability iOS 3.0+
      */
-    removeAnnotations(annotations: Array<SDKHandle>): void;
+    removeAnnotations(annotations: Array<SDKHandle>): Promise<void>;
     /**
      * func removeOverlay(_ overlay: any MKOverlay)
      * @availability iOS 4.0+
      */
-    removeOverlay(overlay: SDKHandle): void;
+    removeOverlay(overlay: SDKHandle): Promise<void>;
     /**
      * func removeOverlays(_ overlays: [any MKOverlay])
      * @availability iOS 4.0+
      */
-    removeOverlays(overlays: Array<SDKHandle>): void;
+    removeOverlays(overlays: Array<SDKHandle>): Promise<void>;
     /**
      * func renderer(for overlay: any MKOverlay) -> MKOverlayRenderer?
      * @availability iOS 7.0+
      */
-    renderer(overlay: SDKHandle): (MKOverlayRenderer) | null;
+    renderer(overlay: SDKHandle): Promise<(MKOverlayRenderer) | null>;
     /**
      * func selectAnnotation(_ annotation: any MKAnnotation, animated: Bool)
      * @availability iOS 3.0+
      */
-    selectAnnotation(annotation: SDKHandle, animated: boolean): void;
+    selectAnnotation(annotation: SDKHandle, animated: boolean): Promise<void>;
     /**
      * func setCamera(_ camera: MKMapCamera, animated: Bool)
      * @availability iOS 7.0+
      */
-    setCamera(camera: MKMapCamera, animated: boolean): void;
+    setCamera(camera: MKMapCamera, animated: boolean): Promise<void>;
     /**
      * func setCameraBoundary(_ cameraBoundary: MKMapView.CameraBoundary?, animated: Bool)
      * @availability iOS 13.0+
      */
-    setCameraBoundary(cameraBoundary: $SDK44, animated: boolean): void;
+    setCameraBoundary(cameraBoundary: $SDK44, animated: boolean): Promise<void>;
     /**
      * func setCameraZoomRange(_ cameraZoomRange: MKMapView.CameraZoomRange?, animated: Bool)
      * @availability iOS 13.0+
      */
-    setCameraZoomRange(cameraZoomRange: $SDK45, animated: boolean): void;
+    setCameraZoomRange(cameraZoomRange: $SDK45, animated: boolean): Promise<void>;
     /**
      * func setCenter(_ coordinate: CLLocationCoordinate2D, animated: Bool)
      * @availability iOS 3.0+
      */
-    setCenter(coordinate: $SDK3, animated: boolean): void;
+    setCenter(coordinate: $SDK3, animated: boolean): Promise<void>;
     /**
      * func setRegion(_ region: MKCoordinateRegion, animated: Bool)
      * @availability iOS 3.0+
      */
-    setRegion(region: MKCoordinateRegion, animated: boolean): void;
+    setRegion(region: MKCoordinateRegion, animated: boolean): Promise<void>;
     /**
      * func setUserTrackingMode(_ mode: MKUserTrackingMode, animated: Bool)
      * @availability iOS 5.0+
      */
-    setUserTrackingMode(mode: MKUserTrackingMode, animated: boolean): void;
+    setUserTrackingMode(mode: MKUserTrackingMode, animated: boolean): Promise<void>;
     /**
      * func setVisibleMapRect(_ mapRect: MKMapRect, animated animate: Bool)
      * @availability iOS 3.0+
      */
-    setVisibleMapRectAnimated(mapRect: MKMapRect, animate: boolean): void;
+    setVisibleMapRectAnimated(mapRect: MKMapRect, animate: boolean): Promise<void>;
     /**
      * func setVisibleMapRect(_ mapRect: MKMapRect, edgePadding insets: UIEdgeInsets, animated animate: Bool)
      * @availability iOS 3.0+
      */
-    setVisibleMapRectEdgePaddingAnimated(mapRect: MKMapRect, insets: $SDK42, animate: boolean): void;
+    setVisibleMapRectEdgePaddingAnimated(mapRect: MKMapRect, insets: $SDK42, animate: boolean): Promise<void>;
     /**
      * func showAnnotations(_ annotations: [any MKAnnotation], animated: Bool)
      * @availability iOS 7.0+
      */
-    showAnnotations(annotations: Array<SDKHandle>, animated: boolean): void;
+    showAnnotations(annotations: Array<SDKHandle>, animated: boolean): Promise<void>;
     /**
      * func view(for annotation: any MKAnnotation) -> MKAnnotationView?
      * @availability iOS 3.0+
      */
-    viewFor(annotation: SDKHandle): $SDK2;
+    viewFor(annotation: SDKHandle): Promise<$SDK2>;
     /**
      * func view(for overlay: any MKOverlay) -> MKOverlayView
      * @availability iOS 4.0+
      * @deprecated iOS 13.0
      */
-    viewFor41435(overlay: SDKHandle): MKOverlayView;
+    viewFor41435(overlay: SDKHandle): Promise<MKOverlayView>;
     /**
      * var annotationVisibleRect: CGRect { get }
      * @availability iOS 3.0+
      */
-    get annotationVisibleRect(): $SDK4;
+    get annotationVisibleRect(): Promise<$SDK4>;
     /**
      * var annotations: [any MKAnnotation] { get }
      * @availability iOS 3.0+
      */
-    get annotations(): Array<SDKHandle>;
+    get annotations(): Promise<Array<SDKHandle>>;
     /**
      * @NSCopying var camera: MKMapCamera { get set }
      * @availability iOS 7.0+
      */
-    get camera(): MKMapCamera;
-    set camera(value: MKMapCamera);
+    get camera(): Promise<MKMapCamera>;
+    setCamera29143(value: MKMapCamera): Promise<void>;
     /**
      * @NSCopying var cameraBoundary: MKMapView.CameraBoundary? { get set }
      * @availability iOS 13.0+
      */
-    get cameraBoundary(): $SDK44;
-    set cameraBoundary(value: $SDK44);
+    get cameraBoundary(): Promise<$SDK44>;
+    setCameraBoundary3817(value?: $SDK44): Promise<void>;
     /**
      * @NSCopying var cameraZoomRange: MKMapView.CameraZoomRange! { get set }
      * @availability iOS 13.0+
      */
-    get cameraZoomRange(): $SDK45;
-    set cameraZoomRange(value: $SDK45);
+    get cameraZoomRange(): Promise<$SDK45>;
+    setCameraZoomRange31501(value?: $SDK45): Promise<void>;
     /**
      * var centerCoordinate: CLLocationCoordinate2D { get set }
      * @availability iOS 3.0+
      */
-    get centerCoordinate(): $SDK3;
-    set centerCoordinate(value: $SDK3);
+    get centerCoordinate(): Promise<$SDK3>;
+    setCenterCoordinate(value: $SDK3): Promise<void>;
     /**
      * @IBOutlet weak var delegate: (any MKMapViewDelegate)? { get set }
      * @availability iOS 3.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<MKMapViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<MKMapViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var mapType: MKMapType { get set }
      * @availability iOS 3.0+
      * @deprecated iOS 100000.0
      */
-    get mapType(): MKMapType;
-    set mapType(value: MKMapType);
+    get mapType(): Promise<MKMapType>;
+    setMapType(value: MKMapType): Promise<void>;
     /**
      * var overlays: [any MKOverlay] { get }
      * @availability iOS 4.0+
      */
-    get overlays(): Array<SDKHandle>;
+    get overlays(): Promise<Array<SDKHandle>>;
     /**
      * var pitchButtonVisibility: MKFeatureVisibility { get set }
      * @availability iOS 17.0+
      */
-    get pitchButtonVisibility(): MKFeatureVisibility;
-    set pitchButtonVisibility(value: MKFeatureVisibility);
+    get pitchButtonVisibility(): Promise<MKFeatureVisibility>;
+    setPitchButtonVisibility(value: MKFeatureVisibility): Promise<void>;
     /**
      * var isPitchEnabled: Bool { get set }
      * @availability iOS 7.0+
      */
-    get isPitchEnabled(): boolean;
-    set isPitchEnabled(value: boolean);
+    get isPitchEnabled(): Promise<boolean>;
+    setIsPitchEnabled(value: boolean): Promise<void>;
     /**
      * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get pointOfInterestFilter(): $SDK16;
-    set pointOfInterestFilter(value: $SDK16);
+    get pointOfInterestFilter(): Promise<$SDK16>;
+    setPointOfInterestFilter(value?: $SDK16): Promise<void>;
     /**
      * @NSCopying var preferredConfiguration: MKMapConfiguration { get set }
      * @availability iOS 16.0+
      */
-    get preferredConfiguration(): MKMapConfiguration;
-    set preferredConfiguration(value: MKMapConfiguration);
+    get preferredConfiguration(): Promise<MKMapConfiguration>;
+    setPreferredConfiguration(value: MKMapConfiguration): Promise<void>;
     /**
      * var region: MKCoordinateRegion { get set }
      * @availability iOS 3.0+
      */
-    get region(): MKCoordinateRegion;
-    set region(value: MKCoordinateRegion);
+    get region(): Promise<MKCoordinateRegion>;
+    setRegion62700(value: MKCoordinateRegion): Promise<void>;
     /**
      * var isRotateEnabled: Bool { get set }
      * @availability iOS 7.0+
      */
-    get isRotateEnabled(): boolean;
-    set isRotateEnabled(value: boolean);
+    get isRotateEnabled(): Promise<boolean>;
+    setIsRotateEnabled(value: boolean): Promise<void>;
     /**
      * var isScrollEnabled: Bool { get set }
      * @availability iOS 3.0+
      */
-    get isScrollEnabled(): boolean;
-    set isScrollEnabled(value: boolean);
+    get isScrollEnabled(): Promise<boolean>;
+    setIsScrollEnabled(value: boolean): Promise<void>;
     /**
      * var selectableMapFeatures: MKMapFeatureOptions { get set }
      * @availability iOS 16.0+
      */
-    get selectableMapFeatures(): MKMapFeatureOptions;
-    set selectableMapFeatures(value: MKMapFeatureOptions);
+    get selectableMapFeatures(): Promise<MKMapFeatureOptions>;
+    setSelectableMapFeatures(value: MKMapFeatureOptions): Promise<void>;
     /**
      * var selectedAnnotations: [any MKAnnotation] { get set }
      * @availability iOS 3.0+
      */
-    get selectedAnnotations(): Array<SDKHandle>;
-    set selectedAnnotations(value: Array<SDKHandle>);
+    get selectedAnnotations(): Promise<Array<SDKHandle>>;
+    setSelectedAnnotations(value: Array<SDKHandle>): Promise<void>;
     /**
      * var showsBuildings: Bool { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 100000.0
      */
-    get showsBuildings(): boolean;
-    set showsBuildings(value: boolean);
+    get showsBuildings(): Promise<boolean>;
+    setShowsBuildings(value: boolean): Promise<void>;
     /**
      * var showsCompass: Bool { get set }
      * @availability iOS 9.0+
      */
-    get showsCompass(): boolean;
-    set showsCompass(value: boolean);
+    get showsCompass(): Promise<boolean>;
+    setShowsCompass(value: boolean): Promise<void>;
     /**
      * var showsPointsOfInterest: Bool { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
-    get showsPointsOfInterest(): boolean;
-    set showsPointsOfInterest(value: boolean);
+    get showsPointsOfInterest(): Promise<boolean>;
+    setShowsPointsOfInterest(value: boolean): Promise<void>;
     /**
      * var showsScale: Bool { get set }
      * @availability iOS 9.0+
      */
-    get showsScale(): boolean;
-    set showsScale(value: boolean);
+    get showsScale(): Promise<boolean>;
+    setShowsScale(value: boolean): Promise<void>;
     /**
      * var showsTraffic: Bool { get set }
      * @availability iOS 9.0+
      * @deprecated iOS 100000.0
      */
-    get showsTraffic(): boolean;
-    set showsTraffic(value: boolean);
+    get showsTraffic(): Promise<boolean>;
+    setShowsTraffic(value: boolean): Promise<void>;
     /**
      * var showsUserLocation: Bool { get set }
      * @availability iOS 3.0+
      */
-    get showsUserLocation(): boolean;
-    set showsUserLocation(value: boolean);
+    get showsUserLocation(): Promise<boolean>;
+    setShowsUserLocation(value: boolean): Promise<void>;
     /**
      * var showsUserTrackingButton: Bool { get set }
      * @availability iOS 17.0+
      */
-    get showsUserTrackingButton(): boolean;
-    set showsUserTrackingButton(value: boolean);
+    get showsUserTrackingButton(): Promise<boolean>;
+    setShowsUserTrackingButton(value: boolean): Promise<void>;
     /**
      * var userLocation: MKUserLocation { get }
      * @availability iOS 3.0+
      */
-    get userLocation(): MKUserLocation;
+    get userLocation(): Promise<MKUserLocation>;
     /**
      * var isUserLocationVisible: Bool { get }
      * @availability iOS 3.0+
      */
-    get isUserLocationVisible(): boolean;
+    get isUserLocationVisible(): Promise<boolean>;
     /**
      * var userTrackingMode: MKUserTrackingMode { get set }
      * @availability iOS 5.0+
      */
-    get userTrackingMode(): MKUserTrackingMode;
-    set userTrackingMode(value: MKUserTrackingMode);
+    get userTrackingMode(): Promise<MKUserTrackingMode>;
+    setUserTrackingMode87597(value: MKUserTrackingMode): Promise<void>;
     /**
      * var visibleMapRect: MKMapRect { get set }
      * @availability iOS 3.0+
      */
-    get visibleMapRect(): MKMapRect;
-    set visibleMapRect(value: MKMapRect);
+    get visibleMapRect(): Promise<MKMapRect>;
+    setVisibleMapRect(value: MKMapRect): Promise<void>;
     /**
      * var isZoomEnabled: Bool { get set }
      * @availability iOS 3.0+
      */
-    get isZoomEnabled(): boolean;
-    set isZoomEnabled(value: boolean);
+    get isZoomEnabled(): Promise<boolean>;
+    setIsZoomEnabled(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKMapView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "annotationVisibleRect": true;
-        "annotations": true;
-        "camera": true;
-        "cameraBoundary": true;
-        "cameraZoomRange": true;
-        "centerCoordinate": true;
-        "delegate": true;
-        "mapType": true;
-        "overlays": true;
-        "pitchButtonVisibility": true;
-        "isPitchEnabled": true;
-        "pointOfInterestFilter": true;
-        "preferredConfiguration": true;
-        "region": true;
-        "isRotateEnabled": true;
-        "isScrollEnabled": true;
-        "selectableMapFeatures": true;
-        "selectedAnnotations": true;
-        "showsBuildings": true;
-        "showsCompass": true;
-        "showsPointsOfInterest": true;
-        "showsScale": true;
-        "showsTraffic": true;
-        "showsUserLocation": true;
-        "showsUserTrackingButton": true;
-        "userLocation": true;
-        "isUserLocationVisible": true;
-        "userTrackingMode": true;
-        "visibleMapRect": true;
-        "isZoomEnabled": true;
     };
 }
 /**
@@ -3724,34 +3653,30 @@ export declare class MKMapView_CameraBoundary extends SDKHandle {
      * init?(coder: NSCoder)
      * @availability iOS 13.0+
      */
-    static initCoder(coder: _Foundation_NSCoder): (MKMapView_CameraBoundary) | null;
+    static initCoder(coder: _Foundation_NSCoder): Promise<(MKMapView_CameraBoundary) | null>;
     /**
      * init?(coordinateRegion region: MKCoordinateRegion)
      * @availability iOS 13.0+
      */
-    static initCoordinateRegion(region: MKCoordinateRegion): (MKMapView_CameraBoundary) | null;
+    static initCoordinateRegion(region: MKCoordinateRegion): Promise<(MKMapView_CameraBoundary) | null>;
     /**
      * init?(mapRect: MKMapRect)
      * @availability iOS 13.0+
      */
-    static initMapRect(mapRect: MKMapRect): (MKMapView_CameraBoundary) | null;
+    static initMapRect(mapRect: MKMapRect): Promise<(MKMapView_CameraBoundary) | null>;
     /**
      * var mapRect: MKMapRect { get }
      * @availability iOS 13.0+
      */
-    get mapRect(): MKMapRect;
+    get mapRect(): Promise<MKMapRect>;
     /**
      * var region: MKCoordinateRegion { get }
      * @availability iOS 13.0+
      */
-    get region(): MKCoordinateRegion;
+    get region(): Promise<MKCoordinateRegion>;
     readonly $type: {
         "c:objc(cs)MKMapCameraBoundary": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "mapRect": true;
-        "region": true;
     };
 }
 /**
@@ -3763,34 +3688,30 @@ export declare class MKMapView_CameraZoomRange extends SDKHandle {
      * convenience init?(maxCenterCoordinateDistance maxDistance: CLLocationDistance)
      * @availability iOS 13.0+
      */
-    static initMaxCenterCoordinateDistance(maxDistance: number): (MKMapView_CameraZoomRange) | null;
+    static initMaxCenterCoordinateDistance(maxDistance: number): Promise<(MKMapView_CameraZoomRange) | null>;
     /**
      * convenience init?(minCenterCoordinateDistance minDistance: CLLocationDistance)
      * @availability iOS 13.0+
      */
-    static initMinCenterCoordinateDistance(minDistance: number): (MKMapView_CameraZoomRange) | null;
+    static initMinCenterCoordinateDistance(minDistance: number): Promise<(MKMapView_CameraZoomRange) | null>;
     /**
      * init?(minCenterCoordinateDistance minDistance: CLLocationDistance, maxCenterCoordinateDistance maxDistance: CLLocationDistance)
      * @availability iOS 13.0+
      */
-    static initMinCenterCoordinateDistanceMaxCenterCoordinateDistance(minDistance: number, maxDistance: number): (MKMapView_CameraZoomRange) | null;
+    static initMinCenterCoordinateDistanceMaxCenterCoordinateDistance(minDistance: number, maxDistance: number): Promise<(MKMapView_CameraZoomRange) | null>;
     /**
      * var maxCenterCoordinateDistance: CLLocationDistance { get }
      * @availability iOS 13.0+
      */
-    get maxCenterCoordinateDistance(): number;
+    get maxCenterCoordinateDistance(): Promise<number>;
     /**
      * var minCenterCoordinateDistance: CLLocationDistance { get }
      * @availability iOS 13.0+
      */
-    get minCenterCoordinateDistance(): number;
+    get minCenterCoordinateDistance(): Promise<number>;
     readonly $type: {
         "c:objc(cs)MKMapCameraZoomRange": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "maxCenterCoordinateDistance": true;
-        "minCenterCoordinateDistance": true;
     };
 }
 /** @MainActor protocol MKMapViewDelegate : NSObjectProtocol */
@@ -3898,92 +3819,61 @@ export interface MKMapViewDelegate {
  */
 export declare class MKMarkerAnnotationView extends MKAnnotationView {
     /** init() */
-    static init(): MKMarkerAnnotationView;
+    static init(): Promise<MKMarkerAnnotationView>;
     /**
      * var animatesWhenAdded: Bool { get set }
      * @availability iOS 11.0+
      */
-    get animatesWhenAdded(): boolean;
-    set animatesWhenAdded(value: boolean);
+    get animatesWhenAdded(): Promise<boolean>;
+    setAnimatesWhenAdded(value: boolean): Promise<void>;
     /**
      * @NSCopying var glyphImage: UIImage? { get set }
      * @availability iOS 11.0+
      */
-    get glyphImage(): (_UIKit_UIImage) | null;
-    set glyphImage(value: (_UIKit_UIImage) | null);
+    get glyphImage(): Promise<(_UIKit_UIImage) | null>;
+    setGlyphImage(value?: (_UIKit_UIImage) | null): Promise<void>;
     /**
      * var glyphText: String? { get set }
      * @availability iOS 11.0+
      */
-    get glyphText(): (string) | null;
-    set glyphText(value: (string) | null);
+    get glyphText(): Promise<(string) | null>;
+    setGlyphText(value?: (string) | null): Promise<void>;
     /**
      * @NSCopying var glyphTintColor: UIColor? { get set }
      * @availability iOS 11.0+
      */
-    get glyphTintColor(): (_UIKit_UIColor) | null;
-    set glyphTintColor(value: (_UIKit_UIColor) | null);
+    get glyphTintColor(): Promise<(_UIKit_UIColor) | null>;
+    setGlyphTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
      * @NSCopying var markerTintColor: UIColor? { get set }
      * @availability iOS 11.0+
      */
-    get markerTintColor(): (_UIKit_UIColor) | null;
-    set markerTintColor(value: (_UIKit_UIColor) | null);
+    get markerTintColor(): Promise<(_UIKit_UIColor) | null>;
+    setMarkerTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
      * @NSCopying var selectedGlyphImage: UIImage? { get set }
      * @availability iOS 11.0+
      */
-    get selectedGlyphImage(): (_UIKit_UIImage) | null;
-    set selectedGlyphImage(value: (_UIKit_UIImage) | null);
+    get selectedGlyphImage(): Promise<(_UIKit_UIImage) | null>;
+    setSelectedGlyphImage(value?: (_UIKit_UIImage) | null): Promise<void>;
     /**
      * var subtitleVisibility: MKFeatureVisibility { get set }
      * @availability iOS 11.0+
      */
-    get subtitleVisibility(): MKFeatureVisibility;
-    set subtitleVisibility(value: MKFeatureVisibility);
+    get subtitleVisibility(): Promise<MKFeatureVisibility>;
+    setSubtitleVisibility(value: MKFeatureVisibility): Promise<void>;
     /**
      * var titleVisibility: MKFeatureVisibility { get set }
      * @availability iOS 11.0+
      */
-    get titleVisibility(): MKFeatureVisibility;
-    set titleVisibility(value: MKFeatureVisibility);
+    get titleVisibility(): Promise<MKFeatureVisibility>;
+    setTitleVisibility(value: MKFeatureVisibility): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKMarkerAnnotationView": true;
         "c:objc(cs)MKAnnotationView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "accessoryOffset": true;
-        "annotation": true;
-        "calloutOffset": true;
-        "canShowCallout": true;
-        "centerOffset": true;
-        "cluster": true;
-        "clusteringIdentifier": true;
-        "collisionMode": true;
-        "detailCalloutAccessoryView": true;
-        "displayPriority": true;
-        "dragState": true;
-        "isDraggable": true;
-        "isEnabled": true;
-        "isHighlighted": true;
-        "image": true;
-        "leftCalloutAccessoryView": true;
-        "reuseIdentifier": true;
-        "rightCalloutAccessoryView": true;
-        "isSelected": true;
-        "selectedZPriority": true;
-        "zPriority": true;
-        "animatesWhenAdded": true;
-        "glyphImage": true;
-        "glyphText": true;
-        "glyphTintColor": true;
-        "markerTintColor": true;
-        "selectedGlyphImage": true;
-        "subtitleVisibility": true;
-        "titleVisibility": true;
     };
 }
 declare const MKMultiPolygon_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
@@ -4163,74 +4053,48 @@ export declare class MKPinAnnotationView extends MKAnnotationView {
      * @availability iOS 9.0+
      * @deprecated iOS 16.0
      */
-    static greenPinColor(): _UIKit_UIColor;
+    static greenPinColor(): Promise<_UIKit_UIColor>;
     /**
      * class func purplePinColor() -> UIColor
      * @availability iOS 9.0+
      * @deprecated iOS 16.0
      */
-    static purplePinColor(): _UIKit_UIColor;
+    static purplePinColor(): Promise<_UIKit_UIColor>;
     /**
      * class func redPinColor() -> UIColor
      * @availability iOS 9.0+
      * @deprecated iOS 16.0
      */
-    static redPinColor(): _UIKit_UIColor;
+    static redPinColor(): Promise<_UIKit_UIColor>;
     /** init() */
-    static init(): MKPinAnnotationView;
+    static init(): Promise<MKPinAnnotationView>;
     /**
      * var animatesDrop: Bool { get set }
      * @availability iOS 3.0+
      * @deprecated iOS 16.0
      */
-    get animatesDrop(): boolean;
-    set animatesDrop(value: boolean);
+    get animatesDrop(): Promise<boolean>;
+    setAnimatesDrop(value: boolean): Promise<void>;
     /**
      * var pinColor: MKPinAnnotationColor { get set }
      * @availability iOS 3.0+
      * @deprecated iOS 9.0
      */
-    get pinColor(): MKPinAnnotationColor;
-    set pinColor(value: MKPinAnnotationColor);
+    get pinColor(): Promise<MKPinAnnotationColor>;
+    setPinColor(value: MKPinAnnotationColor): Promise<void>;
     /**
      * var pinTintColor: UIColor! { get set }
      * @availability iOS 9.0+
      * @deprecated iOS 16.0
      */
-    get pinTintColor(): (_UIKit_UIColor) | null;
-    set pinTintColor(value: (_UIKit_UIColor) | null);
+    get pinTintColor(): Promise<(_UIKit_UIColor) | null>;
+    setPinTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKPinAnnotationView": true;
         "c:objc(cs)MKAnnotationView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "accessoryOffset": true;
-        "annotation": true;
-        "calloutOffset": true;
-        "canShowCallout": true;
-        "centerOffset": true;
-        "cluster": true;
-        "clusteringIdentifier": true;
-        "collisionMode": true;
-        "detailCalloutAccessoryView": true;
-        "displayPriority": true;
-        "dragState": true;
-        "isDraggable": true;
-        "isEnabled": true;
-        "isHighlighted": true;
-        "image": true;
-        "leftCalloutAccessoryView": true;
-        "reuseIdentifier": true;
-        "rightCalloutAccessoryView": true;
-        "isSelected": true;
-        "selectedZPriority": true;
-        "zPriority": true;
-        "animatesDrop": true;
-        "pinColor": true;
-        "pinTintColor": true;
     };
 }
 /**
@@ -4881,7 +4745,7 @@ declare const MKPolygonView_base: Omit<typeof MKOverlayPathView, "init" | "proto
  */
 export declare class MKPolygonView extends MKPolygonView_base {
     /** init() */
-    static init(): MKPolygonView;
+    static init(): Promise<MKPolygonView>;
     readonly $type: {
         "c:objc(cs)MKPolygonView": true;
         "c:objc(cs)MKOverlayPathView": true;
@@ -4899,7 +4763,7 @@ declare const MKPolylineView_base: Omit<typeof MKOverlayPathView, "init" | "prot
  */
 export declare class MKPolylineView extends MKPolylineView_base {
     /** init() */
-    static init(): MKPolylineView;
+    static init(): Promise<MKPolylineView>;
     readonly $type: {
         "c:objc(cs)MKPolylineView": true;
         "c:objc(cs)MKOverlayPathView": true;
@@ -5082,35 +4946,30 @@ export declare class MKScaleView extends SDKHandle {
      * convenience init(mapView: MKMapView?)
      * @availability iOS 11.0+
      */
-    static init(mapView?: (MKMapView) | null): MKScaleView;
+    static init(mapView?: (MKMapView) | null): Promise<MKScaleView>;
     /**
      * var legendAlignment: MKScaleView.Alignment { get set }
      * @availability iOS 11.0+
      */
-    get legendAlignment(): MKScaleView_Alignment;
-    set legendAlignment(value: MKScaleView_Alignment);
+    get legendAlignment(): Promise<MKScaleView_Alignment>;
+    setLegendAlignment(value: MKScaleView_Alignment): Promise<void>;
     /**
      * weak var mapView: MKMapView? { get set }
      * @availability iOS 11.0+
      */
-    get mapView(): (MKMapView) | null;
-    set mapView(value: (MKMapView) | null);
+    get mapView(): Promise<(MKMapView) | null>;
+    setMapView(value?: (MKMapView) | null): Promise<void>;
     /**
      * var scaleVisibility: MKFeatureVisibility { get set }
      * @availability iOS 11.0+
      */
-    get scaleVisibility(): MKFeatureVisibility;
-    set scaleVisibility(value: MKFeatureVisibility);
+    get scaleVisibility(): Promise<MKFeatureVisibility>;
+    setScaleVisibility(value: MKFeatureVisibility): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKScaleView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "legendAlignment": true;
-        "mapView": true;
-        "scaleVisibility": true;
     };
 }
 /**
@@ -5123,7 +4982,7 @@ export declare const MKScaleView_Alignment: {
      * init?(rawValue: Int)
      * @availability iOS 11.0+
      */
-    init(rawValue: number): (MKScaleView_Alignment) | null;
+    init(rawValue: number): Promise<(MKScaleView_Alignment) | null>;
 };
 /**
  * class MKSelectionAccessory
@@ -5418,36 +5277,13 @@ export declare class MKUserLocation extends SDKHandle {
  */
 export declare class MKUserLocationView extends MKAnnotationView {
     /** init() */
-    static init(): MKUserLocationView;
+    static init(): Promise<MKUserLocationView>;
     readonly $type: {
         "c:objc(cs)MKUserLocationView": true;
         "c:objc(cs)MKAnnotationView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "accessoryOffset": true;
-        "annotation": true;
-        "calloutOffset": true;
-        "canShowCallout": true;
-        "centerOffset": true;
-        "cluster": true;
-        "clusteringIdentifier": true;
-        "collisionMode": true;
-        "detailCalloutAccessoryView": true;
-        "displayPriority": true;
-        "dragState": true;
-        "isDraggable": true;
-        "isEnabled": true;
-        "isHighlighted": true;
-        "image": true;
-        "leftCalloutAccessoryView": true;
-        "reuseIdentifier": true;
-        "rightCalloutAccessoryView": true;
-        "isSelected": true;
-        "selectedZPriority": true;
-        "zPriority": true;
     };
 }
 /**
@@ -5459,21 +5295,18 @@ export declare class MKUserTrackingBarButtonItem extends SDKHandle {
      * init(mapView: MKMapView?)
      * @availability iOS 5.0+
      */
-    static init(mapView?: (MKMapView) | null): MKUserTrackingBarButtonItem;
+    static init(mapView?: (MKMapView) | null): Promise<MKUserTrackingBarButtonItem>;
     /**
      * var mapView: MKMapView? { get set }
      * @availability iOS 5.0+
      */
-    get mapView(): (MKMapView) | null;
-    set mapView(value: (MKMapView) | null);
+    get mapView(): Promise<(MKMapView) | null>;
+    setMapView(value?: (MKMapView) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKUserTrackingBarButtonItem": true;
         "c:objc(cs)UIBarButtonItem": true;
         "c:objc(cs)UIBarItem": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "mapView": true;
     };
 }
 /**
@@ -5485,21 +5318,18 @@ export declare class MKUserTrackingButton extends SDKHandle {
      * convenience init(mapView: MKMapView?)
      * @availability iOS 11.0+
      */
-    static init(mapView?: (MKMapView) | null): MKUserTrackingButton;
+    static init(mapView?: (MKMapView) | null): Promise<MKUserTrackingButton>;
     /**
      * weak var mapView: MKMapView? { get set }
      * @availability iOS 11.0+
      */
-    get mapView(): (MKMapView) | null;
-    set mapView(value: (MKMapView) | null);
+    get mapView(): Promise<(MKMapView) | null>;
+    setMapView(value?: (MKMapView) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)MKUserTrackingButton": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "mapView": true;
     };
 }
 /**

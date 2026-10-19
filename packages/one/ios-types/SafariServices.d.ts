@@ -286,66 +286,59 @@ export declare class SFSafariViewController extends SDKHandle {
      * class func prewarmConnections(to URLs: [URL]) -> SFSafariViewController.PrewarmingToken
      * @availability iOS 15.0+
      */
-    static prewarmConnections(URLs: Array<string>): SFSafariViewController_PrewarmingToken;
+    static prewarmConnections(URLs: Array<string>): Promise<SFSafariViewController_PrewarmingToken>;
     /**
      * convenience init(url URL: URL)
      * @availability iOS 9.0+
      */
-    static initUrl(URL: string): SFSafariViewController;
+    static initUrl(URL: string): Promise<SFSafariViewController>;
     /**
      * init(url URL: URL, configuration: SFSafariViewController.Configuration)
      * @availability iOS 11.0+
      */
-    static initUrlConfiguration(URL: string, configuration: SFSafariViewController_Configuration): SFSafariViewController;
+    static initUrlConfiguration(URL: string, configuration: SFSafariViewController_Configuration): Promise<SFSafariViewController>;
     /**
      * init(url URL: URL, entersReaderIfAvailable: Bool)
      * @availability iOS 9.0+
      * @deprecated iOS 11.0
      */
-    static initUrlEntersReaderIfAvailable(URL: string, entersReaderIfAvailable: boolean): SFSafariViewController;
+    static initUrlEntersReaderIfAvailable(URL: string, entersReaderIfAvailable: boolean): Promise<SFSafariViewController>;
     /**
      * @NSCopying var configuration: SFSafariViewController.Configuration { get }
      * @availability iOS 11.0+
      */
-    get configuration(): SFSafariViewController_Configuration;
+    get configuration(): Promise<SFSafariViewController_Configuration>;
     /**
      * weak var delegate: (any SFSafariViewControllerDelegate)? { get set }
      * @availability iOS 9.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<SFSafariViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<SFSafariViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var dismissButtonStyle: SFSafariViewController.DismissButtonStyle { get set }
      * @availability iOS 11.0+
      */
-    get dismissButtonStyle(): SFSafariViewController_DismissButtonStyle;
-    set dismissButtonStyle(value: SFSafariViewController_DismissButtonStyle);
+    get dismissButtonStyle(): Promise<SFSafariViewController_DismissButtonStyle>;
+    setDismissButtonStyle(value: SFSafariViewController_DismissButtonStyle): Promise<void>;
     /**
      * var preferredBarTintColor: UIColor? { get set }
      * @availability iOS 10.0+
      * @deprecated iOS 26.0
      */
-    get preferredBarTintColor(): (_UIKit_UIColor) | null;
-    set preferredBarTintColor(value: (_UIKit_UIColor) | null);
+    get preferredBarTintColor(): Promise<(_UIKit_UIColor) | null>;
+    setPreferredBarTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
      * var preferredControlTintColor: UIColor? { get set }
      * @availability iOS 10.0+
      * @deprecated iOS 26.0
      */
-    get preferredControlTintColor(): (_UIKit_UIColor) | null;
-    set preferredControlTintColor(value: (_UIKit_UIColor) | null);
+    get preferredControlTintColor(): Promise<(_UIKit_UIColor) | null>;
+    setPreferredControlTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)SFSafariViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "configuration": true;
-        "delegate": true;
-        "dismissButtonStyle": true;
-        "preferredBarTintColor": true;
-        "preferredControlTintColor": true;
     };
 }
 /**
@@ -357,24 +350,20 @@ export declare class SFSafariViewController_ActivityButton extends SDKHandle {
      * init(templateImage: UIImage, extensionIdentifier: String)
      * @availability iOS 15.0+
      */
-    static init(templateImage: _UIKit_UIImage, extensionIdentifier: string): SFSafariViewController_ActivityButton;
+    static init(templateImage: _UIKit_UIImage, extensionIdentifier: string): Promise<SFSafariViewController_ActivityButton>;
     /**
      * var extensionIdentifier: String? { get }
      * @availability iOS 15.0+
      */
-    get extensionIdentifier(): (string) | null;
+    get extensionIdentifier(): Promise<(string) | null>;
     /**
      * @NSCopying var templateImage: UIImage? { get }
      * @availability iOS 15.0+
      */
-    get templateImage(): (_UIKit_UIImage) | null;
+    get templateImage(): Promise<(_UIKit_UIImage) | null>;
     readonly $type: {
         "c:objc(cs)SFSafariViewControllerActivityButton": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "extensionIdentifier": true;
-        "templateImage": true;
     };
 }
 /**
@@ -383,40 +372,34 @@ export declare class SFSafariViewController_ActivityButton extends SDKHandle {
  */
 export declare class SFSafariViewController_Configuration extends SDKHandle {
     /** init() */
-    static init(): SFSafariViewController_Configuration;
+    static init(): Promise<SFSafariViewController_Configuration>;
     /**
      * @NSCopying var activityButton: SFSafariViewController.ActivityButton? { get set }
      * @availability iOS 15.0+
      */
-    get activityButton(): $SDK7;
-    set activityButton(value: $SDK7);
+    get activityButton(): Promise<$SDK7>;
+    setActivityButton(value?: $SDK7): Promise<void>;
     /**
      * var barCollapsingEnabled: Bool { get set }
      * @availability iOS 11.0+
      */
-    get barCollapsingEnabled(): boolean;
-    set barCollapsingEnabled(value: boolean);
+    get barCollapsingEnabled(): Promise<boolean>;
+    setBarCollapsingEnabled(value: boolean): Promise<void>;
     /**
      * var entersReaderIfAvailable: Bool { get set }
      * @availability iOS 11.0+
      */
-    get entersReaderIfAvailable(): boolean;
-    set entersReaderIfAvailable(value: boolean);
+    get entersReaderIfAvailable(): Promise<boolean>;
+    setEntersReaderIfAvailable(value: boolean): Promise<void>;
     /**
      * @NSCopying var eventAttribution: UIEventAttribution? { get set }
      * @availability iOS 15.2+
      */
-    get eventAttribution(): $SDK8;
-    set eventAttribution(value: $SDK8);
+    get eventAttribution(): Promise<$SDK8>;
+    setEventAttribution(value?: $SDK8): Promise<void>;
     readonly $type: {
         "c:objc(cs)SFSafariViewControllerConfiguration": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "activityButton": true;
-        "barCollapsingEnabled": true;
-        "entersReaderIfAvailable": true;
-        "eventAttribution": true;
     };
 }
 /**
@@ -428,12 +411,12 @@ export declare class SFSafariViewController_DataStore extends SDKHandle {
      * class var `default`: SFSafariViewController.DataStore { get }
      * @availability iOS 16.0+
      */
-    static get default(): SFSafariViewController_DataStore;
+    static get default(): Promise<SFSafariViewController_DataStore>;
     /**
      * func clearWebsiteData() async
      * @availability iOS 16.0+
      */
-    clearWebsiteData(completion?: ((() => void)) | null): void;
+    clearWebsiteData(completion?: ((() => void)) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)SFSafariViewControllerDataStore": true;
         "c:objc(cs)NSObject": true;
@@ -449,7 +432,7 @@ export declare const SFSafariViewController_DismissButtonStyle: {
      * init?(rawValue: Int)
      * @availability iOS 11.0+
      */
-    init(rawValue: number): (SFSafariViewController_DismissButtonStyle) | null;
+    init(rawValue: number): Promise<(SFSafariViewController_DismissButtonStyle) | null>;
 };
 /**
  * class PrewarmingToken
@@ -460,7 +443,7 @@ export declare class SFSafariViewController_PrewarmingToken extends SDKHandle {
      * func invalidate()
      * @availability iOS 15.0+
      */
-    invalidate(): void;
+    invalidate(): Promise<void>;
     readonly $type: {
         "c:objc(cs)SFSafariViewControllerPrewarmingToken": true;
         "c:objc(cs)NSObject": true;

@@ -15,22 +15,22 @@ export class INImage extends SDKHandle {
    * class func imageSize(for response: INIntentResponse) -> CGSize
    * @availability iOS 10.0+
    */
-  static imageSize(response: _Intents_INIntentResponse): $SDK0 { return callSDK<$SDK0>("IntentsUI_90ad0eb69cc6bf4a", 2871969193111809, undefined, [response]); }
+  static imageSize(response: _Intents_INIntentResponse): $SDK0 { return callSDK<$SDK0>("IntentsUI_067acaa3e5f56b46", 2871969193111809, undefined, [response]); }
   /**
    * convenience init(CGImage imageRef: CGImage)
    * @availability iOS 10.0+
    */
-  static initCgImage(imageRef: _CoreGraphics_CGImage): _Intents_INImage { return callSDK<_Intents_INImage>("IntentsUI_90ad0eb69cc6bf4a", 2063785855136924, undefined, [imageRef]); }
+  static initCgImage(imageRef: _CoreGraphics_CGImage): _Intents_INImage { return callSDK<_Intents_INImage>("IntentsUI_067acaa3e5f56b46", 2063785855136924, undefined, [imageRef]); }
   /**
    * convenience init(UIImage image: UIImage)
    * @availability iOS 10.0+
    */
-  static initUiImage(image: _UIKit_UIImage): _Intents_INImage { return callSDK<_Intents_INImage>("IntentsUI_90ad0eb69cc6bf4a", 2338228800798487, undefined, [image]); }
+  static initUiImage(image: _UIKit_UIImage): _Intents_INImage { return callSDK<_Intents_INImage>("IntentsUI_067acaa3e5f56b46", 2338228800798487, undefined, [image]); }
   /**
    * func fetchUIImage() async -> UIImage?
    * @availability iOS 11.0+
    */
-  fetchUIImage(completion: ((arg0: (_UIKit_UIImage) | null) => void)): void { return callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 1482960099903418, this, [completion], [{"callback":{"out":[]}}]); }
+  fetchUIImage(completion: ((arg0: (_UIKit_UIImage) | null) => void)): void { return callSDK<void>("IntentsUI_067acaa3e5f56b46", 1482960099903418, this, [completion], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)INImage": true; "c:objc(cs)NSObject": true };
 }
 
@@ -43,37 +43,36 @@ export class INUIAddVoiceShortcutButton extends SDKHandle {
    * init(style: INUIAddVoiceShortcutButtonStyle)
    * @availability iOS 12.0+
    */
-  static init(style: INUIAddVoiceShortcutButtonStyle): INUIAddVoiceShortcutButton { return callSDK<INUIAddVoiceShortcutButton>("IntentsUI_90ad0eb69cc6bf4a", 2814245338970425, undefined, [style]); }
+  static init(style: INUIAddVoiceShortcutButtonStyle): Promise<INUIAddVoiceShortcutButton> { return callSDKAsync<INUIAddVoiceShortcutButton>("IntentsUI_067acaa3e5f56b46", 1865961141242377, undefined, [style]); }
   /**
    * func setStyle(_ style: INUIAddVoiceShortcutButtonStyle)
    * @availability iOS 13.0+
    */
-  setStyle(style: INUIAddVoiceShortcutButtonStyle): void { return callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 59284308309905, this, [style]); }
+  setStyle(style: INUIAddVoiceShortcutButtonStyle): Promise<void> { return callSDKAsync<void>("IntentsUI_067acaa3e5f56b46", 3850413360790042, this, [style]); }
   /**
    * var cornerRadius: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get cornerRadius(): number { return callSDK<number>("IntentsUI_90ad0eb69cc6bf4a", 1497382986837794, this, []); }
-  set cornerRadius(value: number) { callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 293196269313046, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("IntentsUI_067acaa3e5f56b46", 3308859537998416, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("IntentsUI_067acaa3e5f56b46", 3542658373441562, this, [value]); }
   /**
    * weak var delegate: (any INUIAddVoiceShortcutButtonDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("IntentsUI_90ad0eb69cc6bf4a", 444762431743868, this, []); }
-  set delegate(value: (Implements<INUIAddVoiceShortcutButtonDelegate> | SDKHandle) | null) { callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 2855283282554425, this, [value], [{"protocol":"c:objc(pl)INUIAddVoiceShortcutButtonDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("IntentsUI_067acaa3e5f56b46", 2197823883789803, this, []); }
+  setDelegate(value?: (Implements<INUIAddVoiceShortcutButtonDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("IntentsUI_067acaa3e5f56b46", 446763824102281, this, [value], [{"protocol":"c:objc(pl)INUIAddVoiceShortcutButtonDelegate"}]); }
   /**
    * var shortcut: INShortcut? { get set }
    * @availability iOS 12.0+
    */
-  get shortcut(): $SDK3 { return callSDK<$SDK3>("IntentsUI_90ad0eb69cc6bf4a", 1011596290969459, this, []); }
-  set shortcut(value: $SDK3) { callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 3059329303511585, this, [value]); }
+  get shortcut(): Promise<$SDK3> { return callSDKAsync<$SDK3>("IntentsUI_067acaa3e5f56b46", 170690729877380, this, []); }
+  setShortcut(value?: $SDK3): Promise<void> { return callSDKAsync<void>("IntentsUI_067acaa3e5f56b46", 278534264908122, this, [value]); }
   /**
    * var style: INUIAddVoiceShortcutButtonStyle { get }
    * @availability iOS 12.0+
    */
-  get style(): INUIAddVoiceShortcutButtonStyle { return callSDK<INUIAddVoiceShortcutButtonStyle>("IntentsUI_90ad0eb69cc6bf4a", 1198579092155422, this, []); }
+  get style(): Promise<INUIAddVoiceShortcutButtonStyle> { return callSDKAsync<INUIAddVoiceShortcutButtonStyle>("IntentsUI_067acaa3e5f56b46", 3253912143641279, this, []); }
   declare readonly $type: { "c:objc(cs)INUIAddVoiceShortcutButton": true; "c:objc(cs)UIButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "cornerRadius": true; "delegate": true; "shortcut": true; "style": true };
 }
 
 /**
@@ -99,7 +98,7 @@ export const INUIAddVoiceShortcutButtonStyle = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (INUIAddVoiceShortcutButtonStyle) | null { return callSDK<(INUIAddVoiceShortcutButtonStyle) | null>("IntentsUI_90ad0eb69cc6bf4a", 4067692227757696, undefined, [rawValue]); }
+  init(rawValue: number): (INUIAddVoiceShortcutButtonStyle) | null { return callSDK<(INUIAddVoiceShortcutButtonStyle) | null>("IntentsUI_067acaa3e5f56b46", 4067692227757696, undefined, [rawValue]); }
 };
 
 /**
@@ -111,15 +110,14 @@ export class INUIAddVoiceShortcutViewController extends SDKHandle {
    * init(shortcut: INShortcut)
    * @availability iOS 12.0+
    */
-  static init(shortcut: _Intents_INShortcut): INUIAddVoiceShortcutViewController { return callSDK<INUIAddVoiceShortcutViewController>("IntentsUI_90ad0eb69cc6bf4a", 2890977934969228, undefined, [shortcut]); }
+  static init(shortcut: _Intents_INShortcut): Promise<INUIAddVoiceShortcutViewController> { return callSDKAsync<INUIAddVoiceShortcutViewController>("IntentsUI_067acaa3e5f56b46", 2525477686596546, undefined, [shortcut]); }
   /**
    * weak var delegate: (any INUIAddVoiceShortcutViewControllerDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("IntentsUI_90ad0eb69cc6bf4a", 2358572852926871, this, []); }
-  set delegate(value: (Implements<INUIAddVoiceShortcutViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 939055994664740, this, [value], [{"protocol":"c:objc(pl)INUIAddVoiceShortcutViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("IntentsUI_067acaa3e5f56b46", 3178648857768035, this, []); }
+  setDelegate(value?: (Implements<INUIAddVoiceShortcutViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("IntentsUI_067acaa3e5f56b46", 398696484397481, this, [value], [{"protocol":"c:objc(pl)INUIAddVoiceShortcutViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)INUIAddVoiceShortcutViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "delegate": true };
 }
 
 /**
@@ -148,15 +146,14 @@ export class INUIEditVoiceShortcutViewController extends SDKHandle {
    * init(voiceShortcut: INVoiceShortcut)
    * @availability iOS 12.0+
    */
-  static init(voiceShortcut: _Intents_INVoiceShortcut): INUIEditVoiceShortcutViewController { return callSDK<INUIEditVoiceShortcutViewController>("IntentsUI_90ad0eb69cc6bf4a", 2185508501775449, undefined, [voiceShortcut]); }
+  static init(voiceShortcut: _Intents_INVoiceShortcut): Promise<INUIEditVoiceShortcutViewController> { return callSDKAsync<INUIEditVoiceShortcutViewController>("IntentsUI_067acaa3e5f56b46", 2218277435405022, undefined, [voiceShortcut]); }
   /**
    * weak var delegate: (any INUIEditVoiceShortcutViewControllerDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("IntentsUI_90ad0eb69cc6bf4a", 2669781550886985, this, []); }
-  set delegate(value: (Implements<INUIEditVoiceShortcutViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("IntentsUI_90ad0eb69cc6bf4a", 2857743740005365, this, [value], [{"protocol":"c:objc(pl)INUIEditVoiceShortcutViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("IntentsUI_067acaa3e5f56b46", 3327642132752475, this, []); }
+  setDelegate(value?: (Implements<INUIEditVoiceShortcutViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("IntentsUI_067acaa3e5f56b46", 4175004039634618, this, [value], [{"protocol":"c:objc(pl)INUIEditVoiceShortcutViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)INUIEditVoiceShortcutViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "delegate": true };
 }
 
 /**
@@ -192,7 +189,7 @@ export const INUIHostedViewContext = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (INUIHostedViewContext) | null { return callSDK<(INUIHostedViewContext) | null>("IntentsUI_90ad0eb69cc6bf4a", 687722727167275, undefined, [rawValue]); }
+  init(rawValue: number): (INUIHostedViewContext) | null { return callSDK<(INUIHostedViewContext) | null>("IntentsUI_067acaa3e5f56b46", 687722727167275, undefined, [rawValue]); }
 };
 
 /**
@@ -222,7 +219,7 @@ export const INUIInteractiveBehavior = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (INUIInteractiveBehavior) | null { return callSDK<(INUIInteractiveBehavior) | null>("IntentsUI_90ad0eb69cc6bf4a", 2444356695004133, undefined, [rawValue]); }
+  init(rawValue: number): (INUIInteractiveBehavior) | null { return callSDK<(INUIInteractiveBehavior) | null>("IntentsUI_067acaa3e5f56b46", 2444356695004133, undefined, [rawValue]); }
 };
 
 export class NSExtensionContext extends SDKHandle {
@@ -230,28 +227,28 @@ export class NSExtensionContext extends SDKHandle {
    * func interfaceParametersDescription() -> String
    * @availability iOS 11.0+
    */
-  interfaceParametersDescription(): string { return callSDK<string>("IntentsUI_90ad0eb69cc6bf4a", 2031134025622932, this, []); }
+  interfaceParametersDescription(): string { return callSDK<string>("IntentsUI_067acaa3e5f56b46", 2031134025622932, this, []); }
   /**
    * var hostedViewMaximumAllowedSize: CGSize { get }
    * @availability iOS 10.0+
    */
-  get hostedViewMaximumAllowedSize(): $SDK0 { return callSDK<$SDK0>("IntentsUI_90ad0eb69cc6bf4a", 3899035128185299, this, []); }
+  get hostedViewMaximumAllowedSize(): $SDK0 { return callSDK<$SDK0>("IntentsUI_067acaa3e5f56b46", 3899035128185299, this, []); }
   /**
    * var hostedViewMinimumAllowedSize: CGSize { get }
    * @availability iOS 10.0+
    */
-  get hostedViewMinimumAllowedSize(): $SDK0 { return callSDK<$SDK0>("IntentsUI_90ad0eb69cc6bf4a", 1927022311755206, this, []); }
+  get hostedViewMinimumAllowedSize(): $SDK0 { return callSDK<$SDK0>("IntentsUI_067acaa3e5f56b46", 1927022311755206, this, []); }
   declare readonly $type: { "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hostedViewMaximumAllowedSize": true; "hostedViewMinimumAllowedSize": true };
 }
 
-registerSDKClass("INImage", INImage, { module: "IntentsUI_90ad0eb69cc6bf4a", properties: {}, methods: {"fetchUIImage":{"id":1482960099903418,"hints":[{"callback":{"out":[]}}]}} }, true);
-registerSDKClass("INUIAddVoiceShortcutButton", INUIAddVoiceShortcutButton, { module: "IntentsUI_90ad0eb69cc6bf4a", properties: {"cornerRadius":1497382986837794,"delegate":444762431743868,"shortcut":1011596290969459,"style":1198579092155422}, methods: {"setStyle":{"id":59284308309905}} });
+registerSDKClass("INImage", INImage, { module: "IntentsUI_067acaa3e5f56b46", properties: {}, methods: {"fetchUIImage":{"id":1482960099903418,"hints":[{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("INUIAddVoiceShortcutButton", INUIAddVoiceShortcutButton, { module: "IntentsUI_067acaa3e5f56b46", properties: {}, methods: {"setStyle":{"id":3850413360790042}} });
 registerSDKProtocol("c:objc(pl)INUIAddVoiceShortcutButtonDelegate", {"presentFor":"present(_:for:)"});
-registerSDKClass("INUIAddVoiceShortcutViewController", INUIAddVoiceShortcutViewController, { module: "IntentsUI_90ad0eb69cc6bf4a", properties: {"delegate":2358572852926871} });
+registerSDKClass("INUIAddVoiceShortcutViewController", INUIAddVoiceShortcutViewController, { module: "IntentsUI_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)INUIAddVoiceShortcutViewControllerDelegate", {"addVoiceShortcutViewControllerDidFinishWithError":"addVoiceShortcutViewController(_:didFinishWith:error:)","addVoiceShortcutViewControllerDidCancel":"addVoiceShortcutViewControllerDidCancel(_:)"});
-registerSDKClass("INUIEditVoiceShortcutViewController", INUIEditVoiceShortcutViewController, { module: "IntentsUI_90ad0eb69cc6bf4a", properties: {"delegate":2669781550886985} });
+registerSDKClass("INUIEditVoiceShortcutViewController", INUIEditVoiceShortcutViewController, { module: "IntentsUI_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)INUIEditVoiceShortcutViewControllerDelegate", {"editVoiceShortcutViewControllerDidUpdateError":"editVoiceShortcutViewController(_:didUpdate:error:)","editVoiceShortcutViewControllerDidDeleteVoiceShortcutWithIdentifier":"editVoiceShortcutViewController(_:didDeleteVoiceShortcutWithIdentifier:)","editVoiceShortcutViewControllerDidCancel":"editVoiceShortcutViewControllerDidCancel(_:)"});
 registerSDKProtocol("c:objc(pl)INUIHostedViewControlling", {});
 registerSDKProtocol("c:objc(pl)INUIHostedViewSiriProviding", {});
-registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "IntentsUI_90ad0eb69cc6bf4a", properties: {"hostedViewMaximumAllowedSize":3899035128185299,"hostedViewMinimumAllowedSize":1927022311755206}, methods: {"interfaceParametersDescription":{"id":2031134025622932}} }, true);
+registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "IntentsUI_067acaa3e5f56b46", properties: {"hostedViewMaximumAllowedSize":3899035128185299,"hostedViewMinimumAllowedSize":1927022311755206}, methods: {"interfaceParametersDescription":{"id":2031134025622932}} }, true);

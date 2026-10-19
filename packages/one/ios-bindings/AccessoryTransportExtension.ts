@@ -55,12 +55,12 @@ export class AccessoryMessage extends SDKHandle {
    * let id: UUID
    * @availability iOS 26.5+
    */
-  get id(): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 774128166234715, this, []); }
+  get id(): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 774128166234715, this, []); }
   /**
    * let payloads: [AccessoryMessage.Payload]
    * @availability iOS 26.5+
    */
-  get payloads(): Array<AccessoryMessage_Payload> { return callSDK<Array<AccessoryMessage_Payload>>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 779717261205513, this, []); }
+  get payloads(): Array<AccessoryMessage_Payload> { return callSDK<Array<AccessoryMessage_Payload>>("AccessoryTransportExtension_067acaa3e5f56b46", 779717261205513, this, []); }
   declare readonly $type: { "s:27AccessoryTransportExtension0A7MessageV": true };
 }
 
@@ -73,22 +73,22 @@ export class AccessoryMessage_Builder extends SDKHandle {
    * static func buildEither(first component: AccessoryMessage) -> AccessoryMessage
    * @availability iOS 26.5+
    */
-  static buildEitherFirst(component: AccessoryMessage): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2855712208762146, undefined, [component]); }
+  static buildEitherFirst(component: AccessoryMessage): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_067acaa3e5f56b46", 2855712208762146, undefined, [component]); }
   /**
    * static func buildEither(second component: AccessoryMessage) -> AccessoryMessage
    * @availability iOS 26.5+
    */
-  static buildEitherSecond(component: AccessoryMessage): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 854258817505985, undefined, [component]); }
+  static buildEitherSecond(component: AccessoryMessage): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_067acaa3e5f56b46", 854258817505985, undefined, [component]); }
   /**
    * static func buildOptional(_ component: AccessoryMessage?) -> AccessoryMessage
    * @availability iOS 26.5+
    */
-  static buildOptional(component?: (AccessoryMessage) | null): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3921256350998921, undefined, [component]); }
+  static buildOptional(component?: (AccessoryMessage) | null): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_067acaa3e5f56b46", 3921256350998921, undefined, [component]); }
   /**
    * static func buildExpression(_ expression: AccessoryMessage.Payload) -> AccessoryMessage
    * @availability iOS 26.5+
    */
-  static buildExpression(expression: AccessoryMessage_Payload): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2490227912391446, undefined, [expression]); }
+  static buildExpression(expression: AccessoryMessage_Payload): AccessoryMessage { return callSDK<AccessoryMessage>("AccessoryTransportExtension_067acaa3e5f56b46", 2490227912391446, undefined, [expression]); }
   declare readonly $type: { "s:27AccessoryTransportExtension0A7MessageV7BuilderV": true };
 }
 
@@ -113,17 +113,17 @@ export class AccessoryMessage_Payload extends SDKHandle {
    * let data: Data
    * @availability iOS 26.5+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1235276067093849, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AccessoryTransportExtension_067acaa3e5f56b46", 1235276067093849, this, []); }
   /**
    * init(transport: AccessoryTransport = .bluetooth, data: Data)
    * @availability iOS 26.5+
    */
-  static init(transport: AccessoryTransport, data: ArrayBuffer): AccessoryMessage_Payload { return callSDK<AccessoryMessage_Payload>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2491419463238566, undefined, [transport, data]); }
+  static init(transport: AccessoryTransport, data: ArrayBuffer): AccessoryMessage_Payload { return callSDK<AccessoryMessage_Payload>("AccessoryTransportExtension_067acaa3e5f56b46", 2491419463238566, undefined, [transport, data]); }
   /**
    * let transport: AccessoryTransport
    * @availability iOS 26.5+
    */
-  get transport(): AccessoryTransport { return callSDK<AccessoryTransport>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1636390874581994, this, []); }
+  get transport(): AccessoryTransport { return callSDK<AccessoryTransport>("AccessoryTransportExtension_067acaa3e5f56b46", 1636390874581994, this, []); }
   declare readonly $type: { "s:27AccessoryTransportExtension0A7MessageV7PayloadV": true };
 }
 
@@ -144,17 +144,17 @@ export class AccessorySecuritySession extends SDKHandle {
    * func sendSecurityMessage(_ message: SecurityMessage) throws(AccessorySecuritySession.Error)
    * @availability iOS 26.5+
    */
-  sendSecurityMessage(message: SecurityMessage): void { return callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 338791151601815, this, [message]); }
+  sendSecurityMessage(message: SecurityMessage): void { return callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 338791151601815, this, [message]); }
   /**
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  get description(): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 805980492389928, this, []); }
+  get description(): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 805980492389928, this, []); }
   /**
    * func cancel(error: AccessorySecuritySession.Error?)
    * @availability iOS 26.5+
    */
-  cancel(error?: $SDK2): void { return callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2908438631244567, this, [error]); }
+  cancel(error?: $SDK2): void { return callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 2908438631244567, this, [error]); }
   declare readonly $type: { "s:27AccessoryTransportExtension0A15SecuritySessionC": true };
 }
 
@@ -169,7 +169,7 @@ export const AccessorySecuritySession_Error = {
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  getDescription($self: AccessorySecuritySession_Error): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3111309065292390, $self, []); }
+  getDescription($self: AccessorySecuritySession_Error): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 3111309065292390, $self, []); }
 };
 
 /**
@@ -198,12 +198,12 @@ export class AccessorySecuritySession_Request extends SDKHandle {
    * final func reject(error: AccessorySecuritySession.Error?) -> AccessorySecuritySession.Request.Decision
    * @availability iOS 26.5+
    */
-  reject(error?: $SDK2): AccessorySecuritySession_Request_Decision { return callSDK<AccessorySecuritySession_Request_Decision>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 543624611011254, this, [error]); }
+  reject(error?: $SDK2): AccessorySecuritySession_Request_Decision { return callSDK<AccessorySecuritySession_Request_Decision>("AccessoryTransportExtension_067acaa3e5f56b46", 543624611011254, this, [error]); }
   /**
    * final let session: AccessorySecuritySession
    * @availability iOS 26.5+
    */
-  get session(): AccessorySecuritySession { return callSDK<AccessorySecuritySession>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2004589411230936, this, []); }
+  get session(): AccessorySecuritySession { return callSDK<AccessorySecuritySession>("AccessoryTransportExtension_067acaa3e5f56b46", 2004589411230936, this, []); }
   declare readonly $type: { "s:27AccessoryTransportExtension0A15SecuritySessionC7RequestC": true };
 }
 
@@ -272,35 +272,35 @@ export class AccessoryTransportSession extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.2+
    */
-  get description(): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3611359017662742, this, []); }
+  get description(): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 3611359017662742, this, []); }
   /**
    * func sendMessageToDataProvider(_ message: TransportMessage) throws(AccessoryTransportSession.Error)
    * @availability iOS 26.5+
    */
-  sendMessageToDataProvider(message: TransportMessage): void { return callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1829364808145819, this, [message]); }
+  sendMessageToDataProvider(message: TransportMessage): void { return callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 1829364808145819, this, [message]); }
   /**
    * var transportStateRestoreIdentifier: String?
    * @availability iOS 26.5+
    */
-  get transportStateRestoreIdentifier(): (string) | null { return callSDK<(string) | null>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2794248521898406, this, []); }
-  set transportStateRestoreIdentifier(value: (string) | null) { callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3253954869000261, this, [value]); }
+  get transportStateRestoreIdentifier(): (string) | null { return callSDK<(string) | null>("AccessoryTransportExtension_067acaa3e5f56b46", 2794248521898406, this, []); }
+  set transportStateRestoreIdentifier(value: (string) | null) { callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 3253954869000261, this, [value]); }
   /**
    * func cancel(error: AccessoryTransportSession.Error?)
    * @availability iOS 26.2+
    */
-  cancel(error?: $SDK4): void { return callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 4263358882742336, this, [error]); }
+  cancel(error?: $SDK4): void { return callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 4263358882742336, this, [error]); }
   /**
    * var pushToken: Data?
    * @availability iOS 26.5+
    */
-  get pushToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 878325381388887, this, []); }
-  set pushToken(value: (ArrayBuffer) | null) { callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 4009681051671653, this, [value]); }
+  get pushToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AccessoryTransportExtension_067acaa3e5f56b46", 878325381388887, this, []); }
+  set pushToken(value: (ArrayBuffer) | null) { callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 4009681051671653, this, [value]); }
   /**
    * var transport: AccessoryTransport?
    * @availability iOS 26.5+
    */
-  get transport(): $SDK5 { return callSDK<$SDK5>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1763263373965224, this, []); }
-  set transport(value: $SDK5) { callSDK<void>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1418389673800858, this, [value]); }
+  get transport(): $SDK5 { return callSDK<$SDK5>("AccessoryTransportExtension_067acaa3e5f56b46", 1763263373965224, this, []); }
+  set transport(value: $SDK5) { callSDK<void>("AccessoryTransportExtension_067acaa3e5f56b46", 1418389673800858, this, [value]); }
   declare readonly $type: { "s:27AccessoryTransportExtension0aB7SessionC": true };
 }
 
@@ -324,7 +324,7 @@ export const AccessoryTransportSession_Error = {
    * var description: String { get }
    * @availability iOS 26.2+
    */
-  getDescription($self: AccessoryTransportSession_Error): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 813024409081225, $self, []); }
+  getDescription($self: AccessoryTransportSession_Error): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 813024409081225, $self, []); }
 };
 
 /**
@@ -365,12 +365,12 @@ export class AccessoryTransportSession_Request extends SDKHandle {
    * final func reject(error: AccessoryTransportSession.Error?) -> AccessoryTransportSession.Request.Decision
    * @availability iOS 26.2+
    */
-  reject(error?: $SDK4): AccessoryTransportSession_Request_Decision { return callSDK<AccessoryTransportSession_Request_Decision>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 4052894271256251, this, [error]); }
+  reject(error?: $SDK4): AccessoryTransportSession_Request_Decision { return callSDK<AccessoryTransportSession_Request_Decision>("AccessoryTransportExtension_067acaa3e5f56b46", 4052894271256251, this, [error]); }
   /**
    * final let session: AccessoryTransportSession
    * @availability iOS 26.2+
    */
-  get session(): AccessoryTransportSession { return callSDK<AccessoryTransportSession>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3879671155797054, this, []); }
+  get session(): AccessoryTransportSession { return callSDK<AccessoryTransportSession>("AccessoryTransportExtension_067acaa3e5f56b46", 3879671155797054, this, []); }
   declare readonly $type: { "s:27AccessoryTransportExtension0aB7SessionC7RequestC": true };
 }
 
@@ -391,42 +391,42 @@ export class SecurityMessage extends SDKHandle {
    * let identifier: String?
    * @availability iOS 26.5+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1877547426628943, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("AccessoryTransportExtension_067acaa3e5f56b46", 1877547426628943, this, []); }
   /**
    * let cipherSuite: SecurityMessage.CipherSuite
    * @availability iOS 26.5+
    */
-  get cipherSuite(): SecurityMessage_CipherSuite { return callSDK<SecurityMessage_CipherSuite>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1865730881435708, this, []); }
+  get cipherSuite(): SecurityMessage_CipherSuite { return callSDK<SecurityMessage_CipherSuite>("AccessoryTransportExtension_067acaa3e5f56b46", 1865730881435708, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  get description(): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3128726310940194, this, []); }
+  get description(): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 3128726310940194, this, []); }
   /**
    * let supportedTransports: [AccessoryTransport]
    * @availability iOS 26.5+
    */
-  get supportedTransports(): Array<AccessoryTransport> { return callSDK<Array<AccessoryTransport>>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3871301237635255, this, []); }
+  get supportedTransports(): Array<AccessoryTransport> { return callSDK<Array<AccessoryTransport>>("AccessoryTransportExtension_067acaa3e5f56b46", 3871301237635255, this, []); }
   /**
    * let key: Data
    * @availability iOS 26.5+
    */
-  get key(): ArrayBuffer { return callSDK<ArrayBuffer>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3646453043556033, this, []); }
+  get key(): ArrayBuffer { return callSDK<ArrayBuffer>("AccessoryTransportExtension_067acaa3e5f56b46", 3646453043556033, this, []); }
   /**
    * init(keyType: SecurityMessage.KeyType, cipherSuite: SecurityMessage.CipherSuite, version: SecurityMessage.CipherSuite.Version, key: Data, supportedTransports: [AccessoryTransport] = [.bluetooth], identifier: String? = nil)
    * @availability iOS 26.5+
    */
-  static init(keyType: SecurityMessage_KeyType, cipherSuite: SecurityMessage_CipherSuite, version: SecurityMessage_CipherSuite_Version, key: ArrayBuffer, supportedTransports?: Array<AccessoryTransport>, identifier?: (string) | null): SecurityMessage { return callSDK<SecurityMessage>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 329954166264286, undefined, [keyType, cipherSuite, version, key, supportedTransports, identifier]); }
+  static init(keyType: SecurityMessage_KeyType, cipherSuite: SecurityMessage_CipherSuite, version: SecurityMessage_CipherSuite_Version, key: ArrayBuffer, supportedTransports?: Array<AccessoryTransport>, identifier?: (string) | null): SecurityMessage { return callSDK<SecurityMessage>("AccessoryTransportExtension_067acaa3e5f56b46", 329954166264286, undefined, [keyType, cipherSuite, version, key, supportedTransports, identifier]); }
   /**
    * let keyType: SecurityMessage.KeyType
    * @availability iOS 26.5+
    */
-  get keyType(): SecurityMessage_KeyType { return callSDK<SecurityMessage_KeyType>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1567620529511298, this, []); }
+  get keyType(): SecurityMessage_KeyType { return callSDK<SecurityMessage_KeyType>("AccessoryTransportExtension_067acaa3e5f56b46", 1567620529511298, this, []); }
   /**
    * let version: SecurityMessage.CipherSuite.Version
    * @availability iOS 26.5+
    */
-  get version(): SecurityMessage_CipherSuite_Version { return callSDK<SecurityMessage_CipherSuite_Version>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 463276427867944, this, []); }
+  get version(): SecurityMessage_CipherSuite_Version { return callSDK<SecurityMessage_CipherSuite_Version>("AccessoryTransportExtension_067acaa3e5f56b46", 463276427867944, this, []); }
   declare readonly $type: { "s:27AccessoryTransportExtension15SecurityMessageV": true };
 }
 
@@ -441,7 +441,7 @@ export const SecurityMessage_CipherSuite = {
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  getDescription($self: SecurityMessage_CipherSuite): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 4300070222829050, $self, []); }
+  getDescription($self: SecurityMessage_CipherSuite): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 4300070222829050, $self, []); }
 };
 
 /**
@@ -455,7 +455,7 @@ export const SecurityMessage_CipherSuite_Version = {
    * var description: String { get }
    * @availability iOS 26.5+
    */
-  getDescription($self: SecurityMessage_CipherSuite_Version): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3737292143820976, $self, []); }
+  getDescription($self: SecurityMessage_CipherSuite_Version): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 3737292143820976, $self, []); }
 };
 
 /**
@@ -469,12 +469,12 @@ export const SecurityMessage_KeyType = {
    * init?(rawValue: String)
    * @availability iOS 26.5+
    */
-  init(rawValue: string): (SecurityMessage_KeyType) | null { return callSDK<(SecurityMessage_KeyType) | null>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 4459767801156012, undefined, [rawValue]); },
+  init(rawValue: string): (SecurityMessage_KeyType) | null { return callSDK<(SecurityMessage_KeyType) | null>("AccessoryTransportExtension_067acaa3e5f56b46", 4459767801156012, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.5+
    */
-  getRawValue($self: SecurityMessage_KeyType): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 1555907071410913, $self, []); }
+  getRawValue($self: SecurityMessage_KeyType): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 1555907071410913, $self, []); }
 };
 
 /**
@@ -492,17 +492,17 @@ export class TransportMessage extends SDKHandle {
    * let data: Data
    * @availability iOS 26.5+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2121921137945100, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AccessoryTransportExtension_067acaa3e5f56b46", 2121921137945100, this, []); }
   /**
    * let sessionID: UUID
    * @availability iOS 26.5+
    */
-  get sessionID(): string { return callSDK<string>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 2285201782358244, this, []); }
+  get sessionID(): string { return callSDK<string>("AccessoryTransportExtension_067acaa3e5f56b46", 2285201782358244, this, []); }
   /**
    * init(sessionID: UUID, data: Data)
    * @availability iOS 26.5+
    */
-  static init(sessionID: string, data: ArrayBuffer): TransportMessage { return callSDK<TransportMessage>("AccessoryTransportExtension_90ad0eb69cc6bf4a", 3451541615917987, undefined, [sessionID, data]); }
+  static init(sessionID: string, data: ArrayBuffer): TransportMessage { return callSDK<TransportMessage>("AccessoryTransportExtension_067acaa3e5f56b46", 3451541615917987, undefined, [sessionID, data]); }
   declare readonly $type: { "s:27AccessoryTransportExtension0B7MessageV": true };
 }
 
@@ -510,22 +510,22 @@ registerSDKProtocol("s:27AccessoryTransportExtension0A12DataProviderP", {"init":
 registerSDKProtocol("s:27AccessoryTransportExtension0A25DataProviderConfigurationP", {"acceptConnection":"accept(connection:)"});
 registerSDKProtocol("s:27AccessoryTransportExtension0A7FeatureP", {});
 registerSDKProtocol("s:27AccessoryTransportExtension0A14FeatureSessionP", {"sendMessage":"send(message:)"});
-registerSDKClass("AccessoryTransportExtension.AccessoryMessage", AccessoryMessage, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AccessoryTransportExtension.AccessoryMessage.Builder", AccessoryMessage_Builder, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AccessoryTransportExtension.AccessoryMessage.Payload", AccessoryMessage_Payload, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AccessoryTransportExtension.AccessoryMessage.Result", AccessoryMessage_Result, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AccessoryTransportExtension.AccessorySecuritySession", AccessorySecuritySession, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {}, methods: {"sendSecurityMessage":{"id":338791151601815},"cancel":{"id":2908438631244567}} });
+registerSDKClass("AccessoryTransportExtension.AccessoryMessage", AccessoryMessage, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessoryMessage.Builder", AccessoryMessage_Builder, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessoryMessage.Payload", AccessoryMessage_Payload, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessoryMessage.Result", AccessoryMessage_Result, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessorySecuritySession", AccessorySecuritySession, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {}, methods: {"sendSecurityMessage":{"id":338791151601815},"cancel":{"id":2908438631244567}} });
 registerSDKProtocol("s:27AccessoryTransportExtension0A15SecuritySessionC12EventHandlerP", {"messageReceivedCompletion":"messageReceived(_:completion:)","sessionInvalidatedError":"sessionInvalidated(error:)"});
-registerSDKClass("AccessoryTransportExtension.AccessorySecuritySession.Request", AccessorySecuritySession_Request, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {}, methods: {"reject":{"id":543624611011254}} });
-registerSDKClass("AccessoryTransportExtension.AccessorySecuritySession.Request.Decision", AccessorySecuritySession_Request_Decision, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessorySecuritySession.Request", AccessorySecuritySession_Request, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {}, methods: {"reject":{"id":543624611011254}} });
+registerSDKClass("AccessoryTransportExtension.AccessorySecuritySession.Request.Decision", AccessorySecuritySession_Request_Decision, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:27AccessoryTransportExtension0ab3AppC0P", {"init":"init()","acceptSessionRequest":"accept(sessionRequest:)"});
 registerSDKProtocol("s:27AccessoryTransportExtension0abC13ConfigurationP", {"acceptConnection":"accept(connection:)"});
 registerSDKProtocol("s:27AccessoryTransportExtension0aB8SecurityP", {"init":"init()","acceptSessionRequest":"accept(sessionRequest:)"});
 registerSDKProtocol("s:27AccessoryTransportExtension0aB21SecurityConfigurationP", {"acceptConnection":"accept(connection:)"});
-registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession", AccessoryTransportSession, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {}, methods: {"sendMessageToDataProvider":{"id":1829364808145819},"cancel":{"id":4263358882742336}} });
-registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession.DataEvent", AccessoryTransportSession_DataEvent, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession", AccessoryTransportSession, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {}, methods: {"sendMessageToDataProvider":{"id":1829364808145819},"cancel":{"id":4263358882742336}} });
+registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession.DataEvent", AccessoryTransportSession_DataEvent, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:27AccessoryTransportExtension0aB7SessionC12EventHandlerP", {"dataEventHandlerEvent":"dataEventHandler(event:)","invalidationHandlerError":"invalidationHandler(error:)","sessionInvalidatedError":"sessionInvalidated(error:)","messageReceivedCompletion":"messageReceived(_:completion:)"});
-registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession.Request", AccessoryTransportSession_Request, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {}, methods: {"reject":{"id":4052894271256251}} });
-registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession.Request.Decision", AccessoryTransportSession_Request_Decision, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AccessoryTransportExtension.SecurityMessage", SecurityMessage, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AccessoryTransportExtension.TransportMessage", TransportMessage, { module: "AccessoryTransportExtension_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession.Request", AccessoryTransportSession_Request, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {}, methods: {"reject":{"id":4052894271256251}} });
+registerSDKClass("AccessoryTransportExtension.AccessoryTransportSession.Request.Decision", AccessoryTransportSession_Request_Decision, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AccessoryTransportExtension.SecurityMessage", SecurityMessage, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AccessoryTransportExtension.TransportMessage", TransportMessage, { module: "AccessoryTransportExtension_067acaa3e5f56b46", properties: {} });

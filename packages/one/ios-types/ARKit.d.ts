@@ -493,60 +493,52 @@ export type ARCamera_TrackingState_Reason = "initializing" | "excessiveMotion" |
  */
 export declare class ARCoachingOverlayView extends SDKHandle {
     /** init() */
-    static init(): ARCoachingOverlayView;
+    static init(): Promise<ARCoachingOverlayView>;
     /**
      * func setActive(_ active: Bool, animated: Bool)
      * @availability iOS 13.0+
      */
-    setActive(active: boolean, animated: boolean): void;
+    setActive(active: boolean, animated: boolean): Promise<void>;
     /**
      * var activatesAutomatically: Bool { get set }
      * @availability iOS 13.0+
      */
-    get activatesAutomatically(): boolean;
-    set activatesAutomatically(value: boolean);
+    get activatesAutomatically(): Promise<boolean>;
+    setActivatesAutomatically(value: boolean): Promise<void>;
     /**
      * @IBOutlet weak var delegate: (any ARCoachingOverlayViewDelegate)? { get set }
      * @availability iOS 13.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<ARCoachingOverlayViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<ARCoachingOverlayViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var goal: ARCoachingOverlayView.Goal { get set }
      * @availability iOS 13.0+
      */
-    get goal(): ARCoachingOverlayView_Goal;
-    set goal(value: ARCoachingOverlayView_Goal);
+    get goal(): Promise<ARCoachingOverlayView_Goal>;
+    setGoal(value: ARCoachingOverlayView_Goal): Promise<void>;
     /**
      * var isActive: Bool { get }
      * @availability iOS 13.0+
      */
-    get isActive(): boolean;
+    get isActive(): Promise<boolean>;
     /**
      * var session: ARSession? { get set }
      * @availability iOS 13.0+
      */
-    get session(): (ARSession) | null;
-    set session(value: (ARSession) | null);
+    get session(): Promise<(ARSession) | null>;
+    setSession(value?: (ARSession) | null): Promise<void>;
     /**
      * @IBOutlet weak var sessionProvider: (any ARSessionProviding)? { get set }
      * @availability iOS 13.0+
      */
-    get sessionProvider(): (SDKHandle) | null;
-    set sessionProvider(value: (SDKHandle) | null);
+    get sessionProvider(): Promise<(SDKHandle) | null>;
+    setSessionProvider(value?: (SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)ARCoachingOverlayView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "activatesAutomatically": true;
-        "delegate": true;
-        "goal": true;
-        "isActive": true;
-        "session": true;
-        "sessionProvider": true;
     };
 }
 /**
@@ -559,7 +551,7 @@ export declare const ARCoachingOverlayView_Goal: {
      * init?(rawValue: Int)
      * @availability iOS 13.0+
      */
-    init(rawValue: number): (ARCoachingOverlayView_Goal) | null;
+    init(rawValue: number): Promise<(ARCoachingOverlayView_Goal) | null>;
 };
 /**
  * protocol ARCoachingOverlayViewDelegate : NSObjectProtocol
@@ -2792,61 +2784,61 @@ export declare class ARSCNView extends SDKHandle {
      * func anchor(for node: SCNNode) -> ARAnchor?
      * @availability iOS 11.0+
      */
-    anchor(node: _SceneKit_SCNNode): (ARAnchor) | null;
+    anchor(node: _SceneKit_SCNNode): Promise<(ARAnchor) | null>;
     /**
      * func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
      * @availability iOS 11.0+
      * @deprecated iOS 14.0
      */
-    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
+    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Promise<Array<ARHitTestResult>>;
     /** init() */
-    static init(): ARSCNView;
+    static init(): Promise<ARSCNView>;
     /**
      * func node(for anchor: ARAnchor) -> SCNNode?
      * @availability iOS 11.0+
      */
-    node(anchor: ARAnchor): (_SceneKit_SCNNode) | null;
+    node(anchor: ARAnchor): Promise<(_SceneKit_SCNNode) | null>;
     /**
      * func raycastQuery(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> ARRaycastQuery?
      * @availability iOS 13.0+
      */
-    raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): (ARRaycastQuery) | null;
+    raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): Promise<(ARRaycastQuery) | null>;
     /**
      * var automaticallyUpdatesLighting: Bool { get set }
      * @availability iOS 11.0+
      */
-    get automaticallyUpdatesLighting(): boolean;
-    set automaticallyUpdatesLighting(value: boolean);
+    get automaticallyUpdatesLighting(): Promise<boolean>;
+    setAutomaticallyUpdatesLighting(value: boolean): Promise<void>;
     /**
      * weak var delegate: (any ARSCNViewDelegate)? { get set }
      * @availability iOS 11.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<ARSCNViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<ARSCNViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var rendersCameraGrain: Bool { get set }
      * @availability iOS 13.0+
      */
-    get rendersCameraGrain(): boolean;
-    set rendersCameraGrain(value: boolean);
+    get rendersCameraGrain(): Promise<boolean>;
+    setRendersCameraGrain(value: boolean): Promise<void>;
     /**
      * var rendersMotionBlur: Bool { get set }
      * @availability iOS 13.0+
      */
-    get rendersMotionBlur(): boolean;
-    set rendersMotionBlur(value: boolean);
+    get rendersMotionBlur(): Promise<boolean>;
+    setRendersMotionBlur(value: boolean): Promise<void>;
     /**
      * var scene: SCNScene { get set }
      * @availability iOS 11.0+
      */
-    get scene(): _SceneKit_SCNScene;
-    set scene(value: _SceneKit_SCNScene);
+    get scene(): Promise<_SceneKit_SCNScene>;
+    setScene(value: _SceneKit_SCNScene): Promise<void>;
     /**
      * var session: ARSession { get set }
      * @availability iOS 11.0+
      */
-    get session(): ARSession;
-    set session(value: ARSession);
+    get session(): Promise<ARSession>;
+    setSession(value: ARSession): Promise<void>;
     /**
      * @MainActor @nonobjc @preconcurrency func unprojectPoint(_ point: CGPoint, ontoPlane planeTransform: simd_float4x4) -> simd_float3?
      * @availability iOS 12.0+
@@ -2858,14 +2850,6 @@ export declare class ARSCNView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "automaticallyUpdatesLighting": true;
-        "delegate": true;
-        "rendersCameraGrain": true;
-        "rendersMotionBlur": true;
-        "scene": true;
-        "session": true;
     };
 }
 /**
@@ -3436,42 +3420,38 @@ export declare class ARSKView extends SDKHandle {
      * func anchor(for node: SKNode) -> ARAnchor?
      * @availability iOS 11.0+
      */
-    anchor(node: _SpriteKit_SKNode): (ARAnchor) | null;
+    anchor(node: _SpriteKit_SKNode): Promise<(ARAnchor) | null>;
     /**
      * func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
      * @availability iOS 11.0+
      * @deprecated iOS 14.0
      */
-    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
+    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Promise<Array<ARHitTestResult>>;
     /** init() */
-    static init(): ARSKView;
+    static init(): Promise<ARSKView>;
     /**
      * func node(for anchor: ARAnchor) -> SKNode?
      * @availability iOS 11.0+
      */
-    node(anchor: ARAnchor): (_SpriteKit_SKNode) | null;
+    node(anchor: ARAnchor): Promise<(_SpriteKit_SKNode) | null>;
     /**
      * weak var delegate: (any ARSKViewDelegate)? { get set }
      * @availability iOS 11.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<ARSKViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<ARSKViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var session: ARSession { get set }
      * @availability iOS 11.0+
      */
-    get session(): ARSession;
-    set session(value: ARSession);
+    get session(): Promise<ARSession>;
+    setSession(value: ARSession): Promise<void>;
     readonly $type: {
         "c:objc(cs)ARSKView": true;
         "c:objc(cs)SKView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
-        "session": true;
     };
 }
 /**

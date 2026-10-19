@@ -2099,21 +2099,18 @@ export declare class GCEventInteraction extends SDKHandle {
  */
 export declare class GCEventViewController extends SDKHandle {
     /** init() */
-    static init(): GCEventViewController;
+    static init(): Promise<GCEventViewController>;
     /**
      * var controllerUserInteractionEnabled: Bool { get set }
      * @availability iOS 9.0+
      */
-    get controllerUserInteractionEnabled(): boolean;
-    set controllerUserInteractionEnabled(value: boolean);
+    get controllerUserInteractionEnabled(): Promise<boolean>;
+    setControllerUserInteractionEnabled(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)GCEventViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "controllerUserInteractionEnabled": true;
     };
 }
 /**

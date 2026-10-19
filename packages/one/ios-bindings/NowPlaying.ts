@@ -27,17 +27,17 @@ export class AnimatedArtwork extends SDKHandle {
    * let supportedAspectRatios: [AnimatedArtwork.AspectRatio]
    * @availability iOS 27.0+
    */
-  get supportedAspectRatios(): $SDK0 { return callSDK<$SDK0>("NowPlaying_90ad0eb69cc6bf4a", 1822839597957859, this, []); }
+  get supportedAspectRatios(): $SDK0 { return callSDK<$SDK0>("NowPlaying_067acaa3e5f56b46", 1822839597957859, this, []); }
   /**
    * static let compatibleAspectRatios: [AnimatedArtwork.AspectRatio]
    * @availability iOS 27.0+
    */
-  static get compatibleAspectRatios(): $SDK0 { return callSDK<$SDK0>("NowPlaying_90ad0eb69cc6bf4a", 448833152220217, undefined, []); }
+  static get compatibleAspectRatios(): $SDK0 { return callSDK<$SDK0>("NowPlaying_067acaa3e5f56b46", 448833152220217, undefined, []); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 959072151358407, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 959072151358407, this, []); }
   declare readonly $type: { "s:10NowPlaying15AnimatedArtworkV": true };
 }
 
@@ -62,7 +62,7 @@ export class Artwork extends SDKHandle {
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 1785463184005886, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 1785463184005886, this, []); }
   declare readonly $type: { "s:10NowPlaying7ArtworkV": true };
 }
 
@@ -81,12 +81,12 @@ export class ArtworkRepresentation extends SDKHandle {
    * init(data: Data) throws
    * @availability iOS 27.0+
    */
-  static initData(data: ArrayBuffer): ArtworkRepresentation { return callSDK<ArtworkRepresentation>("NowPlaying_90ad0eb69cc6bf4a", 1354160539937746, undefined, [data]); }
+  static initData(data: ArrayBuffer): ArtworkRepresentation { return callSDK<ArtworkRepresentation>("NowPlaying_067acaa3e5f56b46", 1354160539937746, undefined, [data]); }
   /**
    * init(cgImage: CGImage) throws
    * @availability iOS 27.0+
    */
-  static initCgImage(cgImage: _CoreGraphics_CGImage): ArtworkRepresentation { return callSDK<ArtworkRepresentation>("NowPlaying_90ad0eb69cc6bf4a", 4437075840504920, undefined, [cgImage]); }
+  static initCgImage(cgImage: _CoreGraphics_CGImage): ArtworkRepresentation { return callSDK<ArtworkRepresentation>("NowPlaying_067acaa3e5f56b46", 4437075840504920, undefined, [cgImage]); }
   declare readonly $type: { "s:10NowPlaying21ArtworkRepresentationV": true };
 }
 
@@ -105,76 +105,76 @@ export class BookContent extends SDKHandle {
    * let authorName: String
    * @availability iOS 27.0+
    */
-  get authorName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 3487356869235974, this, []); }
+  get authorName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 3487356869235974, this, []); }
   /**
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 4064305460296990, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3206596254243958, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 4064305460296990, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3206596254243958, this, [value]); }
   /**
    * let narratorName: String?
    * @availability iOS 27.0+
    */
-  get narratorName(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 2342818714949992, this, []); }
+  get narratorName(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 2342818714949992, this, []); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 1764198419765156, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 1764198419765156, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 405630360406607, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 930404888324331, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 405630360406607, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 930404888324331, this, [value]); }
   /**
    * init(id: String, title: String, authorName: String, narratorName: String? = nil, type: MediaType = .audio, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdTitleAuthorNameNarratorNameTypeDurationArtworkAnimatedArtwork(id: string, title: string, authorName: string, narratorName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): BookContent { return callSDK<BookContent>("NowPlaying_90ad0eb69cc6bf4a", 607384194927522, undefined, [id, title, authorName, narratorName, type, duration, artwork, animatedArtwork]); }
+  static initIdTitleAuthorNameNarratorNameTypeDurationArtworkAnimatedArtwork(id: string, title: string, authorName: string, narratorName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): BookContent { return callSDK<BookContent>("NowPlaying_067acaa3e5f56b46", 607384194927522, undefined, [id, title, authorName, narratorName, type, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, title: String, authorName: String, narratorName: String? = nil, type: MediaType = .audio, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdTitleAuthorNameNarratorNameTypeDurationArtwork(id: string, title: string, authorName: string, narratorName?: (string) | null, type?: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): BookContent { return callSDK<BookContent>("NowPlaying_90ad0eb69cc6bf4a", 893451694440548, undefined, [id, title, authorName, narratorName, type, duration, artwork]); }
+  static initIdTitleAuthorNameNarratorNameTypeDurationArtwork(id: string, title: string, authorName: string, narratorName?: (string) | null, type?: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): BookContent { return callSDK<BookContent>("NowPlaying_067acaa3e5f56b46", 893451694440548, undefined, [id, title, authorName, narratorName, type, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 2838321759175823, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 2838321759175823, this, []); }
   /**
    * let type: MediaType
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 672560869539918, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 672560869539918, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 675587125427669, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3826767646081661, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 675587125427669, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3826767646081661, this, [value]); }
   /**
    * let title: String
    * @availability iOS 27.0+
    */
-  get title(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 1787116584622212, this, []); }
+  get title(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 1787116584622212, this, []); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 2497304779922718, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 2497304779922718, this, []); }
   /**
    * var chapter: (current: Int, total: Int)?
    * @availability iOS 27.0+
    */
-  get chapter(): $SDK2 { return callSDK<$SDK2>("NowPlaying_90ad0eb69cc6bf4a", 74442576309615, this, []); }
-  set chapter(value: $SDK2) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 621646417890381, this, [value]); }
+  get chapter(): $SDK2 { return callSDK<$SDK2>("NowPlaying_067acaa3e5f56b46", 74442576309615, this, []); }
+  set chapter(value: $SDK2) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 621646417890381, this, [value]); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 4014156319833948, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 4014156319833948, this, []); }
   declare readonly $type: { "s:10NowPlaying11BookContentV": true };
 }
 
@@ -193,65 +193,65 @@ export class GenericContent extends SDKHandle {
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 2303790465291096, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 1148563161311888, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 2303790465291096, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 1148563161311888, this, [value]); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 3346211147341458, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 3346211147341458, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 1935487128108892, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 4120796218879540, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 1935487128108892, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 4120796218879540, this, [value]); }
   /**
    * init(id: String, title: String, subtitle: String? = nil, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdTitleSubtitleTypeDurationArtworkAnimatedArtwork(id: string, title: string, subtitle: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): GenericContent { return callSDK<GenericContent>("NowPlaying_90ad0eb69cc6bf4a", 2491494761530797, undefined, [id, title, subtitle, type, duration, artwork, animatedArtwork]); }
+  static initIdTitleSubtitleTypeDurationArtworkAnimatedArtwork(id: string, title: string, subtitle: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): GenericContent { return callSDK<GenericContent>("NowPlaying_067acaa3e5f56b46", 2491494761530797, undefined, [id, title, subtitle, type, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, title: String, subtitle: String? = nil, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdTitleSubtitleTypeDurationArtwork(id: string, title: string, subtitle: (string) | null, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): GenericContent { return callSDK<GenericContent>("NowPlaying_90ad0eb69cc6bf4a", 3661344973976269, undefined, [id, title, subtitle, type, duration, artwork]); }
+  static initIdTitleSubtitleTypeDurationArtwork(id: string, title: string, subtitle: (string) | null, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): GenericContent { return callSDK<GenericContent>("NowPlaying_067acaa3e5f56b46", 3661344973976269, undefined, [id, title, subtitle, type, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 4361557154918185, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 4361557154918185, this, []); }
   /**
    * let type: MediaType
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 660819630558345, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 660819630558345, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 482846545729967, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 2201404490338086, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 482846545729967, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 2201404490338086, this, [value]); }
   /**
    * let title: String
    * @availability iOS 27.0+
    */
-  get title(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 3016978569790846, this, []); }
+  get title(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 3016978569790846, this, []); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 2583753025941488, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 2583753025941488, this, []); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 3612857762799646, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 3612857762799646, this, []); }
   /**
    * let subtitle: String?
    * @availability iOS 27.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1540728925134763, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1540728925134763, this, []); }
   declare readonly $type: { "s:10NowPlaying14GenericContentV": true };
 }
 
@@ -270,65 +270,65 @@ export class HomeMediaContent extends SDKHandle {
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 4274865702799281, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3472969126722953, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 4274865702799281, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3472969126722953, this, [value]); }
   /**
    * let sourceName: String
    * @availability iOS 27.0+
    */
-  get sourceName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 4039606032462612, this, []); }
+  get sourceName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 4039606032462612, this, []); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 3130398278929369, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 3130398278929369, this, []); }
   /**
    * let contentDescription: String?
    * @availability iOS 27.0+
    */
-  get contentDescription(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1304836205970161, this, []); }
+  get contentDescription(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1304836205970161, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 1936424398175850, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 82198377366297, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 1936424398175850, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 82198377366297, this, [value]); }
   /**
    * init(id: String, sourceName: String, contentDescription: String?, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdSourceNameContentDescriptionTypeDurationArtworkAnimatedArtwork(id: string, sourceName: string, contentDescription: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): HomeMediaContent { return callSDK<HomeMediaContent>("NowPlaying_90ad0eb69cc6bf4a", 2960367341264372, undefined, [id, sourceName, contentDescription, type, duration, artwork, animatedArtwork]); }
+  static initIdSourceNameContentDescriptionTypeDurationArtworkAnimatedArtwork(id: string, sourceName: string, contentDescription: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): HomeMediaContent { return callSDK<HomeMediaContent>("NowPlaying_067acaa3e5f56b46", 2960367341264372, undefined, [id, sourceName, contentDescription, type, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, sourceName: String, contentDescription: String?, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdSourceNameContentDescriptionTypeDurationArtwork(id: string, sourceName: string, contentDescription: (string) | null, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): HomeMediaContent { return callSDK<HomeMediaContent>("NowPlaying_90ad0eb69cc6bf4a", 922802016025758, undefined, [id, sourceName, contentDescription, type, duration, artwork]); }
+  static initIdSourceNameContentDescriptionTypeDurationArtwork(id: string, sourceName: string, contentDescription: (string) | null, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): HomeMediaContent { return callSDK<HomeMediaContent>("NowPlaying_067acaa3e5f56b46", 922802016025758, undefined, [id, sourceName, contentDescription, type, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 2806020515855749, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 2806020515855749, this, []); }
   /**
    * let type: MediaType
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 806373613034845, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 806373613034845, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1179758750401216, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 4406991637458048, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1179758750401216, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 4406991637458048, this, [value]); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 2804612496590461, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 2804612496590461, this, []); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 1350619591683653, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 1350619591683653, this, []); }
   declare readonly $type: { "s:10NowPlaying16HomeMediaContentV": true };
 }
 
@@ -347,7 +347,7 @@ export class MediaCommand extends SDKHandle {
    * func enabled(_ isEnabled: Bool) -> MediaCommand
    * @availability iOS 27.0+
    */
-  enabled(isEnabled: boolean): MediaCommand { return callSDK<MediaCommand>("NowPlaying_90ad0eb69cc6bf4a", 3134182680956074, this, [isEnabled]); }
+  enabled(isEnabled: boolean): MediaCommand { return callSDK<MediaCommand>("NowPlaying_067acaa3e5f56b46", 3134182680956074, this, [isEnabled]); }
   declare readonly $type: { "s:10NowPlaying12MediaCommandV": true };
 }
 
@@ -362,7 +362,7 @@ export const MediaCommand_FeedbackStatus = {
    * nonisolated static var allCases: [MediaCommand.FeedbackStatus] { get }
    * @availability iOS 27.0+
    */
-  get allCases(): $SDK3 { return callSDK<$SDK3>("NowPlaying_90ad0eb69cc6bf4a", 3782847925534137, undefined, []); }
+  get allCases(): $SDK3 { return callSDK<$SDK3>("NowPlaying_067acaa3e5f56b46", 3782847925534137, undefined, []); }
 };
 
 /**
@@ -382,7 +382,7 @@ export const MediaCommand_RepeatMode = {
    * nonisolated static var allCases: [MediaCommand.RepeatMode] { get }
    * @availability iOS 27.0+
    */
-  get allCases(): $SDK4 { return callSDK<$SDK4>("NowPlaying_90ad0eb69cc6bf4a", 1605921962297761, undefined, []); }
+  get allCases(): $SDK4 { return callSDK<$SDK4>("NowPlaying_067acaa3e5f56b46", 1605921962297761, undefined, []); }
 };
 
 /**
@@ -402,7 +402,7 @@ export const MediaCommand_ShuffleMode = {
    * nonisolated static var allCases: [MediaCommand.ShuffleMode] { get }
    * @availability iOS 27.0+
    */
-  get allCases(): $SDK5 { return callSDK<$SDK5>("NowPlaying_90ad0eb69cc6bf4a", 3695586288595552, undefined, []); }
+  get allCases(): $SDK5 { return callSDK<$SDK5>("NowPlaying_067acaa3e5f56b46", 3695586288595552, undefined, []); }
 };
 
 /**
@@ -428,27 +428,27 @@ export class MediaDevice extends SDKHandle {
    * let capabilities: [MediaDevice.Capability]
    * @availability iOS 27.0+
    */
-  get capabilities(): $SDK6 { return callSDK<$SDK6>("NowPlaying_90ad0eb69cc6bf4a", 2886725379900137, this, []); }
+  get capabilities(): $SDK6 { return callSDK<$SDK6>("NowPlaying_067acaa3e5f56b46", 2886725379900137, this, []); }
   /**
    * init(id: String, name: String, type: MediaDevice.DeviceType, capabilities: [MediaDevice.Capability])
    * @availability iOS 27.0+
    */
-  static init(id: string, name: string, type: MediaDevice_DeviceType, capabilities: $SDK6): MediaDevice { return callSDK<MediaDevice>("NowPlaying_90ad0eb69cc6bf4a", 798782437144692, undefined, [id, name, type, capabilities]); }
+  static init(id: string, name: string, type: MediaDevice_DeviceType, capabilities: $SDK6): MediaDevice { return callSDK<MediaDevice>("NowPlaying_067acaa3e5f56b46", 798782437144692, undefined, [id, name, type, capabilities]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 2023095782130363, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 2023095782130363, this, []); }
   /**
    * let name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 1133870508468906, this, []); }
+  get name(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 1133870508468906, this, []); }
   /**
    * let type: MediaDevice.DeviceType
    * @availability iOS 27.0+
    */
-  get type(): MediaDevice_DeviceType { return callSDK<MediaDevice_DeviceType>("NowPlaying_90ad0eb69cc6bf4a", 385610281071743, this, []); }
+  get type(): MediaDevice_DeviceType { return callSDK<MediaDevice_DeviceType>("NowPlaying_067acaa3e5f56b46", 385610281071743, this, []); }
   declare readonly $type: { "s:10NowPlaying11MediaDeviceV": true };
 }
 
@@ -489,7 +489,7 @@ export class MediaPlaybackSnapshot extends SDKHandle {
    * init(state: MediaPlaybackSnapshot.PlaybackState, defaultPlaybackRate: Float = 1.0, elapsedTime: TimeInterval? = nil, timestamp: Date? = nil)
    * @availability iOS 27.0+
    */
-  static init(state: MediaPlaybackSnapshot_PlaybackState, defaultPlaybackRate?: number, elapsedTime?: (number) | null, timestamp?: $SDK7): MediaPlaybackSnapshot { return callSDK<MediaPlaybackSnapshot>("NowPlaying_90ad0eb69cc6bf4a", 257239753401241, undefined, [state, defaultPlaybackRate, elapsedTime, timestamp]); }
+  static init(state: MediaPlaybackSnapshot_PlaybackState, defaultPlaybackRate?: number, elapsedTime?: (number) | null, timestamp?: $SDK7): MediaPlaybackSnapshot { return callSDK<MediaPlaybackSnapshot>("NowPlaying_067acaa3e5f56b46", 257239753401241, undefined, [state, defaultPlaybackRate, elapsedTime, timestamp]); }
   declare readonly $type: { "s:10NowPlaying21MediaPlaybackSnapshotV": true };
 }
 
@@ -544,60 +544,60 @@ export class MovieContent extends SDKHandle {
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 4091128585825305, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3659171207046400, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 4091128585825305, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3659171207046400, this, [value]); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 2860014813037167, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 2860014813037167, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 1154080040453893, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3933087290251644, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 1154080040453893, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3933087290251644, this, [value]); }
   /**
    * init(id: String, title: String, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdTitleDurationArtworkAnimatedArtwork(id: string, title: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): MovieContent { return callSDK<MovieContent>("NowPlaying_90ad0eb69cc6bf4a", 2324443284023524, undefined, [id, title, duration, artwork, animatedArtwork]); }
+  static initIdTitleDurationArtworkAnimatedArtwork(id: string, title: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): MovieContent { return callSDK<MovieContent>("NowPlaying_067acaa3e5f56b46", 2324443284023524, undefined, [id, title, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, title: String, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdTitleDurationArtwork(id: string, title: string, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): MovieContent { return callSDK<MovieContent>("NowPlaying_90ad0eb69cc6bf4a", 2074469034224852, undefined, [id, title, duration, artwork]); }
+  static initIdTitleDurationArtwork(id: string, title: string, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): MovieContent { return callSDK<MovieContent>("NowPlaying_067acaa3e5f56b46", 2074469034224852, undefined, [id, title, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 3016989693499887, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 3016989693499887, this, []); }
   /**
    * var type: MediaType { get }
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 4123010493134470, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 4123010493134470, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1091966419945089, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 2482347262071388, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1091966419945089, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 2482347262071388, this, [value]); }
   /**
    * let title: String
    * @availability iOS 27.0+
    */
-  get title(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 2978807445354625, this, []); }
+  get title(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 2978807445354625, this, []); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 3163466455299245, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 3163466455299245, this, []); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 2685807382785663, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 2685807382785663, this, []); }
   declare readonly $type: { "s:10NowPlaying12MovieContentV": true };
 }
 
@@ -616,82 +616,82 @@ export class MusicContent extends SDKHandle {
    * let artistName: String
    * @availability iOS 27.0+
    */
-  get artistName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 44432209689065, this, []); }
+  get artistName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 44432209689065, this, []); }
   /**
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 1297115650527752, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3876926718817832, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 1297115650527752, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3876926718817832, this, [value]); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 3178308731749091, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 3178308731749091, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 432351405309257, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3923139965511404, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 432351405309257, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3923139965511404, this, [value]); }
   /**
    * init(id: String, songTitle: String, artistName: String, albumName: String, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdSongTitleArtistNameAlbumNameTypeDurationArtworkAnimatedArtwork(id: string, songTitle: string, artistName: string, albumName: string, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): MusicContent { return callSDK<MusicContent>("NowPlaying_90ad0eb69cc6bf4a", 2036299616048696, undefined, [id, songTitle, artistName, albumName, type, duration, artwork, animatedArtwork]); }
+  static initIdSongTitleArtistNameAlbumNameTypeDurationArtworkAnimatedArtwork(id: string, songTitle: string, artistName: string, albumName: string, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): MusicContent { return callSDK<MusicContent>("NowPlaying_067acaa3e5f56b46", 2036299616048696, undefined, [id, songTitle, artistName, albumName, type, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, songTitle: String, artistName: String, albumName: String, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdSongTitleArtistNameAlbumNameTypeDurationArtwork(id: string, songTitle: string, artistName: string, albumName: string, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): MusicContent { return callSDK<MusicContent>("NowPlaying_90ad0eb69cc6bf4a", 2780319607989076, undefined, [id, songTitle, artistName, albumName, type, duration, artwork]); }
+  static initIdSongTitleArtistNameAlbumNameTypeDurationArtwork(id: string, songTitle: string, artistName: string, albumName: string, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): MusicContent { return callSDK<MusicContent>("NowPlaying_067acaa3e5f56b46", 2780319607989076, undefined, [id, songTitle, artistName, albumName, type, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 3969007039793454, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 3969007039793454, this, []); }
   /**
    * var isrc: String?
    * @availability iOS 27.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 2748252285503914, this, []); }
-  set isrc(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 2200163743083113, this, [value]); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 2748252285503914, this, []); }
+  set isrc(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 2200163743083113, this, [value]); }
   /**
    * let type: MediaType
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 1672344518918680, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 1672344518918680, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 2226604784120659, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 2404784038838474, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 2226604784120659, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 2404784038838474, this, [value]); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 2442317252982378, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 2442317252982378, this, []); }
   /**
    * var composer: String?
    * @availability iOS 27.0+
    */
-  get composer(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1905696457982709, this, []); }
-  set composer(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 314485350082451, this, [value]); }
+  get composer(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1905696457982709, this, []); }
+  set composer(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 314485350082451, this, [value]); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 1037194304111760, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 1037194304111760, this, []); }
   /**
    * let albumName: String
    * @availability iOS 27.0+
    */
-  get albumName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 1773027664030660, this, []); }
+  get albumName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 1773027664030660, this, []); }
   /**
    * let songTitle: String
    * @availability iOS 27.0+
    */
-  get songTitle(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 3661059393962720, this, []); }
+  get songTitle(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 3661059393962720, this, []); }
   declare readonly $type: { "s:10NowPlaying12MusicContentV": true };
 }
 
@@ -710,70 +710,70 @@ export class PodcastContent extends SDKHandle {
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 160480915791464, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 2601173245975870, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 160480915791464, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 2601173245975870, this, [value]); }
   /**
    * let releaseDate: Date?
    * @availability iOS 27.0+
    */
-  get releaseDate(): $SDK7 { return callSDK<$SDK7>("NowPlaying_90ad0eb69cc6bf4a", 2760230607765922, this, []); }
+  get releaseDate(): $SDK7 { return callSDK<$SDK7>("NowPlaying_067acaa3e5f56b46", 2760230607765922, this, []); }
   /**
    * let episodeTitle: String
    * @availability iOS 27.0+
    */
-  get episodeTitle(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 3787057066642636, this, []); }
+  get episodeTitle(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 3787057066642636, this, []); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 4312761518956950, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 4312761518956950, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 3153584054444770, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 652665169732583, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 3153584054444770, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 652665169732583, this, [value]); }
   /**
    * init(id: String, episodeTitle: String, showName: String, releaseDate: Date?, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK7, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): PodcastContent { return callSDK<PodcastContent>("NowPlaying_90ad0eb69cc6bf4a", 3800050669395694, undefined, [id, episodeTitle, showName, releaseDate, type, duration, artwork, animatedArtwork]); }
+  static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK7, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): PodcastContent { return callSDK<PodcastContent>("NowPlaying_067acaa3e5f56b46", 3800050669395694, undefined, [id, episodeTitle, showName, releaseDate, type, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, episodeTitle: String, showName: String, releaseDate: Date?, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK7, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): PodcastContent { return callSDK<PodcastContent>("NowPlaying_90ad0eb69cc6bf4a", 17934767282977, undefined, [id, episodeTitle, showName, releaseDate, type, duration, artwork]); }
+  static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK7, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): PodcastContent { return callSDK<PodcastContent>("NowPlaying_067acaa3e5f56b46", 17934767282977, undefined, [id, episodeTitle, showName, releaseDate, type, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 623814194061403, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 623814194061403, this, []); }
   /**
    * let type: MediaType
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 1695170102449680, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 1695170102449680, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1272471027555072, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 654520639508139, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1272471027555072, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 654520639508139, this, [value]); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 2331341750907421, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 2331341750907421, this, []); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 2540310279059480, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 2540310279059480, this, []); }
   /**
    * let showName: String
    * @availability iOS 27.0+
    */
-  get showName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 4229598517916378, this, []); }
+  get showName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 4229598517916378, this, []); }
   declare readonly $type: { "s:10NowPlaying14PodcastContentV": true };
 }
 
@@ -792,65 +792,65 @@ export class RadioContent extends SDKHandle {
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 2533516154646701, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 328892858033780, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 2533516154646701, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 328892858033780, this, [value]); }
   /**
    * let programName: String?
    * @availability iOS 27.0+
    */
-  get programName(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 941823020468324, this, []); }
+  get programName(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 941823020468324, this, []); }
   /**
    * let stationName: String
    * @availability iOS 27.0+
    */
-  get stationName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 4439867380196089, this, []); }
+  get stationName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 4439867380196089, this, []); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 3166385178686404, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 3166385178686404, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 2351309359768140, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 3723895316048113, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 2351309359768140, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 3723895316048113, this, [value]); }
   /**
    * init(id: String, stationName: String, programName: String? = nil, type: MediaType = .audio, duration: MediaDuration? = .live, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdStationNameProgramNameTypeDurationArtworkAnimatedArtwork(id: string, stationName: string, programName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): RadioContent { return callSDK<RadioContent>("NowPlaying_90ad0eb69cc6bf4a", 934354562972652, undefined, [id, stationName, programName, type, duration, artwork, animatedArtwork]); }
+  static initIdStationNameProgramNameTypeDurationArtworkAnimatedArtwork(id: string, stationName: string, programName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): RadioContent { return callSDK<RadioContent>("NowPlaying_067acaa3e5f56b46", 934354562972652, undefined, [id, stationName, programName, type, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, stationName: String, programName: String? = nil, type: MediaType = .audio, duration: MediaDuration? = .live, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdStationNameProgramNameTypeDurationArtwork(id: string, stationName: string, programName?: (string) | null, type?: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): RadioContent { return callSDK<RadioContent>("NowPlaying_90ad0eb69cc6bf4a", 252196988586885, undefined, [id, stationName, programName, type, duration, artwork]); }
+  static initIdStationNameProgramNameTypeDurationArtwork(id: string, stationName: string, programName?: (string) | null, type?: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): RadioContent { return callSDK<RadioContent>("NowPlaying_067acaa3e5f56b46", 252196988586885, undefined, [id, stationName, programName, type, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 4196006751219176, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 4196006751219176, this, []); }
   /**
    * let type: MediaType
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 1508446976591274, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 1508446976591274, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 1284305645889816, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 1665450940538573, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 1284305645889816, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 1665450940538573, this, [value]); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 327321399516046, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 327321399516046, this, []); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 3359175788502095, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 3359175788502095, this, []); }
   declare readonly $type: { "s:10NowPlaying12RadioContentV": true };
 }
 
@@ -930,65 +930,65 @@ export class TVShowContent extends SDKHandle {
    * var isExplicit: Bool?
    * @availability iOS 27.0+
    */
-  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 3631286350967404, this, []); }
-  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 4306178047269386, this, [value]); }
+  get isExplicit(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 3631286350967404, this, []); }
+  set isExplicit(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 4306178047269386, this, [value]); }
   /**
    * let episodeTitle: String
    * @availability iOS 27.0+
    */
-  get episodeTitle(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 1799849806553854, this, []); }
+  get episodeTitle(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 1799849806553854, this, []); }
   /**
    * let animatedArtwork: AnimatedArtwork?
    * @availability iOS 27.0+
    */
-  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_90ad0eb69cc6bf4a", 2026004040595998, this, []); }
+  get animatedArtwork(): $SDK1 { return callSDK<$SDK1>("NowPlaying_067acaa3e5f56b46", 2026004040595998, this, []); }
   /**
    * var isExcludedFromSuggestions: Bool?
    * @availability iOS 27.0+
    */
-  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_90ad0eb69cc6bf4a", 1974405227368796, this, []); }
-  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 2639611790983503, this, [value]); }
+  get isExcludedFromSuggestions(): (boolean) | null { return callSDK<(boolean) | null>("NowPlaying_067acaa3e5f56b46", 1974405227368796, this, []); }
+  set isExcludedFromSuggestions(value: (boolean) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 2639611790983503, this, [value]); }
   /**
    * init(id: String, episodeTitle: String, showName: String, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
    * @availability iOS 27.0+
    */
-  static initIdEpisodeTitleShowNameDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): TVShowContent { return callSDK<TVShowContent>("NowPlaying_90ad0eb69cc6bf4a", 2334378243015498, undefined, [id, episodeTitle, showName, duration, artwork, animatedArtwork]); }
+  static initIdEpisodeTitleShowNameDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): TVShowContent { return callSDK<TVShowContent>("NowPlaying_067acaa3e5f56b46", 2334378243015498, undefined, [id, episodeTitle, showName, duration, artwork, animatedArtwork]); }
   /**
    * init(id: String, episodeTitle: String, showName: String, duration: MediaDuration?, artwork: Artwork?)
    * @availability iOS 27.0+
    */
-  static initIdEpisodeTitleShowNameDurationArtwork(id: string, episodeTitle: string, showName: string, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): TVShowContent { return callSDK<TVShowContent>("NowPlaying_90ad0eb69cc6bf4a", 2442958523010727, undefined, [id, episodeTitle, showName, duration, artwork]); }
+  static initIdEpisodeTitleShowNameDurationArtwork(id: string, episodeTitle: string, showName: string, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): TVShowContent { return callSDK<TVShowContent>("NowPlaying_067acaa3e5f56b46", 2442958523010727, undefined, [id, episodeTitle, showName, duration, artwork]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 2332010179806855, this, []); }
+  get id(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 2332010179806855, this, []); }
   /**
    * var type: MediaType { get }
    * @availability iOS 27.0+
    */
-  get type(): MediaType { return callSDK<MediaType>("NowPlaying_90ad0eb69cc6bf4a", 1010683408664763, this, []); }
+  get type(): MediaType { return callSDK<MediaType>("NowPlaying_067acaa3e5f56b46", 1010683408664763, this, []); }
   /**
    * var genre: String?
    * @availability iOS 27.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_90ad0eb69cc6bf4a", 2231387780128906, this, []); }
-  set genre(value: (string) | null) { callSDK<void>("NowPlaying_90ad0eb69cc6bf4a", 664173478441108, this, [value]); }
+  get genre(): (string) | null { return callSDK<(string) | null>("NowPlaying_067acaa3e5f56b46", 2231387780128906, this, []); }
+  set genre(value: (string) | null) { callSDK<void>("NowPlaying_067acaa3e5f56b46", 664173478441108, this, [value]); }
   /**
    * let artwork: Artwork?
    * @availability iOS 27.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_90ad0eb69cc6bf4a", 4440972265848350, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("NowPlaying_067acaa3e5f56b46", 4440972265848350, this, []); }
   /**
    * let duration: MediaDuration?
    * @availability iOS 27.0+
    */
-  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_90ad0eb69cc6bf4a", 967310988169057, this, []); }
+  get duration(): (MediaDuration) | null { return callSDK<(MediaDuration) | null>("NowPlaying_067acaa3e5f56b46", 967310988169057, this, []); }
   /**
    * let showName: String
    * @availability iOS 27.0+
    */
-  get showName(): string { return callSDK<string>("NowPlaying_90ad0eb69cc6bf4a", 2831375180315816, this, []); }
+  get showName(): string { return callSDK<string>("NowPlaying_067acaa3e5f56b46", 2831375180315816, this, []); }
   declare readonly $type: { "s:10NowPlaying13TVShowContentV": true };
 }
 
@@ -998,28 +998,28 @@ export class TVShowContent extends SDKHandle {
  */
 export type TVShowContent_ID = string;
 
-registerSDKClass("NowPlaying.AnimatedArtwork", AnimatedArtwork, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.Artwork", Artwork, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.ArtworkRepresentation", ArtworkRepresentation, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.BookContent", BookContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.GenericContent", GenericContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.HomeMediaContent", HomeMediaContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MediaCommand", MediaCommand, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {}, methods: {"enabled":{"id":3134182680956074}} });
+registerSDKClass("NowPlaying.AnimatedArtwork", AnimatedArtwork, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.Artwork", Artwork, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.ArtworkRepresentation", ArtworkRepresentation, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.BookContent", BookContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.GenericContent", GenericContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.HomeMediaContent", HomeMediaContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MediaCommand", MediaCommand, { module: "NowPlaying_067acaa3e5f56b46", properties: {}, methods: {"enabled":{"id":3134182680956074}} });
 registerSDKProtocol("s:10NowPlaying25MediaContentRepresentableP", {});
-registerSDKClass("NowPlaying.MediaDevice", MediaDevice, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MediaDevice.Capability", MediaDevice_Capability, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MediaDuration", MediaDuration, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MediaPlaybackSnapshot", MediaPlaybackSnapshot, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MediaPlaybackSnapshot.PlaybackState", MediaPlaybackSnapshot_PlaybackState, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MediaSession", MediaSession, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("NowPlaying.MediaDevice", MediaDevice, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MediaDevice.Capability", MediaDevice_Capability, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MediaDuration", MediaDuration, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MediaPlaybackSnapshot", MediaPlaybackSnapshot, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MediaPlaybackSnapshot.PlaybackState", MediaPlaybackSnapshot_PlaybackState, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MediaSession", MediaSession, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:10NowPlaying25MediaSessionRepresentableP", {});
-registerSDKClass("NowPlaying.MovieContent", MovieContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.MusicContent", MusicContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.PodcastContent", PodcastContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.RadioContent", RadioContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("NowPlaying.RemoteMediaSession", RemoteMediaSession, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("NowPlaying.MovieContent", MovieContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.MusicContent", MusicContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.PodcastContent", PodcastContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.RadioContent", RadioContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
+registerSDKClass("NowPlaying.RemoteMediaSession", RemoteMediaSession, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:10NowPlaying28RemoteMediaSessionAttributesP", {});
 registerSDKProtocol("s:10NowPlaying27RemoteMediaSessionExtensionP", {"init":"init()","session":"session(_:)"});
-registerSDKClass("NowPlaying.RemoteMediaSessionExtensionConfiguration", RemoteMediaSessionExtensionConfiguration, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("NowPlaying.RemoteMediaSessionExtensionConfiguration", RemoteMediaSessionExtensionConfiguration, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:10NowPlaying31RemoteMediaSessionRepresentableP", {"update":"update(_:)"});
-registerSDKClass("NowPlaying.TVShowContent", TVShowContent, { module: "NowPlaying_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("NowPlaying.TVShowContent", TVShowContent, { module: "NowPlaying_067acaa3e5f56b46", properties: {} });

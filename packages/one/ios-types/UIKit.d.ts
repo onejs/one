@@ -11950,53 +11950,48 @@ export declare class UIActivityViewController extends UIViewController {
      * init(activityItems: [Any], applicationActivities: [UIActivity]?)
      * @availability iOS 6.0+
      */
-    static initActivityItemsApplicationActivities(activityItems: Array<unknown>, applicationActivities?: (Array<UIActivity>) | null): UIActivityViewController;
+    static initActivityItemsApplicationActivities(activityItems: Array<unknown>, applicationActivities?: (Array<UIActivity>) | null): Promise<UIActivityViewController>;
     /**
      * convenience init(activityItemsConfiguration: any UIActivityItemsConfigurationReading)
      * @availability iOS 14.0+
      */
-    static initActivityItemsConfiguration(activityItemsConfiguration: SDKHandle): UIActivityViewController;
+    static initActivityItemsConfiguration(activityItemsConfiguration: SDKHandle): Promise<UIActivityViewController>;
     /**
      * var allowsProminentActivity: Bool { get set }
      * @availability iOS 15.4+
      */
-    get allowsProminentActivity(): boolean;
-    set allowsProminentActivity(value: boolean);
+    get allowsProminentActivity(): Promise<boolean>;
+    setAllowsProminentActivity(value: boolean): Promise<void>;
     /**
      * var completionHandler: UIActivityViewController.CompletionHandler? { get set }
      * @availability iOS 6.0+
      * @deprecated iOS 8.0
      */
-    get completionHandler(): (((arg0: (UIActivity_ActivityType) | null, arg1: boolean) => Promise<void>)) | null;
-    set completionHandler(value: (((arg0: (UIActivity_ActivityType) | null, arg1: boolean) => void)) | null);
+    get completionHandler(): Promise<(((arg0: (UIActivity_ActivityType) | null, arg1: boolean) => Promise<void>)) | null>;
+    setCompletionHandler(value?: (((arg0: (UIActivity_ActivityType) | null, arg1: boolean) => void)) | null): Promise<void>;
     /**
      * var completionWithItemsHandler: UIActivityViewController.CompletionWithItemsHandler? { get set }
      * @availability iOS 8.0+
      */
-    get completionWithItemsHandler(): (((arg0: (UIActivity_ActivityType) | null, arg1: boolean, arg2: (Array<unknown>) | null, arg3: (NativeError) | null) => Promise<void>)) | null;
-    set completionWithItemsHandler(value: (((arg0: (UIActivity_ActivityType) | null, arg1: boolean, arg2: (Array<unknown>) | null, arg3: (NativeError) | null) => void)) | null);
+    get completionWithItemsHandler(): Promise<(((arg0: (UIActivity_ActivityType) | null, arg1: boolean, arg2: (Array<unknown>) | null, arg3: (NativeError) | null) => Promise<void>)) | null>;
+    setCompletionWithItemsHandler(value?: (((arg0: (UIActivity_ActivityType) | null, arg1: boolean, arg2: (Array<unknown>) | null, arg3: (NativeError) | null) => void)) | null): Promise<void>;
     /**
      * var excludedActivitySectionTypes: UIActivitySectionTypes { get set }
      * @availability iOS 18.0+
      */
-    get excludedActivitySectionTypes(): UIActivitySectionTypes;
-    set excludedActivitySectionTypes(value: UIActivitySectionTypes);
+    get excludedActivitySectionTypes(): Promise<UIActivitySectionTypes>;
+    setExcludedActivitySectionTypes(value: UIActivitySectionTypes): Promise<void>;
     /**
      * var excludedActivityTypes: [UIActivity.ActivityType]? { get set }
      * @availability iOS 6.0+
      */
-    get excludedActivityTypes(): $SDK181;
-    set excludedActivityTypes(value: $SDK181);
+    get excludedActivityTypes(): Promise<$SDK181>;
+    setExcludedActivityTypes(value?: $SDK181): Promise<void>;
     readonly $type: {
         "c:objc(cs)UIActivityViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsProminentActivity": true;
-        "excludedActivitySectionTypes": true;
-        "excludedActivityTypes": true;
     };
 }
 /**
@@ -12008,68 +12003,60 @@ export declare class UIActivityViewController_CollaborationModeRestriction exten
      * func description() -> String
      * @availability iOS 18.0+
      */
-    description(): string;
+    description(): Promise<string>;
     /**
      * init(disabledMode: UIActivityCollaborationMode)
      * @availability iOS 18.0+
      */
-    static initDisabledMode(disabledMode: UIActivityCollaborationMode): UIActivityViewController_CollaborationModeRestriction;
+    static initDisabledMode(disabledMode: UIActivityCollaborationMode): Promise<UIActivityViewController_CollaborationModeRestriction>;
     /**
      * init(disabledMode: UIActivityCollaborationMode, alertTitle: String, alertMessage: String)
      * @availability iOS 18.0+
      */
-    static initDisabledModeAlertTitleAlertMessage(disabledMode: UIActivityCollaborationMode, alertTitle: string, alertMessage: string): UIActivityViewController_CollaborationModeRestriction;
+    static initDisabledModeAlertTitleAlertMessage(disabledMode: UIActivityCollaborationMode, alertTitle: string, alertMessage: string): Promise<UIActivityViewController_CollaborationModeRestriction>;
     /**
      * init(disabledMode: UIActivityCollaborationMode, alertTitle: String, alertMessage: String, alertDismissButtonTitle: String)
      * @availability iOS 18.0+
      */
-    static initDisabledModeAlertTitleAlertMessageAlertDismissButtonTitle(disabledMode: UIActivityCollaborationMode, alertTitle: string, alertMessage: string, alertDismissButtonTitle: string): UIActivityViewController_CollaborationModeRestriction;
+    static initDisabledModeAlertTitleAlertMessageAlertDismissButtonTitle(disabledMode: UIActivityCollaborationMode, alertTitle: string, alertMessage: string, alertDismissButtonTitle: string): Promise<UIActivityViewController_CollaborationModeRestriction>;
     /**
      * init(disabledMode: UIActivityCollaborationMode, alertTitle: String, alertMessage: String, alertDismissButtonTitle: String, alertRecoverySuggestionButtonTitle: String, alertRecoverySuggestionButtonLaunch alertRecoverySuggestionButtonLaunchURL: URL)
      * @availability iOS 18.0+
      */
-    static initDisabledModeAlertTitleAlertMessageAlertDismissButtonTitleAlertRecoverySuggestionButtonTitleAlertRecoverySuggestionButtonLaunch(disabledMode: UIActivityCollaborationMode, alertTitle: string, alertMessage: string, alertDismissButtonTitle: string, alertRecoverySuggestionButtonTitle: string, alertRecoverySuggestionButtonLaunchURL: string): UIActivityViewController_CollaborationModeRestriction;
+    static initDisabledModeAlertTitleAlertMessageAlertDismissButtonTitleAlertRecoverySuggestionButtonTitleAlertRecoverySuggestionButtonLaunch(disabledMode: UIActivityCollaborationMode, alertTitle: string, alertMessage: string, alertDismissButtonTitle: string, alertRecoverySuggestionButtonTitle: string, alertRecoverySuggestionButtonLaunchURL: string): Promise<UIActivityViewController_CollaborationModeRestriction>;
     /**
      * var alertDismissButtonTitle: String? { get }
      * @availability iOS 18.0+
      */
-    get alertDismissButtonTitle(): (string) | null;
+    get alertDismissButtonTitle(): Promise<(string) | null>;
     /**
      * var alertMessage: String? { get }
      * @availability iOS 18.0+
      */
-    get alertMessage(): (string) | null;
+    get alertMessage(): Promise<(string) | null>;
     /**
      * var alertRecoverySuggestionButtonLaunchURL: URL? { get }
      * @availability iOS 18.0+
      */
-    get alertRecoverySuggestionButtonLaunchURL(): (string) | null;
+    get alertRecoverySuggestionButtonLaunchURL(): Promise<(string) | null>;
     /**
      * var alertRecoverySuggestionButtonTitle: String? { get }
      * @availability iOS 18.0+
      */
-    get alertRecoverySuggestionButtonTitle(): (string) | null;
+    get alertRecoverySuggestionButtonTitle(): Promise<(string) | null>;
     /**
      * var alertTitle: String? { get }
      * @availability iOS 18.0+
      */
-    get alertTitle(): (string) | null;
+    get alertTitle(): Promise<(string) | null>;
     /**
      * var disabledMode: UIActivityCollaborationMode { get }
      * @availability iOS 18.0+
      */
-    get disabledMode(): UIActivityCollaborationMode;
+    get disabledMode(): Promise<UIActivityCollaborationMode>;
     readonly $type: {
         "c:objc(cs)UIActivityCollaborationModeRestriction": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "alertDismissButtonTitle": true;
-        "alertMessage": true;
-        "alertRecoverySuggestionButtonLaunchURL": true;
-        "alertRecoverySuggestionButtonTitle": true;
-        "alertTitle": true;
-        "disabledMode": true;
     };
 }
 /**
@@ -14245,28 +14232,24 @@ declare const UIBackgroundExtensionView_base: Omit<typeof UIView, "init" | "prot
  */
 export declare class UIBackgroundExtensionView extends UIBackgroundExtensionView_base {
     /** init() */
-    static init(): UIBackgroundExtensionView;
+    static init(): Promise<UIBackgroundExtensionView>;
     /**
      * var automaticallyPlacesContentView: Bool { get set }
      * @availability iOS 26.0+
      */
-    get automaticallyPlacesContentView(): boolean;
-    set automaticallyPlacesContentView(value: boolean);
+    get automaticallyPlacesContentView(): Promise<boolean>;
+    setAutomaticallyPlacesContentView(value: boolean): Promise<void>;
     /**
      * var contentView: UIView? { get set }
      * @availability iOS 26.0+
      */
-    get contentView(): (UIView) | null;
-    set contentView(value: (UIView) | null);
+    get contentView(): Promise<(UIView) | null>;
+    setContentView(value?: (UIView) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)UIBackgroundExtensionView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "automaticallyPlacesContentView": true;
-        "contentView": true;
     };
 }
 /**
@@ -27928,38 +27911,33 @@ export declare class UIHoverGestureRecognizer extends UIHoverGestureRecognizer_b
      * func azimuthAngle(in view: UIView?) -> CGFloat
      * @availability iOS 16.4+
      */
-    azimuthAngle(view?: (UIView) | null): number;
+    azimuthAngle(view?: (UIView) | null): Promise<number>;
     /**
      * func azimuthUnitVector(in view: UIView?) -> CGVector
      * @availability iOS 16.4+
      */
-    azimuthUnitVector(view?: (UIView) | null): $SDK30;
+    azimuthUnitVector(view?: (UIView) | null): Promise<$SDK30>;
     /** init() */
-    static init(): UIHoverGestureRecognizer;
+    static init(): Promise<UIHoverGestureRecognizer>;
     /**
      * var altitudeAngle: CGFloat { get }
      * @availability iOS 16.4+
      */
-    get altitudeAngle(): number;
+    get altitudeAngle(): Promise<number>;
     /**
      * var rollAngle: CGFloat { get }
      * @availability iOS 17.5+
      */
-    get rollAngle(): number;
+    get rollAngle(): Promise<number>;
     /**
      * var zOffset: CGFloat { get }
      * @availability iOS 16.1+
      */
-    get zOffset(): number;
+    get zOffset(): Promise<number>;
     readonly $type: {
         "c:objc(cs)UIHoverGestureRecognizer": true;
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "altitudeAngle": true;
-        "rollAngle": true;
-        "zOffset": true;
     };
 }
 /**
@@ -35622,30 +35600,26 @@ export declare class UIPopoverBackgroundView extends UIPopoverBackgroundView_bas
      * @availability iOS 6.0+
      * @deprecated iOS 13.0
      */
-    static get wantsDefaultContentAppearance(): boolean;
+    static get wantsDefaultContentAppearance(): Promise<boolean>;
     /** init() */
-    static init(): UIPopoverBackgroundView;
+    static init(): Promise<UIPopoverBackgroundView>;
     /**
      * var arrowDirection: UIPopoverArrowDirection { get set }
      * @availability iOS 5.0+
      */
-    get arrowDirection(): UIPopoverArrowDirection;
-    set arrowDirection(value: UIPopoverArrowDirection);
+    get arrowDirection(): Promise<UIPopoverArrowDirection>;
+    setArrowDirection(value: UIPopoverArrowDirection): Promise<void>;
     /**
      * var arrowOffset: CGFloat { get set }
      * @availability iOS 5.0+
      */
-    get arrowOffset(): number;
-    set arrowOffset(value: number);
+    get arrowOffset(): Promise<number>;
+    setArrowOffset(value: number): Promise<void>;
     readonly $type: {
         "c:objc(cs)UIPopoverBackgroundView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "arrowDirection": true;
-        "arrowOffset": true;
     };
 }
 /** protocol UIPopoverBackgroundViewMethods */
@@ -42894,7 +42868,7 @@ declare const UIStandardTextCursorView_base: Omit<typeof UIView, "init" | "proto
  */
 export declare class UIStandardTextCursorView extends UIStandardTextCursorView_base {
     /** init() */
-    static init(): UIStandardTextCursorView;
+    static init(): Promise<UIStandardTextCursorView>;
     readonly $type: {
         "c:objc(cs)UIStandardTextCursorView": true;
         "c:objc(cs)UIView": true;

@@ -64,53 +64,47 @@ export declare class QLPreviewController extends SDKHandle {
      * class func canPreview(_ item: any QLPreviewItem) -> Bool
      * @availability iOS 4.0+
      */
-    static canPreview(item: SDKHandle): boolean;
+    static canPreview(item: SDKHandle): Promise<boolean>;
     /** init() */
-    static init(): QLPreviewController;
+    static init(): Promise<QLPreviewController>;
     /**
      * func refreshCurrentPreviewItem()
      * @availability iOS 4.0+
      */
-    refreshCurrentPreviewItem(): void;
+    refreshCurrentPreviewItem(): Promise<void>;
     /**
      * func reloadData()
      * @availability iOS 4.0+
      */
-    reloadData(): void;
+    reloadData(): Promise<void>;
     /**
      * var currentPreviewItem: (any QLPreviewItem)? { get }
      * @availability iOS 4.0+
      */
-    get currentPreviewItem(): (SDKHandle) | null;
+    get currentPreviewItem(): Promise<(SDKHandle) | null>;
     /**
      * var currentPreviewItemIndex: Int { get set }
      * @availability iOS 4.0+
      */
-    get currentPreviewItemIndex(): number;
-    set currentPreviewItemIndex(value: number);
+    get currentPreviewItemIndex(): Promise<number>;
+    setCurrentPreviewItemIndex(value: number): Promise<void>;
     /**
      * weak var dataSource: (any QLPreviewControllerDataSource)? { get set }
      * @availability iOS 4.0+
      */
-    get dataSource(): (SDKHandle) | null;
-    set dataSource(value: (SDKHandle) | null);
+    get dataSource(): Promise<(SDKHandle) | null>;
+    setDataSource(value?: (SDKHandle) | null): Promise<void>;
     /**
      * weak var delegate: (any QLPreviewControllerDelegate)? { get set }
      * @availability iOS 4.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<QLPreviewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<QLPreviewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)QLPreviewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "currentPreviewItem": true;
-        "currentPreviewItemIndex": true;
-        "dataSource": true;
-        "delegate": true;
     };
 }
 /** @MainActor protocol QLPreviewControllerDataSource */

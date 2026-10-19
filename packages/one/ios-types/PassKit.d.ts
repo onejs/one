@@ -424,13 +424,13 @@ export declare class PKAddPassButton extends SDKHandle {
      * init(addPassButtonStyle style: PKAddPassButtonStyle)
      * @availability iOS 9.0+
      */
-    static init(style: PKAddPassButtonStyle): PKAddPassButton;
+    static init(style: PKAddPassButtonStyle): Promise<PKAddPassButton>;
     /**
      * var addPassButtonStyle: PKAddPassButtonStyle { get set }
      * @availability iOS 9.0+
      */
-    get addPassButtonStyle(): PKAddPassButtonStyle;
-    set addPassButtonStyle(value: PKAddPassButtonStyle);
+    get addPassButtonStyle(): Promise<PKAddPassButtonStyle>;
+    setAddPassButtonStyle(value: PKAddPassButtonStyle): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKAddPassButton": true;
         "c:objc(cs)UIButton": true;
@@ -438,9 +438,6 @@ export declare class PKAddPassButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "addPassButtonStyle": true;
     };
 }
 /**
@@ -464,51 +461,48 @@ export declare class PKAddPassesViewController extends SDKHandle {
      * class func canAddPasses() -> Bool
      * @availability iOS 8.0+
      */
-    static canAddPasses(): boolean;
+    static canAddPasses(): Promise<boolean>;
     /**
      * init(issuerData: Data, signature: Data) throws
      * @availability iOS 16.4+
      */
-    static initIssuerDataSignature(issuerData: ArrayBuffer, signature: ArrayBuffer): PKAddPassesViewController;
+    static initIssuerDataSignature(issuerData: ArrayBuffer, signature: ArrayBuffer): Promise<PKAddPassesViewController>;
     /**
      * init?(pass: PKPass)
      * @availability iOS 6.0+
      */
-    static initPass(pass: PKPass): (PKAddPassesViewController) | null;
+    static initPass(pass: PKPass): Promise<(PKAddPassesViewController) | null>;
     /**
      * init?(passes: [PKPass])
      * @availability iOS 7.0+
      */
-    static initPasses(passes: Array<PKPass>): (PKAddPassesViewController) | null;
+    static initPasses(passes: Array<PKPass>): Promise<(PKAddPassesViewController) | null>;
     /**
      * init?(passesArchiveAt passesArchiveFileURL: URL)
      * @availability iOS 27.0+
      */
-    static initPassesArchiveAt(passesArchiveFileURL: string): (PKAddPassesViewController) | null;
+    static initPassesArchiveAt(passesArchiveFileURL: string): Promise<(PKAddPassesViewController) | null>;
     /**
      * init?(passesArchiveData: Data)
      * @availability iOS 27.0+
      */
-    static initPassesArchiveData(passesArchiveData: ArrayBuffer): (PKAddPassesViewController) | null;
+    static initPassesArchiveData(passesArchiveData: ArrayBuffer): Promise<(PKAddPassesViewController) | null>;
     /**
      * init?(passesData: [Data])
      * @availability iOS 27.0+
      */
-    static initPassesData(passesData: Array<ArrayBuffer>): (PKAddPassesViewController) | null;
+    static initPassesData(passesData: Array<ArrayBuffer>): Promise<(PKAddPassesViewController) | null>;
     /**
      * weak var delegate: (any PKAddPassesViewControllerDelegate)? { get set }
      * @availability iOS 6.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PKAddPassesViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PKAddPassesViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKAddPassesViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /** protocol PKAddPassesViewControllerDelegate : NSObjectProtocol */
@@ -712,26 +706,23 @@ export declare class PKAddPaymentPassViewController extends SDKHandle {
      * class func canAddPaymentPass() -> Bool
      * @availability iOS 9.0+
      */
-    static canAddPaymentPass(): boolean;
+    static canAddPaymentPass(): Promise<boolean>;
     /**
      * init?(requestConfiguration configuration: PKAddPaymentPassRequestConfiguration, delegate: (any PKAddPaymentPassViewControllerDelegate)?)
      * @availability iOS 9.0+
      */
-    static init(configuration: PKAddPaymentPassRequestConfiguration, delegate?: (SDKHandle) | null): (PKAddPaymentPassViewController) | null;
+    static init(configuration: PKAddPaymentPassRequestConfiguration, delegate?: (SDKHandle) | null): Promise<(PKAddPaymentPassViewController) | null>;
     /**
      * weak var delegate: (any PKAddPaymentPassViewControllerDelegate)? { get set }
      * @availability iOS 9.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKAddPaymentPassViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /**
@@ -876,26 +867,23 @@ export declare class PKAddSecureElementPassViewController extends SDKHandle {
      * class func canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration) -> Bool
      * @availability iOS 13.4+
      */
-    static canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration): boolean;
+    static canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration): Promise<boolean>;
     /**
      * init?(configuration: PKAddSecureElementPassConfiguration, delegate: (any PKAddSecureElementPassViewControllerDelegate)?)
      * @availability iOS 13.4+
      */
-    static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK18): (PKAddSecureElementPassViewController) | null;
+    static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK18): Promise<(PKAddSecureElementPassViewController) | null>;
     /**
      * weak var delegate: (any PKAddSecureElementPassViewControllerDelegate)? { get set }
      * @availability iOS 13.4+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: $SDK18);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: $SDK18): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKAddSecureElementPassViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /**
@@ -1762,22 +1750,19 @@ export declare class PKIdentityButton extends SDKHandle {
      * init(label: PKIdentityButton.Label, style: PKIdentityButton.Style)
      * @availability iOS 16.0+
      */
-    static init(label: PKIdentityButton_Label, style: PKIdentityButton_Style): PKIdentityButton;
+    static init(label: PKIdentityButton_Label, style: PKIdentityButton_Style): Promise<PKIdentityButton>;
     /**
      * var cornerRadius: CGFloat { get set }
      * @availability iOS 16.0+
      */
-    get cornerRadius(): number;
-    set cornerRadius(value: number);
+    get cornerRadius(): Promise<number>;
+    setCornerRadius(value: number): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKIdentityButton": true;
         "c:objc(cs)UIControl": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "cornerRadius": true;
     };
 }
 /**
@@ -1790,7 +1775,7 @@ export declare const PKIdentityButton_Label: {
      * init?(rawValue: Int)
      * @availability iOS 16.0+
      */
-    init(rawValue: number): (PKIdentityButton_Label) | null;
+    init(rawValue: number): Promise<(PKIdentityButton_Label) | null>;
 };
 /**
  * enum Style
@@ -1802,7 +1787,7 @@ export declare const PKIdentityButton_Style: {
      * init?(rawValue: Int)
      * @availability iOS 16.0+
      */
-    init(rawValue: number): (PKIdentityButton_Style) | null;
+    init(rawValue: number): Promise<(PKIdentityButton_Style) | null>;
 };
 /**
  * class PKIdentityDocument
@@ -2984,20 +2969,20 @@ export declare class PKPayLaterView extends SDKHandle {
      * var action: PKPayLaterAction { get set }
      * @availability iOS 17.0+
      */
-    get action(): PKPayLaterAction;
-    set action(value: PKPayLaterAction);
+    get action(): Promise<PKPayLaterAction>;
+    setAction(value: PKPayLaterAction): Promise<void>;
     /**
      * unowned(unsafe) var delegate: any PKPayLaterViewDelegate { get set }
      * @availability iOS 17.0+
      */
-    get delegate(): SDKHandle;
-    set delegate(value: Implements<PKPayLaterViewDelegate> | SDKHandle);
+    get delegate(): Promise<SDKHandle>;
+    setDelegate(value: Implements<PKPayLaterViewDelegate> | SDKHandle): Promise<void>;
     /**
      * var displayStyle: PKPayLaterDisplayStyle { get set }
      * @availability iOS 17.0+
      */
-    get displayStyle(): PKPayLaterDisplayStyle;
-    set displayStyle(value: PKPayLaterDisplayStyle);
+    get displayStyle(): Promise<PKPayLaterDisplayStyle>;
+    setDisplayStyle(value: PKPayLaterDisplayStyle): Promise<void>;
     /**
      * @MainActor @preconcurrency convenience init(amount: Decimal, currency: Locale.Currency)
      * @availability iOS 17.0+
@@ -3020,11 +3005,6 @@ export declare class PKPayLaterView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "action": true;
-        "delegate": true;
-        "displayStyle": true;
     };
 }
 /**
@@ -3231,56 +3211,53 @@ export declare class PKPaymentAuthorizationViewController extends SDKHandle {
      * nonisolated class func canMakePayments() -> Bool
      * @availability iOS 8.0+
      */
-    static canMakePayments(): boolean;
+    static canMakePayments(): Promise<boolean>;
     /**
      * nonisolated class func canMakePayments(usingNetworks supportedNetworks: [PKPaymentNetwork]) -> Bool
      * @availability iOS 8.0+
      */
-    static canMakePaymentsUsingNetworks(supportedNetworks: Array<PKPaymentNetwork>): boolean;
+    static canMakePaymentsUsingNetworks(supportedNetworks: Array<PKPaymentNetwork>): Promise<boolean>;
     /**
      * nonisolated class func canMakePayments(usingNetworks supportedNetworks: [PKPaymentNetwork], capabilities capabilties: PKMerchantCapability) -> Bool
      * @availability iOS 9.0+
      */
-    static canMakePaymentsUsingNetworksCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): boolean;
+    static canMakePaymentsUsingNetworksCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilties: PKMerchantCapability): Promise<boolean>;
     /**
      * nonisolated class func supportsDisbursements() -> Bool
      * @availability iOS 17.0+
      */
-    static supportsDisbursements(): boolean;
+    static supportsDisbursements(): Promise<boolean>;
     /**
      * nonisolated class func supportsDisbursements(using supportedNetworks: [PKPaymentNetwork]) -> Bool
      * @availability iOS 17.0+
      */
-    static supportsDisbursementsUsing(supportedNetworks: Array<PKPaymentNetwork>): boolean;
+    static supportsDisbursementsUsing(supportedNetworks: Array<PKPaymentNetwork>): Promise<boolean>;
     /**
      * nonisolated class func supportsDisbursements(using supportedNetworks: [PKPaymentNetwork], capabilities: PKMerchantCapability) -> Bool
      * @availability iOS 17.0+
      */
-    static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilities: PKMerchantCapability): boolean;
+    static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilities: PKMerchantCapability): Promise<boolean>;
     /**
      * convenience init(disbursementRequest request: PKDisbursementRequest)
      * @availability iOS 17.0+
      */
-    static initDisbursementRequest(request: PKDisbursementRequest): PKPaymentAuthorizationViewController;
+    static initDisbursementRequest(request: PKDisbursementRequest): Promise<PKPaymentAuthorizationViewController>;
     /**
      * init?(paymentRequest request: PKPaymentRequest)
      * @availability iOS 8.0+
      */
-    static initPaymentRequest(request: PKPaymentRequest): (PKPaymentAuthorizationViewController) | null;
+    static initPaymentRequest(request: PKPaymentRequest): Promise<(PKPaymentAuthorizationViewController) | null>;
     /**
      * weak var delegate: (any PKPaymentAuthorizationViewControllerDelegate)? { get set }
      * @availability iOS 8.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PKPaymentAuthorizationViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PKPaymentAuthorizationViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKPaymentAuthorizationViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /** protocol PKPaymentAuthorizationViewControllerDelegate : NSObjectProtocol */
@@ -3305,18 +3282,18 @@ export declare class PKPaymentButton extends SDKHandle {
      * init(paymentButtonType type: PKPaymentButtonType, paymentButtonStyle style: PKPaymentButtonStyle)
      * @availability iOS 9.0+
      */
-    static initPaymentButtonTypePaymentButtonStyle(type: PKPaymentButtonType, style: PKPaymentButtonStyle): PKPaymentButton;
+    static initPaymentButtonTypePaymentButtonStyle(type: PKPaymentButtonType, style: PKPaymentButtonStyle): Promise<PKPaymentButton>;
     /**
      * convenience init(type: PKPaymentButtonType, style: PKPaymentButtonStyle, disableCardArt: Bool)
      * @availability iOS 26.0+
      */
-    static initTypeStyleDisableCardArt(type: PKPaymentButtonType, style: PKPaymentButtonStyle, disableCardArt: boolean): PKPaymentButton;
+    static initTypeStyleDisableCardArt(type: PKPaymentButtonType, style: PKPaymentButtonStyle, disableCardArt: boolean): Promise<PKPaymentButton>;
     /**
      * var cornerRadius: CGFloat { get set }
      * @availability iOS 12.0+
      */
-    get cornerRadius(): number;
-    set cornerRadius(value: number);
+    get cornerRadius(): Promise<number>;
+    setCornerRadius(value: number): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKPaymentButton": true;
         "c:objc(cs)UIButton": true;
@@ -3324,9 +3301,6 @@ export declare class PKPaymentButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "cornerRadius": true;
     };
 }
 /**
@@ -4952,28 +4926,24 @@ export declare class PKShareSecureElementPassViewController extends SDKHandle {
      * init(secureElementPass pass: PKSecureElementPass, delegate: (any PKShareSecureElementPassViewControllerDelegate)?)
      * @availability iOS 16.0+
      */
-    static init(pass: PKSecureElementPass, delegate?: $SDK70): PKShareSecureElementPassViewController;
+    static init(pass: PKSecureElementPass, delegate?: $SDK70): Promise<PKShareSecureElementPassViewController>;
     /**
      * weak var delegate: (any PKShareSecureElementPassViewControllerDelegate)? { get set }
      * @availability iOS 16.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: $SDK70);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: $SDK70): Promise<void>;
     /**
      * var promptToShareURL: Bool { get set }
      * @availability iOS 16.0+
      */
-    get promptToShareURL(): boolean;
-    set promptToShareURL(value: boolean);
+    get promptToShareURL(): Promise<boolean>;
+    setPromptToShareURL(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKShareSecureElementPassViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
-        "promptToShareURL": true;
     };
 }
 /**

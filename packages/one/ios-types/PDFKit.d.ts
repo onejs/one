@@ -2246,55 +2246,47 @@ export declare const PDFThumbnailLayoutMode: {
  */
 export declare class PDFThumbnailView extends SDKHandle {
     /** init() */
-    static init(): PDFThumbnailView;
+    static init(): Promise<PDFThumbnailView>;
     /**
      * weak var pdfView: PDFView? { get set }
      * @availability iOS 11.0+
      */
-    get pdfView(): (PDFView) | null;
-    set pdfView(value: (PDFView) | null);
+    get pdfView(): Promise<(PDFView) | null>;
+    setPdfView(value?: (PDFView) | null): Promise<void>;
     /**
      * @NSCopying var backgroundColor: UIColor? { get set }
      * @availability iOS 11.0+
      */
-    get backgroundColor(): (_UIKit_UIColor) | null;
-    set backgroundColor(value: (_UIKit_UIColor) | null);
+    get backgroundColor(): Promise<(_UIKit_UIColor) | null>;
+    setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
      * var contentInset: UIEdgeInsets { get set }
      * @availability iOS 11.0+
      */
-    get contentInset(): $SDK14;
-    set contentInset(value: $SDK14);
+    get contentInset(): Promise<$SDK14>;
+    setContentInset(value: $SDK14): Promise<void>;
     /**
      * var layoutMode: PDFThumbnailLayoutMode { get set }
      * @availability iOS 11.0+
      */
-    get layoutMode(): PDFThumbnailLayoutMode;
-    set layoutMode(value: PDFThumbnailLayoutMode);
+    get layoutMode(): Promise<PDFThumbnailLayoutMode>;
+    setLayoutMode(value: PDFThumbnailLayoutMode): Promise<void>;
     /**
      * var selectedPages: [PDFPage]? { get }
      * @availability iOS 11.0+
      */
-    get selectedPages(): (Array<PDFPage>) | null;
+    get selectedPages(): Promise<(Array<PDFPage>) | null>;
     /**
      * var thumbnailSize: CGSize { get set }
      * @availability iOS 11.0+
      */
-    get thumbnailSize(): $SDK11;
-    set thumbnailSize(value: $SDK11);
+    get thumbnailSize(): Promise<$SDK11>;
+    setThumbnailSize(value: $SDK11): Promise<void>;
     readonly $type: {
         "c:objc(cs)PDFThumbnailView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "pdfView": true;
-        "backgroundColor": true;
-        "contentInset": true;
-        "layoutMode": true;
-        "selectedPages": true;
-        "thumbnailSize": true;
     };
 }
 /**
@@ -2306,411 +2298,372 @@ export declare class PDFView extends SDKHandle {
      * func annotationsChanged(on page: PDFPage)
      * @availability iOS 11.0+
      */
-    annotationsChanged(page: PDFPage): void;
+    annotationsChanged(page: PDFPage): Promise<void>;
     /**
      * func areaOfInterest(forMouse event: UIEvent) -> PDFAreaOfInterest
      * @availability iOS 11.0+
      */
-    areaOfInterestForMouse(event: _UIKit_UIEvent): PDFAreaOfInterest;
+    areaOfInterestForMouse(event: _UIKit_UIEvent): Promise<PDFAreaOfInterest>;
     /**
      * func areaOfInterest(for cursorLocation: CGPoint) -> PDFAreaOfInterest
      * @availability iOS 11.0+
      */
-    areaOfInterestFor(cursorLocation: $SDK0): PDFAreaOfInterest;
+    areaOfInterestFor(cursorLocation: $SDK0): Promise<PDFAreaOfInterest>;
     /**
      * func clearSelection()
      * @availability iOS 11.0+
      */
-    clearSelection(): void;
+    clearSelection(): Promise<void>;
     /**
      * func convert(_ point: CGPoint, from page: PDFPage) -> CGPoint
      * @availability iOS 11.0+
      */
-    convertFrom(point: $SDK0, page: PDFPage): $SDK0;
+    convertFrom(point: $SDK0, page: PDFPage): Promise<$SDK0>;
     /**
      * func convert(_ point: CGPoint, to page: PDFPage) -> CGPoint
      * @availability iOS 11.0+
      */
-    convertTo(point: $SDK0, page: PDFPage): $SDK0;
+    convertTo(point: $SDK0, page: PDFPage): Promise<$SDK0>;
     /**
      * func convert(_ rect: CGRect, from page: PDFPage) -> CGRect
      * @availability iOS 11.0+
      */
-    convertFrom86829(rect: $SDK1, page: PDFPage): $SDK1;
+    convertFrom86829(rect: $SDK1, page: PDFPage): Promise<$SDK1>;
     /**
      * func convert(_ rect: CGRect, to page: PDFPage) -> CGRect
      * @availability iOS 11.0+
      */
-    convertTo23162(rect: $SDK1, page: PDFPage): $SDK1;
+    convertTo23162(rect: $SDK1, page: PDFPage): Promise<$SDK1>;
     /**
      * @IBAction func copy(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    copy(sender?: (unknown) | null): void;
+    copy(sender?: (unknown) | null): Promise<void>;
     /**
      * func draw(_ page: PDFPage, to context: CGContext)
      * @availability iOS 11.0+
      */
-    draw(page: PDFPage, context: _CoreGraphics_CGContext): void;
+    draw(page: PDFPage, context: _CoreGraphics_CGContext): Promise<void>;
     /**
      * func drawPagePost(_ page: PDFPage, to context: CGContext)
      * @availability iOS 11.0+
      */
-    drawPagePost(page: PDFPage, context: _CoreGraphics_CGContext): void;
+    drawPagePost(page: PDFPage, context: _CoreGraphics_CGContext): Promise<void>;
     /**
      * @IBAction func goBack(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    goBack(sender?: (unknown) | null): void;
+    goBack(sender?: (unknown) | null): Promise<void>;
     /**
      * @IBAction func goForward(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    goForward(sender?: (unknown) | null): void;
+    goForward(sender?: (unknown) | null): Promise<void>;
     /**
      * func go(to destination: PDFDestination)
      * @availability iOS 11.0+
      */
-    goTo(destination: PDFDestination): void;
+    goTo(destination: PDFDestination): Promise<void>;
     /**
      * @IBAction func goToFirstPage(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    goToFirstPage(sender?: (unknown) | null): void;
+    goToFirstPage(sender?: (unknown) | null): Promise<void>;
     /**
      * @IBAction func goToLastPage(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    goToLastPage(sender?: (unknown) | null): void;
+    goToLastPage(sender?: (unknown) | null): Promise<void>;
     /**
      * @IBAction func goToNextPage(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    goToNextPage(sender?: (unknown) | null): void;
+    goToNextPage(sender?: (unknown) | null): Promise<void>;
     /**
      * func go(to page: PDFPage)
      * @availability iOS 11.0+
      */
-    goTo50003(page: PDFPage): void;
+    goTo50003(page: PDFPage): Promise<void>;
     /**
      * @IBAction func goToPreviousPage(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    goToPreviousPage(sender?: (unknown) | null): void;
+    goToPreviousPage(sender?: (unknown) | null): Promise<void>;
     /**
      * func go(to rect: CGRect, on page: PDFPage)
      * @availability iOS 11.0+
      */
-    goToOn(rect: $SDK1, page: PDFPage): void;
+    goToOn(rect: $SDK1, page: PDFPage): Promise<void>;
     /**
      * func go(to selection: PDFSelection)
      * @availability iOS 11.0+
      */
-    goTo16108(selection: PDFSelection): void;
+    goTo16108(selection: PDFSelection): Promise<void>;
     /** init() */
-    static init(): PDFView;
+    static init(): Promise<PDFView>;
     /**
      * func layoutDocumentView()
      * @availability iOS 11.0+
      */
-    layoutDocumentView(): void;
+    layoutDocumentView(): Promise<void>;
     /**
      * func page(for point: CGPoint, nearest: Bool) -> PDFPage?
      * @availability iOS 11.0+
      */
-    page(point: $SDK0, nearest: boolean): (PDFPage) | null;
+    page(point: $SDK0, nearest: boolean): Promise<(PDFPage) | null>;
     /**
      * func perform(_ action: PDFAction)
      * @availability iOS 11.0+
      */
-    perform(action: PDFAction): void;
+    perform(action: PDFAction): Promise<void>;
     /**
      * func rowSize(for page: PDFPage) -> CGSize
      * @availability iOS 11.0+
      */
-    rowSize(page: PDFPage): $SDK11;
+    rowSize(page: PDFPage): Promise<$SDK11>;
     /**
      * @IBAction func scrollSelectionToVisible(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    scrollSelectionToVisible(sender?: (unknown) | null): void;
+    scrollSelectionToVisible(sender?: (unknown) | null): Promise<void>;
     /**
      * @IBAction func selectAll(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    selectAll(sender?: (unknown) | null): void;
+    selectAll(sender?: (unknown) | null): Promise<void>;
     /**
      * func setCurrentSelection(_ selection: PDFSelection?, animate: Bool)
      * @availability iOS 11.0+
      */
-    setCurrentSelection(selection: (PDFSelection) | null, animate: boolean): void;
+    setCurrentSelection(selection: (PDFSelection) | null, animate: boolean): Promise<void>;
     /**
      * func usePageViewController(_ enable: Bool, withViewOptions viewOptions: [AnyHashable : Any]? = nil)
      * @availability iOS 11.0+
      */
-    usePageViewController(enable: boolean, viewOptions?: $SDK2): void;
+    usePageViewController(enable: boolean, viewOptions?: $SDK2): Promise<void>;
     /**
      * @IBAction func zoomIn(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    zoomIn(sender?: (unknown) | null): void;
+    zoomIn(sender?: (unknown) | null): Promise<void>;
     /**
      * @IBAction func zoomOut(_ sender: Any?)
      * @availability iOS 11.0+
      */
-    zoomOut(sender?: (unknown) | null): void;
+    zoomOut(sender?: (unknown) | null): Promise<void>;
     /**
      * var autoScales: Bool { get set }
      * @availability iOS 11.0+
      */
-    get autoScales(): boolean;
-    set autoScales(value: boolean);
+    get autoScales(): Promise<boolean>;
+    setAutoScales(value: boolean): Promise<void>;
     /**
      * var backgroundColor: UIColor { get set }
      * @availability iOS 11.0+
      */
-    get backgroundColor(): _UIKit_UIColor;
-    set backgroundColor(value: _UIKit_UIColor);
+    get backgroundColor(): Promise<_UIKit_UIColor>;
+    setBackgroundColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var canGoBack: Bool { get }
      * @availability iOS 11.0+
      */
-    get canGoBack(): boolean;
+    get canGoBack(): Promise<boolean>;
     /**
      * var canGoForward: Bool { get }
      * @availability iOS 11.0+
      */
-    get canGoForward(): boolean;
+    get canGoForward(): Promise<boolean>;
     /**
      * var canGoToFirstPage: Bool { get }
      * @availability iOS 11.0+
      */
-    get canGoToFirstPage(): boolean;
+    get canGoToFirstPage(): Promise<boolean>;
     /**
      * var canGoToLastPage: Bool { get }
      * @availability iOS 11.0+
      */
-    get canGoToLastPage(): boolean;
+    get canGoToLastPage(): Promise<boolean>;
     /**
      * var canGoToNextPage: Bool { get }
      * @availability iOS 11.0+
      */
-    get canGoToNextPage(): boolean;
+    get canGoToNextPage(): Promise<boolean>;
     /**
      * var canGoToPreviousPage: Bool { get }
      * @availability iOS 11.0+
      */
-    get canGoToPreviousPage(): boolean;
+    get canGoToPreviousPage(): Promise<boolean>;
     /**
      * var canZoomIn: Bool { get }
      * @availability iOS 11.0+
      */
-    get canZoomIn(): boolean;
+    get canZoomIn(): Promise<boolean>;
     /**
      * var canZoomOut: Bool { get }
      * @availability iOS 11.0+
      */
-    get canZoomOut(): boolean;
+    get canZoomOut(): Promise<boolean>;
     /**
      * var currentDestination: PDFDestination? { get }
      * @availability iOS 11.0+
      */
-    get currentDestination(): (PDFDestination) | null;
+    get currentDestination(): Promise<(PDFDestination) | null>;
     /**
      * var currentPage: PDFPage? { get }
      * @availability iOS 11.0+
      */
-    get currentPage(): (PDFPage) | null;
+    get currentPage(): Promise<(PDFPage) | null>;
     /**
      * var currentSelection: PDFSelection? { get set }
      * @availability iOS 11.0+
      */
-    get currentSelection(): (PDFSelection) | null;
-    set currentSelection(value: (PDFSelection) | null);
+    get currentSelection(): Promise<(PDFSelection) | null>;
+    setCurrentSelection69773(value?: (PDFSelection) | null): Promise<void>;
     /**
      * weak var delegate: (any PDFViewDelegate)? { get set }
      * @availability iOS 11.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PDFViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PDFViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var displayBox: PDFDisplayBox { get set }
      * @availability iOS 11.0+
      */
-    get displayBox(): PDFDisplayBox;
-    set displayBox(value: PDFDisplayBox);
+    get displayBox(): Promise<PDFDisplayBox>;
+    setDisplayBox(value: PDFDisplayBox): Promise<void>;
     /**
      * var displayDirection: PDFDisplayDirection { get set }
      * @availability iOS 11.0+
      */
-    get displayDirection(): PDFDisplayDirection;
-    set displayDirection(value: PDFDisplayDirection);
+    get displayDirection(): Promise<PDFDisplayDirection>;
+    setDisplayDirection(value: PDFDisplayDirection): Promise<void>;
     /**
      * var displayMode: PDFDisplayMode { get set }
      * @availability iOS 11.0+
      */
-    get displayMode(): PDFDisplayMode;
-    set displayMode(value: PDFDisplayMode);
+    get displayMode(): Promise<PDFDisplayMode>;
+    setDisplayMode(value: PDFDisplayMode): Promise<void>;
     /**
      * var displaysAsBook: Bool { get set }
      * @availability iOS 11.0+
      */
-    get displaysAsBook(): boolean;
-    set displaysAsBook(value: boolean);
+    get displaysAsBook(): Promise<boolean>;
+    setDisplaysAsBook(value: boolean): Promise<void>;
     /**
      * var displaysPageBreaks: Bool { get set }
      * @availability iOS 11.0+
      */
-    get displaysPageBreaks(): boolean;
-    set displaysPageBreaks(value: boolean);
+    get displaysPageBreaks(): Promise<boolean>;
+    setDisplaysPageBreaks(value: boolean): Promise<void>;
     /**
      * var displaysRTL: Bool { get set }
      * @availability iOS 11.0+
      */
-    get displaysRTL(): boolean;
-    set displaysRTL(value: boolean);
+    get displaysRTL(): Promise<boolean>;
+    setDisplaysRTL(value: boolean): Promise<void>;
     /**
      * var document: PDFDocument? { get set }
      * @availability iOS 11.0+
      */
-    get document(): (PDFDocument) | null;
-    set document(value: (PDFDocument) | null);
+    get document(): Promise<(PDFDocument) | null>;
+    setDocument(value?: (PDFDocument) | null): Promise<void>;
     /**
      * var documentView: UIView? { get }
      * @availability iOS 11.0+
      */
-    get documentView(): (_UIKit_UIView) | null;
+    get documentView(): Promise<(_UIKit_UIView) | null>;
     /**
      * var enableDataDetectors: Bool { get set }
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    get enableDataDetectors(): boolean;
-    set enableDataDetectors(value: boolean);
+    get enableDataDetectors(): Promise<boolean>;
+    setEnableDataDetectors(value: boolean): Promise<void>;
     /**
      * var findInteraction: UIFindInteraction { get }
      * @availability iOS 16.0+
      */
-    get findInteraction(): _UIKit_UIFindInteraction;
+    get findInteraction(): Promise<_UIKit_UIFindInteraction>;
     /**
      * var isFindInteractionEnabled: Bool { get set }
      * @availability iOS 16.0+
      */
-    get isFindInteractionEnabled(): boolean;
-    set isFindInteractionEnabled(value: boolean);
+    get isFindInteractionEnabled(): Promise<boolean>;
+    setIsFindInteractionEnabled(value: boolean): Promise<void>;
     /**
      * var highlightedSelections: [PDFSelection]? { get set }
      * @availability iOS 11.0+
      */
-    get highlightedSelections(): (Array<PDFSelection>) | null;
-    set highlightedSelections(value: (Array<PDFSelection>) | null);
+    get highlightedSelections(): Promise<(Array<PDFSelection>) | null>;
+    setHighlightedSelections(value?: (Array<PDFSelection>) | null): Promise<void>;
     /**
      * var isInMarkupMode: Bool { get set }
      * @availability iOS 16.0+
      */
-    get isInMarkupMode(): boolean;
-    set isInMarkupMode(value: boolean);
+    get isInMarkupMode(): Promise<boolean>;
+    setIsInMarkupMode(value: boolean): Promise<void>;
     /**
      * var interpolationQuality: PDFInterpolationQuality { get set }
      * @availability iOS 11.0+
      */
-    get interpolationQuality(): PDFInterpolationQuality;
-    set interpolationQuality(value: PDFInterpolationQuality);
+    get interpolationQuality(): Promise<PDFInterpolationQuality>;
+    setInterpolationQuality(value: PDFInterpolationQuality): Promise<void>;
     /**
      * var isUsingPageViewController: Bool { get }
      * @availability iOS 11.0+
      */
-    get isUsingPageViewController(): boolean;
+    get isUsingPageViewController(): Promise<boolean>;
     /**
      * var maxScaleFactor: CGFloat { get set }
      * @availability iOS 11.0+
      */
-    get maxScaleFactor(): number;
-    set maxScaleFactor(value: number);
+    get maxScaleFactor(): Promise<number>;
+    setMaxScaleFactor(value: number): Promise<void>;
     /**
      * var minScaleFactor: CGFloat { get set }
      * @availability iOS 11.0+
      */
-    get minScaleFactor(): number;
-    set minScaleFactor(value: number);
+    get minScaleFactor(): Promise<number>;
+    setMinScaleFactor(value: number): Promise<void>;
     /**
      * var pageBreakMargins: UIEdgeInsets { get set }
      * @availability iOS 11.0+
      */
-    get pageBreakMargins(): $SDK14;
-    set pageBreakMargins(value: $SDK14);
+    get pageBreakMargins(): Promise<$SDK14>;
+    setPageBreakMargins(value: $SDK14): Promise<void>;
     /**
      * weak var pageOverlayViewProvider: (any PDFPageOverlayViewProvider)? { get set }
      * @availability iOS 16.0+
      */
-    get pageOverlayViewProvider(): (SDKHandle) | null;
-    set pageOverlayViewProvider(value: (SDKHandle) | null);
+    get pageOverlayViewProvider(): Promise<(SDKHandle) | null>;
+    setPageOverlayViewProvider(value?: (SDKHandle) | null): Promise<void>;
     /**
      * var pageShadowsEnabled: Bool { get set }
      * @availability iOS 12.0+
      */
-    get pageShadowsEnabled(): boolean;
-    set pageShadowsEnabled(value: boolean);
+    get pageShadowsEnabled(): Promise<boolean>;
+    setPageShadowsEnabled(value: boolean): Promise<void>;
     /**
      * var scaleFactor: CGFloat { get set }
      * @availability iOS 11.0+
      */
-    get scaleFactor(): number;
-    set scaleFactor(value: number);
+    get scaleFactor(): Promise<number>;
+    setScaleFactor(value: number): Promise<void>;
     /**
      * var scaleFactorForSizeToFit: CGFloat { get }
      * @availability iOS 11.0+
      */
-    get scaleFactorForSizeToFit(): number;
+    get scaleFactorForSizeToFit(): Promise<number>;
     /**
      * var visiblePages: [PDFPage] { get }
      * @availability iOS 11.0+
      */
-    get visiblePages(): Array<PDFPage>;
+    get visiblePages(): Promise<Array<PDFPage>>;
     readonly $type: {
         "c:objc(cs)PDFView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "autoScales": true;
-        "backgroundColor": true;
-        "canGoBack": true;
-        "canGoForward": true;
-        "canGoToFirstPage": true;
-        "canGoToLastPage": true;
-        "canGoToNextPage": true;
-        "canGoToPreviousPage": true;
-        "canZoomIn": true;
-        "canZoomOut": true;
-        "currentDestination": true;
-        "currentPage": true;
-        "currentSelection": true;
-        "delegate": true;
-        "displayBox": true;
-        "displayDirection": true;
-        "displayMode": true;
-        "displaysAsBook": true;
-        "displaysPageBreaks": true;
-        "displaysRTL": true;
-        "document": true;
-        "documentView": true;
-        "enableDataDetectors": true;
-        "findInteraction": true;
-        "isFindInteractionEnabled": true;
-        "highlightedSelections": true;
-        "isInMarkupMode": true;
-        "interpolationQuality": true;
-        "isUsingPageViewController": true;
-        "maxScaleFactor": true;
-        "minScaleFactor": true;
-        "pageBreakMargins": true;
-        "pageOverlayViewProvider": true;
-        "pageShadowsEnabled": true;
-        "scaleFactor": true;
-        "scaleFactorForSizeToFit": true;
-        "visiblePages": true;
     };
 }
 /** protocol PDFViewDelegate : NSObjectProtocol */

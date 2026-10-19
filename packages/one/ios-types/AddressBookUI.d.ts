@@ -10,46 +10,40 @@ type $SDK3 = (_Foundation_NSPredicate) | null;
  */
 export declare class ABNewPersonViewController extends SDKHandle {
     /** init() */
-    static init(): ABNewPersonViewController;
+    static init(): Promise<ABNewPersonViewController>;
     /**
      * var addressBook: ABAddressBook? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get addressBook(): (unknown) | null;
-    set addressBook(value: (unknown) | null);
+    get addressBook(): Promise<(unknown) | null>;
+    setAddressBook(value?: (unknown) | null): Promise<void>;
     /**
      * var displayedPerson: ABRecord? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get displayedPerson(): (unknown) | null;
-    set displayedPerson(value: (unknown) | null);
+    get displayedPerson(): Promise<(unknown) | null>;
+    setDisplayedPerson(value?: (unknown) | null): Promise<void>;
     /**
      * unowned(unsafe) var newPersonViewDelegate: (any ABNewPersonViewControllerDelegate)? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get newPersonViewDelegate(): (SDKHandle) | null;
-    set newPersonViewDelegate(value: (Implements<ABNewPersonViewControllerDelegate> | SDKHandle) | null);
+    get newPersonViewDelegate(): Promise<(SDKHandle) | null>;
+    setNewPersonViewDelegate(value?: (Implements<ABNewPersonViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var parentGroup: ABRecord? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get parentGroup(): (unknown) | null;
-    set parentGroup(value: (unknown) | null);
+    get parentGroup(): Promise<(unknown) | null>;
+    setParentGroup(value?: (unknown) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)ABNewPersonViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "addressBook": true;
-        "displayedPerson": true;
-        "newPersonViewDelegate": true;
-        "parentGroup": true;
     };
 }
 /** protocol ABNewPersonViewControllerDelegate : NSObjectProtocol */
@@ -67,63 +61,55 @@ export interface ABNewPersonViewControllerDelegate {
  */
 export declare class ABPeoplePickerNavigationController extends SDKHandle {
     /** init() */
-    static init(): ABPeoplePickerNavigationController;
+    static init(): Promise<ABPeoplePickerNavigationController>;
     /**
      * var addressBook: ABAddressBook? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get addressBook(): (unknown) | null;
-    set addressBook(value: (unknown) | null);
+    get addressBook(): Promise<(unknown) | null>;
+    setAddressBook(value?: (unknown) | null): Promise<void>;
     /**
      * var displayedProperties: [NSNumber]? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get displayedProperties(): $SDK1;
-    set displayedProperties(value: $SDK1);
+    get displayedProperties(): Promise<$SDK1>;
+    setDisplayedProperties(value?: $SDK1): Promise<void>;
     /**
      * unowned(unsafe) var peoplePickerDelegate: (any ABPeoplePickerNavigationControllerDelegate)? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get peoplePickerDelegate(): (SDKHandle) | null;
-    set peoplePickerDelegate(value: (Implements<ABPeoplePickerNavigationControllerDelegate> | SDKHandle) | null);
+    get peoplePickerDelegate(): Promise<(SDKHandle) | null>;
+    setPeoplePickerDelegate(value?: (Implements<ABPeoplePickerNavigationControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * @NSCopying var predicateForEnablingPerson: NSPredicate? { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 9.0
      */
-    get predicateForEnablingPerson(): $SDK3;
-    set predicateForEnablingPerson(value: $SDK3);
+    get predicateForEnablingPerson(): Promise<$SDK3>;
+    setPredicateForEnablingPerson(value?: $SDK3): Promise<void>;
     /**
      * @NSCopying var predicateForSelectionOfPerson: NSPredicate? { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 9.0
      */
-    get predicateForSelectionOfPerson(): $SDK3;
-    set predicateForSelectionOfPerson(value: $SDK3);
+    get predicateForSelectionOfPerson(): Promise<$SDK3>;
+    setPredicateForSelectionOfPerson(value?: $SDK3): Promise<void>;
     /**
      * @NSCopying var predicateForSelectionOfProperty: NSPredicate? { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 9.0
      */
-    get predicateForSelectionOfProperty(): $SDK3;
-    set predicateForSelectionOfProperty(value: $SDK3);
+    get predicateForSelectionOfProperty(): Promise<$SDK3>;
+    setPredicateForSelectionOfProperty(value?: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)ABPeoplePickerNavigationController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "addressBook": true;
-        "displayedProperties": true;
-        "peoplePickerDelegate": true;
-        "predicateForEnablingPerson": true;
-        "predicateForSelectionOfPerson": true;
-        "predicateForSelectionOfProperty": true;
     };
 }
 /** protocol ABPeoplePickerNavigationControllerDelegate : NSObjectProtocol */
@@ -151,76 +137,67 @@ export interface ABPeoplePickerNavigationControllerDelegate {
  */
 export declare class ABPersonViewController extends SDKHandle {
     /** init() */
-    static init(): ABPersonViewController;
+    static init(): Promise<ABPersonViewController>;
     /**
      * func setHighlightedItemForProperty(_ property: ABPropertyID, withIdentifier identifier: ABMultiValueIdentifier)
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    setHighlightedItemForProperty(property: number, identifier: number): void;
+    setHighlightedItemForProperty(property: number, identifier: number): Promise<void>;
     /**
      * var addressBook: ABAddressBook? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get addressBook(): (unknown) | null;
-    set addressBook(value: (unknown) | null);
+    get addressBook(): Promise<(unknown) | null>;
+    setAddressBook(value?: (unknown) | null): Promise<void>;
     /**
      * var allowsActions: Bool { get set }
      * @availability iOS 4.0+
      * @deprecated iOS 9.0
      */
-    get allowsActions(): boolean;
-    set allowsActions(value: boolean);
+    get allowsActions(): Promise<boolean>;
+    setAllowsActions(value: boolean): Promise<void>;
     /**
      * var allowsEditing: Bool { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get allowsEditing(): boolean;
-    set allowsEditing(value: boolean);
+    get allowsEditing(): Promise<boolean>;
+    setAllowsEditing(value: boolean): Promise<void>;
     /**
      * var displayedPerson: ABRecord { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get displayedPerson(): unknown;
-    set displayedPerson(value: unknown);
+    get displayedPerson(): Promise<unknown>;
+    setDisplayedPerson(value: unknown): Promise<void>;
     /**
      * var displayedProperties: [NSNumber]? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get displayedProperties(): $SDK1;
-    set displayedProperties(value: $SDK1);
+    get displayedProperties(): Promise<$SDK1>;
+    setDisplayedProperties(value?: $SDK1): Promise<void>;
     /**
      * unowned(unsafe) var personViewDelegate: (any ABPersonViewControllerDelegate)? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get personViewDelegate(): (SDKHandle) | null;
-    set personViewDelegate(value: (SDKHandle) | null);
+    get personViewDelegate(): Promise<(SDKHandle) | null>;
+    setPersonViewDelegate(value?: (SDKHandle) | null): Promise<void>;
     /**
      * var shouldShowLinkedPeople: Bool { get set }
      * @availability iOS 4.0+
      * @deprecated iOS 9.0
      */
-    get shouldShowLinkedPeople(): boolean;
-    set shouldShowLinkedPeople(value: boolean);
+    get shouldShowLinkedPeople(): Promise<boolean>;
+    setShouldShowLinkedPeople(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)ABPersonViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "addressBook": true;
-        "allowsActions": true;
-        "allowsEditing": true;
-        "displayedPerson": true;
-        "displayedProperties": true;
-        "personViewDelegate": true;
-        "shouldShowLinkedPeople": true;
     };
 }
 /** protocol ABPersonViewControllerDelegate : NSObjectProtocol */
@@ -238,70 +215,61 @@ export interface ABPersonViewControllerDelegate {
  */
 export declare class ABUnknownPersonViewController extends SDKHandle {
     /** init() */
-    static init(): ABUnknownPersonViewController;
+    static init(): Promise<ABUnknownPersonViewController>;
     /**
      * var addressBook: ABAddressBook? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get addressBook(): (unknown) | null;
-    set addressBook(value: (unknown) | null);
+    get addressBook(): Promise<(unknown) | null>;
+    setAddressBook(value?: (unknown) | null): Promise<void>;
     /**
      * var allowsActions: Bool { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get allowsActions(): boolean;
-    set allowsActions(value: boolean);
+    get allowsActions(): Promise<boolean>;
+    setAllowsActions(value: boolean): Promise<void>;
     /**
      * var allowsAddingToAddressBook: Bool { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get allowsAddingToAddressBook(): boolean;
-    set allowsAddingToAddressBook(value: boolean);
+    get allowsAddingToAddressBook(): Promise<boolean>;
+    setAllowsAddingToAddressBook(value: boolean): Promise<void>;
     /**
      * var alternateName: String? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get alternateName(): (string) | null;
-    set alternateName(value: (string) | null);
+    get alternateName(): Promise<(string) | null>;
+    setAlternateName(value?: (string) | null): Promise<void>;
     /**
      * var displayedPerson: ABRecord { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get displayedPerson(): unknown;
-    set displayedPerson(value: unknown);
+    get displayedPerson(): Promise<unknown>;
+    setDisplayedPerson(value: unknown): Promise<void>;
     /**
      * var message: String? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get message(): (string) | null;
-    set message(value: (string) | null);
+    get message(): Promise<(string) | null>;
+    setMessage(value?: (string) | null): Promise<void>;
     /**
      * unowned(unsafe) var unknownPersonViewDelegate: (any ABUnknownPersonViewControllerDelegate)? { get set }
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    get unknownPersonViewDelegate(): (SDKHandle) | null;
-    set unknownPersonViewDelegate(value: (Implements<ABUnknownPersonViewControllerDelegate> | SDKHandle) | null);
+    get unknownPersonViewDelegate(): Promise<(SDKHandle) | null>;
+    setUnknownPersonViewDelegate(value?: (Implements<ABUnknownPersonViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)ABUnknownPersonViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "addressBook": true;
-        "allowsActions": true;
-        "allowsAddingToAddressBook": true;
-        "alternateName": true;
-        "displayedPerson": true;
-        "message": true;
-        "unknownPersonViewDelegate": true;
     };
 }
 /** protocol ABUnknownPersonViewControllerDelegate : NSObjectProtocol */

@@ -1044,55 +1044,47 @@ export declare class MPMediaPickerController extends SDKHandle {
      * init(mediaTypes: MPMediaType)
      * @availability iOS 3.0+
      */
-    static init(mediaTypes: MPMediaType): MPMediaPickerController;
+    static init(mediaTypes: MPMediaType): Promise<MPMediaPickerController>;
     /**
      * var allowsPickingMultipleItems: Bool { get set }
      * @availability iOS 3.0+
      */
-    get allowsPickingMultipleItems(): boolean;
-    set allowsPickingMultipleItems(value: boolean);
+    get allowsPickingMultipleItems(): Promise<boolean>;
+    setAllowsPickingMultipleItems(value: boolean): Promise<void>;
     /**
      * weak var delegate: (any MPMediaPickerControllerDelegate)? { get set }
      * @availability iOS 3.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<MPMediaPickerControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<MPMediaPickerControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var mediaTypes: MPMediaType { get }
      * @availability iOS 3.0+
      */
-    get mediaTypes(): MPMediaType;
+    get mediaTypes(): Promise<MPMediaType>;
     /**
      * var prompt: String? { get set }
      * @availability iOS 3.0+
      */
-    get prompt(): (string) | null;
-    set prompt(value: (string) | null);
+    get prompt(): Promise<(string) | null>;
+    setPrompt(value?: (string) | null): Promise<void>;
     /**
      * var showsCloudItems: Bool { get set }
      * @availability iOS 6.0+
      */
-    get showsCloudItems(): boolean;
-    set showsCloudItems(value: boolean);
+    get showsCloudItems(): Promise<boolean>;
+    setShowsCloudItems(value: boolean): Promise<void>;
     /**
      * var showsItemsWithProtectedAssets: Bool { get set }
      * @availability iOS 9.2+
      */
-    get showsItemsWithProtectedAssets(): boolean;
-    set showsItemsWithProtectedAssets(value: boolean);
+    get showsItemsWithProtectedAssets(): Promise<boolean>;
+    setShowsItemsWithProtectedAssets(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)MPMediaPickerController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsPickingMultipleItems": true;
-        "delegate": true;
-        "mediaTypes": true;
-        "prompt": true;
-        "showsCloudItems": true;
-        "showsItemsWithProtectedAssets": true;
     };
 }
 /** protocol MPMediaPickerControllerDelegate : NSObjectProtocol */
@@ -2152,21 +2144,18 @@ export declare class MPMoviePlayerViewController extends SDKHandle {
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static init(contentURL?: (string) | null): MPMoviePlayerViewController;
+    static init(contentURL?: (string) | null): Promise<MPMoviePlayerViewController>;
     /**
      * var moviePlayer: MPMoviePlayerController! { get }
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    get moviePlayer(): (MPMoviePlayerController) | null;
+    get moviePlayer(): Promise<(MPMoviePlayerController) | null>;
     readonly $type: {
         "c:objc(cs)MPMoviePlayerViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "moviePlayer": true;
     };
 }
 /**
@@ -3399,109 +3388,102 @@ export declare class MPTimedMetadata extends SDKHandle {
  */
 export declare class MPVolumeView extends SDKHandle {
     /** init() */
-    static init(): MPVolumeView;
+    static init(): Promise<MPVolumeView>;
     /**
      * func maximumVolumeSliderImage(for state: UIControl.State) -> UIImage?
      * @availability iOS 6.0+
      */
-    maximumVolumeSliderImage(state: _UIKit_UIControl_State): (_UIKit_UIImage) | null;
+    maximumVolumeSliderImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null>;
     /**
      * func minimumVolumeSliderImage(for state: UIControl.State) -> UIImage?
      * @availability iOS 6.0+
      */
-    minimumVolumeSliderImage(state: _UIKit_UIControl_State): (_UIKit_UIImage) | null;
+    minimumVolumeSliderImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null>;
     /**
      * func routeButtonImage(for state: UIControl.State) -> UIImage?
      * @availability iOS 6.0+
      * @deprecated iOS 13.0
      */
-    routeButtonImage(state: _UIKit_UIControl_State): (_UIKit_UIImage) | null;
+    routeButtonImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null>;
     /**
      * func routeButtonRect(forBounds bounds: CGRect) -> CGRect
      * @availability iOS 6.0+
      * @deprecated iOS 13.0
      */
-    routeButtonRect(bounds: $SDK8): $SDK8;
+    routeButtonRect(bounds: $SDK8): Promise<$SDK8>;
     /**
      * func setMaximumVolumeSliderImage(_ image: UIImage?, for state: UIControl.State)
      * @availability iOS 6.0+
      */
-    setMaximumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): void;
+    setMaximumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void>;
     /**
      * func setMinimumVolumeSliderImage(_ image: UIImage?, for state: UIControl.State)
      * @availability iOS 6.0+
      */
-    setMinimumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): void;
+    setMinimumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void>;
     /**
      * func setRouteButtonImage(_ image: UIImage?, for state: UIControl.State)
      * @availability iOS 6.0+
      * @deprecated iOS 13.0
      */
-    setRouteButtonImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): void;
+    setRouteButtonImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void>;
     /**
      * func setVolumeThumbImage(_ image: UIImage?, for state: UIControl.State)
      * @availability iOS 6.0+
      */
-    setVolumeThumbImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): void;
+    setVolumeThumbImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void>;
     /**
      * func volumeSliderRect(forBounds bounds: CGRect) -> CGRect
      * @availability iOS 6.0+
      */
-    volumeSliderRect(bounds: $SDK8): $SDK8;
+    volumeSliderRect(bounds: $SDK8): Promise<$SDK8>;
     /**
      * func volumeThumbImage(for state: UIControl.State) -> UIImage?
      * @availability iOS 6.0+
      */
-    volumeThumbImage(state: _UIKit_UIControl_State): (_UIKit_UIImage) | null;
+    volumeThumbImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null>;
     /**
      * func volumeThumbRect(forBounds bounds: CGRect, volumeSliderRect rect: CGRect, value: Float) -> CGRect
      * @availability iOS 6.0+
      */
-    volumeThumbRect(bounds: $SDK8, rect: $SDK8, value: number): $SDK8;
+    volumeThumbRect(bounds: $SDK8, rect: $SDK8, value: number): Promise<$SDK8>;
     /**
      * var showsRouteButton: Bool { get set }
      * @availability iOS 4.2+
      * @deprecated iOS 13.0
      */
-    get showsRouteButton(): boolean;
-    set showsRouteButton(value: boolean);
+    get showsRouteButton(): Promise<boolean>;
+    setShowsRouteButton(value: boolean): Promise<void>;
     /**
      * var showsVolumeSlider: Bool { get set }
      * @availability iOS 4.2+
      */
-    get showsVolumeSlider(): boolean;
-    set showsVolumeSlider(value: boolean);
+    get showsVolumeSlider(): Promise<boolean>;
+    setShowsVolumeSlider(value: boolean): Promise<void>;
     /**
      * var volumeWarningSliderImage: UIImage? { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 17.0
      */
-    get volumeWarningSliderImage(): (_UIKit_UIImage) | null;
-    set volumeWarningSliderImage(value: (_UIKit_UIImage) | null);
+    get volumeWarningSliderImage(): Promise<(_UIKit_UIImage) | null>;
+    setVolumeWarningSliderImage(value?: (_UIKit_UIImage) | null): Promise<void>;
     /**
      * var isWirelessRouteActive: Bool { get }
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
-    get isWirelessRouteActive(): boolean;
+    get isWirelessRouteActive(): Promise<boolean>;
     /**
      * var areWirelessRoutesAvailable: Bool { get }
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
-    get areWirelessRoutesAvailable(): boolean;
+    get areWirelessRoutesAvailable(): Promise<boolean>;
     readonly $type: {
         "c:objc(cs)MPVolumeView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "showsRouteButton": true;
-        "showsVolumeSlider": true;
-        "volumeWarningSliderImage": true;
-        "isWirelessRouteActive": true;
-        "areWirelessRoutesAvailable": true;
     };
 }
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});

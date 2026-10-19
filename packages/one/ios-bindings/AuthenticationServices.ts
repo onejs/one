@@ -119,24 +119,24 @@ type $SDK69 = ((arg0: (string) | null, arg1: (NativeError) | null) => void);
  */
 export class ASAccountAuthenticationModificationController extends SDKHandle {
   /** init() */
-  static init(): ASAccountAuthenticationModificationController { return callSDK<ASAccountAuthenticationModificationController>("AuthenticationServices_90ad0eb69cc6bf4a", 1893135534096642, undefined, []); }
+  static init(): ASAccountAuthenticationModificationController { return callSDK<ASAccountAuthenticationModificationController>("AuthenticationServices_067acaa3e5f56b46", 1893135534096642, undefined, []); }
   /**
    * func perform(_ request: ASAccountAuthenticationModificationRequest)
    * @availability iOS 14.0+
    */
-  perform(request: ASAccountAuthenticationModificationRequest): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1418003402484115, this, [request]); }
+  perform(request: ASAccountAuthenticationModificationRequest): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1418003402484115, this, [request]); }
   /**
    * weak var delegate: (any ASAccountAuthenticationModificationControllerDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2050245834133398, this, []); }
-  set delegate(value: (Implements<ASAccountAuthenticationModificationControllerDelegate> | SDKHandle) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2795115519890845, this, [value], [{"protocol":"c:objc(pl)ASAccountAuthenticationModificationControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_067acaa3e5f56b46", 2050245834133398, this, []); }
+  set delegate(value: (Implements<ASAccountAuthenticationModificationControllerDelegate> | SDKHandle) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2795115519890845, this, [value], [{"protocol":"c:objc(pl)ASAccountAuthenticationModificationControllerDelegate"}]); }
   /**
    * weak var presentationContextProvider: (any ASAccountAuthenticationModificationControllerPresentationContextProviding)? { get set }
    * @availability iOS 14.0+
    */
-  get presentationContextProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1089774507280687, this, []); }
-  set presentationContextProvider(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2456102554287364, this, [value]); }
+  get presentationContextProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_067acaa3e5f56b46", 1089774507280687, this, []); }
+  set presentationContextProvider(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2456102554287364, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAccountAuthenticationModificationController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "presentationContextProvider": true };
 }
@@ -179,24 +179,24 @@ export class ASAccountAuthenticationModificationExtensionContext extends SDKHand
    * func cancelRequest(withError error: any Error)
    * @availability iOS 14.0+
    */
-  cancelRequest(error: NativeError): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3469840879721173, this, [error]); }
+  cancelRequest(error: NativeError): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3469840879721173, this, [error]); }
   /**
    * func completeChangePasswordRequest(updatedCredential: ASPasswordCredential, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  completeChangePasswordRequest(updatedCredential: ASPasswordCredential, userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4292155612695256, this, [updatedCredential, userInfo]); }
+  completeChangePasswordRequest(updatedCredential: ASPasswordCredential, userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4292155612695256, this, [updatedCredential, userInfo]); }
   /**
    * func completeUpgradeToSignInWithApple(userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  completeUpgradeToSignInWithApple(userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 435961862468227, this, [userInfo]); }
+  completeUpgradeToSignInWithApple(userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 435961862468227, this, [userInfo]); }
   /**
    * func requestSignInWithAppleUpgradeAuthorization(state: String?, nonce: String?) async throws -> ASAuthorizationAppleIDCredential
    * @availability iOS 14.0+
    */
-  getSignInWithAppleUpgradeAuthorization(state: (string) | null, nonce: (string) | null, completionHandler: ((arg0: (ASAuthorizationAppleIDCredential) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1849631483707599, this, [state, nonce, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  getSignInWithAppleUpgradeAuthorization(state: (string) | null, nonce: (string) | null, completionHandler: ((arg0: (ASAuthorizationAppleIDCredential) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1849631483707599, this, [state, nonce, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ASAccountAuthenticationModificationExtensionContext { return callSDK<ASAccountAuthenticationModificationExtensionContext>("AuthenticationServices_90ad0eb69cc6bf4a", 59731320387627, undefined, []); }
+  static init(): ASAccountAuthenticationModificationExtensionContext { return callSDK<ASAccountAuthenticationModificationExtensionContext>("AuthenticationServices_067acaa3e5f56b46", 59731320387627, undefined, []); }
   declare readonly $type: { "c:objc(cs)ASAccountAuthenticationModificationExtensionContext": true; "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
 }
 
@@ -206,7 +206,7 @@ export class ASAccountAuthenticationModificationExtensionContext extends SDKHand
  */
 export class ASAccountAuthenticationModificationRequest extends SDKHandle {
   /** init() */
-  static init(): ASAccountAuthenticationModificationRequest { return callSDK<ASAccountAuthenticationModificationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2578341290462368, undefined, []); }
+  static init(): ASAccountAuthenticationModificationRequest { return callSDK<ASAccountAuthenticationModificationRequest>("AuthenticationServices_067acaa3e5f56b46", 2578341290462368, undefined, []); }
   declare readonly $type: { "c:objc(cs)ASAccountAuthenticationModificationRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -219,22 +219,22 @@ export class ASAccountAuthenticationModificationReplacePasswordWithSignInWithApp
    * init(user: String, serviceIdentifier: ASCredentialServiceIdentifier, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  static init(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest { return callSDK<ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1731277156660803, undefined, [user, serviceIdentifier, userInfo]); }
+  static init(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest { return callSDK<ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest>("AuthenticationServices_067acaa3e5f56b46", 1731277156660803, undefined, [user, serviceIdentifier, userInfo]); }
   /**
    * var serviceIdentifier: ASCredentialServiceIdentifier { get }
    * @availability iOS 14.0+
    */
-  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 2335130519862414, this, []); }
+  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 2335130519862414, this, []); }
   /**
    * var user: String { get }
    * @availability iOS 14.0+
    */
-  get user(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 227678500206411, this, []); }
+  get user(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 227678500206411, this, []); }
   /**
    * var userInfo: [AnyHashable : Any]? { get }
    * @availability iOS 14.0+
    */
-  get userInfo(): $SDK1 { return callSDK<$SDK1>("AuthenticationServices_90ad0eb69cc6bf4a", 3372905709975012, this, []); }
+  get userInfo(): $SDK1 { return callSDK<$SDK1>("AuthenticationServices_067acaa3e5f56b46", 3372905709975012, this, []); }
   declare readonly $type: { "c:objc(cs)ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest": true; "c:objc(cs)ASAccountAuthenticationModificationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "serviceIdentifier": true; "user": true; "userInfo": true };
 }
@@ -248,22 +248,22 @@ export class ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordR
    * init(user: String, serviceIdentifier: ASCredentialServiceIdentifier, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  static init(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest { return callSDK<ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2500801867743107, undefined, [user, serviceIdentifier, userInfo]); }
+  static init(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest { return callSDK<ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest>("AuthenticationServices_067acaa3e5f56b46", 2500801867743107, undefined, [user, serviceIdentifier, userInfo]); }
   /**
    * var serviceIdentifier: ASCredentialServiceIdentifier { get }
    * @availability iOS 14.0+
    */
-  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1565254020965039, this, []); }
+  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1565254020965039, this, []); }
   /**
    * var user: String { get }
    * @availability iOS 14.0+
    */
-  get user(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2383203115344088, this, []); }
+  get user(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2383203115344088, this, []); }
   /**
    * var userInfo: [AnyHashable : Any]? { get }
    * @availability iOS 14.0+
    */
-  get userInfo(): $SDK1 { return callSDK<$SDK1>("AuthenticationServices_90ad0eb69cc6bf4a", 3237463829778269, this, []); }
+  get userInfo(): $SDK1 { return callSDK<$SDK1>("AuthenticationServices_067acaa3e5f56b46", 3237463829778269, this, []); }
   declare readonly $type: { "c:objc(cs)ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest": true; "c:objc(cs)ASAccountAuthenticationModificationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "serviceIdentifier": true; "user": true; "userInfo": true };
 }
@@ -277,36 +277,35 @@ export class ASAccountAuthenticationModificationViewController extends SDKHandle
    * func cancelRequest()
    * @availability iOS 14.0+
    */
-  cancelRequest(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2667295748994178, this, []); }
+  cancelRequest(): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1468850454235749, this, []); }
   /**
    * func changePasswordWithoutUserInteraction(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: String, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  changePasswordWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2046435943283530, this, [serviceIdentifier, existingCredential, newPassword, userInfo]); }
+  changePasswordWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 890730881378413, this, [serviceIdentifier, existingCredential, newPassword, userInfo]); }
   /**
    * func convertAccountToSignInWithAppleWithoutUserInteraction(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  convertAccountToSignInWithAppleWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 808138811596395, this, [serviceIdentifier, existingCredential, userInfo]); }
+  convertAccountToSignInWithAppleWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3743286428950804, this, [serviceIdentifier, existingCredential, userInfo]); }
   /** init() */
-  static init(): ASAccountAuthenticationModificationViewController { return callSDK<ASAccountAuthenticationModificationViewController>("AuthenticationServices_90ad0eb69cc6bf4a", 3253264300624724, undefined, []); }
+  static init(): Promise<ASAccountAuthenticationModificationViewController> { return callSDKAsync<ASAccountAuthenticationModificationViewController>("AuthenticationServices_067acaa3e5f56b46", 3001140901282927, undefined, []); }
   /**
    * func prepareInterfaceToChangePassword(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: String, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  prepareInterfaceToChangePassword(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2951777116153639, this, [serviceIdentifier, existingCredential, newPassword, userInfo]); }
+  prepareInterfaceToChangePassword(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2193585745755328, this, [serviceIdentifier, existingCredential, newPassword, userInfo]); }
   /**
    * func prepareInterfaceToConvertAccountToSignInWithApple(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo: [AnyHashable : Any]? = nil)
    * @availability iOS 14.0+
    */
-  prepareInterfaceToConvertAccountToSignInWithApple(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2813641784812554, this, [serviceIdentifier, existingCredential, userInfo]); }
+  prepareInterfaceToConvertAccountToSignInWithApple(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 4252805707747065, this, [serviceIdentifier, existingCredential, userInfo]); }
   /**
    * var extensionContext: ASAccountAuthenticationModificationExtensionContext { get }
    * @availability iOS 14.0+
    */
-  get extensionContext(): ASAccountAuthenticationModificationExtensionContext { return callSDK<ASAccountAuthenticationModificationExtensionContext>("AuthenticationServices_90ad0eb69cc6bf4a", 3879258799442639, this, []); }
+  get extensionContext(): Promise<ASAccountAuthenticationModificationExtensionContext> { return callSDKAsync<ASAccountAuthenticationModificationExtensionContext>("AuthenticationServices_067acaa3e5f56b46", 3562641983052340, this, []); }
   declare readonly $type: { "c:objc(cs)ASAccountAuthenticationModificationViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "extensionContext": true };
 }
 
 /**
@@ -318,12 +317,12 @@ export class ASAuthorization extends SDKHandle {
    * var credential: any ASAuthorizationCredential { get }
    * @availability iOS 13.0+
    */
-  get credential(): SDKHandle { return callSDK<SDKHandle>("AuthenticationServices_90ad0eb69cc6bf4a", 1596309642332729, this, []); }
+  get credential(): SDKHandle { return callSDK<SDKHandle>("AuthenticationServices_067acaa3e5f56b46", 1596309642332729, this, []); }
   /**
    * var provider: any ASAuthorizationProvider { get }
    * @availability iOS 13.0+
    */
-  get provider(): SDKHandle { return callSDK<SDKHandle>("AuthenticationServices_90ad0eb69cc6bf4a", 3485662575136612, this, []); }
+  get provider(): SDKHandle { return callSDK<SDKHandle>("AuthenticationServices_067acaa3e5f56b46", 3485662575136612, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorization": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "credential": true; "provider": true };
 }
@@ -339,32 +338,32 @@ export const ASAuthorization_OpenIDOperation = {
    * static let operationImplicit: ASAuthorization.OpenIDOperation
    * @availability iOS 13.0+
    */
-  get operationImplicit(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 825333834107742, undefined, []); },
+  get operationImplicit(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 825333834107742, undefined, []); },
   /**
    * static let operationLogin: ASAuthorization.OpenIDOperation
    * @availability iOS 13.0+
    */
-  get operationLogin(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 4419610431531459, undefined, []); },
+  get operationLogin(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 4419610431531459, undefined, []); },
   /**
    * static let operationLogout: ASAuthorization.OpenIDOperation
    * @availability iOS 13.0+
    */
-  get operationLogout(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 948684571773063, undefined, []); },
+  get operationLogout(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 948684571773063, undefined, []); },
   /**
    * static let operationRefresh: ASAuthorization.OpenIDOperation
    * @availability iOS 13.0+
    */
-  get operationRefresh(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 795539688025661, undefined, []); },
+  get operationRefresh(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 795539688025661, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  initRawValue(rawValue: string): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 3071591042378866, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 3071591042378866, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 3443395919954203, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 3443395919954203, undefined, [rawValue]); }
 };
 
 /**
@@ -378,22 +377,22 @@ export const ASAuthorization_Scope = {
    * static let email: ASAuthorization.Scope
    * @availability iOS 13.0+
    */
-  get email(): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_90ad0eb69cc6bf4a", 2738748071958822, undefined, []); },
+  get email(): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_067acaa3e5f56b46", 2738748071958822, undefined, []); },
   /**
    * static let fullName: ASAuthorization.Scope
    * @availability iOS 13.0+
    */
-  get fullName(): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_90ad0eb69cc6bf4a", 2897211819965597, undefined, []); },
+  get fullName(): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_067acaa3e5f56b46", 2897211819965597, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  initRawValue(rawValue: string): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_90ad0eb69cc6bf4a", 2010474749604091, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_067acaa3e5f56b46", 2010474749604091, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_90ad0eb69cc6bf4a", 2406454271813948, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorization_Scope { return callSDK<ASAuthorization_Scope>("AuthenticationServices_067acaa3e5f56b46", 2406454271813948, undefined, [rawValue]); }
 };
 
 /**
@@ -405,39 +404,39 @@ export class ASAuthorizationAccountCreationPlatformPublicKeyCredential extends S
    * static let supportsSecureCoding: Bool
    * @availability iOS 26.0+
    */
-  static get supportsSecureCoding(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 3478077331770133, undefined, []); }
+  static get supportsSecureCoding(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 3478077331770133, undefined, []); }
   /**
    * func copy(with zone: NSZone? = nil) -> Any
    * @availability iOS 26.0+
    */
-  copy(): unknown { return callSDK<unknown>("AuthenticationServices_90ad0eb69cc6bf4a", 2776042510443268, this, []); }
+  copy(): unknown { return callSDK<unknown>("AuthenticationServices_067acaa3e5f56b46", 2776042510443268, this, []); }
   /**
    * func encode(with coder: NSCoder)
    * @availability iOS 26.0+
    */
-  encode(coder: _Foundation_NSCoder): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 354179293093574, this, [coder]); }
+  encode(coder: _Foundation_NSCoder): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 354179293093574, this, [coder]); }
   /**
    * required convenience init?(coder: NSCoder)
    * @availability iOS 26.0+
    */
-  static init(coder: _Foundation_NSCoder): (ASAuthorizationAccountCreationPlatformPublicKeyCredential) | null { return callSDK<(ASAuthorizationAccountCreationPlatformPublicKeyCredential) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 757569659010292, undefined, [coder]); }
+  static init(coder: _Foundation_NSCoder): (ASAuthorizationAccountCreationPlatformPublicKeyCredential) | null { return callSDK<(ASAuthorizationAccountCreationPlatformPublicKeyCredential) | null>("AuthenticationServices_067acaa3e5f56b46", 757569659010292, undefined, [coder]); }
   /**
    * var contactIdentifier: ASContactIdentifier { get }
    * @availability iOS 26.0+
    */
-  get contactIdentifier(): ASContactIdentifier { return callSDK<ASContactIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1293612254873995, this, []); }
+  get contactIdentifier(): ASContactIdentifier { return callSDK<ASContactIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1293612254873995, this, []); }
   /**
    * var credentialRegistration: ASAuthorizationPlatformPublicKeyCredentialRegistration
    * @availability iOS 26.0+
    */
-  get credentialRegistration(): ASAuthorizationPlatformPublicKeyCredentialRegistration { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistration>("AuthenticationServices_90ad0eb69cc6bf4a", 4249928761643151, this, []); }
-  set credentialRegistration(value: ASAuthorizationPlatformPublicKeyCredentialRegistration) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1570214114631910, this, [value]); }
+  get credentialRegistration(): ASAuthorizationPlatformPublicKeyCredentialRegistration { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistration>("AuthenticationServices_067acaa3e5f56b46", 4249928761643151, this, []); }
+  set credentialRegistration(value: ASAuthorizationPlatformPublicKeyCredentialRegistration) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1570214114631910, this, [value]); }
   /**
    * var name: PersonNameComponents?
    * @availability iOS 26.0+
    */
-  get name(): $SDK3 { return callSDK<$SDK3>("AuthenticationServices_90ad0eb69cc6bf4a", 3543424441904742, this, []); }
-  set name(value: $SDK3) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1304285278381166, this, [value]); }
+  get name(): $SDK3 { return callSDK<$SDK3>("AuthenticationServices_067acaa3e5f56b46", 3543424441904742, this, []); }
+  set name(value: $SDK3) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1304285278381166, this, [value]); }
   declare readonly $type: { "c:@M@AuthenticationServices@objc(cs)ASAuthorizationAccountCreationPlatformPublicKeyCredential": true; "c:objc(cs)NSObject": true };
 }
 
@@ -450,7 +449,7 @@ export class ASAuthorizationRequest extends SDKHandle {
    * var provider: any ASAuthorizationProvider { get }
    * @availability iOS 13.0+
    */
-  get provider(): SDKHandle { return callSDK<SDKHandle>("AuthenticationServices_90ad0eb69cc6bf4a", 1874658416877947, this, []); }
+  get provider(): SDKHandle { return callSDK<SDKHandle>("AuthenticationServices_067acaa3e5f56b46", 1874658416877947, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true };
 }
@@ -464,32 +463,32 @@ export class ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest ex
    * override dynamic func encode(with coder: NSCoder)
    * @availability iOS 26.0+
    */
-  encode(coder: _Foundation_NSCoder): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1857194974744138, this, [coder]); }
+  encode(coder: _Foundation_NSCoder): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1857194974744138, this, [coder]); }
   /**
    * final let shouldRequestName: Bool
    * @availability iOS 26.0+
    */
-  get shouldRequestName(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 2667812526627211, this, []); }
+  get shouldRequestName(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 2667812526627211, this, []); }
   /**
    * final let relyingPartyIdentifier: String
    * @availability iOS 26.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 366296014964587, this, []); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 366296014964587, this, []); }
   /**
    * final let acceptedContactIdentifiers: [ASContactIdentifierRequest]
    * @availability iOS 26.0+
    */
-  get acceptedContactIdentifiers(): $SDK4 { return callSDK<$SDK4>("AuthenticationServices_90ad0eb69cc6bf4a", 1676590348849554, this, []); }
+  get acceptedContactIdentifiers(): $SDK4 { return callSDK<$SDK4>("AuthenticationServices_067acaa3e5f56b46", 1676590348849554, this, []); }
   /**
    * final let userID: Data
    * @availability iOS 26.0+
    */
-  get userID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2703026652223685, this, []); }
+  get userID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2703026652223685, this, []); }
   /**
    * final let challenge: Data
    * @availability iOS 26.0+
    */
-  get challenge(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4317256388890449, this, []); }
+  get challenge(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4317256388890449, this, []); }
   declare readonly $type: { "c:@M@AuthenticationServices@objc(cs)ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true };
 }
@@ -503,12 +502,12 @@ export class ASAuthorizationAccountCreationProvider extends SDKHandle {
    * override dynamic init()
    * @availability iOS 26.0+
    */
-  static init(): ASAuthorizationAccountCreationProvider { return callSDK<ASAuthorizationAccountCreationProvider>("AuthenticationServices_90ad0eb69cc6bf4a", 3201596431238367, undefined, []); }
+  static init(): ASAuthorizationAccountCreationProvider { return callSDK<ASAuthorizationAccountCreationProvider>("AuthenticationServices_067acaa3e5f56b46", 3201596431238367, undefined, []); }
   /**
    * func createPlatformPublicKeyCredentialRegistrationRequest(acceptedContactIdentifiers: [ASContactIdentifierRequest], shouldRequestName: Bool, relyingPartyIdentifier: String, challenge: Data, userID: Data) -> ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest
    * @availability iOS 26.0+
    */
-  createPlatformPublicKeyCredentialRegistrationRequest(acceptedContactIdentifiers: $SDK4, shouldRequestName: boolean, relyingPartyIdentifier: string, challenge: ArrayBuffer, userID: ArrayBuffer): ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest { return callSDK<ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1807577671667075, this, [acceptedContactIdentifiers, shouldRequestName, relyingPartyIdentifier, challenge, userID]); }
+  createPlatformPublicKeyCredentialRegistrationRequest(acceptedContactIdentifiers: $SDK4, shouldRequestName: boolean, relyingPartyIdentifier: string, challenge: ArrayBuffer, userID: ArrayBuffer): ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest { return callSDK<ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 1807577671667075, this, [acceptedContactIdentifiers, shouldRequestName, relyingPartyIdentifier, challenge, userID]); }
   declare readonly $type: { "c:@M@AuthenticationServices@objc(cs)ASAuthorizationAccountCreationProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -521,20 +520,19 @@ export class ASAuthorizationAppleIDButton extends SDKHandle {
    * convenience init(type: ASAuthorizationAppleIDButton.ButtonType, style: ASAuthorizationAppleIDButton.Style)
    * @availability iOS 13.0+
    */
-  static initTypeStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): ASAuthorizationAppleIDButton { return callSDK<ASAuthorizationAppleIDButton>("AuthenticationServices_90ad0eb69cc6bf4a", 2398719935991749, undefined, [type, style]); }
+  static initTypeStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): Promise<ASAuthorizationAppleIDButton> { return callSDKAsync<ASAuthorizationAppleIDButton>("AuthenticationServices_067acaa3e5f56b46", 3059296923341334, undefined, [type, style]); }
   /**
    * init(authorizationButtonType type: ASAuthorizationAppleIDButton.ButtonType, authorizationButtonStyle style: ASAuthorizationAppleIDButton.Style)
    * @availability iOS 13.0+
    */
-  static initAuthorizationButtonTypeAuthorizationButtonStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): ASAuthorizationAppleIDButton { return callSDK<ASAuthorizationAppleIDButton>("AuthenticationServices_90ad0eb69cc6bf4a", 3395490211799852, undefined, [type, style]); }
+  static initAuthorizationButtonTypeAuthorizationButtonStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): Promise<ASAuthorizationAppleIDButton> { return callSDKAsync<ASAuthorizationAppleIDButton>("AuthenticationServices_067acaa3e5f56b46", 4268808380100094, undefined, [type, style]); }
   /**
    * var cornerRadius: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get cornerRadius(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 502016765984724, this, []); }
-  set cornerRadius(value: number) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 74418109787821, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("AuthenticationServices_067acaa3e5f56b46", 3340542739019883, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1405204324003430, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationAppleIDButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "cornerRadius": true };
 }
 
 /**
@@ -548,12 +546,12 @@ export const ASAuthorizationAppleIDButton_ButtonType = {
    * static var `default`: ASAuthorizationAppleIDButton.ButtonType { get }
    * @availability iOS 13.0+
    */
-  get default(): ASAuthorizationAppleIDButton_ButtonType { return callSDK<ASAuthorizationAppleIDButton_ButtonType>("AuthenticationServices_90ad0eb69cc6bf4a", 97494327508773, undefined, []); },
+  get default(): Promise<ASAuthorizationAppleIDButton_ButtonType> { return callSDKAsync<ASAuthorizationAppleIDButton_ButtonType>("AuthenticationServices_067acaa3e5f56b46", 352929530737653, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ASAuthorizationAppleIDButton_ButtonType) | null { return callSDK<(ASAuthorizationAppleIDButton_ButtonType) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2960394866946293, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(ASAuthorizationAppleIDButton_ButtonType) | null> { return callSDKAsync<(ASAuthorizationAppleIDButton_ButtonType) | null>("AuthenticationServices_067acaa3e5f56b46", 1699471399707404, undefined, [rawValue]); }
 };
 
 /**
@@ -567,7 +565,7 @@ export const ASAuthorizationAppleIDButton_Style = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ASAuthorizationAppleIDButton_Style) | null { return callSDK<(ASAuthorizationAppleIDButton_Style) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2718761725649383, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(ASAuthorizationAppleIDButton_Style) | null> { return callSDKAsync<(ASAuthorizationAppleIDButton_Style) | null>("AuthenticationServices_067acaa3e5f56b46", 4226273535303437, undefined, [rawValue]); }
 };
 
 /**
@@ -579,47 +577,47 @@ export class ASAuthorizationAppleIDCredential extends SDKHandle {
    * var authorizationCode: Data? { get }
    * @availability iOS 13.0+
    */
-  get authorizationCode(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 454580179566599, this, []); }
+  get authorizationCode(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 454580179566599, this, []); }
   /**
    * var authorizedScopes: [ASAuthorization.Scope] { get }
    * @availability iOS 13.0+
    */
-  get authorizedScopes(): $SDK5 { return callSDK<$SDK5>("AuthenticationServices_90ad0eb69cc6bf4a", 3924183313991638, this, []); }
+  get authorizedScopes(): $SDK5 { return callSDK<$SDK5>("AuthenticationServices_067acaa3e5f56b46", 3924183313991638, this, []); }
   /**
    * var email: String? { get }
    * @availability iOS 13.0+
    */
-  get email(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4216596642713142, this, []); }
+  get email(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 4216596642713142, this, []); }
   /**
    * var fullName: PersonNameComponents? { get }
    * @availability iOS 13.0+
    */
-  get fullName(): $SDK3 { return callSDK<$SDK3>("AuthenticationServices_90ad0eb69cc6bf4a", 4094692234278488, this, []); }
+  get fullName(): $SDK3 { return callSDK<$SDK3>("AuthenticationServices_067acaa3e5f56b46", 4094692234278488, this, []); }
   /**
    * var identityToken: Data? { get }
    * @availability iOS 13.0+
    */
-  get identityToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 450118132069471, this, []); }
+  get identityToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 450118132069471, this, []); }
   /**
    * var realUserStatus: ASUserDetectionStatus { get }
    * @availability iOS 13.0+
    */
-  get realUserStatus(): ASUserDetectionStatus { return callSDK<ASUserDetectionStatus>("AuthenticationServices_90ad0eb69cc6bf4a", 1370836802088747, this, []); }
+  get realUserStatus(): ASUserDetectionStatus { return callSDK<ASUserDetectionStatus>("AuthenticationServices_067acaa3e5f56b46", 1370836802088747, this, []); }
   /**
    * var state: String? { get }
    * @availability iOS 13.0+
    */
-  get state(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3388864500102575, this, []); }
+  get state(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 3388864500102575, this, []); }
   /**
    * var user: String { get }
    * @availability iOS 13.0+
    */
-  get user(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1677741291378138, this, []); }
+  get user(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1677741291378138, this, []); }
   /**
    * var userAgeRange: ASUserAgeRange { get }
    * @availability iOS 17.0+
    */
-  get userAgeRange(): ASUserAgeRange { return callSDK<ASUserAgeRange>("AuthenticationServices_90ad0eb69cc6bf4a", 1315402525829037, this, []); }
+  get userAgeRange(): ASUserAgeRange { return callSDK<ASUserAgeRange>("AuthenticationServices_067acaa3e5f56b46", 1315402525829037, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationAppleIDCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationCode": true; "authorizedScopes": true; "email": true; "fullName": true; "identityToken": true; "realUserStatus": true; "state": true; "user": true; "userAgeRange": true };
 }
@@ -633,19 +631,19 @@ export class ASAuthorizationAppleIDProvider extends SDKHandle {
    * class let credentialRevokedNotification: NSNotification.Name
    * @availability iOS 13.0+
    */
-  static get credentialRevokedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AuthenticationServices_90ad0eb69cc6bf4a", 582706233920472, undefined, []); }
+  static get credentialRevokedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AuthenticationServices_067acaa3e5f56b46", 582706233920472, undefined, []); }
   /**
    * func createRequest() -> ASAuthorizationAppleIDRequest
    * @availability iOS 13.0+
    */
-  createRequest(): ASAuthorizationAppleIDRequest { return callSDK<ASAuthorizationAppleIDRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1561123044379030, this, []); }
+  createRequest(): ASAuthorizationAppleIDRequest { return callSDK<ASAuthorizationAppleIDRequest>("AuthenticationServices_067acaa3e5f56b46", 1561123044379030, this, []); }
   /**
    * func credentialState(forUserID userID: String) async throws -> ASAuthorizationAppleIDProvider.CredentialState
    * @availability iOS 13.0+
    */
-  getCredentialState(userID: string, completion: ((arg0: ASAuthorizationAppleIDProvider_CredentialState, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3537695688363762, this, [userID, completion], [null,{"callback":{"out":[]}}]); }
+  getCredentialState(userID: string, completion: ((arg0: ASAuthorizationAppleIDProvider_CredentialState, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3537695688363762, this, [userID, completion], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ASAuthorizationAppleIDProvider { return callSDK<ASAuthorizationAppleIDProvider>("AuthenticationServices_90ad0eb69cc6bf4a", 3798064667643153, undefined, []); }
+  static init(): ASAuthorizationAppleIDProvider { return callSDK<ASAuthorizationAppleIDProvider>("AuthenticationServices_067acaa3e5f56b46", 3798064667643153, undefined, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationAppleIDProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -660,7 +658,7 @@ export const ASAuthorizationAppleIDProvider_CredentialState = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ASAuthorizationAppleIDProvider_CredentialState) | null { return callSDK<(ASAuthorizationAppleIDProvider_CredentialState) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 854945363079018, undefined, [rawValue]); }
+  init(rawValue: number): (ASAuthorizationAppleIDProvider_CredentialState) | null { return callSDK<(ASAuthorizationAppleIDProvider_CredentialState) | null>("AuthenticationServices_067acaa3e5f56b46", 854945363079018, undefined, [rawValue]); }
 };
 
 /**
@@ -672,26 +670,26 @@ export class ASAuthorizationOpenIDRequest extends ASAuthorizationRequest {
    * var nonce: String? { get set }
    * @availability iOS 13.0+
    */
-  get nonce(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 179147212903895, this, []); }
-  set nonce(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3581218899893306, this, [value]); }
+  get nonce(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 179147212903895, this, []); }
+  set nonce(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3581218899893306, this, [value]); }
   /**
    * var requestedOperation: ASAuthorization.OpenIDOperation { get set }
    * @availability iOS 13.0+
    */
-  get requestedOperation(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 2350766455904116, this, []); }
-  set requestedOperation(value: ASAuthorization_OpenIDOperation) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3583303299269558, this, [value]); }
+  get requestedOperation(): ASAuthorization_OpenIDOperation { return callSDK<ASAuthorization_OpenIDOperation>("AuthenticationServices_067acaa3e5f56b46", 2350766455904116, this, []); }
+  set requestedOperation(value: ASAuthorization_OpenIDOperation) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3583303299269558, this, [value]); }
   /**
    * var requestedScopes: [ASAuthorization.Scope]? { get set }
    * @availability iOS 13.0+
    */
-  get requestedScopes(): $SDK7 { return callSDK<$SDK7>("AuthenticationServices_90ad0eb69cc6bf4a", 1956055851793878, this, []); }
-  set requestedScopes(value: $SDK7) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1751712886349692, this, [value]); }
+  get requestedScopes(): $SDK7 { return callSDK<$SDK7>("AuthenticationServices_067acaa3e5f56b46", 1956055851793878, this, []); }
+  set requestedScopes(value: $SDK7) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1751712886349692, this, [value]); }
   /**
    * var state: String? { get set }
    * @availability iOS 13.0+
    */
-  get state(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4399667756436786, this, []); }
-  set state(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4334098486789573, this, [value]); }
+  get state(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 4399667756436786, this, []); }
+  set state(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4334098486789573, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationOpenIDRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "nonce": true; "requestedOperation": true; "requestedScopes": true; "state": true };
 }
@@ -705,8 +703,8 @@ export class ASAuthorizationAppleIDRequest extends ASAuthorizationOpenIDRequest 
    * var user: String? { get set }
    * @availability iOS 13.0+
    */
-  get user(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3705431216170255, this, []); }
-  set user(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3599938525366957, this, [value]); }
+  get user(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 3705431216170255, this, []); }
+  set user(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3599938525366957, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationAppleIDRequest": true; "c:objc(cs)ASAuthorizationOpenIDRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "nonce": true; "requestedOperation": true; "requestedScopes": true; "state": true; "user": true };
 }
@@ -720,44 +718,44 @@ export class ASAuthorizationController extends SDKHandle {
    * func cancel()
    * @availability iOS 16.0+
    */
-  cancel(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1027729882578499, this, []); }
+  cancel(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1027729882578499, this, []); }
   /**
    * init(authorizationRequests: [ASAuthorizationRequest])
    * @availability iOS 13.0+
    */
-  static init(authorizationRequests: $SDK8): ASAuthorizationController { return callSDK<ASAuthorizationController>("AuthenticationServices_90ad0eb69cc6bf4a", 4001494432951997, undefined, [authorizationRequests]); }
+  static init(authorizationRequests: $SDK8): ASAuthorizationController { return callSDK<ASAuthorizationController>("AuthenticationServices_067acaa3e5f56b46", 4001494432951997, undefined, [authorizationRequests]); }
   /**
    * func performAutoFillAssistedRequests()
    * @availability iOS 16.0+
    */
-  performAutoFillAssistedRequests(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3899271122053778, this, []); }
+  performAutoFillAssistedRequests(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3899271122053778, this, []); }
   /**
    * func performRequests()
    * @availability iOS 13.0+
    */
-  performRequests(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2572929880422217, this, []); }
+  performRequests(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2572929880422217, this, []); }
   /**
    * func performRequests(options: ASAuthorizationController.RequestOptions = [])
    * @availability iOS 16.0+
    */
-  performRequestsOptions(options?: ASAuthorizationController_RequestOptions): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1625097192448526, this, [options]); }
+  performRequestsOptions(options?: ASAuthorizationController_RequestOptions): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1625097192448526, this, [options]); }
   /**
    * var authorizationRequests: [ASAuthorizationRequest] { get }
    * @availability iOS 13.0+
    */
-  get authorizationRequests(): $SDK8 { return callSDK<$SDK8>("AuthenticationServices_90ad0eb69cc6bf4a", 786763832019723, this, []); }
+  get authorizationRequests(): $SDK8 { return callSDK<$SDK8>("AuthenticationServices_067acaa3e5f56b46", 786763832019723, this, []); }
   /**
    * weak var delegate: (any ASAuthorizationControllerDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1595398461693570, this, []); }
-  set delegate(value: (Implements<ASAuthorizationControllerDelegate> | SDKHandle) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1974263642411254, this, [value], [{"protocol":"c:objc(pl)ASAuthorizationControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_067acaa3e5f56b46", 1595398461693570, this, []); }
+  set delegate(value: (Implements<ASAuthorizationControllerDelegate> | SDKHandle) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1974263642411254, this, [value], [{"protocol":"c:objc(pl)ASAuthorizationControllerDelegate"}]); }
   /**
    * weak var presentationContextProvider: (any ASAuthorizationControllerPresentationContextProviding)? { get set }
    * @availability iOS 13.0+
    */
-  get presentationContextProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3419067589506262, this, []); }
-  set presentationContextProvider(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1201585744687145, this, [value]); }
+  get presentationContextProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_067acaa3e5f56b46", 3419067589506262, this, []); }
+  set presentationContextProvider(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1201585744687145, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationRequests": true; "delegate": true; "presentationContextProvider": true };
 }
@@ -773,12 +771,12 @@ export const ASAuthorizationController_RequestOptions = {
    * static var preferImmediatelyAvailableCredentials: ASAuthorizationController.RequestOptions { get }
    * @availability iOS 16.0+
    */
-  get preferImmediatelyAvailableCredentials(): ASAuthorizationController_RequestOptions { return callSDK<ASAuthorizationController_RequestOptions>("AuthenticationServices_90ad0eb69cc6bf4a", 1609926862019200, undefined, []); },
+  get preferImmediatelyAvailableCredentials(): ASAuthorizationController_RequestOptions { return callSDK<ASAuthorizationController_RequestOptions>("AuthenticationServices_067acaa3e5f56b46", 1609926862019200, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): ASAuthorizationController_RequestOptions { return callSDK<ASAuthorizationController_RequestOptions>("AuthenticationServices_90ad0eb69cc6bf4a", 2712999938823175, undefined, [rawValue]); }
+  init(rawValue: number): ASAuthorizationController_RequestOptions { return callSDK<ASAuthorizationController_RequestOptions>("AuthenticationServices_067acaa3e5f56b46", 2712999938823175, undefined, [rawValue]); }
 };
 
 /**
@@ -829,62 +827,62 @@ export class ASAuthorizationError extends SDKHandle {
    * static var notHandled: ASAuthorizationError.Code { get }
    * @availability iOS 13.0+
    */
-  static get notHandled(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3928580433520706, undefined, []); }
+  static get notHandled(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 3928580433520706, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1859611063495474, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1859611063495474, undefined, []); }
   /**
    * static var notInteractive: ASAuthorizationError.Code { get }
    * @availability iOS 15.0+
    */
-  static get notInteractive(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 786244442577138, undefined, []); }
+  static get notInteractive(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 786244442577138, undefined, []); }
   /**
    * static var invalidResponse: ASAuthorizationError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidResponse(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 1070866612751856, undefined, []); }
+  static get invalidResponse(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 1070866612751856, undefined, []); }
   /**
    * static var credentialExport: ASAuthorizationError.Code { get }
    * @availability iOS 18.2+
    */
-  static get credentialExport(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 628375106509801, undefined, []); }
+  static get credentialExport(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 628375106509801, undefined, []); }
   /**
    * static var credentialImport: ASAuthorizationError.Code { get }
    * @availability iOS 18.2+
    */
-  static get credentialImport(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 1144973771472975, undefined, []); }
+  static get credentialImport(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 1144973771472975, undefined, []); }
   /**
    * static var preferSignInWithApple: ASAuthorizationError.Code { get }
    * @availability iOS 26.0+
    */
-  static get preferSignInWithApple(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3070531009148906, undefined, []); }
+  static get preferSignInWithApple(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 3070531009148906, undefined, []); }
   /**
    * static var matchedExcludedCredential: ASAuthorizationError.Code { get }
    * @availability iOS 18.0+
    */
-  static get matchedExcludedCredential(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3765704103137069, undefined, []); }
+  static get matchedExcludedCredential(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 3765704103137069, undefined, []); }
   /**
    * static var deviceNotConfiguredForPasskeyCreation: ASAuthorizationError.Code { get }
    * @availability iOS 26.0+
    */
-  static get deviceNotConfiguredForPasskeyCreation(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3493732614817578, undefined, []); }
+  static get deviceNotConfiguredForPasskeyCreation(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 3493732614817578, undefined, []); }
   /**
    * static var failed: ASAuthorizationError.Code { get }
    * @availability iOS 13.0+
    */
-  static get failed(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 4444281727419441, undefined, []); }
+  static get failed(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 4444281727419441, undefined, []); }
   /**
    * static var unknown: ASAuthorizationError.Code { get }
    * @availability iOS 13.0+
    */
-  static get unknown(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3414878153226162, undefined, []); }
+  static get unknown(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 3414878153226162, undefined, []); }
   /**
    * static var canceled: ASAuthorizationError.Code { get }
    * @availability iOS 13.0+
    */
-  static get canceled(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 1672717332062580, undefined, []); }
+  static get canceled(): ASAuthorizationError_Code { return callSDK<ASAuthorizationError_Code>("AuthenticationServices_067acaa3e5f56b46", 1672717332062580, undefined, []); }
   declare readonly $type: { "s:SC20ASAuthorizationErrorLeV": true };
 }
 
@@ -899,7 +897,7 @@ export const ASAuthorizationError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ASAuthorizationError_Code) | null { return callSDK<(ASAuthorizationError_Code) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2386912780910225, undefined, [rawValue]); }
+  init(rawValue: number): (ASAuthorizationError_Code) | null { return callSDK<(ASAuthorizationError_Code) | null>("AuthenticationServices_067acaa3e5f56b46", 2386912780910225, undefined, [rawValue]); }
 };
 
 /**
@@ -911,9 +909,9 @@ export class ASAuthorizationPasswordProvider extends SDKHandle {
    * func createRequest() -> ASAuthorizationPasswordRequest
    * @availability iOS 13.0+
    */
-  createRequest(): ASAuthorizationPasswordRequest { return callSDK<ASAuthorizationPasswordRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 500827846362092, this, []); }
+  createRequest(): ASAuthorizationPasswordRequest { return callSDK<ASAuthorizationPasswordRequest>("AuthenticationServices_067acaa3e5f56b46", 500827846362092, this, []); }
   /** init() */
-  static init(): ASAuthorizationPasswordProvider { return callSDK<ASAuthorizationPasswordProvider>("AuthenticationServices_90ad0eb69cc6bf4a", 49091149297324, undefined, []); }
+  static init(): ASAuthorizationPasswordProvider { return callSDK<ASAuthorizationPasswordProvider>("AuthenticationServices_067acaa3e5f56b46", 49091149297324, undefined, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPasswordProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -935,17 +933,17 @@ export class ASAuthorizationPlatformPublicKeyCredentialAssertion extends SDKHand
    * var attachment: ASAuthorizationPublicKeyCredentialAttachment { get }
    * @availability iOS 16.6+
    */
-  get attachment(): ASAuthorizationPublicKeyCredentialAttachment { return callSDK<ASAuthorizationPublicKeyCredentialAttachment>("AuthenticationServices_90ad0eb69cc6bf4a", 2225223568379364, this, []); }
+  get attachment(): ASAuthorizationPublicKeyCredentialAttachment { return callSDK<ASAuthorizationPublicKeyCredentialAttachment>("AuthenticationServices_067acaa3e5f56b46", 2225223568379364, this, []); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? { get }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK11 { return callSDK<$SDK11>("AuthenticationServices_90ad0eb69cc6bf4a", 4238242711563543, this, []); }
+  get prf(): $SDK11 { return callSDK<$SDK11>("AuthenticationServices_067acaa3e5f56b46", 4238242711563543, this, []); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput? { get }
    * @availability iOS 17.0+
    */
-  get largeBlob(): $SDK12 { return callSDK<$SDK12>("AuthenticationServices_90ad0eb69cc6bf4a", 1101997066506910, this, []); }
+  get largeBlob(): $SDK12 { return callSDK<$SDK12>("AuthenticationServices_067acaa3e5f56b46", 1101997066506910, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialAssertion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachment": true };
 }
@@ -959,20 +957,20 @@ export class ASAuthorizationPlatformPublicKeyCredentialAssertionRequest extends 
    * var allowedCredentials: [ASAuthorizationPlatformPublicKeyCredentialDescriptor] { get set }
    * @availability iOS 15.0+
    */
-  get allowedCredentials(): $SDK13 { return callSDK<$SDK13>("AuthenticationServices_90ad0eb69cc6bf4a", 3616535163808023, this, []); }
-  set allowedCredentials(value: $SDK13) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2288624507134056, this, [value]); }
+  get allowedCredentials(): $SDK13 { return callSDK<$SDK13>("AuthenticationServices_067acaa3e5f56b46", 3616535163808023, this, []); }
+  set allowedCredentials(value: $SDK13) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2288624507134056, this, [value]); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get set }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK14 { return callSDK<$SDK14>("AuthenticationServices_90ad0eb69cc6bf4a", 3057133278865632, this, []); }
-  set prf(value: $SDK14) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2868212778674713, this, [value]); }
+  get prf(): $SDK14 { return callSDK<$SDK14>("AuthenticationServices_067acaa3e5f56b46", 3057133278865632, this, []); }
+  set prf(value: $SDK14) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2868212778674713, this, [value]); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput? { get set }
    * @availability iOS 17.0+
    */
-  get largeBlob(): $SDK15 { return callSDK<$SDK15>("AuthenticationServices_90ad0eb69cc6bf4a", 4207006159795651, this, []); }
-  set largeBlob(value: $SDK15) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3375604938220562, this, [value]); }
+  get largeBlob(): $SDK15 { return callSDK<$SDK15>("AuthenticationServices_067acaa3e5f56b46", 4207006159795651, this, []); }
+  set largeBlob(value: $SDK15) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3375604938220562, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialAssertionRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "allowedCredentials": true };
 }
@@ -986,7 +984,7 @@ export class ASAuthorizationPlatformPublicKeyCredentialDescriptor extends SDKHan
    * init(credentialID: Data)
    * @availability iOS 15.0+
    */
-  static init(credentialID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialDescriptor { return callSDK<ASAuthorizationPlatformPublicKeyCredentialDescriptor>("AuthenticationServices_90ad0eb69cc6bf4a", 3720738082908177, undefined, [credentialID]); }
+  static init(credentialID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialDescriptor { return callSDK<ASAuthorizationPlatformPublicKeyCredentialDescriptor>("AuthenticationServices_067acaa3e5f56b46", 3720738082908177, undefined, [credentialID]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialDescriptor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -999,42 +997,42 @@ export class ASAuthorizationPlatformPublicKeyCredentialProvider extends SDKHandl
    * func createCredentialAssertionRequest(challenge: Data) -> ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
    * @availability iOS 15.0+
    */
-  createCredentialAssertionRequestChallenge(challenge: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1657055899299795, this, [challenge]); }
+  createCredentialAssertionRequestChallenge(challenge: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>("AuthenticationServices_067acaa3e5f56b46", 1657055899299795, this, [challenge]); }
   /**
    * func createCredentialRegistrationRequest(challenge: Data, name: String, userID: Data) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
    * @availability iOS 15.0+
    */
-  createCredentialRegistrationRequestChallengeNameUserID(challenge: ArrayBuffer, name: string, userID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2020427656938816, this, [challenge, name, userID]); }
+  createCredentialRegistrationRequestChallengeNameUserID(challenge: ArrayBuffer, name: string, userID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_067acaa3e5f56b46", 2020427656938816, this, [challenge, name, userID]); }
   /**
    * func createCredentialRegistrationRequest(challenge: Data, name: String, userID: Data, requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest.RequestStyle) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
    * @availability iOS 18.0+
    */
-  createCredentialRegistrationRequestChallengeNameUserIDRequestStyle(challenge: ArrayBuffer, name: string, userID: ArrayBuffer, requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1900595750728640, this, [challenge, name, userID, requestStyle]); }
+  createCredentialRegistrationRequestChallengeNameUserIDRequestStyle(challenge: ArrayBuffer, name: string, userID: ArrayBuffer, requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_067acaa3e5f56b46", 1900595750728640, this, [challenge, name, userID, requestStyle]); }
   /**
    * init(relyingPartyIdentifier: String)
    * @availability iOS 15.0+
    */
-  static init(relyingPartyIdentifier: string): ASAuthorizationPlatformPublicKeyCredentialProvider { return callSDK<ASAuthorizationPlatformPublicKeyCredentialProvider>("AuthenticationServices_90ad0eb69cc6bf4a", 1646239105163329, undefined, [relyingPartyIdentifier]); }
+  static init(relyingPartyIdentifier: string): ASAuthorizationPlatformPublicKeyCredentialProvider { return callSDK<ASAuthorizationPlatformPublicKeyCredentialProvider>("AuthenticationServices_067acaa3e5f56b46", 1646239105163329, undefined, [relyingPartyIdentifier]); }
   /**
    * var relyingPartyIdentifier: String { get }
    * @availability iOS 15.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 914647352568528, this, []); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 914647352568528, this, []); }
   /**
    * func createCredentialAssertionRequest(clientData: ASPublicKeyCredentialClientData) -> ASAuthorizationPlatformPublicKeyCredentialAssertionRequest
    * @availability iOS 17.4+
    */
-  createCredentialAssertionRequestClientData(clientData: ASPublicKeyCredentialClientData): ASAuthorizationPlatformPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 3870392075368887, this, [clientData]); }
+  createCredentialAssertionRequestClientData(clientData: ASPublicKeyCredentialClientData): ASAuthorizationPlatformPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>("AuthenticationServices_067acaa3e5f56b46", 3870392075368887, this, [clientData]); }
   /**
    * func createCredentialRegistrationRequest(clientData: ASPublicKeyCredentialClientData, name: String, userID: Data, requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest.RequestStyle) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
    * @availability iOS 18.0+
    */
-  createCredentialRegistrationRequestClientDataNameUserIDRequestStyle(clientData: ASPublicKeyCredentialClientData, name: string, userID: ArrayBuffer, requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2170381619359889, this, [clientData, name, userID, requestStyle]); }
+  createCredentialRegistrationRequestClientDataNameUserIDRequestStyle(clientData: ASPublicKeyCredentialClientData, name: string, userID: ArrayBuffer, requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_067acaa3e5f56b46", 2170381619359889, this, [clientData, name, userID, requestStyle]); }
   /**
    * func createCredentialRegistrationRequest(clientData: ASPublicKeyCredentialClientData, name: String, userID: Data) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest
    * @availability iOS 17.4+
    */
-  createCredentialRegistrationRequestClientDataNameUserID(clientData: ASPublicKeyCredentialClientData, name: string, userID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1374387872106971, this, [clientData, name, userID]); }
+  createCredentialRegistrationRequestClientDataNameUserID(clientData: ASPublicKeyCredentialClientData, name: string, userID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest>("AuthenticationServices_067acaa3e5f56b46", 1374387872106971, this, [clientData, name, userID]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "relyingPartyIdentifier": true };
 }
@@ -1048,17 +1046,17 @@ export class ASAuthorizationPlatformPublicKeyCredentialRegistration extends SDKH
    * var attachment: ASAuthorizationPublicKeyCredentialAttachment { get }
    * @availability iOS 16.6+
    */
-  get attachment(): ASAuthorizationPublicKeyCredentialAttachment { return callSDK<ASAuthorizationPublicKeyCredentialAttachment>("AuthenticationServices_90ad0eb69cc6bf4a", 1233701738192001, this, []); }
+  get attachment(): ASAuthorizationPublicKeyCredentialAttachment { return callSDK<ASAuthorizationPublicKeyCredentialAttachment>("AuthenticationServices_067acaa3e5f56b46", 1233701738192001, this, []); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? { get }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK16 { return callSDK<$SDK16>("AuthenticationServices_90ad0eb69cc6bf4a", 2455347658972208, this, []); }
+  get prf(): $SDK16 { return callSDK<$SDK16>("AuthenticationServices_067acaa3e5f56b46", 2455347658972208, this, []); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput? { get }
    * @availability iOS 17.0+
    */
-  get largeBlob(): $SDK17 { return callSDK<$SDK17>("AuthenticationServices_90ad0eb69cc6bf4a", 1839457148202508, this, []); }
+  get largeBlob(): $SDK17 { return callSDK<$SDK17>("AuthenticationServices_067acaa3e5f56b46", 1839457148202508, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialRegistration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachment": true };
 }
@@ -1072,20 +1070,20 @@ export class ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest exten
    * var requestStyle: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest.RequestStyle { get set }
    * @availability iOS 18.0+
    */
-  get requestStyle(): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle>("AuthenticationServices_90ad0eb69cc6bf4a", 874076050804479, this, []); }
-  set requestStyle(value: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4288534607497277, this, [value]); }
+  get requestStyle(): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle { return callSDK<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle>("AuthenticationServices_067acaa3e5f56b46", 874076050804479, this, []); }
+  set requestStyle(value: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4288534607497277, this, [value]); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationInput? { get set }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK18 { return callSDK<$SDK18>("AuthenticationServices_90ad0eb69cc6bf4a", 1910277734012010, this, []); }
-  set prf(value: $SDK18) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 589694846592418, this, [value]); }
+  get prf(): $SDK18 { return callSDK<$SDK18>("AuthenticationServices_067acaa3e5f56b46", 1910277734012010, this, []); }
+  set prf(value: $SDK18) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 589694846592418, this, [value]); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput? { get set }
    * @availability iOS 17.0+
    */
-  get largeBlob(): $SDK19 { return callSDK<$SDK19>("AuthenticationServices_90ad0eb69cc6bf4a", 4177979299492247, this, []); }
-  set largeBlob(value: $SDK19) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4275675827929878, this, [value]); }
+  get largeBlob(): $SDK19 { return callSDK<$SDK19>("AuthenticationServices_067acaa3e5f56b46", 4177979299492247, this, []); }
+  set largeBlob(value: $SDK19) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4275675827929878, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "requestStyle": true };
 }
@@ -1101,7 +1099,7 @@ export const ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_Reque
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle) | null { return callSDK<(ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3932959955457599, undefined, [rawValue]); }
+  init(rawValue: number): (ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle) | null { return callSDK<(ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest_RequestStyle) | null>("AuthenticationServices_067acaa3e5f56b46", 3932959955457599, undefined, [rawValue]); }
 };
 
 /**
@@ -1123,22 +1121,22 @@ export const ASAuthorizationProviderAuthorizationOperation = {
    * static let configurationRemoved: ASAuthorizationProviderAuthorizationOperation
    * @availability iOS 14.0+
    */
-  get configurationRemoved(): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 567599241693325, undefined, []); },
+  get configurationRemoved(): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_067acaa3e5f56b46", 567599241693325, undefined, []); },
   /**
    * static let directRequest: ASAuthorizationProviderAuthorizationOperation
    * @availability iOS 16.0+
    */
-  get directRequest(): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 3682495388625263, undefined, []); },
+  get directRequest(): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_067acaa3e5f56b46", 3682495388625263, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  initRawValue(rawValue: string): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 4405442130853094, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_067acaa3e5f56b46", 4405442130853094, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 4445291356421899, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_067acaa3e5f56b46", 4445291356421899, undefined, [rawValue]); }
 };
 
 /**
@@ -1150,104 +1148,104 @@ export class ASAuthorizationProviderExtensionAuthorizationRequest extends SDKHan
    * func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 41577983470056, this, []); }
+  cancel(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 41577983470056, this, []); }
   /**
    * func complete()
    * @availability iOS 13.0+
    */
-  complete(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2551037399672459, this, []); }
+  complete(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2551037399672459, this, []); }
   /**
    * func complete(authorizationResult: ASAuthorizationProviderExtensionAuthorizationResult)
    * @availability iOS 15.0+
    */
-  completeAuthorizationResult(authorizationResult: ASAuthorizationProviderExtensionAuthorizationResult): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 977758598980175, this, [authorizationResult]); }
+  completeAuthorizationResult(authorizationResult: ASAuthorizationProviderExtensionAuthorizationResult): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 977758598980175, this, [authorizationResult]); }
   /**
    * func complete(error: any Error)
    * @availability iOS 13.0+
    */
-  completeError(error: NativeError): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3235961668138706, this, [error]); }
+  completeError(error: NativeError): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3235961668138706, this, [error]); }
   /**
    * func complete(httpAuthorizationHeaders: [String : String])
    * @availability iOS 13.0+
    */
-  completeHttpAuthorizationHeaders(httpAuthorizationHeaders: Record<string, string>): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2156077732627158, this, [httpAuthorizationHeaders]); }
+  completeHttpAuthorizationHeaders(httpAuthorizationHeaders: Record<string, string>): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2156077732627158, this, [httpAuthorizationHeaders]); }
   /**
    * func complete(httpResponse: HTTPURLResponse, httpBody: Data?)
    * @availability iOS 13.0+
    */
-  completeHttpResponseHttpBody(httpResponse: _Foundation_HTTPURLResponse, httpBody?: (ArrayBuffer) | null): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2554778731151675, this, [httpResponse, httpBody]); }
+  completeHttpResponseHttpBody(httpResponse: _Foundation_HTTPURLResponse, httpBody?: (ArrayBuffer) | null): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2554778731151675, this, [httpResponse, httpBody]); }
   /**
    * func doNotHandle()
    * @availability iOS 13.0+
    */
-  doNotHandle(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 582422850526686, this, []); }
+  doNotHandle(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 582422850526686, this, []); }
   /** init() */
-  static init(): ASAuthorizationProviderExtensionAuthorizationRequest { return callSDK<ASAuthorizationProviderExtensionAuthorizationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 103942115749360, undefined, []); }
+  static init(): ASAuthorizationProviderExtensionAuthorizationRequest { return callSDK<ASAuthorizationProviderExtensionAuthorizationRequest>("AuthenticationServices_067acaa3e5f56b46", 103942115749360, undefined, []); }
   /**
    * func presentAuthorizationViewController() async throws
    * @availability iOS 13.0+
    */
-  presentAuthorizationViewController(completion: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1168325930470041, this, [completion], [{"callback":{"out":[]}}]); }
+  presentAuthorizationViewController(completion: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1168325930470041, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * var authorizationOptions: [AnyHashable : Any] { get }
    * @availability iOS 13.0+
    */
-  get authorizationOptions(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("AuthenticationServices_90ad0eb69cc6bf4a", 947351446421328, this, []); }
+  get authorizationOptions(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("AuthenticationServices_067acaa3e5f56b46", 947351446421328, this, []); }
   /**
    * var callerBundleIdentifier: String { get }
    * @availability iOS 13.0+
    */
-  get callerBundleIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4170947219043538, this, []); }
+  get callerBundleIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4170947219043538, this, []); }
   /**
    * var isCallerManaged: Bool { get }
    * @availability iOS 14.0+
    */
-  get isCallerManaged(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 520872916313579, this, []); }
+  get isCallerManaged(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 520872916313579, this, []); }
   /**
    * var callerTeamIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get callerTeamIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2793310361744417, this, []); }
+  get callerTeamIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2793310361744417, this, []); }
   /**
    * var extensionData: [AnyHashable : Any] { get }
    * @availability iOS 13.0+
    */
-  get extensionData(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("AuthenticationServices_90ad0eb69cc6bf4a", 4428028422683932, this, []); }
+  get extensionData(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("AuthenticationServices_067acaa3e5f56b46", 4428028422683932, this, []); }
   /**
    * var httpBody: Data { get }
    * @availability iOS 13.0+
    */
-  get httpBody(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2079684776026532, this, []); }
+  get httpBody(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2079684776026532, this, []); }
   /**
    * var httpHeaders: [String : String] { get }
    * @availability iOS 13.0+
    */
-  get httpHeaders(): Record<string, string> { return callSDK<Record<string, string>>("AuthenticationServices_90ad0eb69cc6bf4a", 2223170037180009, this, []); }
+  get httpHeaders(): Record<string, string> { return callSDK<Record<string, string>>("AuthenticationServices_067acaa3e5f56b46", 2223170037180009, this, []); }
   /**
    * var localizedCallerDisplayName: String { get }
    * @availability iOS 14.0+
    */
-  get localizedCallerDisplayName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2893958037374315, this, []); }
+  get localizedCallerDisplayName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2893958037374315, this, []); }
   /**
    * var realm: String { get }
    * @availability iOS 13.0+
    */
-  get realm(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3058835741572214, this, []); }
+  get realm(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3058835741572214, this, []); }
   /**
    * var requestedOperation: ASAuthorizationProviderAuthorizationOperation { get }
    * @availability iOS 13.0+
    */
-  get requestedOperation(): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_90ad0eb69cc6bf4a", 643816341322872, this, []); }
+  get requestedOperation(): ASAuthorizationProviderAuthorizationOperation { return callSDK<ASAuthorizationProviderAuthorizationOperation>("AuthenticationServices_067acaa3e5f56b46", 643816341322872, this, []); }
   /**
    * var url: URL { get }
    * @availability iOS 13.0+
    */
-  get url(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 603145191564955, this, []); }
+  get url(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 603145191564955, this, []); }
   /**
    * var isUserInterfaceEnabled: Bool { get }
    * @availability iOS 15.4+
    */
-  get isUserInterfaceEnabled(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 1842924878488118, this, []); }
+  get isUserInterfaceEnabled(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 1842924878488118, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationProviderExtensionAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationOptions": true; "callerBundleIdentifier": true; "isCallerManaged": true; "callerTeamIdentifier": true; "extensionData": true; "httpBody": true; "httpHeaders": true; "localizedCallerDisplayName": true; "realm": true; "requestedOperation": true; "url": true; "isUserInterfaceEnabled": true };
 }
@@ -1278,30 +1276,30 @@ export class ASAuthorizationProviderExtensionAuthorizationResult extends SDKHand
    * init(httpAuthorizationHeaders: [String : String])
    * @availability iOS 15.0+
    */
-  static initHttpAuthorizationHeaders(httpAuthorizationHeaders: Record<string, string>): ASAuthorizationProviderExtensionAuthorizationResult { return callSDK<ASAuthorizationProviderExtensionAuthorizationResult>("AuthenticationServices_90ad0eb69cc6bf4a", 3802238219565322, undefined, [httpAuthorizationHeaders]); }
+  static initHttpAuthorizationHeaders(httpAuthorizationHeaders: Record<string, string>): ASAuthorizationProviderExtensionAuthorizationResult { return callSDK<ASAuthorizationProviderExtensionAuthorizationResult>("AuthenticationServices_067acaa3e5f56b46", 3802238219565322, undefined, [httpAuthorizationHeaders]); }
   /**
    * init(httpResponse: HTTPURLResponse, httpBody: Data?)
    * @availability iOS 15.0+
    */
-  static initHttpResponseHttpBody(httpResponse: _Foundation_HTTPURLResponse, httpBody?: (ArrayBuffer) | null): ASAuthorizationProviderExtensionAuthorizationResult { return callSDK<ASAuthorizationProviderExtensionAuthorizationResult>("AuthenticationServices_90ad0eb69cc6bf4a", 500292357822248, undefined, [httpResponse, httpBody]); }
+  static initHttpResponseHttpBody(httpResponse: _Foundation_HTTPURLResponse, httpBody?: (ArrayBuffer) | null): ASAuthorizationProviderExtensionAuthorizationResult { return callSDK<ASAuthorizationProviderExtensionAuthorizationResult>("AuthenticationServices_067acaa3e5f56b46", 500292357822248, undefined, [httpResponse, httpBody]); }
   /**
    * var httpAuthorizationHeaders: [String : String]? { get set }
    * @availability iOS 15.0+
    */
-  get httpAuthorizationHeaders(): $SDK22 { return callSDK<$SDK22>("AuthenticationServices_90ad0eb69cc6bf4a", 3904610616778992, this, []); }
-  set httpAuthorizationHeaders(value: $SDK22) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1397577796511568, this, [value]); }
+  get httpAuthorizationHeaders(): $SDK22 { return callSDK<$SDK22>("AuthenticationServices_067acaa3e5f56b46", 3904610616778992, this, []); }
+  set httpAuthorizationHeaders(value: $SDK22) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1397577796511568, this, [value]); }
   /**
    * var httpBody: Data? { get set }
    * @availability iOS 15.0+
    */
-  get httpBody(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1886329527622649, this, []); }
-  set httpBody(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3432035395955277, this, [value]); }
+  get httpBody(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 1886329527622649, this, []); }
+  set httpBody(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3432035395955277, this, [value]); }
   /**
    * @NSCopying var httpResponse: HTTPURLResponse? { get set }
    * @availability iOS 15.0+
    */
-  get httpResponse(): $SDK23 { return callSDK<$SDK23>("AuthenticationServices_90ad0eb69cc6bf4a", 2279996109548455, this, []); }
-  set httpResponse(value: $SDK23) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3913628157637979, this, [value]); }
+  get httpResponse(): $SDK23 { return callSDK<$SDK23>("AuthenticationServices_067acaa3e5f56b46", 2279996109548455, this, []); }
+  set httpResponse(value: $SDK23) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3913628157637979, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationProviderExtensionAuthorizationResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "httpAuthorizationHeaders": true; "httpBody": true; "httpResponse": true };
 }
@@ -1337,7 +1335,7 @@ export const ASAuthorizationPublicKeyCredentialAttachment = {
    * init?(rawValue: Int)
    * @availability iOS 16.6+
    */
-  init(rawValue: number): (ASAuthorizationPublicKeyCredentialAttachment) | null { return callSDK<(ASAuthorizationPublicKeyCredentialAttachment) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3971576644094216, undefined, [rawValue]); }
+  init(rawValue: number): (ASAuthorizationPublicKeyCredentialAttachment) | null { return callSDK<(ASAuthorizationPublicKeyCredentialAttachment) | null>("AuthenticationServices_067acaa3e5f56b46", 3971576644094216, undefined, [rawValue]); }
 };
 
 /**
@@ -1351,32 +1349,32 @@ export const ASAuthorizationPublicKeyCredentialAttestationKind = {
    * static let direct: ASAuthorizationPublicKeyCredentialAttestationKind
    * @availability iOS 15.0+
    */
-  get direct(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_90ad0eb69cc6bf4a", 1449536006070923, undefined, []); },
+  get direct(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_067acaa3e5f56b46", 1449536006070923, undefined, []); },
   /**
    * static let enterprise: ASAuthorizationPublicKeyCredentialAttestationKind
    * @availability iOS 15.0+
    */
-  get enterprise(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_90ad0eb69cc6bf4a", 822122706815237, undefined, []); },
+  get enterprise(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_067acaa3e5f56b46", 822122706815237, undefined, []); },
   /**
    * static let indirect: ASAuthorizationPublicKeyCredentialAttestationKind
    * @availability iOS 15.0+
    */
-  get indirect(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_90ad0eb69cc6bf4a", 2062489879096948, undefined, []); },
+  get indirect(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_067acaa3e5f56b46", 2062489879096948, undefined, []); },
   /**
    * static let none: ASAuthorizationPublicKeyCredentialAttestationKind
    * @availability iOS 15.0+
    */
-  get none(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_90ad0eb69cc6bf4a", 3128791644932657, undefined, []); },
+  get none(): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_067acaa3e5f56b46", 3128791644932657, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_90ad0eb69cc6bf4a", 26242460264660, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_067acaa3e5f56b46", 26242460264660, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_90ad0eb69cc6bf4a", 3984914245665030, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind { return callSDK<ASAuthorizationPublicKeyCredentialAttestationKind>("AuthenticationServices_067acaa3e5f56b46", 3984914245665030, undefined, [rawValue]); }
 };
 
 /**
@@ -1398,18 +1396,18 @@ export class ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput extends S
    * static var read: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput { get }
    * @availability iOS 17.0+
    */
-  static get read(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>("AuthenticationServices_90ad0eb69cc6bf4a", 1761800401118309, undefined, []); }
+  static get read(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>("AuthenticationServices_067acaa3e5f56b46", 1761800401118309, undefined, []); }
   /**
    * static func write(_ data: Data) -> ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput
    * @availability iOS 17.0+
    */
-  static write(data: ArrayBuffer): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>("AuthenticationServices_90ad0eb69cc6bf4a", 1901152516525653, undefined, [data]); }
+  static write(data: ArrayBuffer): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>("AuthenticationServices_067acaa3e5f56b46", 1901152516525653, undefined, [data]); }
   /**
    * var operation: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput.Operation
    * @availability iOS 17.0+
    */
-  get operation(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation>("AuthenticationServices_90ad0eb69cc6bf4a", 1251438667088625, this, []); }
-  set operation(value: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2034452562041782, this, [value]); }
+  get operation(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation>("AuthenticationServices_067acaa3e5f56b46", 1251438667088625, this, []); }
+  set operation(value: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2034452562041782, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices57ASAuthorizationPublicKeyCredentialLargeBlobAssertionInputV": true };
 }
 
@@ -1430,18 +1428,18 @@ export class ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput extends 
    * static func read(data: Data?) -> ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput
    * @availability iOS 18.0+
    */
-  static read(data?: (ArrayBuffer) | null): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 1899936967666968, undefined, [data]); }
+  static read(data?: (ArrayBuffer) | null): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>("AuthenticationServices_067acaa3e5f56b46", 1899936967666968, undefined, [data]); }
   /**
    * static func write(success: Bool) -> ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput
    * @availability iOS 18.0+
    */
-  static write(success: boolean): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 3672364612863796, undefined, [success]); }
+  static write(success: boolean): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>("AuthenticationServices_067acaa3e5f56b46", 3672364612863796, undefined, [success]); }
   /**
    * var result: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput.OperationResult
    * @availability iOS 17.0+
    */
-  get result(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult>("AuthenticationServices_90ad0eb69cc6bf4a", 504527236248069, this, []); }
-  set result(value: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 603750540082357, this, [value]); }
+  get result(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult>("AuthenticationServices_067acaa3e5f56b46", 504527236248069, this, []); }
+  set result(value: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 603750540082357, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices58ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutputV": true };
 }
 
@@ -1462,18 +1460,18 @@ export class ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput extend
    * static var supportRequired: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput { get }
    * @availability iOS 17.0+
    */
-  static get supportRequired(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>("AuthenticationServices_90ad0eb69cc6bf4a", 4311800295303924, undefined, []); }
+  static get supportRequired(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>("AuthenticationServices_067acaa3e5f56b46", 4311800295303924, undefined, []); }
   /**
    * static var supportPreferred: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput { get }
    * @availability iOS 17.0+
    */
-  static get supportPreferred(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>("AuthenticationServices_90ad0eb69cc6bf4a", 138622969656111, undefined, []); }
+  static get supportPreferred(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>("AuthenticationServices_067acaa3e5f56b46", 138622969656111, undefined, []); }
   /**
    * var supportRequirement: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput.SupportRequirement
    * @availability iOS 17.0+
    */
-  get supportRequirement(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement>("AuthenticationServices_90ad0eb69cc6bf4a", 1099148814016282, this, []); }
-  set supportRequirement(value: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4427966435148878, this, [value]); }
+  get supportRequirement(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement>("AuthenticationServices_067acaa3e5f56b46", 1099148814016282, this, []); }
+  set supportRequirement(value: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4427966435148878, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices60ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInputV": true };
 }
 
@@ -1492,18 +1490,18 @@ export class ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput exten
    * var isSupported: Bool
    * @availability iOS 17.0+
    */
-  get isSupported(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 897916320533808, this, []); }
-  set isSupported(value: boolean) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3843484010021516, this, [value]); }
+  get isSupported(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 897916320533808, this, []); }
+  set isSupported(value: boolean) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3843484010021516, this, [value]); }
   /**
    * static var unsupported: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput { get }
    * @availability iOS 18.0+
    */
-  static get unsupported(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 2127148898228590, undefined, []); }
+  static get unsupported(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>("AuthenticationServices_067acaa3e5f56b46", 2127148898228590, undefined, []); }
   /**
    * static var supported: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput { get }
    * @availability iOS 18.0+
    */
-  static get supported(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 1691244361807342, undefined, []); }
+  static get supported(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput>("AuthenticationServices_067acaa3e5f56b46", 1691244361807342, undefined, []); }
   declare readonly $type: { "s:22AuthenticationServices61ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutputV": true };
 }
 
@@ -1516,12 +1514,12 @@ export class ASAuthorizationPublicKeyCredentialParameters extends SDKHandle {
    * init(algorithm: ASCOSEAlgorithmIdentifier)
    * @availability iOS 15.0+
    */
-  static init(algorithm: ASCOSEAlgorithmIdentifier): ASAuthorizationPublicKeyCredentialParameters { return callSDK<ASAuthorizationPublicKeyCredentialParameters>("AuthenticationServices_90ad0eb69cc6bf4a", 2345450412617575, undefined, [algorithm]); }
+  static init(algorithm: ASCOSEAlgorithmIdentifier): ASAuthorizationPublicKeyCredentialParameters { return callSDK<ASAuthorizationPublicKeyCredentialParameters>("AuthenticationServices_067acaa3e5f56b46", 2345450412617575, undefined, [algorithm]); }
   /**
    * var algorithm: ASCOSEAlgorithmIdentifier { get }
    * @availability iOS 15.0+
    */
-  get algorithm(): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 2684207367187281, this, []); }
+  get algorithm(): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_067acaa3e5f56b46", 2684207367187281, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationPublicKeyCredentialParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "algorithm": true };
 }
@@ -1535,22 +1533,22 @@ export class ASAuthorizationPublicKeyCredentialPRFAssertionInput extends SDKHand
    * let perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]?
    * @availability iOS 18.0+
    */
-  get perCredentialInputValues(): $SDK24 { return callSDK<$SDK24>("AuthenticationServices_90ad0eb69cc6bf4a", 2594873518723068, this, []); }
+  get perCredentialInputValues(): $SDK24 { return callSDK<$SDK24>("AuthenticationServices_067acaa3e5f56b46", 2594873518723068, this, []); }
   /**
    * static func perCredentialInputValues(_ perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]) -> ASAuthorizationPublicKeyCredentialPRFAssertionInput
    * @availability iOS 18.0+
    */
-  static perCredentialInputValues9744(perCredentialInputValues: NativeMap<ArrayBuffer, ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>): ASAuthorizationPublicKeyCredentialPRFAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput>("AuthenticationServices_90ad0eb69cc6bf4a", 3516709766033888, undefined, [perCredentialInputValues]); }
+  static perCredentialInputValues9744(perCredentialInputValues: NativeMap<ArrayBuffer, ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>): ASAuthorizationPublicKeyCredentialPRFAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput>("AuthenticationServices_067acaa3e5f56b46", 3516709766033888, undefined, [perCredentialInputValues]); }
   /**
    * let inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues?
    * @availability iOS 18.0+
    */
-  get inputValues(): $SDK26 { return callSDK<$SDK26>("AuthenticationServices_90ad0eb69cc6bf4a", 437272001050014, this, []); }
+  get inputValues(): $SDK26 { return callSDK<$SDK26>("AuthenticationServices_067acaa3e5f56b46", 437272001050014, this, []); }
   /**
    * static func inputValues(_ inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues, perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]? = nil) -> ASAuthorizationPublicKeyCredentialPRFAssertionInput
    * @availability iOS 18.0+
    */
-  static inputValuesPerCredentialInputValues(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues, perCredentialInputValues?: $SDK24): ASAuthorizationPublicKeyCredentialPRFAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput>("AuthenticationServices_90ad0eb69cc6bf4a", 4298748748045140, undefined, [inputValues, perCredentialInputValues]); }
+  static inputValuesPerCredentialInputValues(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues, perCredentialInputValues?: $SDK24): ASAuthorizationPublicKeyCredentialPRFAssertionInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput>("AuthenticationServices_067acaa3e5f56b46", 4298748748045140, undefined, [inputValues, perCredentialInputValues]); }
   declare readonly $type: { "s:22AuthenticationServices51ASAuthorizationPublicKeyCredentialPRFAssertionInputV": true };
 }
 
@@ -1563,24 +1561,24 @@ export class ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues ext
    * init(saltInput1: Data, saltInput2: Data? = nil)
    * @availability iOS 18.0+
    */
-  static init(saltInput1: ArrayBuffer, saltInput2?: (ArrayBuffer) | null): ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>("AuthenticationServices_90ad0eb69cc6bf4a", 2457323437009731, undefined, [saltInput1, saltInput2]); }
+  static init(saltInput1: ArrayBuffer, saltInput2?: (ArrayBuffer) | null): ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>("AuthenticationServices_067acaa3e5f56b46", 2457323437009731, undefined, [saltInput1, saltInput2]); }
   /**
    * var saltInput1: Data
    * @availability iOS 18.0+
    */
-  get saltInput1(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 94954961727966, this, []); }
-  set saltInput1(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1949287891313, this, [value]); }
+  get saltInput1(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 94954961727966, this, []); }
+  set saltInput1(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1949287891313, this, [value]); }
   /**
    * static func saltInput1(_ saltInput1: Data, saltInput2: Data? = nil) -> ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues
    * @availability iOS 18.0+
    */
-  static saltInput1SaltInput2(saltInput1: ArrayBuffer, saltInput2?: (ArrayBuffer) | null): ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>("AuthenticationServices_90ad0eb69cc6bf4a", 399397947625385, undefined, [saltInput1, saltInput2]); }
+  static saltInput1SaltInput2(saltInput1: ArrayBuffer, saltInput2?: (ArrayBuffer) | null): ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>("AuthenticationServices_067acaa3e5f56b46", 399397947625385, undefined, [saltInput1, saltInput2]); }
   /**
    * var saltInput2: Data?
    * @availability iOS 18.0+
    */
-  get saltInput2(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1480235495343028, this, []); }
-  set saltInput2(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 364443031057414, this, [value]); }
+  get saltInput2(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 1480235495343028, this, []); }
+  set saltInput2(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 364443031057414, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices51ASAuthorizationPublicKeyCredentialPRFAssertionInputV0H6ValuesV": true };
 }
 
@@ -1593,17 +1591,17 @@ export class ASAuthorizationPublicKeyCredentialPRFAssertionOutput extends SDKHan
    * init(first: SymmetricKey, second: SymmetricKey?)
    * @availability iOS 18.0+
    */
-  static init(first: _CryptoKit_SymmetricKey, second?: $SDK27): ASAuthorizationPublicKeyCredentialPRFAssertionOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 1666996049405889, undefined, [first, second]); }
+  static init(first: _CryptoKit_SymmetricKey, second?: $SDK27): ASAuthorizationPublicKeyCredentialPRFAssertionOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFAssertionOutput>("AuthenticationServices_067acaa3e5f56b46", 1666996049405889, undefined, [first, second]); }
   /**
    * let first: SymmetricKey
    * @availability iOS 18.0+
    */
-  get first(): _CryptoKit_SymmetricKey { return callSDK<_CryptoKit_SymmetricKey>("AuthenticationServices_90ad0eb69cc6bf4a", 2223251140271398, this, []); }
+  get first(): _CryptoKit_SymmetricKey { return callSDK<_CryptoKit_SymmetricKey>("AuthenticationServices_067acaa3e5f56b46", 2223251140271398, this, []); }
   /**
    * let second: SymmetricKey?
    * @availability iOS 18.0+
    */
-  get second(): $SDK27 { return callSDK<$SDK27>("AuthenticationServices_90ad0eb69cc6bf4a", 3397270440396496, this, []); }
+  get second(): $SDK27 { return callSDK<$SDK27>("AuthenticationServices_067acaa3e5f56b46", 3397270440396496, this, []); }
   declare readonly $type: { "s:22AuthenticationServices52ASAuthorizationPublicKeyCredentialPRFAssertionOutputV": true };
 }
 
@@ -1616,22 +1614,22 @@ export class ASAuthorizationPublicKeyCredentialPRFRegistrationInput extends SDKH
    * let inputValues: ASAuthorizationPublicKeyCredentialPRFRegistrationInput.InputValues?
    * @availability iOS 18.0+
    */
-  get inputValues(): $SDK26 { return callSDK<$SDK26>("AuthenticationServices_90ad0eb69cc6bf4a", 88924614912027, this, []); }
+  get inputValues(): $SDK26 { return callSDK<$SDK26>("AuthenticationServices_067acaa3e5f56b46", 88924614912027, this, []); }
   /**
    * static func inputValues(_ inputValues: ASAuthorizationPublicKeyCredentialPRFRegistrationInput.InputValues) -> ASAuthorizationPublicKeyCredentialPRFRegistrationInput
    * @availability iOS 18.0+
    */
-  static inputValues57409(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues): ASAuthorizationPublicKeyCredentialPRFRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>("AuthenticationServices_90ad0eb69cc6bf4a", 3930703663725022, undefined, [inputValues]); }
+  static inputValues57409(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues): ASAuthorizationPublicKeyCredentialPRFRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>("AuthenticationServices_067acaa3e5f56b46", 3930703663725022, undefined, [inputValues]); }
   /**
    * static var checkForSupport: ASAuthorizationPublicKeyCredentialPRFRegistrationInput { get }
    * @availability iOS 18.0+
    */
-  static get checkForSupport(): ASAuthorizationPublicKeyCredentialPRFRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>("AuthenticationServices_90ad0eb69cc6bf4a", 1011841176956593, undefined, []); }
+  static get checkForSupport(): ASAuthorizationPublicKeyCredentialPRFRegistrationInput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>("AuthenticationServices_067acaa3e5f56b46", 1011841176956593, undefined, []); }
   /**
    * let shouldCheckForSupport: Bool
    * @availability iOS 18.0+
    */
-  get shouldCheckForSupport(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 1096724284713858, this, []); }
+  get shouldCheckForSupport(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 1096724284713858, this, []); }
   declare readonly $type: { "s:22AuthenticationServices54ASAuthorizationPublicKeyCredentialPRFRegistrationInputV": true };
 }
 
@@ -1650,32 +1648,32 @@ export class ASAuthorizationPublicKeyCredentialPRFRegistrationOutput extends SDK
    * let isSupported: Bool
    * @availability iOS 18.0+
    */
-  get isSupported(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 316509386460077, this, []); }
+  get isSupported(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 316509386460077, this, []); }
   /**
    * static var unsupported: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { get }
    * @availability iOS 18.0+
    */
-  static get unsupported(): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 1797179613302072, undefined, []); }
+  static get unsupported(): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>("AuthenticationServices_067acaa3e5f56b46", 1797179613302072, undefined, []); }
   /**
    * init(first: SymmetricKey, second: SymmetricKey?)
    * @availability iOS 18.0+
    */
-  static init(first: _CryptoKit_SymmetricKey, second?: $SDK27): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 1366524641152522, undefined, [first, second]); }
+  static init(first: _CryptoKit_SymmetricKey, second?: $SDK27): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>("AuthenticationServices_067acaa3e5f56b46", 1366524641152522, undefined, [first, second]); }
   /**
    * let first: SymmetricKey?
    * @availability iOS 18.0+
    */
-  get first(): $SDK27 { return callSDK<$SDK27>("AuthenticationServices_90ad0eb69cc6bf4a", 955263215345788, this, []); }
+  get first(): $SDK27 { return callSDK<$SDK27>("AuthenticationServices_067acaa3e5f56b46", 955263215345788, this, []); }
   /**
    * let second: SymmetricKey?
    * @availability iOS 18.0+
    */
-  get second(): $SDK27 { return callSDK<$SDK27>("AuthenticationServices_90ad0eb69cc6bf4a", 3098323862580899, this, []); }
+  get second(): $SDK27 { return callSDK<$SDK27>("AuthenticationServices_067acaa3e5f56b46", 3098323862580899, this, []); }
   /**
    * static var supported: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { get }
    * @availability iOS 18.0+
    */
-  static get supported(): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 1897937718510010, undefined, []); }
+  static get supported(): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { return callSDK<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput>("AuthenticationServices_067acaa3e5f56b46", 1897937718510010, undefined, []); }
   declare readonly $type: { "s:22AuthenticationServices55ASAuthorizationPublicKeyCredentialPRFRegistrationOutputV": true };
 }
 
@@ -1710,27 +1708,27 @@ export const ASAuthorizationPublicKeyCredentialResidentKeyPreference = {
    * static let discouraged: ASAuthorizationPublicKeyCredentialResidentKeyPreference
    * @availability iOS 15.0+
    */
-  get discouraged(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 1846973753504606, undefined, []); },
+  get discouraged(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_067acaa3e5f56b46", 1846973753504606, undefined, []); },
   /**
    * static let preferred: ASAuthorizationPublicKeyCredentialResidentKeyPreference
    * @availability iOS 15.0+
    */
-  get preferred(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 130342023996930, undefined, []); },
+  get preferred(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_067acaa3e5f56b46", 130342023996930, undefined, []); },
   /**
    * static let required: ASAuthorizationPublicKeyCredentialResidentKeyPreference
    * @availability iOS 15.0+
    */
-  get required(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 1982566736724523, undefined, []); },
+  get required(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_067acaa3e5f56b46", 1982566736724523, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 513825362011886, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_067acaa3e5f56b46", 513825362011886, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 3492323837229178, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_067acaa3e5f56b46", 3492323837229178, undefined, [rawValue]); }
 };
 
 /**
@@ -1744,27 +1742,27 @@ export const ASAuthorizationPublicKeyCredentialUserVerificationPreference = {
    * static let discouraged: ASAuthorizationPublicKeyCredentialUserVerificationPreference
    * @availability iOS 15.0+
    */
-  get discouraged(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 1214064543039809, undefined, []); },
+  get discouraged(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 1214064543039809, undefined, []); },
   /**
    * static let preferred: ASAuthorizationPublicKeyCredentialUserVerificationPreference
    * @availability iOS 15.0+
    */
-  get preferred(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 1081314105821423, undefined, []); },
+  get preferred(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 1081314105821423, undefined, []); },
   /**
    * static let required: ASAuthorizationPublicKeyCredentialUserVerificationPreference
    * @availability iOS 15.0+
    */
-  get required(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 2482656484130099, undefined, []); },
+  get required(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 2482656484130099, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 3202846253109240, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 3202846253109240, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 2044661487676420, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 2044661487676420, undefined, [rawValue]); }
 };
 
 /**
@@ -1776,12 +1774,12 @@ export class ASAuthorizationSecurityKeyPublicKeyCredentialAssertion extends SDKH
    * var appID: Bool { get }
    * @availability iOS 17.5+
    */
-  get appID(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 425199538126474, this, []); }
+  get appID(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 425199538126474, this, []); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? { get }
    * @availability iOS 26.4+
    */
-  get prf(): $SDK11 { return callSDK<$SDK11>("AuthenticationServices_90ad0eb69cc6bf4a", 1566116810416753, this, []); }
+  get prf(): $SDK11 { return callSDK<$SDK11>("AuthenticationServices_067acaa3e5f56b46", 1566116810416753, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialAssertion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appID": true };
 }
@@ -1795,26 +1793,26 @@ export class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest exten
    * var allowedCredentials: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor] { get set }
    * @availability iOS 15.0+
    */
-  get allowedCredentials(): $SDK28 { return callSDK<$SDK28>("AuthenticationServices_90ad0eb69cc6bf4a", 3347275850522708, this, []); }
-  set allowedCredentials(value: $SDK28) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 718281992087380, this, [value]); }
+  get allowedCredentials(): $SDK28 { return callSDK<$SDK28>("AuthenticationServices_067acaa3e5f56b46", 3347275850522708, this, []); }
+  set allowedCredentials(value: $SDK28) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 718281992087380, this, [value]); }
   /**
    * var appID: String? { get set }
    * @availability iOS 17.5+
    */
-  get appID(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1417455795016966, this, []); }
-  set appID(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2840449272575029, this, [value]); }
+  get appID(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 1417455795016966, this, []); }
+  set appID(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2840449272575029, this, [value]); }
   /**
    * var prf: __ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get set }
    * @availability iOS 26.4+
    */
-  get prf(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3761583550069987, this, []); }
-  set prf(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2873532972699140, this, [value]); }
+  get prf(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_067acaa3e5f56b46", 3761583550069987, this, []); }
+  set prf(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2873532972699140, this, [value]); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get set }
    * @availability iOS 26.4+
    */
-  get prf20777(): $SDK14 { return callSDK<$SDK14>("AuthenticationServices_90ad0eb69cc6bf4a", 4142217371950283, this, []); }
-  set prf20777(value: $SDK14) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 583504777959869, this, [value]); }
+  get prf20777(): $SDK14 { return callSDK<$SDK14>("AuthenticationServices_067acaa3e5f56b46", 4142217371950283, this, []); }
+  set prf20777(value: $SDK14) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 583504777959869, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "allowedCredentials": true; "appID": true; "prf": true };
 }
@@ -1828,13 +1826,13 @@ export class ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor extends SDK
    * init(credentialID: Data, transports allowedTransports: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport])
    * @availability iOS 15.0+
    */
-  static init(credentialID: ArrayBuffer, allowedTransports: $SDK29): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>("AuthenticationServices_90ad0eb69cc6bf4a", 2836278969565355, undefined, [credentialID, allowedTransports]); }
+  static init(credentialID: ArrayBuffer, allowedTransports: $SDK29): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>("AuthenticationServices_067acaa3e5f56b46", 2836278969565355, undefined, [credentialID, allowedTransports]); }
   /**
    * var transports: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get set }
    * @availability iOS 15.0+
    */
-  get transports(): $SDK29 { return callSDK<$SDK29>("AuthenticationServices_90ad0eb69cc6bf4a", 444220325530347, this, []); }
-  set transports(value: $SDK29) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2026173088575363, this, [value]); }
+  get transports(): $SDK29 { return callSDK<$SDK29>("AuthenticationServices_067acaa3e5f56b46", 444220325530347, this, []); }
+  set transports(value: $SDK29) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2026173088575363, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "transports": true };
 }
@@ -1850,32 +1848,32 @@ export const ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport =
    * static let bluetooth: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport
    * @availability iOS 15.0+
    */
-  get bluetooth(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_90ad0eb69cc6bf4a", 4146686730375397, undefined, []); },
+  get bluetooth(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_067acaa3e5f56b46", 4146686730375397, undefined, []); },
   /**
    * static let nfc: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport
    * @availability iOS 15.0+
    */
-  get nfc(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_90ad0eb69cc6bf4a", 1622960904475474, undefined, []); },
+  get nfc(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_067acaa3e5f56b46", 1622960904475474, undefined, []); },
   /**
    * static let usb: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport
    * @availability iOS 15.0+
    */
-  get usb(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_90ad0eb69cc6bf4a", 1736339073066406, undefined, []); },
+  get usb(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_067acaa3e5f56b46", 1736339073066406, undefined, []); },
   /**
    * static var allSupported: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get }
    * @availability iOS 15.0+
    */
-  get allSupported(): $SDK29 { return callSDK<$SDK29>("AuthenticationServices_90ad0eb69cc6bf4a", 718697469397293, undefined, []); },
+  get allSupported(): $SDK29 { return callSDK<$SDK29>("AuthenticationServices_067acaa3e5f56b46", 718697469397293, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_90ad0eb69cc6bf4a", 3283264356397447, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_067acaa3e5f56b46", 3283264356397447, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_90ad0eb69cc6bf4a", 2201222041315379, undefined, [rawValue]); }
+  init(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>("AuthenticationServices_067acaa3e5f56b46", 2201222041315379, undefined, [rawValue]); }
 };
 
 /**
@@ -1887,32 +1885,32 @@ export class ASAuthorizationSecurityKeyPublicKeyCredentialProvider extends SDKHa
    * func createCredentialAssertionRequest(challenge: Data) -> ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest
    * @availability iOS 15.0+
    */
-  createCredentialAssertionRequestChallenge(challenge: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 3632191803499287, this, [challenge]); }
+  createCredentialAssertionRequestChallenge(challenge: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>("AuthenticationServices_067acaa3e5f56b46", 3632191803499287, this, [challenge]); }
   /**
    * func createCredentialRegistrationRequest(challenge: Data, displayName: String, name: String, userID: Data) -> ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
    * @availability iOS 15.0+
    */
-  createCredentialRegistrationRequestChallengeDisplayNameNameUserID(challenge: ArrayBuffer, displayName: string, name: string, userID: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 4347259460773274, this, [challenge, displayName, name, userID]); }
+  createCredentialRegistrationRequestChallengeDisplayNameNameUserID(challenge: ArrayBuffer, displayName: string, name: string, userID: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>("AuthenticationServices_067acaa3e5f56b46", 4347259460773274, this, [challenge, displayName, name, userID]); }
   /**
    * init(relyingPartyIdentifier: String)
    * @availability iOS 15.0+
    */
-  static init(relyingPartyIdentifier: string): ASAuthorizationSecurityKeyPublicKeyCredentialProvider { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialProvider>("AuthenticationServices_90ad0eb69cc6bf4a", 4415302870188355, undefined, [relyingPartyIdentifier]); }
+  static init(relyingPartyIdentifier: string): ASAuthorizationSecurityKeyPublicKeyCredentialProvider { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialProvider>("AuthenticationServices_067acaa3e5f56b46", 4415302870188355, undefined, [relyingPartyIdentifier]); }
   /**
    * var relyingPartyIdentifier: String { get }
    * @availability iOS 15.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2843696158206539, this, []); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2843696158206539, this, []); }
   /**
    * func createCredentialAssertionRequest(clientData: ASPublicKeyCredentialClientData) -> ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest
    * @availability iOS 17.4+
    */
-  createCredentialAssertionRequestClientData(clientData: ASPublicKeyCredentialClientData): ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2171442448726325, this, [clientData]); }
+  createCredentialAssertionRequestClientData(clientData: ASPublicKeyCredentialClientData): ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>("AuthenticationServices_067acaa3e5f56b46", 2171442448726325, this, [clientData]); }
   /**
    * func createCredentialRegistrationRequest(clientData: ASPublicKeyCredentialClientData, displayName: String, name: String, userID: Data) -> ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
    * @availability iOS 17.4+
    */
-  createCredentialRegistrationRequestClientDataDisplayNameNameUserID(clientData: ASPublicKeyCredentialClientData, displayName: string, name: string, userID: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 492945572850410, this, [clientData, displayName, name, userID]); }
+  createCredentialRegistrationRequestClientDataDisplayNameNameUserID(clientData: ASPublicKeyCredentialClientData, displayName: string, name: string, userID: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest>("AuthenticationServices_067acaa3e5f56b46", 492945572850410, this, [clientData, displayName, name, userID]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "relyingPartyIdentifier": true };
 }
@@ -1923,17 +1921,17 @@ export class ASAuthorizationSecurityKeyPublicKeyCredentialProvider extends SDKHa
  */
 export class ASAuthorizationSecurityKeyPublicKeyCredentialRegistration extends SDKHandle {
   /** init() */
-  static init(): ASAuthorizationSecurityKeyPublicKeyCredentialRegistration { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialRegistration>("AuthenticationServices_90ad0eb69cc6bf4a", 2415272104800176, undefined, []); }
+  static init(): ASAuthorizationSecurityKeyPublicKeyCredentialRegistration { return callSDK<ASAuthorizationSecurityKeyPublicKeyCredentialRegistration>("AuthenticationServices_067acaa3e5f56b46", 2415272104800176, undefined, []); }
   /**
    * var transports: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get }
    * @availability iOS 17.5+
    */
-  get transports(): $SDK29 { return callSDK<$SDK29>("AuthenticationServices_90ad0eb69cc6bf4a", 116514492432430, this, []); }
+  get transports(): $SDK29 { return callSDK<$SDK29>("AuthenticationServices_067acaa3e5f56b46", 116514492432430, this, []); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? { get }
    * @availability iOS 26.4+
    */
-  get prf(): $SDK16 { return callSDK<$SDK16>("AuthenticationServices_90ad0eb69cc6bf4a", 4069368445670203, this, []); }
+  get prf(): $SDK16 { return callSDK<$SDK16>("AuthenticationServices_067acaa3e5f56b46", 4069368445670203, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialRegistration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "transports": true };
 }
@@ -1947,26 +1945,26 @@ export class ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest ex
    * var credentialParameters: [ASAuthorizationPublicKeyCredentialParameters] { get set }
    * @availability iOS 15.0+
    */
-  get credentialParameters(): $SDK30 { return callSDK<$SDK30>("AuthenticationServices_90ad0eb69cc6bf4a", 720613928592438, this, []); }
-  set credentialParameters(value: $SDK30) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1747120397029075, this, [value]); }
+  get credentialParameters(): $SDK30 { return callSDK<$SDK30>("AuthenticationServices_067acaa3e5f56b46", 720613928592438, this, []); }
+  set credentialParameters(value: $SDK30) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1747120397029075, this, [value]); }
   /**
    * var excludedCredentials: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor] { get set }
    * @availability iOS 15.0+
    */
-  get excludedCredentials(): $SDK28 { return callSDK<$SDK28>("AuthenticationServices_90ad0eb69cc6bf4a", 1522620961915838, this, []); }
-  set excludedCredentials(value: $SDK28) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4350495112331567, this, [value]); }
+  get excludedCredentials(): $SDK28 { return callSDK<$SDK28>("AuthenticationServices_067acaa3e5f56b46", 1522620961915838, this, []); }
+  set excludedCredentials(value: $SDK28) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4350495112331567, this, [value]); }
   /**
    * var residentKeyPreference: ASAuthorizationPublicKeyCredentialResidentKeyPreference { get set }
    * @availability iOS 15.0+
    */
-  get residentKeyPreference(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 3085788414551133, this, []); }
-  set residentKeyPreference(value: ASAuthorizationPublicKeyCredentialResidentKeyPreference) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4246464718711106, this, [value]); }
+  get residentKeyPreference(): ASAuthorizationPublicKeyCredentialResidentKeyPreference { return callSDK<ASAuthorizationPublicKeyCredentialResidentKeyPreference>("AuthenticationServices_067acaa3e5f56b46", 3085788414551133, this, []); }
+  set residentKeyPreference(value: ASAuthorizationPublicKeyCredentialResidentKeyPreference) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4246464718711106, this, [value]); }
   /**
    * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationInput? { get set }
    * @availability iOS 26.4+
    */
-  get prf(): $SDK18 { return callSDK<$SDK18>("AuthenticationServices_90ad0eb69cc6bf4a", 2166463325342815, this, []); }
-  set prf(value: $SDK18) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 115604304976977, this, [value]); }
+  get prf(): $SDK18 { return callSDK<$SDK18>("AuthenticationServices_067acaa3e5f56b46", 2166463325342815, this, []); }
+  set prf(value: $SDK18) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 115604304976977, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "credentialParameters": true; "excludedCredentials": true; "residentKeyPreference": true };
 }
@@ -1980,27 +1978,27 @@ export class ASAuthorizationSingleSignOnCredential extends SDKHandle {
    * var accessToken: Data? { get }
    * @availability iOS 13.0+
    */
-  get accessToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2967533334851428, this, []); }
+  get accessToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 2967533334851428, this, []); }
   /**
    * @NSCopying var authenticatedResponse: HTTPURLResponse? { get }
    * @availability iOS 13.0+
    */
-  get authenticatedResponse(): $SDK23 { return callSDK<$SDK23>("AuthenticationServices_90ad0eb69cc6bf4a", 2706510301509826, this, []); }
+  get authenticatedResponse(): $SDK23 { return callSDK<$SDK23>("AuthenticationServices_067acaa3e5f56b46", 2706510301509826, this, []); }
   /**
    * var authorizedScopes: [ASAuthorization.Scope] { get }
    * @availability iOS 13.0+
    */
-  get authorizedScopes(): $SDK5 { return callSDK<$SDK5>("AuthenticationServices_90ad0eb69cc6bf4a", 3552869337802492, this, []); }
+  get authorizedScopes(): $SDK5 { return callSDK<$SDK5>("AuthenticationServices_067acaa3e5f56b46", 3552869337802492, this, []); }
   /**
    * var identityToken: Data? { get }
    * @availability iOS 13.0+
    */
-  get identityToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2552191020667214, this, []); }
+  get identityToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 2552191020667214, this, []); }
   /**
    * var state: String? { get }
    * @availability iOS 13.0+
    */
-  get state(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3452367038032451, this, []); }
+  get state(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 3452367038032451, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSingleSignOnCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessToken": true; "authenticatedResponse": true; "authorizedScopes": true; "identityToken": true; "state": true };
 }
@@ -2014,22 +2012,22 @@ export class ASAuthorizationSingleSignOnProvider extends SDKHandle {
    * convenience init(identityProvider url: URL)
    * @availability iOS 13.0+
    */
-  static init(url: string): ASAuthorizationSingleSignOnProvider { return callSDK<ASAuthorizationSingleSignOnProvider>("AuthenticationServices_90ad0eb69cc6bf4a", 451204635124425, undefined, [url]); }
+  static init(url: string): ASAuthorizationSingleSignOnProvider { return callSDK<ASAuthorizationSingleSignOnProvider>("AuthenticationServices_067acaa3e5f56b46", 451204635124425, undefined, [url]); }
   /**
    * func createRequest() -> ASAuthorizationSingleSignOnRequest
    * @availability iOS 13.0+
    */
-  createRequest(): ASAuthorizationSingleSignOnRequest { return callSDK<ASAuthorizationSingleSignOnRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1016546624580278, this, []); }
+  createRequest(): ASAuthorizationSingleSignOnRequest { return callSDK<ASAuthorizationSingleSignOnRequest>("AuthenticationServices_067acaa3e5f56b46", 1016546624580278, this, []); }
   /**
    * var canPerformAuthorization: Bool { get }
    * @availability iOS 13.0+
    */
-  get canPerformAuthorization(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 2628765190270402, this, []); }
+  get canPerformAuthorization(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 2628765190270402, this, []); }
   /**
    * var url: URL { get }
    * @availability iOS 13.0+
    */
-  get url(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 721996183562956, this, []); }
+  get url(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 721996183562956, this, []); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSingleSignOnProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "canPerformAuthorization": true; "url": true };
 }
@@ -2043,14 +2041,14 @@ export class ASAuthorizationSingleSignOnRequest extends ASAuthorizationOpenIDReq
    * var authorizationOptions: [URLQueryItem] { get set }
    * @availability iOS 13.0+
    */
-  get authorizationOptions(): $SDK31 { return callSDK<$SDK31>("AuthenticationServices_90ad0eb69cc6bf4a", 3487805577776543, this, []); }
-  set authorizationOptions(value: $SDK31) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4266115629667980, this, [value]); }
+  get authorizationOptions(): $SDK31 { return callSDK<$SDK31>("AuthenticationServices_067acaa3e5f56b46", 3487805577776543, this, []); }
+  set authorizationOptions(value: $SDK31) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4266115629667980, this, [value]); }
   /**
    * var isUserInterfaceEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isUserInterfaceEnabled(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 1473506834725181, this, []); }
-  set isUserInterfaceEnabled(value: boolean) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2927965199304453, this, [value]); }
+  get isUserInterfaceEnabled(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 1473506834725181, this, []); }
+  set isUserInterfaceEnabled(value: boolean) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2927965199304453, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationSingleSignOnRequest": true; "c:objc(cs)ASAuthorizationOpenIDRequest": true; "c:objc(cs)ASAuthorizationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "provider": true; "nonce": true; "requestedOperation": true; "requestedScopes": true; "state": true; "authorizationOptions": true; "isUserInterfaceEnabled": true };
 }
@@ -2064,32 +2062,32 @@ export class ASAuthorizationWebBrowserPlatformPublicKeyCredential extends SDKHan
    * let userHandle: Data
    * @availability iOS 17.4+
    */
-  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2412426811463726, this, []); }
+  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2412426811463726, this, []); }
   /**
    * let customTitle: String
    * @availability iOS 17.4+
    */
-  get customTitle(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2131327399255975, this, []); }
+  get customTitle(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2131327399255975, this, []); }
   /**
    * let credentialID: Data
    * @availability iOS 17.4+
    */
-  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4365397534563999, this, []); }
+  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4365397534563999, this, []); }
   /**
    * let providerName: String
    * @availability iOS 17.4+
    */
-  get providerName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2415501081366807, this, []); }
+  get providerName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2415501081366807, this, []); }
   /**
    * let relyingParty: String
    * @availability iOS 17.4+
    */
-  get relyingParty(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3808226059802063, this, []); }
+  get relyingParty(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3808226059802063, this, []); }
   /**
    * let name: String
    * @availability iOS 17.4+
    */
-  get name(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2954585476799950, this, []); }
+  get name(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2954585476799950, this, []); }
   declare readonly $type: { "s:22AuthenticationServices52ASAuthorizationWebBrowserPlatformPublicKeyCredentialV": true };
 }
 
@@ -2140,27 +2138,27 @@ export class ASAuthorizationWebBrowserPublicKeyCredentialManager extends SDKHand
    * class var isDeviceConfiguredForPasskeys: Bool { get }
    * @availability iOS 26.2+
    */
-  static get isDeviceConfiguredForPasskeys(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 3254957605409692, undefined, []); }
+  static get isDeviceConfiguredForPasskeys(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 3254957605409692, undefined, []); }
   /**
    * init()
    * @availability iOS 17.4+
    */
-  static init(): ASAuthorizationWebBrowserPublicKeyCredentialManager { return callSDK<ASAuthorizationWebBrowserPublicKeyCredentialManager>("AuthenticationServices_90ad0eb69cc6bf4a", 334179131240846, undefined, []); }
+  static init(): ASAuthorizationWebBrowserPublicKeyCredentialManager { return callSDK<ASAuthorizationWebBrowserPublicKeyCredentialManager>("AuthenticationServices_067acaa3e5f56b46", 334179131240846, undefined, []); }
   /**
    * func requestAuthorizationForPublicKeyCredentials() async -> ASAuthorizationWebBrowserPublicKeyCredentialManager.AuthorizationState
    * @availability iOS 17.4+
    */
-  requestAuthorizationForPublicKeyCredentials(completionHandler: ((arg0: ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState) => void)): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3020416731201292, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestAuthorizationForPublicKeyCredentials(completionHandler: ((arg0: ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState) => void)): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3020416731201292, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var authorizationStateForPlatformCredentials: ASAuthorizationWebBrowserPublicKeyCredentialManager.AuthorizationState { get }
    * @availability iOS 17.4+
    */
-  get authorizationStateForPlatformCredentials(): ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState { return callSDK<ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState>("AuthenticationServices_90ad0eb69cc6bf4a", 2256918101878427, this, []); }
+  get authorizationStateForPlatformCredentials(): ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState { return callSDK<ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState>("AuthenticationServices_067acaa3e5f56b46", 2256918101878427, this, []); }
   /**
    * func platformCredentials(forRelyingParty relyingParty: String) async -> [ASAuthorizationWebBrowserPlatformPublicKeyCredential]
    * @availability iOS 17.4+
    */
-  platformCredentials(relyingParty: string): Promise<Array<ASAuthorizationWebBrowserPlatformPublicKeyCredential>> { return callSDKAsync<Array<ASAuthorizationWebBrowserPlatformPublicKeyCredential>>("AuthenticationServices_90ad0eb69cc6bf4a", 3265830305715266, this, [relyingParty]); }
+  platformCredentials(relyingParty: string): Promise<Array<ASAuthorizationWebBrowserPlatformPublicKeyCredential>> { return callSDKAsync<Array<ASAuthorizationWebBrowserPlatformPublicKeyCredential>>("AuthenticationServices_067acaa3e5f56b46", 3265830305715266, this, [relyingParty]); }
   declare readonly $type: { "c:objc(cs)ASAuthorizationWebBrowserPublicKeyCredentialManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationStateForPlatformCredentials": true };
 }
@@ -2176,7 +2174,7 @@ export const ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationSt
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState) | null { return callSDK<(ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3302701091705847, undefined, [rawValue]); }
+  init(rawValue: number): (ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState) | null { return callSDK<(ASAuthorizationWebBrowserPublicKeyCredentialManager_AuthorizationState) | null>("AuthenticationServices_067acaa3e5f56b46", 3302701091705847, undefined, [rawValue]); }
 };
 
 /**
@@ -2221,41 +2219,41 @@ export class ASAutoFillURLScope extends SDKHandle {
    * var url: URL? { get }
    * @availability iOS 26.2+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1357518645149316, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 1357518645149316, this, []); }
   /**
    * init?(url: URL)
    * @availability iOS 26.2+
    */
-  static initUrl(url: string): (ASAutoFillURLScope) | null { return callSDK<(ASAutoFillURLScope) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2329242905406126, undefined, [url]); }
+  static initUrl(url: string): (ASAutoFillURLScope) | null { return callSDK<(ASAutoFillURLScope) | null>("AuthenticationServices_067acaa3e5f56b46", 2329242905406126, undefined, [url]); }
   /**
    * var host: String
    * @availability iOS 26.2+
    */
-  get host(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3470359857052913, this, []); }
-  set host(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2289098763760482, this, [value]); }
+  get host(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3470359857052913, this, []); }
+  set host(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2289098763760482, this, [value]); }
   /**
    * var path: String
    * @availability iOS 26.2+
    */
-  get path(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 855999328025254, this, []); }
-  set path(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1584126641906056, this, [value]); }
+  get path(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 855999328025254, this, []); }
+  set path(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1584126641906056, this, [value]); }
   /**
    * var port: Int?
    * @availability iOS 26.2+
    */
-  get port(): (number) | null { return callSDK<(number) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 287677323400453, this, []); }
-  set port(value: (number) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1181738690899772, this, [value]); }
+  get port(): (number) | null { return callSDK<(number) | null>("AuthenticationServices_067acaa3e5f56b46", 287677323400453, this, []); }
+  set port(value: (number) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1181738690899772, this, [value]); }
   /**
    * init(scheme: ASAutoFillURLScope.Scheme = .https, host: String, port: Int? = nil, path: String = "")
    * @availability iOS 26.2+
    */
-  static initSchemeHostPortPath(scheme: ASAutoFillURLScope_Scheme, host: string, port?: (number) | null, path?: string): ASAutoFillURLScope { return callSDK<ASAutoFillURLScope>("AuthenticationServices_90ad0eb69cc6bf4a", 2581225844595933, undefined, [scheme, host, port, path]); }
+  static initSchemeHostPortPath(scheme: ASAutoFillURLScope_Scheme, host: string, port?: (number) | null, path?: string): ASAutoFillURLScope { return callSDK<ASAutoFillURLScope>("AuthenticationServices_067acaa3e5f56b46", 2581225844595933, undefined, [scheme, host, port, path]); }
   /**
    * var scheme: ASAutoFillURLScope.Scheme
    * @availability iOS 26.2+
    */
-  get scheme(): ASAutoFillURLScope_Scheme { return callSDK<ASAutoFillURLScope_Scheme>("AuthenticationServices_90ad0eb69cc6bf4a", 1542875550780425, this, []); }
-  set scheme(value: ASAutoFillURLScope_Scheme) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2143270404898030, this, [value]); }
+  get scheme(): ASAutoFillURLScope_Scheme { return callSDK<ASAutoFillURLScope_Scheme>("AuthenticationServices_067acaa3e5f56b46", 1542875550780425, this, []); }
+  set scheme(value: ASAutoFillURLScope_Scheme) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2143270404898030, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices18ASAutoFillURLScopeV": true };
 }
 
@@ -2270,12 +2268,12 @@ export const ASAutoFillURLScope_Scheme = {
    * init?(rawValue: String)
    * @availability iOS 26.2+
    */
-  init(rawValue: string): (ASAutoFillURLScope_Scheme) | null { return callSDK<(ASAutoFillURLScope_Scheme) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3559989546458649, undefined, [rawValue]); },
+  init(rawValue: string): (ASAutoFillURLScope_Scheme) | null { return callSDK<(ASAutoFillURLScope_Scheme) | null>("AuthenticationServices_067acaa3e5f56b46", 3559989546458649, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.2+
    */
-  getRawValue($self: ASAutoFillURLScope_Scheme): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3639490609453010, $self, []); }
+  getRawValue($self: ASAutoFillURLScope_Scheme): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3639490609453010, $self, []); }
 };
 
 /**
@@ -2309,17 +2307,17 @@ export const ASCOSEAlgorithmIdentifier = {
    * static var ES256: ASCOSEAlgorithmIdentifier { get }
    * @availability iOS 15.0+
    */
-  get ES256(): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 2456995325224089, undefined, []); },
+  get ES256(): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_067acaa3e5f56b46", 2456995325224089, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: number): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1634720419158178, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1634720419158178, undefined, [rawValue]); },
   /**
    * init(_ rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 2926268219186870, undefined, [rawValue]); }
+  init(rawValue: number): ASCOSEAlgorithmIdentifier { return callSDK<ASCOSEAlgorithmIdentifier>("AuthenticationServices_067acaa3e5f56b46", 2926268219186870, undefined, [rawValue]); }
 };
 
 /**
@@ -2333,17 +2331,17 @@ export const ASCOSEEllipticCurveIdentifier = {
    * static var P256: ASCOSEEllipticCurveIdentifier { get }
    * @availability iOS 15.0+
    */
-  get P256(): ASCOSEEllipticCurveIdentifier { return callSDK<ASCOSEEllipticCurveIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 3598523888166647, undefined, []); },
+  get P256(): ASCOSEEllipticCurveIdentifier { return callSDK<ASCOSEEllipticCurveIdentifier>("AuthenticationServices_067acaa3e5f56b46", 3598523888166647, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: number): ASCOSEEllipticCurveIdentifier { return callSDK<ASCOSEEllipticCurveIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1672914294753523, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ASCOSEEllipticCurveIdentifier { return callSDK<ASCOSEEllipticCurveIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1672914294753523, undefined, [rawValue]); },
   /**
    * init(_ rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): ASCOSEEllipticCurveIdentifier { return callSDK<ASCOSEEllipticCurveIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1649817352497167, undefined, [rawValue]); }
+  init(rawValue: number): ASCOSEEllipticCurveIdentifier { return callSDK<ASCOSEEllipticCurveIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1649817352497167, undefined, [rawValue]); }
 };
 
 /**
@@ -2355,32 +2353,32 @@ export class ASCredentialDataManager extends SDKHandle {
    * final func reportUnusedPasswordCredential(domain: String, userName: String) async throws
    * @availability iOS 26.2+
    */
-  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2609451656930336, this, [domain, userName]); }
+  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2609451656930336, this, [domain, userName]); }
   /**
    * final func reportPublicKeyCredentialUpdate(relyingPartyIdentifier: String, userHandle: Data, newName: String) async throws
    * @availability iOS 26.2+
    */
-  reportPublicKeyCredentialUpdate(relyingPartyIdentifier: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2543615168329633, this, [relyingPartyIdentifier, userHandle, newName]); }
+  reportPublicKeyCredentialUpdate(relyingPartyIdentifier: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2543615168329633, this, [relyingPartyIdentifier, userHandle, newName]); }
   /**
    * final func reportUnknownPublicKeyCredential(relyingPartyIdentifier: String, credentialID: Data) async throws
    * @availability iOS 26.2+
    */
-  reportUnknownPublicKeyCredential(relyingPartyIdentifier: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3939703012281822, this, [relyingPartyIdentifier, credentialID]); }
+  reportUnknownPublicKeyCredential(relyingPartyIdentifier: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3939703012281822, this, [relyingPartyIdentifier, credentialID]); }
   /**
    * final func reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: String, userHandle: Data, acceptedCredentialIDs: [Data]) async throws
    * @availability iOS 26.2+
    */
-  reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4329103643098155, this, [relyingPartyIdentifier, userHandle, acceptedCredentialIDs]); }
+  reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 4329103643098155, this, [relyingPartyIdentifier, userHandle, acceptedCredentialIDs]); }
   /**
    * final func save(password: ASPasswordCredential, for scope: ASAutoFillURLScope, title: String? = nil, anchor: ASPresentationAnchor) async throws
    * @availability iOS 26.2+
    */
-  save(password: ASPasswordCredential, scope: ASAutoFillURLScope, title: (string) | null, anchor: _UIKit_UIWindow): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3985669291236464, this, [password, scope, title, anchor]); }
+  save(password: ASPasswordCredential, scope: ASAutoFillURLScope, title: (string) | null, anchor: _UIKit_UIWindow): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3985669291236464, this, [password, scope, title, anchor]); }
   /**
    * init()
    * @availability iOS 26.2+
    */
-  static init(): ASCredentialDataManager { return callSDK<ASCredentialDataManager>("AuthenticationServices_90ad0eb69cc6bf4a", 4202060602981045, undefined, []); }
+  static init(): ASCredentialDataManager { return callSDK<ASCredentialDataManager>("AuthenticationServices_067acaa3e5f56b46", 4202060602981045, undefined, []); }
   declare readonly $type: { "s:22AuthenticationServices23ASCredentialDataManagerC": true };
 }
 
@@ -2393,17 +2391,17 @@ export class ASCredentialExportManager extends SDKHandle {
    * func requestExport(for extensionBundleIdentifier: String? = nil) async throws -> ASCredentialExportManager.ExportOptions
    * @availability iOS 26.0+
    */
-  requestExport(extensionBundleIdentifier?: (string) | null): Promise<ASCredentialExportManager_ExportOptions> { return callSDKAsync<ASCredentialExportManager_ExportOptions>("AuthenticationServices_90ad0eb69cc6bf4a", 4113229315894523, this, [extensionBundleIdentifier]); }
+  requestExport(extensionBundleIdentifier?: (string) | null): Promise<ASCredentialExportManager_ExportOptions> { return callSDKAsync<ASCredentialExportManager_ExportOptions>("AuthenticationServices_067acaa3e5f56b46", 4113229315894523, this, [extensionBundleIdentifier]); }
   /**
    * func exportCredentials(_ credentialData: ASExportedCredentialData) async throws
    * @availability iOS 26.0+
    */
-  exportCredentials(credentialData: ASExportedCredentialData): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1502531957063659, this, [credentialData]); }
+  exportCredentials(credentialData: ASExportedCredentialData): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1502531957063659, this, [credentialData]); }
   /**
    * convenience init(presentationAnchor: ASPresentationAnchor)
    * @availability iOS 26.0+
    */
-  static init(presentationAnchor: _UIKit_UIWindow): ASCredentialExportManager { return callSDK<ASCredentialExportManager>("AuthenticationServices_90ad0eb69cc6bf4a", 4238644944817431, undefined, [presentationAnchor]); }
+  static init(presentationAnchor: _UIKit_UIWindow): ASCredentialExportManager { return callSDK<ASCredentialExportManager>("AuthenticationServices_067acaa3e5f56b46", 4238644944817431, undefined, [presentationAnchor]); }
   declare readonly $type: { "s:22AuthenticationServices25ASCredentialExportManagerC": true };
 }
 
@@ -2416,7 +2414,7 @@ export class ASCredentialExportManager_ExportOptions extends SDKHandle {
    * let formatVersion: ASExportedCredentialData.FormatVersion
    * @availability iOS 26.0+
    */
-  get formatVersion(): ASExportedCredentialData_FormatVersion { return callSDK<ASExportedCredentialData_FormatVersion>("AuthenticationServices_90ad0eb69cc6bf4a", 1034374649378578, this, []); }
+  get formatVersion(): ASExportedCredentialData_FormatVersion { return callSDK<ASExportedCredentialData_FormatVersion>("AuthenticationServices_067acaa3e5f56b46", 1034374649378578, this, []); }
   declare readonly $type: { "s:22AuthenticationServices25ASCredentialExportManagerC0D7OptionsV": true };
 }
 
@@ -2437,55 +2435,55 @@ export class ASCredentialIdentityStore extends SDKHandle {
    * class var shared: ASCredentialIdentityStore { get }
    * @availability iOS 12.0+
    */
-  static get shared(): ASCredentialIdentityStore { return callSDK<ASCredentialIdentityStore>("AuthenticationServices_90ad0eb69cc6bf4a", 1515494124345439, undefined, []); }
+  static get shared(): ASCredentialIdentityStore { return callSDK<ASCredentialIdentityStore>("AuthenticationServices_067acaa3e5f56b46", 1515494124345439, undefined, []); }
   /**
    * func state() async -> ASCredentialIdentityStoreState
    * @availability iOS 12.0+
    */
-  getState(completion: ((arg0: ASCredentialIdentityStoreState) => void)): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2682934567551542, this, [completion], [{"callback":{"out":[]}}]); }
+  getState(completion: ((arg0: ASCredentialIdentityStoreState) => void)): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2682934567551542, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func removeAllCredentialIdentities() async throws
    * @availability iOS 12.0+
    */
-  removeAllCredentialIdentities(completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2449271266439651, this, [completion], [{"callback":{"out":[]}}]); }
+  removeAllCredentialIdentities(completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2449271266439651, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func removeCredentialIdentities(_ credentialIdentities: [ASPasswordCredentialIdentity]) async throws
    * @availability iOS 12.0+
    * @deprecated iOS 17.0
    */
-  removeCredentialIdentitiesCompletion(credentialIdentities: $SDK36, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4477515474767967, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
+  removeCredentialIdentitiesCompletion(credentialIdentities: $SDK36, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4477515474767967, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeCredentialIdentities(_ credentialIdentities: [any ASCredentialIdentity]) async throws
    * @availability iOS 17.0+
    */
-  removeCredentialIdentitiesCompletion70031(credentialIdentities: Array<SDKHandle>, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3743204074699892, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
+  removeCredentialIdentitiesCompletion70031(credentialIdentities: Array<SDKHandle>, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3743204074699892, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func replaceCredentialIdentities(with newCredentialIdentities: [ASPasswordCredentialIdentity]) async throws
    * @availability iOS 12.0+
    * @deprecated iOS 17.0
    */
-  replaceCredentialIdentitiesWithCompletion(newCredentialIdentities: $SDK36, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1485357268931440, this, [newCredentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
+  replaceCredentialIdentitiesWithCompletion(newCredentialIdentities: $SDK36, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1485357268931440, this, [newCredentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func replaceCredentialIdentities(_ newCredentialIdentities: [any ASCredentialIdentity]) async throws
    * @availability iOS 17.0+
    */
-  replaceCredentialIdentitiesCompletion(newCredentialIdentities: Array<SDKHandle>, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4021869881746886, this, [newCredentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
+  replaceCredentialIdentitiesCompletion(newCredentialIdentities: Array<SDKHandle>, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4021869881746886, this, [newCredentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func saveCredentialIdentities(_ credentialIdentities: [ASPasswordCredentialIdentity]) async throws
    * @availability iOS 12.0+
    * @deprecated iOS 17.0
    */
-  saveCredentialIdentitiesCompletion(credentialIdentities: $SDK36, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4370049145599188, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
+  saveCredentialIdentitiesCompletion(credentialIdentities: $SDK36, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4370049145599188, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func saveCredentialIdentities(_ credentialIdentities: [any ASCredentialIdentity]) async throws
    * @availability iOS 17.0+
    */
-  saveCredentialIdentitiesCompletion16884(credentialIdentities: Array<SDKHandle>, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3611942488266868, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
+  saveCredentialIdentitiesCompletion16884(credentialIdentities: Array<SDKHandle>, completion?: $SDK35): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3611942488266868, this, [credentialIdentities, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func credentialIdentities(forService serviceIdentifier: ASCredentialServiceIdentifier? = nil, credentialIdentityTypes: ASCredentialIdentityStore.IdentityTypes = []) async -> [any ASCredentialIdentity]
    * @availability iOS 17.4+
    */
-  credentialIdentities(serviceIdentifier?: (ASCredentialServiceIdentifier) | null, credentialIdentityTypes?: ASCredentialIdentityStore_IdentityTypes): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("AuthenticationServices_90ad0eb69cc6bf4a", 3277514770837411, this, [serviceIdentifier, credentialIdentityTypes]); }
+  credentialIdentities(serviceIdentifier?: (ASCredentialServiceIdentifier) | null, credentialIdentityTypes?: ASCredentialIdentityStore_IdentityTypes): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("AuthenticationServices_067acaa3e5f56b46", 3277514770837411, this, [serviceIdentifier, credentialIdentityTypes]); }
   declare readonly $type: { "c:objc(cs)ASCredentialIdentityStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2500,22 +2498,22 @@ export const ASCredentialIdentityStore_IdentityTypes = {
    * static var oneTimeCode: ASCredentialIdentityStore.IdentityTypes { get }
    * @availability iOS 17.4+
    */
-  get oneTimeCode(): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_90ad0eb69cc6bf4a", 285186689889820, undefined, []); },
+  get oneTimeCode(): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_067acaa3e5f56b46", 285186689889820, undefined, []); },
   /**
    * static var passkey: ASCredentialIdentityStore.IdentityTypes { get }
    * @availability iOS 17.4+
    */
-  get passkey(): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_90ad0eb69cc6bf4a", 2898965684970268, undefined, []); },
+  get passkey(): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_067acaa3e5f56b46", 2898965684970268, undefined, []); },
   /**
    * static var password: ASCredentialIdentityStore.IdentityTypes { get }
    * @availability iOS 17.4+
    */
-  get password(): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_90ad0eb69cc6bf4a", 3549162909322529, undefined, []); },
+  get password(): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_067acaa3e5f56b46", 3549162909322529, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_90ad0eb69cc6bf4a", 461503909884096, undefined, [rawValue]); }
+  init(rawValue: number): ASCredentialIdentityStore_IdentityTypes { return callSDK<ASCredentialIdentityStore_IdentityTypes>("AuthenticationServices_067acaa3e5f56b46", 461503909884096, undefined, [rawValue]); }
 };
 
 /**
@@ -2527,22 +2525,22 @@ export class ASCredentialIdentityStoreError extends SDKHandle {
    * static var internalError: ASCredentialIdentityStoreError.Code { get }
    * @availability iOS 12.0+
    */
-  static get internalError(): ASCredentialIdentityStoreError_Code { return callSDK<ASCredentialIdentityStoreError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 581765167671700, undefined, []); }
+  static get internalError(): ASCredentialIdentityStoreError_Code { return callSDK<ASCredentialIdentityStoreError_Code>("AuthenticationServices_067acaa3e5f56b46", 581765167671700, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 12.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1963909692856189, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1963909692856189, undefined, []); }
   /**
    * static var storeDisabled: ASCredentialIdentityStoreError.Code { get }
    * @availability iOS 12.0+
    */
-  static get storeDisabled(): ASCredentialIdentityStoreError_Code { return callSDK<ASCredentialIdentityStoreError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 207242235429740, undefined, []); }
+  static get storeDisabled(): ASCredentialIdentityStoreError_Code { return callSDK<ASCredentialIdentityStoreError_Code>("AuthenticationServices_067acaa3e5f56b46", 207242235429740, undefined, []); }
   /**
    * static var storeBusy: ASCredentialIdentityStoreError.Code { get }
    * @availability iOS 12.0+
    */
-  static get storeBusy(): ASCredentialIdentityStoreError_Code { return callSDK<ASCredentialIdentityStoreError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 1028306105372383, undefined, []); }
+  static get storeBusy(): ASCredentialIdentityStoreError_Code { return callSDK<ASCredentialIdentityStoreError_Code>("AuthenticationServices_067acaa3e5f56b46", 1028306105372383, undefined, []); }
   declare readonly $type: { "s:SC34ASCredentialIdentityStoreErrorCodeLeV": true };
 }
 
@@ -2557,7 +2555,7 @@ export const ASCredentialIdentityStoreError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ASCredentialIdentityStoreError_Code) | null { return callSDK<(ASCredentialIdentityStoreError_Code) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4200600036013764, undefined, [rawValue]); }
+  init(rawValue: number): (ASCredentialIdentityStoreError_Code) | null { return callSDK<(ASCredentialIdentityStoreError_Code) | null>("AuthenticationServices_067acaa3e5f56b46", 4200600036013764, undefined, [rawValue]); }
 };
 
 /**
@@ -2566,17 +2564,17 @@ export const ASCredentialIdentityStoreError_Code = {
  */
 export class ASCredentialIdentityStoreState extends SDKHandle {
   /** init() */
-  static init(): ASCredentialIdentityStoreState { return callSDK<ASCredentialIdentityStoreState>("AuthenticationServices_90ad0eb69cc6bf4a", 3231225179936402, undefined, []); }
+  static init(): ASCredentialIdentityStoreState { return callSDK<ASCredentialIdentityStoreState>("AuthenticationServices_067acaa3e5f56b46", 3231225179936402, undefined, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 12.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 2004304804806313, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 2004304804806313, this, []); }
   /**
    * var supportsIncrementalUpdates: Bool { get }
    * @availability iOS 12.0+
    */
-  get supportsIncrementalUpdates(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 2769707194754749, this, []); }
+  get supportsIncrementalUpdates(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 2769707194754749, this, []); }
   declare readonly $type: { "c:objc(cs)ASCredentialIdentityStoreState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "supportsIncrementalUpdates": true };
 }
@@ -2590,12 +2588,12 @@ export class ASCredentialImportManager extends SDKHandle {
    * func importCredentials(token: UUID) async throws -> ASExportedCredentialData
    * @availability iOS 26.0+
    */
-  importCredentials(token: string): Promise<ASExportedCredentialData> { return callSDKAsync<ASExportedCredentialData>("AuthenticationServices_90ad0eb69cc6bf4a", 1432508892034723, this, [token]); }
+  importCredentials(token: string): Promise<ASExportedCredentialData> { return callSDKAsync<ASExportedCredentialData>("AuthenticationServices_067acaa3e5f56b46", 1432508892034723, this, [token]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): ASCredentialImportManager { return callSDK<ASCredentialImportManager>("AuthenticationServices_90ad0eb69cc6bf4a", 4156130308468487, undefined, []); }
+  static init(): ASCredentialImportManager { return callSDK<ASCredentialImportManager>("AuthenticationServices_067acaa3e5f56b46", 4156130308468487, undefined, []); }
   declare readonly $type: { "s:22AuthenticationServices25ASCredentialImportManagerC": true };
 }
 
@@ -2608,49 +2606,49 @@ export class ASCredentialProviderExtensionContext extends SDKHandle {
    * func cancelRequest(withError error: any Error)
    * @availability iOS 12.0+
    */
-  cancelRequest(error: NativeError): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 122434558365170, this, [error]); }
+  cancelRequest(error: NativeError): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 122434558365170, this, [error]); }
   /**
    * func completeAssertionRequest(using credential: ASPasskeyAssertionCredential) async -> Bool
    * @availability iOS 17.0+
    */
-  completeAssertionRequest(credential: ASPasskeyAssertionCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3390318210686832, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
+  completeAssertionRequest(credential: ASPasskeyAssertionCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3390318210686832, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeExtensionConfigurationRequest()
    * @availability iOS 12.0+
    */
-  completeExtensionConfigurationRequest(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1303493724732428, this, []); }
+  completeExtensionConfigurationRequest(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1303493724732428, this, []); }
   /**
    * func completeGeneratePasswordRequest(results: [ASGeneratedPassword]) async -> Bool
    * @availability iOS 26.2+
    */
-  completeGeneratePasswordRequest(results: Array<ASGeneratedPassword>, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1108944415144040, this, [results, completionHandler], [null,{"callback":{"out":[]}}]); }
+  completeGeneratePasswordRequest(results: Array<ASGeneratedPassword>, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1108944415144040, this, [results, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeOneTimeCodeRequest(using credential: ASOneTimeCodeCredential) async -> Bool
    * @availability iOS 18.0+
    */
-  completeOneTimeCodeRequest(credential: ASOneTimeCodeCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1536058512870161, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
+  completeOneTimeCodeRequest(credential: ASOneTimeCodeCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1536058512870161, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeRegistrationRequest(using credential: ASPasskeyRegistrationCredential) async -> Bool
    * @availability iOS 17.0+
    */
-  completeRegistrationRequest(credential: ASPasskeyRegistrationCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1890785395846451, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
+  completeRegistrationRequest(credential: ASPasskeyRegistrationCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1890785395846451, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeRequest(withSelectedCredential credential: ASPasswordCredential, completionHandler: ((Bool) -> Void)? = nil)
    * @availability iOS 12.0+
    */
-  completeRequestWithSelectedCredentialCompletionHandler(credential: ASPasswordCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2721392756659559, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
+  completeRequestWithSelectedCredentialCompletionHandler(credential: ASPasswordCredential, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2721392756659559, this, [credential, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeRequest(withTextToInsert text: String) async -> Bool
    * @availability iOS 18.0+
    */
-  completeRequestWithTextToInsertCompletionHandler(text: string, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1904383619479762, this, [text, completionHandler], [null,{"callback":{"out":[]}}]); }
+  completeRequestWithTextToInsertCompletionHandler(text: string, completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1904383619479762, this, [text, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func completeSavePasswordRequest() async -> Bool
    * @availability iOS 26.2+
    */
-  completeSavePasswordRequest(completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1506051971636338, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  completeSavePasswordRequest(completionHandler?: $SDK38): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1506051971636338, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ASCredentialProviderExtensionContext { return callSDK<ASCredentialProviderExtensionContext>("AuthenticationServices_90ad0eb69cc6bf4a", 2027745015459164, undefined, []); }
+  static init(): ASCredentialProviderExtensionContext { return callSDK<ASCredentialProviderExtensionContext>("AuthenticationServices_067acaa3e5f56b46", 2027745015459164, undefined, []); }
   declare readonly $type: { "c:objc(cs)ASCredentialProviderExtensionContext": true; "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2660,111 +2658,110 @@ export class ASCredentialProviderExtensionContext extends SDKHandle {
  */
 export class ASCredentialProviderViewController extends SDKHandle {
   /** init() */
-  static init(): ASCredentialProviderViewController { return callSDK<ASCredentialProviderViewController>("AuthenticationServices_90ad0eb69cc6bf4a", 4222266494804492, undefined, []); }
+  static init(): Promise<ASCredentialProviderViewController> { return callSDKAsync<ASCredentialProviderViewController>("AuthenticationServices_067acaa3e5f56b46", 3639358303901279, undefined, []); }
   /**
    * func performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest)
    * @availability iOS 26.2+
    */
-  performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 659984615777720, this, [generatePasswordsRequest]); }
+  performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3094359337944694, this, [generatePasswordsRequest]); }
   /**
    * func performWithoutUserInteractionIfPossible(passkeyRegistration registrationRequest: ASPasskeyCredentialRequest)
    * @availability iOS 18.0+
    */
-  performWithoutUserInteractionIfPossiblePasskeyRegistration(registrationRequest: ASPasskeyCredentialRequest): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3696361845669196, this, [registrationRequest]); }
+  performWithoutUserInteractionIfPossiblePasskeyRegistration(registrationRequest: ASPasskeyCredentialRequest): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2836333936049340, this, [registrationRequest]); }
   /**
    * func performWithoutUserInteractionIfPossible(savePasswordRequest: ASSavePasswordRequest)
    * @availability iOS 26.2+
    */
-  performWithoutUserInteractionIfPossibleSavePasswordRequest(savePasswordRequest: ASSavePasswordRequest): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 515920026482599, this, [savePasswordRequest]); }
+  performWithoutUserInteractionIfPossibleSavePasswordRequest(savePasswordRequest: ASSavePasswordRequest): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 618590213634027, this, [savePasswordRequest]); }
   /**
    * func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
    * @availability iOS 12.0+
    */
-  prepareCredentialListFor(serviceIdentifiers: $SDK40): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1730322924784338, this, [serviceIdentifiers]); }
+  prepareCredentialListFor(serviceIdentifiers: $SDK40): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 980534748358478, this, [serviceIdentifiers]); }
   /**
    * func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier], requestParameters: ASPasskeyCredentialRequestParameters)
    * @availability iOS 17.0+
    */
-  prepareCredentialListForRequestParameters(serviceIdentifiers: $SDK40, requestParameters: ASPasskeyCredentialRequestParameters): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1192354545427491, this, [serviceIdentifiers, requestParameters]); }
+  prepareCredentialListForRequestParameters(serviceIdentifiers: $SDK40, requestParameters: ASPasskeyCredentialRequestParameters): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1784200154263114, this, [serviceIdentifiers, requestParameters]); }
   /**
    * func prepareInterfaceForExtensionConfiguration()
    * @availability iOS 12.0+
    */
-  prepareInterfaceForExtensionConfiguration(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2964997102358768, this, []); }
+  prepareInterfaceForExtensionConfiguration(): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 472876125392423, this, []); }
   /**
    * func prepareInterface(for generatePasswordsRequest: ASGeneratePasswordsRequest)
    * @availability iOS 26.2+
    */
-  prepareInterfaceFor(generatePasswordsRequest: ASGeneratePasswordsRequest): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2415387216667559, this, [generatePasswordsRequest]); }
+  prepareInterfaceFor(generatePasswordsRequest: ASGeneratePasswordsRequest): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1795016367130211, this, [generatePasswordsRequest]); }
   /**
    * func prepareInterface(forPasskeyRegistration registrationRequest: any ASCredentialRequest)
    * @availability iOS 17.0+
    */
-  prepareInterfaceForPasskeyRegistration(registrationRequest: SDKHandle): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 690246157590868, this, [registrationRequest]); }
+  prepareInterfaceForPasskeyRegistration(registrationRequest: SDKHandle): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2371275369689944, this, [registrationRequest]); }
   /**
    * func prepareInterface(for savePasswordRequest: ASSavePasswordRequest)
    * @availability iOS 26.2+
    */
-  prepareInterfaceFor1521(savePasswordRequest: ASSavePasswordRequest): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3467640299801478, this, [savePasswordRequest]); }
+  prepareInterfaceFor1521(savePasswordRequest: ASSavePasswordRequest): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 4365605863103289, this, [savePasswordRequest]); }
   /**
    * func prepareInterfaceForUserChoosingTextToInsert()
    * @availability iOS 18.0+
    */
-  prepareInterfaceForUserChoosingTextToInsert(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4265634736799888, this, []); }
+  prepareInterfaceForUserChoosingTextToInsert(): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3339022406173403, this, []); }
   /**
    * func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity)
    * @availability iOS 12.0+
    * @deprecated iOS 17.0
    */
-  prepareInterfaceToProvideCredentialFor(credentialIdentity: ASPasswordCredentialIdentity): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 10551885538378, this, [credentialIdentity]); }
+  prepareInterfaceToProvideCredentialFor(credentialIdentity: ASPasswordCredentialIdentity): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3405190589810198, this, [credentialIdentity]); }
   /**
    * func prepareInterfaceToProvideCredential(for credentialRequest: any ASCredentialRequest)
    * @availability iOS 17.0+
    */
-  prepareInterfaceToProvideCredentialFor64482(credentialRequest: SDKHandle): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1566809107956050, this, [credentialRequest]); }
+  prepareInterfaceToProvideCredentialFor64482(credentialRequest: SDKHandle): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3084079404689972, this, [credentialRequest]); }
   /**
    * func prepareOneTimeCodeCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
    * @availability iOS 18.0+
    */
-  prepareOneTimeCodeCredentialList(serviceIdentifiers: $SDK40): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 604758042313494, this, [serviceIdentifiers]); }
+  prepareOneTimeCodeCredentialList(serviceIdentifiers: $SDK40): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3246731496082082, this, [serviceIdentifiers]); }
   /**
    * func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity)
    * @availability iOS 12.0+
    * @deprecated iOS 17.0
    */
-  provideCredentialWithoutUserInteractionFor(credentialIdentity: ASPasswordCredentialIdentity): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 550076083029305, this, [credentialIdentity]); }
+  provideCredentialWithoutUserInteractionFor(credentialIdentity: ASPasswordCredentialIdentity): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3342123419699177, this, [credentialIdentity]); }
   /**
    * func provideCredentialWithoutUserInteraction(for credentialRequest: any ASCredentialRequest)
    * @availability iOS 17.0+
    */
-  provideCredentialWithoutUserInteractionFor49470(credentialRequest: SDKHandle): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4456019507328357, this, [credentialRequest]); }
+  provideCredentialWithoutUserInteractionFor49470(credentialRequest: SDKHandle): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3445904402623227, this, [credentialRequest]); }
   /**
    * func reportAllAcceptedPublicKeyCredentials(forRelyingParty relyingParty: String, userHandle: Data, acceptedCredentialIDs: [Data])
    * @availability iOS 12.0+
    */
-  reportAllAcceptedPublicKeyCredentials(relyingParty: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 655829124466385, this, [relyingParty, userHandle, acceptedCredentialIDs]); }
+  reportAllAcceptedPublicKeyCredentials(relyingParty: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 76981449962276, this, [relyingParty, userHandle, acceptedCredentialIDs]); }
   /**
    * func reportPublicKeyCredentialUpdate(forRelyingParty relyingParty: String, userHandle: Data, newName: String)
    * @availability iOS 12.0+
    */
-  reportPublicKeyCredentialUpdate(relyingParty: string, userHandle: ArrayBuffer, newName: string): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2260404961019214, this, [relyingParty, userHandle, newName]); }
+  reportPublicKeyCredentialUpdate(relyingParty: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1279357621608448, this, [relyingParty, userHandle, newName]); }
   /**
    * func reportUnknownPublicKeyCredential(forRelyingParty relyingParty: String, credentialID: Data)
    * @availability iOS 12.0+
    */
-  reportUnknownPublicKeyCredential(relyingParty: string, credentialID: ArrayBuffer): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3533549445143085, this, [relyingParty, credentialID]); }
+  reportUnknownPublicKeyCredential(relyingParty: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3328423323330647, this, [relyingParty, credentialID]); }
   /**
    * func reportUnusedPasswordCredential(forDomain domain: String, userName: String)
    * @availability iOS 12.0+
    */
-  reportUnusedPasswordCredential(domain: string, userName: string): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3430808935220435, this, [domain, userName]); }
+  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2223999804289270, this, [domain, userName]); }
   /**
    * var extensionContext: ASCredentialProviderExtensionContext { get }
    * @availability iOS 12.0+
    */
-  get extensionContext(): ASCredentialProviderExtensionContext { return callSDK<ASCredentialProviderExtensionContext>("AuthenticationServices_90ad0eb69cc6bf4a", 3239501187597818, this, []); }
+  get extensionContext(): Promise<ASCredentialProviderExtensionContext> { return callSDKAsync<ASCredentialProviderExtensionContext>("AuthenticationServices_067acaa3e5f56b46", 2152370809697867, this, []); }
   declare readonly $type: { "c:objc(cs)ASCredentialProviderViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "extensionContext": true };
 }
 
 /**
@@ -2788,7 +2785,7 @@ export const ASCredentialRequestType = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (ASCredentialRequestType) | null { return callSDK<(ASCredentialRequestType) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 806638527592006, undefined, [rawValue]); }
+  init(rawValue: number): (ASCredentialRequestType) | null { return callSDK<(ASCredentialRequestType) | null>("AuthenticationServices_067acaa3e5f56b46", 806638527592006, undefined, [rawValue]); }
 };
 
 /**
@@ -2800,27 +2797,27 @@ export class ASCredentialServiceIdentifier extends SDKHandle {
    * init(identifier: String, type: ASCredentialServiceIdentifier.IdentifierType)
    * @availability iOS 12.0+
    */
-  static initIdentifierType(identifier: string, type: ASCredentialServiceIdentifier_IdentifierType): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 3475308210992768, undefined, [identifier, type]); }
+  static initIdentifierType(identifier: string, type: ASCredentialServiceIdentifier_IdentifierType): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 3475308210992768, undefined, [identifier, type]); }
   /**
    * init(identifier: String, type: ASCredentialServiceIdentifier.IdentifierType, displayName: String)
    * @availability iOS 26.2+
    */
-  static initIdentifierTypeDisplayName(identifier: string, type: ASCredentialServiceIdentifier_IdentifierType, displayName: string): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 3212670419975119, undefined, [identifier, type, displayName]); }
+  static initIdentifierTypeDisplayName(identifier: string, type: ASCredentialServiceIdentifier_IdentifierType, displayName: string): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 3212670419975119, undefined, [identifier, type, displayName]); }
   /**
    * var displayName: String? { get }
    * @availability iOS 26.2+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 12418624671036, this, []); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 12418624671036, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 12.0+
    */
-  get identifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1549461563372780, this, []); }
+  get identifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1549461563372780, this, []); }
   /**
    * var type: ASCredentialServiceIdentifier.IdentifierType { get }
    * @availability iOS 12.0+
    */
-  get type(): ASCredentialServiceIdentifier_IdentifierType { return callSDK<ASCredentialServiceIdentifier_IdentifierType>("AuthenticationServices_90ad0eb69cc6bf4a", 4455943596300642, this, []); }
+  get type(): ASCredentialServiceIdentifier_IdentifierType { return callSDK<ASCredentialServiceIdentifier_IdentifierType>("AuthenticationServices_067acaa3e5f56b46", 4455943596300642, this, []); }
   declare readonly $type: { "c:objc(cs)ASCredentialServiceIdentifier": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "identifier": true; "type": true };
 }
@@ -2836,7 +2833,7 @@ export const ASCredentialServiceIdentifier_IdentifierType = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ASCredentialServiceIdentifier_IdentifierType) | null { return callSDK<(ASCredentialServiceIdentifier_IdentifierType) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2313228650622076, undefined, [rawValue]); }
+  init(rawValue: number): (ASCredentialServiceIdentifier_IdentifierType) | null { return callSDK<(ASCredentialServiceIdentifier_IdentifierType) | null>("AuthenticationServices_067acaa3e5f56b46", 2313228650622076, undefined, [rawValue]); }
 };
 
 /**
@@ -2850,31 +2847,31 @@ export class ASCredentialUpdater extends SDKHandle {
    * @availability iOS 26.0+
    * @deprecated iOS 26.2
    */
-  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2705425303492946, this, [domain, userName]); }
+  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 2705425303492946, this, [domain, userName]); }
   /**
    * final func reportPublicKeyCredentialUpdate(relyingPartyIdentifier: String, userHandle: Data, newName: String) async throws
    * @availability iOS 26.0+
    * @deprecated iOS 26.2
    */
-  reportPublicKeyCredentialUpdate(relyingPartyIdentifier: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3175902646051766, this, [relyingPartyIdentifier, userHandle, newName]); }
+  reportPublicKeyCredentialUpdate(relyingPartyIdentifier: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 3175902646051766, this, [relyingPartyIdentifier, userHandle, newName]); }
   /**
    * final func reportUnknownPublicKeyCredential(relyingPartyIdentifier: String, credentialID: Data) async throws
    * @availability iOS 26.0+
    * @deprecated iOS 26.2
    */
-  reportUnknownPublicKeyCredential(relyingPartyIdentifier: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1142774535746133, this, [relyingPartyIdentifier, credentialID]); }
+  reportUnknownPublicKeyCredential(relyingPartyIdentifier: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 1142774535746133, this, [relyingPartyIdentifier, credentialID]); }
   /**
    * final func reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: String, userHandle: Data, acceptedCredentialIDs: [Data]) async throws
    * @availability iOS 26.0+
    * @deprecated iOS 26.2
    */
-  reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4422813860541472, this, [relyingPartyIdentifier, userHandle, acceptedCredentialIDs]); }
+  reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 4422813860541472, this, [relyingPartyIdentifier, userHandle, acceptedCredentialIDs]); }
   /**
    * init()
    * @availability iOS 26.0+
    * @deprecated iOS 26.2
    */
-  static init(): ASCredentialUpdater { return callSDK<ASCredentialUpdater>("AuthenticationServices_90ad0eb69cc6bf4a", 1816199004342387, undefined, []); }
+  static init(): ASCredentialUpdater { return callSDK<ASCredentialUpdater>("AuthenticationServices_067acaa3e5f56b46", 1816199004342387, undefined, []); }
   declare readonly $type: { "s:22AuthenticationServices19ASCredentialUpdaterC": true };
 }
 
@@ -2888,17 +2885,17 @@ export class ASDeliveredVerificationCodesManager extends SDKHandle {
   
    * @availability iOS 27.0+
    */
-  oneTimeCodes(preferredDuration: number, anchor: _UIKit_UIWindow): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("AuthenticationServices_90ad0eb69cc6bf4a", 3337302695815444, this, [preferredDuration, anchor]); }
+  oneTimeCodes(preferredDuration: number, anchor: _UIKit_UIWindow): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("AuthenticationServices_067acaa3e5f56b46", 3337302695815444, this, [preferredDuration, anchor]); }
   /**
    * func consumeOneTimeCode(_ oneTimeCode: ASVerificationCode) async throws
    * @availability iOS 27.0+
    */
-  consumeOneTimeCode(oneTimeCode: ASVerificationCode): Promise<void> { return callSDKAsync<void>("AuthenticationServices_90ad0eb69cc6bf4a", 262007542422539, this, [oneTimeCode]); }
+  consumeOneTimeCode(oneTimeCode: ASVerificationCode): Promise<void> { return callSDKAsync<void>("AuthenticationServices_067acaa3e5f56b46", 262007542422539, this, [oneTimeCode]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ASDeliveredVerificationCodesManager { return callSDK<ASDeliveredVerificationCodesManager>("AuthenticationServices_90ad0eb69cc6bf4a", 387839975650203, undefined, []); }
+  static init(): ASDeliveredVerificationCodesManager { return callSDK<ASDeliveredVerificationCodesManager>("AuthenticationServices_067acaa3e5f56b46", 387839975650203, undefined, []); }
   declare readonly $type: { "s:22AuthenticationServices35ASDeliveredVerificationCodesManagerC": true };
 }
 
@@ -2911,42 +2908,42 @@ export class ASDeliveredVerificationCodesManager_VerificationError extends SDKHa
    * static var errorDomain: String { get }
    * @availability iOS 27.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3438782562173410, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3438782562173410, undefined, []); }
   /**
    * let errorUserInfo: [String : Any]
    * @availability iOS 27.0+
    */
-  get errorUserInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AuthenticationServices_90ad0eb69cc6bf4a", 3322696265138518, this, []); }
+  get errorUserInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AuthenticationServices_067acaa3e5f56b46", 3322696265138518, this, []); }
   /**
    * static var userPermissionDenied: ASDeliveredVerificationCodesManager.VerificationError.Code { get }
    * @availability iOS 27.0+
    */
-  static get userPermissionDenied(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 1559255870671042, undefined, []); }
+  static get userPermissionDenied(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_067acaa3e5f56b46", 1559255870671042, undefined, []); }
   /**
    * static var appIsNotEnabledCredentialProvider: ASDeliveredVerificationCodesManager.VerificationError.Code { get }
    * @availability iOS 27.0+
    */
-  static get appIsNotEnabledCredentialProvider(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 2498519501263627, undefined, []); }
+  static get appIsNotEnabledCredentialProvider(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_067acaa3e5f56b46", 2498519501263627, undefined, []); }
   /**
    * let code: ASDeliveredVerificationCodesManager.VerificationError.Code
    * @availability iOS 27.0+
    */
-  get code(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 4113056574225702, this, []); }
+  get code(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_067acaa3e5f56b46", 4113056574225702, this, []); }
   /**
    * static var failed: ASDeliveredVerificationCodesManager.VerificationError.Code { get }
    * @availability iOS 27.0+
    */
-  static get failed(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 2415195916261651, undefined, []); }
+  static get failed(): ASDeliveredVerificationCodesManager_VerificationError_Code { return callSDK<ASDeliveredVerificationCodesManager_VerificationError_Code>("AuthenticationServices_067acaa3e5f56b46", 2415195916261651, undefined, []); }
   /**
    * var errorCode: Int { get }
    * @availability iOS 27.0+
    */
-  get errorCode(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 583693877815839, this, []); }
+  get errorCode(): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 583693877815839, this, []); }
   /**
    * init(_ code: ASDeliveredVerificationCodesManager.VerificationError.Code, userInfo: [String : Any] = [:])
    * @availability iOS 27.0+
    */
-  static init(code: ASDeliveredVerificationCodesManager_VerificationError_Code, userInfo?: Record<string, unknown>): ASDeliveredVerificationCodesManager_VerificationError { return callSDK<ASDeliveredVerificationCodesManager_VerificationError>("AuthenticationServices_90ad0eb69cc6bf4a", 1465737181562263, undefined, [code, userInfo]); }
+  static init(code: ASDeliveredVerificationCodesManager_VerificationError_Code, userInfo?: Record<string, unknown>): ASDeliveredVerificationCodesManager_VerificationError { return callSDK<ASDeliveredVerificationCodesManager_VerificationError>("AuthenticationServices_067acaa3e5f56b46", 1465737181562263, undefined, [code, userInfo]); }
   declare readonly $type: { "s:22AuthenticationServices35ASDeliveredVerificationCodesManagerC0D5ErrorV": true };
 }
 
@@ -2961,12 +2958,12 @@ export const ASDeliveredVerificationCodesManager_VerificationError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (ASDeliveredVerificationCodesManager_VerificationError_Code) | null { return callSDK<(ASDeliveredVerificationCodesManager_VerificationError_Code) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2778184498352228, undefined, [rawValue]); },
+  init(rawValue: number): (ASDeliveredVerificationCodesManager_VerificationError_Code) | null { return callSDK<(ASDeliveredVerificationCodesManager_VerificationError_Code) | null>("AuthenticationServices_067acaa3e5f56b46", 2778184498352228, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: ASDeliveredVerificationCodesManager_VerificationError_Code): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 2364136718659400, $self, []); }
+  getRawValue($self: ASDeliveredVerificationCodesManager_VerificationError_Code): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 2364136718659400, $self, []); }
 };
 
 /**
@@ -2984,8 +2981,8 @@ export class ASEmailIdentifier extends SDKHandle {
    * var value: String
    * @availability iOS 26.0+
    */
-  get value(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3368691340401746, this, []); }
-  set value(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3592602092987056, this, [value]); }
+  get value(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3368691340401746, this, []); }
+  set value(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3592602092987056, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices17ASEmailIdentifierV": true };
 }
 
@@ -2998,33 +2995,33 @@ export class ASExportedCredentialData extends SDKHandle {
    * let formatVersion: ASExportedCredentialData.FormatVersion
    * @availability iOS 26.0+
    */
-  get formatVersion(): ASExportedCredentialData_FormatVersion { return callSDK<ASExportedCredentialData_FormatVersion>("AuthenticationServices_90ad0eb69cc6bf4a", 3931448897617412, this, []); }
+  get formatVersion(): ASExportedCredentialData_FormatVersion { return callSDK<ASExportedCredentialData_FormatVersion>("AuthenticationServices_067acaa3e5f56b46", 3931448897617412, this, []); }
   /**
    * let exporterDisplayName: String
    * @availability iOS 26.0+
    */
-  get exporterDisplayName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3515730642800260, this, []); }
+  get exporterDisplayName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3515730642800260, this, []); }
   /**
    * let exporterRelyingPartyIdentifier: String
    * @availability iOS 26.0+
    */
-  get exporterRelyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 482988526483028, this, []); }
+  get exporterRelyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 482988526483028, this, []); }
   /**
    * init(accounts: [ASImportableAccount], formatVersion: ASExportedCredentialData.FormatVersion, exporterRelyingPartyIdentifier: String, exporterDisplayName: String, timestamp: Date)
    * @availability iOS 26.0+
    */
-  static init(accounts: $SDK41, formatVersion: ASExportedCredentialData_FormatVersion, exporterRelyingPartyIdentifier: string, exporterDisplayName: string, timestamp: globalThis.Date): ASExportedCredentialData { return callSDK<ASExportedCredentialData>("AuthenticationServices_90ad0eb69cc6bf4a", 439164895284353, undefined, [accounts, formatVersion, exporterRelyingPartyIdentifier, exporterDisplayName, timestamp]); }
+  static init(accounts: $SDK41, formatVersion: ASExportedCredentialData_FormatVersion, exporterRelyingPartyIdentifier: string, exporterDisplayName: string, timestamp: globalThis.Date): ASExportedCredentialData { return callSDK<ASExportedCredentialData>("AuthenticationServices_067acaa3e5f56b46", 439164895284353, undefined, [accounts, formatVersion, exporterRelyingPartyIdentifier, exporterDisplayName, timestamp]); }
   /**
    * var accounts: [ASImportableAccount]
    * @availability iOS 26.0+
    */
-  get accounts(): $SDK41 { return callSDK<$SDK41>("AuthenticationServices_90ad0eb69cc6bf4a", 3013438010013830, this, []); }
-  set accounts(value: $SDK41) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1256886757109617, this, [value]); }
+  get accounts(): $SDK41 { return callSDK<$SDK41>("AuthenticationServices_067acaa3e5f56b46", 3013438010013830, this, []); }
+  set accounts(value: $SDK41) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1256886757109617, this, [value]); }
   /**
    * let timestamp: Date
    * @availability iOS 26.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("AuthenticationServices_90ad0eb69cc6bf4a", 553354096091641, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("AuthenticationServices_067acaa3e5f56b46", 553354096091641, this, []); }
   declare readonly $type: { "s:22AuthenticationServices24ASExportedCredentialDataV": true };
 }
 
@@ -3039,17 +3036,17 @@ export const ASExportedCredentialData_FormatVersion = {
    * nonisolated static var allCases: [ASExportedCredentialData.FormatVersion] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK42 { return callSDK<$SDK42>("AuthenticationServices_90ad0eb69cc6bf4a", 2502559650786357, undefined, []); },
+  get allCases(): $SDK42 { return callSDK<$SDK42>("AuthenticationServices_067acaa3e5f56b46", 2502559650786357, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): (ASExportedCredentialData_FormatVersion) | null { return callSDK<(ASExportedCredentialData_FormatVersion) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3953941151682697, undefined, [rawValue]); },
+  init(rawValue: string): (ASExportedCredentialData_FormatVersion) | null { return callSDK<(ASExportedCredentialData_FormatVersion) | null>("AuthenticationServices_067acaa3e5f56b46", 3953941151682697, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: ASExportedCredentialData_FormatVersion): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1175040557246716, $self, []); }
+  getRawValue($self: ASExportedCredentialData_FormatVersion): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1175040557246716, $self, []); }
 };
 
 /**
@@ -3073,32 +3070,32 @@ export class ASExtensionError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 12.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3571428420991026, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3571428420991026, undefined, []); }
   /**
    * static var userCanceled: ASExtensionError.Code { get }
    * @availability iOS 12.0+
    */
-  static get userCanceled(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3329386361864003, undefined, []); }
+  static get userCanceled(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_067acaa3e5f56b46", 3329386361864003, undefined, []); }
   /**
    * static var userInteractionRequired: ASExtensionError.Code { get }
    * @availability iOS 12.0+
    */
-  static get userInteractionRequired(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3763693799081676, undefined, []); }
+  static get userInteractionRequired(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_067acaa3e5f56b46", 3763693799081676, undefined, []); }
   /**
    * static var matchedExcludedCredential: ASExtensionError.Code { get }
    * @availability iOS 18.0+
    */
-  static get matchedExcludedCredential(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 1539014813123561, undefined, []); }
+  static get matchedExcludedCredential(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_067acaa3e5f56b46", 1539014813123561, undefined, []); }
   /**
    * static var credentialIdentityNotFound: ASExtensionError.Code { get }
    * @availability iOS 12.0+
    */
-  static get credentialIdentityNotFound(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 648378435067516, undefined, []); }
+  static get credentialIdentityNotFound(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_067acaa3e5f56b46", 648378435067516, undefined, []); }
   /**
    * static var failed: ASExtensionError.Code { get }
    * @availability iOS 12.0+
    */
-  static get failed(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 650970036071003, undefined, []); }
+  static get failed(): ASExtensionError_Code { return callSDK<ASExtensionError_Code>("AuthenticationServices_067acaa3e5f56b46", 650970036071003, undefined, []); }
   declare readonly $type: { "s:SC20ASExtensionErrorCodeLeV": true };
 }
 
@@ -3113,7 +3110,7 @@ export const ASExtensionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ASExtensionError_Code) | null { return callSDK<(ASExtensionError_Code) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4040287955220751, undefined, [rawValue]); }
+  init(rawValue: number): (ASExtensionError_Code) | null { return callSDK<(ASExtensionError_Code) | null>("AuthenticationServices_067acaa3e5f56b46", 4040287955220751, undefined, [rawValue]); }
 };
 
 /**
@@ -3125,22 +3122,22 @@ export class ASGeneratedPassword extends SDKHandle {
    * init(kind: ASGeneratedPassword.Kind, value: String)
    * @availability iOS 26.2+
    */
-  static init(kind: ASGeneratedPassword_Kind, value: string): ASGeneratedPassword { return callSDK<ASGeneratedPassword>("AuthenticationServices_90ad0eb69cc6bf4a", 949208840722822, undefined, [kind, value]); }
+  static init(kind: ASGeneratedPassword_Kind, value: string): ASGeneratedPassword { return callSDK<ASGeneratedPassword>("AuthenticationServices_067acaa3e5f56b46", 949208840722822, undefined, [kind, value]); }
   /**
    * var kind: ASGeneratedPassword.Kind { get }
    * @availability iOS 26.2+
    */
-  get kind(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_90ad0eb69cc6bf4a", 574821115104789, this, []); }
+  get kind(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_067acaa3e5f56b46", 574821115104789, this, []); }
   /**
    * var localizedName: String { get }
    * @availability iOS 26.2+
    */
-  get localizedName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1801053371470093, this, []); }
+  get localizedName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1801053371470093, this, []); }
   /**
    * var value: String { get }
    * @availability iOS 26.2+
    */
-  get value(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 687886231103456, this, []); }
+  get value(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 687886231103456, this, []); }
   declare readonly $type: { "c:objc(cs)ASGeneratedPassword": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "kind": true; "localizedName": true; "value": true };
 }
@@ -3156,27 +3153,27 @@ export const ASGeneratedPassword_Kind = {
    * static let alphanumeric: ASGeneratedPassword.Kind
    * @availability iOS 26.2+
    */
-  get alphanumeric(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_90ad0eb69cc6bf4a", 597955323734294, undefined, []); },
+  get alphanumeric(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_067acaa3e5f56b46", 597955323734294, undefined, []); },
   /**
    * static let passphrase: ASGeneratedPassword.Kind
    * @availability iOS 26.2+
    */
-  get passphrase(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_90ad0eb69cc6bf4a", 1902971668193822, undefined, []); },
+  get passphrase(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_067acaa3e5f56b46", 1902971668193822, undefined, []); },
   /**
    * static let strong: ASGeneratedPassword.Kind
    * @availability iOS 26.2+
    */
-  get strong(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_90ad0eb69cc6bf4a", 2257401377744038, undefined, []); },
+  get strong(): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_067acaa3e5f56b46", 2257401377744038, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.2+
    */
-  initRawValue(rawValue: string): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_90ad0eb69cc6bf4a", 1520775631261866, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_067acaa3e5f56b46", 1520775631261866, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 26.2+
    */
-  init(rawValue: string): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_90ad0eb69cc6bf4a", 4217307859141281, undefined, [rawValue]); }
+  init(rawValue: string): ASGeneratedPassword_Kind { return callSDK<ASGeneratedPassword_Kind>("AuthenticationServices_067acaa3e5f56b46", 4217307859141281, undefined, [rawValue]); }
 };
 
 /**
@@ -3188,27 +3185,27 @@ export class ASGeneratePasswordsRequest extends SDKHandle {
    * init(serviceIdentifier: ASCredentialServiceIdentifier, passwordFieldPasswordRules: String?, confirmPasswordFieldPasswordRules: String?, passwordRulesFromQuirks: String?)
    * @availability iOS 26.2+
    */
-  static init(serviceIdentifier: ASCredentialServiceIdentifier, passwordFieldPasswordRules?: (string) | null, confirmPasswordFieldPasswordRules?: (string) | null, passwordRulesFromQuirks?: (string) | null): ASGeneratePasswordsRequest { return callSDK<ASGeneratePasswordsRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1885231057318954, undefined, [serviceIdentifier, passwordFieldPasswordRules, confirmPasswordFieldPasswordRules, passwordRulesFromQuirks]); }
+  static init(serviceIdentifier: ASCredentialServiceIdentifier, passwordFieldPasswordRules?: (string) | null, confirmPasswordFieldPasswordRules?: (string) | null, passwordRulesFromQuirks?: (string) | null): ASGeneratePasswordsRequest { return callSDK<ASGeneratePasswordsRequest>("AuthenticationServices_067acaa3e5f56b46", 1885231057318954, undefined, [serviceIdentifier, passwordFieldPasswordRules, confirmPasswordFieldPasswordRules, passwordRulesFromQuirks]); }
   /**
    * var confirmPasswordFieldPasswordRules: String? { get }
    * @availability iOS 26.2+
    */
-  get confirmPasswordFieldPasswordRules(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 266638746009455, this, []); }
+  get confirmPasswordFieldPasswordRules(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 266638746009455, this, []); }
   /**
    * var passwordFieldPasswordRules: String? { get }
    * @availability iOS 26.2+
    */
-  get passwordFieldPasswordRules(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3523275811566339, this, []); }
+  get passwordFieldPasswordRules(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 3523275811566339, this, []); }
   /**
    * var passwordRulesFromQuirks: String? { get }
    * @availability iOS 26.2+
    */
-  get passwordRulesFromQuirks(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4027409929740132, this, []); }
+  get passwordRulesFromQuirks(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 4027409929740132, this, []); }
   /**
    * var serviceIdentifier: ASCredentialServiceIdentifier { get }
    * @availability iOS 26.2+
    */
-  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1481558585691886, this, []); }
+  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1481558585691886, this, []); }
   declare readonly $type: { "c:objc(cs)ASGeneratePasswordsRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confirmPasswordFieldPasswordRules": true; "passwordFieldPasswordRules": true; "passwordRulesFromQuirks": true; "serviceIdentifier": true };
 }
@@ -3222,43 +3219,43 @@ export class ASImportableAccount extends SDKHandle {
    * var collections: [ASImportableCollection]
    * @availability iOS 26.0+
    */
-  get collections(): $SDK43 { return callSDK<$SDK43>("AuthenticationServices_90ad0eb69cc6bf4a", 3273348505011477, this, []); }
-  set collections(value: $SDK43) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 881581506388854, this, [value]); }
+  get collections(): $SDK43 { return callSDK<$SDK43>("AuthenticationServices_067acaa3e5f56b46", 3273348505011477, this, []); }
+  set collections(value: $SDK43) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 881581506388854, this, [value]); }
   /**
    * var id: Data
    * @availability iOS 26.0+
    */
-  get id(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4322122730345579, this, []); }
-  set id(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 824254637256805, this, [value]); }
+  get id(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4322122730345579, this, []); }
+  set id(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 824254637256805, this, [value]); }
   /**
    * init(id: Data, userName: String, email: String, fullName: String? = nil, collections: [ASImportableCollection], items: [ASImportableItem])
    * @availability iOS 26.0+
    */
-  static init(id: ArrayBuffer, userName: string, email: string, fullName: (string) | null, collections: $SDK43, items: Array<ASImportableItem>): ASImportableAccount { return callSDK<ASImportableAccount>("AuthenticationServices_90ad0eb69cc6bf4a", 3469179226278682, undefined, [id, userName, email, fullName, collections, items]); }
+  static init(id: ArrayBuffer, userName: string, email: string, fullName: (string) | null, collections: $SDK43, items: Array<ASImportableItem>): ASImportableAccount { return callSDK<ASImportableAccount>("AuthenticationServices_067acaa3e5f56b46", 3469179226278682, undefined, [id, userName, email, fullName, collections, items]); }
   /**
    * var email: String
    * @availability iOS 26.0+
    */
-  get email(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2418698415832833, this, []); }
-  set email(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1794959500585028, this, [value]); }
+  get email(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2418698415832833, this, []); }
+  set email(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1794959500585028, this, [value]); }
   /**
    * var items: [ASImportableItem]
    * @availability iOS 26.0+
    */
-  get items(): Array<ASImportableItem> { return callSDK<Array<ASImportableItem>>("AuthenticationServices_90ad0eb69cc6bf4a", 2019519646273160, this, []); }
-  set items(value: Array<ASImportableItem>) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2190155712941800, this, [value]); }
+  get items(): Array<ASImportableItem> { return callSDK<Array<ASImportableItem>>("AuthenticationServices_067acaa3e5f56b46", 2019519646273160, this, []); }
+  set items(value: Array<ASImportableItem>) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2190155712941800, this, [value]); }
   /**
    * var fullName: String?
    * @availability iOS 26.0+
    */
-  get fullName(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3049896001942021, this, []); }
-  set fullName(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2465613808683260, this, [value]); }
+  get fullName(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 3049896001942021, this, []); }
+  set fullName(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2465613808683260, this, [value]); }
   /**
    * var userName: String
    * @availability iOS 26.0+
    */
-  get userName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 143915729206766, this, []); }
-  set userName(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 147121490996827, this, [value]); }
+  get userName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 143915729206766, this, []); }
+  set userName(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 147121490996827, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices19ASImportableAccountV": true };
 }
 
@@ -3271,49 +3268,49 @@ export class ASImportableCollection extends SDKHandle {
    * var lastModified: Date?
    * @availability iOS 26.0+
    */
-  get lastModified(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_90ad0eb69cc6bf4a", 4050619898085612, this, []); }
-  set lastModified(value: $SDK44) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1943260809178196, this, [value]); }
+  get lastModified(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_067acaa3e5f56b46", 4050619898085612, this, []); }
+  set lastModified(value: $SDK44) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1943260809178196, this, [value]); }
   /**
    * var subcollections: [ASImportableCollection]
    * @availability iOS 26.0+
    */
-  get subcollections(): $SDK43 { return callSDK<$SDK43>("AuthenticationServices_90ad0eb69cc6bf4a", 3968091483126667, this, []); }
-  set subcollections(value: $SDK43) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 200863271831816, this, [value]); }
+  get subcollections(): $SDK43 { return callSDK<$SDK43>("AuthenticationServices_067acaa3e5f56b46", 3968091483126667, this, []); }
+  set subcollections(value: $SDK43) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 200863271831816, this, [value]); }
   /**
    * var id: Data
    * @availability iOS 26.0+
    */
-  get id(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2062877248597703, this, []); }
-  set id(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2286639300977338, this, [value]); }
+  get id(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2062877248597703, this, []); }
+  set id(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2286639300977338, this, [value]); }
   /**
    * init(id: Data, created: Date?, lastModified: Date?, title: String, subtitle: String? = nil, items: [ASImportableLinkedItem], subcollections: [ASImportableCollection] = [])
    * @availability iOS 26.0+
    */
-  static init(id: ArrayBuffer, created: $SDK44, lastModified: $SDK44, title: string, subtitle: (string) | null, items: $SDK45, subcollections?: $SDK43): ASImportableCollection { return callSDK<ASImportableCollection>("AuthenticationServices_90ad0eb69cc6bf4a", 1497892565273345, undefined, [id, created, lastModified, title, subtitle, items, subcollections]); }
+  static init(id: ArrayBuffer, created: $SDK44, lastModified: $SDK44, title: string, subtitle: (string) | null, items: $SDK45, subcollections?: $SDK43): ASImportableCollection { return callSDK<ASImportableCollection>("AuthenticationServices_067acaa3e5f56b46", 1497892565273345, undefined, [id, created, lastModified, title, subtitle, items, subcollections]); }
   /**
    * var items: [ASImportableLinkedItem]
    * @availability iOS 26.0+
    */
-  get items(): $SDK45 { return callSDK<$SDK45>("AuthenticationServices_90ad0eb69cc6bf4a", 2592834415951436, this, []); }
-  set items(value: $SDK45) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2979546731807568, this, [value]); }
+  get items(): $SDK45 { return callSDK<$SDK45>("AuthenticationServices_067acaa3e5f56b46", 2592834415951436, this, []); }
+  set items(value: $SDK45) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2979546731807568, this, [value]); }
   /**
    * var title: String
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 656268196054310, this, []); }
-  set title(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3665336092151952, this, [value]); }
+  get title(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 656268196054310, this, []); }
+  set title(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3665336092151952, this, [value]); }
   /**
    * var created: Date?
    * @availability iOS 26.0+
    */
-  get created(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_90ad0eb69cc6bf4a", 221097120842082, this, []); }
-  set created(value: $SDK44) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2317076445426352, this, [value]); }
+  get created(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_067acaa3e5f56b46", 221097120842082, this, []); }
+  set created(value: $SDK44) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2317076445426352, this, [value]); }
   /**
    * var subtitle: String?
    * @availability iOS 26.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4392807779054512, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1564247376973435, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 4392807779054512, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1564247376973435, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCollectionV": true };
 }
 
@@ -3334,43 +3331,43 @@ export class ASImportableCredential_Address extends SDKHandle {
    * init(streetAddress: ASImportableEditableField?, postalCode: ASImportableEditableField?, city: ASImportableEditableField?, territory: ASImportableEditableField?, country: ASImportableEditableField?, telephone: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(streetAddress?: $SDK46, postalCode?: $SDK46, city?: $SDK46, territory?: $SDK46, country?: $SDK46, telephone?: $SDK46): ASImportableCredential_Address { return callSDK<ASImportableCredential_Address>("AuthenticationServices_90ad0eb69cc6bf4a", 4015216771357149, undefined, [streetAddress, postalCode, city, territory, country, telephone]); }
+  static init(streetAddress?: $SDK46, postalCode?: $SDK46, city?: $SDK46, territory?: $SDK46, country?: $SDK46, telephone?: $SDK46): ASImportableCredential_Address { return callSDK<ASImportableCredential_Address>("AuthenticationServices_067acaa3e5f56b46", 4015216771357149, undefined, [streetAddress, postalCode, city, territory, country, telephone]); }
   /**
    * var streetAddress: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get streetAddress(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2495771926233470, this, []); }
-  set streetAddress(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1795157616712846, this, [value]); }
+  get streetAddress(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2495771926233470, this, []); }
+  set streetAddress(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1795157616712846, this, [value]); }
   /**
    * var postalCode: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get postalCode(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3220654969495480, this, []); }
-  set postalCode(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2780494364525610, this, [value]); }
+  get postalCode(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3220654969495480, this, []); }
+  set postalCode(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2780494364525610, this, [value]); }
   /**
    * var city: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get city(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3006009369107478, this, []); }
-  set city(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2051861687864633, this, [value]); }
+  get city(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3006009369107478, this, []); }
+  set city(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2051861687864633, this, [value]); }
   /**
    * var country: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get country(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2305296080450701, this, []); }
-  set country(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1476327211431439, this, [value]); }
+  get country(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2305296080450701, this, []); }
+  set country(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1476327211431439, this, [value]); }
   /**
    * var telephone: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get telephone(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1286821384889842, this, []); }
-  set telephone(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2480840089920561, this, [value]); }
+  get telephone(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1286821384889842, this, []); }
+  set telephone(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2480840089920561, this, [value]); }
   /**
    * var territory: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get territory(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 400786600843974, this, []); }
-  set territory(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3210791354100211, this, [value]); }
+  get territory(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 400786600843974, this, []); }
+  set territory(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3210791354100211, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO7AddressV": true };
 }
 
@@ -3383,43 +3380,43 @@ export class ASImportableCredential_APIKey extends SDKHandle {
    * var expiryDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1028883693255817, this, []); }
-  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2655728126230661, this, [value]); }
+  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1028883693255817, this, []); }
+  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2655728126230661, this, [value]); }
   /**
    * init(key: ASImportableEditableField?, userName: ASImportableEditableField?, keyType: ASImportableEditableField?, url: ASImportableEditableField?, validFrom: ASImportableEditableField?, expiryDate: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(key?: $SDK46, userName?: $SDK46, keyType?: $SDK46, url?: $SDK46, validFrom?: $SDK46, expiryDate?: $SDK46): ASImportableCredential_APIKey { return callSDK<ASImportableCredential_APIKey>("AuthenticationServices_90ad0eb69cc6bf4a", 1634440067603327, undefined, [key, userName, keyType, url, validFrom, expiryDate]); }
+  static init(key?: $SDK46, userName?: $SDK46, keyType?: $SDK46, url?: $SDK46, validFrom?: $SDK46, expiryDate?: $SDK46): ASImportableCredential_APIKey { return callSDK<ASImportableCredential_APIKey>("AuthenticationServices_067acaa3e5f56b46", 1634440067603327, undefined, [key, userName, keyType, url, validFrom, expiryDate]); }
   /**
    * var key: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get key(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1197636175568366, this, []); }
-  set key(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2773647382154084, this, [value]); }
+  get key(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1197636175568366, this, []); }
+  set key(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2773647382154084, this, [value]); }
   /**
    * var url: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get url(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3284187083521651, this, []); }
-  set url(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4377265642417498, this, [value]); }
+  get url(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3284187083521651, this, []); }
+  set url(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4377265642417498, this, [value]); }
   /**
    * var keyType: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get keyType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3172168400829466, this, []); }
-  set keyType(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3505032734709354, this, [value]); }
+  get keyType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3172168400829466, this, []); }
+  set keyType(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3505032734709354, this, [value]); }
   /**
    * var userName: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get userName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3085148499975307, this, []); }
-  set userName(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 212849163626139, this, [value]); }
+  get userName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3085148499975307, this, []); }
+  set userName(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 212849163626139, this, [value]); }
   /**
    * var validFrom: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get validFrom(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3304429192396963, this, []); }
-  set validFrom(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 522468459366439, this, [value]); }
+  get validFrom(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3304429192396963, this, []); }
+  set validFrom(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 522468459366439, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO6APIKeyV": true };
 }
 
@@ -3432,19 +3429,19 @@ export class ASImportableCredential_BasicAuthentication extends SDKHandle {
    * var password: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get password(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1671872512735974, this, []); }
-  set password(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 409595569188432, this, [value]); }
+  get password(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1671872512735974, this, []); }
+  set password(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 409595569188432, this, [value]); }
   /**
    * init(userName: ASImportableEditableField? = nil, password: ASImportableEditableField? = nil)
    * @availability iOS 26.0+
    */
-  static init(userName?: $SDK46, password?: $SDK46): ASImportableCredential_BasicAuthentication { return callSDK<ASImportableCredential_BasicAuthentication>("AuthenticationServices_90ad0eb69cc6bf4a", 2412611557594435, undefined, [userName, password]); }
+  static init(userName?: $SDK46, password?: $SDK46): ASImportableCredential_BasicAuthentication { return callSDK<ASImportableCredential_BasicAuthentication>("AuthenticationServices_067acaa3e5f56b46", 2412611557594435, undefined, [userName, password]); }
   /**
    * var userName: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get userName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 820823175970672, this, []); }
-  set userName(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 816397175446935, this, [value]); }
+  get userName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 820823175970672, this, []); }
+  set userName(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 816397175446935, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO05BasicA0V": true };
 }
 
@@ -3457,49 +3454,49 @@ export class ASImportableCredential_CreditCard extends SDKHandle {
    * var expiryDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1332653545123145, this, []); }
-  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2884562002256296, this, [value]); }
+  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1332653545123145, this, []); }
+  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2884562002256296, this, [value]); }
   /**
    * var verificationNumber: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get verificationNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3631326115892113, this, []); }
-  set verificationNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2118966436599900, this, [value]); }
+  get verificationNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3631326115892113, this, []); }
+  set verificationNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2118966436599900, this, [value]); }
   /**
    * var pin: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get pin(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3551278105276117, this, []); }
-  set pin(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1842260080246165, this, [value]); }
+  get pin(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3551278105276117, this, []); }
+  set pin(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1842260080246165, this, [value]); }
   /**
    * init(number: ASImportableEditableField?, fullName: ASImportableEditableField?, cardType: ASImportableEditableField?, verificationNumber: ASImportableEditableField?, pin: ASImportableEditableField?, expiryDate: ASImportableEditableField?, validFrom: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(number?: $SDK46, fullName?: $SDK46, cardType?: $SDK46, verificationNumber?: $SDK46, pin?: $SDK46, expiryDate?: $SDK46, validFrom?: $SDK46): ASImportableCredential_CreditCard { return callSDK<ASImportableCredential_CreditCard>("AuthenticationServices_90ad0eb69cc6bf4a", 686517586176206, undefined, [number, fullName, cardType, verificationNumber, pin, expiryDate, validFrom]); }
+  static init(number?: $SDK46, fullName?: $SDK46, cardType?: $SDK46, verificationNumber?: $SDK46, pin?: $SDK46, expiryDate?: $SDK46, validFrom?: $SDK46): ASImportableCredential_CreditCard { return callSDK<ASImportableCredential_CreditCard>("AuthenticationServices_067acaa3e5f56b46", 686517586176206, undefined, [number, fullName, cardType, verificationNumber, pin, expiryDate, validFrom]); }
   /**
    * var number: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get number(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 550208215220899, this, []); }
-  set number(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4230979910856809, this, [value]); }
+  get number(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 550208215220899, this, []); }
+  set number(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4230979910856809, this, [value]); }
   /**
    * var cardType: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get cardType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1298513103264089, this, []); }
-  set cardType(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2927458318620996, this, [value]); }
+  get cardType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1298513103264089, this, []); }
+  set cardType(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2927458318620996, this, [value]); }
   /**
    * var fullName: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3700713485529517, this, []); }
-  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4089171084757959, this, [value]); }
+  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3700713485529517, this, []); }
+  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4089171084757959, this, [value]); }
   /**
    * var validFrom: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get validFrom(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3868081084788508, this, []); }
-  set validFrom(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3795404782611120, this, [value]); }
+  get validFrom(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3868081084788508, this, []); }
+  set validFrom(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3795404782611120, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO10CreditCardV": true };
 }
 
@@ -3512,25 +3509,25 @@ export class ASImportableCredential_CustomFields extends SDKHandle {
    * var id: Data?
    * @availability iOS 26.0+
    */
-  get id(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1433366428599689, this, []); }
-  set id(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2953232363116048, this, [value]); }
+  get id(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 1433366428599689, this, []); }
+  set id(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2953232363116048, this, [value]); }
   /**
    * init(id: Data? = nil, label: String? = nil, fields: [ASImportableEditableField])
    * @availability iOS 26.0+
    */
-  static init(id: (ArrayBuffer) | null, label: (string) | null, fields: $SDK47): ASImportableCredential_CustomFields { return callSDK<ASImportableCredential_CustomFields>("AuthenticationServices_90ad0eb69cc6bf4a", 2508317503881140, undefined, [id, label, fields]); }
+  static init(id: (ArrayBuffer) | null, label: (string) | null, fields: $SDK47): ASImportableCredential_CustomFields { return callSDK<ASImportableCredential_CustomFields>("AuthenticationServices_067acaa3e5f56b46", 2508317503881140, undefined, [id, label, fields]); }
   /**
    * var label: String?
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 252625533006271, this, []); }
-  set label(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3474699629345187, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 252625533006271, this, []); }
+  set label(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3474699629345187, this, [value]); }
   /**
    * var fields: [ASImportableEditableField]
    * @availability iOS 26.0+
    */
-  get fields(): $SDK47 { return callSDK<$SDK47>("AuthenticationServices_90ad0eb69cc6bf4a", 840826105991521, this, []); }
-  set fields(value: $SDK47) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 728316035382847, this, [value]); }
+  get fields(): $SDK47 { return callSDK<$SDK47>("AuthenticationServices_067acaa3e5f56b46", 840826105991521, this, []); }
+  set fields(value: $SDK47) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 728316035382847, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO12CustomFieldsV": true };
 }
 
@@ -3543,61 +3540,61 @@ export class ASImportableCredential_DriversLicense extends SDKHandle {
    * var expiryDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1809540866975748, this, []); }
-  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3944613598479587, this, [value]); }
+  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1809540866975748, this, []); }
+  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3944613598479587, this, [value]); }
   /**
    * var licenseClass: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get licenseClass(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4232933818945869, this, []); }
-  set licenseClass(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 691257733511372, this, [value]); }
+  get licenseClass(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4232933818945869, this, []); }
+  set licenseClass(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 691257733511372, this, [value]); }
   /**
    * var licenseNumber: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get licenseNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3153287709035008, this, []); }
-  set licenseNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 151745828655226, this, [value]); }
+  get licenseNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3153287709035008, this, []); }
+  set licenseNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 151745828655226, this, [value]); }
   /**
    * var issuingAuthority: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issuingAuthority(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1988060291248073, this, []); }
-  set issuingAuthority(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2750713258860833, this, [value]); }
+  get issuingAuthority(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1988060291248073, this, []); }
+  set issuingAuthority(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2750713258860833, this, [value]); }
   /**
    * var country: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get country(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1922344133344778, this, []); }
-  set country(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 673218684816286, this, [value]); }
+  get country(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1922344133344778, this, []); }
+  set country(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 673218684816286, this, [value]); }
   /**
    * init(fullName: ASImportableEditableField?, birthDate: ASImportableEditableField?, issueDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, issuingAuthority: ASImportableEditableField?, territory: ASImportableEditableField?, country: ASImportableEditableField?, licenseNumber: ASImportableEditableField?, licenseClass: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(fullName?: $SDK46, birthDate?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46, territory?: $SDK46, country?: $SDK46, licenseNumber?: $SDK46, licenseClass?: $SDK46): ASImportableCredential_DriversLicense { return callSDK<ASImportableCredential_DriversLicense>("AuthenticationServices_90ad0eb69cc6bf4a", 358405061830743, undefined, [fullName, birthDate, issueDate, expiryDate, issuingAuthority, territory, country, licenseNumber, licenseClass]); }
+  static init(fullName?: $SDK46, birthDate?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46, territory?: $SDK46, country?: $SDK46, licenseNumber?: $SDK46, licenseClass?: $SDK46): ASImportableCredential_DriversLicense { return callSDK<ASImportableCredential_DriversLicense>("AuthenticationServices_067acaa3e5f56b46", 358405061830743, undefined, [fullName, birthDate, issueDate, expiryDate, issuingAuthority, territory, country, licenseNumber, licenseClass]); }
   /**
    * var fullName: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4239325426018253, this, []); }
-  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3512254002933476, this, [value]); }
+  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4239325426018253, this, []); }
+  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3512254002933476, this, [value]); }
   /**
    * var birthDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get birthDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 272403576384702, this, []); }
-  set birthDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2792033608131420, this, [value]); }
+  get birthDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 272403576384702, this, []); }
+  set birthDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2792033608131420, this, [value]); }
   /**
    * var issueDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issueDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3100878887896190, this, []); }
-  set issueDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1151010729215040, this, [value]); }
+  get issueDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3100878887896190, this, []); }
+  set issueDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1151010729215040, this, [value]); }
   /**
    * var territory: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get territory(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3018033769877254, this, []); }
-  set territory(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 691511841849215, this, [value]); }
+  get territory(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3018033769877254, this, []); }
+  set territory(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 691511841849215, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO14DriversLicenseV": true };
 }
 
@@ -3610,13 +3607,13 @@ export class ASImportableCredential_GeneratedPassword extends SDKHandle {
    * init(password: String)
    * @availability iOS 26.0+
    */
-  static init(password: string): ASImportableCredential_GeneratedPassword { return callSDK<ASImportableCredential_GeneratedPassword>("AuthenticationServices_90ad0eb69cc6bf4a", 3947739666153854, undefined, [password]); }
+  static init(password: string): ASImportableCredential_GeneratedPassword { return callSDK<ASImportableCredential_GeneratedPassword>("AuthenticationServices_067acaa3e5f56b46", 3947739666153854, undefined, [password]); }
   /**
    * var password: String
    * @availability iOS 26.0+
    */
-  get password(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4084089336197974, this, []); }
-  set password(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4059067674094988, this, [value]); }
+  get password(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4084089336197974, this, []); }
+  set password(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4059067674094988, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO17GeneratedPasswordV": true };
 }
 
@@ -3629,73 +3626,73 @@ export class ASImportableCredential_IdentityDocument extends SDKHandle {
    * var birthPlace: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get birthPlace(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 615803032245110, this, []); }
-  set birthPlace(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 408826010706161, this, [value]); }
+  get birthPlace(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 615803032245110, this, []); }
+  set birthPlace(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 408826010706161, this, [value]); }
   /**
    * var expiryDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 28277578867628, this, []); }
-  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 95405117496374, this, [value]); }
+  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 28277578867628, this, []); }
+  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 95405117496374, this, [value]); }
   /**
    * var nationality: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get nationality(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1364574261525674, this, []); }
-  set nationality(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3826740212231847, this, [value]); }
+  get nationality(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1364574261525674, this, []); }
+  set nationality(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3826740212231847, this, [value]); }
   /**
    * var documentNumber: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get documentNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3727114835625637, this, []); }
-  set documentNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1556572631899983, this, [value]); }
+  get documentNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3727114835625637, this, []); }
+  set documentNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1556572631899983, this, [value]); }
   /**
    * init(issuingCountry: ASImportableEditableField?, documentNumber: ASImportableEditableField?, identificationNumber: ASImportableEditableField?, nationality: ASImportableEditableField?, fullName: ASImportableEditableField?, birthDate: ASImportableEditableField?, birthPlace: ASImportableEditableField?, sex: ASImportableEditableField?, issueDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, issuingAuthority: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(issuingCountry?: $SDK46, documentNumber?: $SDK46, identificationNumber?: $SDK46, nationality?: $SDK46, fullName?: $SDK46, birthDate?: $SDK46, birthPlace?: $SDK46, sex?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46): ASImportableCredential_IdentityDocument { return callSDK<ASImportableCredential_IdentityDocument>("AuthenticationServices_90ad0eb69cc6bf4a", 4307691072594225, undefined, [issuingCountry, documentNumber, identificationNumber, nationality, fullName, birthDate, birthPlace, sex, issueDate, expiryDate, issuingAuthority]); }
+  static init(issuingCountry?: $SDK46, documentNumber?: $SDK46, identificationNumber?: $SDK46, nationality?: $SDK46, fullName?: $SDK46, birthDate?: $SDK46, birthPlace?: $SDK46, sex?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46): ASImportableCredential_IdentityDocument { return callSDK<ASImportableCredential_IdentityDocument>("AuthenticationServices_067acaa3e5f56b46", 4307691072594225, undefined, [issuingCountry, documentNumber, identificationNumber, nationality, fullName, birthDate, birthPlace, sex, issueDate, expiryDate, issuingAuthority]); }
   /**
    * var issuingCountry: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issuingCountry(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 556218588738397, this, []); }
-  set issuingCountry(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2245628964714303, this, [value]); }
+  get issuingCountry(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 556218588738397, this, []); }
+  set issuingCountry(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2245628964714303, this, [value]); }
   /**
    * var issuingAuthority: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issuingAuthority(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2372217721623671, this, []); }
-  set issuingAuthority(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4205818204280019, this, [value]); }
+  get issuingAuthority(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2372217721623671, this, []); }
+  set issuingAuthority(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4205818204280019, this, [value]); }
   /**
    * var identificationNumber: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get identificationNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3796491088433071, this, []); }
-  set identificationNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3252453190891803, this, [value]); }
+  get identificationNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3796491088433071, this, []); }
+  set identificationNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3252453190891803, this, [value]); }
   /**
    * var sex: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get sex(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2725729100964140, this, []); }
-  set sex(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2706352988048783, this, [value]); }
+  get sex(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2725729100964140, this, []); }
+  set sex(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2706352988048783, this, [value]); }
   /**
    * var fullName: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 576514545080016, this, []); }
-  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1729026170221833, this, [value]); }
+  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 576514545080016, this, []); }
+  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1729026170221833, this, [value]); }
   /**
    * var birthDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get birthDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1371952905597873, this, []); }
-  set birthDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 953136045025365, this, [value]); }
+  get birthDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1371952905597873, this, []); }
+  set birthDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 953136045025365, this, [value]); }
   /**
    * var issueDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issueDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3045743724864822, this, []); }
-  set issueDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2962954487524342, this, [value]); }
+  get issueDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3045743724864822, this, []); }
+  set issueDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2962954487524342, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO16IdentityDocumentV": true };
 }
 
@@ -3708,13 +3705,13 @@ export class ASImportableCredential_ItemReference extends SDKHandle {
    * var reference: ASImportableLinkedItem
    * @availability iOS 26.0+
    */
-  get reference(): ASImportableLinkedItem { return callSDK<ASImportableLinkedItem>("AuthenticationServices_90ad0eb69cc6bf4a", 3933203109811777, this, []); }
-  set reference(value: ASImportableLinkedItem) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3960229269720630, this, [value]); }
+  get reference(): ASImportableLinkedItem { return callSDK<ASImportableLinkedItem>("AuthenticationServices_067acaa3e5f56b46", 3933203109811777, this, []); }
+  set reference(value: ASImportableLinkedItem) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3960229269720630, this, [value]); }
   /**
    * init(reference: ASImportableLinkedItem)
    * @availability iOS 26.0+
    */
-  static init(reference: ASImportableLinkedItem): ASImportableCredential_ItemReference { return callSDK<ASImportableCredential_ItemReference>("AuthenticationServices_90ad0eb69cc6bf4a", 2892955621238501, undefined, [reference]); }
+  static init(reference: ASImportableLinkedItem): ASImportableCredential_ItemReference { return callSDK<ASImportableCredential_ItemReference>("AuthenticationServices_067acaa3e5f56b46", 2892955621238501, undefined, [reference]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO13ItemReferenceV": true };
 }
 
@@ -3727,13 +3724,13 @@ export class ASImportableCredential_Note extends SDKHandle {
    * var content: ASImportableEditableField
    * @availability iOS 26.0+
    */
-  get content(): ASImportableEditableField { return callSDK<ASImportableEditableField>("AuthenticationServices_90ad0eb69cc6bf4a", 772297162769092, this, []); }
-  set content(value: ASImportableEditableField) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3327576778449173, this, [value]); }
+  get content(): ASImportableEditableField { return callSDK<ASImportableEditableField>("AuthenticationServices_067acaa3e5f56b46", 772297162769092, this, []); }
+  set content(value: ASImportableEditableField) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3327576778449173, this, [value]); }
   /**
    * init(content: ASImportableEditableField)
    * @availability iOS 26.0+
    */
-  static init(content: ASImportableEditableField): ASImportableCredential_Note { return callSDK<ASImportableCredential_Note>("AuthenticationServices_90ad0eb69cc6bf4a", 3088488775153874, undefined, [content]); }
+  static init(content: ASImportableEditableField): ASImportableCredential_Note { return callSDK<ASImportableCredential_Note>("AuthenticationServices_067acaa3e5f56b46", 3088488775153874, undefined, [content]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO4NoteV": true };
 }
 
@@ -3746,54 +3743,54 @@ export class ASImportableCredential_Passkey extends SDKHandle {
    * var userHandle: Data
    * @availability iOS 26.0+
    */
-  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 451616871582064, this, []); }
-  set userHandle(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4296163652286794, this, [value]); }
+  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 451616871582064, this, []); }
+  set userHandle(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4296163652286794, this, [value]); }
   /**
    * var credentialID: Data
    * @availability iOS 26.0+
    */
-  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 1504040180767961, this, []); }
-  set credentialID(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 247827301378674, this, [value]); }
+  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 1504040180767961, this, []); }
+  set credentialID(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 247827301378674, this, [value]); }
   /**
    * init(credentialID: Data, relyingPartyIdentifier: String, userName: String, userDisplayName: String, userHandle: Data, key: Data, fido2Extensions: ASImportableFIDO2Extensions?)
    * @availability iOS 26.4+
    */
-  static initCredentialIDRelyingPartyIdentifierUserNameUserDisplayNameUserHandleKeyFido2Extensions(credentialID: ArrayBuffer, relyingPartyIdentifier: string, userName: string, userDisplayName: string, userHandle: ArrayBuffer, key: ArrayBuffer, fido2Extensions?: $SDK48): ASImportableCredential_Passkey { return callSDK<ASImportableCredential_Passkey>("AuthenticationServices_90ad0eb69cc6bf4a", 721824698094153, undefined, [credentialID, relyingPartyIdentifier, userName, userDisplayName, userHandle, key, fido2Extensions]); }
+  static initCredentialIDRelyingPartyIdentifierUserNameUserDisplayNameUserHandleKeyFido2Extensions(credentialID: ArrayBuffer, relyingPartyIdentifier: string, userName: string, userDisplayName: string, userHandle: ArrayBuffer, key: ArrayBuffer, fido2Extensions?: $SDK48): ASImportableCredential_Passkey { return callSDK<ASImportableCredential_Passkey>("AuthenticationServices_067acaa3e5f56b46", 721824698094153, undefined, [credentialID, relyingPartyIdentifier, userName, userDisplayName, userHandle, key, fido2Extensions]); }
   /**
    * init(credentialID: Data, relyingPartyIdentifier: String, userName: String, userDisplayName: String, userHandle: Data, key: Data)
    * @availability iOS 26.0+
    */
-  static initCredentialIDRelyingPartyIdentifierUserNameUserDisplayNameUserHandleKey(credentialID: ArrayBuffer, relyingPartyIdentifier: string, userName: string, userDisplayName: string, userHandle: ArrayBuffer, key: ArrayBuffer): ASImportableCredential_Passkey { return callSDK<ASImportableCredential_Passkey>("AuthenticationServices_90ad0eb69cc6bf4a", 2520646975656878, undefined, [credentialID, relyingPartyIdentifier, userName, userDisplayName, userHandle, key]); }
+  static initCredentialIDRelyingPartyIdentifierUserNameUserDisplayNameUserHandleKey(credentialID: ArrayBuffer, relyingPartyIdentifier: string, userName: string, userDisplayName: string, userHandle: ArrayBuffer, key: ArrayBuffer): ASImportableCredential_Passkey { return callSDK<ASImportableCredential_Passkey>("AuthenticationServices_067acaa3e5f56b46", 2520646975656878, undefined, [credentialID, relyingPartyIdentifier, userName, userDisplayName, userHandle, key]); }
   /**
    * var fido2Extensions: ASImportableFIDO2Extensions?
    * @availability iOS 26.4+
    */
-  get fido2Extensions(): $SDK48 { return callSDK<$SDK48>("AuthenticationServices_90ad0eb69cc6bf4a", 4011826015607701, this, []); }
-  set fido2Extensions(value: $SDK48) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2107183853438, this, [value]); }
+  get fido2Extensions(): $SDK48 { return callSDK<$SDK48>("AuthenticationServices_067acaa3e5f56b46", 4011826015607701, this, []); }
+  set fido2Extensions(value: $SDK48) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2107183853438, this, [value]); }
   /**
    * var userDisplayName: String
    * @availability iOS 26.0+
    */
-  get userDisplayName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 265471658368455, this, []); }
-  set userDisplayName(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3806819697467644, this, [value]); }
+  get userDisplayName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 265471658368455, this, []); }
+  set userDisplayName(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3806819697467644, this, [value]); }
   /**
    * var relyingPartyIdentifier: String
    * @availability iOS 26.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3582726638575974, this, []); }
-  set relyingPartyIdentifier(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3530987214286200, this, [value]); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3582726638575974, this, []); }
+  set relyingPartyIdentifier(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3530987214286200, this, [value]); }
   /**
    * var key: Data
    * @availability iOS 26.0+
    */
-  get key(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 308096295688634, this, []); }
-  set key(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 897947017193397, this, [value]); }
+  get key(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 308096295688634, this, []); }
+  set key(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 897947017193397, this, [value]); }
   /**
    * var userName: String
    * @availability iOS 26.0+
    */
-  get userName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2224606002728341, this, []); }
-  set userName(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2776628838212350, this, [value]); }
+  get userName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2224606002728341, this, []); }
+  set userName(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2776628838212350, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO7PasskeyV": true };
 }
 
@@ -3806,79 +3803,79 @@ export class ASImportableCredential_Passport extends SDKHandle {
    * var birthPlace: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get birthPlace(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1751954855829752, this, []); }
-  set birthPlace(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 297872869444205, this, [value]); }
+  get birthPlace(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1751954855829752, this, []); }
+  set birthPlace(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 297872869444205, this, [value]); }
   /**
    * var expiryDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1285297512393081, this, []); }
-  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3406705347475864, this, [value]); }
+  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1285297512393081, this, []); }
+  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3406705347475864, this, [value]); }
   /**
    * var nationality: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get nationality(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 933013476946589, this, []); }
-  set nationality(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 112800228385086, this, [value]); }
+  get nationality(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 933013476946589, this, []); }
+  set nationality(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 112800228385086, this, [value]); }
   /**
    * var passportType: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get passportType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1295320696615430, this, []); }
-  set passportType(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 450549013621438, this, [value]); }
+  get passportType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1295320696615430, this, []); }
+  set passportType(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 450549013621438, this, [value]); }
   /**
    * init(issuingCountry: ASImportableEditableField?, passportType: ASImportableEditableField?, passportNumber: ASImportableEditableField?, nationalIdentificationNumber: ASImportableEditableField?, nationality: ASImportableEditableField?, fullName: ASImportableEditableField?, birthDate: ASImportableEditableField?, birthPlace: ASImportableEditableField?, sex: ASImportableEditableField?, issueDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, issuingAuthority: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(issuingCountry?: $SDK46, passportType?: $SDK46, passportNumber?: $SDK46, nationalIdentificationNumber?: $SDK46, nationality?: $SDK46, fullName?: $SDK46, birthDate?: $SDK46, birthPlace?: $SDK46, sex?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46): ASImportableCredential_Passport { return callSDK<ASImportableCredential_Passport>("AuthenticationServices_90ad0eb69cc6bf4a", 1760594777061774, undefined, [issuingCountry, passportType, passportNumber, nationalIdentificationNumber, nationality, fullName, birthDate, birthPlace, sex, issueDate, expiryDate, issuingAuthority]); }
+  static init(issuingCountry?: $SDK46, passportType?: $SDK46, passportNumber?: $SDK46, nationalIdentificationNumber?: $SDK46, nationality?: $SDK46, fullName?: $SDK46, birthDate?: $SDK46, birthPlace?: $SDK46, sex?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46): ASImportableCredential_Passport { return callSDK<ASImportableCredential_Passport>("AuthenticationServices_067acaa3e5f56b46", 1760594777061774, undefined, [issuingCountry, passportType, passportNumber, nationalIdentificationNumber, nationality, fullName, birthDate, birthPlace, sex, issueDate, expiryDate, issuingAuthority]); }
   /**
    * var issuingCountry: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issuingCountry(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4075900219151503, this, []); }
-  set issuingCountry(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2491047578725638, this, [value]); }
+  get issuingCountry(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4075900219151503, this, []); }
+  set issuingCountry(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2491047578725638, this, [value]); }
   /**
    * var passportNumber: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get passportNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 516844793255518, this, []); }
-  set passportNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3274309966936433, this, [value]); }
+  get passportNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 516844793255518, this, []); }
+  set passportNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3274309966936433, this, [value]); }
   /**
    * var issuingAuthority: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issuingAuthority(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 951532659409071, this, []); }
-  set issuingAuthority(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 75835845626336, this, [value]); }
+  get issuingAuthority(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 951532659409071, this, []); }
+  set issuingAuthority(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 75835845626336, this, [value]); }
   /**
    * var nationalIdentificationNumber: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get nationalIdentificationNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3396398278255697, this, []); }
-  set nationalIdentificationNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1273807164664958, this, [value]); }
+  get nationalIdentificationNumber(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3396398278255697, this, []); }
+  set nationalIdentificationNumber(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1273807164664958, this, [value]); }
   /**
    * var sex: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get sex(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1858409433183053, this, []); }
-  set sex(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2946356240076085, this, [value]); }
+  get sex(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1858409433183053, this, []); }
+  set sex(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2946356240076085, this, [value]); }
   /**
    * var fullName: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 795626435115731, this, []); }
-  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 316642651007873, this, [value]); }
+  get fullName(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 795626435115731, this, []); }
+  set fullName(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 316642651007873, this, [value]); }
   /**
    * var birthDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get birthDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1612262807319599, this, []); }
-  set birthDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 585679044813548, this, [value]); }
+  get birthDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1612262807319599, this, []); }
+  set birthDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 585679044813548, this, [value]); }
   /**
    * var issueDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get issueDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 483346169485012, this, []); }
-  set issueDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3534926349615647, this, [value]); }
+  get issueDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 483346169485012, this, []); }
+  set issueDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3534926349615647, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO8PassportV": true };
 }
 
@@ -3891,61 +3888,61 @@ export class ASImportableCredential_PersonName extends SDKHandle {
    * var generation: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get generation(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3630735548034342, this, []); }
-  set generation(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1047146664271378, this, [value]); }
+  get generation(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3630735548034342, this, []); }
+  set generation(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1047146664271378, this, [value]); }
   /**
    * var credentials: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get credentials(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3349167050867552, this, []); }
-  set credentials(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3832664410760953, this, [value]); }
+  get credentials(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3349167050867552, this, []); }
+  set credentials(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3832664410760953, this, [value]); }
   /**
    * var givenInformal: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get givenInformal(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1409397726988040, this, []); }
-  set givenInformal(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1756769147562157, this, [value]); }
+  get givenInformal(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1409397726988040, this, []); }
+  set givenInformal(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1756769147562157, this, [value]); }
   /**
    * var surnamePrefix: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get surnamePrefix(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3443854813750576, this, []); }
-  set surnamePrefix(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3640327172424743, this, [value]); }
+  get surnamePrefix(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3443854813750576, this, []); }
+  set surnamePrefix(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3640327172424743, this, [value]); }
   /**
    * var given: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get given(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4204330336844057, this, []); }
-  set given(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3344900176466930, this, [value]); }
+  get given(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4204330336844057, this, []); }
+  set given(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3344900176466930, this, [value]); }
   /**
    * init(title: ASImportableEditableField?, given: ASImportableEditableField?, givenInformal: ASImportableEditableField?, given2: ASImportableEditableField?, surnamePrefix: ASImportableEditableField?, surname: ASImportableEditableField?, surname2: ASImportableEditableField?, credentials: ASImportableEditableField?, generation: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(title?: $SDK46, given?: $SDK46, givenInformal?: $SDK46, given2?: $SDK46, surnamePrefix?: $SDK46, surname?: $SDK46, surname2?: $SDK46, credentials?: $SDK46, generation?: $SDK46): ASImportableCredential_PersonName { return callSDK<ASImportableCredential_PersonName>("AuthenticationServices_90ad0eb69cc6bf4a", 72830315345704, undefined, [title, given, givenInformal, given2, surnamePrefix, surname, surname2, credentials, generation]); }
+  static init(title?: $SDK46, given?: $SDK46, givenInformal?: $SDK46, given2?: $SDK46, surnamePrefix?: $SDK46, surname?: $SDK46, surname2?: $SDK46, credentials?: $SDK46, generation?: $SDK46): ASImportableCredential_PersonName { return callSDK<ASImportableCredential_PersonName>("AuthenticationServices_067acaa3e5f56b46", 72830315345704, undefined, [title, given, givenInformal, given2, surnamePrefix, surname, surname2, credentials, generation]); }
   /**
    * var title: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get title(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2595742908281941, this, []); }
-  set title(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3645302789108911, this, [value]); }
+  get title(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2595742908281941, this, []); }
+  set title(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3645302789108911, this, [value]); }
   /**
    * var given2: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get given2(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3609666524213209, this, []); }
-  set given2(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2762923892891738, this, [value]); }
+  get given2(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3609666524213209, this, []); }
+  set given2(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2762923892891738, this, [value]); }
   /**
    * var surname: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get surname(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4153118532070881, this, []); }
-  set surname(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3420441177309663, this, [value]); }
+  get surname(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4153118532070881, this, []); }
+  set surname(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3420441177309663, this, [value]); }
   /**
    * var surname2: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get surname2(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4317773263025738, this, []); }
-  set surname2(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 7200843706086, this, [value]); }
+  get surname2(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4317773263025738, this, []); }
+  set surname2(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 7200843706086, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO10PersonNameV": true };
 }
 
@@ -3958,43 +3955,43 @@ export class ASImportableCredential_SSHKey extends SDKHandle {
    * var expiryDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4228948874032222, this, []); }
-  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1453823918260465, this, [value]); }
+  get expiryDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4228948874032222, this, []); }
+  set expiryDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1453823918260465, this, [value]); }
   /**
    * var keyComment: String?
    * @availability iOS 26.0+
    */
-  get keyComment(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2114302447774098, this, []); }
-  set keyComment(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4134495755515537, this, [value]); }
+  get keyComment(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 2114302447774098, this, []); }
+  set keyComment(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4134495755515537, this, [value]); }
   /**
    * var privateKey: Data
    * @availability iOS 26.0+
    */
-  get privateKey(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 1112150552126300, this, []); }
-  set privateKey(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4352165297793046, this, [value]); }
+  get privateKey(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 1112150552126300, this, []); }
+  set privateKey(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4352165297793046, this, [value]); }
   /**
    * var creationDate: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get creationDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3325232701704812, this, []); }
-  set creationDate(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2513710298717315, this, [value]); }
+  get creationDate(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3325232701704812, this, []); }
+  set creationDate(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2513710298717315, this, [value]); }
   /**
    * var keyGenerationSource: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get keyGenerationSource(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 1522919858082365, this, []); }
-  set keyGenerationSource(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4243107455107654, this, [value]); }
+  get keyGenerationSource(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 1522919858082365, this, []); }
+  set keyGenerationSource(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4243107455107654, this, [value]); }
   /**
    * init(keyType: String, privateKey: Data, keyComment: String?, creationDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, keyGenerationSource: ASImportableEditableField?)
    * @availability iOS 26.0+
    */
-  static init(keyType: string, privateKey: ArrayBuffer, keyComment?: (string) | null, creationDate?: $SDK46, expiryDate?: $SDK46, keyGenerationSource?: $SDK46): ASImportableCredential_SSHKey { return callSDK<ASImportableCredential_SSHKey>("AuthenticationServices_90ad0eb69cc6bf4a", 2052180710763946, undefined, [keyType, privateKey, keyComment, creationDate, expiryDate, keyGenerationSource]); }
+  static init(keyType: string, privateKey: ArrayBuffer, keyComment?: (string) | null, creationDate?: $SDK46, expiryDate?: $SDK46, keyGenerationSource?: $SDK46): ASImportableCredential_SSHKey { return callSDK<ASImportableCredential_SSHKey>("AuthenticationServices_067acaa3e5f56b46", 2052180710763946, undefined, [keyType, privateKey, keyComment, creationDate, expiryDate, keyGenerationSource]); }
   /**
    * var keyType: String
    * @availability iOS 26.0+
    */
-  get keyType(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1254492194425947, this, []); }
-  set keyType(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 168272410952967, this, [value]); }
+  get keyType(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1254492194425947, this, []); }
+  set keyType(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 168272410952967, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO6SSHKeyV": true };
 }
 
@@ -4007,43 +4004,43 @@ export class ASImportableCredential_TOTP extends SDKHandle {
    * var digits: UInt16
    * @availability iOS 26.0+
    */
-  get digits(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 3131857771097077, this, []); }
-  set digits(value: number) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3398511951932059, this, [value]); }
+  get digits(): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 3131857771097077, this, []); }
+  set digits(value: number) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3398511951932059, this, [value]); }
   /**
    * var issuer: String?
    * @availability iOS 26.0+
    */
-  get issuer(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4125124178394891, this, []); }
-  set issuer(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1532671568415617, this, [value]); }
+  get issuer(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 4125124178394891, this, []); }
+  set issuer(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1532671568415617, this, [value]); }
   /**
    * var period: UInt16
    * @availability iOS 26.0+
    */
-  get period(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 3978266156887629, this, []); }
-  set period(value: number) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2331805400954102, this, [value]); }
+  get period(): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 3978266156887629, this, []); }
+  set period(value: number) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2331805400954102, this, [value]); }
   /**
    * var secret: Data
    * @availability iOS 26.0+
    */
-  get secret(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 1257587148807205, this, []); }
-  set secret(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 324261536450834, this, [value]); }
+  get secret(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 1257587148807205, this, []); }
+  set secret(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 324261536450834, this, [value]); }
   /**
    * init(secret: Data, period: UInt16, digits: UInt16, userName: String?, algorithm: ASImportableCredential.TOTP.Algorithm, issuer: String? = nil)
    * @availability iOS 26.0+
    */
-  static init(secret: ArrayBuffer, period: number, digits: number, userName: (string) | null, algorithm: ASImportableCredential_TOTP_Algorithm, issuer?: (string) | null): ASImportableCredential_TOTP { return callSDK<ASImportableCredential_TOTP>("AuthenticationServices_90ad0eb69cc6bf4a", 1888497365329728, undefined, [secret, period, digits, userName, algorithm, issuer]); }
+  static init(secret: ArrayBuffer, period: number, digits: number, userName: (string) | null, algorithm: ASImportableCredential_TOTP_Algorithm, issuer?: (string) | null): ASImportableCredential_TOTP { return callSDK<ASImportableCredential_TOTP>("AuthenticationServices_067acaa3e5f56b46", 1888497365329728, undefined, [secret, period, digits, userName, algorithm, issuer]); }
   /**
    * var userName: String?
    * @availability iOS 26.0+
    */
-  get userName(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1226422916084457, this, []); }
-  set userName(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2700159203055042, this, [value]); }
+  get userName(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 1226422916084457, this, []); }
+  set userName(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2700159203055042, this, [value]); }
   /**
    * var algorithm: ASImportableCredential.TOTP.Algorithm
    * @availability iOS 26.0+
    */
-  get algorithm(): ASImportableCredential_TOTP_Algorithm { return callSDK<ASImportableCredential_TOTP_Algorithm>("AuthenticationServices_90ad0eb69cc6bf4a", 1986799984224352, this, []); }
-  set algorithm(value: ASImportableCredential_TOTP_Algorithm) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 394863270694291, this, [value]); }
+  get algorithm(): ASImportableCredential_TOTP_Algorithm { return callSDK<ASImportableCredential_TOTP_Algorithm>("AuthenticationServices_067acaa3e5f56b46", 1986799984224352, this, []); }
+  set algorithm(value: ASImportableCredential_TOTP_Algorithm) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 394863270694291, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO4TOTPV": true };
 }
 
@@ -4058,12 +4055,12 @@ export const ASImportableCredential_TOTP_Algorithm = {
    * init?(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): (ASImportableCredential_TOTP_Algorithm) | null { return callSDK<(ASImportableCredential_TOTP_Algorithm) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4190106242123723, undefined, [rawValue]); },
+  init(rawValue: string): (ASImportableCredential_TOTP_Algorithm) | null { return callSDK<(ASImportableCredential_TOTP_Algorithm) | null>("AuthenticationServices_067acaa3e5f56b46", 4190106242123723, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: ASImportableCredential_TOTP_Algorithm): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3734830624828635, $self, []); }
+  getRawValue($self: ASImportableCredential_TOTP_Algorithm): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3734830624828635, $self, []); }
 };
 
 /**
@@ -4081,31 +4078,31 @@ export class ASImportableCredential_WiFi extends SDKHandle {
    * var passphrase: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get passphrase(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 3207271585689096, this, []); }
-  set passphrase(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 89712760782093, this, [value]); }
+  get passphrase(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 3207271585689096, this, []); }
+  set passphrase(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 89712760782093, this, [value]); }
   /**
    * var networkSecurityType: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get networkSecurityType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2905075089900268, this, []); }
-  set networkSecurityType(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3095534111382886, this, [value]); }
+  get networkSecurityType(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2905075089900268, this, []); }
+  set networkSecurityType(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3095534111382886, this, [value]); }
   /**
    * init(ssid: ASImportableEditableField?, networkSecurityType: ASImportableEditableField?, passphrase: ASImportableEditableField?, hidden: ASImportableEditableField? = nil)
    * @availability iOS 26.0+
    */
-  static init(ssid?: $SDK46, networkSecurityType?: $SDK46, passphrase?: $SDK46, hidden?: $SDK46): ASImportableCredential_WiFi { return callSDK<ASImportableCredential_WiFi>("AuthenticationServices_90ad0eb69cc6bf4a", 2485521438735883, undefined, [ssid, networkSecurityType, passphrase, hidden]); }
+  static init(ssid?: $SDK46, networkSecurityType?: $SDK46, passphrase?: $SDK46, hidden?: $SDK46): ASImportableCredential_WiFi { return callSDK<ASImportableCredential_WiFi>("AuthenticationServices_067acaa3e5f56b46", 2485521438735883, undefined, [ssid, networkSecurityType, passphrase, hidden]); }
   /**
    * var ssid: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get ssid(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 2241809605727736, this, []); }
-  set ssid(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3670205699973463, this, [value]); }
+  get ssid(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 2241809605727736, this, []); }
+  set ssid(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3670205699973463, this, [value]); }
   /**
    * var hidden: ASImportableEditableField?
    * @availability iOS 26.0+
    */
-  get hidden(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_90ad0eb69cc6bf4a", 4046605447674544, this, []); }
-  set hidden(value: $SDK46) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3409340772932270, this, [value]); }
+  get hidden(): $SDK46 { return callSDK<$SDK46>("AuthenticationServices_067acaa3e5f56b46", 4046605447674544, this, []); }
+  set hidden(value: $SDK46) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3409340772932270, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableCredentialO4WiFiV": true };
 }
 
@@ -4118,19 +4115,19 @@ export class ASImportableCredentialScope extends SDKHandle {
    * var androidApps: [ASImportableCredentialScope.AndroidAppID]
    * @availability iOS 26.0+
    */
-  get androidApps(): $SDK49 { return callSDK<$SDK49>("AuthenticationServices_90ad0eb69cc6bf4a", 86402507227274, this, []); }
-  set androidApps(value: $SDK49) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3140919087538168, this, [value]); }
+  get androidApps(): $SDK49 { return callSDK<$SDK49>("AuthenticationServices_067acaa3e5f56b46", 86402507227274, this, []); }
+  set androidApps(value: $SDK49) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3140919087538168, this, [value]); }
   /**
    * init(urls: [URL], androidApps: [ASImportableCredentialScope.AndroidAppID] = [])
    * @availability iOS 26.0+
    */
-  static init(urls: Array<string>, androidApps?: $SDK49): ASImportableCredentialScope { return callSDK<ASImportableCredentialScope>("AuthenticationServices_90ad0eb69cc6bf4a", 3663257543628498, undefined, [urls, androidApps]); }
+  static init(urls: Array<string>, androidApps?: $SDK49): ASImportableCredentialScope { return callSDK<ASImportableCredentialScope>("AuthenticationServices_067acaa3e5f56b46", 3663257543628498, undefined, [urls, androidApps]); }
   /**
    * var urls: [URL]
    * @availability iOS 26.0+
    */
-  get urls(): Array<string> { return callSDK<Array<string>>("AuthenticationServices_90ad0eb69cc6bf4a", 3964288636783162, this, []); }
-  set urls(value: Array<string>) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1606321226166229, this, [value]); }
+  get urls(): Array<string> { return callSDK<Array<string>>("AuthenticationServices_067acaa3e5f56b46", 3964288636783162, this, []); }
+  set urls(value: Array<string>) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1606321226166229, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices27ASImportableCredentialScopeV": true };
 }
 
@@ -4143,19 +4140,19 @@ export class ASImportableCredentialScope_AndroidAppCertificationFingerprint exte
    * var fingerprint: Data
    * @availability iOS 26.0+
    */
-  get fingerprint(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 3194894256394005, this, []); }
-  set fingerprint(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 156394035140464, this, [value]); }
+  get fingerprint(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 3194894256394005, this, []); }
+  set fingerprint(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 156394035140464, this, [value]); }
   /**
    * init(fingerprint: Data, hashAlgorithm: String)
    * @availability iOS 26.0+
    */
-  static init(fingerprint: ArrayBuffer, hashAlgorithm: string): ASImportableCredentialScope_AndroidAppCertificationFingerprint { return callSDK<ASImportableCredentialScope_AndroidAppCertificationFingerprint>("AuthenticationServices_90ad0eb69cc6bf4a", 230685565811419, undefined, [fingerprint, hashAlgorithm]); }
+  static init(fingerprint: ArrayBuffer, hashAlgorithm: string): ASImportableCredentialScope_AndroidAppCertificationFingerprint { return callSDK<ASImportableCredentialScope_AndroidAppCertificationFingerprint>("AuthenticationServices_067acaa3e5f56b46", 230685565811419, undefined, [fingerprint, hashAlgorithm]); }
   /**
    * var hashAlgorithm: String
    * @availability iOS 26.0+
    */
-  get hashAlgorithm(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1456338601421918, this, []); }
-  set hashAlgorithm(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 976381563556851, this, [value]); }
+  get hashAlgorithm(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1456338601421918, this, []); }
+  set hashAlgorithm(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 976381563556851, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices27ASImportableCredentialScopeV34AndroidAppCertificationFingerprintV": true };
 }
 
@@ -4168,25 +4165,25 @@ export class ASImportableCredentialScope_AndroidAppID extends SDKHandle {
    * init(bundleID: String, certificate: ASImportableCredentialScope.AndroidAppCertificationFingerprint?, name: String?)
    * @availability iOS 26.0+
    */
-  static init(bundleID: string, certificate?: $SDK50, name?: (string) | null): ASImportableCredentialScope_AndroidAppID { return callSDK<ASImportableCredentialScope_AndroidAppID>("AuthenticationServices_90ad0eb69cc6bf4a", 3057089179398610, undefined, [bundleID, certificate, name]); }
+  static init(bundleID: string, certificate?: $SDK50, name?: (string) | null): ASImportableCredentialScope_AndroidAppID { return callSDK<ASImportableCredentialScope_AndroidAppID>("AuthenticationServices_067acaa3e5f56b46", 3057089179398610, undefined, [bundleID, certificate, name]); }
   /**
    * var bundleID: String
    * @availability iOS 26.0+
    */
-  get bundleID(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1812484859691888, this, []); }
-  set bundleID(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3400507394023111, this, [value]); }
+  get bundleID(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1812484859691888, this, []); }
+  set bundleID(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3400507394023111, this, [value]); }
   /**
    * var certificate: ASImportableCredentialScope.AndroidAppCertificationFingerprint?
    * @availability iOS 26.0+
    */
-  get certificate(): $SDK50 { return callSDK<$SDK50>("AuthenticationServices_90ad0eb69cc6bf4a", 779312420585383, this, []); }
-  set certificate(value: $SDK50) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2133164654745303, this, [value]); }
+  get certificate(): $SDK50 { return callSDK<$SDK50>("AuthenticationServices_067acaa3e5f56b46", 779312420585383, this, []); }
+  set certificate(value: $SDK50) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2133164654745303, this, [value]); }
   /**
    * var name: String?
    * @availability iOS 26.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 189024703927209, this, []); }
-  set name(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3762535131408541, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 189024703927209, this, []); }
+  set name(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3762535131408541, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices27ASImportableCredentialScopeV12AndroidAppIDV": true };
 }
 
@@ -4199,31 +4196,31 @@ export class ASImportableEditableField extends SDKHandle {
    * var id: Data?
    * @availability iOS 26.0+
    */
-  get id(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2135517272720946, this, []); }
-  set id(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 808245000097401, this, [value]); }
+  get id(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 2135517272720946, this, []); }
+  set id(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 808245000097401, this, [value]); }
   /**
    * init(id: Data?, fieldType: ASImportableEditableField.FieldType, value: String, label: String? = nil)
    * @availability iOS 26.0+
    */
-  static init(id: (ArrayBuffer) | null, fieldType: ASImportableEditableField_FieldType, value: string, label?: (string) | null): ASImportableEditableField { return callSDK<ASImportableEditableField>("AuthenticationServices_90ad0eb69cc6bf4a", 3943791542935792, undefined, [id, fieldType, value, label]); }
+  static init(id: (ArrayBuffer) | null, fieldType: ASImportableEditableField_FieldType, value: string, label?: (string) | null): ASImportableEditableField { return callSDK<ASImportableEditableField>("AuthenticationServices_067acaa3e5f56b46", 3943791542935792, undefined, [id, fieldType, value, label]); }
   /**
    * var label: String?
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1284826378918761, this, []); }
-  set label(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 921367181520643, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 1284826378918761, this, []); }
+  set label(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 921367181520643, this, [value]); }
   /**
    * var value: String
    * @availability iOS 26.0+
    */
-  get value(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3893612230385389, this, []); }
-  set value(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1330143218800944, this, [value]); }
+  get value(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3893612230385389, this, []); }
+  set value(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1330143218800944, this, [value]); }
   /**
    * var fieldType: ASImportableEditableField.FieldType
    * @availability iOS 26.0+
    */
-  get fieldType(): ASImportableEditableField_FieldType { return callSDK<ASImportableEditableField_FieldType>("AuthenticationServices_90ad0eb69cc6bf4a", 4310719845881461, this, []); }
-  set fieldType(value: ASImportableEditableField_FieldType) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4406128641161568, this, [value]); }
+  get fieldType(): ASImportableEditableField_FieldType { return callSDK<ASImportableEditableField_FieldType>("AuthenticationServices_067acaa3e5f56b46", 4310719845881461, this, []); }
+  set fieldType(value: ASImportableEditableField_FieldType) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4406128641161568, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices25ASImportableEditableFieldV": true };
 }
 
@@ -4238,12 +4235,12 @@ export const ASImportableEditableField_FieldType = {
    * init?(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): (ASImportableEditableField_FieldType) | null { return callSDK<(ASImportableEditableField_FieldType) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 198777499691907, undefined, [rawValue]); },
+  init(rawValue: string): (ASImportableEditableField_FieldType) | null { return callSDK<(ASImportableEditableField_FieldType) | null>("AuthenticationServices_067acaa3e5f56b46", 198777499691907, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: ASImportableEditableField_FieldType): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4476296540318985, $self, []); }
+  getRawValue($self: ASImportableEditableField_FieldType): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4476296540318985, $self, []); }
 };
 
 /**
@@ -4269,13 +4266,13 @@ export class ASImportableExtension_Shared extends SDKHandle {
    * init(accessors: [ASImportableExtension.Shared.SharingAccessor])
    * @availability iOS 26.4+
    */
-  static init(accessors: $SDK51): ASImportableExtension_Shared { return callSDK<ASImportableExtension_Shared>("AuthenticationServices_90ad0eb69cc6bf4a", 154152899700989, undefined, [accessors]); }
+  static init(accessors: $SDK51): ASImportableExtension_Shared { return callSDK<ASImportableExtension_Shared>("AuthenticationServices_067acaa3e5f56b46", 154152899700989, undefined, [accessors]); }
   /**
    * var accessors: [ASImportableExtension.Shared.SharingAccessor]
    * @availability iOS 26.4+
    */
-  get accessors(): $SDK51 { return callSDK<$SDK51>("AuthenticationServices_90ad0eb69cc6bf4a", 3748236795235745, this, []); }
-  set accessors(value: $SDK51) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4228107163976492, this, [value]); }
+  get accessors(): $SDK51 { return callSDK<$SDK51>("AuthenticationServices_067acaa3e5f56b46", 3748236795235745, this, []); }
+  set accessors(value: $SDK51) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4228107163976492, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices21ASImportableExtensionO6SharedV": true };
 }
 
@@ -4288,31 +4285,31 @@ export class ASImportableExtension_Shared_SharingAccessor extends SDKHandle {
    * var permissions: [ASImportableExtension.Shared.SharingAccessor.Permission]
    * @availability iOS 26.4+
    */
-  get permissions(): $SDK52 { return callSDK<$SDK52>("AuthenticationServices_90ad0eb69cc6bf4a", 2115805962115092, this, []); }
-  set permissions(value: $SDK52) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3736562502688111, this, [value]); }
+  get permissions(): $SDK52 { return callSDK<$SDK52>("AuthenticationServices_067acaa3e5f56b46", 2115805962115092, this, []); }
+  set permissions(value: $SDK52) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3736562502688111, this, [value]); }
   /**
    * var name: String
    * @availability iOS 26.4+
    */
-  get name(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2981532923168379, this, []); }
-  set name(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 566487499467938, this, [value]); }
+  get name(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2981532923168379, this, []); }
+  set name(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 566487499467938, this, [value]); }
   /**
    * init(type: ASImportableExtension.Shared.SharingAccessor.AccessorType, accountID: Data, name: String, permissions: [ASImportableExtension.Shared.SharingAccessor.Permission])
    * @availability iOS 26.4+
    */
-  static init(type: ASImportableExtension_Shared_SharingAccessor_AccessorType, accountID: ArrayBuffer, name: string, permissions: $SDK52): ASImportableExtension_Shared_SharingAccessor { return callSDK<ASImportableExtension_Shared_SharingAccessor>("AuthenticationServices_90ad0eb69cc6bf4a", 2698898766226489, undefined, [type, accountID, name, permissions]); }
+  static init(type: ASImportableExtension_Shared_SharingAccessor_AccessorType, accountID: ArrayBuffer, name: string, permissions: $SDK52): ASImportableExtension_Shared_SharingAccessor { return callSDK<ASImportableExtension_Shared_SharingAccessor>("AuthenticationServices_067acaa3e5f56b46", 2698898766226489, undefined, [type, accountID, name, permissions]); }
   /**
    * var type: ASImportableExtension.Shared.SharingAccessor.AccessorType
    * @availability iOS 26.4+
    */
-  get type(): ASImportableExtension_Shared_SharingAccessor_AccessorType { return callSDK<ASImportableExtension_Shared_SharingAccessor_AccessorType>("AuthenticationServices_90ad0eb69cc6bf4a", 2820841214598972, this, []); }
-  set type(value: ASImportableExtension_Shared_SharingAccessor_AccessorType) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3278847348822183, this, [value]); }
+  get type(): ASImportableExtension_Shared_SharingAccessor_AccessorType { return callSDK<ASImportableExtension_Shared_SharingAccessor_AccessorType>("AuthenticationServices_067acaa3e5f56b46", 2820841214598972, this, []); }
+  set type(value: ASImportableExtension_Shared_SharingAccessor_AccessorType) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3278847348822183, this, [value]); }
   /**
    * var accountID: Data
    * @availability iOS 26.4+
    */
-  get accountID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2266088888924737, this, []); }
-  set accountID(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3254343978282890, this, [value]); }
+  get accountID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2266088888924737, this, []); }
+  set accountID(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3254343978282890, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices21ASImportableExtensionO6SharedV15SharingAccessorV": true };
 }
 
@@ -4327,12 +4324,12 @@ export const ASImportableExtension_Shared_SharingAccessor_AccessorType = {
    * init?(rawValue: String)
    * @availability iOS 26.4+
    */
-  init(rawValue: string): (ASImportableExtension_Shared_SharingAccessor_AccessorType) | null { return callSDK<(ASImportableExtension_Shared_SharingAccessor_AccessorType) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3406415246393021, undefined, [rawValue]); },
+  init(rawValue: string): (ASImportableExtension_Shared_SharingAccessor_AccessorType) | null { return callSDK<(ASImportableExtension_Shared_SharingAccessor_AccessorType) | null>("AuthenticationServices_067acaa3e5f56b46", 3406415246393021, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.4+
    */
-  getRawValue($self: ASImportableExtension_Shared_SharingAccessor_AccessorType): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2898143966929045, $self, []); }
+  getRawValue($self: ASImportableExtension_Shared_SharingAccessor_AccessorType): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2898143966929045, $self, []); }
 };
 
 /**
@@ -4352,12 +4349,12 @@ export const ASImportableExtension_Shared_SharingAccessor_Permission = {
    * init?(rawValue: String)
    * @availability iOS 26.4+
    */
-  init(rawValue: string): (ASImportableExtension_Shared_SharingAccessor_Permission) | null { return callSDK<(ASImportableExtension_Shared_SharingAccessor_Permission) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2755050134183747, undefined, [rawValue]); },
+  init(rawValue: string): (ASImportableExtension_Shared_SharingAccessor_Permission) | null { return callSDK<(ASImportableExtension_Shared_SharingAccessor_Permission) | null>("AuthenticationServices_067acaa3e5f56b46", 2755050134183747, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.4+
    */
-  getRawValue($self: ASImportableExtension_Shared_SharingAccessor_Permission): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4315210411258663, $self, []); }
+  getRawValue($self: ASImportableExtension_Shared_SharingAccessor_Permission): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4315210411258663, $self, []); }
 };
 
 /**
@@ -4375,19 +4372,19 @@ export class ASImportableFIDO2Extensions extends SDKHandle {
    * init(hmacCredentials: ASImportableFIDO2HMACCredential? = nil, largeBlob: ASImportableFIDO2LargeBlob? = nil)
    * @availability iOS 26.4+
    */
-  static init(hmacCredentials?: $SDK53, largeBlob?: $SDK54): ASImportableFIDO2Extensions { return callSDK<ASImportableFIDO2Extensions>("AuthenticationServices_90ad0eb69cc6bf4a", 2757573202848527, undefined, [hmacCredentials, largeBlob]); }
+  static init(hmacCredentials?: $SDK53, largeBlob?: $SDK54): ASImportableFIDO2Extensions { return callSDK<ASImportableFIDO2Extensions>("AuthenticationServices_067acaa3e5f56b46", 2757573202848527, undefined, [hmacCredentials, largeBlob]); }
   /**
    * var hmacCredentials: ASImportableFIDO2HMACCredential?
    * @availability iOS 26.4+
    */
-  get hmacCredentials(): $SDK53 { return callSDK<$SDK53>("AuthenticationServices_90ad0eb69cc6bf4a", 797207101604842, this, []); }
-  set hmacCredentials(value: $SDK53) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3791780641366919, this, [value]); }
+  get hmacCredentials(): $SDK53 { return callSDK<$SDK53>("AuthenticationServices_067acaa3e5f56b46", 797207101604842, this, []); }
+  set hmacCredentials(value: $SDK53) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3791780641366919, this, [value]); }
   /**
    * var largeBlob: ASImportableFIDO2LargeBlob?
    * @availability iOS 26.4+
    */
-  get largeBlob(): $SDK54 { return callSDK<$SDK54>("AuthenticationServices_90ad0eb69cc6bf4a", 3977014722306488, this, []); }
-  set largeBlob(value: $SDK54) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 182004227772423, this, [value]); }
+  get largeBlob(): $SDK54 { return callSDK<$SDK54>("AuthenticationServices_067acaa3e5f56b46", 3977014722306488, this, []); }
+  set largeBlob(value: $SDK54) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 182004227772423, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices27ASImportableFIDO2ExtensionsV": true };
 }
 
@@ -4400,25 +4397,25 @@ export class ASImportableFIDO2HMACCredential extends SDKHandle {
    * var credentialWithUV: Data
    * @availability iOS 26.4+
    */
-  get credentialWithUV(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 184789786874892, this, []); }
-  set credentialWithUV(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 352312900860924, this, [value]); }
+  get credentialWithUV(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 184789786874892, this, []); }
+  set credentialWithUV(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 352312900860924, this, [value]); }
   /**
    * var credentialWithoutUV: Data
    * @availability iOS 26.4+
    */
-  get credentialWithoutUV(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 3796802436426138, this, []); }
-  set credentialWithoutUV(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 211079261257786, this, [value]); }
+  get credentialWithoutUV(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 3796802436426138, this, []); }
+  set credentialWithoutUV(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 211079261257786, this, [value]); }
   /**
    * init(algorithm: ASImportableFIDO2HMACCredential.Algorithm, credentialWithUV: Data, credentialWithoutUV: Data)
    * @availability iOS 26.4+
    */
-  static init(algorithm: ASImportableFIDO2HMACCredential_Algorithm, credentialWithUV: ArrayBuffer, credentialWithoutUV: ArrayBuffer): ASImportableFIDO2HMACCredential { return callSDK<ASImportableFIDO2HMACCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 4116280288299274, undefined, [algorithm, credentialWithUV, credentialWithoutUV]); }
+  static init(algorithm: ASImportableFIDO2HMACCredential_Algorithm, credentialWithUV: ArrayBuffer, credentialWithoutUV: ArrayBuffer): ASImportableFIDO2HMACCredential { return callSDK<ASImportableFIDO2HMACCredential>("AuthenticationServices_067acaa3e5f56b46", 4116280288299274, undefined, [algorithm, credentialWithUV, credentialWithoutUV]); }
   /**
    * var algorithm: ASImportableFIDO2HMACCredential.Algorithm
    * @availability iOS 26.4+
    */
-  get algorithm(): ASImportableFIDO2HMACCredential_Algorithm { return callSDK<ASImportableFIDO2HMACCredential_Algorithm>("AuthenticationServices_90ad0eb69cc6bf4a", 3564980673697309, this, []); }
-  set algorithm(value: ASImportableFIDO2HMACCredential_Algorithm) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 810208077839163, this, [value]); }
+  get algorithm(): ASImportableFIDO2HMACCredential_Algorithm { return callSDK<ASImportableFIDO2HMACCredential_Algorithm>("AuthenticationServices_067acaa3e5f56b46", 3564980673697309, this, []); }
+  set algorithm(value: ASImportableFIDO2HMACCredential_Algorithm) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 810208077839163, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices31ASImportableFIDO2HMACCredentialV": true };
 }
 
@@ -4433,12 +4430,12 @@ export const ASImportableFIDO2HMACCredential_Algorithm = {
    * init?(rawValue: String)
    * @availability iOS 26.4+
    */
-  init(rawValue: string): (ASImportableFIDO2HMACCredential_Algorithm) | null { return callSDK<(ASImportableFIDO2HMACCredential_Algorithm) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2859423638113110, undefined, [rawValue]); },
+  init(rawValue: string): (ASImportableFIDO2HMACCredential_Algorithm) | null { return callSDK<(ASImportableFIDO2HMACCredential_Algorithm) | null>("AuthenticationServices_067acaa3e5f56b46", 2859423638113110, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 26.4+
    */
-  getRawValue($self: ASImportableFIDO2HMACCredential_Algorithm): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2896928394637305, $self, []); }
+  getRawValue($self: ASImportableFIDO2HMACCredential_Algorithm): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2896928394637305, $self, []); }
 };
 
 /**
@@ -4456,19 +4453,19 @@ export class ASImportableFIDO2LargeBlob extends SDKHandle {
    * init(uncompressedSize: Int, data: Data)
    * @availability iOS 26.4+
    */
-  static init(uncompressedSize: number, data: ArrayBuffer): ASImportableFIDO2LargeBlob { return callSDK<ASImportableFIDO2LargeBlob>("AuthenticationServices_90ad0eb69cc6bf4a", 4195011856268825, undefined, [uncompressedSize, data]); }
+  static init(uncompressedSize: number, data: ArrayBuffer): ASImportableFIDO2LargeBlob { return callSDK<ASImportableFIDO2LargeBlob>("AuthenticationServices_067acaa3e5f56b46", 4195011856268825, undefined, [uncompressedSize, data]); }
   /**
    * var uncompressedSize: Int
    * @availability iOS 26.4+
    */
-  get uncompressedSize(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 4241249383471598, this, []); }
-  set uncompressedSize(value: number) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4472162290291772, this, [value]); }
+  get uncompressedSize(): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 4241249383471598, this, []); }
+  set uncompressedSize(value: number) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4472162290291772, this, [value]); }
   /**
    * var data: Data
    * @availability iOS 26.4+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2578106082501808, this, []); }
-  set data(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3420992837749987, this, [value]); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2578106082501808, this, []); }
+  set data(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3420992837749987, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices26ASImportableFIDO2LargeBlobV": true };
 }
 
@@ -4481,77 +4478,77 @@ export class ASImportableItem extends SDKHandle {
    * var extensions: [ASImportableExtension]
    * @availability iOS 26.4+
    */
-  get extensions(): $SDK55 { return callSDK<$SDK55>("AuthenticationServices_90ad0eb69cc6bf4a", 691788980020248, this, []); }
-  set extensions(value: $SDK55) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2332248019111364, this, [value]); }
+  get extensions(): $SDK55 { return callSDK<$SDK55>("AuthenticationServices_067acaa3e5f56b46", 691788980020248, this, []); }
+  set extensions(value: $SDK55) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2332248019111364, this, [value]); }
   /**
    * var credentials: [ASImportableCredential]
    * @availability iOS 26.0+
    */
-  get credentials(): $SDK56 { return callSDK<$SDK56>("AuthenticationServices_90ad0eb69cc6bf4a", 3570119923143940, this, []); }
-  set credentials(value: $SDK56) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 812913807565663, this, [value]); }
+  get credentials(): $SDK56 { return callSDK<$SDK56>("AuthenticationServices_067acaa3e5f56b46", 3570119923143940, this, []); }
+  set credentials(value: $SDK56) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 812913807565663, this, [value]); }
   /**
    * var lastModified: Date?
    * @availability iOS 26.0+
    */
-  get lastModified(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_90ad0eb69cc6bf4a", 1837403037891762, this, []); }
-  set lastModified(value: $SDK44) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 403943502404160, this, [value]); }
+  get lastModified(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_067acaa3e5f56b46", 1837403037891762, this, []); }
+  set lastModified(value: $SDK44) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 403943502404160, this, [value]); }
   /**
    * var id: Data
    * @availability iOS 26.0+
    */
-  get id(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 1405499054809033, this, []); }
-  set id(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3970934814361877, this, [value]); }
+  get id(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 1405499054809033, this, []); }
+  set id(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3970934814361877, this, [value]); }
   /**
    * init(id: Data, title: String, subtitle: String? = nil, favorite: Bool = false, scope: ASImportableCredentialScope? = nil, credentials: [ASImportableCredential], tags: [String] = [])
    * @availability iOS 26.1+
    */
-  static initIdTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>): ASImportableItem { return callSDK<ASImportableItem>("AuthenticationServices_90ad0eb69cc6bf4a", 2968855569111255, undefined, [id, title, subtitle, favorite, scope, credentials, tags]); }
+  static initIdTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>): ASImportableItem { return callSDK<ASImportableItem>("AuthenticationServices_067acaa3e5f56b46", 2968855569111255, undefined, [id, title, subtitle, favorite, scope, credentials, tags]); }
   /**
    * init(id: Data, created: Date? = nil, lastModified: Date? = nil, title: String, subtitle: String? = nil, favorite: Bool = false, scope: ASImportableCredentialScope? = nil, credentials: [ASImportableCredential], tags: [String] = [], extensions: [ASImportableExtension] = [])
    * @availability iOS 26.4+
    */
-  static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTagsExtensions(id: ArrayBuffer, created: $SDK44, lastModified: $SDK44, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>, extensions?: $SDK55): ASImportableItem { return callSDK<ASImportableItem>("AuthenticationServices_90ad0eb69cc6bf4a", 476619250924562, undefined, [id, created, lastModified, title, subtitle, favorite, scope, credentials, tags, extensions]); }
+  static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTagsExtensions(id: ArrayBuffer, created: $SDK44, lastModified: $SDK44, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>, extensions?: $SDK55): ASImportableItem { return callSDK<ASImportableItem>("AuthenticationServices_067acaa3e5f56b46", 476619250924562, undefined, [id, created, lastModified, title, subtitle, favorite, scope, credentials, tags, extensions]); }
   /**
    * init(id: Data, created: Date, lastModified: Date, title: String, subtitle: String? = nil, favorite: Bool = false, scope: ASImportableCredentialScope? = nil, credentials: [ASImportableCredential], tags: [String] = [])
    * @availability iOS 26.0+
    */
-  static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, created: globalThis.Date, lastModified: globalThis.Date, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>): ASImportableItem { return callSDK<ASImportableItem>("AuthenticationServices_90ad0eb69cc6bf4a", 3335585896321654, undefined, [id, created, lastModified, title, subtitle, favorite, scope, credentials, tags]); }
+  static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, created: globalThis.Date, lastModified: globalThis.Date, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>): ASImportableItem { return callSDK<ASImportableItem>("AuthenticationServices_067acaa3e5f56b46", 3335585896321654, undefined, [id, created, lastModified, title, subtitle, favorite, scope, credentials, tags]); }
   /**
    * var tags: [String]
    * @availability iOS 26.0+
    */
-  get tags(): Array<string> { return callSDK<Array<string>>("AuthenticationServices_90ad0eb69cc6bf4a", 3661945511495682, this, []); }
-  set tags(value: Array<string>) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 944885625022885, this, [value]); }
+  get tags(): Array<string> { return callSDK<Array<string>>("AuthenticationServices_067acaa3e5f56b46", 3661945511495682, this, []); }
+  set tags(value: Array<string>) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 944885625022885, this, [value]); }
   /**
    * var scope: ASImportableCredentialScope?
    * @availability iOS 26.0+
    */
-  get scope(): $SDK57 { return callSDK<$SDK57>("AuthenticationServices_90ad0eb69cc6bf4a", 1947885587422152, this, []); }
-  set scope(value: $SDK57) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1902965797506453, this, [value]); }
+  get scope(): $SDK57 { return callSDK<$SDK57>("AuthenticationServices_067acaa3e5f56b46", 1947885587422152, this, []); }
+  set scope(value: $SDK57) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1902965797506453, this, [value]); }
   /**
    * var title: String
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1375581759752526, this, []); }
-  set title(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1015662132889142, this, [value]); }
+  get title(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1375581759752526, this, []); }
+  set title(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1015662132889142, this, [value]); }
   /**
    * var created: Date?
    * @availability iOS 26.0+
    */
-  get created(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_90ad0eb69cc6bf4a", 520676913289724, this, []); }
-  set created(value: $SDK44) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4355171120980671, this, [value]); }
+  get created(): $SDK44 { return callSDK<$SDK44>("AuthenticationServices_067acaa3e5f56b46", 520676913289724, this, []); }
+  set created(value: $SDK44) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4355171120980671, this, [value]); }
   /**
    * var favorite: Bool
    * @availability iOS 26.0+
    */
-  get favorite(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 3730298059451858, this, []); }
-  set favorite(value: boolean) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4153207175954873, this, [value]); }
+  get favorite(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 3730298059451858, this, []); }
+  set favorite(value: boolean) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4153207175954873, this, [value]); }
   /**
    * var subtitle: String?
    * @availability iOS 26.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1971099942123283, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 455453852844628, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 1971099942123283, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 455453852844628, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices16ASImportableItemV": true };
 }
 
@@ -4564,19 +4561,19 @@ export class ASImportableLinkedItem extends SDKHandle {
    * var item: Data
    * @availability iOS 26.0+
    */
-  get item(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 3666918324157195, this, []); }
-  set item(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1322201394060699, this, [value]); }
+  get item(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 3666918324157195, this, []); }
+  set item(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1322201394060699, this, [value]); }
   /**
    * init(item: Data, account: Data? = nil)
    * @availability iOS 26.0+
    */
-  static init(item: ArrayBuffer, account?: (ArrayBuffer) | null): ASImportableLinkedItem { return callSDK<ASImportableLinkedItem>("AuthenticationServices_90ad0eb69cc6bf4a", 1468863802216588, undefined, [item, account]); }
+  static init(item: ArrayBuffer, account?: (ArrayBuffer) | null): ASImportableLinkedItem { return callSDK<ASImportableLinkedItem>("AuthenticationServices_067acaa3e5f56b46", 1468863802216588, undefined, [item, account]); }
   /**
    * var account: Data?
    * @availability iOS 26.0+
    */
-  get account(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 235089461345199, this, []); }
-  set account(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2496010533137683, this, [value]); }
+  get account(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AuthenticationServices_067acaa3e5f56b46", 235089461345199, this, []); }
+  set account(value: (ArrayBuffer) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2496010533137683, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices22ASImportableLinkedItemV": true };
 }
 
@@ -4589,12 +4586,12 @@ export class ASOneTimeCodeCredential extends SDKHandle {
    * init(code: String)
    * @availability iOS 18.0+
    */
-  static init(code: string): ASOneTimeCodeCredential { return callSDK<ASOneTimeCodeCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 1080380517815224, undefined, [code]); }
+  static init(code: string): ASOneTimeCodeCredential { return callSDK<ASOneTimeCodeCredential>("AuthenticationServices_067acaa3e5f56b46", 1080380517815224, undefined, [code]); }
   /**
    * var code: String { get }
    * @availability iOS 18.0+
    */
-  get code(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3100567988457065, this, []); }
+  get code(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3100567988457065, this, []); }
   declare readonly $type: { "c:objc(cs)ASOneTimeCodeCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "code": true };
 }
@@ -4608,12 +4605,12 @@ export class ASOneTimeCodeCredentialIdentity extends SDKHandle {
    * init(serviceIdentifier: ASCredentialServiceIdentifier, label: String, recordIdentifier: String?)
    * @availability iOS 18.0+
    */
-  static init(serviceIdentifier: ASCredentialServiceIdentifier, label: string, recordIdentifier?: (string) | null): ASOneTimeCodeCredentialIdentity { return callSDK<ASOneTimeCodeCredentialIdentity>("AuthenticationServices_90ad0eb69cc6bf4a", 212018688644644, undefined, [serviceIdentifier, label, recordIdentifier]); }
+  static init(serviceIdentifier: ASCredentialServiceIdentifier, label: string, recordIdentifier?: (string) | null): ASOneTimeCodeCredentialIdentity { return callSDK<ASOneTimeCodeCredentialIdentity>("AuthenticationServices_067acaa3e5f56b46", 212018688644644, undefined, [serviceIdentifier, label, recordIdentifier]); }
   /**
    * var label: String { get }
    * @availability iOS 18.0+
    */
-  get label(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4258627684753266, this, []); }
+  get label(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4258627684753266, this, []); }
   declare readonly $type: { "c:objc(cs)ASOneTimeCodeCredentialIdentity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true };
 }
@@ -4627,7 +4624,7 @@ export class ASOneTimeCodeCredentialRequest extends SDKHandle {
    * init(credentialIdentity: ASOneTimeCodeCredentialIdentity)
    * @availability iOS 18.0+
    */
-  static init(credentialIdentity: ASOneTimeCodeCredentialIdentity): ASOneTimeCodeCredentialRequest { return callSDK<ASOneTimeCodeCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 3459954834103841, undefined, [credentialIdentity]); }
+  static init(credentialIdentity: ASOneTimeCodeCredentialIdentity): ASOneTimeCodeCredentialRequest { return callSDK<ASOneTimeCodeCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 3459954834103841, undefined, [credentialIdentity]); }
   declare readonly $type: { "c:objc(cs)ASOneTimeCodeCredentialRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4640,48 +4637,48 @@ export class ASPasskeyAssertionCredential extends SDKHandle {
    * init(userHandle: Data, relyingParty: String, signature: Data, clientDataHash: Data, authenticatorData: Data, credentialID: Data)
    * @availability iOS 17.0+
    */
-  static initUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialID(userHandle: ArrayBuffer, relyingParty: string, signature: ArrayBuffer, clientDataHash: ArrayBuffer, authenticatorData: ArrayBuffer, credentialID: ArrayBuffer): ASPasskeyAssertionCredential { return callSDK<ASPasskeyAssertionCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 4182122988001203, undefined, [userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID]); }
+  static initUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialID(userHandle: ArrayBuffer, relyingParty: string, signature: ArrayBuffer, clientDataHash: ArrayBuffer, authenticatorData: ArrayBuffer, credentialID: ArrayBuffer): ASPasskeyAssertionCredential { return callSDK<ASPasskeyAssertionCredential>("AuthenticationServices_067acaa3e5f56b46", 4182122988001203, undefined, [userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID]); }
   /**
    * var authenticatorData: Data { get }
    * @availability iOS 17.0+
    */
-  get authenticatorData(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 3963690150694182, this, []); }
+  get authenticatorData(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 3963690150694182, this, []); }
   /**
    * var clientDataHash: Data { get }
    * @availability iOS 17.0+
    */
-  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 2204682258905490, this, []); }
+  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 2204682258905490, this, []); }
   /**
    * var credentialID: Data { get }
    * @availability iOS 17.0+
    */
-  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 564633240393866, this, []); }
+  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 564633240393866, this, []); }
   /**
    * var relyingParty: String { get }
    * @availability iOS 17.0+
    */
-  get relyingParty(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 51729970566365, this, []); }
+  get relyingParty(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 51729970566365, this, []); }
   /**
    * var signature: Data { get }
    * @availability iOS 17.0+
    */
-  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 736583946020213, this, []); }
+  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 736583946020213, this, []); }
   /**
    * var userHandle: Data { get }
    * @availability iOS 17.0+
    */
-  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 185139383209912, this, []); }
+  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 185139383209912, this, []); }
   /**
    * convenience init(userHandle: Data, relyingParty: String, signature: Data, clientDataHash: Data, authenticatorData: Data, credentialID: Data, extensionOutput: ASPasskeyAssertionCredentialExtensionOutput?)
    * @availability iOS 18.0+
    */
-  static initUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle: ArrayBuffer, relyingParty: string, signature: ArrayBuffer, clientDataHash: ArrayBuffer, authenticatorData: ArrayBuffer, credentialID: ArrayBuffer, extensionOutput?: $SDK58): ASPasskeyAssertionCredential { return callSDK<ASPasskeyAssertionCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 2640288550955834, undefined, [userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID, extensionOutput]); }
+  static initUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle: ArrayBuffer, relyingParty: string, signature: ArrayBuffer, clientDataHash: ArrayBuffer, authenticatorData: ArrayBuffer, credentialID: ArrayBuffer, extensionOutput?: $SDK58): ASPasskeyAssertionCredential { return callSDK<ASPasskeyAssertionCredential>("AuthenticationServices_067acaa3e5f56b46", 2640288550955834, undefined, [userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID, extensionOutput]); }
   /**
    * var extensionOutput: ASPasskeyAssertionCredentialExtensionOutput? { get set }
    * @availability iOS 18.0+
    */
-  get extensionOutput(): $SDK58 { return callSDK<$SDK58>("AuthenticationServices_90ad0eb69cc6bf4a", 3384529583567918, this, []); }
-  set extensionOutput(value: $SDK58) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 375729579242228, this, [value]); }
+  get extensionOutput(): $SDK58 { return callSDK<$SDK58>("AuthenticationServices_067acaa3e5f56b46", 3384529583567918, this, []); }
+  set extensionOutput(value: $SDK58) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 375729579242228, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASPasskeyAssertionCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authenticatorData": true; "clientDataHash": true; "credentialID": true; "relyingParty": true; "signature": true; "userHandle": true };
 }
@@ -4695,17 +4692,17 @@ export class ASPasskeyAssertionCredentialExtensionInput extends SDKHandle {
    * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK14 { return callSDK<$SDK14>("AuthenticationServices_90ad0eb69cc6bf4a", 4008177856608077, this, []); }
+  get prf(): $SDK14 { return callSDK<$SDK14>("AuthenticationServices_067acaa3e5f56b46", 4008177856608077, this, []); }
   /**
    * init(largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput? = nil, prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? = nil)
    * @availability iOS 18.0+
    */
-  static init(largeBlob?: $SDK15, prf?: $SDK14): ASPasskeyAssertionCredentialExtensionInput { return callSDK<ASPasskeyAssertionCredentialExtensionInput>("AuthenticationServices_90ad0eb69cc6bf4a", 1110654251187090, undefined, [largeBlob, prf]); }
+  static init(largeBlob?: $SDK15, prf?: $SDK14): ASPasskeyAssertionCredentialExtensionInput { return callSDK<ASPasskeyAssertionCredentialExtensionInput>("AuthenticationServices_067acaa3e5f56b46", 1110654251187090, undefined, [largeBlob, prf]); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput? { get }
    * @availability iOS 18.0+
    */
-  get largeBlob(): $SDK15 { return callSDK<$SDK15>("AuthenticationServices_90ad0eb69cc6bf4a", 1922182062162391, this, []); }
+  get largeBlob(): $SDK15 { return callSDK<$SDK15>("AuthenticationServices_067acaa3e5f56b46", 1922182062162391, this, []); }
   declare readonly $type: { "s:22AuthenticationServices42ASPasskeyAssertionCredentialExtensionInputV": true };
 }
 
@@ -4718,17 +4715,17 @@ export class ASPasskeyAssertionCredentialExtensionOutput extends SDKHandle {
    * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? { get }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK11 { return callSDK<$SDK11>("AuthenticationServices_90ad0eb69cc6bf4a", 1597665005931206, this, []); }
+  get prf(): $SDK11 { return callSDK<$SDK11>("AuthenticationServices_067acaa3e5f56b46", 1597665005931206, this, []); }
   /**
    * init(largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput? = nil, prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? = nil)
    * @availability iOS 18.0+
    */
-  static init(largeBlob?: $SDK12, prf?: $SDK11): ASPasskeyAssertionCredentialExtensionOutput { return callSDK<ASPasskeyAssertionCredentialExtensionOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 3696014926429818, undefined, [largeBlob, prf]); }
+  static init(largeBlob?: $SDK12, prf?: $SDK11): ASPasskeyAssertionCredentialExtensionOutput { return callSDK<ASPasskeyAssertionCredentialExtensionOutput>("AuthenticationServices_067acaa3e5f56b46", 3696014926429818, undefined, [largeBlob, prf]); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput? { get }
    * @availability iOS 18.0+
    */
-  get largeBlob(): $SDK12 { return callSDK<$SDK12>("AuthenticationServices_90ad0eb69cc6bf4a", 714730753457880, this, []); }
+  get largeBlob(): $SDK12 { return callSDK<$SDK12>("AuthenticationServices_067acaa3e5f56b46", 714730753457880, this, []); }
   declare readonly $type: { "s:22AuthenticationServices43ASPasskeyAssertionCredentialExtensionOutputV": true };
 }
 
@@ -4749,43 +4746,43 @@ export class ASPasskeyCredentialIdentity extends SDKHandle {
    * convenience init(relyingPartyIdentifier: String, userName: String, credentialID: Data, userHandle: Data, recordIdentifier: String?)
    * @availability iOS 17.0+
    */
-  static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity { return callSDK<ASPasskeyCredentialIdentity>("AuthenticationServices_90ad0eb69cc6bf4a", 426574539756867, undefined, [relyingPartyIdentifier, userName, credentialID, userHandle, recordIdentifier]); }
+  static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity { return callSDK<ASPasskeyCredentialIdentity>("AuthenticationServices_067acaa3e5f56b46", 426574539756867, undefined, [relyingPartyIdentifier, userName, credentialID, userHandle, recordIdentifier]); }
   /**
    * var credentialID: Data { get }
    * @availability iOS 17.0+
    */
-  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 935304964821328, this, []); }
+  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 935304964821328, this, []); }
   /**
    * var rank: Int { get set }
    * @availability iOS 17.0+
    */
-  get rank(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 1035035581528074, this, []); }
-  set rank(value: number) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1157487852228154, this, [value]); }
+  get rank(): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 1035035581528074, this, []); }
+  set rank(value: number) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1157487852228154, this, [value]); }
   /**
    * var recordIdentifier: String? { get }
    * @availability iOS 17.0+
    */
-  get recordIdentifier(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 554598202772366, this, []); }
+  get recordIdentifier(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 554598202772366, this, []); }
   /**
    * var relyingPartyIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3728520638535649, this, []); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3728520638535649, this, []); }
   /**
    * var userHandle: Data { get }
    * @availability iOS 17.0+
    */
-  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 1666730555680610, this, []); }
+  get userHandle(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 1666730555680610, this, []); }
   /**
    * var userName: String { get }
    * @availability iOS 17.0+
    */
-  get userName(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1399704468583376, this, []); }
+  get userName(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1399704468583376, this, []); }
   /**
    * convenience init(relyingPartyIdentifier: String, userName: String, credentialID: Data, userHandle: Data, recordIdentifier: String? = nil)
    * @availability iOS 17.0+
    */
-  static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier15118(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity { return callSDK<ASPasskeyCredentialIdentity>("AuthenticationServices_90ad0eb69cc6bf4a", 3100513829351060, undefined, [relyingPartyIdentifier, userName, credentialID, userHandle, recordIdentifier]); }
+  static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier15118(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity { return callSDK<ASPasskeyCredentialIdentity>("AuthenticationServices_067acaa3e5f56b46", 3100513829351060, undefined, [relyingPartyIdentifier, userName, credentialID, userHandle, recordIdentifier]); }
   declare readonly $type: { "c:objc(cs)ASPasskeyCredentialIdentity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "credentialID": true; "rank": true; "recordIdentifier": true; "relyingPartyIdentifier": true; "userHandle": true; "userName": true };
 }
@@ -4799,48 +4796,48 @@ export class ASPasskeyCredentialRequest extends SDKHandle {
    * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [NSNumber])
    * @availability iOS 17.0+
    */
-  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: Array<_Foundation_NSNumber>): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 1193336850659944, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms]); }
+  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: Array<_Foundation_NSNumber>): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 1193336850659944, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms]); }
   /**
    * var clientDataHash: Data { get }
    * @availability iOS 17.0+
    */
-  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 195580021413121, this, []); }
+  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 195580021413121, this, []); }
   /**
    * var excludedCredentials: [ASAuthorizationPlatformPublicKeyCredentialDescriptor]? { get }
    * @availability iOS 18.0+
    */
-  get excludedCredentials(): (Array<ASAuthorizationPlatformPublicKeyCredentialDescriptor>) | null { return callSDK<(Array<ASAuthorizationPlatformPublicKeyCredentialDescriptor>) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2563443844033753, this, []); }
+  get excludedCredentials(): (Array<ASAuthorizationPlatformPublicKeyCredentialDescriptor>) | null { return callSDK<(Array<ASAuthorizationPlatformPublicKeyCredentialDescriptor>) | null>("AuthenticationServices_067acaa3e5f56b46", 2563443844033753, this, []); }
   /**
    * var userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference { get set }
    * @availability iOS 17.0+
    */
-  get userVerificationPreference(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 4166804182048465, this, []); }
-  set userVerificationPreference(value: ASAuthorizationPublicKeyCredentialUserVerificationPreference) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1766630077786602, this, [value]); }
+  get userVerificationPreference(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 4166804182048465, this, []); }
+  set userVerificationPreference(value: ASAuthorizationPublicKeyCredentialUserVerificationPreference) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1766630077786602, this, [value]); }
   /**
    * var extensionInput: ASPasskeyCredentialExtensionInput { get }
    * @availability iOS 18.0+
    */
-  get extensionInput(): ASPasskeyCredentialExtensionInput { return callSDK<ASPasskeyCredentialExtensionInput>("AuthenticationServices_90ad0eb69cc6bf4a", 4195153227412818, this, []); }
+  get extensionInput(): ASPasskeyCredentialExtensionInput { return callSDK<ASPasskeyCredentialExtensionInput>("AuthenticationServices_067acaa3e5f56b46", 4195153227412818, this, []); }
   /**
    * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier], extensionInput: ASPasskeyRegistrationCredentialExtensionInput?)
    * @availability iOS 18.0+
    */
-  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61, extensionInput?: (ASPasskeyRegistrationCredentialExtensionInput) | null): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2022192628661857, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms, extensionInput]); }
+  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61, extensionInput?: (ASPasskeyRegistrationCredentialExtensionInput) | null): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 2022192628661857, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms, extensionInput]); }
   /**
    * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier], extensionInput: ASPasskeyAssertionCredentialExtensionInput?)
    * @availability iOS 18.0+
    */
-  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput55448(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61, extensionInput?: $SDK63): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 4159859289400948, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms, extensionInput]); }
+  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput55448(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61, extensionInput?: $SDK63): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 4159859289400948, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms, extensionInput]); }
   /**
    * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier])
    * @availability iOS 17.0+
    */
-  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms89961(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 4243041995906298, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms]); }
+  static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms89961(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61): ASPasskeyCredentialRequest { return callSDK<ASPasskeyCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 4243041995906298, undefined, [credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms]); }
   /**
    * var supportedAlgorithms: [ASCOSEAlgorithmIdentifier] { get }
    * @availability iOS 17.0+
    */
-  get supportedAlgorithms(): $SDK61 { return callSDK<$SDK61>("AuthenticationServices_90ad0eb69cc6bf4a", 1932213763642313, this, []); }
+  get supportedAlgorithms(): $SDK61 { return callSDK<$SDK61>("AuthenticationServices_067acaa3e5f56b46", 1932213763642313, this, []); }
   declare readonly $type: { "c:objc(cs)ASPasskeyCredentialRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "clientDataHash": true; "excludedCredentials": true; "userVerificationPreference": true };
 }
@@ -4854,27 +4851,27 @@ export class ASPasskeyCredentialRequestParameters extends SDKHandle {
    * var allowedCredentials: [Data] { get }
    * @availability iOS 17.0+
    */
-  get allowedCredentials(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("AuthenticationServices_90ad0eb69cc6bf4a", 1975115806781184, this, []); }
+  get allowedCredentials(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("AuthenticationServices_067acaa3e5f56b46", 1975115806781184, this, []); }
   /**
    * var clientDataHash: Data { get }
    * @availability iOS 17.0+
    */
-  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4014056696536053, this, []); }
+  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4014056696536053, this, []); }
   /**
    * var relyingPartyIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2849018612454100, this, []); }
+  get relyingPartyIdentifier(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2849018612454100, this, []); }
   /**
    * var userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference { get }
    * @availability iOS 17.0+
    */
-  get userVerificationPreference(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_90ad0eb69cc6bf4a", 2959483790602750, this, []); }
+  get userVerificationPreference(): ASAuthorizationPublicKeyCredentialUserVerificationPreference { return callSDK<ASAuthorizationPublicKeyCredentialUserVerificationPreference>("AuthenticationServices_067acaa3e5f56b46", 2959483790602750, this, []); }
   /**
    * var extensionInput: ASPasskeyAssertionCredentialExtensionInput? { get }
    * @availability iOS 18.0+
    */
-  get extensionInput(): $SDK63 { return callSDK<$SDK63>("AuthenticationServices_90ad0eb69cc6bf4a", 3140212424302357, this, []); }
+  get extensionInput(): $SDK63 { return callSDK<$SDK63>("AuthenticationServices_067acaa3e5f56b46", 3140212424302357, this, []); }
   declare readonly $type: { "c:objc(cs)ASPasskeyCredentialRequestParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowedCredentials": true; "clientDataHash": true; "relyingPartyIdentifier": true; "userVerificationPreference": true };
 }
@@ -4888,38 +4885,38 @@ export class ASPasskeyRegistrationCredential extends SDKHandle {
    * init(relyingParty: String, clientDataHash: Data, credentialID: Data, attestationObject: Data)
    * @availability iOS 17.0+
    */
-  static initRelyingPartyClientDataHashCredentialIDAttestationObject(relyingParty: string, clientDataHash: ArrayBuffer, credentialID: ArrayBuffer, attestationObject: ArrayBuffer): ASPasskeyRegistrationCredential { return callSDK<ASPasskeyRegistrationCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 1009617902247465, undefined, [relyingParty, clientDataHash, credentialID, attestationObject]); }
+  static initRelyingPartyClientDataHashCredentialIDAttestationObject(relyingParty: string, clientDataHash: ArrayBuffer, credentialID: ArrayBuffer, attestationObject: ArrayBuffer): ASPasskeyRegistrationCredential { return callSDK<ASPasskeyRegistrationCredential>("AuthenticationServices_067acaa3e5f56b46", 1009617902247465, undefined, [relyingParty, clientDataHash, credentialID, attestationObject]); }
   /**
    * var attestationObject: Data { get }
    * @availability iOS 17.0+
    */
-  get attestationObject(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4339292989484727, this, []); }
+  get attestationObject(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4339292989484727, this, []); }
   /**
    * var clientDataHash: Data { get }
    * @availability iOS 17.0+
    */
-  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4377127321403012, this, []); }
+  get clientDataHash(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4377127321403012, this, []); }
   /**
    * var credentialID: Data { get }
    * @availability iOS 17.0+
    */
-  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 4254771414492611, this, []); }
+  get credentialID(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 4254771414492611, this, []); }
   /**
    * var relyingParty: String { get }
    * @availability iOS 17.0+
    */
-  get relyingParty(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1196805888952067, this, []); }
+  get relyingParty(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1196805888952067, this, []); }
   /**
    * convenience init(relyingParty: String, clientDataHash: Data, credentialID: Data, attestationObject: Data, extensionOutput: ASPasskeyRegistrationCredentialExtensionOutput?)
    * @availability iOS 18.0+
    */
-  static initRelyingPartyClientDataHashCredentialIDAttestationObjectExtensionOutput(relyingParty: string, clientDataHash: ArrayBuffer, credentialID: ArrayBuffer, attestationObject: ArrayBuffer, extensionOutput?: $SDK64): ASPasskeyRegistrationCredential { return callSDK<ASPasskeyRegistrationCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 2060590498965933, undefined, [relyingParty, clientDataHash, credentialID, attestationObject, extensionOutput]); }
+  static initRelyingPartyClientDataHashCredentialIDAttestationObjectExtensionOutput(relyingParty: string, clientDataHash: ArrayBuffer, credentialID: ArrayBuffer, attestationObject: ArrayBuffer, extensionOutput?: $SDK64): ASPasskeyRegistrationCredential { return callSDK<ASPasskeyRegistrationCredential>("AuthenticationServices_067acaa3e5f56b46", 2060590498965933, undefined, [relyingParty, clientDataHash, credentialID, attestationObject, extensionOutput]); }
   /**
    * var extensionOutput: ASPasskeyRegistrationCredentialExtensionOutput? { get set }
    * @availability iOS 18.0+
    */
-  get extensionOutput(): $SDK64 { return callSDK<$SDK64>("AuthenticationServices_90ad0eb69cc6bf4a", 3568149952132998, this, []); }
-  set extensionOutput(value: $SDK64) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1171669448494912, this, [value]); }
+  get extensionOutput(): $SDK64 { return callSDK<$SDK64>("AuthenticationServices_067acaa3e5f56b46", 3568149952132998, this, []); }
+  set extensionOutput(value: $SDK64) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1171669448494912, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASPasskeyRegistrationCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attestationObject": true; "clientDataHash": true; "credentialID": true; "relyingParty": true };
 }
@@ -4933,12 +4930,12 @@ export class ASPasskeyRegistrationCredentialExtensionInput extends SDKHandle {
    * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationInput? { get }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK18 { return callSDK<$SDK18>("AuthenticationServices_90ad0eb69cc6bf4a", 2562939999956746, this, []); }
+  get prf(): $SDK18 { return callSDK<$SDK18>("AuthenticationServices_067acaa3e5f56b46", 2562939999956746, this, []); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput? { get }
    * @availability iOS 18.0+
    */
-  get largeBlob(): $SDK19 { return callSDK<$SDK19>("AuthenticationServices_90ad0eb69cc6bf4a", 1543324236318321, this, []); }
+  get largeBlob(): $SDK19 { return callSDK<$SDK19>("AuthenticationServices_067acaa3e5f56b46", 1543324236318321, this, []); }
   declare readonly $type: { "s:22AuthenticationServices45ASPasskeyRegistrationCredentialExtensionInputV": true };
 }
 
@@ -4951,17 +4948,17 @@ export class ASPasskeyRegistrationCredentialExtensionOutput extends SDKHandle {
    * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? { get }
    * @availability iOS 18.0+
    */
-  get prf(): $SDK16 { return callSDK<$SDK16>("AuthenticationServices_90ad0eb69cc6bf4a", 4417957802345791, this, []); }
+  get prf(): $SDK16 { return callSDK<$SDK16>("AuthenticationServices_067acaa3e5f56b46", 4417957802345791, this, []); }
   /**
    * init(largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput? = nil, prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? = nil)
    * @availability iOS 18.0+
    */
-  static init(largeBlob?: $SDK17, prf?: $SDK16): ASPasskeyRegistrationCredentialExtensionOutput { return callSDK<ASPasskeyRegistrationCredentialExtensionOutput>("AuthenticationServices_90ad0eb69cc6bf4a", 2218051624055722, undefined, [largeBlob, prf]); }
+  static init(largeBlob?: $SDK17, prf?: $SDK16): ASPasskeyRegistrationCredentialExtensionOutput { return callSDK<ASPasskeyRegistrationCredentialExtensionOutput>("AuthenticationServices_067acaa3e5f56b46", 2218051624055722, undefined, [largeBlob, prf]); }
   /**
    * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput? { get }
    * @availability iOS 18.0+
    */
-  get largeBlob(): $SDK17 { return callSDK<$SDK17>("AuthenticationServices_90ad0eb69cc6bf4a", 634120164376130, this, []); }
+  get largeBlob(): $SDK17 { return callSDK<$SDK17>("AuthenticationServices_067acaa3e5f56b46", 634120164376130, this, []); }
   declare readonly $type: { "s:22AuthenticationServices46ASPasskeyRegistrationCredentialExtensionOutputV": true };
 }
 
@@ -4974,17 +4971,17 @@ export class ASPasswordCredential extends SDKHandle {
    * init(user: String, password: String)
    * @availability iOS 12.0+
    */
-  static init(user: string, password: string): ASPasswordCredential { return callSDK<ASPasswordCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 1699948010915111, undefined, [user, password]); }
+  static init(user: string, password: string): ASPasswordCredential { return callSDK<ASPasswordCredential>("AuthenticationServices_067acaa3e5f56b46", 1699948010915111, undefined, [user, password]); }
   /**
    * var password: String { get }
    * @availability iOS 12.0+
    */
-  get password(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4174195196803148, this, []); }
+  get password(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4174195196803148, this, []); }
   /**
    * var user: String { get }
    * @availability iOS 12.0+
    */
-  get user(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 555510258357506, this, []); }
+  get user(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 555510258357506, this, []); }
   declare readonly $type: { "c:objc(cs)ASPasswordCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "password": true; "user": true };
 }
@@ -4998,28 +4995,28 @@ export class ASPasswordCredentialIdentity extends SDKHandle {
    * init(serviceIdentifier: ASCredentialServiceIdentifier, user: String, recordIdentifier: String?)
    * @availability iOS 12.0+
    */
-  static init(serviceIdentifier: ASCredentialServiceIdentifier, user: string, recordIdentifier?: (string) | null): ASPasswordCredentialIdentity { return callSDK<ASPasswordCredentialIdentity>("AuthenticationServices_90ad0eb69cc6bf4a", 3863046812595461, undefined, [serviceIdentifier, user, recordIdentifier]); }
+  static init(serviceIdentifier: ASCredentialServiceIdentifier, user: string, recordIdentifier?: (string) | null): ASPasswordCredentialIdentity { return callSDK<ASPasswordCredentialIdentity>("AuthenticationServices_067acaa3e5f56b46", 3863046812595461, undefined, [serviceIdentifier, user, recordIdentifier]); }
   /**
    * var rank: Int { get set }
    * @availability iOS 12.0+
    */
-  get rank(): number { return callSDK<number>("AuthenticationServices_90ad0eb69cc6bf4a", 2592511656694964, this, []); }
-  set rank(value: number) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1049899786535542, this, [value]); }
+  get rank(): number { return callSDK<number>("AuthenticationServices_067acaa3e5f56b46", 2592511656694964, this, []); }
+  set rank(value: number) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1049899786535542, this, [value]); }
   /**
    * var recordIdentifier: String? { get }
    * @availability iOS 12.0+
    */
-  get recordIdentifier(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2207663951576882, this, []); }
+  get recordIdentifier(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 2207663951576882, this, []); }
   /**
    * var serviceIdentifier: ASCredentialServiceIdentifier { get }
    * @availability iOS 12.0+
    */
-  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 4344471933024460, this, []); }
+  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 4344471933024460, this, []); }
   /**
    * var user: String { get }
    * @availability iOS 12.0+
    */
-  get user(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 404967125453830, this, []); }
+  get user(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 404967125453830, this, []); }
   declare readonly $type: { "c:objc(cs)ASPasswordCredentialIdentity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "rank": true; "recordIdentifier": true; "serviceIdentifier": true; "user": true };
 }
@@ -5033,7 +5030,7 @@ export class ASPasswordCredentialRequest extends SDKHandle {
    * init(credentialIdentity: ASPasswordCredentialIdentity)
    * @availability iOS 17.0+
    */
-  static init(credentialIdentity: ASPasswordCredentialIdentity): ASPasswordCredentialRequest { return callSDK<ASPasswordCredentialRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2315907521433383, undefined, [credentialIdentity]); }
+  static init(credentialIdentity: ASPasswordCredentialIdentity): ASPasswordCredentialRequest { return callSDK<ASPasswordCredentialRequest>("AuthenticationServices_067acaa3e5f56b46", 2315907521433383, undefined, [credentialIdentity]); }
   declare readonly $type: { "c:objc(cs)ASPasswordCredentialRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5046,8 +5043,8 @@ export class ASPhoneNumberIdentifier extends SDKHandle {
    * var value: String
    * @availability iOS 26.0+
    */
-  get value(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 654310223435404, this, []); }
-  set value(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1116168996421931, this, [value]); }
+  get value(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 654310223435404, this, []); }
+  set value(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1116168996421931, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices23ASPhoneNumberIdentifierV": true };
 }
 
@@ -5073,31 +5070,31 @@ export class ASPublicKeyCredentialClientData extends SDKHandle {
    * var crossOrigin: ASPublicKeyCredentialClientData.CrossOriginValue?
    * @availability iOS 17.4+
    */
-  get crossOrigin(): $SDK65 { return callSDK<$SDK65>("AuthenticationServices_90ad0eb69cc6bf4a", 700533996970388, this, []); }
-  set crossOrigin(value: $SDK65) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1147086759048006, this, [value]); }
+  get crossOrigin(): $SDK65 { return callSDK<$SDK65>("AuthenticationServices_067acaa3e5f56b46", 700533996970388, this, []); }
+  set crossOrigin(value: $SDK65) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1147086759048006, this, [value]); }
   /**
    * var origin: String
    * @availability iOS 17.4+
    */
-  get origin(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 180684270183444, this, []); }
-  set origin(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4222457525778593, this, [value]); }
+  get origin(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 180684270183444, this, []); }
+  set origin(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4222457525778593, this, [value]); }
   /**
    * var challenge: Data
    * @availability iOS 17.4+
    */
-  get challenge(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_90ad0eb69cc6bf4a", 1806006368435806, this, []); }
-  set challenge(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 694745338880110, this, [value]); }
+  get challenge(): ArrayBuffer { return callSDK<ArrayBuffer>("AuthenticationServices_067acaa3e5f56b46", 1806006368435806, this, []); }
+  set challenge(value: ArrayBuffer) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 694745338880110, this, [value]); }
   /**
    * init(challenge: Data, origin: String, topOrigin: String? = nil, crossOrigin: ASPublicKeyCredentialClientData.CrossOriginValue? = nil)
    * @availability iOS 17.4+
    */
-  static init(challenge: ArrayBuffer, origin: string, topOrigin?: (string) | null, crossOrigin?: $SDK65): ASPublicKeyCredentialClientData { return callSDK<ASPublicKeyCredentialClientData>("AuthenticationServices_90ad0eb69cc6bf4a", 1784647461906549, undefined, [challenge, origin, topOrigin, crossOrigin]); }
+  static init(challenge: ArrayBuffer, origin: string, topOrigin?: (string) | null, crossOrigin?: $SDK65): ASPublicKeyCredentialClientData { return callSDK<ASPublicKeyCredentialClientData>("AuthenticationServices_067acaa3e5f56b46", 1784647461906549, undefined, [challenge, origin, topOrigin, crossOrigin]); }
   /**
    * var topOrigin: String?
    * @availability iOS 17.4+
    */
-  get topOrigin(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 2607772034968922, this, []); }
-  set topOrigin(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 113360539966470, this, [value]); }
+  get topOrigin(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 2607772034968922, this, []); }
+  set topOrigin(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 113360539966470, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices31ASPublicKeyCredentialClientDataV": true };
 }
 
@@ -5118,7 +5115,7 @@ export const ASPublicKeyCredentialClientDataCrossOriginValue = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (ASPublicKeyCredentialClientDataCrossOriginValue) | null { return callSDK<(ASPublicKeyCredentialClientDataCrossOriginValue) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4029643195762334, undefined, [rawValue]); }
+  init(rawValue: number): (ASPublicKeyCredentialClientDataCrossOriginValue) | null { return callSDK<(ASPublicKeyCredentialClientDataCrossOriginValue) | null>("AuthenticationServices_067acaa3e5f56b46", 4029643195762334, undefined, [rawValue]); }
 };
 
 /**
@@ -5130,52 +5127,52 @@ export class ASSavePasswordRequest extends SDKHandle {
    * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: String, event: ASSavePasswordRequest.Event)
    * @availability iOS 26.2+
    */
-  static initServiceIdentifierCredentialSessionIDEvent(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: string, event: ASSavePasswordRequest_Event): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2389363625689579, undefined, [serviceIdentifier, credential, sessionID, event]); }
+  static initServiceIdentifierCredentialSessionIDEvent(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: string, event: ASSavePasswordRequest_Event): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_067acaa3e5f56b46", 2389363625689579, undefined, [serviceIdentifier, credential, sessionID, event]); }
   /**
    * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: String, event: ASSavePasswordRequest.Event, passwordKind: ASGeneratedPassword.Kind?)
    * @availability iOS 26.2+
    */
-  static initServiceIdentifierCredentialSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK66): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 2104964137024844, undefined, [serviceIdentifier, credential, sessionID, event, passwordKind]); }
+  static initServiceIdentifierCredentialSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK66): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_067acaa3e5f56b46", 2104964137024844, undefined, [serviceIdentifier, credential, sessionID, event, passwordKind]); }
   /**
    * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: String?, sessionID: String, event: ASSavePasswordRequest.Event)
    * @availability iOS 26.2+
    */
-  static initServiceIdentifierCredentialTitleSessionIDEvent(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: (string) | null, sessionID: string, event: ASSavePasswordRequest_Event): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 967182082690627, undefined, [serviceIdentifier, credential, title, sessionID, event]); }
+  static initServiceIdentifierCredentialTitleSessionIDEvent(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: (string) | null, sessionID: string, event: ASSavePasswordRequest_Event): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_067acaa3e5f56b46", 967182082690627, undefined, [serviceIdentifier, credential, title, sessionID, event]); }
   /**
    * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: String?, sessionID: String, event: ASSavePasswordRequest.Event, passwordKind: ASGeneratedPassword.Kind?)
    * @availability iOS 26.2+
    */
-  static initServiceIdentifierCredentialTitleSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: (string) | null, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK66): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_90ad0eb69cc6bf4a", 3975959943248295, undefined, [serviceIdentifier, credential, title, sessionID, event, passwordKind]); }
+  static initServiceIdentifierCredentialTitleSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: (string) | null, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK66): ASSavePasswordRequest { return callSDK<ASSavePasswordRequest>("AuthenticationServices_067acaa3e5f56b46", 3975959943248295, undefined, [serviceIdentifier, credential, title, sessionID, event, passwordKind]); }
   /**
    * var credential: ASPasswordCredential { get }
    * @availability iOS 26.2+
    */
-  get credential(): ASPasswordCredential { return callSDK<ASPasswordCredential>("AuthenticationServices_90ad0eb69cc6bf4a", 2506335610331885, this, []); }
+  get credential(): ASPasswordCredential { return callSDK<ASPasswordCredential>("AuthenticationServices_067acaa3e5f56b46", 2506335610331885, this, []); }
   /**
    * var event: ASSavePasswordRequest.Event { get }
    * @availability iOS 26.2+
    */
-  get event(): ASSavePasswordRequest_Event { return callSDK<ASSavePasswordRequest_Event>("AuthenticationServices_90ad0eb69cc6bf4a", 3915776709811786, this, []); }
+  get event(): ASSavePasswordRequest_Event { return callSDK<ASSavePasswordRequest_Event>("AuthenticationServices_067acaa3e5f56b46", 3915776709811786, this, []); }
   /**
    * var passwordKind: ASGeneratedPassword.Kind? { get }
    * @availability iOS 26.2+
    */
-  get passwordKind(): $SDK66 { return callSDK<$SDK66>("AuthenticationServices_90ad0eb69cc6bf4a", 2348785659555453, this, []); }
+  get passwordKind(): $SDK66 { return callSDK<$SDK66>("AuthenticationServices_067acaa3e5f56b46", 2348785659555453, this, []); }
   /**
    * var serviceIdentifier: ASCredentialServiceIdentifier { get }
    * @availability iOS 26.2+
    */
-  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_90ad0eb69cc6bf4a", 1587175542755142, this, []); }
+  get serviceIdentifier(): ASCredentialServiceIdentifier { return callSDK<ASCredentialServiceIdentifier>("AuthenticationServices_067acaa3e5f56b46", 1587175542755142, this, []); }
   /**
    * var sessionID: String { get }
    * @availability iOS 26.2+
    */
-  get sessionID(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1537126307796098, this, []); }
+  get sessionID(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1537126307796098, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 26.2+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3417604672201340, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 3417604672201340, this, []); }
   declare readonly $type: { "c:objc(cs)ASSavePasswordRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "credential": true; "event": true; "passwordKind": true; "serviceIdentifier": true; "sessionID": true; "title": true };
 }
@@ -5191,7 +5188,7 @@ export const ASSavePasswordRequest_Event = {
    * init?(rawValue: Int)
    * @availability iOS 26.2+
    */
-  init(rawValue: number): (ASSavePasswordRequest_Event) | null { return callSDK<(ASSavePasswordRequest_Event) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1546480975944188, undefined, [rawValue]); }
+  init(rawValue: number): (ASSavePasswordRequest_Event) | null { return callSDK<(ASSavePasswordRequest_Event) | null>("AuthenticationServices_067acaa3e5f56b46", 1546480975944188, undefined, [rawValue]); }
 };
 
 /**
@@ -5203,17 +5200,17 @@ export class ASSettingsHelper extends SDKHandle {
    * class func openCredentialProviderAppSettings() async throws
    * @availability iOS 17.0+
    */
-  static openCredentialProviderAppSettings(completionHandler?: $SDK67): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1691572171678436, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static openCredentialProviderAppSettings(completionHandler?: $SDK67): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1691572171678436, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func openVerificationCodeAppSettings() async throws
    * @availability iOS 17.0+
    */
-  static openVerificationCodeAppSettings(completionHandler?: $SDK67): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 876210460187463, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static openVerificationCodeAppSettings(completionHandler?: $SDK67): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 876210460187463, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func requestToTurnOnCredentialProviderExtension() async -> Bool
    * @availability iOS 18.0+
    */
-  static requestToTurnOnCredentialProviderExtension(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 13524274773570, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static requestToTurnOnCredentialProviderExtension(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 13524274773570, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)ASSettingsHelper": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5228,7 +5225,7 @@ export const ASUserAgeRange = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (ASUserAgeRange) | null { return callSDK<(ASUserAgeRange) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1473779712886873, undefined, [rawValue]); }
+  init(rawValue: number): (ASUserAgeRange) | null { return callSDK<(ASUserAgeRange) | null>("AuthenticationServices_067acaa3e5f56b46", 1473779712886873, undefined, [rawValue]); }
 };
 
 /** enum ASUserDetectionStatus */
@@ -5236,7 +5233,7 @@ export type ASUserDetectionStatus = "unsupported" | "unknown" | "likelyReal";
 
 export const ASUserDetectionStatus = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ASUserDetectionStatus) | null { return callSDK<(ASUserDetectionStatus) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1052225178576933, undefined, [rawValue]); }
+  init(rawValue: number): (ASUserDetectionStatus) | null { return callSDK<(ASUserDetectionStatus) | null>("AuthenticationServices_067acaa3e5f56b46", 1052225178576933, undefined, [rawValue]); }
 };
 
 /**
@@ -5248,37 +5245,37 @@ export class ASVerificationCode extends SDKHandle {
    * var embeddedDomains: [String]
    * @availability iOS 27.0+
    */
-  get embeddedDomains(): Array<string> { return callSDK<Array<string>>("AuthenticationServices_90ad0eb69cc6bf4a", 3530414642769707, this, []); }
-  set embeddedDomains(value: Array<string>) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 1701244890971476, this, [value]); }
+  get embeddedDomains(): Array<string> { return callSDK<Array<string>>("AuthenticationServices_067acaa3e5f56b46", 3530414642769707, this, []); }
+  set embeddedDomains(value: Array<string>) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 1701244890971476, this, [value]); }
   /**
    * var id: UUID
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 968449115835962, this, []); }
-  set id(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3131786559228845, this, [value]); }
+  get id(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 968449115835962, this, []); }
+  set id(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3131786559228845, this, [value]); }
   /**
    * init(code: String, timestamp: Date, domain: String? = nil, embeddedDomains: [String] = [], id: UUID = UUID())
    * @availability iOS 27.0+
    */
-  static init(code: string, timestamp: globalThis.Date, domain?: (string) | null, embeddedDomains?: Array<string>, id?: string): ASVerificationCode { return callSDK<ASVerificationCode>("AuthenticationServices_90ad0eb69cc6bf4a", 1651887043321404, undefined, [code, timestamp, domain, embeddedDomains, id]); }
+  static init(code: string, timestamp: globalThis.Date, domain?: (string) | null, embeddedDomains?: Array<string>, id?: string): ASVerificationCode { return callSDK<ASVerificationCode>("AuthenticationServices_067acaa3e5f56b46", 1651887043321404, undefined, [code, timestamp, domain, embeddedDomains, id]); }
   /**
    * var code: String
    * @availability iOS 27.0+
    */
-  get code(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1606412325791836, this, []); }
-  set code(value: string) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2363112948478686, this, [value]); }
+  get code(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1606412325791836, this, []); }
+  set code(value: string) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2363112948478686, this, [value]); }
   /**
    * var domain: String?
    * @availability iOS 27.0+
    */
-  get domain(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 4454940269211221, this, []); }
-  set domain(value: (string) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3082103582236343, this, [value]); }
+  get domain(): (string) | null { return callSDK<(string) | null>("AuthenticationServices_067acaa3e5f56b46", 4454940269211221, this, []); }
+  set domain(value: (string) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3082103582236343, this, [value]); }
   /**
    * var timestamp: Date
    * @availability iOS 27.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("AuthenticationServices_90ad0eb69cc6bf4a", 3922209129959060, this, []); }
-  set timestamp(value: globalThis.Date) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 2300469074262871, this, [value]); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("AuthenticationServices_067acaa3e5f56b46", 3922209129959060, this, []); }
+  set timestamp(value: globalThis.Date) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 2300469074262871, this, [value]); }
   declare readonly $type: { "s:22AuthenticationServices18ASVerificationCodeV": true };
 }
 
@@ -5309,46 +5306,46 @@ export class ASWebAuthenticationSession extends SDKHandle {
    * func cancel()
    * @availability iOS 12.0+
    */
-  cancel(): void { return callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3509540805168517, this, []); }
+  cancel(): void { return callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3509540805168517, this, []); }
   /**
    * init(url URL: URL, callback: ASWebAuthenticationSession.Callback, completionHandler: @escaping ASWebAuthenticationSession.CompletionHandler)
    * @availability iOS 17.4+
    */
-  static initUrlCallbackCompletionHandler(URL: string, callback: ASWebAuthenticationSession_Callback, completionHandler: $SDK69): ASWebAuthenticationSession { return callSDK<ASWebAuthenticationSession>("AuthenticationServices_90ad0eb69cc6bf4a", 3282973728796329, undefined, [URL, callback, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initUrlCallbackCompletionHandler(URL: string, callback: ASWebAuthenticationSession_Callback, completionHandler: $SDK69): ASWebAuthenticationSession { return callSDK<ASWebAuthenticationSession>("AuthenticationServices_067acaa3e5f56b46", 3282973728796329, undefined, [URL, callback, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(url URL: URL, callbackURLScheme: String?, completionHandler: @escaping ASWebAuthenticationSession.CompletionHandler)
    * @availability iOS 12.0+
    * @deprecated iOS 100000.0
    */
-  static initUrlCallbackURLSchemeCompletionHandler(URL: string, callbackURLScheme: (string) | null, completionHandler: $SDK69): ASWebAuthenticationSession { return callSDK<ASWebAuthenticationSession>("AuthenticationServices_90ad0eb69cc6bf4a", 4442475000109227, undefined, [URL, callbackURLScheme, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initUrlCallbackURLSchemeCompletionHandler(URL: string, callbackURLScheme: (string) | null, completionHandler: $SDK69): ASWebAuthenticationSession { return callSDK<ASWebAuthenticationSession>("AuthenticationServices_067acaa3e5f56b46", 4442475000109227, undefined, [URL, callbackURLScheme, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func start() -> Bool
    * @availability iOS 12.0+
    */
-  start(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 3802022895909846, this, []); }
+  start(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 3802022895909846, this, []); }
   /**
    * var additionalHeaderFields: [String : String]? { get set }
    * @availability iOS 17.4+
    */
-  get additionalHeaderFields(): $SDK22 { return callSDK<$SDK22>("AuthenticationServices_90ad0eb69cc6bf4a", 3999722251783047, this, []); }
-  set additionalHeaderFields(value: $SDK22) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 3091585743615749, this, [value]); }
+  get additionalHeaderFields(): $SDK22 { return callSDK<$SDK22>("AuthenticationServices_067acaa3e5f56b46", 3999722251783047, this, []); }
+  set additionalHeaderFields(value: $SDK22) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 3091585743615749, this, [value]); }
   /**
    * var canStart: Bool { get }
    * @availability iOS 13.4+
    */
-  get canStart(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 1154023509619224, this, []); }
+  get canStart(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 1154023509619224, this, []); }
   /**
    * var prefersEphemeralWebBrowserSession: Bool { get set }
    * @availability iOS 13.0+
    */
-  get prefersEphemeralWebBrowserSession(): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 4477839947901282, this, []); }
-  set prefersEphemeralWebBrowserSession(value: boolean) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 4368787340637077, this, [value]); }
+  get prefersEphemeralWebBrowserSession(): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 4477839947901282, this, []); }
+  set prefersEphemeralWebBrowserSession(value: boolean) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 4368787340637077, this, [value]); }
   /**
    * weak var presentationContextProvider: (any ASWebAuthenticationPresentationContextProviding)? { get set }
    * @availability iOS 13.0+
    */
-  get presentationContextProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 1604558335699653, this, []); }
-  set presentationContextProvider(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_90ad0eb69cc6bf4a", 656920239390240, this, [value]); }
+  get presentationContextProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AuthenticationServices_067acaa3e5f56b46", 1604558335699653, this, []); }
+  set presentationContextProvider(value: (SDKHandle) | null) { callSDK<void>("AuthenticationServices_067acaa3e5f56b46", 656920239390240, this, [value]); }
   declare readonly $type: { "c:objc(cs)ASWebAuthenticationSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "additionalHeaderFields": true; "canStart": true; "prefersEphemeralWebBrowserSession": true; "presentationContextProvider": true };
 }
@@ -5362,17 +5359,17 @@ export class ASWebAuthenticationSession_Callback extends SDKHandle {
    * class func customScheme(_ customScheme: String) -> Self
    * @availability iOS 17.4+
    */
-  static customScheme(customScheme: string): ASWebAuthenticationSession_Callback { return callSDK<ASWebAuthenticationSession_Callback>("AuthenticationServices_90ad0eb69cc6bf4a", 3459684262087292, undefined, [customScheme]); }
+  static customScheme(customScheme: string): ASWebAuthenticationSession_Callback { return callSDK<ASWebAuthenticationSession_Callback>("AuthenticationServices_067acaa3e5f56b46", 3459684262087292, undefined, [customScheme]); }
   /**
    * class func https(host: String, path: String) -> Self
    * @availability iOS 17.4+
    */
-  static https(host: string, path: string): ASWebAuthenticationSession_Callback { return callSDK<ASWebAuthenticationSession_Callback>("AuthenticationServices_90ad0eb69cc6bf4a", 2105125529001118, undefined, [host, path]); }
+  static https(host: string, path: string): ASWebAuthenticationSession_Callback { return callSDK<ASWebAuthenticationSession_Callback>("AuthenticationServices_067acaa3e5f56b46", 2105125529001118, undefined, [host, path]); }
   /**
    * func matchesURL(_ url: URL) -> Bool
    * @availability iOS 17.4+
    */
-  matchesURL(url: string): boolean { return callSDK<boolean>("AuthenticationServices_90ad0eb69cc6bf4a", 4135150091410162, this, [url]); }
+  matchesURL(url: string): boolean { return callSDK<boolean>("AuthenticationServices_067acaa3e5f56b46", 4135150091410162, this, [url]); }
   declare readonly $type: { "c:objc(cs)ASWebAuthenticationSessionCallback": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5388,22 +5385,22 @@ export class ASWebAuthenticationSessionError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 12.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 511831072064138, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 511831072064138, undefined, []); }
   /**
    * static var canceledLogin: ASWebAuthenticationSessionError.Code { get }
    * @availability iOS 12.0+
    */
-  static get canceledLogin(): ASWebAuthenticationSessionError_Code { return callSDK<ASWebAuthenticationSessionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 883831683596742, undefined, []); }
+  static get canceledLogin(): ASWebAuthenticationSessionError_Code { return callSDK<ASWebAuthenticationSessionError_Code>("AuthenticationServices_067acaa3e5f56b46", 883831683596742, undefined, []); }
   /**
    * static var presentationContextInvalid: ASWebAuthenticationSessionError.Code { get }
    * @availability iOS 13.0+
    */
-  static get presentationContextInvalid(): ASWebAuthenticationSessionError_Code { return callSDK<ASWebAuthenticationSessionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 3764989125696534, undefined, []); }
+  static get presentationContextInvalid(): ASWebAuthenticationSessionError_Code { return callSDK<ASWebAuthenticationSessionError_Code>("AuthenticationServices_067acaa3e5f56b46", 3764989125696534, undefined, []); }
   /**
    * static var presentationContextNotProvided: ASWebAuthenticationSessionError.Code { get }
    * @availability iOS 13.0+
    */
-  static get presentationContextNotProvided(): ASWebAuthenticationSessionError_Code { return callSDK<ASWebAuthenticationSessionError_Code>("AuthenticationServices_90ad0eb69cc6bf4a", 4430217596603196, undefined, []); }
+  static get presentationContextNotProvided(): ASWebAuthenticationSessionError_Code { return callSDK<ASWebAuthenticationSessionError_Code>("AuthenticationServices_067acaa3e5f56b46", 4430217596603196, undefined, []); }
   declare readonly $type: { "s:SC35ASWebAuthenticationSessionErrorCodeLeV": true };
 }
 
@@ -5418,196 +5415,196 @@ export const ASWebAuthenticationSessionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ASWebAuthenticationSessionError_Code) | null { return callSDK<(ASWebAuthenticationSessionError_Code) | null>("AuthenticationServices_90ad0eb69cc6bf4a", 3361931502543657, undefined, [rawValue]); }
+  init(rawValue: number): (ASWebAuthenticationSessionError_Code) | null { return callSDK<(ASWebAuthenticationSessionError_Code) | null>("AuthenticationServices_067acaa3e5f56b46", 3361931502543657, undefined, [rawValue]); }
 };
 
 /**
  * let ASAuthorizationErrorDomain: String
  * @availability iOS 13.0+
  */
-export const ASAuthorizationErrorDomain: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 2437299579342425, undefined, []);
+export const ASAuthorizationErrorDomain: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 2437299579342425, undefined, []);
 
 /**
  * let ASCredentialIdentityStoreErrorDomain: String
  * @availability iOS 12.0+
  */
-export const ASCredentialIdentityStoreErrorDomain: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3732273014700488, undefined, []);
+export const ASCredentialIdentityStoreErrorDomain: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3732273014700488, undefined, []);
 
 /**
  * let ASExtensionErrorDomain: String
  * @availability iOS 12.0+
  */
-export const ASExtensionErrorDomain: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1860623427693851, undefined, []);
+export const ASExtensionErrorDomain: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1860623427693851, undefined, []);
 
 /**
  * let ASExtensionLocalizedFailureReasonErrorKey: String
  * @availability iOS 14.0+
  */
-export const ASExtensionLocalizedFailureReasonErrorKey: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 4125375694971261, undefined, []);
+export const ASExtensionLocalizedFailureReasonErrorKey: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 4125375694971261, undefined, []);
 
 /**
  * let ASWebAuthenticationSessionErrorDomain: String
  * @availability iOS 12.0+
  */
-export const ASWebAuthenticationSessionErrorDomain: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1083310619743773, undefined, []);
+export const ASWebAuthenticationSessionErrorDomain: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1083310619743773, undefined, []);
 
 /**
  * let ASCredentialImportToken: String
  * @availability iOS 26.0+
  */
-export const ASCredentialImportToken: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 3678365145188265, undefined, []);
+export const ASCredentialImportToken: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 3678365145188265, undefined, []);
 
 /**
  * let ASCredentialExchangeActivity: String
  * @availability iOS 26.0+
  */
-export const ASCredentialExchangeActivity: string = callSDK<string>("AuthenticationServices_90ad0eb69cc6bf4a", 1361518430934452, undefined, []);
+export const ASCredentialExchangeActivity: string = callSDK<string>("AuthenticationServices_067acaa3e5f56b46", 1361518430934452, undefined, []);
 
-registerSDKClass("ASAccountAuthenticationModificationController", ASAccountAuthenticationModificationController, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"delegate":2050245834133398,"presentationContextProvider":1089774507280687}, methods: {"perform":{"id":1418003402484115}} });
+registerSDKClass("ASAccountAuthenticationModificationController", ASAccountAuthenticationModificationController, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"delegate":2050245834133398,"presentationContextProvider":1089774507280687}, methods: {"perform":{"id":1418003402484115}} });
 registerSDKProtocol("c:objc(pl)ASAccountAuthenticationModificationControllerDelegate", {"accountAuthenticationModificationControllerDidSuccessfullyCompleteUserInfo":"accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)","accountAuthenticationModificationControllerDidFailError":"accountAuthenticationModificationController(_:didFail:error:)"});
 registerSDKProtocol("c:objc(pl)ASAccountAuthenticationModificationControllerPresentationContextProviding", {"presentationAnchorFor":"presentationAnchor(for:)"});
-registerSDKClass("ASAccountAuthenticationModificationExtensionContext", ASAccountAuthenticationModificationExtensionContext, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"cancelRequest":{"id":3469840879721173},"completeChangePasswordRequest":{"id":4292155612695256},"completeUpgradeToSignInWithApple":{"id":435961862468227},"getSignInWithAppleUpgradeAuthorization":{"id":1849631483707599,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ASAccountAuthenticationModificationRequest", ASAccountAuthenticationModificationRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest", ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"serviceIdentifier":2335130519862414,"user":227678500206411,"userInfo":3372905709975012} });
-registerSDKClass("ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest", ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"serviceIdentifier":1565254020965039,"user":2383203115344088,"userInfo":3237463829778269} });
-registerSDKClass("ASAccountAuthenticationModificationViewController", ASAccountAuthenticationModificationViewController, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"extensionContext":3879258799442639}, methods: {"cancelRequest":{"id":2667295748994178},"changePasswordWithoutUserInteraction":{"id":2046435943283530},"convertAccountToSignInWithAppleWithoutUserInteraction":{"id":808138811596395},"prepareInterfaceToChangePassword":{"id":2951777116153639},"prepareInterfaceToConvertAccountToSignInWithApple":{"id":2813641784812554}} });
-registerSDKClass("ASAuthorization", ASAuthorization, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"credential":1596309642332729,"provider":3485662575136612} });
-registerSDKClass("AuthenticationServices.ASAuthorizationAccountCreationPlatformPublicKeyCredential", ASAuthorizationAccountCreationPlatformPublicKeyCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"copy":{"id":2776042510443268},"encode":{"id":354179293093574}} });
-registerSDKClass("ASAuthorizationRequest", ASAuthorizationRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"provider":1874658416877947} });
-registerSDKClass("AuthenticationServices.ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest", ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"encode":{"id":1857194974744138}} });
-registerSDKClass("AuthenticationServices.ASAuthorizationAccountCreationProvider", ASAuthorizationAccountCreationProvider, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"createPlatformPublicKeyCredentialRegistrationRequest":{"id":1807577671667075}} });
-registerSDKClass("ASAuthorizationAppleIDButton", ASAuthorizationAppleIDButton, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"cornerRadius":502016765984724} });
-registerSDKClass("ASAuthorizationAppleIDCredential", ASAuthorizationAppleIDCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"authorizationCode":454580179566599,"authorizedScopes":3924183313991638,"email":4216596642713142,"fullName":4094692234278488,"identityToken":450118132069471,"realUserStatus":1370836802088747,"state":3388864500102575,"user":1677741291378138,"userAgeRange":1315402525829037} });
-registerSDKClass("ASAuthorizationAppleIDProvider", ASAuthorizationAppleIDProvider, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"createRequest":{"id":1561123044379030},"getCredentialState":{"id":3537695688363762,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ASAuthorizationOpenIDRequest", ASAuthorizationOpenIDRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"nonce":179147212903895,"requestedOperation":2350766455904116,"requestedScopes":1956055851793878,"state":4399667756436786} });
-registerSDKClass("ASAuthorizationAppleIDRequest", ASAuthorizationAppleIDRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"user":3705431216170255} });
-registerSDKClass("ASAuthorizationController", ASAuthorizationController, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"authorizationRequests":786763832019723,"delegate":1595398461693570,"presentationContextProvider":3419067589506262}, methods: {"cancel":{"id":1027729882578499},"performAutoFillAssistedRequests":{"id":3899271122053778},"performRequests":{"id":2572929880422217},"performRequestsOptions":{"id":1625097192448526}} });
+registerSDKClass("ASAccountAuthenticationModificationExtensionContext", ASAccountAuthenticationModificationExtensionContext, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"cancelRequest":{"id":3469840879721173},"completeChangePasswordRequest":{"id":4292155612695256},"completeUpgradeToSignInWithApple":{"id":435961862468227},"getSignInWithAppleUpgradeAuthorization":{"id":1849631483707599,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ASAccountAuthenticationModificationRequest", ASAccountAuthenticationModificationRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest", ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"serviceIdentifier":2335130519862414,"user":227678500206411,"userInfo":3372905709975012} });
+registerSDKClass("ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest", ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"serviceIdentifier":1565254020965039,"user":2383203115344088,"userInfo":3237463829778269} });
+registerSDKClass("ASAccountAuthenticationModificationViewController", ASAccountAuthenticationModificationViewController, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"cancelRequest":{"id":1468850454235749},"changePasswordWithoutUserInteraction":{"id":890730881378413},"convertAccountToSignInWithAppleWithoutUserInteraction":{"id":3743286428950804},"prepareInterfaceToChangePassword":{"id":2193585745755328},"prepareInterfaceToConvertAccountToSignInWithApple":{"id":4252805707747065}} });
+registerSDKClass("ASAuthorization", ASAuthorization, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"credential":1596309642332729,"provider":3485662575136612} });
+registerSDKClass("AuthenticationServices.ASAuthorizationAccountCreationPlatformPublicKeyCredential", ASAuthorizationAccountCreationPlatformPublicKeyCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"copy":{"id":2776042510443268},"encode":{"id":354179293093574}} });
+registerSDKClass("ASAuthorizationRequest", ASAuthorizationRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"provider":1874658416877947} });
+registerSDKClass("AuthenticationServices.ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest", ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"encode":{"id":1857194974744138}} });
+registerSDKClass("AuthenticationServices.ASAuthorizationAccountCreationProvider", ASAuthorizationAccountCreationProvider, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"createPlatformPublicKeyCredentialRegistrationRequest":{"id":1807577671667075}} });
+registerSDKClass("ASAuthorizationAppleIDButton", ASAuthorizationAppleIDButton, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASAuthorizationAppleIDCredential", ASAuthorizationAppleIDCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"authorizationCode":454580179566599,"authorizedScopes":3924183313991638,"email":4216596642713142,"fullName":4094692234278488,"identityToken":450118132069471,"realUserStatus":1370836802088747,"state":3388864500102575,"user":1677741291378138,"userAgeRange":1315402525829037} });
+registerSDKClass("ASAuthorizationAppleIDProvider", ASAuthorizationAppleIDProvider, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"createRequest":{"id":1561123044379030},"getCredentialState":{"id":3537695688363762,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ASAuthorizationOpenIDRequest", ASAuthorizationOpenIDRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"nonce":179147212903895,"requestedOperation":2350766455904116,"requestedScopes":1956055851793878,"state":4399667756436786} });
+registerSDKClass("ASAuthorizationAppleIDRequest", ASAuthorizationAppleIDRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"user":3705431216170255} });
+registerSDKClass("ASAuthorizationController", ASAuthorizationController, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"authorizationRequests":786763832019723,"delegate":1595398461693570,"presentationContextProvider":3419067589506262}, methods: {"cancel":{"id":1027729882578499},"performAutoFillAssistedRequests":{"id":3899271122053778},"performRequests":{"id":2572929880422217},"performRequestsOptions":{"id":1625097192448526}} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationControllerDelegate", {"authorizationControllerControllerDidCompleteWithAuthorization":"authorizationController(controller:didCompleteWithAuthorization:)","authorizationControllerControllerDidCompleteWithError":"authorizationController(controller:didCompleteWithError:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationControllerPresentationContextProviding", {"presentationAnchorFor":"presentationAnchor(for:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationCredential", {"encodeWith":"encode(with:)","initCoder":"init(coder:)","copyWith":"copy(with:)"});
-registerSDKClass("AuthenticationServices.ASAuthorizationError", ASAuthorizationError, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASAuthorizationPasswordProvider", ASAuthorizationPasswordProvider, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"createRequest":{"id":500827846362092}} });
-registerSDKClass("ASAuthorizationPasswordRequest", ASAuthorizationPasswordRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialAssertion", ASAuthorizationPlatformPublicKeyCredentialAssertion, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"attachment":2225223568379364} });
-registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialAssertionRequest", ASAuthorizationPlatformPublicKeyCredentialAssertionRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"allowedCredentials":3616535163808023} });
-registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialDescriptor", ASAuthorizationPlatformPublicKeyCredentialDescriptor, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialProvider", ASAuthorizationPlatformPublicKeyCredentialProvider, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"relyingPartyIdentifier":914647352568528}, methods: {"createCredentialAssertionRequestChallenge":{"id":1657055899299795},"createCredentialRegistrationRequestChallengeNameUserID":{"id":2020427656938816},"createCredentialRegistrationRequestChallengeNameUserIDRequestStyle":{"id":1900595750728640},"createCredentialAssertionRequestClientData":{"id":3870392075368887},"createCredentialRegistrationRequestClientDataNameUserIDRequestStyle":{"id":2170381619359889},"createCredentialRegistrationRequestClientDataNameUserID":{"id":1374387872106971}} });
-registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialRegistration", ASAuthorizationPlatformPublicKeyCredentialRegistration, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"attachment":1233701738192001} });
-registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest", ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"requestStyle":874076050804479} });
+registerSDKClass("AuthenticationServices.ASAuthorizationError", ASAuthorizationError, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASAuthorizationPasswordProvider", ASAuthorizationPasswordProvider, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"createRequest":{"id":500827846362092}} });
+registerSDKClass("ASAuthorizationPasswordRequest", ASAuthorizationPasswordRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialAssertion", ASAuthorizationPlatformPublicKeyCredentialAssertion, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"attachment":2225223568379364} });
+registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialAssertionRequest", ASAuthorizationPlatformPublicKeyCredentialAssertionRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"allowedCredentials":3616535163808023} });
+registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialDescriptor", ASAuthorizationPlatformPublicKeyCredentialDescriptor, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialProvider", ASAuthorizationPlatformPublicKeyCredentialProvider, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"relyingPartyIdentifier":914647352568528}, methods: {"createCredentialAssertionRequestChallenge":{"id":1657055899299795},"createCredentialRegistrationRequestChallengeNameUserID":{"id":2020427656938816},"createCredentialRegistrationRequestChallengeNameUserIDRequestStyle":{"id":1900595750728640},"createCredentialAssertionRequestClientData":{"id":3870392075368887},"createCredentialRegistrationRequestClientDataNameUserIDRequestStyle":{"id":2170381619359889},"createCredentialRegistrationRequestClientDataNameUserID":{"id":1374387872106971}} });
+registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialRegistration", ASAuthorizationPlatformPublicKeyCredentialRegistration, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"attachment":1233701738192001} });
+registerSDKClass("ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest", ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"requestStyle":874076050804479} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationProvider", {});
-registerSDKClass("ASAuthorizationProviderExtensionAuthorizationRequest", ASAuthorizationProviderExtensionAuthorizationRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"authorizationOptions":947351446421328,"callerBundleIdentifier":4170947219043538,"isCallerManaged":520872916313579,"callerTeamIdentifier":2793310361744417,"extensionData":4428028422683932,"httpBody":2079684776026532,"httpHeaders":2223170037180009,"localizedCallerDisplayName":2893958037374315,"realm":3058835741572214,"requestedOperation":643816341322872,"url":603145191564955,"isUserInterfaceEnabled":1842924878488118}, methods: {"cancel":{"id":41577983470056},"complete":{"id":2551037399672459},"completeAuthorizationResult":{"id":977758598980175},"completeError":{"id":3235961668138706},"completeHttpAuthorizationHeaders":{"id":2156077732627158},"completeHttpResponseHttpBody":{"id":2554778731151675},"doNotHandle":{"id":582422850526686},"presentAuthorizationViewController":{"id":1168325930470041,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("ASAuthorizationProviderExtensionAuthorizationRequest", ASAuthorizationProviderExtensionAuthorizationRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"authorizationOptions":947351446421328,"callerBundleIdentifier":4170947219043538,"isCallerManaged":520872916313579,"callerTeamIdentifier":2793310361744417,"extensionData":4428028422683932,"httpBody":2079684776026532,"httpHeaders":2223170037180009,"localizedCallerDisplayName":2893958037374315,"realm":3058835741572214,"requestedOperation":643816341322872,"url":603145191564955,"isUserInterfaceEnabled":1842924878488118}, methods: {"cancel":{"id":41577983470056},"complete":{"id":2551037399672459},"completeAuthorizationResult":{"id":977758598980175},"completeError":{"id":3235961668138706},"completeHttpAuthorizationHeaders":{"id":2156077732627158},"completeHttpResponseHttpBody":{"id":2554778731151675},"doNotHandle":{"id":582422850526686},"presentAuthorizationViewController":{"id":1168325930470041,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationProviderExtensionAuthorizationRequestHandler", {"beginAuthorizationWith":"beginAuthorization(with:)","cancelAuthorizationWith":"cancelAuthorization(with:)"});
-registerSDKClass("ASAuthorizationProviderExtensionAuthorizationResult", ASAuthorizationProviderExtensionAuthorizationResult, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"httpAuthorizationHeaders":3904610616778992,"httpBody":1886329527622649,"httpResponse":2279996109548455} });
+registerSDKClass("ASAuthorizationProviderExtensionAuthorizationResult", ASAuthorizationProviderExtensionAuthorizationResult, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"httpAuthorizationHeaders":3904610616778992,"httpBody":1886329527622649,"httpResponse":2279996109548455} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationPublicKeyCredentialAssertion", {"encodeWith":"encode(with:)","initCoder":"init(coder:)","copyWith":"copy(with:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationPublicKeyCredentialAssertionRequest", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationPublicKeyCredentialDescriptor", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)"});
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput", ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput.Operation", ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput", ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput.OperationResult", ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput", ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput", ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASAuthorizationPublicKeyCredentialParameters", ASAuthorizationPublicKeyCredentialParameters, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"algorithm":2684207367187281} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFAssertionInput", ASAuthorizationPublicKeyCredentialPRFAssertionInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues", ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFAssertionOutput", ASAuthorizationPublicKeyCredentialPRFAssertionOutput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFRegistrationInput", ASAuthorizationPublicKeyCredentialPRFRegistrationInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFRegistrationOutput", ASAuthorizationPublicKeyCredentialPRFRegistrationOutput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput", ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput.Operation", ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput", ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput.OperationResult", ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput", ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput", ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASAuthorizationPublicKeyCredentialParameters", ASAuthorizationPublicKeyCredentialParameters, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"algorithm":2684207367187281} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFAssertionInput", ASAuthorizationPublicKeyCredentialPRFAssertionInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues", ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFAssertionOutput", ASAuthorizationPublicKeyCredentialPRFAssertionOutput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFRegistrationInput", ASAuthorizationPublicKeyCredentialPRFRegistrationInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASAuthorizationPublicKeyCredentialPRFRegistrationOutput", ASAuthorizationPublicKeyCredentialPRFRegistrationOutput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationPublicKeyCredentialRegistration", {"encodeWith":"encode(with:)","initCoder":"init(coder:)","copyWith":"copy(with:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationPublicKeyCredentialRegistrationRequest", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)"});
-registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialAssertion", ASAuthorizationSecurityKeyPublicKeyCredentialAssertion, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"appID":425199538126474} });
-registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest", ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"allowedCredentials":3347275850522708,"appID":1417455795016966,"prf":3761583550069987} });
-registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor", ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"transports":444220325530347} });
-registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialProvider", ASAuthorizationSecurityKeyPublicKeyCredentialProvider, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"relyingPartyIdentifier":2843696158206539}, methods: {"createCredentialAssertionRequestChallenge":{"id":3632191803499287},"createCredentialRegistrationRequestChallengeDisplayNameNameUserID":{"id":4347259460773274},"createCredentialAssertionRequestClientData":{"id":2171442448726325},"createCredentialRegistrationRequestClientDataDisplayNameNameUserID":{"id":492945572850410}} });
-registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialRegistration", ASAuthorizationSecurityKeyPublicKeyCredentialRegistration, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"transports":116514492432430} });
-registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest", ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"credentialParameters":720613928592438,"excludedCredentials":1522620961915838,"residentKeyPreference":3085788414551133} });
-registerSDKClass("ASAuthorizationSingleSignOnCredential", ASAuthorizationSingleSignOnCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"accessToken":2967533334851428,"authenticatedResponse":2706510301509826,"authorizedScopes":3552869337802492,"identityToken":2552191020667214,"state":3452367038032451} });
-registerSDKClass("ASAuthorizationSingleSignOnProvider", ASAuthorizationSingleSignOnProvider, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"canPerformAuthorization":2628765190270402,"url":721996183562956}, methods: {"createRequest":{"id":1016546624580278}} });
-registerSDKClass("ASAuthorizationSingleSignOnRequest", ASAuthorizationSingleSignOnRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"authorizationOptions":3487805577776543,"isUserInterfaceEnabled":1473506834725181} });
-registerSDKClass("AuthenticationServices.ASAuthorizationWebBrowserPlatformPublicKeyCredential", ASAuthorizationWebBrowserPlatformPublicKeyCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialAssertion", ASAuthorizationSecurityKeyPublicKeyCredentialAssertion, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"appID":425199538126474} });
+registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest", ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"allowedCredentials":3347275850522708,"appID":1417455795016966,"prf":3761583550069987} });
+registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor", ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"transports":444220325530347} });
+registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialProvider", ASAuthorizationSecurityKeyPublicKeyCredentialProvider, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"relyingPartyIdentifier":2843696158206539}, methods: {"createCredentialAssertionRequestChallenge":{"id":3632191803499287},"createCredentialRegistrationRequestChallengeDisplayNameNameUserID":{"id":4347259460773274},"createCredentialAssertionRequestClientData":{"id":2171442448726325},"createCredentialRegistrationRequestClientDataDisplayNameNameUserID":{"id":492945572850410}} });
+registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialRegistration", ASAuthorizationSecurityKeyPublicKeyCredentialRegistration, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"transports":116514492432430} });
+registerSDKClass("ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest", ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"credentialParameters":720613928592438,"excludedCredentials":1522620961915838,"residentKeyPreference":3085788414551133} });
+registerSDKClass("ASAuthorizationSingleSignOnCredential", ASAuthorizationSingleSignOnCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"accessToken":2967533334851428,"authenticatedResponse":2706510301509826,"authorizedScopes":3552869337802492,"identityToken":2552191020667214,"state":3452367038032451} });
+registerSDKClass("ASAuthorizationSingleSignOnProvider", ASAuthorizationSingleSignOnProvider, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"canPerformAuthorization":2628765190270402,"url":721996183562956}, methods: {"createRequest":{"id":1016546624580278}} });
+registerSDKClass("ASAuthorizationSingleSignOnRequest", ASAuthorizationSingleSignOnRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"authorizationOptions":3487805577776543,"isUserInterfaceEnabled":1473506834725181} });
+registerSDKClass("AuthenticationServices.ASAuthorizationWebBrowserPlatformPublicKeyCredential", ASAuthorizationWebBrowserPlatformPublicKeyCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest", {});
 registerSDKProtocol("s:22AuthenticationServices60ASAuthorizationWebBrowserPlatformPublicKeyCredentialProviderP", {"createCredentialRegistrationRequestClientDataNameUserID":"createCredentialRegistrationRequest(clientData:name:userID:)","createCredentialRegistrationRequestClientDataNameUserIDRequestStyle":"createCredentialRegistrationRequest(clientData:name:userID:requestStyle:)","createCredentialAssertionRequestClientData":"createCredentialAssertionRequest(clientData:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest", {});
-registerSDKClass("ASAuthorizationWebBrowserPublicKeyCredentialManager", ASAuthorizationWebBrowserPublicKeyCredentialManager, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"authorizationStateForPlatformCredentials":2256918101878427}, methods: {"requestAuthorizationForPublicKeyCredentials":{"id":3020416731201292,"hints":[{"callback":{"out":[]}}]},"platformCredentials":{"id":3265830305715266}} });
+registerSDKClass("ASAuthorizationWebBrowserPublicKeyCredentialManager", ASAuthorizationWebBrowserPublicKeyCredentialManager, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"authorizationStateForPlatformCredentials":2256918101878427}, methods: {"requestAuthorizationForPublicKeyCredentials":{"id":3020416731201292,"hints":[{"callback":{"out":[]}}]},"platformCredentials":{"id":3265830305715266}} });
 registerSDKProtocol("c:objc(pl)ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest", {});
 registerSDKProtocol("s:22AuthenticationServices042ASAuthorizationWebBrowserSecurityKeyPublicG18CredentialProviderP", {"createCredentialRegistrationRequestClientDataDisplayNameNameUserID":"createCredentialRegistrationRequest(clientData:displayName:name:userID:)","createCredentialAssertionRequestClientData":"createCredentialAssertionRequest(clientData:)"});
 registerSDKProtocol("c:objc(pl)ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest", {});
-registerSDKClass("AuthenticationServices.ASAutoFillURLScope", ASAutoFillURLScope, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASContactIdentifier", ASContactIdentifier, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASCredentialDataManager", ASCredentialDataManager, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"reportUnusedPasswordCredential":{"id":2609451656930336},"reportPublicKeyCredentialUpdate":{"id":2543615168329633},"reportUnknownPublicKeyCredential":{"id":3939703012281822},"reportAllAcceptedPublicKeyCredentials":{"id":4329103643098155},"save":{"id":3985669291236464}} });
-registerSDKClass("AuthenticationServices.ASCredentialExportManager", ASCredentialExportManager, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"requestExport":{"id":4113229315894523},"exportCredentials":{"id":1502531957063659}} });
-registerSDKClass("AuthenticationServices.ASCredentialExportManager.ExportOptions", ASCredentialExportManager_ExportOptions, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AuthenticationServices.ASAutoFillURLScope", ASAutoFillURLScope, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASContactIdentifier", ASContactIdentifier, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASCredentialDataManager", ASCredentialDataManager, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"reportUnusedPasswordCredential":{"id":2609451656930336},"reportPublicKeyCredentialUpdate":{"id":2543615168329633},"reportUnknownPublicKeyCredential":{"id":3939703012281822},"reportAllAcceptedPublicKeyCredentials":{"id":4329103643098155},"save":{"id":3985669291236464}} });
+registerSDKClass("AuthenticationServices.ASCredentialExportManager", ASCredentialExportManager, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"requestExport":{"id":4113229315894523},"exportCredentials":{"id":1502531957063659}} });
+registerSDKClass("AuthenticationServices.ASCredentialExportManager.ExportOptions", ASCredentialExportManager_ExportOptions, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)ASCredentialIdentity", {});
-registerSDKClass("ASCredentialIdentityStore", ASCredentialIdentityStore, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"getState":{"id":2682934567551542,"hints":[{"callback":{"out":[]}}]},"removeAllCredentialIdentities":{"id":2449271266439651,"hints":[{"callback":{"out":[]}}]},"removeCredentialIdentitiesCompletion":{"id":4477515474767967,"hints":[null,{"callback":{"out":[]}}]},"removeCredentialIdentitiesCompletion70031":{"id":3743204074699892,"hints":[null,{"callback":{"out":[]}}]},"replaceCredentialIdentitiesWithCompletion":{"id":1485357268931440,"hints":[null,{"callback":{"out":[]}}]},"replaceCredentialIdentitiesCompletion":{"id":4021869881746886,"hints":[null,{"callback":{"out":[]}}]},"saveCredentialIdentitiesCompletion":{"id":4370049145599188,"hints":[null,{"callback":{"out":[]}}]},"saveCredentialIdentitiesCompletion16884":{"id":3611942488266868,"hints":[null,{"callback":{"out":[]}}]},"credentialIdentities":{"id":3277514770837411}} });
-registerSDKClass("AuthenticationServices.ASCredentialIdentityStoreError", ASCredentialIdentityStoreError, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASCredentialIdentityStoreState", ASCredentialIdentityStoreState, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"isEnabled":2004304804806313,"supportsIncrementalUpdates":2769707194754749} });
-registerSDKClass("AuthenticationServices.ASCredentialImportManager", ASCredentialImportManager, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"importCredentials":{"id":1432508892034723}} });
-registerSDKClass("ASCredentialProviderExtensionContext", ASCredentialProviderExtensionContext, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"cancelRequest":{"id":122434558365170},"completeAssertionRequest":{"id":3390318210686832,"hints":[null,{"callback":{"out":[]}}]},"completeExtensionConfigurationRequest":{"id":1303493724732428},"completeGeneratePasswordRequest":{"id":1108944415144040,"hints":[null,{"callback":{"out":[]}}]},"completeOneTimeCodeRequest":{"id":1536058512870161,"hints":[null,{"callback":{"out":[]}}]},"completeRegistrationRequest":{"id":1890785395846451,"hints":[null,{"callback":{"out":[]}}]},"completeRequestWithSelectedCredentialCompletionHandler":{"id":2721392756659559,"hints":[null,{"callback":{"out":[]}}]},"completeRequestWithTextToInsertCompletionHandler":{"id":1904383619479762,"hints":[null,{"callback":{"out":[]}}]},"completeSavePasswordRequest":{"id":1506051971636338,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("ASCredentialProviderViewController", ASCredentialProviderViewController, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"extensionContext":3239501187597818}, methods: {"performWithoutUserInteraction":{"id":659984615777720},"performWithoutUserInteractionIfPossiblePasskeyRegistration":{"id":3696361845669196},"performWithoutUserInteractionIfPossibleSavePasswordRequest":{"id":515920026482599},"prepareCredentialListFor":{"id":1730322924784338},"prepareCredentialListForRequestParameters":{"id":1192354545427491},"prepareInterfaceForExtensionConfiguration":{"id":2964997102358768},"prepareInterfaceFor":{"id":2415387216667559},"prepareInterfaceForPasskeyRegistration":{"id":690246157590868},"prepareInterfaceFor1521":{"id":3467640299801478},"prepareInterfaceForUserChoosingTextToInsert":{"id":4265634736799888},"prepareInterfaceToProvideCredentialFor":{"id":10551885538378},"prepareInterfaceToProvideCredentialFor64482":{"id":1566809107956050},"prepareOneTimeCodeCredentialList":{"id":604758042313494},"provideCredentialWithoutUserInteractionFor":{"id":550076083029305},"provideCredentialWithoutUserInteractionFor49470":{"id":4456019507328357},"reportAllAcceptedPublicKeyCredentials":{"id":655829124466385},"reportPublicKeyCredentialUpdate":{"id":2260404961019214},"reportUnknownPublicKeyCredential":{"id":3533549445143085},"reportUnusedPasswordCredential":{"id":3430808935220435}} });
+registerSDKClass("ASCredentialIdentityStore", ASCredentialIdentityStore, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"getState":{"id":2682934567551542,"hints":[{"callback":{"out":[]}}]},"removeAllCredentialIdentities":{"id":2449271266439651,"hints":[{"callback":{"out":[]}}]},"removeCredentialIdentitiesCompletion":{"id":4477515474767967,"hints":[null,{"callback":{"out":[]}}]},"removeCredentialIdentitiesCompletion70031":{"id":3743204074699892,"hints":[null,{"callback":{"out":[]}}]},"replaceCredentialIdentitiesWithCompletion":{"id":1485357268931440,"hints":[null,{"callback":{"out":[]}}]},"replaceCredentialIdentitiesCompletion":{"id":4021869881746886,"hints":[null,{"callback":{"out":[]}}]},"saveCredentialIdentitiesCompletion":{"id":4370049145599188,"hints":[null,{"callback":{"out":[]}}]},"saveCredentialIdentitiesCompletion16884":{"id":3611942488266868,"hints":[null,{"callback":{"out":[]}}]},"credentialIdentities":{"id":3277514770837411}} });
+registerSDKClass("AuthenticationServices.ASCredentialIdentityStoreError", ASCredentialIdentityStoreError, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASCredentialIdentityStoreState", ASCredentialIdentityStoreState, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"isEnabled":2004304804806313,"supportsIncrementalUpdates":2769707194754749} });
+registerSDKClass("AuthenticationServices.ASCredentialImportManager", ASCredentialImportManager, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"importCredentials":{"id":1432508892034723}} });
+registerSDKClass("ASCredentialProviderExtensionContext", ASCredentialProviderExtensionContext, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"cancelRequest":{"id":122434558365170},"completeAssertionRequest":{"id":3390318210686832,"hints":[null,{"callback":{"out":[]}}]},"completeExtensionConfigurationRequest":{"id":1303493724732428},"completeGeneratePasswordRequest":{"id":1108944415144040,"hints":[null,{"callback":{"out":[]}}]},"completeOneTimeCodeRequest":{"id":1536058512870161,"hints":[null,{"callback":{"out":[]}}]},"completeRegistrationRequest":{"id":1890785395846451,"hints":[null,{"callback":{"out":[]}}]},"completeRequestWithSelectedCredentialCompletionHandler":{"id":2721392756659559,"hints":[null,{"callback":{"out":[]}}]},"completeRequestWithTextToInsertCompletionHandler":{"id":1904383619479762,"hints":[null,{"callback":{"out":[]}}]},"completeSavePasswordRequest":{"id":1506051971636338,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("ASCredentialProviderViewController", ASCredentialProviderViewController, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"performWithoutUserInteraction":{"id":3094359337944694},"performWithoutUserInteractionIfPossiblePasskeyRegistration":{"id":2836333936049340},"performWithoutUserInteractionIfPossibleSavePasswordRequest":{"id":618590213634027},"prepareCredentialListFor":{"id":980534748358478},"prepareCredentialListForRequestParameters":{"id":1784200154263114},"prepareInterfaceForExtensionConfiguration":{"id":472876125392423},"prepareInterfaceFor":{"id":1795016367130211},"prepareInterfaceForPasskeyRegistration":{"id":2371275369689944},"prepareInterfaceFor1521":{"id":4365605863103289},"prepareInterfaceForUserChoosingTextToInsert":{"id":3339022406173403},"prepareInterfaceToProvideCredentialFor":{"id":3405190589810198},"prepareInterfaceToProvideCredentialFor64482":{"id":3084079404689972},"prepareOneTimeCodeCredentialList":{"id":3246731496082082},"provideCredentialWithoutUserInteractionFor":{"id":3342123419699177},"provideCredentialWithoutUserInteractionFor49470":{"id":3445904402623227},"reportAllAcceptedPublicKeyCredentials":{"id":76981449962276},"reportPublicKeyCredentialUpdate":{"id":1279357621608448},"reportUnknownPublicKeyCredential":{"id":3328423323330647},"reportUnusedPasswordCredential":{"id":2223999804289270}} });
 registerSDKProtocol("c:objc(pl)ASCredentialRequest", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)"});
-registerSDKClass("ASCredentialServiceIdentifier", ASCredentialServiceIdentifier, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"displayName":12418624671036,"identifier":1549461563372780,"type":4455943596300642} });
-registerSDKClass("AuthenticationServices.ASCredentialUpdater", ASCredentialUpdater, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"reportUnusedPasswordCredential":{"id":2705425303492946},"reportPublicKeyCredentialUpdate":{"id":3175902646051766},"reportUnknownPublicKeyCredential":{"id":1142774535746133},"reportAllAcceptedPublicKeyCredentials":{"id":4422813860541472}} });
-registerSDKClass("AuthenticationServices.ASDeliveredVerificationCodesManager", ASDeliveredVerificationCodesManager, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"oneTimeCodes":{"id":3337302695815444},"consumeOneTimeCode":{"id":262007542422539}} });
-registerSDKClass("AuthenticationServices.ASDeliveredVerificationCodesManager.VerificationError", ASDeliveredVerificationCodesManager_VerificationError, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASEmailIdentifier", ASEmailIdentifier, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASExportedCredentialData", ASExportedCredentialData, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASExtensionError", ASExtensionError, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASGeneratedPassword", ASGeneratedPassword, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"kind":574821115104789,"localizedName":1801053371470093,"value":687886231103456} });
-registerSDKClass("ASGeneratePasswordsRequest", ASGeneratePasswordsRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"confirmPasswordFieldPasswordRules":266638746009455,"passwordFieldPasswordRules":3523275811566339,"passwordRulesFromQuirks":4027409929740132,"serviceIdentifier":1481558585691886} });
-registerSDKClass("AuthenticationServices.ASImportableAccount", ASImportableAccount, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCollection", ASImportableCollection, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential", ASImportableCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.Address", ASImportableCredential_Address, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.APIKey", ASImportableCredential_APIKey, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.BasicAuthentication", ASImportableCredential_BasicAuthentication, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.CreditCard", ASImportableCredential_CreditCard, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.CustomFields", ASImportableCredential_CustomFields, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.DriversLicense", ASImportableCredential_DriversLicense, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.GeneratedPassword", ASImportableCredential_GeneratedPassword, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.IdentityDocument", ASImportableCredential_IdentityDocument, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.ItemReference", ASImportableCredential_ItemReference, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.Note", ASImportableCredential_Note, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.Passkey", ASImportableCredential_Passkey, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.Passport", ASImportableCredential_Passport, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.PersonName", ASImportableCredential_PersonName, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.SSHKey", ASImportableCredential_SSHKey, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.TOTP", ASImportableCredential_TOTP, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredential.WiFi", ASImportableCredential_WiFi, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredentialScope", ASImportableCredentialScope, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredentialScope.AndroidAppCertificationFingerprint", ASImportableCredentialScope_AndroidAppCertificationFingerprint, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableCredentialScope.AndroidAppID", ASImportableCredentialScope_AndroidAppID, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableEditableField", ASImportableEditableField, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableExtension", ASImportableExtension, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableExtension.Shared", ASImportableExtension_Shared, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableExtension.Shared.SharingAccessor", ASImportableExtension_Shared_SharingAccessor, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableFIDO2Extensions", ASImportableFIDO2Extensions, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableFIDO2HMACCredential", ASImportableFIDO2HMACCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableFIDO2LargeBlob", ASImportableFIDO2LargeBlob, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableItem", ASImportableItem, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASImportableLinkedItem", ASImportableLinkedItem, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASOneTimeCodeCredential", ASOneTimeCodeCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"code":3100567988457065} });
-registerSDKClass("ASOneTimeCodeCredentialIdentity", ASOneTimeCodeCredentialIdentity, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"label":4258627684753266} });
-registerSDKClass("ASOneTimeCodeCredentialRequest", ASOneTimeCodeCredentialRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASPasskeyAssertionCredential", ASPasskeyAssertionCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"authenticatorData":3963690150694182,"clientDataHash":2204682258905490,"credentialID":564633240393866,"relyingParty":51729970566365,"signature":736583946020213,"userHandle":185139383209912} });
-registerSDKClass("AuthenticationServices.ASPasskeyAssertionCredentialExtensionInput", ASPasskeyAssertionCredentialExtensionInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASPasskeyAssertionCredentialExtensionOutput", ASPasskeyAssertionCredentialExtensionOutput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASPasskeyCredentialExtensionInput", ASPasskeyCredentialExtensionInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASPasskeyCredentialIdentity", ASPasskeyCredentialIdentity, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"credentialID":935304964821328,"rank":1035035581528074,"recordIdentifier":554598202772366,"relyingPartyIdentifier":3728520638535649,"userHandle":1666730555680610,"userName":1399704468583376} });
-registerSDKClass("ASPasskeyCredentialRequest", ASPasskeyCredentialRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"clientDataHash":195580021413121,"excludedCredentials":2563443844033753,"userVerificationPreference":4166804182048465} });
-registerSDKClass("ASPasskeyCredentialRequestParameters", ASPasskeyCredentialRequestParameters, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"allowedCredentials":1975115806781184,"clientDataHash":4014056696536053,"relyingPartyIdentifier":2849018612454100,"userVerificationPreference":2959483790602750} });
-registerSDKClass("ASPasskeyRegistrationCredential", ASPasskeyRegistrationCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"attestationObject":4339292989484727,"clientDataHash":4377127321403012,"credentialID":4254771414492611,"relyingParty":1196805888952067} });
-registerSDKClass("AuthenticationServices.ASPasskeyRegistrationCredentialExtensionInput", ASPasskeyRegistrationCredentialExtensionInput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASPasskeyRegistrationCredentialExtensionOutput", ASPasskeyRegistrationCredentialExtensionOutput, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASPasswordCredential", ASPasswordCredential, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"password":4174195196803148,"user":555510258357506} });
-registerSDKClass("ASPasswordCredentialIdentity", ASPasswordCredentialIdentity, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"rank":2592511656694964,"recordIdentifier":2207663951576882,"serviceIdentifier":4344471933024460,"user":404967125453830} });
-registerSDKClass("ASPasswordCredentialRequest", ASPasswordCredentialRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASPhoneNumberIdentifier", ASPhoneNumberIdentifier, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ASCredentialServiceIdentifier", ASCredentialServiceIdentifier, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"displayName":12418624671036,"identifier":1549461563372780,"type":4455943596300642} });
+registerSDKClass("AuthenticationServices.ASCredentialUpdater", ASCredentialUpdater, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"reportUnusedPasswordCredential":{"id":2705425303492946},"reportPublicKeyCredentialUpdate":{"id":3175902646051766},"reportUnknownPublicKeyCredential":{"id":1142774535746133},"reportAllAcceptedPublicKeyCredentials":{"id":4422813860541472}} });
+registerSDKClass("AuthenticationServices.ASDeliveredVerificationCodesManager", ASDeliveredVerificationCodesManager, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"oneTimeCodes":{"id":3337302695815444},"consumeOneTimeCode":{"id":262007542422539}} });
+registerSDKClass("AuthenticationServices.ASDeliveredVerificationCodesManager.VerificationError", ASDeliveredVerificationCodesManager_VerificationError, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASEmailIdentifier", ASEmailIdentifier, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASExportedCredentialData", ASExportedCredentialData, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASExtensionError", ASExtensionError, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASGeneratedPassword", ASGeneratedPassword, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"kind":574821115104789,"localizedName":1801053371470093,"value":687886231103456} });
+registerSDKClass("ASGeneratePasswordsRequest", ASGeneratePasswordsRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"confirmPasswordFieldPasswordRules":266638746009455,"passwordFieldPasswordRules":3523275811566339,"passwordRulesFromQuirks":4027409929740132,"serviceIdentifier":1481558585691886} });
+registerSDKClass("AuthenticationServices.ASImportableAccount", ASImportableAccount, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCollection", ASImportableCollection, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential", ASImportableCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.Address", ASImportableCredential_Address, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.APIKey", ASImportableCredential_APIKey, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.BasicAuthentication", ASImportableCredential_BasicAuthentication, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.CreditCard", ASImportableCredential_CreditCard, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.CustomFields", ASImportableCredential_CustomFields, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.DriversLicense", ASImportableCredential_DriversLicense, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.GeneratedPassword", ASImportableCredential_GeneratedPassword, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.IdentityDocument", ASImportableCredential_IdentityDocument, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.ItemReference", ASImportableCredential_ItemReference, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.Note", ASImportableCredential_Note, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.Passkey", ASImportableCredential_Passkey, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.Passport", ASImportableCredential_Passport, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.PersonName", ASImportableCredential_PersonName, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.SSHKey", ASImportableCredential_SSHKey, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.TOTP", ASImportableCredential_TOTP, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredential.WiFi", ASImportableCredential_WiFi, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredentialScope", ASImportableCredentialScope, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredentialScope.AndroidAppCertificationFingerprint", ASImportableCredentialScope_AndroidAppCertificationFingerprint, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableCredentialScope.AndroidAppID", ASImportableCredentialScope_AndroidAppID, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableEditableField", ASImportableEditableField, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableExtension", ASImportableExtension, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableExtension.Shared", ASImportableExtension_Shared, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableExtension.Shared.SharingAccessor", ASImportableExtension_Shared_SharingAccessor, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableFIDO2Extensions", ASImportableFIDO2Extensions, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableFIDO2HMACCredential", ASImportableFIDO2HMACCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableFIDO2LargeBlob", ASImportableFIDO2LargeBlob, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableItem", ASImportableItem, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASImportableLinkedItem", ASImportableLinkedItem, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASOneTimeCodeCredential", ASOneTimeCodeCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"code":3100567988457065} });
+registerSDKClass("ASOneTimeCodeCredentialIdentity", ASOneTimeCodeCredentialIdentity, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"label":4258627684753266} });
+registerSDKClass("ASOneTimeCodeCredentialRequest", ASOneTimeCodeCredentialRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASPasskeyAssertionCredential", ASPasskeyAssertionCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"authenticatorData":3963690150694182,"clientDataHash":2204682258905490,"credentialID":564633240393866,"relyingParty":51729970566365,"signature":736583946020213,"userHandle":185139383209912} });
+registerSDKClass("AuthenticationServices.ASPasskeyAssertionCredentialExtensionInput", ASPasskeyAssertionCredentialExtensionInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASPasskeyAssertionCredentialExtensionOutput", ASPasskeyAssertionCredentialExtensionOutput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASPasskeyCredentialExtensionInput", ASPasskeyCredentialExtensionInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASPasskeyCredentialIdentity", ASPasskeyCredentialIdentity, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"credentialID":935304964821328,"rank":1035035581528074,"recordIdentifier":554598202772366,"relyingPartyIdentifier":3728520638535649,"userHandle":1666730555680610,"userName":1399704468583376} });
+registerSDKClass("ASPasskeyCredentialRequest", ASPasskeyCredentialRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"clientDataHash":195580021413121,"excludedCredentials":2563443844033753,"userVerificationPreference":4166804182048465} });
+registerSDKClass("ASPasskeyCredentialRequestParameters", ASPasskeyCredentialRequestParameters, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"allowedCredentials":1975115806781184,"clientDataHash":4014056696536053,"relyingPartyIdentifier":2849018612454100,"userVerificationPreference":2959483790602750} });
+registerSDKClass("ASPasskeyRegistrationCredential", ASPasskeyRegistrationCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"attestationObject":4339292989484727,"clientDataHash":4377127321403012,"credentialID":4254771414492611,"relyingParty":1196805888952067} });
+registerSDKClass("AuthenticationServices.ASPasskeyRegistrationCredentialExtensionInput", ASPasskeyRegistrationCredentialExtensionInput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASPasskeyRegistrationCredentialExtensionOutput", ASPasskeyRegistrationCredentialExtensionOutput, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASPasswordCredential", ASPasswordCredential, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"password":4174195196803148,"user":555510258357506} });
+registerSDKClass("ASPasswordCredentialIdentity", ASPasswordCredentialIdentity, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"rank":2592511656694964,"recordIdentifier":2207663951576882,"serviceIdentifier":4344471933024460,"user":404967125453830} });
+registerSDKClass("ASPasswordCredentialRequest", ASPasswordCredentialRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASPhoneNumberIdentifier", ASPhoneNumberIdentifier, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)ASPublicKeyCredential", {"encodeWith":"encode(with:)","initCoder":"init(coder:)","copyWith":"copy(with:)"});
-registerSDKClass("AuthenticationServices.ASPublicKeyCredentialClientData", ASPublicKeyCredentialClientData, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ASSavePasswordRequest", ASSavePasswordRequest, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"credential":2506335610331885,"event":3915776709811786,"passwordKind":2348785659555453,"serviceIdentifier":1587175542755142,"sessionID":1537126307796098,"title":3417604672201340} });
-registerSDKClass("ASSettingsHelper", ASSettingsHelper, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("AuthenticationServices.ASVerificationCode", ASVerificationCode, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AuthenticationServices.ASPublicKeyCredentialClientData", ASPublicKeyCredentialClientData, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ASSavePasswordRequest", ASSavePasswordRequest, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"credential":2506335610331885,"event":3915776709811786,"passwordKind":2348785659555453,"serviceIdentifier":1587175542755142,"sessionID":1537126307796098,"title":3417604672201340} });
+registerSDKClass("ASSettingsHelper", ASSettingsHelper, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
+registerSDKClass("AuthenticationServices.ASVerificationCode", ASVerificationCode, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)ASWebAuthenticationPresentationContextProviding", {"presentationAnchorFor":"presentationAnchor(for:)"});
-registerSDKClass("ASWebAuthenticationSession", ASWebAuthenticationSession, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {"additionalHeaderFields":3999722251783047,"canStart":1154023509619224,"prefersEphemeralWebBrowserSession":4477839947901282,"presentationContextProvider":1604558335699653}, methods: {"cancel":{"id":3509540805168517},"start":{"id":3802022895909846}} });
-registerSDKClass("ASWebAuthenticationSessionCallback", ASWebAuthenticationSession_Callback, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {}, methods: {"matchesURL":{"id":4135150091410162}} });
-registerSDKClass("AuthenticationServices.ASWebAuthenticationSessionError", ASWebAuthenticationSessionError, { module: "AuthenticationServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ASWebAuthenticationSession", ASWebAuthenticationSession, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {"additionalHeaderFields":3999722251783047,"canStart":1154023509619224,"prefersEphemeralWebBrowserSession":4477839947901282,"presentationContextProvider":1604558335699653}, methods: {"cancel":{"id":3509540805168517},"start":{"id":3802022895909846}} });
+registerSDKClass("ASWebAuthenticationSessionCallback", ASWebAuthenticationSession_Callback, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {}, methods: {"matchesURL":{"id":4135150091410162}} });
+registerSDKClass("AuthenticationServices.ASWebAuthenticationSessionError", ASWebAuthenticationSessionError, { module: "AuthenticationServices_067acaa3e5f56b46", properties: {} });

@@ -25304,37 +25304,37 @@ export declare class AVQueuePlayer extends AVQueuePlayer_base {
      * nonisolated func advanceToNextItem()
      * @availability iOS 4.1+
      */
-    advanceToNextItem(): void;
+    advanceToNextItem(): Promise<void>;
     /**
      * nonisolated func canInsert(_ item: AVPlayerItem, after afterItem: AVPlayerItem?) -> Bool
      * @availability iOS 4.1+
      */
-    canInsert(item: AVPlayerItem, afterItem?: (AVPlayerItem) | null): boolean;
+    canInsert(item: AVPlayerItem, afterItem?: (AVPlayerItem) | null): Promise<boolean>;
     /**
      * nonisolated init(items: [AVPlayerItem])
      * @availability iOS 4.1+
      */
-    static init(items: Array<AVPlayerItem>): AVQueuePlayer;
+    static init(items: Array<AVPlayerItem>): Promise<AVQueuePlayer>;
     /**
      * nonisolated func insert(_ item: AVPlayerItem, after afterItem: AVPlayerItem?)
      * @availability iOS 4.1+
      */
-    insert(item: AVPlayerItem, afterItem?: (AVPlayerItem) | null): void;
+    insert(item: AVPlayerItem, afterItem?: (AVPlayerItem) | null): Promise<void>;
     /**
      * nonisolated func items() -> [AVPlayerItem]
      * @availability iOS 4.1+
      */
-    items(): Array<AVPlayerItem>;
+    items(): Promise<Array<AVPlayerItem>>;
     /**
      * nonisolated func removeAllItems()
      * @availability iOS 4.1+
      */
-    removeAllItems(): void;
+    removeAllItems(): Promise<void>;
     /**
      * nonisolated func remove(_ item: AVPlayerItem)
      * @availability iOS 4.1+
      */
-    remove(item: AVPlayerItem): void;
+    remove(item: AVPlayerItem): Promise<void>;
     readonly $type: {
         "c:objc(cs)AVQueuePlayer": true;
         "c:objc(cs)AVPlayer": true;

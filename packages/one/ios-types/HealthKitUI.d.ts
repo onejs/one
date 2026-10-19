@@ -10,26 +10,23 @@ type $SDK1 = (_UIKit_UIViewController) | null;
  */
 export declare class HKActivityRingView extends SDKHandle {
     /** init() */
-    static init(): HKActivityRingView;
+    static init(): Promise<HKActivityRingView>;
     /**
      * func setActivitySummary(_ activitySummary: HKActivitySummary?, animated: Bool)
      * @availability iOS 9.3+
      */
-    setActivitySummary(activitySummary: $SDK0, animated: boolean): void;
+    setActivitySummary(activitySummary: $SDK0, animated: boolean): Promise<void>;
     /**
      * var activitySummary: HKActivitySummary? { get set }
      * @availability iOS 9.3+
      */
-    get activitySummary(): $SDK0;
-    set activitySummary(value: $SDK0);
+    get activitySummary(): Promise<$SDK0>;
+    setActivitySummary73249(value?: $SDK0): Promise<void>;
     readonly $type: {
         "c:objc(cs)HKActivityRingView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "activitySummary": true;
     };
 }
 export declare class HKHealthStore extends SDKHandle {

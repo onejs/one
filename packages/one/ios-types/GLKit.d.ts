@@ -1270,109 +1270,97 @@ export declare class GLKView extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    bindDrawable(): void;
+    bindDrawable(): Promise<void>;
     /**
      * func deleteDrawable()
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    deleteDrawable(): void;
+    deleteDrawable(): Promise<void>;
     /**
      * func display()
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    display(): void;
+    display(): Promise<void>;
     /**
      * init(frame: CGRect, context: EAGLContext)
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    static init(frame: $SDK7, context: _OpenGLES_EAGLContext): GLKView;
+    static init(frame: $SDK7, context: _OpenGLES_EAGLContext): Promise<GLKView>;
     /**
      * var context: EAGLContext { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get context(): _OpenGLES_EAGLContext;
-    set context(value: _OpenGLES_EAGLContext);
+    get context(): Promise<_OpenGLES_EAGLContext>;
+    setContext(value: _OpenGLES_EAGLContext): Promise<void>;
     /**
      * @IBOutlet unowned(unsafe) var delegate: (any GLKViewDelegate)? { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<GLKViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<GLKViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var drawableColorFormat: GLKViewDrawableColorFormat { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get drawableColorFormat(): GLKViewDrawableColorFormat;
-    set drawableColorFormat(value: GLKViewDrawableColorFormat);
+    get drawableColorFormat(): Promise<GLKViewDrawableColorFormat>;
+    setDrawableColorFormat(value: GLKViewDrawableColorFormat): Promise<void>;
     /**
      * var drawableDepthFormat: GLKViewDrawableDepthFormat { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get drawableDepthFormat(): GLKViewDrawableDepthFormat;
-    set drawableDepthFormat(value: GLKViewDrawableDepthFormat);
+    get drawableDepthFormat(): Promise<GLKViewDrawableDepthFormat>;
+    setDrawableDepthFormat(value: GLKViewDrawableDepthFormat): Promise<void>;
     /**
      * var drawableHeight: Int { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get drawableHeight(): number;
+    get drawableHeight(): Promise<number>;
     /**
      * var drawableMultisample: GLKViewDrawableMultisample { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get drawableMultisample(): GLKViewDrawableMultisample;
-    set drawableMultisample(value: GLKViewDrawableMultisample);
+    get drawableMultisample(): Promise<GLKViewDrawableMultisample>;
+    setDrawableMultisample(value: GLKViewDrawableMultisample): Promise<void>;
     /**
      * var drawableStencilFormat: GLKViewDrawableStencilFormat { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get drawableStencilFormat(): GLKViewDrawableStencilFormat;
-    set drawableStencilFormat(value: GLKViewDrawableStencilFormat);
+    get drawableStencilFormat(): Promise<GLKViewDrawableStencilFormat>;
+    setDrawableStencilFormat(value: GLKViewDrawableStencilFormat): Promise<void>;
     /**
      * var drawableWidth: Int { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get drawableWidth(): number;
+    get drawableWidth(): Promise<number>;
     /**
      * var enableSetNeedsDisplay: Bool { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get enableSetNeedsDisplay(): boolean;
-    set enableSetNeedsDisplay(value: boolean);
+    get enableSetNeedsDisplay(): Promise<boolean>;
+    setEnableSetNeedsDisplay(value: boolean): Promise<void>;
     /**
      * var snapshot: UIImage { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get snapshot(): _UIKit_UIImage;
+    get snapshot(): Promise<_UIKit_UIImage>;
     readonly $type: {
         "c:objc(cs)GLKView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "context": true;
-        "delegate": true;
-        "drawableColorFormat": true;
-        "drawableDepthFormat": true;
-        "drawableHeight": true;
-        "drawableMultisample": true;
-        "drawableStencilFormat": true;
-        "drawableWidth": true;
-        "enableSetNeedsDisplay": true;
-        "snapshot": true;
     };
 }
 /**
@@ -1382,96 +1370,83 @@ export declare class GLKView extends SDKHandle {
  */
 export declare class GLKViewController extends SDKHandle {
     /** init() */
-    static init(): GLKViewController;
+    static init(): Promise<GLKViewController>;
     /**
      * @IBOutlet unowned(unsafe) var delegate: (any GLKViewControllerDelegate)? { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<GLKViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<GLKViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var framesDisplayed: Int { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get framesDisplayed(): number;
+    get framesDisplayed(): Promise<number>;
     /**
      * var framesPerSecond: Int { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get framesPerSecond(): number;
+    get framesPerSecond(): Promise<number>;
     /**
      * var pauseOnWillResignActive: Bool { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get pauseOnWillResignActive(): boolean;
-    set pauseOnWillResignActive(value: boolean);
+    get pauseOnWillResignActive(): Promise<boolean>;
+    setPauseOnWillResignActive(value: boolean): Promise<void>;
     /**
      * var isPaused: Bool { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get isPaused(): boolean;
-    set isPaused(value: boolean);
+    get isPaused(): Promise<boolean>;
+    setIsPaused(value: boolean): Promise<void>;
     /**
      * var preferredFramesPerSecond: Int { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get preferredFramesPerSecond(): number;
-    set preferredFramesPerSecond(value: number);
+    get preferredFramesPerSecond(): Promise<number>;
+    setPreferredFramesPerSecond(value: number): Promise<void>;
     /**
      * var resumeOnDidBecomeActive: Bool { get set }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get resumeOnDidBecomeActive(): boolean;
-    set resumeOnDidBecomeActive(value: boolean);
+    get resumeOnDidBecomeActive(): Promise<boolean>;
+    setResumeOnDidBecomeActive(value: boolean): Promise<void>;
     /**
      * var timeSinceFirstResume: TimeInterval { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get timeSinceFirstResume(): number;
+    get timeSinceFirstResume(): Promise<number>;
     /**
      * var timeSinceLastDraw: TimeInterval { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get timeSinceLastDraw(): number;
+    get timeSinceLastDraw(): Promise<number>;
     /**
      * var timeSinceLastResume: TimeInterval { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get timeSinceLastResume(): number;
+    get timeSinceLastResume(): Promise<number>;
     /**
      * var timeSinceLastUpdate: TimeInterval { get }
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    get timeSinceLastUpdate(): number;
+    get timeSinceLastUpdate(): Promise<number>;
     readonly $type: {
         "c:objc(cs)GLKViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
-        "framesDisplayed": true;
-        "framesPerSecond": true;
-        "pauseOnWillResignActive": true;
-        "isPaused": true;
-        "preferredFramesPerSecond": true;
-        "resumeOnDidBecomeActive": true;
-        "timeSinceFirstResume": true;
-        "timeSinceLastDraw": true;
-        "timeSinceLastResume": true;
-        "timeSinceLastUpdate": true;
     };
 }
 /** protocol GLKViewControllerDelegate : NSObjectProtocol */

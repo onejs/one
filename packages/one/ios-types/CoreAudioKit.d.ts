@@ -87,21 +87,18 @@ export declare class AUAudioUnitViewConfiguration extends SDKHandle {
  */
 export declare class AUGenericViewController extends SDKHandle {
     /** init() */
-    static init(): AUGenericViewController;
+    static init(): Promise<AUGenericViewController>;
     /**
      * var auAudioUnit: AUAudioUnit? { get set }
      * @availability iOS 16.0+
      */
-    get auAudioUnit(): $SDK1;
-    set auAudioUnit(value: $SDK1);
+    get auAudioUnit(): Promise<$SDK1>;
+    setAuAudioUnit(value?: $SDK1): Promise<void>;
     readonly $type: {
         "c:objc(cs)AUGenericViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "auAudioUnit": true;
     };
 }
 /**
@@ -188,7 +185,7 @@ export type AUGenericViewInternalBase = _UIKit_UIView;
  */
 export declare class AUViewController extends SDKHandle {
     /** init() */
-    static init(): AUViewController;
+    static init(): Promise<AUViewController>;
     readonly $type: {
         "c:objc(cs)AUViewController": true;
         "c:objc(cs)UIViewController": true;
@@ -202,7 +199,7 @@ export declare class AUViewController extends SDKHandle {
  */
 export declare class CABTMIDICentralViewController extends SDKHandle {
     /** init() */
-    static init(): CABTMIDICentralViewController;
+    static init(): Promise<CABTMIDICentralViewController>;
     readonly $type: {
         "c:objc(cs)CABTMIDICentralViewController": true;
         "c:objc(cs)UITableViewController": true;
@@ -217,7 +214,7 @@ export declare class CABTMIDICentralViewController extends SDKHandle {
  */
 export declare class CABTMIDILocalPeripheralViewController extends SDKHandle {
     /** init() */
-    static init(): CABTMIDILocalPeripheralViewController;
+    static init(): Promise<CABTMIDILocalPeripheralViewController>;
     readonly $type: {
         "c:objc(cs)CABTMIDILocalPeripheralViewController": true;
         "c:objc(cs)UIViewController": true;
@@ -236,30 +233,27 @@ export declare class CAInterAppAudioSwitcherView extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    contentWidth(): number;
+    contentWidth(): Promise<number>;
     /** init() */
-    static init(): CAInterAppAudioSwitcherView;
+    static init(): Promise<CAInterAppAudioSwitcherView>;
     /**
      * func setOutputAudioUnit(_ au: AudioUnit?)
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    setOutputAudioUnit(au?: (SDKHandle) | null): void;
+    setOutputAudioUnit(au?: (SDKHandle) | null): Promise<void>;
     /**
      * var isShowingAppNames: Bool { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get isShowingAppNames(): boolean;
-    set isShowingAppNames(value: boolean);
+    get isShowingAppNames(): Promise<boolean>;
+    setIsShowingAppNames(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)CAInterAppAudioSwitcherView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "isShowingAppNames": true;
     };
 }
 /**
@@ -269,97 +263,85 @@ export declare class CAInterAppAudioSwitcherView extends SDKHandle {
  */
 export declare class CAInterAppAudioTransportView extends SDKHandle {
     /** init() */
-    static init(): CAInterAppAudioTransportView;
+    static init(): Promise<CAInterAppAudioTransportView>;
     /**
      * func setOutputAudioUnit(_ au: AudioUnit)
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    setOutputAudioUnit(au: SDKHandle): void;
+    setOutputAudioUnit(au: SDKHandle): Promise<void>;
     /**
      * var isConnected: Bool { get }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get isConnected(): boolean;
+    get isConnected(): Promise<boolean>;
     /**
      * var currentTimeLabelFont: UIFont { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get currentTimeLabelFont(): _UIKit_UIFont;
-    set currentTimeLabelFont(value: _UIKit_UIFont);
+    get currentTimeLabelFont(): Promise<_UIKit_UIFont>;
+    setCurrentTimeLabelFont(value: _UIKit_UIFont): Promise<void>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get isEnabled(): boolean;
-    set isEnabled(value: boolean);
+    get isEnabled(): Promise<boolean>;
+    setIsEnabled(value: boolean): Promise<void>;
     /**
      * var labelColor: UIColor { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get labelColor(): _UIKit_UIColor;
-    set labelColor(value: _UIKit_UIColor);
+    get labelColor(): Promise<_UIKit_UIColor>;
+    setLabelColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var pauseButtonColor: UIColor { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get pauseButtonColor(): _UIKit_UIColor;
-    set pauseButtonColor(value: _UIKit_UIColor);
+    get pauseButtonColor(): Promise<_UIKit_UIColor>;
+    setPauseButtonColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var playButtonColor: UIColor { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get playButtonColor(): _UIKit_UIColor;
-    set playButtonColor(value: _UIKit_UIColor);
+    get playButtonColor(): Promise<_UIKit_UIColor>;
+    setPlayButtonColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var isPlaying: Bool { get }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get isPlaying(): boolean;
+    get isPlaying(): Promise<boolean>;
     /**
      * var recordButtonColor: UIColor { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get recordButtonColor(): _UIKit_UIColor;
-    set recordButtonColor(value: _UIKit_UIColor);
+    get recordButtonColor(): Promise<_UIKit_UIColor>;
+    setRecordButtonColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var isRecording: Bool { get }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get isRecording(): boolean;
+    get isRecording(): Promise<boolean>;
     /**
      * var rewindButtonColor: UIColor { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 13.0
      */
-    get rewindButtonColor(): _UIKit_UIColor;
-    set rewindButtonColor(value: _UIKit_UIColor);
+    get rewindButtonColor(): Promise<_UIKit_UIColor>;
+    setRewindButtonColor(value: _UIKit_UIColor): Promise<void>;
     readonly $type: {
         "c:objc(cs)CAInterAppAudioTransportView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "isConnected": true;
-        "currentTimeLabelFont": true;
-        "isEnabled": true;
-        "labelColor": true;
-        "pauseButtonColor": true;
-        "playButtonColor": true;
-        "isPlaying": true;
-        "recordButtonColor": true;
-        "isRecording": true;
-        "rewindButtonColor": true;
     };
 }
 export {};

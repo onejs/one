@@ -21,7 +21,7 @@ export const MACaptionAppearanceBehavior = {
    * init?(rawValue: CFIndex)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MACaptionAppearanceBehavior) | null { return callSDK<(MACaptionAppearanceBehavior) | null>("MediaAccessibility_90ad0eb69cc6bf4a", 618241661300561, undefined, [rawValue]); }
+  init(rawValue: number): (MACaptionAppearanceBehavior) | null { return callSDK<(MACaptionAppearanceBehavior) | null>("MediaAccessibility_067acaa3e5f56b46", 618241661300561, undefined, [rawValue]); }
 };
 
 /**
@@ -35,7 +35,7 @@ export const MACaptionAppearanceDisplayType = {
    * init?(rawValue: CFIndex)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MACaptionAppearanceDisplayType) | null { return callSDK<(MACaptionAppearanceDisplayType) | null>("MediaAccessibility_90ad0eb69cc6bf4a", 365351153422956, undefined, [rawValue]); }
+  init(rawValue: number): (MACaptionAppearanceDisplayType) | null { return callSDK<(MACaptionAppearanceDisplayType) | null>("MediaAccessibility_067acaa3e5f56b46", 365351153422956, undefined, [rawValue]); }
 };
 
 /**
@@ -49,7 +49,7 @@ export const MACaptionAppearanceDomain = {
    * init?(rawValue: CFIndex)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MACaptionAppearanceDomain) | null { return callSDK<(MACaptionAppearanceDomain) | null>("MediaAccessibility_90ad0eb69cc6bf4a", 4265996439555643, undefined, [rawValue]); }
+  init(rawValue: number): (MACaptionAppearanceDomain) | null { return callSDK<(MACaptionAppearanceDomain) | null>("MediaAccessibility_067acaa3e5f56b46", 4265996439555643, undefined, [rawValue]); }
 };
 
 /**
@@ -63,7 +63,7 @@ export const MACaptionAppearanceFontStyle = {
    * init?(rawValue: CFIndex)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MACaptionAppearanceFontStyle) | null { return callSDK<(MACaptionAppearanceFontStyle) | null>("MediaAccessibility_90ad0eb69cc6bf4a", 1359914164885732, undefined, [rawValue]); }
+  init(rawValue: number): (MACaptionAppearanceFontStyle) | null { return callSDK<(MACaptionAppearanceFontStyle) | null>("MediaAccessibility_067acaa3e5f56b46", 1359914164885732, undefined, [rawValue]); }
 };
 
 /**
@@ -77,7 +77,7 @@ export const MACaptionAppearanceTextEdgeStyle = {
    * init?(rawValue: CFIndex)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MACaptionAppearanceTextEdgeStyle) | null { return callSDK<(MACaptionAppearanceTextEdgeStyle) | null>("MediaAccessibility_90ad0eb69cc6bf4a", 528228469196386, undefined, [rawValue]); }
+  init(rawValue: number): (MACaptionAppearanceTextEdgeStyle) | null { return callSDK<(MACaptionAppearanceTextEdgeStyle) | null>("MediaAccessibility_067acaa3e5f56b46", 528228469196386, undefined, [rawValue]); }
 };
 
 /**
@@ -89,14 +89,14 @@ export class MAFlashingLightsProcessor extends SDKHandle {
    * func canProcessSurface(_ surface: IOSurfaceRef) -> Bool
    * @availability iOS 17.0+
    */
-  canProcessSurface(surface: _IOSurface_IOSurfaceRef): boolean { return callSDK<boolean>("MediaAccessibility_90ad0eb69cc6bf4a", 1041907803591152, this, [surface]); }
+  canProcessSurface(surface: _IOSurface_IOSurfaceRef): boolean { return callSDK<boolean>("MediaAccessibility_067acaa3e5f56b46", 1041907803591152, this, [surface]); }
   /** init() */
-  static init(): MAFlashingLightsProcessor { return callSDK<MAFlashingLightsProcessor>("MediaAccessibility_90ad0eb69cc6bf4a", 3723792165767423, undefined, []); }
+  static init(): MAFlashingLightsProcessor { return callSDK<MAFlashingLightsProcessor>("MediaAccessibility_067acaa3e5f56b46", 3723792165767423, undefined, []); }
   /**
    * func processSurface(_ inSurface: IOSurfaceRef, outSurface: inout IOSurfaceRef, timestamp: CFAbsoluteTime, options: [MAFlashingLightsProcessor.OptionKey : Any]? = nil) -> MAFlashingLightsProcessor.Result
    * @availability iOS 17.0+
    */
-  processSurface(inSurface: _IOSurface_IOSurfaceRef, outSurface: _IOSurface_IOSurfaceRef, timestamp: number, options?: (NativeMap<MAFlashingLightsProcessor_OptionKey, unknown>) | null): { $ret: MAFlashingLightsProcessor_Result; $out: { "outSurface": _IOSurface_IOSurfaceRef } } { return callSDK<{ $ret: MAFlashingLightsProcessor_Result; $out: { "outSurface": _IOSurface_IOSurfaceRef } }>("MediaAccessibility_90ad0eb69cc6bf4a", 3920961549591484, this, [inSurface, outSurface, timestamp, options]); }
+  processSurface(inSurface: _IOSurface_IOSurfaceRef, outSurface: _IOSurface_IOSurfaceRef, timestamp: number, options?: (NativeMap<MAFlashingLightsProcessor_OptionKey, unknown>) | null): { $ret: MAFlashingLightsProcessor_Result; $out: { "outSurface": _IOSurface_IOSurfaceRef } } { return callSDK<{ $ret: MAFlashingLightsProcessor_Result; $out: { "outSurface": _IOSurface_IOSurfaceRef } }>("MediaAccessibility_067acaa3e5f56b46", 3920961549591484, this, [inSurface, outSurface, timestamp, options]); }
   declare readonly $type: { "c:objc(cs)MAFlashingLightsProcessor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -105,9 +105,9 @@ export type MAFlashingLightsProcessor_OptionKey = (string & {});
 
 export const MAFlashingLightsProcessor_OptionKey = {
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): MAFlashingLightsProcessor_OptionKey { return callSDK<MAFlashingLightsProcessor_OptionKey>("MediaAccessibility_90ad0eb69cc6bf4a", 3721836281377172, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MAFlashingLightsProcessor_OptionKey { return callSDK<MAFlashingLightsProcessor_OptionKey>("MediaAccessibility_067acaa3e5f56b46", 3721836281377172, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): MAFlashingLightsProcessor_OptionKey { return callSDK<MAFlashingLightsProcessor_OptionKey>("MediaAccessibility_90ad0eb69cc6bf4a", 1631639016659574, undefined, [rawValue]); }
+  init(rawValue: string): MAFlashingLightsProcessor_OptionKey { return callSDK<MAFlashingLightsProcessor_OptionKey>("MediaAccessibility_067acaa3e5f56b46", 1631639016659574, undefined, [rawValue]); }
 };
 
 /**
@@ -119,17 +119,17 @@ export class MAFlashingLightsProcessor_Result extends SDKHandle {
    * var intensityLevel: Float { get }
    * @availability iOS 17.0+
    */
-  get intensityLevel(): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 1939169124203377, this, []); }
+  get intensityLevel(): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 1939169124203377, this, []); }
   /**
    * var mitigationLevel: Float { get }
    * @availability iOS 17.0+
    */
-  get mitigationLevel(): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 3753219058172510, this, []); }
+  get mitigationLevel(): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 3753219058172510, this, []); }
   /**
    * var surfaceProcessed: Bool { get }
    * @availability iOS 17.0+
    */
-  get surfaceProcessed(): boolean { return callSDK<boolean>("MediaAccessibility_90ad0eb69cc6bf4a", 811040938683574, this, []); }
+  get surfaceProcessed(): boolean { return callSDK<boolean>("MediaAccessibility_067acaa3e5f56b46", 811040938683574, this, []); }
   declare readonly $type: { "s:So25MAFlashingLightsProcessorC18MediaAccessibilityE6ResultV": true };
 }
 
@@ -139,9 +139,9 @@ export class MAMusicHaptics extends SDKHandle {
    * static var enabledStatusDidChangeNotification: Notification.Name { get }
    * @availability iOS 18.0+
    */
-  static get enabledStatusDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaAccessibility_90ad0eb69cc6bf4a", 2240856995576140, undefined, []); }
+  static get enabledStatusDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaAccessibility_067acaa3e5f56b46", 2240856995576140, undefined, []); }
   /** init() */
-  static init(): MAMusicHaptics { return callSDK<MAMusicHaptics>("MediaAccessibility_90ad0eb69cc6bf4a", 1292308591021785, undefined, []); }
+  static init(): MAMusicHaptics { return callSDK<MAMusicHaptics>("MediaAccessibility_067acaa3e5f56b46", 1292308591021785, undefined, []); }
   declare readonly $type: { "c:@S@MAMusicHaptics": true };
 }
 
@@ -154,32 +154,32 @@ export class MAMusicHapticsManager extends SDKHandle {
    * class let activeStatusDidChangeNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get activeStatusDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaAccessibility_90ad0eb69cc6bf4a", 2650727489853376, undefined, []); }
+  static get activeStatusDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaAccessibility_067acaa3e5f56b46", 2650727489853376, undefined, []); }
   /**
    * class var shared: MAMusicHapticsManager { get }
    * @availability iOS 18.0+
    */
-  static get shared(): MAMusicHapticsManager { return callSDK<MAMusicHapticsManager>("MediaAccessibility_90ad0eb69cc6bf4a", 966759745837111, undefined, []); }
+  static get shared(): MAMusicHapticsManager { return callSDK<MAMusicHapticsManager>("MediaAccessibility_067acaa3e5f56b46", 966759745837111, undefined, []); }
   /**
    * func addStatusObserver(_ statusHandler: @escaping (String, Bool) -> Void) -> (any NSCopying)?
    * @availability iOS 18.0+
    */
-  addStatusObserver(statusHandler: ((arg0: string, arg1: boolean) => void)): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaAccessibility_90ad0eb69cc6bf4a", 2830275468649777, this, [statusHandler], [{"callback":{"out":[]}}]); }
+  addStatusObserver(statusHandler: ((arg0: string, arg1: boolean) => void)): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaAccessibility_067acaa3e5f56b46", 2830275468649777, this, [statusHandler], [{"callback":{"out":[]}}]); }
   /**
    * func isHapticTrackAvailable(forMediaMatching internationalStandardRecordingCode: String) async -> Bool
    * @availability iOS 18.0+
    */
-  checkHapticTrackAvailabilityForMedia(internationalStandardRecordingCode: string, completionHandler?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("MediaAccessibility_90ad0eb69cc6bf4a", 3923765694621259, this, [internationalStandardRecordingCode, completionHandler], [null,{"callback":{"out":[]}}]); }
+  checkHapticTrackAvailabilityForMedia(internationalStandardRecordingCode: string, completionHandler?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("MediaAccessibility_067acaa3e5f56b46", 3923765694621259, this, [internationalStandardRecordingCode, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeStatusObserver(_ registrationToken: any NSCopying)
    * @availability iOS 18.0+
    */
-  removeStatusObserver(registrationToken: SDKHandle): void { return callSDK<void>("MediaAccessibility_90ad0eb69cc6bf4a", 2160500235478250, this, [registrationToken]); }
+  removeStatusObserver(registrationToken: SDKHandle): void { return callSDK<void>("MediaAccessibility_067acaa3e5f56b46", 2160500235478250, this, [registrationToken]); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 18.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("MediaAccessibility_90ad0eb69cc6bf4a", 689507171188688, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("MediaAccessibility_067acaa3e5f56b46", 689507171188688, this, []); }
   declare readonly $type: { "c:objc(cs)MAMusicHapticsManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true };
 }
@@ -188,192 +188,192 @@ export class MAMusicHapticsManager extends SDKHandle {
  * func MAAudibleMediaCopyPreferredCharacteristics() -> Unmanaged<CFArray>
  * @availability iOS 8.0+
  */
-export function MAAudibleMediaCopyPreferredCharacteristics(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_90ad0eb69cc6bf4a", 1281114172178308, undefined, []); }
+export function MAAudibleMediaCopyPreferredCharacteristics(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_067acaa3e5f56b46", 1281114172178308, undefined, []); }
 
 /**
  * func MACaptionAppearanceAddSelectedLanguage(_ domain: MACaptionAppearanceDomain, _ language: CFString) -> Bool
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceAddSelectedLanguage(domain: MACaptionAppearanceDomain, language: _CoreFoundation_CFString): boolean { return callSDK<boolean>("MediaAccessibility_90ad0eb69cc6bf4a", 1971424664015137, undefined, [domain, language]); }
+export function MACaptionAppearanceAddSelectedLanguage(domain: MACaptionAppearanceDomain, language: _CoreFoundation_CFString): boolean { return callSDK<boolean>("MediaAccessibility_067acaa3e5f56b46", 1971424664015137, undefined, [domain, language]); }
 
 /**
  * func MACaptionAppearanceCopyActiveProfileID() -> CFString
  * @availability iOS 26.0+
  */
-export function MACaptionAppearanceCopyActiveProfileID(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 40180001768919, undefined, []); }
+export function MACaptionAppearanceCopyActiveProfileID(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 40180001768919, undefined, []); }
 
 /**
  * func MACaptionAppearanceCopyBackgroundColor(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> Unmanaged<CGColor>
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceCopyBackgroundColor(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("MediaAccessibility_90ad0eb69cc6bf4a", 964374232796549, undefined, [domain, behavior]); }
+export function MACaptionAppearanceCopyBackgroundColor(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("MediaAccessibility_067acaa3e5f56b46", 964374232796549, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceCopyFontDescriptorForStyle(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?, _ fontStyle: MACaptionAppearanceFontStyle) -> Unmanaged<CTFontDescriptor>
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceCopyFontDescriptorForStyle(domain: MACaptionAppearanceDomain, behavior: (SDKHandle) | null, fontStyle: MACaptionAppearanceFontStyle): _CoreText_CTFontDescriptor { return callSDK<_CoreText_CTFontDescriptor>("MediaAccessibility_90ad0eb69cc6bf4a", 344954663403204, undefined, [domain, behavior, fontStyle]); }
+export function MACaptionAppearanceCopyFontDescriptorForStyle(domain: MACaptionAppearanceDomain, behavior: (SDKHandle) | null, fontStyle: MACaptionAppearanceFontStyle): _CoreText_CTFontDescriptor { return callSDK<_CoreText_CTFontDescriptor>("MediaAccessibility_067acaa3e5f56b46", 344954663403204, undefined, [domain, behavior, fontStyle]); }
 
 /**
  * func MACaptionAppearanceCopyForegroundColor(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> Unmanaged<CGColor>
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceCopyForegroundColor(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("MediaAccessibility_90ad0eb69cc6bf4a", 4477653903304203, undefined, [domain, behavior]); }
+export function MACaptionAppearanceCopyForegroundColor(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("MediaAccessibility_067acaa3e5f56b46", 4477653903304203, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(_ domain: MACaptionAppearanceDomain) -> Unmanaged<CFArray>
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(domain: MACaptionAppearanceDomain): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_90ad0eb69cc6bf4a", 1471871048969865, undefined, [domain]); }
+export function MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(domain: MACaptionAppearanceDomain): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_067acaa3e5f56b46", 1471871048969865, undefined, [domain]); }
 
 /**
  * func MACaptionAppearanceCopyProfileIDs() -> CFArray
  * @availability iOS 26.0+
  */
-export function MACaptionAppearanceCopyProfileIDs(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_90ad0eb69cc6bf4a", 1077977636941879, undefined, []); }
+export function MACaptionAppearanceCopyProfileIDs(): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_067acaa3e5f56b46", 1077977636941879, undefined, []); }
 
 /**
  * func MACaptionAppearanceCopyProfileName(_ profileID: CFString) -> CFString
  * @availability iOS 26.0+
  */
-export function MACaptionAppearanceCopyProfileName(profileID: _CoreFoundation_CFString): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 228483692425655, undefined, [profileID]); }
+export function MACaptionAppearanceCopyProfileName(profileID: _CoreFoundation_CFString): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 228483692425655, undefined, [profileID]); }
 
 /**
  * func MACaptionAppearanceCopySelectedLanguages(_ domain: MACaptionAppearanceDomain) -> Unmanaged<CFArray>
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceCopySelectedLanguages(domain: MACaptionAppearanceDomain): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_90ad0eb69cc6bf4a", 1923151781800660, undefined, [domain]); }
+export function MACaptionAppearanceCopySelectedLanguages(domain: MACaptionAppearanceDomain): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("MediaAccessibility_067acaa3e5f56b46", 1923151781800660, undefined, [domain]); }
 
 /**
  * func MACaptionAppearanceCopyWindowColor(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> Unmanaged<CGColor>
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceCopyWindowColor(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("MediaAccessibility_90ad0eb69cc6bf4a", 3026374221345074, undefined, [domain, behavior]); }
+export function MACaptionAppearanceCopyWindowColor(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): _CoreGraphics_CGColor { return callSDK<_CoreGraphics_CGColor>("MediaAccessibility_067acaa3e5f56b46", 3026374221345074, undefined, [domain, behavior]); }
 
 /** func MACaptionAppearanceDidDisplayCaptions(_ strings: CFArray) */
-export function MACaptionAppearanceDidDisplayCaptions(strings: _CoreFoundation_CFArray): void { return callSDK<void>("MediaAccessibility_90ad0eb69cc6bf4a", 1155131500869641, undefined, [strings]); }
+export function MACaptionAppearanceDidDisplayCaptions(strings: _CoreFoundation_CFArray): void { return callSDK<void>("MediaAccessibility_067acaa3e5f56b46", 1155131500869641, undefined, [strings]); }
 
 /**
  * func MACaptionAppearanceExecuteBlockForProfileID(_ profileID: CFString, _ aBlock: @escaping () -> Void)
  * @availability iOS 26.0+
  */
-export function MACaptionAppearanceExecuteBlockForProfileID(profileID: _CoreFoundation_CFString, aBlock: (() => void)): void { return callSDK<void>("MediaAccessibility_90ad0eb69cc6bf4a", 2098934696130090, undefined, [profileID, aBlock], [null,{"callback":{"out":[]}}]); }
+export function MACaptionAppearanceExecuteBlockForProfileID(profileID: _CoreFoundation_CFString, aBlock: (() => void)): void { return callSDK<void>("MediaAccessibility_067acaa3e5f56b46", 2098934696130090, undefined, [profileID, aBlock], [null,{"callback":{"out":[]}}]); }
 
 /**
  * func MACaptionAppearanceGetBackgroundOpacity(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> CGFloat
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetBackgroundOpacity(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 3100062412399938, undefined, [domain, behavior]); }
+export function MACaptionAppearanceGetBackgroundOpacity(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 3100062412399938, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceGetDisplayType(_ domain: MACaptionAppearanceDomain) -> MACaptionAppearanceDisplayType
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetDisplayType(domain: MACaptionAppearanceDomain): MACaptionAppearanceDisplayType { return callSDK<MACaptionAppearanceDisplayType>("MediaAccessibility_90ad0eb69cc6bf4a", 1172486313578910, undefined, [domain]); }
+export function MACaptionAppearanceGetDisplayType(domain: MACaptionAppearanceDomain): MACaptionAppearanceDisplayType { return callSDK<MACaptionAppearanceDisplayType>("MediaAccessibility_067acaa3e5f56b46", 1172486313578910, undefined, [domain]); }
 
 /**
  * func MACaptionAppearanceGetForegroundOpacity(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> CGFloat
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetForegroundOpacity(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 1909432071740691, undefined, [domain, behavior]); }
+export function MACaptionAppearanceGetForegroundOpacity(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 1909432071740691, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceGetRelativeCharacterSize(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> CGFloat
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetRelativeCharacterSize(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 3172151835456329, undefined, [domain, behavior]); }
+export function MACaptionAppearanceGetRelativeCharacterSize(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 3172151835456329, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceGetTextEdgeStyle(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> MACaptionAppearanceTextEdgeStyle
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetTextEdgeStyle(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): MACaptionAppearanceTextEdgeStyle { return callSDK<MACaptionAppearanceTextEdgeStyle>("MediaAccessibility_90ad0eb69cc6bf4a", 272978028769844, undefined, [domain, behavior]); }
+export function MACaptionAppearanceGetTextEdgeStyle(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): MACaptionAppearanceTextEdgeStyle { return callSDK<MACaptionAppearanceTextEdgeStyle>("MediaAccessibility_067acaa3e5f56b46", 272978028769844, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceGetWindowOpacity(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> CGFloat
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetWindowOpacity(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 4072136481527926, undefined, [domain, behavior]); }
+export function MACaptionAppearanceGetWindowOpacity(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 4072136481527926, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceGetWindowRoundedCornerRadius(_ domain: MACaptionAppearanceDomain, _ behavior: UnsafeMutablePointer<MACaptionAppearanceBehavior>?) -> CGFloat
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceGetWindowRoundedCornerRadius(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_90ad0eb69cc6bf4a", 490222972119601, undefined, [domain, behavior]); }
+export function MACaptionAppearanceGetWindowRoundedCornerRadius(domain: MACaptionAppearanceDomain, behavior?: (SDKHandle) | null): number { return callSDK<number>("MediaAccessibility_067acaa3e5f56b46", 490222972119601, undefined, [domain, behavior]); }
 
 /**
  * func MACaptionAppearanceIsCustomized(_ domain: MACaptionAppearanceDomain) -> Bool
  * @availability iOS 18.0+
  */
-export function MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain): boolean { return callSDK<boolean>("MediaAccessibility_90ad0eb69cc6bf4a", 3426748217009359, undefined, [domain]); }
+export function MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain): boolean { return callSDK<boolean>("MediaAccessibility_067acaa3e5f56b46", 3426748217009359, undefined, [domain]); }
 
 /**
  * func MACaptionAppearanceSetActiveProfileID(_ profileID: CFString)
  * @availability iOS 26.0+
  */
-export function MACaptionAppearanceSetActiveProfileID(profileID: _CoreFoundation_CFString): void { return callSDK<void>("MediaAccessibility_90ad0eb69cc6bf4a", 3120611055990676, undefined, [profileID]); }
+export function MACaptionAppearanceSetActiveProfileID(profileID: _CoreFoundation_CFString): void { return callSDK<void>("MediaAccessibility_067acaa3e5f56b46", 3120611055990676, undefined, [profileID]); }
 
 /**
  * func MACaptionAppearanceSetDisplayType(_ domain: MACaptionAppearanceDomain, _ displayType: MACaptionAppearanceDisplayType)
  * @availability iOS 7.0+
  */
-export function MACaptionAppearanceSetDisplayType(domain: MACaptionAppearanceDomain, displayType: MACaptionAppearanceDisplayType): void { return callSDK<void>("MediaAccessibility_90ad0eb69cc6bf4a", 2426539785483814, undefined, [domain, displayType]); }
+export function MACaptionAppearanceSetDisplayType(domain: MACaptionAppearanceDomain, displayType: MACaptionAppearanceDisplayType): void { return callSDK<void>("MediaAccessibility_067acaa3e5f56b46", 2426539785483814, undefined, [domain, displayType]); }
 
 /**
  * func MADimFlashingLightsEnabled() -> Bool
  * @availability iOS 16.4+
  */
-export function MADimFlashingLightsEnabled(): boolean { return callSDK<boolean>("MediaAccessibility_90ad0eb69cc6bf4a", 875221816931929, undefined, []); }
+export function MADimFlashingLightsEnabled(): boolean { return callSDK<boolean>("MediaAccessibility_067acaa3e5f56b46", 875221816931929, undefined, []); }
 
 /**
  * func MAImageCaptioningCopyCaption(_ url: CFURL, _ error: UnsafeMutablePointer<CFError?>?) -> CFString?
  * @availability iOS 13.0+
  */
-export function MAImageCaptioningCopyCaption(url: _CoreFoundation_CFURL): { $ret: $SDK3; $out: { "error": $SDK4 } } { return callSDK<{ $ret: $SDK3; $out: { "error": $SDK4 } }>("MediaAccessibility_90ad0eb69cc6bf4a", 2077749425933135, undefined, [url, null]); }
+export function MAImageCaptioningCopyCaption(url: _CoreFoundation_CFURL): { $ret: $SDK3; $out: { "error": $SDK4 } } { return callSDK<{ $ret: $SDK3; $out: { "error": $SDK4 } }>("MediaAccessibility_067acaa3e5f56b46", 2077749425933135, undefined, [url, null]); }
 
 /**
  * func MAImageCaptioningCopyMetadataTagPath() -> CFString
  * @availability iOS 13.0+
  */
-export function MAImageCaptioningCopyMetadataTagPath(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 579321021969949, undefined, []); }
+export function MAImageCaptioningCopyMetadataTagPath(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 579321021969949, undefined, []); }
 
 /**
  * func MAImageCaptioningSetCaption(_ url: CFURL, _ string: CFString?, _ error: UnsafeMutablePointer<CFError?>?) -> Bool
  * @availability iOS 13.0+
  */
-export function MAImageCaptioningSetCaption(url: _CoreFoundation_CFURL, string?: $SDK3): { $ret: boolean; $out: { "error": $SDK4 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK4 } }>("MediaAccessibility_90ad0eb69cc6bf4a", 4287594511912629, undefined, [url, string, null]); }
+export function MAImageCaptioningSetCaption(url: _CoreFoundation_CFURL, string?: $SDK3): { $ret: boolean; $out: { "error": $SDK4 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK4 } }>("MediaAccessibility_067acaa3e5f56b46", 4287594511912629, undefined, [url, string, null]); }
 
 /**
  * let MAMediaCharacteristicDescribesMusicAndSoundForAccessibility: CFString
  * @availability iOS 7.0+
  */
-export const MAMediaCharacteristicDescribesMusicAndSoundForAccessibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 3193034619768913, undefined, []);
+export const MAMediaCharacteristicDescribesMusicAndSoundForAccessibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 3193034619768913, undefined, []);
 
 /**
  * let MAMediaCharacteristicDescribesVideoForAccessibility: CFString
  * @availability iOS 8.0+
  */
-export const MAMediaCharacteristicDescribesVideoForAccessibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 3607826922402014, undefined, []);
+export const MAMediaCharacteristicDescribesVideoForAccessibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 3607826922402014, undefined, []);
 
 /**
  * let MAMediaCharacteristicTranscribesSpokenDialogForAccessibility: CFString
  * @availability iOS 7.0+
  */
-export const MAMediaCharacteristicTranscribesSpokenDialogForAccessibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 1440018863345969, undefined, []);
+export const MAMediaCharacteristicTranscribesSpokenDialogForAccessibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 1440018863345969, undefined, []);
 
 /** let kMAAudibleMediaSettingsChangedNotification: CFString */
-export const kMAAudibleMediaSettingsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 400342449954683, undefined, []);
+export const kMAAudibleMediaSettingsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 400342449954683, undefined, []);
 
 /** let kMACaptionAppearanceSettingsChangedNotification: CFString */
-export const kMACaptionAppearanceSettingsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 1103994906521850, undefined, []);
+export const kMACaptionAppearanceSettingsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 1103994906521850, undefined, []);
 
 /**
  * let kMADimFlashingLightsChangedNotification: CFString
  * @availability iOS 16.4+
  */
-export const kMADimFlashingLightsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_90ad0eb69cc6bf4a", 3492171622821273, undefined, []);
+export const kMADimFlashingLightsChangedNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("MediaAccessibility_067acaa3e5f56b46", 3492171622821273, undefined, []);
 
-registerSDKClass("MAFlashingLightsProcessor", MAFlashingLightsProcessor, { module: "MediaAccessibility_90ad0eb69cc6bf4a", properties: {}, methods: {"canProcessSurface":{"id":1041907803591152},"processSurface":{"id":3920961549591484}} });
-registerSDKClass("MediaAccessibility.MAFlashingLightsProcessor.Result", MAFlashingLightsProcessor_Result, { module: "MediaAccessibility_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MediaAccessibility.MAMusicHaptics", MAMusicHaptics, { module: "MediaAccessibility_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MAMusicHapticsManager", MAMusicHapticsManager, { module: "MediaAccessibility_90ad0eb69cc6bf4a", properties: {"isActive":689507171188688}, methods: {"addStatusObserver":{"id":2830275468649777,"hints":[{"callback":{"out":[]}}]},"checkHapticTrackAvailabilityForMedia":{"id":3923765694621259,"hints":[null,{"callback":{"out":[]}}]},"removeStatusObserver":{"id":2160500235478250}} });
+registerSDKClass("MAFlashingLightsProcessor", MAFlashingLightsProcessor, { module: "MediaAccessibility_067acaa3e5f56b46", properties: {}, methods: {"canProcessSurface":{"id":1041907803591152},"processSurface":{"id":3920961549591484}} });
+registerSDKClass("MediaAccessibility.MAFlashingLightsProcessor.Result", MAFlashingLightsProcessor_Result, { module: "MediaAccessibility_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MediaAccessibility.MAMusicHaptics", MAMusicHaptics, { module: "MediaAccessibility_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MAMusicHapticsManager", MAMusicHapticsManager, { module: "MediaAccessibility_067acaa3e5f56b46", properties: {"isActive":689507171188688}, methods: {"addStatusObserver":{"id":2830275468649777,"hints":[{"callback":{"out":[]}}]},"checkHapticTrackAvailabilityForMedia":{"id":3923765694621259,"hints":[null,{"callback":{"out":[]}}]},"removeStatusObserver":{"id":2160500235478250}} });

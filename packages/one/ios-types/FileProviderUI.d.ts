@@ -38,30 +38,27 @@ export declare class FPUIActionExtensionContext extends SDKHandle {
  */
 export declare class FPUIActionExtensionViewController extends SDKHandle {
     /** init() */
-    static init(): FPUIActionExtensionViewController;
+    static init(): Promise<FPUIActionExtensionViewController>;
     /**
      * func prepare(forAction actionIdentifier: String, itemIdentifiers: [NSFileProviderItemIdentifier])
      * @availability iOS 11.0+
      */
-    prepareForActionItemIdentifiers(actionIdentifier: string, itemIdentifiers: Array<_FileProvider_NSFileProviderItemIdentifier>): void;
+    prepareForActionItemIdentifiers(actionIdentifier: string, itemIdentifiers: Array<_FileProvider_NSFileProviderItemIdentifier>): Promise<void>;
     /**
      * func prepare(forError error: any Error)
      * @availability iOS 11.0+
      */
-    prepareForError(error: NativeError): void;
+    prepareForError(error: NativeError): Promise<void>;
     /**
      * var extensionContext: FPUIActionExtensionContext { get }
      * @availability iOS 11.0+
      */
-    get extensionContext(): FPUIActionExtensionContext;
+    get extensionContext(): Promise<FPUIActionExtensionContext>;
     readonly $type: {
         "c:objc(cs)FPUIActionExtensionViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "extensionContext": true;
     };
 }
 /** struct FPUIActionIdentifier */

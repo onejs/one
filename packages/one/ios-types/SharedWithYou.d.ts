@@ -11,69 +11,59 @@ import type { UTType as _UniformTypeIdentifiers_UTType } from "one/ios/UniformTy
  */
 export declare class SWAttributionView extends SDKHandle {
     /** init() */
-    static init(): SWAttributionView;
+    static init(): Promise<SWAttributionView>;
     /**
      * var backgroundStyle: SWAttributionView.BackgroundStyle { get set }
      * @availability iOS 16.0+
      */
-    get backgroundStyle(): SWAttributionView_BackgroundStyle;
-    set backgroundStyle(value: SWAttributionView_BackgroundStyle);
+    get backgroundStyle(): Promise<SWAttributionView_BackgroundStyle>;
+    setBackgroundStyle(value: SWAttributionView_BackgroundStyle): Promise<void>;
     /**
      * var displayContext: SWAttributionView.DisplayContext { get set }
      * @availability iOS 16.0+
      */
-    get displayContext(): SWAttributionView_DisplayContext;
-    set displayContext(value: SWAttributionView_DisplayContext);
+    get displayContext(): Promise<SWAttributionView_DisplayContext>;
+    setDisplayContext(value: SWAttributionView_DisplayContext): Promise<void>;
     /**
      * var highlight: SWHighlight? { get set }
      * @availability iOS 16.0+
      */
-    get highlight(): (SWHighlight) | null;
-    set highlight(value: (SWHighlight) | null);
+    get highlight(): Promise<(SWHighlight) | null>;
+    setHighlight(value?: (SWHighlight) | null): Promise<void>;
     /**
      * var highlightMenu: UIMenu { get }
      * @availability iOS 16.0+
      */
-    get highlightMenu(): _UIKit_UIMenu;
+    get highlightMenu(): Promise<_UIKit_UIMenu>;
     /**
      * var horizontalAlignment: SWAttributionView.HorizontalAlignment { get set }
      * @availability iOS 16.0+
      */
-    get horizontalAlignment(): SWAttributionView_HorizontalAlignment;
-    set horizontalAlignment(value: SWAttributionView_HorizontalAlignment);
+    get horizontalAlignment(): Promise<SWAttributionView_HorizontalAlignment>;
+    setHorizontalAlignment(value: SWAttributionView_HorizontalAlignment): Promise<void>;
     /**
      * var menuTitleForHideAction: String? { get set }
      * @availability iOS 16.0+
      */
-    get menuTitleForHideAction(): (string) | null;
-    set menuTitleForHideAction(value: (string) | null);
+    get menuTitleForHideAction(): Promise<(string) | null>;
+    setMenuTitleForHideAction(value?: (string) | null): Promise<void>;
     /**
      * var preferredMaxLayoutWidth: CGFloat { get set }
      * @availability iOS 16.0+
      */
-    get preferredMaxLayoutWidth(): number;
-    set preferredMaxLayoutWidth(value: number);
+    get preferredMaxLayoutWidth(): Promise<number>;
+    setPreferredMaxLayoutWidth(value: number): Promise<void>;
     /**
      * var supplementalMenu: UIMenu? { get set }
      * @availability iOS 16.0+
      */
-    get supplementalMenu(): (_UIKit_UIMenu) | null;
-    set supplementalMenu(value: (_UIKit_UIMenu) | null);
+    get supplementalMenu(): Promise<(_UIKit_UIMenu) | null>;
+    setSupplementalMenu(value?: (_UIKit_UIMenu) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)SWAttributionView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "backgroundStyle": true;
-        "displayContext": true;
-        "highlight": true;
-        "highlightMenu": true;
-        "horizontalAlignment": true;
-        "menuTitleForHideAction": true;
-        "preferredMaxLayoutWidth": true;
-        "supplementalMenu": true;
     };
 }
 /**
@@ -86,7 +76,7 @@ export declare const SWAttributionView_BackgroundStyle: {
      * init?(rawValue: Int)
      * @availability iOS 16.0+
      */
-    init(rawValue: number): (SWAttributionView_BackgroundStyle) | null;
+    init(rawValue: number): Promise<(SWAttributionView_BackgroundStyle) | null>;
 };
 /**
  * enum DisplayContext
@@ -98,7 +88,7 @@ export declare const SWAttributionView_DisplayContext: {
      * init?(rawValue: Int)
      * @availability iOS 16.0+
      */
-    init(rawValue: number): (SWAttributionView_DisplayContext) | null;
+    init(rawValue: number): Promise<(SWAttributionView_DisplayContext) | null>;
 };
 /**
  * enum HorizontalAlignment
@@ -110,7 +100,7 @@ export declare const SWAttributionView_HorizontalAlignment: {
      * init?(rawValue: Int)
      * @availability iOS 16.0+
      */
-    init(rawValue: number): (SWAttributionView_HorizontalAlignment) | null;
+    init(rawValue: number): Promise<(SWAttributionView_HorizontalAlignment) | null>;
 };
 /**
  * class SWHighlight
@@ -531,7 +521,7 @@ export declare class SWRemoveParticipantAlertController extends SDKHandle {
      * convenience init(participant: SWPerson, highlight: SWCollaborationHighlight)
      * @availability iOS 16.0+
      */
-    static init(participant: _SharedWithYouCore_SWPerson, highlight: SWCollaborationHighlight): SWRemoveParticipantAlertController;
+    static init(participant: _SharedWithYouCore_SWPerson, highlight: SWCollaborationHighlight): Promise<SWRemoveParticipantAlertController>;
     readonly $type: {
         "c:objc(cs)SWRemoveParticipantAlertController": true;
         "c:objc(cs)UIViewController": true;

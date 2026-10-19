@@ -19,17 +19,17 @@ export class ContactItem_Identifier extends SDKHandle {
    * static let rootContainer: ContactItem.Identifier
    * @availability iOS 18.0+
    */
-  static get rootContainer(): ContactItem_Identifier { return callSDK<ContactItem_Identifier>("ContactProvider_90ad0eb69cc6bf4a", 1012858220075713, undefined, []); }
+  static get rootContainer(): ContactItem_Identifier { return callSDK<ContactItem_Identifier>("ContactProvider_067acaa3e5f56b46", 1012858220075713, undefined, []); }
   /**
    * let value: String
    * @availability iOS 18.0+
    */
-  get value(): string { return callSDK<string>("ContactProvider_90ad0eb69cc6bf4a", 2838605285487138, this, []); }
+  get value(): string { return callSDK<string>("ContactProvider_067acaa3e5f56b46", 2838605285487138, this, []); }
   /**
    * init(_ value: String)
    * @availability iOS 18.0+
    */
-  static init(value: string): ContactItem_Identifier { return callSDK<ContactItem_Identifier>("ContactProvider_90ad0eb69cc6bf4a", 1669144897436639, undefined, [value]); }
+  static init(value: string): ContactItem_Identifier { return callSDK<ContactItem_Identifier>("ContactProvider_067acaa3e5f56b46", 1669144897436639, undefined, [value]); }
   declare readonly $type: { "s:15ContactProvider0A4ItemO10IdentifierV": true };
 }
 
@@ -130,24 +130,24 @@ export class ContactItemPage extends SDKHandle {
    * static let initialPage: ContactItemPage
    * @availability iOS 18.0+
    */
-  static get initialPage(): ContactItemPage { return callSDK<ContactItemPage>("ContactProvider_90ad0eb69cc6bf4a", 1578048660342103, undefined, []); }
+  static get initialPage(): ContactItemPage { return callSDK<ContactItemPage>("ContactProvider_067acaa3e5f56b46", 1578048660342103, undefined, []); }
   /**
    * var generationMarker: Data
    * @availability iOS 18.0+
    */
-  get generationMarker(): ArrayBuffer { return callSDK<ArrayBuffer>("ContactProvider_90ad0eb69cc6bf4a", 1001715506514955, this, []); }
-  set generationMarker(value: ArrayBuffer) { callSDK<void>("ContactProvider_90ad0eb69cc6bf4a", 4318650603977724, this, [value]); }
+  get generationMarker(): ArrayBuffer { return callSDK<ArrayBuffer>("ContactProvider_067acaa3e5f56b46", 1001715506514955, this, []); }
+  set generationMarker(value: ArrayBuffer) { callSDK<void>("ContactProvider_067acaa3e5f56b46", 4318650603977724, this, [value]); }
   /**
    * init(generationMarker: Data, offset: Int)
    * @availability iOS 18.0+
    */
-  static init(generationMarker: ArrayBuffer, offset: number): ContactItemPage { return callSDK<ContactItemPage>("ContactProvider_90ad0eb69cc6bf4a", 502455220359650, undefined, [generationMarker, offset]); }
+  static init(generationMarker: ArrayBuffer, offset: number): ContactItemPage { return callSDK<ContactItemPage>("ContactProvider_067acaa3e5f56b46", 502455220359650, undefined, [generationMarker, offset]); }
   /**
    * var offset: Int
    * @availability iOS 18.0+
    */
-  get offset(): number { return callSDK<number>("ContactProvider_90ad0eb69cc6bf4a", 2356143558901526, this, []); }
-  set offset(value: number) { callSDK<void>("ContactProvider_90ad0eb69cc6bf4a", 122054999850963, this, [value]); }
+  get offset(): number { return callSDK<number>("ContactProvider_067acaa3e5f56b46", 2356143558901526, this, []); }
+  set offset(value: number) { callSDK<void>("ContactProvider_067acaa3e5f56b46", 122054999850963, this, [value]); }
   declare readonly $type: { "s:15ContactProvider0A8ItemPageV": true };
 }
 
@@ -160,19 +160,19 @@ export class ContactItemSyncAnchor extends SDKHandle {
    * var generationMarker: Data
    * @availability iOS 18.0+
    */
-  get generationMarker(): ArrayBuffer { return callSDK<ArrayBuffer>("ContactProvider_90ad0eb69cc6bf4a", 2582801658759654, this, []); }
-  set generationMarker(value: ArrayBuffer) { callSDK<void>("ContactProvider_90ad0eb69cc6bf4a", 4340174796588210, this, [value]); }
+  get generationMarker(): ArrayBuffer { return callSDK<ArrayBuffer>("ContactProvider_067acaa3e5f56b46", 2582801658759654, this, []); }
+  set generationMarker(value: ArrayBuffer) { callSDK<void>("ContactProvider_067acaa3e5f56b46", 4340174796588210, this, [value]); }
   /**
    * init(generationMarker: Data, offset: Int)
    * @availability iOS 18.0+
    */
-  static init(generationMarker: ArrayBuffer, offset: number): ContactItemSyncAnchor { return callSDK<ContactItemSyncAnchor>("ContactProvider_90ad0eb69cc6bf4a", 2298953477758364, undefined, [generationMarker, offset]); }
+  static init(generationMarker: ArrayBuffer, offset: number): ContactItemSyncAnchor { return callSDK<ContactItemSyncAnchor>("ContactProvider_067acaa3e5f56b46", 2298953477758364, undefined, [generationMarker, offset]); }
   /**
    * var offset: Int
    * @availability iOS 18.0+
    */
-  get offset(): number { return callSDK<number>("ContactProvider_90ad0eb69cc6bf4a", 741891079701219, this, []); }
-  set offset(value: number) { callSDK<void>("ContactProvider_90ad0eb69cc6bf4a", 3360729800539192, this, [value]); }
+  get offset(): number { return callSDK<number>("ContactProvider_067acaa3e5f56b46", 741891079701219, this, []); }
+  set offset(value: number) { callSDK<void>("ContactProvider_067acaa3e5f56b46", 3360729800539192, this, [value]); }
   declare readonly $type: { "s:15ContactProvider0A14ItemSyncAnchorV": true };
 }
 
@@ -195,22 +195,22 @@ export const ContactProviderError = {
    * var errorUserInfo: [String : Any] { get }
    * @availability iOS 18.0+
    */
-  getErrorUserInfo($self: ContactProviderError): Record<string, unknown> { return callSDK<Record<string, unknown>>("ContactProvider_90ad0eb69cc6bf4a", 2856752298281308, $self, []); },
+  getErrorUserInfo($self: ContactProviderError): Record<string, unknown> { return callSDK<Record<string, unknown>>("ContactProvider_067acaa3e5f56b46", 2856752298281308, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 18.0+
    */
-  getFailureReason($self: ContactProviderError): (string) | null { return callSDK<(string) | null>("ContactProvider_90ad0eb69cc6bf4a", 2144935482586103, $self, []); },
+  getFailureReason($self: ContactProviderError): (string) | null { return callSDK<(string) | null>("ContactProvider_067acaa3e5f56b46", 2144935482586103, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 18.0+
    */
-  getErrorDescription($self: ContactProviderError): (string) | null { return callSDK<(string) | null>("ContactProvider_90ad0eb69cc6bf4a", 3971417843880068, $self, []); },
+  getErrorDescription($self: ContactProviderError): (string) | null { return callSDK<(string) | null>("ContactProvider_067acaa3e5f56b46", 3971417843880068, $self, []); },
   /**
    * var errorCode: Int { get }
    * @availability iOS 18.0+
    */
-  getErrorCode($self: ContactProviderError): number { return callSDK<number>("ContactProvider_90ad0eb69cc6bf4a", 3199511801881225, $self, []); }
+  getErrorCode($self: ContactProviderError): number { return callSDK<number>("ContactProvider_067acaa3e5f56b46", 3199511801881225, $self, []); }
 };
 
 /**
@@ -245,42 +245,42 @@ export class ContactProviderManager extends SDKHandle {
    * func invalidate() async throws
    * @availability iOS 18.0+
    */
-  invalidate(): Promise<void> { return callSDKAsync<void>("ContactProvider_90ad0eb69cc6bf4a", 3473986360909292, this, []); }
+  invalidate(): Promise<void> { return callSDKAsync<void>("ContactProvider_067acaa3e5f56b46", 3473986360909292, this, []); }
   /**
    * init(domainIdentifier: String = DefaultContactProviderDomain.identifier) throws
    * @availability iOS 18.0+
    */
-  static init(domainIdentifier?: string): ContactProviderManager { return callSDK<ContactProviderManager>("ContactProvider_90ad0eb69cc6bf4a", 2079297995473708, undefined, [domainIdentifier]); }
+  static init(domainIdentifier?: string): ContactProviderManager { return callSDK<ContactProviderManager>("ContactProvider_067acaa3e5f56b46", 2079297995473708, undefined, [domainIdentifier]); }
   /**
    * func signalEnumerator(for collection: ContactItem.Identifier = .rootContainer) async throws
    * @availability iOS 18.0+
    */
-  signalEnumerator(collection?: ContactItem_Identifier): Promise<void> { return callSDKAsync<void>("ContactProvider_90ad0eb69cc6bf4a", 3841142789416454, this, [collection]); }
+  signalEnumerator(collection?: ContactItem_Identifier): Promise<void> { return callSDKAsync<void>("ContactProvider_067acaa3e5f56b46", 3841142789416454, this, [collection]); }
   /**
    * func reset() async throws
    * @availability iOS 18.0+
    */
-  reset(): Promise<void> { return callSDKAsync<void>("ContactProvider_90ad0eb69cc6bf4a", 1504602141071997, this, []); }
+  reset(): Promise<void> { return callSDKAsync<void>("ContactProvider_067acaa3e5f56b46", 1504602141071997, this, []); }
   /**
    * var domain: any ContactProviderDomain { get }
    * @availability iOS 18.0+
    */
-  get domain(): SDKHandle { return callSDK<SDKHandle>("ContactProvider_90ad0eb69cc6bf4a", 424759894102657, this, []); }
+  get domain(): SDKHandle { return callSDK<SDKHandle>("ContactProvider_067acaa3e5f56b46", 424759894102657, this, []); }
   /**
    * func enable() async throws
    * @availability iOS 18.0+
    */
-  enable(): Promise<void> { return callSDKAsync<void>("ContactProvider_90ad0eb69cc6bf4a", 456103776150059, this, []); }
+  enable(): Promise<void> { return callSDKAsync<void>("ContactProvider_067acaa3e5f56b46", 456103776150059, this, []); }
   /**
    * func disable() async throws
    * @availability iOS 18.0+
    */
-  disable(): Promise<void> { return callSDKAsync<void>("ContactProvider_90ad0eb69cc6bf4a", 2414374703295438, this, []); }
+  disable(): Promise<void> { return callSDKAsync<void>("ContactProvider_067acaa3e5f56b46", 2414374703295438, this, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("ContactProvider_90ad0eb69cc6bf4a", 4245280718954299, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("ContactProvider_067acaa3e5f56b46", 4245280718954299, this, []); }
   declare readonly $type: { "s:15ContactProvider0aB7ManagerC": true };
 }
 
@@ -293,39 +293,39 @@ export class DefaultContactProviderDomain extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 18.0+
    */
-  get identifier(): string { return callSDK<string>("ContactProvider_90ad0eb69cc6bf4a", 1682153671054110, this, []); }
+  get identifier(): string { return callSDK<string>("ContactProvider_067acaa3e5f56b46", 1682153671054110, this, []); }
   /**
    * static let identifier: String
    * @availability iOS 18.0+
    */
-  static get identifier2256(): string { return callSDK<string>("ContactProvider_90ad0eb69cc6bf4a", 3381392977976319, undefined, []); }
+  static get identifier2256(): string { return callSDK<string>("ContactProvider_067acaa3e5f56b46", 3381392977976319, undefined, []); }
   /**
    * let displayName: String
    * @availability iOS 18.0+
    */
-  get displayName(): string { return callSDK<string>("ContactProvider_90ad0eb69cc6bf4a", 729013513181299, this, []); }
+  get displayName(): string { return callSDK<string>("ContactProvider_067acaa3e5f56b46", 729013513181299, this, []); }
   /**
    * let userInfo: [String : Any]
    * @availability iOS 18.0+
    */
-  get userInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("ContactProvider_90ad0eb69cc6bf4a", 1269872767142383, this, []); }
+  get userInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("ContactProvider_067acaa3e5f56b46", 1269872767142383, this, []); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): DefaultContactProviderDomain { return callSDK<DefaultContactProviderDomain>("ContactProvider_90ad0eb69cc6bf4a", 2690721252298516, undefined, []); }
+  static init(): DefaultContactProviderDomain { return callSDK<DefaultContactProviderDomain>("ContactProvider_067acaa3e5f56b46", 2690721252298516, undefined, []); }
   declare readonly $type: { "s:15ContactProvider07DefaultaB6DomainV": true };
 }
 
-registerSDKClass("ContactProvider.ContactItem", ContactItem, { module: "ContactProvider_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ContactProvider.ContactItem.Identifier", ContactItem_Identifier, { module: "ContactProvider_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ContactProvider.ContactItem", ContactItem, { module: "ContactProvider_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ContactProvider.ContactItem.Identifier", ContactItem_Identifier, { module: "ContactProvider_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:15ContactProvider0A18ItemChangeObserverP", {"didUpdate":"didUpdate(_:)","didDelete":"didDelete(_:)","didFinishEnumeratingChangesUpToMoreComing":"didFinishEnumeratingChanges(upTo:moreComing:)","didFinishEnumeratingChangesWithError":"didFinishEnumeratingChangesWithError(_:)"});
 registerSDKProtocol("s:15ContactProvider0A19ItemContentObserverP", {"didEnumerate":"didEnumerate(_:)","didFinishEnumeratingPageUpTo":"didFinishEnumeratingPage(upTo:)","didFinishEnumeratingContentUpTo":"didFinishEnumeratingContent(upTo:)","didFinishEnumeratingContentWithError":"didFinishEnumeratingContentWithError(_:)"});
 registerSDKProtocol("s:15ContactProvider0A15ItemEnumeratingP", {"enumeratorFor":"enumerator(for:)"});
 registerSDKProtocol("s:15ContactProvider0A14ItemEnumeratorP", {"enumerateContentInFor":"enumerateContent(in:for:)","enumerateChangesStartingAtFor":"enumerateChanges(startingAt:for:)","invalidate":"invalidate()"});
-registerSDKClass("ContactProvider.ContactItemPage", ContactItemPage, { module: "ContactProvider_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("ContactProvider.ContactItemSyncAnchor", ContactItemSyncAnchor, { module: "ContactProvider_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ContactProvider.ContactItemPage", ContactItemPage, { module: "ContactProvider_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ContactProvider.ContactItemSyncAnchor", ContactItemSyncAnchor, { module: "ContactProvider_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:15ContactProvider0aB6DomainP", {});
 registerSDKProtocol("s:15ContactProvider0aB9ExtensionP", {"init":"init()","enumeratorFor":"enumerator(for:)","configureFor":"configure(for:)","invalidate":"invalidate()"});
-registerSDKClass("ContactProvider.ContactProviderManager", ContactProviderManager, { module: "ContactProvider_90ad0eb69cc6bf4a", properties: {}, methods: {"invalidate":{"id":3473986360909292},"signalEnumerator":{"id":3841142789416454},"reset":{"id":1504602141071997},"enable":{"id":456103776150059},"disable":{"id":2414374703295438}} });
-registerSDKClass("ContactProvider.DefaultContactProviderDomain", DefaultContactProviderDomain, { module: "ContactProvider_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ContactProvider.ContactProviderManager", ContactProviderManager, { module: "ContactProvider_067acaa3e5f56b46", properties: {}, methods: {"invalidate":{"id":3473986360909292},"signalEnumerator":{"id":3841142789416454},"reset":{"id":1504602141071997},"enable":{"id":456103776150059},"disable":{"id":2414374703295438}} });
+registerSDKClass("ContactProvider.DefaultContactProviderDomain", DefaultContactProviderDomain, { module: "ContactProvider_067acaa3e5f56b46", properties: {} });

@@ -13,9 +13,9 @@ export class BCChatAction extends SDKHandle {
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  static openTranscript(businessIdentifier: string, intentParameters: NativeMap<BCChatAction_Parameter, string>): void { return callSDK<void>("BusinessChat_90ad0eb69cc6bf4a", 2547383877092730, undefined, [businessIdentifier, intentParameters]); }
+  static openTranscript(businessIdentifier: string, intentParameters: NativeMap<BCChatAction_Parameter, string>): void { return callSDK<void>("BusinessChat_067acaa3e5f56b46", 2547383877092730, undefined, [businessIdentifier, intentParameters]); }
   /** init() */
-  static init(): BCChatAction { return callSDK<BCChatAction>("BusinessChat_90ad0eb69cc6bf4a", 2059663801260505, undefined, []); }
+  static init(): BCChatAction { return callSDK<BCChatAction>("BusinessChat_067acaa3e5f56b46", 2059663801260505, undefined, []); }
   declare readonly $type: { "c:objc(cs)BCChatAction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -28,23 +28,23 @@ export const BCChatAction_Parameter = {
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  get body(): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_90ad0eb69cc6bf4a", 2142933035158449, undefined, []); },
+  get body(): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_067acaa3e5f56b46", 2142933035158449, undefined, []); },
   /**
    * static let group: BCChatAction.Parameter
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  get group(): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_90ad0eb69cc6bf4a", 531246764591844, undefined, []); },
+  get group(): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_067acaa3e5f56b46", 531246764591844, undefined, []); },
   /**
    * static let intent: BCChatAction.Parameter
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  get intent(): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_90ad0eb69cc6bf4a", 3218206264530160, undefined, []); },
+  get intent(): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_067acaa3e5f56b46", 3218206264530160, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_90ad0eb69cc6bf4a", 3911176618865970, undefined, [rawValue]); },
+  initRawValue(rawValue: string): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_067acaa3e5f56b46", 3911176618865970, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_90ad0eb69cc6bf4a", 3759065414251918, undefined, [rawValue]); }
+  init(rawValue: string): BCChatAction_Parameter { return callSDK<BCChatAction_Parameter>("BusinessChat_067acaa3e5f56b46", 3759065414251918, undefined, [rawValue]); }
 };
 
 /**
@@ -58,13 +58,13 @@ export class BCChatButton extends SDKHandle {
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  static initCoder(coder: _Foundation_NSCoder): (BCChatButton) | null { return callSDK<(BCChatButton) | null>("BusinessChat_90ad0eb69cc6bf4a", 1566331563082102, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(BCChatButton) | null> { return callSDKAsync<(BCChatButton) | null>("BusinessChat_067acaa3e5f56b46", 1441098547248077, undefined, [coder]); }
   /**
    * init(style: BCChatButton.Style)
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  static initStyle(style: BCChatButton_Style): BCChatButton { return callSDK<BCChatButton>("BusinessChat_90ad0eb69cc6bf4a", 1238273143700305, undefined, [style]); }
+  static initStyle(style: BCChatButton_Style): Promise<BCChatButton> { return callSDKAsync<BCChatButton>("BusinessChat_067acaa3e5f56b46", 3424583751591979, undefined, [style]); }
   declare readonly $type: { "c:objc(cs)BCChatButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -81,8 +81,8 @@ export const BCChatButton_Style = {
    * @availability iOS 11.3+
    * @deprecated iOS 16.1
    */
-  init(rawValue: number): (BCChatButton_Style) | null { return callSDK<(BCChatButton_Style) | null>("BusinessChat_90ad0eb69cc6bf4a", 3603455020395795, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(BCChatButton_Style) | null> { return callSDKAsync<(BCChatButton_Style) | null>("BusinessChat_067acaa3e5f56b46", 3047320328324181, undefined, [rawValue]); }
 };
 
-registerSDKClass("BCChatAction", BCChatAction, { module: "BusinessChat_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("BCChatButton", BCChatButton, { module: "BusinessChat_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("BCChatAction", BCChatAction, { module: "BusinessChat_067acaa3e5f56b46", properties: {} });
+registerSDKClass("BCChatButton", BCChatButton, { module: "BusinessChat_067acaa3e5f56b46", properties: {} });

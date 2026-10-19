@@ -197,64 +197,57 @@ export declare class SK3DNode extends SK3DNode_base {
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 8.0+
      */
-    static initCoder(aDecoder: _Foundation_NSCoder): (SK3DNode) | null;
+    static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SK3DNode) | null>;
     /**
      * init(viewportSize: CGSize)
      * @availability iOS 8.0+
      */
-    static initViewportSize(viewportSize: $SDK7): SK3DNode;
+    static initViewportSize(viewportSize: $SDK7): Promise<SK3DNode>;
     /**
      * func projectPoint(_ point: vector_float3) -> vector_float3
      * @availability iOS 8.0+
      */
-    projectPoint(point: SDKHandle): SDKHandle;
+    projectPoint(point: SDKHandle): Promise<SDKHandle>;
     /**
      * func unprojectPoint(_ point: vector_float3) -> vector_float3
      * @availability iOS 8.0+
      */
-    unprojectPoint(point: SDKHandle): SDKHandle;
+    unprojectPoint(point: SDKHandle): Promise<SDKHandle>;
     /**
      * var autoenablesDefaultLighting: Bool { get set }
      * @availability iOS 8.0+
      */
-    get autoenablesDefaultLighting(): boolean;
-    set autoenablesDefaultLighting(value: boolean);
+    get autoenablesDefaultLighting(): Promise<boolean>;
+    setAutoenablesDefaultLighting(value: boolean): Promise<void>;
     /**
      * var loops: Bool { get set }
      * @availability iOS 8.0+
      */
-    get loops(): boolean;
-    set loops(value: boolean);
+    get loops(): Promise<boolean>;
+    setLoops(value: boolean): Promise<void>;
     /**
      * var isPlaying: Bool { get set }
      * @availability iOS 8.0+
      */
-    get isPlaying(): boolean;
-    set isPlaying(value: boolean);
+    get isPlaying(): Promise<boolean>;
+    setIsPlaying(value: boolean): Promise<void>;
     /**
      * var sceneTime: TimeInterval { get set }
      * @availability iOS 8.0+
      */
-    get sceneTime(): number;
-    set sceneTime(value: number);
+    get sceneTime(): Promise<number>;
+    setSceneTime(value: number): Promise<void>;
     /**
      * var viewportSize: CGSize { get set }
      * @availability iOS 8.0+
      */
-    get viewportSize(): $SDK7;
-    set viewportSize(value: $SDK7);
+    get viewportSize(): Promise<$SDK7>;
+    setViewportSize(value: $SDK7): Promise<void>;
     readonly $type: {
         "c:objc(cs)SK3DNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "autoenablesDefaultLighting": true;
-        "loops": true;
-        "isPlaying": true;
-        "sceneTime": true;
-        "viewportSize": true;
     };
 }
 /** class SKAction */
@@ -748,50 +741,45 @@ export declare class SKAudioNode extends SKAudioNode_base {
      * init(avAudioNode node: AVAudioNode?)
      * @availability iOS 9.0+
      */
-    static initAvAudioNode(node?: $SDK12): SKAudioNode;
+    static initAvAudioNode(node?: $SDK12): Promise<SKAudioNode>;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 9.0+
      */
-    static initCoder(aDecoder: _Foundation_NSCoder): (SKAudioNode) | null;
+    static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SKAudioNode) | null>;
     /**
      * convenience init(fileNamed name: String)
      * @availability iOS 9.0+
      */
-    static initFileNamed(name: string): SKAudioNode;
+    static initFileNamed(name: string): Promise<SKAudioNode>;
     /**
      * convenience init(url: URL)
      * @availability iOS 9.0+
      */
-    static initUrl(url: string): SKAudioNode;
+    static initUrl(url: string): Promise<SKAudioNode>;
     /**
      * var autoplayLooped: Bool { get set }
      * @availability iOS 9.0+
      */
-    get autoplayLooped(): boolean;
-    set autoplayLooped(value: boolean);
+    get autoplayLooped(): Promise<boolean>;
+    setAutoplayLooped(value: boolean): Promise<void>;
     /**
      * var avAudioNode: AVAudioNode? { get set }
      * @availability iOS 9.0+
      */
-    get avAudioNode(): $SDK12;
-    set avAudioNode(value: $SDK12);
+    get avAudioNode(): Promise<$SDK12>;
+    setAvAudioNode(value?: $SDK12): Promise<void>;
     /**
      * var isPositional: Bool { get set }
      * @availability iOS 9.0+
      */
-    get isPositional(): boolean;
-    set isPositional(value: boolean);
+    get isPositional(): Promise<boolean>;
+    setIsPositional(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKAudioNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "autoplayLooped": true;
-        "avAudioNode": true;
-        "isPositional": true;
     };
 }
 /**
@@ -816,14 +804,14 @@ export declare class SKCameraNode extends SKCameraNode_base {
      * func containedNodeSet() -> Set<SKNode>
      * @availability iOS 9.0+
      */
-    containedNodeSet(): Array<SKNode>;
+    containedNodeSet(): Promise<Array<SKNode>>;
     /**
      * func contains(_ node: SKNode) -> Bool
      * @availability iOS 9.0+
      */
-    contains(node: SKNode): boolean;
+    contains(node: SKNode): Promise<boolean>;
     /** init() */
-    static init(): SKCameraNode;
+    static init(): Promise<SKCameraNode>;
     readonly $type: {
         "c:objc(cs)SKCameraNode": true;
         "c:objc(cs)SKNode": true;
@@ -915,311 +903,262 @@ declare const SKCropNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new 
 /** class SKCropNode */
 export declare class SKCropNode extends SKCropNode_base {
     /** init() */
-    static init(): SKCropNode;
+    static init(): Promise<SKCropNode>;
     /** var maskNode: SKNode? { get set } */
-    get maskNode(): (SKNode) | null;
-    set maskNode(value: (SKNode) | null);
+    get maskNode(): Promise<(SKNode) | null>;
+    setMaskNode(value?: (SKNode) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKCropNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
-    readonly $observable: {
-        "maskNode": true;
-    };
 }
-declare const SKEffectNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKEffectNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /** class SKEffectNode */
 export declare class SKEffectNode extends SKEffectNode_base {
     /** init() */
-    static init(): SKEffectNode;
+    static init(): Promise<SKEffectNode>;
     /**
      * func setValue(_ value: SKAttributeValue, forAttribute key: String)
      * @availability iOS 10.0+
      */
-    setValue(value: SKAttributeValue, key: string): void;
+    setValue(value: SKAttributeValue, key: string): Promise<void>;
     /**
      * func value(forAttributeNamed key: String) -> SKAttributeValue?
      * @availability iOS 10.0+
      */
-    value(key: string): $SDK2;
+    value(key: string): Promise<$SDK2>;
     /**
      * var attributeValues: [String : SKAttributeValue] { get set }
      * @availability iOS 10.0+
      */
-    get attributeValues(): $SDK3;
-    set attributeValues(value: $SDK3);
+    get attributeValues(): Promise<$SDK3>;
+    setAttributeValues(value: $SDK3): Promise<void>;
     /** var blendMode: SKBlendMode { get set } */
-    get blendMode(): SKBlendMode;
-    set blendMode(value: SKBlendMode);
+    get blendMode(): Promise<SKBlendMode>;
+    setBlendMode(value: SKBlendMode): Promise<void>;
     /** var filter: CIFilter? { get set } */
-    get filter(): (_CoreImage_CIFilter) | null;
-    set filter(value: (_CoreImage_CIFilter) | null);
+    get filter(): Promise<(_CoreImage_CIFilter) | null>;
+    setFilter(value?: (_CoreImage_CIFilter) | null): Promise<void>;
     /** var shader: SKShader? { get set } */
-    get shader(): (SKShader) | null;
-    set shader(value: (SKShader) | null);
+    get shader(): Promise<(SKShader) | null>;
+    setShader(value?: (SKShader) | null): Promise<void>;
     /** var shouldCenterFilter: Bool { get set } */
-    get shouldCenterFilter(): boolean;
-    set shouldCenterFilter(value: boolean);
+    get shouldCenterFilter(): Promise<boolean>;
+    setShouldCenterFilter(value: boolean): Promise<void>;
     /** var shouldEnableEffects: Bool { get set } */
-    get shouldEnableEffects(): boolean;
-    set shouldEnableEffects(value: boolean);
+    get shouldEnableEffects(): Promise<boolean>;
+    setShouldEnableEffects(value: boolean): Promise<void>;
     /** var shouldRasterize: Bool { get set } */
-    get shouldRasterize(): boolean;
-    set shouldRasterize(value: boolean);
+    get shouldRasterize(): Promise<boolean>;
+    setShouldRasterize(value: boolean): Promise<void>;
+    /**
+     * var attributeValues: [String : SKAttributeValue] { get set }
+     * @availability iOS 10.0+
+     * @deprecated iOS 10.0
+     */
+    get attributeValues1835(): Promise<$SDK3>;
+    setAttributeValues1835(value: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKEffectNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
-    readonly $observable: {
-        "attributeValues": true;
-        "blendMode": true;
-        "filter": true;
-        "shader": true;
-        "shouldCenterFilter": true;
-        "shouldEnableEffects": true;
-        "shouldRasterize": true;
-    };
 }
-declare const SKEmitterNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKEmitterNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /** class SKEmitterNode */
 export declare class SKEmitterNode extends SKEmitterNode_base {
     /** func advanceSimulationTime(_ sec: TimeInterval) */
-    advanceSimulationTime(sec: number): void;
+    advanceSimulationTime(sec: number): Promise<void>;
     /** init() */
-    static init(): SKEmitterNode;
+    static init(): Promise<SKEmitterNode>;
     /** func resetSimulation() */
-    resetSimulation(): void;
+    resetSimulation(): Promise<void>;
     /**
      * func setValue(_ value: SKAttributeValue, forAttribute key: String)
      * @availability iOS 10.0+
      */
-    setValue(value: SKAttributeValue, key: string): void;
+    setValue(value: SKAttributeValue, key: string): Promise<void>;
     /**
      * func value(forAttributeNamed key: String) -> SKAttributeValue?
      * @availability iOS 10.0+
      */
-    value(key: string): $SDK2;
+    value(key: string): Promise<$SDK2>;
     /**
      * var attributeValues: [String : SKAttributeValue] { get set }
      * @availability iOS 10.0+
      */
-    get attributeValues(): $SDK3;
-    set attributeValues(value: $SDK3);
+    get attributeValues(): Promise<$SDK3>;
+    setAttributeValues(value: $SDK3): Promise<void>;
     /** var emissionAngle: CGFloat { get set } */
-    get emissionAngle(): number;
-    set emissionAngle(value: number);
+    get emissionAngle(): Promise<number>;
+    setEmissionAngle(value: number): Promise<void>;
     /** var emissionAngleRange: CGFloat { get set } */
-    get emissionAngleRange(): number;
-    set emissionAngleRange(value: number);
+    get emissionAngleRange(): Promise<number>;
+    setEmissionAngleRange(value: number): Promise<void>;
     /** var fieldBitMask: UInt32 { get set } */
-    get fieldBitMask(): number;
-    set fieldBitMask(value: number);
+    get fieldBitMask(): Promise<number>;
+    setFieldBitMask(value: number): Promise<void>;
     /** var numParticlesToEmit: Int { get set } */
-    get numParticlesToEmit(): number;
-    set numParticlesToEmit(value: number);
+    get numParticlesToEmit(): Promise<number>;
+    setNumParticlesToEmit(value: number): Promise<void>;
     /** @NSCopying var particleAction: SKAction? { get set } */
-    get particleAction(): (SKAction) | null;
-    set particleAction(value: (SKAction) | null);
+    get particleAction(): Promise<(SKAction) | null>;
+    setParticleAction(value?: (SKAction) | null): Promise<void>;
     /** var particleAlpha: CGFloat { get set } */
-    get particleAlpha(): number;
-    set particleAlpha(value: number);
+    get particleAlpha(): Promise<number>;
+    setParticleAlpha(value: number): Promise<void>;
     /** var particleAlphaRange: CGFloat { get set } */
-    get particleAlphaRange(): number;
-    set particleAlphaRange(value: number);
+    get particleAlphaRange(): Promise<number>;
+    setParticleAlphaRange(value: number): Promise<void>;
     /** var particleAlphaSequence: SKKeyframeSequence? { get set } */
-    get particleAlphaSequence(): $SDK14;
-    set particleAlphaSequence(value: $SDK14);
+    get particleAlphaSequence(): Promise<$SDK14>;
+    setParticleAlphaSequence(value?: $SDK14): Promise<void>;
     /** var particleAlphaSpeed: CGFloat { get set } */
-    get particleAlphaSpeed(): number;
-    set particleAlphaSpeed(value: number);
+    get particleAlphaSpeed(): Promise<number>;
+    setParticleAlphaSpeed(value: number): Promise<void>;
     /** var particleBirthRate: CGFloat { get set } */
-    get particleBirthRate(): number;
-    set particleBirthRate(value: number);
+    get particleBirthRate(): Promise<number>;
+    setParticleBirthRate(value: number): Promise<void>;
     /** var particleBlendMode: SKBlendMode { get set } */
-    get particleBlendMode(): SKBlendMode;
-    set particleBlendMode(value: SKBlendMode);
+    get particleBlendMode(): Promise<SKBlendMode>;
+    setParticleBlendMode(value: SKBlendMode): Promise<void>;
     /** var particleColor: UIColor { get set } */
-    get particleColor(): _UIKit_UIColor;
-    set particleColor(value: _UIKit_UIColor);
+    get particleColor(): Promise<_UIKit_UIColor>;
+    setParticleColor(value: _UIKit_UIColor): Promise<void>;
     /** var particleColorAlphaRange: CGFloat { get set } */
-    get particleColorAlphaRange(): number;
-    set particleColorAlphaRange(value: number);
+    get particleColorAlphaRange(): Promise<number>;
+    setParticleColorAlphaRange(value: number): Promise<void>;
     /** var particleColorAlphaSpeed: CGFloat { get set } */
-    get particleColorAlphaSpeed(): number;
-    set particleColorAlphaSpeed(value: number);
+    get particleColorAlphaSpeed(): Promise<number>;
+    setParticleColorAlphaSpeed(value: number): Promise<void>;
     /** var particleColorBlendFactor: CGFloat { get set } */
-    get particleColorBlendFactor(): number;
-    set particleColorBlendFactor(value: number);
+    get particleColorBlendFactor(): Promise<number>;
+    setParticleColorBlendFactor(value: number): Promise<void>;
     /** var particleColorBlendFactorRange: CGFloat { get set } */
-    get particleColorBlendFactorRange(): number;
-    set particleColorBlendFactorRange(value: number);
+    get particleColorBlendFactorRange(): Promise<number>;
+    setParticleColorBlendFactorRange(value: number): Promise<void>;
     /** var particleColorBlendFactorSequence: SKKeyframeSequence? { get set } */
-    get particleColorBlendFactorSequence(): $SDK14;
-    set particleColorBlendFactorSequence(value: $SDK14);
+    get particleColorBlendFactorSequence(): Promise<$SDK14>;
+    setParticleColorBlendFactorSequence(value?: $SDK14): Promise<void>;
     /** var particleColorBlendFactorSpeed: CGFloat { get set } */
-    get particleColorBlendFactorSpeed(): number;
-    set particleColorBlendFactorSpeed(value: number);
+    get particleColorBlendFactorSpeed(): Promise<number>;
+    setParticleColorBlendFactorSpeed(value: number): Promise<void>;
     /** var particleColorBlueRange: CGFloat { get set } */
-    get particleColorBlueRange(): number;
-    set particleColorBlueRange(value: number);
+    get particleColorBlueRange(): Promise<number>;
+    setParticleColorBlueRange(value: number): Promise<void>;
     /** var particleColorBlueSpeed: CGFloat { get set } */
-    get particleColorBlueSpeed(): number;
-    set particleColorBlueSpeed(value: number);
+    get particleColorBlueSpeed(): Promise<number>;
+    setParticleColorBlueSpeed(value: number): Promise<void>;
     /** var particleColorGreenRange: CGFloat { get set } */
-    get particleColorGreenRange(): number;
-    set particleColorGreenRange(value: number);
+    get particleColorGreenRange(): Promise<number>;
+    setParticleColorGreenRange(value: number): Promise<void>;
     /** var particleColorGreenSpeed: CGFloat { get set } */
-    get particleColorGreenSpeed(): number;
-    set particleColorGreenSpeed(value: number);
+    get particleColorGreenSpeed(): Promise<number>;
+    setParticleColorGreenSpeed(value: number): Promise<void>;
     /** var particleColorRedRange: CGFloat { get set } */
-    get particleColorRedRange(): number;
-    set particleColorRedRange(value: number);
+    get particleColorRedRange(): Promise<number>;
+    setParticleColorRedRange(value: number): Promise<void>;
     /** var particleColorRedSpeed: CGFloat { get set } */
-    get particleColorRedSpeed(): number;
-    set particleColorRedSpeed(value: number);
+    get particleColorRedSpeed(): Promise<number>;
+    setParticleColorRedSpeed(value: number): Promise<void>;
     /** var particleColorSequence: SKKeyframeSequence? { get set } */
-    get particleColorSequence(): $SDK14;
-    set particleColorSequence(value: $SDK14);
+    get particleColorSequence(): Promise<$SDK14>;
+    setParticleColorSequence(value?: $SDK14): Promise<void>;
     /** var particleLifetime: CGFloat { get set } */
-    get particleLifetime(): number;
-    set particleLifetime(value: number);
+    get particleLifetime(): Promise<number>;
+    setParticleLifetime(value: number): Promise<void>;
     /** var particleLifetimeRange: CGFloat { get set } */
-    get particleLifetimeRange(): number;
-    set particleLifetimeRange(value: number);
+    get particleLifetimeRange(): Promise<number>;
+    setParticleLifetimeRange(value: number): Promise<void>;
     /** var particlePosition: CGPoint { get set } */
-    get particlePosition(): $SDK1;
-    set particlePosition(value: $SDK1);
+    get particlePosition(): Promise<$SDK1>;
+    setParticlePosition(value: $SDK1): Promise<void>;
     /** var particlePositionRange: CGVector { get set } */
-    get particlePositionRange(): $SDK9;
-    set particlePositionRange(value: $SDK9);
+    get particlePositionRange(): Promise<$SDK9>;
+    setParticlePositionRange(value: $SDK9): Promise<void>;
     /**
      * var particleRenderOrder: SKParticleRenderOrder { get set }
      * @availability iOS 9.0+
      */
-    get particleRenderOrder(): SKParticleRenderOrder;
-    set particleRenderOrder(value: SKParticleRenderOrder);
+    get particleRenderOrder(): Promise<SKParticleRenderOrder>;
+    setParticleRenderOrder(value: SKParticleRenderOrder): Promise<void>;
     /** var particleRotation: CGFloat { get set } */
-    get particleRotation(): number;
-    set particleRotation(value: number);
+    get particleRotation(): Promise<number>;
+    setParticleRotation(value: number): Promise<void>;
     /** var particleRotationRange: CGFloat { get set } */
-    get particleRotationRange(): number;
-    set particleRotationRange(value: number);
+    get particleRotationRange(): Promise<number>;
+    setParticleRotationRange(value: number): Promise<void>;
     /** var particleRotationSpeed: CGFloat { get set } */
-    get particleRotationSpeed(): number;
-    set particleRotationSpeed(value: number);
+    get particleRotationSpeed(): Promise<number>;
+    setParticleRotationSpeed(value: number): Promise<void>;
     /** var particleScale: CGFloat { get set } */
-    get particleScale(): number;
-    set particleScale(value: number);
+    get particleScale(): Promise<number>;
+    setParticleScale(value: number): Promise<void>;
     /** var particleScaleRange: CGFloat { get set } */
-    get particleScaleRange(): number;
-    set particleScaleRange(value: number);
+    get particleScaleRange(): Promise<number>;
+    setParticleScaleRange(value: number): Promise<void>;
     /** var particleScaleSequence: SKKeyframeSequence? { get set } */
-    get particleScaleSequence(): $SDK14;
-    set particleScaleSequence(value: $SDK14);
+    get particleScaleSequence(): Promise<$SDK14>;
+    setParticleScaleSequence(value?: $SDK14): Promise<void>;
     /** var particleScaleSpeed: CGFloat { get set } */
-    get particleScaleSpeed(): number;
-    set particleScaleSpeed(value: number);
+    get particleScaleSpeed(): Promise<number>;
+    setParticleScaleSpeed(value: number): Promise<void>;
     /** var particleSize: CGSize { get set } */
-    get particleSize(): $SDK7;
-    set particleSize(value: $SDK7);
+    get particleSize(): Promise<$SDK7>;
+    setParticleSize(value: $SDK7): Promise<void>;
     /** var particleSpeed: CGFloat { get set } */
-    get particleSpeed(): number;
-    set particleSpeed(value: number);
+    get particleSpeed(): Promise<number>;
+    setParticleSpeed(value: number): Promise<void>;
     /** var particleSpeedRange: CGFloat { get set } */
-    get particleSpeedRange(): number;
-    set particleSpeedRange(value: number);
+    get particleSpeedRange(): Promise<number>;
+    setParticleSpeedRange(value: number): Promise<void>;
     /** var particleTexture: SKTexture? { get set } */
-    get particleTexture(): (SKTexture) | null;
-    set particleTexture(value: (SKTexture) | null);
+    get particleTexture(): Promise<(SKTexture) | null>;
+    setParticleTexture(value?: (SKTexture) | null): Promise<void>;
     /** var particleZPosition: CGFloat { get set } */
-    get particleZPosition(): number;
-    set particleZPosition(value: number);
+    get particleZPosition(): Promise<number>;
+    setParticleZPosition(value: number): Promise<void>;
     /**
      * var particleZPositionRange: CGFloat { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 8.0
      */
-    get particleZPositionRange(): number;
-    set particleZPositionRange(value: number);
+    get particleZPositionRange(): Promise<number>;
+    setParticleZPositionRange(value: number): Promise<void>;
     /**
      * var particleZPositionSpeed: CGFloat { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 8.0
      */
-    get particleZPositionSpeed(): number;
-    set particleZPositionSpeed(value: number);
+    get particleZPositionSpeed(): Promise<number>;
+    setParticleZPositionSpeed(value: number): Promise<void>;
     /** var shader: SKShader? { get set } */
-    get shader(): (SKShader) | null;
-    set shader(value: (SKShader) | null);
+    get shader(): Promise<(SKShader) | null>;
+    setShader(value?: (SKShader) | null): Promise<void>;
     /** weak var targetNode: SKNode? { get set } */
-    get targetNode(): (SKNode) | null;
-    set targetNode(value: (SKNode) | null);
+    get targetNode(): Promise<(SKNode) | null>;
+    setTargetNode(value?: (SKNode) | null): Promise<void>;
     /** var xAcceleration: CGFloat { get set } */
-    get xAcceleration(): number;
-    set xAcceleration(value: number);
+    get xAcceleration(): Promise<number>;
+    setXAcceleration(value: number): Promise<void>;
     /** var yAcceleration: CGFloat { get set } */
-    get yAcceleration(): number;
-    set yAcceleration(value: number);
+    get yAcceleration(): Promise<number>;
+    setYAcceleration(value: number): Promise<void>;
+    /**
+     * var attributeValues: [String : SKAttributeValue] { get set }
+     * @availability iOS 10.0+
+     * @deprecated iOS 10.0
+     */
+    get attributeValues1835(): Promise<$SDK3>;
+    setAttributeValues1835(value: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKEmitterNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "attributeValues": true;
-        "emissionAngle": true;
-        "emissionAngleRange": true;
-        "fieldBitMask": true;
-        "numParticlesToEmit": true;
-        "particleAction": true;
-        "particleAlpha": true;
-        "particleAlphaRange": true;
-        "particleAlphaSequence": true;
-        "particleAlphaSpeed": true;
-        "particleBirthRate": true;
-        "particleBlendMode": true;
-        "particleColor": true;
-        "particleColorAlphaRange": true;
-        "particleColorAlphaSpeed": true;
-        "particleColorBlendFactor": true;
-        "particleColorBlendFactorRange": true;
-        "particleColorBlendFactorSequence": true;
-        "particleColorBlendFactorSpeed": true;
-        "particleColorBlueRange": true;
-        "particleColorBlueSpeed": true;
-        "particleColorGreenRange": true;
-        "particleColorGreenSpeed": true;
-        "particleColorRedRange": true;
-        "particleColorRedSpeed": true;
-        "particleColorSequence": true;
-        "particleLifetime": true;
-        "particleLifetimeRange": true;
-        "particlePosition": true;
-        "particlePositionRange": true;
-        "particleRenderOrder": true;
-        "particleRotation": true;
-        "particleRotationRange": true;
-        "particleRotationSpeed": true;
-        "particleScale": true;
-        "particleScaleRange": true;
-        "particleScaleSequence": true;
-        "particleScaleSpeed": true;
-        "particleSize": true;
-        "particleSpeed": true;
-        "particleSpeedRange": true;
-        "particleTexture": true;
-        "particleZPosition": true;
-        "particleZPositionRange": true;
-        "particleZPositionSpeed": true;
-        "shader": true;
-        "targetNode": true;
-        "xAcceleration": true;
-        "yAcceleration": true;
     };
 }
 /** typealias SKFieldForceEvaluator = (vector_float3, vector_float3, Float, Float, TimeInterval) -> vector_float3 */
@@ -1234,143 +1173,130 @@ export declare class SKFieldNode extends SKFieldNode_base {
      * class func dragField() -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static dragField(): SKFieldNode;
+    static dragField(): Promise<SKFieldNode>;
     /**
      * class func electricField() -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static electricField(): SKFieldNode;
+    static electricField(): Promise<SKFieldNode>;
     /**
      * class func linearGravityField(withVector direction: vector_float3) -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static linearGravityField(direction: SDKHandle): SKFieldNode;
+    static linearGravityField(direction: SDKHandle): Promise<SKFieldNode>;
     /**
      * class func magneticField() -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static magneticField(): SKFieldNode;
+    static magneticField(): Promise<SKFieldNode>;
     /**
      * class func noiseField(withSmoothness smoothness: CGFloat, animationSpeed speed: CGFloat) -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static noiseField(smoothness: number, speed: number): SKFieldNode;
+    static noiseField(smoothness: number, speed: number): Promise<SKFieldNode>;
     /**
      * class func radialGravityField() -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static radialGravityField(): SKFieldNode;
+    static radialGravityField(): Promise<SKFieldNode>;
     /**
      * class func springField() -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static springField(): SKFieldNode;
+    static springField(): Promise<SKFieldNode>;
     /**
      * class func turbulenceField(withSmoothness smoothness: CGFloat, animationSpeed speed: CGFloat) -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static turbulenceField(smoothness: number, speed: number): SKFieldNode;
+    static turbulenceField(smoothness: number, speed: number): Promise<SKFieldNode>;
     /**
      * class func velocityField(with velocityTexture: SKTexture) -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static velocityFieldWith(velocityTexture: SKTexture): SKFieldNode;
+    static velocityFieldWith(velocityTexture: SKTexture): Promise<SKFieldNode>;
     /**
      * class func velocityField(withVector direction: vector_float3) -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static velocityFieldWithVector(direction: SDKHandle): SKFieldNode;
+    static velocityFieldWithVector(direction: SDKHandle): Promise<SKFieldNode>;
     /**
      * class func vortexField() -> SKFieldNode
      * @availability iOS 8.0+
      */
-    static vortexField(): SKFieldNode;
+    static vortexField(): Promise<SKFieldNode>;
     /** init() */
-    static init(): SKFieldNode;
+    static init(): Promise<SKFieldNode>;
     /**
      * var animationSpeed: Float { get set }
      * @availability iOS 8.0+
      */
-    get animationSpeed(): number;
-    set animationSpeed(value: number);
+    get animationSpeed(): Promise<number>;
+    setAnimationSpeed(value: number): Promise<void>;
     /**
      * var categoryBitMask: UInt32 { get set }
      * @availability iOS 8.0+
      */
-    get categoryBitMask(): number;
-    set categoryBitMask(value: number);
+    get categoryBitMask(): Promise<number>;
+    setCategoryBitMask(value: number): Promise<void>;
     /**
      * var direction: vector_float3 { get set }
      * @availability iOS 8.0+
      */
-    get direction(): SDKHandle;
-    set direction(value: SDKHandle);
+    get direction(): Promise<SDKHandle>;
+    setDirection(value: SDKHandle): Promise<void>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 8.0+
      */
-    get isEnabled(): boolean;
-    set isEnabled(value: boolean);
+    get isEnabled(): Promise<boolean>;
+    setIsEnabled(value: boolean): Promise<void>;
     /**
      * var isExclusive: Bool { get set }
      * @availability iOS 8.0+
      */
-    get isExclusive(): boolean;
-    set isExclusive(value: boolean);
+    get isExclusive(): Promise<boolean>;
+    setIsExclusive(value: boolean): Promise<void>;
     /**
      * var falloff: Float { get set }
      * @availability iOS 8.0+
      */
-    get falloff(): number;
-    set falloff(value: number);
+    get falloff(): Promise<number>;
+    setFalloff(value: number): Promise<void>;
     /**
      * var minimumRadius: Float { get set }
      * @availability iOS 8.0+
      */
-    get minimumRadius(): number;
-    set minimumRadius(value: number);
+    get minimumRadius(): Promise<number>;
+    setMinimumRadius(value: number): Promise<void>;
     /**
      * var region: SKRegion? { get set }
      * @availability iOS 8.0+
      */
-    get region(): (SKRegion) | null;
-    set region(value: (SKRegion) | null);
+    get region(): Promise<(SKRegion) | null>;
+    setRegion(value?: (SKRegion) | null): Promise<void>;
     /**
      * var smoothness: Float { get set }
      * @availability iOS 8.0+
      */
-    get smoothness(): number;
-    set smoothness(value: number);
+    get smoothness(): Promise<number>;
+    setSmoothness(value: number): Promise<void>;
     /**
      * var strength: Float { get set }
      * @availability iOS 8.0+
      */
-    get strength(): number;
-    set strength(value: number);
+    get strength(): Promise<number>;
+    setStrength(value: number): Promise<void>;
     /**
      * var texture: SKTexture? { get set }
      * @availability iOS 8.0+
      */
-    get texture(): (SKTexture) | null;
-    set texture(value: (SKTexture) | null);
+    get texture(): Promise<(SKTexture) | null>;
+    setTexture(value?: (SKTexture) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKFieldNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "animationSpeed": true;
-        "categoryBitMask": true;
-        "direction": true;
-        "isEnabled": true;
-        "isExclusive": true;
-        "falloff": true;
-        "minimumRadius": true;
-        "region": true;
-        "smoothness": true;
-        "strength": true;
-        "texture": true;
     };
 }
 /** enum SKInterpolationMode */
@@ -1440,82 +1366,67 @@ export declare class SKLabelNode extends SKNode {
      * convenience init(attributedText: NSAttributedString?)
      * @availability iOS 11.0+
      */
-    static initAttributedText(attributedText?: $SDK16): SKLabelNode;
+    static initAttributedText(attributedText?: $SDK16): Promise<SKLabelNode>;
     /** convenience init(text: String?) */
-    static initText(text?: (string) | null): SKLabelNode;
+    static initText(text?: (string) | null): Promise<SKLabelNode>;
     /** init(fontNamed fontName: String?) */
-    static initFontNamed(fontName?: (string) | null): SKLabelNode;
+    static initFontNamed(fontName?: (string) | null): Promise<SKLabelNode>;
     /**
      * @NSCopying var attributedText: NSAttributedString? { get set }
      * @availability iOS 11.0+
      */
-    get attributedText(): $SDK16;
-    set attributedText(value: $SDK16);
+    get attributedText(): Promise<$SDK16>;
+    setAttributedText(value?: $SDK16): Promise<void>;
     /** var blendMode: SKBlendMode { get set } */
-    get blendMode(): SKBlendMode;
-    set blendMode(value: SKBlendMode);
+    get blendMode(): Promise<SKBlendMode>;
+    setBlendMode(value: SKBlendMode): Promise<void>;
     /** var color: UIColor? { get set } */
-    get color(): (_UIKit_UIColor) | null;
-    set color(value: (_UIKit_UIColor) | null);
+    get color(): Promise<(_UIKit_UIColor) | null>;
+    setColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /** var colorBlendFactor: CGFloat { get set } */
-    get colorBlendFactor(): number;
-    set colorBlendFactor(value: number);
+    get colorBlendFactor(): Promise<number>;
+    setColorBlendFactor(value: number): Promise<void>;
     /** var fontColor: UIColor? { get set } */
-    get fontColor(): (_UIKit_UIColor) | null;
-    set fontColor(value: (_UIKit_UIColor) | null);
+    get fontColor(): Promise<(_UIKit_UIColor) | null>;
+    setFontColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /** var fontName: String? { get set } */
-    get fontName(): (string) | null;
-    set fontName(value: (string) | null);
+    get fontName(): Promise<(string) | null>;
+    setFontName(value?: (string) | null): Promise<void>;
     /** var fontSize: CGFloat { get set } */
-    get fontSize(): number;
-    set fontSize(value: number);
+    get fontSize(): Promise<number>;
+    setFontSize(value: number): Promise<void>;
     /** var horizontalAlignmentMode: SKLabelHorizontalAlignmentMode { get set } */
-    get horizontalAlignmentMode(): SKLabelHorizontalAlignmentMode;
-    set horizontalAlignmentMode(value: SKLabelHorizontalAlignmentMode);
+    get horizontalAlignmentMode(): Promise<SKLabelHorizontalAlignmentMode>;
+    setHorizontalAlignmentMode(value: SKLabelHorizontalAlignmentMode): Promise<void>;
     /**
      * var lineBreakMode: NSLineBreakMode { get set }
      * @availability iOS 11.0+
      */
-    get lineBreakMode(): _UIKit_NSLineBreakMode;
-    set lineBreakMode(value: _UIKit_NSLineBreakMode);
+    get lineBreakMode(): Promise<_UIKit_NSLineBreakMode>;
+    setLineBreakMode(value: _UIKit_NSLineBreakMode): Promise<void>;
     /**
      * var numberOfLines: Int { get set }
      * @availability iOS 11.0+
      */
-    get numberOfLines(): number;
-    set numberOfLines(value: number);
+    get numberOfLines(): Promise<number>;
+    setNumberOfLines(value: number): Promise<void>;
     /**
      * var preferredMaxLayoutWidth: CGFloat { get set }
      * @availability iOS 11.0+
      */
-    get preferredMaxLayoutWidth(): number;
-    set preferredMaxLayoutWidth(value: number);
+    get preferredMaxLayoutWidth(): Promise<number>;
+    setPreferredMaxLayoutWidth(value: number): Promise<void>;
     /** var text: String? { get set } */
-    get text(): (string) | null;
-    set text(value: (string) | null);
+    get text(): Promise<(string) | null>;
+    setText(value?: (string) | null): Promise<void>;
     /** var verticalAlignmentMode: SKLabelVerticalAlignmentMode { get set } */
-    get verticalAlignmentMode(): SKLabelVerticalAlignmentMode;
-    set verticalAlignmentMode(value: SKLabelVerticalAlignmentMode);
+    get verticalAlignmentMode(): Promise<SKLabelVerticalAlignmentMode>;
+    setVerticalAlignmentMode(value: SKLabelVerticalAlignmentMode): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKLabelNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "attributedText": true;
-        "blendMode": true;
-        "color": true;
-        "colorBlendFactor": true;
-        "fontColor": true;
-        "fontName": true;
-        "fontSize": true;
-        "horizontalAlignmentMode": true;
-        "lineBreakMode": true;
-        "numberOfLines": true;
-        "preferredMaxLayoutWidth": true;
-        "text": true;
-        "verticalAlignmentMode": true;
     };
 }
 /**
@@ -1537,56 +1448,48 @@ declare const SKLightNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new
  */
 export declare class SKLightNode extends SKLightNode_base {
     /** init() */
-    static init(): SKLightNode;
+    static init(): Promise<SKLightNode>;
     /**
      * var ambientColor: UIColor { get set }
      * @availability iOS 8.0+
      */
-    get ambientColor(): _UIKit_UIColor;
-    set ambientColor(value: _UIKit_UIColor);
+    get ambientColor(): Promise<_UIKit_UIColor>;
+    setAmbientColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var categoryBitMask: UInt32 { get set }
      * @availability iOS 8.0+
      */
-    get categoryBitMask(): number;
-    set categoryBitMask(value: number);
+    get categoryBitMask(): Promise<number>;
+    setCategoryBitMask(value: number): Promise<void>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 8.0+
      */
-    get isEnabled(): boolean;
-    set isEnabled(value: boolean);
+    get isEnabled(): Promise<boolean>;
+    setIsEnabled(value: boolean): Promise<void>;
     /**
      * var falloff: CGFloat { get set }
      * @availability iOS 8.0+
      */
-    get falloff(): number;
-    set falloff(value: number);
+    get falloff(): Promise<number>;
+    setFalloff(value: number): Promise<void>;
     /**
      * var lightColor: UIColor { get set }
      * @availability iOS 8.0+
      */
-    get lightColor(): _UIKit_UIColor;
-    set lightColor(value: _UIKit_UIColor);
+    get lightColor(): Promise<_UIKit_UIColor>;
+    setLightColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var shadowColor: UIColor { get set }
      * @availability iOS 8.0+
      */
-    get shadowColor(): _UIKit_UIColor;
-    set shadowColor(value: _UIKit_UIColor);
+    get shadowColor(): Promise<_UIKit_UIColor>;
+    setShadowColor(value: _UIKit_UIColor): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKLightNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "ambientColor": true;
-        "categoryBitMask": true;
-        "isEnabled": true;
-        "falloff": true;
-        "lightColor": true;
-        "shadowColor": true;
     };
 }
 /** class SKTexture */
@@ -2192,37 +2095,37 @@ export declare class SKReferenceNode extends SKReferenceNode_base {
      * convenience init(fileNamed fileName: String)
      * @availability iOS 9.0+
      */
-    static initFileNamed(fileName: string): SKReferenceNode;
+    static initFileNamed(fileName: string): Promise<SKReferenceNode>;
     /**
      * convenience init(url referenceURL: URL)
      * @availability iOS 9.0+
      */
-    static initUrl(referenceURL: string): SKReferenceNode;
+    static initUrl(referenceURL: string): Promise<SKReferenceNode>;
     /**
      * func didLoad(_ node: SKNode?)
      * @availability iOS 9.0+
      */
-    didLoad(node?: (SKNode) | null): void;
+    didLoad(node?: (SKNode) | null): Promise<void>;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 9.0+
      */
-    static initCoder(aDecoder: _Foundation_NSCoder): (SKReferenceNode) | null;
+    static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SKReferenceNode) | null>;
     /**
      * init(fileNamed fileName: String?)
      * @availability iOS 9.0+
      */
-    static initFileNamed20498(fileName?: (string) | null): SKReferenceNode;
+    static initFileNamed20498(fileName?: (string) | null): Promise<SKReferenceNode>;
     /**
      * init(url: URL?)
      * @availability iOS 9.0+
      */
-    static initUrl30004(url?: (string) | null): SKReferenceNode;
+    static initUrl30004(url?: (string) | null): Promise<SKReferenceNode>;
     /**
      * func resolve()
      * @availability iOS 9.0+
      */
-    resolve(): void;
+    resolve(): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKReferenceNode": true;
         "c:objc(cs)SKNode": true;
@@ -2391,102 +2294,83 @@ declare const SKScene_base: Omit<typeof SKEffectNode, "init" | "prototype"> & (n
 /** class SKScene */
 export declare class SKScene extends SKScene_base {
     /** func convertPoint(fromView point: CGPoint) -> CGPoint */
-    convertPointFromView(point: $SDK1): $SDK1;
+    convertPointFromView(point: $SDK1): Promise<$SDK1>;
     /** func convertPoint(toView point: CGPoint) -> CGPoint */
-    convertPointToView(point: $SDK1): $SDK1;
+    convertPointToView(point: $SDK1): Promise<$SDK1>;
     /**
      * func didApplyConstraints()
      * @availability iOS 8.0+
      */
-    didApplyConstraints(): void;
+    didApplyConstraints(): Promise<void>;
     /** func didChangeSize(_ oldSize: CGSize) */
-    didChangeSize(oldSize: $SDK7): void;
+    didChangeSize(oldSize: $SDK7): Promise<void>;
     /** func didEvaluateActions() */
-    didEvaluateActions(): void;
+    didEvaluateActions(): Promise<void>;
     /**
      * func didFinishUpdate()
      * @availability iOS 8.0+
      */
-    didFinishUpdate(): void;
+    didFinishUpdate(): Promise<void>;
     /** func didMove(to view: SKView) */
-    didMove(view: SKView): void;
+    didMove(view: SKView): Promise<void>;
     /** func didSimulatePhysics() */
-    didSimulatePhysics(): void;
+    didSimulatePhysics(): Promise<void>;
     /** init(size: CGSize) */
-    static init(size: $SDK7): SKScene;
+    static init(size: $SDK7): Promise<SKScene>;
     /**
      * func sceneDidLoad()
      * @availability iOS 10.0+
      */
-    sceneDidLoad(): void;
+    sceneDidLoad(): Promise<void>;
     /** func update(_ currentTime: TimeInterval) */
-    update(currentTime: number): void;
+    update(currentTime: number): Promise<void>;
     /** func willMove(from view: SKView) */
-    willMove(view: SKView): void;
+    willMove(view: SKView): Promise<void>;
     /** var anchorPoint: CGPoint { get set } */
-    get anchorPoint(): $SDK1;
-    set anchorPoint(value: $SDK1);
+    get anchorPoint(): Promise<$SDK1>;
+    setAnchorPoint(value: $SDK1): Promise<void>;
     /**
      * var audioEngine: AVAudioEngine { get }
      * @availability iOS 9.0+
      */
-    get audioEngine(): _AVFAudio_AVAudioEngine;
+    get audioEngine(): Promise<_AVFAudio_AVAudioEngine>;
     /** var backgroundColor: UIColor { get set } */
-    get backgroundColor(): _UIKit_UIColor;
-    set backgroundColor(value: _UIKit_UIColor);
+    get backgroundColor(): Promise<_UIKit_UIColor>;
+    setBackgroundColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * weak var camera: SKCameraNode? { get set }
      * @availability iOS 9.0+
      */
-    get camera(): (SKCameraNode) | null;
-    set camera(value: (SKCameraNode) | null);
+    get camera(): Promise<(SKCameraNode) | null>;
+    setCamera(value?: (SKCameraNode) | null): Promise<void>;
     /**
      * weak var delegate: (any SKSceneDelegate)? { get set }
      * @availability iOS 8.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<SKSceneDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<SKSceneDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * weak var listener: SKNode? { get set }
      * @availability iOS 9.0+
      */
-    get listener(): (SKNode) | null;
-    set listener(value: (SKNode) | null);
+    get listener(): Promise<(SKNode) | null>;
+    setListener(value?: (SKNode) | null): Promise<void>;
     /** var physicsWorld: SKPhysicsWorld { get } */
-    get physicsWorld(): SKPhysicsWorld;
+    get physicsWorld(): Promise<SKPhysicsWorld>;
     /** var scaleMode: SKSceneScaleMode { get set } */
-    get scaleMode(): SKSceneScaleMode;
-    set scaleMode(value: SKSceneScaleMode);
+    get scaleMode(): Promise<SKSceneScaleMode>;
+    setScaleMode(value: SKSceneScaleMode): Promise<void>;
     /** var size: CGSize { get set } */
-    get size(): $SDK7;
-    set size(value: $SDK7);
+    get size(): Promise<$SDK7>;
+    setSize(value: $SDK7): Promise<void>;
     /** weak var view: SKView? { get } */
-    get view(): (SKView) | null;
+    get view(): Promise<(SKView) | null>;
     readonly $type: {
         "c:objc(cs)SKScene": true;
         "c:objc(cs)SKEffectNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "attributeValues": true;
-        "blendMode": true;
-        "filter": true;
-        "shader": true;
-        "shouldCenterFilter": true;
-        "shouldEnableEffects": true;
-        "shouldRasterize": true;
-        "anchorPoint": true;
-        "audioEngine": true;
-        "backgroundColor": true;
-        "camera": true;
-        "delegate": true;
-        "listener": true;
-        "physicsWorld": true;
-        "scaleMode": true;
-        "size": true;
-        "view": true;
     };
 }
 /**
@@ -2595,276 +2479,257 @@ export declare class SKShader extends SDKHandle {
         "uniforms": true;
     };
 }
-declare const SKShapeNode_base: Omit<typeof SKNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKShapeNode_base: Omit<typeof SKNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /** class SKShapeNode */
 export declare class SKShapeNode extends SKShapeNode_base {
     /**
      * convenience init(circleOfRadius radius: CGFloat)
      * @availability iOS 8.0+
      */
-    static initCircleOfRadius(radius: number): SKShapeNode;
+    static initCircleOfRadius(radius: number): Promise<SKShapeNode>;
     /**
      * convenience init(ellipseIn rect: CGRect)
      * @availability iOS 8.0+
      */
-    static initEllipseIn(rect: $SDK0): SKShapeNode;
+    static initEllipseIn(rect: $SDK0): Promise<SKShapeNode>;
     /**
      * convenience init(ellipseOf size: CGSize)
      * @availability iOS 8.0+
      */
-    static initEllipseOf(size: $SDK7): SKShapeNode;
+    static initEllipseOf(size: $SDK7): Promise<SKShapeNode>;
     /**
      * convenience init(path: CGPath)
      * @availability iOS 8.0+
      */
-    static initPath(path: _CoreGraphics_CGPath): SKShapeNode;
+    static initPath(path: _CoreGraphics_CGPath): Promise<SKShapeNode>;
     /**
      * convenience init(path: CGPath, centered: Bool)
      * @availability iOS 8.0+
      */
-    static initPathCentered(path: _CoreGraphics_CGPath, centered: boolean): SKShapeNode;
+    static initPathCentered(path: _CoreGraphics_CGPath, centered: boolean): Promise<SKShapeNode>;
     /**
      * convenience init(points: UnsafeMutablePointer<CGPoint>, count numPoints: Int)
      * @availability iOS 8.0+
      */
-    static initPointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode;
+    static initPointsCount(points: "animatableData" | SDKHandle, numPoints: number): Promise<SKShapeNode>;
     /**
      * convenience init(rect: CGRect)
      * @availability iOS 8.0+
      */
-    static initRect(rect: $SDK0): SKShapeNode;
+    static initRect(rect: $SDK0): Promise<SKShapeNode>;
     /**
      * convenience init(rect: CGRect, cornerRadius: CGFloat)
      * @availability iOS 8.0+
      */
-    static initRectCornerRadius(rect: $SDK0, cornerRadius: number): SKShapeNode;
+    static initRectCornerRadius(rect: $SDK0, cornerRadius: number): Promise<SKShapeNode>;
     /**
      * convenience init(rectOf size: CGSize)
      * @availability iOS 8.0+
      */
-    static initRectOf(size: $SDK7): SKShapeNode;
+    static initRectOf(size: $SDK7): Promise<SKShapeNode>;
     /**
      * convenience init(rectOf size: CGSize, cornerRadius: CGFloat)
      * @availability iOS 8.0+
      */
-    static initRectOfCornerRadius(size: $SDK7, cornerRadius: number): SKShapeNode;
+    static initRectOfCornerRadius(size: $SDK7, cornerRadius: number): Promise<SKShapeNode>;
     /**
      * convenience init(splinePoints points: UnsafeMutablePointer<CGPoint>, count numPoints: Int)
      * @availability iOS 8.0+
      */
-    static initSplinePointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode;
+    static initSplinePointsCount(points: "animatableData" | SDKHandle, numPoints: number): Promise<SKShapeNode>;
     /**
      * func setValue(_ value: SKAttributeValue, forAttribute key: String)
      * @availability iOS 10.0+
      */
-    setValue(value: SKAttributeValue, key: string): void;
+    setValue(value: SKAttributeValue, key: string): Promise<void>;
     /**
      * func value(forAttributeNamed key: String) -> SKAttributeValue?
      * @availability iOS 10.0+
      */
-    value(key: string): $SDK2;
+    value(key: string): Promise<$SDK2>;
     /** var isAntialiased: Bool { get set } */
-    get isAntialiased(): boolean;
-    set isAntialiased(value: boolean);
+    get isAntialiased(): Promise<boolean>;
+    setIsAntialiased(value: boolean): Promise<void>;
     /**
      * var attributeValues: [String : SKAttributeValue] { get set }
      * @availability iOS 10.0+
      */
-    get attributeValues(): $SDK3;
-    set attributeValues(value: $SDK3);
+    get attributeValues(): Promise<$SDK3>;
+    setAttributeValues(value: $SDK3): Promise<void>;
     /** var blendMode: SKBlendMode { get set } */
-    get blendMode(): SKBlendMode;
-    set blendMode(value: SKBlendMode);
+    get blendMode(): Promise<SKBlendMode>;
+    setBlendMode(value: SKBlendMode): Promise<void>;
     /** var fillColor: UIColor { get set } */
-    get fillColor(): _UIKit_UIColor;
-    set fillColor(value: _UIKit_UIColor);
+    get fillColor(): Promise<_UIKit_UIColor>;
+    setFillColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var fillShader: SKShader? { get set }
      * @availability iOS 8.0+
      */
-    get fillShader(): (SKShader) | null;
-    set fillShader(value: (SKShader) | null);
+    get fillShader(): Promise<(SKShader) | null>;
+    setFillShader(value?: (SKShader) | null): Promise<void>;
     /**
      * var fillTexture: SKTexture? { get set }
      * @availability iOS 8.0+
      */
-    get fillTexture(): (SKTexture) | null;
-    set fillTexture(value: (SKTexture) | null);
+    get fillTexture(): Promise<(SKTexture) | null>;
+    setFillTexture(value?: (SKTexture) | null): Promise<void>;
     /** var glowWidth: CGFloat { get set } */
-    get glowWidth(): number;
-    set glowWidth(value: number);
+    get glowWidth(): Promise<number>;
+    setGlowWidth(value: number): Promise<void>;
     /** var lineCap: CGLineCap { get set } */
-    get lineCap(): _CoreGraphics_CGLineCap;
-    set lineCap(value: _CoreGraphics_CGLineCap);
+    get lineCap(): Promise<_CoreGraphics_CGLineCap>;
+    setLineCap(value: _CoreGraphics_CGLineCap): Promise<void>;
     /** var lineJoin: CGLineJoin { get set } */
-    get lineJoin(): _CoreGraphics_CGLineJoin;
-    set lineJoin(value: _CoreGraphics_CGLineJoin);
+    get lineJoin(): Promise<_CoreGraphics_CGLineJoin>;
+    setLineJoin(value: _CoreGraphics_CGLineJoin): Promise<void>;
     /** var lineLength: CGFloat { get } */
-    get lineLength(): number;
+    get lineLength(): Promise<number>;
     /** var lineWidth: CGFloat { get set } */
-    get lineWidth(): number;
-    set lineWidth(value: number);
+    get lineWidth(): Promise<number>;
+    setLineWidth(value: number): Promise<void>;
     /** var miterLimit: CGFloat { get set } */
-    get miterLimit(): number;
-    set miterLimit(value: number);
+    get miterLimit(): Promise<number>;
+    setMiterLimit(value: number): Promise<void>;
     /** var path: CGPath? { get set } */
-    get path(): $SDK19;
-    set path(value: $SDK19);
+    get path(): Promise<$SDK19>;
+    setPath(value?: $SDK19): Promise<void>;
     /** var strokeColor: UIColor { get set } */
-    get strokeColor(): _UIKit_UIColor;
-    set strokeColor(value: _UIKit_UIColor);
+    get strokeColor(): Promise<_UIKit_UIColor>;
+    setStrokeColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var strokeShader: SKShader? { get set }
      * @availability iOS 8.0+
      */
-    get strokeShader(): (SKShader) | null;
-    set strokeShader(value: (SKShader) | null);
+    get strokeShader(): Promise<(SKShader) | null>;
+    setStrokeShader(value?: (SKShader) | null): Promise<void>;
     /**
      * var strokeTexture: SKTexture? { get set }
      * @availability iOS 8.0+
      */
-    get strokeTexture(): (SKTexture) | null;
-    set strokeTexture(value: (SKTexture) | null);
+    get strokeTexture(): Promise<(SKTexture) | null>;
+    setStrokeTexture(value?: (SKTexture) | null): Promise<void>;
     /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): Promise<SDKHandle>;
+    /**
+     * var attributeValues: [String : SKAttributeValue] { get set }
+     * @availability iOS 10.0+
+     * @deprecated iOS 10.0
+     */
+    get attributeValues1835(): Promise<$SDK3>;
+    setAttributeValues1835(value: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKShapeNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
-    readonly $observable: {
-        "isAntialiased": true;
-        "attributeValues": true;
-        "blendMode": true;
-        "fillColor": true;
-        "fillShader": true;
-        "fillTexture": true;
-        "glowWidth": true;
-        "lineCap": true;
-        "lineJoin": true;
-        "lineLength": true;
-        "lineWidth": true;
-        "miterLimit": true;
-        "path": true;
-        "strokeColor": true;
-        "strokeShader": true;
-        "strokeTexture": true;
-    };
 }
-declare const SKSpriteNode_base: Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKSpriteNode_base: Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /** class SKSpriteNode */
 export declare class SKSpriteNode extends SKSpriteNode_base {
     /** convenience init(imageNamed name: String, normalMapped generateNormalMap: Bool) */
-    static initImageNamedNormalMapped(name: string, generateNormalMap: boolean): SKSpriteNode;
+    static initImageNamedNormalMapped(name: string, generateNormalMap: boolean): Promise<SKSpriteNode>;
     /** convenience init(texture: SKTexture?, normalMap: SKTexture?) */
-    static initTextureNormalMap(texture?: (SKTexture) | null, normalMap?: (SKTexture) | null): SKSpriteNode;
+    static initTextureNormalMap(texture?: (SKTexture) | null, normalMap?: (SKTexture) | null): Promise<SKSpriteNode>;
     /** convenience init(texture: SKTexture?, size: CGSize) */
-    static initTextureSize(texture: (SKTexture) | null, size: $SDK7): SKSpriteNode;
+    static initTextureSize(texture: (SKTexture) | null, size: $SDK7): Promise<SKSpriteNode>;
     /** init?(coder aDecoder: NSCoder) */
-    static initCoder(aDecoder: _Foundation_NSCoder): (SKSpriteNode) | null;
+    static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SKSpriteNode) | null>;
     /** convenience init(color: UIColor, size: CGSize) */
-    static initColorSize(color: _UIKit_UIColor, size: $SDK7): SKSpriteNode;
+    static initColorSize(color: _UIKit_UIColor, size: $SDK7): Promise<SKSpriteNode>;
     /** convenience init(imageNamed name: String) */
-    static initImageNamed(name: string): SKSpriteNode;
+    static initImageNamed(name: string): Promise<SKSpriteNode>;
     /** convenience init(texture: SKTexture?) */
-    static initTexture(texture?: (SKTexture) | null): SKSpriteNode;
+    static initTexture(texture?: (SKTexture) | null): Promise<SKSpriteNode>;
     /** init(texture: SKTexture?, color: UIColor, size: CGSize) */
-    static initTextureColorSize(texture: (SKTexture) | null, color: _UIKit_UIColor, size: $SDK7): SKSpriteNode;
+    static initTextureColorSize(texture: (SKTexture) | null, color: _UIKit_UIColor, size: $SDK7): Promise<SKSpriteNode>;
     /**
      * func scale(to size: CGSize)
      * @availability iOS 10.0+
      */
-    scale(size: $SDK7): void;
+    scale(size: $SDK7): Promise<void>;
     /**
      * func setValue(_ value: SKAttributeValue, forAttribute key: String)
      * @availability iOS 10.0+
      */
-    setValue(value: SKAttributeValue, key: string): void;
+    setValue(value: SKAttributeValue, key: string): Promise<void>;
     /**
      * func value(forAttributeNamed key: String) -> SKAttributeValue?
      * @availability iOS 10.0+
      */
-    value(key: string): $SDK2;
+    value(key: string): Promise<$SDK2>;
     /** var anchorPoint: CGPoint { get set } */
-    get anchorPoint(): $SDK1;
-    set anchorPoint(value: $SDK1);
+    get anchorPoint(): Promise<$SDK1>;
+    setAnchorPoint(value: $SDK1): Promise<void>;
     /**
      * var attributeValues: [String : SKAttributeValue] { get set }
      * @availability iOS 10.0+
      */
-    get attributeValues(): $SDK3;
-    set attributeValues(value: $SDK3);
+    get attributeValues(): Promise<$SDK3>;
+    setAttributeValues(value: $SDK3): Promise<void>;
     /** var blendMode: SKBlendMode { get set } */
-    get blendMode(): SKBlendMode;
-    set blendMode(value: SKBlendMode);
+    get blendMode(): Promise<SKBlendMode>;
+    setBlendMode(value: SKBlendMode): Promise<void>;
     /** var centerRect: CGRect { get set } */
-    get centerRect(): $SDK0;
-    set centerRect(value: $SDK0);
+    get centerRect(): Promise<$SDK0>;
+    setCenterRect(value: $SDK0): Promise<void>;
     /** var color: UIColor { get set } */
-    get color(): _UIKit_UIColor;
-    set color(value: _UIKit_UIColor);
+    get color(): Promise<_UIKit_UIColor>;
+    setColor(value: _UIKit_UIColor): Promise<void>;
     /** var colorBlendFactor: CGFloat { get set } */
-    get colorBlendFactor(): number;
-    set colorBlendFactor(value: number);
+    get colorBlendFactor(): Promise<number>;
+    setColorBlendFactor(value: number): Promise<void>;
     /**
      * var lightingBitMask: UInt32 { get set }
      * @availability iOS 8.0+
      */
-    get lightingBitMask(): number;
-    set lightingBitMask(value: number);
+    get lightingBitMask(): Promise<number>;
+    setLightingBitMask(value: number): Promise<void>;
     /**
      * var normalTexture: SKTexture? { get set }
      * @availability iOS 8.0+
      */
-    get normalTexture(): (SKTexture) | null;
-    set normalTexture(value: (SKTexture) | null);
+    get normalTexture(): Promise<(SKTexture) | null>;
+    setNormalTexture(value?: (SKTexture) | null): Promise<void>;
     /**
      * var shader: SKShader? { get set }
      * @availability iOS 8.0+
      */
-    get shader(): (SKShader) | null;
-    set shader(value: (SKShader) | null);
+    get shader(): Promise<(SKShader) | null>;
+    setShader(value?: (SKShader) | null): Promise<void>;
     /**
      * var shadowCastBitMask: UInt32 { get set }
      * @availability iOS 8.0+
      */
-    get shadowCastBitMask(): number;
-    set shadowCastBitMask(value: number);
+    get shadowCastBitMask(): Promise<number>;
+    setShadowCastBitMask(value: number): Promise<void>;
     /**
      * var shadowedBitMask: UInt32 { get set }
      * @availability iOS 8.0+
      */
-    get shadowedBitMask(): number;
-    set shadowedBitMask(value: number);
+    get shadowedBitMask(): Promise<number>;
+    setShadowedBitMask(value: number): Promise<void>;
     /** var size: CGSize { get set } */
-    get size(): $SDK7;
-    set size(value: $SDK7);
+    get size(): Promise<$SDK7>;
+    setSize(value: $SDK7): Promise<void>;
     /** var texture: SKTexture? { get set } */
-    get texture(): (SKTexture) | null;
-    set texture(value: (SKTexture) | null);
+    get texture(): Promise<(SKTexture) | null>;
+    setTexture(value?: (SKTexture) | null): Promise<void>;
     /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): Promise<SDKHandle>;
+    /**
+     * var attributeValues: [String : SKAttributeValue] { get set }
+     * @availability iOS 10.0+
+     * @deprecated iOS 10.0
+     */
+    get attributeValues1835(): Promise<$SDK3>;
+    setAttributeValues1835(value: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKSpriteNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "anchorPoint": true;
-        "attributeValues": true;
-        "blendMode": true;
-        "centerRect": true;
-        "color": true;
-        "colorBlendFactor": true;
-        "lightingBitMask": true;
-        "normalTexture": true;
-        "shader": true;
-        "shadowCastBitMask": true;
-        "shadowedBitMask": true;
-        "size": true;
-        "texture": true;
     };
 }
 /** class SKTextureAtlas */
@@ -3296,7 +3161,7 @@ export declare class SKTileGroupRule extends SDKHandle {
         "tileDefinitions": true;
     };
 }
-declare const SKTileMapNode_base: Omit<typeof SKNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKTileMapNode_base: Omit<typeof SKNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /**
  * class SKTileMapNode
  * @availability iOS 10.0+
@@ -3306,164 +3171,156 @@ export declare class SKTileMapNode extends SKTileMapNode_base {
      * func centerOfTile(atColumn column: Int, row: Int) -> CGPoint
      * @availability iOS 10.0+
      */
-    centerOfTile(column: number, row: number): $SDK1;
+    centerOfTile(column: number, row: number): Promise<$SDK1>;
     /**
      * func fill(with tileGroup: SKTileGroup?)
      * @availability iOS 10.0+
      */
-    fill(tileGroup?: (SKTileGroup) | null): void;
+    fill(tileGroup?: (SKTileGroup) | null): Promise<void>;
     /**
      * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize)
      * @availability iOS 10.0+
      */
-    static initTileSetColumnsRowsTileSize(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7): SKTileMapNode;
+    static initTileSetColumnsRowsTileSize(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7): Promise<SKTileMapNode>;
     /**
      * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize, fillWith tileGroup: SKTileGroup)
      * @availability iOS 10.0+
      */
-    static initTileSetColumnsRowsTileSizeFillWith(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroup: SKTileGroup): SKTileMapNode;
+    static initTileSetColumnsRowsTileSizeFillWith(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroup: SKTileGroup): Promise<SKTileMapNode>;
     /**
      * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize, tileGroupLayout: [SKTileGroup])
      * @availability iOS 10.0+
      */
-    static initTileSetColumnsRowsTileSizeTileGroupLayout(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroupLayout: Array<SKTileGroup>): SKTileMapNode;
+    static initTileSetColumnsRowsTileSizeTileGroupLayout(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroupLayout: Array<SKTileGroup>): Promise<SKTileMapNode>;
     /**
      * func setTileGroup(_ tileGroup: SKTileGroup, andTileDefinition tileDefinition: SKTileDefinition, forColumn column: Int, row: Int)
      * @availability iOS 10.0+
      */
-    setTileGroupAndTileDefinitionForColumnRow(tileGroup: SKTileGroup, tileDefinition: SKTileDefinition, column: number, row: number): void;
+    setTileGroupAndTileDefinitionForColumnRow(tileGroup: SKTileGroup, tileDefinition: SKTileDefinition, column: number, row: number): Promise<void>;
     /**
      * func setTileGroup(_ tileGroup: SKTileGroup?, forColumn column: Int, row: Int)
      * @availability iOS 10.0+
      */
-    setTileGroupForColumnRow(tileGroup: (SKTileGroup) | null, column: number, row: number): void;
+    setTileGroupForColumnRow(tileGroup: (SKTileGroup) | null, column: number, row: number): Promise<void>;
     /**
      * func setValue(_ value: SKAttributeValue, forAttribute key: String)
      * @availability iOS 10.0+
      */
-    setValue(value: SKAttributeValue, key: string): void;
+    setValue(value: SKAttributeValue, key: string): Promise<void>;
     /**
      * func tileColumnIndex(fromPosition position: CGPoint) -> Int
      * @availability iOS 10.0+
      */
-    tileColumnIndex(position: $SDK1): number;
+    tileColumnIndex(position: $SDK1): Promise<number>;
     /**
      * func tileDefinition(atColumn column: Int, row: Int) -> SKTileDefinition?
      * @availability iOS 10.0+
      */
-    tileDefinition(column: number, row: number): (SKTileDefinition) | null;
+    tileDefinition(column: number, row: number): Promise<(SKTileDefinition) | null>;
     /**
      * func tileGroup(atColumn column: Int, row: Int) -> SKTileGroup?
      * @availability iOS 10.0+
      */
-    tileGroup(column: number, row: number): (SKTileGroup) | null;
+    tileGroup(column: number, row: number): Promise<(SKTileGroup) | null>;
     /**
      * func tileRowIndex(fromPosition position: CGPoint) -> Int
      * @availability iOS 10.0+
      */
-    tileRowIndex(position: $SDK1): number;
+    tileRowIndex(position: $SDK1): Promise<number>;
     /**
      * func value(forAttributeNamed key: String) -> SKAttributeValue?
      * @availability iOS 10.0+
      */
-    value(key: string): $SDK2;
+    value(key: string): Promise<$SDK2>;
     /**
      * var anchorPoint: CGPoint { get set }
      * @availability iOS 10.0+
      */
-    get anchorPoint(): $SDK1;
-    set anchorPoint(value: $SDK1);
+    get anchorPoint(): Promise<$SDK1>;
+    setAnchorPoint(value: $SDK1): Promise<void>;
     /**
      * var attributeValues: [String : SKAttributeValue] { get set }
      * @availability iOS 10.0+
      */
-    get attributeValues(): $SDK3;
-    set attributeValues(value: $SDK3);
+    get attributeValues(): Promise<$SDK3>;
+    setAttributeValues(value: $SDK3): Promise<void>;
     /**
      * var blendMode: SKBlendMode { get set }
      * @availability iOS 10.0+
      */
-    get blendMode(): SKBlendMode;
-    set blendMode(value: SKBlendMode);
+    get blendMode(): Promise<SKBlendMode>;
+    setBlendMode(value: SKBlendMode): Promise<void>;
     /**
      * var color: UIColor { get set }
      * @availability iOS 10.0+
      */
-    get color(): _UIKit_UIColor;
-    set color(value: _UIKit_UIColor);
+    get color(): Promise<_UIKit_UIColor>;
+    setColor(value: _UIKit_UIColor): Promise<void>;
     /**
      * var colorBlendFactor: CGFloat { get set }
      * @availability iOS 10.0+
      */
-    get colorBlendFactor(): number;
-    set colorBlendFactor(value: number);
+    get colorBlendFactor(): Promise<number>;
+    setColorBlendFactor(value: number): Promise<void>;
     /**
      * var enableAutomapping: Bool { get set }
      * @availability iOS 10.0+
      */
-    get enableAutomapping(): boolean;
-    set enableAutomapping(value: boolean);
+    get enableAutomapping(): Promise<boolean>;
+    setEnableAutomapping(value: boolean): Promise<void>;
     /**
      * var lightingBitMask: UInt32 { get set }
      * @availability iOS 10.0+
      */
-    get lightingBitMask(): number;
-    set lightingBitMask(value: number);
+    get lightingBitMask(): Promise<number>;
+    setLightingBitMask(value: number): Promise<void>;
     /**
      * var mapSize: CGSize { get }
      * @availability iOS 10.0+
      */
-    get mapSize(): $SDK7;
+    get mapSize(): Promise<$SDK7>;
     /**
      * var numberOfColumns: Int { get set }
      * @availability iOS 10.0+
      */
-    get numberOfColumns(): number;
-    set numberOfColumns(value: number);
+    get numberOfColumns(): Promise<number>;
+    setNumberOfColumns(value: number): Promise<void>;
     /**
      * var numberOfRows: Int { get set }
      * @availability iOS 10.0+
      */
-    get numberOfRows(): number;
-    set numberOfRows(value: number);
+    get numberOfRows(): Promise<number>;
+    setNumberOfRows(value: number): Promise<void>;
     /**
      * var shader: SKShader? { get set }
      * @availability iOS 10.0+
      */
-    get shader(): (SKShader) | null;
-    set shader(value: (SKShader) | null);
+    get shader(): Promise<(SKShader) | null>;
+    setShader(value?: (SKShader) | null): Promise<void>;
     /**
      * var tileSet: SKTileSet { get set }
      * @availability iOS 10.0+
      */
-    get tileSet(): SKTileSet;
-    set tileSet(value: SKTileSet);
+    get tileSet(): Promise<SKTileSet>;
+    setTileSet(value: SKTileSet): Promise<void>;
     /**
      * var tileSize: CGSize { get set }
      * @availability iOS 10.0+
      */
-    get tileSize(): $SDK7;
-    set tileSize(value: $SDK7);
+    get tileSize(): Promise<$SDK7>;
+    setTileSize(value: $SDK7): Promise<void>;
+    /**
+     * var attributeValues: [String : SKAttributeValue] { get set }
+     * @availability iOS 10.0+
+     * @deprecated iOS 10.0
+     */
+    get attributeValues1835(): Promise<$SDK3>;
+    setAttributeValues1835(value: $SDK3): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKTileMapNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "anchorPoint": true;
-        "attributeValues": true;
-        "blendMode": true;
-        "color": true;
-        "colorBlendFactor": true;
-        "enableAutomapping": true;
-        "lightingBitMask": true;
-        "mapSize": true;
-        "numberOfColumns": true;
-        "numberOfRows": true;
-        "shader": true;
-        "tileSet": true;
-        "tileSize": true;
     };
 }
 /**
@@ -3550,55 +3407,51 @@ export declare class SKTransformNode extends SKTransformNode_base {
      * func eulerAngles() -> vector_float3
      * @availability iOS 11.0+
      */
-    eulerAngles(): SDKHandle;
+    eulerAngles(): Promise<SDKHandle>;
     /** init() */
-    static init(): SKTransformNode;
+    static init(): Promise<SKTransformNode>;
     /**
      * func quaternion() -> simd_quatf
      * @availability iOS 11.0+
      */
-    quaternion(): SDKHandle;
+    quaternion(): Promise<SDKHandle>;
     /**
      * func rotationMatrix() -> matrix_float3x3
      * @availability iOS 11.0+
      */
-    rotationMatrix(): SDKHandle;
+    rotationMatrix(): Promise<SDKHandle>;
     /**
      * func setEulerAngles(_ euler: vector_float3)
      * @availability iOS 11.0+
      */
-    setEulerAngles(euler: SDKHandle): void;
+    setEulerAngles(euler: SDKHandle): Promise<void>;
     /**
      * func setQuaternion(_ quaternion: simd_quatf)
      * @availability iOS 11.0+
      */
-    setQuaternion(quaternion: SDKHandle): void;
+    setQuaternion(quaternion: SDKHandle): Promise<void>;
     /**
      * func setRotationMatrix(_ rotationMatrix: matrix_float3x3)
      * @availability iOS 11.0+
      */
-    setRotationMatrix(rotationMatrix: SDKHandle): void;
+    setRotationMatrix(rotationMatrix: SDKHandle): Promise<void>;
     /**
      * var xRotation: CGFloat { get set }
      * @availability iOS 11.0+
      */
-    get xRotation(): number;
-    set xRotation(value: number);
+    get xRotation(): Promise<number>;
+    setXRotation(value: number): Promise<void>;
     /**
      * var yRotation: CGFloat { get set }
      * @availability iOS 11.0+
      */
-    get yRotation(): number;
-    set yRotation(value: number);
+    get yRotation(): Promise<number>;
+    setYRotation(value: number): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKTransformNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "xRotation": true;
-        "yRotation": true;
     };
 }
 /** class SKTransition */
@@ -3883,171 +3736,148 @@ declare const SKVideoNode_base: Omit<typeof SKNode, "initCoder" | "initFileNamed
 /** class SKVideoNode */
 export declare class SKVideoNode extends SKVideoNode_base {
     /** init(avPlayer player: AVPlayer) */
-    static initAvPlayer(player: _AVFoundation_AVPlayer): SKVideoNode;
+    static initAvPlayer(player: _AVFoundation_AVPlayer): Promise<SKVideoNode>;
     /** init?(coder aDecoder: NSCoder) */
-    static initCoder(aDecoder: _Foundation_NSCoder): (SKVideoNode) | null;
+    static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SKVideoNode) | null>;
     /**
      * init(fileNamed videoFile: String)
      * @availability iOS 8.0+
      */
-    static initFileNamed(videoFile: string): SKVideoNode;
+    static initFileNamed(videoFile: string): Promise<SKVideoNode>;
     /**
      * init(url: URL)
      * @availability iOS 8.0+
      */
-    static initUrl(url: string): SKVideoNode;
+    static initUrl(url: string): Promise<SKVideoNode>;
     /**
      * init(videoFileNamed videoFile: String)
      * @availability iOS 7.0+
      * @deprecated iOS 8.0
      */
-    static initVideoFileNamed(videoFile: string): SKVideoNode;
+    static initVideoFileNamed(videoFile: string): Promise<SKVideoNode>;
     /**
      * init(videoURL url: URL)
      * @availability iOS 7.0+
      * @deprecated iOS 8.0
      */
-    static initVideoURL(url: string): SKVideoNode;
+    static initVideoURL(url: string): Promise<SKVideoNode>;
     /** func pause() */
-    pause(): void;
+    pause(): Promise<void>;
     /** func play() */
-    play(): void;
+    play(): Promise<void>;
     /** var anchorPoint: CGPoint { get set } */
-    get anchorPoint(): $SDK1;
-    set anchorPoint(value: $SDK1);
+    get anchorPoint(): Promise<$SDK1>;
+    setAnchorPoint(value: $SDK1): Promise<void>;
     /** var size: CGSize { get set } */
-    get size(): $SDK7;
-    set size(value: $SDK7);
+    get size(): Promise<$SDK7>;
+    setSize(value: $SDK7): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKVideoNode": true;
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
-    readonly $observable: {
-        "anchorPoint": true;
-        "size": true;
-    };
 }
 /** class SKView */
 export declare class SKView extends SDKHandle {
     /** func convert(_ point: CGPoint, from scene: SKScene) -> CGPoint */
-    convertFrom(point: $SDK1, scene: SKScene): $SDK1;
+    convertFrom(point: $SDK1, scene: SKScene): Promise<$SDK1>;
     /** func convert(_ point: CGPoint, to scene: SKScene) -> CGPoint */
-    convertTo(point: $SDK1, scene: SKScene): $SDK1;
+    convertTo(point: $SDK1, scene: SKScene): Promise<$SDK1>;
     /** init() */
-    static init(): SKView;
+    static init(): Promise<SKView>;
     /** func presentScene(_ scene: SKScene?) */
-    presentScene(scene?: (SKScene) | null): void;
+    presentScene(scene?: (SKScene) | null): Promise<void>;
     /** func presentScene(_ scene: SKScene, transition: SKTransition) */
-    presentSceneTransition(scene: SKScene, transition: SKTransition): void;
+    presentSceneTransition(scene: SKScene, transition: SKTransition): Promise<void>;
     /** func texture(from node: SKNode) -> SKTexture? */
-    textureFrom(node: SKNode): (SKTexture) | null;
+    textureFrom(node: SKNode): Promise<(SKTexture) | null>;
     /** func texture(from node: SKNode, crop: CGRect) -> SKTexture? */
-    textureFromCrop(node: SKNode, crop: $SDK0): (SKTexture) | null;
+    textureFromCrop(node: SKNode, crop: $SDK0): Promise<(SKTexture) | null>;
     /**
      * var allowsTransparency: Bool { get set }
      * @availability iOS 8.0+
      */
-    get allowsTransparency(): boolean;
-    set allowsTransparency(value: boolean);
+    get allowsTransparency(): Promise<boolean>;
+    setAllowsTransparency(value: boolean): Promise<void>;
     /** var isAsynchronous: Bool { get set } */
-    get isAsynchronous(): boolean;
-    set isAsynchronous(value: boolean);
+    get isAsynchronous(): Promise<boolean>;
+    setIsAsynchronous(value: boolean): Promise<void>;
     /**
      * weak var delegate: (any SKViewDelegate)? { get set }
      * @availability iOS 10.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<SKViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<SKViewDelegate> | SDKHandle) | null): Promise<void>;
     /** var disableDepthStencilBuffer: Bool { get set } */
-    get disableDepthStencilBuffer(): boolean;
-    set disableDepthStencilBuffer(value: boolean);
+    get disableDepthStencilBuffer(): Promise<boolean>;
+    setDisableDepthStencilBuffer(value: boolean): Promise<void>;
     /**
      * var frameInterval: Int { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    get frameInterval(): number;
-    set frameInterval(value: number);
+    get frameInterval(): Promise<number>;
+    setFrameInterval(value: number): Promise<void>;
     /** var ignoresSiblingOrder: Bool { get set } */
-    get ignoresSiblingOrder(): boolean;
-    set ignoresSiblingOrder(value: boolean);
+    get ignoresSiblingOrder(): Promise<boolean>;
+    setIgnoresSiblingOrder(value: boolean): Promise<void>;
     /** var isPaused: Bool { get set } */
-    get isPaused(): boolean;
-    set isPaused(value: boolean);
+    get isPaused(): Promise<boolean>;
+    setIsPaused(value: boolean): Promise<void>;
     /**
      * var preferredFrameRate: Float { get set }
      * @availability iOS 10.0+
      * @deprecated iOS 10.0
      */
-    get preferredFrameRate(): number;
-    set preferredFrameRate(value: number);
+    get preferredFrameRate(): Promise<number>;
+    setPreferredFrameRate(value: number): Promise<void>;
     /**
      * var preferredFramesPerSecond: Int { get set }
      * @availability iOS 10.0+
      */
-    get preferredFramesPerSecond(): number;
-    set preferredFramesPerSecond(value: number);
+    get preferredFramesPerSecond(): Promise<number>;
+    setPreferredFramesPerSecond(value: number): Promise<void>;
     /** var scene: SKScene? { get } */
-    get scene(): (SKScene) | null;
+    get scene(): Promise<(SKScene) | null>;
     /**
      * var shouldCullNonVisibleNodes: Bool { get set }
      * @availability iOS 8.0+
      */
-    get shouldCullNonVisibleNodes(): boolean;
-    set shouldCullNonVisibleNodes(value: boolean);
+    get shouldCullNonVisibleNodes(): Promise<boolean>;
+    setShouldCullNonVisibleNodes(value: boolean): Promise<void>;
     /** var showsDrawCount: Bool { get set } */
-    get showsDrawCount(): boolean;
-    set showsDrawCount(value: boolean);
+    get showsDrawCount(): Promise<boolean>;
+    setShowsDrawCount(value: boolean): Promise<void>;
     /** var showsFPS: Bool { get set } */
-    get showsFPS(): boolean;
-    set showsFPS(value: boolean);
+    get showsFPS(): Promise<boolean>;
+    setShowsFPS(value: boolean): Promise<void>;
     /**
      * var showsFields: Bool { get set }
      * @availability iOS 8.0+
      */
-    get showsFields(): boolean;
-    set showsFields(value: boolean);
+    get showsFields(): Promise<boolean>;
+    setShowsFields(value: boolean): Promise<void>;
     /** var showsNodeCount: Bool { get set } */
-    get showsNodeCount(): boolean;
-    set showsNodeCount(value: boolean);
+    get showsNodeCount(): Promise<boolean>;
+    setShowsNodeCount(value: boolean): Promise<void>;
     /**
      * var showsPhysics: Bool { get set }
      * @availability iOS 8.0+
      */
-    get showsPhysics(): boolean;
-    set showsPhysics(value: boolean);
+    get showsPhysics(): Promise<boolean>;
+    setShowsPhysics(value: boolean): Promise<void>;
     /**
      * var showsQuadCount: Bool { get set }
      * @availability iOS 8.0+
      */
-    get showsQuadCount(): boolean;
-    set showsQuadCount(value: boolean);
+    get showsQuadCount(): Promise<boolean>;
+    setShowsQuadCount(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)SKView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsTransparency": true;
-        "isAsynchronous": true;
-        "delegate": true;
-        "disableDepthStencilBuffer": true;
-        "frameInterval": true;
-        "ignoresSiblingOrder": true;
-        "isPaused": true;
-        "preferredFrameRate": true;
-        "preferredFramesPerSecond": true;
-        "scene": true;
-        "shouldCullNonVisibleNodes": true;
-        "showsDrawCount": true;
-        "showsFPS": true;
-        "showsFields": true;
-        "showsNodeCount": true;
-        "showsPhysics": true;
-        "showsQuadCount": true;
     };
 }
 /**

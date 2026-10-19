@@ -1085,21 +1085,18 @@ export declare class HMCameraView extends SDKHandle {
      * init()
      * @availability iOS 10.0+
      */
-    static init(): HMCameraView;
+    static init(): Promise<HMCameraView>;
     /**
      * var cameraSource: HMCameraSource? { get set }
      * @availability iOS 10.0+
      */
-    get cameraSource(): (HMCameraSource) | null;
-    set cameraSource(value: (HMCameraSource) | null);
+    get cameraSource(): Promise<(HMCameraSource) | null>;
+    setCameraSource(value?: (HMCameraSource) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)HMCameraView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "cameraSource": true;
     };
 }
 /**

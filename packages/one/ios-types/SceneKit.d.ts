@@ -5919,62 +5919,52 @@ export declare class SCNVector4 extends SDKHandle {
 /** class SCNView */
 export declare class SCNView extends SDKHandle {
     /** init(frame: CGRect, options: [String : Any]? = nil) */
-    static init(frame: $SDK59, options?: $SDK37): SCNView;
+    static init(frame: $SDK59, options?: $SDK37): Promise<SCNView>;
     /** @IBAction func pause(_ sender: Any?) */
-    pause(sender?: (unknown) | null): void;
+    pause(sender?: (unknown) | null): Promise<void>;
     /** @IBAction func play(_ sender: Any?) */
-    play(sender?: (unknown) | null): void;
+    play(sender?: (unknown) | null): Promise<void>;
     /** func snapshot() -> UIImage */
-    snapshot(): _UIKit_UIImage;
+    snapshot(): Promise<_UIKit_UIImage>;
     /** @IBAction func stop(_ sender: Any?) */
-    stop(sender?: (unknown) | null): void;
+    stop(sender?: (unknown) | null): Promise<void>;
     /** var allowsCameraControl: Bool { get set } */
-    get allowsCameraControl(): boolean;
-    set allowsCameraControl(value: boolean);
+    get allowsCameraControl(): Promise<boolean>;
+    setAllowsCameraControl(value: boolean): Promise<void>;
     /** var antialiasingMode: SCNAntialiasingMode { get set } */
-    get antialiasingMode(): SCNAntialiasingMode;
-    set antialiasingMode(value: SCNAntialiasingMode);
+    get antialiasingMode(): Promise<SCNAntialiasingMode>;
+    setAntialiasingMode(value: SCNAntialiasingMode): Promise<void>;
     /**
      * var cameraControlConfiguration: any SCNCameraControlConfiguration { get }
      * @availability iOS 11.0+
      */
-    get cameraControlConfiguration(): SDKHandle;
+    get cameraControlConfiguration(): Promise<SDKHandle>;
     /**
      * var defaultCameraController: SCNCameraController { get }
      * @availability iOS 11.0+
      */
-    get defaultCameraController(): SCNCameraController;
+    get defaultCameraController(): Promise<SCNCameraController>;
     /**
      * var eaglContext: EAGLContext? { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 12.0
      */
-    get eaglContext(): $SDK57;
-    set eaglContext(value: $SDK57);
+    get eaglContext(): Promise<$SDK57>;
+    setEaglContext(value?: $SDK57): Promise<void>;
     /** var preferredFramesPerSecond: Int { get set } */
-    get preferredFramesPerSecond(): number;
-    set preferredFramesPerSecond(value: number);
+    get preferredFramesPerSecond(): Promise<number>;
+    setPreferredFramesPerSecond(value: number): Promise<void>;
     /** var rendersContinuously: Bool { get set } */
-    get rendersContinuously(): boolean;
-    set rendersContinuously(value: boolean);
+    get rendersContinuously(): Promise<boolean>;
+    setRendersContinuously(value: boolean): Promise<void>;
     /** var scene: SCNScene? { get set } */
-    get scene(): (SCNScene) | null;
-    set scene(value: (SCNScene) | null);
+    get scene(): Promise<(SCNScene) | null>;
+    setScene(value?: (SCNScene) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)SCNView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsCameraControl": true;
-        "antialiasingMode": true;
-        "cameraControlConfiguration": true;
-        "defaultCameraController": true;
-        "eaglContext": true;
-        "preferredFramesPerSecond": true;
-        "rendersContinuously": true;
-        "scene": true;
     };
 }
 /** struct Option */
@@ -5984,19 +5974,19 @@ export declare const SCNView_Option: {
      * static let preferLowPowerDevice: SCNView.Option
      * @availability iOS 9.0+
      */
-    readonly preferLowPowerDevice: SCNView_Option;
+    readonly preferLowPowerDevice: Promise<SCNView_Option>;
     /**
      * static let preferredDevice: SCNView.Option
      * @availability iOS 9.0+
      */
-    readonly preferredDevice: SCNView_Option;
+    readonly preferredDevice: Promise<SCNView_Option>;
     /**
      * static let preferredRenderingAPI: SCNView.Option
      * @availability iOS 9.0+
      */
-    readonly preferredRenderingAPI: SCNView_Option;
+    readonly preferredRenderingAPI: Promise<SCNView_Option>;
     /** init(rawValue: String) */
-    init(rawValue: string): SCNView_Option;
+    init(rawValue: string): Promise<SCNView_Option>;
 };
 /** enum SCNWrapMode */
 export type SCNWrapMode = "clamp" | "repeat" | "clampToBorder" | "mirror";

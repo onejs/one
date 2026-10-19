@@ -37,61 +37,61 @@ type $SDK20 = Record<number, _UIKit_UIImage>;
  */
 export declare class PKCanvasView extends SDKHandle {
     /** init() */
-    static init(): PKCanvasView;
+    static init(): Promise<PKCanvasView>;
     /**
      * var allowsFingerDrawing: Bool { get set }
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    get allowsFingerDrawing(): boolean;
-    set allowsFingerDrawing(value: boolean);
+    get allowsFingerDrawing(): Promise<boolean>;
+    setAllowsFingerDrawing(value: boolean): Promise<void>;
     /**
      * weak var delegate: (any PKCanvasViewDelegate)? { get set }
      * @availability iOS 13.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<PKCanvasViewDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<PKCanvasViewDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var drawing: PKDrawing { get set }
      * @availability iOS 13.0+
      */
-    get drawing(): PKDrawing;
-    set drawing(value: PKDrawing);
+    get drawing(): Promise<PKDrawing>;
+    setDrawing(value: PKDrawing): Promise<void>;
     /**
      * var isDrawingEnabled: Bool { get set }
      * @availability iOS 18.0+
      */
-    get isDrawingEnabled(): boolean;
-    set isDrawingEnabled(value: boolean);
+    get isDrawingEnabled(): Promise<boolean>;
+    setIsDrawingEnabled(value: boolean): Promise<void>;
     /**
      * var drawingGestureRecognizer: UIGestureRecognizer { get }
      * @availability iOS 13.0+
      */
-    get drawingGestureRecognizer(): _UIKit_UIGestureRecognizer;
+    get drawingGestureRecognizer(): Promise<_UIKit_UIGestureRecognizer>;
     /**
      * var drawingPolicy: PKCanvasViewDrawingPolicy { get set }
      * @availability iOS 14.0+
      */
-    get drawingPolicy(): PKCanvasViewDrawingPolicy;
-    set drawingPolicy(value: PKCanvasViewDrawingPolicy);
+    get drawingPolicy(): Promise<PKCanvasViewDrawingPolicy>;
+    setDrawingPolicy(value: PKCanvasViewDrawingPolicy): Promise<void>;
     /**
      * var maximumSupportedContentVersion: PKContentVersion { get set }
      * @availability iOS 17.0+
      */
-    get maximumSupportedContentVersion(): PKContentVersion;
-    set maximumSupportedContentVersion(value: PKContentVersion);
+    get maximumSupportedContentVersion(): Promise<PKContentVersion>;
+    setMaximumSupportedContentVersion(value: PKContentVersion): Promise<void>;
     /**
      * var isRulerActive: Bool { get set }
      * @availability iOS 13.0+
      */
-    get isRulerActive(): boolean;
-    set isRulerActive(value: boolean);
+    get isRulerActive(): Promise<boolean>;
+    setIsRulerActive(value: boolean): Promise<void>;
     /**
      * var selection: Set<UUID> { get set }
      * @availability iOS 27.0+
      */
-    get selection(): Array<string>;
-    set selection(value: Array<string>);
+    get selection(): Promise<Array<string>>;
+    setSelection(value: Array<string>): Promise<void>;
     /**
      * @MainActor @preconcurrency var tool: any PKTool { get set }
      * @availability iOS 13.0+
@@ -104,17 +104,6 @@ export declare class PKCanvasView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "allowsFingerDrawing": true;
-        "delegate": true;
-        "drawing": true;
-        "isDrawingEnabled": true;
-        "drawingGestureRecognizer": true;
-        "drawingPolicy": true;
-        "maximumSupportedContentVersion": true;
-        "isRulerActive": true;
-        "selection": true;
     };
 }
 /**

@@ -32,7 +32,7 @@ export const ABAuthorizationStatus = {
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (ABAuthorizationStatus) | null { return callSDK<(ABAuthorizationStatus) | null>("AddressBook_90ad0eb69cc6bf4a", 2194480857779645, undefined, [rawValue]); }
+  init(rawValue: number): (ABAuthorizationStatus) | null { return callSDK<(ABAuthorizationStatus) | null>("AddressBook_067acaa3e5f56b46", 2194480857779645, undefined, [rawValue]); }
 };
 
 /**
@@ -83,20 +83,20 @@ export const ABPersonImageFormat = {
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  initRawValue(rawValue: number): ABPersonImageFormat { return callSDK<ABPersonImageFormat>("AddressBook_90ad0eb69cc6bf4a", 839019784590231, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ABPersonImageFormat { return callSDK<ABPersonImageFormat>("AddressBook_067acaa3e5f56b46", 839019784590231, undefined, [rawValue]); },
   /**
    * var rawValue: UInt32
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  getRawValue($self: ABPersonImageFormat): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4203861291871781, $self, []); },
-  setRawValue($self: ABPersonImageFormat, value: number): void { return callSDK<void>("AddressBook_90ad0eb69cc6bf4a", 2256018219555704, $self, [value]); },
+  getRawValue($self: ABPersonImageFormat): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 4203861291871781, $self, []); },
+  setRawValue($self: ABPersonImageFormat, value: number): void { return callSDK<void>("AddressBook_067acaa3e5f56b46", 2256018219555704, $self, [value]); },
   /**
    * init(_ rawValue: UInt32)
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): ABPersonImageFormat { return callSDK<ABPersonImageFormat>("AddressBook_90ad0eb69cc6bf4a", 716036868090242, undefined, [rawValue]); }
+  init(rawValue: number): ABPersonImageFormat { return callSDK<ABPersonImageFormat>("AddressBook_067acaa3e5f56b46", 716036868090242, undefined, [rawValue]); }
 };
 
 /**
@@ -146,1214 +146,1214 @@ export type ABSourceType = number;
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookAddRecord(addressBook?: (unknown) | null, record?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 3558618890484557, undefined, [addressBook, record, null]); }
+export function ABAddressBookAddRecord(addressBook?: (unknown) | null, record?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 3558618890484557, undefined, [addressBook, record, null]); }
 
 /**
  * func ABAddressBookCopyArrayOfAllGroups(_ addressBook: ABAddressBook!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyArrayOfAllGroups(addressBook?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 3619303319295195, undefined, [addressBook]); }
+export function ABAddressBookCopyArrayOfAllGroups(addressBook?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 3619303319295195, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookCopyArrayOfAllGroupsInSource(_ addressBook: ABAddressBook!, _ source: ABRecord!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyArrayOfAllGroupsInSource(addressBook?: (unknown) | null, source?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 1422038713347487, undefined, [addressBook, source]); }
+export function ABAddressBookCopyArrayOfAllGroupsInSource(addressBook?: (unknown) | null, source?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 1422038713347487, undefined, [addressBook, source]); }
 
 /**
  * func ABAddressBookCopyArrayOfAllPeople(_ addressBook: ABAddressBook!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyArrayOfAllPeople(addressBook?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 3031414146392685, undefined, [addressBook]); }
+export function ABAddressBookCopyArrayOfAllPeople(addressBook?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 3031414146392685, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookCopyArrayOfAllPeopleInSource(_ addressBook: ABAddressBook!, _ source: ABRecord!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyArrayOfAllPeopleInSource(addressBook?: (unknown) | null, source?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 980517965302224, undefined, [addressBook, source]); }
+export function ABAddressBookCopyArrayOfAllPeopleInSource(addressBook?: (unknown) | null, source?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 980517965302224, undefined, [addressBook, source]); }
 
 /**
  * func ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(_ addressBook: ABAddressBook!, _ source: ABRecord!, _ sortOrdering: ABPersonSortOrdering) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook: (unknown) | null, source: (unknown) | null, sortOrdering: number): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 1549367133995340, undefined, [addressBook, source, sortOrdering]); }
+export function ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook: (unknown) | null, source: (unknown) | null, sortOrdering: number): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 1549367133995340, undefined, [addressBook, source, sortOrdering]); }
 
 /**
  * func ABAddressBookCopyArrayOfAllSources(_ addressBook: ABAddressBook!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyArrayOfAllSources(addressBook?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 1401800328234773, undefined, [addressBook]); }
+export function ABAddressBookCopyArrayOfAllSources(addressBook?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 1401800328234773, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookCopyDefaultSource(_ addressBook: ABAddressBook!) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyDefaultSource(addressBook?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 752110068586422, undefined, [addressBook]); }
+export function ABAddressBookCopyDefaultSource(addressBook?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 752110068586422, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookCopyLocalizedLabel(_ label: CFString!) -> Unmanaged<CFString>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyLocalizedLabel(label?: $SDK4): $SDK4 { return callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2548443227318519, undefined, [label]); }
+export function ABAddressBookCopyLocalizedLabel(label?: $SDK4): $SDK4 { return callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2548443227318519, undefined, [label]); }
 
 /**
  * func ABAddressBookCopyPeopleWithName(_ addressBook: ABAddressBook!, _ name: CFString!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCopyPeopleWithName(addressBook?: (unknown) | null, name?: $SDK4): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 2791182403682912, undefined, [addressBook, name]); }
+export function ABAddressBookCopyPeopleWithName(addressBook?: (unknown) | null, name?: $SDK4): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 2791182403682912, undefined, [addressBook, name]); }
 
 /**
  * func ABAddressBookCreate() -> Unmanaged<ABAddressBook>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCreate(): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 1140880152148763, undefined, []); }
+export function ABAddressBookCreate(): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 1140880152148763, undefined, []); }
 
 /**
  * func ABAddressBookCreateWithOptions(_ options: CFDictionary!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<ABAddressBook>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookCreateWithOptions(options?: (_CoreFoundation_CFDictionary) | null): { $ret: (unknown) | null; $out: { "error": $SDK2 } } { return callSDK<{ $ret: (unknown) | null; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 72522534914438, undefined, [options, null]); }
+export function ABAddressBookCreateWithOptions(options?: (_CoreFoundation_CFDictionary) | null): { $ret: (unknown) | null; $out: { "error": $SDK2 } } { return callSDK<{ $ret: (unknown) | null; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 72522534914438, undefined, [options, null]); }
 
 /**
  * func ABAddressBookGetAuthorizationStatus() -> ABAuthorizationStatus
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookGetAuthorizationStatus(): ABAuthorizationStatus { return callSDK<ABAuthorizationStatus>("AddressBook_90ad0eb69cc6bf4a", 4325645967849184, undefined, []); }
+export function ABAddressBookGetAuthorizationStatus(): ABAuthorizationStatus { return callSDK<ABAuthorizationStatus>("AddressBook_067acaa3e5f56b46", 4325645967849184, undefined, []); }
 
 /**
  * func ABAddressBookGetGroupCount(_ addressBook: ABAddressBook!) -> CFIndex
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookGetGroupCount(addressBook?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4425509277615407, undefined, [addressBook]); }
+export function ABAddressBookGetGroupCount(addressBook?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 4425509277615407, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookGetGroupWithRecordID(_ addressBook: ABAddressBook!, _ recordID: ABRecordID) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookGetGroupWithRecordID(addressBook: (unknown) | null, recordID: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 215909306893206, undefined, [addressBook, recordID]); }
+export function ABAddressBookGetGroupWithRecordID(addressBook: (unknown) | null, recordID: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 215909306893206, undefined, [addressBook, recordID]); }
 
 /**
  * func ABAddressBookGetPersonCount(_ addressBook: ABAddressBook!) -> CFIndex
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookGetPersonCount(addressBook?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2975596144790468, undefined, [addressBook]); }
+export function ABAddressBookGetPersonCount(addressBook?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 2975596144790468, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookGetPersonWithRecordID(_ addressBook: ABAddressBook!, _ recordID: ABRecordID) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookGetPersonWithRecordID(addressBook: (unknown) | null, recordID: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 2802738675471986, undefined, [addressBook, recordID]); }
+export function ABAddressBookGetPersonWithRecordID(addressBook: (unknown) | null, recordID: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 2802738675471986, undefined, [addressBook, recordID]); }
 
 /**
  * func ABAddressBookGetSourceWithRecordID(_ addressBook: ABAddressBook!, _ sourceID: ABRecordID) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookGetSourceWithRecordID(addressBook: (unknown) | null, sourceID: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 613831859250117, undefined, [addressBook, sourceID]); }
+export function ABAddressBookGetSourceWithRecordID(addressBook: (unknown) | null, sourceID: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 613831859250117, undefined, [addressBook, sourceID]); }
 
 /**
  * func ABAddressBookHasUnsavedChanges(_ addressBook: ABAddressBook!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookHasUnsavedChanges(addressBook?: (unknown) | null): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 1877802969633043, undefined, [addressBook]); }
+export function ABAddressBookHasUnsavedChanges(addressBook?: (unknown) | null): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 1877802969633043, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookRemoveRecord(_ addressBook: ABAddressBook!, _ record: ABRecord!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookRemoveRecord(addressBook?: (unknown) | null, record?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 2321848674355761, undefined, [addressBook, record, null]); }
+export function ABAddressBookRemoveRecord(addressBook?: (unknown) | null, record?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 2321848674355761, undefined, [addressBook, record, null]); }
 
 /**
  * func ABAddressBookRequestAccessWithCompletion(_ addressBook: ABAddressBook!, _ completion: ABAddressBookRequestAccessCompletionHandler!)
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookRequestAccessWithCompletion(addressBook?: (unknown) | null, completion?: (((arg0: boolean, arg1: (_CoreFoundation_CFError) | null) => void)) | null): void { return callSDK<void>("AddressBook_90ad0eb69cc6bf4a", 1772741804806672, undefined, [addressBook, completion], [null,{"callback":{"out":[]}}]); }
+export function ABAddressBookRequestAccessWithCompletion(addressBook?: (unknown) | null, completion?: (((arg0: boolean, arg1: (_CoreFoundation_CFError) | null) => void)) | null): void { return callSDK<void>("AddressBook_067acaa3e5f56b46", 1772741804806672, undefined, [addressBook, completion], [null,{"callback":{"out":[]}}]); }
 
 /**
  * func ABAddressBookRevert(_ addressBook: ABAddressBook!)
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookRevert(addressBook?: (unknown) | null): void { return callSDK<void>("AddressBook_90ad0eb69cc6bf4a", 942760869184328, undefined, [addressBook]); }
+export function ABAddressBookRevert(addressBook?: (unknown) | null): void { return callSDK<void>("AddressBook_067acaa3e5f56b46", 942760869184328, undefined, [addressBook]); }
 
 /**
  * func ABAddressBookSave(_ addressBook: ABAddressBook!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABAddressBookSave(addressBook?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 3679711764599237, undefined, [addressBook, null]); }
+export function ABAddressBookSave(addressBook?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 3679711764599237, undefined, [addressBook, null]); }
 
 /**
  * func ABGroupAddMember(_ group: ABRecord!, _ person: ABRecord!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupAddMember(group?: (unknown) | null, person?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 520170729651105, undefined, [group, person, null]); }
+export function ABGroupAddMember(group?: (unknown) | null, person?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 520170729651105, undefined, [group, person, null]); }
 
 /**
  * func ABGroupCopyArrayOfAllMembers(_ group: ABRecord!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupCopyArrayOfAllMembers(group?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 1795263628766897, undefined, [group]); }
+export function ABGroupCopyArrayOfAllMembers(group?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 1795263628766897, undefined, [group]); }
 
 /**
  * func ABGroupCopyArrayOfAllMembersWithSortOrdering(_ group: ABRecord!, _ sortOrdering: ABPersonSortOrdering) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupCopyArrayOfAllMembersWithSortOrdering(group: (unknown) | null, sortOrdering: number): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 422251545787727, undefined, [group, sortOrdering]); }
+export function ABGroupCopyArrayOfAllMembersWithSortOrdering(group: (unknown) | null, sortOrdering: number): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 422251545787727, undefined, [group, sortOrdering]); }
 
 /**
  * func ABGroupCopySource(_ group: ABRecord!) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupCopySource(group?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 1463428756843444, undefined, [group]); }
+export function ABGroupCopySource(group?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 1463428756843444, undefined, [group]); }
 
 /**
  * func ABGroupCreate() -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupCreate(): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 1864618938060029, undefined, []); }
+export function ABGroupCreate(): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 1864618938060029, undefined, []); }
 
 /**
  * func ABGroupCreateInSource(_ source: ABRecord!) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupCreateInSource(source?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 2863813728361086, undefined, [source]); }
+export function ABGroupCreateInSource(source?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 2863813728361086, undefined, [source]); }
 
 /**
  * func ABGroupRemoveMember(_ group: ABRecord!, _ member: ABRecord!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABGroupRemoveMember(group?: (unknown) | null, member?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 1770007769973403, undefined, [group, member, null]); }
+export function ABGroupRemoveMember(group?: (unknown) | null, member?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 1770007769973403, undefined, [group, member, null]); }
 
 /**
  * func ABMultiValueAddValueAndLabel(_ multiValue: ABMutableMultiValue!, _ value: CFTypeRef!, _ label: CFString!, _ outIdentifier: UnsafeMutablePointer<ABMultiValueIdentifier>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueAddValueAndLabel(multiValue?: (unknown) | null, value?: (unknown) | null, label?: $SDK4, outIdentifier?: (SDKHandle) | null): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 656717522884372, undefined, [multiValue, value, label, outIdentifier]); }
+export function ABMultiValueAddValueAndLabel(multiValue?: (unknown) | null, value?: (unknown) | null, label?: $SDK4, outIdentifier?: (SDKHandle) | null): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 656717522884372, undefined, [multiValue, value, label, outIdentifier]); }
 
 /**
  * func ABMultiValueCopyArrayOfAllValues(_ multiValue: ABMultiValue!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueCopyArrayOfAllValues(multiValue?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 349679399965293, undefined, [multiValue]); }
+export function ABMultiValueCopyArrayOfAllValues(multiValue?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 349679399965293, undefined, [multiValue]); }
 
 /**
  * func ABMultiValueCopyLabelAtIndex(_ multiValue: ABMultiValue!, _ index: CFIndex) -> Unmanaged<CFString>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueCopyLabelAtIndex(multiValue: (unknown) | null, index: number): $SDK4 { return callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3599335892188093, undefined, [multiValue, index]); }
+export function ABMultiValueCopyLabelAtIndex(multiValue: (unknown) | null, index: number): $SDK4 { return callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3599335892188093, undefined, [multiValue, index]); }
 
 /**
  * func ABMultiValueCopyValueAtIndex(_ multiValue: ABMultiValue!, _ index: CFIndex) -> Unmanaged<CFTypeRef>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueCopyValueAtIndex(multiValue: (unknown) | null, index: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 2987308886183537, undefined, [multiValue, index]); }
+export function ABMultiValueCopyValueAtIndex(multiValue: (unknown) | null, index: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 2987308886183537, undefined, [multiValue, index]); }
 
 /**
  * func ABMultiValueCreateMutable(_ type: ABPropertyType) -> Unmanaged<ABMutableMultiValue>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueCreateMutable(type: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 4150477766770130, undefined, [type]); }
+export function ABMultiValueCreateMutable(type: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 4150477766770130, undefined, [type]); }
 
 /**
  * func ABMultiValueCreateMutableCopy(_ multiValue: ABMultiValue!) -> Unmanaged<ABMutableMultiValue>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueCreateMutableCopy(multiValue?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 3176641300312036, undefined, [multiValue]); }
+export function ABMultiValueCreateMutableCopy(multiValue?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 3176641300312036, undefined, [multiValue]); }
 
 /**
  * func ABMultiValueGetCount(_ multiValue: ABMultiValue!) -> CFIndex
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueGetCount(multiValue?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3355638929463002, undefined, [multiValue]); }
+export function ABMultiValueGetCount(multiValue?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 3355638929463002, undefined, [multiValue]); }
 
 /**
  * func ABMultiValueGetFirstIndexOfValue(_ multiValue: ABMultiValue!, _ value: CFTypeRef!) -> CFIndex
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueGetFirstIndexOfValue(multiValue?: (unknown) | null, value?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1345591758582432, undefined, [multiValue, value]); }
+export function ABMultiValueGetFirstIndexOfValue(multiValue?: (unknown) | null, value?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 1345591758582432, undefined, [multiValue, value]); }
 
 /**
  * func ABMultiValueGetIdentifierAtIndex(_ multiValue: ABMultiValue!, _ index: CFIndex) -> ABMultiValueIdentifier
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueGetIdentifierAtIndex(multiValue: (unknown) | null, index: number): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 340076596143195, undefined, [multiValue, index]); }
+export function ABMultiValueGetIdentifierAtIndex(multiValue: (unknown) | null, index: number): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 340076596143195, undefined, [multiValue, index]); }
 
 /**
  * func ABMultiValueGetIndexForIdentifier(_ multiValue: ABMultiValue!, _ identifier: ABMultiValueIdentifier) -> CFIndex
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueGetIndexForIdentifier(multiValue: (unknown) | null, identifier: number): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3941496941353465, undefined, [multiValue, identifier]); }
+export function ABMultiValueGetIndexForIdentifier(multiValue: (unknown) | null, identifier: number): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 3941496941353465, undefined, [multiValue, identifier]); }
 
 /**
  * func ABMultiValueGetPropertyType(_ multiValue: ABMultiValue!) -> ABPropertyType
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueGetPropertyType(multiValue?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1214070594560879, undefined, [multiValue]); }
+export function ABMultiValueGetPropertyType(multiValue?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 1214070594560879, undefined, [multiValue]); }
 
 /**
  * func ABMultiValueInsertValueAndLabelAtIndex(_ multiValue: ABMutableMultiValue!, _ value: CFTypeRef!, _ label: CFString!, _ index: CFIndex, _ outIdentifier: UnsafeMutablePointer<ABMultiValueIdentifier>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueInsertValueAndLabelAtIndex(multiValue: (unknown) | null, value: (unknown) | null, label: $SDK4, index: number, outIdentifier?: (SDKHandle) | null): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 3477333999106255, undefined, [multiValue, value, label, index, outIdentifier]); }
+export function ABMultiValueInsertValueAndLabelAtIndex(multiValue: (unknown) | null, value: (unknown) | null, label: $SDK4, index: number, outIdentifier?: (SDKHandle) | null): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 3477333999106255, undefined, [multiValue, value, label, index, outIdentifier]); }
 
 /**
  * func ABMultiValueRemoveValueAndLabelAtIndex(_ multiValue: ABMutableMultiValue!, _ index: CFIndex) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueRemoveValueAndLabelAtIndex(multiValue: (unknown) | null, index: number): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 2083378665525132, undefined, [multiValue, index]); }
+export function ABMultiValueRemoveValueAndLabelAtIndex(multiValue: (unknown) | null, index: number): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 2083378665525132, undefined, [multiValue, index]); }
 
 /**
  * func ABMultiValueReplaceLabelAtIndex(_ multiValue: ABMutableMultiValue!, _ label: CFString!, _ index: CFIndex) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueReplaceLabelAtIndex(multiValue: (unknown) | null, label: $SDK4, index: number): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 3386436754541587, undefined, [multiValue, label, index]); }
+export function ABMultiValueReplaceLabelAtIndex(multiValue: (unknown) | null, label: $SDK4, index: number): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 3386436754541587, undefined, [multiValue, label, index]); }
 
 /**
  * func ABMultiValueReplaceValueAtIndex(_ multiValue: ABMutableMultiValue!, _ value: CFTypeRef!, _ index: CFIndex) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABMultiValueReplaceValueAtIndex(multiValue: (unknown) | null, value: (unknown) | null, index: number): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 880130503537145, undefined, [multiValue, value, index]); }
+export function ABMultiValueReplaceValueAtIndex(multiValue: (unknown) | null, value: (unknown) | null, index: number): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 880130503537145, undefined, [multiValue, value, index]); }
 
 /**
  * func ABPersonComparePeopleByName(_ person1: ABRecord!, _ person2: ABRecord!, _ ordering: ABPersonSortOrdering) -> CFComparisonResult
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonComparePeopleByName(person1: (unknown) | null, person2: (unknown) | null, ordering: number): _CoreFoundation_CFComparisonResult { return callSDK<_CoreFoundation_CFComparisonResult>("AddressBook_90ad0eb69cc6bf4a", 3865854537690086, undefined, [person1, person2, ordering]); }
+export function ABPersonComparePeopleByName(person1: (unknown) | null, person2: (unknown) | null, ordering: number): _CoreFoundation_CFComparisonResult { return callSDK<_CoreFoundation_CFComparisonResult>("AddressBook_067acaa3e5f56b46", 3865854537690086, undefined, [person1, person2, ordering]); }
 
 /**
  * func ABPersonCopyArrayOfAllLinkedPeople(_ person: ABRecord!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCopyArrayOfAllLinkedPeople(person?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 138817109291530, undefined, [person]); }
+export function ABPersonCopyArrayOfAllLinkedPeople(person?: (unknown) | null): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 138817109291530, undefined, [person]); }
 
 /**
  * func ABPersonCopyCompositeNameDelimiterForRecord(_ record: ABRecord!) -> Unmanaged<CFString>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCopyCompositeNameDelimiterForRecord(record?: (unknown) | null): $SDK4 { return callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1724441655671577, undefined, [record]); }
+export function ABPersonCopyCompositeNameDelimiterForRecord(record?: (unknown) | null): $SDK4 { return callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1724441655671577, undefined, [record]); }
 
 /**
  * func ABPersonCopyImageData(_ person: ABRecord!) -> Unmanaged<CFData>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCopyImageData(person?: (unknown) | null): $SDK7 { return callSDK<$SDK7>("AddressBook_90ad0eb69cc6bf4a", 4080650295873493, undefined, [person]); }
+export function ABPersonCopyImageData(person?: (unknown) | null): $SDK7 { return callSDK<$SDK7>("AddressBook_067acaa3e5f56b46", 4080650295873493, undefined, [person]); }
 
 /**
  * func ABPersonCopyImageDataWithFormat(_ person: ABRecord!, _ format: ABPersonImageFormat) -> Unmanaged<CFData>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCopyImageDataWithFormat(person: (unknown) | null, format: ABPersonImageFormat): $SDK7 { return callSDK<$SDK7>("AddressBook_90ad0eb69cc6bf4a", 2627643676200335, undefined, [person, format]); }
+export function ABPersonCopyImageDataWithFormat(person: (unknown) | null, format: ABPersonImageFormat): $SDK7 { return callSDK<$SDK7>("AddressBook_067acaa3e5f56b46", 2627643676200335, undefined, [person, format]); }
 
 /**
  * func ABPersonCopyLocalizedPropertyName(_ property: ABPropertyID) -> Unmanaged<CFString>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCopyLocalizedPropertyName(property: number): $SDK4 { return callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2001415121067298, undefined, [property]); }
+export function ABPersonCopyLocalizedPropertyName(property: number): $SDK4 { return callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2001415121067298, undefined, [property]); }
 
 /**
  * func ABPersonCopySource(_ person: ABRecord!) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCopySource(person?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 4348478066901215, undefined, [person]); }
+export function ABPersonCopySource(person?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 4348478066901215, undefined, [person]); }
 
 /**
  * func ABPersonCreate() -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCreate(): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 4244825426443901, undefined, []); }
+export function ABPersonCreate(): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 4244825426443901, undefined, []); }
 
 /**
  * func ABPersonCreateInSource(_ source: ABRecord!) -> Unmanaged<ABRecord>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCreateInSource(source?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 1923111159991064, undefined, [source]); }
+export function ABPersonCreateInSource(source?: (unknown) | null): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 1923111159991064, undefined, [source]); }
 
 /**
  * func ABPersonCreatePeopleInSourceWithVCardRepresentation(_ source: ABRecord!, _ vCardData: CFData!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCreatePeopleInSourceWithVCardRepresentation(source?: (unknown) | null, vCardData?: $SDK7): $SDK3 { return callSDK<$SDK3>("AddressBook_90ad0eb69cc6bf4a", 242140503974171, undefined, [source, vCardData]); }
+export function ABPersonCreatePeopleInSourceWithVCardRepresentation(source?: (unknown) | null, vCardData?: $SDK7): $SDK3 { return callSDK<$SDK3>("AddressBook_067acaa3e5f56b46", 242140503974171, undefined, [source, vCardData]); }
 
 /**
  * func ABPersonCreateVCardRepresentationWithPeople(_ people: CFArray!) -> Unmanaged<CFData>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonCreateVCardRepresentationWithPeople(people?: $SDK3): $SDK7 { return callSDK<$SDK7>("AddressBook_90ad0eb69cc6bf4a", 2825260586549918, undefined, [people]); }
+export function ABPersonCreateVCardRepresentationWithPeople(people?: $SDK3): $SDK7 { return callSDK<$SDK7>("AddressBook_067acaa3e5f56b46", 2825260586549918, undefined, [people]); }
 
 /**
  * func ABPersonGetCompositeNameFormat() -> ABPersonCompositeNameFormat
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonGetCompositeNameFormat(): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1603475388366779, undefined, []); }
+export function ABPersonGetCompositeNameFormat(): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 1603475388366779, undefined, []); }
 
 /**
  * func ABPersonGetCompositeNameFormatForRecord(_ record: ABRecord!) -> ABPersonCompositeNameFormat
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonGetCompositeNameFormatForRecord(record?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2462614330363992, undefined, [record]); }
+export function ABPersonGetCompositeNameFormatForRecord(record?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 2462614330363992, undefined, [record]); }
 
 /**
  * func ABPersonGetSortOrdering() -> ABPersonSortOrdering
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonGetSortOrdering(): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1503803218204823, undefined, []); }
+export function ABPersonGetSortOrdering(): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 1503803218204823, undefined, []); }
 
 /**
  * func ABPersonGetTypeOfProperty(_ property: ABPropertyID) -> ABPropertyType
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonGetTypeOfProperty(property: number): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1002303171228299, undefined, [property]); }
+export function ABPersonGetTypeOfProperty(property: number): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 1002303171228299, undefined, [property]); }
 
 /**
  * func ABPersonHasImageData(_ person: ABRecord!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonHasImageData(person?: (unknown) | null): boolean { return callSDK<boolean>("AddressBook_90ad0eb69cc6bf4a", 945727935971148, undefined, [person]); }
+export function ABPersonHasImageData(person?: (unknown) | null): boolean { return callSDK<boolean>("AddressBook_067acaa3e5f56b46", 945727935971148, undefined, [person]); }
 
 /**
  * func ABPersonRemoveImageData(_ person: ABRecord!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonRemoveImageData(person?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 2468396462878654, undefined, [person, null]); }
+export function ABPersonRemoveImageData(person?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 2468396462878654, undefined, [person, null]); }
 
 /**
  * func ABPersonSetImageData(_ person: ABRecord!, _ imageData: CFData!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABPersonSetImageData(person?: (unknown) | null, imageData?: $SDK7): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 4077451483219118, undefined, [person, imageData, null]); }
+export function ABPersonSetImageData(person?: (unknown) | null, imageData?: $SDK7): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 4077451483219118, undefined, [person, imageData, null]); }
 
 /**
  * func ABRecordCopyCompositeName(_ record: ABRecord!) -> Unmanaged<CFString>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABRecordCopyCompositeName(record?: (unknown) | null): $SDK4 { return callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4099069833653088, undefined, [record]); }
+export function ABRecordCopyCompositeName(record?: (unknown) | null): $SDK4 { return callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4099069833653088, undefined, [record]); }
 
 /**
  * func ABRecordCopyValue(_ record: ABRecord!, _ property: ABPropertyID) -> Unmanaged<CFTypeRef>!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABRecordCopyValue(record: (unknown) | null, property: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_90ad0eb69cc6bf4a", 4337357231143890, undefined, [record, property]); }
+export function ABRecordCopyValue(record: (unknown) | null, property: number): (unknown) | null { return callSDK<(unknown) | null>("AddressBook_067acaa3e5f56b46", 4337357231143890, undefined, [record, property]); }
 
 /**
  * func ABRecordGetRecordID(_ record: ABRecord!) -> ABRecordID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABRecordGetRecordID(record?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1569170919401784, undefined, [record]); }
+export function ABRecordGetRecordID(record?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 1569170919401784, undefined, [record]); }
 
 /**
  * func ABRecordGetRecordType(_ record: ABRecord!) -> ABRecordType
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABRecordGetRecordType(record?: (unknown) | null): number { return callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 329751348207630, undefined, [record]); }
+export function ABRecordGetRecordType(record?: (unknown) | null): number { return callSDK<number>("AddressBook_067acaa3e5f56b46", 329751348207630, undefined, [record]); }
 
 /**
  * func ABRecordRemoveValue(_ record: ABRecord!, _ property: ABPropertyID, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABRecordRemoveValue(record: (unknown) | null, property: number): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 4451930163447426, undefined, [record, property, null]); }
+export function ABRecordRemoveValue(record: (unknown) | null, property: number): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 4451930163447426, undefined, [record, property, null]); }
 
 /**
  * func ABRecordSetValue(_ record: ABRecord!, _ property: ABPropertyID, _ value: CFTypeRef!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABRecordSetValue(record: (unknown) | null, property: number, value?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_90ad0eb69cc6bf4a", 3378166434598911, undefined, [record, property, value, null]); }
+export function ABRecordSetValue(record: (unknown) | null, property: number, value?: (unknown) | null): { $ret: boolean; $out: { "error": $SDK2 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK2 } }>("AddressBook_067acaa3e5f56b46", 3378166434598911, undefined, [record, property, value, null]); }
 
 /**
  * let ABAddressBookErrorDomain: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const ABAddressBookErrorDomain: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 652353925311515, undefined, []);
+export const ABAddressBookErrorDomain: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 652353925311515, undefined, []);
 
 /** var kABPersonImageFormatOriginalSize: ABPersonImageFormat { get } */
-export const kABPersonImageFormatOriginalSize: ABPersonImageFormat = callSDK<ABPersonImageFormat>("AddressBook_90ad0eb69cc6bf4a", 236400974318772, undefined, []);
+export const kABPersonImageFormatOriginalSize: ABPersonImageFormat = callSDK<ABPersonImageFormat>("AddressBook_067acaa3e5f56b46", 236400974318772, undefined, []);
 
 /** var kABPersonImageFormatThumbnail: ABPersonImageFormat { get } */
-export const kABPersonImageFormatThumbnail: ABPersonImageFormat = callSDK<ABPersonImageFormat>("AddressBook_90ad0eb69cc6bf4a", 1773402546854531, undefined, []);
+export const kABPersonImageFormatThumbnail: ABPersonImageFormat = callSDK<ABPersonImageFormat>("AddressBook_067acaa3e5f56b46", 1773402546854531, undefined, []);
 
 /** var kABDateTimePropertyType: Int { get } */
-export const kABDateTimePropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2717323510757992, undefined, []);
+export const kABDateTimePropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2717323510757992, undefined, []);
 
 /** var kABDictionaryPropertyType: Int { get } */
-export const kABDictionaryPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3465273972790587, undefined, []);
+export const kABDictionaryPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3465273972790587, undefined, []);
 
 /** var kABIntegerPropertyType: Int { get } */
-export const kABIntegerPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1002047431264431, undefined, []);
+export const kABIntegerPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1002047431264431, undefined, []);
 
 /** var kABInvalidPropertyType: Int { get } */
-export const kABInvalidPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1043232483771891, undefined, []);
+export const kABInvalidPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1043232483771891, undefined, []);
 
 /** var kABMultiDateTimePropertyType: Int { get } */
-export const kABMultiDateTimePropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 788478946569943, undefined, []);
+export const kABMultiDateTimePropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 788478946569943, undefined, []);
 
 /** var kABMultiDictionaryPropertyType: Int { get } */
-export const kABMultiDictionaryPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2185396571386170, undefined, []);
+export const kABMultiDictionaryPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2185396571386170, undefined, []);
 
 /** var kABMultiIntegerPropertyType: Int { get } */
-export const kABMultiIntegerPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1428170763696922, undefined, []);
+export const kABMultiIntegerPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1428170763696922, undefined, []);
 
 /** var kABMultiRealPropertyType: Int { get } */
-export const kABMultiRealPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4501526265762212, undefined, []);
+export const kABMultiRealPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 4501526265762212, undefined, []);
 
 /** var kABMultiStringPropertyType: Int { get } */
-export const kABMultiStringPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1119759377359718, undefined, []);
+export const kABMultiStringPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1119759377359718, undefined, []);
 
 /** var kABRealPropertyType: Int { get } */
-export const kABRealPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 656561644951366, undefined, []);
+export const kABRealPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 656561644951366, undefined, []);
 
 /** var kABStringPropertyType: Int { get } */
-export const kABStringPropertyType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3854075095232936, undefined, []);
+export const kABStringPropertyType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3854075095232936, undefined, []);
 
 /** var kABOperationNotPermittedByStoreError: Int { get } */
-export const kABOperationNotPermittedByStoreError: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2894346260485991, undefined, []);
+export const kABOperationNotPermittedByStoreError: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2894346260485991, undefined, []);
 
 /** var kABOperationNotPermittedByUserError: Int { get } */
-export const kABOperationNotPermittedByUserError: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1168453924113384, undefined, []);
+export const kABOperationNotPermittedByUserError: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1168453924113384, undefined, []);
 
 /** var kABPersonCompositeNameFormatFirstNameFirst: Int { get } */
-export const kABPersonCompositeNameFormatFirstNameFirst: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3249668081448504, undefined, []);
+export const kABPersonCompositeNameFormatFirstNameFirst: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3249668081448504, undefined, []);
 
 /** var kABPersonCompositeNameFormatLastNameFirst: Int { get } */
-export const kABPersonCompositeNameFormatLastNameFirst: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2377042193941574, undefined, []);
+export const kABPersonCompositeNameFormatLastNameFirst: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2377042193941574, undefined, []);
 
 /** var kABPersonSortByFirstName: Int { get } */
-export const kABPersonSortByFirstName: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3826204302713062, undefined, []);
+export const kABPersonSortByFirstName: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3826204302713062, undefined, []);
 
 /** var kABPersonSortByLastName: Int { get } */
-export const kABPersonSortByLastName: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2709483070878358, undefined, []);
+export const kABPersonSortByLastName: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2709483070878358, undefined, []);
 
 /** var kABGroupType: Int { get } */
-export const kABGroupType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2645913835798002, undefined, []);
+export const kABGroupType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2645913835798002, undefined, []);
 
 /** var kABPersonType: Int { get } */
-export const kABPersonType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3962019335776640, undefined, []);
+export const kABPersonType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3962019335776640, undefined, []);
 
 /** var kABSourceType: Int { get } */
-export const kABSourceType: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1511935598909397, undefined, []);
+export const kABSourceType: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1511935598909397, undefined, []);
 
 /** var kABSourceTypeCardDAV: Int { get } */
-export const kABSourceTypeCardDAV: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 772641442417357, undefined, []);
+export const kABSourceTypeCardDAV: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 772641442417357, undefined, []);
 
 /** var kABSourceTypeCardDAVSearch: Int { get } */
-export const kABSourceTypeCardDAVSearch: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4127053196567988, undefined, []);
+export const kABSourceTypeCardDAVSearch: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 4127053196567988, undefined, []);
 
 /** var kABSourceTypeExchange: Int { get } */
-export const kABSourceTypeExchange: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2649856117246569, undefined, []);
+export const kABSourceTypeExchange: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2649856117246569, undefined, []);
 
 /** var kABSourceTypeExchangeGAL: Int { get } */
-export const kABSourceTypeExchangeGAL: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2886805546571094, undefined, []);
+export const kABSourceTypeExchangeGAL: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2886805546571094, undefined, []);
 
 /** var kABSourceTypeLDAP: Int { get } */
-export const kABSourceTypeLDAP: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 920303403618174, undefined, []);
+export const kABSourceTypeLDAP: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 920303403618174, undefined, []);
 
 /** var kABSourceTypeLocal: Int { get } */
-export const kABSourceTypeLocal: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3255698265012202, undefined, []);
+export const kABSourceTypeLocal: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3255698265012202, undefined, []);
 
 /** var kABSourceTypeMobileMe: Int { get } */
-export const kABSourceTypeMobileMe: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2965446942611352, undefined, []);
+export const kABSourceTypeMobileMe: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2965446942611352, undefined, []);
 
 /**
  * let kABGroupNameProperty: Int32
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABGroupNameProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2156192048846524, undefined, []);
+export const kABGroupNameProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2156192048846524, undefined, []);
 
 /**
  * let kABHomeLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABHomeLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1128554081411135, undefined, []);
+export const kABHomeLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1128554081411135, undefined, []);
 
 /**
  * let kABOtherLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABOtherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2426189134440518, undefined, []);
+export const kABOtherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2426189134440518, undefined, []);
 
 /**
  * let kABPersonAddressCityKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressCityKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4405263885474063, undefined, []);
+export const kABPersonAddressCityKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4405263885474063, undefined, []);
 
 /**
  * let kABPersonAddressCountryCodeKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressCountryCodeKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3483264021637957, undefined, []);
+export const kABPersonAddressCountryCodeKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3483264021637957, undefined, []);
 
 /**
  * let kABPersonAddressCountryKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressCountryKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1466818272836185, undefined, []);
+export const kABPersonAddressCountryKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1466818272836185, undefined, []);
 
 /**
  * let kABPersonAddressProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 905966697191721, undefined, []);
+export const kABPersonAddressProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 905966697191721, undefined, []);
 
 /**
  * let kABPersonAddressStateKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressStateKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2694315944199971, undefined, []);
+export const kABPersonAddressStateKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2694315944199971, undefined, []);
 
 /**
  * let kABPersonAddressStreetKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressStreetKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4120880016424584, undefined, []);
+export const kABPersonAddressStreetKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4120880016424584, undefined, []);
 
 /**
  * let kABPersonAddressZIPKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAddressZIPKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1665435961955325, undefined, []);
+export const kABPersonAddressZIPKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1665435961955325, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayCalendarIdentifierKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayCalendarIdentifierKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 530411559154320, undefined, []);
+export const kABPersonAlternateBirthdayCalendarIdentifierKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 530411559154320, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayDayKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayDayKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 978396836464650, undefined, []);
+export const kABPersonAlternateBirthdayDayKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 978396836464650, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayEraKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayEraKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2200134279110858, undefined, []);
+export const kABPersonAlternateBirthdayEraKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2200134279110858, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayIsLeapMonthKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayIsLeapMonthKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4453008282243734, undefined, []);
+export const kABPersonAlternateBirthdayIsLeapMonthKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4453008282243734, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayMonthKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayMonthKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 342875712476710, undefined, []);
+export const kABPersonAlternateBirthdayMonthKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 342875712476710, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3211302447080687, undefined, []);
+export const kABPersonAlternateBirthdayProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3211302447080687, undefined, []);
 
 /**
  * let kABPersonAlternateBirthdayYearKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAlternateBirthdayYearKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1302919552305713, undefined, []);
+export const kABPersonAlternateBirthdayYearKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1302919552305713, undefined, []);
 
 /**
  * let kABPersonAnniversaryLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAnniversaryLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3523711228196548, undefined, []);
+export const kABPersonAnniversaryLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3523711228196548, undefined, []);
 
 /**
  * let kABPersonAssistantLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonAssistantLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4301846878240699, undefined, []);
+export const kABPersonAssistantLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4301846878240699, undefined, []);
 
 /**
  * let kABPersonBirthdayProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonBirthdayProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1743971517600426, undefined, []);
+export const kABPersonBirthdayProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1743971517600426, undefined, []);
 
 /**
  * let kABPersonBrotherLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonBrotherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1281285215949155, undefined, []);
+export const kABPersonBrotherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1281285215949155, undefined, []);
 
 /**
  * let kABPersonChildLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonChildLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3378654641500111, undefined, []);
+export const kABPersonChildLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3378654641500111, undefined, []);
 
 /**
  * let kABPersonCreationDateProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonCreationDateProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3196925094829129, undefined, []);
+export const kABPersonCreationDateProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3196925094829129, undefined, []);
 
 /**
  * let kABPersonDateProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonDateProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 980294209113765, undefined, []);
+export const kABPersonDateProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 980294209113765, undefined, []);
 
 /**
  * let kABPersonDepartmentProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonDepartmentProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4110181581930766, undefined, []);
+export const kABPersonDepartmentProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 4110181581930766, undefined, []);
 
 /**
  * let kABPersonEmailProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonEmailProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1575576801738423, undefined, []);
+export const kABPersonEmailProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1575576801738423, undefined, []);
 
 /**
  * let kABPersonFatherLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonFatherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3746910614527593, undefined, []);
+export const kABPersonFatherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3746910614527593, undefined, []);
 
 /**
  * let kABPersonFirstNamePhoneticProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonFirstNamePhoneticProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3890662369565808, undefined, []);
+export const kABPersonFirstNamePhoneticProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3890662369565808, undefined, []);
 
 /**
  * let kABPersonFirstNameProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonFirstNameProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 585270719544277, undefined, []);
+export const kABPersonFirstNameProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 585270719544277, undefined, []);
 
 /**
  * let kABPersonFriendLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonFriendLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3877104759350098, undefined, []);
+export const kABPersonFriendLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3877104759350098, undefined, []);
 
 /**
  * let kABPersonHomePageLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonHomePageLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3597454227832376, undefined, []);
+export const kABPersonHomePageLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3597454227832376, undefined, []);
 
 /**
  * let kABPersonInstantMessageProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1989791438514528, undefined, []);
+export const kABPersonInstantMessageProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1989791438514528, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceAIM: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceAIM: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 348462484043403, undefined, []);
+export const kABPersonInstantMessageServiceAIM: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 348462484043403, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceFacebook: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceFacebook: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3916123796193583, undefined, []);
+export const kABPersonInstantMessageServiceFacebook: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3916123796193583, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceGaduGadu: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceGaduGadu: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1484285316427436, undefined, []);
+export const kABPersonInstantMessageServiceGaduGadu: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1484285316427436, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceGoogleTalk: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceGoogleTalk: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3770070413175004, undefined, []);
+export const kABPersonInstantMessageServiceGoogleTalk: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3770070413175004, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceICQ: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceICQ: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4132826568554996, undefined, []);
+export const kABPersonInstantMessageServiceICQ: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4132826568554996, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceJabber: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceJabber: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3528516383669417, undefined, []);
+export const kABPersonInstantMessageServiceJabber: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3528516383669417, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 678945209151007, undefined, []);
+export const kABPersonInstantMessageServiceKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 678945209151007, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceMSN: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceMSN: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4255756388737597, undefined, []);
+export const kABPersonInstantMessageServiceMSN: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4255756388737597, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceQQ: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceQQ: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3019600676149085, undefined, []);
+export const kABPersonInstantMessageServiceQQ: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3019600676149085, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceSkype: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceSkype: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1389772053442942, undefined, []);
+export const kABPersonInstantMessageServiceSkype: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1389772053442942, undefined, []);
 
 /**
  * let kABPersonInstantMessageServiceYahoo: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageServiceYahoo: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3824384923826492, undefined, []);
+export const kABPersonInstantMessageServiceYahoo: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3824384923826492, undefined, []);
 
 /**
  * let kABPersonInstantMessageUsernameKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonInstantMessageUsernameKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2136431934813441, undefined, []);
+export const kABPersonInstantMessageUsernameKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2136431934813441, undefined, []);
 
 /**
  * let kABPersonJobTitleProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonJobTitleProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 779369289757993, undefined, []);
+export const kABPersonJobTitleProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 779369289757993, undefined, []);
 
 /**
  * let kABPersonKindOrganization: CFNumber!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonKindOrganization: $SDK8 = callSDK<$SDK8>("AddressBook_90ad0eb69cc6bf4a", 3741539844560171, undefined, []);
+export const kABPersonKindOrganization: $SDK8 = callSDK<$SDK8>("AddressBook_067acaa3e5f56b46", 3741539844560171, undefined, []);
 
 /**
  * let kABPersonKindPerson: CFNumber!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonKindPerson: $SDK8 = callSDK<$SDK8>("AddressBook_90ad0eb69cc6bf4a", 3772170372842612, undefined, []);
+export const kABPersonKindPerson: $SDK8 = callSDK<$SDK8>("AddressBook_067acaa3e5f56b46", 3772170372842612, undefined, []);
 
 /**
  * let kABPersonKindProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonKindProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3771616769668697, undefined, []);
+export const kABPersonKindProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3771616769668697, undefined, []);
 
 /**
  * let kABPersonLastNamePhoneticProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonLastNamePhoneticProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3161671881912764, undefined, []);
+export const kABPersonLastNamePhoneticProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3161671881912764, undefined, []);
 
 /**
  * let kABPersonLastNameProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonLastNameProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 809770587726709, undefined, []);
+export const kABPersonLastNameProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 809770587726709, undefined, []);
 
 /**
  * let kABPersonManagerLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonManagerLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1633318911346283, undefined, []);
+export const kABPersonManagerLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1633318911346283, undefined, []);
 
 /**
  * let kABPersonMiddleNamePhoneticProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonMiddleNamePhoneticProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 885590092124785, undefined, []);
+export const kABPersonMiddleNamePhoneticProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 885590092124785, undefined, []);
 
 /**
  * let kABPersonMiddleNameProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonMiddleNameProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2729819675888770, undefined, []);
+export const kABPersonMiddleNameProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2729819675888770, undefined, []);
 
 /**
  * let kABPersonModificationDateProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonModificationDateProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4355013351354617, undefined, []);
+export const kABPersonModificationDateProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 4355013351354617, undefined, []);
 
 /**
  * let kABPersonMotherLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonMotherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1013672895817554, undefined, []);
+export const kABPersonMotherLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1013672895817554, undefined, []);
 
 /**
  * let kABPersonNicknameProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonNicknameProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1581777467334077, undefined, []);
+export const kABPersonNicknameProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1581777467334077, undefined, []);
 
 /**
  * let kABPersonNoteProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonNoteProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 660936757008951, undefined, []);
+export const kABPersonNoteProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 660936757008951, undefined, []);
 
 /**
  * let kABPersonOrganizationProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonOrganizationProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3278410807482316, undefined, []);
+export const kABPersonOrganizationProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3278410807482316, undefined, []);
 
 /**
  * let kABPersonParentLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonParentLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 302081380765885, undefined, []);
+export const kABPersonParentLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 302081380765885, undefined, []);
 
 /**
  * let kABPersonPartnerLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPartnerLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1387856790079235, undefined, []);
+export const kABPersonPartnerLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1387856790079235, undefined, []);
 
 /**
  * let kABPersonPhoneHomeFAXLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneHomeFAXLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2883997514225484, undefined, []);
+export const kABPersonPhoneHomeFAXLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2883997514225484, undefined, []);
 
 /**
  * let kABPersonPhoneIPhoneLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneIPhoneLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 218324267508482, undefined, []);
+export const kABPersonPhoneIPhoneLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 218324267508482, undefined, []);
 
 /**
  * let kABPersonPhoneMainLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneMainLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2509437577162425, undefined, []);
+export const kABPersonPhoneMainLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2509437577162425, undefined, []);
 
 /**
  * let kABPersonPhoneMobileLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneMobileLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 395377093526113, undefined, []);
+export const kABPersonPhoneMobileLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 395377093526113, undefined, []);
 
 /**
  * let kABPersonPhoneOtherFAXLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneOtherFAXLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4209262076124046, undefined, []);
+export const kABPersonPhoneOtherFAXLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4209262076124046, undefined, []);
 
 /**
  * let kABPersonPhonePagerLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhonePagerLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 486892988441860, undefined, []);
+export const kABPersonPhonePagerLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 486892988441860, undefined, []);
 
 /**
  * let kABPersonPhoneProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 716505801516444, undefined, []);
+export const kABPersonPhoneProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 716505801516444, undefined, []);
 
 /**
  * let kABPersonPhoneWorkFAXLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPhoneWorkFAXLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3910517407727979, undefined, []);
+export const kABPersonPhoneWorkFAXLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3910517407727979, undefined, []);
 
 /**
  * let kABPersonPrefixProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonPrefixProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2771907472840746, undefined, []);
+export const kABPersonPrefixProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2771907472840746, undefined, []);
 
 /**
  * let kABPersonRelatedNamesProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonRelatedNamesProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1600765801221598, undefined, []);
+export const kABPersonRelatedNamesProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1600765801221598, undefined, []);
 
 /**
  * let kABPersonSisterLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSisterLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 529314107364363, undefined, []);
+export const kABPersonSisterLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 529314107364363, undefined, []);
 
 /**
  * let kABPersonSocialProfileProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3715806605053046, undefined, []);
+export const kABPersonSocialProfileProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3715806605053046, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceFacebook: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceFacebook: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 746008077823362, undefined, []);
+export const kABPersonSocialProfileServiceFacebook: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 746008077823362, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceFlickr: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceFlickr: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 4168420872467388, undefined, []);
+export const kABPersonSocialProfileServiceFlickr: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 4168420872467388, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceGameCenter: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceGameCenter: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2890019030311944, undefined, []);
+export const kABPersonSocialProfileServiceGameCenter: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2890019030311944, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 145713402950066, undefined, []);
+export const kABPersonSocialProfileServiceKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 145713402950066, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceLinkedIn: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceLinkedIn: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3185198819727840, undefined, []);
+export const kABPersonSocialProfileServiceLinkedIn: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3185198819727840, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceMyspace: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceMyspace: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1369531783308501, undefined, []);
+export const kABPersonSocialProfileServiceMyspace: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1369531783308501, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceSinaWeibo: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceSinaWeibo: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2460682486658540, undefined, []);
+export const kABPersonSocialProfileServiceSinaWeibo: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2460682486658540, undefined, []);
 
 /**
  * let kABPersonSocialProfileServiceTwitter: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileServiceTwitter: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3409096922520893, undefined, []);
+export const kABPersonSocialProfileServiceTwitter: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3409096922520893, undefined, []);
 
 /**
  * let kABPersonSocialProfileURLKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileURLKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 1350886880640510, undefined, []);
+export const kABPersonSocialProfileURLKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 1350886880640510, undefined, []);
 
 /**
  * let kABPersonSocialProfileUserIdentifierKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileUserIdentifierKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2884486471734026, undefined, []);
+export const kABPersonSocialProfileUserIdentifierKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2884486471734026, undefined, []);
 
 /**
  * let kABPersonSocialProfileUsernameKey: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSocialProfileUsernameKey: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 2053926227781952, undefined, []);
+export const kABPersonSocialProfileUsernameKey: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 2053926227781952, undefined, []);
 
 /**
  * let kABPersonSpouseLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSpouseLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 3150049881935136, undefined, []);
+export const kABPersonSpouseLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 3150049881935136, undefined, []);
 
 /**
  * let kABPersonSuffixProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonSuffixProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 489169821055413, undefined, []);
+export const kABPersonSuffixProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 489169821055413, undefined, []);
 
 /**
  * let kABPersonURLProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABPersonURLProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 1393122570985094, undefined, []);
+export const kABPersonURLProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 1393122570985094, undefined, []);
 
 /**
  * let kABSourceNameProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABSourceNameProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 14968127523173, undefined, []);
+export const kABSourceNameProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 14968127523173, undefined, []);
 
 /**
  * let kABSourceTypeProperty: ABPropertyID
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABSourceTypeProperty: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4017083374923389, undefined, []);
+export const kABSourceTypeProperty: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 4017083374923389, undefined, []);
 
 /**
  * let kABWorkLabel: CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kABWorkLabel: $SDK4 = callSDK<$SDK4>("AddressBook_90ad0eb69cc6bf4a", 403284510652522, undefined, []);
+export const kABWorkLabel: $SDK4 = callSDK<$SDK4>("AddressBook_067acaa3e5f56b46", 403284510652522, undefined, []);
 
 /** var kABMultiValueInvalidIdentifier: Int32 { get } */
-export const kABMultiValueInvalidIdentifier: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 439653944862733, undefined, []);
+export const kABMultiValueInvalidIdentifier: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 439653944862733, undefined, []);
 
 /** var kABMultiValueMask: Int32 { get } */
-export const kABMultiValueMask: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 4130194851853325, undefined, []);
+export const kABMultiValueMask: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 4130194851853325, undefined, []);
 
 /** var kABPropertyInvalidID: Int32 { get } */
-export const kABPropertyInvalidID: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 3819628700189697, undefined, []);
+export const kABPropertyInvalidID: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 3819628700189697, undefined, []);
 
 /** var kABRecordInvalidID: Int32 { get } */
-export const kABRecordInvalidID: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 2367899925729093, undefined, []);
+export const kABRecordInvalidID: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 2367899925729093, undefined, []);
 
 /** var kABSourceTypeSearchableMask: Int32 { get } */
-export const kABSourceTypeSearchableMask: number = callSDK<number>("AddressBook_90ad0eb69cc6bf4a", 937453228460996, undefined, []);
+export const kABSourceTypeSearchableMask: number = callSDK<number>("AddressBook_067acaa3e5f56b46", 937453228460996, undefined, []);
 
 

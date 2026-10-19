@@ -873,23 +873,20 @@ export declare class VNDocumentCameraViewController extends SDKHandle {
      * class var isSupported: Bool { get }
      * @availability iOS 13.0+
      */
-    static get isSupported(): boolean;
+    static get isSupported(): Promise<boolean>;
     /** init() */
-    static init(): VNDocumentCameraViewController;
+    static init(): Promise<VNDocumentCameraViewController>;
     /**
      * weak var delegate: (any VNDocumentCameraViewControllerDelegate)? { get set }
      * @availability iOS 13.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<VNDocumentCameraViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<VNDocumentCameraViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)VNDocumentCameraViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /**

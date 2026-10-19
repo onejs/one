@@ -208,26 +208,23 @@ export declare class LPLinkView extends SDKHandle {
      * init(metadata: LPLinkMetadata)
      * @availability iOS 13.0+
      */
-    static initMetadata(metadata: LPLinkMetadata): LPLinkView;
+    static initMetadata(metadata: LPLinkMetadata): Promise<LPLinkView>;
     /**
      * init(url URL: URL)
      * @availability iOS 13.0+
      */
-    static initUrl(URL: string): LPLinkView;
+    static initUrl(URL: string): Promise<LPLinkView>;
     /**
      * @NSCopying var metadata: LPLinkMetadata { get set }
      * @availability iOS 13.0+
      */
-    get metadata(): LPLinkMetadata;
-    set metadata(value: LPLinkMetadata);
+    get metadata(): Promise<LPLinkMetadata>;
+    setMetadata(value: LPLinkMetadata): Promise<void>;
     readonly $type: {
         "c:objc(cs)LPLinkView": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "metadata": true;
     };
 }
 /**

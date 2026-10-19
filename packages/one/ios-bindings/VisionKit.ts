@@ -29,140 +29,140 @@ export class DataScannerViewController extends SDKHandle {
    * @MainActor override dynamic func loadView()
    * @availability iOS 16.0+
    */
-  loadView(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 1797365036575131, this, []); }
+  loadView(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 1797365036575131, this, []); }
   /**
    * @MainActor override dynamic func removeFromParent()
    * @availability iOS 16.0+
    */
-  removeFromParent(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 295293168581360, this, []); }
+  removeFromParent(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 295293168581360, this, []); }
   /**
    * @MainActor override dynamic func viewDidDisappear(_ animated: Bool)
    * @availability iOS 16.0+
    */
-  viewDidDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 945293831241994, this, [animated]); }
+  viewDidDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 945293831241994, this, [animated]); }
   /**
    * @MainActor override dynamic func viewDidLoad()
    * @availability iOS 16.0+
    */
-  viewDidLoad(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 458056357781716, this, []); }
+  viewDidLoad(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 458056357781716, this, []); }
   /**
    * @MainActor override dynamic func viewWillAppear(_ animated: Bool)
    * @availability iOS 16.0+
    */
-  viewWillAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 2343702207457, this, [animated]); }
+  viewWillAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 2343702207457, this, [animated]); }
   /**
    * @MainActor init(recognizedDataTypes: Set<DataScannerViewController.RecognizedDataType>, qualityLevel: DataScannerViewController.QualityLevel = .balanced, recognizesMultipleItems: Bool = false, isHighFrameRateTrackingEnabled: Bool = true, isPinchToZoomEnabled: Bool = true, isGuidanceEnabled: Bool = true, isHighlightingEnabled: Bool = false)
    * @availability iOS 16.0+
    */
-  static init(recognizedDataTypes: $SDK0, qualityLevel?: DataScannerViewController_QualityLevel, recognizesMultipleItems?: boolean, isHighFrameRateTrackingEnabled?: boolean, isPinchToZoomEnabled?: boolean, isGuidanceEnabled?: boolean, isHighlightingEnabled?: boolean): Promise<DataScannerViewController> { return callSDKAsync<DataScannerViewController>("VisionKit_90ad0eb69cc6bf4a", 1438754505221896, undefined, [recognizedDataTypes, qualityLevel, recognizesMultipleItems, isHighFrameRateTrackingEnabled, isPinchToZoomEnabled, isGuidanceEnabled, isHighlightingEnabled]); }
+  static init(recognizedDataTypes: $SDK0, qualityLevel?: DataScannerViewController_QualityLevel, recognizesMultipleItems?: boolean, isHighFrameRateTrackingEnabled?: boolean, isPinchToZoomEnabled?: boolean, isGuidanceEnabled?: boolean, isHighlightingEnabled?: boolean): Promise<DataScannerViewController> { return callSDKAsync<DataScannerViewController>("VisionKit_067acaa3e5f56b46", 1438754505221896, undefined, [recognizedDataTypes, qualityLevel, recognizesMultipleItems, isHighFrameRateTrackingEnabled, isPinchToZoomEnabled, isGuidanceEnabled, isHighlightingEnabled]); }
   /**
    * @MainActor final let recognizedDataTypes: Set<DataScannerViewController.RecognizedDataType>
    * @availability iOS 16.0+
    */
-  get recognizedDataTypes(): Promise<$SDK0> { return callSDKAsync<$SDK0>("VisionKit_90ad0eb69cc6bf4a", 4785890492901, this, []); }
+  get recognizedDataTypes(): Promise<$SDK0> { return callSDKAsync<$SDK0>("VisionKit_067acaa3e5f56b46", 4785890492901, this, []); }
   /**
    * @MainActor var overlayContainerView: UIView { get }
    * @availability iOS 16.0+
    */
-  get overlayContainerView(): Promise<_UIKit_UIView> { return callSDKAsync<_UIKit_UIView>("VisionKit_90ad0eb69cc6bf4a", 4031863178479975, this, []); }
+  get overlayContainerView(): Promise<_UIKit_UIView> { return callSDKAsync<_UIKit_UIView>("VisionKit_067acaa3e5f56b46", 4031863178479975, this, []); }
   /**
    * @MainActor var isScanning: Bool { get }
    * @availability iOS 16.0+
    */
-  get isScanning(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 1549163071824529, this, []); }
+  get isScanning(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 1549163071824529, this, []); }
   /**
    * @MainActor var zoomFactor: Double { get set }
    * @availability iOS 16.0+
    */
-  get zoomFactor(): Promise<number> { return callSDKAsync<number>("VisionKit_90ad0eb69cc6bf4a", 4025429806754923, this, []); }
-  setZoomFactor(value: number): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 1587932948689484, this, [value]); }
+  get zoomFactor(): Promise<number> { return callSDKAsync<number>("VisionKit_067acaa3e5f56b46", 4025429806754923, this, []); }
+  setZoomFactor(value: number): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 1587932948689484, this, [value]); }
   /**
    * @MainActor class var isAvailable: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isAvailable(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 2852704213437447, undefined, []); }
+  static get isAvailable(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 2852704213437447, undefined, []); }
   /**
    * @MainActor class var isSupported: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isSupported(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 3471874248154805, undefined, []); }
+  static get isSupported(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 3471874248154805, undefined, []); }
   /**
    * @MainActor func capturePhoto() async throws -> UIImage
    * @availability iOS 16.0+
    */
-  capturePhoto(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("VisionKit_90ad0eb69cc6bf4a", 721041247741757, this, []); }
+  capturePhoto(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("VisionKit_067acaa3e5f56b46", 721041247741757, this, []); }
   /**
    * @MainActor final let qualityLevel: DataScannerViewController.QualityLevel
    * @availability iOS 16.0+
    */
-  get qualityLevel(): Promise<DataScannerViewController_QualityLevel> { return callSDKAsync<DataScannerViewController_QualityLevel>("VisionKit_90ad0eb69cc6bf4a", 1734903131268335, this, []); }
+  get qualityLevel(): Promise<DataScannerViewController_QualityLevel> { return callSDKAsync<DataScannerViewController_QualityLevel>("VisionKit_067acaa3e5f56b46", 1734903131268335, this, []); }
   /**
    * @MainActor func stopScanning()
    * @availability iOS 16.0+
    */
-  stopScanning(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 936434119521726, this, []); }
+  stopScanning(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 936434119521726, this, []); }
   /**
    * @MainActor var maxZoomFactor: Double { get }
    * @availability iOS 16.0+
    */
-  get maxZoomFactor(): Promise<number> { return callSDKAsync<number>("VisionKit_90ad0eb69cc6bf4a", 51256999794438, this, []); }
+  get maxZoomFactor(): Promise<number> { return callSDKAsync<number>("VisionKit_067acaa3e5f56b46", 51256999794438, this, []); }
   /**
    * @MainActor var minZoomFactor: Double { get }
    * @availability iOS 16.0+
    */
-  get minZoomFactor(): Promise<number> { return callSDKAsync<number>("VisionKit_90ad0eb69cc6bf4a", 782804844926434, this, []); }
+  get minZoomFactor(): Promise<number> { return callSDKAsync<number>("VisionKit_067acaa3e5f56b46", 782804844926434, this, []); }
   /**
    * @MainActor func startScanning() throws
    * @availability iOS 16.0+
    */
-  startScanning(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 14978140454079, this, []); }
+  startScanning(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 14978140454079, this, []); }
   /**
    * @MainActor var recognizedItems: AsyncStream<[RecognizedItem]> { get }
    * @availability iOS 16.0+
    */
-  get recognizedItems(): Promise<SDKSequence<Array<RecognizedItem>>> { return callSDKAsync<SDKSequence<Array<RecognizedItem>>>("VisionKit_90ad0eb69cc6bf4a", 2109838075246944, this, []); }
+  get recognizedItems(): Promise<SDKSequence<Array<RecognizedItem>>> { return callSDKAsync<SDKSequence<Array<RecognizedItem>>>("VisionKit_067acaa3e5f56b46", 2109838075246944, this, []); }
   /**
    * @MainActor var regionOfInterest: CGRect? { get set }
    * @availability iOS 16.0+
    */
-  get regionOfInterest(): Promise<$SDK2> { return callSDKAsync<$SDK2>("VisionKit_90ad0eb69cc6bf4a", 1633532921673591, this, []); }
-  setRegionOfInterest(value?: $SDK2): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 50093310653648, this, [value]); }
+  get regionOfInterest(): Promise<$SDK2> { return callSDKAsync<$SDK2>("VisionKit_067acaa3e5f56b46", 1633532921673591, this, []); }
+  setRegionOfInterest(value?: $SDK2): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 50093310653648, this, [value]); }
   /**
    * @MainActor final let isGuidanceEnabled: Bool
    * @availability iOS 16.0+
    */
-  get isGuidanceEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 767609936130731, this, []); }
+  get isGuidanceEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 767609936130731, this, []); }
   /**
    * @MainActor final let isPinchToZoomEnabled: Bool
    * @availability iOS 16.0+
    */
-  get isPinchToZoomEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 1287383160003638, this, []); }
+  get isPinchToZoomEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 1287383160003638, this, []); }
   /**
    * @MainActor final let isHighlightingEnabled: Bool
    * @availability iOS 16.0+
    */
-  get isHighlightingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 2209908880590519, this, []); }
+  get isHighlightingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 2209908880590519, this, []); }
   /**
    * @MainActor final let recognizesMultipleItems: Bool
    * @availability iOS 16.0+
    */
-  get recognizesMultipleItems(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 2580475300778839, this, []); }
+  get recognizesMultipleItems(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 2580475300778839, this, []); }
   /**
    * @MainActor final let isHighFrameRateTrackingEnabled: Bool
    * @availability iOS 16.0+
    */
-  get isHighFrameRateTrackingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 2107040940744333, this, []); }
+  get isHighFrameRateTrackingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 2107040940744333, this, []); }
   /**
    * @MainActor class var supportedTextRecognitionLanguages: [String] { get }
    * @availability iOS 16.0+
    */
-  static get supportedTextRecognitionLanguages(): Promise<Array<string>> { return callSDKAsync<Array<string>>("VisionKit_90ad0eb69cc6bf4a", 990382489600526, undefined, []); }
+  static get supportedTextRecognitionLanguages(): Promise<Array<string>> { return callSDKAsync<Array<string>>("VisionKit_067acaa3e5f56b46", 990382489600526, undefined, []); }
   /**
    * @MainActor weak var delegate: (any DataScannerViewControllerDelegate)?
    * @availability iOS 16.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("VisionKit_90ad0eb69cc6bf4a", 3468933700796781, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 2103680752604235, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("VisionKit_067acaa3e5f56b46", 3468933700796781, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 2103680752604235, this, [value]); }
   declare readonly $type: { "c:@M@VisionKit@objc(cs)DataScannerViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -181,12 +181,12 @@ export class DataScannerViewController_RecognizedDataType extends SDKHandle {
    * static func text(languages: [String] = [], textContentType: DataScannerViewController.TextContentType? = nil) -> DataScannerViewController.RecognizedDataType
    * @availability iOS 16.0+
    */
-  static text(languages?: Array<string>, textContentType?: (DataScannerViewController_TextContentType) | null): Promise<DataScannerViewController_RecognizedDataType> { return callSDKAsync<DataScannerViewController_RecognizedDataType>("VisionKit_90ad0eb69cc6bf4a", 3292468017591299, undefined, [languages, textContentType]); }
+  static text(languages?: Array<string>, textContentType?: (DataScannerViewController_TextContentType) | null): Promise<DataScannerViewController_RecognizedDataType> { return callSDKAsync<DataScannerViewController_RecognizedDataType>("VisionKit_067acaa3e5f56b46", 3292468017591299, undefined, [languages, textContentType]); }
   /**
    * static func barcode(symbologies: [VNBarcodeSymbology] = []) -> DataScannerViewController.RecognizedDataType
    * @availability iOS 16.0+
    */
-  static barcode(symbologies?: Array<_Vision_VNBarcodeSymbology>): Promise<DataScannerViewController_RecognizedDataType> { return callSDKAsync<DataScannerViewController_RecognizedDataType>("VisionKit_90ad0eb69cc6bf4a", 1633603908153355, undefined, [symbologies]); }
+  static barcode(symbologies?: Array<_Vision_VNBarcodeSymbology>): Promise<DataScannerViewController_RecognizedDataType> { return callSDKAsync<DataScannerViewController_RecognizedDataType>("VisionKit_067acaa3e5f56b46", 1633603908153355, undefined, [symbologies]); }
   declare readonly $type: { "s:9VisionKit25DataScannerViewControllerC010RecognizedC4TypeV": true };
 }
 
@@ -248,12 +248,12 @@ export class ImageAnalysis extends SDKHandle {
    * final func hasResults(for analysisTypes: ImageAnalyzer.AnalysisTypes) -> Bool
    * @availability iOS 16.0+
    */
-  hasResults(analysisTypes: ImageAnalyzer_AnalysisTypes): boolean { return callSDK<boolean>("VisionKit_90ad0eb69cc6bf4a", 1893824319540882, this, [analysisTypes]); }
+  hasResults(analysisTypes: ImageAnalyzer_AnalysisTypes): boolean { return callSDK<boolean>("VisionKit_067acaa3e5f56b46", 1893824319540882, this, [analysisTypes]); }
   /**
    * final var transcript: String { get }
    * @availability iOS 16.0+
    */
-  get transcript(): string { return callSDK<string>("VisionKit_90ad0eb69cc6bf4a", 4435029105447817, this, []); }
+  get transcript(): string { return callSDK<string>("VisionKit_067acaa3e5f56b46", 4435029105447817, this, []); }
   declare readonly $type: { "s:9VisionKit13ImageAnalysisC": true };
 }
 
@@ -266,177 +266,177 @@ export class ImageAnalysisInteraction extends SDKHandle {
    * @MainActor @preconcurrency final func didMove(to view: UIView?)
    * @availability iOS 16.0+
    */
-  didMove(view?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 835314823412315, this, [view]); }
+  didMove(view?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 835314823412315, this, [view]); }
   /**
    * @MainActor override dynamic init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<ImageAnalysisInteraction> { return callSDKAsync<ImageAnalysisInteraction>("VisionKit_90ad0eb69cc6bf4a", 506519208141760, undefined, []); }
+  static init(): Promise<ImageAnalysisInteraction> { return callSDKAsync<ImageAnalysisInteraction>("VisionKit_067acaa3e5f56b46", 506519208141760, undefined, []); }
   /**
    * @MainActor @preconcurrency final func willMove(to view: UIView?)
    * @availability iOS 16.0+
    */
-  willMove(view?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 2881862653672442, this, [view]); }
+  willMove(view?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 2881862653672442, this, [view]); }
   /**
    * @MainActor @preconcurrency weak final var view: UIView? { get }
    * @availability iOS 16.0+
    */
-  get view(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("VisionKit_90ad0eb69cc6bf4a", 2083927060109151, this, []); }
+  get view(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("VisionKit_067acaa3e5f56b46", 2083927060109151, this, []); }
   /**
    * @MainActor final var activeInteractionTypes: ImageAnalysisInteraction.InteractionTypes { get }
    * @availability iOS 16.0+
    */
-  get activeInteractionTypes(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 3667541165929496, this, []); }
+  get activeInteractionTypes(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 3667541165929496, this, []); }
   /**
    * @MainActor final var preferredInteractionTypes: ImageAnalysisInteraction.InteractionTypes { get set }
    * @availability iOS 16.0+
    */
-  get preferredInteractionTypes(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 2613775552536148, this, []); }
-  setPreferredInteractionTypes(value: ImageAnalysisInteraction_InteractionTypes): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 3293412066896709, this, [value]); }
+  get preferredInteractionTypes(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 2613775552536148, this, []); }
+  setPreferredInteractionTypes(value: ImageAnalysisInteraction_InteractionTypes): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 3293412066896709, this, [value]); }
   /**
    * @MainActor final var contentsRect: CGRect { get }
    * @availability iOS 16.0+
    */
-  get contentsRect(): Promise<$SDK5> { return callSDKAsync<$SDK5>("VisionKit_90ad0eb69cc6bf4a", 2042131926437915, this, []); }
+  get contentsRect(): Promise<$SDK5> { return callSDKAsync<$SDK5>("VisionKit_067acaa3e5f56b46", 2042131926437915, this, []); }
   /**
    * @MainActor final var selectedText: String { get }
    * @availability iOS 17.0+
    */
-  get selectedText(): Promise<string> { return callSDKAsync<string>("VisionKit_90ad0eb69cc6bf4a", 3982494675457791, this, []); }
+  get selectedText(): Promise<string> { return callSDKAsync<string>("VisionKit_067acaa3e5f56b46", 3982494675457791, this, []); }
   /**
    * @MainActor final var selectedRanges: [Range<String.Index>] { get set }
    * @availability iOS 17.0+
    */
-  get selectedRanges(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("VisionKit_90ad0eb69cc6bf4a", 2726646732541535, this, []); }
-  setSelectedRanges(value: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 254008967712219, this, [value]); }
+  get selectedRanges(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("VisionKit_067acaa3e5f56b46", 2726646732541535, this, []); }
+  setSelectedRanges(value: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 254008967712219, this, [value]); }
   /**
    * @MainActor final func analysisHasText(at point: CGPoint) -> Bool
    * @availability iOS 16.0+
    */
-  analysisHasText(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 2310504776984524, this, [point]); }
+  analysisHasText(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 2310504776984524, this, [point]); }
   /**
    * @MainActor final func hasDataDetector(at point: CGPoint) -> Bool
    * @availability iOS 16.0+
    */
-  hasDataDetector(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 491244401025073, this, [point]); }
+  hasDataDetector(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 491244401025073, this, [point]); }
   /**
    * @MainActor final func hasInteractiveItem(at point: CGPoint) -> Bool
    * @availability iOS 16.0+
    */
-  hasInteractiveItem(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 3214115636722355, this, [point]); }
+  hasInteractiveItem(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 3214115636722355, this, [point]); }
   /**
    * @MainActor final func resetTextSelection()
    * @availability iOS 16.0+
    */
-  resetTextSelection(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 1601137039449319, this, []); }
+  resetTextSelection(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 1601137039449319, this, []); }
   /**
    * @MainActor final var highlightedSubjects: Set<ImageAnalysisInteraction.Subject> { get set }
    * @availability iOS 16.0+
    */
-  get highlightedSubjects(): Promise<$SDK7> { return callSDKAsync<$SDK7>("VisionKit_90ad0eb69cc6bf4a", 1610802355528766, this, []); }
-  setHighlightedSubjects(value: $SDK7): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 1199727922929068, this, [value]); }
+  get highlightedSubjects(): Promise<$SDK7> { return callSDKAsync<$SDK7>("VisionKit_067acaa3e5f56b46", 1610802355528766, this, []); }
+  setHighlightedSubjects(value: $SDK7): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 1199727922929068, this, [value]); }
   /**
    * @MainActor final var liveTextButtonVisible: Bool { get }
    * @availability iOS 16.0+
    */
-  get liveTextButtonVisible(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 1621633464351680, this, []); }
+  get liveTextButtonVisible(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 1621633464351680, this, []); }
   /**
    * @MainActor final var hasActiveTextSelection: Bool { get }
    * @availability iOS 16.0+
    */
-  get hasActiveTextSelection(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 2563167315514235, this, []); }
+  get hasActiveTextSelection(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 2563167315514235, this, []); }
   /**
    * @MainActor final var selectedAttributedText: AttributedString { get }
    * @availability iOS 17.0+
    */
-  get selectedAttributedText(): Promise<_Foundation_AttributedString> { return callSDKAsync<_Foundation_AttributedString>("VisionKit_90ad0eb69cc6bf4a", 2652714953664579, this, []); }
+  get selectedAttributedText(): Promise<_Foundation_AttributedString> { return callSDKAsync<_Foundation_AttributedString>("VisionKit_067acaa3e5f56b46", 2652714953664579, this, []); }
   /**
    * @MainActor final func hasSupplementaryInterface(at point: CGPoint) -> Bool
    * @availability iOS 16.0+
    */
-  hasSupplementaryInterface(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 3407521825451352, this, [point]); }
+  hasSupplementaryInterface(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 3407521825451352, this, [point]); }
   /**
    * @MainActor final var selectableItemsHighlighted: Bool { get set }
    * @availability iOS 16.0+
    */
-  get selectableItemsHighlighted(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 3995086626111904, this, []); }
-  setSelectableItemsHighlighted(value: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 6148984314383, this, [value]); }
+  get selectableItemsHighlighted(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 3995086626111904, this, []); }
+  setSelectableItemsHighlighted(value: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 6148984314383, this, [value]); }
   /**
    * @MainActor final func setContentsRectNeedsUpdate()
    * @availability iOS 16.0+
    */
-  setContentsRectNeedsUpdate(): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 2081735118361374, this, []); }
+  setContentsRectNeedsUpdate(): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 2081735118361374, this, []); }
   /**
    * @MainActor final var supplementaryInterfaceFont: UIFont? { get set }
    * @availability iOS 16.0+
    */
-  get supplementaryInterfaceFont(): Promise<(_UIKit_UIFont) | null> { return callSDKAsync<(_UIKit_UIFont) | null>("VisionKit_90ad0eb69cc6bf4a", 814990460683994, this, []); }
-  setSupplementaryInterfaceFont(value?: (_UIKit_UIFont) | null): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 3643111070838096, this, [value]); }
+  get supplementaryInterfaceFont(): Promise<(_UIKit_UIFont) | null> { return callSDKAsync<(_UIKit_UIFont) | null>("VisionKit_067acaa3e5f56b46", 814990460683994, this, []); }
+  setSupplementaryInterfaceFont(value?: (_UIKit_UIFont) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 3643111070838096, this, [value]); }
   /**
    * @MainActor final var isSupplementaryInterfaceHidden: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isSupplementaryInterfaceHidden(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 152618817295203, this, []); }
-  setIsSupplementaryInterfaceHidden(value: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 3590671593740941, this, [value]); }
+  get isSupplementaryInterfaceHidden(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 152618817295203, this, []); }
+  setIsSupplementaryInterfaceHidden(value: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 3590671593740941, this, [value]); }
   /**
    * @MainActor final func setSupplementaryInterfaceHidden(_ hidden: Bool, animated: Bool)
    * @availability iOS 16.0+
    */
-  setSupplementaryInterfaceHidden(hidden: boolean, animated: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 4007777882131577, this, [hidden, animated]); }
+  setSupplementaryInterfaceHidden(hidden: boolean, animated: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 4007777882131577, this, [hidden, animated]); }
   /**
    * @MainActor final var supplementaryInterfaceContentInsets: UIEdgeInsets { get set }
    * @availability iOS 16.0+
    */
-  get supplementaryInterfaceContentInsets(): Promise<$SDK8> { return callSDKAsync<$SDK8>("VisionKit_90ad0eb69cc6bf4a", 3222952541734368, this, []); }
-  setSupplementaryInterfaceContentInsets(value: $SDK8): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 3311057081097968, this, [value]); }
+  get supplementaryInterfaceContentInsets(): Promise<$SDK8> { return callSDKAsync<$SDK8>("VisionKit_067acaa3e5f56b46", 3222952541734368, this, []); }
+  setSupplementaryInterfaceContentInsets(value: $SDK8): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 3311057081097968, this, [value]); }
   /**
    * @MainActor final var allowLongPressForDataDetectorsInTextMode: Bool { get set }
    * @availability iOS 16.0+
    */
-  get allowLongPressForDataDetectorsInTextMode(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 1250587716918214, this, []); }
-  setAllowLongPressForDataDetectorsInTextMode(value: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 3676105150673564, this, [value]); }
+  get allowLongPressForDataDetectorsInTextMode(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 1250587716918214, this, []); }
+  setAllowLongPressForDataDetectorsInTextMode(value: boolean): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 3676105150673564, this, [value]); }
   /**
    * @MainActor final var text: String { get }
    * @availability iOS 17.0+
    */
-  get text(): Promise<string> { return callSDKAsync<string>("VisionKit_90ad0eb69cc6bf4a", 1079672584546811, this, []); }
+  get text(): Promise<string> { return callSDKAsync<string>("VisionKit_067acaa3e5f56b46", 1079672584546811, this, []); }
   /**
    * @MainActor final func image(for subjects: Set<ImageAnalysisInteraction.Subject>) async throws -> UIImage
    * @availability iOS 16.0+
    */
-  image(subjects: $SDK7): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("VisionKit_90ad0eb69cc6bf4a", 2743279811846779, this, [subjects]); }
+  image(subjects: $SDK7): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("VisionKit_067acaa3e5f56b46", 2743279811846779, this, [subjects]); }
   /**
    * @MainActor final func hasText(at point: CGPoint) -> Bool
    * @availability iOS 16.0+
    */
-  hasText(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_90ad0eb69cc6bf4a", 1351675475729812, this, [point]); }
+  hasText(point: $SDK6): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 1351675475729812, this, [point]); }
   /**
    * @MainActor final func subject(at point: CGPoint) async -> ImageAnalysisInteraction.Subject?
    * @availability iOS 16.0+
    */
-  subject(point: $SDK6): Promise<(ImageAnalysisInteraction_Subject) | null> { return callSDKAsync<(ImageAnalysisInteraction_Subject) | null>("VisionKit_90ad0eb69cc6bf4a", 600758168588695, this, [point]); }
+  subject(point: $SDK6): Promise<(ImageAnalysisInteraction_Subject) | null> { return callSDKAsync<(ImageAnalysisInteraction_Subject) | null>("VisionKit_067acaa3e5f56b46", 600758168588695, this, [point]); }
   /**
    * @MainActor final var analysis: ImageAnalysis? { get set }
    * @availability iOS 16.0+
    */
-  get analysis(): Promise<(ImageAnalysis) | null> { return callSDKAsync<(ImageAnalysis) | null>("VisionKit_90ad0eb69cc6bf4a", 3326248061251183, this, []); }
-  setAnalysis(value?: (ImageAnalysis) | null): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 1042032237075186, this, [value]); }
+  get analysis(): Promise<(ImageAnalysis) | null> { return callSDKAsync<(ImageAnalysis) | null>("VisionKit_067acaa3e5f56b46", 3326248061251183, this, []); }
+  setAnalysis(value?: (ImageAnalysis) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 1042032237075186, this, [value]); }
   /**
    * @MainActor weak final var delegate: (any ImageAnalysisInteractionDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("VisionKit_90ad0eb69cc6bf4a", 4188359160855399, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 1803266806962797, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("VisionKit_067acaa3e5f56b46", 4188359160855399, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 1803266806962797, this, [value]); }
   /**
    * @MainActor final var subjects: Set<ImageAnalysisInteraction.Subject> { get async }
    * @availability iOS 16.0+
    */
-  get subjects(): Promise<$SDK7> { return callSDKAsync<$SDK7>("VisionKit_90ad0eb69cc6bf4a", 3205537640891338, this, []); }
+  get subjects(): Promise<$SDK7> { return callSDKAsync<$SDK7>("VisionKit_067acaa3e5f56b46", 3205537640891338, this, []); }
   /**
    * @MainActor convenience init(_ delegate: any ImageAnalysisInteractionDelegate)
    * @availability iOS 16.0+
    */
-  static init35637(delegate: SDKHandle): Promise<ImageAnalysisInteraction> { return callSDKAsync<ImageAnalysisInteraction>("VisionKit_90ad0eb69cc6bf4a", 4427534291439823, undefined, [delegate]); }
+  static init35637(delegate: SDKHandle): Promise<ImageAnalysisInteraction> { return callSDKAsync<ImageAnalysisInteraction>("VisionKit_067acaa3e5f56b46", 4427534291439823, undefined, [delegate]); }
   declare readonly $type: { "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -451,43 +451,43 @@ export const ImageAnalysisInteraction_InteractionTypes = {
    * static let imageSubject: ImageAnalysisInteraction.InteractionTypes
    * @availability iOS 16.0+
    */
-  get imageSubject(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 3353608444084843, undefined, []); },
+  get imageSubject(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 3353608444084843, undefined, []); },
   /**
    * static let visualLookUp: ImageAnalysisInteraction.InteractionTypes
    * @availability iOS 16.0+
    */
-  get visualLookUp(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 2875439414818238, undefined, []); },
+  get visualLookUp(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 2875439414818238, undefined, []); },
   /**
    * static let dataDetectors: ImageAnalysisInteraction.InteractionTypes
    * @availability iOS 16.0+
    */
-  get dataDetectors(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 1866659595001242, undefined, []); },
+  get dataDetectors(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 1866659595001242, undefined, []); },
   /**
    * static let textSelection: ImageAnalysisInteraction.InteractionTypes
    * @availability iOS 16.0+
    */
-  get textSelection(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 3786292370481399, undefined, []); },
+  get textSelection(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 3786292370481399, undefined, []); },
   /**
    * static let automaticTextOnly: ImageAnalysisInteraction.InteractionTypes
    * @availability iOS 16.0+
    */
-  get automaticTextOnly(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 2828449036181849, undefined, []); },
+  get automaticTextOnly(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 2828449036181849, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 2778781617702395, undefined, [rawValue]); },
+  init(rawValue: number): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 2778781617702395, undefined, [rawValue]); },
   /**
    * var rawValue: UInt
    * @availability iOS 16.0+
    */
-  getRawValue($self: ImageAnalysisInteraction_InteractionTypes): Promise<number> { return callSDKAsync<number>("VisionKit_90ad0eb69cc6bf4a", 2972945300118387, $self, []); },
-  setRawValue($self: ImageAnalysisInteraction_InteractionTypes, value: number): Promise<void> { return callSDKAsync<void>("VisionKit_90ad0eb69cc6bf4a", 4396207531193951, $self, [value]); },
+  getRawValue($self: ImageAnalysisInteraction_InteractionTypes): Promise<number> { return callSDKAsync<number>("VisionKit_067acaa3e5f56b46", 2972945300118387, $self, []); },
+  setRawValue($self: ImageAnalysisInteraction_InteractionTypes, value: number): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 4396207531193951, $self, [value]); },
   /**
    * static let automatic: ImageAnalysisInteraction.InteractionTypes
    * @availability iOS 16.0+
    */
-  get automatic(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_90ad0eb69cc6bf4a", 356395931159437, undefined, []); }
+  get automatic(): Promise<ImageAnalysisInteraction_InteractionTypes> { return callSDKAsync<ImageAnalysisInteraction_InteractionTypes>("VisionKit_067acaa3e5f56b46", 356395931159437, undefined, []); }
 };
 
 /**
@@ -517,12 +517,12 @@ export class ImageAnalysisInteraction_Subject extends SDKHandle {
    * var image: UIImage { get async throws }
    * @availability iOS 16.0+
    */
-  get image(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("VisionKit_90ad0eb69cc6bf4a", 3259087885152322, this, []); }
+  get image(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("VisionKit_067acaa3e5f56b46", 3259087885152322, this, []); }
   /**
    * @MainActor var bounds: CGRect { get }
    * @availability iOS 16.0+
    */
-  get bounds(): Promise<$SDK5> { return callSDKAsync<$SDK5>("VisionKit_90ad0eb69cc6bf4a", 373857904451584, this, []); }
+  get bounds(): Promise<$SDK5> { return callSDKAsync<$SDK5>("VisionKit_067acaa3e5f56b46", 373857904451584, this, []); }
   declare readonly $type: { "s:9VisionKit24ImageAnalysisInteractionC7SubjectV": true };
 }
 
@@ -583,47 +583,47 @@ export class ImageAnalyzer extends SDKHandle {
    * final class var isSupported: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("VisionKit_90ad0eb69cc6bf4a", 1013240133440928, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("VisionKit_067acaa3e5f56b46", 1013240133440928, undefined, []); }
   /**
    * final class var supportedTextRecognitionLanguages: [String] { get }
    * @availability iOS 16.0+
    */
-  static get supportedTextRecognitionLanguages(): Array<string> { return callSDK<Array<string>>("VisionKit_90ad0eb69cc6bf4a", 1547681791596486, undefined, []); }
+  static get supportedTextRecognitionLanguages(): Array<string> { return callSDK<Array<string>>("VisionKit_067acaa3e5f56b46", 1547681791596486, undefined, []); }
   /**
    * final func analyze(imageAt url: URL, orientation: CGImagePropertyOrientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
    * @availability iOS 16.0+
    */
-  analyzeImageAtOrientationConfiguration(url: string, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_90ad0eb69cc6bf4a", 2704396280902251, this, [url, orientation, configuration]); }
+  analyzeImageAtOrientationConfiguration(url: string, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_067acaa3e5f56b46", 2704396280902251, this, [url, orientation, configuration]); }
   /**
    * final func analyze(_ cgImage: CGImage, orientation: CGImagePropertyOrientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
    * @availability iOS 16.0+
    */
-  analyzeOrientationConfiguration(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_90ad0eb69cc6bf4a", 2968760472255387, this, [cgImage, orientation, configuration]); }
+  analyzeOrientationConfiguration(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_067acaa3e5f56b46", 2968760472255387, this, [cgImage, orientation, configuration]); }
   /**
    * final func analyze(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
    * @availability iOS 16.0+
    */
-  analyzeOrientationConfiguration77848(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_90ad0eb69cc6bf4a", 3999392900325155, this, [pixelBuffer, orientation, configuration]); }
+  analyzeOrientationConfiguration77848(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_067acaa3e5f56b46", 3999392900325155, this, [pixelBuffer, orientation, configuration]); }
   /**
    * final func analyze(_ ciImage: CIImage, orientation: CGImagePropertyOrientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
    * @availability iOS 16.0+
    */
-  analyzeOrientationConfiguration98324(ciImage: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_90ad0eb69cc6bf4a", 2978795577669874, this, [ciImage, orientation, configuration]); }
+  analyzeOrientationConfiguration98324(ciImage: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_067acaa3e5f56b46", 2978795577669874, this, [ciImage, orientation, configuration]); }
   /**
    * final func analyze(_ image: UIImage, orientation: UIImage.Orientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
    * @availability iOS 16.0+
    */
-  analyzeOrientationConfiguration55325(image: _UIKit_UIImage, orientation: _UIKit_UIImage_Orientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_90ad0eb69cc6bf4a", 3219677900202278, this, [image, orientation, configuration]); }
+  analyzeOrientationConfiguration55325(image: _UIKit_UIImage, orientation: _UIKit_UIImage_Orientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_067acaa3e5f56b46", 3219677900202278, this, [image, orientation, configuration]); }
   /**
    * final func analyze(_ image: UIImage, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
    * @availability iOS 16.0+
    */
-  analyzeConfiguration(image: _UIKit_UIImage, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_90ad0eb69cc6bf4a", 3922027156815756, this, [image, configuration]); }
+  analyzeConfiguration(image: _UIKit_UIImage, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis> { return callSDKAsync<ImageAnalysis>("VisionKit_067acaa3e5f56b46", 3922027156815756, this, [image, configuration]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): ImageAnalyzer { return callSDK<ImageAnalyzer>("VisionKit_90ad0eb69cc6bf4a", 619436264333705, undefined, []); }
+  static init(): ImageAnalyzer { return callSDK<ImageAnalyzer>("VisionKit_067acaa3e5f56b46", 619436264333705, undefined, []); }
   declare readonly $type: { "s:9VisionKit13ImageAnalyzerC": true };
 }
 
@@ -638,28 +638,28 @@ export const ImageAnalyzer_AnalysisTypes = {
    * static let visualLookUp: ImageAnalyzer.AnalysisTypes
    * @availability iOS 16.0+
    */
-  get visualLookUp(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_90ad0eb69cc6bf4a", 2546355990066135, undefined, []); },
+  get visualLookUp(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_067acaa3e5f56b46", 2546355990066135, undefined, []); },
   /**
    * static let machineReadableCode: ImageAnalyzer.AnalysisTypes
    * @availability iOS 16.0+
    */
-  get machineReadableCode(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_90ad0eb69cc6bf4a", 3164980042054004, undefined, []); },
+  get machineReadableCode(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_067acaa3e5f56b46", 3164980042054004, undefined, []); },
   /**
    * static let text: ImageAnalyzer.AnalysisTypes
    * @availability iOS 16.0+
    */
-  get text(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_90ad0eb69cc6bf4a", 2539129005068139, undefined, []); },
+  get text(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_067acaa3e5f56b46", 2539129005068139, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_90ad0eb69cc6bf4a", 3219673223379904, undefined, [rawValue]); },
+  init(rawValue: number): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_067acaa3e5f56b46", 3219673223379904, undefined, [rawValue]); },
   /**
    * var rawValue: UInt
    * @availability iOS 16.0+
    */
-  getRawValue($self: ImageAnalyzer_AnalysisTypes): number { return callSDK<number>("VisionKit_90ad0eb69cc6bf4a", 1717779501338465, $self, []); },
-  setRawValue($self: ImageAnalyzer_AnalysisTypes, value: number): void { return callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 2964300302471343, $self, [value]); }
+  getRawValue($self: ImageAnalyzer_AnalysisTypes): number { return callSDK<number>("VisionKit_067acaa3e5f56b46", 1717779501338465, $self, []); },
+  setRawValue($self: ImageAnalyzer_AnalysisTypes, value: number): void { return callSDK<void>("VisionKit_067acaa3e5f56b46", 2964300302471343, $self, [value]); }
 };
 
 /**
@@ -689,18 +689,18 @@ export class ImageAnalyzer_Configuration extends SDKHandle {
    * let analysisTypes: ImageAnalyzer.AnalysisTypes
    * @availability iOS 16.0+
    */
-  get analysisTypes(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_90ad0eb69cc6bf4a", 2155013177670814, this, []); }
+  get analysisTypes(): ImageAnalyzer_AnalysisTypes { return callSDK<ImageAnalyzer_AnalysisTypes>("VisionKit_067acaa3e5f56b46", 2155013177670814, this, []); }
   /**
    * var locales: [String]
    * @availability iOS 16.0+
    */
-  get locales(): Array<string> { return callSDK<Array<string>>("VisionKit_90ad0eb69cc6bf4a", 3015673114184377, this, []); }
-  set locales(value: Array<string>) { callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 2172052884610346, this, [value]); }
+  get locales(): Array<string> { return callSDK<Array<string>>("VisionKit_067acaa3e5f56b46", 3015673114184377, this, []); }
+  set locales(value: Array<string>) { callSDK<void>("VisionKit_067acaa3e5f56b46", 2172052884610346, this, [value]); }
   /**
    * init(_ types: ImageAnalyzer.AnalysisTypes)
    * @availability iOS 16.0+
    */
-  static init(types: ImageAnalyzer_AnalysisTypes): ImageAnalyzer_Configuration { return callSDK<ImageAnalyzer_Configuration>("VisionKit_90ad0eb69cc6bf4a", 2245530682863495, undefined, [types]); }
+  static init(types: ImageAnalyzer_AnalysisTypes): ImageAnalyzer_Configuration { return callSDK<ImageAnalyzer_Configuration>("VisionKit_067acaa3e5f56b46", 2245530682863495, undefined, [types]); }
   declare readonly $type: { "s:9VisionKit13ImageAnalyzerC13ConfigurationV": true };
 }
 
@@ -713,12 +713,12 @@ export class RecognizedItem extends SDKHandle {
    * var id: UUID { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("VisionKit_90ad0eb69cc6bf4a", 2923903282953310, this, []); }
+  get id(): string { return callSDK<string>("VisionKit_067acaa3e5f56b46", 2923903282953310, this, []); }
   /**
    * var bounds: RecognizedItem.Bounds { get }
    * @availability iOS 16.0+
    */
-  get bounds(): RecognizedItem_Bounds { return callSDK<RecognizedItem_Bounds>("VisionKit_90ad0eb69cc6bf4a", 2935624828049932, this, []); }
+  get bounds(): RecognizedItem_Bounds { return callSDK<RecognizedItem_Bounds>("VisionKit_067acaa3e5f56b46", 2935624828049932, this, []); }
   declare readonly $type: { "s:9VisionKit14RecognizedItemO": true };
 }
 
@@ -731,22 +731,22 @@ export class RecognizedItem_Barcode extends SDKHandle {
    * var observation: VNBarcodeObservation { get }
    * @availability iOS 16.0+
    */
-  get observation(): _Vision_VNBarcodeObservation { return callSDK<_Vision_VNBarcodeObservation>("VisionKit_90ad0eb69cc6bf4a", 1684946117355448, this, []); }
+  get observation(): _Vision_VNBarcodeObservation { return callSDK<_Vision_VNBarcodeObservation>("VisionKit_067acaa3e5f56b46", 1684946117355448, this, []); }
   /**
    * var payloadStringValue: String? { get }
    * @availability iOS 16.0+
    */
-  get payloadStringValue(): (string) | null { return callSDK<(string) | null>("VisionKit_90ad0eb69cc6bf4a", 1247483964143070, this, []); }
+  get payloadStringValue(): (string) | null { return callSDK<(string) | null>("VisionKit_067acaa3e5f56b46", 1247483964143070, this, []); }
   /**
    * var id: UUID { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("VisionKit_90ad0eb69cc6bf4a", 1307141267860451, this, []); }
+  get id(): string { return callSDK<string>("VisionKit_067acaa3e5f56b46", 1307141267860451, this, []); }
   /**
    * var bounds: RecognizedItem.Bounds { get }
    * @availability iOS 16.0+
    */
-  get bounds(): RecognizedItem_Bounds { return callSDK<RecognizedItem_Bounds>("VisionKit_90ad0eb69cc6bf4a", 2596300505853966, this, []); }
+  get bounds(): RecognizedItem_Bounds { return callSDK<RecognizedItem_Bounds>("VisionKit_067acaa3e5f56b46", 2596300505853966, this, []); }
   declare readonly $type: { "s:9VisionKit14RecognizedItemO7BarcodeV": true };
 }
 
@@ -765,26 +765,26 @@ export class RecognizedItem_Bounds extends SDKHandle {
    * var bottomLeft: CGPoint
    * @availability iOS 16.0+
    */
-  get bottomLeft(): $SDK6 { return callSDK<$SDK6>("VisionKit_90ad0eb69cc6bf4a", 3429383129725440, this, []); }
-  set bottomLeft(value: $SDK6) { callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 1804302351093554, this, [value]); }
+  get bottomLeft(): $SDK6 { return callSDK<$SDK6>("VisionKit_067acaa3e5f56b46", 3429383129725440, this, []); }
+  set bottomLeft(value: $SDK6) { callSDK<void>("VisionKit_067acaa3e5f56b46", 1804302351093554, this, [value]); }
   /**
    * var bottomRight: CGPoint
    * @availability iOS 16.0+
    */
-  get bottomRight(): $SDK6 { return callSDK<$SDK6>("VisionKit_90ad0eb69cc6bf4a", 1774787516940675, this, []); }
-  set bottomRight(value: $SDK6) { callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 2864894165716545, this, [value]); }
+  get bottomRight(): $SDK6 { return callSDK<$SDK6>("VisionKit_067acaa3e5f56b46", 1774787516940675, this, []); }
+  set bottomRight(value: $SDK6) { callSDK<void>("VisionKit_067acaa3e5f56b46", 2864894165716545, this, [value]); }
   /**
    * var topLeft: CGPoint
    * @availability iOS 16.0+
    */
-  get topLeft(): $SDK6 { return callSDK<$SDK6>("VisionKit_90ad0eb69cc6bf4a", 925738445288293, this, []); }
-  set topLeft(value: $SDK6) { callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 3626185479053480, this, [value]); }
+  get topLeft(): $SDK6 { return callSDK<$SDK6>("VisionKit_067acaa3e5f56b46", 925738445288293, this, []); }
+  set topLeft(value: $SDK6) { callSDK<void>("VisionKit_067acaa3e5f56b46", 3626185479053480, this, [value]); }
   /**
    * var topRight: CGPoint
    * @availability iOS 16.0+
    */
-  get topRight(): $SDK6 { return callSDK<$SDK6>("VisionKit_90ad0eb69cc6bf4a", 3189582766545450, this, []); }
-  set topRight(value: $SDK6) { callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 3569462274296848, this, [value]); }
+  get topRight(): $SDK6 { return callSDK<$SDK6>("VisionKit_067acaa3e5f56b46", 3189582766545450, this, []); }
+  set topRight(value: $SDK6) { callSDK<void>("VisionKit_067acaa3e5f56b46", 3569462274296848, this, [value]); }
   declare readonly $type: { "s:9VisionKit14RecognizedItemO6BoundsV": true };
 }
 
@@ -803,22 +803,22 @@ export class RecognizedItem_Text extends SDKHandle {
    * var transcript: String { get }
    * @availability iOS 16.0+
    */
-  get transcript(): string { return callSDK<string>("VisionKit_90ad0eb69cc6bf4a", 4268906715709231, this, []); }
+  get transcript(): string { return callSDK<string>("VisionKit_067acaa3e5f56b46", 4268906715709231, this, []); }
   /**
    * var observation: VNRecognizedTextObservation { get }
    * @availability iOS 16.0+
    */
-  get observation(): _Vision_VNRecognizedTextObservation { return callSDK<_Vision_VNRecognizedTextObservation>("VisionKit_90ad0eb69cc6bf4a", 2906205767638235, this, []); }
+  get observation(): _Vision_VNRecognizedTextObservation { return callSDK<_Vision_VNRecognizedTextObservation>("VisionKit_067acaa3e5f56b46", 2906205767638235, this, []); }
   /**
    * var id: UUID { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("VisionKit_90ad0eb69cc6bf4a", 1322329761708755, this, []); }
+  get id(): string { return callSDK<string>("VisionKit_067acaa3e5f56b46", 1322329761708755, this, []); }
   /**
    * var bounds: RecognizedItem.Bounds { get }
    * @availability iOS 16.0+
    */
-  get bounds(): RecognizedItem_Bounds { return callSDK<RecognizedItem_Bounds>("VisionKit_90ad0eb69cc6bf4a", 2728338595453106, this, []); }
+  get bounds(): RecognizedItem_Bounds { return callSDK<RecognizedItem_Bounds>("VisionKit_067acaa3e5f56b46", 2728338595453106, this, []); }
   declare readonly $type: { "s:9VisionKit14RecognizedItemO4TextV": true };
 }
 
@@ -837,17 +837,17 @@ export class VNDocumentCameraScan extends SDKHandle {
    * func imageOfPage(at index: Int) -> UIImage
    * @availability iOS 13.0+
    */
-  imageOfPage(index: number): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("VisionKit_90ad0eb69cc6bf4a", 8719999320046, this, [index]); }
+  imageOfPage(index: number): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("VisionKit_067acaa3e5f56b46", 8719999320046, this, [index]); }
   /**
    * var pageCount: Int { get }
    * @availability iOS 13.0+
    */
-  get pageCount(): number { return callSDK<number>("VisionKit_90ad0eb69cc6bf4a", 3687874548212749, this, []); }
+  get pageCount(): number { return callSDK<number>("VisionKit_067acaa3e5f56b46", 3687874548212749, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 13.0+
    */
-  get title(): string { return callSDK<string>("VisionKit_90ad0eb69cc6bf4a", 4023851053935637, this, []); }
+  get title(): string { return callSDK<string>("VisionKit_067acaa3e5f56b46", 4023851053935637, this, []); }
   declare readonly $type: { "c:objc(cs)VNDocumentCameraScan": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pageCount": true; "title": true };
 }
@@ -861,17 +861,16 @@ export class VNDocumentCameraViewController extends SDKHandle {
    * class var isSupported: Bool { get }
    * @availability iOS 13.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("VisionKit_90ad0eb69cc6bf4a", 4342302969406655, undefined, []); }
+  static get isSupported(): Promise<boolean> { return callSDKAsync<boolean>("VisionKit_067acaa3e5f56b46", 3414281230232067, undefined, []); }
   /** init() */
-  static init(): VNDocumentCameraViewController { return callSDK<VNDocumentCameraViewController>("VisionKit_90ad0eb69cc6bf4a", 2728627299304681, undefined, []); }
+  static init(): Promise<VNDocumentCameraViewController> { return callSDKAsync<VNDocumentCameraViewController>("VisionKit_067acaa3e5f56b46", 555479929494222, undefined, []); }
   /**
    * weak var delegate: (any VNDocumentCameraViewControllerDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("VisionKit_90ad0eb69cc6bf4a", 107946483982259, this, []); }
-  set delegate(value: (Implements<VNDocumentCameraViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("VisionKit_90ad0eb69cc6bf4a", 4264429514368594, this, [value], [{"protocol":"c:objc(pl)VNDocumentCameraViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("VisionKit_067acaa3e5f56b46", 3573455384997893, this, []); }
+  setDelegate(value?: (Implements<VNDocumentCameraViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("VisionKit_067acaa3e5f56b46", 3145057908255540, this, [value], [{"protocol":"c:objc(pl)VNDocumentCameraViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)VNDocumentCameraViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
-  declare readonly $observable: { "delegate": true };
 }
 
 /**
@@ -896,19 +895,19 @@ export interface VNDocumentCameraViewControllerDelegate {
   "documentCameraViewControllerDidFailWithError"?: (arg0: VNDocumentCameraViewController, arg1: NativeError) => void;
 }
 
-registerSDKClass("VisionKit.DataScannerViewController", DataScannerViewController, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {}, methods: {"loadView":{"id":1797365036575131},"removeFromParent":{"id":295293168581360},"viewDidDisappear":{"id":945293831241994},"viewDidLoad":{"id":458056357781716},"viewWillAppear":{"id":2343702207457},"capturePhoto":{"id":721041247741757},"stopScanning":{"id":936434119521726},"startScanning":{"id":14978140454079}} });
-registerSDKClass("VisionKit.DataScannerViewController.RecognizedDataType", DataScannerViewController_RecognizedDataType, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("VisionKit.DataScannerViewController", DataScannerViewController, { module: "VisionKit_067acaa3e5f56b46", properties: {}, methods: {"loadView":{"id":1797365036575131},"removeFromParent":{"id":295293168581360},"viewDidDisappear":{"id":945293831241994},"viewDidLoad":{"id":458056357781716},"viewWillAppear":{"id":2343702207457},"capturePhoto":{"id":721041247741757},"stopScanning":{"id":936434119521726},"startScanning":{"id":14978140454079}} });
+registerSDKClass("VisionKit.DataScannerViewController.RecognizedDataType", DataScannerViewController_RecognizedDataType, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:9VisionKit33DataScannerViewControllerDelegateP", {"dataScannerDidZoom":"dataScannerDidZoom(_:)","dataScannerDidTapOn":"dataScanner(_:didTapOn:)","dataScannerDidAddAllItems":"dataScanner(_:didAdd:allItems:)","dataScannerDidUpdateAllItems":"dataScanner(_:didUpdate:allItems:)","dataScannerDidRemoveAllItems":"dataScanner(_:didRemove:allItems:)","dataScannerBecameUnavailableWithError":"dataScanner(_:becameUnavailableWithError:)"});
-registerSDKClass("VisionKit.ImageAnalysis", ImageAnalysis, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {}, methods: {"hasResults":{"id":1893824319540882}} });
-registerSDKClass("VisionKit.ImageAnalysisInteraction", ImageAnalysisInteraction, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {}, methods: {"didMove":{"id":835314823412315},"willMove":{"id":2881862653672442},"analysisHasText":{"id":2310504776984524},"hasDataDetector":{"id":491244401025073},"hasInteractiveItem":{"id":3214115636722355},"resetTextSelection":{"id":1601137039449319},"hasSupplementaryInterface":{"id":3407521825451352},"setContentsRectNeedsUpdate":{"id":2081735118361374},"setSupplementaryInterfaceHidden":{"id":4007777882131577},"image":{"id":2743279811846779},"hasText":{"id":1351675475729812},"subject":{"id":600758168588695}} });
-registerSDKClass("VisionKit.ImageAnalysisInteraction.Subject", ImageAnalysisInteraction_Subject, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("VisionKit.ImageAnalysis", ImageAnalysis, { module: "VisionKit_067acaa3e5f56b46", properties: {}, methods: {"hasResults":{"id":1893824319540882}} });
+registerSDKClass("VisionKit.ImageAnalysisInteraction", ImageAnalysisInteraction, { module: "VisionKit_067acaa3e5f56b46", properties: {}, methods: {"didMove":{"id":835314823412315},"willMove":{"id":2881862653672442},"analysisHasText":{"id":2310504776984524},"hasDataDetector":{"id":491244401025073},"hasInteractiveItem":{"id":3214115636722355},"resetTextSelection":{"id":1601137039449319},"hasSupplementaryInterface":{"id":3407521825451352},"setContentsRectNeedsUpdate":{"id":2081735118361374},"setSupplementaryInterfaceHidden":{"id":4007777882131577},"image":{"id":2743279811846779},"hasText":{"id":1351675475729812},"subject":{"id":600758168588695}} });
+registerSDKClass("VisionKit.ImageAnalysisInteraction.Subject", ImageAnalysisInteraction_Subject, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("s:9VisionKit32ImageAnalysisInteractionDelegateP", {"interactionShouldBeginAtFor":"interaction(_:shouldBeginAt:for:)","contentsRectFor":"contentsRect(for:)","contentViewFor":"contentView(for:)","presentingViewControllerFor":"presentingViewController(for:)","interactionLiveTextButtonDidChangeToVisible":"interaction(_:liveTextButtonDidChangeToVisible:)","interactionHighlightSelectedItemsDidChange":"interaction(_:highlightSelectedItemsDidChange:)","textSelectionDidChange":"textSelectionDidChange(_:)"});
-registerSDKClass("VisionKit.ImageAnalyzer", ImageAnalyzer, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {}, methods: {"analyzeImageAtOrientationConfiguration":{"id":2704396280902251},"analyzeOrientationConfiguration":{"id":2968760472255387},"analyzeOrientationConfiguration77848":{"id":3999392900325155},"analyzeOrientationConfiguration98324":{"id":2978795577669874},"analyzeOrientationConfiguration55325":{"id":3219677900202278},"analyzeConfiguration":{"id":3922027156815756}} });
-registerSDKClass("VisionKit.ImageAnalyzer.Configuration", ImageAnalyzer_Configuration, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("VisionKit.RecognizedItem", RecognizedItem, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("VisionKit.RecognizedItem.Barcode", RecognizedItem_Barcode, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("VisionKit.RecognizedItem.Bounds", RecognizedItem_Bounds, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("VisionKit.RecognizedItem.Text", RecognizedItem_Text, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("VNDocumentCameraScan", VNDocumentCameraScan, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {"pageCount":3687874548212749,"title":4023851053935637}, methods: {"imageOfPage":{"id":8719999320046}} });
-registerSDKClass("VNDocumentCameraViewController", VNDocumentCameraViewController, { module: "VisionKit_90ad0eb69cc6bf4a", properties: {"delegate":107946483982259} });
+registerSDKClass("VisionKit.ImageAnalyzer", ImageAnalyzer, { module: "VisionKit_067acaa3e5f56b46", properties: {}, methods: {"analyzeImageAtOrientationConfiguration":{"id":2704396280902251},"analyzeOrientationConfiguration":{"id":2968760472255387},"analyzeOrientationConfiguration77848":{"id":3999392900325155},"analyzeOrientationConfiguration98324":{"id":2978795577669874},"analyzeOrientationConfiguration55325":{"id":3219677900202278},"analyzeConfiguration":{"id":3922027156815756}} });
+registerSDKClass("VisionKit.ImageAnalyzer.Configuration", ImageAnalyzer_Configuration, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("VisionKit.RecognizedItem", RecognizedItem, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("VisionKit.RecognizedItem.Barcode", RecognizedItem_Barcode, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("VisionKit.RecognizedItem.Bounds", RecognizedItem_Bounds, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("VisionKit.RecognizedItem.Text", RecognizedItem_Text, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("VNDocumentCameraScan", VNDocumentCameraScan, { module: "VisionKit_067acaa3e5f56b46", properties: {"pageCount":3687874548212749,"title":4023851053935637}, methods: {"imageOfPage":{"id":8719999320046}} });
+registerSDKClass("VNDocumentCameraViewController", VNDocumentCameraViewController, { module: "VisionKit_067acaa3e5f56b46", properties: {} });
 registerSDKProtocol("c:objc(pl)VNDocumentCameraViewControllerDelegate", {"documentCameraViewControllerDidFinishWith":"documentCameraViewController(_:didFinishWith:)","documentCameraViewControllerDidCancel":"documentCameraViewControllerDidCancel(_:)","documentCameraViewControllerDidFailWithError":"documentCameraViewController(_:didFailWithError:)"});

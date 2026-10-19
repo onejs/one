@@ -246,42 +246,39 @@ export declare class ASAccountAuthenticationModificationViewController extends S
      * func cancelRequest()
      * @availability iOS 14.0+
      */
-    cancelRequest(): void;
+    cancelRequest(): Promise<void>;
     /**
      * func changePasswordWithoutUserInteraction(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: String, userInfo: [AnyHashable : Any]? = nil)
      * @availability iOS 14.0+
      */
-    changePasswordWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): void;
+    changePasswordWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): Promise<void>;
     /**
      * func convertAccountToSignInWithAppleWithoutUserInteraction(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo: [AnyHashable : Any]? = nil)
      * @availability iOS 14.0+
      */
-    convertAccountToSignInWithAppleWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): void;
+    convertAccountToSignInWithAppleWithoutUserInteraction(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): Promise<void>;
     /** init() */
-    static init(): ASAccountAuthenticationModificationViewController;
+    static init(): Promise<ASAccountAuthenticationModificationViewController>;
     /**
      * func prepareInterfaceToChangePassword(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: String, userInfo: [AnyHashable : Any]? = nil)
      * @availability iOS 14.0+
      */
-    prepareInterfaceToChangePassword(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): void;
+    prepareInterfaceToChangePassword(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, newPassword: string, userInfo?: $SDK1): Promise<void>;
     /**
      * func prepareInterfaceToConvertAccountToSignInWithApple(for serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo: [AnyHashable : Any]? = nil)
      * @availability iOS 14.0+
      */
-    prepareInterfaceToConvertAccountToSignInWithApple(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): void;
+    prepareInterfaceToConvertAccountToSignInWithApple(serviceIdentifier: ASCredentialServiceIdentifier, existingCredential: ASPasswordCredential, userInfo?: $SDK1): Promise<void>;
     /**
      * var extensionContext: ASAccountAuthenticationModificationExtensionContext { get }
      * @availability iOS 14.0+
      */
-    get extensionContext(): ASAccountAuthenticationModificationExtensionContext;
+    get extensionContext(): Promise<ASAccountAuthenticationModificationExtensionContext>;
     readonly $type: {
         "c:objc(cs)ASAccountAuthenticationModificationViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "extensionContext": true;
     };
 }
 /**
@@ -510,27 +507,24 @@ export declare class ASAuthorizationAppleIDButton extends SDKHandle {
      * convenience init(type: ASAuthorizationAppleIDButton.ButtonType, style: ASAuthorizationAppleIDButton.Style)
      * @availability iOS 13.0+
      */
-    static initTypeStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): ASAuthorizationAppleIDButton;
+    static initTypeStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): Promise<ASAuthorizationAppleIDButton>;
     /**
      * init(authorizationButtonType type: ASAuthorizationAppleIDButton.ButtonType, authorizationButtonStyle style: ASAuthorizationAppleIDButton.Style)
      * @availability iOS 13.0+
      */
-    static initAuthorizationButtonTypeAuthorizationButtonStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): ASAuthorizationAppleIDButton;
+    static initAuthorizationButtonTypeAuthorizationButtonStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): Promise<ASAuthorizationAppleIDButton>;
     /**
      * var cornerRadius: CGFloat { get set }
      * @availability iOS 13.0+
      */
-    get cornerRadius(): number;
-    set cornerRadius(value: number);
+    get cornerRadius(): Promise<number>;
+    setCornerRadius(value: number): Promise<void>;
     readonly $type: {
         "c:objc(cs)ASAuthorizationAppleIDButton": true;
         "c:objc(cs)UIControl": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "cornerRadius": true;
     };
 }
 /**
@@ -543,12 +537,12 @@ export declare const ASAuthorizationAppleIDButton_ButtonType: {
      * static var `default`: ASAuthorizationAppleIDButton.ButtonType { get }
      * @availability iOS 13.0+
      */
-    readonly default: ASAuthorizationAppleIDButton_ButtonType;
+    readonly default: Promise<ASAuthorizationAppleIDButton_ButtonType>;
     /**
      * init?(rawValue: Int)
      * @availability iOS 13.0+
      */
-    init(rawValue: number): (ASAuthorizationAppleIDButton_ButtonType) | null;
+    init(rawValue: number): Promise<(ASAuthorizationAppleIDButton_ButtonType) | null>;
 };
 /**
  * enum Style
@@ -560,7 +554,7 @@ export declare const ASAuthorizationAppleIDButton_Style: {
      * init?(rawValue: Int)
      * @availability iOS 13.0+
      */
-    init(rawValue: number): (ASAuthorizationAppleIDButton_Style) | null;
+    init(rawValue: number): Promise<(ASAuthorizationAppleIDButton_Style) | null>;
 };
 /**
  * class ASAuthorizationAppleIDCredential
@@ -2782,117 +2776,114 @@ export declare class ASCredentialProviderExtensionContext extends SDKHandle {
  */
 export declare class ASCredentialProviderViewController extends SDKHandle {
     /** init() */
-    static init(): ASCredentialProviderViewController;
+    static init(): Promise<ASCredentialProviderViewController>;
     /**
      * func performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest)
      * @availability iOS 26.2+
      */
-    performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest): void;
+    performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest): Promise<void>;
     /**
      * func performWithoutUserInteractionIfPossible(passkeyRegistration registrationRequest: ASPasskeyCredentialRequest)
      * @availability iOS 18.0+
      */
-    performWithoutUserInteractionIfPossiblePasskeyRegistration(registrationRequest: ASPasskeyCredentialRequest): void;
+    performWithoutUserInteractionIfPossiblePasskeyRegistration(registrationRequest: ASPasskeyCredentialRequest): Promise<void>;
     /**
      * func performWithoutUserInteractionIfPossible(savePasswordRequest: ASSavePasswordRequest)
      * @availability iOS 26.2+
      */
-    performWithoutUserInteractionIfPossibleSavePasswordRequest(savePasswordRequest: ASSavePasswordRequest): void;
+    performWithoutUserInteractionIfPossibleSavePasswordRequest(savePasswordRequest: ASSavePasswordRequest): Promise<void>;
     /**
      * func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
      * @availability iOS 12.0+
      */
-    prepareCredentialListFor(serviceIdentifiers: $SDK40): void;
+    prepareCredentialListFor(serviceIdentifiers: $SDK40): Promise<void>;
     /**
      * func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier], requestParameters: ASPasskeyCredentialRequestParameters)
      * @availability iOS 17.0+
      */
-    prepareCredentialListForRequestParameters(serviceIdentifiers: $SDK40, requestParameters: ASPasskeyCredentialRequestParameters): void;
+    prepareCredentialListForRequestParameters(serviceIdentifiers: $SDK40, requestParameters: ASPasskeyCredentialRequestParameters): Promise<void>;
     /**
      * func prepareInterfaceForExtensionConfiguration()
      * @availability iOS 12.0+
      */
-    prepareInterfaceForExtensionConfiguration(): void;
+    prepareInterfaceForExtensionConfiguration(): Promise<void>;
     /**
      * func prepareInterface(for generatePasswordsRequest: ASGeneratePasswordsRequest)
      * @availability iOS 26.2+
      */
-    prepareInterfaceFor(generatePasswordsRequest: ASGeneratePasswordsRequest): void;
+    prepareInterfaceFor(generatePasswordsRequest: ASGeneratePasswordsRequest): Promise<void>;
     /**
      * func prepareInterface(forPasskeyRegistration registrationRequest: any ASCredentialRequest)
      * @availability iOS 17.0+
      */
-    prepareInterfaceForPasskeyRegistration(registrationRequest: SDKHandle): void;
+    prepareInterfaceForPasskeyRegistration(registrationRequest: SDKHandle): Promise<void>;
     /**
      * func prepareInterface(for savePasswordRequest: ASSavePasswordRequest)
      * @availability iOS 26.2+
      */
-    prepareInterfaceFor1521(savePasswordRequest: ASSavePasswordRequest): void;
+    prepareInterfaceFor1521(savePasswordRequest: ASSavePasswordRequest): Promise<void>;
     /**
      * func prepareInterfaceForUserChoosingTextToInsert()
      * @availability iOS 18.0+
      */
-    prepareInterfaceForUserChoosingTextToInsert(): void;
+    prepareInterfaceForUserChoosingTextToInsert(): Promise<void>;
     /**
      * func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity)
      * @availability iOS 12.0+
      * @deprecated iOS 17.0
      */
-    prepareInterfaceToProvideCredentialFor(credentialIdentity: ASPasswordCredentialIdentity): void;
+    prepareInterfaceToProvideCredentialFor(credentialIdentity: ASPasswordCredentialIdentity): Promise<void>;
     /**
      * func prepareInterfaceToProvideCredential(for credentialRequest: any ASCredentialRequest)
      * @availability iOS 17.0+
      */
-    prepareInterfaceToProvideCredentialFor64482(credentialRequest: SDKHandle): void;
+    prepareInterfaceToProvideCredentialFor64482(credentialRequest: SDKHandle): Promise<void>;
     /**
      * func prepareOneTimeCodeCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
      * @availability iOS 18.0+
      */
-    prepareOneTimeCodeCredentialList(serviceIdentifiers: $SDK40): void;
+    prepareOneTimeCodeCredentialList(serviceIdentifiers: $SDK40): Promise<void>;
     /**
      * func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity)
      * @availability iOS 12.0+
      * @deprecated iOS 17.0
      */
-    provideCredentialWithoutUserInteractionFor(credentialIdentity: ASPasswordCredentialIdentity): void;
+    provideCredentialWithoutUserInteractionFor(credentialIdentity: ASPasswordCredentialIdentity): Promise<void>;
     /**
      * func provideCredentialWithoutUserInteraction(for credentialRequest: any ASCredentialRequest)
      * @availability iOS 17.0+
      */
-    provideCredentialWithoutUserInteractionFor49470(credentialRequest: SDKHandle): void;
+    provideCredentialWithoutUserInteractionFor49470(credentialRequest: SDKHandle): Promise<void>;
     /**
      * func reportAllAcceptedPublicKeyCredentials(forRelyingParty relyingParty: String, userHandle: Data, acceptedCredentialIDs: [Data])
      * @availability iOS 12.0+
      */
-    reportAllAcceptedPublicKeyCredentials(relyingParty: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): void;
+    reportAllAcceptedPublicKeyCredentials(relyingParty: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void>;
     /**
      * func reportPublicKeyCredentialUpdate(forRelyingParty relyingParty: String, userHandle: Data, newName: String)
      * @availability iOS 12.0+
      */
-    reportPublicKeyCredentialUpdate(relyingParty: string, userHandle: ArrayBuffer, newName: string): void;
+    reportPublicKeyCredentialUpdate(relyingParty: string, userHandle: ArrayBuffer, newName: string): Promise<void>;
     /**
      * func reportUnknownPublicKeyCredential(forRelyingParty relyingParty: String, credentialID: Data)
      * @availability iOS 12.0+
      */
-    reportUnknownPublicKeyCredential(relyingParty: string, credentialID: ArrayBuffer): void;
+    reportUnknownPublicKeyCredential(relyingParty: string, credentialID: ArrayBuffer): Promise<void>;
     /**
      * func reportUnusedPasswordCredential(forDomain domain: String, userName: String)
      * @availability iOS 12.0+
      */
-    reportUnusedPasswordCredential(domain: string, userName: string): void;
+    reportUnusedPasswordCredential(domain: string, userName: string): Promise<void>;
     /**
      * var extensionContext: ASCredentialProviderExtensionContext { get }
      * @availability iOS 12.0+
      */
-    get extensionContext(): ASCredentialProviderExtensionContext;
+    get extensionContext(): Promise<ASCredentialProviderExtensionContext>;
     readonly $type: {
         "c:objc(cs)ASCredentialProviderViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "extensionContext": true;
     };
 }
 /**

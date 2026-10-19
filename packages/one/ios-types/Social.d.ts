@@ -14,99 +14,92 @@ export declare class SLComposeServiceViewController extends SDKHandle {
      * func cancel()
      * @availability iOS 8.0+
      */
-    cancel(): void;
+    cancel(): Promise<void>;
     /**
      * func configurationItems() -> [Any]!
      * @availability iOS 8.0+
      */
-    configurationItems(): (Array<unknown>) | null;
+    configurationItems(): Promise<(Array<unknown>) | null>;
     /**
      * func didSelectCancel()
      * @availability iOS 8.0+
      */
-    didSelectCancel(): void;
+    didSelectCancel(): Promise<void>;
     /**
      * func didSelectPost()
      * @availability iOS 8.0+
      */
-    didSelectPost(): void;
+    didSelectPost(): Promise<void>;
     /** init() */
-    static init(): SLComposeServiceViewController;
+    static init(): Promise<SLComposeServiceViewController>;
     /**
      * func isContentValid() -> Bool
      * @availability iOS 8.0+
      */
-    isContentValid(): boolean;
+    isContentValid(): Promise<boolean>;
     /**
      * func loadPreviewView() -> UIView!
      * @availability iOS 8.0+
      */
-    loadPreviewView(): (_UIKit_UIView) | null;
+    loadPreviewView(): Promise<(_UIKit_UIView) | null>;
     /**
      * func popConfigurationViewController()
      * @availability iOS 8.0+
      */
-    popConfigurationViewController(): void;
+    popConfigurationViewController(): Promise<void>;
     /**
      * func presentationAnimationDidFinish()
      * @availability iOS 8.0+
      */
-    presentationAnimationDidFinish(): void;
+    presentationAnimationDidFinish(): Promise<void>;
     /**
      * func pushConfigurationViewController(_ viewController: UIViewController!)
      * @availability iOS 8.0+
      */
-    pushConfigurationViewController(viewController?: $SDK0): void;
+    pushConfigurationViewController(viewController?: $SDK0): Promise<void>;
     /**
      * func reloadConfigurationItems()
      * @availability iOS 8.0+
      */
-    reloadConfigurationItems(): void;
+    reloadConfigurationItems(): Promise<void>;
     /**
      * func validateContent()
      * @availability iOS 8.0+
      */
-    validateContent(): void;
+    validateContent(): Promise<void>;
     /**
      * var autoCompletionViewController: UIViewController! { get set }
      * @availability iOS 8.0+
      */
-    get autoCompletionViewController(): $SDK0;
-    set autoCompletionViewController(value: $SDK0);
+    get autoCompletionViewController(): Promise<$SDK0>;
+    setAutoCompletionViewController(value?: $SDK0): Promise<void>;
     /**
      * var charactersRemaining: NSNumber! { get set }
      * @availability iOS 8.0+
      */
-    get charactersRemaining(): $SDK1;
-    set charactersRemaining(value: $SDK1);
+    get charactersRemaining(): Promise<$SDK1>;
+    setCharactersRemaining(value?: $SDK1): Promise<void>;
     /**
      * var contentText: String! { get }
      * @availability iOS 8.0+
      */
-    get contentText(): (string) | null;
+    get contentText(): Promise<(string) | null>;
     /**
      * var placeholder: String! { get set }
      * @availability iOS 8.0+
      */
-    get placeholder(): (string) | null;
-    set placeholder(value: (string) | null);
+    get placeholder(): Promise<(string) | null>;
+    setPlaceholder(value?: (string) | null): Promise<void>;
     /**
      * var textView: UITextView! { get }
      * @availability iOS 8.0+
      */
-    get textView(): (_UIKit_UITextView) | null;
+    get textView(): Promise<(_UIKit_UITextView) | null>;
     readonly $type: {
         "c:objc(cs)SLComposeServiceViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "autoCompletionViewController": true;
-        "charactersRemaining": true;
-        "contentText": true;
-        "placeholder": true;
-        "textView": true;
     };
 }
 /**
@@ -164,56 +157,53 @@ export declare class SLComposeViewController extends SDKHandle {
      * init!(forServiceType serviceType: String!)
      * @availability iOS 6.0+
      */
-    static init(serviceType?: (string) | null): SLComposeViewController;
+    static init(serviceType?: (string) | null): Promise<SLComposeViewController>;
     /**
      * class func isAvailable(forServiceType serviceType: String!) -> Bool
      * @availability iOS 6.0+
      */
-    static isAvailable(serviceType?: (string) | null): boolean;
+    static isAvailable(serviceType?: (string) | null): Promise<boolean>;
     /**
      * func add(_ image: UIImage!) -> Bool
      * @availability iOS 6.0+
      */
-    add(image?: (_UIKit_UIImage) | null): boolean;
+    add(image?: (_UIKit_UIImage) | null): Promise<boolean>;
     /**
      * func add(_ url: URL!) -> Bool
      * @availability iOS 6.0+
      */
-    add77170(url?: (string) | null): boolean;
+    add77170(url?: (string) | null): Promise<boolean>;
     /**
      * func removeAllImages() -> Bool
      * @availability iOS 6.0+
      */
-    removeAllImages(): boolean;
+    removeAllImages(): Promise<boolean>;
     /**
      * func removeAllURLs() -> Bool
      * @availability iOS 6.0+
      */
-    removeAllURLs(): boolean;
+    removeAllURLs(): Promise<boolean>;
     /**
      * func setInitialText(_ text: String!) -> Bool
      * @availability iOS 6.0+
      */
-    setInitialText(text?: (string) | null): boolean;
+    setInitialText(text?: (string) | null): Promise<boolean>;
     /**
      * var completionHandler: SLComposeViewControllerCompletionHandler! { get set }
      * @availability iOS 6.0+
      */
-    get completionHandler(): (((arg0: SLComposeViewControllerResult) => Promise<void>)) | null;
-    set completionHandler(value: (((arg0: SLComposeViewControllerResult) => void)) | null);
+    get completionHandler(): Promise<(((arg0: SLComposeViewControllerResult) => Promise<void>)) | null>;
+    setCompletionHandler(value?: (((arg0: SLComposeViewControllerResult) => void)) | null): Promise<void>;
     /**
      * var serviceType: String! { get }
      * @availability iOS 6.0+
      */
-    get serviceType(): (string) | null;
+    get serviceType(): Promise<(string) | null>;
     readonly $type: {
         "c:objc(cs)SLComposeViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "serviceType": true;
     };
 }
 /** typealias SLComposeViewControllerCompletionHandler = (SLComposeViewControllerResult) -> Void */

@@ -2720,7 +2720,7 @@ export declare class SKTileMapNode extends SDKHandle {
     static tileMapNodes(tileSet: _SpriteKit_SKTileSet, columns: number, rows: number, tileSize: {
         width: number;
         height: number;
-    }, noiseMap: GKNoiseMap, thresholds: $SDK1): Array<_SpriteKit_SKTileMapNode>;
+    }, noiseMap: GKNoiseMap, thresholds: $SDK1): Promise<Array<_SpriteKit_SKTileMapNode>>;
     readonly $type: {
         "c:objc(cs)SKTileMapNode": true;
         "c:objc(cs)SKNode": true;

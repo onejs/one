@@ -44,35 +44,35 @@ export declare class INUIAddVoiceShortcutButton extends SDKHandle {
      * init(style: INUIAddVoiceShortcutButtonStyle)
      * @availability iOS 12.0+
      */
-    static init(style: INUIAddVoiceShortcutButtonStyle): INUIAddVoiceShortcutButton;
+    static init(style: INUIAddVoiceShortcutButtonStyle): Promise<INUIAddVoiceShortcutButton>;
     /**
      * func setStyle(_ style: INUIAddVoiceShortcutButtonStyle)
      * @availability iOS 13.0+
      */
-    setStyle(style: INUIAddVoiceShortcutButtonStyle): void;
+    setStyle(style: INUIAddVoiceShortcutButtonStyle): Promise<void>;
     /**
      * var cornerRadius: CGFloat { get set }
      * @availability iOS 13.0+
      */
-    get cornerRadius(): number;
-    set cornerRadius(value: number);
+    get cornerRadius(): Promise<number>;
+    setCornerRadius(value: number): Promise<void>;
     /**
      * weak var delegate: (any INUIAddVoiceShortcutButtonDelegate)? { get set }
      * @availability iOS 12.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<INUIAddVoiceShortcutButtonDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<INUIAddVoiceShortcutButtonDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var shortcut: INShortcut? { get set }
      * @availability iOS 12.0+
      */
-    get shortcut(): $SDK3;
-    set shortcut(value: $SDK3);
+    get shortcut(): Promise<$SDK3>;
+    setShortcut(value?: $SDK3): Promise<void>;
     /**
      * var style: INUIAddVoiceShortcutButtonStyle { get }
      * @availability iOS 12.0+
      */
-    get style(): INUIAddVoiceShortcutButtonStyle;
+    get style(): Promise<INUIAddVoiceShortcutButtonStyle>;
     readonly $type: {
         "c:objc(cs)INUIAddVoiceShortcutButton": true;
         "c:objc(cs)UIButton": true;
@@ -80,12 +80,6 @@ export declare class INUIAddVoiceShortcutButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "cornerRadius": true;
-        "delegate": true;
-        "shortcut": true;
-        "style": true;
     };
 }
 /**
@@ -120,21 +114,18 @@ export declare class INUIAddVoiceShortcutViewController extends SDKHandle {
      * init(shortcut: INShortcut)
      * @availability iOS 12.0+
      */
-    static init(shortcut: _Intents_INShortcut): INUIAddVoiceShortcutViewController;
+    static init(shortcut: _Intents_INShortcut): Promise<INUIAddVoiceShortcutViewController>;
     /**
      * weak var delegate: (any INUIAddVoiceShortcutViewControllerDelegate)? { get set }
      * @availability iOS 12.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<INUIAddVoiceShortcutViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<INUIAddVoiceShortcutViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)INUIAddVoiceShortcutViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /**
@@ -162,21 +153,18 @@ export declare class INUIEditVoiceShortcutViewController extends SDKHandle {
      * init(voiceShortcut: INVoiceShortcut)
      * @availability iOS 12.0+
      */
-    static init(voiceShortcut: _Intents_INVoiceShortcut): INUIEditVoiceShortcutViewController;
+    static init(voiceShortcut: _Intents_INVoiceShortcut): Promise<INUIEditVoiceShortcutViewController>;
     /**
      * weak var delegate: (any INUIEditVoiceShortcutViewControllerDelegate)? { get set }
      * @availability iOS 12.0+
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<INUIEditVoiceShortcutViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<INUIEditVoiceShortcutViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)INUIEditVoiceShortcutViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "delegate": true;
     };
 }
 /**

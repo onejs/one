@@ -8,22 +8,22 @@ export class CredentialSession extends SDKHandle {
    * func performCardEmulationTransactionWithCurrentCredential(over scene: UIScene, options: CredentialSession.CardEmulationOptions = .init()) async throws
    * @availability iOS 18.1+
    */
-  performCardEmulationTransactionWithCurrentCredential(scene: _UIKit_UIScene, options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", 3697903416076073, this, [scene, options]); }
+  performCardEmulationTransactionWithCurrentCredential(scene: _UIKit_UIScene, options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_067acaa3e5f56b46", 3697903416076073, this, [scene, options]); }
   /**
    * func endCardEmulation() async throws
    * @availability iOS 18.1+
    */
-  endCardEmulation(): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", 3796933663380336, this, []); }
+  endCardEmulation(): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_067acaa3e5f56b46", 3796933663380336, this, []); }
   /**
    * func performTransaction(using credential: CredentialSession.Credential, over scene: UIScene, options: CredentialSession.CardEmulationOptions = .init()) async throws
    * @availability iOS 18.1+
    */
-  performTransaction(credential: _SecureElementCredential_CredentialSession_Credential, scene: _UIKit_UIScene, options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", 4003010561326185, this, [credential, scene, options]); }
+  performTransaction(credential: _SecureElementCredential_CredentialSession_Credential, scene: _UIKit_UIScene, options?: _SecureElementCredential_CredentialSession_CardEmulationOptions): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_067acaa3e5f56b46", 4003010561326185, this, [credential, scene, options]); }
   /**
    * func performWiredTransaction(using credential: CredentialSession.Credential, over scene: UIScene, instanceAID: Data) async throws
    * @availability iOS 18.1+
    */
-  performWiredTransaction(credential: _SecureElementCredential_CredentialSession_Credential, scene: _UIKit_UIScene, instanceAID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", 1927249092951318, this, [credential, scene, instanceAID]); }
+  performWiredTransaction(credential: _SecureElementCredential_CredentialSession_Credential, scene: _UIKit_UIScene, instanceAID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("_SecureElementCredential_UIKit_067acaa3e5f56b46", 1927249092951318, this, [credential, scene, instanceAID]); }
   declare readonly $type: { "s:23SecureElementCredential0C7SessionC": true };
 }
 
@@ -50,7 +50,7 @@ export const CredentialSessionWindowSceneEvent = {
    * var description: String { get }
    * @availability iOS 17.4+
    */
-  getDescription($self: CredentialSessionWindowSceneEvent): string { return callSDK<string>("_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", 1095588784346411, $self, []); }
+  getDescription($self: CredentialSessionWindowSceneEvent): string { return callSDK<string>("_SecureElementCredential_UIKit_067acaa3e5f56b46", 1095588784346411, $self, []); }
 };
 
 export class UIScene_ConnectionOptions extends SDKHandle {
@@ -58,10 +58,10 @@ export class UIScene_ConnectionOptions extends SDKHandle {
    * @MainActor @preconcurrency var credentialSessionEvent: CredentialSessionWindowSceneEvent? { get }
    * @availability iOS 17.4+
    */
-  get credentialSessionEvent(): Promise<(CredentialSessionWindowSceneEvent) | null> { return callSDKAsync<(CredentialSessionWindowSceneEvent) | null>("_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", 908155116613505, this, []); }
+  get credentialSessionEvent(): Promise<(CredentialSessionWindowSceneEvent) | null> { return callSDKAsync<(CredentialSessionWindowSceneEvent) | null>("_SecureElementCredential_UIKit_067acaa3e5f56b46", 908155116613505, this, []); }
   declare readonly $type: { "c:objc(cs)UISceneConnectionOptions": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("SecureElementCredential.CredentialSession", CredentialSession, { module: "_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", properties: {}, methods: {"performCardEmulationTransactionWithCurrentCredential":{"id":3697903416076073},"endCardEmulation":{"id":3796933663380336},"performTransaction":{"id":4003010561326185},"performWiredTransaction":{"id":1927249092951318}} }, true);
+registerSDKClass("SecureElementCredential.CredentialSession", CredentialSession, { module: "_SecureElementCredential_UIKit_067acaa3e5f56b46", properties: {}, methods: {"performCardEmulationTransactionWithCurrentCredential":{"id":3697903416076073},"endCardEmulation":{"id":3796933663380336},"performTransaction":{"id":4003010561326185},"performWiredTransaction":{"id":1927249092951318}} }, true);
 registerSDKProtocol("s:30_SecureElementCredential_UIKit0C26SessionWindowSceneDelegateP", {"windowSceneDidReceiveCredentialSessionWindowSceneEvent":"windowScene(_:didReceiveCredentialSessionWindowSceneEvent:)"});
-registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_SecureElementCredential_UIKit_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_SecureElementCredential_UIKit_067acaa3e5f56b46", properties: {} }, true);

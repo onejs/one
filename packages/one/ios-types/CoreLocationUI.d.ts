@@ -6,43 +6,37 @@ import { SDKHandle } from 'one/ios-runtime';
  */
 export declare class CLLocationButton extends SDKHandle {
     /** init() */
-    static init(): CLLocationButton;
+    static init(): Promise<CLLocationButton>;
     /**
      * var cornerRadius: CGFloat { get set }
      * @availability iOS 15.0+
      */
-    get cornerRadius(): number;
-    set cornerRadius(value: number);
+    get cornerRadius(): Promise<number>;
+    setCornerRadius(value: number): Promise<void>;
     /**
      * var fontSize: CGFloat { get set }
      * @availability iOS 15.0+
      */
-    get fontSize(): number;
-    set fontSize(value: number);
+    get fontSize(): Promise<number>;
+    setFontSize(value: number): Promise<void>;
     /**
      * var icon: CLLocationButtonIcon { get set }
      * @availability iOS 15.0+
      */
-    get icon(): CLLocationButtonIcon;
-    set icon(value: CLLocationButtonIcon);
+    get icon(): Promise<CLLocationButtonIcon>;
+    setIcon(value: CLLocationButtonIcon): Promise<void>;
     /**
      * var label: CLLocationButtonLabel { get set }
      * @availability iOS 15.0+
      */
-    get label(): CLLocationButtonLabel;
-    set label(value: CLLocationButtonLabel);
+    get label(): Promise<CLLocationButtonLabel>;
+    setLabel(value: CLLocationButtonLabel): Promise<void>;
     readonly $type: {
         "c:objc(cs)CLLocationButton": true;
         "c:objc(cs)UIControl": true;
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "cornerRadius": true;
-        "fontSize": true;
-        "icon": true;
-        "label": true;
     };
 }
 /**

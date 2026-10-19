@@ -92,58 +92,51 @@ export declare class MCBrowserViewController extends SDKHandle {
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    static initBrowserSession(browser: MCNearbyServiceBrowser, session: MCSession): MCBrowserViewController;
+    static initBrowserSession(browser: MCNearbyServiceBrowser, session: MCSession): Promise<MCBrowserViewController>;
     /**
      * convenience init(serviceType: String, session: MCSession)
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    static initServiceTypeSession(serviceType: string, session: MCSession): MCBrowserViewController;
+    static initServiceTypeSession(serviceType: string, session: MCSession): Promise<MCBrowserViewController>;
     /**
      * var browser: MCNearbyServiceBrowser? { get }
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    get browser(): (MCNearbyServiceBrowser) | null;
+    get browser(): Promise<(MCNearbyServiceBrowser) | null>;
     /**
      * weak var delegate: (any MCBrowserViewControllerDelegate)? { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    get delegate(): (SDKHandle) | null;
-    set delegate(value: (Implements<MCBrowserViewControllerDelegate> | SDKHandle) | null);
+    get delegate(): Promise<(SDKHandle) | null>;
+    setDelegate(value?: (Implements<MCBrowserViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var maximumNumberOfPeers: Int { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    get maximumNumberOfPeers(): number;
-    set maximumNumberOfPeers(value: number);
+    get maximumNumberOfPeers(): Promise<number>;
+    setMaximumNumberOfPeers(value: number): Promise<void>;
     /**
      * var minimumNumberOfPeers: Int { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    get minimumNumberOfPeers(): number;
-    set minimumNumberOfPeers(value: number);
+    get minimumNumberOfPeers(): Promise<number>;
+    setMinimumNumberOfPeers(value: number): Promise<void>;
     /**
      * var session: MCSession { get }
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    get session(): MCSession;
+    get session(): Promise<MCSession>;
     readonly $type: {
         "c:objc(cs)MCBrowserViewController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "browser": true;
-        "delegate": true;
-        "maximumNumberOfPeers": true;
-        "minimumNumberOfPeers": true;
-        "session": true;
     };
 }
 /**

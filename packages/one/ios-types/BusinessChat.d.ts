@@ -57,13 +57,13 @@ export declare class BCChatButton extends SDKHandle {
      * @availability iOS 11.3+
      * @deprecated iOS 16.1
      */
-    static initCoder(coder: _Foundation_NSCoder): (BCChatButton) | null;
+    static initCoder(coder: _Foundation_NSCoder): Promise<(BCChatButton) | null>;
     /**
      * init(style: BCChatButton.Style)
      * @availability iOS 11.3+
      * @deprecated iOS 16.1
      */
-    static initStyle(style: BCChatButton_Style): BCChatButton;
+    static initStyle(style: BCChatButton_Style): Promise<BCChatButton>;
     readonly $type: {
         "c:objc(cs)BCChatButton": true;
         "c:objc(cs)UIControl": true;
@@ -84,5 +84,5 @@ export declare const BCChatButton_Style: {
      * @availability iOS 11.3+
      * @deprecated iOS 16.1
      */
-    init(rawValue: number): (BCChatButton_Style) | null;
+    init(rawValue: number): Promise<(BCChatButton_Style) | null>;
 };

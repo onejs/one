@@ -12,18 +12,18 @@ export class BGTask extends SDKHandle {
    * func setTaskCompleted(success: Bool)
    * @availability iOS 13.0+
    */
-  setTaskCompleted(success: boolean): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 3288072380280194, this, [success]); }
+  setTaskCompleted(success: boolean): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 3288072380280194, this, [success]); }
   /**
    * var expirationHandler: (() -> Void)? { get set }
    * @availability iOS 13.0+
    */
-  get expirationHandler(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("BackgroundTasks_90ad0eb69cc6bf4a", 1674006587631330, this, []); }
-  set expirationHandler(value: ((() => void)) | null) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 3803239761603605, this, [value], [{"callback":{"out":[]}}]); }
+  get expirationHandler(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("BackgroundTasks_067acaa3e5f56b46", 1674006587631330, this, []); }
+  set expirationHandler(value: ((() => void)) | null) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 3803239761603605, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var identifier: String { get }
    * @availability iOS 13.0+
    */
-  get identifier(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 2387229633693905, this, []); }
+  get identifier(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 2387229633693905, this, []); }
   declare readonly $type: { "c:objc(cs)BGTask": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -46,13 +46,13 @@ export class BGTaskRequest extends SDKHandle {
    * var earliestBeginDate: Date? { get set }
    * @availability iOS 13.0+
    */
-  get earliestBeginDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("BackgroundTasks_90ad0eb69cc6bf4a", 2688298349728012, this, []); }
-  set earliestBeginDate(value: (globalThis.Date) | null) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 3657207103912259, this, [value]); }
+  get earliestBeginDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("BackgroundTasks_067acaa3e5f56b46", 2688298349728012, this, []); }
+  set earliestBeginDate(value: (globalThis.Date) | null) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 3657207103912259, this, [value]); }
   /**
    * var identifier: String { get }
    * @availability iOS 13.0+
    */
-  get identifier(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 968953810749929, this, []); }
+  get identifier(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 968953810749929, this, []); }
   declare readonly $type: { "c:objc(cs)BGTaskRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "earliestBeginDate": true; "identifier": true };
 }
@@ -66,7 +66,7 @@ export class BGAppRefreshTaskRequest extends BGTaskRequest {
    * init(identifier: String)
    * @availability iOS 13.0+
    */
-  static init(identifier: string): BGAppRefreshTaskRequest { return callSDK<BGAppRefreshTaskRequest>("BackgroundTasks_90ad0eb69cc6bf4a", 496619051820502, undefined, [identifier]); }
+  static init(identifier: string): BGAppRefreshTaskRequest { return callSDK<BGAppRefreshTaskRequest>("BackgroundTasks_067acaa3e5f56b46", 496619051820502, undefined, [identifier]); }
   declare readonly $type: { "c:objc(cs)BGAppRefreshTaskRequest": true; "c:objc(cs)BGTaskRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "earliestBeginDate": true; "identifier": true };
 }
@@ -80,17 +80,17 @@ export class BGContinuedProcessingTask extends BGTask {
    * func updateTitle(_ title: String, subtitle: String)
    * @availability iOS 26.0+
    */
-  updateTitle(title: string, subtitle: string): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 2637327262320105, this, [title, subtitle]); }
+  updateTitle(title: string, subtitle: string): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 2637327262320105, this, [title, subtitle]); }
   /**
    * var subtitle: String { get }
    * @availability iOS 26.0+
    */
-  get subtitle(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 1992711942937306, this, []); }
+  get subtitle(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 1992711942937306, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 3823204420530629, this, []); }
+  get title(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 3823204420530629, this, []); }
   declare readonly $type: { "c:objc(cs)BGContinuedProcessingTask": true; "c:objc(cs)BGTask": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "subtitle": true; "title": true };
 }
@@ -104,31 +104,31 @@ export class BGContinuedProcessingTaskRequest extends BGTaskRequest {
    * init(identifier: String, title: String, subtitle: String)
    * @availability iOS 26.0+
    */
-  static init(identifier: string, title: string, subtitle: string): BGContinuedProcessingTaskRequest { return callSDK<BGContinuedProcessingTaskRequest>("BackgroundTasks_90ad0eb69cc6bf4a", 1309905918368969, undefined, [identifier, title, subtitle]); }
+  static init(identifier: string, title: string, subtitle: string): BGContinuedProcessingTaskRequest { return callSDK<BGContinuedProcessingTaskRequest>("BackgroundTasks_067acaa3e5f56b46", 1309905918368969, undefined, [identifier, title, subtitle]); }
   /**
    * var requiredResources: BGContinuedProcessingTaskRequest.Resources { get set }
    * @availability iOS 26.0+
    */
-  get requiredResources(): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_90ad0eb69cc6bf4a", 1418654546031541, this, []); }
-  set requiredResources(value: BGContinuedProcessingTaskRequest_Resources) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 786736390164266, this, [value]); }
+  get requiredResources(): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_067acaa3e5f56b46", 1418654546031541, this, []); }
+  set requiredResources(value: BGContinuedProcessingTaskRequest_Resources) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 786736390164266, this, [value]); }
   /**
    * var strategy: BGContinuedProcessingTaskRequest.SubmissionStrategy { get set }
    * @availability iOS 26.0+
    */
-  get strategy(): BGContinuedProcessingTaskRequest_SubmissionStrategy { return callSDK<BGContinuedProcessingTaskRequest_SubmissionStrategy>("BackgroundTasks_90ad0eb69cc6bf4a", 4259528247318795, this, []); }
-  set strategy(value: BGContinuedProcessingTaskRequest_SubmissionStrategy) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 3463540120064619, this, [value]); }
+  get strategy(): BGContinuedProcessingTaskRequest_SubmissionStrategy { return callSDK<BGContinuedProcessingTaskRequest_SubmissionStrategy>("BackgroundTasks_067acaa3e5f56b46", 4259528247318795, this, []); }
+  set strategy(value: BGContinuedProcessingTaskRequest_SubmissionStrategy) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 3463540120064619, this, [value]); }
   /**
    * var subtitle: String { get set }
    * @availability iOS 26.0+
    */
-  get subtitle(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 2656896205986490, this, []); }
-  set subtitle(value: string) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 2735975606532162, this, [value]); }
+  get subtitle(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 2656896205986490, this, []); }
+  set subtitle(value: string) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 2735975606532162, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 476097754408496, this, []); }
-  set title(value: string) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 1756416107080410, this, [value]); }
+  get title(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 476097754408496, this, []); }
+  set title(value: string) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 1756416107080410, this, [value]); }
   declare readonly $type: { "c:objc(cs)BGContinuedProcessingTaskRequest": true; "c:objc(cs)BGTaskRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "earliestBeginDate": true; "identifier": true; "requiredResources": true; "strategy": true; "subtitle": true; "title": true };
 }
@@ -144,12 +144,12 @@ export const BGContinuedProcessingTaskRequest_Resources = {
    * static var gpu: BGContinuedProcessingTaskRequest.Resources { get }
    * @availability iOS 26.0+
    */
-  get gpu(): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_90ad0eb69cc6bf4a", 625628321914527, undefined, []); },
+  get gpu(): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_067acaa3e5f56b46", 625628321914527, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_90ad0eb69cc6bf4a", 1450804295340463, undefined, [rawValue]); }
+  init(rawValue: number): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_067acaa3e5f56b46", 1450804295340463, undefined, [rawValue]); }
 };
 
 /**
@@ -163,7 +163,7 @@ export const BGContinuedProcessingTaskRequest_SubmissionStrategy = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (BGContinuedProcessingTaskRequest_SubmissionStrategy) | null { return callSDK<(BGContinuedProcessingTaskRequest_SubmissionStrategy) | null>("BackgroundTasks_90ad0eb69cc6bf4a", 3195338197937440, undefined, [rawValue]); }
+  init(rawValue: number): (BGContinuedProcessingTaskRequest_SubmissionStrategy) | null { return callSDK<(BGContinuedProcessingTaskRequest_SubmissionStrategy) | null>("BackgroundTasks_067acaa3e5f56b46", 3195338197937440, undefined, [rawValue]); }
 };
 
 /**
@@ -193,19 +193,19 @@ export class BGProcessingTaskRequest extends BGTaskRequest {
    * init(identifier: String)
    * @availability iOS 13.0+
    */
-  static init(identifier: string): BGProcessingTaskRequest { return callSDK<BGProcessingTaskRequest>("BackgroundTasks_90ad0eb69cc6bf4a", 4010680709261630, undefined, [identifier]); }
+  static init(identifier: string): BGProcessingTaskRequest { return callSDK<BGProcessingTaskRequest>("BackgroundTasks_067acaa3e5f56b46", 4010680709261630, undefined, [identifier]); }
   /**
    * var requiresExternalPower: Bool { get set }
    * @availability iOS 13.0+
    */
-  get requiresExternalPower(): boolean { return callSDK<boolean>("BackgroundTasks_90ad0eb69cc6bf4a", 720393028325151, this, []); }
-  set requiresExternalPower(value: boolean) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 1921444832841693, this, [value]); }
+  get requiresExternalPower(): boolean { return callSDK<boolean>("BackgroundTasks_067acaa3e5f56b46", 720393028325151, this, []); }
+  set requiresExternalPower(value: boolean) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 1921444832841693, this, [value]); }
   /**
    * var requiresNetworkConnectivity: Bool { get set }
    * @availability iOS 13.0+
    */
-  get requiresNetworkConnectivity(): boolean { return callSDK<boolean>("BackgroundTasks_90ad0eb69cc6bf4a", 2291816660366577, this, []); }
-  set requiresNetworkConnectivity(value: boolean) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 2261687168774262, this, [value]); }
+  get requiresNetworkConnectivity(): boolean { return callSDK<boolean>("BackgroundTasks_067acaa3e5f56b46", 2291816660366577, this, []); }
+  set requiresNetworkConnectivity(value: boolean) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 2261687168774262, this, [value]); }
   declare readonly $type: { "c:objc(cs)BGProcessingTaskRequest": true; "c:objc(cs)BGTaskRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "earliestBeginDate": true; "identifier": true; "requiresExternalPower": true; "requiresNetworkConnectivity": true };
 }
@@ -219,8 +219,8 @@ export class BGHealthResearchTaskRequest extends BGProcessingTaskRequest {
    * unowned(unsafe) var protectionTypeOfRequiredData: NSString { get set }
    * @availability iOS 17.0+
    */
-  get protectionTypeOfRequiredData(): _Foundation_NSString { return callSDK<_Foundation_NSString>("BackgroundTasks_90ad0eb69cc6bf4a", 1114898997599009, this, []); }
-  set protectionTypeOfRequiredData(value: _Foundation_NSString) { callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 4225620339939947, this, [value]); }
+  get protectionTypeOfRequiredData(): _Foundation_NSString { return callSDK<_Foundation_NSString>("BackgroundTasks_067acaa3e5f56b46", 1114898997599009, this, []); }
+  set protectionTypeOfRequiredData(value: _Foundation_NSString) { callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 4225620339939947, this, [value]); }
   declare readonly $type: { "c:objc(cs)BGHealthResearchTaskRequest": true; "c:objc(cs)BGProcessingTaskRequest": true; "c:objc(cs)BGTaskRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "earliestBeginDate": true; "identifier": true; "requiresExternalPower": true; "requiresNetworkConnectivity": true; "protectionTypeOfRequiredData": true };
 }
@@ -234,48 +234,48 @@ export class BGTaskScheduler extends SDKHandle {
    * class let errorDomain: String
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 1742154996683147, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 1742154996683147, undefined, []); }
   /**
    * class var shared: BGTaskScheduler { get }
    * @availability iOS 13.0+
    */
-  static get shared(): BGTaskScheduler { return callSDK<BGTaskScheduler>("BackgroundTasks_90ad0eb69cc6bf4a", 2978934510179990, undefined, []); }
+  static get shared(): BGTaskScheduler { return callSDK<BGTaskScheduler>("BackgroundTasks_067acaa3e5f56b46", 2978934510179990, undefined, []); }
   /**
    * class var supportedResources: BGContinuedProcessingTaskRequest.Resources { get }
    * @availability iOS 26.0+
    */
-  static get supportedResources(): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_90ad0eb69cc6bf4a", 2108502168078327, undefined, []); }
+  static get supportedResources(): BGContinuedProcessingTaskRequest_Resources { return callSDK<BGContinuedProcessingTaskRequest_Resources>("BackgroundTasks_067acaa3e5f56b46", 2108502168078327, undefined, []); }
   /**
    * func cancelAllTaskRequests()
    * @availability iOS 13.0+
    */
-  cancelAllTaskRequests(): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 3950062667254789, this, []); }
+  cancelAllTaskRequests(): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 3950062667254789, this, []); }
   /**
    * func cancel(taskRequestWithIdentifier identifier: String)
    * @availability iOS 13.0+
    */
-  cancel(identifier: string): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 2411617621779813, this, [identifier]); }
+  cancel(identifier: string): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 2411617621779813, this, [identifier]); }
   /**
    * func pendingTaskRequests() async -> [BGTaskRequest]
    * @availability iOS 13.0+
    */
-  getPendingTaskRequests(completionHandler: ((arg0: Array<BGTaskRequest>) => void)): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 3266936219442325, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getPendingTaskRequests(completionHandler: ((arg0: Array<BGTaskRequest>) => void)): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 3266936219442325, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func register(forTaskWithIdentifier identifier: String, using queue: dispatch_queue_t?, launchHandler: @escaping (BGTask) -> Void) -> Bool
    * @availability iOS 13.0+
    */
-  register(identifier: string, queue: (_Dispatch_DispatchQueue) | null, launchHandler: ((arg0: BGTask) => void)): boolean { return callSDK<boolean>("BackgroundTasks_90ad0eb69cc6bf4a", 4274171853494888, this, [identifier, queue, launchHandler], [null,null,{"callback":{"out":[]}}]); }
+  register(identifier: string, queue: (_Dispatch_DispatchQueue) | null, launchHandler: ((arg0: BGTask) => void)): boolean { return callSDK<boolean>("BackgroundTasks_067acaa3e5f56b46", 4274171853494888, this, [identifier, queue, launchHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func submitTaskRequest(_ taskRequest: BGTaskRequest) async throws
    * @availability iOS 27.0+
    */
-  submitTaskRequest(taskRequest: BGTaskRequest, completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 2374088336342031, this, [taskRequest, completionHandler], [null,{"callback":{"out":[]}}]); }
+  submitTaskRequest(taskRequest: BGTaskRequest, completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 2374088336342031, this, [taskRequest, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func submit(_ taskRequest: BGTaskRequest) throws
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  submit(taskRequest: BGTaskRequest): void { return callSDK<void>("BackgroundTasks_90ad0eb69cc6bf4a", 2088092719446919, this, [taskRequest]); }
+  submit(taskRequest: BGTaskRequest): void { return callSDK<void>("BackgroundTasks_067acaa3e5f56b46", 2088092719446919, this, [taskRequest]); }
   declare readonly $type: { "c:objc(cs)BGTaskScheduler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -288,27 +288,27 @@ export class BGTaskScheduler_Error extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("BackgroundTasks_90ad0eb69cc6bf4a", 1962268118437044, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("BackgroundTasks_067acaa3e5f56b46", 1962268118437044, undefined, []); }
   /**
    * static var unavailable: BGTaskScheduler.Error.Code { get }
    * @availability iOS 13.0+
    */
-  static get unavailable(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_90ad0eb69cc6bf4a", 1083869283660967, undefined, []); }
+  static get unavailable(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_067acaa3e5f56b46", 1083869283660967, undefined, []); }
   /**
    * static var notPermitted: BGTaskScheduler.Error.Code { get }
    * @availability iOS 13.0+
    */
-  static get notPermitted(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_90ad0eb69cc6bf4a", 3265366287906085, undefined, []); }
+  static get notPermitted(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_067acaa3e5f56b46", 3265366287906085, undefined, []); }
   /**
    * static var immediateRunIneligible: BGTaskScheduler.Error.Code { get }
    * @availability iOS 13.0+
    */
-  static get immediateRunIneligible(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_90ad0eb69cc6bf4a", 4177138822062498, undefined, []); }
+  static get immediateRunIneligible(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_067acaa3e5f56b46", 4177138822062498, undefined, []); }
   /**
    * static var tooManyPendingTaskRequests: BGTaskScheduler.Error.Code { get }
    * @availability iOS 13.0+
    */
-  static get tooManyPendingTaskRequests(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_90ad0eb69cc6bf4a", 4411463541160117, undefined, []); }
+  static get tooManyPendingTaskRequests(): BGTaskScheduler_Error_Code { return callSDK<BGTaskScheduler_Error_Code>("BackgroundTasks_067acaa3e5f56b46", 4411463541160117, undefined, []); }
   declare readonly $type: { "s:SC24BGTaskSchedulerErrorCodeLeV": true };
 }
 
@@ -323,18 +323,18 @@ export const BGTaskScheduler_Error_Code = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (BGTaskScheduler_Error_Code) | null { return callSDK<(BGTaskScheduler_Error_Code) | null>("BackgroundTasks_90ad0eb69cc6bf4a", 804701642080444, undefined, [rawValue]); }
+  init(rawValue: number): (BGTaskScheduler_Error_Code) | null { return callSDK<(BGTaskScheduler_Error_Code) | null>("BackgroundTasks_067acaa3e5f56b46", 804701642080444, undefined, [rawValue]); }
 };
 
-registerSDKClass("BGTask", BGTask, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {"identifier":2387229633693905}, methods: {"setTaskCompleted":{"id":3288072380280194}} });
-registerSDKClass("BGAppRefreshTask", BGAppRefreshTask, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("BGTaskRequest", BGTaskRequest, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {"earliestBeginDate":2688298349728012,"identifier":968953810749929} });
-registerSDKClass("BGAppRefreshTaskRequest", BGAppRefreshTaskRequest, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("BGContinuedProcessingTask", BGContinuedProcessingTask, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {"subtitle":1992711942937306,"title":3823204420530629}, methods: {"updateTitle":{"id":2637327262320105}} });
-registerSDKClass("BGContinuedProcessingTaskRequest", BGContinuedProcessingTaskRequest, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {"requiredResources":1418654546031541,"strategy":4259528247318795,"subtitle":2656896205986490,"title":476097754408496} });
-registerSDKClass("BGProcessingTask", BGProcessingTask, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("BGHealthResearchTask", BGHealthResearchTask, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("BGProcessingTaskRequest", BGProcessingTaskRequest, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {"requiresExternalPower":720393028325151,"requiresNetworkConnectivity":2291816660366577} });
-registerSDKClass("BGHealthResearchTaskRequest", BGHealthResearchTaskRequest, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {"protectionTypeOfRequiredData":1114898997599009} });
-registerSDKClass("BGTaskScheduler", BGTaskScheduler, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {}, methods: {"cancelAllTaskRequests":{"id":3950062667254789},"cancel":{"id":2411617621779813},"getPendingTaskRequests":{"id":3266936219442325,"hints":[{"callback":{"out":[]}}]},"register":{"id":4274171853494888,"hints":[null,null,{"callback":{"out":[]}}]},"submitTaskRequest":{"id":2374088336342031,"hints":[null,{"callback":{"out":[]}}]},"submit":{"id":2088092719446919}} });
-registerSDKClass("BackgroundTasks.BGTaskScheduler.Error", BGTaskScheduler_Error, { module: "BackgroundTasks_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("BGTask", BGTask, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {"identifier":2387229633693905}, methods: {"setTaskCompleted":{"id":3288072380280194}} });
+registerSDKClass("BGAppRefreshTask", BGAppRefreshTask, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {} });
+registerSDKClass("BGTaskRequest", BGTaskRequest, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {"earliestBeginDate":2688298349728012,"identifier":968953810749929} });
+registerSDKClass("BGAppRefreshTaskRequest", BGAppRefreshTaskRequest, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {} });
+registerSDKClass("BGContinuedProcessingTask", BGContinuedProcessingTask, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {"subtitle":1992711942937306,"title":3823204420530629}, methods: {"updateTitle":{"id":2637327262320105}} });
+registerSDKClass("BGContinuedProcessingTaskRequest", BGContinuedProcessingTaskRequest, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {"requiredResources":1418654546031541,"strategy":4259528247318795,"subtitle":2656896205986490,"title":476097754408496} });
+registerSDKClass("BGProcessingTask", BGProcessingTask, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {} });
+registerSDKClass("BGHealthResearchTask", BGHealthResearchTask, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {} });
+registerSDKClass("BGProcessingTaskRequest", BGProcessingTaskRequest, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {"requiresExternalPower":720393028325151,"requiresNetworkConnectivity":2291816660366577} });
+registerSDKClass("BGHealthResearchTaskRequest", BGHealthResearchTaskRequest, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {"protectionTypeOfRequiredData":1114898997599009} });
+registerSDKClass("BGTaskScheduler", BGTaskScheduler, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {}, methods: {"cancelAllTaskRequests":{"id":3950062667254789},"cancel":{"id":2411617621779813},"getPendingTaskRequests":{"id":3266936219442325,"hints":[{"callback":{"out":[]}}]},"register":{"id":4274171853494888,"hints":[null,null,{"callback":{"out":[]}}]},"submitTaskRequest":{"id":2374088336342031,"hints":[null,{"callback":{"out":[]}}]},"submit":{"id":2088092719446919}} });
+registerSDKClass("BackgroundTasks.BGTaskScheduler.Error", BGTaskScheduler_Error, { module: "BackgroundTasks_067acaa3e5f56b46", properties: {} });

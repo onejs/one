@@ -972,49 +972,46 @@ export declare class GKFriendRequestComposeViewController extends SDKHandle {
      * @availability iOS 4.2+
      * @deprecated iOS 10.0
      */
-    static maxNumberOfRecipients(): number;
+    static maxNumberOfRecipients(): Promise<number>;
     /**
      * func addRecipientPlayers(_ players: [GKPlayer])
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    addRecipientPlayers(players: Array<GKPlayer>): void;
+    addRecipientPlayers(players: Array<GKPlayer>): Promise<void>;
     /**
      * func addRecipients(withEmailAddresses emailAddresses: [String])
      * @availability iOS 4.2+
      * @deprecated iOS 10.0
      */
-    addRecipientsWithEmailAddresses(emailAddresses: Array<string>): void;
+    addRecipientsWithEmailAddresses(emailAddresses: Array<string>): Promise<void>;
     /**
      * func addRecipients(withPlayerIDs playerIDs: [String])
      * @availability iOS 4.2+
      * @deprecated iOS 8.0
      */
-    addRecipientsWithPlayerIDs(playerIDs: Array<string>): void;
+    addRecipientsWithPlayerIDs(playerIDs: Array<string>): Promise<void>;
     /** init() */
-    static init(): GKFriendRequestComposeViewController;
+    static init(): Promise<GKFriendRequestComposeViewController>;
     /**
      * func setMessage(_ message: String?)
      * @availability iOS 4.2+
      * @deprecated iOS 10.0
      */
-    setMessage(message?: (string) | null): void;
+    setMessage(message?: (string) | null): Promise<void>;
     /**
      * weak var composeViewDelegate: (any GKFriendRequestComposeViewControllerDelegate)? { get set }
      * @availability iOS 4.2+
      * @deprecated iOS 10.0
      */
-    get composeViewDelegate(): (SDKHandle) | null;
-    set composeViewDelegate(value: (Implements<GKFriendRequestComposeViewControllerDelegate> | SDKHandle) | null);
+    get composeViewDelegate(): Promise<(SDKHandle) | null>;
+    setComposeViewDelegate(value?: (Implements<GKFriendRequestComposeViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)GKFriendRequestComposeViewController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "composeViewDelegate": true;
     };
 }
 /**
@@ -1393,68 +1390,62 @@ export declare class GKGameCenterViewController extends SDKHandle {
      * init(achievementID: String)
      * @availability iOS 14.0+
      */
-    static initAchievementID(achievementID: string): GKGameCenterViewController;
+    static initAchievementID(achievementID: string): Promise<GKGameCenterViewController>;
     /**
      * init(leaderboard: GKLeaderboard, playerScope: GKLeaderboard.PlayerScope)
      * @availability iOS 14.0+
      */
-    static initLeaderboardPlayerScope(leaderboard: GKLeaderboard, playerScope: GKLeaderboard_PlayerScope): GKGameCenterViewController;
+    static initLeaderboardPlayerScope(leaderboard: GKLeaderboard, playerScope: GKLeaderboard_PlayerScope): Promise<GKGameCenterViewController>;
     /**
      * init(leaderboardID: String, playerScope: GKLeaderboard.PlayerScope, timeScope: GKLeaderboard.TimeScope)
      * @availability iOS 14.0+
      */
-    static initLeaderboardIDPlayerScopeTimeScope(leaderboardID: string, playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope): GKGameCenterViewController;
+    static initLeaderboardIDPlayerScopeTimeScope(leaderboardID: string, playerScope: GKLeaderboard_PlayerScope, timeScope: GKLeaderboard_TimeScope): Promise<GKGameCenterViewController>;
     /**
      * init(leaderboardSetID: String)
      * @availability iOS 18.0+
      */
-    static initLeaderboardSetID(leaderboardSetID: string): GKGameCenterViewController;
+    static initLeaderboardSetID(leaderboardSetID: string): Promise<GKGameCenterViewController>;
     /**
      * init(player: GKPlayer)
      * @availability iOS 18.0+
      */
-    static initPlayer(player: GKPlayer): GKGameCenterViewController;
+    static initPlayer(player: GKPlayer): Promise<GKGameCenterViewController>;
     /**
      * init(state: GKGameCenterViewControllerState)
      * @availability iOS 14.0+
      */
-    static initState(state: GKGameCenterViewControllerState): GKGameCenterViewController;
+    static initState(state: GKGameCenterViewControllerState): Promise<GKGameCenterViewController>;
     /** weak var gameCenterDelegate: (any GKGameCenterControllerDelegate)? { get set } */
-    get gameCenterDelegate(): (SDKHandle) | null;
-    set gameCenterDelegate(value: (Implements<GKGameCenterControllerDelegate> | SDKHandle) | null);
+    get gameCenterDelegate(): Promise<(SDKHandle) | null>;
+    setGameCenterDelegate(value?: (Implements<GKGameCenterControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var leaderboardIdentifier: String? { get set }
      * @availability iOS 7.0+
      * @deprecated iOS 14.0
      */
-    get leaderboardIdentifier(): (string) | null;
-    set leaderboardIdentifier(value: (string) | null);
+    get leaderboardIdentifier(): Promise<(string) | null>;
+    setLeaderboardIdentifier(value?: (string) | null): Promise<void>;
     /**
      * var leaderboardTimeScope: GKLeaderboard.TimeScope { get set }
      * @availability iOS 4.1+
      * @deprecated iOS 14.0
      */
-    get leaderboardTimeScope(): GKLeaderboard_TimeScope;
-    set leaderboardTimeScope(value: GKLeaderboard_TimeScope);
+    get leaderboardTimeScope(): Promise<GKLeaderboard_TimeScope>;
+    setLeaderboardTimeScope(value: GKLeaderboard_TimeScope): Promise<void>;
     /**
      * var viewState: GKGameCenterViewControllerState { get set }
      * @availability iOS 6.0+
      * @deprecated iOS 14.0
      */
-    get viewState(): GKGameCenterViewControllerState;
-    set viewState(value: GKGameCenterViewControllerState);
+    get viewState(): Promise<GKGameCenterViewControllerState>;
+    setViewState(value: GKGameCenterViewControllerState): Promise<void>;
     readonly $type: {
         "c:objc(cs)GKGameCenterViewController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "gameCenterDelegate": true;
-        "leaderboardIdentifier": true;
-        "leaderboardTimeScope": true;
-        "viewState": true;
     };
 }
 /**
@@ -2949,70 +2940,63 @@ export declare class GKMatchmakerViewController extends SDKHandle {
      * func addPlayers(to match: GKMatch)
      * @availability iOS 5.0+
      */
-    addPlayers(match: GKMatch): void;
+    addPlayers(match: GKMatch): Promise<void>;
     /**
      * init?(invite: GKInvite)
      * @availability iOS 4.1+
      */
-    static initInvite(invite: GKInvite): (GKMatchmakerViewController) | null;
+    static initInvite(invite: GKInvite): Promise<(GKMatchmakerViewController) | null>;
     /**
      * init?(matchRequest request: GKMatchRequest)
      * @availability iOS 4.1+
      */
-    static initMatchRequest(request: GKMatchRequest): (GKMatchmakerViewController) | null;
+    static initMatchRequest(request: GKMatchRequest): Promise<(GKMatchmakerViewController) | null>;
     /**
      * func setHostedPlayer(_ playerID: String, connected: Bool)
      * @availability iOS 5.0+
      * @deprecated iOS 8.0
      */
-    setHostedPlayerConnected(playerID: string, connected: boolean): void;
+    setHostedPlayerConnected(playerID: string, connected: boolean): Promise<void>;
     /**
      * func setHostedPlayer(_ player: GKPlayer, didConnect connected: Bool)
      * @availability iOS 8.0+
      */
-    setHostedPlayerDidConnect(player: GKPlayer, connected: boolean): void;
+    setHostedPlayerDidConnect(player: GKPlayer, connected: boolean): Promise<void>;
     /**
      * var canStartWithMinimumPlayers: Bool { get set }
      * @availability iOS 15.0+
      */
-    get canStartWithMinimumPlayers(): boolean;
-    set canStartWithMinimumPlayers(value: boolean);
+    get canStartWithMinimumPlayers(): Promise<boolean>;
+    setCanStartWithMinimumPlayers(value: boolean): Promise<void>;
     /**
      * var isHosted: Bool { get set }
      * @availability iOS 4.1+
      */
-    get isHosted(): boolean;
-    set isHosted(value: boolean);
+    get isHosted(): Promise<boolean>;
+    setIsHosted(value: boolean): Promise<void>;
     /**
      * var matchRequest: GKMatchRequest { get }
      * @availability iOS 4.1+
      */
-    get matchRequest(): GKMatchRequest;
+    get matchRequest(): Promise<GKMatchRequest>;
     /**
      * weak var matchmakerDelegate: (any GKMatchmakerViewControllerDelegate)? { get set }
      * @availability iOS 4.1+
      */
-    get matchmakerDelegate(): (SDKHandle) | null;
-    set matchmakerDelegate(value: (Implements<GKMatchmakerViewControllerDelegate> | SDKHandle) | null);
+    get matchmakerDelegate(): Promise<(SDKHandle) | null>;
+    setMatchmakerDelegate(value?: (Implements<GKMatchmakerViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     /**
      * var matchmakingMode: GKMatchmakingMode { get set }
      * @availability iOS 14.0+
      */
-    get matchmakingMode(): GKMatchmakingMode;
-    set matchmakingMode(value: GKMatchmakingMode);
+    get matchmakingMode(): Promise<GKMatchmakingMode>;
+    setMatchmakingMode(value: GKMatchmakingMode): Promise<void>;
     readonly $type: {
         "c:objc(cs)GKMatchmakerViewController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "canStartWithMinimumPlayers": true;
-        "isHosted": true;
-        "matchRequest": true;
-        "matchmakerDelegate": true;
-        "matchmakingMode": true;
     };
 }
 /**
@@ -3909,30 +3893,25 @@ export declare const GKTurnBasedMatch_Status: {
  */
 export declare class GKTurnBasedMatchmakerViewController extends SDKHandle {
     /** init(matchRequest request: GKMatchRequest) */
-    static init(request: GKMatchRequest): GKTurnBasedMatchmakerViewController;
+    static init(request: GKMatchRequest): Promise<GKTurnBasedMatchmakerViewController>;
     /**
      * var matchmakingMode: GKMatchmakingMode { get set }
      * @availability iOS 15.0+
      */
-    get matchmakingMode(): GKMatchmakingMode;
-    set matchmakingMode(value: GKMatchmakingMode);
+    get matchmakingMode(): Promise<GKMatchmakingMode>;
+    setMatchmakingMode(value: GKMatchmakingMode): Promise<void>;
     /** var showExistingMatches: Bool { get set } */
-    get showExistingMatches(): boolean;
-    set showExistingMatches(value: boolean);
+    get showExistingMatches(): Promise<boolean>;
+    setShowExistingMatches(value: boolean): Promise<void>;
     /** weak var turnBasedMatchmakerDelegate: (any GKTurnBasedMatchmakerViewControllerDelegate)? { get set } */
-    get turnBasedMatchmakerDelegate(): (SDKHandle) | null;
-    set turnBasedMatchmakerDelegate(value: (Implements<GKTurnBasedMatchmakerViewControllerDelegate> | SDKHandle) | null);
+    get turnBasedMatchmakerDelegate(): Promise<(SDKHandle) | null>;
+    setTurnBasedMatchmakerDelegate(value?: (Implements<GKTurnBasedMatchmakerViewControllerDelegate> | SDKHandle) | null): Promise<void>;
     readonly $type: {
         "c:objc(cs)GKTurnBasedMatchmakerViewController": true;
         "c:objc(cs)UINavigationController": true;
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "matchmakingMode": true;
-        "showExistingMatches": true;
-        "turnBasedMatchmakerDelegate": true;
     };
 }
 /**

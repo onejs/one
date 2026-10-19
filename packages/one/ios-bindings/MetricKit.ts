@@ -36,12 +36,12 @@ export class AppLaunchDiagnostic extends SDKHandle {
    * let callStackTree: CallStackTree
    * @availability iOS 27.0+
    */
-  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_90ad0eb69cc6bf4a", 3966507242069597, this, []); }
+  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_067acaa3e5f56b46", 3966507242069597, this, []); }
   /**
    * let launchDuration: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get launchDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2226631914662958, this, []); }
+  get launchDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2226631914662958, this, []); }
   declare readonly $type: { "s:9MetricKit19AppLaunchDiagnosticV": true };
 }
 
@@ -54,7 +54,7 @@ export class ApplicationResumeTimeMetric extends SDKHandle {
    * let histogram: Histogram<UnitDuration>
    * @availability iOS 27.0+
    */
-  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_90ad0eb69cc6bf4a", 3623197464855010, this, []); }
+  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_067acaa3e5f56b46", 3623197464855010, this, []); }
   declare readonly $type: { "s:9MetricKit021ApplicationResumeTimeA0V": true };
 }
 
@@ -67,7 +67,7 @@ export class AveragePixelLuminance extends SDKHandle {
    * override static func baseUnit() -> AveragePixelLuminance
    * @availability iOS 27.0+
    */
-  static baseUnit(): AveragePixelLuminance { return callSDK<AveragePixelLuminance>("MetricKit_90ad0eb69cc6bf4a", 4303756534554777, undefined, []); }
+  static baseUnit(): AveragePixelLuminance { return callSDK<AveragePixelLuminance>("MetricKit_067acaa3e5f56b46", 4303756534554777, undefined, []); }
   declare readonly $type: { "c:@M@MetricKit@objc(cs)AveragePixelLuminance": true; "c:objc(cs)NSDimension": true; "c:objc(cs)NSUnit": true; "c:objc(cs)NSObject": true };
 }
 
@@ -80,17 +80,17 @@ export class AverageStatistics<DimensionType = unknown> extends SDKHandle {
    * let standardDeviation: Double?
    * @availability iOS 27.0+
    */
-  get standardDeviation(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 1043691712577817, this, []); }
+  get standardDeviation(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 1043691712577817, this, []); }
   /**
    * let count: Int
    * @availability iOS 27.0+
    */
-  get count(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 142789658186815, this, []); }
+  get count(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 142789658186815, this, []); }
   /**
    * let average: Measurement<DimensionType>
    * @availability iOS 27.0+
    */
-  get average(): $SDK2 { return callSDK<$SDK2>("MetricKit_90ad0eb69cc6bf4a", 3787228168371067, this, []); }
+  get average(): $SDK2 { return callSDK<$SDK2>("MetricKit_067acaa3e5f56b46", 3787228168371067, this, []); }
   declare readonly $type: { "s:9MetricKit17AverageStatisticsV": true };
 }
 
@@ -103,52 +103,52 @@ export class BackgroundTerminationMetric extends SDKHandle {
    * let memoryLimitTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get memoryLimitTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3707356118165437, this, []); }
+  get memoryLimitTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3707356118165437, this, []); }
   /**
    * let taskTimeoutTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get taskTimeoutTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3927544834256334, this, []); }
+  get taskTimeoutTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3927544834256334, this, []); }
   /**
    * let systemPressureTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get systemPressureTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1872967126132660, this, []); }
+  get systemPressureTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1872967126132660, this, []); }
   /**
    * let illegalInstructionTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get illegalInstructionTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3686107702406915, this, []); }
+  get illegalInstructionTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3686107702406915, this, []); }
   /**
    * let normalTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get normalTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4455509444512191, this, []); }
+  get normalTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4455509444512191, this, []); }
   /**
    * let abnormalTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get abnormalTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3191117203827723, this, []); }
+  get abnormalTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3191117203827723, this, []); }
   /**
    * let fileLockTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get fileLockTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2799100121352846, this, []); }
+  get fileLockTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2799100121352846, this, []); }
   /**
    * let watchdogTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get watchdogTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 443405430292431, this, []); }
+  get watchdogTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 443405430292431, this, []); }
   /**
    * let badAccessTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get badAccessTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1255130123532048, this, []); }
+  get badAccessTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1255130123532048, this, []); }
   /**
    * let highCPUTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get highCPUTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 546453766561023, this, []); }
+  get highCPUTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 546453766561023, this, []); }
   declare readonly $type: { "s:9MetricKit021BackgroundTerminationA0V": true };
 }
 
@@ -161,32 +161,32 @@ export class CallStackFrame extends SDKHandle {
    * func binaryName(from tree: CallStackTree) -> String?
    * @availability iOS 27.0+
    */
-  binaryName(tree: CallStackTree): (string) | null { return callSDK<(string) | null>("MetricKit_90ad0eb69cc6bf4a", 4144012357408980, this, [tree]); }
+  binaryName(tree: CallStackTree): (string) | null { return callSDK<(string) | null>("MetricKit_067acaa3e5f56b46", 4144012357408980, this, [tree]); }
   /**
    * let binaryUUID: UUID?
    * @availability iOS 27.0+
    */
-  get binaryUUID(): (string) | null { return callSDK<(string) | null>("MetricKit_90ad0eb69cc6bf4a", 2228828311240495, this, []); }
+  get binaryUUID(): (string) | null { return callSDK<(string) | null>("MetricKit_067acaa3e5f56b46", 2228828311240495, this, []); }
   /**
    * let sampleCount: Int?
    * @availability iOS 27.0+
    */
-  get sampleCount(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 3647085534024483, this, []); }
+  get sampleCount(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 3647085534024483, this, []); }
   /**
    * let offsetIntoBinaryTextSegment: UInt64?
    * @availability iOS 27.0+
    */
-  get offsetIntoBinaryTextSegment(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 4152896754322431, this, []); }
+  get offsetIntoBinaryTextSegment(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 4152896754322431, this, []); }
   /**
    * let address: UInt64?
    * @availability iOS 27.0+
    */
-  get address(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 875391420788557, this, []); }
+  get address(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 875391420788557, this, []); }
   /**
    * let subFrames: ContiguousArray<CallStackFrame>
    * @availability iOS 27.0+
    */
-  get subFrames(): Array<CallStackFrame> { return callSDK<Array<CallStackFrame>>("MetricKit_90ad0eb69cc6bf4a", 502425470022023, this, []); }
+  get subFrames(): Array<CallStackFrame> { return callSDK<Array<CallStackFrame>>("MetricKit_067acaa3e5f56b46", 502425470022023, this, []); }
   declare readonly $type: { "s:9MetricKit14CallStackFrameV": true };
 }
 
@@ -199,12 +199,12 @@ export class CallStackThread extends SDKHandle {
    * let rootFrames: ContiguousArray<CallStackFrame>
    * @availability iOS 27.0+
    */
-  get rootFrames(): Array<CallStackFrame> { return callSDK<Array<CallStackFrame>>("MetricKit_90ad0eb69cc6bf4a", 319325641660427, this, []); }
+  get rootFrames(): Array<CallStackFrame> { return callSDK<Array<CallStackFrame>>("MetricKit_067acaa3e5f56b46", 319325641660427, this, []); }
   /**
    * let threadAttributed: Bool?
    * @availability iOS 27.0+
    */
-  get threadAttributed(): (boolean) | null { return callSDK<(boolean) | null>("MetricKit_90ad0eb69cc6bf4a", 15430688725544, this, []); }
+  get threadAttributed(): (boolean) | null { return callSDK<(boolean) | null>("MetricKit_067acaa3e5f56b46", 15430688725544, this, []); }
   declare readonly $type: { "s:9MetricKit15CallStackThreadV": true };
 }
 
@@ -217,22 +217,22 @@ export class CallStackTree extends SDKHandle {
    * let callStackThreads: ContiguousArray<CallStackThread>
    * @availability iOS 27.0+
    */
-  get callStackThreads(): Array<CallStackThread> { return callSDK<Array<CallStackThread>>("MetricKit_90ad0eb69cc6bf4a", 3089983279862102, this, []); }
+  get callStackThreads(): Array<CallStackThread> { return callSDK<Array<CallStackThread>>("MetricKit_067acaa3e5f56b46", 3089983279862102, this, []); }
   /**
    * let callStackPerThread: Bool
    * @availability iOS 27.0+
    */
-  get callStackPerThread(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 3006422961574822, this, []); }
+  get callStackPerThread(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 3006422961574822, this, []); }
   /**
    * let binaryInfo: [UUID : CallStackTree.BinaryInfo]
    * @availability iOS 27.0+
    */
-  get binaryInfo(): Record<string, CallStackTree_BinaryInfo> { return callSDK<Record<string, CallStackTree_BinaryInfo>>("MetricKit_90ad0eb69cc6bf4a", 2009110707515978, this, []); }
+  get binaryInfo(): Record<string, CallStackTree_BinaryInfo> { return callSDK<Record<string, CallStackTree_BinaryInfo>>("MetricKit_067acaa3e5f56b46", 2009110707515978, this, []); }
   /**
    * func forEachFrame(_ body: (CallStackFrame) throws -> Void) rethrows
    * @availability iOS 27.0+
    */
-  forEachFrame(body: ((arg0: CallStackFrame) => void)): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 1841356587361032, this, [body], [{"callback":{"out":[]}}], true); }
+  forEachFrame(body: ((arg0: CallStackFrame) => void)): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 1841356587361032, this, [body], [{"callback":{"out":[]}}], true); }
   declare readonly $type: { "s:9MetricKit13CallStackTreeV": true };
 }
 
@@ -245,12 +245,12 @@ export class CallStackTree_BinaryInfo extends SDKHandle {
    * let name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2944167778413879, this, []); }
+  get name(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2944167778413879, this, []); }
   /**
    * let uuid: UUID
    * @availability iOS 27.0+
    */
-  get uuid(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3474443693947761, this, []); }
+  get uuid(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3474443693947761, this, []); }
   declare readonly $type: { "s:9MetricKit13CallStackTreeV10BinaryInfoV": true };
 }
 
@@ -263,7 +263,7 @@ export class CellularConditionTimeMetric extends SDKHandle {
    * let histogram: Histogram<SignalBars>
    * @availability iOS 27.0+
    */
-  get histogram(): Histogram<SignalBars> { return callSDK<Histogram<SignalBars>>("MetricKit_90ad0eb69cc6bf4a", 603307581534171, this, []); }
+  get histogram(): Histogram<SignalBars> { return callSDK<Histogram<SignalBars>>("MetricKit_067acaa3e5f56b46", 603307581534171, this, []); }
   declare readonly $type: { "s:9MetricKit021CellularConditionTimeA0V": true };
 }
 
@@ -276,17 +276,17 @@ export class CPUExceptionDiagnostic extends SDKHandle {
    * let totalCPUTime: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get totalCPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1382541715988278, this, []); }
+  get totalCPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1382541715988278, this, []); }
   /**
    * let callStackTree: CallStackTree
    * @availability iOS 27.0+
    */
-  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_90ad0eb69cc6bf4a", 1857272526230058, this, []); }
+  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_067acaa3e5f56b46", 1857272526230058, this, []); }
   /**
    * let totalSampledTime: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get totalSampledTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3255444306034325, this, []); }
+  get totalSampledTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3255444306034325, this, []); }
   declare readonly $type: { "s:9MetricKit22CPUExceptionDiagnosticV": true };
 }
 
@@ -299,7 +299,7 @@ export class CPUInstructionsCountMetric extends SDKHandle {
    * let value: Int
    * @availability iOS 27.0+
    */
-  get value(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3961149198748731, this, []); }
+  get value(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3961149198748731, this, []); }
   declare readonly $type: { "s:9MetricKit020CPUInstructionsCountA0V": true };
 }
 
@@ -312,7 +312,7 @@ export class CPUTimeMetric extends SDKHandle {
    * let value: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1310064825578447, this, []); }
+  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1310064825578447, this, []); }
   declare readonly $type: { "s:9MetricKit07CPUTimeA0V": true };
 }
 
@@ -325,42 +325,42 @@ export class CrashDiagnostic extends SDKHandle {
    * let callStackTree: CallStackTree
    * @availability iOS 27.0+
    */
-  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_90ad0eb69cc6bf4a", 2535731501469256, this, []); }
+  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_067acaa3e5f56b46", 2535731501469256, this, []); }
   /**
    * let exceptionCode: UInt64?
    * @availability iOS 27.0+
    */
-  get exceptionCode(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 4245547282286144, this, []); }
+  get exceptionCode(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 4245547282286144, this, []); }
   /**
    * let exceptionType: Int?
    * @availability iOS 27.0+
    */
-  get exceptionType(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 3122002654424815, this, []); }
+  get exceptionType(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 3122002654424815, this, []); }
   /**
    * let exceptionReason: CrashDiagnostic.ObjectiveCExceptionReason?
    * @availability iOS 27.0+
    */
-  get exceptionReason(): (CrashDiagnostic_ObjectiveCExceptionReason) | null { return callSDK<(CrashDiagnostic_ObjectiveCExceptionReason) | null>("MetricKit_90ad0eb69cc6bf4a", 1415183100137320, this, []); }
+  get exceptionReason(): (CrashDiagnostic_ObjectiveCExceptionReason) | null { return callSDK<(CrashDiagnostic_ObjectiveCExceptionReason) | null>("MetricKit_067acaa3e5f56b46", 1415183100137320, this, []); }
   /**
    * let terminationReason: CrashDiagnostic.TerminationReason?
    * @availability iOS 27.0+
    */
-  get terminationReason(): (CrashDiagnostic_TerminationReason) | null { return callSDK<(CrashDiagnostic_TerminationReason) | null>("MetricKit_90ad0eb69cc6bf4a", 2537137708860290, this, []); }
+  get terminationReason(): (CrashDiagnostic_TerminationReason) | null { return callSDK<(CrashDiagnostic_TerminationReason) | null>("MetricKit_067acaa3e5f56b46", 2537137708860290, this, []); }
   /**
    * let terminationCategory: CrashDiagnostic.TerminationCategory?
    * @availability iOS 27.0+
    */
-  get terminationCategory(): (CrashDiagnostic_TerminationCategory) | null { return callSDK<(CrashDiagnostic_TerminationCategory) | null>("MetricKit_90ad0eb69cc6bf4a", 937859661863008, this, []); }
+  get terminationCategory(): (CrashDiagnostic_TerminationCategory) | null { return callSDK<(CrashDiagnostic_TerminationCategory) | null>("MetricKit_067acaa3e5f56b46", 937859661863008, this, []); }
   /**
    * let virtualMemoryRegionInfo: String?
    * @availability iOS 27.0+
    */
-  get virtualMemoryRegionInfo(): (string) | null { return callSDK<(string) | null>("MetricKit_90ad0eb69cc6bf4a", 3632610754911677, this, []); }
+  get virtualMemoryRegionInfo(): (string) | null { return callSDK<(string) | null>("MetricKit_067acaa3e5f56b46", 3632610754911677, this, []); }
   /**
    * let signal: Int?
    * @availability iOS 27.0+
    */
-  get signal(): (number) | null { return callSDK<(number) | null>("MetricKit_90ad0eb69cc6bf4a", 96263044658271, this, []); }
+  get signal(): (number) | null { return callSDK<(number) | null>("MetricKit_067acaa3e5f56b46", 96263044658271, this, []); }
   declare readonly $type: { "s:9MetricKit15CrashDiagnosticV": true };
 }
 
@@ -373,32 +373,32 @@ export class CrashDiagnostic_ObjectiveCExceptionReason extends SDKHandle {
    * let formatString: String
    * @availability iOS 27.0+
    */
-  get formatString(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3529353931612424, this, []); }
+  get formatString(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3529353931612424, this, []); }
   /**
    * let exceptionName: String
    * @availability iOS 27.0+
    */
-  get exceptionName(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1213786918773049, this, []); }
+  get exceptionName(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1213786918773049, this, []); }
   /**
    * let exceptionType: String
    * @availability iOS 27.0+
    */
-  get exceptionType(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2437231923078939, this, []); }
+  get exceptionType(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2437231923078939, this, []); }
   /**
    * let composedMessage: String
    * @availability iOS 27.0+
    */
-  get composedMessage(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3821905906580934, this, []); }
+  get composedMessage(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3821905906580934, this, []); }
   /**
    * let arguments: [String]
    * @availability iOS 27.0+
    */
-  get arguments(): Array<string> { return callSDK<Array<string>>("MetricKit_90ad0eb69cc6bf4a", 2245623004894544, this, []); }
+  get arguments(): Array<string> { return callSDK<Array<string>>("MetricKit_067acaa3e5f56b46", 2245623004894544, this, []); }
   /**
    * let className: String
    * @availability iOS 27.0+
    */
-  get className(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1301759344586361, this, []); }
+  get className(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1301759344586361, this, []); }
   declare readonly $type: { "s:9MetricKit15CrashDiagnosticV25ObjectiveCExceptionReasonV": true };
 }
 
@@ -413,47 +413,47 @@ export const CrashDiagnostic_TerminationCategory = {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  getDescription($self: CrashDiagnostic_TerminationCategory): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1064144692337874, $self, []); },
+  getDescription($self: CrashDiagnostic_TerminationCategory): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1064144692337874, $self, []); },
   /**
    * static let taskTimeout: CrashDiagnostic.TerminationCategory
    * @availability iOS 27.0+
    */
-  get taskTimeout(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 3603252486790625, undefined, []); },
+  get taskTimeout(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 3603252486790625, undefined, []); },
   /**
    * static let illegalInstruction: CrashDiagnostic.TerminationCategory
    * @availability iOS 27.0+
    */
-  get illegalInstruction(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 2563548721970559, undefined, []); },
+  get illegalInstruction(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 2563548721970559, undefined, []); },
   /**
    * static let abnormal: CrashDiagnostic.TerminationCategory
    * @availability iOS 27.0+
    */
-  get abnormal(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 3521153368297125, undefined, []); },
+  get abnormal(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 3521153368297125, undefined, []); },
   /**
    * static let fileLock: CrashDiagnostic.TerminationCategory
    * @availability iOS 27.0+
    */
-  get fileLock(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 368890834919868, undefined, []); },
+  get fileLock(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 368890834919868, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 4390509215783853, undefined, [rawValue]); },
+  init(rawValue: string): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 4390509215783853, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: CrashDiagnostic_TerminationCategory): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2098898414475104, $self, []); },
+  getRawValue($self: CrashDiagnostic_TerminationCategory): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2098898414475104, $self, []); },
   /**
    * static let watchdog: CrashDiagnostic.TerminationCategory
    * @availability iOS 27.0+
    */
-  get watchdog(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 4223975787013544, undefined, []); },
+  get watchdog(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 4223975787013544, undefined, []); },
   /**
    * static let badAccess: CrashDiagnostic.TerminationCategory
    * @availability iOS 27.0+
    */
-  get badAccess(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_90ad0eb69cc6bf4a", 2257144395118617, undefined, []); }
+  get badAccess(): CrashDiagnostic_TerminationCategory { return callSDK<CrashDiagnostic_TerminationCategory>("MetricKit_067acaa3e5f56b46", 2257144395118617, undefined, []); }
 };
 
 /**
@@ -473,17 +473,17 @@ export const CrashDiagnostic_TerminationReason = {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  getDescription($self: CrashDiagnostic_TerminationReason): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1776953080390854, $self, []); },
+  getDescription($self: CrashDiagnostic_TerminationReason): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1776953080390854, $self, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): CrashDiagnostic_TerminationReason { return callSDK<CrashDiagnostic_TerminationReason>("MetricKit_90ad0eb69cc6bf4a", 3525693635575599, undefined, [rawValue]); },
+  init(rawValue: string): CrashDiagnostic_TerminationReason { return callSDK<CrashDiagnostic_TerminationReason>("MetricKit_067acaa3e5f56b46", 3525693635575599, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: CrashDiagnostic_TerminationReason): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1420549503177736, $self, []); }
+  getRawValue($self: CrashDiagnostic_TerminationReason): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1420549503177736, $self, []); }
 };
 
 /**
@@ -501,17 +501,17 @@ export class DiagnosticReport extends SDKHandle {
    * let environment: DiagnosticReport.Environment
    * @availability iOS 27.0+
    */
-  get environment(): DiagnosticReport_Environment { return callSDK<DiagnosticReport_Environment>("MetricKit_90ad0eb69cc6bf4a", 2347531451626653, this, []); }
+  get environment(): DiagnosticReport_Environment { return callSDK<DiagnosticReport_Environment>("MetricKit_067acaa3e5f56b46", 2347531451626653, this, []); }
   /**
    * let result: DiagnosticResult
    * @availability iOS 27.0+
    */
-  get result(): DiagnosticResult { return callSDK<DiagnosticResult>("MetricKit_90ad0eb69cc6bf4a", 2082779761426196, this, []); }
+  get result(): DiagnosticResult { return callSDK<DiagnosticResult>("MetricKit_067acaa3e5f56b46", 2082779761426196, this, []); }
   /**
    * let timeRange: DateInterval
    * @availability iOS 27.0+
    */
-  get timeRange(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("MetricKit_90ad0eb69cc6bf4a", 1607907574757506, this, []); }
+  get timeRange(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("MetricKit_067acaa3e5f56b46", 1607907574757506, this, []); }
   declare readonly $type: { "s:9MetricKit16DiagnosticReportV": true };
 }
 
@@ -524,62 +524,62 @@ export class DiagnosticReport_Environment extends SDKHandle {
    * let deviceType: String
    * @availability iOS 27.0+
    */
-  get deviceType(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 378565608529443, this, []); }
+  get deviceType(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 378565608529443, this, []); }
   /**
    * let regionFormat: String
    * @availability iOS 27.0+
    */
-  get regionFormat(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1147220401414901, this, []); }
+  get regionFormat(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1147220401414901, this, []); }
   /**
    * let signpostData: [SignpostRecord]
    * @availability iOS 27.0+
    */
-  get signpostData(): Array<SignpostRecord> { return callSDK<Array<SignpostRecord>>("MetricKit_90ad0eb69cc6bf4a", 2824912437829604, this, []); }
+  get signpostData(): Array<SignpostRecord> { return callSDK<Array<SignpostRecord>>("MetricKit_067acaa3e5f56b46", 2824912437829604, this, []); }
   /**
    * let isTestFlightApp: Bool
    * @availability iOS 27.0+
    */
-  get isTestFlightApp(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 890034039699351, this, []); }
+  get isTestFlightApp(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 890034039699351, this, []); }
   /**
    * let bundleIdentifier: String
    * @availability iOS 27.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3912802934815050, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3912802934815050, this, []); }
   /**
    * let applicationVersion: String
    * @availability iOS 27.0+
    */
-  get applicationVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3116221695117220, this, []); }
+  get applicationVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3116221695117220, this, []); }
   /**
    * let lowPowerModeEnabled: Bool
    * @availability iOS 27.0+
    */
-  get lowPowerModeEnabled(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 4379133535062030, this, []); }
+  get lowPowerModeEnabled(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 4379133535062030, this, []); }
   /**
    * let platformArchitecture: String
    * @availability iOS 27.0+
    */
-  get platformArchitecture(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3240571438545573, this, []); }
+  get platformArchitecture(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3240571438545573, this, []); }
   /**
    * let applicationBuildVersion: String
    * @availability iOS 27.0+
    */
-  get applicationBuildVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2352082761112843, this, []); }
+  get applicationBuildVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2352082761112843, this, []); }
   /**
    * let pid: pid_t?
    * @availability iOS 27.0+
    */
-  get pid(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MetricKit_90ad0eb69cc6bf4a", 376514670267967, this, []); }
+  get pid(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MetricKit_067acaa3e5f56b46", 376514670267967, this, []); }
   /**
    * let states: [MetricManager.ReportedState]
    * @availability iOS 27.0+
    */
-  get states(): $SDK8 { return callSDK<$SDK8>("MetricKit_90ad0eb69cc6bf4a", 1109978033457679, this, []); }
+  get states(): $SDK8 { return callSDK<$SDK8>("MetricKit_067acaa3e5f56b46", 1109978033457679, this, []); }
   /**
    * let osVersion: OSVersion
    * @availability iOS 27.0+
    */
-  get osVersion(): OSVersion { return callSDK<OSVersion>("MetricKit_90ad0eb69cc6bf4a", 2708957553526516, this, []); }
+  get osVersion(): OSVersion { return callSDK<OSVersion>("MetricKit_067acaa3e5f56b46", 2708957553526516, this, []); }
   declare readonly $type: { "s:9MetricKit16DiagnosticReportV11EnvironmentV": true };
 }
 
@@ -600,12 +600,12 @@ export class DiskWriteExceptionDiagnostic extends SDKHandle {
    * let callStackTree: CallStackTree
    * @availability iOS 27.0+
    */
-  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_90ad0eb69cc6bf4a", 1737256790050023, this, []); }
+  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_067acaa3e5f56b46", 1737256790050023, this, []); }
   /**
    * let totalBytesWritten: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get totalBytesWritten(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 3800739928698804, this, []); }
+  get totalBytesWritten(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 3800739928698804, this, []); }
   declare readonly $type: { "s:9MetricKit28DiskWriteExceptionDiagnosticV": true };
 }
 
@@ -618,7 +618,7 @@ export class ExtendedLaunchMetric extends SDKHandle {
    * let histogram: Histogram<UnitDuration>
    * @availability iOS 27.0+
    */
-  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_90ad0eb69cc6bf4a", 4093141127920408, this, []); }
+  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_067acaa3e5f56b46", 4093141127920408, this, []); }
   declare readonly $type: { "s:9MetricKit014ExtendedLaunchA0V": true };
 }
 
@@ -631,32 +631,32 @@ export class ForegroundTerminationMetric extends SDKHandle {
    * let memoryLimitTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get memoryLimitTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1155677600900791, this, []); }
+  get memoryLimitTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1155677600900791, this, []); }
   /**
    * let illegalInstructionTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get illegalInstructionTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3135700806992732, this, []); }
+  get illegalInstructionTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3135700806992732, this, []); }
   /**
    * let normalTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get normalTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4312068669036915, this, []); }
+  get normalTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4312068669036915, this, []); }
   /**
    * let abnormalTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get abnormalTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2363462131969671, this, []); }
+  get abnormalTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2363462131969671, this, []); }
   /**
    * let watchdogTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get watchdogTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 666865624767435, this, []); }
+  get watchdogTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 666865624767435, this, []); }
   /**
    * let badAccessTerminationCount: Int
    * @availability iOS 27.0+
    */
-  get badAccessTerminationCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2625013089636885, this, []); }
+  get badAccessTerminationCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2625013089636885, this, []); }
   declare readonly $type: { "s:9MetricKit021ForegroundTerminationA0V": true };
 }
 
@@ -669,7 +669,7 @@ export class GPUTimeMetric extends SDKHandle {
    * let value: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2831714571543507, this, []); }
+  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2831714571543507, this, []); }
   declare readonly $type: { "s:9MetricKit07GPUTimeA0V": true };
 }
 
@@ -682,12 +682,12 @@ export class HangDiagnostic extends SDKHandle {
    * let hangDuration: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get hangDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 4168345944787640, this, []); }
+  get hangDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 4168345944787640, this, []); }
   /**
    * let callStackTree: CallStackTree
    * @availability iOS 27.0+
    */
-  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_90ad0eb69cc6bf4a", 3806237373499640, this, []); }
+  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_067acaa3e5f56b46", 3806237373499640, this, []); }
   declare readonly $type: { "s:9MetricKit14HangDiagnosticV": true };
 }
 
@@ -700,7 +700,7 @@ export class HangTimeMetric extends SDKHandle {
    * let histogram: Histogram<UnitDuration>
    * @availability iOS 27.0+
    */
-  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_90ad0eb69cc6bf4a", 3408292142403555, this, []); }
+  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_067acaa3e5f56b46", 3408292142403555, this, []); }
   declare readonly $type: { "s:9MetricKit08HangTimeA0V": true };
 }
 
@@ -713,7 +713,7 @@ export class Histogram<DimensionType = unknown> extends SDKHandle {
    * let buckets: [Histogram<DimensionType>.Bucket]
    * @availability iOS 27.0+
    */
-  get buckets(): Array<Histogram_Bucket<_Foundation_Dimension>> { return callSDK<Array<Histogram_Bucket<_Foundation_Dimension>>>("MetricKit_90ad0eb69cc6bf4a", 1723007366394597, this, []); }
+  get buckets(): Array<Histogram_Bucket<_Foundation_Dimension>> { return callSDK<Array<Histogram_Bucket<_Foundation_Dimension>>>("MetricKit_067acaa3e5f56b46", 1723007366394597, this, []); }
   declare readonly $type: { "s:9MetricKit9HistogramV": true };
 }
 
@@ -726,17 +726,17 @@ export class Histogram_Bucket<DimensionType = unknown> extends SDKHandle {
    * let lowerBound: Measurement<DimensionType>
    * @availability iOS 27.0+
    */
-  get lowerBound(): $SDK2 { return callSDK<$SDK2>("MetricKit_90ad0eb69cc6bf4a", 3154904991421673, this, []); }
+  get lowerBound(): $SDK2 { return callSDK<$SDK2>("MetricKit_067acaa3e5f56b46", 3154904991421673, this, []); }
   /**
    * let upperBound: Measurement<DimensionType>
    * @availability iOS 27.0+
    */
-  get upperBound(): $SDK2 { return callSDK<$SDK2>("MetricKit_90ad0eb69cc6bf4a", 197325258111011, this, []); }
+  get upperBound(): $SDK2 { return callSDK<$SDK2>("MetricKit_067acaa3e5f56b46", 197325258111011, this, []); }
   /**
    * let count: Int
    * @availability iOS 27.0+
    */
-  get count(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3393386503162042, this, []); }
+  get count(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3393386503162042, this, []); }
   declare readonly $type: { "s:9MetricKit9HistogramV6BucketV": true };
 }
 
@@ -749,17 +749,17 @@ export class HitchTimeMetric extends SDKHandle {
    * let totalAnimationTime: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get totalAnimationTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1882671067430406, this, []); }
+  get totalAnimationTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1882671067430406, this, []); }
   /**
    * let totalHitchTime: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get totalHitchTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3900267528879551, this, []); }
+  get totalHitchTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3900267528879551, this, []); }
   /**
    * let ratio: Measurement<HitchTimeRatio>
    * @availability iOS 27.0+
    */
-  get ratio(): _Foundation_Measurement<HitchTimeRatio> { return callSDK<_Foundation_Measurement<HitchTimeRatio>>("MetricKit_90ad0eb69cc6bf4a", 4081763657613865, this, []); }
+  get ratio(): _Foundation_Measurement<HitchTimeRatio> { return callSDK<_Foundation_Measurement<HitchTimeRatio>>("MetricKit_067acaa3e5f56b46", 4081763657613865, this, []); }
   declare readonly $type: { "s:9MetricKit09HitchTimeA0V": true };
 }
 
@@ -772,7 +772,7 @@ export class HitchTimeRatio extends SDKHandle {
    * override static func baseUnit() -> HitchTimeRatio
    * @availability iOS 27.0+
    */
-  static baseUnit(): HitchTimeRatio { return callSDK<HitchTimeRatio>("MetricKit_90ad0eb69cc6bf4a", 1122075308615950, undefined, []); }
+  static baseUnit(): HitchTimeRatio { return callSDK<HitchTimeRatio>("MetricKit_067acaa3e5f56b46", 1122075308615950, undefined, []); }
   declare readonly $type: { "c:@M@MetricKit@objc(cs)HitchTimeRatio": true; "c:objc(cs)NSDimension": true; "c:objc(cs)NSUnit": true; "c:objc(cs)NSObject": true };
 }
 
@@ -787,22 +787,22 @@ export const LaunchTaskID = {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  getDescription($self: LaunchTaskID): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3284499863155620, $self, []); },
+  getDescription($self: LaunchTaskID): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3284499863155620, $self, []); },
   /**
    * init(stringLiteral value: String)
    * @availability iOS 27.0+
    */
-  initStringLiteral(value: string): LaunchTaskID { return callSDK<LaunchTaskID>("MetricKit_90ad0eb69cc6bf4a", 2646211359659485, undefined, [value]); },
+  initStringLiteral(value: string): LaunchTaskID { return callSDK<LaunchTaskID>("MetricKit_067acaa3e5f56b46", 2646211359659485, undefined, [value]); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: string): LaunchTaskID { return callSDK<LaunchTaskID>("MetricKit_90ad0eb69cc6bf4a", 3864633782683238, undefined, [rawValue]); },
+  initRawValue(rawValue: string): LaunchTaskID { return callSDK<LaunchTaskID>("MetricKit_067acaa3e5f56b46", 3864633782683238, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: LaunchTaskID): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1564020705626273, $self, []); }
+  getRawValue($self: LaunchTaskID): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1564020705626273, $self, []); }
 };
 
 /**
@@ -838,37 +838,37 @@ export class LocationActivityTimeMetric extends SDKHandle {
    * let bestAccuracy: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get bestAccuracy(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 826358777331791, this, []); }
+  get bestAccuracy(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 826358777331791, this, []); }
   /**
    * let oneKilometer: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get oneKilometer(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3379468764320024, this, []); }
+  get oneKilometer(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3379468764320024, this, []); }
   /**
    * let oneHundredMeter: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get oneHundredMeter(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 505432903121335, this, []); }
+  get oneHundredMeter(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 505432903121335, this, []); }
   /**
    * let reducedAccuracy: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get reducedAccuracy(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3234854657927423, this, []); }
+  get reducedAccuracy(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3234854657927423, this, []); }
   /**
    * let threeKilometers: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get threeKilometers(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1083659393023375, this, []); }
+  get threeKilometers(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1083659393023375, this, []); }
   /**
    * let bestAccuracyForNavigation: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get bestAccuracyForNavigation(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3732194733707851, this, []); }
+  get bestAccuracyForNavigation(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3732194733707851, this, []); }
   /**
    * let tenMeters: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get tenMeters(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 4443420717183757, this, []); }
+  get tenMeters(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 4443420717183757, this, []); }
   declare readonly $type: { "s:9MetricKit020LocationActivityTimeA0V": true };
 }
 
@@ -881,7 +881,7 @@ export class LogicalDiskWritesMetric extends SDKHandle {
    * let value: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1124522866014983, this, []); }
+  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1124522866014983, this, []); }
   declare readonly $type: { "s:9MetricKit017LogicalDiskWritesA0V": true };
 }
 
@@ -894,7 +894,7 @@ export class MemoryExceptionDiagnostic extends SDKHandle {
    * let callStackTree: CallStackTree
    * @availability iOS 27.0+
    */
-  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_90ad0eb69cc6bf4a", 2695524683612344, this, []); }
+  get callStackTree(): CallStackTree { return callSDK<CallStackTree>("MetricKit_067acaa3e5f56b46", 2695524683612344, this, []); }
   declare readonly $type: { "s:9MetricKit25MemoryExceptionDiagnosticV": true };
 }
 
@@ -907,22 +907,22 @@ export class MetalFrameRateMetric extends SDKHandle {
    * let frameCount: Int
    * @availability iOS 27.0+
    */
-  get frameCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1268937314384671, this, []); }
+  get frameCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1268937314384671, this, []); }
   /**
    * let framesPerSecond: Measurement<UnitFrequency>
    * @availability iOS 27.0+
    */
-  get framesPerSecond(): _Foundation_Measurement<_Foundation_UnitFrequency> { return callSDK<_Foundation_Measurement<_Foundation_UnitFrequency>>("MetricKit_90ad0eb69cc6bf4a", 1332108156695616, this, []); }
+  get framesPerSecond(): _Foundation_Measurement<_Foundation_UnitFrequency> { return callSDK<_Foundation_Measurement<_Foundation_UnitFrequency>>("MetricKit_067acaa3e5f56b46", 1332108156695616, this, []); }
   /**
    * let activeDrawingDuration: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get activeDrawingDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 28065875392297, this, []); }
+  get activeDrawingDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 28065875392297, this, []); }
   /**
    * let layerName: String
    * @availability iOS 27.0+
    */
-  get layerName(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1315489291444836, this, []); }
+  get layerName(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1315489291444836, this, []); }
   declare readonly $type: { "s:9MetricKit014MetalFrameRateA0V": true };
 }
 
@@ -937,87 +937,87 @@ export const MetricGroup = {
    * static let appRuntime: MetricGroup
    * @availability iOS 27.0+
    */
-  get appRuntime(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1807998845390235, undefined, []); },
+  get appRuntime(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1807998845390235, undefined, []); },
   /**
    * static let appTermination: MetricGroup
    * @availability iOS 27.0+
    */
-  get appTermination(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1024638823746612, undefined, []); },
+  get appTermination(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1024638823746612, undefined, []); },
   /**
    * static let diskSpaceUsage: MetricGroup
    * @availability iOS 27.0+
    */
-  get diskSpaceUsage(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1297006954353415, undefined, []); },
+  get diskSpaceUsage(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1297006954353415, undefined, []); },
   /**
    * static let frameStatistics: MetricGroup
    * @availability iOS 27.0+
    */
-  get frameStatistics(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 3506916532365778, undefined, []); },
+  get frameStatistics(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 3506916532365778, undefined, []); },
   /**
    * static let networkTransfer: MetricGroup
    * @availability iOS 27.0+
    */
-  get networkTransfer(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1333433846774572, undefined, []); },
+  get networkTransfer(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1333433846774572, undefined, []); },
   /**
    * static let locationActivity: MetricGroup
    * @availability iOS 27.0+
    */
-  get locationActivity(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 3256943215620994, undefined, []); },
+  get locationActivity(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 3256943215620994, undefined, []); },
   /**
    * static let cellularCondition: MetricGroup
    * @availability iOS 27.0+
    */
-  get cellularCondition(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 3642098074359298, undefined, []); },
+  get cellularCondition(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 3642098074359298, undefined, []); },
   /**
    * static let applicationResponsiveness: MetricGroup
    * @availability iOS 27.0+
    */
-  get applicationResponsiveness(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 463812968760273, undefined, []); },
+  get applicationResponsiveness(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 463812968760273, undefined, []); },
   /**
    * static let cpu: MetricGroup
    * @availability iOS 27.0+
    */
-  get cpu(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1069063015060944, undefined, []); },
+  get cpu(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1069063015060944, undefined, []); },
   /**
    * static let gpu: MetricGroup
    * @availability iOS 27.0+
    */
-  get gpu(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 2977927706568746, undefined, []); },
+  get gpu(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 2977927706568746, undefined, []); },
   /**
    * static let diskIO: MetricGroup
    * @availability iOS 27.0+
    */
-  get diskIO(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 4340459407005238, undefined, []); },
+  get diskIO(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 4340459407005238, undefined, []); },
   /**
    * static let memory: MetricGroup
    * @availability iOS 27.0+
    */
-  get memory(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 2531583262204481, undefined, []); },
+  get memory(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 2531583262204481, undefined, []); },
   /**
    * static let display: MetricGroup
    * @availability iOS 27.0+
    */
-  get display(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 2612862274990909, undefined, []); },
+  get display(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 2612862274990909, undefined, []); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: MetricGroup): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 848830933356705, $self, []); },
+  getRawValue($self: MetricGroup): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 848830933356705, $self, []); },
   /**
    * static let signpost: MetricGroup
    * @availability iOS 27.0+
    */
-  get signpost(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1598526067836024, undefined, []); },
+  get signpost(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1598526067836024, undefined, []); },
   /**
    * static let animation: MetricGroup
    * @availability iOS 27.0+
    */
-  get animation(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 1224962853657557, undefined, []); },
+  get animation(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 1224962853657557, undefined, []); },
   /**
    * static let appLaunch: MetricGroup
    * @availability iOS 27.0+
    */
-  get appLaunch(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 3201232146769967, undefined, []); }
+  get appLaunch(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 3201232146769967, undefined, []); }
 };
 
 /**
@@ -1035,32 +1035,32 @@ export class MetricManager extends SDKHandle {
    * final var metricReports: some AsyncSequence<MetricReport, Never> { get }
    * @availability iOS 27.0+
    */
-  get metricReports(): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 3603697077824261, this, []); }
+  get metricReports(): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 3603697077824261, this, []); }
   /**
    * final var diagnosticReports: some AsyncSequence<DiagnosticReport, Never> { get }
    * @availability iOS 27.0+
    */
-  get diagnosticReports(): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 2641035003420473, this, []); }
+  get diagnosticReports(): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 2641035003420473, this, []); }
   /**
    * init(enabledStateReportingDomains: Set<StateReportingDomain>)
    * @availability iOS 27.0+
    */
-  static initEnabledStateReportingDomains(enabledStateReportingDomains: Array<StateReportingDomain>): MetricManager { return callSDK<MetricManager>("MetricKit_90ad0eb69cc6bf4a", 2422576629529082, undefined, [enabledStateReportingDomains]); }
+  static initEnabledStateReportingDomains(enabledStateReportingDomains: Array<StateReportingDomain>): MetricManager { return callSDK<MetricManager>("MetricKit_067acaa3e5f56b46", 2422576629529082, undefined, [enabledStateReportingDomains]); }
   /**
    * final var enabledStateReportingDomains: Set<StateReportingDomain> { get }
    * @availability iOS 27.0+
    */
-  get enabledStateReportingDomains(): Array<StateReportingDomain> { return callSDK<Array<StateReportingDomain>>("MetricKit_90ad0eb69cc6bf4a", 2513792212034470, this, []); }
+  get enabledStateReportingDomains(): Array<StateReportingDomain> { return callSDK<Array<StateReportingDomain>>("MetricKit_067acaa3e5f56b46", 2513792212034470, this, []); }
   /**
    * static func logHandle(category: String) -> OSLog
    * @availability iOS 27.0+
    */
-  static logHandle(category: string): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 2611611626334614, undefined, [category]); }
+  static logHandle(category: string): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 2611611626334614, undefined, [category]); }
   /**
    * convenience init()
    * @availability iOS 27.0+
    */
-  static init(): MetricManager { return callSDK<MetricManager>("MetricKit_90ad0eb69cc6bf4a", 286561502586267, undefined, []); }
+  static init(): MetricManager { return callSDK<MetricManager>("MetricKit_067acaa3e5f56b46", 286561502586267, undefined, []); }
   declare readonly $type: { "s:9MetricKit0A7ManagerC": true };
 }
 
@@ -1073,12 +1073,12 @@ export class MetricManager_LaunchTaskError extends SDKHandle {
    * let reason: MetricManager.LaunchTaskError.Reason
    * @availability iOS 27.0+
    */
-  get reason(): MetricManager_LaunchTaskError_Reason { return callSDK<MetricManager_LaunchTaskError_Reason>("MetricKit_90ad0eb69cc6bf4a", 3754860575168115, this, []); }
+  get reason(): MetricManager_LaunchTaskError_Reason { return callSDK<MetricManager_LaunchTaskError_Reason>("MetricKit_067acaa3e5f56b46", 3754860575168115, this, []); }
   /**
    * let taskID: LaunchTaskID
    * @availability iOS 27.0+
    */
-  get taskID(): LaunchTaskID { return callSDK<LaunchTaskID>("MetricKit_90ad0eb69cc6bf4a", 3460882036933386, this, []); }
+  get taskID(): LaunchTaskID { return callSDK<LaunchTaskID>("MetricKit_067acaa3e5f56b46", 3460882036933386, this, []); }
   declare readonly $type: { "s:9MetricKit0A7ManagerC15LaunchTaskErrorV": true };
 }
 
@@ -1093,12 +1093,12 @@ export const MetricManager_LaunchTaskError_Reason = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (MetricManager_LaunchTaskError_Reason) | null { return callSDK<(MetricManager_LaunchTaskError_Reason) | null>("MetricKit_90ad0eb69cc6bf4a", 1159853022435669, undefined, [rawValue]); },
+  init(rawValue: number): (MetricManager_LaunchTaskError_Reason) | null { return callSDK<(MetricManager_LaunchTaskError_Reason) | null>("MetricKit_067acaa3e5f56b46", 1159853022435669, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: MetricManager_LaunchTaskError_Reason): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2451885325544183, $self, []); }
+  getRawValue($self: MetricManager_LaunchTaskError_Reason): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2451885325544183, $self, []); }
 };
 
 /**
@@ -1116,22 +1116,22 @@ export class MetricManager_ReportedState extends SDKHandle {
    * let stableMetadata: [String : ReportableMetadataValue]
    * @availability iOS 27.0+
    */
-  get stableMetadata(): Record<string, _StateReporting_ReportableMetadataValue> { return callSDK<Record<string, _StateReporting_ReportableMetadataValue>>("MetricKit_90ad0eb69cc6bf4a", 217771439294610, this, []); }
+  get stableMetadata(): Record<string, _StateReporting_ReportableMetadataValue> { return callSDK<Record<string, _StateReporting_ReportableMetadataValue>>("MetricKit_067acaa3e5f56b46", 217771439294610, this, []); }
   /**
    * let label: String
    * @availability iOS 27.0+
    */
-  get label(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3900512547059004, this, []); }
+  get label(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3900512547059004, this, []); }
   /**
    * let domain: String
    * @availability iOS 27.0+
    */
-  get domain(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 4339552034279106, this, []); }
+  get domain(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 4339552034279106, this, []); }
   /**
    * let duration: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get duration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1368618986856636, this, []); }
+  get duration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1368618986856636, this, []); }
   declare readonly $type: { "s:9MetricKit0A7ManagerC13ReportedStateV": true };
 }
 
@@ -1144,27 +1144,27 @@ export class MetricReport extends SDKHandle {
    * let environment: MetricReport.Environment?
    * @availability iOS 27.0+
    */
-  get environment(): (MetricReport_Environment) | null { return callSDK<(MetricReport_Environment) | null>("MetricKit_90ad0eb69cc6bf4a", 1247521420261099, this, []); }
+  get environment(): (MetricReport_Environment) | null { return callSDK<(MetricReport_Environment) | null>("MetricKit_067acaa3e5f56b46", 1247521420261099, this, []); }
   /**
    * let stateEntries: [MetricReport.StateEntry]
    * @availability iOS 27.0+
    */
-  get stateEntries(): Array<MetricReport_StateEntry> { return callSDK<Array<MetricReport_StateEntry>>("MetricKit_90ad0eb69cc6bf4a", 3689433232715816, this, []); }
+  get stateEntries(): Array<MetricReport_StateEntry> { return callSDK<Array<MetricReport_StateEntry>>("MetricKit_067acaa3e5f56b46", 3689433232715816, this, []); }
   /**
    * let intervalEntries: [MetricReport.IntervalEntry]
    * @availability iOS 27.0+
    */
-  get intervalEntries(): Array<MetricReport_IntervalEntry> { return callSDK<Array<MetricReport_IntervalEntry>>("MetricKit_90ad0eb69cc6bf4a", 836706679354538, this, []); }
+  get intervalEntries(): Array<MetricReport_IntervalEntry> { return callSDK<Array<MetricReport_IntervalEntry>>("MetricKit_067acaa3e5f56b46", 836706679354538, this, []); }
   /**
    * static let encodingFormatKey: CodingUserInfoKey
    * @availability iOS 27.0+
    */
-  static get encodingFormatKey(): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 1278023385901479, undefined, []); }
+  static get encodingFormatKey(): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 1278023385901479, undefined, []); }
   /**
    * let timeRange: DateInterval
    * @availability iOS 27.0+
    */
-  get timeRange(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("MetricKit_90ad0eb69cc6bf4a", 3705066049007325, this, []); }
+  get timeRange(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("MetricKit_067acaa3e5f56b46", 3705066049007325, this, []); }
   declare readonly $type: { "s:9MetricKit0A6ReportV": true };
 }
 
@@ -1183,57 +1183,57 @@ export class MetricReport_Environment extends SDKHandle {
    * let deviceType: String
    * @availability iOS 27.0+
    */
-  get deviceType(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3515855730486653, this, []); }
+  get deviceType(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3515855730486653, this, []); }
   /**
    * let regionFormat: String
    * @availability iOS 27.0+
    */
-  get regionFormat(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 4451453730996753, this, []); }
+  get regionFormat(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 4451453730996753, this, []); }
   /**
    * let isTestFlightApp: Bool
    * @availability iOS 27.0+
    */
-  get isTestFlightApp(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 629831026757773, this, []); }
+  get isTestFlightApp(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 629831026757773, this, []); }
   /**
    * let bundleIdentifier: String
    * @availability iOS 27.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 463766862377106, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 463766862377106, this, []); }
   /**
    * let lowPowerModeEnabled: Bool
    * @availability iOS 27.0+
    */
-  get lowPowerModeEnabled(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 1861802763076303, this, []); }
+  get lowPowerModeEnabled(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 1861802763076303, this, []); }
   /**
    * let platformArchitecture: String
    * @availability iOS 27.0+
    */
-  get platformArchitecture(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 128077624453886, this, []); }
+  get platformArchitecture(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 128077624453886, this, []); }
   /**
    * let hasExceededStateLimit: Bool
    * @availability iOS 27.0+
    */
-  get hasExceededStateLimit(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 3971969645845503, this, []); }
+  get hasExceededStateLimit(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 3971969645845503, this, []); }
   /**
    * let applicationBuildVersion: String
    * @availability iOS 27.0+
    */
-  get applicationBuildVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 349505732849837, this, []); }
+  get applicationBuildVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 349505732849837, this, []); }
   /**
    * let latestApplicationVersion: String
    * @availability iOS 27.0+
    */
-  get latestApplicationVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2709573588839798, this, []); }
+  get latestApplicationVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2709573588839798, this, []); }
   /**
    * let includesMultipleApplicationVersions: Bool
    * @availability iOS 27.0+
    */
-  get includesMultipleApplicationVersions(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 3032609515482335, this, []); }
+  get includesMultipleApplicationVersions(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 3032609515482335, this, []); }
   /**
    * let osVersion: OSVersion
    * @availability iOS 27.0+
    */
-  get osVersion(): OSVersion { return callSDK<OSVersion>("MetricKit_90ad0eb69cc6bf4a", 3891152034680137, this, []); }
+  get osVersion(): OSVersion { return callSDK<OSVersion>("MetricKit_067acaa3e5f56b46", 3891152034680137, this, []); }
   declare readonly $type: { "s:9MetricKit0A6ReportV11EnvironmentV": true };
 }
 
@@ -1246,17 +1246,17 @@ export class MetricReport_IntervalEntry extends SDKHandle {
    * let states: [MetricManager.ReportedState]
    * @availability iOS 27.0+
    */
-  get states(): $SDK8 { return callSDK<$SDK8>("MetricKit_90ad0eb69cc6bf4a", 3359280145565162, this, []); }
+  get states(): $SDK8 { return callSDK<$SDK8>("MetricKit_067acaa3e5f56b46", 3359280145565162, this, []); }
   /**
    * let values: [MetricResult]
    * @availability iOS 27.0+
    */
-  get values(): Array<MetricResult> { return callSDK<Array<MetricResult>>("MetricKit_90ad0eb69cc6bf4a", 571778558016693, this, []); }
+  get values(): Array<MetricResult> { return callSDK<Array<MetricResult>>("MetricKit_067acaa3e5f56b46", 571778558016693, this, []); }
   /**
    * let duration: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get duration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 434268266320208, this, []); }
+  get duration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 434268266320208, this, []); }
   declare readonly $type: { "s:9MetricKit0A6ReportV13IntervalEntryV": true };
 }
 
@@ -1269,12 +1269,12 @@ export class MetricReport_StateEntry extends SDKHandle {
    * let state: MetricManager.ReportedState
    * @availability iOS 27.0+
    */
-  get state(): MetricManager_ReportedState { return callSDK<MetricManager_ReportedState>("MetricKit_90ad0eb69cc6bf4a", 2059312103704968, this, []); }
+  get state(): MetricManager_ReportedState { return callSDK<MetricManager_ReportedState>("MetricKit_067acaa3e5f56b46", 2059312103704968, this, []); }
   /**
    * let values: [MetricResult]
    * @availability iOS 27.0+
    */
-  get values(): Array<MetricResult> { return callSDK<Array<MetricResult>>("MetricKit_90ad0eb69cc6bf4a", 2677070185328824, this, []); }
+  get values(): Array<MetricResult> { return callSDK<Array<MetricResult>>("MetricKit_067acaa3e5f56b46", 2677070185328824, this, []); }
   declare readonly $type: { "s:9MetricKit0A6ReportV10StateEntryV": true };
 }
 
@@ -1287,7 +1287,7 @@ export class MetricResult extends SDKHandle {
    * var metricGroup: MetricGroup { get }
    * @availability iOS 27.0+
    */
-  get metricGroup(): MetricGroup { return callSDK<MetricGroup>("MetricKit_90ad0eb69cc6bf4a", 2086159174348254, this, []); }
+  get metricGroup(): MetricGroup { return callSDK<MetricGroup>("MetricKit_067acaa3e5f56b46", 2086159174348254, this, []); }
   declare readonly $type: { "s:9MetricKit0A6ResultO": true };
 }
 
@@ -1302,15 +1302,15 @@ export class MXMetric extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 2663765653590564, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 2663765653590564, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 3456143481762390, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 3456143481762390, this, []); }
   /** init() */
-  static init(): MXMetric { return callSDK<MXMetric>("MetricKit_90ad0eb69cc6bf4a", 1617632387207155, undefined, []); }
+  static init(): MXMetric { return callSDK<MXMetric>("MetricKit_067acaa3e5f56b46", 1617632387207155, undefined, []); }
   declare readonly $type: { "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1321,19 +1321,19 @@ export class MXMetric extends SDKHandle {
  */
 export class MXAnimationMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXAnimationMetric { return callSDK<MXAnimationMetric>("MetricKit_90ad0eb69cc6bf4a", 395822488721732, undefined, []); }
+  static init(): MXAnimationMetric { return callSDK<MXAnimationMetric>("MetricKit_067acaa3e5f56b46", 395822488721732, undefined, []); }
   /**
    * var hitchTimeRatio: Measurement<Unit> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get hitchTimeRatio(): $SDK19 { return callSDK<$SDK19>("MetricKit_90ad0eb69cc6bf4a", 1001347407440141, this, []); }
+  get hitchTimeRatio(): $SDK19 { return callSDK<$SDK19>("MetricKit_067acaa3e5f56b46", 1001347407440141, this, []); }
   /**
    * var scrollHitchTimeRatio: Measurement<Unit> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get scrollHitchTimeRatio(): $SDK19 { return callSDK<$SDK19>("MetricKit_90ad0eb69cc6bf4a", 952448917812102, this, []); }
+  get scrollHitchTimeRatio(): $SDK19 { return callSDK<$SDK19>("MetricKit_067acaa3e5f56b46", 952448917812102, this, []); }
   declare readonly $type: { "c:objc(cs)MXAnimationMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hitchTimeRatio": true; "scrollHitchTimeRatio": true };
 }
@@ -1345,19 +1345,19 @@ export class MXAnimationMetric extends (MXMetric as unknown as Omit<typeof MXMet
  */
 export class MXAppExitMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXAppExitMetric { return callSDK<MXAppExitMetric>("MetricKit_90ad0eb69cc6bf4a", 3738507872991315, undefined, []); }
+  static init(): MXAppExitMetric { return callSDK<MXAppExitMetric>("MetricKit_067acaa3e5f56b46", 3738507872991315, undefined, []); }
   /**
    * var backgroundExitData: MXBackgroundExitData { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get backgroundExitData(): MXBackgroundExitData { return callSDK<MXBackgroundExitData>("MetricKit_90ad0eb69cc6bf4a", 4060744710725557, this, []); }
+  get backgroundExitData(): MXBackgroundExitData { return callSDK<MXBackgroundExitData>("MetricKit_067acaa3e5f56b46", 4060744710725557, this, []); }
   /**
    * var foregroundExitData: MXForegroundExitData { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get foregroundExitData(): MXForegroundExitData { return callSDK<MXForegroundExitData>("MetricKit_90ad0eb69cc6bf4a", 1623952930242698, this, []); }
+  get foregroundExitData(): MXForegroundExitData { return callSDK<MXForegroundExitData>("MetricKit_067acaa3e5f56b46", 1623952930242698, this, []); }
   declare readonly $type: { "c:objc(cs)MXAppExitMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundExitData": true; "foregroundExitData": true };
 }
@@ -1373,33 +1373,33 @@ export class MXDiagnostic extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 3219481973698182, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 3219481973698182, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 1323725776888140, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 1323725776888140, this, []); }
   /** init() */
-  static init(): MXDiagnostic { return callSDK<MXDiagnostic>("MetricKit_90ad0eb69cc6bf4a", 1521109429589858, undefined, []); }
+  static init(): MXDiagnostic { return callSDK<MXDiagnostic>("MetricKit_067acaa3e5f56b46", 1521109429589858, undefined, []); }
   /**
    * var applicationVersion: String { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get applicationVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2507796237390337, this, []); }
+  get applicationVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2507796237390337, this, []); }
   /**
    * var metaData: MXMetaData { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get metaData(): MXMetaData { return callSDK<MXMetaData>("MetricKit_90ad0eb69cc6bf4a", 4166803451600798, this, []); }
+  get metaData(): MXMetaData { return callSDK<MXMetaData>("MetricKit_067acaa3e5f56b46", 4166803451600798, this, []); }
   /**
    * var signpostData: [MXSignpostRecord]? { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get signpostData(): (Array<MXSignpostRecord>) | null { return callSDK<(Array<MXSignpostRecord>) | null>("MetricKit_90ad0eb69cc6bf4a", 344186346618770, this, []); }
+  get signpostData(): (Array<MXSignpostRecord>) | null { return callSDK<(Array<MXSignpostRecord>) | null>("MetricKit_067acaa3e5f56b46", 344186346618770, this, []); }
   declare readonly $type: { "c:objc(cs)MXDiagnostic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationVersion": true; "metaData": true; "signpostData": true };
 }
@@ -1411,19 +1411,19 @@ export class MXDiagnostic extends SDKHandle {
  */
 export class MXAppLaunchDiagnostic extends (MXDiagnostic as unknown as Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic)) {
   /** init() */
-  static init(): MXAppLaunchDiagnostic { return callSDK<MXAppLaunchDiagnostic>("MetricKit_90ad0eb69cc6bf4a", 736004363936560, undefined, []); }
+  static init(): MXAppLaunchDiagnostic { return callSDK<MXAppLaunchDiagnostic>("MetricKit_067acaa3e5f56b46", 736004363936560, undefined, []); }
   /**
    * var callStackTree: MXCallStackTree { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_90ad0eb69cc6bf4a", 3485232632959319, this, []); }
+  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_067acaa3e5f56b46", 3485232632959319, this, []); }
   /**
    * var launchDuration: Measurement<UnitDuration> { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  get launchDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1761148257519835, this, []); }
+  get launchDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1761148257519835, this, []); }
   declare readonly $type: { "c:objc(cs)MXAppLaunchDiagnostic": true; "c:objc(cs)MXDiagnostic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationVersion": true; "metaData": true; "signpostData": true; "callStackTree": true; "launchDuration": true };
 }
@@ -1435,31 +1435,31 @@ export class MXAppLaunchDiagnostic extends (MXDiagnostic as unknown as Omit<type
  */
 export class MXAppLaunchMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXAppLaunchMetric { return callSDK<MXAppLaunchMetric>("MetricKit_90ad0eb69cc6bf4a", 3918110227892363, undefined, []); }
+  static init(): MXAppLaunchMetric { return callSDK<MXAppLaunchMetric>("MetricKit_067acaa3e5f56b46", 3918110227892363, undefined, []); }
   /**
    * var histogrammedApplicationResumeTime: MXHistogram<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get histogrammedApplicationResumeTime(): $SDK21 { return callSDK<$SDK21>("MetricKit_90ad0eb69cc6bf4a", 2165457538167312, this, []); }
+  get histogrammedApplicationResumeTime(): $SDK21 { return callSDK<$SDK21>("MetricKit_067acaa3e5f56b46", 2165457538167312, this, []); }
   /**
    * var histogrammedExtendedLaunch: MXHistogram<UnitDuration> { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  get histogrammedExtendedLaunch(): $SDK21 { return callSDK<$SDK21>("MetricKit_90ad0eb69cc6bf4a", 4107322752889673, this, []); }
+  get histogrammedExtendedLaunch(): $SDK21 { return callSDK<$SDK21>("MetricKit_067acaa3e5f56b46", 4107322752889673, this, []); }
   /**
    * var histogrammedOptimizedTimeToFirstDraw: MXHistogram<UnitDuration> { get }
    * @availability iOS 15.2+
    * @deprecated iOS 100000.0
    */
-  get histogrammedOptimizedTimeToFirstDraw(): $SDK21 { return callSDK<$SDK21>("MetricKit_90ad0eb69cc6bf4a", 327366670858407, this, []); }
+  get histogrammedOptimizedTimeToFirstDraw(): $SDK21 { return callSDK<$SDK21>("MetricKit_067acaa3e5f56b46", 327366670858407, this, []); }
   /**
    * var histogrammedTimeToFirstDraw: MXHistogram<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get histogrammedTimeToFirstDraw(): $SDK21 { return callSDK<$SDK21>("MetricKit_90ad0eb69cc6bf4a", 3237813839390474, this, []); }
+  get histogrammedTimeToFirstDraw(): $SDK21 { return callSDK<$SDK21>("MetricKit_067acaa3e5f56b46", 3237813839390474, this, []); }
   declare readonly $type: { "c:objc(cs)MXAppLaunchMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "histogrammedApplicationResumeTime": true; "histogrammedExtendedLaunch": true; "histogrammedOptimizedTimeToFirstDraw": true; "histogrammedTimeToFirstDraw": true };
 }
@@ -1471,13 +1471,13 @@ export class MXAppLaunchMetric extends (MXMetric as unknown as Omit<typeof MXMet
  */
 export class MXAppResponsivenessMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXAppResponsivenessMetric { return callSDK<MXAppResponsivenessMetric>("MetricKit_90ad0eb69cc6bf4a", 3066174636973638, undefined, []); }
+  static init(): MXAppResponsivenessMetric { return callSDK<MXAppResponsivenessMetric>("MetricKit_067acaa3e5f56b46", 3066174636973638, undefined, []); }
   /**
    * var histogrammedApplicationHangTime: MXHistogram<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get histogrammedApplicationHangTime(): $SDK21 { return callSDK<$SDK21>("MetricKit_90ad0eb69cc6bf4a", 703046525863260, this, []); }
+  get histogrammedApplicationHangTime(): $SDK21 { return callSDK<$SDK21>("MetricKit_067acaa3e5f56b46", 703046525863260, this, []); }
   declare readonly $type: { "c:objc(cs)MXAppResponsivenessMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "histogrammedApplicationHangTime": true };
 }
@@ -1489,31 +1489,31 @@ export class MXAppResponsivenessMetric extends (MXMetric as unknown as Omit<type
  */
 export class MXAppRunTimeMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXAppRunTimeMetric { return callSDK<MXAppRunTimeMetric>("MetricKit_90ad0eb69cc6bf4a", 2490122785859657, undefined, []); }
+  static init(): MXAppRunTimeMetric { return callSDK<MXAppRunTimeMetric>("MetricKit_067acaa3e5f56b46", 2490122785859657, undefined, []); }
   /**
    * var cumulativeBackgroundAudioTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBackgroundAudioTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2594832162802445, this, []); }
+  get cumulativeBackgroundAudioTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2594832162802445, this, []); }
   /**
    * var cumulativeBackgroundLocationTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBackgroundLocationTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 648097234689745, this, []); }
+  get cumulativeBackgroundLocationTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 648097234689745, this, []); }
   /**
    * var cumulativeBackgroundTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBackgroundTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 480536393771733, this, []); }
+  get cumulativeBackgroundTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 480536393771733, this, []); }
   /**
    * var cumulativeForegroundTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeForegroundTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3965492121076174, this, []); }
+  get cumulativeForegroundTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3965492121076174, this, []); }
   declare readonly $type: { "c:objc(cs)MXAppRunTimeMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeBackgroundAudioTime": true; "cumulativeBackgroundLocationTime": true; "cumulativeBackgroundTime": true; "cumulativeForegroundTime": true };
 }
@@ -1525,25 +1525,25 @@ export class MXAppRunTimeMetric extends (MXMetric as unknown as Omit<typeof MXMe
  */
 export class MXAverage<UnitType = unknown> extends SDKHandle {
   /** init() */
-  static init(): MXAverage<_Foundation_Unit> { return callSDK<MXAverage<_Foundation_Unit>>("MetricKit_90ad0eb69cc6bf4a", 114042709690549, undefined, []); }
+  static init(): MXAverage<_Foundation_Unit> { return callSDK<MXAverage<_Foundation_Unit>>("MetricKit_067acaa3e5f56b46", 114042709690549, undefined, []); }
   /**
    * var averageMeasurement: Measurement<UnitType> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get averageMeasurement(): $SDK19 { return callSDK<$SDK19>("MetricKit_90ad0eb69cc6bf4a", 1966216737145773, this, []); }
+  get averageMeasurement(): $SDK19 { return callSDK<$SDK19>("MetricKit_067acaa3e5f56b46", 1966216737145773, this, []); }
   /**
    * var sampleCount: Int { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get sampleCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4220548255475062, this, []); }
+  get sampleCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4220548255475062, this, []); }
   /**
    * var standardDeviation: Double { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get standardDeviation(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1006275085490301, this, []); }
+  get standardDeviation(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1006275085490301, this, []); }
   declare readonly $type: { "c:objc(cs)MXAverage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averageMeasurement": true; "sampleCount": true; "standardDeviation": true };
 }
@@ -1555,67 +1555,67 @@ export class MXAverage<UnitType = unknown> extends SDKHandle {
  */
 export class MXBackgroundExitData extends SDKHandle {
   /** init() */
-  static init(): MXBackgroundExitData { return callSDK<MXBackgroundExitData>("MetricKit_90ad0eb69cc6bf4a", 3601098917947924, undefined, []); }
+  static init(): MXBackgroundExitData { return callSDK<MXBackgroundExitData>("MetricKit_067acaa3e5f56b46", 3601098917947924, undefined, []); }
   /**
    * var cumulativeAbnormalExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeAbnormalExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4022147058154431, this, []); }
+  get cumulativeAbnormalExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4022147058154431, this, []); }
   /**
    * var cumulativeAppWatchdogExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeAppWatchdogExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 396298705808517, this, []); }
+  get cumulativeAppWatchdogExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 396298705808517, this, []); }
   /**
    * var cumulativeBackgroundTaskAssertionTimeoutExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBackgroundTaskAssertionTimeoutExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4202203979171323, this, []); }
+  get cumulativeBackgroundTaskAssertionTimeoutExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4202203979171323, this, []); }
   /**
    * var cumulativeBadAccessExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBadAccessExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2311429864785808, this, []); }
+  get cumulativeBadAccessExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2311429864785808, this, []); }
   /**
    * var cumulativeCPUResourceLimitExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeCPUResourceLimitExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3237622486270726, this, []); }
+  get cumulativeCPUResourceLimitExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3237622486270726, this, []); }
   /**
    * var cumulativeIllegalInstructionExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeIllegalInstructionExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 679101664144572, this, []); }
+  get cumulativeIllegalInstructionExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 679101664144572, this, []); }
   /**
    * var cumulativeMemoryPressureExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeMemoryPressureExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2333151705799730, this, []); }
+  get cumulativeMemoryPressureExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2333151705799730, this, []); }
   /**
    * var cumulativeMemoryResourceLimitExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeMemoryResourceLimitExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2146558420280563, this, []); }
+  get cumulativeMemoryResourceLimitExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2146558420280563, this, []); }
   /**
    * var cumulativeNormalAppExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeNormalAppExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 495874533433627, this, []); }
+  get cumulativeNormalAppExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 495874533433627, this, []); }
   /**
    * var cumulativeSuspendedWithLockedFileExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeSuspendedWithLockedFileExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1225908125943755, this, []); }
+  get cumulativeSuspendedWithLockedFileExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1225908125943755, this, []); }
   declare readonly $type: { "c:objc(cs)MXBackgroundExitData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeAbnormalExitCount": true; "cumulativeAppWatchdogExitCount": true; "cumulativeBackgroundTaskAssertionTimeoutExitCount": true; "cumulativeBadAccessExitCount": true; "cumulativeCPUResourceLimitExitCount": true; "cumulativeIllegalInstructionExitCount": true; "cumulativeMemoryPressureExitCount": true; "cumulativeMemoryResourceLimitExitCount": true; "cumulativeNormalAppExitCount": true; "cumulativeSuspendedWithLockedFileExitCount": true };
 }
@@ -1631,9 +1631,9 @@ export class MXCallStackTree extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 3124552812631526, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 3124552812631526, this, []); }
   /** init() */
-  static init(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_90ad0eb69cc6bf4a", 3068576229811201, undefined, []); }
+  static init(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_067acaa3e5f56b46", 3068576229811201, undefined, []); }
   declare readonly $type: { "c:objc(cs)MXCallStackTree": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1644,13 +1644,13 @@ export class MXCallStackTree extends SDKHandle {
  */
 export class MXCellularConditionMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXCellularConditionMetric { return callSDK<MXCellularConditionMetric>("MetricKit_90ad0eb69cc6bf4a", 403522227236303, undefined, []); }
+  static init(): MXCellularConditionMetric { return callSDK<MXCellularConditionMetric>("MetricKit_067acaa3e5f56b46", 403522227236303, undefined, []); }
   /**
    * var histogrammedCellularConditionTime: MXHistogram<MXUnitSignalBars> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get histogrammedCellularConditionTime(): MXHistogram<MXUnitSignalBars> { return callSDK<MXHistogram<MXUnitSignalBars>>("MetricKit_90ad0eb69cc6bf4a", 3424918486891842, this, []); }
+  get histogrammedCellularConditionTime(): MXHistogram<MXUnitSignalBars> { return callSDK<MXHistogram<MXUnitSignalBars>>("MetricKit_067acaa3e5f56b46", 3424918486891842, this, []); }
   declare readonly $type: { "c:objc(cs)MXCellularConditionMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "histogrammedCellularConditionTime": true };
 }
@@ -1662,25 +1662,25 @@ export class MXCellularConditionMetric extends (MXMetric as unknown as Omit<type
  */
 export class MXCPUExceptionDiagnostic extends (MXDiagnostic as unknown as Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic)) {
   /** init() */
-  static init(): MXCPUExceptionDiagnostic { return callSDK<MXCPUExceptionDiagnostic>("MetricKit_90ad0eb69cc6bf4a", 518628342528835, undefined, []); }
+  static init(): MXCPUExceptionDiagnostic { return callSDK<MXCPUExceptionDiagnostic>("MetricKit_067acaa3e5f56b46", 518628342528835, undefined, []); }
   /**
    * var callStackTree: MXCallStackTree { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_90ad0eb69cc6bf4a", 2039335864223433, this, []); }
+  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_067acaa3e5f56b46", 2039335864223433, this, []); }
   /**
    * var totalCPUTime: Measurement<UnitDuration> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get totalCPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2023340771949007, this, []); }
+  get totalCPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2023340771949007, this, []); }
   /**
    * var totalSampledTime: Measurement<UnitDuration> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get totalSampledTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2320080588019400, this, []); }
+  get totalSampledTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2320080588019400, this, []); }
   declare readonly $type: { "c:objc(cs)MXCPUExceptionDiagnostic": true; "c:objc(cs)MXDiagnostic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationVersion": true; "metaData": true; "signpostData": true; "callStackTree": true; "totalCPUTime": true; "totalSampledTime": true };
 }
@@ -1692,19 +1692,19 @@ export class MXCPUExceptionDiagnostic extends (MXDiagnostic as unknown as Omit<t
  */
 export class MXCPUMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXCPUMetric { return callSDK<MXCPUMetric>("MetricKit_90ad0eb69cc6bf4a", 4319358554662122, undefined, []); }
+  static init(): MXCPUMetric { return callSDK<MXCPUMetric>("MetricKit_067acaa3e5f56b46", 4319358554662122, undefined, []); }
   /**
    * var cumulativeCPUInstructions: Measurement<Unit> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeCPUInstructions(): $SDK19 { return callSDK<$SDK19>("MetricKit_90ad0eb69cc6bf4a", 4155463318877990, this, []); }
+  get cumulativeCPUInstructions(): $SDK19 { return callSDK<$SDK19>("MetricKit_067acaa3e5f56b46", 4155463318877990, this, []); }
   /**
    * var cumulativeCPUTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeCPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1822308845575889, this, []); }
+  get cumulativeCPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1822308845575889, this, []); }
   declare readonly $type: { "c:objc(cs)MXCPUMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeCPUInstructions": true; "cumulativeCPUTime": true };
 }
@@ -1716,49 +1716,49 @@ export class MXCPUMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "
  */
 export class MXCrashDiagnostic extends (MXDiagnostic as unknown as Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic)) {
   /** init() */
-  static init(): MXCrashDiagnostic { return callSDK<MXCrashDiagnostic>("MetricKit_90ad0eb69cc6bf4a", 2107077163242020, undefined, []); }
+  static init(): MXCrashDiagnostic { return callSDK<MXCrashDiagnostic>("MetricKit_067acaa3e5f56b46", 2107077163242020, undefined, []); }
   /**
    * var callStackTree: MXCallStackTree { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_90ad0eb69cc6bf4a", 1839412397561972, this, []); }
+  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_067acaa3e5f56b46", 1839412397561972, this, []); }
   /**
    * var exceptionCode: NSNumber? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get exceptionCode(): $SDK24 { return callSDK<$SDK24>("MetricKit_90ad0eb69cc6bf4a", 1721617443821415, this, []); }
+  get exceptionCode(): $SDK24 { return callSDK<$SDK24>("MetricKit_067acaa3e5f56b46", 1721617443821415, this, []); }
   /**
    * var exceptionReason: MXCrashDiagnosticObjectiveCExceptionReason? { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get exceptionReason(): (MXCrashDiagnosticObjectiveCExceptionReason) | null { return callSDK<(MXCrashDiagnosticObjectiveCExceptionReason) | null>("MetricKit_90ad0eb69cc6bf4a", 3997934814301819, this, []); }
+  get exceptionReason(): (MXCrashDiagnosticObjectiveCExceptionReason) | null { return callSDK<(MXCrashDiagnosticObjectiveCExceptionReason) | null>("MetricKit_067acaa3e5f56b46", 3997934814301819, this, []); }
   /**
    * var exceptionType: NSNumber? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get exceptionType(): $SDK24 { return callSDK<$SDK24>("MetricKit_90ad0eb69cc6bf4a", 2502314610502892, this, []); }
+  get exceptionType(): $SDK24 { return callSDK<$SDK24>("MetricKit_067acaa3e5f56b46", 2502314610502892, this, []); }
   /**
    * var signal: NSNumber? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get signal(): $SDK24 { return callSDK<$SDK24>("MetricKit_90ad0eb69cc6bf4a", 3325080616683421, this, []); }
+  get signal(): $SDK24 { return callSDK<$SDK24>("MetricKit_067acaa3e5f56b46", 3325080616683421, this, []); }
   /**
    * var terminationReason: String? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get terminationReason(): (string) | null { return callSDK<(string) | null>("MetricKit_90ad0eb69cc6bf4a", 3879956518054520, this, []); }
+  get terminationReason(): (string) | null { return callSDK<(string) | null>("MetricKit_067acaa3e5f56b46", 3879956518054520, this, []); }
   /**
    * var virtualMemoryRegionInfo: String? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get virtualMemoryRegionInfo(): (string) | null { return callSDK<(string) | null>("MetricKit_90ad0eb69cc6bf4a", 3452877203212936, this, []); }
+  get virtualMemoryRegionInfo(): (string) | null { return callSDK<(string) | null>("MetricKit_067acaa3e5f56b46", 3452877203212936, this, []); }
   declare readonly $type: { "c:objc(cs)MXCrashDiagnostic": true; "c:objc(cs)MXDiagnostic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationVersion": true; "metaData": true; "signpostData": true; "callStackTree": true; "exceptionCode": true; "exceptionReason": true; "exceptionType": true; "signal": true; "terminationReason": true; "virtualMemoryRegionInfo": true };
 }
@@ -1774,51 +1774,51 @@ export class MXCrashDiagnosticObjectiveCExceptionReason extends SDKHandle {
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 1564958303063410, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 1564958303063410, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 3373607014329336, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 3373607014329336, this, []); }
   /** init() */
-  static init(): MXCrashDiagnosticObjectiveCExceptionReason { return callSDK<MXCrashDiagnosticObjectiveCExceptionReason>("MetricKit_90ad0eb69cc6bf4a", 2584993932023061, undefined, []); }
+  static init(): MXCrashDiagnosticObjectiveCExceptionReason { return callSDK<MXCrashDiagnosticObjectiveCExceptionReason>("MetricKit_067acaa3e5f56b46", 2584993932023061, undefined, []); }
   /**
    * var arguments: [String] { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get arguments(): Array<string> { return callSDK<Array<string>>("MetricKit_90ad0eb69cc6bf4a", 4275183937513685, this, []); }
+  get arguments(): Array<string> { return callSDK<Array<string>>("MetricKit_067acaa3e5f56b46", 4275183937513685, this, []); }
   /**
    * var className: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get className(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3203711065135793, this, []); }
+  get className(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3203711065135793, this, []); }
   /**
    * var composedMessage: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get composedMessage(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1875277637538855, this, []); }
+  get composedMessage(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1875277637538855, this, []); }
   /**
    * var exceptionName: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get exceptionName(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2920832168838139, this, []); }
+  get exceptionName(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2920832168838139, this, []); }
   /**
    * var exceptionType: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get exceptionType(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 280781007487294, this, []); }
+  get exceptionType(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 280781007487294, this, []); }
   /**
    * var formatString: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get formatString(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 490826590547370, this, []); }
+  get formatString(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 490826590547370, this, []); }
   declare readonly $type: { "c:objc(cs)MXCrashDiagnosticObjectiveCExceptionReason": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "arguments": true; "className": true; "composedMessage": true; "exceptionName": true; "exceptionType": true; "formatString": true };
 }
@@ -1834,57 +1834,57 @@ export class MXDiagnosticPayload extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 3328595214221543, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 3328595214221543, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 3518676249056409, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 3518676249056409, this, []); }
   /** init() */
-  static init(): MXDiagnosticPayload { return callSDK<MXDiagnosticPayload>("MetricKit_90ad0eb69cc6bf4a", 95429196148571, undefined, []); }
+  static init(): MXDiagnosticPayload { return callSDK<MXDiagnosticPayload>("MetricKit_067acaa3e5f56b46", 95429196148571, undefined, []); }
   /**
    * var appLaunchDiagnostics: [MXAppLaunchDiagnostic]? { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  get appLaunchDiagnostics(): (Array<MXAppLaunchDiagnostic>) | null { return callSDK<(Array<MXAppLaunchDiagnostic>) | null>("MetricKit_90ad0eb69cc6bf4a", 134046450214516, this, []); }
+  get appLaunchDiagnostics(): (Array<MXAppLaunchDiagnostic>) | null { return callSDK<(Array<MXAppLaunchDiagnostic>) | null>("MetricKit_067acaa3e5f56b46", 134046450214516, this, []); }
   /**
    * var cpuExceptionDiagnostics: [MXCPUExceptionDiagnostic]? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cpuExceptionDiagnostics(): (Array<MXCPUExceptionDiagnostic>) | null { return callSDK<(Array<MXCPUExceptionDiagnostic>) | null>("MetricKit_90ad0eb69cc6bf4a", 3169207254182293, this, []); }
+  get cpuExceptionDiagnostics(): (Array<MXCPUExceptionDiagnostic>) | null { return callSDK<(Array<MXCPUExceptionDiagnostic>) | null>("MetricKit_067acaa3e5f56b46", 3169207254182293, this, []); }
   /**
    * var crashDiagnostics: [MXCrashDiagnostic]? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get crashDiagnostics(): (Array<MXCrashDiagnostic>) | null { return callSDK<(Array<MXCrashDiagnostic>) | null>("MetricKit_90ad0eb69cc6bf4a", 2972924955826300, this, []); }
+  get crashDiagnostics(): (Array<MXCrashDiagnostic>) | null { return callSDK<(Array<MXCrashDiagnostic>) | null>("MetricKit_067acaa3e5f56b46", 2972924955826300, this, []); }
   /**
    * var diskWriteExceptionDiagnostics: [MXDiskWriteExceptionDiagnostic]? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get diskWriteExceptionDiagnostics(): (Array<MXDiskWriteExceptionDiagnostic>) | null { return callSDK<(Array<MXDiskWriteExceptionDiagnostic>) | null>("MetricKit_90ad0eb69cc6bf4a", 2862548616995101, this, []); }
+  get diskWriteExceptionDiagnostics(): (Array<MXDiskWriteExceptionDiagnostic>) | null { return callSDK<(Array<MXDiskWriteExceptionDiagnostic>) | null>("MetricKit_067acaa3e5f56b46", 2862548616995101, this, []); }
   /**
    * var hangDiagnostics: [MXHangDiagnostic]? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get hangDiagnostics(): (Array<MXHangDiagnostic>) | null { return callSDK<(Array<MXHangDiagnostic>) | null>("MetricKit_90ad0eb69cc6bf4a", 1931182446126489, this, []); }
+  get hangDiagnostics(): (Array<MXHangDiagnostic>) | null { return callSDK<(Array<MXHangDiagnostic>) | null>("MetricKit_067acaa3e5f56b46", 1931182446126489, this, []); }
   /**
    * var timeStampBegin: Date { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get timeStampBegin(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_90ad0eb69cc6bf4a", 155603859152252, this, []); }
+  get timeStampBegin(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_067acaa3e5f56b46", 155603859152252, this, []); }
   /**
    * var timeStampEnd: Date { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get timeStampEnd(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_90ad0eb69cc6bf4a", 1825947550676488, this, []); }
+  get timeStampEnd(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_067acaa3e5f56b46", 1825947550676488, this, []); }
   declare readonly $type: { "c:objc(cs)MXDiagnosticPayload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appLaunchDiagnostics": true; "cpuExceptionDiagnostics": true; "crashDiagnostics": true; "diskWriteExceptionDiagnostics": true; "hangDiagnostics": true; "timeStampBegin": true; "timeStampEnd": true };
 }
@@ -1896,13 +1896,13 @@ export class MXDiagnosticPayload extends SDKHandle {
  */
 export class MXDiskIOMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXDiskIOMetric { return callSDK<MXDiskIOMetric>("MetricKit_90ad0eb69cc6bf4a", 1471059486641860, undefined, []); }
+  static init(): MXDiskIOMetric { return callSDK<MXDiskIOMetric>("MetricKit_067acaa3e5f56b46", 1471059486641860, undefined, []); }
   /**
    * var cumulativeLogicalWrites: Measurement<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeLogicalWrites(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2858897618787897, this, []); }
+  get cumulativeLogicalWrites(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2858897618787897, this, []); }
   declare readonly $type: { "c:objc(cs)MXDiskIOMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeLogicalWrites": true };
 }
@@ -1914,55 +1914,55 @@ export class MXDiskIOMetric extends (MXMetric as unknown as Omit<typeof MXMetric
  */
 export class MXDiskSpaceUsageMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXDiskSpaceUsageMetric { return callSDK<MXDiskSpaceUsageMetric>("MetricKit_90ad0eb69cc6bf4a", 3201797477166086, undefined, []); }
+  static init(): MXDiskSpaceUsageMetric { return callSDK<MXDiskSpaceUsageMetric>("MetricKit_067acaa3e5f56b46", 3201797477166086, undefined, []); }
   /**
    * var totalBinaryFileCount: Int { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalBinaryFileCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 788262375609895, this, []); }
+  get totalBinaryFileCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 788262375609895, this, []); }
   /**
    * var totalBinaryFileSize: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalBinaryFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 4264941304354431, this, []); }
+  get totalBinaryFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 4264941304354431, this, []); }
   /**
    * var totalCacheFolderSize: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalCacheFolderSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 4341404109883625, this, []); }
+  get totalCacheFolderSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 4341404109883625, this, []); }
   /**
    * var totalCloneSize: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalCloneSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2578423674384897, this, []); }
+  get totalCloneSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2578423674384897, this, []); }
   /**
    * var totalDataFileCount: Int { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalDataFileCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2757192187625825, this, []); }
+  get totalDataFileCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2757192187625825, this, []); }
   /**
    * var totalDataFileSize: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalDataFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 3139403240326352, this, []); }
+  get totalDataFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 3139403240326352, this, []); }
   /**
    * var totalDiskSpaceCapacity: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalDiskSpaceCapacity(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2623579025401648, this, []); }
+  get totalDiskSpaceCapacity(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2623579025401648, this, []); }
   /**
    * var totalDiskSpaceUsedSize: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get totalDiskSpaceUsedSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 3665607995835730, this, []); }
+  get totalDiskSpaceUsedSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 3665607995835730, this, []); }
   declare readonly $type: { "c:objc(cs)MXDiskSpaceUsageMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "totalBinaryFileCount": true; "totalBinaryFileSize": true; "totalCacheFolderSize": true; "totalCloneSize": true; "totalDataFileCount": true; "totalDataFileSize": true; "totalDiskSpaceCapacity": true; "totalDiskSpaceUsedSize": true };
 }
@@ -1974,19 +1974,19 @@ export class MXDiskSpaceUsageMetric extends (MXMetric as unknown as Omit<typeof 
  */
 export class MXDiskWriteExceptionDiagnostic extends (MXDiagnostic as unknown as Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic)) {
   /** init() */
-  static init(): MXDiskWriteExceptionDiagnostic { return callSDK<MXDiskWriteExceptionDiagnostic>("MetricKit_90ad0eb69cc6bf4a", 1712880961934338, undefined, []); }
+  static init(): MXDiskWriteExceptionDiagnostic { return callSDK<MXDiskWriteExceptionDiagnostic>("MetricKit_067acaa3e5f56b46", 1712880961934338, undefined, []); }
   /**
    * var callStackTree: MXCallStackTree { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_90ad0eb69cc6bf4a", 540376731906025, this, []); }
+  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_067acaa3e5f56b46", 540376731906025, this, []); }
   /**
    * var totalWritesCaused: Measurement<UnitInformationStorage> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get totalWritesCaused(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2162913826774365, this, []); }
+  get totalWritesCaused(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2162913826774365, this, []); }
   declare readonly $type: { "c:objc(cs)MXDiskWriteExceptionDiagnostic": true; "c:objc(cs)MXDiagnostic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationVersion": true; "metaData": true; "signpostData": true; "callStackTree": true; "totalWritesCaused": true };
 }
@@ -1998,13 +1998,13 @@ export class MXDiskWriteExceptionDiagnostic extends (MXDiagnostic as unknown as 
  */
 export class MXDisplayMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXDisplayMetric { return callSDK<MXDisplayMetric>("MetricKit_90ad0eb69cc6bf4a", 1958959656625567, undefined, []); }
+  static init(): MXDisplayMetric { return callSDK<MXDisplayMetric>("MetricKit_067acaa3e5f56b46", 1958959656625567, undefined, []); }
   /**
    * var averagePixelLuminance: MXAverage<MXUnitAveragePixelLuminance>? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get averagePixelLuminance(): (MXAverage<MXUnitAveragePixelLuminance>) | null { return callSDK<(MXAverage<MXUnitAveragePixelLuminance>) | null>("MetricKit_90ad0eb69cc6bf4a", 2371553806832171, this, []); }
+  get averagePixelLuminance(): (MXAverage<MXUnitAveragePixelLuminance>) | null { return callSDK<(MXAverage<MXUnitAveragePixelLuminance>) | null>("MetricKit_067acaa3e5f56b46", 2371553806832171, this, []); }
   declare readonly $type: { "c:objc(cs)MXDisplayMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averagePixelLuminance": true };
 }
@@ -2020,43 +2020,43 @@ export class MXError extends SDKHandle {
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get errorDomain(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2700396036452390, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2700396036452390, undefined, []); }
   /**
    * static var launchTaskUnknown: MXError.Code { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get launchTaskUnknown(): MXError_Code { return callSDK<MXError_Code>("MetricKit_90ad0eb69cc6bf4a", 534163339780429, undefined, []); }
+  static get launchTaskUnknown(): MXError_Code { return callSDK<MXError_Code>("MetricKit_067acaa3e5f56b46", 534163339780429, undefined, []); }
   /**
    * static var launchTaskMaxCount: MXError.Code { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get launchTaskMaxCount(): MXError_Code { return callSDK<MXError_Code>("MetricKit_90ad0eb69cc6bf4a", 855682164387196, undefined, []); }
+  static get launchTaskMaxCount(): MXError_Code { return callSDK<MXError_Code>("MetricKit_067acaa3e5f56b46", 855682164387196, undefined, []); }
   /**
    * static var launchTaskInvalidID: MXError.Code { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get launchTaskInvalidID(): MXError_Code { return callSDK<MXError_Code>("MetricKit_90ad0eb69cc6bf4a", 1638366353619087, undefined, []); }
+  static get launchTaskInvalidID(): MXError_Code { return callSDK<MXError_Code>("MetricKit_067acaa3e5f56b46", 1638366353619087, undefined, []); }
   /**
    * static var launchTaskDuplicated: MXError.Code { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get launchTaskDuplicated(): MXError_Code { return callSDK<MXError_Code>("MetricKit_90ad0eb69cc6bf4a", 3176937700697940, undefined, []); }
+  static get launchTaskDuplicated(): MXError_Code { return callSDK<MXError_Code>("MetricKit_067acaa3e5f56b46", 3176937700697940, undefined, []); }
   /**
    * static var launchTaskPastDeadline: MXError.Code { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get launchTaskPastDeadline(): MXError_Code { return callSDK<MXError_Code>("MetricKit_90ad0eb69cc6bf4a", 3048333730346840, undefined, []); }
+  static get launchTaskPastDeadline(): MXError_Code { return callSDK<MXError_Code>("MetricKit_067acaa3e5f56b46", 3048333730346840, undefined, []); }
   /**
    * static var launchTaskInternalFailure: MXError.Code { get }
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static get launchTaskInternalFailure(): MXError_Code { return callSDK<MXError_Code>("MetricKit_90ad0eb69cc6bf4a", 4052174895538893, undefined, []); }
+  static get launchTaskInternalFailure(): MXError_Code { return callSDK<MXError_Code>("MetricKit_067acaa3e5f56b46", 4052174895538893, undefined, []); }
   declare readonly $type: { "s:SC11MXErrorCodeLeV": true };
 }
 
@@ -2073,7 +2073,7 @@ export const MXError_Code = {
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  init(rawValue: number): (MXError_Code) | null { return callSDK<(MXError_Code) | null>("MetricKit_90ad0eb69cc6bf4a", 2286341594769012, undefined, [rawValue]); }
+  init(rawValue: number): (MXError_Code) | null { return callSDK<(MXError_Code) | null>("MetricKit_067acaa3e5f56b46", 2286341594769012, undefined, [rawValue]); }
 };
 
 /**
@@ -2083,43 +2083,43 @@ export const MXError_Code = {
  */
 export class MXForegroundExitData extends SDKHandle {
   /** init() */
-  static init(): MXForegroundExitData { return callSDK<MXForegroundExitData>("MetricKit_90ad0eb69cc6bf4a", 3227881574587757, undefined, []); }
+  static init(): MXForegroundExitData { return callSDK<MXForegroundExitData>("MetricKit_067acaa3e5f56b46", 3227881574587757, undefined, []); }
   /**
    * var cumulativeAbnormalExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeAbnormalExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4215684220609895, this, []); }
+  get cumulativeAbnormalExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4215684220609895, this, []); }
   /**
    * var cumulativeAppWatchdogExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeAppWatchdogExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4457907252586781, this, []); }
+  get cumulativeAppWatchdogExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4457907252586781, this, []); }
   /**
    * var cumulativeBadAccessExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBadAccessExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1915310064213242, this, []); }
+  get cumulativeBadAccessExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1915310064213242, this, []); }
   /**
    * var cumulativeIllegalInstructionExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeIllegalInstructionExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2054645082543123, this, []); }
+  get cumulativeIllegalInstructionExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2054645082543123, this, []); }
   /**
    * var cumulativeMemoryResourceLimitExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeMemoryResourceLimitExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4410541484984643, this, []); }
+  get cumulativeMemoryResourceLimitExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4410541484984643, this, []); }
   /**
    * var cumulativeNormalAppExitCount: Int { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeNormalAppExitCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1946095400826985, this, []); }
+  get cumulativeNormalAppExitCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1946095400826985, this, []); }
   declare readonly $type: { "c:objc(cs)MXForegroundExitData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeAbnormalExitCount": true; "cumulativeAppWatchdogExitCount": true; "cumulativeBadAccessExitCount": true; "cumulativeIllegalInstructionExitCount": true; "cumulativeMemoryResourceLimitExitCount": true; "cumulativeNormalAppExitCount": true };
 }
@@ -2131,13 +2131,13 @@ export class MXForegroundExitData extends SDKHandle {
  */
 export class MXGPUMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXGPUMetric { return callSDK<MXGPUMetric>("MetricKit_90ad0eb69cc6bf4a", 2408861075205739, undefined, []); }
+  static init(): MXGPUMetric { return callSDK<MXGPUMetric>("MetricKit_067acaa3e5f56b46", 2408861075205739, undefined, []); }
   /**
    * var cumulativeGPUTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeGPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3655485596789653, this, []); }
+  get cumulativeGPUTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3655485596789653, this, []); }
   declare readonly $type: { "c:objc(cs)MXGPUMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeGPUTime": true };
 }
@@ -2149,19 +2149,19 @@ export class MXGPUMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "
  */
 export class MXHangDiagnostic extends (MXDiagnostic as unknown as Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic)) {
   /** init() */
-  static init(): MXHangDiagnostic { return callSDK<MXHangDiagnostic>("MetricKit_90ad0eb69cc6bf4a", 2707375782276344, undefined, []); }
+  static init(): MXHangDiagnostic { return callSDK<MXHangDiagnostic>("MetricKit_067acaa3e5f56b46", 2707375782276344, undefined, []); }
   /**
    * var callStackTree: MXCallStackTree { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_90ad0eb69cc6bf4a", 2006934558124781, this, []); }
+  get callStackTree(): MXCallStackTree { return callSDK<MXCallStackTree>("MetricKit_067acaa3e5f56b46", 2006934558124781, this, []); }
   /**
    * var hangDuration: Measurement<UnitDuration> { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get hangDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3879077436343121, this, []); }
+  get hangDuration(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3879077436343121, this, []); }
   declare readonly $type: { "c:objc(cs)MXHangDiagnostic": true; "c:objc(cs)MXDiagnostic": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationVersion": true; "metaData": true; "signpostData": true; "callStackTree": true; "hangDuration": true };
 }
@@ -2173,19 +2173,19 @@ export class MXHangDiagnostic extends (MXDiagnostic as unknown as Omit<typeof MX
  */
 export class MXHistogram<UnitType = unknown> extends SDKHandle {
   /** init() */
-  static init(): MXHistogram<_Foundation_Unit> { return callSDK<MXHistogram<_Foundation_Unit>>("MetricKit_90ad0eb69cc6bf4a", 2503934885637963, undefined, []); }
+  static init(): MXHistogram<_Foundation_Unit> { return callSDK<MXHistogram<_Foundation_Unit>>("MetricKit_067acaa3e5f56b46", 2503934885637963, undefined, []); }
   /**
    * var bucketEnumerator: NSEnumerator { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get bucketEnumerator(): _Foundation_NSEnumerator { return callSDK<_Foundation_NSEnumerator>("MetricKit_90ad0eb69cc6bf4a", 3833345611667697, this, []); }
+  get bucketEnumerator(): _Foundation_NSEnumerator { return callSDK<_Foundation_NSEnumerator>("MetricKit_067acaa3e5f56b46", 3833345611667697, this, []); }
   /**
    * var totalBucketCount: Int { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get totalBucketCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1587971498156289, this, []); }
+  get totalBucketCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1587971498156289, this, []); }
   declare readonly $type: { "c:objc(cs)MXHistogram": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bucketEnumerator": true; "totalBucketCount": true };
 }
@@ -2197,25 +2197,25 @@ export class MXHistogram<UnitType = unknown> extends SDKHandle {
  */
 export class MXHistogramBucket<UnitType = unknown> extends SDKHandle {
   /** init() */
-  static init(): MXHistogramBucket<_Foundation_Unit> { return callSDK<MXHistogramBucket<_Foundation_Unit>>("MetricKit_90ad0eb69cc6bf4a", 497144395895007, undefined, []); }
+  static init(): MXHistogramBucket<_Foundation_Unit> { return callSDK<MXHistogramBucket<_Foundation_Unit>>("MetricKit_067acaa3e5f56b46", 497144395895007, undefined, []); }
   /**
    * var bucketCount: Int { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get bucketCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 3419318993808356, this, []); }
+  get bucketCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 3419318993808356, this, []); }
   /**
    * var bucketEnd: Measurement<UnitType> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get bucketEnd(): $SDK19 { return callSDK<$SDK19>("MetricKit_90ad0eb69cc6bf4a", 995912893466886, this, []); }
+  get bucketEnd(): $SDK19 { return callSDK<$SDK19>("MetricKit_067acaa3e5f56b46", 995912893466886, this, []); }
   /**
    * var bucketStart: Measurement<UnitType> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get bucketStart(): $SDK19 { return callSDK<$SDK19>("MetricKit_90ad0eb69cc6bf4a", 4111163836063798, this, []); }
+  get bucketStart(): $SDK19 { return callSDK<$SDK19>("MetricKit_067acaa3e5f56b46", 4111163836063798, this, []); }
   declare readonly $type: { "c:objc(cs)MXHistogramBucket": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bucketCount": true; "bucketEnd": true; "bucketStart": true };
 }
@@ -2233,13 +2233,13 @@ export const MXLaunchTaskID = {
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  initRawValue(rawValue: string): MXLaunchTaskID { return callSDK<MXLaunchTaskID>("MetricKit_90ad0eb69cc6bf4a", 682084523568001, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MXLaunchTaskID { return callSDK<MXLaunchTaskID>("MetricKit_067acaa3e5f56b46", 682084523568001, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  init(rawValue: string): MXLaunchTaskID { return callSDK<MXLaunchTaskID>("MetricKit_90ad0eb69cc6bf4a", 2113828503992359, undefined, [rawValue]); }
+  init(rawValue: string): MXLaunchTaskID { return callSDK<MXLaunchTaskID>("MetricKit_067acaa3e5f56b46", 2113828503992359, undefined, [rawValue]); }
 };
 
 /**
@@ -2249,43 +2249,43 @@ export const MXLaunchTaskID = {
  */
 export class MXLocationActivityMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXLocationActivityMetric { return callSDK<MXLocationActivityMetric>("MetricKit_90ad0eb69cc6bf4a", 1692599327839072, undefined, []); }
+  static init(): MXLocationActivityMetric { return callSDK<MXLocationActivityMetric>("MetricKit_067acaa3e5f56b46", 1692599327839072, undefined, []); }
   /**
    * var cumulativeBestAccuracyForNavigationTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBestAccuracyForNavigationTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2411718506577416, this, []); }
+  get cumulativeBestAccuracyForNavigationTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2411718506577416, this, []); }
   /**
    * var cumulativeBestAccuracyTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeBestAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 193339255783281, this, []); }
+  get cumulativeBestAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 193339255783281, this, []); }
   /**
    * var cumulativeHundredMetersAccuracyTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeHundredMetersAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3959992996300170, this, []); }
+  get cumulativeHundredMetersAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3959992996300170, this, []); }
   /**
    * var cumulativeKilometerAccuracyTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeKilometerAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 2880436945903565, this, []); }
+  get cumulativeKilometerAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 2880436945903565, this, []); }
   /**
    * var cumulativeNearestTenMetersAccuracyTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeNearestTenMetersAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3595266763692781, this, []); }
+  get cumulativeNearestTenMetersAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3595266763692781, this, []); }
   /**
    * var cumulativeThreeKilometersAccuracyTime: Measurement<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeThreeKilometersAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3876874404558979, this, []); }
+  get cumulativeThreeKilometersAccuracyTime(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3876874404558979, this, []); }
   declare readonly $type: { "c:objc(cs)MXLocationActivityMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeBestAccuracyForNavigationTime": true; "cumulativeBestAccuracyTime": true; "cumulativeHundredMetersAccuracyTime": true; "cumulativeKilometerAccuracyTime": true; "cumulativeNearestTenMetersAccuracyTime": true; "cumulativeThreeKilometersAccuracyTime": true };
 }
@@ -2297,19 +2297,19 @@ export class MXLocationActivityMetric extends (MXMetric as unknown as Omit<typeo
  */
 export class MXMemoryMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXMemoryMetric { return callSDK<MXMemoryMetric>("MetricKit_90ad0eb69cc6bf4a", 575561626955944, undefined, []); }
+  static init(): MXMemoryMetric { return callSDK<MXMemoryMetric>("MetricKit_067acaa3e5f56b46", 575561626955944, undefined, []); }
   /**
    * var averageSuspendedMemory: MXAverage<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get averageSuspendedMemory(): MXAverage<_Foundation_UnitInformationStorage> { return callSDK<MXAverage<_Foundation_UnitInformationStorage>>("MetricKit_90ad0eb69cc6bf4a", 2309218890087747, this, []); }
+  get averageSuspendedMemory(): MXAverage<_Foundation_UnitInformationStorage> { return callSDK<MXAverage<_Foundation_UnitInformationStorage>>("MetricKit_067acaa3e5f56b46", 2309218890087747, this, []); }
   /**
    * var peakMemoryUsage: Measurement<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get peakMemoryUsage(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1280394713413795, this, []); }
+  get peakMemoryUsage(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1280394713413795, this, []); }
   declare readonly $type: { "c:objc(cs)MXMemoryMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averageSuspendedMemory": true; "peakMemoryUsage": true };
 }
@@ -2325,69 +2325,69 @@ export class MXMetaData extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 1715360390664195, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 1715360390664195, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 3939316690153902, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 3939316690153902, this, []); }
   /** init() */
-  static init(): MXMetaData { return callSDK<MXMetaData>("MetricKit_90ad0eb69cc6bf4a", 856708310522658, undefined, []); }
+  static init(): MXMetaData { return callSDK<MXMetaData>("MetricKit_067acaa3e5f56b46", 856708310522658, undefined, []); }
   /**
    * var applicationBuildVersion: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get applicationBuildVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 144668495317002, this, []); }
+  get applicationBuildVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 144668495317002, this, []); }
   /**
    * var bundleIdentifier: String { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get bundleIdentifier(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3759010316008938, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3759010316008938, this, []); }
   /**
    * var deviceType: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get deviceType(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3251662680820375, this, []); }
+  get deviceType(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3251662680820375, this, []); }
   /**
    * var isTestFlightApp: Bool { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get isTestFlightApp(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 1062161191774750, this, []); }
+  get isTestFlightApp(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 1062161191774750, this, []); }
   /**
    * var lowPowerModeEnabled: Bool { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get lowPowerModeEnabled(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 2201784139082812, this, []); }
+  get lowPowerModeEnabled(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 2201784139082812, this, []); }
   /**
    * var osVersion: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get osVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2566467165213093, this, []); }
+  get osVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2566467165213093, this, []); }
   /**
    * var pid: pid_t { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get pid(): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 2448501297558291, this, []); }
+  get pid(): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 2448501297558291, this, []); }
   /**
    * var platformArchitecture: String { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get platformArchitecture(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 848387772113791, this, []); }
+  get platformArchitecture(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 848387772113791, this, []); }
   /**
    * var regionFormat: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get regionFormat(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3143532421427350, this, []); }
+  get regionFormat(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3143532421427350, this, []); }
   declare readonly $type: { "c:objc(cs)MXMetaData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationBuildVersion": true; "bundleIdentifier": true; "deviceType": true; "isTestFlightApp": true; "lowPowerModeEnabled": true; "osVersion": true; "pid": true; "platformArchitecture": true; "regionFormat": true };
 }
@@ -2403,51 +2403,51 @@ export class MXMetricManager extends SDKHandle {
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static extendLaunchMeasurement(taskID: MXLaunchTaskID): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 3448637296180704, undefined, [taskID]); }
+  static extendLaunchMeasurement(taskID: MXLaunchTaskID): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 3448637296180704, undefined, [taskID]); }
   /**
    * class func finishExtendedLaunchMeasurement(forTaskID taskID: MXLaunchTaskID) throws
    * @availability iOS 16.0+
    * @deprecated iOS 100000.0
    */
-  static finishExtendedLaunchMeasurement(taskID: MXLaunchTaskID): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 402652886690258, undefined, [taskID]); }
+  static finishExtendedLaunchMeasurement(taskID: MXLaunchTaskID): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 402652886690258, undefined, [taskID]); }
   /**
    * class func makeLogHandle(category: String) -> OSLog
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static makeLogHandle(category: string): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 4365458850222696, undefined, [category]); }
+  static makeLogHandle(category: string): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 4365458850222696, undefined, [category]); }
   /**
    * class var shared: MXMetricManager { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static get shared(): MXMetricManager { return callSDK<MXMetricManager>("MetricKit_90ad0eb69cc6bf4a", 1539626241148406, undefined, []); }
+  static get shared(): MXMetricManager { return callSDK<MXMetricManager>("MetricKit_067acaa3e5f56b46", 1539626241148406, undefined, []); }
   /**
    * func add(_ subscriber: any MXMetricManagerSubscriber)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  add(subscriber: $SDK35): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 3168880874728775, this, [subscriber], [{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]); }
+  add(subscriber: $SDK35): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 3168880874728775, this, [subscriber], [{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]); }
   /** init() */
-  static init(): MXMetricManager { return callSDK<MXMetricManager>("MetricKit_90ad0eb69cc6bf4a", 2440199560200100, undefined, []); }
+  static init(): MXMetricManager { return callSDK<MXMetricManager>("MetricKit_067acaa3e5f56b46", 2440199560200100, undefined, []); }
   /**
    * func remove(_ subscriber: any MXMetricManagerSubscriber)
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  remove(subscriber: $SDK35): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 3812975691176849, this, [subscriber], [{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]); }
+  remove(subscriber: $SDK35): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 3812975691176849, this, [subscriber], [{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]); }
   /**
    * var pastDiagnosticPayloads: [MXDiagnosticPayload] { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get pastDiagnosticPayloads(): Array<MXDiagnosticPayload> { return callSDK<Array<MXDiagnosticPayload>>("MetricKit_90ad0eb69cc6bf4a", 4488462741992595, this, []); }
+  get pastDiagnosticPayloads(): Array<MXDiagnosticPayload> { return callSDK<Array<MXDiagnosticPayload>>("MetricKit_067acaa3e5f56b46", 4488462741992595, this, []); }
   /**
    * var pastPayloads: [MXMetricPayload] { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get pastPayloads(): Array<MXMetricPayload> { return callSDK<Array<MXMetricPayload>>("MetricKit_90ad0eb69cc6bf4a", 1794286589755444, this, []); }
+  get pastPayloads(): Array<MXMetricPayload> { return callSDK<Array<MXMetricPayload>>("MetricKit_067acaa3e5f56b46", 1794286589755444, this, []); }
   declare readonly $type: { "c:objc(cs)MXMetricManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pastDiagnosticPayloads": true; "pastPayloads": true };
 }
@@ -2477,135 +2477,135 @@ export class MXMetricPayload extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 1788854576948909, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 1788854576948909, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 1715397006072885, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 1715397006072885, this, []); }
   /** init() */
-  static init(): MXMetricPayload { return callSDK<MXMetricPayload>("MetricKit_90ad0eb69cc6bf4a", 4059170978131382, undefined, []); }
+  static init(): MXMetricPayload { return callSDK<MXMetricPayload>("MetricKit_067acaa3e5f56b46", 4059170978131382, undefined, []); }
   /**
    * var animationMetrics: MXAnimationMetric? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get animationMetrics(): (MXAnimationMetric) | null { return callSDK<(MXAnimationMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 1315070803702992, this, []); }
+  get animationMetrics(): (MXAnimationMetric) | null { return callSDK<(MXAnimationMetric) | null>("MetricKit_067acaa3e5f56b46", 1315070803702992, this, []); }
   /**
    * var applicationExitMetrics: MXAppExitMetric? { get }
    * @availability iOS 14.0+
    * @deprecated iOS 100000.0
    */
-  get applicationExitMetrics(): (MXAppExitMetric) | null { return callSDK<(MXAppExitMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 451500167052028, this, []); }
+  get applicationExitMetrics(): (MXAppExitMetric) | null { return callSDK<(MXAppExitMetric) | null>("MetricKit_067acaa3e5f56b46", 451500167052028, this, []); }
   /**
    * var applicationLaunchMetrics: MXAppLaunchMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get applicationLaunchMetrics(): (MXAppLaunchMetric) | null { return callSDK<(MXAppLaunchMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 1651121552612955, this, []); }
+  get applicationLaunchMetrics(): (MXAppLaunchMetric) | null { return callSDK<(MXAppLaunchMetric) | null>("MetricKit_067acaa3e5f56b46", 1651121552612955, this, []); }
   /**
    * var applicationResponsivenessMetrics: MXAppResponsivenessMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get applicationResponsivenessMetrics(): (MXAppResponsivenessMetric) | null { return callSDK<(MXAppResponsivenessMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 4503134254881698, this, []); }
+  get applicationResponsivenessMetrics(): (MXAppResponsivenessMetric) | null { return callSDK<(MXAppResponsivenessMetric) | null>("MetricKit_067acaa3e5f56b46", 4503134254881698, this, []); }
   /**
    * var applicationTimeMetrics: MXAppRunTimeMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get applicationTimeMetrics(): (MXAppRunTimeMetric) | null { return callSDK<(MXAppRunTimeMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 1702708997225026, this, []); }
+  get applicationTimeMetrics(): (MXAppRunTimeMetric) | null { return callSDK<(MXAppRunTimeMetric) | null>("MetricKit_067acaa3e5f56b46", 1702708997225026, this, []); }
   /**
    * var cellularConditionMetrics: MXCellularConditionMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cellularConditionMetrics(): (MXCellularConditionMetric) | null { return callSDK<(MXCellularConditionMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 644077628007179, this, []); }
+  get cellularConditionMetrics(): (MXCellularConditionMetric) | null { return callSDK<(MXCellularConditionMetric) | null>("MetricKit_067acaa3e5f56b46", 644077628007179, this, []); }
   /**
    * var cpuMetrics: MXCPUMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cpuMetrics(): (MXCPUMetric) | null { return callSDK<(MXCPUMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 1100911356156468, this, []); }
+  get cpuMetrics(): (MXCPUMetric) | null { return callSDK<(MXCPUMetric) | null>("MetricKit_067acaa3e5f56b46", 1100911356156468, this, []); }
   /**
    * var diskIOMetrics: MXDiskIOMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get diskIOMetrics(): (MXDiskIOMetric) | null { return callSDK<(MXDiskIOMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 1144017792015511, this, []); }
+  get diskIOMetrics(): (MXDiskIOMetric) | null { return callSDK<(MXDiskIOMetric) | null>("MetricKit_067acaa3e5f56b46", 1144017792015511, this, []); }
   /**
    * var diskSpaceUsageMetrics: MXDiskSpaceUsageMetric? { get }
    * @availability iOS 26.0+
    * @deprecated iOS 100000.0
    */
-  get diskSpaceUsageMetrics(): (MXDiskSpaceUsageMetric) | null { return callSDK<(MXDiskSpaceUsageMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 386402554014101, this, []); }
+  get diskSpaceUsageMetrics(): (MXDiskSpaceUsageMetric) | null { return callSDK<(MXDiskSpaceUsageMetric) | null>("MetricKit_067acaa3e5f56b46", 386402554014101, this, []); }
   /**
    * var displayMetrics: MXDisplayMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get displayMetrics(): (MXDisplayMetric) | null { return callSDK<(MXDisplayMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 3591810158219289, this, []); }
+  get displayMetrics(): (MXDisplayMetric) | null { return callSDK<(MXDisplayMetric) | null>("MetricKit_067acaa3e5f56b46", 3591810158219289, this, []); }
   /**
    * var gpuMetrics: MXGPUMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get gpuMetrics(): (MXGPUMetric) | null { return callSDK<(MXGPUMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 3789417256136161, this, []); }
+  get gpuMetrics(): (MXGPUMetric) | null { return callSDK<(MXGPUMetric) | null>("MetricKit_067acaa3e5f56b46", 3789417256136161, this, []); }
   /**
    * var includesMultipleApplicationVersions: Bool { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get includesMultipleApplicationVersions(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 1856562152833876, this, []); }
+  get includesMultipleApplicationVersions(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 1856562152833876, this, []); }
   /**
    * var latestApplicationVersion: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get latestApplicationVersion(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1420496704960492, this, []); }
+  get latestApplicationVersion(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1420496704960492, this, []); }
   /**
    * var locationActivityMetrics: MXLocationActivityMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get locationActivityMetrics(): (MXLocationActivityMetric) | null { return callSDK<(MXLocationActivityMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 2353716824078812, this, []); }
+  get locationActivityMetrics(): (MXLocationActivityMetric) | null { return callSDK<(MXLocationActivityMetric) | null>("MetricKit_067acaa3e5f56b46", 2353716824078812, this, []); }
   /**
    * var memoryMetrics: MXMemoryMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get memoryMetrics(): (MXMemoryMetric) | null { return callSDK<(MXMemoryMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 186582661035387, this, []); }
+  get memoryMetrics(): (MXMemoryMetric) | null { return callSDK<(MXMemoryMetric) | null>("MetricKit_067acaa3e5f56b46", 186582661035387, this, []); }
   /**
    * var metaData: MXMetaData? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get metaData(): (MXMetaData) | null { return callSDK<(MXMetaData) | null>("MetricKit_90ad0eb69cc6bf4a", 1428552287834806, this, []); }
+  get metaData(): (MXMetaData) | null { return callSDK<(MXMetaData) | null>("MetricKit_067acaa3e5f56b46", 1428552287834806, this, []); }
   /**
    * var networkTransferMetrics: MXNetworkTransferMetric? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get networkTransferMetrics(): (MXNetworkTransferMetric) | null { return callSDK<(MXNetworkTransferMetric) | null>("MetricKit_90ad0eb69cc6bf4a", 2854490689695057, this, []); }
+  get networkTransferMetrics(): (MXNetworkTransferMetric) | null { return callSDK<(MXNetworkTransferMetric) | null>("MetricKit_067acaa3e5f56b46", 2854490689695057, this, []); }
   /**
    * var signpostMetrics: [MXSignpostMetric]? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get signpostMetrics(): (Array<MXSignpostMetric>) | null { return callSDK<(Array<MXSignpostMetric>) | null>("MetricKit_90ad0eb69cc6bf4a", 4296410043868651, this, []); }
+  get signpostMetrics(): (Array<MXSignpostMetric>) | null { return callSDK<(Array<MXSignpostMetric>) | null>("MetricKit_067acaa3e5f56b46", 4296410043868651, this, []); }
   /**
    * var timeStampBegin: Date { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get timeStampBegin(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_90ad0eb69cc6bf4a", 3184578517044687, this, []); }
+  get timeStampBegin(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_067acaa3e5f56b46", 3184578517044687, this, []); }
   /**
    * var timeStampEnd: Date { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get timeStampEnd(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_90ad0eb69cc6bf4a", 1970355093122217, this, []); }
+  get timeStampEnd(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_067acaa3e5f56b46", 1970355093122217, this, []); }
   declare readonly $type: { "c:objc(cs)MXMetricPayload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animationMetrics": true; "applicationExitMetrics": true; "applicationLaunchMetrics": true; "applicationResponsivenessMetrics": true; "applicationTimeMetrics": true; "cellularConditionMetrics": true; "cpuMetrics": true; "diskIOMetrics": true; "diskSpaceUsageMetrics": true; "displayMetrics": true; "gpuMetrics": true; "includesMultipleApplicationVersions": true; "latestApplicationVersion": true; "locationActivityMetrics": true; "memoryMetrics": true; "metaData": true; "networkTransferMetrics": true; "signpostMetrics": true; "timeStampBegin": true; "timeStampEnd": true };
 }
@@ -2617,31 +2617,31 @@ export class MXMetricPayload extends SDKHandle {
  */
 export class MXNetworkTransferMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXNetworkTransferMetric { return callSDK<MXNetworkTransferMetric>("MetricKit_90ad0eb69cc6bf4a", 2188648013895269, undefined, []); }
+  static init(): MXNetworkTransferMetric { return callSDK<MXNetworkTransferMetric>("MetricKit_067acaa3e5f56b46", 2188648013895269, undefined, []); }
   /**
    * var cumulativeCellularDownload: Measurement<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeCellularDownload(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1401112296544375, this, []); }
+  get cumulativeCellularDownload(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1401112296544375, this, []); }
   /**
    * var cumulativeCellularUpload: Measurement<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeCellularUpload(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2844314296569089, this, []); }
+  get cumulativeCellularUpload(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2844314296569089, this, []); }
   /**
    * var cumulativeWifiDownload: Measurement<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeWifiDownload(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1234401561730747, this, []); }
+  get cumulativeWifiDownload(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1234401561730747, this, []); }
   /**
    * var cumulativeWifiUpload: Measurement<UnitInformationStorage> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeWifiUpload(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1366904876557488, this, []); }
+  get cumulativeWifiUpload(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1366904876557488, this, []); }
   declare readonly $type: { "c:objc(cs)MXNetworkTransferMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cumulativeCellularDownload": true; "cumulativeCellularUpload": true; "cumulativeWifiDownload": true; "cumulativeWifiUpload": true };
 }
@@ -2653,37 +2653,37 @@ export class MXNetworkTransferMetric extends (MXMetric as unknown as Omit<typeof
  */
 export class MXSignpostIntervalData extends SDKHandle {
   /** init() */
-  static init(): MXSignpostIntervalData { return callSDK<MXSignpostIntervalData>("MetricKit_90ad0eb69cc6bf4a", 4421835902566303, undefined, []); }
+  static init(): MXSignpostIntervalData { return callSDK<MXSignpostIntervalData>("MetricKit_067acaa3e5f56b46", 4421835902566303, undefined, []); }
   /**
    * var averageMemory: MXAverage<UnitInformationStorage>? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get averageMemory(): (MXAverage<_Foundation_UnitInformationStorage>) | null { return callSDK<(MXAverage<_Foundation_UnitInformationStorage>) | null>("MetricKit_90ad0eb69cc6bf4a", 263548764034514, this, []); }
+  get averageMemory(): (MXAverage<_Foundation_UnitInformationStorage>) | null { return callSDK<(MXAverage<_Foundation_UnitInformationStorage>) | null>("MetricKit_067acaa3e5f56b46", 263548764034514, this, []); }
   /**
    * var cumulativeCPUTime: Measurement<UnitDuration>? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeCPUTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_90ad0eb69cc6bf4a", 153807068242709, this, []); }
+  get cumulativeCPUTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_067acaa3e5f56b46", 153807068242709, this, []); }
   /**
    * var cumulativeHitchTimeRatio: Measurement<Unit>? { get }
    * @availability iOS 15.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeHitchTimeRatio(): (_Foundation_Measurement<_Foundation_Unit>) | null { return callSDK<(_Foundation_Measurement<_Foundation_Unit>) | null>("MetricKit_90ad0eb69cc6bf4a", 2802165075575750, this, []); }
+  get cumulativeHitchTimeRatio(): (_Foundation_Measurement<_Foundation_Unit>) | null { return callSDK<(_Foundation_Measurement<_Foundation_Unit>) | null>("MetricKit_067acaa3e5f56b46", 2802165075575750, this, []); }
   /**
    * var cumulativeLogicalWrites: Measurement<UnitInformationStorage>? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get cumulativeLogicalWrites(): $SDK51 { return callSDK<$SDK51>("MetricKit_90ad0eb69cc6bf4a", 625883909252261, this, []); }
+  get cumulativeLogicalWrites(): $SDK51 { return callSDK<$SDK51>("MetricKit_067acaa3e5f56b46", 625883909252261, this, []); }
   /**
    * var histogrammedSignpostDuration: MXHistogram<UnitDuration> { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get histogrammedSignpostDuration(): $SDK21 { return callSDK<$SDK21>("MetricKit_90ad0eb69cc6bf4a", 2109425765794372, this, []); }
+  get histogrammedSignpostDuration(): $SDK21 { return callSDK<$SDK21>("MetricKit_067acaa3e5f56b46", 2109425765794372, this, []); }
   declare readonly $type: { "c:objc(cs)MXSignpostIntervalData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averageMemory": true; "cumulativeCPUTime": true; "cumulativeHitchTimeRatio": true; "cumulativeLogicalWrites": true; "histogrammedSignpostDuration": true };
 }
@@ -2695,31 +2695,31 @@ export class MXSignpostIntervalData extends SDKHandle {
  */
 export class MXSignpostMetric extends (MXMetric as unknown as Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric)) {
   /** init() */
-  static init(): MXSignpostMetric { return callSDK<MXSignpostMetric>("MetricKit_90ad0eb69cc6bf4a", 2423854261880589, undefined, []); }
+  static init(): MXSignpostMetric { return callSDK<MXSignpostMetric>("MetricKit_067acaa3e5f56b46", 2423854261880589, undefined, []); }
   /**
    * var signpostCategory: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get signpostCategory(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2386349763050867, this, []); }
+  get signpostCategory(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2386349763050867, this, []); }
   /**
    * var signpostIntervalData: MXSignpostIntervalData? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get signpostIntervalData(): (MXSignpostIntervalData) | null { return callSDK<(MXSignpostIntervalData) | null>("MetricKit_90ad0eb69cc6bf4a", 299388956445057, this, []); }
+  get signpostIntervalData(): (MXSignpostIntervalData) | null { return callSDK<(MXSignpostIntervalData) | null>("MetricKit_067acaa3e5f56b46", 299388956445057, this, []); }
   /**
    * var signpostName: String { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get signpostName(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3299954465781885, this, []); }
+  get signpostName(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3299954465781885, this, []); }
   /**
    * var totalCount: Int { get }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get totalCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 980666155182439, this, []); }
+  get totalCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 980666155182439, this, []); }
   declare readonly $type: { "c:objc(cs)MXSignpostMetric": true; "c:objc(cs)MXMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "signpostCategory": true; "signpostIntervalData": true; "signpostName": true; "totalCount": true };
 }
@@ -2735,57 +2735,57 @@ export class MXSignpostRecord extends SDKHandle {
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_90ad0eb69cc6bf4a", 3383994299511185, this, []); }
+  jsonRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("MetricKit_067acaa3e5f56b46", 3383994299511185, this, []); }
   /**
    * func dictionaryRepresentation() -> [AnyHashable : Any]
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_90ad0eb69cc6bf4a", 1952583471333701, this, []); }
+  dictionaryRepresentation(): $SDK18 { return callSDK<$SDK18>("MetricKit_067acaa3e5f56b46", 1952583471333701, this, []); }
   /** init() */
-  static init(): MXSignpostRecord { return callSDK<MXSignpostRecord>("MetricKit_90ad0eb69cc6bf4a", 2894209623249792, undefined, []); }
+  static init(): MXSignpostRecord { return callSDK<MXSignpostRecord>("MetricKit_067acaa3e5f56b46", 2894209623249792, undefined, []); }
   /**
    * var beginTimeStamp: Date { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get beginTimeStamp(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_90ad0eb69cc6bf4a", 2394523337988087, this, []); }
+  get beginTimeStamp(): globalThis.Date { return callSDK<globalThis.Date>("MetricKit_067acaa3e5f56b46", 2394523337988087, this, []); }
   /**
    * var category: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get category(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2248809555004120, this, []); }
+  get category(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2248809555004120, this, []); }
   /**
    * var duration: Measurement<UnitDuration>? { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get duration(): $SDK49 { return callSDK<$SDK49>("MetricKit_90ad0eb69cc6bf4a", 1354743426355541, this, []); }
+  get duration(): $SDK49 { return callSDK<$SDK49>("MetricKit_067acaa3e5f56b46", 1354743426355541, this, []); }
   /**
    * var endTimeStamp: Date? { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get endTimeStamp(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("MetricKit_90ad0eb69cc6bf4a", 3176786865681361, this, []); }
+  get endTimeStamp(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("MetricKit_067acaa3e5f56b46", 3176786865681361, this, []); }
   /**
    * var isInterval: Bool { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get isInterval(): boolean { return callSDK<boolean>("MetricKit_90ad0eb69cc6bf4a", 4408078104317567, this, []); }
+  get isInterval(): boolean { return callSDK<boolean>("MetricKit_067acaa3e5f56b46", 4408078104317567, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get name(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3152662388198214, this, []); }
+  get name(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3152662388198214, this, []); }
   /**
    * var subsystem: String { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get subsystem(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2127178913927586, this, []); }
+  get subsystem(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2127178913927586, this, []); }
   declare readonly $type: { "c:objc(cs)MXSignpostRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "beginTimeStamp": true; "category": true; "duration": true; "endTimeStamp": true; "isInterval": true; "name": true; "subsystem": true };
 }
@@ -2801,7 +2801,7 @@ export class MXUnitAveragePixelLuminance extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static get apl(): MXUnitAveragePixelLuminance { return callSDK<MXUnitAveragePixelLuminance>("MetricKit_90ad0eb69cc6bf4a", 2157609897845919, undefined, []); }
+  static get apl(): MXUnitAveragePixelLuminance { return callSDK<MXUnitAveragePixelLuminance>("MetricKit_067acaa3e5f56b46", 2157609897845919, undefined, []); }
   declare readonly $type: { "c:objc(cs)MXUnitAveragePixelLuminance": true; "c:objc(cs)NSDimension": true; "c:objc(cs)NSUnit": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2816,7 +2816,7 @@ export class MXUnitSignalBars extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  static get bars(): MXUnitSignalBars { return callSDK<MXUnitSignalBars>("MetricKit_90ad0eb69cc6bf4a", 4049410196878608, undefined, []); }
+  static get bars(): MXUnitSignalBars { return callSDK<MXUnitSignalBars>("MetricKit_067acaa3e5f56b46", 4049410196878608, undefined, []); }
   declare readonly $type: { "c:objc(cs)MXUnitSignalBars": true; "c:objc(cs)NSDimension": true; "c:objc(cs)NSUnit": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2829,7 +2829,7 @@ export class OptimizedTimeToFirstDrawMetric extends SDKHandle {
    * let histogram: Histogram<UnitDuration>
    * @availability iOS 27.0+
    */
-  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_90ad0eb69cc6bf4a", 4193382130771547, this, []); }
+  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_067acaa3e5f56b46", 4193382130771547, this, []); }
   declare readonly $type: { "s:9MetricKit024OptimizedTimeToFirstDrawA0V": true };
 }
 
@@ -2842,17 +2842,17 @@ export class OSVersion extends SDKHandle {
    * let buildNumber: String
    * @availability iOS 27.0+
    */
-  get buildNumber(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 666214571816333, this, []); }
+  get buildNumber(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 666214571816333, this, []); }
   /**
    * let number: String
    * @availability iOS 27.0+
    */
-  get number(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3108239734852979, this, []); }
+  get number(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3108239734852979, this, []); }
   /**
    * let platform: String
    * @availability iOS 27.0+
    */
-  get platform(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1398772911966411, this, []); }
+  get platform(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1398772911966411, this, []); }
   declare readonly $type: { "s:9MetricKit9OSVersionV": true };
 }
 
@@ -2865,7 +2865,7 @@ export class PeakMemoryMetric extends SDKHandle {
    * let value: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 3354616204833021, this, []); }
+  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 3354616204833021, this, []); }
   declare readonly $type: { "s:9MetricKit010PeakMemoryA0V": true };
 }
 
@@ -2878,7 +2878,7 @@ export class PixelLuminanceMetric extends SDKHandle {
    * let value: AverageStatistics<AveragePixelLuminance>
    * @availability iOS 27.0+
    */
-  get value(): AverageStatistics<AveragePixelLuminance> { return callSDK<AverageStatistics<AveragePixelLuminance>>("MetricKit_90ad0eb69cc6bf4a", 1074813576121029, this, []); }
+  get value(): AverageStatistics<AveragePixelLuminance> { return callSDK<AverageStatistics<AveragePixelLuminance>>("MetricKit_067acaa3e5f56b46", 1074813576121029, this, []); }
   declare readonly $type: { "s:9MetricKit014PixelLuminanceA0V": true };
 }
 
@@ -2891,7 +2891,7 @@ export class SignalBars extends SDKHandle {
    * override static func baseUnit() -> SignalBars
    * @availability iOS 27.0+
    */
-  static baseUnit(): SignalBars { return callSDK<SignalBars>("MetricKit_90ad0eb69cc6bf4a", 139764183401370, undefined, []); }
+  static baseUnit(): SignalBars { return callSDK<SignalBars>("MetricKit_067acaa3e5f56b46", 139764183401370, undefined, []); }
   declare readonly $type: { "c:@M@MetricKit@objc(cs)SignalBars": true; "c:objc(cs)NSDimension": true; "c:objc(cs)NSUnit": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2904,52 +2904,52 @@ export class SignpostIntervalMetric extends SDKHandle {
    * let totalCount: Int
    * @availability iOS 27.0+
    */
-  get totalCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 4445417779649283, this, []); }
+  get totalCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 4445417779649283, this, []); }
   /**
    * let signpostName: String
    * @availability iOS 27.0+
    */
-  get signpostName(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 2476159171103032, this, []); }
+  get signpostName(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 2476159171103032, this, []); }
   /**
    * let averageMemory: AverageStatistics<UnitInformationStorage>?
    * @availability iOS 27.0+
    */
-  get averageMemory(): (AverageStatistics<_Foundation_UnitInformationStorage>) | null { return callSDK<(AverageStatistics<_Foundation_UnitInformationStorage>) | null>("MetricKit_90ad0eb69cc6bf4a", 335658243824277, this, []); }
+  get averageMemory(): (AverageStatistics<_Foundation_UnitInformationStorage>) | null { return callSDK<(AverageStatistics<_Foundation_UnitInformationStorage>) | null>("MetricKit_067acaa3e5f56b46", 335658243824277, this, []); }
   /**
    * let logicalWrites: Measurement<UnitInformationStorage>?
    * @availability iOS 27.0+
    */
-  get logicalWrites(): $SDK51 { return callSDK<$SDK51>("MetricKit_90ad0eb69cc6bf4a", 2779620494839939, this, []); }
+  get logicalWrites(): $SDK51 { return callSDK<$SDK51>("MetricKit_067acaa3e5f56b46", 2779620494839939, this, []); }
   /**
    * let hitchTimeRatio: Measurement<HitchTimeRatio>?
    * @availability iOS 27.0+
    */
-  get hitchTimeRatio(): (_Foundation_Measurement<HitchTimeRatio>) | null { return callSDK<(_Foundation_Measurement<HitchTimeRatio>) | null>("MetricKit_90ad0eb69cc6bf4a", 959049965270133, this, []); }
+  get hitchTimeRatio(): (_Foundation_Measurement<HitchTimeRatio>) | null { return callSDK<(_Foundation_Measurement<HitchTimeRatio>) | null>("MetricKit_067acaa3e5f56b46", 959049965270133, this, []); }
   /**
    * let totalHitchTime: Measurement<UnitDuration>?
    * @availability iOS 27.0+
    */
-  get totalHitchTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_90ad0eb69cc6bf4a", 4113985619153176, this, []); }
+  get totalHitchTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_067acaa3e5f56b46", 4113985619153176, this, []); }
   /**
    * let signpostCategory: String
    * @availability iOS 27.0+
    */
-  get signpostCategory(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 3958148594046544, this, []); }
+  get signpostCategory(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 3958148594046544, this, []); }
   /**
    * let signpostDuration: Histogram<UnitDuration>
    * @availability iOS 27.0+
    */
-  get signpostDuration(): $SDK1 { return callSDK<$SDK1>("MetricKit_90ad0eb69cc6bf4a", 2895237091063441, this, []); }
+  get signpostDuration(): $SDK1 { return callSDK<$SDK1>("MetricKit_067acaa3e5f56b46", 2895237091063441, this, []); }
   /**
    * let totalAnimationTime: Measurement<UnitDuration>?
    * @availability iOS 27.0+
    */
-  get totalAnimationTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_90ad0eb69cc6bf4a", 2744453648363485, this, []); }
+  get totalAnimationTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_067acaa3e5f56b46", 2744453648363485, this, []); }
   /**
    * let cpuTime: Measurement<UnitDuration>?
    * @availability iOS 27.0+
    */
-  get cpuTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_90ad0eb69cc6bf4a", 136112228668488, this, []); }
+  get cpuTime(): $SDK49 { return callSDK<$SDK49>("MetricKit_067acaa3e5f56b46", 136112228668488, this, []); }
   declare readonly $type: { "s:9MetricKit016SignpostIntervalA0V": true };
 }
 
@@ -2962,22 +2962,22 @@ export class SignpostRecord extends SDKHandle {
    * let name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 1888051417223873, this, []); }
+  get name(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 1888051417223873, this, []); }
   /**
    * let category: String
    * @availability iOS 27.0+
    */
-  get category(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 4124733179938126, this, []); }
+  get category(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 4124733179938126, this, []); }
   /**
    * let interval: DateInterval
    * @availability iOS 27.0+
    */
-  get interval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("MetricKit_90ad0eb69cc6bf4a", 1226764486480714, this, []); }
+  get interval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("MetricKit_067acaa3e5f56b46", 1226764486480714, this, []); }
   /**
    * let subsystem: String
    * @availability iOS 27.0+
    */
-  get subsystem(): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 132782204308562, this, []); }
+  get subsystem(): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 132782204308562, this, []); }
   declare readonly $type: { "s:9MetricKit14SignpostRecordV": true };
 }
 
@@ -2992,27 +2992,27 @@ export const StateReportingDomain = {
    * var description: String { get }
    * @availability iOS 27.0+
    */
-  getDescription($self: StateReportingDomain): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 548249628239076, $self, []); },
+  getDescription($self: StateReportingDomain): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 548249628239076, $self, []); },
   /**
    * init(stringLiteral value: String)
    * @availability iOS 27.0+
    */
-  initStringLiteral(value: string): StateReportingDomain { return callSDK<StateReportingDomain>("MetricKit_90ad0eb69cc6bf4a", 4429226186604972, undefined, [value]); },
+  initStringLiteral(value: string): StateReportingDomain { return callSDK<StateReportingDomain>("MetricKit_067acaa3e5f56b46", 4429226186604972, undefined, [value]); },
   /**
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: string): StateReportingDomain { return callSDK<StateReportingDomain>("MetricKit_90ad0eb69cc6bf4a", 1734433722348412, undefined, [rawValue]); },
+  initRawValue(rawValue: string): StateReportingDomain { return callSDK<StateReportingDomain>("MetricKit_067acaa3e5f56b46", 1734433722348412, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: StateReportingDomain): string { return callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 439558990363768, $self, []); },
+  getRawValue($self: StateReportingDomain): string { return callSDK<string>("MetricKit_067acaa3e5f56b46", 439558990363768, $self, []); },
   /**
    * var codingKey: any CodingKey { get }
    * @availability iOS 27.0+
    */
-  getCodingKey($self: StateReportingDomain): SDKHandle { return callSDK<SDKHandle>("MetricKit_90ad0eb69cc6bf4a", 1467908527294699, $self, []); }
+  getCodingKey($self: StateReportingDomain): SDKHandle { return callSDK<SDKHandle>("MetricKit_067acaa3e5f56b46", 1467908527294699, $self, []); }
 };
 
 /**
@@ -3048,7 +3048,7 @@ export class SuspendedMemoryMetric extends SDKHandle {
    * let value: AverageStatistics<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): AverageStatistics<_Foundation_UnitInformationStorage> { return callSDK<AverageStatistics<_Foundation_UnitInformationStorage>>("MetricKit_90ad0eb69cc6bf4a", 2766108217866177, this, []); }
+  get value(): AverageStatistics<_Foundation_UnitInformationStorage> { return callSDK<AverageStatistics<_Foundation_UnitInformationStorage>>("MetricKit_067acaa3e5f56b46", 2766108217866177, this, []); }
   declare readonly $type: { "s:9MetricKit015SuspendedMemoryA0V": true };
 }
 
@@ -3061,7 +3061,7 @@ export class TimeToFirstDrawMetric extends SDKHandle {
    * let histogram: Histogram<UnitDuration>
    * @availability iOS 27.0+
    */
-  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_90ad0eb69cc6bf4a", 2594820781554409, this, []); }
+  get histogram(): $SDK1 { return callSDK<$SDK1>("MetricKit_067acaa3e5f56b46", 2594820781554409, this, []); }
   declare readonly $type: { "s:9MetricKit015TimeToFirstDrawA0V": true };
 }
 
@@ -3074,7 +3074,7 @@ export class TotalBackgroundAudioTimeMetric extends SDKHandle {
    * let value: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 313912616470538, this, []); }
+  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 313912616470538, this, []); }
   declare readonly $type: { "s:9MetricKit024TotalBackgroundAudioTimeA0V": true };
 }
 
@@ -3087,7 +3087,7 @@ export class TotalBackgroundLocationTimeMetric extends SDKHandle {
    * let value: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 3170746760634769, this, []); }
+  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 3170746760634769, this, []); }
   declare readonly $type: { "s:9MetricKit027TotalBackgroundLocationTimeA0V": true };
 }
 
@@ -3100,7 +3100,7 @@ export class TotalBackgroundTimeMetric extends SDKHandle {
    * let value: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1227771551028800, this, []); }
+  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1227771551028800, this, []); }
   declare readonly $type: { "s:9MetricKit019TotalBackgroundTimeA0V": true };
 }
 
@@ -3113,7 +3113,7 @@ export class TotalCellularDownloadMetric extends SDKHandle {
    * let value: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1191465414153340, this, []); }
+  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1191465414153340, this, []); }
   declare readonly $type: { "s:9MetricKit021TotalCellularDownloadA0V": true };
 }
 
@@ -3126,7 +3126,7 @@ export class TotalCellularUploadMetric extends SDKHandle {
    * let value: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2796101472598370, this, []); }
+  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2796101472598370, this, []); }
   declare readonly $type: { "s:9MetricKit019TotalCellularUploadA0V": true };
 }
 
@@ -3139,12 +3139,12 @@ export class TotalDiskSpaceCapacityMetric extends SDKHandle {
    * let capacity: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get capacity(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2837670461869990, this, []); }
+  get capacity(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2837670461869990, this, []); }
   /**
    * let spaceUsed: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get spaceUsed(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 1230262765676673, this, []); }
+  get spaceUsed(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 1230262765676673, this, []); }
   declare readonly $type: { "s:9MetricKit022TotalDiskSpaceCapacityA0V": true };
 }
 
@@ -3157,12 +3157,12 @@ export class TotalFileCountMetric extends SDKHandle {
    * let dataFileCount: Int
    * @availability iOS 27.0+
    */
-  get dataFileCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 2838445453425082, this, []); }
+  get dataFileCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 2838445453425082, this, []); }
   /**
    * let binaryFileCount: Int
    * @availability iOS 27.0+
    */
-  get binaryFileCount(): number { return callSDK<number>("MetricKit_90ad0eb69cc6bf4a", 1919689284950705, this, []); }
+  get binaryFileCount(): number { return callSDK<number>("MetricKit_067acaa3e5f56b46", 1919689284950705, this, []); }
   declare readonly $type: { "s:9MetricKit014TotalFileCountA0V": true };
 }
 
@@ -3175,22 +3175,22 @@ export class TotalFileSizeMetric extends SDKHandle {
    * let cacheFolderSize: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get cacheFolderSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 340608669405453, this, []); }
+  get cacheFolderSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 340608669405453, this, []); }
   /**
    * let dataFileSize: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get dataFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 2670285115354325, this, []); }
+  get dataFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 2670285115354325, this, []); }
   /**
    * let cloneSize: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get cloneSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 802391365077970, this, []); }
+  get cloneSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 802391365077970, this, []); }
   /**
    * let binaryFileSize: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get binaryFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 3613836797805572, this, []); }
+  get binaryFileSize(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 3613836797805572, this, []); }
   declare readonly $type: { "s:9MetricKit013TotalFileSizeA0V": true };
 }
 
@@ -3203,7 +3203,7 @@ export class TotalForegroundTimeMetric extends SDKHandle {
    * let value: Measurement<UnitDuration>
    * @availability iOS 27.0+
    */
-  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_90ad0eb69cc6bf4a", 1448613435365001, this, []); }
+  get value(): $SDK0 { return callSDK<$SDK0>("MetricKit_067acaa3e5f56b46", 1448613435365001, this, []); }
   declare readonly $type: { "s:9MetricKit019TotalForegroundTimeA0V": true };
 }
 
@@ -3216,7 +3216,7 @@ export class TotalWiFiDownloadMetric extends SDKHandle {
    * let value: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 4488745992747262, this, []); }
+  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 4488745992747262, this, []); }
   declare readonly $type: { "s:9MetricKit017TotalWiFiDownloadA0V": true };
 }
 
@@ -3229,7 +3229,7 @@ export class TotalWiFiUploadMetric extends SDKHandle {
    * let value: Measurement<UnitInformationStorage>
    * @availability iOS 27.0+
    */
-  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_90ad0eb69cc6bf4a", 199109492186764, this, []); }
+  get value(): $SDK9 { return callSDK<$SDK9>("MetricKit_067acaa3e5f56b46", 199109492186764, this, []); }
   declare readonly $type: { "s:9MetricKit015TotalWiFiUploadA0V": true };
 }
 
@@ -3237,117 +3237,117 @@ export class TotalWiFiUploadMetric extends SDKHandle {
  * func mxSignpost(_ type: OSSignpostType, dso: UnsafeRawPointer = #dsohandle, log: OSLog, name: StaticString, signpostID: OSSignpostID = .exclusive, _ format: StaticString = "%{public}s", _ arguments: [any CVarArg] = ["NO_METRICS"])
  * @availability iOS 13.0+
  */
-export function mxSignpost(type: SDKHandle, log: SDKHandle, name: SDKHandle, signpostID?: SDKHandle, format?: SDKHandle, arguments_?: Array<SDKHandle>): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 2170246192081407, undefined, [type, log, name, signpostID, format, arguments_]); }
+export function mxSignpost(type: SDKHandle, log: SDKHandle, name: SDKHandle, signpostID?: SDKHandle, format?: SDKHandle, arguments_?: Array<SDKHandle>): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 2170246192081407, undefined, [type, log, name, signpostID, format, arguments_]); }
 
 /**
  * func mxSignpostAnimationIntervalBegin(dso: UnsafeRawPointer = #dsohandle, log: OSLog, name: StaticString, signpostID: OSSignpostID = .exclusive, _ format: StaticString = "%{public}s", _ arguments: [any CVarArg] = ["NO_METRICS"])
  * @availability iOS 15.0+
  */
-export function mxSignpostAnimationIntervalBegin(log: SDKHandle, name: SDKHandle, signpostID?: SDKHandle, format?: SDKHandle, arguments_?: Array<SDKHandle>): void { return callSDK<void>("MetricKit_90ad0eb69cc6bf4a", 3097026772579660, undefined, [log, name, signpostID, format, arguments_]); }
+export function mxSignpostAnimationIntervalBegin(log: SDKHandle, name: SDKHandle, signpostID?: SDKHandle, format?: SDKHandle, arguments_?: Array<SDKHandle>): void { return callSDK<void>("MetricKit_067acaa3e5f56b46", 3097026772579660, undefined, [log, name, signpostID, format, arguments_]); }
 
 /**
  * let MXErrorDomain: String
  * @availability iOS 16.0+
  * @deprecated iOS 100000.0
  */
-export const MXErrorDomain: string = callSDK<string>("MetricKit_90ad0eb69cc6bf4a", 140632810493638, undefined, []);
+export const MXErrorDomain: string = callSDK<string>("MetricKit_067acaa3e5f56b46", 140632810493638, undefined, []);
 
-registerSDKClass("MetricKit.AppLaunchDiagnostic", AppLaunchDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.ApplicationResumeTimeMetric", ApplicationResumeTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.AveragePixelLuminance", AveragePixelLuminance, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.AverageStatistics", AverageStatistics, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.BackgroundTerminationMetric", BackgroundTerminationMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CallStackFrame", CallStackFrame, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {}, methods: {"binaryName":{"id":4144012357408980}} });
-registerSDKClass("MetricKit.CallStackThread", CallStackThread, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CallStackTree", CallStackTree, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CallStackTree.BinaryInfo", CallStackTree_BinaryInfo, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CellularConditionTimeMetric", CellularConditionTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CPUExceptionDiagnostic", CPUExceptionDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CPUInstructionsCountMetric", CPUInstructionsCountMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CPUTimeMetric", CPUTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CrashDiagnostic", CrashDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.CrashDiagnostic.ObjectiveCExceptionReason", CrashDiagnostic_ObjectiveCExceptionReason, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.DiagnosticReport", DiagnosticReport, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.DiagnosticReport.Environment", DiagnosticReport_Environment, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.DiagnosticResult", DiagnosticResult, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.DiskWriteExceptionDiagnostic", DiskWriteExceptionDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.ExtendedLaunchMetric", ExtendedLaunchMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.ForegroundTerminationMetric", ForegroundTerminationMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.GPUTimeMetric", GPUTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.HangDiagnostic", HangDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.HangTimeMetric", HangTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.Histogram", Histogram, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.Histogram.Bucket", Histogram_Bucket, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.HitchTimeMetric", HitchTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.HitchTimeRatio", HitchTimeRatio, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.LocationActivityTimeMetric", LocationActivityTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.LogicalDiskWritesMetric", LogicalDiskWritesMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MemoryExceptionDiagnostic", MemoryExceptionDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetalFrameRateMetric", MetalFrameRateMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricManager", MetricManager, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricManager.LaunchTaskError", MetricManager_LaunchTaskError, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricManager.ReportedState", MetricManager_ReportedState, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricReport", MetricReport, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricReport.Environment", MetricReport_Environment, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricReport.IntervalEntry", MetricReport_IntervalEntry, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricReport.StateEntry", MetricReport_StateEntry, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.MetricResult", MetricResult, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MXMetric", MXMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {}, methods: {"jsonRepresentation":{"id":2663765653590564},"dictionaryRepresentation":{"id":3456143481762390}} });
-registerSDKClass("MXAnimationMetric", MXAnimationMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"hitchTimeRatio":1001347407440141,"scrollHitchTimeRatio":952448917812102} });
-registerSDKClass("MXAppExitMetric", MXAppExitMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"backgroundExitData":4060744710725557,"foregroundExitData":1623952930242698} });
-registerSDKClass("MXDiagnostic", MXDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"applicationVersion":2507796237390337,"metaData":4166803451600798,"signpostData":344186346618770}, methods: {"jsonRepresentation":{"id":3219481973698182},"dictionaryRepresentation":{"id":1323725776888140}} });
-registerSDKClass("MXAppLaunchDiagnostic", MXAppLaunchDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"callStackTree":3485232632959319,"launchDuration":1761148257519835} });
-registerSDKClass("MXAppLaunchMetric", MXAppLaunchMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"histogrammedApplicationResumeTime":2165457538167312,"histogrammedExtendedLaunch":4107322752889673,"histogrammedOptimizedTimeToFirstDraw":327366670858407,"histogrammedTimeToFirstDraw":3237813839390474} });
-registerSDKClass("MXAppResponsivenessMetric", MXAppResponsivenessMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"histogrammedApplicationHangTime":703046525863260} });
-registerSDKClass("MXAppRunTimeMetric", MXAppRunTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeBackgroundAudioTime":2594832162802445,"cumulativeBackgroundLocationTime":648097234689745,"cumulativeBackgroundTime":480536393771733,"cumulativeForegroundTime":3965492121076174} });
-registerSDKClass("MXAverage", MXAverage, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"averageMeasurement":1966216737145773,"sampleCount":4220548255475062,"standardDeviation":1006275085490301} });
-registerSDKClass("MXBackgroundExitData", MXBackgroundExitData, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeAbnormalExitCount":4022147058154431,"cumulativeAppWatchdogExitCount":396298705808517,"cumulativeBackgroundTaskAssertionTimeoutExitCount":4202203979171323,"cumulativeBadAccessExitCount":2311429864785808,"cumulativeCPUResourceLimitExitCount":3237622486270726,"cumulativeIllegalInstructionExitCount":679101664144572,"cumulativeMemoryPressureExitCount":2333151705799730,"cumulativeMemoryResourceLimitExitCount":2146558420280563,"cumulativeNormalAppExitCount":495874533433627,"cumulativeSuspendedWithLockedFileExitCount":1225908125943755} });
-registerSDKClass("MXCallStackTree", MXCallStackTree, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {}, methods: {"jsonRepresentation":{"id":3124552812631526}} });
-registerSDKClass("MXCellularConditionMetric", MXCellularConditionMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"histogrammedCellularConditionTime":3424918486891842} });
-registerSDKClass("MXCPUExceptionDiagnostic", MXCPUExceptionDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"callStackTree":2039335864223433,"totalCPUTime":2023340771949007,"totalSampledTime":2320080588019400} });
-registerSDKClass("MXCPUMetric", MXCPUMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeCPUInstructions":4155463318877990,"cumulativeCPUTime":1822308845575889} });
-registerSDKClass("MXCrashDiagnostic", MXCrashDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"callStackTree":1839412397561972,"exceptionCode":1721617443821415,"exceptionReason":3997934814301819,"exceptionType":2502314610502892,"signal":3325080616683421,"terminationReason":3879956518054520,"virtualMemoryRegionInfo":3452877203212936} });
-registerSDKClass("MXCrashDiagnosticObjectiveCExceptionReason", MXCrashDiagnosticObjectiveCExceptionReason, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"arguments":4275183937513685,"className":3203711065135793,"composedMessage":1875277637538855,"exceptionName":2920832168838139,"exceptionType":280781007487294,"formatString":490826590547370}, methods: {"jsonRepresentation":{"id":1564958303063410},"dictionaryRepresentation":{"id":3373607014329336}} });
-registerSDKClass("MXDiagnosticPayload", MXDiagnosticPayload, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"appLaunchDiagnostics":134046450214516,"cpuExceptionDiagnostics":3169207254182293,"crashDiagnostics":2972924955826300,"diskWriteExceptionDiagnostics":2862548616995101,"hangDiagnostics":1931182446126489,"timeStampBegin":155603859152252,"timeStampEnd":1825947550676488}, methods: {"jsonRepresentation":{"id":3328595214221543},"dictionaryRepresentation":{"id":3518676249056409}} });
-registerSDKClass("MXDiskIOMetric", MXDiskIOMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeLogicalWrites":2858897618787897} });
-registerSDKClass("MXDiskSpaceUsageMetric", MXDiskSpaceUsageMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"totalBinaryFileCount":788262375609895,"totalBinaryFileSize":4264941304354431,"totalCacheFolderSize":4341404109883625,"totalCloneSize":2578423674384897,"totalDataFileCount":2757192187625825,"totalDataFileSize":3139403240326352,"totalDiskSpaceCapacity":2623579025401648,"totalDiskSpaceUsedSize":3665607995835730} });
-registerSDKClass("MXDiskWriteExceptionDiagnostic", MXDiskWriteExceptionDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"callStackTree":540376731906025,"totalWritesCaused":2162913826774365} });
-registerSDKClass("MXDisplayMetric", MXDisplayMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"averagePixelLuminance":2371553806832171} });
-registerSDKClass("MetricKit.MXError", MXError, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MXForegroundExitData", MXForegroundExitData, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeAbnormalExitCount":4215684220609895,"cumulativeAppWatchdogExitCount":4457907252586781,"cumulativeBadAccessExitCount":1915310064213242,"cumulativeIllegalInstructionExitCount":2054645082543123,"cumulativeMemoryResourceLimitExitCount":4410541484984643,"cumulativeNormalAppExitCount":1946095400826985} });
-registerSDKClass("MXGPUMetric", MXGPUMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeGPUTime":3655485596789653} });
-registerSDKClass("MXHangDiagnostic", MXHangDiagnostic, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"callStackTree":2006934558124781,"hangDuration":3879077436343121} });
-registerSDKClass("MXHistogram", MXHistogram, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"bucketEnumerator":3833345611667697,"totalBucketCount":1587971498156289} });
-registerSDKClass("MXHistogramBucket", MXHistogramBucket, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"bucketCount":3419318993808356,"bucketEnd":995912893466886,"bucketStart":4111163836063798} });
-registerSDKClass("MXLocationActivityMetric", MXLocationActivityMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeBestAccuracyForNavigationTime":2411718506577416,"cumulativeBestAccuracyTime":193339255783281,"cumulativeHundredMetersAccuracyTime":3959992996300170,"cumulativeKilometerAccuracyTime":2880436945903565,"cumulativeNearestTenMetersAccuracyTime":3595266763692781,"cumulativeThreeKilometersAccuracyTime":3876874404558979} });
-registerSDKClass("MXMemoryMetric", MXMemoryMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"averageSuspendedMemory":2309218890087747,"peakMemoryUsage":1280394713413795} });
-registerSDKClass("MXMetaData", MXMetaData, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"applicationBuildVersion":144668495317002,"bundleIdentifier":3759010316008938,"deviceType":3251662680820375,"isTestFlightApp":1062161191774750,"lowPowerModeEnabled":2201784139082812,"osVersion":2566467165213093,"pid":2448501297558291,"platformArchitecture":848387772113791,"regionFormat":3143532421427350}, methods: {"jsonRepresentation":{"id":1715360390664195},"dictionaryRepresentation":{"id":3939316690153902}} });
-registerSDKClass("MXMetricManager", MXMetricManager, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"pastDiagnosticPayloads":4488462741992595,"pastPayloads":1794286589755444}, methods: {"add":{"id":3168880874728775,"hints":[{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]},"remove":{"id":3812975691176849,"hints":[{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]}} });
+registerSDKClass("MetricKit.AppLaunchDiagnostic", AppLaunchDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.ApplicationResumeTimeMetric", ApplicationResumeTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.AveragePixelLuminance", AveragePixelLuminance, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.AverageStatistics", AverageStatistics, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.BackgroundTerminationMetric", BackgroundTerminationMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CallStackFrame", CallStackFrame, { module: "MetricKit_067acaa3e5f56b46", properties: {}, methods: {"binaryName":{"id":4144012357408980}} });
+registerSDKClass("MetricKit.CallStackThread", CallStackThread, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CallStackTree", CallStackTree, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CallStackTree.BinaryInfo", CallStackTree_BinaryInfo, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CellularConditionTimeMetric", CellularConditionTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CPUExceptionDiagnostic", CPUExceptionDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CPUInstructionsCountMetric", CPUInstructionsCountMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CPUTimeMetric", CPUTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CrashDiagnostic", CrashDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.CrashDiagnostic.ObjectiveCExceptionReason", CrashDiagnostic_ObjectiveCExceptionReason, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.DiagnosticReport", DiagnosticReport, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.DiagnosticReport.Environment", DiagnosticReport_Environment, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.DiagnosticResult", DiagnosticResult, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.DiskWriteExceptionDiagnostic", DiskWriteExceptionDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.ExtendedLaunchMetric", ExtendedLaunchMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.ForegroundTerminationMetric", ForegroundTerminationMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.GPUTimeMetric", GPUTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.HangDiagnostic", HangDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.HangTimeMetric", HangTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.Histogram", Histogram, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.Histogram.Bucket", Histogram_Bucket, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.HitchTimeMetric", HitchTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.HitchTimeRatio", HitchTimeRatio, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.LocationActivityTimeMetric", LocationActivityTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.LogicalDiskWritesMetric", LogicalDiskWritesMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MemoryExceptionDiagnostic", MemoryExceptionDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetalFrameRateMetric", MetalFrameRateMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricManager", MetricManager, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricManager.LaunchTaskError", MetricManager_LaunchTaskError, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricManager.ReportedState", MetricManager_ReportedState, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricReport", MetricReport, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricReport.Environment", MetricReport_Environment, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricReport.IntervalEntry", MetricReport_IntervalEntry, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricReport.StateEntry", MetricReport_StateEntry, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.MetricResult", MetricResult, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MXMetric", MXMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {}, methods: {"jsonRepresentation":{"id":2663765653590564},"dictionaryRepresentation":{"id":3456143481762390}} });
+registerSDKClass("MXAnimationMetric", MXAnimationMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"hitchTimeRatio":1001347407440141,"scrollHitchTimeRatio":952448917812102} });
+registerSDKClass("MXAppExitMetric", MXAppExitMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"backgroundExitData":4060744710725557,"foregroundExitData":1623952930242698} });
+registerSDKClass("MXDiagnostic", MXDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {"applicationVersion":2507796237390337,"metaData":4166803451600798,"signpostData":344186346618770}, methods: {"jsonRepresentation":{"id":3219481973698182},"dictionaryRepresentation":{"id":1323725776888140}} });
+registerSDKClass("MXAppLaunchDiagnostic", MXAppLaunchDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {"callStackTree":3485232632959319,"launchDuration":1761148257519835} });
+registerSDKClass("MXAppLaunchMetric", MXAppLaunchMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"histogrammedApplicationResumeTime":2165457538167312,"histogrammedExtendedLaunch":4107322752889673,"histogrammedOptimizedTimeToFirstDraw":327366670858407,"histogrammedTimeToFirstDraw":3237813839390474} });
+registerSDKClass("MXAppResponsivenessMetric", MXAppResponsivenessMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"histogrammedApplicationHangTime":703046525863260} });
+registerSDKClass("MXAppRunTimeMetric", MXAppRunTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeBackgroundAudioTime":2594832162802445,"cumulativeBackgroundLocationTime":648097234689745,"cumulativeBackgroundTime":480536393771733,"cumulativeForegroundTime":3965492121076174} });
+registerSDKClass("MXAverage", MXAverage, { module: "MetricKit_067acaa3e5f56b46", properties: {"averageMeasurement":1966216737145773,"sampleCount":4220548255475062,"standardDeviation":1006275085490301} });
+registerSDKClass("MXBackgroundExitData", MXBackgroundExitData, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeAbnormalExitCount":4022147058154431,"cumulativeAppWatchdogExitCount":396298705808517,"cumulativeBackgroundTaskAssertionTimeoutExitCount":4202203979171323,"cumulativeBadAccessExitCount":2311429864785808,"cumulativeCPUResourceLimitExitCount":3237622486270726,"cumulativeIllegalInstructionExitCount":679101664144572,"cumulativeMemoryPressureExitCount":2333151705799730,"cumulativeMemoryResourceLimitExitCount":2146558420280563,"cumulativeNormalAppExitCount":495874533433627,"cumulativeSuspendedWithLockedFileExitCount":1225908125943755} });
+registerSDKClass("MXCallStackTree", MXCallStackTree, { module: "MetricKit_067acaa3e5f56b46", properties: {}, methods: {"jsonRepresentation":{"id":3124552812631526}} });
+registerSDKClass("MXCellularConditionMetric", MXCellularConditionMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"histogrammedCellularConditionTime":3424918486891842} });
+registerSDKClass("MXCPUExceptionDiagnostic", MXCPUExceptionDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {"callStackTree":2039335864223433,"totalCPUTime":2023340771949007,"totalSampledTime":2320080588019400} });
+registerSDKClass("MXCPUMetric", MXCPUMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeCPUInstructions":4155463318877990,"cumulativeCPUTime":1822308845575889} });
+registerSDKClass("MXCrashDiagnostic", MXCrashDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {"callStackTree":1839412397561972,"exceptionCode":1721617443821415,"exceptionReason":3997934814301819,"exceptionType":2502314610502892,"signal":3325080616683421,"terminationReason":3879956518054520,"virtualMemoryRegionInfo":3452877203212936} });
+registerSDKClass("MXCrashDiagnosticObjectiveCExceptionReason", MXCrashDiagnosticObjectiveCExceptionReason, { module: "MetricKit_067acaa3e5f56b46", properties: {"arguments":4275183937513685,"className":3203711065135793,"composedMessage":1875277637538855,"exceptionName":2920832168838139,"exceptionType":280781007487294,"formatString":490826590547370}, methods: {"jsonRepresentation":{"id":1564958303063410},"dictionaryRepresentation":{"id":3373607014329336}} });
+registerSDKClass("MXDiagnosticPayload", MXDiagnosticPayload, { module: "MetricKit_067acaa3e5f56b46", properties: {"appLaunchDiagnostics":134046450214516,"cpuExceptionDiagnostics":3169207254182293,"crashDiagnostics":2972924955826300,"diskWriteExceptionDiagnostics":2862548616995101,"hangDiagnostics":1931182446126489,"timeStampBegin":155603859152252,"timeStampEnd":1825947550676488}, methods: {"jsonRepresentation":{"id":3328595214221543},"dictionaryRepresentation":{"id":3518676249056409}} });
+registerSDKClass("MXDiskIOMetric", MXDiskIOMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeLogicalWrites":2858897618787897} });
+registerSDKClass("MXDiskSpaceUsageMetric", MXDiskSpaceUsageMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"totalBinaryFileCount":788262375609895,"totalBinaryFileSize":4264941304354431,"totalCacheFolderSize":4341404109883625,"totalCloneSize":2578423674384897,"totalDataFileCount":2757192187625825,"totalDataFileSize":3139403240326352,"totalDiskSpaceCapacity":2623579025401648,"totalDiskSpaceUsedSize":3665607995835730} });
+registerSDKClass("MXDiskWriteExceptionDiagnostic", MXDiskWriteExceptionDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {"callStackTree":540376731906025,"totalWritesCaused":2162913826774365} });
+registerSDKClass("MXDisplayMetric", MXDisplayMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"averagePixelLuminance":2371553806832171} });
+registerSDKClass("MetricKit.MXError", MXError, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MXForegroundExitData", MXForegroundExitData, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeAbnormalExitCount":4215684220609895,"cumulativeAppWatchdogExitCount":4457907252586781,"cumulativeBadAccessExitCount":1915310064213242,"cumulativeIllegalInstructionExitCount":2054645082543123,"cumulativeMemoryResourceLimitExitCount":4410541484984643,"cumulativeNormalAppExitCount":1946095400826985} });
+registerSDKClass("MXGPUMetric", MXGPUMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeGPUTime":3655485596789653} });
+registerSDKClass("MXHangDiagnostic", MXHangDiagnostic, { module: "MetricKit_067acaa3e5f56b46", properties: {"callStackTree":2006934558124781,"hangDuration":3879077436343121} });
+registerSDKClass("MXHistogram", MXHistogram, { module: "MetricKit_067acaa3e5f56b46", properties: {"bucketEnumerator":3833345611667697,"totalBucketCount":1587971498156289} });
+registerSDKClass("MXHistogramBucket", MXHistogramBucket, { module: "MetricKit_067acaa3e5f56b46", properties: {"bucketCount":3419318993808356,"bucketEnd":995912893466886,"bucketStart":4111163836063798} });
+registerSDKClass("MXLocationActivityMetric", MXLocationActivityMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeBestAccuracyForNavigationTime":2411718506577416,"cumulativeBestAccuracyTime":193339255783281,"cumulativeHundredMetersAccuracyTime":3959992996300170,"cumulativeKilometerAccuracyTime":2880436945903565,"cumulativeNearestTenMetersAccuracyTime":3595266763692781,"cumulativeThreeKilometersAccuracyTime":3876874404558979} });
+registerSDKClass("MXMemoryMetric", MXMemoryMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"averageSuspendedMemory":2309218890087747,"peakMemoryUsage":1280394713413795} });
+registerSDKClass("MXMetaData", MXMetaData, { module: "MetricKit_067acaa3e5f56b46", properties: {"applicationBuildVersion":144668495317002,"bundleIdentifier":3759010316008938,"deviceType":3251662680820375,"isTestFlightApp":1062161191774750,"lowPowerModeEnabled":2201784139082812,"osVersion":2566467165213093,"pid":2448501297558291,"platformArchitecture":848387772113791,"regionFormat":3143532421427350}, methods: {"jsonRepresentation":{"id":1715360390664195},"dictionaryRepresentation":{"id":3939316690153902}} });
+registerSDKClass("MXMetricManager", MXMetricManager, { module: "MetricKit_067acaa3e5f56b46", properties: {"pastDiagnosticPayloads":4488462741992595,"pastPayloads":1794286589755444}, methods: {"add":{"id":3168880874728775,"hints":[{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]},"remove":{"id":3812975691176849,"hints":[{"protocol":"c:objc(pl)MXMetricManagerSubscriber"}]}} });
 registerSDKProtocol("c:objc(pl)MXMetricManagerSubscriber", {"didReceive":"didReceive(_:)"});
-registerSDKClass("MXMetricPayload", MXMetricPayload, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"animationMetrics":1315070803702992,"applicationExitMetrics":451500167052028,"applicationLaunchMetrics":1651121552612955,"applicationResponsivenessMetrics":4503134254881698,"applicationTimeMetrics":1702708997225026,"cellularConditionMetrics":644077628007179,"cpuMetrics":1100911356156468,"diskIOMetrics":1144017792015511,"diskSpaceUsageMetrics":386402554014101,"displayMetrics":3591810158219289,"gpuMetrics":3789417256136161,"includesMultipleApplicationVersions":1856562152833876,"latestApplicationVersion":1420496704960492,"locationActivityMetrics":2353716824078812,"memoryMetrics":186582661035387,"metaData":1428552287834806,"networkTransferMetrics":2854490689695057,"signpostMetrics":4296410043868651,"timeStampBegin":3184578517044687,"timeStampEnd":1970355093122217}, methods: {"jsonRepresentation":{"id":1788854576948909},"dictionaryRepresentation":{"id":1715397006072885}} });
-registerSDKClass("MXNetworkTransferMetric", MXNetworkTransferMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"cumulativeCellularDownload":1401112296544375,"cumulativeCellularUpload":2844314296569089,"cumulativeWifiDownload":1234401561730747,"cumulativeWifiUpload":1366904876557488} });
-registerSDKClass("MXSignpostIntervalData", MXSignpostIntervalData, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"averageMemory":263548764034514,"cumulativeCPUTime":153807068242709,"cumulativeHitchTimeRatio":2802165075575750,"cumulativeLogicalWrites":625883909252261,"histogrammedSignpostDuration":2109425765794372} });
-registerSDKClass("MXSignpostMetric", MXSignpostMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"signpostCategory":2386349763050867,"signpostIntervalData":299388956445057,"signpostName":3299954465781885,"totalCount":980666155182439} });
-registerSDKClass("MXSignpostRecord", MXSignpostRecord, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {"beginTimeStamp":2394523337988087,"category":2248809555004120,"duration":1354743426355541,"endTimeStamp":3176786865681361,"isInterval":4408078104317567,"name":3152662388198214,"subsystem":2127178913927586}, methods: {"jsonRepresentation":{"id":3383994299511185},"dictionaryRepresentation":{"id":1952583471333701}} });
-registerSDKClass("MXUnitAveragePixelLuminance", MXUnitAveragePixelLuminance, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MXUnitSignalBars", MXUnitSignalBars, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.OptimizedTimeToFirstDrawMetric", OptimizedTimeToFirstDrawMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.OSVersion", OSVersion, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.PeakMemoryMetric", PeakMemoryMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.PixelLuminanceMetric", PixelLuminanceMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.SignalBars", SignalBars, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.SignpostIntervalMetric", SignpostIntervalMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.SignpostRecord", SignpostRecord, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.SuspendedMemoryMetric", SuspendedMemoryMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TimeToFirstDrawMetric", TimeToFirstDrawMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalBackgroundAudioTimeMetric", TotalBackgroundAudioTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalBackgroundLocationTimeMetric", TotalBackgroundLocationTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalBackgroundTimeMetric", TotalBackgroundTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalCellularDownloadMetric", TotalCellularDownloadMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalCellularUploadMetric", TotalCellularUploadMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalDiskSpaceCapacityMetric", TotalDiskSpaceCapacityMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalFileCountMetric", TotalFileCountMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalFileSizeMetric", TotalFileSizeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalForegroundTimeMetric", TotalForegroundTimeMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalWiFiDownloadMetric", TotalWiFiDownloadMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
-registerSDKClass("MetricKit.TotalWiFiUploadMetric", TotalWiFiUploadMetric, { module: "MetricKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("MXMetricPayload", MXMetricPayload, { module: "MetricKit_067acaa3e5f56b46", properties: {"animationMetrics":1315070803702992,"applicationExitMetrics":451500167052028,"applicationLaunchMetrics":1651121552612955,"applicationResponsivenessMetrics":4503134254881698,"applicationTimeMetrics":1702708997225026,"cellularConditionMetrics":644077628007179,"cpuMetrics":1100911356156468,"diskIOMetrics":1144017792015511,"diskSpaceUsageMetrics":386402554014101,"displayMetrics":3591810158219289,"gpuMetrics":3789417256136161,"includesMultipleApplicationVersions":1856562152833876,"latestApplicationVersion":1420496704960492,"locationActivityMetrics":2353716824078812,"memoryMetrics":186582661035387,"metaData":1428552287834806,"networkTransferMetrics":2854490689695057,"signpostMetrics":4296410043868651,"timeStampBegin":3184578517044687,"timeStampEnd":1970355093122217}, methods: {"jsonRepresentation":{"id":1788854576948909},"dictionaryRepresentation":{"id":1715397006072885}} });
+registerSDKClass("MXNetworkTransferMetric", MXNetworkTransferMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"cumulativeCellularDownload":1401112296544375,"cumulativeCellularUpload":2844314296569089,"cumulativeWifiDownload":1234401561730747,"cumulativeWifiUpload":1366904876557488} });
+registerSDKClass("MXSignpostIntervalData", MXSignpostIntervalData, { module: "MetricKit_067acaa3e5f56b46", properties: {"averageMemory":263548764034514,"cumulativeCPUTime":153807068242709,"cumulativeHitchTimeRatio":2802165075575750,"cumulativeLogicalWrites":625883909252261,"histogrammedSignpostDuration":2109425765794372} });
+registerSDKClass("MXSignpostMetric", MXSignpostMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {"signpostCategory":2386349763050867,"signpostIntervalData":299388956445057,"signpostName":3299954465781885,"totalCount":980666155182439} });
+registerSDKClass("MXSignpostRecord", MXSignpostRecord, { module: "MetricKit_067acaa3e5f56b46", properties: {"beginTimeStamp":2394523337988087,"category":2248809555004120,"duration":1354743426355541,"endTimeStamp":3176786865681361,"isInterval":4408078104317567,"name":3152662388198214,"subsystem":2127178913927586}, methods: {"jsonRepresentation":{"id":3383994299511185},"dictionaryRepresentation":{"id":1952583471333701}} });
+registerSDKClass("MXUnitAveragePixelLuminance", MXUnitAveragePixelLuminance, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MXUnitSignalBars", MXUnitSignalBars, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.OptimizedTimeToFirstDrawMetric", OptimizedTimeToFirstDrawMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.OSVersion", OSVersion, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.PeakMemoryMetric", PeakMemoryMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.PixelLuminanceMetric", PixelLuminanceMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.SignalBars", SignalBars, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.SignpostIntervalMetric", SignpostIntervalMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.SignpostRecord", SignpostRecord, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.SuspendedMemoryMetric", SuspendedMemoryMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TimeToFirstDrawMetric", TimeToFirstDrawMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalBackgroundAudioTimeMetric", TotalBackgroundAudioTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalBackgroundLocationTimeMetric", TotalBackgroundLocationTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalBackgroundTimeMetric", TotalBackgroundTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalCellularDownloadMetric", TotalCellularDownloadMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalCellularUploadMetric", TotalCellularUploadMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalDiskSpaceCapacityMetric", TotalDiskSpaceCapacityMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalFileCountMetric", TotalFileCountMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalFileSizeMetric", TotalFileSizeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalForegroundTimeMetric", TotalForegroundTimeMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalWiFiDownloadMetric", TotalWiFiDownloadMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MetricKit.TotalWiFiUploadMetric", TotalWiFiUploadMetric, { module: "MetricKit_067acaa3e5f56b46", properties: {} });
