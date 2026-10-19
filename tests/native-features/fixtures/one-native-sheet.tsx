@@ -165,6 +165,7 @@ export default function OneNativeSheet() {
   const [featureMode, setFeatureMode] = useState<FeatureMode>('base')
   const [selectedDetent, setSelectedDetent] = useState<PresentationDetent>('medium')
   const [tallContent, setTallContent] = useState(false)
+  const [revision, setRevision] = useState(0)
 
   const cycleFeatureMode = () => {
     const modes: readonly FeatureMode[] = ['base', 'controlled', 'fit', 'styled']
@@ -212,6 +213,14 @@ export default function OneNativeSheet() {
         testID="one-native-sheet-tall-toggle"
       >
         <Text style={styles.featureModeText}>{tallContent ? 'tall' : 'compact'}</Text>
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        onPress={() => setRevision((value) => value + 1)}
+        style={styles.featureMode}
+        testID="one-native-sheet-bump-revision"
+      >
+        <Text style={styles.featureModeText}>{`rev ${revision}`}</Text>
       </Pressable>
 
       {/* visible presentation status card */}
@@ -317,6 +326,7 @@ export default function OneNativeSheet() {
         isPresented={isPresented}
         onDismiss={() => setDismissCount((c) => c + 1)}
         onIsPresentedChange={setIsPresented}
+        revision={revision}
         presentationDetents={detentProfiles[detentProfile]}
         presentationBackground={featureMode === 'styled' ? '#FFF3C4' : undefined}
         presentationBackgroundInteraction={

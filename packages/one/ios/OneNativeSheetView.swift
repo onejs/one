@@ -34,13 +34,23 @@ final class OneNativeSheetModel: ObservableObject {
   private var presentedSlot: (identity: ObjectIdentifier, generation: Int, revision: Int)?
   func change(_ value: Bool) {
     guard active, controlled.value != value else { return }
-    if value { presentationGeneration += 1 }
+    if value { notePresented() }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
 
   func notePresented() {
     presentationGeneration += 1
+    // a reopen while the same slot is still mounted adopts it, so the detach
+    // to come completes this presentation rather than the interrupted one.
+    if let slot = presentedSlot {
+      presentedSlot = (slot.identity, presentationGeneration, controlled.revision)
+    }
+  }
+
+  func noteRevision() {
+    guard let slot = presentedSlot else { return }
+    presentedSlot = (slot.identity, slot.generation, controlled.revision)
   }
 
   func presentedWindowChanged(_ identity: ObjectIdentifier, attached: Bool) {
@@ -139,6 +149,7 @@ final class OneNativeSheetModel: ObservableObject {
     if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) {
       if next.value && !model.controlled.value { model.notePresented() }
       model.controlled = next
+      model.noteRevision()
     }
     let controlsSelectedDetent = !selectedDetentType.isEmpty
     if controlsSelectedDetent {
