@@ -12,7 +12,7 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'numericRange' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string; ios?: number }[]
@@ -161,6 +161,14 @@ export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number
       })
       if (fields.length && fields.every(Boolean))
         return { kind: 'numericTuple', type, optional, fields: fields as NonNullable<DerivedArgument['fields']> }
+    }
+    const range = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)<(.+)>$/.exec(baseType)
+    if (range && numericType(range[2])) {
+      const names = range[1] === 'ClosedRange' || range[1] === 'Range'
+        ? ['lower', 'upper']
+        : range[1] === 'PartialRangeFrom' ? ['lower'] : ['upper']
+      return { kind: 'numericRange', type, optional,
+        fields: names.map((name) => ({ name, label: name, type: range[2] })) }
     }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
@@ -1852,6 +1860,13 @@ export function deriveModifiers(
       if (value.kind === 'numericStruct' || value.kind === 'numericTuple')
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
           arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
+      if (value.kind === 'numericRange') {
+        const rangeKind = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)</.exec(
+          value.type.replace(/\?$/, ''))?.[1] ?? 'Range'
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          aliasSuffix: rangeKind,
+          arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
+      }
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'
         : value.kind === 'url'

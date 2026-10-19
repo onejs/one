@@ -442,6 +442,26 @@ ${assignments}
       return ${argument.kind === 'numericStruct' ? `${baseType}(${argument.wrappedType ? `${argument.wrappedType}(${converted})` : converted})` : `(${converted})`}
     }()`
           }
+          if (argument.kind === 'numericRange') {
+            const fields = argument.fields!
+            const validated = fields.map((field, fieldIndex) =>
+              `let field${fieldIndex} = decoded[${JSON.stringify(field.name)}], field${fieldIndex}.isFinite${field.type === 'Swift.Int' ? `, Int(exactly: field${fieldIndex}) != nil` : field.type === 'Swift.Float' ? `, Float(field${fieldIndex}).isFinite` : ''}`).join(',\n        ')
+            const converted = fields.map((field, fieldIndex) =>
+              field.type === 'CoreFoundation.CGFloat' ? `CGFloat(field${fieldIndex})` : field.type === 'Swift.Float' ? `Float(field${fieldIndex})` : field.type === 'Swift.Int' ? `Int(field${fieldIndex})` : `field${fieldIndex}`)
+            const rangeKind = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)</.exec(baseType)?.[1]
+            const rangeExpression = rangeKind === 'ClosedRange' ? `${converted[0]}...${converted[1]}`
+              : rangeKind === 'Range' ? `${converted[0]}..<${converted[1]}`
+              : rangeKind === 'PartialRangeFrom' ? `${converted[0]}...`
+              : rangeKind === 'PartialRangeThrough' ? `...${converted[0]}`
+              : `..<${converted[0]}`
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        ${validated}${fields.length === 2 ? ',\n        field0 <= field1' : ''} else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      return ${rangeExpression}
+    }()`
+          }
           return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
       return ${expression(argument.swiftExpression, 'raw') ?? (baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : construct('raw', argument.scalarConstructor, argument.type))}
@@ -1260,6 +1280,20 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
                 const number = (item as Record<string, unknown>)[field.name]
                 return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
               })) throw new Error(name + '.' + argument.field + ' must be a numeric object')
+            return JSON.stringify(item)
+          }
+          if (argument.kind === 'numericRange') {
+            if (!item || typeof item !== 'object' || Array.isArray(item) ||
+              Object.keys(item).length !== argument.fields!.length ||
+              argument.fields!.some((field) => {
+                const number = (item as Record<string, unknown>)[field.name]
+                return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
+              })) throw new Error(name + '.' + argument.field + ' must be a numeric range')
+            if (argument.fields!.length === 2) {
+              const lower = (item as Record<string, number>).lower
+              const upper = (item as Record<string, number>).upper
+              if (lower > upper) throw new Error(name + '.' + argument.field + ' must have lower <= upper')
+            }
             return JSON.stringify(item)
           }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet' ? JSON.stringify(item) : String(item)
