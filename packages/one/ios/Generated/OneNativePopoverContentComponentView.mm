@@ -10,6 +10,7 @@ using namespace facebook::react;
 @implementation OneNativePopoverContentComponentView {
   OneNativePopoverContentShadowNode::ConcreteState::Shared _slotState;
   RCTSurfaceTouchHandler *_touchHandler;
+  void (^_measuredSizeCallback)(CGSize);
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider {
@@ -42,10 +43,28 @@ using namespace facebook::react;
   _slotState->updateState(std::move(state));
 }
 
+- (void)setMeasuredSizeCallback:(void (^)(CGSize))callback {
+  _measuredSizeCallback = [callback copy];
+  [self setNeedsLayout];
+}
+
 - (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   // SwiftUI owns placement. Fabric owns the bounds and the descendants' layout
   self.frame = (CGRect){CGPointZero, self.bounds.size};
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  CGFloat width = 0;
+  CGFloat height = 0;
+  for (UIView *subview in self.subviews) {
+    if (subview.hidden) continue;
+    width = MAX(width, CGRectGetMaxX(subview.frame));
+    height = MAX(height, CGRectGetMaxY(subview.frame));
+  }
+  if (_measuredSizeCallback && std::isfinite(width) && std::isfinite(height) && width > 0 && height > 0)
+    _measuredSizeCallback(CGSizeMake(width, height));
 }
 
 - (void)prepareForRecycle {
@@ -53,6 +72,7 @@ using namespace facebook::react;
   _touchHandler.enabled = NO;
   _touchHandler.enabled = YES;
   _slotState.reset();
+  _measuredSizeCallback = nil;
 }
 
 @end

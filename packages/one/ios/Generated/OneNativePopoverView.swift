@@ -12,6 +12,17 @@ private final class PopoverModel: ObservableObject {
   var onHeight: ((CGFloat) -> Void)?
   @Published var content: UIView?
   var onLayout: ((CGRect) -> Void)?
+  // the laid-out presented content size, reported back from the bridge.
+  // sizing to content reads it as the ideal size.
+  @Published var measuredWidth: CGFloat = 0
+  @Published var measuredHeight: CGFloat = 0
+
+  func setMeasuredSize(_ size: CGSize) {
+    guard size.width.isFinite, size.height.isFinite, size.width > 0, size.height > 0,
+      abs(measuredWidth - size.width) >= 0.5 || abs(measuredHeight - size.height) >= 0.5 else { return }
+    measuredWidth = size.width
+    measuredHeight = size.height
+  }
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
 
@@ -36,7 +47,7 @@ private struct PopoverContent: View {
       if let content = model.content {
         OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
           if model.active && model.controlled.value { model.onLayout?(frame) }
-        })
+        }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)
         .frame(width: model.contentWidth, height: model.contentHeight)
         .oneNativePresentationCompactAdaptation(model.presentationCompactAdaptation)
       }
@@ -96,8 +107,12 @@ public final class OneNativePopoverView: OneNativeContainerView {
   public func unmountContent(_ view: UIView) {
     model.onLayout = nil
     if model.content === view { model.content = nil }
+    model.measuredWidth = 0
+    model.measuredHeight = 0
     view.removeFromSuperview()
   }
+
+  public func setMeasuredSize(_ size: CGSize) { model.setMeasuredSize(size) }
 
   public override func reset() {
     model.active = false
@@ -105,6 +120,8 @@ public final class OneNativePopoverView: OneNativeContainerView {
     model.content?.removeFromSuperview()
     model.content = nil
     model.onLayout = nil
+    model.measuredWidth = 0
+    model.measuredHeight = 0
     model.arrowEdge = ""
     model.presentationCompactAdaptation = ""
     model.contentWidth = 0

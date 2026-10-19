@@ -4,5 +4,6 @@
 #import <React/RCTViewComponentView.h>
 @interface OneNativePopoverContentComponentView : RCTViewComponentView
 - (void)updateNativeFrame:(CGRect)frame;
+- (void)setMeasuredSizeCallback:(void (^)(CGSize size))callback;
 @end
 #endif

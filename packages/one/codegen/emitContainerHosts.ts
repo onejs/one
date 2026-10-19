@@ -303,6 +303,7 @@ function emitPresentedSlot(header: string, outputs: Map<string, string>, compone
 #import <React/RCTViewComponentView.h>
 @interface ${name}ComponentView : RCTViewComponentView
 - (void)updateNativeFrame:(CGRect)frame;
+- (void)setMeasuredSizeCallback:(void (^)(CGSize size))callback;
 @end
 #endif
 `
@@ -319,6 +320,7 @@ using namespace facebook::react;
 @implementation ${name}ComponentView {
   ${name}ShadowNode::ConcreteState::Shared _slotState;
   RCTSurfaceTouchHandler *_touchHandler;
+  void (^_measuredSizeCallback)(CGSize);
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider {
@@ -351,10 +353,28 @@ using namespace facebook::react;
   _slotState->updateState(std::move(state));
 }
 
+- (void)setMeasuredSizeCallback:(void (^)(CGSize))callback {
+  _measuredSizeCallback = [callback copy];
+  [self setNeedsLayout];
+}
+
 - (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   // SwiftUI owns placement. Fabric owns the bounds and the descendants' layout
   self.frame = (CGRect){CGPointZero, self.bounds.size};
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  CGFloat width = 0;
+  CGFloat height = 0;
+  for (UIView *subview in self.subviews) {
+    if (subview.hidden) continue;
+    width = MAX(width, CGRectGetMaxX(subview.frame));
+    height = MAX(height, CGRectGetMaxY(subview.frame));
+  }
+  if (_measuredSizeCallback && std::isfinite(width) && std::isfinite(height) && width > 0 && height > 0)
+    _measuredSizeCallback(CGSizeMake(width, height));
 }
 
 - (void)prepareForRecycle {
@@ -362,6 +382,7 @@ using namespace facebook::react;
   _touchHandler.enabled = NO;
   _touchHandler.enabled = YES;
   _slotState.reset();
+  _measuredSizeCallback = nil;
 }
 
 @end
@@ -545,7 +566,7 @@ export function emitContainerHosts(
       fail(`presented slot ${presented.slot} has no slot host`)
     // the content React mounted for the presentation, sized by SwiftUI
     const presentedBody = presented
-      ? `if let content = model.content {\n  OneNativeSlot(content: content, mode: .presented, onLayout: { frame in\n    if model.active && model.controlled.value { model.onLayout?(frame) }\n  })${(presented.modifiers ?? []).map((modifier) => `\n  ${model(modifier)}`).join('')}\n}`
+      ? `if let content = model.content {\n  OneNativeSlot(content: content, mode: .presented, onLayout: { frame in\n    if model.active && model.controlled.value { model.onLayout?(frame) }\n  }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)${(presented.modifiers ?? []).map((modifier) => `\n  ${model(modifier)}`).join('')}\n}`
       : ''
 
     const conversions: string[] = []
@@ -1237,7 +1258,23 @@ ${[
   ...(binding ? [`  @Published var controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
   ...fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
   ...(measured ? ['  var onHeight: ((CGFloat) -> Void)?'] : []),
-  ...(presented ? ['  @Published var content: UIView?', '  var onLayout: ((CGRect) -> Void)?'] : []),
+  ...(presented
+    ? [
+        '  @Published var content: UIView?',
+        '  var onLayout: ((CGRect) -> Void)?',
+        '  // the laid-out presented content size, reported back from the bridge.',
+        '  // sizing to content reads it as the ideal size.',
+        '  @Published var measuredWidth: CGFloat = 0',
+        '  @Published var measuredHeight: CGFloat = 0',
+        '',
+        '  func setMeasuredSize(_ size: CGSize) {',
+        '    guard size.width.isFinite, size.height.isFinite, size.width > 0, size.height > 0,',
+        '      abs(measuredWidth - size.width) >= 0.5 || abs(measuredHeight - size.height) >= 0.5 else { return }',
+        '    measuredWidth = size.width',
+        '    measuredHeight = size.height',
+        '  }',
+      ]
+    : []),
   ...(items
     ? [
         `  @Published var items: [${short}Item] = []`,
@@ -1564,8 +1601,12 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
   public func unmountContent(_ view: UIView) {
     model.onLayout = nil
     if model.content === view { model.content = nil }
+    model.measuredWidth = 0
+    model.measuredHeight = 0
     view.removeFromSuperview()
   }
+
+  public func setMeasuredSize(_ size: CGSize) { model.setMeasuredSize(size) }
 `
         : ''
     }${
@@ -1600,7 +1641,13 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 ${[
   ...(binding ? ['    model.active = false', `    model.controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
   ...(presented
-    ? ['    model.content?.removeFromSuperview()', '    model.content = nil', '    model.onLayout = nil']
+    ? [
+        '    model.content?.removeFromSuperview()',
+        '    model.content = nil',
+        '    model.onLayout = nil',
+        '    model.measuredWidth = 0',
+        '    model.measuredHeight = 0',
+      ]
     : []),
   ...fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`),
   ...(accessible ? ['    model.accessibility = OneNativeAccessibility()'] : []),
@@ -1766,6 +1813,8 @@ ${
     return;
   }
   __weak ${presented.slot}ComponentView *weakContent = (${presented.slot}ComponentView *)child;
+  __weak ${name}View *weakNativeView = _nativeView;
+  [(${presented.slot}ComponentView *)child setMeasuredSizeCallback:^(CGSize size) { [weakNativeView setMeasuredSize:size]; }];
   [_nativeView mountContent:child onLayout:^(CGRect frame) { [weakContent updateNativeFrame:frame]; }];
 }
 
@@ -1774,6 +1823,7 @@ ${
     [super unmountChildComponentView:child index:index];
     return;
   }
+  [(${presented.slot}ComponentView *)child setMeasuredSizeCallback:nil];
   [_nativeView unmountContent:child];
 }
 `

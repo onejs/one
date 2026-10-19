@@ -47,6 +47,8 @@ using namespace facebook::react;
     return;
   }
   __weak OneNativePopoverContentComponentView *weakContent = (OneNativePopoverContentComponentView *)child;
+  __weak OneNativePopoverView *weakNativeView = _nativeView;
+  [(OneNativePopoverContentComponentView *)child setMeasuredSizeCallback:^(CGSize size) { [weakNativeView setMeasuredSize:size]; }];
   [_nativeView mountContent:child onLayout:^(CGRect frame) { [weakContent updateNativeFrame:frame]; }];
 }
 
@@ -55,6 +57,7 @@ using namespace facebook::react;
     [super unmountChildComponentView:child index:index];
     return;
   }
+  [(OneNativePopoverContentComponentView *)child setMeasuredSizeCallback:nil];
   [_nativeView unmountContent:child];
 }
 
