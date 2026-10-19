@@ -83,9 +83,12 @@ The native cell provider attaches the React content; cell requests do not call
 JavaScript synchronously.
 
 Each `(source, item)` has one mounted `UIKitContent`, keyed by a stable item ID.
-The native container supplies its width and React measures the content height.
-`estimatedHeight` defaults to 44 before measurement; `height` fixes the height.
-Unmounting empties the native cell. Snapshots and `reconfigureItems` remain the
+A second mount for the same item throws, even through another JavaScript handle
+for the same native source. The native container supplies its width and React
+measures the content height. `estimatedHeight` defaults to 44 before
+measurement; `height` fixes the height. A React update re-renders the content in
+its cell and the cell resizes to fit, so content changes need no
+`reconfigureItems`. Unmounting empties the native cell. Snapshots remain the
 generated UIKit APIs, so keep their item IDs in sync with the mounted content.
 
 For another UIKit API that takes a `UIView`, pass `onView` instead of `source`
