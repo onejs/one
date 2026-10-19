@@ -1081,11 +1081,10 @@ event-count and `detentRevision` protocol used by other controlled values.
 interaction is `automatic`, `resizes`, or `scrolls`. Presentation sizing is
 `automatic`, `fitted`, `form`, or `page`; it needs iOS 18 and is ignored below it.
 
-`fitToContents` derives a height detent from the mounted React Native child's laid-out
-height. Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
+`presentationSizing: 'fitted'` sizes the sheet to its content's ideal height.
+Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
 a flexible child asks to fill the provisional sheet and therefore has no smaller
-content height to fit. Fit mode owns its detent, so it cannot be combined with
-`selectedDetent` or an `enabledUpThrough` background interaction.
+content height to fit.
 
 Presented sheet content reports Fabric slot state with a local origin. The content
 host supplies a touch handler because presentation leaves the RN surface, the same

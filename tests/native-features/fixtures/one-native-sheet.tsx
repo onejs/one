@@ -35,6 +35,7 @@ interface SheetContentProps {
   onCycleDetents: () => void
   isParentPresented: boolean
   fitted: boolean
+  tall: boolean
 }
 
 function SheetContent({
@@ -44,6 +45,7 @@ function SheetContent({
   onCycleDetents,
   isParentPresented,
   fitted,
+  tall,
 }: SheetContentProps) {
   const [count, setCount] = useState(0)
   const [text, setText] = useState('')
@@ -127,6 +129,13 @@ function SheetContent({
         </Pressable>
       </View>
 
+      {/* tall block: a second authored content height for fitted sizing proof */}
+      {tall && (
+        <View style={styles.tallBlock} testID="one-native-sheet-tall-block">
+          <Text style={styles.sheetLabel}>Tall content</Text>
+        </View>
+      )}
+
       {/* nested sheet */}
       <One.iOS.Sheet isPresented={nestedPresented} onIsPresentedChange={setNestedPresented}>
         <View style={styles.nestedContent}>
@@ -155,6 +164,7 @@ export default function OneNativeSheet() {
   const [contentLayout, setContentLayout] = useState({ width: 0, height: 0 })
   const [featureMode, setFeatureMode] = useState<FeatureMode>('base')
   const [selectedDetent, setSelectedDetent] = useState<PresentationDetent>('medium')
+  const [tallContent, setTallContent] = useState(false)
 
   const cycleFeatureMode = () => {
     const modes: readonly FeatureMode[] = ['base', 'controlled', 'fit', 'styled']
@@ -194,6 +204,14 @@ export default function OneNativeSheet() {
             ? `controlled:${typeof selectedDetent === 'string' ? selectedDetent : 'custom'}`
             : featureMode}
         </Text>
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        onPress={() => setTallContent((value) => !value)}
+        style={styles.featureMode}
+        testID="one-native-sheet-tall-toggle"
+      >
+        <Text style={styles.featureModeText}>{tallContent ? 'tall' : 'compact'}</Text>
       </Pressable>
 
       {/* visible presentation status card */}
@@ -312,6 +330,7 @@ export default function OneNativeSheet() {
         <SheetContent
           detentProfile={detentProfile}
           fitted={featureMode === 'fit'}
+          tall={tallContent}
           isParentPresented={isPresented}
           onClose={() => setIsPresented(false)}
           onCycleDetents={cycleDetents}
@@ -447,6 +466,12 @@ const styles = StyleSheet.create({
   fittedSheetContent: {
     flex: 0,
     height: 230,
+  },
+  tallBlock: {
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F2F2F7',
   },
   sheetHeading: {
     fontSize: 16,

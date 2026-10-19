@@ -103,7 +103,7 @@ function DetailsSheet() {
   data={[
     { name: 'isPresented', required: true, type: 'boolean', description: 'Whether the sheet shows.' },
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'A native open or close request.' },
-    { name: 'onDismiss', type: '() => void', description: 'SwiftUI began dismissing the sheet.' },
+    { name: 'onDismiss', type: '() => void', description: 'The sheet was dismissed.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
     { name: 'presentationDetents', type: 'readonly PresentationDetent[]', default: '["large"]', description: 'The heights the sheet rests at. Each must be unique.' },
     { name: 'selectedDetent', type: 'PresentationDetent', description: 'The current detent, controlled. Pass with its callback.' },
@@ -159,7 +159,7 @@ function PlayerCover() {
   data={[
     { name: 'isPresented', required: true, type: 'boolean', description: 'Whether the cover shows.' },
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'A native open or close request.' },
-    { name: 'onDismiss', type: '() => void', description: 'SwiftUI began dismissing the cover.' },
+    { name: 'onDismiss', type: '() => void', description: 'The cover was dismissed.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The cover content.' },
   ]}
