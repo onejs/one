@@ -940,12 +940,34 @@ try {
     const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
     if (chunk && 'code' in chunk) {
       firstBuildError = null
-      let code = postProcessNativeBundle(chunk.code)
+      let code: string
+      try {
+        code = postProcessNativeBundle(chunk.code)
 
-      // downlevel class fields from the rolldown runtime (virtual module
-      // skipped by the per-file SWC plugin) so old Hermes can parse them
-      code = await downlevelClassFieldsInBundle(code)
-      assertBundleLinesPreserved(chunk.code, code, 'dev')
+        // downlevel class fields from the rolldown runtime (virtual module
+        // skipped by the per-file SWC plugin) so old Hermes can parse them
+        code = await downlevelClassFieldsInBundle(code)
+        assertBundleLinesPreserved(chunk.code, code, 'dev')
+      } catch (error) {
+        // a post-processing failure is a build failure: without a bundle to
+        // serve, record it and wake the waiting request with its message
+        // instead of leaving it on the generic timeout. past a first good
+        // build the last bundle keeps serving, like the rolldown-error
+        // branch: one bad output must not poison later builds.
+        const failure = error instanceof Error ? error : new Error(String(error))
+        console.error('[vxrn] native bundle post-processing failed:', failure.message)
+        if (!currentBundle) {
+          firstBuildError = failure
+          if (bundleReject) {
+            const reject = bundleReject
+            bundleResolve = null
+            bundleReject = null
+            bundlePromise = null
+            reject(failure)
+          }
+        }
+        return
+      }
 
       // wrap module code in a function scope so top-level `var`s (e.g. RN
       // fetch.js's `Headers`/`Request`) don't leak as non-configurable
