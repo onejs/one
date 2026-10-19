@@ -4,7 +4,7 @@ import {
   CharacterSet,
   NSError,
   NSString,
-} from '../../../ios-bindings/Foundation'
+} from 'one/ios/Foundation'
 import {
   EKEvent,
   EKEventStore,
@@ -12,7 +12,7 @@ import {
   EKRecurrenceRule,
   EKReminder,
   type EKCalendarItem,
-} from '../../../ios-bindings/EventKit'
+} from 'one/ios/EventKit'
 import type {
   CalendarEvent,
   CalendarEventChanges,
