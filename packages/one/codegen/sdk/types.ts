@@ -4,7 +4,10 @@
 import type { Fragment } from './graph'
 
 export type SwiftType =
-  | { k: 'named'; name: string; usr?: string; args: SwiftType[] }
+  // args holds every segment's arguments in order, the order a nested declaration lists its
+  // owner's parameters before its own; segments counts each dotted segment's share when an
+  // enclosing segment carries any, as in Owner<String>.Handler<Int>
+  | { k: 'named'; name: string; usr?: string; args: SwiftType[]; segments?: number[] }
   | { k: 'optional'; t: SwiftType; implicit: boolean }
   | { k: 'array'; t: SwiftType }
   | { k: 'dictionary'; key: SwiftType; value: SwiftType }
@@ -187,27 +190,31 @@ class Parser {
   named(): SwiftType {
     const parts: string[] = []
     let usr: string | undefined
-    let args: SwiftType[] = []
+    const args: SwiftType[] = []
+    const segments: number[] = []
     for (;;) {
       const token = (this.is('kw') ? this.take('kw') : this.take('id')) as { text: string; usr?: string }
       parts.push(token.text)
       usr = token.usr ?? usr
+      const start = args.length
       if (this.is('p', '<')) {
         this.i++
-        args = [this.type()]
+        args.push(this.type())
         while (this.is('p', ',')) {
           this.i++
           args.push(this.type())
         }
         this.take('p', '>')
       }
+      segments.push(args.length - start)
       if (this.is('p', '.') && this.is('id', undefined, 1)) {
         this.i++
         continue
       }
       break
     }
-    return { k: 'named', name: parts.join('.'), usr, args }
+    const nested = segments.slice(0, -1).some(Boolean)
+    return { k: 'named', name: parts.join('.'), usr, args, ...(nested && { segments }) }
   }
   parenthesized(attrs: string[]): SwiftType {
     this.take('p', '(')
@@ -324,10 +331,21 @@ export function parameterDefaults(declaration: Fragment[]): (string | undefined)
   return defaults
 }
 
+// a named type as swift spells it, each segment with its own arguments
+export function namedText(type: Extract<SwiftType, { k: 'named' }>, text: (t: SwiftType) => string) {
+  const list = (args: SwiftType[]) => (args.length ? `<${args.map(text).join(', ')}>` : '')
+  if (!type.segments) return type.name + list(type.args)
+  let at = 0
+  return type.name
+    .split('.')
+    .map((part, i) => part + list(type.args.slice(at, (at += type.segments![i]))))
+    .join('.')
+}
+
 export function typeText(type: SwiftType): string {
   switch (type.k) {
     case 'named':
-      return type.args.length ? `${type.name}<${type.args.map(typeText).join(', ')}>` : type.name
+      return namedText(type, typeText)
     case 'optional':
       return `${typeText(type.t)}?`
     case 'array':

@@ -391,10 +391,9 @@ export class Bridge {
     }
   }
 
-  // the type a named alias stands for, with the alias's parameters, or those it inherits from a
-  // generic owner, taken from the arguments the name carries
-  aliasOf(type: SwiftType & { k: 'named' }): SwiftType | undefined {
-    const info = type.usr ? this.index.get(type.usr) : undefined
+  // the type a named alias stands for, with the parameters it inherits from a generic owner and
+  // its own, in that order, taken from the arguments every segment of the name carries
+  aliasOf(type: SwiftType & { k: 'named' }, info = type.usr ? this.index.get(type.usr) : undefined): SwiftType | undefined {
     if (!info?.alias) return undefined
     const params = info.genericParameters ?? []
     if (!params.length) return info.alias
@@ -580,6 +579,10 @@ export class Bridge {
       } finally {
         this.aliasDepth--
       }
+    }
+    // a generic alias whose arguments do not cover its parameters names no provable type
+    if (info?.kind === 'typealias' && info.genericParameters?.length && !this.aliasOf(type, info)) {
+      return { ok: false, reason: 'generic' }
     }
     const name = tsName(info ? `${info.module}.${info.path.join('.')}` : type.name)
     if (info?.kind === 'enum' && info.cases?.length && !info.payload) {

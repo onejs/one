@@ -5,7 +5,7 @@
 // overload.
 import { Bridge, OBSERVABLE, cErrorOut, inUniverse, judge, outPointee, callbackOut, pickOf, unmanagedReturn, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
-import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
+import { namedText, parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
 import { assignEntryIds } from './identity'
 
@@ -97,7 +97,7 @@ function swiftType(type: SwiftType): string {
   if (type.k === 'array') return `[${swiftType(type.t)}]`
   if (type.k === 'dictionary') return `[${swiftType(type.key)}: ${swiftType(type.value)}]`
   if (type.k === 'tuple') return `(${type.items.map((p) => `${p.label ? `${p.label}: ` : ''}${swiftType(p.t)}`).join(', ')})`
-  if (type.k === 'named') return `${type.name}${type.args.length ? `<${type.args.map(swiftType).join(', ')}>` : ''}`
+  if (type.k === 'named') return namedText(type, swiftType)
   return typeText(type)
 }
 

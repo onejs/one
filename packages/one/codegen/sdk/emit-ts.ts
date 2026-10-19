@@ -225,32 +225,6 @@ class Facade {
     }
     return this.graphs.get(module)
   }
-  alias(info: DeclarationInfo): SwiftType | undefined {
-    if (info.alias) return info.alias
-    if (info.kind !== 'typealias') return undefined
-    const fragments =
-      this.source(info.module)?.symbols.find((s) => s.identifier.precise === info.usr)
-        ?.declarationFragments ?? []
-    const eq = fragments.findIndex((f) => f.kind === 'text' && f.spelling.includes('='))
-    if (eq < 0) return undefined
-    const target = [
-      {
-        ...fragments[eq],
-        spelling: fragments[eq].spelling.slice(fragments[eq].spelling.indexOf('=') + 1),
-      },
-      ...fragments.slice(eq + 1),
-    ]
-    // a trailing where clause constrains the alias, not its target type.
-    const constraint = target.findIndex(
-      (f) => ['keyword', 'text'].includes(f.kind) && /\bwhere\b/.test(f.spelling)
-    )
-    if (constraint < 0) return parseType(target)
-    const spelling = target[constraint].spelling.split(/\bwhere\b/)[0]
-    return parseType([
-      ...target.slice(0, constraint),
-      ...(spelling.trim() ? [{ ...target[constraint], spelling }] : []),
-    ])
-  }
   implementable(info: DeclarationInfo) {
     return (
       info.implementable !== false &&
@@ -348,19 +322,8 @@ class Facade {
         if (name === 'Dictionary' && type.args.length === 2)
           return sub({ k: 'dictionary', key: type.args[0], value: type.args[1] })
         const info = this.info(type)
-        const alias = info && this.alias(info)
-        if (alias)
-          return sub(
-            this.bridge.substitute(alias, {
-              ...NO_GENERICS,
-              resolved: new Map(
-                (info.genericParameters ?? []).map((p, i) => [
-                  p,
-                  type.args[i] ?? { k: 'named', name: 'Any', args: [] },
-                ])
-              ),
-            })
-          )
+        const alias = info && this.bridge.aliasOf(type, info)
+        if (alias) return sub(alias)
         const mapped = this.bridge.type(type, input ? 'input' : 'output', NO_GENERICS)
         // scalars, foundation values, geometry and typed pointer buffers already have a plain form.
         if (
@@ -505,7 +468,7 @@ class Facade {
     }
     if (type.k === 'named') {
       const info = this.info(type)
-      const alias = info && this.alias(info)
+      const alias = info && this.bridge.aliasOf(type, info)
       if (alias) return this.hint(alias, depth + 1)
       if (info?.kind === 'protocol' && this.implementable(info)) {
         this.usedProtocols.set(info.usr, info)
@@ -804,14 +767,15 @@ class Facade {
             .join(', ')}>`
         : ''
       if (info.kind === 'typealias') {
+        // a generic alias declares its target over unknown arguments
         const type: SwiftType = {
           k: 'named',
           name: `${info.module}.${info.path.join('.')}`,
           usr: info.usr,
-          args: [],
+          args: (info.genericParameters ?? []).map(() => ({ k: 'named', name: 'Any', args: [] })),
         }
         declarations.push(
-          `${this.jsdoc(info.usr)}export type ${name}${generics} = ${this.alias(info) ? this.type(type) : 'SDKHandle'};`
+          `${this.jsdoc(info.usr)}export type ${name}${generics} = ${info.alias ? this.type(type) : 'SDKHandle'};`
         )
         continue
       }
