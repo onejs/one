@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { createRequire } from 'node:module'
-import type { PluginItem, TransformOptions } from '@babel/core'
+import type { PluginItem, PluginObj, TransformOptions } from '@babel/core'
 import mm from 'micromatch'
 import tsconfigPaths from 'tsconfig-paths'
 import { pickOnePublicEnv } from '../native/env'
@@ -14,6 +14,19 @@ import {
 // usable in standalone Metro contexts where Vite isn't installed.
 function toPosixRelativePath(relativePath: string): string {
   return path.sep === '\\' ? relativePath.replace(/\\/g, '/') : relativePath
+}
+
+function stripDeclaredClassFields(): PluginObj {
+  return {
+    name: 'one-strip-declared-class-fields',
+    visitor: {
+      Class(path) {
+        for (const field of path.get('body.body')) {
+          if (field.isClassProperty() && field.node.declare) field.remove()
+        }
+      },
+    },
+  }
 }
 
 // Babel's `ConfigAPI` shape: cache mutator, env helper, and a cwd accessor.
@@ -104,6 +117,10 @@ export default function oneBabelPreset(
   }
 
   return {
+    // erase type-only fields before the RN flow and class transforms visit them.
+    overrides: [
+      { test: /\.tsx?$/, plugins: [stripDeclaredClassFields] },
+    ],
     // presets run right to left: strip TypeScript exports before expanding
     // runtime namespace exports, then let the RN module transform consume them.
     presets: [
