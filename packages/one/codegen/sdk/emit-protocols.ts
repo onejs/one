@@ -1,6 +1,6 @@
 // protocol witnesses retain javascript callbacks for the lifetime of the delegate.
 import { inUniverse, type Bridge } from './bridge'
-import { outputValue, type Skipped } from './emit'
+import { effectsOf, outputValue, type Skipped } from './emit'
 import { loadGraph, type Fragment, type Graph, type Symbol } from './graph'
 import { parameterType, type SwiftType } from './types'
 
@@ -66,7 +66,7 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
     for (const requirement of requirements.values()) {
       if (!requirement.optional) classVersion = newest(classVersion, versionOf(requirement.symbol))
     }
-    const objc = usr.startsWith('c:objc(pl)')
+    const objc = usr.startsWith('c:') && usr.includes('objc(pl)')
     const methods: string[] = []
     const selectors: string[] = []
     const required: string[] = []
@@ -76,11 +76,13 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
       const title = requirement.names.title
       const decl = text(requirement.declarationFragments)
       const returns = text(requirement.functionSignature?.returns).trim()
+      const effects = effectsOf(decl)
+      const awaitsReply = effects.isAsync && effects.throws
       let unsupported: string | undefined
       if (requirement.kind.identifier !== 'swift.method') unsupported = 'non-method protocol requirement'
-      else if (returns && !['()', 'Void'].includes(returns)) unsupported = SYNC_REASON
+      else if (returns && !['()', 'Void'].includes(returns) && !awaitsReply) unsupported = SYNC_REASON
       else if (requirement.swiftGenerics?.parameters?.length || /\b(Self|inout|rethrows)\b/.test(decl)) unsupported = 'generic or mutable protocol requirement'
-      else if (/\basync\b/.test(decl)) unsupported = 'async protocol requirement'
+      else if (effects.isAsync && !effects.throws) unsupported = 'async protocol requirement cannot propagate callback failure'
       else if (requirement.functionSignature?.parameters?.some((p) => nonescaping(bridge.functions(parameterType(p.declarationFragments))))) unsupported = 'nonescaping protocol callback cannot use the async dispatcher'
       if (unsupported) {
         if (optional) skipped.push({ usr: `${key}:${requirement.identifier.precise}`, path: `${path}.${title}`, reason: unsupported })
@@ -101,7 +103,12 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
       const values = params.map((p, i) => outputValue(bridge.functions(parameterType(p.declarationFragments)), `p${i}`))
       const methodVersion = newest(classVersion, versionOf(requirement))
       const available = methodVersion ? `@available(iOS ${methodVersion.major}.${methodVersion.minor ?? 0}, *)\n  ` : ''
-      methods.push(`  ${available}func ${quoted(base)}(${args.join(', ')})${/\bthrows\b/.test(decl) ? ' throws' : ''} {\n    methods[${JSON.stringify(title)}]?(${values.join(', ')})\n  }`)
+      const result = returns && !['()', 'Void'].includes(returns) ? qualify(requirement.functionSignature!.returns) : undefined
+      const suffix = `${effects.isAsync ? ' async' : ''}${effects.throws ? ' throws' : ''}${result ? ` -> ${result}` : ''}`
+      const body = awaitsReply
+        ? `guard let method = methods[${JSON.stringify(title)}] else { throw OneSDKError.unsupported("missing protocol method ${title}") }\n    ${result ? 'return try await method.resultAsync' : '_ = try await method.responseAsync'}([${values.join(', ')}])`
+        : `methods[${JSON.stringify(title)}]?(${values.join(', ')})`
+      methods.push(`  ${available}func ${quoted(base)}(${args.join(', ')})${suffix} {\n    ${body}\n  }`)
       accepted.push(title)
       if (!optional) {
         required.push(title)
@@ -110,7 +117,7 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
       // the typed witness reference disambiguates overloaded swift titles.
       if (objc) {
         const reference = `${name}.${quoted(base)}${labels.length ? `(${labels.map((l) => `${l === '_' ? '_' : quoted(l)}:`).join('')})` : ''}`
-        const selector = `#selector(${reference} as (${name}) -> (${types.join(', ')})${/\bthrows\b/.test(decl) ? ' throws' : ''} -> Void)`
+        const selector = `#selector(${reference} as (${name}) -> (${types.join(', ')})${effects.isAsync ? ' async' : ''}${effects.throws ? ' throws' : ''} -> ${result ?? 'Void'})`
         const version = methodVersion
         const insert = `out[${selector}] = ${JSON.stringify(title)}`
         selectors.push(version ? `    if #available(iOS ${version.major}.${version.minor ?? 0}, *) { ${insert} }` : `    ${insert}`)

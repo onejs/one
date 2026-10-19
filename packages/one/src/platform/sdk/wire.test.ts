@@ -426,6 +426,41 @@ describe('SDK wire', () => {
     expect(vi.mocked(native.call).mock.calls[0]).toEqual(['WireTest', 6, undefined, h])
   })
 
+  it('answers suspended native callbacks with resolved values and failures through reply handles', async () => {
+    const native = fake()
+    setSDKNative(native)
+    const response = handle('One.OneSDKCallable', { callable: true })
+    vi.mocked(native.callFunction).mockResolvedValue(null)
+    let finish!: (value: unknown) => void
+    const value = new Promise((resolve) => { finish = resolve })
+    callSDK('WireTest', 6, undefined, [
+      () => value,
+      () => { throw new Error('callback failed') },
+      () => 1n,
+      () => { throw { toString() { throw new Error('invalid error text') } } },
+    ])
+    const dispatch = vi.mocked(native.call).mock.calls[0][5]!
+    const request = { args: [], $reply: { $h: 0, $fn: true } }
+    dispatch(0, request, [response], [])
+    await Promise.resolve()
+    expect(native.callFunction).not.toHaveBeenCalled()
+    const bytes = new Uint8Array([3, 7])
+    finish({ bytes })
+    await vi.waitFor(() => expect(native.callFunction).toHaveBeenCalledOnce())
+    const envelope = vi.mocked(native.callFunction).mock.calls[0][1] as OneSDKResult
+    expect(envelope.data.args).toEqual([{ bytes: { $b: 0 } }])
+    expect(new Uint8Array(envelope.buffers![0])).toEqual(bytes)
+    dispatch(1, request, [response], [])
+    await vi.waitFor(() => expect(native.callFunction).toHaveBeenCalledTimes(2))
+    expect(vi.mocked(native.callFunction).mock.calls[1]).toEqual([response, null, 'callback failed'])
+    dispatch(2, request, [response], [])
+    await vi.waitFor(() => expect(native.callFunction).toHaveBeenCalledTimes(3))
+    expect(vi.mocked(native.callFunction).mock.calls[2]).toEqual([response, null, 'cannot encode SDK value of type bigint'])
+    dispatch(3, request, [response], [])
+    await vi.waitFor(() => expect(native.callFunction).toHaveBeenCalledTimes(4))
+    expect(vi.mocked(native.callFunction).mock.calls[3]).toEqual([response, null, 'JavaScript SDK callback failed'])
+  })
+
   it('preserves default argument positions and rejects invalid wire values', () => {
     const native = fake()
     setSDKNative(native)

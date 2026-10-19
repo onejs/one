@@ -355,6 +355,14 @@ function encodeEnvelope(ctx: Context, data: Record<string, Wire>): OneSDKResult 
     : { data, handles: ctx.handles }
 }
 
+function callbackError(error: unknown): string {
+  try {
+    return error instanceof Error ? String(error.message) : String(error)
+  } catch {
+    return 'JavaScript SDK callback failed'
+  }
+}
+
 function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)[] = []) {
   const ctx = context()
   // omit only trailing undefined values, so swift can evaluate its default arguments.
@@ -376,6 +384,21 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
     return { cb, values }
   }
   const dispatch = (index: number, data: AnyMap, handles: OneSDKHandle[], buffers?: ArrayBuffer[]) => {
+    if (data.$reply !== undefined) {
+      const respond = decode(data.$reply as Wire, handles, buffers)
+      if (typeof respond !== 'function') throw new TypeError('invalid SDK callback reply')
+      const fail = (error: unknown) => respond(null, callbackError(error))
+      void Promise.resolve()
+        .then(() => {
+          const { cb, values } = callback(index, data, handles, buffers)
+          return cb.fn(...values)
+        })
+        .then((value) => {
+          try { return respond(value) }
+          catch (error) { return fail(error) }
+        }, fail)
+      return
+    }
     const { cb, values } = callback(index, data, handles, buffers)
     cb.fn(...values)
   }
@@ -400,7 +423,7 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
     } catch (error) {
       return {
         data: {
-          error: error instanceof Error ? error.message : String(error),
+          error: callbackError(error),
         },
         handles: [],
       }
