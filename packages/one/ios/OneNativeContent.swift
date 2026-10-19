@@ -140,6 +140,29 @@ final class OneNativeCellSource: NSObject {
     for cell in visibleCells where cell.item == item { cell.show(nil) }
   }
 
+  // a cell's own self-sizing invalidation stops applying after its first changes, so a
+  // height change asks the list to measure its visible cells again, once per turn
+  private var remeasuring = false
+
+  func remeasure() {
+    guard !remeasuring else { return }
+    remeasuring = true
+    DispatchQueue.main.async { [weak self] in
+      guard let self else { return }
+      remeasuring = false
+      let view = view
+      UIView.performWithoutAnimation {
+        if let table = view as? UITableView {
+          table.performBatchUpdates(nil)
+        } else if let collection = view as? UICollectionView {
+          let context = UICollectionViewLayoutInvalidationContext()
+          context.invalidateItems(at: collection.indexPathsForVisibleItems)
+          collection.collectionViewLayout.invalidateLayout(with: context)
+        }
+      }
+    }
+  }
+
   private var visibleCells: [OneNativeContentCell] {
     let cells: [UIView] = (view as? UICollectionView)?.visibleCells ?? (view as? UITableView)?.visibleCells ?? []
     return cells.compactMap { $0 as? OneNativeContentCell }
@@ -229,6 +252,7 @@ private final class OneNativeContentHolder: UIView {
 
 final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeContentCell {
   private let holder = OneNativeContentHolder()
+  private weak var source: OneNativeCellSource?
   private(set) var item: Int?
 
   override init(frame: CGRect) {
@@ -236,11 +260,12 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
     holder.frame = contentView.bounds
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.addSubview(holder)
-    holder.onHeight = { [weak self] in self?.invalidateIntrinsicContentSize() }
+    holder.onHeight = { [weak self] in if self?.item != nil { self?.source?.remeasure() } }
   }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   func configure(_ source: OneNativeCellSource?, item: Int) {
+    self.source = source
     self.item = item
     show(source?.content(item))
   }
@@ -262,6 +287,7 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
 
 final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
   private let holder = OneNativeContentHolder()
+  private weak var source: OneNativeCellSource?
   private(set) var item: Int?
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -269,11 +295,12 @@ final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
     holder.frame = contentView.bounds
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.addSubview(holder)
-    holder.onHeight = { [weak self] in self?.invalidateIntrinsicContentSize() }
+    holder.onHeight = { [weak self] in if self?.item != nil { self?.source?.remeasure() } }
   }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   func configure(_ source: OneNativeCellSource?, item: Int) {
+    self.source = source
     self.item = item
     show(source?.content(item))
   }
