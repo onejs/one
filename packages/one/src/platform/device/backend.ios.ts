@@ -23,6 +23,7 @@ import type {
   OneDevice,
 } from '../specs/OneDevice.nitro'
 import {
+  describingCalendar,
   isSimulatorEnvironment,
   measurementSystemName,
   normalizeVendorId,
@@ -127,7 +128,7 @@ async function getLocalizationInfo(): Promise<LocalizationInfo> {
   return {
     localeIdentifier: current.identifier75222('bcp47'),
     preferredLanguages: Locale.preferredLanguages,
-    calendarIdentifier: Calendar.current.identifier,
+    calendarIdentifier: describingCalendar(Calendar.current.identifier),
     timeZoneIdentifier: zone.identifier,
     timeZoneOffsetSeconds: zone.secondsFromGMT(),
     currencyCode: current.currency?.identifier,

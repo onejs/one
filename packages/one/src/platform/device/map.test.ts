@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import {
+  describingCalendar,
   isSimulatorEnvironment,
   measurementSystemName,
   normalizeVendorId,
@@ -8,7 +9,41 @@ import {
 } from './map'
 
 describe('device mappings', () => {
-  test('unicode calendar renames the expo special cases', () => {
+  test('describing calendar matches String(describing:) for every case', () => {
+    expect(describingCalendar('gregorian')).toBe('gregorian')
+    expect(describingCalendar('ethiopicAmeteMihret')).toBe('ethiopic')
+    expect(describingCalendar('ethiopicAmeteAlem')).toBe('ethioaa')
+    expect(describingCalendar('islamicCivil')).toBe('islamic-civil')
+    expect(describingCalendar('islamicTabular')).toBe('islamic-tbla')
+    expect(describingCalendar('islamicUmmAlQura')).toBe('islamic-umalqura')
+    expect(describingCalendar('republicOfChina')).toBe('roc')
+    for (const identifier of [
+      'buddhist',
+      'chinese',
+      'coptic',
+      'hebrew',
+      'iso8601',
+      'indian',
+      'islamic',
+      'japanese',
+      'persian',
+      'bangla',
+      'gujarati',
+      'kannada',
+      'malayalam',
+      'marathi',
+      'odia',
+      'tamil',
+      'telugu',
+      'vikram',
+      'dangi',
+      'vietnamese',
+    ]) {
+      expect(describingCalendar(identifier)).toBe(identifier)
+    }
+  })
+
+  test('unicode calendar is the describing form except gregorian', () => {
     expect(unicodeCalendar('gregorian')).toBe('gregory')
     expect(unicodeCalendar('ethiopicAmeteMihret')).toBe('ethiopic')
     expect(unicodeCalendar('ethiopicAmeteAlem')).toBe('ethioaa')
@@ -16,12 +51,10 @@ describe('device mappings', () => {
     expect(unicodeCalendar('islamicTabular')).toBe('islamic-tbla')
     expect(unicodeCalendar('islamicUmmAlQura')).toBe('islamic-umalqura')
     expect(unicodeCalendar('republicOfChina')).toBe('roc')
-  })
-
-  test('unicode calendar passes other identifiers through', () => {
     expect(unicodeCalendar('hebrew')).toBe('hebrew')
     expect(unicodeCalendar('islamic')).toBe('islamic')
     expect(unicodeCalendar('buddhist')).toBe('buddhist')
+    expect(unicodeCalendar('dangi')).toBe('dangi')
   })
 
   test('measurement system maps foundation identifiers', () => {

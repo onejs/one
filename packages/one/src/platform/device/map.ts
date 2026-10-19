@@ -1,10 +1,12 @@
 // pure sdk-to-spec mappings for the ios device backend. the generated
 // bindings report apple's raw values; these convert them to the OneDevice
 // spec terms, matching the nitro swift they replace.
-export function unicodeCalendar(identifier: string): string {
+
+// what String(describing:) reports for a calendar identifier, which the old
+// swift used for the localization snapshot. only these six differ from
+// their static names; gregorian and every other case pass through.
+export function describingCalendar(identifier: string): string {
   switch (identifier) {
-    case 'gregorian':
-      return 'gregory'
     case 'ethiopicAmeteMihret':
       return 'ethiopic'
     case 'ethiopicAmeteAlem':
@@ -20,6 +22,12 @@ export function unicodeCalendar(identifier: string): string {
     default:
       return identifier
   }
+}
+
+// expo's unicode calendar types: the describing form, except gregorian
+// which expo calls gregory.
+export function unicodeCalendar(identifier: string): string {
+  return identifier === 'gregorian' ? 'gregory' : describingCalendar(identifier)
 }
 
 // foundation identifies these as metric/ussystem/uksystem, not expo's
