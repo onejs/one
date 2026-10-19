@@ -8607,35 +8607,94 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         frame.y + frame.height <= outer.y + outer.height + 1
       )
     }
+    // the table and stack sit below the fold. scroll the screen, never a UIKit host: drags
+    // start in the screen's left gutter, which no host covers, and move by the target's
+    // distance from the middle, slowly enough that the screen does not coast past it
+    const top = 100
+    const shown = (nodes: Node[], frame: Node['frame']) => {
+      const app = nodes.find((node) => node.type === 'Application')?.frame
+      return Boolean(
+        app && frame && frame.y >= top && frame.y + frame.height <= app.height - 40
+      )
+    }
+    const reveal = async (name: string, testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const nodes = readSnapshot()
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const frame = frameOf(nodes, testID)
+        if (!app) throw new Error('The application frame disappeared')
+        if (!frame) throw new Error(`${name}: ${testID} is not in the accessibility tree`)
+        if (shown(nodes, frame)) {
+          let previous = frame
+          return wait(`${name}: ${testID} is on screen and still`, (n) => {
+            const next = frameOf(n, testID)
+            const still = Boolean(next && next.y === previous.y && shown(n, next))
+            if (next) previous = next
+            return still
+          })
+        }
+        const middle = (top + app.height) / 2
+        const distance = Math.max(
+          -app.height * 0.35,
+          Math.min(app.height * 0.35, frame.y + frame.height / 2 - middle)
+        )
+        axe(
+          [
+            'swipe',
+            '--start-x',
+            '6',
+            '--start-y',
+            String(Math.round(middle + distance / 2)),
+            '--end-x',
+            '6',
+            '--end-y',
+            String(Math.round(middle - distance / 2)),
+            '--duration',
+            '0.9',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`${name}: could not bring ${testID} on screen`)
+    }
+    const press = async (name: string, testID: string) => {
+      const frame = frameOf(await reveal(name, testID), testID)!
+      touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
     const firstRow = `${prefix}-collection-press-1`
+    const tableRow = `${prefix}-table-press-101`
+    const badge = `${prefix}-stack-press-201`
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-uikit-content')
-    const first = await wait(
-      'generation 0 shows React rows in the collection, table and stack',
-      (n) =>
-        ready(n, 0) &&
-        inside(n, firstRow, 'collection') &&
-        inside(n, `${prefix}-table-press-101`, 'table') &&
-        Boolean(frameOf(n, `${prefix}-stack-press-201`)?.height)
-    )
+    await wait('generation 0 applies its snapshots', (n) => ready(n, 0))
+    const first = await reveal('the collection shows React rows', firstRow)
+    if (!inside(first, firstRow, 'collection'))
+      throw new Error('row 1 is not inside the collection host')
     screenshot('uikit-content-ready.png')
 
     // the touch lands on a UIKit cell, so React sees it only if the cell's content
     // takes the surface's touches
-    tap({ id: firstRow })
+    await press('collection press', firstRow)
     await wait('a React Pressable inside a collection cell takes a press', (n) =>
       pressed(n, 'collection 1 generation 0', 1)
     )
-    tap({ id: `${prefix}-table-press-101` })
+    const table = await reveal('the table shows React rows', tableRow)
+    if (!inside(table, tableRow, 'table'))
+      throw new Error('row 101 is not inside the table host')
+    await press('table press', tableRow)
     await wait('and one inside a table cell', (n) =>
       pressed(n, 'table 101 generation 0', 2)
     )
+    const stack = await reveal('the stack shows a React badge', badge)
+    if (!frameOf(stack, badge)?.height) throw new Error('badge 201 has no height')
 
     // reconfiguring the first row gives it a second line, so its cell has to grow
     const before = frameOf(first, firstRow)!.height
-    tap({ id: `${prefix}-collection-reconfigure` })
+    await press('reconfigure', `${prefix}-collection-reconfigure`)
+    await reveal('the reconfigured row', firstRow)
     await wait(
       'a reconfigured row renders its update and its cell grows to fit',
       (n) =>
@@ -8647,34 +8706,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('uikit-content-reconfigured.png')
 
-    tap({ id: `${prefix}-collection-mounted` })
+    await press('unmount', `${prefix}-collection-mounted`)
     await wait(
       'unmounting the content empties the cells',
       (n) => has(n, '(content unmounted)') && !id(n, firstRow)
     )
-    tap({ id: `${prefix}-collection-mounted` })
+    await press('remount', `${prefix}-collection-mounted`)
     await wait('remounted content fills the cells again', (n) =>
       inside(n, firstRow, 'collection')
     )
-    tap({ id: firstRow })
+    await press('remounted press', firstRow)
     await wait('and the remounted row takes a press', (n) =>
       pressed(n, 'collection 1 generation 0', 3)
     )
 
     // new UIKit views and sources: the old cells retire and the new ones take the items
-    tap({ id: `${prefix}-replace` })
-    await wait(
-      'replaced views show the rows again',
-      (n) =>
-        ready(n, 1) &&
-        inside(n, firstRow, 'collection') &&
-        inside(n, `${prefix}-table-press-101`, 'table')
-    )
-    tap({ id: firstRow })
+    await press('replace', `${prefix}-replace`)
+    await wait('replaced views apply their snapshots', (n) => ready(n, 1))
+    const replaced = await reveal('the new collection shows React rows', firstRow)
+    if (!inside(replaced, firstRow, 'collection'))
+      throw new Error('row 1 is not inside the new collection host')
+    await press('replaced press', firstRow)
     await wait('and the new collection cell takes a press', (n) =>
       pressed(n, 'collection 1 generation 1', 4)
     )
     screenshot('uikit-content-replaced.png')
+    const newTable = await reveal('the new table shows React rows', tableRow)
+    if (!inside(newTable, tableRow, 'table'))
+      throw new Error('row 101 is not inside the new table host')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -9728,9 +9787,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('host-horizontal.png')
     tap({ id: 'one-native-host-axis-vertical' })
     tap({ id: 'one-native-host-expand' })
-    await wait('returning to one vertical child restores the height', (n) =>
-      size(n, 28)
-    )
+    await wait('returning to one vertical child restores the height', (n) => size(n, 28))
 
     for (const cycle of [1, 2]) {
       tap({ label: 'index' })
