@@ -3,6 +3,7 @@ import {
   ASYNC_SEQUENCE,
   NO_GENERICS,
   PUBLISHER,
+  cErrorOut,
   callbackOut,
   outPointee,
   type DeclarationInfo,
@@ -422,7 +423,11 @@ class Facade {
     }
     const out = e.params.filter((p) => p.out || p.inout)
     if (!out.length) return result
-    return `{ $ret: ${result === 'void' ? 'null' : result}; $out: { ${out.map((p) => `${quote(p.name)}: ${this.type(this.concrete(e, outPointee(p.type) ?? (p.type.k === 'inout' ? p.type.t : p.type)))}`).join('; ')} } }`
+    const written = (p: (typeof out)[number]) => {
+      const pointee = outPointee(p.type) ?? (p.type.k === 'inout' ? p.type.t : p.type)
+      return cErrorOut(pointee) ?? pointee
+    }
+    return `{ $ret: ${result === 'void' ? 'null' : result}; $out: { ${out.map((p) => `${quote(p.name)}: ${this.type(this.concrete(e, written(p)))}`).join('; ')} } }`
   }
   params(e: E) {
     const params = e.params.filter((p) => !p.out)

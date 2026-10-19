@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { Bridge, judge } from '../codegen/sdk/bridge'
 import { emitModule } from '../codegen/sdk/emit'
+import { emitFacade } from '../codegen/sdk/emit-ts'
 import type { Fragment, Graph, Symbol } from '../codegen/sdk/graph'
 
 vi.mock('../codegen/sdk/graph', async (importOriginal) => {
@@ -81,5 +82,19 @@ describe('c error out-parameters', () => {
     expect(output.entries[0].params).toHaveLength(2)
     expect(output.entries[0].params[1].out).toBe(true)
     expect(output.swift).toContain('takeRetainedValue()')
+  })
+
+  it('facades the written error as CFError', () => {
+    const bridge = bridgeWithCFError()
+    const symbol = funcSymbol('CFError', CF_ERROR)
+    const graph: Graph = { module: 'TestModule', symbols: [symbol], relationships: [] }
+    const output = emitModule(graph, bridge, new Map())
+    const facade = emitFacade(
+      { module: 'TestModule', entries: output.entries.map(({ swift, ...e }) => e), skipped: output.skipped },
+      bridge
+    )
+    expect(facade).toContain('TestErrorFunc')
+    expect(facade).toContain('_CoreFoundation_CFError')
+    expect(facade).toContain('"error"')
   })
 })
