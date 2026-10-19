@@ -58,6 +58,18 @@ describe('checkInheritedInits', () => {
     expect(rejected.get(SYNTH)).toContain('unavailable')
   })
 
+  it('maps batched errors back to the right init', () => {
+    const other = 'c:objc(cs)TestOther'
+    const graph = graphWith(
+      [cls(OWNER, 'TestLabeled'), init(SYNTH, 'TestLabeled', true), cls(other, 'TestOther'), init(`${other}(im)init`, 'TestOther', true)],
+      [[SYNTH, OWNER], [`${other}(im)init`, other]],
+    )
+    const runner: ClangRunner = () => ({ status: 1, stderr: `one-sdk-init-1:2:19: error: 'init' is unavailable\n` })
+    const rejected = checkInheritedInits('Contacts', graph, { runner, sdk: '/mock' })
+    expect(rejected.has(SYNTH)).toBe(false)
+    expect(rejected.get(`${other}(im)init`)).toContain('unavailable')
+  })
+
   it('omits a custom-init class as cannot-prove without probing', () => {
     const runner = vi.fn<ClangRunner>(() => ({ status: 0, stderr: '' }))
     const graph = graphWith(
