@@ -619,7 +619,9 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       params.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
       const fn = functionOf(type)
       if (fn) {
-        if (fn.fn.async) reason = 'async callback'
+        // an async callback awaits the javascript promise; without throws a
+        // rejected promise has no way back into swift
+        if (fn.fn.async && !fn.fn.throws) reason = 'async callback: nonthrowing, so a rejected promise cannot reach swift'
         const names = fn.fn.params.map((_, n) => `p${n}`)
         const fetch = fn.optional ? `c.has(${at}) ? try c.callback(${at}) : nil` : `try c.callback(${at})`
         hoisted.push(`let f${i} = ${fetch}`)
@@ -633,7 +635,11 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
           return written ? `["$out": ${value}]` : value
         })
         let body: string
-        if (needsSync) {
+        if (fn.fn.async) {
+          if (outputs.length) reason = 'async callback: output parameters'
+          const target = `f${i}${fn.optional ? '!' : ''}`
+          body = callbackVoid ? `_ = try await ${target}.responseAsync([${values.join(', ')}])` : `return try await ${target}.resultAsync([${values.join(', ')}])`
+        } else if (needsSync) {
           syncCallbacks = true
           if (!canSync) reason = 'synchronous callback requires a nonescaping JS-thread call'
           const target = `f${i}${fn.optional ? '!' : ''}`
