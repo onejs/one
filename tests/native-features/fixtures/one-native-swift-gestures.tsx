@@ -16,6 +16,8 @@ export default function OneNativeSwiftGestures() {
         style={styles.target}
         swiftStyle={{
           frameWithWidthAndHeightAndAlignment: { width: 160, height: 160, alignment: 'center' },
+          // a framed Text only hit-tests its glyphs; the rect shape makes the whole frame the target.
+          contentShape: 'rect',
           gesture: {
             kind: 'drag',
             minimumDistance: 4,
@@ -37,5 +39,5 @@ export default function OneNativeSwiftGestures() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, paddingTop: 90, paddingHorizontal: 20, gap: 16, backgroundColor: '#FFFFFF' },
-  target: { width: 160, height: 160 },
+  target: { width: 160, height: 160, backgroundColor: '#DCE6FA' },
 })
