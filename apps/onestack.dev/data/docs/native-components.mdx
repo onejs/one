@@ -50,8 +50,7 @@ export function Volume() {
       label="Volume"
       value={volume}
       onValueChange={setVolume}
-      minimumValue={0}
-      maximumValue={1}
+      in={[0, 1]}
     />
   )
 }

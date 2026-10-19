@@ -45,7 +45,7 @@ export function TripForm() {
           label="Departure"
           selection={date}
           onSelectionChange={setDate}
-          minimumDate={new Date()}
+          in={[new Date(), new Date(4001, 0, 1)]}
         />
       </One.iOS.Section>
     </One.iOS.Form>
@@ -125,9 +125,9 @@ its own.
 
 ## DatePicker
 
-`DatePicker` picks a `Date`. The selection must lie within the bounds, and
-`minimumDate` must not be after `maximumDate`, or the picker throws. Unset
-bounds default to the start of year 1 and the start of year 4001.
+`DatePicker` picks a `Date`. The selection must lie within `in`, and the
+lower bound must not be after the upper bound, or the picker throws. An
+unset `in` defaults to the start of year 1 through the start of year 4001.
 
 ```tsx
 import { useState } from 'react'
@@ -141,7 +141,7 @@ function Departure() {
       label="Departure"
       selection={date}
       onSelectionChange={setDate}
-      minimumDate={new Date()}
+      in={[new Date(), new Date(4001, 0, 1)]}
       displayedComponents="date"
       swiftStyle={{ datePickerStyle: 'compact' }}
     />
@@ -157,8 +157,7 @@ function Departure() {
     { name: 'onSelectionChange', required: true, type: '(value: Date) => void', description: 'A native pick, with the new date.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
-    { name: 'minimumDate', type: 'Date', description: 'The earliest date. Unbounded when unset.' },
-    { name: 'maximumDate', type: 'Date', description: 'The latest date. Unbounded when unset.' },
+    { name: 'in', type: 'readonly [Date, Date]', description: 'The allowed range as [lower, upper]. Year 1 through 4001 when unset.' },
     { name: 'displayedComponents', type: '"date" | "hourAndMinute" | "dateAndTime"', default: '"dateAndTime"', description: 'Which parts people pick.' },
   ]}
 />
@@ -185,8 +184,7 @@ function TripDays() {
       label="Trip days"
       selection={days}
       onSelectionChange={(picked) => setDays([...picked])}
-      minimumDate={new Date(2026, 9, 1)}
-      maximumDate={new Date(2026, 9, 31)}
+      in={[new Date(2026, 9, 1), new Date(2026, 9, 31)]}
     />
   )
 }
@@ -200,15 +198,14 @@ function TripDays() {
     { name: 'onSelectionChange', required: true, type: '(value: readonly Date[]) => void', description: 'A native pick, with the new days.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
-    { name: 'minimumDate', type: 'Date', description: 'The earliest date. Unbounded when unset.' },
-    { name: 'maximumDate', type: 'Date', description: 'The latest date. Unbounded when unset.' },
+    { name: 'in', type: 'readonly [Date, Date]', description: 'The allowed range as [lower, upper]. Year 1 through 4001 when unset.' },
   ]}
 />
 
 `disabled` is a SwiftUI modifier set through `swiftStyle`.
 
-Every date must be valid and lie within the bounds, and `minimumDate` must not
-be after `maximumDate`, or the picker throws.
+Every date must be valid and lie within `in`, and the lower bound must not
+be after the upper bound, or the picker throws.
 
 ## ColorPicker
 

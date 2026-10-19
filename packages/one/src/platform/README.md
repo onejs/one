@@ -443,8 +443,7 @@ function Controls() {
         label="Appointment"
         selection={when}
         onSelectionChange={setWhen}
-        minimumDate={new Date('2026-01-01T00:00:00Z')}
-        maximumDate={new Date('2026-12-31T23:59:59Z')}
+        in={[new Date('2026-01-01T00:00:00Z'), new Date('2026-12-31T23:59:59Z')]}
         displayedComponents="date"
         swiftStyle={{ datePickerStyle: 'compact' }}
       />
@@ -459,16 +458,14 @@ function Controls() {
         label="Volume"
         value={volume}
         onValueChange={setVolume}
-        minimumValue={0}
-        maximumValue={100}
+        in={[0, 100]}
         step={5}
       />
       <One.iOS.Stepper
         label="Guests"
         value={guests}
         onValueChange={setGuests}
-        minimumValue={0}
-        maximumValue={10}
+        in={[0, 10]}
         step={1}
       />
     </View>
@@ -490,9 +487,9 @@ in Menu content uses the `Menu` item's `type: 'picker'` shape above.
 Outside a native Form, iOS renders the inline
 picker as a wheel; the standalone host reserves the same height.
 
-`DatePicker` `selection`, `minimumDate`, and `maximumDate` are `Date` values.
-Omitted bounds default to a wide range. The selection must be a finite date inside
-that range, and `minimumDate` must not be after `maximumDate`.
+`DatePicker` `selection` and `in` bounds are `Date` values. An omitted `in`
+defaults to a wide range. The selection must be a finite date inside
+that range, and the lower bound must not be after the upper bound.
 `displayedComponents` is `date`, `hourAndMinute`, or `dateAndTime` (default).
 `datePickerStyle` is a `swiftStyle` modifier: `automatic`, `compact`, `graphical`, or `wheel`.
 
@@ -503,9 +500,10 @@ to true.
 `systemImage` is an optional SF Symbol shown beside the label through SwiftUI's
 `Toggle(_:systemImage:isOn:)`; an omitted image keeps the text-only toggle.
 
-`Slider` and `Stepper` take finite `value`, `minimumValue`, `maximumValue`, and
-`step` numbers. `minimumValue` must be less than `maximumValue`, `step` must be
-greater than 0, and `value` must sit in that range. Defaults are 0, 100, and 1.
+`Slider` and `Stepper` take finite `value`, `in` bounds, and `step` numbers.
+The lower bound must be less than the upper bound, `step` must be
+greater than 0, and `value` must sit in that range. `in` defaults to
+[0, 100] and `step` to 1.
 
 `Slider` takes text at each end of the track with `minimumValueLabel` and
 `maximumValueLabel`, and SF Symbol names there with `minimumValueImage` and
@@ -547,8 +545,7 @@ function Leaves() {
       <One.iOS.Gauge
         label="Speed"
         value={72}
-        minimumValue={0}
-        maximumValue={120}
+        in={[0, 120]}
         currentValueLabel="72"
         minimumValueLabel="0"
         maximumValueLabel="120"
@@ -599,8 +596,8 @@ indeterminate spinner when it is omitted. `total` defaults to 1 and must be
 greater than 0; `value` must sit between 0 and `total`. The `progressViewStyle`
 modifier in `swiftStyle` is `automatic`, `linear`, or `circular`.
 
-`Gauge` takes finite `value`, `minimumValue` (default 0), and `maximumValue`
-(default 1), with `value` inside that range. `currentValueLabel`,
+`Gauge` takes finite `value` and `in` bounds (default [0, 1]),
+with `value` inside that range. `currentValueLabel`,
 `minimumValueLabel`, and `maximumValueLabel` are plain strings; an empty string
 renders empty text rather than omitting the label. The `gaugeStyle` modifier in
 `swiftStyle` is `automatic`,

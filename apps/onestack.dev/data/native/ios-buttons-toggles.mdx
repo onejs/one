@@ -165,8 +165,7 @@ function Volume() {
       label="Volume"
       value={volume}
       onValueChange={setVolume}
-      minimumValue={0}
-      maximumValue={100}
+      in={[0, 100]}
       step={5}
       minimumValueImage="speaker.fill"
       maximumValueImage="speaker.wave.3.fill"
@@ -183,8 +182,7 @@ function Volume() {
     { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A native drag, with the new value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
     { name: 'label', type: 'string', description: 'Read by VoiceOver. A form row does not draw it.' },
-    { name: 'minimumValue', type: 'number', default: '0', description: 'The low end of the range.' },
-    { name: 'maximumValue', type: 'number', default: '100', description: 'The high end of the range.' },
+    { name: 'in', type: 'readonly [number, number]', default: '[0, 100]', description: 'The allowed range as [lower, upper].' },
     { name: 'step', type: 'number', default: '1', description: 'The increment between values.' },
     { name: 'minimumValueLabel', type: 'string', description: 'Text at the low end.' },
     { name: 'maximumValueLabel', type: 'string', description: 'Text at the high end.' },
@@ -212,8 +210,7 @@ function PartySize() {
       label="Guests"
       value={size}
       onValueChange={setSize}
-      minimumValue={1}
-      maximumValue={12}
+      in={[1, 12]}
     />
   )
 }
@@ -227,8 +224,7 @@ function PartySize() {
     { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A native step, with the new value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
     { name: 'label', type: 'string', description: 'The text before the buttons.' },
-    { name: 'minimumValue', type: 'number', default: '0', description: 'The lowest value.' },
-    { name: 'maximumValue', type: 'number', default: '100', description: 'The highest value.' },
+    { name: 'in', type: 'readonly [number, number]', default: '[0, 100]', description: 'The allowed range as [lower, upper].' },
     { name: 'step', type: 'number', default: '1', description: 'The amount each tap adds or removes.' },
   ]}
 />

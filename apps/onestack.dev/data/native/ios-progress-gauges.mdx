@@ -81,9 +81,9 @@ function Sync({ done, total }: { done: number; total: number }) {
 
 ## Gauge
 
-`Gauge` shows `value` between `minimumValue` and `maximumValue`. Every number
-must be finite, the minimum must be below the maximum, and the value must lie
-within the range, or the gauge throws.
+`Gauge` shows `value` within `in`. Every number must be finite, the lower
+bound must be below the upper bound, and the value must lie within the
+range, or the gauge throws.
 
 ```tsx
 import { One } from 'one'
@@ -93,7 +93,7 @@ function Speed({ speed }: { speed: number }) {
     <One.iOS.Gauge
       label="Speed"
       value={speed}
-      maximumValue={120}
+      in={[0, 120]}
       currentValueLabel={`${speed}`}
       swiftStyle={{ gaugeStyle: 'accessoryCircular' }}
     />
@@ -106,8 +106,7 @@ function Speed({ speed }: { speed: number }) {
   source="generated/controlTypes.ts#GaugeProps"
   data={[
     { name: 'value', type: 'number', default: '0', description: 'The current value.' },
-    { name: 'minimumValue', type: 'number', default: '0', description: 'The low end of the range.' },
-    { name: 'maximumValue', type: 'number', default: '1', description: 'The high end of the range.' },
+    { name: 'in', type: 'readonly [number, number]', default: '[0, 1]', description: 'The allowed range as [lower, upper].' },
     { name: 'label', type: 'string', default: '""', description: 'What the gauge measures.' },
     { name: 'currentValueLabel', type: 'string', default: '""', description: 'Text for the current value.' },
     { name: 'minimumValueLabel', type: 'string', default: '""', description: 'Text at the low end.' },
