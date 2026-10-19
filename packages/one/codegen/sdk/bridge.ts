@@ -28,6 +28,9 @@ export type DeclarationInfo = {
   associatedTypes?: boolean
   genericParameters?: string[]
   conformers?: string[]
+  // objective-c generic owner: observed concrete witnesses for its single
+  // parameter, each conforming to the parameter's bounds
+  objcWitnesses?: string[]
   // protocols this declaration conforms to, from any framework's graph
   conformsTo?: string[]
   properties?: { name: string; type: SwiftType; writable: boolean }[]
@@ -140,10 +143,11 @@ export type IndexFacts = {
   conformances?: { source: string; target: string }[]
   optionSets: string[]
   requirements: { owner: string; blocks: boolean; associated: boolean }[]
+  specializations?: { owner: string; arg: string }[]
 }
 
 export function collectFacts(graph: Graph): IndexFacts {
-  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [] }
+  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [], specializations: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   for (const symbol of graph.symbols) {
     if (!TYPE_KINDS.has(symbol.kind.identifier)) continue
@@ -155,6 +159,25 @@ export function collectFacts(graph: Graph): IndexFacts {
       genericParameters: symbol.swiftGenerics?.parameters?.map((p) => p.name),
       alias: symbol.kind.identifier === 'swift.typealias' ? aliasTarget(symbol) : undefined,
     })
+  }
+  // concrete single-argument specializations Owner<Arg>, for objective-c
+  // generic owners whose witnesses the sdk itself names
+  for (const symbol of graph.symbols) {
+    const fragments = [...(symbol.declarationFragments ?? []),
+      ...(symbol.functionSignature?.parameters ?? []).flatMap((p) => p.declarationFragments),
+      ...(symbol.functionSignature?.returns ?? [])]
+    for (let i = 0; i + 3 < fragments.length; i++) {
+      const owner = fragments[i]
+      const open = fragments[i + 1]
+      const arg = fragments[i + 2]
+      const close = fragments[i + 3]
+      if (owner.kind === 'typeIdentifier' && owner.preciseIdentifier &&
+        open.kind === 'text' && open.spelling === '<' &&
+        arg.kind === 'typeIdentifier' && arg.preciseIdentifier &&
+        close.kind === 'text' && close.spelling.startsWith('>')) {
+        facts.specializations!.push({ owner: owner.preciseIdentifier, arg: arg.preciseIdentifier })
+      }
+    }
   }
   for (const rel of graph.relationships) {
     if (rel.kind === 'conformsTo' || rel.kind === 'inheritsFrom') facts.conformances!.push({ source: rel.source, target: rel.target })
@@ -246,6 +269,13 @@ export function buildIndex(all: IndexFacts[]): Index {
       if (r.associated) owner.associatedTypes = true
       owner.implementable = (owner.implementable ?? true) && !r.blocks
     }
+    for (const s of facts.specializations ?? []) {
+      const owner = index.get(s.owner)
+      const arg = index.get(s.arg)
+      if (!owner || !owner.usr.startsWith('c:objc') || owner.genericParameters?.length !== 1) continue
+      if (!arg || !['class', 'struct', 'enum', 'actor'].includes(arg.kind) || arg.genericParameters?.length || arg.path.some((p) => p.startsWith('_'))) continue
+      owner.objcWitnesses = [...new Set([...(owner.objcWitnesses ?? []), s.arg])].sort()
+    }
   }
   return index
 }
@@ -257,14 +287,16 @@ type Position = 'input' | 'output'
 // how a declaration's generic parameters resolve. `resolved` holds the type a parameter, or a
 // member like `T.Element`, specializes to; `classes` are the ones a superclass constraint
 // pins; `owned` are the owner's or alias's own parameters, which a handle may keep as type
-// arguments.
+// arguments. `objcOpen` are an objective-c owner's parameters that stay open because the
+// sdk names their witnesses but no single canonical one exists.
 export type Generics = {
   params: Set<string>
   resolved: Map<string, SwiftType>
   classes: Set<string>
   owned: Set<string>
+  objcOpen: Set<string>
 }
-export const NO_GENERICS: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set() }
+export const NO_GENERICS: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set(), objcOpen: new Set() }
 
 // canonical witnesses for standard constraints; the compiler checks conditional conformances.
 const COLLECTIONS = new Set(['Sequence', 'Collection', 'BidirectionalCollection', 'RandomAccessCollection', 'MutableCollection', 'RangeReplaceableCollection', 'AccelerateBuffer', 'AccelerateMutableBuffer'])
@@ -521,6 +553,7 @@ export class Bridge {
       return this.type(resolved, position, { ...generics, resolved: new Map() })
     }
     const root = name.split('.')[0]
+    if (generics.objcOpen.has(root) && !name.includes('.')) return { ok: true, ts: root }
     if (generics.params.has(root) || root === 'Self') return { ok: false, reason: `generic: no canonical witness for ${name}` }
     return undefined
   }
@@ -593,7 +626,7 @@ export class Bridge {
   // each parameter takes a canonical concrete witness of its constraints. callers use this
   // specialization, recorded in the entry, rather than arbitrary conforming native values.
   generics(symbol: Symbol, owner: Symbol | undefined, own: string[] = []): Generics {
-    const g: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set(own) }
+    const g: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set(own), objcOpen: new Set() }
     for (const p of symbol.swiftGenerics?.parameters ?? []) g.params.add(p.name)
     for (const p of owner?.swiftGenerics?.parameters ?? []) {
       g.params.add(p.name)
@@ -606,6 +639,16 @@ export class Bridge {
       const specialized = this.specialize(head, constraints, g.params)
       if (specialized) g.resolved.set(head, specialized.type)
       if (specialized?.class) g.classes.add(head)
+    }
+    // an objective-c owner's parameter with sdk-named witnesses but no single
+    // canonical one stays open; swift erases it and typescript keeps it generic
+    if (owner?.identifier.precise.startsWith('c:objc') && owner.swiftGenerics?.parameters?.length === 1) {
+      const witnesses = this.index.get(owner.identifier.precise)?.objcWitnesses
+      if (witnesses?.length) {
+        for (const p of owner.swiftGenerics.parameters) {
+          if (g.params.has(p.name) && !g.resolved.has(p.name)) g.objcOpen.add(p.name)
+        }
+      }
     }
     if (owner) {
       const info = this.index.get(owner.identifier.precise)
