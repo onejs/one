@@ -2451,10 +2451,6 @@ export interface OneNativeStyle {
 export type OneNativeViewProps = Pick<ViewProps, 'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'> & {
     swiftStyle?: OneNativeStyle;
 };
-export type PickerOption = Readonly<{
-    value: string;
-    label: string;
-}>;
 export type DialogAction = Readonly<{
     id: string;
     label: string;
@@ -2471,7 +2467,6 @@ export interface PickerProps extends OneNativeViewProps {
     onSelectionChange: (value: string) => void;
     revision?: number;
     label?: string;
-    options: readonly PickerOption[];
 }
 export interface DatePickerProps extends OneNativeViewProps {
     selection: Date;

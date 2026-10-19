@@ -27,21 +27,19 @@ export function IosPickersScene() {
             selection={seat}
             onSelectionChange={setSeat}
             swiftStyle={{ pickerStyle: 'segmented' }}
-            options={[
-              { value: 'window', label: 'Window' },
-              { value: 'middle', label: 'Middle' },
-              { value: 'aisle', label: 'Aisle' },
-            ]}
-          />
+          >
+            <One.iOS.Text text="Window" swiftStyle={{ tag: 'window' }} />
+            <One.iOS.Text text="Middle" swiftStyle={{ tag: 'middle' }} />
+            <One.iOS.Text text="Aisle" swiftStyle={{ tag: 'aisle' }} />
+          </One.iOS.Picker>
           <One.iOS.Picker
             label="Cabin"
             selection={cabin}
             onSelectionChange={setCabin}
-            options={[
-              { value: 'economy', label: 'Economy' },
-              { value: 'business', label: 'Business' },
-            ]}
-          />
+          >
+            <One.iOS.Text text="Economy" swiftStyle={{ tag: 'economy' }} />
+            <One.iOS.Text text="Business" swiftStyle={{ tag: 'business' }} />
+          </One.iOS.Picker>
         </One.iOS.Section>
         <One.iOS.Section>
           <One.iOS.DatePicker label="Departs" selection={date} onSelectionChange={setDate} />

@@ -53,7 +53,7 @@ const initialStates: ControlStates = {
 
 const pickerStyles = ['segmented', 'menu', 'wheel', 'inline'] as const
 const datePickerStyles = ['compact', 'graphical', 'wheel'] as const
-const pickerOptions = [
+const pickerChoices = [
   { label: 'Alpha', value: 'alpha' },
   { label: 'Beta', value: 'beta' },
   { label: 'Gamma', value: 'gamma' },
@@ -184,13 +184,20 @@ export default function OneNativeControls() {
           <One.iOS.Picker
             label="Favorite Greek letter"
             onSelectionChange={(value) => recordChange('Picker', value)}
-            options={pickerOptions}
             revision={controls.Picker.revision}
             selection={controls.Picker.value as string}
             style={styles.nativeControl}
             swiftStyle={{ pickerStyle, maxWidth: pickerStyle === 'segmented' ? Infinity : undefined }}
             testID="one-native-control"
-          />
+          >
+            {pickerChoices.map((choice) => (
+              <One.iOS.Text
+                key={choice.value}
+                text={choice.label}
+                swiftStyle={{ tag: choice.value }}
+              />
+            ))}
+          </One.iOS.Picker>
         ) : null}
         {category === 'Date' ? (
           <One.iOS.DatePicker

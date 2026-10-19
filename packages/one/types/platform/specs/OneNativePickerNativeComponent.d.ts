@@ -1,9 +1,5 @@
 import type { ProcessedColorValue, ViewProps } from 'react-native';
 import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
-type PickerOption = Readonly<{
-    value: string;
-    label: string;
-}>;
 type OneNativeStyleNative = Readonly<{
     fontSize?: WithDefault<Double, -1>;
     fontWeight?: string;
@@ -41,7 +37,6 @@ interface NativeProps extends ViewProps {
     acknowledgedEvent: Int32;
     revision: Int32;
     label: string;
-    options: ReadonlyArray<PickerOption>;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;

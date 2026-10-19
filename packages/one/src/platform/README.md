@@ -433,12 +433,11 @@ function Controls() {
         label="Letter"
         selection={letter}
         onSelectionChange={setLetter}
-        options={[
-          { value: 'alpha', label: 'Alpha' },
-          { value: 'beta', label: 'Beta' },
-        ]}
         swiftStyle={{ pickerStyle: 'menu' }}
-      />
+      >
+        <One.iOS.Text text="Alpha" swiftStyle={{ tag: 'alpha' }} />
+        <One.iOS.Text text="Beta" swiftStyle={{ tag: 'beta' }} />
+      </One.iOS.Picker>
       <One.iOS.DatePicker
         label="Appointment"
         selection={when}
@@ -473,8 +472,9 @@ function Controls() {
 }
 ```
 
-`Picker` options are `{ value, label }` strings. The list must not be empty,
-values must be unique, and `selection` must match one of them. `pickerStyle` is
+`Picker` options are `Text` children whose `swiftStyle.tag` is the option
+value, as in SwiftUI's `Picker` content builder. Tags must be unique, and
+`selection` must match one of them. `pickerStyle` is
 a SwiftUI modifier set through `swiftStyle`, and its supported values are
 `automatic`, `menu`, `segmented`, `wheel`, `inline`, `tabs`, and `palette`.
 Outside a Form, a segmented Picker keeps its natural width; pass
@@ -1135,11 +1135,10 @@ function Mailbox() {
               swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
               selection={page}
               onSelectionChange={setPage}
-              options={[
-                { value: 'inbox', label: 'Inbox' },
-                { value: 'archive', label: 'Archive' },
-              ]}
-            />
+            >
+              <One.iOS.Text text="Inbox" swiftStyle={{ tag: 'inbox' }} />
+              <One.iOS.Text text="Archive" swiftStyle={{ tag: 'archive' }} />
+            </One.iOS.Picker>
           </One.iOS.ToolbarItem>
           <One.iOS.ToolbarItem placement="topBarTrailing">
             <One.iOS.Button

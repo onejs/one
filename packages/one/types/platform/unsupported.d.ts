@@ -63,11 +63,12 @@ declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
 import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes';
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
 import type { MapWithControlsProps } from './mapControls';
+import type { PickerWithChildrenProps } from './pickerChildren';
 declare function MapWithControlsStub(_props: MapWithControlsProps): never;
+declare function PickerWithChildrenStub(_props: PickerWithChildrenProps): never;
 declare function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never;
 declare function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorProps<Value>): never;
 export declare const Swift: {
-    Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
     ColorPicker: (_props: import("./types").ColorPickerProps) => never;
     MultiDatePicker: (_props: import("./types").MultiDatePickerProps) => never;
@@ -287,6 +288,7 @@ export declare const Swift: {
     MoveKeyframe: typeof MoveKeyframe;
     withAnimation(_animation: SDKAnimation | null, _body: () => void, _completion?: () => void, _completionCriteria?: WithAnimationCompletionCriteria): never;
     Map: typeof MapWithControlsStub;
+    Picker: typeof PickerWithChildrenStub;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

@@ -10,6 +10,7 @@ import { withAnimation } from './withAnimation.native';
 import { KeyframeAnimator, PhaseAnimator } from './Animators.native';
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
 import { Map as MapWithControls } from './mapControls.native';
+import { Picker as PickerWithChildren } from './pickerChildren.native';
 import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native';
 import { Compose } from './compose';
 import * as UI from './effects';
@@ -29,7 +30,6 @@ export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, 
 declare const Menu: typeof AndroidMenu;
 declare const ContextMenu: typeof AndroidContextMenu;
 export declare const Swift: {
-    Picker({ selection, onSelectionChange, revision, label, options, swiftStyle, style, ...props }: import("./types").PickerProps): import("react").JSX.Element;
     DatePicker({ selection, onSelectionChange, revision, label, in: range, displayedComponents, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react").JSX.Element;
     ColorPicker({ selection, onSelectionChange, revision, label, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react").JSX.Element;
     MultiDatePicker({ selection, onSelectionChange, revision, label, in: range, swiftStyle, style, ...props }: import("./types").MultiDatePickerProps): import("react").JSX.Element;
@@ -249,6 +249,7 @@ export declare const Swift: {
     CubicKeyframe: typeof CubicKeyframe;
     MoveKeyframe: typeof MoveKeyframe;
     Map: typeof MapWithControls;
+    Picker: typeof PickerWithChildren;
 };
 export { Compose };
 export { Notifications } from './notifications';

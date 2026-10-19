@@ -1,5 +1,5 @@
 import type * as Types from './controlTypes';
-export declare function Picker({ selection, onSelectionChange, revision, label, options, swiftStyle, style, ...props }: Types.PickerProps): import("react").JSX.Element;
+export declare function Picker({ selection, onSelectionChange, revision, label, swiftStyle, style, ...props }: Types.PickerProps): import("react").JSX.Element;
 export declare function DatePicker({ selection, onSelectionChange, revision, label, in: range, displayedComponents, swiftStyle, style, ...props }: Types.DatePickerProps): import("react").JSX.Element;
 export declare function ColorPicker({ selection, onSelectionChange, revision, label, supportsOpacity, swiftStyle, style, ...props }: Types.ColorPickerProps): import("react").JSX.Element;
 export declare function MultiDatePicker({ selection, onSelectionChange, revision, label, in: range, swiftStyle, style, ...props }: Types.MultiDatePickerProps): import("react").JSX.Element;

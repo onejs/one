@@ -36,11 +36,10 @@ export function TripForm() {
           selection={seat}
           onSelectionChange={setSeat}
           swiftStyle={{ pickerStyle: 'segmented' }}
-          options={[
-            { value: 'window', label: 'Window' },
-            { value: 'aisle', label: 'Aisle' },
-          ]}
-        />
+        >
+          <One.iOS.Text text="Window" swiftStyle={{ tag: 'window' }} />
+          <One.iOS.Text text="Aisle" swiftStyle={{ tag: 'aisle' }} />
+        </One.iOS.Picker>
         <One.iOS.DatePicker
           label="Departure"
           selection={date}
@@ -65,9 +64,9 @@ Every picker also accepts `accessibilityLabel`, `accessibilityHint`,
 Value pickers keep their selection in a native model with an event count and a
 revision. A native pick bumps the count and reports the new value; JavaScript
 calls the change handler and acknowledges the event. Raising `revision` with a
-new selection resets the picker from the outside. Options, bounds, and formats
-are validated in JavaScript before anything reaches native, so a bad value
-throws during render with a JavaScript stack.
+new selection resets the picker from the outside. Option tags, bounds, and
+formats are validated in JavaScript before anything reaches native, so a bad
+value throws during render with a JavaScript stack.
 
 Dates cross the bridge as timestamps. `DatePicker` keeps full precision, while
 `MultiDatePicker` reduces each date to day components in the device calendar,
@@ -77,8 +76,9 @@ iOS version.
 
 ## Picker
 
-`Picker` picks one string from `options`. The options must be non-empty with
-unique string values and labels, and the selection must match one value.
+`Picker` picks one string from its option children. Each option is a `Text`
+view whose `swiftStyle.tag` is its value, as in SwiftUI's `Picker`
+content builder. Tags must be unique and the selection must match one tag.
 
 ```tsx
 import { useState } from 'react'
@@ -93,11 +93,10 @@ function SeatPicker() {
       selection={seat}
       onSelectionChange={setSeat}
       swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
-      options={[
-        { value: 'window', label: 'Window' },
-        { value: 'aisle', label: 'Aisle' },
-      ]}
-    />
+    >
+      <One.iOS.Text text="Window" swiftStyle={{ tag: 'window' }} />
+      <One.iOS.Text text="Aisle" swiftStyle={{ tag: 'aisle' }} />
+    </One.iOS.Picker>
   )
 }
 ```
@@ -106,9 +105,8 @@ function SeatPicker() {
   title="Props"
   source="generated/controlTypes.ts#PickerProps"
   data={[
-    { name: 'selection', required: true, type: 'string', description: 'The selected option value.' },
+    { name: 'selection', required: true, type: 'string', description: 'The selected option tag.' },
     { name: 'onSelectionChange', required: true, type: '(value: string) => void', description: 'A native pick, with the new value.' },
-    { name: 'options', required: true, type: 'readonly PickerOption[]', description: 'Each { value, label }, in order.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
   ]}
@@ -347,7 +345,7 @@ selection, `onCompletion` fires once per file.
 
 ## Limits and gotchas
 
-- **Invalid values throw at render.** Option lists, date bounds, and the color
+- **Invalid values throw at render.** Option tags, date bounds, and the color
   hex format are checked in JavaScript before anything reaches native.
 - **`navigationLink` style needs a NavigationStack.** Its choices push onto the
   enclosing stack.
