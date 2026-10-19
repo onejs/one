@@ -453,6 +453,16 @@ export const nativeIconButton = (nodes: Node[], systemName: string, label: strin
   })
   return buttons.length === 1 ? buttons[0] : undefined
 }
+export const visibleFrame = (frame: Node['frame'], viewport: Node['frame']) => {
+  if (!frame || !viewport || [frame, viewport].some((box) =>
+    !Object.values(box).every(Number.isFinite) || box.width <= 0 || box.height <= 0
+  )) return undefined
+  const x = Math.max(frame.x, viewport.x)
+  const y = Math.max(frame.y, viewport.y)
+  const width = Math.min(frame.x + frame.width, viewport.x + viewport.width) - x
+  const height = Math.min(frame.y + frame.height, viewport.y + viewport.height) - y
+  return width > 0 && height > 0 ? { x, y, width, height } : undefined
+}
 const nativeActivitySheet = (nodes: Node[]) => {
   const app = nodes.find((node) => node.type === 'Application')
   const sheets = nodes.filter((node) => node.AXUniqueId === 'ActivityListView')
@@ -9027,6 +9037,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       return Number.isFinite(width) ? width : undefined
     }
     const nativeFrame = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
+    const tapColumnRow = async (column: 'sidebar' | 'content', testID: string) => {
+      const rowFrame = (nodes: Node[]) => visibleFrame(
+        nativeFrame(nodes, testID),
+        nativeFrame(nodes, `one-native-split-view-${column}-frame`)
+      )
+      const nodes = await wait(`${testID} has a visible area inside its column`, (n) =>
+        Boolean(rowFrame(n))
+      )
+      const frame = rowFrame(nodes)!
+      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
     const logNativeMetrics = (step: string, nodes: Node[]) => {
       const appFrame = nodes.find((node) => node.type === 'Application')?.frame
       const metrics =
@@ -9065,7 +9086,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(id(nodes, 'one-native-split-view-sidebar-frame'))
     )
     logNativeMetrics('uncontrolled Sidebar', uncontrolledSidebar)
-    tap({ id: 'one-native-split-view-mailbox-archive' })
+    await tapColumnRow('sidebar', 'one-native-split-view-mailbox-archive')
     const uncontrolledContent = await wait(
       'uncontrolled Sidebar selection opens Content',
       (nodes) =>
@@ -9075,7 +9096,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('navigation-split-view-uncontrolled-content.png', uncontrolledContent)
     logNativeMetrics('uncontrolled Content', uncontrolledContent)
-    tap({ id: 'one-native-split-view-message-receipt' })
+    await tapColumnRow('content', 'one-native-split-view-message-receipt')
     const uncontrolledDetail = await wait(
       'uncontrolled Content selection opens Detail',
       (nodes) =>
@@ -9177,7 +9198,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('controlled selection can be refused', (nodes) =>
       labels(nodes).includes('Accept selection: false')
     )
-    tap({ id: 'one-native-split-view-mailbox-archive' })
+    await tapColumnRow('sidebar', 'one-native-split-view-mailbox-archive')
     const refused = await wait(
       'a controlled native List reports without committing',
       (nodes) =>
@@ -9192,7 +9213,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('controlled selection is accepted', (nodes) =>
       labels(nodes).includes('Accept selection: true')
     )
-    tap({ id: 'one-native-split-view-mailbox-archive' })
+    await tapColumnRow('sidebar', 'one-native-split-view-mailbox-archive')
     const content = await wait(
       'the accepted mailbox selection opens Content',
       (nodes) =>
@@ -9212,7 +9233,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('message selection can be refused', (nodes) =>
       labels(nodes).includes('Accept selection: false')
     )
-    tap({ id: 'one-native-split-view-message-receipt' })
+    await tapColumnRow('content', 'one-native-split-view-message-receipt')
     const refusedMessage = await wait(
       'controlled message and compact-column proposals do not commit',
       (nodes) =>
@@ -9227,7 +9248,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('message selection is accepted', (nodes) =>
       labels(nodes).includes('Accept selection: true')
     )
-    tap({ id: 'one-native-split-view-message-receipt' })
+    await tapColumnRow('content', 'one-native-split-view-message-receipt')
     const detail = await wait(
       'the accepted message selection opens Detail',
       (nodes) =>
