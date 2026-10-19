@@ -11,8 +11,16 @@ struct OneNativeDragBinding {
   let targets: [Double]
   let animation: SwiftUI.Animation?
 
-  // the entry's value when each bound drag began, by entry. main thread only.
-  private static var starts: [Int32: Double] = [:]
+  // the entry's value when each bound drag began, keyed by entry and the drag's
+  // start location. swiftui never calls onEnded for a cancelled drag, so a new
+  // drag is told apart by its own start location and never resumes a cancelled
+  // one, and views sharing an entry keep separate starts. main thread only.
+  private struct Start: Hashable {
+    let state: Int32
+    let x: CGFloat
+    let y: CGFloat
+  }
+  private static var starts: [Start: Double] = [:]
 
   init?(_ record: OneNativeSDKRecord) {
     guard let raw = record.fields["bind"] else {
@@ -48,15 +56,16 @@ struct OneNativeDragBinding {
     }
   }
 
-  func changed(_ translation: CGSize) {
-    let start = Self.starts[state] ?? current()
-    Self.starts[state] = start
+  func changed(_ translation: CGSize, from origin: CGPoint) {
+    let key = Start(state: state, x: origin.x, y: origin.y)
+    let start = Self.starts[key] ?? current()
+    Self.starts[key] = start
     OneNativeSyncRegistry.set(state, value: NSNumber(value: clamped(start + along(translation))))
   }
 
   // the snap target the drag settled on, or nil without snap.
-  func ended(predicted: CGSize) -> Double? {
-    let start = Self.starts.removeValue(forKey: state) ?? current()
+  func ended(predicted: CGSize, from origin: CGPoint) -> Double? {
+    let start = Self.starts.removeValue(forKey: Start(state: state, x: origin.x, y: origin.y)) ?? current()
     guard !targets.isEmpty else { return nil }
     let projected = clamped(start + along(predicted))
     let target = targets.min { abs($0 - projected) < abs($1 - projected) }!

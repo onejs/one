@@ -581,10 +581,10 @@ ${modifier.gestureOptions!.map((option) => {
           const binds = option.type === dragGesture
           const report = (event: string) => option.eventValue
             ? `{ item in${binds && event.endsWith('.onChanged') ? `
-        binding?.changed(item.translation)
+        binding?.changed(item.translation, from: item.startLocation)
         guard changed else { return }` : ''}
         ${binds && !event.includes('.') ? `var payload = ${eventValueSwift(option.eventValue, 'item')}
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }` : `let payload = ${eventValueSwift(option.eventValue, 'item')}`}
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }` : `let payload = ${eventValueSwift(option.eventValue, 'item')}`}
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${option.name} event") }
         emit(${JSON.stringify(event)}, encoded)

@@ -4692,7 +4692,7 @@ if #available(iOS 13, *) {
       let changed = record.boolean("onChanged") == true
       if changed || binding != nil {
         self.gesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
-        binding?.changed(item.translation)
+        binding?.changed(item.translation, from: item.startLocation)
         guard changed else { return }
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
@@ -4700,7 +4700,7 @@ if #available(iOS 13, *) {
         emit("gesture.onChanged", encoded)
       }).onEnded({ item in
         var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
         emit("gesture", encoded)
@@ -4708,7 +4708,7 @@ if #available(iOS 13, *) {
       } else {
         self.gesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
         var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
         emit("gesture", encoded)
@@ -4998,7 +4998,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
       let changed = record.boolean("onChanged") == true
       if changed || binding != nil {
         self.highPriorityGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
-        binding?.changed(item.translation)
+        binding?.changed(item.translation, from: item.startLocation)
         guard changed else { return }
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
@@ -5006,7 +5006,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
         emit("highPriorityGesture.onChanged", encoded)
       }).onEnded({ item in
         var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
         emit("highPriorityGesture", encoded)
@@ -5014,7 +5014,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
       } else {
         self.highPriorityGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
         var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
         emit("highPriorityGesture", encoded)
@@ -8513,7 +8513,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       let changed = record.boolean("onChanged") == true
       if changed || binding != nil {
         self.simultaneousGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
-        binding?.changed(item.translation)
+        binding?.changed(item.translation, from: item.startLocation)
         guard changed else { return }
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
@@ -8521,7 +8521,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
         emit("simultaneousGesture.onChanged", encoded)
       }).onEnded({ item in
         var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
         emit("simultaneousGesture", encoded)
@@ -8529,7 +8529,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       } else {
         self.simultaneousGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
         var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
-        if let target = binding?.ended(predicted: item.predictedEndTranslation) { payload["snapTarget"] = target }
+        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
         emit("simultaneousGesture", encoded)
