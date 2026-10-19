@@ -37,13 +37,17 @@ describe('virtualEntryPlugin', () => {
     const root = mkdtempSync(join(tmpdir(), 'one-spa-server-'))
     const appDir = join(root, 'app')
     mkdirSync(appDir)
-    const spaRoute = join(appDir, 'client-only+spa.tsx')
-    writeFileSync(
-      spaRoute,
-      `export const browserPayload = 'must-not-enter-server-graph'
+    // a dynamic segment is glob syntax, so its path must still match literally
+    const spaRoutes = ['client-only+spa.tsx', 'items/[id]+spa.tsx']
+    mkdirSync(join(appDir, 'items'))
+    for (const route of spaRoutes) {
+      writeFileSync(
+        join(appDir, route),
+        `export const browserPayload = 'must-not-enter-server-graph'
 export default function ClientOnlyPage() { return null }
 `
-    )
+      )
+    }
 
     try {
       const result = await build({
@@ -84,7 +88,8 @@ export const registerPreloadedRoute = () => {}`
       const moduleIds = result.output.flatMap((output) =>
         output.type === 'chunk' ? output.moduleIds : []
       )
-      expect(moduleIds).not.toContain(resolve(spaRoute))
+      for (const route of spaRoutes)
+        expect(moduleIds).not.toContain(resolve(join(appDir, route)))
       expect(
         result.output
           .flatMap((output) => (output.type === 'chunk' ? output.code : ''))
@@ -98,10 +103,10 @@ export const registerPreloadedRoute = () => {}`
       const built = await import(
         `data:text/javascript;base64,${Buffer.from(entry.code).toString('base64')}`
       )
-      expect(Object.keys(built.default.routes)).toContain('/app/client-only+spa.tsx')
-      await expect(built.default.routes['/app/client-only+spa.tsx']()).resolves.toEqual(
-        {}
-      )
+      for (const route of spaRoutes) {
+        expect(Object.keys(built.default.routes)).toContain(`/app/${route}`)
+        await expect(built.default.routes[`/app/${route}`]()).resolves.toEqual({})
+      }
     } finally {
       rmSync(root, { recursive: true, force: true })
     }
