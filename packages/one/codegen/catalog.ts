@@ -472,6 +472,11 @@ export const components = [
       // menu opens on tap and owns the trigger; contextMenu opens on long press and
       // leaves the trigger interactive.
       presentation: 'string',
+      // the context menu preview box, explicit like a popover's: UIKit sizes the
+      // preview from the view controller, and a React Native subtree has no ideal
+      // size. zero with no preview child.
+      previewWidth: 'Double',
+      previewHeight: 'Double',
       ...controlledProps,
       pickerAcknowledgedEvent: 'Int32',
     },
@@ -504,8 +509,32 @@ export const components = [
         layout: 'yoga',
         interaction: 'passive',
       },
+      {
+        name: 'preview',
+        content: 'OneNativeContextMenuPreview',
+        cardinality: 'one',
+        layout: 'presented',
+      },
     ],
     interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeContextMenuPreview',
+    publicName: null,
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'swiftui-proposal-to-yoga',
+        origin: 'local',
+      },
+    ],
+    interfaceOnly: true,
   },
   {
     name: 'OneNativeTab',

@@ -41,6 +41,12 @@
         "presentation": {
           "type": "string"
         },
+        "previewWidth": {
+          "type": "Double"
+        },
+        "previewHeight": {
+          "type": "Double"
+        },
         "acknowledgedEvent": {
           "type": "Int32"
         },
@@ -108,9 +114,35 @@
           "cardinality": "one",
           "layout": "yoga",
           "interaction": "passive"
+        },
+        {
+          "name": "preview",
+          "content": "OneNativeContextMenuPreview",
+          "cardinality": "one",
+          "layout": "presented"
         }
       ],
       "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeContextMenuPreview",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeTab",

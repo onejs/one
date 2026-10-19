@@ -102,6 +102,7 @@ const suites = [
   'cover-context',
   'menu-primary-action',
   'menu-picker',
+  'menu-preview',
   'popover',
   'navigation',
   'navigation-split-view',
@@ -782,6 +783,10 @@ const menuPickerLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-menu-picker-screen')) &&
   has(nodes, 'Selected: ')
+const menuPreviewLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-menu-preview-screen')) &&
+  has(nodes, 'Preview variant: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -1028,6 +1033,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'cover-context': coverContextLoaded,
   'menu-primary-action': menuPrimaryActionLoaded,
   'menu-picker': menuPickerLoaded,
+  'menu-preview': menuPreviewLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   'navigation-split-view': navigationSplitViewLoaded,
@@ -1172,6 +1178,7 @@ const suiteHome: Record<Suite, string> = {
   'cover-context': 'nav-one-native-cover-context',
   'menu-primary-action': 'nav-one-native-menu-primary-action',
   'menu-picker': 'nav-one-native-menu-picker',
+  'menu-preview': 'nav-one-native-menu-preview',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -8340,6 +8347,219 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissPicker()
     fs.writeFileSync(
       path.join(config.artifactDir, 'menu-picker-pixels.json'),
+      JSON.stringify(pixelEvidence, null, 2)
+    )
+    return
+  }
+  if (config.suite === 'menu-preview') {
+    const frames: Record<
+      string,
+      { x: number; y: number; width: number; height: number }
+    > = {}
+    const pixelEvidence: Record<string, number> = {}
+    // the fixture preview card is #D8E8FF; nothing else on the screen is blue.
+    const blue = (r: number, g: number, b: number) =>
+      r > 190 && r < 235 && g > 215 && g < 250 && b > 240
+    const checkPreviewPixels = (
+      name: string,
+      nodes: Node[],
+      imagePath: string,
+      expectBlue: boolean
+    ) => {
+      const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame
+        ?.width
+      if (!viewportWidth) throw new Error('Preview capture has no application width')
+      // UIKit presents the preview in its own menu window, whose accessibility
+      // origin does not map to screen pixels, so the scan covers the whole
+      // screen: the card is the only blue thing the fixture can show.
+      const app = { x: 0, y: 0, width: 393, height: 852, viewportWidth }
+      const pixels = extractCrop(readPng(imagePath), app)
+      const ink = countMatchingPixels(pixels, blue)
+      pixelEvidence[name] = ink
+      // a 240x120 card is ~260k pixels before text and corner radius take theirs.
+      if (expectBlue && ink < 5000)
+        throw new Error(`${name} screen shows ${ink} preview-blue pixels`)
+      if (!expectBlue && ink > 100)
+        throw new Error(`${name} screen leaks ${ink} preview-blue pixels`)
+      checks.push({ name, durationMs: 0 })
+      console.log(`PASS ${name}`)
+    }
+    const shows = (nodes: Node[], variant: string, mounted: string, action: string) =>
+      has(nodes, `Preview variant: ${variant}`) &&
+      has(nodes, `Preview menu mounted: ${mounted}`) &&
+      has(nodes, `Last action: ${action}`)
+    const menuOpen = (nodes: Node[]) =>
+      labels(nodes).includes('Open preview item') &&
+      labels(nodes).includes('Share preview item')
+    const previewShown = (nodes: Node[], variant: string) =>
+      Boolean(id(nodes, 'one-native-menu-preview-card')) &&
+      labels(nodes).includes(`Preview card ${variant}`) &&
+      has(nodes, variant === 'alpha' ? 'Preview alpha #4129' : 'Preview beta #9021')
+    const previewGone = (nodes: Node[]) =>
+      !id(nodes, 'one-native-menu-preview-card') && !menuOpen(nodes)
+    const longPress = (testID: string) => {
+      const frame = id(snapshot(config.simulatorId), testID)?.frame
+      if (!frame) throw new Error(`Menu preview trigger ${testID} has no frame`)
+      const output = axe(
+        [
+          'touch',
+          '-x',
+          String(Math.round(frame.x + frame.width / 2)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--down',
+          '--up',
+          '--delay',
+          '0.9',
+        ],
+        config.simulatorId
+      )
+      if (output.includes('could not establish simulator input'))
+        throw new Error('Menu preview long press lost simulator input')
+    }
+    const checkPreviewFrame = (name: string, nodes: Node[]) => {
+      const frame = id(nodes, 'one-native-menu-preview-card')?.frame
+      if (!frame) throw new Error(`${name} preview card has no frame`)
+      frames[name] = frame
+      if (Math.abs(frame.width - 240) > 2 || Math.abs(frame.height - 120) > 2)
+        throw new Error(
+          `${name} preview box is ${frame.width}x${frame.height}, expected 240x120`
+        )
+      checks.push({ name, durationMs: 0 })
+      console.log(`PASS ${name}`)
+    }
+    const dismissPreview = async () => {
+      const app = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
+      if (!app) throw new Error('Preview menu has no application frame')
+      point(app.x + app.width - 10, app.y + app.height - 100)
+      await wait('preview menu dismissed', previewGone)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-menu-preview')
+    const initial = await wait(
+      'Menu Preview fixture mounted with no visible preview',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-menu-preview-trigger')?.frame) &&
+        shows(nodes, 'alpha', 'yes', 'none') &&
+        previewGone(nodes)
+    )
+    const initialPath = screenshot('menu-preview-initial.png', initial)
+    checkPreviewPixels(
+      'hidden preview paints no blue inline',
+      initial,
+      initialPath,
+      false
+    )
+    longPress('one-native-menu-preview-trigger')
+    const presented = await wait(
+      'long press presents custom preview above menu items',
+      (nodes) => previewShown(nodes, 'alpha') && menuOpen(nodes)
+    )
+    const presentedPath = screenshot('menu-preview-presented.png', presented)
+    checkPreviewFrame('presented preview carries the explicit 240x120 box', presented)
+    checkPreviewPixels(
+      'presented preview paints its blue card',
+      presented,
+      presentedPath,
+      true
+    )
+    tap({ label: 'Share preview item' })
+    const acted = await wait(
+      'menu action reaches React with a preview mounted',
+      (nodes) => shows(nodes, 'alpha', 'yes', 'preview-share') && previewGone(nodes)
+    )
+    screenshot('menu-preview-acted.png', acted)
+    tap({ label: 'Swap preview' })
+    await wait('preview replacement reaches state', (nodes) =>
+      shows(nodes, 'beta', 'yes', 'preview-share')
+    )
+    longPress('one-native-menu-preview-trigger')
+    const replaced = await wait(
+      'replaced preview presents new content, not stale',
+      (nodes) =>
+        previewShown(nodes, 'beta') &&
+        !has(nodes, 'Preview alpha #4129') &&
+        menuOpen(nodes)
+    )
+    const replacedPath = screenshot('menu-preview-replaced.png', replaced)
+    checkPreviewFrame('replaced preview keeps the explicit 240x120 box', replaced)
+    checkPreviewPixels(
+      'replaced preview paints its blue card',
+      replaced,
+      replacedPath,
+      true
+    )
+    await dismissPreview()
+    tap({ label: 'Remove preview menu' })
+    const removed = await wait(
+      'disposed menu leaves no trigger or preview',
+      (nodes) =>
+        has(nodes, 'Preview menu mounted: no') &&
+        !id(nodes, 'one-native-menu-preview-trigger') &&
+        previewGone(nodes)
+    )
+    screenshot('menu-preview-removed.png', removed)
+    tap({ label: 'Restore preview menu' })
+    await wait('restored menu remounts its trigger', (nodes) =>
+      Boolean(id(nodes, 'one-native-menu-preview-trigger')?.frame)
+    )
+    longPress('one-native-menu-preview-trigger')
+    const restored = await wait(
+      'restored menu presents its preview again',
+      (nodes) => previewShown(nodes, 'beta') && menuOpen(nodes)
+    )
+    const restoredPath = screenshot('menu-preview-restored.png', restored)
+    checkPreviewPixels(
+      'restored preview paints its blue card',
+      restored,
+      restoredPath,
+      true
+    )
+    await dismissPreview()
+    longPress('one-native-menu-preview-plain-trigger')
+    const plain = await wait(
+      'menu without a preview still opens on its subject',
+      (nodes) => menuOpen(nodes) && !id(nodes, 'one-native-menu-preview-card')
+    )
+    screenshot('menu-preview-plain.png', plain)
+    tap({ label: 'Open preview item' })
+    await wait('plain menu action reaches React', (nodes) =>
+      has(nodes, 'Plain action: preview-open')
+    )
+    tap({ id: 'BackButton' })
+    await wait('menu preview recycle: home mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-menu-preview')
+    await wait(
+      'menu preview recycle: fixture remounts without a preview',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-menu-preview-trigger')?.frame) &&
+        shows(nodes, 'alpha', 'yes', 'none') &&
+        previewGone(nodes)
+    )
+    longPress('one-native-menu-preview-trigger')
+    const recycled = await wait(
+      'recycled menu presents its preview again',
+      (nodes) => previewShown(nodes, 'alpha') && menuOpen(nodes)
+    )
+    const recycledPath = screenshot('menu-preview-recycled.png', recycled)
+    checkPreviewFrame('recycled preview keeps the explicit 240x120 box', recycled)
+    checkPreviewPixels(
+      'recycled preview paints its blue card',
+      recycled,
+      recycledPath,
+      true
+    )
+    await dismissPreview()
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'menu-preview-frames.json'),
+      JSON.stringify(frames, null, 2)
+    )
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'menu-preview-pixels.json'),
       JSON.stringify(pixelEvidence, null, 2)
     )
     return

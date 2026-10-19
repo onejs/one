@@ -49,8 +49,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.TabSection` | e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
 | `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
 | `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.Menu` | tabs-menu, menu-primary-action, menu-picker | n/a | OneSwiftMenusLibraryCase | primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound |
-| `One.iOS.ContextMenu` | cover-context, menu-picker | n/a | OneSwiftMenusLibraryCase |  |
+| `One.iOS.Menu` | tabs-menu, menu-primary-action, menu-picker | n/a | OneSwiftMenusLibraryCase | primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, Picker selection with native checkmarks in Menu and ContextMenu, and custom context preview presentation with explicit box, AX content, replacement, disposal, and no-preview subject behavior proven on iOS 27 |
+| `One.iOS.ContextMenu` | cover-context, menu-picker, menu-preview | n/a | OneSwiftMenusLibraryCase |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.Popover` | popover | n/a | OneSwiftPresentationsLibraryCase |  |

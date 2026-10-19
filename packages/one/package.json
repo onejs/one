@@ -441,6 +441,7 @@
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
         "OneNativeCamera": "OneNativeCameraComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
+        "OneNativeContextMenuPreview": "OneNativeContextMenuPreviewComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",
         "OneNativeScrollView": "OneNativeScrollViewComponentView",

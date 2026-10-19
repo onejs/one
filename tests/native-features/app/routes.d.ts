@@ -136,6 +136,7 @@ declare module 'one' {
         | `/one-native-map-services`
         | `/one-native-media`
         | `/one-native-menu-picker`
+        | `/one-native-menu-preview`
         | `/one-native-menu-primary-action`
         | `/one-native-mesh-gradient`
         | `/one-native-message-ui`

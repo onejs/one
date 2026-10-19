@@ -85,5 +85,8 @@ export interface MenuProps extends ViewProps {
 }
 export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel' | 'primaryAction'> & {
     accessibilityLabel?: string;
+    preview?: ReactNode;
+    previewWidth?: number;
+    previewHeight?: number;
 };
 //# sourceMappingURL=types.d.ts.map
