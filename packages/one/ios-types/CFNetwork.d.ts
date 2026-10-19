@@ -600,6 +600,16 @@ export declare function CFNetServiceSetTXTData(theService: CFNetService, txtReco
  */
 export declare function CFNetServiceUnscheduleFromRunLoop(theService: CFNetService, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void;
 /**
+ * func CFNetworkCopyProxiesForAutoConfigurationScript(_ proxyAutoConfigurationScript: CFString, _ targetURL: CFURL, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFArray>?
+ * @availability iOS 2.0+
+ */
+export declare function CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript: _CoreFoundation_CFString, targetURL: _CoreFoundation_CFURL): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (_CoreFoundation_CFError) | null;
+    };
+};
+/**
  * func CFNetworkCopyProxiesForURL(_ url: CFURL, _ proxySettings: CFDictionary) -> Unmanaged<CFArray>
  * @availability iOS 2.0+
  */

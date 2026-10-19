@@ -1085,7 +1085,7 @@ export type CFNotificationCallback = ((arg0: (CFNotificationCenter) | null, arg1
 export declare class CFNotificationCenter extends SDKHandle {
 }
 /** struct CFNotificationName */
-export type CFNotificationName = "cfLocaleCurrentLocaleDidChange" | "cfTimeZoneSystemTimeZoneDidChange" | (number & {});
+export type CFNotificationName = "cfTimeZoneSystemTimeZoneDidChange" | "cfLocaleCurrentLocaleDidChange" | (number & {});
 export declare const CFNotificationName: {
     /**
      * static let cfLocaleCurrentLocaleDidChange: CFNotificationName!
@@ -2810,6 +2810,26 @@ export declare function CFBundleGetVersionNumber(bundle?: (CFBundle) | null): nu
 export declare function CFBundleIsExecutableLoaded(bundle?: (CFBundle) | null): boolean;
 /** func CFBundleLoadExecutable(_ bundle: CFBundle!) -> Bool */
 export declare function CFBundleLoadExecutable(bundle?: (CFBundle) | null): boolean;
+/**
+ * func CFBundleLoadExecutableAndReturnError(_ bundle: CFBundle!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 2.0+
+ */
+export declare function CFBundleLoadExecutableAndReturnError(bundle?: (CFBundle) | null): {
+    $ret: boolean;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFBundlePreflightExecutable(_ bundle: CFBundle!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 2.0+
+ */
+export declare function CFBundlePreflightExecutable(bundle?: (CFBundle) | null): {
+    $ret: boolean;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
 /** func CFBundleUnloadExecutable(_ bundle: CFBundle!) */
 export declare function CFBundleUnloadExecutable(bundle?: (CFBundle) | null): void;
 /** func CFByteOrderGetCurrent() -> CFByteOrder */
@@ -3481,8 +3501,38 @@ export declare function CFPreferencesSetMultiple(keysToSet: (CFDictionary) | nul
 export declare function CFPreferencesSetValue(key: CFString, value: (unknown) | null, applicationID: CFString, userName: CFString, hostName: CFString): void;
 /** func CFPreferencesSynchronize(_ applicationID: CFString, _ userName: CFString, _ hostName: CFString) -> Bool */
 export declare function CFPreferencesSynchronize(applicationID: CFString, userName: CFString, hostName: CFString): boolean;
+/**
+ * func CFPropertyListCreateData(_ allocator: CFAllocator!, _ propertyList: CFPropertyList!, _ format: CFPropertyListFormat, _ options: CFOptionFlags, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!
+ * @availability iOS 4.0+
+ */
+export declare function CFPropertyListCreateData(allocator: (CFAllocator) | null, propertyList: (unknown) | null, format: CFPropertyListFormat, options: number): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
 /** func CFPropertyListCreateDeepCopy(_ allocator: CFAllocator!, _ propertyList: CFPropertyList!, _ mutabilityOption: CFOptionFlags) -> CFPropertyList! */
 export declare function CFPropertyListCreateDeepCopy(allocator: (CFAllocator) | null, propertyList: (unknown) | null, mutabilityOption: number): (unknown) | null;
+/**
+ * func CFPropertyListCreateWithData(_ allocator: CFAllocator!, _ data: CFData!, _ options: CFOptionFlags, _ format: UnsafeMutablePointer<CFPropertyListFormat>!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFPropertyList>!
+ * @availability iOS 4.0+
+ */
+export declare function CFPropertyListCreateWithData(allocator: (CFAllocator) | null, data: (CFData) | null, options: number, format?: (SDKHandle) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFPropertyListCreateWithStream(_ allocator: CFAllocator!, _ stream: CFReadStream!, _ streamLength: CFIndex, _ options: CFOptionFlags, _ format: UnsafeMutablePointer<CFPropertyListFormat>!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFPropertyList>!
+ * @availability iOS 4.0+
+ */
+export declare function CFPropertyListCreateWithStream(allocator: (CFAllocator) | null, stream: (CFReadStream) | null, streamLength: number, options: number, format?: (SDKHandle) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
 /**
  * func CFPropertyListCreateXMLData(_ allocator: CFAllocator!, _ propertyList: CFPropertyList!) -> Unmanaged<CFData>!
  * @availability iOS 2.0+
@@ -3491,6 +3541,16 @@ export declare function CFPropertyListCreateDeepCopy(allocator: (CFAllocator) | 
 export declare function CFPropertyListCreateXMLData(allocator?: (CFAllocator) | null, propertyList?: (unknown) | null): (SDKHandle) | null;
 /** func CFPropertyListIsValid(_ plist: CFPropertyList!, _ format: CFPropertyListFormat) -> Bool */
 export declare function CFPropertyListIsValid(plist: (unknown) | null, format: CFPropertyListFormat): boolean;
+/**
+ * func CFPropertyListWrite(_ propertyList: CFPropertyList!, _ stream: CFWriteStream!, _ format: CFPropertyListFormat, _ options: CFOptionFlags, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> CFIndex
+ * @availability iOS 4.0+
+ */
+export declare function CFPropertyListWrite(propertyList: (unknown) | null, stream: (CFWriteStream) | null, format: CFPropertyListFormat, options: number): {
+    $ret: number;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
 /** func CFRangeMake(_ loc: CFIndex, _ len: CFIndex) -> CFRange */
 export declare function CFRangeMake(loc: number, len: number): CFRange;
 /** func CFReadStreamClose(_ stream: CFReadStream!) */
@@ -4107,6 +4167,26 @@ export declare function CFURLCopyPath(anURL?: (CFURL) | null): (CFString) | null
 export declare function CFURLCopyPathExtension(url?: (CFURL) | null): (CFString) | null;
 /** func CFURLCopyQueryString(_ anURL: CFURL!, _ charactersToLeaveEscaped: CFString!) -> CFString! */
 export declare function CFURLCopyQueryString(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null;
+/**
+ * func CFURLCopyResourcePropertiesForKeys(_ url: CFURL!, _ keys: CFArray!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFDictionary>!
+ * @availability iOS 4.0+
+ */
+export declare function CFURLCopyResourcePropertiesForKeys(url?: (CFURL) | null, keys?: (CFArray) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFURLCopyResourcePropertyForKey(_ url: CFURL!, _ key: CFString!, _ propertyValueTypeRefPtr: UnsafeMutableRawPointer!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 4.0+
+ */
+export declare function CFURLCopyResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValueTypeRefPtr?: (SDKHandle) | null): {
+    $ret: boolean;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
 /** func CFURLCopyResourceSpecifier(_ anURL: CFURL!) -> CFString! */
 export declare function CFURLCopyResourceSpecifier(anURL?: (CFURL) | null): (CFString) | null;
 /** func CFURLCopyScheme(_ anURL: CFURL!) -> CFString! */
@@ -4122,6 +4202,37 @@ export declare function CFURLCopyStrictPath(anURL?: (CFURL) | null): {
 export declare function CFURLCopyUserName(anURL?: (CFURL) | null): (CFString) | null;
 /** func CFURLCreateAbsoluteURLWithBytes(_ alloc: CFAllocator!, _ relativeURLBytes: UnsafePointer<UInt8>!, _ length: CFIndex, _ encoding: CFStringEncoding, _ baseURL: CFURL!, _ useCompatibilityMode: Bool) -> CFURL! */
 export declare function CFURLCreateAbsoluteURLWithBytes(alloc: (CFAllocator) | null, relativeURLBytes: (SDKHandle) | null, length: number, encoding: number, baseURL: (CFURL) | null, useCompatibilityMode: boolean): (CFURL) | null;
+/**
+ * func CFURLCreateBookmarkData(_ allocator: CFAllocator!, _ url: CFURL!, _ options: CFURLBookmarkCreationOptions, _ resourcePropertiesToInclude: CFArray!, _ relativeToURL: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!
+ * @availability iOS 4.0+
+ */
+export declare function CFURLCreateBookmarkData(allocator: (CFAllocator) | null, url: (CFURL) | null, options: CFURLBookmarkCreationOptions, resourcePropertiesToInclude?: (CFArray) | null, relativeToURL?: (CFURL) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFURLCreateBookmarkDataFromFile(_ allocator: CFAllocator!, _ fileURL: CFURL!, _ errorRef: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!
+ * @availability iOS 5.0+
+ */
+export declare function CFURLCreateBookmarkDataFromFile(allocator?: (CFAllocator) | null, fileURL?: (CFURL) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "errorRef": (CFError) | null;
+    };
+};
+/**
+ * func CFURLCreateByResolvingBookmarkData(_ allocator: CFAllocator!, _ bookmark: CFData!, _ options: CFURLBookmarkResolutionOptions, _ relativeToURL: CFURL!, _ resourcePropertiesToInclude: CFArray!, _ isStale: UnsafeMutablePointer<DarwinBoolean>!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!
+ * @availability iOS 4.0+
+ */
+export declare function CFURLCreateByResolvingBookmarkData(allocator: (CFAllocator) | null, bookmark: (CFData) | null, options: CFURLBookmarkResolutionOptions, relativeToURL?: (CFURL) | null, resourcePropertiesToInclude?: (CFArray) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "isStale": boolean;
+        "error": (CFError) | null;
+    };
+};
 /** func CFURLCreateCopyAppendingPathComponent(_ allocator: CFAllocator!, _ url: CFURL!, _ pathComponent: CFString!, _ isDirectory: Bool) -> CFURL! */
 export declare function CFURLCreateCopyAppendingPathComponent(allocator: (CFAllocator) | null, url: (CFURL) | null, pathComponent: (CFString) | null, isDirectory: boolean): (CFURL) | null;
 /** func CFURLCreateCopyAppendingPathExtension(_ allocator: CFAllocator!, _ url: CFURL!, _ extension: CFString!) -> CFURL! */
@@ -4132,6 +4243,26 @@ export declare function CFURLCreateCopyDeletingLastPathComponent(allocator?: (CF
 export declare function CFURLCreateCopyDeletingPathExtension(allocator?: (CFAllocator) | null, url?: (CFURL) | null): (CFURL) | null;
 /** func CFURLCreateData(_ allocator: CFAllocator!, _ url: CFURL!, _ encoding: CFStringEncoding, _ escapeWhitespace: Bool) -> CFData! */
 export declare function CFURLCreateData(allocator: (CFAllocator) | null, url: (CFURL) | null, encoding: number, escapeWhitespace: boolean): (CFData) | null;
+/**
+ * func CFURLCreateFilePathURL(_ allocator: CFAllocator!, _ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!
+ * @availability iOS 4.0+
+ */
+export declare function CFURLCreateFilePathURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFURLCreateFileReferenceURL(_ allocator: CFAllocator!, _ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!
+ * @availability iOS 4.0+
+ */
+export declare function CFURLCreateFileReferenceURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): {
+    $ret: (SDKHandle) | null;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
 /** func CFURLCreateFromFileSystemRepresentation(_ allocator: CFAllocator!, _ buffer: UnsafePointer<UInt8>!, _ bufLen: CFIndex, _ isDirectory: Bool) -> CFURL! */
 export declare function CFURLCreateFromFileSystemRepresentation(allocator: (CFAllocator) | null, buffer: (SDKHandle) | null, bufLen: number, isDirectory: boolean): (CFURL) | null;
 /** func CFURLCreateFromFileSystemRepresentationRelativeToBase(_ allocator: CFAllocator!, _ buffer: UnsafePointer<UInt8>!, _ bufLen: CFIndex, _ isDirectory: Bool, _ baseURL: CFURL!) -> CFURL! */
@@ -4215,6 +4346,36 @@ export declare function CFURLHasDirectoryPath(anURL?: (CFURL) | null): boolean;
  */
 export declare function CFURLIsFileReferenceURL(url?: (CFURL) | null): boolean;
 /**
+ * func CFURLResourceIsReachable(_ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 4.0+
+ */
+export declare function CFURLResourceIsReachable(url?: (CFURL) | null): {
+    $ret: boolean;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFURLSetResourcePropertiesForKeys(_ url: CFURL!, _ keyedPropertyValues: CFDictionary!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 4.0+
+ */
+export declare function CFURLSetResourcePropertiesForKeys(url?: (CFURL) | null, keyedPropertyValues?: (CFDictionary) | null): {
+    $ret: boolean;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
+ * func CFURLSetResourcePropertyForKey(_ url: CFURL!, _ key: CFString!, _ propertyValue: CFTypeRef!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 4.0+
+ */
+export declare function CFURLSetResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValue?: (unknown) | null): {
+    $ret: boolean;
+    $out: {
+        "error": (CFError) | null;
+    };
+};
+/**
  * func CFURLSetTemporaryResourcePropertyForKey(_ url: CFURL!, _ key: CFString!, _ propertyValue: CFTypeRef!)
  * @availability iOS 4.0+
  */
@@ -4229,6 +4390,16 @@ export declare function CFURLStartAccessingSecurityScopedResource(url?: (CFURL) 
  * @availability iOS 8.0+
  */
 export declare function CFURLStopAccessingSecurityScopedResource(url?: (CFURL) | null): void;
+/**
+ * func CFURLWriteBookmarkDataToFile(_ bookmarkRef: CFData!, _ fileURL: CFURL!, _ options: CFURLBookmarkFileCreationOptions, _ errorRef: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
+ * @availability iOS 5.0+
+ */
+export declare function CFURLWriteBookmarkDataToFile(bookmarkRef: (CFData) | null, fileURL: (CFURL) | null, options: number): {
+    $ret: boolean;
+    $out: {
+        "errorRef": (CFError) | null;
+    };
+};
 /** func CFUUIDCreate(_ alloc: CFAllocator!) -> CFUUID! */
 export declare function CFUUIDCreate(alloc?: (CFAllocator) | null): (CFUUID) | null;
 /** func CFUUIDCreateFromString(_ alloc: CFAllocator!, _ uuidStr: CFString!) -> CFUUID! */
