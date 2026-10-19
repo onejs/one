@@ -68,13 +68,14 @@ using namespace facebook::react;
   _item = 0;
 }
 
-// an unmounted content view stays wherever the app placed it, empty
+// an unmounted content view stays wherever the app placed it, empty and with no height
 - (void)releaseContent {
   if (!_content) return;
   for (UIView *child in _children) [child removeFromSuperview];
   if (_touchHandler.view) [_touchHandler detachFromView:_touchHandler.view];
   _content.onWidth = nil;
   _content.onWindow = nil;
+  [_content retire];
   _content = nil;
   [OneNativeContentRegistry unmount:_contentId];
   _contentId = 0;
@@ -135,12 +136,23 @@ using namespace facebook::react;
   return nil;
 }
 
-- (void)prepareForRecycle {
-  [super prepareForRecycle];
+// the registry recycles a view or, when its pool is full, invalidates it instead, so both
+// end the mount here
+- (void)retire {
   [self unregister];
   [self releaseContent];
   [_children removeAllObjects];
   _state.reset();
+}
+
+- (void)prepareForRecycle {
+  [super prepareForRecycle];
+  [self retire];
+}
+
+- (void)invalidate {
+  [super invalidate];
+  [self retire];
 }
 
 @end

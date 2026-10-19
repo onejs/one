@@ -25,8 +25,12 @@ public final class OneNativeContentView: UIView {
   public var fixedHeight: CGFloat = 0 { didSet { if oldValue != fixedHeight { resized() } } }
   private var measuredHeight: CGFloat = 0
   private var reportedWidth: CGFloat = -1
+  // an unmounted content stays wherever the app placed it, empty and with no height
+  private var retired = false
 
-  var height: CGFloat { fixedHeight > 0 ? fixedHeight : measuredHeight > 0 ? measuredHeight : estimatedHeight }
+  var height: CGFloat {
+    retired ? 0 : fixedHeight > 0 ? fixedHeight : measuredHeight > 0 ? measuredHeight : estimatedHeight
+  }
 
   // zero is unset, so crossing it always applies; positive changes under half a point do not
   public func setMeasuredHeight(_ next: CGFloat) {
@@ -39,6 +43,13 @@ public final class OneNativeContentView: UIView {
   private func resized() {
     invalidateIntrinsicContentSize()
     onHeight?()
+  }
+
+  public func retire() {
+    guard !retired else { return }
+    retired = true
+    resized()
+    superview?.setNeedsLayout()
   }
 
   public override var intrinsicContentSize: CGSize { CGSize(width: UIView.noIntrinsicMetric, height: height) }

@@ -11,9 +11,14 @@ import { callSDK, callSDKAsync } from './sdk/wire'
 import NativeContent from './specs/OneNativeContentNativeComponent'
 import type { UIKitContentProps, UIKitContentSource } from './types'
 
-// the mount holding each item of a source, so a second mount for an item is rejected
-const claims = new WeakMap<object, Map<number, object>>()
+// the mount holding each item of a source, so a second mount for an item is rejected.
+// keyed by the native object, since separate wrappers can stand for one source
+const claims = new Map<unknown, Map<number, object>>()
 const sourceIds = new WeakMap<object, number>()
+
+function nativeIdentity(source: UIKitContentSource) {
+  return source.$handle.identity ?? source.$handle
+}
 
 function sourceId(source: UIKitContentSource) {
   let id = sourceIds.get(source)
@@ -45,20 +50,23 @@ export function UIKitContent({
   if (source && !Number.isInteger(item))
     throw new Error('Swift.UIKitContent source needs an integer item')
   const owner = useRef({}).current
-  if (source && claims.get(source)?.get(item!) && claims.get(source)?.get(item!) !== owner)
-    throw duplicate(item!)
+  const identity = source && nativeIdentity(source)
+  const claimed = source && claims.get(identity)?.get(item!)
+  if (claimed && claimed !== owner) throw duplicate(item!)
   // mounts in the same commit render before either claims, so the claim checks again
   useLayoutEffect(() => {
-    if (!source) return
-    const items = claims.get(source) ?? new Map<number, object>()
-    claims.set(source, items)
+    if (!identity) return
+    const items = claims.get(identity) ?? new Map<number, object>()
+    claims.set(identity, items)
     const held = items.get(item!)
     if (held && held !== owner) throw duplicate(item!)
     items.set(item!, owner)
     return () => {
-      if (items.get(item!) === owner) items.delete(item!)
+      if (items.get(item!) !== owner) return
+      items.delete(item!)
+      if (!items.size && claims.get(identity) === items) claims.delete(identity)
     }
-  }, [source, item, owner])
+  }, [identity, item, owner])
 
   const contentId = useMemo(() => callSDK<number>('OneNativeViews', 2, null, []), [])
   const deliver = useRef(onView)
