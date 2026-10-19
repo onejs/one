@@ -929,6 +929,13 @@ export function pickOf(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined
 }
 
 export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined): Verdict {
+  // CFBase.h defines this as a special CFAllocatorCreate argument, not an
+  // allocator object. its sentinel address (0x3ab) cannot enter an ARC-owned
+  // handle. keep the unsupported symbol visible in coverage, never a getter
+  // that would eagerly retain it when CoreFoundation is imported.
+  if (symbol.identifier.precise === 'c:@kCFAllocatorUseContext') {
+    return { covered: false, reason: 'non-object C pointer sentinel cannot be retained as an SDK handle' }
+  }
   const kind = symbol.kind.identifier
   const own = kind === 'swift.typealias' ? (symbol.swiftGenerics?.parameters ?? []).map((p) => p.name) : []
   const generics = bridge.generics(symbol, owner, own)
