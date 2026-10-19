@@ -127,3 +127,231 @@ describe('marker and ViewSlot hosts', () => {
     expect(() => emit([marker])).toThrow('captured by a host')
   })
 })
+
+const sidedInventory: Declaration[] = [
+  declaration({
+    name: 'trim',
+    parameters: [{ label: '_', name: 'text', type: 'Swift.String' }],
+  }),
+  declaration({
+    name: 'trim',
+    parameters: [
+      { label: 'edge', name: 'edge', type: 'SwiftUI.Side' },
+      { label: 'full', name: 'full', type: 'Swift.Bool' },
+      { label: 'content', name: 'content', type: '() -> V' },
+    ],
+    requirements: ['V : SwiftUI.View'],
+  }),
+  declaration({
+    owner: 'SwiftUI.Group',
+    kind: 'init',
+    name: 'init',
+    parameters: [{ label: 'content', name: 'content', type: '() -> Content' }],
+    requirements: ['Content : SwiftUI.View'],
+  }),
+  ...['port', 'starboard'].map((name) =>
+    declaration({
+      owner: 'SwiftUI.Side',
+      kind: 'static',
+      name,
+      parameters: [],
+      type: 'SwiftUI.Side',
+    })
+  ),
+]
+
+const sidedMarker = {
+  name: 'OneNativeTrimActions',
+  publicName: null,
+  props: { side: 'string', full: 'boolean' },
+  events: {},
+  host: {
+    view: 'Group',
+    children: 'content',
+    initial: { side: '"starboard"', full: 'true' },
+    layout: 'marker',
+  },
+}
+
+const sidedHost = {
+  name: 'OneNativeTrim',
+  publicName: 'Trim',
+  props: {},
+  events: {},
+  host: {
+    modifier: 'trim',
+    childStack: 'Group',
+    marker: {
+      label: 'content',
+      slot: 'OneNativeTrimActions',
+      key: {
+        prop: 'side',
+        label: 'edge',
+        cases: ['port', 'starboard'],
+        values: { full: 'full' },
+      },
+    },
+    layout: 'container',
+  },
+}
+
+const emitSided = (components: readonly unknown[]) => {
+  const outputs = new Map<string, string>()
+  emitContainerHosts('', outputs, sidedInventory, 17, 27, components as never)
+  return outputs
+}
+
+describe('keyed markers', () => {
+  it('repeats the modifier once per case with the case and its state', () => {
+    const outputs = emitSided([sidedHost, sidedMarker])
+    const swift = outputs.get('ios/Generated/OneNativeTrimView.swift')!
+    expect(swift).toContain(
+      '.trim(edge: SwiftUI.Side.port, full: model.portFull, content: {'
+    )
+    expect(swift).toContain(
+      '.trim(edge: SwiftUI.Side.starboard, full: model.starboardFull, content: {'
+    )
+    expect(swift).toContain('if let port = model.port { port }')
+    expect(swift).toContain('@Published var portFull: Bool = true')
+  })
+
+  it('routes markers by key and republishes on removal or reconfiguration', () => {
+    const outputs = emitSided([sidedHost, sidedMarker])
+    const swift = outputs.get('ios/Generated/OneNativeTrimView.swift')!
+    expect(swift).toContain('guard let marker = child as? OneNativeTrimActionsView else')
+    expect(swift).toContain('if marker.side == "port" {')
+    expect(swift).toContain('} else {')
+    expect(swift).toContain('model.port = marker.compositionContent()')
+    expect(swift).toContain('model.portFull = marker.full')
+    expect(swift).toContain(
+      'marker.onConfigurationChange = { [weak self] in self?.republish() }'
+    )
+    expect(swift).toContain('for marker in markers { publish(marker) }')
+    expect(swift).toContain('private var markers: [OneNativeTrimActionsView] = []')
+  })
+
+  it('keeps marker props as view config that notifies the parent', () => {
+    const outputs = emitSided([sidedHost, sidedMarker])
+    const swift = outputs.get('ios/Generated/OneNativeTrimActionsView.swift')!
+    expect(swift).toContain('public var side: String = "starboard"')
+    expect(swift).toContain('public var full: Bool = true')
+    expect(swift).toContain('var onConfigurationChange: (() -> Void)?')
+    expect(swift).toContain('if changed { onConfigurationChange?() }')
+    expect(swift).not.toContain('private let model')
+  })
+
+  it('rejects a case the SDK enum does not declare', () => {
+    const bad = {
+      ...sidedHost,
+      host: {
+        ...sidedHost.host,
+        marker: {
+          ...sidedHost.host.marker,
+          key: { ...sidedHost.host.marker.key, cases: ['port', 'lee'] },
+        },
+      },
+    }
+    expect(() => emitSided([bad, sidedMarker])).toThrow('has no SDK case lee')
+  })
+
+  it('rejects a key over a label with no SDK cases', () => {
+    const stringInventory: Declaration[] = [
+      declaration({
+        name: 'shade',
+        parameters: [
+          { label: 'tone', name: 'tone', type: 'Swift.String' },
+          { label: 'content', name: 'content', type: '() -> V' },
+        ],
+        requirements: ['V : SwiftUI.View'],
+      }),
+      declaration({
+        owner: 'SwiftUI.Group',
+        kind: 'init',
+        name: 'init',
+        parameters: [{ label: 'content', name: 'content', type: '() -> Content' }],
+        requirements: ['Content : SwiftUI.View'],
+      }),
+    ]
+    const outputs = new Map<string, string>()
+    const shadeMarker = {
+      name: 'OneNativeShadeActions',
+      publicName: null,
+      props: { tone: 'string' },
+      events: {},
+      host: { view: 'Group', children: 'content', layout: 'marker' },
+    }
+    const shadeHost = {
+      name: 'OneNativeShade',
+      publicName: 'Shade',
+      props: {},
+      events: {},
+      host: {
+        modifier: 'shade',
+        childStack: 'Group',
+        marker: {
+          label: 'content',
+          slot: 'OneNativeShadeActions',
+          key: { prop: 'tone', label: 'tone', cases: ['light'] },
+        },
+        layout: 'container',
+      },
+    }
+    expect(() =>
+      emitContainerHosts('', outputs, stringInventory, 17, 27, [shadeHost, shadeMarker] as never)
+    ).toThrow('has no cases to key markers by')
+  })
+
+  it('rejects props on a single marker and a ViewSlot fallback on keyed cases', () => {
+    const single = {
+      ...sidedHost,
+      host: { ...sidedHost.host, marker: { label: 'content', slot: 'OneNativeTrimActions' } },
+    }
+    expect(() => emitSided([single, sidedMarker])).toThrow('key them by property')
+    const slotted = {
+      ...sidedHost,
+      props: { slotName: 'string', slotValues: 'string' },
+      events: { onTrimEvent: { name: 'string', value: 'string' } },
+      host: {
+        ...sidedHost.host,
+        viewSlot: { name: 'slotName', values: 'slotValues', event: 'onTrimEvent' },
+      },
+    }
+    expect(() => emitSided([slotted, sidedMarker])).toThrow('not keyed cases')
+  })
+
+  it('rejects one label claimed by two roles', () => {
+    // children and the marker sharing content would capture the marker while
+    // the body renders only the children, so the marker silently disappears
+    const shared = {
+      name: 'OneNativeBanner',
+      publicName: 'Banner',
+      props: {},
+      events: {},
+      host: {
+        view: 'Group',
+        children: 'content',
+        marker: { label: 'content', slot: 'OneNativeBannerContent' },
+        layout: 'container',
+      },
+    }
+    expect(() => emit([shared, marker])).toThrow('label content is claimed by children and marker')
+    const argued = {
+      ...host,
+      props: { ...host.props, overlay: 'string' },
+      host: { ...host.host, arguments: { placement: 'placement', content: 'overlay' } },
+    }
+    expect(() => emit([argued, marker])).toThrow(
+      'label content is claimed by argument and marker'
+    )
+  })
+
+  it('rejects a marker carrying its own SDK call', () => {
+    const called = {
+      ...sidedMarker,
+      host: { ...sidedMarker.host, arguments: { title: 'side' } },
+    }
+    expect(() => emitSided([sidedHost, called])).toThrow(
+      'carries config for its parent'
+    )
+  })
+})

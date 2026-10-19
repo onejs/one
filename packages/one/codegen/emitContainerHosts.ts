@@ -27,8 +27,16 @@ export type HostRecipe = {
   presented?: { label: string; slot: string; modifiers?: readonly string[] }
   // a marker child React mounts among the children, captured out of the published
   // content: the builder `label` shows its composed content, the last mounted wins,
-  // and the builder shows nothing while no marker is mounted
-  marker?: { label: string; slot: string }
+  // and the builder shows nothing while no marker is mounted. with `key`, markers
+  // split by that marker prop instead: the modifier repeats once per case, each
+  // showing the last marker with that value. the key `label` takes the case,
+  // converted as the label's SDK enum type, and each `values` entry keeps a marker
+  // prop as per-case state filling that SDK label
+  marker?: {
+    label: string
+    slot: string
+    key?: { prop: string; label: string; cases: readonly string[]; values?: Record<string, string> }
+  }
   // while the `name` prop is non-empty, the host applies the generated ViewSlot with
   // that name to the base instead of the SDK call, with the marker as its content.
   // slot events reach React through `event`
@@ -484,6 +492,9 @@ export function emitContainerHosts(
           ...(recipe.selection ? [recipe.selection.label] : []),
           ...(recipe.builder ? [recipe.builder.label] : []),
           ...(recipe.marker ? [recipe.marker.label] : []),
+          ...(recipe.marker?.key
+            ? [recipe.marker.key.label, ...Object.keys(recipe.marker.key.values ?? {})]
+            : []),
           ...(recipe.items ? [recipe.items.label, ...(recipe.items.children ? [recipe.items.children] : [])] : []),
           ...(recipe.columns ? [recipe.columns.label] : []),
           ...(recipe.presented ? [recipe.presented.label] : []),
@@ -577,8 +588,37 @@ export function emitContainerHosts(
       fail(`presented slot ${presented.slot} has no slot host`)
     const marker = recipe.marker
     const viewSlot = recipe.viewSlot
-    const markerComponent = marker && components.find((c) => c.name === marker.slot)
+    const key = marker?.key
+    const markerComponent = marker ? components.find((c) => c.name === marker.slot) : undefined
     if (marker && !markerComponent) fail(`marker slot ${marker.slot} names no component`)
+    const markerConfigures = markerComponent ? Object.keys(markerComponent.props).length > 0 : false
+    // every label of the SDK call has one owner: two roles claiming it would
+    // silently render only the first one argumentFor checks
+    const roleLabels: Array<[string, string]> = []
+    for (const label of Object.keys(args)) roleLabels.push([label, 'argument'])
+    for (const label of Object.keys(recipe.labels ?? {})) roleLabels.push([label, 'label'])
+    for (const label of Object.keys(recipe.values ?? {})) roleLabels.push([label, 'value'])
+    if (recipe.children) roleLabels.push([recipe.children, 'children'])
+    if (recipe.binding) roleLabels.push([recipe.binding.label, 'binding'])
+    if (recipe.action) roleLabels.push([recipe.action.label, 'action'])
+    if (recipe.selection) roleLabels.push([recipe.selection.label, 'selection'])
+    if (recipe.builder) roleLabels.push([recipe.builder.label, 'builder'])
+    if (recipe.items) {
+      roleLabels.push([recipe.items.label, 'items'])
+      if (recipe.items.children) roleLabels.push([recipe.items.children, 'items children'])
+    }
+    if (recipe.columns) roleLabels.push([recipe.columns.label, 'columns'])
+    if (presented) roleLabels.push([presented.label, 'presented'])
+    if (marker) roleLabels.push([marker.label, 'marker'])
+    if (key) {
+      roleLabels.push([key.label, 'marker key'])
+      for (const label of Object.keys(key.values ?? {})) roleLabels.push([label, 'marker value'])
+    }
+    const ownersOf = new Map<string, string[]>()
+    for (const [label, role] of roleLabels)
+      ownersOf.set(label, [...(ownersOf.get(label) ?? []), role])
+    for (const [label, owners] of ownersOf)
+      if (owners.length > 1) fail(`label ${label} is claimed by ${owners.join(' and ')}`)
     const markerHost = markerComponent?.host
     if (markerHost && 'slot' in markerHost) fail(`marker slot ${marker!.slot} is presented, not composed`)
     if (markerHost && 'keys' in markerHost) fail(`marker slot ${marker!.slot} is a data row, not a marker`)
@@ -587,6 +627,42 @@ export function emitContainerHosts(
     if (!markerHost && marker) fail(`marker slot ${marker.slot} has no host`)
     if (marker && recipe.layout === 'leaf') fail('a leaf holds no marker')
     if (marker && recipe.items) fail('a host captures a marker or keyed rows, not both')
+    if (key && !recipe.modifier) fail('keyed markers repeat the modifier')
+    if (viewSlot && key) fail('a ViewSlot fallback shows one marker, not keyed cases')
+    if (key && key.cases.length === 0) fail('keyed markers need at least one case')
+    if (marker?.key) {
+      if (markerComponent?.props[marker.key.prop] !== 'string')
+        fail(`marker key ${marker.key.prop} must be a string prop of ${marker.slot}`)
+      for (const markerProp of Object.values(marker.key.values ?? {}))
+        if (!(markerProp in (markerComponent?.props ?? {})))
+          fail(`marker prop ${markerProp} is not in ${marker.slot}`)
+      if (markerComponent)
+        for (const prop of Object.keys(markerComponent.props))
+          if (prop !== marker.key.prop && !Object.values(marker.key.values ?? {}).includes(prop))
+            fail(`marker prop ${prop} is neither the key nor a case value`)
+    }
+    if (marker && !marker.key && markerComponent && Object.keys(markerComponent.props).length > 0)
+      fail(`marker slot ${marker.slot} takes no props a single marker could read; key them by property`)
+    if (
+      recipe.layout === 'marker' &&
+      (Object.keys(args).length > 0 ||
+        recipe.marker !== undefined ||
+        recipe.viewSlot !== undefined ||
+        recipe.binding !== undefined ||
+        recipe.selection !== undefined ||
+        recipe.action !== undefined ||
+        recipe.items !== undefined ||
+        recipe.columns !== undefined ||
+        recipe.presented !== undefined ||
+        recipe.builder !== undefined ||
+        recipe.childrenFallback !== undefined ||
+        Object.keys(recipe.labels ?? {}).length > 0 ||
+        Object.keys(recipe.values ?? {}).length > 0 ||
+        Object.keys(recipe.chains ?? {}).length > 0 ||
+        recipe.context !== undefined ||
+        (recipe.accessible !== undefined && recipe.accessible !== false))
+    )
+      fail('a marker carries config for its parent, not its own call')
     if (recipe.layout === 'marker' && !components.some((c) => c.host !== undefined && 'marker' in c.host && (c.host as HostRecipe).marker?.slot === name))
       fail('a marker layout is captured by a host naming it as its marker slot')
     if (viewSlot && !marker) fail('a ViewSlot fallback shows the marker')
@@ -606,8 +682,41 @@ export function emitContainerHosts(
     let contextType = ''
     // the rows React mounted for one item, found in the lookup the body builds once
     const mountedRows = `ForEach(mounted[[${rowLookup}]] ?? []) { row in\n  row.content\n}`
-    const argumentFor = (parameter: Declaration['parameters'][number], sorted: boolean): Argument => {
+    const argumentFor = (
+      parameter: Declaration['parameters'][number],
+      sorted: boolean,
+      caseName?: string
+    ): Argument => {
       const label = parameter.label
+      const keyCase = key && caseName ? { key, caseName } : undefined
+      if (keyCase && label === keyCase.key.label) {
+        if (valueOf(parameter.type)?.kind !== 'enum')
+          fail(`${label}: ${parameter.type} has no cases to key markers by`)
+        return {
+          label,
+          prop: '',
+          closure: false,
+          swift: `${parameter.type.replace(/\?$/, '')}.${keyCase.caseName}`,
+        }
+      }
+      const keyedProp = keyCase?.key.values?.[label]
+      if (keyCase && keyedProp) {
+        const kind = markerComponent?.props[keyedProp]
+        const state = `model.${keyCase.caseName}${upper(keyedProp)}`
+        const base = parameter.type.replace(/\?$/, '')
+        if (kind?.startsWith('boolean') && parameter.type === 'Swift.Bool')
+          return { label, prop: '', closure: false, swift: state }
+        if (kind?.startsWith('string') && parameter.type === 'Swift.String')
+          return { label, prop: '', closure: false, swift: state }
+        if (kind?.startsWith('Double') && NUMBERS.includes(base) && !parameter.type.endsWith('?'))
+          return {
+            label,
+            prop: '',
+            closure: false,
+            swift: base === 'Swift.Double' ? state : `${base.split('.').at(-1)}(${state})`,
+          }
+        return fail(`${label}: ${parameter.type} cannot come from marker ${keyedProp}: ${kind}`)
+      }
       if (label === presented?.label) {
         return { label, prop: '', closure: true, swift: presentedBody }
       }
@@ -668,7 +777,13 @@ export function emitContainerHosts(
       if (label === marker?.label) {
         if (!/^(@escaping )?\(\) -> \w+$/.test(parameter.type))
           fail(`${label}: ${parameter.type} is not a builder the marker can fill`)
-        return { label, prop: '', closure: true, swift: 'if let marker = model.marker { marker }' }
+        const shown = keyCase ? keyCase.caseName : 'marker'
+        return {
+          label,
+          prop: '',
+          closure: true,
+          swift: `if let ${shown} = model.${shown} { ${shown} }`,
+        }
       }
       const shown = recipe.labels?.[label]
       if (shown) {
@@ -932,19 +1047,28 @@ ${cases.join('\n')}
       const initializer = initializerFor(wanted(without))
       const used = initializer.parameters.filter((p) => wanted(without).has(p.label))
       const sorted = recipe.binding !== undefined && !without.includes(recipe.binding.label)
-      const values = used.map((p) => chain(initializer, p, argumentFor(p, sorted)))
-      const rendered = values.map((value) => {
-        const swift = value.closure
-          ? `{${value.parameter ? ` ${value.parameter} in` : ''}\n  ${indent(value.swift, 2)}\n}`
-          : value.swift
-        return value.label === '_' ? swift : `${value.label}: ${swift}`
-      })
+      const renderArgs = (cased: Argument[]) =>
+        cased.map((value) => {
+          const swift = value.closure
+            ? `{${value.parameter ? ` ${value.parameter} in` : ''}\n  ${indent(value.swift, 2)}\n}`
+            : value.swift
+          return value.label === '_' ? swift : `${value.label}: ${swift}`
+        })
+      const values = used.map((p) => chain(initializer, p, argumentFor(p, sorted, key?.cases[0])))
+      const rendered = renderArgs(values)
+      const receiver = recipe.surface ? 'Color.clear\n.contentShape(Rectangle())' : contentBody
+      const applied = key
+        ? `${receiver}${key.cases
+            .map(
+              (c) =>
+                `\n.${recipe.modifier}(${renderArgs(used.map((p) => chain(initializer, p, argumentFor(p, sorted, c)))).join(', ')})`
+            )
+            .join('')}`
+        : `${receiver}\n.${recipe.modifier}(${rendered.join(', ')})`
       const optional = builder?.optional && !without.includes(builder.label)
       const call = builtCall(
         initializer,
-        recipe.modifier
-          ? `${recipe.surface ? 'Color.clear\n.contentShape(Rectangle())' : contentBody}\n.${recipe.modifier}(${rendered.join(', ')})`
-          : `${recipe.view}(${rendered.join(', ')})`,
+        recipe.modifier ? applied : `${recipe.view}(${rendered.join(', ')})`,
         optional ? callFor([...without, builder!.label]).call : undefined
       )
       const urls = values.filter((value) => value.url)
@@ -979,6 +1103,15 @@ ${cases.join('\n')}
       ),
       ...columnVersions
     )
+    if (key) {
+      const parameter = full.initializer.parameters.find((p) => p.label === key.label)!
+      for (const c of key.cases) {
+        const found =
+          valueOf(parameter.type)?.cases?.find((item) => item.name === c) ??
+          fail(`${key.label} has no SDK case ${c}`)
+        if (found.ios > Math.max(version, floor)) fail(`${key.label} case ${c} needs iOS ${found.ios}`)
+      }
+    }
     const guarded = sdkGuard(
       version,
       `  if #available(iOS ${version}, *) {\n    ${indent(slotted, 4)}\n  } else {\n    EmptyView()\n  }`,
@@ -989,6 +1122,8 @@ ${cases.join('\n')}
         ? `Group {${guarded.startsWith('\n') ? guarded : `\n${guarded}\n`}}`
         : slotted
     const converted = (label: string) => {
+      if (label === key?.label || label in (key?.values ?? {}))
+        fail(`modifier refers to $${label}, which differs per marker case`)
       const value = full.values.find((v) => v.label === label)
       if (!value || value.closure)
         fail(`modifier refers to $${label}, which is not a converted argument`)
@@ -1223,8 +1358,12 @@ ${cases.join('\n')}
     const columns = recipe.columns
     if (columns && !items) fail('columns show the items')
     if (columns && component.props[columns.prop] !== 'string') fail(`columns prop ${columns.prop} must be a string`)
+    // a marker's props configure its parent, so they live on the view with the
+    // callback the parent republishes through, not in a model
+    const config = markerLayout ? fields : []
+    const stored = markerLayout ? [] : fields
     const hasModel =
-      fields.length > 0 || measured || marker !== undefined || viewSlot !== undefined ||
+      stored.length > 0 || measured || marker !== undefined || viewSlot !== undefined ||
       binding !== undefined || selection !== undefined || context !== undefined ||
       action !== undefined || accessible
     const contentFields = [
@@ -1265,6 +1404,20 @@ ${cases.join('\n')}
       ? (recipe.initial?.[binding.prop] ?? (boundType === 'Bool' ? 'false' : boundType === 'Double' ? '0' : '""'))
       : ''
     const configured = fields
+    // a per-case value starts where the marker's own config starts
+    const markerInitial = (markerProp: string) => {
+      const kind = markerComponent?.props[markerProp] ?? ''
+      return (
+        (markerHost as HostRecipe)?.initial?.[markerProp] ??
+        (kind.startsWith('boolean')
+          ? 'false'
+          : kind.startsWith('Double')
+            ? '0'
+            : kind.startsWith('ColorValue')
+              ? 'nil'
+              : '""')
+      )
+    }
     const viewFields = [
       ...(binding ? [`  public var onChange: ((${boundType}, Int, Int) -> Void)?`] : []),
       ...(selection ? ['  public var onSelectionChange: ((String) -> Void)?'] : []),
@@ -1282,7 +1435,11 @@ ${cases.join('\n')}
             '  private var traitRegistration: NSObjectProtocol?',
           ]
         : []),
-      ...(marker ? ['  private var markers: [UIView] = []'] : []),
+      ...config.map(({ prop, kind, initial }) => `  public var ${prop}: ${kind} = ${initial}`),
+      ...(markerLayout && fields.length ? ['  var onConfigurationChange: (() -> Void)?'] : []),
+      ...(marker
+        ? [`  private var markers: [${key ? `${marker.slot}View` : 'UIView'}] = []`]
+        : []),
     ]
     const initLines = [
       ...(hasModel ? [`    let model = ${short}Model()`, '    self.model = model'] : []),
@@ -1335,9 +1492,18 @@ private struct ${short}Sort: SortComparator, Hashable {
 private final class ${short}Model: ObservableObject {
 ${[
   ...(binding ? [`  @Published var controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
-  ...fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
+  ...stored.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
   ...(measured ? ['  var onHeight: ((CGFloat) -> Void)?'] : []),
-  ...(marker ? ['  @Published var marker: AnyView?'] : []),
+  ...(marker && !key ? ['  @Published var marker: AnyView?'] : []),
+  ...(key
+    ? key.cases.flatMap((c) => [
+        `  @Published var ${c}: AnyView?`,
+        ...Object.entries(key.values ?? {}).map(
+          ([, markerProp]) =>
+            `  @Published var ${c}${upper(markerProp)}: ${swiftField(markerComponent?.props[markerProp] ?? 'string')} = ${markerInitial(markerProp)}`
+        ),
+      ])
+    : []),
   ...(viewSlot
     ? [
         '  var onSDKEvent: ((String, String) -> Void)?',
@@ -1589,7 +1755,16 @@ ${[
         `    if let next = model.controlled.applying(${binding.prop}, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }`,
       ]
     : []),
- ...configured.map(({ prop }) =>
+ ...(markerLayout
+    ? [
+        `    let changed = ${configured.map(({ prop }) => `self.${prop} != ${prop}`).join(' || ')}`,
+        ...configured.map(
+          ({ prop }) => `    if self.${prop} != ${prop} { self.${prop} = ${prop} }`
+        ),
+        '    if changed { onConfigurationChange?() }',
+      ]
+    : []),
+  ...(!markerLayout ? configured : []).map(({ prop }) =>
     prop === items?.prop
       ? `    if model.${prop} != ${prop} {
       do { model.items = try JSONDecoder().decode([${short}Item].self, from: Data(${prop}.utf8)) }
@@ -1694,19 +1869,19 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
   public override func propagateActive(_ active: Bool) {
     super.propagateActive(active)
     // markers stay out of childViews so SwiftUI can position their content.
-    for marker in markers { (marker as? OneNativeComposable)?.propagateActive(active) }
+    for marker in markers { ${key ? 'marker.propagateActive(active)' : '(marker as? OneNativeComposable)?.propagateActive(active)'} }
   }
 
   // a marker carries its own subtree, so it is captured rather than published with
   // the base content. anything else is base content.
   public override func insertChild(_ child: UIView, at index: Int) {
-    guard child is ${marker.slot}View else {
+    guard ${key && marker ? `let marker = child as? ${marker.slot}View` : `child is ${marker!.slot}View`} else {
       super.insertChild(child, at: index)
       return
     }
-    markers.append(child)
-    (child as? OneNativeComposable)?.composeInto(self)
-    model.marker = (child as? OneNativeComposable)?.compositionContent()
+    markers.append(${key ? 'marker' : 'child'})
+${key && markerConfigures ? '    marker.onConfigurationChange = { [weak self] in self?.republish() }\n' : ''}    ${key ? 'marker.composeInto(self)' : '(child as? OneNativeComposable)?.composeInto(self)'}
+    ${key ? 'publish(marker)' : 'model.marker = (child as? OneNativeComposable)?.compositionContent()'}
   }
 
   public override func removeChild(_ child: UIView) {
@@ -1715,10 +1890,38 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
       return
     }
     markers.removeAll { $0 === child }
-    (child as? OneNativeComposable)?.decompose()
-    model.marker = (markers.last as? OneNativeComposable)?.compositionContent()
+${key && marker && markerConfigures ? `    (child as? ${marker.slot}View)?.onConfigurationChange = nil
+` : ''}    (child as? OneNativeComposable)?.decompose()
+    ${key ? 'republish()' : 'model.marker = (markers.last as? OneNativeComposable)?.compositionContent()'}
+  }
+${key
+  ? `
+  private func publish(_ marker: ${marker!.slot}View) {
+${(() => {
+    const [first, ...rest] = key.cases
+    const body = (c: string) =>
+      [
+        `model.${c} = marker.compositionContent()`,
+        ...Object.entries(key.values ?? {}).map(
+          ([, markerProp]) => `model.${c}${upper(markerProp)} = marker.${markerProp}`
+        ),
+      ].join('\n      ')
+    return `    if marker.${key.prop} == ${JSON.stringify(first)} {\n      ${body(first)}\n    }${rest
+      .map(
+        (c, i) =>
+          ` else${i === rest.length - 1 ? '' : ` if marker.${key.prop} == ${JSON.stringify(c)}`} {\n      ${body(c)}\n    }`
+      )
+      .join('')}`
+  })()}
+  }
+
+  private func republish() {
+${key.cases.map((c) => `    model.${c} = nil`).join('\n')}
+    for marker in markers { publish(marker) }
   }
 `
+  : ''}`
+
         : ''
     }${
       recipe.rowModifiers
@@ -1729,15 +1932,24 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
-      (hasModel && fields.length) || environment || binding || selection || context || accessible || marker
+      (hasModel && stored.length) || environment || binding || selection || context || accessible || marker || config.length
         ? `
   public override func reset() {
 ${[
   ...(marker
     ? [
-        '    for marker in markers { (marker as? OneNativeComposable)?.decompose() }',
+        key
+          ? `    for marker in markers {${markerConfigures ? ' marker.onConfigurationChange = nil;' : ''}${key ? ' marker.decompose()' : ' (marker as? OneNativeComposable)?.decompose()'} }`
+          : '    for marker in markers { (marker as? OneNativeComposable)?.decompose() }',
         '    markers.removeAll()',
-        '    model.marker = nil',
+        ...(key
+          ? key.cases.flatMap((c) => [
+              `    model.${c} = nil`,
+              ...Object.entries(key.values ?? {}).map(
+                ([, markerProp]) => `    model.${c}${upper(markerProp)} = ${markerInitial(markerProp)}`
+              ),
+            ])
+          : ['    model.marker = nil']),
       ]
     : []),
   ...(binding ? ['    model.active = false', `    model.controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
@@ -1750,7 +1962,8 @@ ${[
         '    model.measuredHeight = 0',
       ]
     : []),
-  ...fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`),
+  ...stored.map(({ prop, initial }) => `    model.${prop} = ${initial}`),
+  ...config.map(({ prop, initial }) => `    ${prop} = ${initial}`),
   ...(accessible ? ['    model.accessibility = OneNativeAccessibility()'] : []),
   ...(selection
     ? ['    model.selectedTags = []', '    model.uncontrolledSelection = []', '    model.selectionIsControlled = false']

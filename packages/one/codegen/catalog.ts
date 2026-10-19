@@ -949,6 +949,23 @@ export const components = [
   {
     name: 'OneNativeSwipeActions',
     publicName: 'SwipeActions',
+    host: {
+      modifier: 'swipeActions',
+      childStack: 'Group',
+      marker: {
+        label: 'content',
+        slot: 'OneNativeSwipeActionsActions',
+        key: {
+          prop: 'edge',
+          label: 'edge',
+          cases: ['leading', 'trailing'],
+          values: { allowsFullSwipe: 'allowsFullSwipe' },
+        },
+      },
+      layout: 'container',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {},
     events: {},
     enumProps: {},
@@ -966,6 +983,13 @@ export const components = [
   {
     name: 'OneNativeSwipeActionsActions',
     publicName: 'SwipeActionsActions',
+    host: {
+      view: 'Group',
+      children: 'content',
+      initial: { edge: '"trailing"', allowsFullSwipe: 'true' },
+      layout: 'marker',
+      skipEmptyStyle: true,
+    },
     props: {
       edge: 'string',
       allowsFullSwipe: 'boolean',
