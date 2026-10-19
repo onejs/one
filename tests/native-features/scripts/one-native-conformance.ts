@@ -393,6 +393,19 @@ const has = (nodes: Node[], text: string) =>
 const id = (nodes: Node[], value: string) =>
   nodes.find((node) => node.AXUniqueId === value)
 // native hosts share their testID with their group; only the editable control owns the value.
+// content with this id that a person or VoiceOver could still reach: any match with a size,
+// a label, children or actions. iOS can keep an emptied cell's old element in its
+// accessibility cache, with no size and no label, after the view itself is gone
+export const contentRetained = (nodes: Node[], testID: string) =>
+  nodes.some(
+    (node) =>
+      node.AXUniqueId === testID &&
+      ((node.frame?.width ?? 0) > 0 ||
+        (node.frame?.height ?? 0) > 0 ||
+        Boolean(node.AXLabel) ||
+        (node.children?.length ?? 0) > 0 ||
+        ((node.custom_actions as unknown[] | undefined)?.length ?? 0) > 0)
+  )
 export const nativeTextField = (nodes: Node[], testID: string) => {
   const fields = nodes.filter(
     (node) =>
@@ -8590,7 +8603,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'uikit-content') {
     const prefix = 'one-native-uikit-content'
-    const frameOf = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
+    // the match with a size, since a cached element from an emptied cell can share the id
+    const frameOf = (nodes: Node[], testID: string) =>
+      nodes.find(
+        (node) =>
+          node.AXUniqueId === testID &&
+          (node.frame?.width ?? 0) > 0 &&
+          (node.frame?.height ?? 0) > 0
+      )?.frame
     const ready = (nodes: Node[], generation: number) =>
       labels(nodes).includes(`Status: ready generation ${generation}`)
     const pressed = (nodes: Node[], what: string, count: number) =>
@@ -8709,7 +8729,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await press('unmount', `${prefix}-collection-mounted`)
     await wait(
       'unmounting the content empties the cells',
-      (n) => has(n, '(content unmounted)') && !id(n, firstRow)
+      (n) => has(n, '(content unmounted)') && !contentRetained(n, firstRow)
     )
     await press('remount', `${prefix}-collection-mounted`)
     await wait('remounted content fills the cells again', (n) =>
