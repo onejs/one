@@ -58,10 +58,8 @@ export interface LabeledContentProps extends ViewProps {
 export interface ButtonProps extends OneNativeViewProps {
     onPress?: () => void;
     label?: string;
-    subtitle?: string;
     systemImage?: SFSymbolName | '';
     buttonRole?: Styles.ButtonRole | '';
-    disclosureIndicator?: boolean;
     children?: ReactNode;
 }
 export interface GlassProps extends ViewProps {
