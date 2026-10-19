@@ -1,23 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Image } from 'react-native'
-import { NitroModules } from 'react-native-nitro-modules'
+import { fontsNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
-import type { OneFonts } from '../specs/OneFonts.nitro'
 import type { FontMap, Fonts as FontsApi, FontSource, UseFontsResult } from './types'
 
 export type * from './types'
 
-// the OneFonts nitro hybrid object is created once and lazily. null outside
-// a native build.
-let hybrid: OneFonts | null | undefined
-
-function getModule(): OneFonts | null {
-  if (hybrid === undefined) {
-    hybrid = NitroModules.hasHybridObject('OneFonts')
-      ? NitroModules.createHybridObject<OneFonts>('OneFonts')
-      : null
-  }
-  return hybrid
+// the fonts backend: generated sdk bindings on ios, the OneFonts nitro
+// hybrid object everywhere else. null outside a native build.
+function getModule() {
+  return native()
 }
 
 function resolveFontUri(name: string, source: FontSource): string {
