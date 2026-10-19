@@ -1994,10 +1994,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'sheets') {
+    const retainedText = 'Retained'
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
       id(nodes, 'one-native-sheet-counter')?.AXLabel === String(expectedCount) &&
-      nativeTextField(nodes, 'one-native-sheet-input')?.AXValue === 'Retained'
+      nativeTextField(nodes, 'one-native-sheet-input')?.AXValue === retainedText
     const sheetContentHasGeometry = (nodes: Node[], yPixels: number) => {
       const frame = nodes.find(
         (node) => node.type === 'StaticText' && node.AXLabel === 'Sheet Content'
@@ -2068,7 +2069,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-sheet-input' })
     await typeInto(
       'RN sheet input',
-      'retained',
+      retainedText,
       (n) => nativeTextField(n, 'one-native-sheet-input')?.AXValue
     )
     await wait('RN sheet input accepts text', retained)
@@ -2112,7 +2113,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'blocked drag leaves the sheet present and interactive',
       (n) =>
         id(n, 'one-native-sheet-counter')?.AXLabel === '2' &&
-        nativeTextField(n, 'one-native-sheet-input')?.AXValue === 'Retained'
+        nativeTextField(n, 'one-native-sheet-input')?.AXValue === retainedText
     )
     expectedCount = 2
     tap({ id: 'one-native-sheet-close' })
