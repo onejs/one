@@ -1,5 +1,5 @@
-import { randomUUID } from 'node:crypto'
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { rm } from 'node:fs/promises'
+import { createServer, type Server } from 'node:net'
 import { dirname, join } from 'node:path'
 import type { VXRNOptions } from '../types'
 import { fillOptions } from '../config/getOptionsFilled'
@@ -16,129 +16,68 @@ function getErrorCode(err: unknown) {
   }
 }
 
-// same liveness semantics as processExists in dev.ts: only ESRCH means the
-// owner is gone, any other failure keeps the lock safe by treating it as live
-function isLockOwnerAlive(pid: number): boolean {
-  try {
-    process.kill(pid, 0)
-    return true
-  } catch (err) {
-    return getErrorCode(err) !== 'ESRCH'
+// well clear of dev ports (3000/5173/8081/19000s) and the ephemeral ranges,
+// so a foreign occupant is only ever a hash collision with another vxrn root
+const CLEAN_LOCK_PORT_BASE = 24_000
+const CLEAN_LOCK_PORT_COUNT = 1_000
+
+// stable mutex port per lock identity. ownership is an exclusive loopback
+// listen, which the kernel grants atomically and frees on any holder death,
+// so there is no lock file to go stale and no reclaim step that could delete
+// a replacement owner's lock. a pid file cannot do this: node has no atomic
+// compare-and-delete, so any read then unlink gap lets a live replacement
+// installed between the check and the delete be removed.
+function getCacheCleanLockPort(cacheDir: string): number {
+  const identity = join(dirname(cacheDir), '.vxrn-clean.lock')
+  let hash = 0x811c9dc5
+  for (let index = 0; index < identity.length; index++) {
+    hash ^= identity.charCodeAt(index)
+    hash = Math.imul(hash, 0x01000193)
   }
+  return CLEAN_LOCK_PORT_BASE + (hash >>> 0) % CLEAN_LOCK_PORT_COUNT
 }
 
-// lock identity is `${pid}:${token}`, pid-only content from older vxrn still
-// parses so locks abandoned before this change can be reclaimed
-function parseLockOwnerPid(content: string): number | undefined {
-  const match = /^(\d+)(?::\S+)?$/.exec(content.trim())
-  if (!match) {
-    return undefined
-  }
-  const pid = Number.parseInt(match[1], 10)
-  if (!Number.isSafeInteger(pid) || pid <= 0) {
-    return undefined
-  }
-  return pid
+function tryListen(server: Server, port: number): Promise<NodeJS.ErrnoException | undefined> {
+  return new Promise((resolve) => {
+    server.once('error', (err: Error) => resolve(err as NodeJS.ErrnoException))
+    server.once('listening', () => resolve(undefined))
+    server.listen({ port, host: '127.0.0.1', exclusive: true })
+  })
 }
 
-// remove the lock only when its owner is provably dead, never for live or
-// unknown owners. returns true when the caller should retry acquiring.
-async function tryRemoveAbandonedLock(lockPath: string): Promise<boolean> {
-  let content: string
-  try {
-    content = await readFile(lockPath, 'utf8')
-  } catch (err) {
-    if (getErrorCode(err) === 'ENOENT') {
-      return true
-    }
-    throw err
-  }
+export async function acquireCacheCleanLock(cacheDir: string): Promise<() => Promise<void>> {
+  const port = getCacheCleanLockPort(cacheDir)
+  const startedAt = Date.now()
 
-  const pid = parseLockOwnerPid(content)
-  if (pid === undefined || isLockOwnerAlive(pid)) {
-    return false
-  }
-
-  // the owner is dead, but the lock may have been replaced since the first
-  // read, so confirm the exact identity before removing. a concurrent
-  // reclaimer's lock always carries a different token, and a live owner's
-  // lock is never removed because its pid checks alive above.
-  let reread: string
-  try {
-    reread = await readFile(lockPath, 'utf8')
-  } catch (err) {
-    if (getErrorCode(err) === 'ENOENT') {
-      return true
+  while (true) {
+    // fresh server per attempt, same shape as the daemon port probe
+    const server = createServer()
+    const err = await tryListen(server, port)
+    if (!err) {
+      // held referenced until release so the loop cannot exit mid-hold
+      return async () => {
+        await new Promise<void>((resolve) => {
+          server.close(() => resolve())
+        })
+      }
     }
-    throw err
-  }
-  if (reread !== content) {
-    return false
-  }
 
-  try {
-    await rm(lockPath)
-  } catch (err) {
-    // another reclaimer removed it first, retry acquiring
-    if (getErrorCode(err) === 'ENOENT') {
-      return true
+    if (getErrorCode(err) !== 'EADDRINUSE') {
+      throw err
     }
-    throw err
+    if (Date.now() - startedAt >= CLEAN_LOCK_TIMEOUT_MS) {
+      throw new Error(`Timed out waiting for VXRN cache cleanup lock (127.0.0.1:${port})`)
+    }
+    await new Promise<void>((resolve) => setTimeout(resolve, CLEAN_LOCK_WAIT_MS))
   }
-  return true
 }
 
 async function withCacheCleanLock<T>(cacheDir: string, action: () => Promise<T>) {
-  const lockPath = join(dirname(cacheDir), '.vxrn-clean.lock')
-  const startedAt = Date.now()
-  await mkdir(dirname(lockPath), { recursive: true })
-  const identity = `${process.pid}:${randomUUID()}\n`
-
-  while (true) {
-    try {
-      await writeFile(lockPath, identity, { flag: 'wx' })
-      break
-    } catch (err) {
-      if (getErrorCode(err) !== 'EEXIST') {
-        throw err
-      }
-
-      if (Date.now() - startedAt >= CLEAN_LOCK_TIMEOUT_MS) {
-        let owner = 'unknown process'
-        try {
-          const pid = parseLockOwnerPid(await readFile(lockPath, 'utf8'))
-          if (pid !== undefined) {
-            owner = `process ${pid}`
-          }
-        } catch (readErr) {
-          if (getErrorCode(readErr) === 'ENOENT') {
-            continue
-          }
-          throw readErr
-        }
-        throw new Error(`Timed out waiting for VXRN cache cleanup lock held by ${owner}`)
-      }
-
-      if (await tryRemoveAbandonedLock(lockPath)) {
-        continue
-      }
-      await new Promise<void>((resolve) => setTimeout(resolve, CLEAN_LOCK_WAIT_MS))
-    }
-  }
-
+  const release = await acquireCacheCleanLock(cacheDir)
   try {
     return await action()
   } finally {
-    // only remove our own lock, never a replacement owner's lock
-    try {
-      if ((await readFile(lockPath, 'utf8')) === identity) {
-        await rm(lockPath, { force: true })
-      }
-    } catch (err) {
-      if (getErrorCode(err) !== 'ENOENT') {
-        throw err
-      }
-    }
+    await release()
   }
 }
 
