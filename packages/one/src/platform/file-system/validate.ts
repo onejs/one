@@ -17,7 +17,7 @@ export function assertUri(uri: unknown, owner: string): asserts uri is string {
     throw new Error(`${owner}: expected an absolute file uri`)
   }
   if (
-    (parsed.protocol !== 'file:' && parsed.protocol !== 'opfs:') ||
+    (parsed.protocol !== 'file:' && parsed.protocol !== 'opfs:' && parsed.protocol !== 'asset:') ||
     !parsed.pathname.startsWith('/') ||
     parsed.search ||
     parsed.hash

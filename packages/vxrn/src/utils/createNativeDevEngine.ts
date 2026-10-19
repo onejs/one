@@ -22,6 +22,7 @@ import {
 } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import micromatch from 'micromatch'
+import { parseSync } from 'oxc-parser'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
@@ -262,7 +263,8 @@ function getNativePlugins(
   assetsDest?: string,
   onAsset?: (asset: NativeAssetData) => void,
   sourceMaps = false,
-  userPlugins: Plugin[] = []
+  userPlugins: Plugin[] = [],
+  minify = false
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev }
   return [
@@ -299,12 +301,13 @@ function getNativePlugins(
     // lower Flow before worklets and react compiler parse the source with oxc.
     flowStripPlugin(),
     vxrnCompilerPlugin(platform, dev, root, sourceMaps),
+    mixedNativeModulePlugin(sourceMaps),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform, assetsDest, onAsset }),
     // hermes compat: transform class properties and private fields
-    hermesCompatSWCPlugin(dev, sourceMaps),
+    hermesCompatSWCPlugin(dev, sourceMaps, !minify),
     // hermes compat: per-iteration loop bindings. runs last so it also covers
     // loops the earlier lowering steps emit.
     hermesLoopsPlugin(sourceMaps),
@@ -335,6 +338,10 @@ function getNativeOutputOptions(
     codeSplitting: false,
     strictExecutionOrder: true,
     minify: minify || 'dce-only',
+    // metro keeps each module's scope, so an unminified bundle keeps every
+    // function and class name; hoisting renames colliding ones (`Foo` becomes
+    // `Foo2`), which code reading `constructor.name` observes.
+    keepNames: !minify,
   }
 }
 
@@ -347,10 +354,158 @@ function getNativeOutputOptions(
 export function normalizeNativeCommonJSInterop(code: string): string {
   // native packages expose Babel defaults through exports.default. apply the
   // same interop to external bindings, bundled helpers and HMR export lookups.
-  return code.replace(
-    /(\b__toESM(?:\$\d+)?\(\s*(?:require[\w$]*\(\)|[\w$]+|__rolldown_runtime__\.loadExports\("(?:\\.|[^"\\])*"\))\s*),\s*1(\s*\))/g,
-    '$1$2'
+  // parsed, not pattern-matched: bundle string data can hold the same
+  // `__toESM(x, 1)` text, and only the parser knows a call from data.
+  if (!code.includes('__toESM')) return code
+  const { program, errors } = parseSync('native-bundle.js', code, { lang: 'js' })
+  if (errors.length) {
+    // stopping beats both alternatives: skipping leaves node-mode interop
+    // across the whole bundle, and a regex fallback cannot tell data from a
+    // call.
+    throw new Error(
+      `[vxrn] cannot normalize native CommonJS interop: the bundle does not parse (${errors[0].message})`
+    )
+  }
+  // delete each `, 1` from the end of the bundle backwards so earlier offsets
+  // stay valid. only the comma and the `1` go; the surrounding whitespace
+  // stays, so every line keeps the number the source map recorded for it.
+  const deletions: Array<[start: number, end: number]> = []
+  const stack: unknown[] = [program]
+  while (stack.length) {
+    const node = stack.pop()
+    if (Array.isArray(node)) {
+      for (let index = node.length - 1; index >= 0; index--) {
+        stack.push(node[index])
+      }
+      continue
+    }
+    if (!isInteropSyntaxNode(node)) continue
+    if (node.type === 'CallExpression') {
+      const span = interopNodeModeSpan(code, node)
+      if (span) deletions.push(span)
+    }
+    for (const key of Object.keys(node)) {
+      stack.push(node[key])
+    }
+  }
+  deletions.sort((a, b) => b[0] - a[0])
+  for (const [start, end] of deletions) {
+    code = code.slice(0, start) + code.slice(end)
+  }
+  return code
+}
+
+interface InteropSyntaxNode {
+  type: string
+  start: number
+  end: number
+  [key: string]: any
+}
+
+function isInteropSyntaxNode(node: unknown): node is InteropSyntaxNode {
+  if (!node || typeof node !== 'object') return false
+  const candidate = node as { type?: unknown; start?: unknown; end?: unknown }
+  return (
+    typeof candidate.type === 'string' &&
+    typeof candidate.start === 'number' &&
+    typeof candidate.end === 'number'
   )
+}
+
+const NATIVE_INTEROP_HELPER = /^__toESM(?:\$\d+)?$/
+const NATIVE_INTEROP_REQUIRE = /^require[\w$]*$/
+
+// the `, 1` span of a rolldown node-mode `__toESM(first, 1)` call, or undefined
+// for any other node. the first argument keeps the three generated shapes: a
+// require call, an external binding, or an HMR export lookup.
+function interopNodeModeSpan(
+  code: string,
+  node: InteropSyntaxNode
+): [start: number, end: number] | undefined {
+  const callee = node['callee']
+  if (
+    !isInteropSyntaxNode(callee) ||
+    !isInteropHelperCallee(callee) ||
+    node['optional'] === true
+  ) {
+    return undefined
+  }
+  const args = node['arguments']
+  if (!Array.isArray(args) || args.length !== 2) return undefined
+  const [first, second] = args
+  if (!isInteropSyntaxNode(first) || !isInteropSyntaxNode(second)) return undefined
+  if (!isInteropFirstArgument(first)) return undefined
+  if (second.type !== 'Literal' || second['raw'] !== '1') return undefined
+  // the comma may sit anywhere in the gap (`__toESM(x\n, 1)`), but nothing else
+  // may: a comment or a trailing comma means generated code this pass does not
+  // recognize, and unrecognized code is left alone.
+  const between = code.slice(first.end, second.start)
+  if (!/^\s*,\s*$/.test(between)) return undefined
+  if (!/^\s*\)/.test(code.slice(second.end))) return undefined
+  return [first.end + between.indexOf(','), second.end]
+}
+
+// the helper is a bare binding in full bundles and a runtime member on the
+// HMR wire path (`__rolldown_runtime__.__toESM(...)`); a `.` sits on a word
+// boundary, so the previous expression matched both shapes.
+function isInteropHelperCallee(callee: InteropSyntaxNode): boolean {
+  if (callee.type === 'Identifier') {
+    return (
+      typeof callee['name'] === 'string' &&
+      NATIVE_INTEROP_HELPER.test(callee['name'])
+    )
+  }
+  if (
+    (callee.type === 'MemberExpression' ||
+      callee.type === 'StaticMemberExpression') &&
+    callee['computed'] !== true
+  ) {
+    const property = callee['property']
+    return (
+      isInteropSyntaxNode(property) &&
+      property.type === 'Identifier' &&
+      typeof property['name'] === 'string' &&
+      NATIVE_INTEROP_HELPER.test(property['name'])
+    )
+  }
+  return false
+}
+
+function isInteropFirstArgument(node: InteropSyntaxNode): boolean {
+  if (node.type === 'Identifier') return true
+  if (node.type !== 'CallExpression' || node['optional'] === true) return false
+  const callee = node['callee']
+  if (!isInteropSyntaxNode(callee)) return false
+  const args = node['arguments']
+  if (!Array.isArray(args)) return false
+  if (callee.type === 'Identifier') {
+    return (
+      typeof callee['name'] === 'string' &&
+      NATIVE_INTEROP_REQUIRE.test(callee['name']) &&
+      args.length === 0
+    )
+  }
+  if (
+    (callee.type === 'MemberExpression' || callee.type === 'StaticMemberExpression') &&
+    callee['computed'] !== true &&
+    callee['optional'] !== true
+  ) {
+    const object = callee['object']
+    const property = callee['property']
+    return (
+      isInteropSyntaxNode(object) &&
+      object.type === 'Identifier' &&
+      object['name'] === '__rolldown_runtime__' &&
+      isInteropSyntaxNode(property) &&
+      property.type === 'Identifier' &&
+      property['name'] === 'loadExports' &&
+      args.length === 1 &&
+      isInteropSyntaxNode(args[0]) &&
+      args[0].type === 'Literal' &&
+      typeof args[0]['value'] === 'string'
+    )
+  }
+  return false
 }
 
 /**
@@ -785,12 +940,34 @@ try {
     const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
     if (chunk && 'code' in chunk) {
       firstBuildError = null
-      let code = postProcessNativeBundle(chunk.code)
+      let code: string
+      try {
+        code = postProcessNativeBundle(chunk.code)
 
-      // downlevel class fields from the rolldown runtime (virtual module
-      // skipped by the per-file SWC plugin) so old Hermes can parse them
-      code = await downlevelClassFieldsInBundle(code)
-      assertBundleLinesPreserved(chunk.code, code, 'dev')
+        // downlevel class fields from the rolldown runtime (virtual module
+        // skipped by the per-file SWC plugin) so old Hermes can parse them
+        code = await downlevelClassFieldsInBundle(code)
+        assertBundleLinesPreserved(chunk.code, code, 'dev')
+      } catch (error) {
+        // a post-processing failure is a build failure: without a bundle to
+        // serve, record it and wake the waiting request with its message
+        // instead of leaving it on the generic timeout. past a first good
+        // build the last bundle keeps serving, like the rolldown-error
+        // branch: one bad output must not poison later builds.
+        const failure = error instanceof Error ? error : new Error(String(error))
+        console.error('[vxrn] native bundle post-processing failed:', failure.message)
+        if (!currentBundle) {
+          firstBuildError = failure
+          if (bundleReject) {
+            const reject = bundleReject
+            bundleResolve = null
+            bundleReject = null
+            bundlePromise = null
+            reject(failure)
+          }
+        }
+        return
+      }
 
       // wrap module code in a function scope so top-level `var`s (e.g. RN
       // fetch.js's `Headers`/`Request`) don't leak as non-configurable
@@ -980,7 +1157,8 @@ export async function buildNativeBundle(
         assetsDest,
         undefined,
         sourcemap,
-        userPlugins
+        userPlugins,
+        minify
       ),
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),
@@ -1924,6 +2102,18 @@ if (import.meta.hot) {
   }
 }
 
+// run after syntax-aware native transforms and before rolldown classifies modules.
+function mixedNativeModulePlugin(sourceMaps: boolean): Plugin {
+  return {
+    name: 'vxrn:mixed-native-module',
+    async transform(code, id) {
+      if (!/\.[cm]?[jt]sx?$/.test(id) || id.includes('\0')) return
+      const { transformMixedNativeModule } = await import('@vxrn/compiler')
+      return transformMixedNativeModule(code, id, sourceMaps)
+    },
+  }
+}
+
 /**
  * Strip Flow types from react-native and other Flow-authored source files.
  *
@@ -2140,7 +2330,7 @@ export async function getNativeAssetData(
   if (NATIVE_IMAGE_EXTS.has(requested.type)) {
     try {
       const { imageSize } = await import('image-size')
-      const dims = imageSize(files[0])
+      const dims = imageSize(readFileSync(files[0]))
       assetData.width = dims.width === undefined ? undefined : dims.width / scales[0]
       assetData.height = dims.height === undefined ? undefined : dims.height / scales[0]
     } catch {}
@@ -2217,7 +2407,11 @@ function copyNativeAssetFiles(
  * Lowers classes, lexical bindings, and async syntax for legacy Hermes.
  * Inspired by rollipop's swc-plugin.ts.
  */
-export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin {
+export function hermesCompatSWCPlugin(
+  dev: boolean,
+  sourceMaps = false,
+  keepNames = false
+): Plugin {
   let oxc: typeof import('oxc-transform') | null = null
 
   return {
@@ -2264,7 +2458,13 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
           output = classes
         }
       }
-      const lowered = await transformHermesAsync(output?.code ?? code, id, sourceMaps)
+      const lowered = await transformHermesAsync(
+        output?.code ?? code,
+        id,
+        sourceMaps,
+        undefined,
+        keepNames
+      )
       if (!lowered) return output
       if (lowered.map && output?.map) {
         const remapping = (await import('@jridgewell/remapping')).default

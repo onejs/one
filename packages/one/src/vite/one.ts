@@ -1065,9 +1065,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(() => {
       const devtools = options.devtools ?? true
       const includeUI = devtools !== false
+      const devtoolsOptions = typeof devtools === 'object' ? devtools : undefined
       return [
         // always include devtools plugin for refresh preamble (required for HMR)
-        createDevtoolsPlugin({ includeUI }),
+        createDevtoolsPlugin({
+          includeUI,
+          plugins: devtoolsOptions?.plugins,
+          rozenite: devtoolsOptions?.rozenite,
+          // One's Vite bundler owns the native dev server. Metro mode has its
+          // own Rozenite wrapper, so mounting a second host here would fight it.
+          native: !nativeDisabled && !metroOptions,
+        }),
       ]
     })(),
   ]

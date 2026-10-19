@@ -150,6 +150,11 @@
       "import": "./dist/esm/drawer.mjs",
       "require": "./dist/cjs/drawer.cjs"
     },
+    "./devtools": {
+      "types": "./types/devtools/index.d.ts",
+      "import": "./dist/esm/devtools/index.mjs",
+      "require": "./dist/cjs/devtools/index.cjs"
+    },
     "./headless": {
       "types": "./types/headless.d.ts",
       "import": "./dist/esm/headless.mjs",
@@ -245,6 +250,7 @@
     "@react-navigation/elements": "3.0.0-alpha.55",
     "@react-navigation/native-stack": "8.0.0-alpha.59",
     "@react-navigation/routers": "8.0.0-alpha.21",
+    "@rozenite/middleware": "^2.5.0",
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/compiler": "workspace:*",

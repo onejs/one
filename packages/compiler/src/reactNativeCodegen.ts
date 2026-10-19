@@ -71,6 +71,11 @@ function isCodegenNativeCommandsDeclaration(declaration: any): boolean {
   )
 }
 
+// a native component spec whose codegen call still needs generating.
+export function isReactNativeCodegenSpec(id: string, code: string) {
+  return CODEGEN_FILE_RE.test(normalizePath(id.split('?')[0])) && CODEGEN_CALL_RE.test(code)
+}
+
 export function transformReactNativeCodegen(
   code: string,
   id: string,
@@ -78,16 +83,12 @@ export function transformReactNativeCodegen(
 ): { code: string; map: any } | null | undefined {
   const cleanId = normalizePath(id.split('?')[0])
 
-  if (!CODEGEN_FILE_RE.test(cleanId)) {
-    return
-  }
-
   // the transform runs more than once over the same module, so it must not
   // reject the output it just produced. matching the bare name matches the
   // surviving `import codegenNativeComponent from ...` too; only a remaining
   // CALL means the file still needs generating. a comment marker cannot do
   // this job because oxc drops leading comments on the next pass.
-  if (!CODEGEN_CALL_RE.test(code)) {
+  if (!isReactNativeCodegenSpec(id, code)) {
     return
   }
 

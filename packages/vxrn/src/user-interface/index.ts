@@ -60,56 +60,64 @@ const COMMANDS = [
     keys: 'dt',
     label: 'open React Native DevTools',
     terminalLabel: 'open React Native \x1b[1mD\x1b[0mev\x1b[1mT\x1b[0mools',
-    action: (ctx) => {
-      const { host, port } = ctx.server.config.server
-      const serverUrl = `http://${typeof host === 'string' && !!host ? host : 'localhost'}:${port}`
-      const url = new URL('/open-debugger', serverUrl)
-
-      // TODO: Seems to need these if multiple devices are connected, but haven't figured out how to pass these yet
-      // Currently will just launch DevTools for most recently connected device
-      // url.searchParams.set('appId', );
-      // url.searchParams.set('device', );
-      // url.searchParams.set('target', );
-
-      // The `/open-debugger` endpoint may not respond, so we don't wait for it and will ignore timeout errors
-      ;(async () => {
-        const response = await fetch(url, {
-          method: 'POST',
-          signal: AbortSignal.timeout(3000),
-        }).catch((error) => {
-          if (error.name === 'TimeoutError') {
-            return null
-          }
-
-          throw error
-        })
-
-        if (!response) {
-          // This is common for now, so don't log it
-          // console.info(`No response received from the React Native DevTools.`)
-        } else if (response.ok === false) {
-          const responseText = await response.text()
-
-          if (responseText.includes('Unable to find debugger target')) {
-            // Will already print "No compatible apps connected. React Native DevTools can only be used with the Hermes engine.", so no need to warn again
-            return
-          }
-
-          console.warn(
-            `Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`
-          )
-        }
-      })()
-    },
+    action: openReactNativeDevTools,
+  },
+  {
+    keys: 'j',
+    label: 'open React Native DevTools',
+    terminalLabel: 'open React Native DevTools',
+    action: openReactNativeDevTools,
   },
 
   {
     keys: '?',
-    label: 'open editor',
+    label: 'show commands',
     terminalLabel: 'show this menu',
     action: async (ctx) => {},
   },
 ] satisfies Command[]
+
+function openReactNativeDevTools(ctx: Context) {
+  const { host } = ctx.server.config.server
+  const serverUrl = `http://${typeof host === 'string' && !!host ? host : 'localhost'}:${getBoundPort(ctx.server)}`
+  const url = new URL('/open-debugger', serverUrl)
+
+  // TODO: Seems to need these if multiple devices are connected, but haven't figured out how to pass these yet
+  // Currently will just launch DevTools for most recently connected device
+  // url.searchParams.set('appId', );
+  // url.searchParams.set('device', );
+  // url.searchParams.set('target', );
+
+  // The `/open-debugger` endpoint may not respond, so we don't wait for it and will ignore timeout errors
+  ;(async () => {
+    const response = await fetch(url, {
+      method: 'POST',
+      signal: AbortSignal.timeout(3000),
+    }).catch((error) => {
+      if (error.name === 'TimeoutError') {
+        return null
+      }
+
+      throw error
+    })
+
+    if (!response) {
+      // This is common for now, so don't log it
+      // console.info(`No response received from the React Native DevTools.`)
+    } else if (response.ok === false) {
+      const responseText = await response.text()
+
+      if (responseText.includes('Unable to find debugger target')) {
+        // Will already print "No compatible apps connected. React Native DevTools can only be used with the Hermes engine.", so no need to warn again
+        return
+      }
+
+      console.warn(
+        `Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`
+      )
+    }
+  })()
+}
 
 export async function startUserInterface(context: Context) {
   if (!supportsKeyboardCommands()) {

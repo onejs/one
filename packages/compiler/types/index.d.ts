@@ -19,4 +19,5 @@ export { JS_GLOBALS } from './worklets/globals';
 export { getClosureVariables } from './worklets/scope';
 export type { GetTransform } from './types';
 export declare function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): Promise<PluginOption[]>;
+export * from './transformMixedNativeModule';
 //# sourceMappingURL=index.d.ts.map

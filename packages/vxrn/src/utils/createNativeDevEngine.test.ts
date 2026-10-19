@@ -1,5 +1,13 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises'
+import {
+  mkdir,
+  mkdtemp,
+  readFile,
+  rename,
+  rm,
+  symlink,
+  writeFile,
+} from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -1448,6 +1456,78 @@ describe('native production import.meta lowering', () => {
       expect(Reflect.get(context.globalThis, '__vxrnNativeImportMetaProbe')).toBe(false)
     } finally {
       await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('native function and class names', () => {
+  it('keeps colliding names in an unminified bundle, the way metro does', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-names-'))
+    for (const name of ['a', 'b']) {
+      await writeFile(
+        join(testRoot, `${name}.js`),
+        `export class UnsupportedFeature extends Error {}\nexport function read() {}`
+      )
+    }
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `import * as a from './a.js'\nimport * as b from './b.js'\nglobalThis.names = [a.UnsupportedFeature.name, b.UnsupportedFeature.name, a.read.name, b.read.name]`
+    )
+
+    try {
+      for (const dev of [true, false]) {
+        const result = await buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          dev,
+          minify: false,
+          entryFile: 'entry.js',
+        })
+        const context: any = { process: { env: {} } }
+        context.globalThis = context
+        runInNewContext(result.code, context)
+        expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature', 'read', 'read'])
+      }
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('keeps lowered class names in a module that also lowers async', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-dev-names-'))
+    const packageRoot = join(root, 'node_modules', 'errors-pkg')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(join(packageRoot, 'package.json'), JSON.stringify({ main: './index.js' }))
+    // async lowering reprints the lowered classes, renaming each inner
+    // constructor that shadows its top-level export.
+    await writeFile(
+      join(packageRoot, 'index.js'),
+      `class ErrorBase extends Error {}\nexport class UnsupportedFeature extends ErrorBase {}\nexport async function check() {}`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `const { UnsupportedFeature } = require('errors-pkg')\nglobalThis.names = [UnsupportedFeature.name, new UnsupportedFeature().constructor.name]`
+    )
+    const native = await createNativeDevEngine({
+      root,
+      port: 52279,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'native-names-entry',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+      ],
+    })
+    try {
+      const context: any = { console, setTimeout, clearTimeout }
+      runInNewContext((await native.getBundle()).code, context)
+      expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature'])
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
     }
   })
 })
@@ -3032,6 +3112,74 @@ globalThis.externalDefaults = [Component, marker, Scoped, Plain, require('extern
   })
 })
 
+describe('native interop string literals', () => {
+  it('rewrites real __toESM calls while leaving string data alone', () => {
+    const literal = '__toESM(externalModule, 1)'
+    const code = [
+      `const stringData = ${JSON.stringify(literal)}`,
+      'const templateData = `' + literal + '`',
+      `// ${literal}`,
+      `/* ${literal} */`,
+      'const viaRequire = __toESM(require_helper(), 1)',
+      'const viaBinding = __toESM(externalModule, 1)',
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const renamed = __toESM$2(require_helper(), 1)',
+      'const spaced = __toESM(  require_helper()  ,  1  )',
+      'const interpolated = `${__toESM(externalModule, 1)}`',
+    ].join('\n')
+    const normalized = normalizeNativeCommonJSInterop(code)
+    expect(normalized).toContain(`const stringData = ${JSON.stringify(literal)}`)
+    expect(normalized).toContain('const templateData = `' + literal + '`')
+    expect(normalized).toContain(`// ${literal}`)
+    expect(normalized).toContain(`/* ${literal} */`)
+    expect(normalized).toContain('const viaRequire = __toESM(require_helper())')
+    expect(normalized).toContain('const viaBinding = __toESM(externalModule)')
+    expect(normalized).toContain(
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain(
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain('const renamed = __toESM$2(require_helper())')
+    expect(normalized).toContain('const spaced = __toESM(  require_helper()    )')
+    expect(normalized).toContain('const interpolated = `${__toESM(externalModule)}`')
+  })
+
+  it.each([false, true])(
+    'keeps __toESM string data through buildNativeBundle (minify=%s)',
+    async (minify) => {
+      const literal = '__toESM(externalModule, 1)'
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-interop-literal-'))
+      try {
+        await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+        await writeFile(
+          join(root, 'entry.js'),
+          `globalThis.__interopLiteralProbe = ${JSON.stringify(literal)}\n`
+        )
+        const { code } = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: true,
+          minify,
+        })
+        expect(code).toContain(literal)
+        const context = {
+          clearTimeout,
+          console,
+          process: { env: {} },
+          setTimeout,
+        }
+        runInNewContext(code, context)
+        expect(Reflect.get(context, '__interopLiteralProbe')).toBe(literal)
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
 describe('native Flow sources', () => {
   it.each([true, false])(
     'preserves codegen, worklets and maps with dev=%s',
@@ -3335,6 +3483,56 @@ describe('postProcessNativeBundle', () => {
   })
 })
 
+describe('native dev bundle post-processing failures', () => {
+  it('rejects the bundle request with the failure instead of timing out', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-postprocess-error-'))
+    await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+    await writeFile(join(root, 'entry.js'), `globalThis.__postprocessProbe = 1\n`)
+    const native = await createNativeDevEngine({
+      root,
+      port: 0,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'postprocess-error-entry',
+          transform(code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+        {
+          name: 'postprocess-error-poison',
+          renderChunk() {
+            // valid javascript, so rolldown delivers it: the single-line
+            // class fields inside the runtime region gain lines when
+            // downleveled, which throws inside handleOutput.
+            return {
+              code: [
+                '//#region \\0rolldown/runtime.js',
+                'class Poison { x = 1; y = 2; z = 3; }',
+                '//#endregion',
+                'globalThis.__postprocessProbe = new Poison();',
+                '',
+              ].join('\n'),
+            }
+          },
+        },
+      ],
+    })
+    try {
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+      // the failure is recorded for later callers, not just the waiter
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native package context identity', () => {
   it.each(['@tamagui/web', '@tamagui/adapt'])(
     'shares %s contexts with dependencies containing a second package copy',
@@ -3469,4 +3667,285 @@ describe('native zero-client edit recoverability', () => {
       }
     }
   )
+})
+
+describe('native mixed ESM and CommonJS exports', () => {
+  it.each([false, true])(
+    'preserves replacement exports for require and import (dev=%s)',
+    async (dev) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-mixed-'))
+      const dep = join(root, 'node_modules/mixed-native')
+      await mkdir(dep, { recursive: true })
+      await writeFile(
+        join(dep, 'package.json'),
+        JSON.stringify({ name: 'mixed-native', 'react-native': 'index.ts' })
+      )
+      await writeFile(
+        join(dep, 'api.ts'),
+        "export const value = 'native'; export const discarded = 'esm-only'"
+      )
+      await writeFile(
+        join(dep, 'index.ts'),
+        `
+import { value } from './api'
+export * from './api'
+export const install = () => value
+const api: { value: string; default?: unknown; install?: unknown } = { value }
+export default api
+module.exports = api
+module.exports.default = api
+module.exports.install = install
+`
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `
+import api, { install, value, discarded } from 'mixed-native'
+const required = require('mixed-native')
+globalThis.mixedProbe = {
+  same: api === required,
+  selfDefault: required.default === required,
+  installed: install(),
+  value,
+  discarded,
+  keys: Object.keys(required).sort(),
+}
+`
+      )
+      try {
+        const bundle = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev,
+        })
+        const context: any = { console }
+        runInNewContext(bundle.code, context)
+
+        // metro's react native preset lowers all imports and exports before cjs runs.
+        const { transformAsync } = await import('@babel/core')
+        const metroContext: any = { console }
+        const modules = new Map<string, any>()
+        const sources = new Map<string, string>()
+        for (const [name, file] of [
+          ['mixed-native', join(dep, 'index.ts')],
+          ['./api', join(dep, 'api.ts')],
+          ['entry', join(root, 'entry.js')],
+        ]) {
+          const transformed = await transformAsync(await readFile(file!, 'utf8'), {
+            filename: file,
+            babelrc: false,
+            configFile: false,
+            presets: ['module:@react-native/babel-preset'],
+          })
+          sources.set(name!, transformed!.code!)
+        }
+        const metroRequire = (name: string): any => {
+          if (modules.has(name)) return modules.get(name).exports
+          const module = { exports: {} }
+          modules.set(name, module)
+          runInNewContext(
+            '(function(module, exports, require) {' + sources.get(name) + '\n})',
+            metroContext
+          )(module, module.exports, metroRequire)
+          return module.exports
+        }
+        metroRequire('entry')
+        expect(context.mixedProbe).toEqual(metroContext.mixedProbe)
+        expect(context.mixedProbe).toEqual({
+          same: true,
+          selfDefault: true,
+          installed: 'native',
+          value: 'native',
+          discarded: undefined,
+          keys: ['default', 'install', 'value'],
+        })
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
+it.each([
+  'export const value = "module.exports = ignored"',
+  'export const module = { exports: 1 }; module.exports = 2',
+  'export function local(module) { module.exports = 1 }',
+  'export function local(exports) { exports.value = 1 }',
+  'module.exports = 1',
+])('leaves non-mixed sources alone: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  expect(await transformMixedNativeModule(source, 'probe.js')).toBeUndefined()
+})
+
+it('preserves computed CommonJS assignments and their source map', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const source = "export const dropped = true;\nmodule['exports'] = { value: 42 };\n"
+  const result = await transformMixedNativeModule(source, 'probe.js', true)
+  const module = { exports: {} }
+  runInNewContext(result!.code, { module, exports: module.exports })
+  expect(module.exports).toEqual({ value: 42 })
+  const lines = result!.code.split('\n')
+  const line = lines.findIndex((line) => line.includes('42'))
+  expect(
+    originalPositionFor(new TraceMap(result!.map), {
+      line: line + 1,
+      column: lines[line]!.indexOf('42'),
+    })
+  ).toMatchObject({ source: 'probe.js', line: 2 })
+})
+
+it('keeps Babel export properties writable in mixed modules', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const result = await transformMixedNativeModule(
+    'export let value = 1; exports.value = 2; export const lexical = () => value',
+    'probe.js'
+  )
+  const module = { exports: {} as any }
+  runInNewContext(result!.code, { module, exports: module.exports })
+  expect(module.exports.value).toBe(2)
+  expect(module.exports.lexical()).toBe(1)
+})
+
+it.each([
+  'export const value = this; module.exports = { valueIsObject: typeof value === "object", strict: (function () { return this === undefined })() };',
+  '"use strict"; export const value = this; module.exports = { valueIsObject: typeof value === "object", strict: (function () { return this === undefined })() };',
+  'export const value = 42; Object.assign(exports, { attached: value });',
+  'export const value = 42; const out = exports; out.attached = value;',
+  'export const value = 42; const out = module; out.exports.attached = value;',
+  'export let value = 1; exports.value = 10; value++;',
+  'export let value = 1; export { value as alias }; exports.value = 10; value++;',
+  'export let value = 1, next = exports.value; exports.attached = next;',
+  'export let value = 1; exports.value = 10; value ||= 2;',
+  'export default function () {}; exports.default = 42;',
+  'export default function named() {}; exports.default = 42;',
+  'export default class Named {}; exports.default = 42;',
+  'export default 1; exports.default = 42;',
+  'export let value = 1; export const nested = () => { let value = 10; value++; return value }; exports.attached = exports.nested();',
+  'export let value = 1; export const previous = value++; exports.attached = previous;',
+  'export let value = 1; ({ value } = { value: 42 }); exports.attached = value;',
+  'export let value = 1; export const increment = () => value++; exports.increment();',
+  'let value = 1; export { value as renamed }; value += 2; exports.attached = value;',
+])('matches Metro wrapper semantics: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const { transformAsync } = await import('@babel/core')
+  const actual = await transformMixedNativeModule(source, 'probe.js')
+  const expected = await transformAsync(source, {
+    filename: 'probe.js',
+    babelrc: false,
+    configFile: false,
+    presets: ['module:@react-native/babel-preset'],
+  })
+  const evaluate = (code: string) => {
+    const module = { exports: {} as any }
+    runInNewContext(
+      '(function(module, exports) {' + code + '\n})(module, exports)',
+      {
+        module,
+        exports: module.exports,
+      }
+    )
+    return JSON.parse(JSON.stringify(module.exports))
+  }
+  expect(actual).toBeDefined()
+  expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+})
+
+it.each([
+  'export function local(exports) { return Object.assign(exports, { value: 1 }) }',
+  'export function local(module) { return module }',
+  'export const obj = { exports: 1, module: 2 }',
+  'export function local() { module.exports = 1; var module }',
+  'export function local({ exports }) { return exports }',
+  'export function local() { try {} catch (exports) { exports.value = 1 } }',
+  'export function local() { for (const exports of []) { exports.value = 1 } }',
+])('keeps lexical CommonJS shadows unchanged: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  expect(await transformMixedNativeModule(source, 'probe.js')).toBeUndefined()
+})
+it.each([
+  [
+    'probe.js',
+    'export let value=1; export function increment(exports){value++;} increment({}); module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(value of [2,3]) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=""; for(value in {a:1,b:2}) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(value of [2,3]) if(value===2) continue; module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(const value of [2,3]) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; export function increment(module, exports){value++;} increment({},{}); module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; exports={}; value++; module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.ts',
+    'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+  [
+    'probe.ts',
+    'export namespace Color { export const Red = 1 }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+  [
+    'probe.ts',
+    'export const value: unknown = this; module.exports={valueIsObject:typeof value === "object",strict:(function(){return this === undefined})()};',
+  ],
+  [
+    'probe.tsx',
+    'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+])(
+  'matches Metro writable binding semantics in %s: %s',
+  async (filename, source) => {
+    const { transformMixedNativeModule } = await import('@vxrn/compiler')
+    const { transformAsync } = await import('@babel/core')
+    const actual = await transformMixedNativeModule(source, filename)
+    const expected = await transformAsync(source, {
+      filename,
+      babelrc: false,
+      configFile: false,
+      presets: ['module:@react-native/babel-preset'],
+    })
+    const evaluate = (code: string) => {
+      const module = { exports: {} }
+      runInNewContext(
+        '(function(module, exports) {' + code + '\n})(module, exports)',
+        {
+          module,
+          exports: module.exports,
+        }
+      )
+      return JSON.parse(JSON.stringify(module.exports))
+    }
+    expect(actual).toBeDefined()
+    expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+  }
+)
+
+it('composes TypeScript runtime declaration maps to the original source', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const source = 'export enum Color { Red };\nexports.Color = 42;\n'
+  const result = await transformMixedNativeModule(source, 'probe.ts', true)
+  const lines = result!.code.split('\n')
+  const line = lines.findIndex((line) => line.includes('42'))
+  expect(
+    originalPositionFor(new TraceMap(result!.map), {
+      line: line + 1,
+      column: lines[line]!.indexOf('42'),
+    })
+  ).toMatchObject({ source: 'probe.ts', line: 2 })
 })

@@ -13,6 +13,7 @@ import com.margelo.nitro.core.Promise
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.io.RandomAccessFile
 import java.net.URI
 import java.nio.charset.CodingErrorAction
@@ -29,7 +30,11 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     private val documents = File(context.filesDir, "Documents").apply { mkdirs() }
     private val temporary = File(context.cacheDir, "tmp").apply { mkdirs() }
     private val handles = ConcurrentHashMap<Int, RandomAccessFile>()
+    private val assetHandles = ConcurrentHashMap<Int, AssetHandle>()
     private val nextHandle = AtomicInteger(1)
+    private val hexDigits = "0123456789ABCDEF"
+
+    private class AssetHandle(var offset: Long, val bytes: ByteArray)
 
     override fun getDirectories() = FileDirectories(
         directoryURI(documents), directoryURI(context.cacheDir),
@@ -101,6 +106,12 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun pathInfo(uri: String): PathStat = sync("pathInfo") {
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            val isDirectory = isAssetDirectory(path)
+            val exists = isDirectory || isAssetFile(path)
+            return@sync PathStat(exists, if (exists) isDirectory else null)
+        }
         val file = file(uri)
         if (!file.canRead()) return@sync PathStat(false, null)
         val stat = try { Os.stat(file.path) } catch (error: ErrnoException) {
@@ -110,43 +121,75 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         PathStat(stat != null, if (stat != null) OsConstants.S_ISDIR(stat.st_mode) else null)
     }
 
-    override fun readText(uri: String): String = sync("readText") { readStrictText(contentFile(uri)) }
+    override fun readText(uri: String): String = sync("readText") {
+        if (isAssetUri(uri)) return@sync strictText(assetFileBytes(uri))
+        readStrictText(contentFile(uri))
+    }
 
     override fun readTextAsync(uri: String): Promise<String> = query("readText") {
+        if (isAssetUri(uri)) return@query strictText(assetFileBytes(uri))
         readStrictText(contentFile(uri))
     }
 
     override fun readData(uri: String): ArrayBuffer = sync("readData") {
+        if (isAssetUri(uri)) return@sync ArrayBuffer.copy(assetFileBytes(uri))
         ArrayBuffer.copy(contentFile(uri).readBytes())
     }
 
     override fun readDataAsync(uri: String): Promise<ArrayBuffer> = query("readData") {
+        if (isAssetUri(uri)) return@query ArrayBuffer.copy(assetFileBytes(uri))
         ArrayBuffer.copy(contentFile(uri).readBytes())
     }
 
     override fun readBase64(uri: String): String = sync("readBase64") {
+        if (isAssetUri(uri)) return@sync Base64.encodeToString(assetFileBytes(uri), Base64.NO_WRAP)
         Base64.encodeToString(contentFile(uri).readBytes(), Base64.NO_WRAP)
     }
 
     override fun readBase64Async(uri: String): Promise<String> = query("readBase64") {
+        if (isAssetUri(uri)) return@query Base64.encodeToString(assetFileBytes(uri), Base64.NO_WRAP)
         Base64.encodeToString(contentFile(uri).readBytes(), Base64.NO_WRAP)
     }
 
     override fun writeText(uri: String, contents: String, encoding: FileEncoding, append: Boolean) {
-        sync("writeText") { writeBytes(contentFile(uri), decoded(contents, encoding), append) }
+        sync("writeText") {
+            if (isAssetUri(uri)) {
+                assetPath(uri)
+                readOnly()
+            }
+            writeBytes(contentFile(uri), decoded(contents, encoding), append)
+        }
     }
 
     override fun writeTextAsync(
         uri: String, contents: String, encoding: FileEncoding, append: Boolean
-    ): Promise<Unit> = query("writeText") { writeBytes(contentFile(uri), decoded(contents, encoding), append) }
+    ): Promise<Unit> = query("writeText") {
+        if (isAssetUri(uri)) {
+            assetPath(uri)
+            readOnly()
+        }
+        writeBytes(contentFile(uri), decoded(contents, encoding), append)
+    }
 
     override fun writeData(uri: String, bytes: ArrayBuffer, append: Boolean) {
-        sync("writeData") { writeBytes(contentFile(uri), bytes.toByteArray(), append) }
+        sync("writeData") {
+            if (isAssetUri(uri)) {
+                assetPath(uri)
+                readOnly()
+            }
+            writeBytes(contentFile(uri), bytes.toByteArray(), append)
+        }
     }
 
     override fun writeDataAsync(uri: String, bytes: ArrayBuffer, append: Boolean): Promise<Unit> {
         val data = bytes.toByteArray()
-        return query("writeData") { writeBytes(contentFile(uri), data, append) }
+        return query("writeData") {
+            if (isAssetUri(uri)) {
+                assetPath(uri)
+                readOnly()
+            }
+            writeBytes(contentFile(uri), data, append)
+        }
     }
 
     override fun fileDigest(uri: String, algorithm: String): Promise<String> = query("fileDigest") {
@@ -159,19 +202,28 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
             else -> throw OneNativeError("E_FILE_FAILED", "FileSystem.fileDigest: unknown digest algorithm")
         }
         val digest = MessageDigest.getInstance(name)
-        FileInputStream(contentFile(uri)).use { input ->
-            val chunk = ByteArray(65536)
-            while (true) {
-                val read = input.read(chunk)
-                if (read < 0) break
-                digest.update(chunk, 0, read)
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
+            try {
+                context.assets.open(path).use { input -> feedDigest(digest, input) }
+            } catch (error: OneNativeError) {
+                throw error
+            } catch (error: Exception) {
+                throw ErrnoException("digest", OsConstants.ENOENT)
             }
+        } else {
+            FileInputStream(contentFile(uri)).use { input -> feedDigest(digest, input) }
         }
         digest.digest().joinToString("") { "%02x".format(it) }
     }
 
     override fun createFileEntry(uri: String, intermediates: Boolean, overwrite: Boolean) {
         sync("createFileEntry") {
+            if (isAssetUri(uri)) {
+                assetPath(uri)
+                readOnly()
+            }
             val target = file(uri)
             if (target.exists()) {
                 if (!overwrite) throw ErrnoException("create", OsConstants.EEXIST)
@@ -190,6 +242,10 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         uri: String, intermediates: Boolean, overwrite: Boolean, idempotent: Boolean
     ) {
         sync("createDirectoryEntry") {
+            if (isAssetUri(uri)) {
+                assetPath(uri)
+                readOnly()
+            }
             val target = file(uri)
             if (target.exists()) {
                 if (target.isDirectory) {
@@ -207,6 +263,12 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun createFileInDirectory(dirUri: String, name: String): String = sync("createFileInDirectory") {
+        if (isAssetUri(dirUri)) {
+            val path = assetPath(dirUri)
+            if (!isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem.createFileInDirectory: expected a directory")
+            entryName(name)
+            readOnly()
+        }
         val parent = file(dirUri)
         if (!parent.isDirectory) throw OneNativeError("E_FILE_FAILED", "FileSystem.createFileInDirectory: expected a directory")
         val child = File(parent, entryName(name))
@@ -215,6 +277,12 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun createSubdirectory(dirUri: String, name: String): String = sync("createSubdirectory") {
+        if (isAssetUri(dirUri)) {
+            val path = assetPath(dirUri)
+            if (!isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem.createSubdirectory: expected a directory")
+            entryName(name)
+            readOnly()
+        }
         val parent = file(dirUri)
         if (!parent.isDirectory) throw OneNativeError("E_FILE_FAILED", "FileSystem.createSubdirectory: expected a directory")
         makeDirectory(File(parent, entryName(name)), false)
@@ -222,10 +290,23 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun deleteEntry(uri: String) {
-        sync("deleteEntry") { removeTree(mutableFile(uri)) }
+        sync("deleteEntry") {
+            if (isAssetUri(uri)) {
+                val path = assetPath(uri)
+                if (!isAssetDirectory(path) && !isAssetFile(path)) throw ErrnoException("delete", OsConstants.ENOENT)
+                readOnly()
+            }
+            removeTree(mutableFile(uri))
+        }
     }
 
     override fun renameEntry(uri: String, newName: String): String = sync("renameEntry") {
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            entryName(newName)
+            if (!isAssetDirectory(path) && !isAssetFile(path)) throw ErrnoException("rename", OsConstants.ENOENT)
+            readOnly()
+        }
         val source = mutableFile(uri)
         val destination = File(source.parentFile, entryName(newName))
         ensureMissing(destination)
@@ -248,11 +329,31 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         query("moveEntry") { relocate(copy = false, fromUri, toUri, overwrite) }
 
     override fun listEntries(uri: String): Array<ListedEntry> = sync("listEntries") {
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            if (!isAssetDirectory(path)) throw ErrnoException("list", OsConstants.ENOTDIR)
+            val names = try {
+                context.assets.list(path) ?: emptyArray()
+            } catch (error: Exception) {
+                throw ErrnoException("list", OsConstants.ENOENT)
+            }
+            return@sync names.sorted().map {
+                val child = if (path.isEmpty()) it else "$path/$it"
+                ListedEntry(it, assetChildUri(child), isAssetDirectory(child))
+            }.toTypedArray()
+        }
         children(file(uri)).map { ListedEntry(it.name, Uri.fromFile(it).toString(), it.isDirectory) }
             .sortedBy { it.name }.toTypedArray()
     }
 
     override fun fileDetails(uri: String): DetailedFileInfo = sync("fileDetails") {
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem.fileDetails: expected a file")
+            if (!isAssetFile(path)) return@sync DetailedFileInfo(false, 0.0, null, null, "")
+            return@sync DetailedFileInfo(true, assetLength(path).toDouble(), null, null,
+                mimeTypeByName(path.substringAfterLast('/')))
+        }
         val target = file(uri)
         if (!target.exists()) return@sync DetailedFileInfo(false, 0.0, null, null, "")
         if (!target.isFile) throw OneNativeError("E_FILE_FAILED", "FileSystem.fileDetails: expected a file")
@@ -261,6 +362,19 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun directoryDetails(uri: String): DetailedDirectoryInfo = sync("directoryDetails") {
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            if (!isAssetDirectory(path)) {
+                if (isAssetFile(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem.directoryDetails: expected a directory")
+                return@sync DetailedDirectoryInfo(false, null, null, null, null)
+            }
+            val files = try {
+                (context.assets.list(path) ?: emptyArray()).sortedArray()
+            } catch (error: Exception) {
+                emptyArray()
+            }
+            return@sync DetailedDirectoryInfo(true, assetDirectorySize(path).toDouble(), null, null, files)
+        }
         val target = file(uri)
         if (!target.exists()) return@sync DetailedDirectoryInfo(false, null, null, null, null)
         if (!target.isDirectory) throw OneNativeError("E_FILE_FAILED", "FileSystem.directoryDetails: expected a directory")
@@ -269,6 +383,23 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun openFile(uri: String, mode: String): Double = sync("openFile") {
+        if (isAssetUri(uri)) {
+            val path = assetPath(uri)
+            when (mode) {
+                "r", "rw", "w", "wa", "wt" -> Unit
+                else -> throw OneNativeError("E_FILE_FAILED", "FileSystem.openFile: invalid file mode")
+            }
+            if (mode != "r") readOnly()
+            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem.openFile: expected a file")
+            val bytes = try {
+                context.assets.open(path).use { it.readBytes() }
+            } catch (error: Exception) {
+                throw ErrnoException("open", OsConstants.ENOENT)
+            }
+            val id = nextHandle.getAndIncrement()
+            assetHandles[id] = AssetHandle(0, bytes)
+            return@sync id.toDouble()
+        }
         val target = file(uri)
         val access = when (mode) {
             "r", "rw", "w", "wa", "wt" -> if (mode == "r") "r" else "rw"
@@ -304,6 +435,7 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
 
     override fun closeFile(handle: Double) {
         sync("closeFile") {
+            if (assetHandles.remove(handle.toInt()) != null) return@sync
             (handles.remove(handle.toInt())
                 ?: throw OneNativeError("E_FILE_FAILED", "FileSystem.closeFile: unknown file handle")).close()
         }
@@ -311,6 +443,9 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
 
     override fun readHandle(handle: Double, length: Double): ArrayBuffer = sync("readHandle") {
         if (length < 0) throw OneNativeError("E_FILE_FAILED", "FileSystem.readHandle: invalid byte range")
+        assetHandles[handle.toInt()]?.let { asset ->
+            synchronized(asset) { return@sync ArrayBuffer.copy(readAssetHandle(asset, length)) }
+        }
         val accessFile = openHandle(handle.toInt())
         synchronized(accessFile) {
             val buffer = ByteArray(length.toInt())
@@ -321,6 +456,9 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
 
     override fun readHandleAsync(handle: Double, length: Double): Promise<ArrayBuffer> = query("readHandle") {
         if (length < 0) throw OneNativeError("E_FILE_FAILED", "FileSystem.readHandle: invalid byte range")
+        assetHandles[handle.toInt()]?.let { asset ->
+            synchronized(asset) { return@query ArrayBuffer.copy(readAssetHandle(asset, length)) }
+        }
         val accessFile = openHandle(handle.toInt())
         synchronized(accessFile) {
             val buffer = ByteArray(length.toInt())
@@ -330,15 +468,24 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun writeHandle(handle: Double, bytes: ArrayBuffer) {
-        sync("writeHandle") { writeHandleData(openHandle(handle.toInt()), bytes.toByteArray()) }
+        sync("writeHandle") {
+            if (assetHandles.containsKey(handle.toInt())) readOnly()
+            writeHandleData(openHandle(handle.toInt()), bytes.toByteArray())
+        }
     }
 
     override fun writeHandleAsync(handle: Double, bytes: ArrayBuffer): Promise<Unit> {
         val data = bytes.toByteArray()
-        return query("writeHandle") { writeHandleData(openHandle(handle.toInt()), data) }
+        return query("writeHandle") {
+            if (assetHandles.containsKey(handle.toInt())) readOnly()
+            writeHandleData(openHandle(handle.toInt()), data)
+        }
     }
 
     override fun getHandleOffset(handle: Double): Double = sync("getHandleOffset") {
+        assetHandles[handle.toInt()]?.let { asset ->
+            synchronized(asset) { return@sync asset.offset.toDouble() }
+        }
         val accessFile = openHandle(handle.toInt())
         synchronized(accessFile) { accessFile.filePointer.toDouble() }
     }
@@ -346,12 +493,17 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     override fun setHandleOffset(handle: Double, offset: Double) {
         sync("setHandleOffset") {
             if (offset < 0) throw OneNativeError("E_FILE_FAILED", "FileSystem.setHandleOffset: invalid byte range")
+            assetHandles[handle.toInt()]?.let { asset ->
+                synchronized(asset) { asset.offset = offset.toLong() }
+                return@sync
+            }
             val accessFile = openHandle(handle.toInt())
             synchronized(accessFile) { accessFile.seek(offset.toLong()) }
         }
     }
 
     override fun getHandleSize(handle: Double): Double = sync("getHandleSize") {
+        assetHandles[handle.toInt()]?.let { return@sync it.bytes.size.toDouble() }
         val accessFile = openHandle(handle.toInt())
         synchronized(accessFile) { accessFile.length().toDouble() }
     }
@@ -424,8 +576,154 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
 
     private fun directoryURI(file: File) = Uri.fromFile(file).toString().trimEnd('/') + "/"
 
-    private fun readStrictText(target: File): String {
-        val bytes = target.readBytes()
+    private fun isAssetUri(value: String): Boolean {
+        return try { URI(value).scheme == "asset" } catch (error: Exception) { false }
+    }
+
+    private fun assetPath(value: String): String {
+        try {
+            val uri = URI(value)
+            // opaque ('asset:relative') has no path; raw authority (not host, which parses
+            // null for 'asset://evil:bad/...') must be empty; the multi-arg ctor below
+            // re-quotes '%' so getPath decodes exactly once.
+            require(!uri.isOpaque &&
+                uri.scheme == "asset" &&
+                (uri.authority == null || uri.authority.isEmpty()) &&
+                uri.query == null && uri.fragment == null &&
+                (uri.path == null || uri.path.isEmpty() || uri.path.startsWith("/")))
+            if (uri.path == null || uri.path.isEmpty()) return ""
+            return (URI(null, null, uri.path, null).normalize().path ?: "").trim('/')
+        } catch (error: OneNativeError) {
+            throw error
+        } catch (error: Exception) {
+            throw OneNativeError("E_FILE_URI", "FileSystem: expected an absolute file URI")
+        }
+    }
+
+    private fun assetChildUri(child: String): String =
+        "asset:///" + child.split('/').joinToString("/") { encodeAssetSegment(it) }
+
+    // rfc 3986 unreserved only; every other byte (including '%' and non-ascii)
+    // becomes %XX so listed names survive uri re-entry and decode to the exact asset path.
+    private fun encodeAssetSegment(segment: String): String {
+        val out = StringBuilder(segment.length)
+        segment.toByteArray(Charsets.UTF_8).forEach { byte ->
+            val code = byte.toInt() and 0xFF
+            if (code in '0'.code..'9'.code || code in 'A'.code..'Z'.code ||
+                code in 'a'.code..'z'.code || code == '-'.code || code == '_'.code ||
+                code == '.'.code || code == '~'.code
+            ) {
+                out.append(code.toChar())
+            } else {
+                out.append('%').append(hexDigits[code shr 4]).append(hexDigits[code and 0x0F])
+            }
+        }
+        return out.toString()
+    }
+
+    private fun readOnly(): Nothing {
+        throw OneNativeError("E_FILE_PERMISSION", "FileSystem: assets are read-only")
+    }
+
+    private fun isAssetDirectory(path: String): Boolean {
+        if (path.isEmpty()) return true
+        return try { context.assets.list(path)?.isNotEmpty() == true } catch (error: Exception) { false }
+    }
+
+    private fun isAssetFile(path: String): Boolean {
+        if (path.isEmpty()) return false
+        return try { context.assets.open(path).use { true } } catch (error: Exception) { false }
+    }
+
+    private fun assetBytes(path: String): ByteArray {
+        try {
+            context.assets.open(path).use { return it.readBytes() }
+        } catch (error: Exception) {
+            throw ErrnoException("read", OsConstants.ENOENT)
+        }
+    }
+
+    private fun assetFileBytes(uri: String): ByteArray {
+        val path = assetPath(uri)
+        if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
+        return assetBytes(path)
+    }
+
+    private fun assetLength(path: String): Long {
+        try {
+            context.assets.openFd(path).use { descriptor ->
+                if (descriptor.length >= 0) return descriptor.length
+            }
+        } catch (error: Exception) { }
+        try {
+            context.assets.open(path).use { input ->
+                var size = 0L
+                val buffer = ByteArray(8192)
+                while (true) {
+                    val read = input.read(buffer)
+                    if (read < 0) break
+                    size += read
+                }
+                return size
+            }
+        } catch (error: Exception) { }
+        return 0
+    }
+
+    private fun assetDirectorySize(path: String): Long {
+        var total = 0L
+        val names = try { context.assets.list(path) ?: emptyArray() } catch (error: Exception) { return 0 }
+        names.forEach {
+            val child = if (path.isEmpty()) it else "$path/$it"
+            if (isAssetDirectory(child)) total += assetDirectorySize(child)
+            else if (isAssetFile(child)) total += assetLength(child)
+        }
+        return total
+    }
+
+    private fun copyAssetToFile(assetPath: String, destination: File) {
+        if (isAssetDirectory(assetPath)) {
+            Os.mkdir(destination.path, OsConstants.S_IRWXU)
+            val names = try { context.assets.list(assetPath) ?: emptyArray() } catch (error: Exception) {
+                throw ErrnoException("copy", OsConstants.ENOENT)
+            }
+            names.forEach { copyAssetToFile(if (assetPath.isEmpty()) it else "$assetPath/$it", File(destination, it)) }
+            return
+        }
+        val input = try { context.assets.open(assetPath) } catch (error: Exception) {
+            throw ErrnoException("copy", OsConstants.ENOENT)
+        }
+        input.use { source ->
+            val descriptor = Os.open(destination.path,
+                OsConstants.O_WRONLY or OsConstants.O_CREAT or OsConstants.O_EXCL, OsConstants.S_IRUSR or OsConstants.S_IWUSR)
+            try { FileOutputStream(descriptor).use { output -> source.copyTo(output) } }
+            finally { Os.close(descriptor) }
+        }
+    }
+
+    private fun readAssetHandle(asset: AssetHandle, length: Double): ByteArray {
+        val size = asset.bytes.size.toLong()
+        if (asset.offset < 0) asset.offset = 0
+        if (asset.offset >= size) return ByteArray(0)
+        val start = asset.offset.toInt()
+        val requested = length.toLong().coerceAtLeast(0).coerceAtMost(size - asset.offset).toInt()
+        val slice = asset.bytes.copyOfRange(start, start + requested)
+        asset.offset = (start + requested).toLong()
+        return slice
+    }
+
+    private fun feedDigest(digest: MessageDigest, input: InputStream) {
+        val chunk = ByteArray(65536)
+        while (true) {
+            val read = input.read(chunk)
+            if (read < 0) break
+            digest.update(chunk, 0, read)
+        }
+    }
+
+    private fun readStrictText(target: File): String = strictText(target.readBytes())
+
+    private fun strictText(bytes: ByteArray): String {
         val decoder = Charsets.UTF_8.newDecoder()
             .onMalformedInput(CodingErrorAction.REPORT)
             .onUnmappableCharacter(CodingErrorAction.REPORT)
@@ -465,6 +763,23 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     private fun relocate(copy: Boolean, fromUri: String, toUri: String, overwrite: Boolean) {
+        val fromAsset = isAssetUri(fromUri)
+        val toAsset = isAssetUri(toUri)
+        if (fromAsset || toAsset) {
+            val fromPath = if (fromAsset) assetPath(fromUri) else file(fromUri).let { null }
+            val toFile = if (!toAsset) file(toUri) else assetPath(toUri).let { null }
+            if (copy && fromAsset && !toAsset) {
+                val destination = toFile!!
+                if (destination.exists()) {
+                    if (!overwrite) throw ErrnoException("destination", OsConstants.EEXIST)
+                    mutableFile(toUri)
+                    removeTree(destination)
+                }
+                copyAssetToFile(fromPath!!, destination)
+                return
+            }
+            readOnly()
+        }
         val source = if (copy) file(fromUri) else mutableFile(fromUri)
         val destination = file(toUri)
         if (source.canonicalFile == destination.canonicalFile) {
@@ -481,8 +796,9 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         if (copy) copyTree(source, destination) else Os.rename(source.path, destination.path)
     }
 
-    private fun mimeType(target: File): String {
-        val name = target.name
+    private fun mimeType(target: File): String = mimeTypeByName(target.name)
+
+    private fun mimeTypeByName(name: String): String {
         val dot = name.lastIndexOf('.')
         if (dot < 0 || dot == name.length - 1) return ""
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(name.substring(dot + 1).lowercase()) ?: ""

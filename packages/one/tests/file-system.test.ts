@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { FileSystem } from '../src/platform/file-system/index'
 import { PathUtilities } from '../src/platform/file-system/paths'
+import { assertUri } from '../src/platform/file-system/validate'
 import {
   FileSystemReadableStreamSource,
   FileSystemWritableSink,
@@ -484,6 +485,88 @@ describe('native Paths', () => {
     file.create()
     expect(Paths.info('file:///cache/a.txt')).toEqual({ exists: true, isDirectory: false })
     expect(Paths.info('file:///cache/missing')).toEqual({ exists: false, isDirectory: null })
+  })
+})
+
+describe('asset bundle uris', () => {
+  it('admits asset uris at the js boundary and nothing else new', () => {
+    expect(() => assertUri('asset:///', 'Directory')).not.toThrow()
+    expect(() => assertUri('asset:///a/b.txt', 'File')).not.toThrow()
+    expect(() => assertUri('https://example.com/a.txt', 'File')).toThrow(
+      'File: expected an absolute file uri'
+    )
+    expect(() => assertUri('content:///a.txt', 'File')).toThrow(
+      'File: expected an absolute file uri'
+    )
+    expect(() => assertUri('asset:///a.txt?x=1', 'File')).toThrow(
+      'File: expected an absolute file uri'
+    )
+  })
+
+  it('builds asset files and directories that re-enter', async () => {
+    const { File, Directory } = await loadNativeClasses(fakeHybrid().hybrid)
+    expect(new Directory('asset://').uri).toBe('asset:///')
+    expect(new File('asset:///a/b.txt').uri).toBe('asset:///a/b.txt')
+    const bundle = new Directory('asset:///')
+    expect(new File(bundle, 'a.txt').uri).toBe('asset:///a.txt')
+    expect(new File('asset:///a/b.txt').parentDirectory.uri).toBe('asset:///a')
+    expect(() => new Directory('content:///a')).toThrow(
+      'Directory: expected an absolute file uri'
+    )
+  })
+
+  it('exposes an asset bundle directory', async () => {
+    const { Paths } = await loadNativeClasses({
+      ...fakeHybrid().hybrid,
+      getBundleDirectory: () => 'asset://',
+    })
+    expect(Paths.bundle.uri).toBe('asset:///')
+  })
+
+  it('round-trips encoded listed children for hostile names', async () => {
+    const { File, Directory } = await loadNativeClasses(fakeHybrid().hybrid)
+    const bundle = new Directory('asset:///')
+    // [raw asset name, encoded child uri segment native listEntries emits]
+    const cases: [string, string][] = [
+      ['plain.txt', 'plain.txt'],
+      ['space name.txt', 'space%20name.txt'],
+      ['hash#name.txt', 'hash%23name.txt'],
+      ['query?name.txt', 'query%3Fname.txt'],
+      ['percent%name.txt', 'percent%25name.txt'],
+      ['encoded%20name.txt', 'encoded%2520name.txt'],
+    ]
+    for (const [raw, encoded] of cases) {
+      const uri = `asset:///${encoded}`
+      expect(new File(uri).uri).toBe(uri)
+      expect(PathUtilities.basename(uri)).toBe(raw)
+      expect(new File(uri).parentDirectory.uri).toBe('asset:///')
+      expect(new File(bundle, raw).uri).toBe(uri)
+    }
+  })
+
+  it('lists encoded asset children without aborting', async () => {
+    const entries = [
+      { name: 'hash#name.txt', uri: 'asset:///hash%23name.txt', isDirectory: false },
+      { name: 'query?name.txt', uri: 'asset:///query%3Fname.txt', isDirectory: false },
+      { name: 'sub dir', uri: 'asset:///sub%20dir', isDirectory: true },
+    ]
+    const { Directory } = await loadNativeClasses({
+      ...fakeHybrid().hybrid,
+      listEntries: () => entries,
+    })
+    expect(new Directory('asset:///').list().map((entry) => entry.uri)).toEqual(
+      entries.map((entry) => entry.uri)
+    )
+  })
+
+  it('rejects malformed asset uris at the js boundary', async () => {
+    const { Directory } = await loadNativeClasses(fakeHybrid().hybrid)
+    expect(() => new Directory('asset:relative')).toThrow(
+      'Directory: expected an absolute file uri'
+    )
+    // join strips the unparsable authority to a single-slash path; the raw
+    // authority form reaching native is rejected there with E_FILE_URI.
+    expect(new Directory('asset://evil:bad/path').uri).toBe('asset:/evil:bad/path')
   })
 })
 
