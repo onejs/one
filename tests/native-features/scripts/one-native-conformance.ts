@@ -495,11 +495,11 @@ const nativeActivitySheet = (nodes: Node[]) => {
   return sheet
 }
 // the activity service reports local bounds; its native container owns the screen origin.
-export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
+export const nativeActivityAction = (nodes: Node[], actions: Node, label: string) => {
   const sheet = nativeActivitySheet(nodes)
   const app = nodes.find((node) => node.type === 'Application')
   const copy = nativeButton(
-    (actions.children ?? []).filter((node) => node.AXLabel === 'Copy'),
+    (actions.children ?? []).filter((node) => node.AXLabel === label),
     'actionGroupCell'
   )
   const frame = copy?.frame
@@ -514,6 +514,7 @@ export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
     actions.pid === app.pid ||
     copy.pid !== actions.pid ||
     copy.enabled !== true ||
+    !Object.values(frame).every(Number.isFinite) ||
     frame.width <= 0 ||
     frame.height <= 0 ||
     frame.x < 0 ||
@@ -524,8 +525,39 @@ export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
     return undefined
   return {
     ...copy,
+    pid: actions.pid,
     frame: { ...frame, x: sheet.frame.x + frame.x, y: sheet.frame.y + frame.y },
   }
+}
+export const nativeActivityCopy = (nodes: Node[], actions: Node) =>
+  nativeActivityAction(nodes, actions, 'Copy')
+
+export const nativeActivityDismissPoint = (nodes: Node[]) => {
+  const sheet = nativeActivitySheet(nodes)
+  const app = nodes.find((node) => node.type === 'Application')
+  const regions = nodes.filter((node) => node.AXUniqueId === 'PopoverDismissRegion')
+  const region = regions.length === 1 ? regions[0] : undefined
+  const screen = app?.frame
+  const box = sheet?.frame
+  if (
+    !screen || !box || !region?.frame || region.type !== 'Group' ||
+    region.role !== 'AXGroup' || region.enabled !== true || region.pid !== app.pid ||
+    ![screen, box, region.frame].every((frame) =>
+      Object.values(frame).every(Number.isFinite) && frame.width > 0 && frame.height > 0
+    )
+  ) return undefined
+  const outside = [
+    { x: screen.x, y: screen.y, width: screen.width, height: box.y - screen.y },
+    { x: screen.x, y: box.y + box.height, width: screen.width,
+      height: screen.y + screen.height - box.y - box.height },
+    { x: screen.x, y: screen.y, width: box.x - screen.x, height: screen.height },
+    { x: box.x + box.width, y: screen.y,
+      width: screen.x + screen.width - box.x - box.width, height: screen.height },
+  ].map((frame) => visibleFrame(frame, region.frame))
+    .filter((frame) => frame && frame.width >= 20 && frame.height >= 20)
+    .sort((a, b) => b!.width * b!.height - a!.width * a!.height)
+  const frame = outside[0]
+  return frame && { x: frame.x + frame.width / 2, y: frame.y + frame.height / 2 }
 }
 // standalone image hosts repeat the testID; the descendant symbol owns its painted frame.
 export const nativeSymbol = (nodes: Node[], testID: string, systemName: string) => {
@@ -13227,43 +13259,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-share')
     await wait('share fixture starts idle', (n) => labels(n).includes('Status: idle'))
-    const frame = snapshot(config.simulatorId).find(
-      (node) => node.type === 'Application'
-    )?.frame
-    if (!frame) throw new Error('share fixture has no application frame')
-    const center = String(Math.round(frame.width / 2))
-    const activityAt = (x: number, y: number) =>
-      JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
-    const dismissShare = () =>
-      axe(
-        [
-          'swipe',
-          '--start-x',
-          center,
-          '--start-y',
-          String(Math.round(frame.height * 0.5)),
-          '--end-x',
-          center,
-          '--end-y',
-          String(Math.round(frame.height * 0.95)),
-          '--duration',
-          '0.5',
-        ],
-        config.simulatorId
+    const activityAt = (x: number, y: number): Node | undefined => {
+      try {
+        return JSON.parse(
+          axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)
+        ) as Node
+      } catch (error) {
+        if (String(error).includes('fullscreen dialog')) return undefined
+        throw error
+      }
+    }
+    const activityAction = (nodes: Node[], label: string) => {
+      const sheet = nativeActivitySheet(nodes)?.frame
+      if (!sheet) return undefined
+      const actions = activityAt(sheet.x + sheet.width / 2, sheet.y + sheet.height - 1)
+      return actions && nativeActivityAction(nodes, actions, label)
+    }
+    const dismissShare = (nodes: Node[]) => {
+      const target = nativeActivityDismissPoint(nodes)
+      if (!target) throw new Error('System activity sheet has no outside dismissal area')
+      const hit = activityAt(target.x, target.y)
+      const app = nodes.find((node) => node.type === 'Application')
+      if (
+        hit?.AXUniqueId !== 'PopoverDismissRegion' || hit.type !== 'Group' ||
+        hit.role !== 'AXGroup' || hit.enabled !== true || hit.pid !== app?.pid
       )
+        throw new Error('System activity dismissal point does not hit its native region')
+      fs.writeFileSync(path.join(config.artifactDir, 'share-dismiss-hit.json'),
+        JSON.stringify({ target, hit }, null, 2))
+      point(target.x, target.y)
+    }
     tap({ id: 'one-native-share-run' })
-    await wait(
+    const textSheet = await wait(
       'share sheet opens with Copy activity',
-      () => activityAt(70, 780).AXLabel?.toLowerCase() === 'copy'
+      (nodes) => Boolean(activityAction(nodes, 'Copy'))
     )
-    screenshot('share-text-and-url.png')
-    point(70, 780)
-    await wait(
+    screenshot('share-text-and-url.png', textSheet)
+    const copy = activityAction(textSheet, 'Copy')
+    if (!copy) throw new Error('System activity sheet lost its unique enabled Copy action')
+    fs.writeFileSync(path.join(config.artifactDir, 'share-copy-action.json'),
+      JSON.stringify(copy, null, 2))
+    const copyPoint = { x: copy.frame.x + copy.frame.width / 2,
+      y: copy.frame.y + copy.frame.height / 2 }
+    const copyHit = activityAt(copyPoint.x, copyPoint.y)
+    fs.writeFileSync(path.join(config.artifactDir, 'share-copy-hit.json'),
+      JSON.stringify({ target: copyPoint, hit: copyHit }, null, 2))
+    if (
+      !copyHit || copyHit.pid !== copy.pid || copyHit.enabled !== true ||
+      !(copyHit.type === 'Button' && copyHit.role === 'AXButton' &&
+        copyHit.AXUniqueId === 'actionGroupCell' && copyHit.AXLabel === 'Copy' ||
+        copyHit.type === 'Image' && copyHit.role === 'AXImage' &&
+        copyHit.AXUniqueId === 'activityImageView' && copyHit.AXLabel === 'copy')
+    ) throw new Error('System activity Copy center does not hit its native action')
+    point(copyPoint.x, copyPoint.y)
+    const fileSheet = await wait(
       'file share opens with Save to Files activity',
-      () => activityAt(155, 820).AXLabel === 'Save to Files'
+      (nodes) => Boolean(activityAction(nodes, 'Save to Files'))
     )
-    screenshot('share-file.png')
-    dismissShare()
+    screenshot('share-file.png', fileSheet)
+    dismissShare(fileSheet)
     await wait(
       'canceled share and input errors settle',
       (n) =>
