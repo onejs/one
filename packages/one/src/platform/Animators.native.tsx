@@ -20,6 +20,7 @@ import {
 } from './animatorTypes'
 import { InsideContainer, assertOneNativeChildren } from './containerChildren'
 import { sdkAnimationValues, type OneNativeStyle } from './generated/controlTypes'
+import { encodeSDKAnimation } from './generated/swiftStyleNative'
 import NativeKeyframeAnimator from './specs/OneNativeKeyframeAnimatorNativeComponent'
 import NativePhaseAnimator from './specs/OneNativePhaseAnimatorNativeComponent'
 
@@ -144,11 +145,15 @@ export function PhaseAnimator<Phase>({
     throw new Error('Swift.PhaseAnimator animation must be a function of the phase')
   const animations = list.map((phase) => {
     const value = animation ? animation(phase) : 'default'
-    if (value !== null && !sdkAnimationValues.includes(value))
+    if (value === null) return null
+    try {
+      return encodeSDKAnimation(value, 'Swift.PhaseAnimator animation')
+    } catch (cause) {
       throw new Error(
-        `Swift.PhaseAnimator animation must return null or one of ${sdkAnimationValues.join(', ')}`
+        `Swift.PhaseAnimator animation must return null or one of ${sdkAnimationValues.join(', ')}, or a valid SDK animation record`,
+        { cause }
       )
-    return value
+    }
   })
   const content = zipContent(
     list.map((phase) => children(phase)),

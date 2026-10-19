@@ -65,7 +65,7 @@ import type {
   ToolbarContentProps,
   ToolbarSpacerProps,
   ZStackProps,
-  SDKAnimation,
+  SDKAnimationValue,
   WithAnimationCompletionCriteria,
 } from './types'
 
@@ -395,7 +395,7 @@ export const Swift = {
   CubicKeyframe,
   MoveKeyframe,
   withAnimation(
-    _animation: SDKAnimation | null,
+    _animation: SDKAnimationValue | null,
     _body: () => void,
     _completion?: () => void,
     _completionCriteria?: WithAnimationCompletionCriteria

@@ -52,6 +52,32 @@ export default function OneNativeAnimation() {
           <Text>Nested</Text>
         </Pressable>
       </View>
+      <View style={styles.row}>
+        <Pressable
+          testID="one-native-animation-duration"
+          style={styles.chip}
+          onPress={() =>
+            One.iOS.withAnimation({ kind: 'easeOut', duration: 2 }, () => level.set(next()), () =>
+              setCompletions((count) => count + 1)
+            )
+          }
+        >
+          <Text>Ease out, 2 seconds</Text>
+        </Pressable>
+        <Pressable
+          testID="one-native-animation-spring"
+          style={styles.chip}
+          onPress={() =>
+            One.iOS.withAnimation(
+              { kind: 'spring', response: 1, dampingFraction: 0.7 },
+              () => level.set(next()),
+              () => setCompletions((count) => count + 1)
+            )
+          }
+        >
+          <Text>Configured spring</Text>
+        </Pressable>
+      </View>
       <Text testID="one-native-animation-status" style={styles.line}>
         {`Level: ${level.value} · Completions: ${completions}`}
       </Text>
