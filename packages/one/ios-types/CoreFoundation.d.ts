@@ -2451,13 +2451,13 @@ export declare function CFAllocatorAllocateBytes(allocator: (CFAllocator) | null
  */
 export declare function CFAllocatorAllocateTyped(allocator: (CFAllocator) | null, size: number, descriptor: number, hint: number): (SDKHandle) | null;
 /** func CFAllocatorCreate(_ allocator: CFAllocator!, _ context: UnsafeMutablePointer<CFAllocatorContext>!) -> Unmanaged<CFAllocator>! */
-export declare function CFAllocatorCreate(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function CFAllocatorCreate(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): (CFAllocator) | null;
 /** func CFAllocatorDeallocate(_ allocator: CFAllocator!, _ ptr: UnsafeMutableRawPointer!) */
 export declare function CFAllocatorDeallocate(allocator?: (CFAllocator) | null, ptr?: (SDKHandle) | null): void;
 /** func CFAllocatorGetContext(_ allocator: CFAllocator!, _ context: UnsafeMutablePointer<CFAllocatorContext>!) */
 export declare function CFAllocatorGetContext(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): void;
 /** func CFAllocatorGetDefault() -> Unmanaged<CFAllocator>! */
-export declare function CFAllocatorGetDefault(): (SDKHandle) | null;
+export declare function CFAllocatorGetDefault(): (CFAllocator) | null;
 /** func CFAllocatorGetPreferredSizeForSize(_ allocator: CFAllocator!, _ size: CFIndex, _ hint: CFOptionFlags) -> CFIndex */
 export declare function CFAllocatorGetPreferredSizeForSize(allocator: (CFAllocator) | null, size: number, hint: number): number;
 /** func CFAllocatorGetTypeID() -> CFTypeID */
@@ -3506,7 +3506,7 @@ export declare function CFPreferencesSynchronize(applicationID: CFString, userNa
  * @availability iOS 4.0+
  */
 export declare function CFPropertyListCreateData(allocator: (CFAllocator) | null, propertyList: (unknown) | null, format: CFPropertyListFormat, options: number): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFData) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -3518,7 +3518,7 @@ export declare function CFPropertyListCreateDeepCopy(allocator: (CFAllocator) | 
  * @availability iOS 4.0+
  */
 export declare function CFPropertyListCreateWithData(allocator: (CFAllocator) | null, data: (CFData) | null, options: number, format?: (SDKHandle) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (unknown) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -3528,7 +3528,7 @@ export declare function CFPropertyListCreateWithData(allocator: (CFAllocator) | 
  * @availability iOS 4.0+
  */
 export declare function CFPropertyListCreateWithStream(allocator: (CFAllocator) | null, stream: (CFReadStream) | null, streamLength: number, options: number, format?: (SDKHandle) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (unknown) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -3538,7 +3538,7 @@ export declare function CFPropertyListCreateWithStream(allocator: (CFAllocator) 
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export declare function CFPropertyListCreateXMLData(allocator?: (CFAllocator) | null, propertyList?: (unknown) | null): (SDKHandle) | null;
+export declare function CFPropertyListCreateXMLData(allocator?: (CFAllocator) | null, propertyList?: (unknown) | null): (CFData) | null;
 /** func CFPropertyListIsValid(_ plist: CFPropertyList!, _ format: CFPropertyListFormat) -> Bool */
 export declare function CFPropertyListIsValid(plist: (unknown) | null, format: CFPropertyListFormat): boolean;
 /**
@@ -4172,7 +4172,7 @@ export declare function CFURLCopyQueryString(anURL?: (CFURL) | null, charactersT
  * @availability iOS 4.0+
  */
 export declare function CFURLCopyResourcePropertiesForKeys(url?: (CFURL) | null, keys?: (CFArray) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFDictionary) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -4207,7 +4207,7 @@ export declare function CFURLCreateAbsoluteURLWithBytes(alloc: (CFAllocator) | n
  * @availability iOS 4.0+
  */
 export declare function CFURLCreateBookmarkData(allocator: (CFAllocator) | null, url: (CFURL) | null, options: CFURLBookmarkCreationOptions, resourcePropertiesToInclude?: (CFArray) | null, relativeToURL?: (CFURL) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFData) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -4217,7 +4217,7 @@ export declare function CFURLCreateBookmarkData(allocator: (CFAllocator) | null,
  * @availability iOS 5.0+
  */
 export declare function CFURLCreateBookmarkDataFromFile(allocator?: (CFAllocator) | null, fileURL?: (CFURL) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFData) | null;
     $out: {
         "errorRef": (CFError) | null;
     };
@@ -4227,7 +4227,7 @@ export declare function CFURLCreateBookmarkDataFromFile(allocator?: (CFAllocator
  * @availability iOS 4.0+
  */
 export declare function CFURLCreateByResolvingBookmarkData(allocator: (CFAllocator) | null, bookmark: (CFData) | null, options: CFURLBookmarkResolutionOptions, relativeToURL?: (CFURL) | null, resourcePropertiesToInclude?: (CFArray) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFURL) | null;
     $out: {
         "isStale": boolean;
         "error": (CFError) | null;
@@ -4248,7 +4248,7 @@ export declare function CFURLCreateData(allocator: (CFAllocator) | null, url: (C
  * @availability iOS 4.0+
  */
 export declare function CFURLCreateFilePathURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFURL) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -4258,7 +4258,7 @@ export declare function CFURLCreateFilePathURL(allocator?: (CFAllocator) | null,
  * @availability iOS 4.0+
  */
 export declare function CFURLCreateFileReferenceURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): {
-    $ret: (SDKHandle) | null;
+    $ret: (CFURL) | null;
     $out: {
         "error": (CFError) | null;
     };
@@ -4271,12 +4271,12 @@ export declare function CFURLCreateFromFileSystemRepresentationRelativeToBase(al
  * func CFURLCreateResourcePropertiesForKeysFromBookmarkData(_ allocator: CFAllocator!, _ resourcePropertiesToReturn: CFArray!, _ bookmark: CFData!) -> Unmanaged<CFDictionary>!
  * @availability iOS 4.0+
  */
-export declare function CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertiesToReturn?: (CFArray) | null, bookmark?: (CFData) | null): (SDKHandle) | null;
+export declare function CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertiesToReturn?: (CFArray) | null, bookmark?: (CFData) | null): (CFDictionary) | null;
 /**
  * func CFURLCreateResourcePropertyForKeyFromBookmarkData(_ allocator: CFAllocator!, _ resourcePropertyKey: CFString!, _ bookmark: CFData!) -> Unmanaged<CFTypeRef>!
  * @availability iOS 4.0+
  */
-export declare function CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertyKey?: (CFString) | null, bookmark?: (CFData) | null): (SDKHandle) | null;
+export declare function CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertyKey?: (CFString) | null, bookmark?: (CFData) | null): (unknown) | null;
 /**
  * func CFURLCreateStringByAddingPercentEscapes(_ allocator: CFAllocator!, _ originalString: CFString!, _ charactersToLeaveUnescaped: CFString!, _ legalURLCharactersToBeEscaped: CFString!, _ encoding: CFStringEncoding) -> CFString!
  * @availability iOS 2.0+
