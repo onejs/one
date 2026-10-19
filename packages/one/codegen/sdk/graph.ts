@@ -52,7 +52,7 @@ export const sdkVersion = () =>
 // SwiftUI) and modules that declare types a framework re-exports
 // (`_LocationEssentials` declares CLLocation for CoreLocation), plus the
 // swift-only system libraries. the standard library and the c library stay out.
-const SWIFT_LIBRARIES = ['Dispatch', 'Distributed', 'Observation', 'RegexBuilder', 'Spatial', 'Synchronization', 'System']
+const SWIFT_LIBRARIES = ['Dispatch', 'Distributed', 'ObjectiveC', 'Observation', 'RegexBuilder', 'Spatial', 'Synchronization', 'System']
 
 export function sdkModules(sdk = sdkPath()): string[] {
   const dir = join(sdk, 'System/Library/Frameworks')
