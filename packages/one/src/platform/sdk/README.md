@@ -24,6 +24,77 @@ The JavaScript and native parts must be rebuilt together after a bridge change.
 Regenerate Nitro bindings and the app SDK pod when rebuilding. Facades carry the
 same generation as their native tables, so stale combinations fail at the call.
 
+## React content in UIKit
+
+`One.iOS.UIKitView` places a generated UIKit view in React Native.
+`One.iOS.UIKitContent` places React Native children in UIKit. For a collection
+or table, create a cell source for that native view once, then use its generated
+diffable-data-source methods to apply snapshots:
+
+```tsx
+import { One } from 'one'
+import { Pressable, Text } from 'react-native'
+import {
+  NSDiffableDataSourceSnapshot,
+  type UICollectionView,
+  type UICollectionViewDiffableDataSource,
+} from 'one/ios/UIKit'
+
+async function connectCollection(view: UICollectionView, ids: number[]) {
+  const source = await One.iOS.collectionCellSource(view)
+  const snapshot = NSDiffableDataSourceSnapshot.init()
+  snapshot.appendSections([0])
+  snapshot.appendItems(ids, 0)
+  await source.applyAnimatingDifferences(snapshot, false)
+  return source
+}
+
+function CollectionRows({
+  view,
+  source,
+  items,
+  onSelect,
+}: {
+  view: UICollectionView
+  source: UICollectionViewDiffableDataSource<number, number>
+  items: { id: number; title: string }[]
+  onSelect: (id: number) => void
+}) {
+  return (
+    <>
+      <One.iOS.UIKitView view={view} style={{ height: 320 }} />
+      {items.map((item) => (
+        <One.iOS.UIKitContent key={item.id} source={source} item={item.id}>
+          <Pressable onPress={() => onSelect(item.id)}>
+            <Text>{item.title}</Text>
+          </Pressable>
+        </One.iOS.UIKitContent>
+      ))}
+    </>
+  )
+}
+```
+
+Call `connectCollection` during the native view's setup and retain its result for
+`CollectionRows`. Use a self-sizing collection layout. For a table, use
+`await One.iOS.tableCellSource(table)` and automatic row sizing. Both factories
+return the generated diffable data source with integer section and item IDs.
+The native cell provider attaches the React content; cell requests do not call
+JavaScript synchronously.
+
+Each `(source, item)` has one mounted `UIKitContent`, keyed by a stable item ID.
+The native container supplies its width and React measures the content height.
+`estimatedHeight` defaults to 44 before measurement; `height` fixes the height.
+Unmounting empties the native cell. Snapshots and `reconfigureItems` remain the
+generated UIKit APIs, so keep their item IDs in sync with the mounted content.
+
+For another UIKit API that takes a `UIView`, pass `onView` instead of `source`
+and `item`. It receives a stable generated `UIView` handle for that mount, which
+can be passed to APIs such as `UIStackView.addArrangedSubview`. On unmount, the
+retained view becomes empty with zero intrinsic height. `UIKitContent` renders
+its children at their UIKit destination. Mount only the items your app needs;
+a native collection's cell reuse does not virtualize those React subtrees.
+
 ## React state
 
 Import hooks from `one/ios-runtime`. Hooks return a cached snapshot with
