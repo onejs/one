@@ -291,10 +291,20 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       ? `guard #available(iOS ${version}, *) else { throw OneSDKError.unsupported("this api before iOS ${version}") }; ${body}`
       : body
 
-  // ancestors marked @MainActor make every member main-isolated
+  // ancestors marked @MainActor make every member main-isolated. swift infers a
+  // class's isolation from its superclass, so a subclass that does not spell
+  // @MainActor (UIActivityViewController) is main-isolated through its chain
+  const superclassOf = (usr: string) => {
+    const info = bridge.index.get(usr)
+    return info?.kind === 'class' ? info.superclass : undefined
+  }
   const mainIsolated = (usr: string | undefined): boolean => {
     for (let at = usr; at; at = ownerOf.get(at)) {
-      if (isMainActor(byUsr.get(at) ?? all.get(at))) return true
+      const seen = new Set<string>()
+      for (let type: string | undefined = at; type && !seen.has(type); type = superclassOf(type)) {
+        seen.add(type)
+        if (isMainActor(byUsr.get(type) ?? all.get(type))) return true
+      }
     }
     return false
   }
