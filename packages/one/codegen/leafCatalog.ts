@@ -208,7 +208,6 @@ export const leafControls: Control[] = [
         derived: true,
         nativeValue: 'variableValue !== undefined',
       },
-      colorRole: { type: 'string', default: '', publicType: 'IconColorRole' },
       // Image.resizable(): the symbol scales to the frame instead of drawing at its point
       // size. a uri image is always resizable.
       resizable: { type: 'boolean', default: false },
@@ -240,14 +239,12 @@ export const leafControls: Control[] = [
         } else {
           Image(systemName: model.systemName)
         }
-      }
-      .oneNativeColorRole(model.colorRole)`,
+      }`,
     validate: `  if (!systemName === !uri) throw new Error('Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)')
   if (renderingMode !== 'original' && renderingMode !== 'template') throw new Error("Image renderingMode must be 'original' or 'template'")
   if (renderingMode === 'template' && !uri) throw new Error('Image renderingMode applies to a uri image; an SF Symbol is already a template')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')
-  if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')
   if (resizable && uri) throw new Error('Image resizable applies to an SF Symbol; a uri image is always resizable')`,
   },
   {

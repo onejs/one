@@ -273,7 +273,6 @@ ${styleFields
     header +
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
-import type { IconColorRole } from '../ui/iconRoles'
 import type { SFSymbolName } from './sfSymbolNames'
 ${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
@@ -311,7 +310,6 @@ export type OneNativeViewProps = Pick<
   let adapters =
     header +
     `import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
-    "import { iconColorRoles } from '../ui/iconRoles'\n" +
     [...new Set(controls.flatMap((control) => control.adapterImports ?? []))]
       .map((line) => `${line}\n`)
       .join('') +

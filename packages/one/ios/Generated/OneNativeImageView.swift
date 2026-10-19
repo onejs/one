@@ -9,7 +9,6 @@ private final class ImageModel: ObservableObject {
   @Published var renderingMode: String = "original"
   @Published var variableValue: Double = 0
   @Published var hasVariableValue: Bool = false
-  @Published var colorRole: String = ""
   @Published var resizable: Bool = false
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
@@ -39,13 +38,12 @@ private final class ImageModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ systemName: String, uri: String, renderingMode: String, variableValue: Double, hasVariableValue: Bool, colorRole: String, resizable: Bool) {
+  public func configure(_ systemName: String, uri: String, renderingMode: String, variableValue: Double, hasVariableValue: Bool, resizable: Bool) {
     if model.systemName != systemName { model.systemName = systemName }
     if model.uri != uri { model.uri = uri }
     if model.renderingMode != renderingMode { model.renderingMode = renderingMode }
     if model.variableValue != variableValue { model.variableValue = variableValue }
     if model.hasVariableValue != hasVariableValue { model.hasVariableValue = hasVariableValue }
-    if model.colorRole != colorRole { model.colorRole = colorRole }
     if model.resizable != resizable { model.resizable = resizable }
   }
 
@@ -103,7 +101,6 @@ private struct ImageContent: View {
           Image(systemName: model.systemName)
         }
       }
-      .oneNativeColorRole(model.colorRole)
       .oneNativeAccessibility(model.accessibility, decorativeWhenUnlabeled: true)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

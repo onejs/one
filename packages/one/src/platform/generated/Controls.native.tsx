@@ -5,7 +5,6 @@ import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
 import { swiftStyleNative, dispatchSDKEvent } from './swiftStyleNative'
 import type * as Types from './controlTypes'
-import { iconColorRoles } from '../ui/iconRoles'
 import { chartPointsNative, chartStyleNative } from '../chartNative'
 import { getSyncStateId, isSyncState, publishNativeSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
@@ -527,7 +526,6 @@ export function Image({
   uri = '',
   renderingMode = 'original',
   variableValue = undefined,
-  colorRole = '',
   resizable = false,
   swiftStyle,
   style,
@@ -547,8 +545,6 @@ export function Image({
     throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1))
     throw new Error('Image variableValue must be between 0 and 1')
-  if (colorRole && !iconColorRoles.includes(colorRole))
-    throw new Error('Image colorRole must be a One.UI icon color role')
   if (resizable && uri)
     throw new Error(
       'Image resizable applies to an SF Symbol; a uri image is always resizable'
@@ -570,7 +566,6 @@ export function Image({
       renderingMode={renderingMode}
       variableValue={variableValue ?? 0}
       hasVariableValue={variableValue !== undefined}
-      colorRole={colorRole}
       resizable={resizable}
     />
   )

@@ -2,7 +2,6 @@
 // edit the generator or catalog, then regenerate.
 import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
-import type { IconColorRole } from '../ui/iconRoles'
 import type { SFSymbolName } from './sfSymbolNames'
 import type {
   AreaChartStyle,
@@ -3640,7 +3639,6 @@ export interface ImageProps extends OneNativeViewProps {
   uri?: string
   renderingMode?: 'original' | 'template'
   variableValue?: number
-  colorRole?: IconColorRole | ''
   resizable?: boolean
 }
 export interface ShareLinkProps extends OneNativeViewProps {

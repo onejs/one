@@ -1695,9 +1695,6 @@
         "hasVariableValue": {
           "type": "boolean"
         },
-        "colorRole": {
-          "type": "string"
-        },
         "resizable": {
           "type": "boolean"
         }
