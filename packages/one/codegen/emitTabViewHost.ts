@@ -197,6 +197,7 @@ export function validateTabViewHost(
     (declaration) =>
       declaration.kind === 'init' &&
       ownerName(declaration) === tabViewHost.customization.type &&
+      available(declaration) &&
       declaration.parameters.length === 0
   )
   if (defaultInit.length !== 1)
@@ -206,6 +207,7 @@ export function validateTabViewHost(
     (declaration) =>
       declaration.kind === 'func' &&
       ownerName(declaration) === tabViewHost.customization.type &&
+      available(declaration) &&
       declaration.name === tabViewHost.customization.encode.name &&
       signature(declaration.parameters) ===
         signature(tabViewHost.customization.encode.parameters)
@@ -217,6 +219,7 @@ export function validateTabViewHost(
     (declaration) =>
       declaration.kind === 'init' &&
       ownerName(declaration) === tabViewHost.customization.type &&
+      available(declaration) &&
       signature(declaration.parameters) ===
         signature(tabViewHost.customization.decode.parameters)
   )
