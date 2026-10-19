@@ -154,6 +154,29 @@ function expoProject() {
 }
 
 describe('vxrn/expo-plugin', () => {
+  it('prebuilds an app without SDK imports when Xcode is unavailable', () => {
+    const projectRoot = expoProject()
+    const iosRoot = join(projectRoot, 'ios')
+    mkdirSync(iosRoot)
+    writeFileSync(join(iosRoot, 'Podfile'), podfile)
+    const output = execFileSync(process.execPath, ['--input-type=module', '-e', `
+      import withVxrn from ${JSON.stringify(new URL('../../expo-plugin.cjs', import.meta.url).href)}
+      const projectRoot = process.argv[1]
+      const config = withVxrn({ name: 'TestApp', slug: 'test-app', _internal: { projectRoot } })
+      await config.mods.ios.dangerous({
+        ...config,
+        modRequest: {
+          projectRoot, platformProjectRoot: projectRoot + '/ios',
+          platform: 'ios', modName: 'dangerous', projectName: 'TestApp', introspect: false,
+        },
+        modResults: {},
+      })
+    `, projectRoot], { env: { ...process.env, PATH: '' }, encoding: 'utf8' })
+    expect(output).toBe('')
+    expect(existsSync(join(iosRoot, 'OneSwiftPackages', 'OneSDKBindings'))).toBe(false)
+    expect(readFileSync(join(iosRoot, 'Podfile'), 'utf8')).toContain('[vxrn/one] fmt c++17 fix')
+  })
+
   it('raises the ios deployment target to the one the One pod requires', async () => {
     const projectRoot = expoProject()
     const config = withVxrn({ name: 'TestApp', slug: 'test-app', _internal: { projectRoot } })
