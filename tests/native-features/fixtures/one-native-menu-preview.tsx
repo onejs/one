@@ -12,6 +12,7 @@ export default function OneNativeMenuPreview() {
   const [mounted, setMounted] = useState(true)
   const [lastAction, setLastAction] = useState('none')
   const [plainAction, setPlainAction] = useState('none')
+  const [box, setBox] = useState({ width: 240, height: 120 })
 
   return (
     <View style={styles.screen} testID="one-native-menu-preview-screen">
@@ -19,12 +20,24 @@ export default function OneNativeMenuPreview() {
       <Text>{`Preview menu mounted: ${mounted ? 'yes' : 'no'}`}</Text>
       <Text>{`Last action: ${lastAction}`}</Text>
       <Text>{`Plain action: ${plainAction}`}</Text>
+      <Text>{`Preview box: ${box.width}x${box.height}`}</Text>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel="Swap preview"
         onPress={() => setVariant((value) => (value === 'alpha' ? 'beta' : 'alpha'))}
       >
         <Text>Swap preview</Text>
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Resize while open"
+        onPress={() => {
+          // fires long after the menu presents, so the box change always
+          // lands mid-presentation rather than racing it.
+          setTimeout(() => setBox({ width: 300, height: 180 }), 6000)
+        }}
+      >
+        <Text>Resize while open</Text>
       </Pressable>
       <Pressable
         accessibilityRole="button"
@@ -41,14 +54,14 @@ export default function OneNativeMenuPreview() {
           preview={
             <View
               testID="one-native-menu-preview-card"
-              style={styles.preview}
+              style={[styles.preview, { width: box.width, height: box.height }]}
               accessibilityLabel={`Preview card ${variant}`}
             >
               <Text>{variant === 'alpha' ? 'Preview alpha #4129' : 'Preview beta #9021'}</Text>
             </View>
           }
-          previewWidth={240}
-          previewHeight={120}
+          previewWidth={box.width}
+          previewHeight={box.height}
         >
           <View testID="one-native-menu-preview-trigger" style={styles.trigger}>
             <Text>Hold for preview</Text>
@@ -85,8 +98,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#E3E3E8',
   },
   preview: {
-    width: 240,
-    height: 120,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 12,

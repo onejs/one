@@ -4,10 +4,7 @@ import UIKit
 final class OneNativeMenuModel: ObservableObject {
   @Published var children: [String: [OneNativeMenuNode]] = [:]
   @Published var trigger: UIView?
-  @Published var preview: UIView?
   @Published var size = CGSize.zero
-  @Published var previewWidth = 0.0
-  @Published var previewHeight = 0.0
   @Published var label = ""
   @Published var disabled = false
   @Published var hasPrimaryAction = false
@@ -24,9 +21,6 @@ final class OneNativeMenuModel: ObservableObject {
   var onPrimaryAction: (() -> Void)?
   var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
   var onPickerChange: ((String, String, Int, Int) -> Void)?
-  var onPreviewLayout: ((CGRect) -> Void)?
-  // the live preview controller while UIKit presents one; replacements join it.
-  weak var previewHost: UIViewController?
 
   func action(_ id: String) {
     guard active, !disabled, let item = items[id], item.type == .action, !item.disabled, !item.hidden else { return }
@@ -61,6 +55,40 @@ final class OneNativeMenuModel: ObservableObject {
   }
 }
 
+// the session is generic so the harness can drive it on macOS; in production the
+// content is always the preview marker view and the host a plain controller.
+extension UIView: OneNativeMenuPreviewContent {
+  var previewHidden: Bool {
+    get { isHidden }
+    set { isHidden = newValue }
+  }
+  var previewFrame: CGRect {
+    get { frame }
+    set { frame = newValue }
+  }
+  func detachFromPreviewParent() {
+    removeFromSuperview()
+  }
+}
+
+extension UIViewController: OneNativeMenuPreviewHost {
+  var previewPreferredSize: CGSize {
+    get { preferredContentSize }
+    set { preferredContentSize = newValue }
+  }
+  func attachPreview(_ content: any OneNativeMenuPreviewContent) {
+    precondition(content is UIView, "menu preview content is always a view")
+    view.addSubview(content as! UIView)
+  }
+}
+
+private struct OneNativeMenuDismissAnimator: OneNativeMenuPreviewAnimator {
+  let animator: any UIContextMenuInteractionAnimating
+  func addPreviewCompletion(_ completion: @escaping () -> Void) {
+    animator.addCompletion(completion)
+  }
+}
+
 @objcMembers
 public final class OneNativeMenuView: UIView {
   public var onAction: ((String) -> Void)?
@@ -68,6 +96,7 @@ public final class OneNativeMenuView: UIView {
   public var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
   public var onPickerChange: ((String, String, Int, Int) -> Void)?
   private var model = OneNativeMenuModel()
+  private var preview = OneNativeMenuPreviewSession<UIView, UIViewController>(makeHost: UIViewController.init)
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
   private var contextMenu: UIContextMenuInteraction?
 
@@ -86,32 +115,11 @@ public final class OneNativeMenuView: UIView {
   }
 
   public func mountPreview(_ view: UIView, onLayout: @escaping (CGRect) -> Void) {
-    if let old = model.preview, old !== view {
-      old.removeFromSuperview()
-      old.isHidden = true
-    }
-    model.onPreviewLayout = onLayout
-    model.preview = view
-    layoutPreview()
-    // a replacement that mounts mid-presentation joins the live controller.
-    if let host = model.previewHost, model.previewWidth > 0, model.previewHeight > 0 {
-      view.isHidden = false
-      host.view.addSubview(view)
-      view.frame = CGRect(x: 0, y: 0, width: model.previewWidth, height: model.previewHeight)
-    }
+    preview.mount(view, onLayout: onLayout)
   }
 
   public func unmountPreview(_ view: UIView) {
-    model.onPreviewLayout = nil
-    if model.preview === view { model.preview = nil }
-    view.removeFromSuperview()
-  }
-
-  // the preview lays out eagerly in its hidden marker, so the subtree has a Yoga
-  // frame before the first long press reparents it into UIKit's preview controller.
-  private func layoutPreview() {
-    guard model.preview != nil, model.previewWidth > 0, model.previewHeight > 0 else { return }
-    model.onPreviewLayout?(CGRect(x: 0, y: 0, width: model.previewWidth, height: model.previewHeight))
+    preview.unmount(view)
   }
 
   public func configureItems(_ items: [[String: Any]]) {
@@ -131,11 +139,7 @@ public final class OneNativeMenuView: UIView {
     if model.menuOrder != menuOrder { model.menuOrder = menuOrder }
     if model.menuActionDismissBehavior != menuActionDismissBehavior { model.menuActionDismissBehavior = menuActionDismissBehavior }
     if model.presentation != presentation { model.presentation = presentation; setNeedsLayout() }
-    if model.previewWidth != previewWidth || model.previewHeight != previewHeight {
-      model.previewWidth = previewWidth
-      model.previewHeight = previewHeight
-      layoutPreview()
-    }
+    preview.setSize(width: previewWidth, height: previewHeight)
   }
 
   public override func didMoveToWindow() {
@@ -198,10 +202,8 @@ public final class OneNativeMenuView: UIView {
     model.onPrimaryAction = nil
     model.onValueChange = nil
     model.onPickerChange = nil
-    model.onPreviewLayout = nil
-    model.previewHost = nil
+    preview.reset()
     model.trigger?.removeFromSuperview()
-    model.preview?.removeFromSuperview()
     controller?.detach()
     controller = nil
     model = OneNativeMenuModel()
@@ -283,7 +285,7 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
     // preview closure; UIKit takes a view controller instead. without a preview
     // child the provider stays nil and UIKit shows the subject, as before.
     let provider: (() -> UIViewController?)? =
-      model.preview == nil ? nil : { [weak self] in self?.previewController() }
+      preview.content == nil ? nil : { [weak self] in self?.preview.present() }
     let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: provider) { [weak self] _ in
       guard let self else { return nil }
       return UIMenu(children: self.menuElements("", dismiss: self.model.menuActionDismissBehavior, disabled: false))
@@ -292,40 +294,15 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
     return configuration
   }
 
-  private func previewController() -> UIViewController? {
-    guard let content = model.preview, model.previewWidth > 0, model.previewHeight > 0 else { return nil }
-    let size = CGSize(width: model.previewWidth, height: model.previewHeight)
-    let controller = UIViewController()
-    controller.preferredContentSize = size
-    model.previewHost = controller
-    showPreview(content, size: size, in: controller)
-    return controller
-  }
-
-  // the marker hides so the preview never paints inline; presenting unhides the
-  // content for UIKit's controller, and dismissal hides it again. a replacement
-  // that mounts mid-presentation joins the live controller instead of waiting.
-  private func showPreview(_ content: UIView, size: CGSize, in controller: UIViewController) {
-    content.isHidden = false
-    controller.view.addSubview(content)
-    content.frame = CGRect(origin: .zero, size: size)
-  }
-
   public func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration,
     animator: (any UIContextMenuInteractionAnimating)?
   ) {
     // the preview content returns to no parent once the dismiss animation finishes,
-    // the way a presented slot dismantles; the model retains it for the next menu.
+    // the way a presented slot dismantles; the session retains it for the next menu.
     // removing it earlier would empty the preview mid-animation, and leaving it in
     // the released controller would orphan its superview.
-    let hide = { [weak self] in
-      self?.model.preview?.removeFromSuperview()
-      self?.model.preview?.isHidden = true
-      self?.model.previewHost = nil
-    }
-    guard let animator else { hide(); return }
-    animator.addCompletion { hide() }
+    preview.end(animator: animator.map(OneNativeMenuDismissAnimator.init))
   }
 
   // the uikit form of OneNativeGeneratedMenuContent: a divider or a section closes the

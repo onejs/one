@@ -48,7 +48,9 @@ using namespace facebook::react;
 - (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics
 {
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
-  self.hidden = YES;
+  // the marker has a superview only while UIKit presents it in the preview
+  // controller; hiding it here would blank a live resize of presented content.
+  if (self.superview == nil) self.hidden = YES;
   self.frame = (CGRect){CGPointZero, self.bounds.size};
 }
 

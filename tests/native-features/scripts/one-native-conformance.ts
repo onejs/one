@@ -8417,13 +8417,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (output.includes('could not establish simulator input'))
         throw new Error('Menu preview long press lost simulator input')
     }
-    const checkPreviewFrame = (name: string, nodes: Node[]) => {
+    const checkPreviewFrame = (name: string, nodes: Node[], width = 240, height = 120) => {
       const frame = id(nodes, 'one-native-menu-preview-card')?.frame
       if (!frame) throw new Error(`${name} preview card has no frame`)
       frames[name] = frame
-      if (Math.abs(frame.width - 240) > 2 || Math.abs(frame.height - 120) > 2)
+      if (Math.abs(frame.width - width) > 2 || Math.abs(frame.height - height) > 2)
         throw new Error(
-          `${name} preview box is ${frame.width}x${frame.height}, expected 240x120`
+          `${name} preview box is ${frame.width}x${frame.height}, expected ${width}x${height}`
         )
       checks.push({ name, durationMs: 0 })
       console.log(`PASS ${name}`)
@@ -8519,6 +8519,28 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       true
     )
     await dismissPreview()
+    tap({ label: 'Resize while open' })
+    longPress('one-native-menu-preview-trigger')
+    await wait(
+      'preview presents before the live resize fires',
+      (nodes) => previewShown(nodes, 'beta') && menuOpen(nodes)
+    )
+    const resized = await wait(
+      'live box change reaches the open preview',
+      (nodes) =>
+        has(nodes, 'Preview box: 300x180') &&
+        previewShown(nodes, 'beta') &&
+        menuOpen(nodes)
+    )
+    const resizedPath = screenshot('menu-preview-resized.png', resized)
+    checkPreviewFrame('resized preview carries the live 300x180 box', resized, 300, 180)
+    checkPreviewPixels(
+      'resized preview keeps painting its blue card',
+      resized,
+      resizedPath,
+      true
+    )
+    await dismissPreview()
     longPress('one-native-menu-preview-plain-trigger')
     const plain = await wait(
       'menu without a preview still opens on its subject',
@@ -8538,6 +8560,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (nodes) =>
         Boolean(id(nodes, 'one-native-menu-preview-trigger')?.frame) &&
         shows(nodes, 'alpha', 'yes', 'none') &&
+        has(nodes, 'Preview box: 240x120') &&
         previewGone(nodes)
     )
     longPress('one-native-menu-preview-trigger')
