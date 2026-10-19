@@ -395,11 +395,11 @@ using namespace facebook::react;
 }
 
 // the shadow node measures the children's layout, since flattening can remove the
-// authored root from the mounted views
+// authored root from the mounted views. an empty layout reports zero, which unsets it
 - (void)reportMeasuredSize {
   if (!_measuredSizeCallback || !_slotState) return;
   const auto content = _slotState->getData().content;
-  if (std::isfinite(content.width) && std::isfinite(content.height) && content.width > 0 && content.height > 0)
+  if (std::isfinite(content.width) && std::isfinite(content.height) && content.width >= 0 && content.height >= 0)
     _measuredSizeCallback(CGSizeMake(content.width, content.height));
 }
 
@@ -1569,12 +1569,12 @@ ${[
         '  @Published var content: UIView?',
         '  var onLayout: ((CGRect) -> Void)?',
         '  // the laid-out presented content size, reported back from the bridge.',
-        '  // sizing to content reads it as the ideal size.',
+        '  // sizing to content reads it as the ideal size; zero keeps the proposal.',
         '  @Published var measuredWidth: CGFloat = 0',
         '  @Published var measuredHeight: CGFloat = 0',
         '',
         '  func setMeasuredSize(_ size: CGSize) {',
-        '    guard size.width.isFinite, size.height.isFinite, size.width > 0, size.height > 0,',
+        '    guard size.width.isFinite, size.height.isFinite, size.width >= 0, size.height >= 0,',
         '      abs(measuredWidth - size.width) >= 0.5 || abs(measuredHeight - size.height) >= 0.5 else { return }',
         '    measuredWidth = size.width',
         '    measuredHeight = size.height',

@@ -11,12 +11,12 @@ private final class PopoverModel: ObservableObject {
   @Published var content: UIView?
   var onLayout: ((CGRect) -> Void)?
   // the laid-out presented content size, reported back from the bridge.
-  // sizing to content reads it as the ideal size.
+  // sizing to content reads it as the ideal size; zero keeps the proposal.
   @Published var measuredWidth: CGFloat = 0
   @Published var measuredHeight: CGFloat = 0
 
   func setMeasuredSize(_ size: CGSize) {
-    guard size.width.isFinite, size.height.isFinite, size.width > 0, size.height > 0,
+    guard size.width.isFinite, size.height.isFinite, size.width >= 0, size.height >= 0,
       abs(measuredWidth - size.width) >= 0.5 || abs(measuredHeight - size.height) >= 0.5 else { return }
     measuredWidth = size.width
     measuredHeight = size.height

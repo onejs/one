@@ -476,7 +476,7 @@ final class OneNativeSheetModel: ObservableObject {
   @Published var presentationContentInteraction = "automatic"
   @Published var presentationSizing = "automatic"
   // the laid-out React Native content height, reported back from the bridge.
-  // fitted sizing reads it as the ideal height; detents ignore it.
+  // fitted sizing reads it as the ideal height, zero keeps the proposal; detents ignore it.
   @Published var measuredHeight: CGFloat = 0
   var detentValues: [(key: String, type: String, value: Double, detent: PresentationDetent)] = [
     ("large:0", "large", 0, .large)
@@ -547,7 +547,7 @@ final class OneNativeSheetModel: ObservableObject {
   }
 
   func setMeasuredHeight(_ height: CGFloat) {
-    guard height.isFinite, height > 0, abs(measuredHeight - height) >= 0.5 else { return }
+    guard height.isFinite, height >= 0, abs(measuredHeight - height) >= 0.5 else { return }
     measuredHeight = height
   }
 }
@@ -777,11 +777,11 @@ ${configureRest.map((line) => `    ${line}`).join('\n')}];
   [self reportMeasuredHeight];
 }
 // the shadow node measures the children's layout, since flattening can remove the
-// authored root from the mounted views.
+// authored root from the mounted views. an empty layout reports zero, which unsets it.
 - (void)reportMeasuredHeight {
   if (!_measuredHeightCallback || !_slotState) return;
   const auto height = _slotState->getData().content.height;
-  if (std::isfinite(height) && height > 0) _measuredHeightCallback(height);
+  if (std::isfinite(height) && height >= 0) _measuredHeightCallback(height);
 }
 - (void)updateNativeFrame:(CGRect)frame {
   if (!_slotState || !std::isfinite(frame.size.width) || !std::isfinite(frame.size.height)) return;

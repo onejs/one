@@ -50,11 +50,11 @@ using namespace facebook::react;
 }
 
 // the shadow node measures the children's layout, since flattening can remove the
-// authored root from the mounted views
+// authored root from the mounted views. an empty layout reports zero, which unsets it
 - (void)reportMeasuredSize {
   if (!_measuredSizeCallback || !_slotState) return;
   const auto content = _slotState->getData().content;
-  if (std::isfinite(content.width) && std::isfinite(content.height) && content.width > 0 && content.height > 0)
+  if (std::isfinite(content.width) && std::isfinite(content.height) && content.width >= 0 && content.height >= 0)
     _measuredSizeCallback(CGSizeMake(content.width, content.height));
 }
 
