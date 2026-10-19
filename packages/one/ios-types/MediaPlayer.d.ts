@@ -2887,6 +2887,18 @@ export interface MPNowPlayingSessionDelegate {
  */
 export interface MPPlayableContentDataSource {
     /**
+     * optional func beginLoadingChildItems(at indexPath: IndexPath) async throws
+     * @availability iOS 7.1+
+     * @deprecated iOS 14.0
+     */
+    "beginLoadingChildItemsAt"?: (arg0: _Foundation_IndexPath) => void;
+    /**
+     * optional func contentItem(forIdentifier identifier: String) async throws -> MPContentItem
+     * @availability iOS 10.0+
+     * @deprecated iOS 14.0
+     */
+    "contentItemForIdentifier"?: (arg0: string) => Promise<MPContentItem>;
+    /**
      * func numberOfChildItems(at indexPath: IndexPath) -> Int
      * @availability iOS 7.1+
      * @deprecated iOS 14.0
@@ -2905,6 +2917,12 @@ export interface MPPlayableContentDataSource {
  * @deprecated iOS 14.0
  */
 export interface MPPlayableContentDelegate {
+    /**
+     * optional func playableContentManager(_ contentManager: MPPlayableContentManager, initiatePlaybackOfContentItemAt indexPath: IndexPath) async throws
+     * @availability iOS 7.1+
+     * @deprecated iOS 14.0
+     */
+    "playableContentManagerInitiatePlaybackOfContentItemAt"?: (arg0: MPPlayableContentManager, arg1: _Foundation_IndexPath) => void;
     /**
      * optional func playableContentManager(_ contentManager: MPPlayableContentManager, didUpdate context: MPPlayableContentManagerContext)
      * @availability iOS 8.4+

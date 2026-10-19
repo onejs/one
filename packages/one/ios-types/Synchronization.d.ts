@@ -380,12 +380,12 @@ export declare class WordPair extends SDKHandle {
      * static func decodeAtomicRepresentation(_ representation: consuming WordPair.AtomicRepresentation) -> WordPair
      * @availability iOS 18.0+
      */
-    static decodeAtomicRepresentation(representation: WordPair): WordPair;
+    static decodeAtomicRepresentation(representation: WordPair_AtomicRepresentation): WordPair;
     /**
      * static func encodeAtomicRepresentation(_ value: consuming WordPair) -> WordPair.AtomicRepresentation
      * @availability iOS 18.0+
      */
-    static encodeAtomicRepresentation(value: WordPair): WordPair;
+    static encodeAtomicRepresentation(value: WordPair): WordPair_AtomicRepresentation;
     /**
      * init(first: UInt, second: UInt)
      * @availability iOS 18.0+

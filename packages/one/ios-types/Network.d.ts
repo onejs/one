@@ -4,90 +4,94 @@ import type { CFString as _CoreFoundation_CFString } from "one/ios/CoreFoundatio
 import type { DispatchQueue as _Dispatch_DispatchQueue, DispatchData as _Dispatch_DispatchData } from "one/ios/Dispatch";
 import type { JSONDecoder as _Foundation_JSONDecoder, JSONEncoder as _Foundation_JSONEncoder, PropertyListDecoder as _Foundation_PropertyListDecoder, PropertyListEncoder as _Foundation_PropertyListEncoder } from "one/ios/Foundation";
 import type { tls_ciphersuite_t as _Security_tls_ciphersuite_t, OS_sec_identity as _Security_OS_sec_identity, tls_ciphersuite_group_t as _Security_tls_ciphersuite_group_t, tls_protocol_version_t as _Security_tls_protocol_version_t } from "one/ios/Security";
-type $SDK1 = Array<_Security_tls_ciphersuite_t>;
-type $SDK2 = Implements<_Security_OS_sec_identity> | SDKHandle;
-type $SDK3 = Array<_Security_tls_ciphersuite_group_t>;
-type $SDK4 = (_Security_tls_protocol_version_t) | null;
-type $SDK5 = {
+type $SDK1 = Array<NWProtocolMetadata>;
+type $SDK2 = Array<_Security_tls_ciphersuite_t>;
+type $SDK3 = Implements<_Security_OS_sec_identity> | SDKHandle;
+type $SDK4 = Array<_Security_tls_ciphersuite_group_t>;
+type $SDK5 = (_Security_tls_protocol_version_t) | null;
+type $SDK6 = {
     "content": ArrayBuffer;
     "metadata": (Array<NWProtocolMetadata>) | null;
 };
-type $SDK6 = Array<NWProtocolMetadata>;
-type $SDK10 = NetworkChannel<QUICStream>;
-type $SDK12 = ((arg0: NetworkChannel<QUICStream>, arg1: boolean) => void);
-type $SDK14 = ((arg0: NetworkConnection<QUIC>, arg1: boolean) => void);
-type $SDK15 = NWParametersBuilder<QUIC, unknown>;
-type $SDK21 = ((arg0: Implements<OS_nw_interface> | SDKHandle) => Promise<boolean>);
-type $SDK25 = ((arg0: Implements<OS_nw_connection> | SDKHandle) => Promise<void>);
-type $SDK27 = ((arg0: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
-type $SDK29 = ((arg0: Implements<OS_nw_path> | SDKHandle) => Promise<void>);
-type $SDK34 = ((arg0: Implements<OS_nw_framer> | SDKHandle) => Promise<void>);
-type $SDK36 = ((arg0: SDKHandle) => Promise<void>);
-type $SDK41 = ((arg0: SDKHandle) => Promise<boolean>);
-type $SDK45 = ((arg0: Implements<OS_nw_protocol_options> | SDKHandle) => Promise<void>);
-type $SDK59 = (_Dispatch_DispatchQueue) | null;
-type $SDK61 = ((arg0: (ArrayBuffer) | null, arg1: (NWConnection_ContentContext) | null, arg2: boolean, arg3: (NWError) | null) => void);
-type $SDK62 = (((arg0: NWPath) => Promise<void>)) | null;
-type $SDK63 = (((arg0: NWPath) => void)) | null;
-type $SDK66 = ((arg0: (_Dispatch_DispatchData) | null, arg1: (NWConnection_ContentContext) | null, arg2: boolean, arg3: (NWError) | null) => void);
-type $SDK67 = (((arg0: boolean) => Promise<void>)) | null;
-type $SDK68 = (((arg0: boolean) => void)) | null;
-type $SDK70 = (NWProtocolOptions) | null;
-type $SDK71 = (NWProtocolMetadata) | null;
-type $SDK72 = (NWConnection_ContentContext) | null;
-type $SDK82 = (((arg0: NWConnection) => Promise<void>)) | null;
-type $SDK83 = (((arg0: NWConnection) => void)) | null;
-type $SDK84 = ((arg0: (NWError) | null) => void);
-type $SDK85 = Implements<OS_nw_content_context> | SDKHandle;
-type $SDK95 = (Array<NWInterface_InterfaceType>) | null;
-type $SDK96 = (NWProtocolTLS_Options) | null;
-type $SDK97 = Array<ProxyConfiguration>;
-type $SDK102 = Array<{
+type $SDK11 = (NWProtocolMetadata) | null;
+type $SDK12 = NetworkChannel<QUICStream>;
+type $SDK14 = ((arg0: NetworkChannel<QUICStream>, arg1: boolean) => void);
+type $SDK16 = ((arg0: NetworkConnection<QUIC>, arg1: boolean) => void);
+type $SDK17 = NWParametersBuilder<QUIC, unknown>;
+type $SDK22 = (NWListener_Service) | null;
+type $SDK23 = ((arg0: NetworkConnection<QUIC>) => Promise<void>);
+type $SDK27 = ((arg0: Implements<OS_nw_interface> | SDKHandle) => Promise<boolean>);
+type $SDK31 = ((arg0: Implements<OS_nw_connection> | SDKHandle) => Promise<void>);
+type $SDK33 = ((arg0: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
+type $SDK35 = ((arg0: Implements<OS_nw_path> | SDKHandle) => Promise<void>);
+type $SDK40 = ((arg0: Implements<OS_nw_framer> | SDKHandle) => Promise<void>);
+type $SDK42 = ((arg0: SDKHandle) => Promise<void>);
+type $SDK47 = ((arg0: Implements<OS_nw_endpoint> | SDKHandle) => Promise<boolean>);
+type $SDK51 = ((arg0: Implements<OS_nw_protocol_options> | SDKHandle) => Promise<void>);
+type $SDK66 = (_Dispatch_DispatchQueue) | null;
+type $SDK68 = ((arg0: (ArrayBuffer) | null, arg1: (NWConnection_ContentContext) | null, arg2: boolean, arg3: (NWError) | null) => void);
+type $SDK69 = (((arg0: NWPath) => Promise<void>)) | null;
+type $SDK70 = (((arg0: NWPath) => void)) | null;
+type $SDK73 = ((arg0: (_Dispatch_DispatchData) | null, arg1: (NWConnection_ContentContext) | null, arg2: boolean, arg3: (NWError) | null) => void);
+type $SDK74 = (((arg0: boolean) => Promise<void>)) | null;
+type $SDK75 = (((arg0: boolean) => void)) | null;
+type $SDK77 = (NWProtocolOptions) | null;
+type $SDK78 = (NWConnection_ContentContext) | null;
+type $SDK88 = (((arg0: NWConnection) => Promise<void>)) | null;
+type $SDK89 = (((arg0: NWConnection) => void)) | null;
+type $SDK90 = ((arg0: (NWError) | null) => void);
+type $SDK91 = Implements<OS_nw_content_context> | SDKHandle;
+type $SDK99 = (Array<NWInterface_InterfaceType>) | null;
+type $SDK100 = (NWProtocolTLS_Options) | null;
+type $SDK101 = Array<ProxyConfiguration>;
+type $SDK106 = Array<{
     "name": string;
     "value": string;
 }>;
-type $SDK103 = (Array<{
+type $SDK107 = (Array<{
     "name": string;
     "value": string;
 }>) | null;
-type $SDK105 = Record<string, NWTXTRecord_Entry>;
-type $SDK107 = {
+type $SDK109 = Record<string, NWTXTRecord_Entry>;
+type $SDK111 = {
     "key": string;
     "value": NWTXTRecord_Entry;
 };
-type $SDK112 = Implements<OS_nw_advertise_descriptor> | SDKHandle;
-type $SDK113 = (Implements<OS_nw_txt_record> | SDKHandle) | null;
-type $SDK114 = Implements<OS_nw_browse_descriptor> | SDKHandle;
-type $SDK115 = Implements<OS_nw_browse_result> | SDKHandle;
-type $SDK116 = (Implements<OS_nw_browse_result> | SDKHandle) | null;
-type $SDK117 = Implements<OS_nw_browser> | SDKHandle;
-type $SDK121 = Implements<OS_nw_connection> | SDKHandle;
-type $SDK122 = ((arg0: (SDKHandle) | null) => void);
-type $SDK123 = Implements<OS_nw_protocol_definition> | SDKHandle;
-type $SDK124 = Implements<OS_nw_parameters> | SDKHandle;
-type $SDK125 = Implements<OS_nw_connection_group> | SDKHandle;
-type $SDK126 = Implements<OS_nw_group_descriptor> | SDKHandle;
-type $SDK127 = (Implements<OS_nw_protocol_options> | SDKHandle) | null;
-type $SDK128 = (((arg0: SDKHandle) => void)) | null;
-type $SDK131 = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: boolean, arg3: (SDKHandle) | null) => void);
-type $SDK135 = Implements<OS_nw_protocol_metadata> | SDKHandle;
-type $SDK136 = Implements<OS_nw_data_transfer_report> | SDKHandle;
-type $SDK137 = ((arg0: SDKHandle) => void);
-type $SDK138 = Implements<OS_nw_error> | SDKHandle;
-type $SDK139 = Implements<OS_nw_establishment_report> | SDKHandle;
-type $SDK140 = Implements<OS_nw_framer> | SDKHandle;
-type $SDK141 = Implements<OS_nw_protocol_options> | SDKHandle;
-type $SDK143 = Implements<OS_nw_interface> | SDKHandle;
-type $SDK144 = Implements<OS_nw_listener> | SDKHandle;
-type $SDK149 = Implements<OS_nw_privacy_context> | SDKHandle;
-type $SDK150 = Implements<OS_nw_path> | SDKHandle;
-type $SDK151 = Implements<OS_nw_path_monitor> | SDKHandle;
-type $SDK152 = Implements<OS_nw_proxy_config> | SDKHandle;
-type $SDK154 = Implements<OS_nw_protocol_stack> | SDKHandle;
-type $SDK155 = Implements<OS_nw_relay_hop> | SDKHandle;
-type $SDK157 = Implements<OS_nw_resolution_report> | SDKHandle;
-type $SDK159 = Implements<OS_nw_txt_record> | SDKHandle;
-type $SDK160 = Implements<OS_nw_ws_response> | SDKHandle;
+type $SDK116 = Implements<OS_nw_advertise_descriptor> | SDKHandle;
+type $SDK117 = (Implements<OS_nw_txt_record> | SDKHandle) | null;
+type $SDK118 = Implements<OS_nw_browse_descriptor> | SDKHandle;
+type $SDK119 = Implements<OS_nw_browse_result> | SDKHandle;
+type $SDK120 = (Implements<OS_nw_browse_result> | SDKHandle) | null;
+type $SDK121 = Implements<OS_nw_browser> | SDKHandle;
+type $SDK125 = Implements<OS_nw_connection> | SDKHandle;
+type $SDK126 = ((arg0: (SDKHandle) | null) => void);
+type $SDK127 = Implements<OS_nw_protocol_definition> | SDKHandle;
+type $SDK128 = Implements<OS_nw_endpoint> | SDKHandle;
+type $SDK129 = Implements<OS_nw_parameters> | SDKHandle;
+type $SDK130 = Implements<OS_nw_connection_group> | SDKHandle;
+type $SDK131 = Implements<OS_nw_group_descriptor> | SDKHandle;
+type $SDK132 = (Implements<OS_nw_endpoint> | SDKHandle) | null;
+type $SDK133 = (Implements<OS_nw_protocol_options> | SDKHandle) | null;
+type $SDK134 = (((arg0: SDKHandle) => void)) | null;
+type $SDK137 = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: boolean, arg3: (SDKHandle) | null) => void);
+type $SDK141 = Implements<OS_nw_protocol_metadata> | SDKHandle;
+type $SDK142 = Implements<OS_nw_data_transfer_report> | SDKHandle;
+type $SDK143 = ((arg0: SDKHandle) => void);
+type $SDK144 = Implements<OS_nw_error> | SDKHandle;
+type $SDK145 = Implements<OS_nw_establishment_report> | SDKHandle;
+type $SDK146 = Implements<OS_nw_framer> | SDKHandle;
+type $SDK147 = Implements<OS_nw_protocol_options> | SDKHandle;
+type $SDK149 = Implements<OS_nw_interface> | SDKHandle;
+type $SDK150 = Implements<OS_nw_listener> | SDKHandle;
+type $SDK155 = Implements<OS_nw_privacy_context> | SDKHandle;
+type $SDK156 = Implements<OS_nw_path> | SDKHandle;
+type $SDK157 = Implements<OS_nw_path_monitor> | SDKHandle;
+type $SDK158 = Implements<OS_nw_proxy_config> | SDKHandle;
+type $SDK160 = Implements<OS_nw_protocol_stack> | SDKHandle;
+type $SDK161 = Implements<OS_nw_relay_hop> | SDKHandle;
+type $SDK163 = Implements<OS_nw_resolution_report> | SDKHandle;
+type $SDK165 = Implements<OS_nw_txt_record> | SDKHandle;
+type $SDK166 = Implements<OS_nw_ws_response> | SDKHandle;
 /**
  * struct Bonjour
  * @availability iOS 26.0+
@@ -200,7 +204,7 @@ export type Coder_ContentType<Sending = unknown, Receiving = unknown, CoderType 
  * @availability iOS 26.0+
  */
 export type Coder_LegacyMessage<Sending = unknown, Receiving = unknown, CoderType = unknown> = {
-    "content": Coder<unknown, unknown, unknown>;
+    "content": unknown;
     "metadata": (Array<NWProtocolMetadata>) | null;
     "isFinal": boolean;
 };
@@ -209,6 +213,21 @@ export type Coder_LegacyMessage<Sending = unknown, Receiving = unknown, CoderTyp
  * @availability iOS 26.0+
  */
 export declare class Coder_Metadata<Sending = unknown, Receiving = unknown, CoderType = unknown> extends SDKHandle {
+    /**
+     * let isComplete: Bool
+     * @availability iOS 26.0+
+     */
+    get isComplete(): boolean;
+    /**
+     * let lastMessage: Bool
+     * @availability iOS 26.0+
+     */
+    get lastMessage(): boolean;
+    /**
+     * let other: [NWProtocolMetadata]
+     * @availability iOS 26.0+
+     */
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network5CoderV8MetadataV": true;
     };
@@ -259,12 +278,12 @@ export declare class DTLS extends SDKHandle {
      * func cipherSuites(_ suites: [tls_ciphersuite_t]) -> DTLS
      * @availability iOS 27.0+
      */
-    cipherSuites(suites: $SDK1): DTLS;
+    cipherSuites(suites: $SDK2): DTLS;
     /**
      * func localIdentity(_ identity: sec_identity_t) -> DTLS
      * @availability iOS 27.0+
      */
-    localIdentity(identity: $SDK2): DTLS;
+    localIdentity(identity: $SDK3): DTLS;
     /**
      * func ticketsEnabled(_ enabled: Bool) -> DTLS
      * @availability iOS 27.0+
@@ -279,7 +298,7 @@ export declare class DTLS extends SDKHandle {
      * func cipherSuiteGroups(_ groups: [tls_ciphersuite_group_t]) -> DTLS
      * @availability iOS 27.0+
      */
-    cipherSuiteGroups(groups: $SDK3): DTLS;
+    cipherSuiteGroups(groups: $SDK4): DTLS;
     /**
      * func peerAuthentication(_ preference: DTLS.PeerAuthentication) -> DTLS
      * @availability iOS 27.0+
@@ -294,7 +313,7 @@ export declare class DTLS extends SDKHandle {
      * func version(min: tls_protocol_version_t? = nil, max: tls_protocol_version_t? = nil) -> DTLS
      * @availability iOS 27.0+
      */
-    version(min?: $SDK4, max?: $SDK4): DTLS;
+    version(min?: $SDK5, max?: $SDK5): DTLS;
     /**
      * init()
      * @availability iOS 27.0+
@@ -318,7 +337,7 @@ export type DTLS_ContentType = ArrayBuffer;
  * typealias LegacyMessage = (content: Data, metadata: [NWProtocolMetadata]?)
  * @availability iOS 27.0+
  */
-export type DTLS_LegacyMessage = $SDK5;
+export type DTLS_LegacyMessage = $SDK6;
 /**
  * struct Metadata
  * @availability iOS 27.0+
@@ -328,7 +347,7 @@ export declare class DTLS_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 27.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network4DTLSV8MetadataV": true;
     };
@@ -348,6 +367,12 @@ export type DTLS_ProtocolStorage = DefaultProtocolStorage;
  * @availability iOS 26.0+
  */
 export declare class Framer<T = unknown> extends SDKHandle {
+    /**
+     * var options: NWProtocolFramer.Options
+     * @availability iOS 26.0+
+     */
+    get options(): NWProtocolFramer_Options;
+    set options(value: NWProtocolFramer_Options);
     readonly $type: {
         "s:7Network6FramerV": true;
     };
@@ -372,6 +397,26 @@ export type Framer_LegacyMessage<T = unknown> = [ArrayBuffer, Framer_Metadata<un
  * @availability iOS 26.0+
  */
 export declare class Framer_Metadata<T = unknown> extends SDKHandle {
+    /**
+     * let isComplete: Bool
+     * @availability iOS 26.0+
+     */
+    get isComplete(): boolean;
+    /**
+     * let lastMessage: Bool
+     * @availability iOS 26.0+
+     */
+    get lastMessage(): boolean;
+    /**
+     * let other: [NWProtocolMetadata]
+     * @availability iOS 26.0+
+     */
+    get other(): $SDK1;
+    /**
+     * let framer: NWProtocolFramer.Message
+     * @availability iOS 26.0+
+     */
+    get framer(): NWProtocolFramer_Message;
     readonly $type: {
         "s:7Network6FramerV8MetadataV": true;
     };
@@ -450,7 +495,7 @@ export declare class IP_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network2IPV8MetadataV": true;
     };
@@ -716,6 +761,11 @@ export interface MultiplexProtocol {
  * @availability iOS 26.0+
  */
 export declare class NetworkBrowser<Provider = unknown> extends SDKHandle {
+    /**
+     * final var debugDescription: String { get }
+     * @availability iOS 26.0+
+     */
+    get debugDescription(): string;
     readonly $type: {
         "s:7Network0A7BrowserC": true;
     };
@@ -749,20 +799,60 @@ export type NetworkBrowser_StateUpdateHandler<Provider = unknown> = ((arg0: Netw
  */
 export declare class NetworkChannel<ApplicationProtocol = unknown> extends SDKHandle {
     /**
+     * var parameters: NWParameters { get }
+     * @availability iOS 26.0+
+     */
+    get parameters(): NWParameters;
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 26.0+
+     */
+    get debugDescription(): string;
+    /**
+     * func dataTransferReport() async throws -> NWConnection.DataTransferReport
+     * @availability iOS 26.0+
+     */
+    dataTransferReport(): Promise<NWConnection_DataTransferReport>;
+    /**
+     * func establishmentReport() async throws -> NWConnection.EstablishmentReport
+     * @availability iOS 26.0+
+     */
+    establishmentReport(): Promise<NWConnection_EstablishmentReport>;
+    /**
+     * var maximumDatagramSize: Int { get }
+     * @availability iOS 26.0+
+     */
+    get maximumDatagramSize(): number;
+    /**
+     * var id: String { get }
+     * @availability iOS 26.0+
+     */
+    get id(): string;
+    /**
+     * var state: NetworkChannel<ApplicationProtocol>.State { get }
+     * @availability iOS 26.0+
+     */
+    get state(): NetworkChannel_State<SDKHandle>;
+    /**
+     * func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
+     * @availability iOS 26.0+
+     */
+    metadata(definition: NWProtocolDefinition): $SDK11;
+    /**
      * @discardableResult func onPathUpdate(_ handler: @escaping @isolated(any) @Sendable (Self, NWPath) -> Void) -> Self
      * @availability iOS 27.0+
      */
-    onPathUpdate(handler: ((arg0: NetworkChannel<QUICStream>, arg1: NWPath) => void)): $SDK10;
+    onPathUpdate(handler: ((arg0: NetworkChannel<QUICStream>, arg1: NWPath) => void)): $SDK12;
     /**
      * @discardableResult func onViabilityUpdate(_ handler: @escaping @isolated(any) @Sendable (Self, Bool) -> Void) -> Self
      * @availability iOS 27.0+
      */
-    onViabilityUpdate(handler: $SDK12): $SDK10;
+    onViabilityUpdate(handler: $SDK14): $SDK12;
     /**
      * @discardableResult func onBetterPathUpdate(_ handler: @escaping @isolated(any) @Sendable (Self, Bool) -> Void) -> Self
      * @availability iOS 27.0+
      */
-    onBetterPathUpdate(handler: $SDK12): $SDK10;
+    onBetterPathUpdate(handler: $SDK14): $SDK12;
     /**
      * func sendIdempotent<Content>(_ content: Content, type: Int, lastMessage: Bool = false, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) where Content : DataProtocol
      * @availability iOS 26.0+
@@ -872,22 +962,22 @@ export declare class NetworkConnection<ApplicationProtocol = unknown> extends Ne
      * @discardableResult final func onViabilityUpdate(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>, Bool) -> Void) -> Self
      * @availability iOS 27.0+
      */
-    onViabilityUpdate(handler: $SDK14): NetworkConnection<QUIC>;
+    onViabilityUpdate(handler: $SDK16): NetworkConnection<QUIC>;
     /**
      * @discardableResult final func onBetterPathUpdate(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>, Bool) -> Void) -> Self
      * @availability iOS 27.0+
      */
-    onBetterPathUpdate(handler: $SDK14): NetworkConnection<QUIC>;
+    onBetterPathUpdate(handler: $SDK16): NetworkConnection<QUIC>;
     /**
      * convenience init(to endpoint: NWEndpoint, using builder: NWParametersBuilder<ApplicationProtocol>)
      * @availability iOS 26.0+
      */
-    static initToUsing(endpoint: NWEndpoint, builder: $SDK15): NetworkConnection<QUIC>;
+    static initToUsing(endpoint: NWEndpoint, builder: $SDK17): NetworkConnection<QUIC>;
     /**
      * convenience init(to provider: any Connectable, using builder: NWParametersBuilder<ApplicationProtocol>)
      * @availability iOS 26.0+
      */
-    static initToUsing65965(provider: Implements<Connectable> | SDKHandle, builder: $SDK15): NetworkConnection<QUIC>;
+    static initToUsing65965(provider: Implements<Connectable> | SDKHandle, builder: $SDK17): NetworkConnection<QUIC>;
     /**
      * final func start() -> Self
      * @availability iOS 26.0+
@@ -898,6 +988,11 @@ export declare class NetworkConnection<ApplicationProtocol = unknown> extends Ne
      * @availability iOS 26.0+
      */
     openStream(directionality?: QUICStream_Directionality): Promise<QUIC_Stream<QUICStream>>;
+    /**
+     * final func inboundStreams(_ handler: @escaping @isolated(any) @Sendable (QUIC.Stream<QUICStream>) async throws -> Void) async throws
+     * @availability iOS 26.0+
+     */
+    inboundStreams(handler: ((arg0: QUIC_Stream<QUICStream>) => Promise<void>)): Promise<void>;
     /**
      * final var negotiatedALPN: String? { get }
      * @availability iOS 26.0+
@@ -1022,6 +1117,33 @@ export type NetworkJSONCoder_Encoder = _Foundation_JSONEncoder;
  * @availability iOS 26.0+
  */
 export declare class NetworkListener<ApplicationProtocol = unknown> extends SDKHandle {
+    /**
+     * final var debugDescription: String { get }
+     * @availability iOS 26.0+
+     */
+    get debugDescription(): string;
+    /**
+     * final var newConnectionLimit: Int { get set }
+     * @availability iOS 26.0+
+     */
+    get newConnectionLimit(): number;
+    set newConnectionLimit(value: number);
+    /**
+     * final var port: NWEndpoint.Port? { get }
+     * @availability iOS 26.0+
+     */
+    get port(): (NWEndpoint_Port) | null;
+    /**
+     * final var service: NWListener.Service? { get set }
+     * @availability iOS 26.0+
+     */
+    get service(): $SDK22;
+    set service(value: $SDK22);
+    /**
+     * final func run(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>) async throws -> Void) async throws
+     * @availability iOS 26.0+
+     */
+    run(handler: $SDK23): Promise<void>;
     readonly $type: {
         "s:7Network0A8ListenerC": true;
     };
@@ -1115,7 +1237,7 @@ export type nw_browse_descriptor_t = SDKHandle;
 /** typealias nw_browse_result_change_t = UInt64 */
 export type nw_browse_result_change_t = number;
 /** typealias nw_browse_result_enumerate_interface_t = (nw_interface_t) -> Bool */
-export type nw_browse_result_enumerate_interface_t = $SDK21;
+export type nw_browse_result_enumerate_interface_t = $SDK27;
 /** typealias nw_browse_result_t = any OS_nw_browse_result */
 export type nw_browse_result_t = SDKHandle;
 /** typealias nw_browser_browse_results_changed_handler_t = (nw_browse_result_t, nw_browse_result_t, Bool) -> Void */
@@ -1138,11 +1260,11 @@ export type nw_browser_t = SDKHandle;
 /** typealias nw_connection_boolean_event_handler_t = (Bool) -> Void */
 export type nw_connection_boolean_event_handler_t = ((arg0: boolean) => Promise<void>);
 /** typealias nw_connection_group_new_connection_handler_t = (nw_connection_t) -> Void */
-export type nw_connection_group_new_connection_handler_t = $SDK25;
+export type nw_connection_group_new_connection_handler_t = $SDK31;
 /** typealias nw_connection_group_receive_handler_t = (dispatch_data_t?, nw_content_context_t, Bool) -> Void */
 export type nw_connection_group_receive_handler_t = ((arg0: (SDKHandle) | null, arg1: Implements<OS_nw_content_context> | SDKHandle, arg2: boolean) => Promise<void>);
 /** typealias nw_connection_group_send_completion_t = (nw_error_t?) -> Void */
-export type nw_connection_group_send_completion_t = $SDK27;
+export type nw_connection_group_send_completion_t = $SDK33;
 /** typealias nw_connection_group_state_changed_handler_t = (nw_connection_group_state_t, nw_error_t?) -> Void */
 export type nw_connection_group_state_changed_handler_t = ((arg0: nw_connection_group_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_connection_group_state_t */
@@ -1159,11 +1281,11 @@ export declare const nw_connection_group_state_t: {
 /** typealias nw_connection_group_t = any OS_nw_connection_group */
 export type nw_connection_group_t = SDKHandle;
 /** typealias nw_connection_path_event_handler_t = (nw_path_t) -> Void */
-export type nw_connection_path_event_handler_t = $SDK29;
+export type nw_connection_path_event_handler_t = $SDK35;
 /** typealias nw_connection_receive_completion_t = (dispatch_data_t?, nw_content_context_t?, Bool, nw_error_t?) -> Void */
 export type nw_connection_receive_completion_t = ((arg0: (SDKHandle) | null, arg1: (Implements<OS_nw_content_context> | SDKHandle) | null, arg2: boolean, arg3: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** typealias nw_connection_send_completion_t = (nw_error_t?) -> Void */
-export type nw_connection_send_completion_t = $SDK27;
+export type nw_connection_send_completion_t = $SDK33;
 /** typealias nw_connection_state_changed_handler_t = (nw_connection_state_t, nw_error_t?) -> Void */
 export type nw_connection_state_changed_handler_t = ((arg0: nw_connection_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_connection_state_t */
@@ -1231,11 +1353,11 @@ export type nw_ethernet_channel_t = SDKHandle;
 /** typealias nw_framer_block_t = () -> Void */
 export type nw_framer_block_t = (() => Promise<void>);
 /** typealias nw_framer_cleanup_handler_t = (nw_framer_t) -> Void */
-export type nw_framer_cleanup_handler_t = $SDK34;
+export type nw_framer_cleanup_handler_t = $SDK40;
 /** typealias nw_framer_input_handler_t = (nw_framer_t) -> Int */
 export type nw_framer_input_handler_t = ((arg0: Implements<OS_nw_framer> | SDKHandle) => Promise<number>);
 /** typealias nw_framer_message_dispose_value_t = (UnsafeMutableRawPointer) -> Void */
-export type nw_framer_message_dispose_value_t = $SDK36;
+export type nw_framer_message_dispose_value_t = $SDK42;
 /** typealias nw_framer_message_t = nw_protocol_metadata_t */
 export type nw_framer_message_t = SDKHandle;
 /** typealias nw_framer_output_handler_t = (nw_framer_t, nw_framer_message_t, Int, Bool) -> Void */
@@ -1260,9 +1382,9 @@ export type nw_framer_stop_handler_t = ((arg0: Implements<OS_nw_framer> | SDKHan
 /** typealias nw_framer_t = any OS_nw_framer */
 export type nw_framer_t = SDKHandle;
 /** typealias nw_framer_wakeup_handler_t = (nw_framer_t) -> Void */
-export type nw_framer_wakeup_handler_t = $SDK34;
+export type nw_framer_wakeup_handler_t = $SDK40;
 /** typealias nw_group_descriptor_enumerate_endpoints_block_t = (nw_endpoint_t) -> Bool */
-export type nw_group_descriptor_enumerate_endpoints_block_t = $SDK41;
+export type nw_group_descriptor_enumerate_endpoints_block_t = $SDK47;
 /** typealias nw_group_descriptor_t = any OS_nw_group_descriptor */
 export type nw_group_descriptor_t = SDKHandle;
 /** struct nw_interface_radio_type_t */
@@ -1334,11 +1456,11 @@ export declare const nw_link_quality_t: {
     init(rawValue: number): nw_link_quality_t;
 };
 /** typealias nw_listener_advertised_endpoint_changed_handler_t = (nw_endpoint_t, Bool) -> Void */
-export type nw_listener_advertised_endpoint_changed_handler_t = ((arg0: SDKHandle, arg1: boolean) => Promise<void>);
+export type nw_listener_advertised_endpoint_changed_handler_t = ((arg0: Implements<OS_nw_endpoint> | SDKHandle, arg1: boolean) => Promise<void>);
 /** typealias nw_listener_new_connection_group_handler_t = (nw_connection_group_t) -> Void */
 export type nw_listener_new_connection_group_handler_t = ((arg0: Implements<OS_nw_connection_group> | SDKHandle) => Promise<void>);
 /** typealias nw_listener_new_connection_handler_t = (nw_connection_t) -> Void */
-export type nw_listener_new_connection_handler_t = $SDK25;
+export type nw_listener_new_connection_handler_t = $SDK31;
 /** typealias nw_listener_state_changed_handler_t = (nw_listener_state_t, nw_error_t?) -> Void */
 export type nw_listener_state_changed_handler_t = ((arg0: nw_listener_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_listener_state_t */
@@ -1385,7 +1507,7 @@ export declare const nw_parameters_attribution_t: {
     init(rawValue: number): (nw_parameters_attribution_t) | null;
 };
 /** typealias nw_parameters_configure_protocol_block_t = (nw_protocol_options_t) -> Void */
-export type nw_parameters_configure_protocol_block_t = $SDK45;
+export type nw_parameters_configure_protocol_block_t = $SDK51;
 /** struct nw_parameters_expired_dns_behavior_t */
 export type nw_parameters_expired_dns_behavior_t = (number & {});
 export declare const nw_parameters_expired_dns_behavior_t: {
@@ -1400,19 +1522,19 @@ export declare const nw_parameters_expired_dns_behavior_t: {
 /** typealias nw_parameters_iterate_interface_types_block_t = (nw_interface_type_t) -> Bool */
 export type nw_parameters_iterate_interface_types_block_t = ((arg0: nw_interface_type_t) => Promise<boolean>);
 /** typealias nw_parameters_iterate_interfaces_block_t = (nw_interface_t) -> Bool */
-export type nw_parameters_iterate_interfaces_block_t = $SDK21;
+export type nw_parameters_iterate_interfaces_block_t = $SDK27;
 /** typealias nw_parameters_t = any OS_nw_parameters */
 export type nw_parameters_t = SDKHandle;
 /** typealias nw_path_enumerate_gateways_block_t = (nw_endpoint_t) -> Bool */
-export type nw_path_enumerate_gateways_block_t = $SDK41;
+export type nw_path_enumerate_gateways_block_t = $SDK47;
 /** typealias nw_path_enumerate_interfaces_block_t = (nw_interface_t) -> Bool */
-export type nw_path_enumerate_interfaces_block_t = $SDK21;
+export type nw_path_enumerate_interfaces_block_t = $SDK27;
 /** typealias nw_path_monitor_cancel_handler_t = () -> Void */
 export type nw_path_monitor_cancel_handler_t = (() => Promise<void>);
 /** typealias nw_path_monitor_t = any OS_nw_path_monitor */
 export type nw_path_monitor_t = SDKHandle;
 /** typealias nw_path_monitor_update_handler_t = (nw_path_t) -> Void */
-export type nw_path_monitor_update_handler_t = $SDK29;
+export type nw_path_monitor_update_handler_t = $SDK35;
 /** struct nw_path_status_t */
 export type nw_path_status_t = (number & {});
 export declare const nw_path_status_t: {
@@ -1446,13 +1568,13 @@ export type nw_protocol_metadata_t = SDKHandle;
 /** typealias nw_protocol_options_t = any OS_nw_protocol_options */
 export type nw_protocol_options_t = SDKHandle;
 /** typealias nw_protocol_stack_iterate_protocols_block_t = (nw_protocol_options_t) -> Void */
-export type nw_protocol_stack_iterate_protocols_block_t = $SDK45;
+export type nw_protocol_stack_iterate_protocols_block_t = $SDK51;
 /** typealias nw_protocol_stack_t = any OS_nw_protocol_stack */
 export type nw_protocol_stack_t = SDKHandle;
 /** typealias nw_proxy_config_t = any OS_nw_proxy_config */
 export type nw_proxy_config_t = SDKHandle;
 /** typealias nw_proxy_domain_enumerator_t = (UnsafePointer<CChar>) -> Void */
-export type nw_proxy_domain_enumerator_t = $SDK36;
+export type nw_proxy_domain_enumerator_t = $SDK42;
 /** struct nw_quic_stream_type_t */
 export type nw_quic_stream_type_t = (number & {});
 export declare const nw_quic_stream_type_t: {
@@ -1469,7 +1591,7 @@ export type nw_relay_hop_t = SDKHandle;
 /** typealias nw_report_protocol_enumerator_t = (nw_protocol_definition_t, UInt64, UInt64) -> Bool */
 export type nw_report_protocol_enumerator_t = ((arg0: Implements<OS_nw_protocol_definition> | SDKHandle, arg1: number, arg2: number) => Promise<boolean>);
 /** typealias nw_report_resolution_enumerator_t = (nw_report_resolution_source_t, UInt64, UInt32, nw_endpoint_t, nw_endpoint_t) -> Bool */
-export type nw_report_resolution_enumerator_t = ((arg0: nw_report_resolution_source_t, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle) => Promise<boolean>);
+export type nw_report_resolution_enumerator_t = ((arg0: nw_report_resolution_source_t, arg1: number, arg2: number, arg3: Implements<OS_nw_endpoint> | SDKHandle, arg4: Implements<OS_nw_endpoint> | SDKHandle) => Promise<boolean>);
 /** struct nw_report_resolution_protocol_t */
 export type nw_report_resolution_protocol_t = (number & {});
 export declare const nw_report_resolution_protocol_t: {
@@ -1555,7 +1677,7 @@ export declare const nw_ws_opcode_t: {
     init(rawValue: number): nw_ws_opcode_t;
 };
 /** typealias nw_ws_pong_handler_t = (nw_error_t?) -> Void */
-export type nw_ws_pong_handler_t = $SDK27;
+export type nw_ws_pong_handler_t = $SDK33;
 /** typealias nw_ws_request_t = any OS_nw_ws_request */
 export type nw_ws_request_t = SDKHandle;
 /** struct nw_ws_response_status_t */
@@ -1572,7 +1694,7 @@ export declare const nw_ws_response_status_t: {
 /** typealias nw_ws_response_t = any OS_nw_ws_response */
 export type nw_ws_response_t = SDKHandle;
 /** typealias nw_ws_subprotocol_enumerator_t = (UnsafePointer<CChar>) -> Bool */
-export type nw_ws_subprotocol_enumerator_t = $SDK41;
+export type nw_ws_subprotocol_enumerator_t = ((arg0: SDKHandle) => Promise<boolean>);
 /** struct nw_ws_version_t */
 export type nw_ws_version_t = (number & {});
 export declare const nw_ws_version_t: {
@@ -1630,7 +1752,7 @@ export declare class NWBrowser extends SDKHandle {
      * final var queue: DispatchQueue? { get }
      * @availability iOS 13.0+
      */
-    get queue(): $SDK59;
+    get queue(): $SDK66;
     /**
      * final func start(queue: DispatchQueue)
      * @availability iOS 13.0+
@@ -1796,7 +1918,7 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final func receiveMessage(completion: @escaping @Sendable (Data?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
      * @availability iOS 12.0+
      */
-    receiveMessage(completion: $SDK61): void;
+    receiveMessage(completion: $SDK68): void;
     /**
      * final var debugDescription: String { get }
      * @availability iOS 12.0+
@@ -1806,8 +1928,8 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final var pathUpdateHandler: (@Sendable (NWPath) -> Void)? { get set }
      * @availability iOS 12.0+
      */
-    get pathUpdateHandler(): $SDK62;
-    set pathUpdateHandler(value: $SDK63);
+    get pathUpdateHandler(): $SDK69;
+    set pathUpdateHandler(value: $SDK70);
     /**
      * @preconcurrency final var stateUpdateHandler: (@Sendable (NWConnection.State) -> Void)? { get set }
      * @availability iOS 12.0+
@@ -1823,7 +1945,7 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final func receiveDiscontiguous(minimumIncompleteLength: Int, maximumLength: Int, completion: @escaping @Sendable (DispatchData?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
      * @availability iOS 14.0+
      */
-    receiveDiscontiguous(minimumIncompleteLength: number, maximumLength: number, completion: $SDK66): void;
+    receiveDiscontiguous(minimumIncompleteLength: number, maximumLength: number, completion: $SDK73): void;
     /**
      * final func cancelCurrentEndpoint()
      * @availability iOS 12.0+
@@ -1833,14 +1955,14 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final var viabilityUpdateHandler: (@Sendable (Bool) -> Void)? { get set }
      * @availability iOS 12.0+
      */
-    get viabilityUpdateHandler(): $SDK67;
-    set viabilityUpdateHandler(value: $SDK68);
+    get viabilityUpdateHandler(): $SDK74;
+    set viabilityUpdateHandler(value: $SDK75);
     /**
      * @preconcurrency final var betterPathUpdateHandler: (@Sendable (Bool) -> Void)? { get set }
      * @availability iOS 12.0+
      */
-    get betterPathUpdateHandler(): $SDK67;
-    set betterPathUpdateHandler(value: $SDK68);
+    get betterPathUpdateHandler(): $SDK74;
+    set betterPathUpdateHandler(value: $SDK75);
     /**
      * final func startDataTransferReport() -> NWConnection.PendingDataTransferReport
      * @availability iOS 13.0+
@@ -1855,7 +1977,7 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final func receiveMessageDiscontiguous(completion: @escaping @Sendable (DispatchData?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
      * @availability iOS 14.0+
      */
-    receiveMessageDiscontiguous(completion: $SDK66): void;
+    receiveMessageDiscontiguous(completion: $SDK73): void;
     /**
      * init(to: NWEndpoint, using: NWParameters)
      * @availability iOS 12.0+
@@ -1865,7 +1987,7 @@ export declare class NWConnection extends SDKHandle {
      * convenience init?(from: NWConnectionGroup, to: NWEndpoint? = nil, using: NWProtocolOptions? = nil)
      * @availability iOS 15.0+
      */
-    static initFromToUsing(from: NWConnectionGroup, to?: (NWEndpoint) | null, using?: $SDK70): (NWConnection) | null;
+    static initFromToUsing(from: NWConnectionGroup, to?: (NWEndpoint) | null, using?: $SDK77): (NWConnection) | null;
     /**
      * convenience init(host: NWEndpoint.Host, port: NWEndpoint.Port, using: NWParameters)
      * @availability iOS 12.0+
@@ -1890,7 +2012,7 @@ export declare class NWConnection extends SDKHandle {
      * final var queue: DispatchQueue? { get }
      * @availability iOS 12.0+
      */
-    get queue(): $SDK59;
+    get queue(): $SDK66;
     /**
      * final func start(queue: DispatchQueue)
      * @availability iOS 12.0+
@@ -1915,7 +2037,7 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final func receive(minimumIncompleteLength: Int, maximumLength: Int, completion: @escaping @Sendable (Data?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
      * @availability iOS 12.0+
      */
-    receive(minimumIncompleteLength: number, maximumLength: number, completion: $SDK61): void;
+    receive(minimumIncompleteLength: number, maximumLength: number, completion: $SDK68): void;
     /**
      * final func restart()
      * @availability iOS 12.0+
@@ -1930,7 +2052,7 @@ export declare class NWConnection extends SDKHandle {
      * final func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
      * @availability iOS 12.0+
      */
-    metadata(definition: NWProtocolDefinition): $SDK71;
+    metadata(definition: NWProtocolDefinition): $SDK11;
     readonly $type: {
         "s:7Network12NWConnectionC": true;
     };
@@ -1944,12 +2066,12 @@ export declare class NWConnection_ContentContext extends SDKHandle {
      * final let antecedent: NWConnection.ContentContext?
      * @availability iOS 12.0+
      */
-    get antecedent(): $SDK72;
+    get antecedent(): $SDK78;
     /**
      * init(identifier: String, expiration: UInt64 = 0, priority: Double = 0.5, isFinal: Bool = false, antecedent: NWConnection.ContentContext? = nil, metadata: [NWProtocolMetadata]? = [])
      * @availability iOS 12.0+
      */
-    static init(identifier: string, expiration?: number, priority?: number, isFinal?: boolean, antecedent?: $SDK72, metadata?: (Array<NWProtocolMetadata>) | null): NWConnection_ContentContext;
+    static init(identifier: string, expiration?: number, priority?: number, isFinal?: boolean, antecedent?: $SDK78, metadata?: (Array<NWProtocolMetadata>) | null): NWConnection_ContentContext;
     /**
      * final let identifier: String
      * @availability iOS 12.0+
@@ -1974,12 +2096,12 @@ export declare class NWConnection_ContentContext extends SDKHandle {
      * func protocolMetadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
      * @availability iOS 12.0+
      */
-    protocolMetadataDefinition(definition: NWProtocolDefinition): $SDK71;
+    protocolMetadataDefinition(definition: NWProtocolDefinition): $SDK11;
     /**
      * var protocolMetadata: [NWProtocolMetadata] { get }
      * @availability iOS 12.0+
      */
-    get protocolMetadata(): $SDK6;
+    get protocolMetadata(): $SDK1;
     /**
      * final let relativePriority: Double
      * @availability iOS 12.0+
@@ -2301,13 +2423,13 @@ export declare class NWConnectionGroup extends SDKHandle {
      * @preconcurrency final var newConnectionHandler: (@Sendable (NWConnection) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get newConnectionHandler(): $SDK82;
-    set newConnectionHandler(value: $SDK83);
+    get newConnectionHandler(): $SDK88;
+    set newConnectionHandler(value: $SDK89);
     /**
      * @preconcurrency final func send(content: Data?, to: NWEndpoint? = nil, message: NWConnectionGroup.Message = .default, completion: @escaping (NWError?) -> Void)
      * @availability iOS 14.0+
      */
-    send(content: (ArrayBuffer) | null, to: (NWEndpoint) | null, message: NWConnectionGroup_Message, completion: $SDK84): void;
+    send(content: (ArrayBuffer) | null, to: (NWEndpoint) | null, message: NWConnectionGroup_Message, completion: $SDK90): void;
     /**
      * init(with: any NWGroupDescriptor, using: NWParameters)
      * @availability iOS 14.0+
@@ -2317,7 +2439,7 @@ export declare class NWConnectionGroup extends SDKHandle {
      * final var queue: DispatchQueue? { get }
      * @availability iOS 14.0+
      */
-    get queue(): $SDK59;
+    get queue(): $SDK66;
     /**
      * final func start(queue: DispatchQueue)
      * @availability iOS 14.0+
@@ -2337,12 +2459,12 @@ export declare class NWConnectionGroup extends SDKHandle {
      * final func extract(connectionTo: NWEndpoint? = nil, using: NWProtocolOptions? = nil) -> NWConnection?
      * @availability iOS 15.0+
      */
-    extract(connectionTo?: (NWEndpoint) | null, using?: $SDK70): (NWConnection) | null;
+    extract(connectionTo?: (NWEndpoint) | null, using?: $SDK77): (NWConnection) | null;
     /**
      * final func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
      * @availability iOS 15.0+
      */
-    metadata(definition: NWProtocolDefinition): $SDK71;
+    metadata(definition: NWProtocolDefinition): $SDK11;
     /**
      * final func reinsert(connection: NWConnection) -> Bool
      * @availability iOS 15.0+
@@ -2377,7 +2499,7 @@ export declare class NWConnectionGroup_Message extends NWConnectionGroup_Message
      * init(nw: nw_content_context_t)
      * @availability iOS 17.0+
      */
-    static init(nw: $SDK85): NWConnectionGroup_Message;
+    static init(nw: $SDK91): NWConnectionGroup_Message;
     /**
      * var path: NWPath? { get }
      * @availability iOS 14.0+
@@ -2397,7 +2519,7 @@ export declare class NWConnectionGroup_Message extends NWConnectionGroup_Message
      * func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
      * @availability iOS 15.0+
      */
-    metadata(definition: NWProtocolDefinition): $SDK71;
+    metadata(definition: NWProtocolDefinition): $SDK11;
     readonly $type: {
         "s:7Network17NWConnectionGroupC7MessageC": true;
         "s:7Network12NWConnectionC14ContentContextC": true;
@@ -2700,8 +2822,8 @@ export declare class NWListener extends SDKHandle {
      * @preconcurrency final var newConnectionHandler: (@Sendable (NWConnection) -> Void)? { get set }
      * @availability iOS 12.0+
      */
-    get newConnectionHandler(): $SDK82;
-    set newConnectionHandler(value: $SDK83);
+    get newConnectionHandler(): $SDK88;
+    set newConnectionHandler(value: $SDK89);
     /**
      * static let InfiniteConnectionLimit: Int
      * @availability iOS 13.0+
@@ -2728,7 +2850,7 @@ export declare class NWListener extends SDKHandle {
      * final var queue: DispatchQueue? { get }
      * @availability iOS 12.0+
      */
-    get queue(): $SDK59;
+    get queue(): $SDK66;
     /**
      * final func start(queue: DispatchQueue)
      * @availability iOS 12.0+
@@ -2758,8 +2880,8 @@ export declare class NWListener extends SDKHandle {
      * final var service: NWListener.Service? { get set }
      * @availability iOS 12.0+
      */
-    get service(): (NWListener_Service) | null;
-    set service(value: (NWListener_Service) | null);
+    get service(): $SDK22;
+    set service(value: $SDK22);
     readonly $type: {
         "s:7Network10NWListenerC": true;
     };
@@ -3020,8 +3142,8 @@ export declare class NWParameters extends SDKHandle {
      * final var prohibitedInterfaceTypes: [NWInterface.InterfaceType]? { get set }
      * @availability iOS 12.0+
      */
-    get prohibitedInterfaceTypes(): $SDK95;
-    set prohibitedInterfaceTypes(value: $SDK95);
+    get prohibitedInterfaceTypes(): $SDK99;
+    set prohibitedInterfaceTypes(value: $SDK99);
     /**
      * final var requiresDNSSECValidation: Bool { get set }
      * @availability iOS 16.0+
@@ -3043,7 +3165,7 @@ export declare class NWParameters extends SDKHandle {
      * convenience init(tls: NWProtocolTLS.Options?, tcp: NWProtocolTCP.Options = NWProtocolTCP.Options())
      * @availability iOS 12.0+
      */
-    static initTlsTcp(tls?: $SDK96, tcp?: NWProtocolTCP_Options): NWParameters;
+    static initTlsTcp(tls?: $SDK100, tcp?: NWProtocolTCP_Options): NWParameters;
     /**
      * final class var tls: NWParameters { get }
      * @availability iOS 12.0+
@@ -3063,7 +3185,7 @@ export declare class NWParameters extends SDKHandle {
      * convenience init(dtls: NWProtocolTLS.Options?, udp: NWProtocolUDP.Options = NWProtocolUDP.Options())
      * @availability iOS 12.0+
      */
-    static initDtlsUdp(dtls?: $SDK96, udp?: NWProtocolUDP_Options): NWParameters;
+    static initDtlsUdp(dtls?: $SDK100, udp?: NWProtocolUDP_Options): NWParameters;
     /**
      * final class var dtls: NWParameters { get }
      * @availability iOS 12.0+
@@ -3132,8 +3254,8 @@ export declare class NWParameters_PrivacyContext extends SDKHandle {
      * var proxyConfigurations: [ProxyConfiguration] { get set }
      * @availability iOS 17.0+
      */
-    get proxyConfigurations(): $SDK97;
-    set proxyConfigurations(value: $SDK97);
+    get proxyConfigurations(): $SDK101;
+    set proxyConfigurations(value: $SDK101);
     /**
      * func requireEncryptedNameResolution(_ requireEncryption: Bool, fallbackResolver: NWParameters.PrivacyContext.ResolverConfiguration?)
      * @availability iOS 14.0+
@@ -3171,14 +3293,14 @@ export declare class NWParameters_ProtocolStack extends SDKHandle {
      * var internetProtocol: NWProtocolOptions? { get set }
      * @availability iOS 12.0+
      */
-    get internetProtocol(): $SDK70;
-    set internetProtocol(value: $SDK70);
+    get internetProtocol(): $SDK77;
+    set internetProtocol(value: $SDK77);
     /**
      * var transportProtocol: NWProtocolOptions? { get set }
      * @availability iOS 12.0+
      */
-    get transportProtocol(): $SDK70;
-    set transportProtocol(value: $SDK70);
+    get transportProtocol(): $SDK77;
+    set transportProtocol(value: $SDK77);
     /**
      * var applicationProtocols: [NWProtocolOptions] { get set }
      * @availability iOS 12.0+
@@ -3199,6 +3321,12 @@ export type NWParameters_ServiceClass = "bestEffort" | "background" | "interacti
  * @availability iOS 26.0+
  */
 export declare class NWParametersBuilder<Top = unknown, P = unknown> extends SDKHandle {
+    /**
+     * var parameters: NWParameters
+     * @availability iOS 26.0+
+     */
+    get parameters(): NWParameters;
+    set parameters(value: NWParameters);
     readonly $type: {
         "s:7Network19NWParametersBuilderV": true;
     };
@@ -3423,8 +3551,8 @@ export declare class NWPathMonitor extends SDKHandle {
      * @preconcurrency final var pathUpdateHandler: (@Sendable (NWPath) -> Void)? { get set }
      * @availability iOS 12.0+
      */
-    get pathUpdateHandler(): $SDK62;
-    set pathUpdateHandler(value: $SDK63);
+    get pathUpdateHandler(): $SDK69;
+    set pathUpdateHandler(value: $SDK70);
     /**
      * init(requiredInterfaceType: NWInterface.InterfaceType)
      * @availability iOS 12.0+
@@ -3439,7 +3567,7 @@ export declare class NWPathMonitor extends SDKHandle {
      * final var queue: DispatchQueue? { get }
      * @availability iOS 12.0+
      */
-    get queue(): $SDK59;
+    get queue(): $SDK66;
     /**
      * final func start(queue: DispatchQueue)
      * @availability iOS 12.0+
@@ -4419,7 +4547,7 @@ export declare class NWProtocolWebSocket_Metadata extends NWProtocolMetadata {
      * @preconcurrency func setPongHandler(_ queue: DispatchQueue, handler: @escaping @Sendable (NWError?) -> Void)
      * @availability iOS 13.0+
      */
-    setPongHandler(queue: _Dispatch_DispatchQueue, handler: $SDK84): void;
+    setPongHandler(queue: _Dispatch_DispatchQueue, handler: $SDK90): void;
     /**
      * var selectedSubprotocol: String? { get }
      * @availability iOS 13.0+
@@ -4505,7 +4633,7 @@ export declare class NWProtocolWebSocket_Options extends NWProtocolOptions {
      * func setAdditionalHeaders(_ headers: [(name: String, value: String)])
      * @availability iOS 13.0+
      */
-    setAdditionalHeaders(headers: $SDK102): void;
+    setAdditionalHeaders(headers: $SDK106): void;
     /**
      * init(_ version: NWProtocolWebSocket.Version = .version13)
      * @availability iOS 13.0+
@@ -4530,12 +4658,12 @@ export declare class NWProtocolWebSocket_Response extends SDKHandle {
      * let additionalHeaders: [(name: String, value: String)]?
      * @availability iOS 13.0+
      */
-    get additionalHeaders(): $SDK103;
+    get additionalHeaders(): $SDK107;
     /**
      * init(status: NWProtocolWebSocket.Response.Status, subprotocol: String?, additionalHeaders: [(name: String, value: String)]? = nil)
      * @availability iOS 13.0+
      */
-    static init(status: NWProtocolWebSocket_Response_Status, subprotocol?: (string) | null, additionalHeaders?: $SDK103): NWProtocolWebSocket_Response;
+    static init(status: NWProtocolWebSocket_Response_Status, subprotocol?: (string) | null, additionalHeaders?: $SDK107): NWProtocolWebSocket_Response;
     /**
      * let status: NWProtocolWebSocket.Response.Status
      * @availability iOS 13.0+
@@ -4599,7 +4727,7 @@ export declare class NWTXTRecord extends SDKHandle {
      * var entries: [String : NWTXTRecord.Entry] { get }
      * @availability iOS 26.4+
      */
-    get entries(): $SDK105;
+    get entries(): $SDK109;
     /**
      * var endIndex: NWTXTRecord.Index { get }
      * @availability iOS 13.0+
@@ -4634,12 +4762,12 @@ export declare class NWTXTRecord extends SDKHandle {
      * init(_ entryDictionary: [String : NWTXTRecord.Entry])
      * @availability iOS 26.4+
      */
-    static init14563(entryDictionary: $SDK105): NWTXTRecord;
+    static init14563(entryDictionary: $SDK109): NWTXTRecord;
     /**
      * subscript(position: NWTXTRecord.Index) -> NWTXTRecord.Element { get }
      * @availability iOS 13.0+
      */
-    subscript(position: NWTXTRecord_Index): $SDK107;
+    subscript(position: NWTXTRecord_Index): $SDK111;
     /**
      * subscript(key: String) -> String? { get set }
      * @availability iOS 13.0+
@@ -4653,7 +4781,7 @@ export declare class NWTXTRecord extends SDKHandle {
  * typealias Element = (key: String, value: NWTXTRecord.Entry)
  * @availability iOS 13.0+
  */
-export type NWTXTRecord_Element = $SDK107;
+export type NWTXTRecord_Element = $SDK111;
 /**
  * enum Entry
  * @availability iOS 13.0+
@@ -4864,7 +4992,7 @@ export declare class ProxyConfiguration extends SDKHandle {
      * init(httpCONNECTProxy: NWEndpoint, tlsOptions: NWProtocolTLS.Options? = nil)
      * @availability iOS 17.0+
      */
-    static initHttpCONNECTProxyTlsOptions(httpCONNECTProxy: NWEndpoint, tlsOptions?: $SDK96): ProxyConfiguration;
+    static initHttpCONNECTProxyTlsOptions(httpCONNECTProxy: NWEndpoint, tlsOptions?: $SDK100): ProxyConfiguration;
     /**
      * init(obliviousHTTPRelay: ProxyConfiguration.RelayHop, relayResourcePath: String, gatewayKeyConfig: Data, matchDomains: [String])
      * @availability iOS 17.0+
@@ -5024,17 +5152,17 @@ export declare class QUIC_TLS extends SDKHandle {
      * func cipherSuites(_ suites: [tls_ciphersuite_t]) -> QUIC
      * @availability iOS 26.0+
      */
-    cipherSuites(suites: $SDK1): QUIC;
+    cipherSuites(suites: $SDK2): QUIC;
     /**
      * func localIdentity(_ identity: sec_identity_t) -> QUIC
      * @availability iOS 26.0+
      */
-    localIdentity(identity: $SDK2): QUIC;
+    localIdentity(identity: $SDK3): QUIC;
     /**
      * func ciphersuiteGroups(_ groups: [tls_ciphersuite_group_t]) -> QUIC
      * @availability iOS 26.0+
      */
-    ciphersuiteGroups(groups: $SDK3): QUIC;
+    ciphersuiteGroups(groups: $SDK4): QUIC;
     /**
      * func peerAuthentication(_ preference: TLS.PeerAuthentication) -> QUIC
      * @availability iOS 26.0+
@@ -5067,7 +5195,7 @@ export type QUICDatagram_ContentType = ArrayBuffer;
  * typealias LegacyMessage = (content: Data, metadata: [NWProtocolMetadata]?)
  * @availability iOS 26.0+
  */
-export type QUICDatagram_LegacyMessage = $SDK5;
+export type QUICDatagram_LegacyMessage = $SDK6;
 /**
  * struct Metadata
  * @availability iOS 26.0+
@@ -5077,7 +5205,7 @@ export declare class QUICDatagram_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network12QUICDatagramV8MetadataV": true;
     };
@@ -5125,7 +5253,7 @@ export declare class QUICStream_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network10QUICStreamV8MetadataV": true;
     };
@@ -5234,7 +5362,7 @@ export declare class TCP_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network3TCPV8MetadataV": true;
     };
@@ -5253,12 +5381,12 @@ export declare class TLS extends SDKHandle {
      * func cipherSuites(_ suites: [tls_ciphersuite_t]) -> TLS
      * @availability iOS 26.0+
      */
-    cipherSuites(suites: $SDK1): TLS;
+    cipherSuites(suites: $SDK2): TLS;
     /**
      * func localIdentity(_ identity: sec_identity_t) -> TLS
      * @availability iOS 26.0+
      */
-    localIdentity(identity: $SDK2): TLS;
+    localIdentity(identity: $SDK3): TLS;
     /**
      * func ticketsEnabled(_ enabled: Bool) -> TLS
      * @availability iOS 26.0+
@@ -5273,7 +5401,7 @@ export declare class TLS extends SDKHandle {
      * func cipherSuiteGroups(_ groups: [tls_ciphersuite_group_t]) -> TLS
      * @availability iOS 26.0+
      */
-    cipherSuiteGroups(groups: $SDK3): TLS;
+    cipherSuiteGroups(groups: $SDK4): TLS;
     /**
      * func peerAuthentication(_ preference: TLS.PeerAuthentication) -> TLS
      * @availability iOS 26.0+
@@ -5288,7 +5416,7 @@ export declare class TLS extends SDKHandle {
      * func version(min: tls_protocol_version_t? = nil, max: tls_protocol_version_t? = nil) -> TLS
      * @availability iOS 26.0+
      */
-    version(min?: $SDK4, max?: $SDK4): TLS;
+    version(min?: $SDK5, max?: $SDK5): TLS;
     /**
      * init()
      * @availability iOS 26.0+
@@ -5317,7 +5445,7 @@ export declare class TLS_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network3TLSV8MetadataV": true;
     };
@@ -5385,7 +5513,7 @@ export declare class TLV_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     /**
      * let length: Int
      * @availability iOS 26.0+
@@ -5452,7 +5580,7 @@ export type UDP_ContentType = ArrayBuffer;
  * typealias LegacyMessage = (content: Data, metadata: [NWProtocolMetadata]?)
  * @availability iOS 26.0+
  */
-export type UDP_LegacyMessage = $SDK5;
+export type UDP_LegacyMessage = $SDK6;
 /**
  * struct Metadata
  * @availability iOS 26.0+
@@ -5462,7 +5590,7 @@ export declare class UDP_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     readonly $type: {
         "s:7Network3UDPV8MetadataV": true;
     };
@@ -5496,8 +5624,8 @@ export declare class URLSessionConfiguration extends SDKHandle {
      * var proxyConfigurations: [ProxyConfiguration] { get set }
      * @availability iOS 17.0+
      */
-    get proxyConfigurations(): $SDK97;
-    set proxyConfigurations(value: $SDK97);
+    get proxyConfigurations(): $SDK101;
+    set proxyConfigurations(value: $SDK101);
     readonly $type: {
         "c:objc(cs)NSURLSessionConfiguration": true;
         "c:objc(cs)NSObject": true;
@@ -5527,7 +5655,7 @@ export declare class WebSocket extends SDKHandle {
      * func additionalHeaders(_ headers: [(name: String, value: String)]) -> WebSocket
      * @availability iOS 26.0+
      */
-    additionalHeaders(headers: $SDK102): WebSocket;
+    additionalHeaders(headers: $SDK106): WebSocket;
     /**
      * func maximumMessageSize(_ size: Int) -> WebSocket
      * @availability iOS 26.0+
@@ -5576,7 +5704,7 @@ export declare class WebSocket_Metadata extends SDKHandle {
      * let other: [NWProtocolMetadata]
      * @availability iOS 26.0+
      */
-    get other(): $SDK6;
+    get other(): $SDK1;
     /**
      * let opcode: NWProtocolWebSocket.Opcode
      * @availability iOS 26.0+
@@ -5600,7 +5728,7 @@ export type WebSocket_ProtocolStorage = DefaultProtocolStorage;
  * func nw_advertise_descriptor_copy_txt_record_object(_ advertise_descriptor: nw_advertise_descriptor_t) -> nw_txt_record_t?
  * @availability iOS 13.0+
  */
-export declare function nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor: $SDK112): (SDKHandle) | null;
+export declare function nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor: $SDK116): (SDKHandle) | null;
 /**
  * func nw_advertise_descriptor_create_application_service(_ application_service_name: UnsafePointer<CChar>) -> nw_advertise_descriptor_t
  * @availability iOS 16.0+
@@ -5615,27 +5743,27 @@ export declare function nw_advertise_descriptor_create_bonjour_service(name: (SD
  * func nw_advertise_descriptor_get_application_service_name(_ advertise_descriptor: nw_advertise_descriptor_t) -> UnsafePointer<CChar>?
  * @availability iOS 16.0+
  */
-export declare function nw_advertise_descriptor_get_application_service_name(advertise_descriptor: $SDK112): (SDKHandle) | null;
+export declare function nw_advertise_descriptor_get_application_service_name(advertise_descriptor: $SDK116): (SDKHandle) | null;
 /**
  * func nw_advertise_descriptor_get_no_auto_rename(_ advertise_descriptor: nw_advertise_descriptor_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor: $SDK112): boolean;
+export declare function nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor: $SDK116): boolean;
 /**
  * func nw_advertise_descriptor_set_no_auto_rename(_ advertise_descriptor: nw_advertise_descriptor_t, _ no_auto_rename: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor: $SDK112, no_auto_rename: boolean): void;
+export declare function nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor: $SDK116, no_auto_rename: boolean): void;
 /**
  * func nw_advertise_descriptor_set_txt_record(_ advertise_descriptor: nw_advertise_descriptor_t, _ txt_record: UnsafeRawPointer?, _ txt_length: Int)
  * @availability iOS 12.0+
  */
-export declare function nw_advertise_descriptor_set_txt_record(advertise_descriptor: $SDK112, txt_record: (SDKHandle) | null, txt_length: number): void;
+export declare function nw_advertise_descriptor_set_txt_record(advertise_descriptor: $SDK116, txt_record: (SDKHandle) | null, txt_length: number): void;
 /**
  * func nw_advertise_descriptor_set_txt_record_object(_ advertise_descriptor: nw_advertise_descriptor_t, _ txt_record: nw_txt_record_t?)
  * @availability iOS 13.0+
  */
-export declare function nw_advertise_descriptor_set_txt_record_object(advertise_descriptor: $SDK112, txt_record?: $SDK113): void;
+export declare function nw_advertise_descriptor_set_txt_record_object(advertise_descriptor: $SDK116, txt_record?: $SDK117): void;
 /**
  * func nw_browse_descriptor_create_application_service(_ application_service_name: UnsafePointer<CChar>) -> nw_browse_descriptor_t
  * @availability iOS 16.0+
@@ -5650,307 +5778,307 @@ export declare function nw_browse_descriptor_create_bonjour_service(type: SDKHan
  * func nw_browse_descriptor_get_application_service_name(_ descriptor: nw_browse_descriptor_t) -> UnsafePointer<CChar>?
  * @availability iOS 16.0+
  */
-export declare function nw_browse_descriptor_get_application_service_name(descriptor: $SDK114): (SDKHandle) | null;
+export declare function nw_browse_descriptor_get_application_service_name(descriptor: $SDK118): (SDKHandle) | null;
 /**
  * func nw_browse_descriptor_get_bonjour_service_domain(_ descriptor: nw_browse_descriptor_t) -> UnsafePointer<CChar>?
  * @availability iOS 13.0+
  */
-export declare function nw_browse_descriptor_get_bonjour_service_domain(descriptor: $SDK114): (SDKHandle) | null;
+export declare function nw_browse_descriptor_get_bonjour_service_domain(descriptor: $SDK118): (SDKHandle) | null;
 /**
  * func nw_browse_descriptor_get_bonjour_service_type(_ descriptor: nw_browse_descriptor_t) -> UnsafePointer<CChar>
  * @availability iOS 13.0+
  */
-export declare function nw_browse_descriptor_get_bonjour_service_type(descriptor: $SDK114): SDKHandle;
+export declare function nw_browse_descriptor_get_bonjour_service_type(descriptor: $SDK118): SDKHandle;
 /**
  * func nw_browse_descriptor_get_include_txt_record(_ descriptor: nw_browse_descriptor_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_browse_descriptor_get_include_txt_record(descriptor: $SDK114): boolean;
+export declare function nw_browse_descriptor_get_include_txt_record(descriptor: $SDK118): boolean;
 /**
  * func nw_browse_descriptor_set_include_txt_record(_ descriptor: nw_browse_descriptor_t, _ include_txt_record: Bool)
  * @availability iOS 13.0+
  */
-export declare function nw_browse_descriptor_set_include_txt_record(descriptor: $SDK114, include_txt_record: boolean): void;
+export declare function nw_browse_descriptor_set_include_txt_record(descriptor: $SDK118, include_txt_record: boolean): void;
 /**
  * func nw_browse_result_copy_endpoint(_ result: nw_browse_result_t) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export declare function nw_browse_result_copy_endpoint(result: $SDK115): SDKHandle;
+export declare function nw_browse_result_copy_endpoint(result: $SDK119): SDKHandle;
 /**
  * func nw_browse_result_copy_txt_record_object(_ result: nw_browse_result_t) -> nw_txt_record_t?
  * @availability iOS 13.0+
  */
-export declare function nw_browse_result_copy_txt_record_object(result: $SDK115): (SDKHandle) | null;
+export declare function nw_browse_result_copy_txt_record_object(result: $SDK119): (SDKHandle) | null;
 /**
  * func nw_browse_result_get_changes(_ old_result: nw_browse_result_t?, _ new_result: nw_browse_result_t?) -> nw_browse_result_change_t
  * @availability iOS 13.0+
  */
-export declare function nw_browse_result_get_changes(old_result?: $SDK116, new_result?: $SDK116): number;
+export declare function nw_browse_result_get_changes(old_result?: $SDK120, new_result?: $SDK120): number;
 /**
  * func nw_browse_result_get_interfaces_count(_ result: nw_browse_result_t) -> Int
  * @availability iOS 13.0+
  */
-export declare function nw_browse_result_get_interfaces_count(result: $SDK115): number;
+export declare function nw_browse_result_get_interfaces_count(result: $SDK119): number;
 /**
  * func nw_browser_cancel(_ browser: nw_browser_t)
  * @availability iOS 13.0+
  */
-export declare function nw_browser_cancel(browser: $SDK117): void;
+export declare function nw_browser_cancel(browser: $SDK121): void;
 /**
  * func nw_browser_copy_browse_descriptor(_ browser: nw_browser_t) -> nw_browse_descriptor_t
  * @availability iOS 13.0+
  */
-export declare function nw_browser_copy_browse_descriptor(browser: $SDK117): SDKHandle;
+export declare function nw_browser_copy_browse_descriptor(browser: $SDK121): SDKHandle;
 /**
  * func nw_browser_copy_parameters(_ browser: nw_browser_t) -> nw_parameters_t
  * @availability iOS 13.0+
  */
-export declare function nw_browser_copy_parameters(browser: $SDK117): SDKHandle;
+export declare function nw_browser_copy_parameters(browser: $SDK121): SDKHandle;
 /**
  * func nw_browser_create(_ descriptor: nw_browse_descriptor_t, _ parameters: nw_parameters_t?) -> nw_browser_t
  * @availability iOS 13.0+
  */
-export declare function nw_browser_create(descriptor: $SDK114, parameters?: (Implements<OS_nw_parameters> | SDKHandle) | null): SDKHandle;
+export declare function nw_browser_create(descriptor: $SDK118, parameters?: (Implements<OS_nw_parameters> | SDKHandle) | null): SDKHandle;
 /**
  * func nw_browser_set_browse_results_changed_handler(_ browser: nw_browser_t, _ handler: nw_browser_browse_results_changed_handler_t?)
  * @availability iOS 13.0+
  */
-export declare function nw_browser_set_browse_results_changed_handler(browser: $SDK117, handler?: (((arg0: SDKHandle, arg1: SDKHandle, arg2: boolean) => void)) | null): void;
+export declare function nw_browser_set_browse_results_changed_handler(browser: $SDK121, handler?: (((arg0: SDKHandle, arg1: SDKHandle, arg2: boolean) => void)) | null): void;
 /**
  * func nw_browser_set_queue(_ browser: nw_browser_t, _ queue: dispatch_queue_t)
  * @availability iOS 13.0+
  */
-export declare function nw_browser_set_queue(browser: $SDK117, queue: _Dispatch_DispatchQueue): void;
+export declare function nw_browser_set_queue(browser: $SDK121, queue: _Dispatch_DispatchQueue): void;
 /**
  * func nw_browser_set_state_changed_handler(_ browser: nw_browser_t, _ state_changed_handler: nw_browser_state_changed_handler_t?)
  * @availability iOS 13.0+
  */
-export declare function nw_browser_set_state_changed_handler(browser: $SDK117, state_changed_handler?: (((arg0: nw_browser_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
+export declare function nw_browser_set_state_changed_handler(browser: $SDK121, state_changed_handler?: (((arg0: nw_browser_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
 /**
  * func nw_browser_start(_ browser: nw_browser_t)
  * @availability iOS 13.0+
  */
-export declare function nw_browser_start(browser: $SDK117): void;
+export declare function nw_browser_start(browser: $SDK121): void;
 /**
  * func nw_connection_access_establishment_report(_ connection: nw_connection_t, _ queue: dispatch_queue_t, _ access_block: @escaping nw_establishment_report_access_block_t)
  * @availability iOS 13.0+
  */
-export declare function nw_connection_access_establishment_report(connection: $SDK121, queue: _Dispatch_DispatchQueue, access_block: $SDK122): void;
+export declare function nw_connection_access_establishment_report(connection: $SDK125, queue: _Dispatch_DispatchQueue, access_block: $SDK126): void;
 /**
  * func nw_connection_batch(_ connection: nw_connection_t, _ batch_block: () -> Void)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_batch(connection: $SDK121, batch_block: (() => void)): void;
+export declare function nw_connection_batch(connection: $SDK125, batch_block: (() => void)): void;
 /**
  * func nw_connection_cancel(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_cancel(connection: $SDK121): void;
+export declare function nw_connection_cancel(connection: $SDK125): void;
 /**
  * func nw_connection_cancel_current_endpoint(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_cancel_current_endpoint(connection: $SDK121): void;
+export declare function nw_connection_cancel_current_endpoint(connection: $SDK125): void;
 /**
  * func nw_connection_copy_current_path(_ connection: nw_connection_t) -> nw_path_t?
  * @availability iOS 12.0+
  */
-export declare function nw_connection_copy_current_path(connection: $SDK121): (SDKHandle) | null;
+export declare function nw_connection_copy_current_path(connection: $SDK125): (SDKHandle) | null;
 /**
  * func nw_connection_copy_description(_ connection: nw_connection_t) -> UnsafeMutablePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_connection_copy_description(connection: $SDK121): SDKHandle;
+export declare function nw_connection_copy_description(connection: $SDK125): SDKHandle;
 /**
  * func nw_connection_copy_endpoint(_ connection: nw_connection_t) -> nw_endpoint_t
  * @availability iOS 12.0+
  */
-export declare function nw_connection_copy_endpoint(connection: $SDK121): SDKHandle;
+export declare function nw_connection_copy_endpoint(connection: $SDK125): SDKHandle;
 /**
  * func nw_connection_copy_parameters(_ connection: nw_connection_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export declare function nw_connection_copy_parameters(connection: $SDK121): SDKHandle;
+export declare function nw_connection_copy_parameters(connection: $SDK125): SDKHandle;
 /**
  * func nw_connection_copy_protocol_metadata(_ connection: nw_connection_t, _ definition: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 12.0+
  */
-export declare function nw_connection_copy_protocol_metadata(connection: $SDK121, definition: $SDK123): (SDKHandle) | null;
+export declare function nw_connection_copy_protocol_metadata(connection: $SDK125, definition: $SDK127): (SDKHandle) | null;
 /**
  * func nw_connection_create(_ endpoint: nw_endpoint_t, _ parameters: nw_parameters_t) -> nw_connection_t
  * @availability iOS 12.0+
  */
-export declare function nw_connection_create(endpoint: SDKHandle, parameters: $SDK124): SDKHandle;
+export declare function nw_connection_create(endpoint: $SDK128, parameters: $SDK129): SDKHandle;
 /**
  * func nw_connection_create_new_data_transfer_report(_ connection: nw_connection_t) -> nw_data_transfer_report_t
  * @availability iOS 13.0+
  */
-export declare function nw_connection_create_new_data_transfer_report(connection: $SDK121): SDKHandle;
+export declare function nw_connection_create_new_data_transfer_report(connection: $SDK125): SDKHandle;
 /**
  * func nw_connection_force_cancel(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_force_cancel(connection: $SDK121): void;
+export declare function nw_connection_force_cancel(connection: $SDK125): void;
 /**
  * func nw_connection_get_maximum_datagram_size(_ connection: nw_connection_t) -> UInt32
  * @availability iOS 12.0+
  */
-export declare function nw_connection_get_maximum_datagram_size(connection: $SDK121): number;
+export declare function nw_connection_get_maximum_datagram_size(connection: $SDK125): number;
 /**
  * func nw_connection_group_cancel(_ group: nw_connection_group_t)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_cancel(group: $SDK125): void;
+export declare function nw_connection_group_cancel(group: $SDK130): void;
 /**
  * func nw_connection_group_copy_descriptor(_ group: nw_connection_group_t) -> nw_group_descriptor_t
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_copy_descriptor(group: $SDK125): SDKHandle;
+export declare function nw_connection_group_copy_descriptor(group: $SDK130): SDKHandle;
 /**
  * func nw_connection_group_copy_local_endpoint_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_endpoint_t?
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_copy_local_endpoint_for_message(group: $SDK125, context: $SDK85): (SDKHandle) | null;
+export declare function nw_connection_group_copy_local_endpoint_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null;
 /**
  * func nw_connection_group_copy_parameters(_ group: nw_connection_group_t) -> nw_parameters_t
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_copy_parameters(group: $SDK125): SDKHandle;
+export declare function nw_connection_group_copy_parameters(group: $SDK130): SDKHandle;
 /**
  * func nw_connection_group_copy_path_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_path_t?
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_copy_path_for_message(group: $SDK125, context: $SDK85): (SDKHandle) | null;
+export declare function nw_connection_group_copy_path_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null;
 /**
  * func nw_connection_group_copy_protocol_metadata(_ group: nw_connection_group_t, _ definition: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 15.0+
  */
-export declare function nw_connection_group_copy_protocol_metadata(group: $SDK125, definition: $SDK123): (SDKHandle) | null;
+export declare function nw_connection_group_copy_protocol_metadata(group: $SDK130, definition: $SDK127): (SDKHandle) | null;
 /**
  * func nw_connection_group_copy_protocol_metadata_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t, _ definition: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 15.0+
  */
-export declare function nw_connection_group_copy_protocol_metadata_for_message(group: $SDK125, context: $SDK85, definition: $SDK123): (SDKHandle) | null;
+export declare function nw_connection_group_copy_protocol_metadata_for_message(group: $SDK130, context: $SDK91, definition: $SDK127): (SDKHandle) | null;
 /**
  * func nw_connection_group_copy_remote_endpoint_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_endpoint_t?
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_copy_remote_endpoint_for_message(group: $SDK125, context: $SDK85): (SDKHandle) | null;
+export declare function nw_connection_group_copy_remote_endpoint_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null;
 /**
  * func nw_connection_group_create(_ group_descriptor: nw_group_descriptor_t, _ parameters: nw_parameters_t) -> nw_connection_group_t
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_create(group_descriptor: $SDK126, parameters: $SDK124): SDKHandle;
+export declare function nw_connection_group_create(group_descriptor: $SDK131, parameters: $SDK129): SDKHandle;
 /**
  * func nw_connection_group_extract_connection(_ group: nw_connection_group_t, _ endpoint: nw_endpoint_t?, _ protocol_options: nw_protocol_options_t?) -> nw_connection_t?
  * @availability iOS 15.0+
  */
-export declare function nw_connection_group_extract_connection(group: $SDK125, endpoint?: (SDKHandle) | null, protocol_options?: $SDK127): (SDKHandle) | null;
+export declare function nw_connection_group_extract_connection(group: $SDK130, endpoint?: $SDK132, protocol_options?: $SDK133): (SDKHandle) | null;
 /**
  * func nw_connection_group_extract_connection_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_connection_t?
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_extract_connection_for_message(group: $SDK125, context: $SDK85): (SDKHandle) | null;
+export declare function nw_connection_group_extract_connection_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null;
 /**
  * func nw_connection_group_reinsert_extracted_connection(_ group: nw_connection_group_t, _ connection: nw_connection_t) -> Bool
  * @availability iOS 15.0+
  */
-export declare function nw_connection_group_reinsert_extracted_connection(group: $SDK125, connection: $SDK121): boolean;
+export declare function nw_connection_group_reinsert_extracted_connection(group: $SDK130, connection: $SDK125): boolean;
 /**
  * func nw_connection_group_reply(_ group: nw_connection_group_t, _ inbound_message: nw_content_context_t, _ outbound_message: nw_content_context_t, _ content: dispatch_data_t?)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_reply(group: $SDK125, inbound_message: $SDK85, outbound_message: $SDK85, content?: (SDKHandle) | null): void;
+export declare function nw_connection_group_reply(group: $SDK130, inbound_message: $SDK91, outbound_message: $SDK91, content?: (SDKHandle) | null): void;
 /**
  * func nw_connection_group_send_message(_ group: nw_connection_group_t, _ content: dispatch_data_t?, _ endpoint: nw_endpoint_t?, _ context: nw_content_context_t, _ completion: @escaping nw_connection_group_send_completion_t)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_send_message(group: $SDK125, content: (SDKHandle) | null, endpoint: (SDKHandle) | null, context: $SDK85, completion: $SDK122): void;
+export declare function nw_connection_group_send_message(group: $SDK130, content: (SDKHandle) | null, endpoint: $SDK132, context: $SDK91, completion: $SDK126): void;
 /**
  * func nw_connection_group_set_new_connection_handler(_ group: nw_connection_group_t, _ new_connection_handler: nw_connection_group_new_connection_handler_t?)
  * @availability iOS 15.0+
  */
-export declare function nw_connection_group_set_new_connection_handler(group: $SDK125, new_connection_handler?: $SDK128): void;
+export declare function nw_connection_group_set_new_connection_handler(group: $SDK130, new_connection_handler?: $SDK134): void;
 /**
  * func nw_connection_group_set_queue(_ group: nw_connection_group_t, _ queue: dispatch_queue_t)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_set_queue(group: $SDK125, queue: _Dispatch_DispatchQueue): void;
+export declare function nw_connection_group_set_queue(group: $SDK130, queue: _Dispatch_DispatchQueue): void;
 /**
  * func nw_connection_group_set_receive_handler(_ group: nw_connection_group_t, _ maximum_message_size: UInt32, _ reject_oversized_messages: Bool, _ receive_handler: nw_connection_group_receive_handler_t?)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_set_receive_handler(group: $SDK125, maximum_message_size: number, reject_oversized_messages: boolean, receive_handler?: (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: boolean) => void)) | null): void;
+export declare function nw_connection_group_set_receive_handler(group: $SDK130, maximum_message_size: number, reject_oversized_messages: boolean, receive_handler?: (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: boolean) => void)) | null): void;
 /**
  * func nw_connection_group_set_state_changed_handler(_ group: nw_connection_group_t, _ state_changed_handler: nw_connection_group_state_changed_handler_t?)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_set_state_changed_handler(group: $SDK125, state_changed_handler?: (((arg0: nw_connection_group_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
+export declare function nw_connection_group_set_state_changed_handler(group: $SDK130, state_changed_handler?: (((arg0: nw_connection_group_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
 /**
  * func nw_connection_group_start(_ group: nw_connection_group_t)
  * @availability iOS 14.0+
  */
-export declare function nw_connection_group_start(group: $SDK125): void;
+export declare function nw_connection_group_start(group: $SDK130): void;
 /**
  * func nw_connection_receive(_ connection: nw_connection_t, _ minimum_incomplete_length: UInt32, _ maximum_length: UInt32, _ completion: @escaping nw_connection_receive_completion_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_receive(connection: $SDK121, minimum_incomplete_length: number, maximum_length: number, completion: $SDK131): void;
+export declare function nw_connection_receive(connection: $SDK125, minimum_incomplete_length: number, maximum_length: number, completion: $SDK137): void;
 /**
  * func nw_connection_receive_message(_ connection: nw_connection_t, _ completion: @escaping nw_connection_receive_completion_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_receive_message(connection: $SDK121, completion: $SDK131): void;
+export declare function nw_connection_receive_message(connection: $SDK125, completion: $SDK137): void;
 /**
  * func nw_connection_restart(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_restart(connection: $SDK121): void;
+export declare function nw_connection_restart(connection: $SDK125): void;
 /**
  * func nw_connection_send(_ connection: nw_connection_t, _ content: dispatch_data_t?, _ context: nw_content_context_t, _ is_complete: Bool, _ completion: @escaping nw_connection_send_completion_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_send(connection: $SDK121, content: (SDKHandle) | null, context: $SDK85, is_complete: boolean, completion: $SDK122): void;
+export declare function nw_connection_send(connection: $SDK125, content: (SDKHandle) | null, context: $SDK91, is_complete: boolean, completion: $SDK126): void;
 /**
  * func nw_connection_set_better_path_available_handler(_ connection: nw_connection_t, _ handler: nw_connection_boolean_event_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_set_better_path_available_handler(connection: $SDK121, handler?: $SDK68): void;
+export declare function nw_connection_set_better_path_available_handler(connection: $SDK125, handler?: $SDK75): void;
 /**
  * func nw_connection_set_path_changed_handler(_ connection: nw_connection_t, _ handler: nw_connection_path_event_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_set_path_changed_handler(connection: $SDK121, handler?: $SDK128): void;
+export declare function nw_connection_set_path_changed_handler(connection: $SDK125, handler?: $SDK134): void;
 /**
  * func nw_connection_set_queue(_ connection: nw_connection_t, _ queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_set_queue(connection: $SDK121, queue: _Dispatch_DispatchQueue): void;
+export declare function nw_connection_set_queue(connection: $SDK125, queue: _Dispatch_DispatchQueue): void;
 /**
  * func nw_connection_set_state_changed_handler(_ connection: nw_connection_t, _ handler: nw_connection_state_changed_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_set_state_changed_handler(connection: $SDK121, handler?: (((arg0: nw_connection_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
+export declare function nw_connection_set_state_changed_handler(connection: $SDK125, handler?: (((arg0: nw_connection_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
 /**
  * func nw_connection_set_viability_changed_handler(_ connection: nw_connection_t, _ handler: nw_connection_boolean_event_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_set_viability_changed_handler(connection: $SDK121, handler?: $SDK68): void;
+export declare function nw_connection_set_viability_changed_handler(connection: $SDK125, handler?: $SDK75): void;
 /**
  * func nw_connection_start(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export declare function nw_connection_start(connection: $SDK121): void;
+export declare function nw_connection_start(connection: $SDK125): void;
 /**
  * func nw_content_context_copy_antecedent(_ context: nw_content_context_t) -> nw_content_context_t?
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_copy_antecedent(context: $SDK85): (SDKHandle) | null;
+export declare function nw_content_context_copy_antecedent(context: $SDK91): (SDKHandle) | null;
 /**
  * func nw_content_context_copy_protocol_metadata(_ context: nw_content_context_t, _ protocol: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_copy_protocol_metadata(context: $SDK85, protocol: $SDK123): (SDKHandle) | null;
+export declare function nw_content_context_copy_protocol_metadata(context: $SDK91, protocol: $SDK127): (SDKHandle) | null;
 /**
  * func nw_content_context_create(_ context_identifier: UnsafePointer<CChar>) -> nw_content_context_t
  * @availability iOS 12.0+
@@ -5960,157 +6088,157 @@ export declare function nw_content_context_create(context_identifier: SDKHandle)
  * func nw_content_context_foreach_protocol_metadata(_ context: nw_content_context_t, _ foreach_block: @escaping (nw_protocol_definition_t, nw_protocol_metadata_t) -> Void)
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_foreach_protocol_metadata(context: $SDK85, foreach_block: ((arg0: SDKHandle, arg1: SDKHandle) => void)): void;
+export declare function nw_content_context_foreach_protocol_metadata(context: $SDK91, foreach_block: ((arg0: SDKHandle, arg1: SDKHandle) => void)): void;
 /**
  * func nw_content_context_get_expiration_milliseconds(_ context: nw_content_context_t) -> UInt64
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_get_expiration_milliseconds(context: $SDK85): number;
+export declare function nw_content_context_get_expiration_milliseconds(context: $SDK91): number;
 /**
  * func nw_content_context_get_identifier(_ context: nw_content_context_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_get_identifier(context: $SDK85): SDKHandle;
+export declare function nw_content_context_get_identifier(context: $SDK91): SDKHandle;
 /**
  * func nw_content_context_get_is_final(_ context: nw_content_context_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_get_is_final(context: $SDK85): boolean;
+export declare function nw_content_context_get_is_final(context: $SDK91): boolean;
 /**
  * func nw_content_context_get_relative_priority(_ context: nw_content_context_t) -> Double
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_get_relative_priority(context: $SDK85): number;
+export declare function nw_content_context_get_relative_priority(context: $SDK91): number;
 /**
  * func nw_content_context_set_antecedent(_ context: nw_content_context_t, _ antecedent_context: nw_content_context_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_set_antecedent(context: $SDK85, antecedent_context?: (Implements<OS_nw_content_context> | SDKHandle) | null): void;
+export declare function nw_content_context_set_antecedent(context: $SDK91, antecedent_context?: (Implements<OS_nw_content_context> | SDKHandle) | null): void;
 /**
  * func nw_content_context_set_expiration_milliseconds(_ context: nw_content_context_t, _ expiration_milliseconds: UInt64)
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_set_expiration_milliseconds(context: $SDK85, expiration_milliseconds: number): void;
+export declare function nw_content_context_set_expiration_milliseconds(context: $SDK91, expiration_milliseconds: number): void;
 /**
  * func nw_content_context_set_is_final(_ context: nw_content_context_t, _ is_final: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_set_is_final(context: $SDK85, is_final: boolean): void;
+export declare function nw_content_context_set_is_final(context: $SDK91, is_final: boolean): void;
 /**
  * func nw_content_context_set_metadata_for_protocol(_ context: nw_content_context_t, _ protocol_metadata: nw_protocol_metadata_t)
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_set_metadata_for_protocol(context: $SDK85, protocol_metadata: $SDK135): void;
+export declare function nw_content_context_set_metadata_for_protocol(context: $SDK91, protocol_metadata: $SDK141): void;
 /**
  * func nw_content_context_set_relative_priority(_ context: nw_content_context_t, _ relative_priority: Double)
  * @availability iOS 12.0+
  */
-export declare function nw_content_context_set_relative_priority(context: $SDK85, relative_priority: number): void;
+export declare function nw_content_context_set_relative_priority(context: $SDK91, relative_priority: number): void;
 /**
  * func nw_data_transfer_report_collect(_ report: nw_data_transfer_report_t, _ queue: dispatch_queue_t, _ collect_block: @escaping nw_data_transfer_report_collect_block_t)
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_collect(report: $SDK136, queue: _Dispatch_DispatchQueue, collect_block: $SDK137): void;
+export declare function nw_data_transfer_report_collect(report: $SDK142, queue: _Dispatch_DispatchQueue, collect_block: $SDK143): void;
 /**
  * func nw_data_transfer_report_copy_path_interface(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> nw_interface_t
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_copy_path_interface(report: $SDK136, path_index: number): SDKHandle;
+export declare function nw_data_transfer_report_copy_path_interface(report: $SDK142, path_index: number): SDKHandle;
 /**
  * func nw_data_transfer_report_get_duration_milliseconds(_ report: nw_data_transfer_report_t) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_duration_milliseconds(report: $SDK136): number;
+export declare function nw_data_transfer_report_get_duration_milliseconds(report: $SDK142): number;
 /**
  * func nw_data_transfer_report_get_path_count(_ report: nw_data_transfer_report_t) -> UInt32
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_path_count(report: $SDK136): number;
+export declare function nw_data_transfer_report_get_path_count(report: $SDK142): number;
 /**
  * func nw_data_transfer_report_get_path_radio_type(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> nw_interface_radio_type_t
  * @availability iOS 15.0+
  */
-export declare function nw_data_transfer_report_get_path_radio_type(report: $SDK136, path_index: number): nw_interface_radio_type_t;
+export declare function nw_data_transfer_report_get_path_radio_type(report: $SDK142, path_index: number): nw_interface_radio_type_t;
 /**
  * func nw_data_transfer_report_get_received_application_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_received_application_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_received_application_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_received_ip_packet_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_received_ip_packet_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_received_ip_packet_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_received_transport_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_received_transport_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_received_transport_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_received_transport_duplicate_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_received_transport_duplicate_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_received_transport_duplicate_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_received_transport_out_of_order_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_received_transport_out_of_order_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_received_transport_out_of_order_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_sent_application_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_sent_application_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_sent_application_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_sent_ip_packet_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_sent_ip_packet_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_sent_ip_packet_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_sent_transport_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_sent_transport_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_sent_transport_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_state(_ report: nw_data_transfer_report_t) -> nw_data_transfer_report_state_t
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_state(report: $SDK136): nw_data_transfer_report_state_t;
+export declare function nw_data_transfer_report_get_state(report: $SDK142): nw_data_transfer_report_state_t;
 /**
  * func nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_transport_rtt_variance(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_transport_rtt_variance(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_transport_rtt_variance(report: $SDK142, path_index: number): number;
 /**
  * func nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report: $SDK136, path_index: number): number;
+export declare function nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report: $SDK142, path_index: number): number;
 /**
  * func nw_endpoint_copy_address_string(_ endpoint: nw_endpoint_t) -> UnsafeMutablePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_copy_address_string(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_copy_address_string(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_copy_port_string(_ endpoint: nw_endpoint_t) -> UnsafeMutablePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_copy_port_string(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_copy_port_string(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_copy_txt_record(_ endpoint: nw_endpoint_t) -> nw_txt_record_t?
  * @availability iOS 16.0+
  */
-export declare function nw_endpoint_copy_txt_record(endpoint: SDKHandle): (SDKHandle) | null;
+export declare function nw_endpoint_copy_txt_record(endpoint: $SDK128): (SDKHandle) | null;
 /**
  * func nw_endpoint_create_address(_ address: UnsafePointer<sockaddr>) -> nw_endpoint_t
  * @availability iOS 12.0+
@@ -6135,257 +6263,257 @@ export declare function nw_endpoint_create_url(url: SDKHandle): SDKHandle;
  * func nw_endpoint_get_address(_ endpoint: nw_endpoint_t) -> UnsafePointer<sockaddr>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_address(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_get_address(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_get_bonjour_service_domain(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_bonjour_service_domain(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_get_bonjour_service_domain(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_get_bonjour_service_name(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_bonjour_service_name(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_get_bonjour_service_name(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_get_bonjour_service_type(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_bonjour_service_type(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_get_bonjour_service_type(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_get_hostname(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_hostname(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_get_hostname(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_endpoint_get_port(_ endpoint: nw_endpoint_t) -> UInt16
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_port(endpoint: SDKHandle): number;
+export declare function nw_endpoint_get_port(endpoint: $SDK128): number;
 /**
  * func nw_endpoint_get_signature(_ endpoint: nw_endpoint_t, _ out_signature_length: UnsafeMutablePointer<Int>) -> UnsafePointer<UInt8>?
  * @availability iOS 16.0+
  */
-export declare function nw_endpoint_get_signature(endpoint: SDKHandle, out_signature_length: SDKHandle): (SDKHandle) | null;
+export declare function nw_endpoint_get_signature(endpoint: $SDK128, out_signature_length: SDKHandle): (SDKHandle) | null;
 /**
  * func nw_endpoint_get_type(_ endpoint: nw_endpoint_t) -> nw_endpoint_type_t
  * @availability iOS 12.0+
  */
-export declare function nw_endpoint_get_type(endpoint: SDKHandle): nw_endpoint_type_t;
+export declare function nw_endpoint_get_type(endpoint: $SDK128): nw_endpoint_type_t;
 /**
  * func nw_endpoint_get_url(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 13.0+
  */
-export declare function nw_endpoint_get_url(endpoint: SDKHandle): SDKHandle;
+export declare function nw_endpoint_get_url(endpoint: $SDK128): SDKHandle;
 /**
  * func nw_error_copy_cf_error(_ error: nw_error_t) -> Unmanaged<CFError>
  * @availability iOS 12.0+
  */
-export declare function nw_error_copy_cf_error(error: $SDK138): SDKHandle;
+export declare function nw_error_copy_cf_error(error: $SDK144): SDKHandle;
 /**
  * func nw_error_get_error_code(_ error: nw_error_t) -> Int32
  * @availability iOS 12.0+
  */
-export declare function nw_error_get_error_code(error: $SDK138): number;
+export declare function nw_error_get_error_code(error: $SDK144): number;
 /**
  * func nw_error_get_error_domain(_ error: nw_error_t) -> nw_error_domain_t
  * @availability iOS 12.0+
  */
-export declare function nw_error_get_error_domain(error: $SDK138): nw_error_domain_t;
+export declare function nw_error_get_error_domain(error: $SDK144): nw_error_domain_t;
 /**
  * func nw_establishment_report_copy_proxy_endpoint(_ report: nw_establishment_report_t) -> nw_endpoint_t?
  * @availability iOS 13.0+
  */
-export declare function nw_establishment_report_copy_proxy_endpoint(report: $SDK139): (SDKHandle) | null;
+export declare function nw_establishment_report_copy_proxy_endpoint(report: $SDK145): (SDKHandle) | null;
 /**
  * func nw_establishment_report_get_attempt_started_after_milliseconds(_ report: nw_establishment_report_t) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_establishment_report_get_attempt_started_after_milliseconds(report: $SDK139): number;
+export declare function nw_establishment_report_get_attempt_started_after_milliseconds(report: $SDK145): number;
 /**
  * func nw_establishment_report_get_duration_milliseconds(_ report: nw_establishment_report_t) -> UInt64
  * @availability iOS 13.0+
  */
-export declare function nw_establishment_report_get_duration_milliseconds(report: $SDK139): number;
+export declare function nw_establishment_report_get_duration_milliseconds(report: $SDK145): number;
 /**
  * func nw_establishment_report_get_previous_attempt_count(_ report: nw_establishment_report_t) -> UInt32
  * @availability iOS 13.0+
  */
-export declare function nw_establishment_report_get_previous_attempt_count(report: $SDK139): number;
+export declare function nw_establishment_report_get_previous_attempt_count(report: $SDK145): number;
 /**
  * func nw_establishment_report_get_proxy_configured(_ report: nw_establishment_report_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_establishment_report_get_proxy_configured(report: $SDK139): boolean;
+export declare function nw_establishment_report_get_proxy_configured(report: $SDK145): boolean;
 /**
  * func nw_establishment_report_get_used_proxy(_ report: nw_establishment_report_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_establishment_report_get_used_proxy(report: $SDK139): boolean;
+export declare function nw_establishment_report_get_used_proxy(report: $SDK145): boolean;
 /**
  * func nw_framer_async(_ framer: nw_framer_t, _ async_block: @escaping nw_framer_block_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_async(framer: $SDK140, async_block: (() => void)): void;
+export declare function nw_framer_async(framer: $SDK146, async_block: (() => void)): void;
 /**
  * func nw_framer_copy_local_endpoint(_ framer: nw_framer_t) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export declare function nw_framer_copy_local_endpoint(framer: $SDK140): SDKHandle;
+export declare function nw_framer_copy_local_endpoint(framer: $SDK146): SDKHandle;
 /**
  * func nw_framer_copy_options(_ framer: nw_framer_t) -> nw_protocol_options_t
  * @availability iOS 15.4+
  */
-export declare function nw_framer_copy_options(framer: $SDK140): SDKHandle;
+export declare function nw_framer_copy_options(framer: $SDK146): SDKHandle;
 /**
  * func nw_framer_copy_parameters(_ framer: nw_framer_t) -> nw_parameters_t
  * @availability iOS 13.0+
  */
-export declare function nw_framer_copy_parameters(framer: $SDK140): SDKHandle;
+export declare function nw_framer_copy_parameters(framer: $SDK146): SDKHandle;
 /**
  * func nw_framer_copy_remote_endpoint(_ framer: nw_framer_t) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export declare function nw_framer_copy_remote_endpoint(framer: $SDK140): SDKHandle;
+export declare function nw_framer_copy_remote_endpoint(framer: $SDK146): SDKHandle;
 /**
  * func nw_framer_create_options(_ framer_definition: nw_protocol_definition_t) -> nw_protocol_options_t
  * @availability iOS 13.0+
  */
-export declare function nw_framer_create_options(framer_definition: $SDK123): SDKHandle;
+export declare function nw_framer_create_options(framer_definition: $SDK127): SDKHandle;
 /**
  * func nw_framer_deliver_input(_ framer: nw_framer_t, _ input_buffer: UnsafePointer<UInt8>, _ input_length: Int, _ message: nw_framer_message_t, _ is_complete: Bool)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_deliver_input(framer: $SDK140, input_buffer: SDKHandle, input_length: number, message: $SDK135, is_complete: boolean): void;
+export declare function nw_framer_deliver_input(framer: $SDK146, input_buffer: SDKHandle, input_length: number, message: $SDK141, is_complete: boolean): void;
 /**
  * func nw_framer_deliver_input_no_copy(_ framer: nw_framer_t, _ input_length: Int, _ message: nw_framer_message_t, _ is_complete: Bool) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_framer_deliver_input_no_copy(framer: $SDK140, input_length: number, message: $SDK135, is_complete: boolean): boolean;
+export declare function nw_framer_deliver_input_no_copy(framer: $SDK146, input_length: number, message: $SDK141, is_complete: boolean): boolean;
 /**
  * func nw_framer_mark_failed_with_error(_ framer: nw_framer_t, _ error_code: Int32)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_mark_failed_with_error(framer: $SDK140, error_code: number): void;
+export declare function nw_framer_mark_failed_with_error(framer: $SDK146, error_code: number): void;
 /**
  * func nw_framer_mark_ready(_ framer: nw_framer_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_mark_ready(framer: $SDK140): void;
+export declare function nw_framer_mark_ready(framer: $SDK146): void;
 /**
  * func nw_framer_message_copy_object_value(_ message: nw_framer_message_t, _ key: UnsafePointer<CChar>) -> Any?
  * @availability iOS 13.0+
  */
-export declare function nw_framer_message_copy_object_value(message: $SDK135, key: SDKHandle): (unknown) | null;
+export declare function nw_framer_message_copy_object_value(message: $SDK141, key: SDKHandle): (unknown) | null;
 /**
  * func nw_framer_message_create(_ framer: nw_framer_t) -> nw_framer_message_t
  * @availability iOS 13.0+
  */
-export declare function nw_framer_message_create(framer: $SDK140): SDKHandle;
+export declare function nw_framer_message_create(framer: $SDK146): SDKHandle;
 /**
  * func nw_framer_message_set_object_value(_ message: nw_framer_message_t, _ key: UnsafePointer<CChar>, _ value: Any?)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_message_set_object_value(message: $SDK135, key: SDKHandle, value?: (unknown) | null): void;
+export declare function nw_framer_message_set_object_value(message: $SDK141, key: SDKHandle, value?: (unknown) | null): void;
 /**
  * func nw_framer_message_set_value(_ message: nw_framer_message_t, _ key: UnsafePointer<CChar>, _ value: UnsafeMutableRawPointer?, _ dispose_value: nw_framer_message_dispose_value_t?)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_message_set_value(message: $SDK135, key: SDKHandle, value?: (SDKHandle) | null, dispose_value?: $SDK128): void;
+export declare function nw_framer_message_set_value(message: $SDK141, key: SDKHandle, value?: (SDKHandle) | null, dispose_value?: $SDK134): void;
 /**
  * func nw_framer_options_copy_object_value(_ options: nw_protocol_options_t, _ key: UnsafePointer<CChar>) -> Any?
  * @availability iOS 15.4+
  */
-export declare function nw_framer_options_copy_object_value(options: $SDK141, key: SDKHandle): (unknown) | null;
+export declare function nw_framer_options_copy_object_value(options: $SDK147, key: SDKHandle): (unknown) | null;
 /**
  * func nw_framer_options_set_object_value(_ options: nw_protocol_options_t, _ key: UnsafePointer<CChar>, _ value: Any?)
  * @availability iOS 15.4+
  */
-export declare function nw_framer_options_set_object_value(options: $SDK141, key: SDKHandle, value?: (unknown) | null): void;
+export declare function nw_framer_options_set_object_value(options: $SDK147, key: SDKHandle, value?: (unknown) | null): void;
 /**
  * func nw_framer_pass_through_input(_ framer: nw_framer_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_pass_through_input(framer: $SDK140): void;
+export declare function nw_framer_pass_through_input(framer: $SDK146): void;
 /**
  * func nw_framer_pass_through_output(_ framer: nw_framer_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_pass_through_output(framer: $SDK140): void;
+export declare function nw_framer_pass_through_output(framer: $SDK146): void;
 /**
  * func nw_framer_prepend_application_protocol(_ framer: nw_framer_t, _ protocol_options: nw_protocol_options_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_framer_prepend_application_protocol(framer: $SDK140, protocol_options: $SDK141): boolean;
+export declare function nw_framer_prepend_application_protocol(framer: $SDK146, protocol_options: $SDK147): boolean;
 /**
  * func nw_framer_protocol_create_message(_ definition: nw_protocol_definition_t) -> nw_framer_message_t
  * @availability iOS 13.0+
  */
-export declare function nw_framer_protocol_create_message(definition: $SDK123): SDKHandle;
+export declare function nw_framer_protocol_create_message(definition: $SDK127): SDKHandle;
 /**
  * func nw_framer_schedule_wakeup(_ framer: nw_framer_t, _ milliseconds: UInt64)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_schedule_wakeup(framer: $SDK140, milliseconds: number): void;
+export declare function nw_framer_schedule_wakeup(framer: $SDK146, milliseconds: number): void;
 /**
  * func nw_framer_set_cleanup_handler(_ framer: nw_framer_t, _ cleanup_handler: @escaping nw_framer_cleanup_handler_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_set_cleanup_handler(framer: $SDK140, cleanup_handler: $SDK137): void;
+export declare function nw_framer_set_cleanup_handler(framer: $SDK146, cleanup_handler: $SDK143): void;
 /**
  * func nw_framer_set_output_handler(_ framer: nw_framer_t, _ output_handler: @escaping nw_framer_output_handler_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_set_output_handler(framer: $SDK140, output_handler: ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: boolean) => void)): void;
+export declare function nw_framer_set_output_handler(framer: $SDK146, output_handler: ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: boolean) => void)): void;
 /**
  * func nw_framer_set_wakeup_handler(_ framer: nw_framer_t, _ wakeup_handler: @escaping nw_framer_wakeup_handler_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_set_wakeup_handler(framer: $SDK140, wakeup_handler: $SDK137): void;
+export declare function nw_framer_set_wakeup_handler(framer: $SDK146, wakeup_handler: $SDK143): void;
 /**
  * func nw_framer_write_output(_ framer: nw_framer_t, _ output_buffer: UnsafePointer<UInt8>, _ output_length: Int)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_write_output(framer: $SDK140, output_buffer: SDKHandle, output_length: number): void;
+export declare function nw_framer_write_output(framer: $SDK146, output_buffer: SDKHandle, output_length: number): void;
 /**
  * func nw_framer_write_output_data(_ framer: nw_framer_t, _ output_data: dispatch_data_t)
  * @availability iOS 13.0+
  */
-export declare function nw_framer_write_output_data(framer: $SDK140, output_data: SDKHandle): void;
+export declare function nw_framer_write_output_data(framer: $SDK146, output_data: SDKHandle): void;
 /**
  * func nw_framer_write_output_no_copy(_ framer: nw_framer_t, _ output_length: Int) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_framer_write_output_no_copy(framer: $SDK140, output_length: number): boolean;
+export declare function nw_framer_write_output_no_copy(framer: $SDK146, output_length: number): boolean;
 /**
  * func nw_group_descriptor_add_endpoint(_ descriptor: nw_group_descriptor_t, _ endpoint: nw_endpoint_t) -> Bool
  * @availability iOS 14.0+
  */
-export declare function nw_group_descriptor_add_endpoint(descriptor: $SDK126, endpoint: SDKHandle): boolean;
+export declare function nw_group_descriptor_add_endpoint(descriptor: $SDK131, endpoint: $SDK128): boolean;
 /**
  * func nw_group_descriptor_create_multicast(_ multicast_group: nw_endpoint_t) -> nw_group_descriptor_t
  * @availability iOS 14.0+
  */
-export declare function nw_group_descriptor_create_multicast(multicast_group: SDKHandle): SDKHandle;
+export declare function nw_group_descriptor_create_multicast(multicast_group: $SDK128): SDKHandle;
 /**
  * func nw_group_descriptor_create_multiplex(_ remote_endpoint: nw_endpoint_t) -> nw_group_descriptor_t
  * @availability iOS 15.0+
  */
-export declare function nw_group_descriptor_create_multiplex(remote_endpoint: SDKHandle): SDKHandle;
+export declare function nw_group_descriptor_create_multiplex(remote_endpoint: $SDK128): SDKHandle;
 /**
  * func nw_interface_get_index(_ interface: nw_interface_t) -> UInt32
  * @availability iOS 12.0+
  */
-export declare function nw_interface_get_index(interface_: $SDK143): number;
+export declare function nw_interface_get_index(interface_: $SDK149): number;
 /**
  * func nw_interface_get_name(_ interface: nw_interface_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export declare function nw_interface_get_name(interface_: $SDK143): SDKHandle;
+export declare function nw_interface_get_name(interface_: $SDK149): SDKHandle;
 /**
  * func nw_interface_get_type(_ interface: nw_interface_t) -> nw_interface_type_t
  * @availability iOS 12.0+
  */
-export declare function nw_interface_get_type(interface_: $SDK143): nw_interface_type_t;
+export declare function nw_interface_get_type(interface_: $SDK149): nw_interface_type_t;
 /**
  * func nw_ip_create_metadata() -> nw_protocol_metadata_t
  * @availability iOS 12.0+
@@ -6395,177 +6523,177 @@ export declare function nw_ip_create_metadata(): SDKHandle;
  * func nw_ip_metadata_get_ecn_flag(_ metadata: nw_protocol_metadata_t) -> nw_ip_ecn_flag_t
  * @availability iOS 12.0+
  */
-export declare function nw_ip_metadata_get_ecn_flag(metadata: $SDK135): nw_ip_ecn_flag_t;
+export declare function nw_ip_metadata_get_ecn_flag(metadata: $SDK141): nw_ip_ecn_flag_t;
 /**
  * func nw_ip_metadata_get_receive_time(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 12.0+
  */
-export declare function nw_ip_metadata_get_receive_time(metadata: $SDK135): number;
+export declare function nw_ip_metadata_get_receive_time(metadata: $SDK141): number;
 /**
  * func nw_ip_metadata_get_service_class(_ metadata: nw_protocol_metadata_t) -> nw_service_class_t
  * @availability iOS 12.0+
  */
-export declare function nw_ip_metadata_get_service_class(metadata: $SDK135): nw_service_class_t;
+export declare function nw_ip_metadata_get_service_class(metadata: $SDK141): nw_service_class_t;
 /**
  * func nw_ip_metadata_set_ecn_flag(_ metadata: nw_protocol_metadata_t, _ ecn_flag: nw_ip_ecn_flag_t)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_metadata_set_ecn_flag(metadata: $SDK135, ecn_flag: nw_ip_ecn_flag_t): void;
+export declare function nw_ip_metadata_set_ecn_flag(metadata: $SDK141, ecn_flag: nw_ip_ecn_flag_t): void;
 /**
  * func nw_ip_metadata_set_service_class(_ metadata: nw_protocol_metadata_t, _ service_class: nw_service_class_t)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_metadata_set_service_class(metadata: $SDK135, service_class: nw_service_class_t): void;
+export declare function nw_ip_metadata_set_service_class(metadata: $SDK141, service_class: nw_service_class_t): void;
 /**
  * func nw_ip_options_set_calculate_receive_time(_ options: nw_protocol_options_t, _ calculate_receive_time: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_options_set_calculate_receive_time(options: $SDK141, calculate_receive_time: boolean): void;
+export declare function nw_ip_options_set_calculate_receive_time(options: $SDK147, calculate_receive_time: boolean): void;
 /**
  * func nw_ip_options_set_disable_fragmentation(_ options: nw_protocol_options_t, _ disable_fragmentation: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_options_set_disable_fragmentation(options: $SDK141, disable_fragmentation: boolean): void;
+export declare function nw_ip_options_set_disable_fragmentation(options: $SDK147, disable_fragmentation: boolean): void;
 /**
  * func nw_ip_options_set_disable_multicast_loopback(_ options: nw_protocol_options_t, _ disable_multicast_loopback: Bool)
  * @availability iOS 14.0+
  */
-export declare function nw_ip_options_set_disable_multicast_loopback(options: $SDK141, disable_multicast_loopback: boolean): void;
+export declare function nw_ip_options_set_disable_multicast_loopback(options: $SDK147, disable_multicast_loopback: boolean): void;
 /**
  * func nw_ip_options_set_hop_limit(_ options: nw_protocol_options_t, _ hop_limit: UInt8)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_options_set_hop_limit(options: $SDK141, hop_limit: number): void;
+export declare function nw_ip_options_set_hop_limit(options: $SDK147, hop_limit: number): void;
 /**
  * func nw_ip_options_set_local_address_preference(_ options: nw_protocol_options_t, _ preference: nw_ip_local_address_preference_t)
  * @availability iOS 13.0+
  */
-export declare function nw_ip_options_set_local_address_preference(options: $SDK141, preference: nw_ip_local_address_preference_t): void;
+export declare function nw_ip_options_set_local_address_preference(options: $SDK147, preference: nw_ip_local_address_preference_t): void;
 /**
  * func nw_ip_options_set_use_minimum_mtu(_ options: nw_protocol_options_t, _ use_minimum_mtu: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_options_set_use_minimum_mtu(options: $SDK141, use_minimum_mtu: boolean): void;
+export declare function nw_ip_options_set_use_minimum_mtu(options: $SDK147, use_minimum_mtu: boolean): void;
 /**
  * func nw_ip_options_set_version(_ options: nw_protocol_options_t, _ version: nw_ip_version_t)
  * @availability iOS 12.0+
  */
-export declare function nw_ip_options_set_version(options: $SDK141, version: nw_ip_version_t): void;
+export declare function nw_ip_options_set_version(options: $SDK147, version: nw_ip_version_t): void;
 /**
  * func nw_listener_cancel(_ listener: nw_listener_t)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_cancel(listener: $SDK144): void;
+export declare function nw_listener_cancel(listener: $SDK150): void;
 /**
  * func nw_listener_create(_ parameters: nw_parameters_t) -> nw_listener_t?
  * @availability iOS 12.0+
  */
-export declare function nw_listener_create(parameters: $SDK124): (SDKHandle) | null;
+export declare function nw_listener_create(parameters: $SDK129): (SDKHandle) | null;
 /**
  * func nw_listener_create_with_connection(_ connection: nw_connection_t, _ parameters: nw_parameters_t) -> nw_listener_t?
  * @availability iOS 12.0+
  */
-export declare function nw_listener_create_with_connection(connection: $SDK121, parameters: $SDK124): (SDKHandle) | null;
+export declare function nw_listener_create_with_connection(connection: $SDK125, parameters: $SDK129): (SDKHandle) | null;
 /**
  * func nw_listener_create_with_port(_ port: UnsafePointer<CChar>, _ parameters: nw_parameters_t) -> nw_listener_t?
  * @availability iOS 12.0+
  */
-export declare function nw_listener_create_with_port(port: SDKHandle, parameters: $SDK124): (SDKHandle) | null;
+export declare function nw_listener_create_with_port(port: SDKHandle, parameters: $SDK129): (SDKHandle) | null;
 /**
  * func nw_listener_get_new_connection_limit(_ listener: nw_listener_t) -> UInt32
  * @availability iOS 12.0+
  */
-export declare function nw_listener_get_new_connection_limit(listener: $SDK144): number;
+export declare function nw_listener_get_new_connection_limit(listener: $SDK150): number;
 /**
  * func nw_listener_get_port(_ listener: nw_listener_t) -> UInt16
  * @availability iOS 12.0+
  */
-export declare function nw_listener_get_port(listener: $SDK144): number;
+export declare function nw_listener_get_port(listener: $SDK150): number;
 /**
  * func nw_listener_set_advertise_descriptor(_ listener: nw_listener_t, _ advertise_descriptor: nw_advertise_descriptor_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_set_advertise_descriptor(listener: $SDK144, advertise_descriptor?: (Implements<OS_nw_advertise_descriptor> | SDKHandle) | null): void;
+export declare function nw_listener_set_advertise_descriptor(listener: $SDK150, advertise_descriptor?: (Implements<OS_nw_advertise_descriptor> | SDKHandle) | null): void;
 /**
  * func nw_listener_set_advertised_endpoint_changed_handler(_ listener: nw_listener_t, _ handler: nw_listener_advertised_endpoint_changed_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_set_advertised_endpoint_changed_handler(listener: $SDK144, handler?: (((arg0: SDKHandle, arg1: boolean) => void)) | null): void;
+export declare function nw_listener_set_advertised_endpoint_changed_handler(listener: $SDK150, handler?: (((arg0: SDKHandle, arg1: boolean) => void)) | null): void;
 /**
  * func nw_listener_set_new_connection_group_handler(_ listener: nw_listener_t, _ handler: nw_listener_new_connection_group_handler_t?)
  * @availability iOS 15.0+
  */
-export declare function nw_listener_set_new_connection_group_handler(listener: $SDK144, handler?: $SDK128): void;
+export declare function nw_listener_set_new_connection_group_handler(listener: $SDK150, handler?: $SDK134): void;
 /**
  * func nw_listener_set_new_connection_handler(_ listener: nw_listener_t, _ handler: nw_listener_new_connection_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_set_new_connection_handler(listener: $SDK144, handler?: $SDK128): void;
+export declare function nw_listener_set_new_connection_handler(listener: $SDK150, handler?: $SDK134): void;
 /**
  * func nw_listener_set_new_connection_limit(_ listener: nw_listener_t, _ new_connection_limit: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_set_new_connection_limit(listener: $SDK144, new_connection_limit: number): void;
+export declare function nw_listener_set_new_connection_limit(listener: $SDK150, new_connection_limit: number): void;
 /**
  * func nw_listener_set_queue(_ listener: nw_listener_t, _ queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_set_queue(listener: $SDK144, queue: _Dispatch_DispatchQueue): void;
+export declare function nw_listener_set_queue(listener: $SDK150, queue: _Dispatch_DispatchQueue): void;
 /**
  * func nw_listener_set_state_changed_handler(_ listener: nw_listener_t, _ handler: nw_listener_state_changed_handler_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_set_state_changed_handler(listener: $SDK144, handler?: (((arg0: nw_listener_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
+export declare function nw_listener_set_state_changed_handler(listener: $SDK150, handler?: (((arg0: nw_listener_state_t, arg1: (SDKHandle) | null) => void)) | null): void;
 /**
  * func nw_listener_start(_ listener: nw_listener_t)
  * @availability iOS 12.0+
  */
-export declare function nw_listener_start(listener: $SDK144): void;
+export declare function nw_listener_start(listener: $SDK150): void;
 /**
  * func nw_multicast_group_descriptor_get_disable_unicast_traffic(_ multicast_descriptor: nw_group_descriptor_t) -> Bool
  * @availability iOS 14.0+
  */
-export declare function nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor: $SDK126): boolean;
+export declare function nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor: $SDK131): boolean;
 /**
  * func nw_multicast_group_descriptor_set_disable_unicast_traffic(_ multicast_descriptor: nw_group_descriptor_t, _ disable_unicast_traffic: Bool)
  * @availability iOS 14.0+
  */
-export declare function nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor: $SDK126, disable_unicast_traffic: boolean): void;
+export declare function nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor: $SDK131, disable_unicast_traffic: boolean): void;
 /**
  * func nw_multicast_group_descriptor_set_specific_source(_ multicast_descriptor: nw_group_descriptor_t, _ source: nw_endpoint_t)
  * @availability iOS 14.0+
  */
-export declare function nw_multicast_group_descriptor_set_specific_source(multicast_descriptor: $SDK126, source: SDKHandle): void;
+export declare function nw_multicast_group_descriptor_set_specific_source(multicast_descriptor: $SDK131, source: $SDK128): void;
 /**
  * func nw_parameters_clear_prohibited_interface_types(_ parameters: nw_parameters_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_clear_prohibited_interface_types(parameters: $SDK124): void;
+export declare function nw_parameters_clear_prohibited_interface_types(parameters: $SDK129): void;
 /**
  * func nw_parameters_clear_prohibited_interfaces(_ parameters: nw_parameters_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_clear_prohibited_interfaces(parameters: $SDK124): void;
+export declare function nw_parameters_clear_prohibited_interfaces(parameters: $SDK129): void;
 /**
  * func nw_parameters_copy(_ parameters: nw_parameters_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_copy(parameters: $SDK124): SDKHandle;
+export declare function nw_parameters_copy(parameters: $SDK129): SDKHandle;
 /**
  * func nw_parameters_copy_default_protocol_stack(_ parameters: nw_parameters_t) -> nw_protocol_stack_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_copy_default_protocol_stack(parameters: $SDK124): SDKHandle;
+export declare function nw_parameters_copy_default_protocol_stack(parameters: $SDK129): SDKHandle;
 /**
  * func nw_parameters_copy_local_endpoint(_ parameters: nw_parameters_t) -> nw_endpoint_t?
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_copy_local_endpoint(parameters: $SDK124): (SDKHandle) | null;
+export declare function nw_parameters_copy_local_endpoint(parameters: $SDK129): (SDKHandle) | null;
 /**
  * func nw_parameters_copy_required_interface(_ parameters: nw_parameters_t) -> nw_interface_t?
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_copy_required_interface(parameters: $SDK124): (SDKHandle) | null;
+export declare function nw_parameters_copy_required_interface(parameters: $SDK129): (SDKHandle) | null;
 /**
  * func nw_parameters_create() -> nw_parameters_t
  * @availability iOS 12.0+
@@ -6580,247 +6708,247 @@ export declare function nw_parameters_create_application_service(): SDKHandle;
  * func nw_parameters_create_quic(_ configure_quic: @escaping nw_parameters_configure_protocol_block_t) -> nw_parameters_t
  * @availability iOS 15.0+
  */
-export declare function nw_parameters_create_quic(configure_quic: $SDK137): SDKHandle;
+export declare function nw_parameters_create_quic(configure_quic: $SDK143): SDKHandle;
 /**
  * func nw_parameters_create_secure_tcp(_ configure_tls: @escaping nw_parameters_configure_protocol_block_t, _ configure_tcp: @escaping nw_parameters_configure_protocol_block_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_create_secure_tcp(configure_tls: $SDK137, configure_tcp: $SDK137): SDKHandle;
+export declare function nw_parameters_create_secure_tcp(configure_tls: $SDK143, configure_tcp: $SDK143): SDKHandle;
 /**
  * func nw_parameters_create_secure_udp(_ configure_dtls: @escaping nw_parameters_configure_protocol_block_t, _ configure_udp: @escaping nw_parameters_configure_protocol_block_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_create_secure_udp(configure_dtls: $SDK137, configure_udp: $SDK137): SDKHandle;
+export declare function nw_parameters_create_secure_udp(configure_dtls: $SDK143, configure_udp: $SDK143): SDKHandle;
 /**
  * func nw_parameters_get_allow_ultra_constrained(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 26.0+
  */
-export declare function nw_parameters_get_allow_ultra_constrained(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_allow_ultra_constrained(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_attribution(_ parameters: nw_parameters_t) -> nw_parameters_attribution_t
  * @availability iOS 15.0+
  */
-export declare function nw_parameters_get_attribution(parameters: $SDK124): nw_parameters_attribution_t;
+export declare function nw_parameters_get_attribution(parameters: $SDK129): nw_parameters_attribution_t;
 /**
  * func nw_parameters_get_expired_dns_behavior(_ parameters: nw_parameters_t) -> nw_parameters_expired_dns_behavior_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_expired_dns_behavior(parameters: $SDK124): nw_parameters_expired_dns_behavior_t;
+export declare function nw_parameters_get_expired_dns_behavior(parameters: $SDK129): nw_parameters_expired_dns_behavior_t;
 /**
  * func nw_parameters_get_fast_open_enabled(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_fast_open_enabled(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_fast_open_enabled(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_include_peer_to_peer(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_include_peer_to_peer(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_include_peer_to_peer(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_local_only(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_local_only(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_local_only(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_multipath_service(_ parameters: nw_parameters_t) -> nw_multipath_service_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_multipath_service(parameters: $SDK124): nw_multipath_service_t;
+export declare function nw_parameters_get_multipath_service(parameters: $SDK129): nw_multipath_service_t;
 /**
  * func nw_parameters_get_prefer_no_proxy(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_prefer_no_proxy(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_prefer_no_proxy(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_prohibit_constrained(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_parameters_get_prohibit_constrained(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_prohibit_constrained(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_prohibit_expensive(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_prohibit_expensive(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_prohibit_expensive(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_required_interface_type(_ parameters: nw_parameters_t) -> nw_interface_type_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_required_interface_type(parameters: $SDK124): nw_interface_type_t;
+export declare function nw_parameters_get_required_interface_type(parameters: $SDK129): nw_interface_type_t;
 /**
  * func nw_parameters_get_reuse_local_address(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_reuse_local_address(parameters: $SDK124): boolean;
+export declare function nw_parameters_get_reuse_local_address(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_get_service_class(_ parameters: nw_parameters_t) -> nw_service_class_t
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_get_service_class(parameters: $SDK124): nw_service_class_t;
+export declare function nw_parameters_get_service_class(parameters: $SDK129): nw_service_class_t;
 /**
  * func nw_parameters_prohibit_interface(_ parameters: nw_parameters_t, _ interface: nw_interface_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_prohibit_interface(parameters: $SDK124, interface_: $SDK143): void;
+export declare function nw_parameters_prohibit_interface(parameters: $SDK129, interface_: $SDK149): void;
 /**
  * func nw_parameters_prohibit_interface_type(_ parameters: nw_parameters_t, _ interface_type: nw_interface_type_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_prohibit_interface_type(parameters: $SDK124, interface_type: nw_interface_type_t): void;
+export declare function nw_parameters_prohibit_interface_type(parameters: $SDK129, interface_type: nw_interface_type_t): void;
 /**
  * func nw_parameters_require_interface(_ parameters: nw_parameters_t, _ interface: nw_interface_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_require_interface(parameters: $SDK124, interface_?: (Implements<OS_nw_interface> | SDKHandle) | null): void;
+export declare function nw_parameters_require_interface(parameters: $SDK129, interface_?: (Implements<OS_nw_interface> | SDKHandle) | null): void;
 /**
  * func nw_parameters_requires_dnssec_validation(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 16.0+
  */
-export declare function nw_parameters_requires_dnssec_validation(parameters: $SDK124): boolean;
+export declare function nw_parameters_requires_dnssec_validation(parameters: $SDK129): boolean;
 /**
  * func nw_parameters_set_allow_ultra_constrained(_ parameters: nw_parameters_t, _ allow_ultra_constrained: Bool)
  * @availability iOS 26.0+
  */
-export declare function nw_parameters_set_allow_ultra_constrained(parameters: $SDK124, allow_ultra_constrained: boolean): void;
+export declare function nw_parameters_set_allow_ultra_constrained(parameters: $SDK129, allow_ultra_constrained: boolean): void;
 /**
  * func nw_parameters_set_attribution(_ parameters: nw_parameters_t, _ attribution: nw_parameters_attribution_t)
  * @availability iOS 15.0+
  */
-export declare function nw_parameters_set_attribution(parameters: $SDK124, attribution: nw_parameters_attribution_t): void;
+export declare function nw_parameters_set_attribution(parameters: $SDK129, attribution: nw_parameters_attribution_t): void;
 /**
  * func nw_parameters_set_expired_dns_behavior(_ parameters: nw_parameters_t, _ expired_dns_behavior: nw_parameters_expired_dns_behavior_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_expired_dns_behavior(parameters: $SDK124, expired_dns_behavior: nw_parameters_expired_dns_behavior_t): void;
+export declare function nw_parameters_set_expired_dns_behavior(parameters: $SDK129, expired_dns_behavior: nw_parameters_expired_dns_behavior_t): void;
 /**
  * func nw_parameters_set_fast_open_enabled(_ parameters: nw_parameters_t, _ fast_open_enabled: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_fast_open_enabled(parameters: $SDK124, fast_open_enabled: boolean): void;
+export declare function nw_parameters_set_fast_open_enabled(parameters: $SDK129, fast_open_enabled: boolean): void;
 /**
  * func nw_parameters_set_include_peer_to_peer(_ parameters: nw_parameters_t, _ include_peer_to_peer: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_include_peer_to_peer(parameters: $SDK124, include_peer_to_peer: boolean): void;
+export declare function nw_parameters_set_include_peer_to_peer(parameters: $SDK129, include_peer_to_peer: boolean): void;
 /**
  * func nw_parameters_set_local_endpoint(_ parameters: nw_parameters_t, _ local_endpoint: nw_endpoint_t?)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_local_endpoint(parameters: $SDK124, local_endpoint?: (SDKHandle) | null): void;
+export declare function nw_parameters_set_local_endpoint(parameters: $SDK129, local_endpoint?: $SDK132): void;
 /**
  * func nw_parameters_set_local_only(_ parameters: nw_parameters_t, _ local_only: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_local_only(parameters: $SDK124, local_only: boolean): void;
+export declare function nw_parameters_set_local_only(parameters: $SDK129, local_only: boolean): void;
 /**
  * func nw_parameters_set_multipath_service(_ parameters: nw_parameters_t, _ multipath_service: nw_multipath_service_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_multipath_service(parameters: $SDK124, multipath_service: nw_multipath_service_t): void;
+export declare function nw_parameters_set_multipath_service(parameters: $SDK129, multipath_service: nw_multipath_service_t): void;
 /**
  * func nw_parameters_set_prefer_no_proxy(_ parameters: nw_parameters_t, _ prefer_no_proxy: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_prefer_no_proxy(parameters: $SDK124, prefer_no_proxy: boolean): void;
+export declare function nw_parameters_set_prefer_no_proxy(parameters: $SDK129, prefer_no_proxy: boolean): void;
 /**
  * func nw_parameters_set_privacy_context(_ parameters: nw_parameters_t, _ privacy_context: nw_privacy_context_t)
  * @availability iOS 14.0+
  */
-export declare function nw_parameters_set_privacy_context(parameters: $SDK124, privacy_context: $SDK149): void;
+export declare function nw_parameters_set_privacy_context(parameters: $SDK129, privacy_context: $SDK155): void;
 /**
  * func nw_parameters_set_prohibit_constrained(_ parameters: nw_parameters_t, _ prohibit_constrained: Bool)
  * @availability iOS 13.0+
  */
-export declare function nw_parameters_set_prohibit_constrained(parameters: $SDK124, prohibit_constrained: boolean): void;
+export declare function nw_parameters_set_prohibit_constrained(parameters: $SDK129, prohibit_constrained: boolean): void;
 /**
  * func nw_parameters_set_prohibit_expensive(_ parameters: nw_parameters_t, _ prohibit_expensive: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_prohibit_expensive(parameters: $SDK124, prohibit_expensive: boolean): void;
+export declare function nw_parameters_set_prohibit_expensive(parameters: $SDK129, prohibit_expensive: boolean): void;
 /**
  * func nw_parameters_set_required_interface_type(_ parameters: nw_parameters_t, _ interface_type: nw_interface_type_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_required_interface_type(parameters: $SDK124, interface_type: nw_interface_type_t): void;
+export declare function nw_parameters_set_required_interface_type(parameters: $SDK129, interface_type: nw_interface_type_t): void;
 /**
  * func nw_parameters_set_requires_dnssec_validation(_ parameters: nw_parameters_t, _ requires_dnssec_validation: Bool)
  * @availability iOS 16.0+
  */
-export declare function nw_parameters_set_requires_dnssec_validation(parameters: $SDK124, requires_dnssec_validation: boolean): void;
+export declare function nw_parameters_set_requires_dnssec_validation(parameters: $SDK129, requires_dnssec_validation: boolean): void;
 /**
  * func nw_parameters_set_reuse_local_address(_ parameters: nw_parameters_t, _ reuse_local_address: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_reuse_local_address(parameters: $SDK124, reuse_local_address: boolean): void;
+export declare function nw_parameters_set_reuse_local_address(parameters: $SDK129, reuse_local_address: boolean): void;
 /**
  * func nw_parameters_set_service_class(_ parameters: nw_parameters_t, _ service_class: nw_service_class_t)
  * @availability iOS 12.0+
  */
-export declare function nw_parameters_set_service_class(parameters: $SDK124, service_class: nw_service_class_t): void;
+export declare function nw_parameters_set_service_class(parameters: $SDK129, service_class: nw_service_class_t): void;
 /**
  * func nw_path_copy_effective_local_endpoint(_ path: nw_path_t) -> nw_endpoint_t?
  * @availability iOS 12.0+
  */
-export declare function nw_path_copy_effective_local_endpoint(path: $SDK150): (SDKHandle) | null;
+export declare function nw_path_copy_effective_local_endpoint(path: $SDK156): (SDKHandle) | null;
 /**
  * func nw_path_copy_effective_remote_endpoint(_ path: nw_path_t) -> nw_endpoint_t?
  * @availability iOS 12.0+
  */
-export declare function nw_path_copy_effective_remote_endpoint(path: $SDK150): (SDKHandle) | null;
+export declare function nw_path_copy_effective_remote_endpoint(path: $SDK156): (SDKHandle) | null;
 /**
  * func nw_path_get_link_quality(_ path: nw_path_t) -> nw_link_quality_t
  * @availability iOS 26.0+
  */
-export declare function nw_path_get_link_quality(path: $SDK150): nw_link_quality_t;
+export declare function nw_path_get_link_quality(path: $SDK156): nw_link_quality_t;
 /**
  * func nw_path_get_status(_ path: nw_path_t) -> nw_path_status_t
  * @availability iOS 12.0+
  */
-export declare function nw_path_get_status(path: $SDK150): nw_path_status_t;
+export declare function nw_path_get_status(path: $SDK156): nw_path_status_t;
 /**
  * func nw_path_get_unsatisfied_reason(_ path: nw_path_t) -> nw_path_unsatisfied_reason_t
  * @availability iOS 14.2+
  */
-export declare function nw_path_get_unsatisfied_reason(path: $SDK150): nw_path_unsatisfied_reason_t;
+export declare function nw_path_get_unsatisfied_reason(path: $SDK156): nw_path_unsatisfied_reason_t;
 /**
  * func nw_path_has_dns(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_path_has_dns(path: $SDK150): boolean;
+export declare function nw_path_has_dns(path: $SDK156): boolean;
 /**
  * func nw_path_has_ipv4(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_path_has_ipv4(path: $SDK150): boolean;
+export declare function nw_path_has_ipv4(path: $SDK156): boolean;
 /**
  * func nw_path_has_ipv6(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_path_has_ipv6(path: $SDK150): boolean;
+export declare function nw_path_has_ipv6(path: $SDK156): boolean;
 /**
  * func nw_path_is_constrained(_ path: nw_path_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_path_is_constrained(path: $SDK150): boolean;
+export declare function nw_path_is_constrained(path: $SDK156): boolean;
 /**
  * func nw_path_is_equal(_ path: nw_path_t, _ other_path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_path_is_equal(path: $SDK150, other_path: $SDK150): boolean;
+export declare function nw_path_is_equal(path: $SDK156, other_path: $SDK156): boolean;
 /**
  * func nw_path_is_expensive(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_path_is_expensive(path: $SDK150): boolean;
+export declare function nw_path_is_expensive(path: $SDK156): boolean;
 /**
  * func nw_path_is_ultra_constrained(_ path: nw_path_t) -> Bool
  * @availability iOS 26.0+
  */
-export declare function nw_path_is_ultra_constrained(path: $SDK150): boolean;
+export declare function nw_path_is_ultra_constrained(path: $SDK156): boolean;
 /**
  * func nw_path_monitor_cancel(_ monitor: nw_path_monitor_t)
  * @availability iOS 12.0+
  */
-export declare function nw_path_monitor_cancel(monitor: $SDK151): void;
+export declare function nw_path_monitor_cancel(monitor: $SDK157): void;
 /**
  * func nw_path_monitor_create() -> nw_path_monitor_t
  * @availability iOS 12.0+
@@ -6835,42 +6963,42 @@ export declare function nw_path_monitor_create_with_type(required_interface_type
  * func nw_path_monitor_prohibit_interface_type(_ monitor: nw_path_monitor_t, _ interface_type: nw_interface_type_t)
  * @availability iOS 14.0+
  */
-export declare function nw_path_monitor_prohibit_interface_type(monitor: $SDK151, interface_type: nw_interface_type_t): void;
+export declare function nw_path_monitor_prohibit_interface_type(monitor: $SDK157, interface_type: nw_interface_type_t): void;
 /**
  * func nw_path_monitor_set_cancel_handler(_ monitor: nw_path_monitor_t, _ cancel_handler: @escaping nw_path_monitor_cancel_handler_t)
  * @availability iOS 12.0+
  */
-export declare function nw_path_monitor_set_cancel_handler(monitor: $SDK151, cancel_handler: (() => void)): void;
+export declare function nw_path_monitor_set_cancel_handler(monitor: $SDK157, cancel_handler: (() => void)): void;
 /**
  * func nw_path_monitor_set_queue(_ monitor: nw_path_monitor_t, _ queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export declare function nw_path_monitor_set_queue(monitor: $SDK151, queue: _Dispatch_DispatchQueue): void;
+export declare function nw_path_monitor_set_queue(monitor: $SDK157, queue: _Dispatch_DispatchQueue): void;
 /**
  * func nw_path_monitor_set_update_handler(_ monitor: nw_path_monitor_t, _ update_handler: @escaping nw_path_monitor_update_handler_t)
  * @availability iOS 12.0+
  */
-export declare function nw_path_monitor_set_update_handler(monitor: $SDK151, update_handler: $SDK137): void;
+export declare function nw_path_monitor_set_update_handler(monitor: $SDK157, update_handler: $SDK143): void;
 /**
  * func nw_path_monitor_start(_ monitor: nw_path_monitor_t)
  * @availability iOS 12.0+
  */
-export declare function nw_path_monitor_start(monitor: $SDK151): void;
+export declare function nw_path_monitor_start(monitor: $SDK157): void;
 /**
  * func nw_path_uses_interface_type(_ path: nw_path_t, _ interface_type: nw_interface_type_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_path_uses_interface_type(path: $SDK150, interface_type: nw_interface_type_t): boolean;
+export declare function nw_path_uses_interface_type(path: $SDK156, interface_type: nw_interface_type_t): boolean;
 /**
  * func nw_privacy_context_add_proxy(_ privacy_context: nw_privacy_context_t, _ proxy_config: nw_proxy_config_t)
  * @availability iOS 17.0+
  */
-export declare function nw_privacy_context_add_proxy(privacy_context: $SDK149, proxy_config: $SDK152): void;
+export declare function nw_privacy_context_add_proxy(privacy_context: $SDK155, proxy_config: $SDK158): void;
 /**
  * func nw_privacy_context_clear_proxies(_ privacy_context: nw_privacy_context_t)
  * @availability iOS 17.0+
  */
-export declare function nw_privacy_context_clear_proxies(privacy_context: $SDK149): void;
+export declare function nw_privacy_context_clear_proxies(privacy_context: $SDK155): void;
 /**
  * func nw_privacy_context_create(_ description: UnsafePointer<CChar>) -> nw_privacy_context_t
  * @availability iOS 14.0+
@@ -6880,17 +7008,17 @@ export declare function nw_privacy_context_create(description: SDKHandle): SDKHa
  * func nw_privacy_context_disable_logging(_ privacy_context: nw_privacy_context_t)
  * @availability iOS 14.0+
  */
-export declare function nw_privacy_context_disable_logging(privacy_context: $SDK149): void;
+export declare function nw_privacy_context_disable_logging(privacy_context: $SDK155): void;
 /**
  * func nw_privacy_context_flush_cache(_ privacy_context: nw_privacy_context_t)
  * @availability iOS 14.0+
  */
-export declare function nw_privacy_context_flush_cache(privacy_context: $SDK149): void;
+export declare function nw_privacy_context_flush_cache(privacy_context: $SDK155): void;
 /**
  * func nw_privacy_context_require_encrypted_name_resolution(_ privacy_context: nw_privacy_context_t, _ require_encrypted_name_resolution: Bool, _ fallback_resolver_config: nw_resolver_config_t?)
  * @availability iOS 14.0+
  */
-export declare function nw_privacy_context_require_encrypted_name_resolution(privacy_context: $SDK149, require_encrypted_name_resolution: boolean, fallback_resolver_config?: (Implements<OS_nw_resolver_config> | SDKHandle) | null): void;
+export declare function nw_privacy_context_require_encrypted_name_resolution(privacy_context: $SDK155, require_encrypted_name_resolution: boolean, fallback_resolver_config?: (Implements<OS_nw_resolver_config> | SDKHandle) | null): void;
 /**
  * func nw_protocol_copy_ip_definition() -> nw_protocol_definition_t
  * @availability iOS 12.0+
@@ -6925,167 +7053,167 @@ export declare function nw_protocol_copy_ws_definition(): SDKHandle;
  * func nw_protocol_definition_is_equal(_ definition1: nw_protocol_definition_t, _ definition2: nw_protocol_definition_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_definition_is_equal(definition1: $SDK123, definition2: $SDK123): boolean;
+export declare function nw_protocol_definition_is_equal(definition1: $SDK127, definition2: $SDK127): boolean;
 /**
  * func nw_protocol_metadata_copy_definition(_ metadata: nw_protocol_metadata_t) -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_metadata_copy_definition(metadata: $SDK135): SDKHandle;
+export declare function nw_protocol_metadata_copy_definition(metadata: $SDK141): SDKHandle;
 /**
  * func nw_protocol_metadata_is_framer_message(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_protocol_metadata_is_framer_message(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_framer_message(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_metadata_is_ip(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_metadata_is_ip(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_ip(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_metadata_is_quic(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 15.0+
  */
-export declare function nw_protocol_metadata_is_quic(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_quic(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_metadata_is_tcp(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_metadata_is_tcp(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_tcp(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_metadata_is_tls(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_metadata_is_tls(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_tls(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_metadata_is_udp(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_metadata_is_udp(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_udp(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_metadata_is_ws(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_protocol_metadata_is_ws(metadata: $SDK135): boolean;
+export declare function nw_protocol_metadata_is_ws(metadata: $SDK141): boolean;
 /**
  * func nw_protocol_options_copy_definition(_ options: nw_protocol_options_t) -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_options_copy_definition(options: $SDK141): SDKHandle;
+export declare function nw_protocol_options_copy_definition(options: $SDK147): SDKHandle;
 /**
  * func nw_protocol_options_is_quic(_ options: nw_protocol_options_t) -> Bool
  * @availability iOS 15.0+
  */
-export declare function nw_protocol_options_is_quic(options: $SDK141): boolean;
+export declare function nw_protocol_options_is_quic(options: $SDK147): boolean;
 /**
  * func nw_protocol_stack_clear_application_protocols(_ stack: nw_protocol_stack_t)
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_stack_clear_application_protocols(stack: $SDK154): void;
+export declare function nw_protocol_stack_clear_application_protocols(stack: $SDK160): void;
 /**
  * func nw_protocol_stack_copy_internet_protocol(_ stack: nw_protocol_stack_t) -> nw_protocol_options_t?
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_stack_copy_internet_protocol(stack: $SDK154): (SDKHandle) | null;
+export declare function nw_protocol_stack_copy_internet_protocol(stack: $SDK160): (SDKHandle) | null;
 /**
  * func nw_protocol_stack_copy_transport_protocol(_ stack: nw_protocol_stack_t) -> nw_protocol_options_t?
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_stack_copy_transport_protocol(stack: $SDK154): (SDKHandle) | null;
+export declare function nw_protocol_stack_copy_transport_protocol(stack: $SDK160): (SDKHandle) | null;
 /**
  * func nw_protocol_stack_iterate_application_protocols(_ stack: nw_protocol_stack_t, _ iterate_block: (nw_protocol_options_t) -> Void)
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_stack_iterate_application_protocols(stack: $SDK154, iterate_block: $SDK137): void;
+export declare function nw_protocol_stack_iterate_application_protocols(stack: $SDK160, iterate_block: $SDK143): void;
 /**
  * func nw_protocol_stack_prepend_application_protocol(_ stack: nw_protocol_stack_t, _ protocol: nw_protocol_options_t)
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_stack_prepend_application_protocol(stack: $SDK154, protocol: $SDK141): void;
+export declare function nw_protocol_stack_prepend_application_protocol(stack: $SDK160, protocol: $SDK147): void;
 /**
  * func nw_protocol_stack_set_transport_protocol(_ stack: nw_protocol_stack_t, _ protocol: nw_protocol_options_t)
  * @availability iOS 12.0+
  */
-export declare function nw_protocol_stack_set_transport_protocol(stack: $SDK154, protocol: $SDK141): void;
+export declare function nw_protocol_stack_set_transport_protocol(stack: $SDK160, protocol: $SDK147): void;
 /**
  * func nw_proxy_config_add_excluded_domain(_ config: nw_proxy_config_t, _ excluded_domain: UnsafePointer<CChar>)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_add_excluded_domain(config: $SDK152, excluded_domain: SDKHandle): void;
+export declare function nw_proxy_config_add_excluded_domain(config: $SDK158, excluded_domain: SDKHandle): void;
 /**
  * func nw_proxy_config_add_match_domain(_ config: nw_proxy_config_t, _ match_domain: UnsafePointer<CChar>)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_add_match_domain(config: $SDK152, match_domain: SDKHandle): void;
+export declare function nw_proxy_config_add_match_domain(config: $SDK158, match_domain: SDKHandle): void;
 /**
  * func nw_proxy_config_clear_excluded_domains(_ config: nw_proxy_config_t)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_clear_excluded_domains(config: $SDK152): void;
+export declare function nw_proxy_config_clear_excluded_domains(config: $SDK158): void;
 /**
  * func nw_proxy_config_clear_match_domains(_ config: nw_proxy_config_t)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_clear_match_domains(config: $SDK152): void;
+export declare function nw_proxy_config_clear_match_domains(config: $SDK158): void;
 /**
  * func nw_proxy_config_create_http_connect(_ proxy_endpoint: nw_endpoint_t, _ proxy_tls_options: nw_protocol_options_t?) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_create_http_connect(proxy_endpoint: SDKHandle, proxy_tls_options?: $SDK127): SDKHandle;
+export declare function nw_proxy_config_create_http_connect(proxy_endpoint: $SDK128, proxy_tls_options?: $SDK133): SDKHandle;
 /**
  * func nw_proxy_config_create_oblivious_http(_ relay: nw_relay_hop_t, _ relay_resource_path: UnsafePointer<CChar>, _ gateway_key_config: UnsafePointer<UInt8>, _ gateway_key_config_length: Int) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_create_oblivious_http(relay: $SDK155, relay_resource_path: SDKHandle, gateway_key_config: SDKHandle, gateway_key_config_length: number): SDKHandle;
+export declare function nw_proxy_config_create_oblivious_http(relay: $SDK161, relay_resource_path: SDKHandle, gateway_key_config: SDKHandle, gateway_key_config_length: number): SDKHandle;
 /**
  * func nw_proxy_config_create_relay(_ first_hop: nw_relay_hop_t, _ second_hop: nw_relay_hop_t?) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_create_relay(first_hop: $SDK155, second_hop?: (Implements<OS_nw_relay_hop> | SDKHandle) | null): SDKHandle;
+export declare function nw_proxy_config_create_relay(first_hop: $SDK161, second_hop?: (Implements<OS_nw_relay_hop> | SDKHandle) | null): SDKHandle;
 /**
  * func nw_proxy_config_create_socksv5(_ proxy_endpoint: nw_endpoint_t) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_create_socksv5(proxy_endpoint: SDKHandle): SDKHandle;
+export declare function nw_proxy_config_create_socksv5(proxy_endpoint: $SDK128): SDKHandle;
 /**
  * func nw_proxy_config_enumerate_excluded_domains(_ config: nw_proxy_config_t, _ enumerator: (UnsafePointer<CChar>) -> Void)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_enumerate_excluded_domains(config: $SDK152, enumerator: $SDK137): void;
+export declare function nw_proxy_config_enumerate_excluded_domains(config: $SDK158, enumerator: $SDK143): void;
 /**
  * func nw_proxy_config_enumerate_match_domains(_ config: nw_proxy_config_t, _ enumerator: (UnsafePointer<CChar>) -> Void)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_enumerate_match_domains(config: $SDK152, enumerator: $SDK137): void;
+export declare function nw_proxy_config_enumerate_match_domains(config: $SDK158, enumerator: $SDK143): void;
 /**
  * func nw_proxy_config_get_failover_allowed(_ proxy_config: nw_proxy_config_t) -> Bool
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_get_failover_allowed(proxy_config: $SDK152): boolean;
+export declare function nw_proxy_config_get_failover_allowed(proxy_config: $SDK158): boolean;
 /**
  * func nw_proxy_config_set_failover_allowed(_ proxy_config: nw_proxy_config_t, _ failover_allowed: Bool)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_set_failover_allowed(proxy_config: $SDK152, failover_allowed: boolean): void;
+export declare function nw_proxy_config_set_failover_allowed(proxy_config: $SDK158, failover_allowed: boolean): void;
 /**
  * func nw_proxy_config_set_username_and_password(_ proxy_config: nw_proxy_config_t, _ username: UnsafePointer<CChar>, _ password: UnsafePointer<CChar>?)
  * @availability iOS 17.0+
  */
-export declare function nw_proxy_config_set_username_and_password(proxy_config: $SDK152, username: SDKHandle, password?: (SDKHandle) | null): void;
+export declare function nw_proxy_config_set_username_and_password(proxy_config: $SDK158, username: SDKHandle, password?: (SDKHandle) | null): void;
 /**
  * func nw_quic_add_tls_application_protocol(_ options: nw_protocol_options_t, _ application_protocol: UnsafePointer<CChar>)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_add_tls_application_protocol(options: $SDK141, application_protocol: SDKHandle): void;
+export declare function nw_quic_add_tls_application_protocol(options: $SDK147, application_protocol: SDKHandle): void;
 /**
  * func nw_quic_copy_sec_protocol_metadata(_ metadata: nw_protocol_metadata_t) -> sec_protocol_metadata_t
  * @availability iOS 15.0+
  */
-export declare function nw_quic_copy_sec_protocol_metadata(metadata: $SDK135): SDKHandle;
+export declare function nw_quic_copy_sec_protocol_metadata(metadata: $SDK141): SDKHandle;
 /**
  * func nw_quic_copy_sec_protocol_options(_ options: nw_protocol_options_t) -> sec_protocol_options_t
  * @availability iOS 15.0+
  */
-export declare function nw_quic_copy_sec_protocol_options(options: $SDK141): SDKHandle;
+export declare function nw_quic_copy_sec_protocol_options(options: $SDK147): SDKHandle;
 /**
  * func nw_quic_create_options() -> nw_protocol_options_t
  * @availability iOS 15.0+
@@ -7095,252 +7223,252 @@ export declare function nw_quic_create_options(): SDKHandle;
  * func nw_quic_get_application_error(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_application_error(metadata: $SDK135): number;
+export declare function nw_quic_get_application_error(metadata: $SDK141): number;
 /**
  * func nw_quic_get_application_error_reason(_ metadata: nw_protocol_metadata_t) -> UnsafePointer<CChar>?
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_application_error_reason(metadata: $SDK135): (SDKHandle) | null;
+export declare function nw_quic_get_application_error_reason(metadata: $SDK141): (SDKHandle) | null;
 /**
  * func nw_quic_get_idle_timeout(_ options: nw_protocol_options_t) -> UInt32
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_idle_timeout(options: $SDK141): number;
+export declare function nw_quic_get_idle_timeout(options: $SDK147): number;
 /**
  * func nw_quic_get_initial_max_data(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_initial_max_data(options: $SDK141): number;
+export declare function nw_quic_get_initial_max_data(options: $SDK147): number;
 /**
  * func nw_quic_get_initial_max_stream_data_bidirectional_local(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_initial_max_stream_data_bidirectional_local(options: $SDK141): number;
+export declare function nw_quic_get_initial_max_stream_data_bidirectional_local(options: $SDK147): number;
 /**
  * func nw_quic_get_initial_max_stream_data_bidirectional_remote(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_initial_max_stream_data_bidirectional_remote(options: $SDK141): number;
+export declare function nw_quic_get_initial_max_stream_data_bidirectional_remote(options: $SDK147): number;
 /**
  * func nw_quic_get_initial_max_stream_data_unidirectional(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_initial_max_stream_data_unidirectional(options: $SDK141): number;
+export declare function nw_quic_get_initial_max_stream_data_unidirectional(options: $SDK147): number;
 /**
  * func nw_quic_get_initial_max_streams_bidirectional(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_initial_max_streams_bidirectional(options: $SDK141): number;
+export declare function nw_quic_get_initial_max_streams_bidirectional(options: $SDK147): number;
 /**
  * func nw_quic_get_initial_max_streams_unidirectional(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_initial_max_streams_unidirectional(options: $SDK141): number;
+export declare function nw_quic_get_initial_max_streams_unidirectional(options: $SDK147): number;
 /**
  * func nw_quic_get_keepalive_interval(_ metadata: nw_protocol_metadata_t) -> UInt16
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_keepalive_interval(metadata: $SDK135): number;
+export declare function nw_quic_get_keepalive_interval(metadata: $SDK141): number;
 /**
  * func nw_quic_get_local_max_streams_bidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_local_max_streams_bidirectional(metadata: $SDK135): number;
+export declare function nw_quic_get_local_max_streams_bidirectional(metadata: $SDK141): number;
 /**
  * func nw_quic_get_local_max_streams_unidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_local_max_streams_unidirectional(metadata: $SDK135): number;
+export declare function nw_quic_get_local_max_streams_unidirectional(metadata: $SDK141): number;
 /**
  * func nw_quic_get_max_datagram_frame_size(_ options: nw_protocol_options_t) -> UInt16
  * @availability iOS 16.0+
  */
-export declare function nw_quic_get_max_datagram_frame_size(options: $SDK141): number;
+export declare function nw_quic_get_max_datagram_frame_size(options: $SDK147): number;
 /**
  * func nw_quic_get_max_udp_payload_size(_ options: nw_protocol_options_t) -> UInt16
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_max_udp_payload_size(options: $SDK141): number;
+export declare function nw_quic_get_max_udp_payload_size(options: $SDK147): number;
 /**
  * func nw_quic_get_remote_idle_timeout(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_remote_idle_timeout(metadata: $SDK135): number;
+export declare function nw_quic_get_remote_idle_timeout(metadata: $SDK141): number;
 /**
  * func nw_quic_get_remote_max_streams_bidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_remote_max_streams_bidirectional(metadata: $SDK135): number;
+export declare function nw_quic_get_remote_max_streams_bidirectional(metadata: $SDK141): number;
 /**
  * func nw_quic_get_remote_max_streams_unidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_remote_max_streams_unidirectional(metadata: $SDK135): number;
+export declare function nw_quic_get_remote_max_streams_unidirectional(metadata: $SDK141): number;
 /**
  * func nw_quic_get_stream_application_error(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_stream_application_error(metadata: $SDK135): number;
+export declare function nw_quic_get_stream_application_error(metadata: $SDK141): number;
 /**
  * func nw_quic_get_stream_id(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_stream_id(metadata: $SDK135): number;
+export declare function nw_quic_get_stream_id(metadata: $SDK141): number;
 /**
  * func nw_quic_get_stream_is_datagram(_ options: nw_protocol_options_t) -> Bool
  * @availability iOS 16.0+
  */
-export declare function nw_quic_get_stream_is_datagram(options: $SDK141): boolean;
+export declare function nw_quic_get_stream_is_datagram(options: $SDK147): boolean;
 /**
  * func nw_quic_get_stream_is_unidirectional(_ options: nw_protocol_options_t) -> Bool
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_stream_is_unidirectional(options: $SDK141): boolean;
+export declare function nw_quic_get_stream_is_unidirectional(options: $SDK147): boolean;
 /**
  * func nw_quic_get_stream_type(_ stream_metadata: nw_protocol_metadata_t) -> UInt8
  * @availability iOS 15.0+
  */
-export declare function nw_quic_get_stream_type(stream_metadata: $SDK135): number;
+export declare function nw_quic_get_stream_type(stream_metadata: $SDK141): number;
 /**
  * func nw_quic_get_stream_usable_datagram_frame_size(_ metadata: nw_protocol_metadata_t) -> UInt16
  * @availability iOS 16.0+
  */
-export declare function nw_quic_get_stream_usable_datagram_frame_size(metadata: $SDK135): number;
+export declare function nw_quic_get_stream_usable_datagram_frame_size(metadata: $SDK141): number;
 /**
  * func nw_quic_set_application_error(_ metadata: nw_protocol_metadata_t, _ application_error: UInt64, _ reason: UnsafePointer<CChar>?)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_application_error(metadata: $SDK135, application_error: number, reason?: (SDKHandle) | null): void;
+export declare function nw_quic_set_application_error(metadata: $SDK141, application_error: number, reason?: (SDKHandle) | null): void;
 /**
  * func nw_quic_set_idle_timeout(_ options: nw_protocol_options_t, _ idle_timeout: UInt32)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_idle_timeout(options: $SDK141, idle_timeout: number): void;
+export declare function nw_quic_set_idle_timeout(options: $SDK147, idle_timeout: number): void;
 /**
  * func nw_quic_set_initial_max_data(_ options: nw_protocol_options_t, _ initial_max_data: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_initial_max_data(options: $SDK141, initial_max_data: number): void;
+export declare function nw_quic_set_initial_max_data(options: $SDK147, initial_max_data: number): void;
 /**
  * func nw_quic_set_initial_max_stream_data_bidirectional_local(_ options: nw_protocol_options_t, _ initial_max_stream_data_bidirectional_local: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_initial_max_stream_data_bidirectional_local(options: $SDK141, initial_max_stream_data_bidirectional_local: number): void;
+export declare function nw_quic_set_initial_max_stream_data_bidirectional_local(options: $SDK147, initial_max_stream_data_bidirectional_local: number): void;
 /**
  * func nw_quic_set_initial_max_stream_data_bidirectional_remote(_ options: nw_protocol_options_t, _ initial_max_stream_data_bidirectional_remote: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_initial_max_stream_data_bidirectional_remote(options: $SDK141, initial_max_stream_data_bidirectional_remote: number): void;
+export declare function nw_quic_set_initial_max_stream_data_bidirectional_remote(options: $SDK147, initial_max_stream_data_bidirectional_remote: number): void;
 /**
  * func nw_quic_set_initial_max_stream_data_unidirectional(_ options: nw_protocol_options_t, _ initial_max_stream_data_unidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_initial_max_stream_data_unidirectional(options: $SDK141, initial_max_stream_data_unidirectional: number): void;
+export declare function nw_quic_set_initial_max_stream_data_unidirectional(options: $SDK147, initial_max_stream_data_unidirectional: number): void;
 /**
  * func nw_quic_set_initial_max_streams_bidirectional(_ options: nw_protocol_options_t, _ initial_max_streams_bidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_initial_max_streams_bidirectional(options: $SDK141, initial_max_streams_bidirectional: number): void;
+export declare function nw_quic_set_initial_max_streams_bidirectional(options: $SDK147, initial_max_streams_bidirectional: number): void;
 /**
  * func nw_quic_set_initial_max_streams_unidirectional(_ options: nw_protocol_options_t, _ initial_max_streams_unidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_initial_max_streams_unidirectional(options: $SDK141, initial_max_streams_unidirectional: number): void;
+export declare function nw_quic_set_initial_max_streams_unidirectional(options: $SDK147, initial_max_streams_unidirectional: number): void;
 /**
  * func nw_quic_set_keepalive_interval(_ metadata: nw_protocol_metadata_t, _ keepalive_interval: UInt16)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_keepalive_interval(metadata: $SDK135, keepalive_interval: number): void;
+export declare function nw_quic_set_keepalive_interval(metadata: $SDK141, keepalive_interval: number): void;
 /**
  * func nw_quic_set_local_max_streams_bidirectional(_ metadata: nw_protocol_metadata_t, _ max_streams_bidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_local_max_streams_bidirectional(metadata: $SDK135, max_streams_bidirectional: number): void;
+export declare function nw_quic_set_local_max_streams_bidirectional(metadata: $SDK141, max_streams_bidirectional: number): void;
 /**
  * func nw_quic_set_local_max_streams_unidirectional(_ metadata: nw_protocol_metadata_t, _ max_streams_unidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_local_max_streams_unidirectional(metadata: $SDK135, max_streams_unidirectional: number): void;
+export declare function nw_quic_set_local_max_streams_unidirectional(metadata: $SDK141, max_streams_unidirectional: number): void;
 /**
  * func nw_quic_set_max_datagram_frame_size(_ options: nw_protocol_options_t, _ max_datagram_frame_size: UInt16)
  * @availability iOS 16.0+
  */
-export declare function nw_quic_set_max_datagram_frame_size(options: $SDK141, max_datagram_frame_size: number): void;
+export declare function nw_quic_set_max_datagram_frame_size(options: $SDK147, max_datagram_frame_size: number): void;
 /**
  * func nw_quic_set_max_udp_payload_size(_ options: nw_protocol_options_t, _ max_udp_payload_size: UInt16)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_max_udp_payload_size(options: $SDK141, max_udp_payload_size: number): void;
+export declare function nw_quic_set_max_udp_payload_size(options: $SDK147, max_udp_payload_size: number): void;
 /**
  * func nw_quic_set_stream_application_error(_ metadata: nw_protocol_metadata_t, _ application_error: UInt64)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_stream_application_error(metadata: $SDK135, application_error: number): void;
+export declare function nw_quic_set_stream_application_error(metadata: $SDK141, application_error: number): void;
 /**
  * func nw_quic_set_stream_is_datagram(_ options: nw_protocol_options_t, _ is_datagram: Bool)
  * @availability iOS 16.0+
  */
-export declare function nw_quic_set_stream_is_datagram(options: $SDK141, is_datagram: boolean): void;
+export declare function nw_quic_set_stream_is_datagram(options: $SDK147, is_datagram: boolean): void;
 /**
  * func nw_quic_set_stream_is_unidirectional(_ options: nw_protocol_options_t, _ is_unidirectional: Bool)
  * @availability iOS 15.0+
  */
-export declare function nw_quic_set_stream_is_unidirectional(options: $SDK141, is_unidirectional: boolean): void;
+export declare function nw_quic_set_stream_is_unidirectional(options: $SDK147, is_unidirectional: boolean): void;
 /**
  * func nw_relay_hop_add_additional_http_header_field(_ relay_hop: nw_relay_hop_t, _ field_name: UnsafePointer<CChar>, _ field_value: UnsafePointer<CChar>)
  * @availability iOS 17.0+
  */
-export declare function nw_relay_hop_add_additional_http_header_field(relay_hop: $SDK155, field_name: SDKHandle, field_value: SDKHandle): void;
+export declare function nw_relay_hop_add_additional_http_header_field(relay_hop: $SDK161, field_name: SDKHandle, field_value: SDKHandle): void;
 /**
  * func nw_relay_hop_create(_ http3_relay_endpoint: nw_endpoint_t?, _ http2_relay_endpoint: nw_endpoint_t?, _ relay_tls_options: nw_protocol_options_t?) -> nw_relay_hop_t
  * @availability iOS 17.0+
  */
-export declare function nw_relay_hop_create(http3_relay_endpoint?: (SDKHandle) | null, http2_relay_endpoint?: (SDKHandle) | null, relay_tls_options?: $SDK127): SDKHandle;
+export declare function nw_relay_hop_create(http3_relay_endpoint?: $SDK132, http2_relay_endpoint?: $SDK132, relay_tls_options?: $SDK133): SDKHandle;
 /**
  * func nw_resolution_report_copy_preferred_endpoint(_ resolution_report: nw_resolution_report_t) -> nw_endpoint_t
  * @availability iOS 14.0+
  */
-export declare function nw_resolution_report_copy_preferred_endpoint(resolution_report: $SDK157): SDKHandle;
+export declare function nw_resolution_report_copy_preferred_endpoint(resolution_report: $SDK163): SDKHandle;
 /**
  * func nw_resolution_report_copy_successful_endpoint(_ resolution_report: nw_resolution_report_t) -> nw_endpoint_t
  * @availability iOS 14.0+
  */
-export declare function nw_resolution_report_copy_successful_endpoint(resolution_report: $SDK157): SDKHandle;
+export declare function nw_resolution_report_copy_successful_endpoint(resolution_report: $SDK163): SDKHandle;
 /**
  * func nw_resolution_report_get_endpoint_count(_ resolution_report: nw_resolution_report_t) -> UInt32
  * @availability iOS 14.0+
  */
-export declare function nw_resolution_report_get_endpoint_count(resolution_report: $SDK157): number;
+export declare function nw_resolution_report_get_endpoint_count(resolution_report: $SDK163): number;
 /**
  * func nw_resolution_report_get_milliseconds(_ resolution_report: nw_resolution_report_t) -> UInt64
  * @availability iOS 14.0+
  */
-export declare function nw_resolution_report_get_milliseconds(resolution_report: $SDK157): number;
+export declare function nw_resolution_report_get_milliseconds(resolution_report: $SDK163): number;
 /**
  * func nw_resolution_report_get_protocol(_ resolution_report: nw_resolution_report_t) -> nw_report_resolution_protocol_t
  * @availability iOS 14.0+
  */
-export declare function nw_resolution_report_get_protocol(resolution_report: $SDK157): nw_report_resolution_protocol_t;
+export declare function nw_resolution_report_get_protocol(resolution_report: $SDK163): nw_report_resolution_protocol_t;
 /**
  * func nw_resolution_report_get_source(_ resolution_report: nw_resolution_report_t) -> nw_report_resolution_source_t
  * @availability iOS 14.0+
  */
-export declare function nw_resolution_report_get_source(resolution_report: $SDK157): nw_report_resolution_source_t;
+export declare function nw_resolution_report_get_source(resolution_report: $SDK163): nw_report_resolution_source_t;
 /**
  * func nw_resolver_config_add_server_address(_ config: nw_resolver_config_t, _ server_address: nw_endpoint_t)
  * @availability iOS 14.0+
  */
-export declare function nw_resolver_config_add_server_address(config: Implements<OS_nw_resolver_config> | SDKHandle, server_address: SDKHandle): void;
+export declare function nw_resolver_config_add_server_address(config: Implements<OS_nw_resolver_config> | SDKHandle, server_address: $SDK128): void;
 /**
  * func nw_resolver_config_create_https(_ url_endpoint: nw_endpoint_t) -> nw_resolver_config_t
  * @availability iOS 14.0+
  */
-export declare function nw_resolver_config_create_https(url_endpoint: SDKHandle): SDKHandle;
+export declare function nw_resolver_config_create_https(url_endpoint: $SDK128): SDKHandle;
 /**
  * func nw_resolver_config_create_tls(_ server_endpoint: nw_endpoint_t) -> nw_resolver_config_t
  * @availability iOS 14.0+
  */
-export declare function nw_resolver_config_create_tls(server_endpoint: SDKHandle): SDKHandle;
+export declare function nw_resolver_config_create_tls(server_endpoint: $SDK128): SDKHandle;
 /**
  * func nw_tcp_create_options() -> nw_protocol_options_t
  * @availability iOS 12.0+
@@ -7350,107 +7478,107 @@ export declare function nw_tcp_create_options(): SDKHandle;
  * func nw_tcp_get_available_receive_buffer(_ metadata: nw_protocol_metadata_t) -> UInt32
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_get_available_receive_buffer(metadata: $SDK135): number;
+export declare function nw_tcp_get_available_receive_buffer(metadata: $SDK141): number;
 /**
  * func nw_tcp_get_available_send_buffer(_ metadata: nw_protocol_metadata_t) -> UInt32
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_get_available_send_buffer(metadata: $SDK135): number;
+export declare function nw_tcp_get_available_send_buffer(metadata: $SDK141): number;
 /**
  * func nw_tcp_options_set_connection_timeout(_ options: nw_protocol_options_t, _ connection_timeout: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_connection_timeout(options: $SDK141, connection_timeout: number): void;
+export declare function nw_tcp_options_set_connection_timeout(options: $SDK147, connection_timeout: number): void;
 /**
  * func nw_tcp_options_set_disable_ack_stretching(_ options: nw_protocol_options_t, _ disable_ack_stretching: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_disable_ack_stretching(options: $SDK141, disable_ack_stretching: boolean): void;
+export declare function nw_tcp_options_set_disable_ack_stretching(options: $SDK147, disable_ack_stretching: boolean): void;
 /**
  * func nw_tcp_options_set_disable_ecn(_ options: nw_protocol_options_t, _ disable_ecn: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_disable_ecn(options: $SDK141, disable_ecn: boolean): void;
+export declare function nw_tcp_options_set_disable_ecn(options: $SDK147, disable_ecn: boolean): void;
 /**
  * func nw_tcp_options_set_enable_fast_open(_ options: nw_protocol_options_t, _ enable_fast_open: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_enable_fast_open(options: $SDK141, enable_fast_open: boolean): void;
+export declare function nw_tcp_options_set_enable_fast_open(options: $SDK147, enable_fast_open: boolean): void;
 /**
  * func nw_tcp_options_set_enable_keepalive(_ options: nw_protocol_options_t, _ enable_keepalive: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_enable_keepalive(options: $SDK141, enable_keepalive: boolean): void;
+export declare function nw_tcp_options_set_enable_keepalive(options: $SDK147, enable_keepalive: boolean): void;
 /**
  * func nw_tcp_options_set_keepalive_count(_ options: nw_protocol_options_t, _ keepalive_count: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_keepalive_count(options: $SDK141, keepalive_count: number): void;
+export declare function nw_tcp_options_set_keepalive_count(options: $SDK147, keepalive_count: number): void;
 /**
  * func nw_tcp_options_set_keepalive_idle_time(_ options: nw_protocol_options_t, _ keepalive_idle_time: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_keepalive_idle_time(options: $SDK141, keepalive_idle_time: number): void;
+export declare function nw_tcp_options_set_keepalive_idle_time(options: $SDK147, keepalive_idle_time: number): void;
 /**
  * func nw_tcp_options_set_keepalive_interval(_ options: nw_protocol_options_t, _ keepalive_interval: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_keepalive_interval(options: $SDK141, keepalive_interval: number): void;
+export declare function nw_tcp_options_set_keepalive_interval(options: $SDK147, keepalive_interval: number): void;
 /**
  * func nw_tcp_options_set_maximum_segment_size(_ options: nw_protocol_options_t, _ maximum_segment_size: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_maximum_segment_size(options: $SDK141, maximum_segment_size: number): void;
+export declare function nw_tcp_options_set_maximum_segment_size(options: $SDK147, maximum_segment_size: number): void;
 /**
  * func nw_tcp_options_set_multipath_force_version(_ options: nw_protocol_options_t, _ multipath_force_version: nw_multipath_version_t)
  * @availability iOS 15.0+
  */
-export declare function nw_tcp_options_set_multipath_force_version(options: $SDK141, multipath_force_version: nw_multipath_version_t): void;
+export declare function nw_tcp_options_set_multipath_force_version(options: $SDK147, multipath_force_version: nw_multipath_version_t): void;
 /**
  * func nw_tcp_options_set_no_delay(_ options: nw_protocol_options_t, _ no_delay: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_no_delay(options: $SDK141, no_delay: boolean): void;
+export declare function nw_tcp_options_set_no_delay(options: $SDK147, no_delay: boolean): void;
 /**
  * func nw_tcp_options_set_no_options(_ options: nw_protocol_options_t, _ no_options: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_no_options(options: $SDK141, no_options: boolean): void;
+export declare function nw_tcp_options_set_no_options(options: $SDK147, no_options: boolean): void;
 /**
  * func nw_tcp_options_set_no_push(_ options: nw_protocol_options_t, _ no_push: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_no_push(options: $SDK141, no_push: boolean): void;
+export declare function nw_tcp_options_set_no_push(options: $SDK147, no_push: boolean): void;
 /**
  * func nw_tcp_options_set_persist_timeout(_ options: nw_protocol_options_t, _ persist_timeout: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_persist_timeout(options: $SDK141, persist_timeout: number): void;
+export declare function nw_tcp_options_set_persist_timeout(options: $SDK147, persist_timeout: number): void;
 /**
  * func nw_tcp_options_set_retransmit_connection_drop_time(_ options: nw_protocol_options_t, _ retransmit_connection_drop_time: UInt32)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_retransmit_connection_drop_time(options: $SDK141, retransmit_connection_drop_time: number): void;
+export declare function nw_tcp_options_set_retransmit_connection_drop_time(options: $SDK147, retransmit_connection_drop_time: number): void;
 /**
  * func nw_tcp_options_set_retransmit_fin_drop(_ options: nw_protocol_options_t, _ retransmit_fin_drop: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_tcp_options_set_retransmit_fin_drop(options: $SDK141, retransmit_fin_drop: boolean): void;
+export declare function nw_tcp_options_set_retransmit_fin_drop(options: $SDK147, retransmit_fin_drop: boolean): void;
 /**
  * func nw_tcp_set_max_pacing_rate(_ metadata: nw_protocol_metadata_t, _ max_pacing_rate: UInt64) -> Int32
  * @availability iOS 27.0+
  */
-export declare function nw_tcp_set_max_pacing_rate(metadata: $SDK135, max_pacing_rate: number): number;
+export declare function nw_tcp_set_max_pacing_rate(metadata: $SDK141, max_pacing_rate: number): number;
 /**
  * func nw_tls_copy_sec_protocol_metadata(_ metadata: nw_protocol_metadata_t) -> sec_protocol_metadata_t
  * @availability iOS 12.0+
  */
-export declare function nw_tls_copy_sec_protocol_metadata(metadata: $SDK135): SDKHandle;
+export declare function nw_tls_copy_sec_protocol_metadata(metadata: $SDK141): SDKHandle;
 /**
  * func nw_tls_copy_sec_protocol_options(_ options: nw_protocol_options_t) -> sec_protocol_options_t
  * @availability iOS 12.0+
  */
-export declare function nw_tls_copy_sec_protocol_options(options: $SDK141): SDKHandle;
+export declare function nw_tls_copy_sec_protocol_options(options: $SDK147): SDKHandle;
 /**
  * func nw_tls_create_options() -> nw_protocol_options_t
  * @availability iOS 12.0+
@@ -7460,7 +7588,7 @@ export declare function nw_tls_create_options(): SDKHandle;
  * func nw_txt_record_copy(_ txt_record: nw_txt_record_t?) -> nw_txt_record_t?
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_copy(txt_record?: $SDK113): (SDKHandle) | null;
+export declare function nw_txt_record_copy(txt_record?: $SDK117): (SDKHandle) | null;
 /**
  * func nw_txt_record_create_dictionary() -> nw_txt_record_t
  * @availability iOS 13.0+
@@ -7475,32 +7603,32 @@ export declare function nw_txt_record_create_with_bytes(txt_bytes: SDKHandle, tx
  * func nw_txt_record_find_key(_ txt_record: nw_txt_record_t, _ key: UnsafePointer<CChar>) -> nw_txt_record_find_key_t
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_find_key(txt_record: $SDK159, key: SDKHandle): nw_txt_record_find_key_t;
+export declare function nw_txt_record_find_key(txt_record: $SDK165, key: SDKHandle): nw_txt_record_find_key_t;
 /**
  * func nw_txt_record_get_key_count(_ txt_record: nw_txt_record_t?) -> Int
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_get_key_count(txt_record?: $SDK113): number;
+export declare function nw_txt_record_get_key_count(txt_record?: $SDK117): number;
 /**
  * func nw_txt_record_is_dictionary(_ txt_record: nw_txt_record_t) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_is_dictionary(txt_record: $SDK159): boolean;
+export declare function nw_txt_record_is_dictionary(txt_record: $SDK165): boolean;
 /**
  * func nw_txt_record_is_equal(_ left: nw_txt_record_t?, _ right: nw_txt_record_t?) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_is_equal(left?: $SDK113, right?: $SDK113): boolean;
+export declare function nw_txt_record_is_equal(left?: $SDK117, right?: $SDK117): boolean;
 /**
  * func nw_txt_record_remove_key(_ txt_record: nw_txt_record_t, _ key: UnsafePointer<CChar>) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_remove_key(txt_record: $SDK159, key: SDKHandle): boolean;
+export declare function nw_txt_record_remove_key(txt_record: $SDK165, key: SDKHandle): boolean;
 /**
  * func nw_txt_record_set_key(_ txt_record: nw_txt_record_t, _ key: UnsafePointer<CChar>, _ value: UnsafePointer<UInt8>?, _ value_len: Int) -> Bool
  * @availability iOS 13.0+
  */
-export declare function nw_txt_record_set_key(txt_record: $SDK159, key: SDKHandle, value: (SDKHandle) | null, value_len: number): boolean;
+export declare function nw_txt_record_set_key(txt_record: $SDK165, key: SDKHandle, value: (SDKHandle) | null, value_len: number): boolean;
 /**
  * func nw_udp_create_metadata() -> nw_protocol_metadata_t
  * @availability iOS 12.0+
@@ -7515,7 +7643,7 @@ export declare function nw_udp_create_options(): SDKHandle;
  * func nw_udp_options_set_prefer_no_checksum(_ options: nw_protocol_options_t, _ prefer_no_checksum: Bool)
  * @availability iOS 12.0+
  */
-export declare function nw_udp_options_set_prefer_no_checksum(options: $SDK141, prefer_no_checksum: boolean): void;
+export declare function nw_udp_options_set_prefer_no_checksum(options: $SDK147, prefer_no_checksum: boolean): void;
 /**
  * func nw_ws_create_metadata(_ opcode: nw_ws_opcode_t) -> nw_protocol_metadata_t
  * @availability iOS 13.0+
@@ -7530,57 +7658,57 @@ export declare function nw_ws_create_options(version: nw_ws_version_t): SDKHandl
  * func nw_ws_metadata_copy_server_response(_ metadata: nw_protocol_metadata_t) -> nw_ws_response_t
  * @availability iOS 13.0+
  */
-export declare function nw_ws_metadata_copy_server_response(metadata: $SDK135): SDKHandle;
+export declare function nw_ws_metadata_copy_server_response(metadata: $SDK141): SDKHandle;
 /**
  * func nw_ws_metadata_get_close_code(_ metadata: nw_protocol_metadata_t) -> nw_ws_close_code_t
  * @availability iOS 13.0+
  */
-export declare function nw_ws_metadata_get_close_code(metadata: $SDK135): nw_ws_close_code_t;
+export declare function nw_ws_metadata_get_close_code(metadata: $SDK141): nw_ws_close_code_t;
 /**
  * func nw_ws_metadata_get_opcode(_ metadata: nw_protocol_metadata_t) -> nw_ws_opcode_t
  * @availability iOS 13.0+
  */
-export declare function nw_ws_metadata_get_opcode(metadata: $SDK135): nw_ws_opcode_t;
+export declare function nw_ws_metadata_get_opcode(metadata: $SDK141): nw_ws_opcode_t;
 /**
  * func nw_ws_metadata_set_close_code(_ metadata: nw_protocol_metadata_t, _ close_code: nw_ws_close_code_t)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_metadata_set_close_code(metadata: $SDK135, close_code: nw_ws_close_code_t): void;
+export declare function nw_ws_metadata_set_close_code(metadata: $SDK141, close_code: nw_ws_close_code_t): void;
 /**
  * func nw_ws_metadata_set_pong_handler(_ metadata: nw_protocol_metadata_t, _ client_queue: dispatch_queue_t, _ pong_handler: @escaping nw_ws_pong_handler_t)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_metadata_set_pong_handler(metadata: $SDK135, client_queue: _Dispatch_DispatchQueue, pong_handler: $SDK122): void;
+export declare function nw_ws_metadata_set_pong_handler(metadata: $SDK141, client_queue: _Dispatch_DispatchQueue, pong_handler: $SDK126): void;
 /**
  * func nw_ws_options_add_additional_header(_ options: nw_protocol_options_t, _ name: UnsafePointer<CChar>, _ value: UnsafePointer<CChar>)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_options_add_additional_header(options: $SDK141, name: SDKHandle, value: SDKHandle): void;
+export declare function nw_ws_options_add_additional_header(options: $SDK147, name: SDKHandle, value: SDKHandle): void;
 /**
  * func nw_ws_options_add_subprotocol(_ options: nw_protocol_options_t, _ subprotocol: UnsafePointer<CChar>)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_options_add_subprotocol(options: $SDK141, subprotocol: SDKHandle): void;
+export declare function nw_ws_options_add_subprotocol(options: $SDK147, subprotocol: SDKHandle): void;
 /**
  * func nw_ws_options_set_auto_reply_ping(_ options: nw_protocol_options_t, _ auto_reply_ping: Bool)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_options_set_auto_reply_ping(options: $SDK141, auto_reply_ping: boolean): void;
+export declare function nw_ws_options_set_auto_reply_ping(options: $SDK147, auto_reply_ping: boolean): void;
 /**
  * func nw_ws_options_set_maximum_message_size(_ options: nw_protocol_options_t, _ maximum_message_size: Int)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_options_set_maximum_message_size(options: $SDK141, maximum_message_size: number): void;
+export declare function nw_ws_options_set_maximum_message_size(options: $SDK147, maximum_message_size: number): void;
 /**
  * func nw_ws_options_set_skip_handshake(_ options: nw_protocol_options_t, _ skip_handshake: Bool)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_options_set_skip_handshake(options: $SDK141, skip_handshake: boolean): void;
+export declare function nw_ws_options_set_skip_handshake(options: $SDK147, skip_handshake: boolean): void;
 /**
  * func nw_ws_response_add_additional_header(_ response: nw_ws_response_t, _ name: UnsafePointer<CChar>, _ value: UnsafePointer<CChar>)
  * @availability iOS 13.0+
  */
-export declare function nw_ws_response_add_additional_header(response: $SDK160, name: SDKHandle, value: SDKHandle): void;
+export declare function nw_ws_response_add_additional_header(response: $SDK166, name: SDKHandle, value: SDKHandle): void;
 /**
  * func nw_ws_response_create(_ status: nw_ws_response_status_t, _ selected_subprotocol: UnsafePointer<CChar>?) -> nw_ws_response_t
  * @availability iOS 13.0+
@@ -7590,12 +7718,17 @@ export declare function nw_ws_response_create(status: nw_ws_response_status_t, s
  * func nw_ws_response_get_selected_subprotocol(_ response: nw_ws_response_t) -> UnsafePointer<CChar>?
  * @availability iOS 13.0+
  */
-export declare function nw_ws_response_get_selected_subprotocol(response: $SDK160): (SDKHandle) | null;
+export declare function nw_ws_response_get_selected_subprotocol(response: $SDK166): (SDKHandle) | null;
 /**
  * func nw_ws_response_get_status(_ response: nw_ws_response_t?) -> nw_ws_response_status_t
  * @availability iOS 13.0+
  */
 export declare function nw_ws_response_get_status(response?: (Implements<OS_nw_ws_response> | SDKHandle) | null): nw_ws_response_status_t;
+/**
+ * nonisolated(nonsending) func withNetworkConnection<ApplicationProtocol>(to endpoint: NWEndpoint, using builder: NWParametersBuilder<ApplicationProtocol>, _ handler: (NetworkConnection<ApplicationProtocol>) async throws -> Void) async throws where ApplicationProtocol : MultiplexProtocol
+ * @availability iOS 26.0+
+ */
+export declare function withNetworkConnection(endpoint: NWEndpoint, builder: $SDK17, handler: $SDK23): Promise<void>;
 /** var nw_browser_state_cancelled: nw_browser_state_t { get } */
 export declare const nw_browser_state_cancelled: nw_browser_state_t;
 /** var nw_browser_state_failed: nw_browser_state_t { get } */

@@ -109,7 +109,7 @@ export interface DeviceActivityReportScene {
      * func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> Self.Configuration
      * @availability iOS 16.0+
      */
-    "makeConfigurationRepresenting"?: (arg0: DeviceActivityResults<_DeviceActivity_DeviceActivityData>) => unknown;
+    "makeConfigurationRepresenting"?: (arg0: DeviceActivityResults<_DeviceActivity_DeviceActivityData>) => Promise<unknown>;
 }
 /**
  * struct DeviceActivityResults<Element>

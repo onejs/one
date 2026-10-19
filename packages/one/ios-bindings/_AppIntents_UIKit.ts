@@ -39,7 +39,7 @@ export class DisplayRepresentation_Image extends SDKHandle {
    * init?(systemName name: String, tintColor: UIColor? = nil, symbolConfiguration: UIImage.SymbolConfiguration? = nil)
    * @availability iOS 16.0+
    */
-  static init(name: string, tintColor?: (_UIKit_UIColor) | null, symbolConfiguration?: (_UIKit_UIImage_SymbolConfiguration) | null): (_AppIntents_DisplayRepresentation_Image) | null { return callSDK<(_AppIntents_DisplayRepresentation_Image) | null>("_AppIntents_UIKit_0e503aef608672fa", 1716676250691465, undefined, [name, tintColor, symbolConfiguration]); }
+  static init(name: string, tintColor?: (_UIKit_UIColor) | null, symbolConfiguration?: (_UIKit_UIImage_SymbolConfiguration) | null): (_AppIntents_DisplayRepresentation_Image) | null { return callSDK<(_AppIntents_DisplayRepresentation_Image) | null>("_AppIntents_UIKit_212edf3d13b127f5", 1716676250691465, undefined, [name, tintColor, symbolConfiguration]); }
   declare readonly $type: { "s:10AppIntents21DisplayRepresentationV5ImageV": true };
 }
 
@@ -52,18 +52,18 @@ export class ShortcutsUIButton extends SDKHandle {
    * @MainActor @preconcurrency override final func sizeThatFits(_ size: CGSize) -> CGSize
    * @availability iOS 16.0+
    */
-  sizeThatFits(size: $SDK3): Promise<$SDK3> { return callSDKAsync<$SDK3>("_AppIntents_UIKit_0e503aef608672fa", 1512656369685764, this, [size]); }
+  sizeThatFits(size: $SDK3): Promise<$SDK3> { return callSDKAsync<$SDK3>("_AppIntents_UIKit_212edf3d13b127f5", 1512656369685764, this, [size]); }
   /**
    * @MainActor @preconcurrency final var style: ShortcutsLinkStyle { get set }
    * @availability iOS 16.0+
    */
-  get style(): Promise<__AppIntents_SwiftUI_ShortcutsLinkStyle> { return callSDKAsync<__AppIntents_SwiftUI_ShortcutsLinkStyle>("_AppIntents_UIKit_0e503aef608672fa", 821908066368508, this, []); }
-  setStyle(value: __AppIntents_SwiftUI_ShortcutsLinkStyle): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 2754394477762086, this, [value]); }
+  get style(): Promise<__AppIntents_SwiftUI_ShortcutsLinkStyle> { return callSDKAsync<__AppIntents_SwiftUI_ShortcutsLinkStyle>("_AppIntents_UIKit_212edf3d13b127f5", 821908066368508, this, []); }
+  setStyle(value: __AppIntents_SwiftUI_ShortcutsLinkStyle): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 2754394477762086, this, [value]); }
   /**
    * @MainActor @preconcurrency init(style: ShortcutsLinkStyle = .automatic)
    * @availability iOS 16.0+
    */
-  static init(style?: __AppIntents_SwiftUI_ShortcutsLinkStyle): Promise<ShortcutsUIButton> { return callSDKAsync<ShortcutsUIButton>("_AppIntents_UIKit_0e503aef608672fa", 2822474755367277, undefined, [style]); }
+  static init(style?: __AppIntents_SwiftUI_ShortcutsLinkStyle): Promise<ShortcutsUIButton> { return callSDKAsync<ShortcutsUIButton>("_AppIntents_UIKit_212edf3d13b127f5", 2822474755367277, undefined, [style]); }
   declare readonly $type: { "c:@M@_AppIntents_UIKit@objc(cs)ShortcutsUIButton": true; "c:objc(cs)UIButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -76,40 +76,40 @@ export class SiriTipUIView extends SDKHandle {
    * @MainActor @preconcurrency override final func didMoveToWindow()
    * @availability iOS 16.0+
    */
-  didMoveToWindow(): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 3465249236757871, this, []); }
+  didMoveToWindow(): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 3465249236757871, this, []); }
   /**
    * @MainActor @preconcurrency override final func sizeThatFits(_ size: CGSize) -> CGSize
    * @availability iOS 16.0+
    */
-  sizeThatFits(size: $SDK3): Promise<$SDK3> { return callSDKAsync<$SDK3>("_AppIntents_UIKit_0e503aef608672fa", 814483132656467, this, [size]); }
+  sizeThatFits(size: $SDK3): Promise<$SDK3> { return callSDKAsync<$SDK3>("_AppIntents_UIKit_212edf3d13b127f5", 814483132656467, this, [size]); }
   /**
    * @MainActor @preconcurrency override final var intrinsicContentSize: CGSize { get }
    * @availability iOS 16.0+
    */
-  get intrinsicContentSize(): Promise<$SDK3> { return callSDKAsync<$SDK3>("_AppIntents_UIKit_0e503aef608672fa", 3390822602991532, this, []); }
+  get intrinsicContentSize(): Promise<$SDK3> { return callSDKAsync<$SDK3>("_AppIntents_UIKit_212edf3d13b127f5", 3390822602991532, this, []); }
   /**
    * @MainActor @objc @preconcurrency dynamic final var isPresented: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isPresented(): Promise<boolean> { return callSDKAsync<boolean>("_AppIntents_UIKit_0e503aef608672fa", 2851765037010471, this, []); }
-  setIsPresented(value: boolean): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 3536967022081375, this, [value]); }
+  get isPresented(): Promise<boolean> { return callSDKAsync<boolean>("_AppIntents_UIKit_212edf3d13b127f5", 2851765037010471, this, []); }
+  setIsPresented(value: boolean): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 3536967022081375, this, [value]); }
   /**
    * @MainActor @preconcurrency final var allowsDismissal: Bool { get set }
    * @availability iOS 16.0+
    */
-  get allowsDismissal(): Promise<boolean> { return callSDKAsync<boolean>("_AppIntents_UIKit_0e503aef608672fa", 4221583022726645, this, []); }
-  setAllowsDismissal(value: boolean): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 111756555811695, this, [value]); }
+  get allowsDismissal(): Promise<boolean> { return callSDKAsync<boolean>("_AppIntents_UIKit_212edf3d13b127f5", 4221583022726645, this, []); }
+  setAllowsDismissal(value: boolean): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 111756555811695, this, [value]); }
   /**
    * @MainActor @preconcurrency final var style: SiriTipViewStyle { get set }
    * @availability iOS 16.0+
    */
-  get style(): Promise<__AppIntents_SwiftUI_SiriTipViewStyle> { return callSDKAsync<__AppIntents_SwiftUI_SiriTipViewStyle>("_AppIntents_UIKit_0e503aef608672fa", 1061066861279855, this, []); }
-  setStyle(value: __AppIntents_SwiftUI_SiriTipViewStyle): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 3305568144473718, this, [value]); }
+  get style(): Promise<__AppIntents_SwiftUI_SiriTipViewStyle> { return callSDKAsync<__AppIntents_SwiftUI_SiriTipViewStyle>("_AppIntents_UIKit_212edf3d13b127f5", 1061066861279855, this, []); }
+  setStyle(value: __AppIntents_SwiftUI_SiriTipViewStyle): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 3305568144473718, this, [value]); }
   /**
    * @MainActor @preconcurrency init(style: SiriTipViewStyle = .automatic)
    * @availability iOS 16.0+
    */
-  static init(style?: __AppIntents_SwiftUI_SiriTipViewStyle): Promise<SiriTipUIView> { return callSDKAsync<SiriTipUIView>("_AppIntents_UIKit_0e503aef608672fa", 3007191142873042, undefined, [style]); }
+  static init(style?: __AppIntents_SwiftUI_SiriTipViewStyle): Promise<SiriTipUIView> { return callSDKAsync<SiriTipUIView>("_AppIntents_UIKit_212edf3d13b127f5", 3007191142873042, undefined, [style]); }
   declare readonly $type: { "c:@M@_AppIntents_UIKit@objc(cs)SiriTipUIView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -118,8 +118,8 @@ export class UICollectionView extends SDKHandle {
    * @MainActor @preconcurrency weak var appIntentsDataSource: (any UICollectionViewAppIntentsDataSource)? { get set }
    * @availability iOS 18.4+
    */
-  get appIntentsDataSource(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("_AppIntents_UIKit_0e503aef608672fa", 63460537076852, this, []); }
-  setAppIntentsDataSource(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 3842530486767551, this, [value]); }
+  get appIntentsDataSource(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("_AppIntents_UIKit_212edf3d13b127f5", 63460537076852, this, []); }
+  setAppIntentsDataSource(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 3842530486767551, this, [value]); }
   declare readonly $type: { "c:objc(cs)UICollectionView": true; "c:objc(cs)UIScrollView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -140,7 +140,7 @@ export class UIScene_ConnectionOptions extends SDKHandle {
    * @MainActor @preconcurrency var appIntent: (any UISceneAppIntent)? { get }
    * @availability iOS 26.0+
    */
-  get appIntent(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("_AppIntents_UIKit_0e503aef608672fa", 1890909990222972, this, []); }
+  get appIntent(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("_AppIntents_UIKit_212edf3d13b127f5", 1890909990222972, this, []); }
   declare readonly $type: { "c:objc(cs)UISceneConnectionOptions": true; "c:objc(cs)NSObject": true };
 }
 
@@ -149,7 +149,7 @@ export class UIScene_ConnectionOptions extends SDKHandle {
  * @availability iOS 26.0+
  */
 export interface UISceneAppIntent {
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   "init"?: () => void;
   /**
    * func performNavigation(forScene scene: UIScene)
@@ -163,8 +163,8 @@ export class UITableView extends SDKHandle {
    * @MainActor @preconcurrency weak var appIntentsDataSource: (any UITableViewAppIntentsDataSource)? { get set }
    * @availability iOS 18.4+
    */
-  get appIntentsDataSource(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("_AppIntents_UIKit_0e503aef608672fa", 4462852761022174, this, []); }
-  setAppIntentsDataSource(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 3280182624396754, this, [value]); }
+  get appIntentsDataSource(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("_AppIntents_UIKit_212edf3d13b127f5", 4462852761022174, this, []); }
+  setAppIntentsDataSource(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 3280182624396754, this, [value]); }
   declare readonly $type: { "c:objc(cs)UITableView": true; "c:objc(cs)UIScrollView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -185,24 +185,24 @@ export class UIView extends SDKHandle {
    * @MainActor @preconcurrency var appEntityIdentifier: EntityIdentifier? { get set }
    * @availability iOS 18.4+
    */
-  get appEntityIdentifier(): Promise<$SDK4> { return callSDKAsync<$SDK4>("_AppIntents_UIKit_0e503aef608672fa", 2018368379529116, this, []); }
-  setAppEntityIdentifier(value?: $SDK4): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_0e503aef608672fa", 943859622408301, this, [value]); }
+  get appEntityIdentifier(): Promise<$SDK4> { return callSDKAsync<$SDK4>("_AppIntents_UIKit_212edf3d13b127f5", 2018368379529116, this, []); }
+  setAppEntityIdentifier(value?: $SDK4): Promise<void> { return callSDKAsync<void>("_AppIntents_UIKit_212edf3d13b127f5", 943859622408301, this, [value]); }
   /**
    * @MainActor @preconcurrency var appEntityUIElementProvider: ((UIView, AppEntityUIElementsContext) -> [AppEntityUIElement])? { get set }
    * @availability iOS 18.4+
    */
-  get appEntityUIElementProvider(): Promise<(((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Promise<Array<_AppIntents_AppEntityUIElement>>)) | null> { return callSDKAsync<(((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Promise<Array<_AppIntents_AppEntityUIElement>>)) | null>("_AppIntents_UIKit_0e503aef608672fa", 1295885819742601, this, []); }
+  get appEntityUIElementProvider(): Promise<(((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Promise<Array<_AppIntents_AppEntityUIElement>>)) | null> { return callSDKAsync<(((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Promise<Array<_AppIntents_AppEntityUIElement>>)) | null>("_AppIntents_UIKit_212edf3d13b127f5", 1295885819742601, this, []); }
   declare readonly $type: { "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
 registerSDKProtocol("s:17_AppIntents_UIKit0A19IntentSceneDelegateP", {"sceneWillConnectToOptions":"scene(_:willConnectTo:options:)","sceneDidDisconnect":"sceneDidDisconnect(_:)","sceneDidBecomeActive":"sceneDidBecomeActive(_:)","sceneWillResignActive":"sceneWillResignActive(_:)","sceneWillEnterForeground":"sceneWillEnterForeground(_:)","sceneDidEnterBackground":"sceneDidEnterBackground(_:)","sceneOpenURLContexts":"scene(_:openURLContexts:)","stateRestorationActivityFor":"stateRestorationActivity(for:)","sceneRestoreInteractionStateWith":"scene(_:restoreInteractionStateWith:)","sceneWillContinueUserActivityWithType":"scene(_:willContinueUserActivityWithType:)","sceneContinue":"scene(_:continue:)","sceneDidFailToContinueUserActivityWithTypeError":"scene(_:didFailToContinueUserActivityWithType:error:)","sceneDidUpdate":"scene(_:didUpdate:)","sceneWillPerformAppIntent":"scene(_:willPerformAppIntent:)"});
-registerSDKClass("AppIntents.DisplayRepresentation.Image", DisplayRepresentation_Image, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {} }, true);
-registerSDKClass("_AppIntents_UIKit.ShortcutsUIButton", ShortcutsUIButton, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {}, methods: {"sizeThatFits":{"id":1512656369685764}} });
-registerSDKClass("_AppIntents_UIKit.SiriTipUIView", SiriTipUIView, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {}, methods: {"didMoveToWindow":{"id":3465249236757871},"sizeThatFits":{"id":814483132656467}} });
-registerSDKClass("UICollectionView", UICollectionView, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("AppIntents.DisplayRepresentation.Image", DisplayRepresentation_Image, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {} }, true);
+registerSDKClass("_AppIntents_UIKit.ShortcutsUIButton", ShortcutsUIButton, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {}, methods: {"sizeThatFits":{"id":1512656369685764}} });
+registerSDKClass("_AppIntents_UIKit.SiriTipUIView", SiriTipUIView, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {}, methods: {"didMoveToWindow":{"id":3465249236757871},"sizeThatFits":{"id":814483132656467}} });
+registerSDKClass("UICollectionView", UICollectionView, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {} }, true);
 registerSDKProtocol("s:17_AppIntents_UIKit016UICollectionViewaB10DataSourceP", {"collectionViewAppEntityIdentifierForItemAt":"collectionView(_:appEntityIdentifierForItemAt:)"});
-registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {} }, true);
 registerSDKProtocol("s:17_AppIntents_UIKit07UISceneA6IntentP", {"perform":"perform()","init":"init()","performNavigationForScene":"performNavigation(forScene:)"});
-registerSDKClass("UITableView", UITableView, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("UITableView", UITableView, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {} }, true);
 registerSDKProtocol("s:17_AppIntents_UIKit011UITableViewaB10DataSourceP", {"tableViewAppEntityIdentifierForRowAt":"tableView(_:appEntityIdentifierForRowAt:)"});
-registerSDKClass("UIView", UIView, { module: "_AppIntents_UIKit_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("UIView", UIView, { module: "_AppIntents_UIKit_212edf3d13b127f5", properties: {} }, true);

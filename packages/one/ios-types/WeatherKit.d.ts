@@ -6,15 +6,15 @@ type $SDK0 = _Foundation_Measurement<_Foundation_UnitLength>;
 type $SDK1 = _Foundation_Measurement<_Foundation_UnitTemperature>;
 type $SDK2 = _Foundation_Measurement<_Foundation_UnitSpeed>;
 type $SDK3 = _Foundation_Measurement<_Foundation_UnitPressure>;
-type $SDK11 = (_Foundation_Measurement<_Foundation_UnitSpeed>) | null;
-type $SDK12 = (globalThis.Date) | null;
-type $SDK16 = Percentiles<_Foundation_UnitTemperature>;
-type $SDK20 = _Foundation_Measurement<unknown>;
-type $SDK22 = Array<UVIndex_ExposureCategory>;
-type $SDK24 = (Forecast<MinuteWeather>) | null;
-type $SDK27 = WeatherQuery<Forecast<DayWeather>>;
-type $SDK29 = WeatherQuery<Forecast<HourWeather>>;
-type $SDK37 = _Foundation_Measurement<_Foundation_UnitAngle>;
+type $SDK9 = (_Foundation_Measurement<_Foundation_UnitSpeed>) | null;
+type $SDK10 = (globalThis.Date) | null;
+type $SDK13 = Percentiles<_Foundation_UnitTemperature>;
+type $SDK16 = _Foundation_Measurement<unknown>;
+type $SDK18 = Array<UVIndex_ExposureCategory>;
+type $SDK20 = (Forecast<MinuteWeather>) | null;
+type $SDK23 = WeatherQuery<Forecast<DayWeather>>;
+type $SDK25 = WeatherQuery<Forecast<HourWeather>>;
+type $SDK33 = _Foundation_Measurement<_Foundation_UnitAngle>;
 /**
  * struct CloudCoverByAltitude
  * @availability iOS 18.0+
@@ -190,7 +190,7 @@ export declare class DailyWeatherStatistics<T = unknown> extends SDKHandle {
      * subscript(position: DailyWeatherStatistics<T>.Index) -> DailyWeatherStatistics<T>.Element { get }
      * @availability iOS 18.0+
      */
-    subscript(position: number): DailyWeatherStatistics<number>;
+    subscript(position: number): number;
     readonly $type: {
         "s:10WeatherKit05DailyA10StatisticsV": true;
     };
@@ -270,7 +270,7 @@ export declare class DailyWeatherSummary<T = unknown> extends SDKHandle {
      * subscript(position: DailyWeatherSummary<T>.Index) -> DailyWeatherSummary<T>.Element { get }
      * @availability iOS 18.0+
      */
-    subscript(position: number): DailyWeatherSummary<number>;
+    subscript(position: number): number;
     readonly $type: {
         "s:10WeatherKit05DailyA7SummaryV": true;
     };
@@ -547,8 +547,8 @@ export declare class DayWeather extends SDKHandle {
      * var highWindSpeed: Measurement<UnitSpeed>?
      * @availability iOS 18.0+
      */
-    get highWindSpeed(): $SDK11;
-    set highWindSpeed(value: $SDK11);
+    get highWindSpeed(): $SDK9;
+    set highWindSpeed(value: $SDK9);
     /**
      * var precipitation: Precipitation
      * @availability iOS 16.0+
@@ -621,14 +621,14 @@ export declare class DayWeather extends SDKHandle {
      * var lowTemperatureTime: Date?
      * @availability iOS 18.0+
      */
-    get lowTemperatureTime(): $SDK12;
-    set lowTemperatureTime(value: $SDK12);
+    get lowTemperatureTime(): $SDK10;
+    set lowTemperatureTime(value: $SDK10);
     /**
      * var highTemperatureTime: Date?
      * @availability iOS 18.0+
      */
-    get highTemperatureTime(): $SDK12;
-    set highTemperatureTime(value: $SDK12);
+    get highTemperatureTime(): $SDK10;
+    set highTemperatureTime(value: $SDK10);
     /**
      * @backDeployed(before: iOS 16.4, macOS 13.3, tvOS 16.4, watchOS 9.4)
     var precipitationAmount: Measurement<UnitLength> { get }
@@ -861,7 +861,7 @@ export declare class HourlyWeatherStatistics<T = unknown> extends SDKHandle {
      * subscript(position: HourlyWeatherStatistics<T>.Index) -> HourlyWeatherStatistics<T>.Element { get }
      * @availability iOS 18.0+
      */
-    subscript(position: number): HourlyWeatherStatistics<number>;
+    subscript(position: number): number;
     readonly $type: {
         "s:10WeatherKit06HourlyA10StatisticsV": true;
     };
@@ -914,8 +914,8 @@ export declare class HourTemperatureStatistics extends SDKHandle {
      * var percentiles: Percentiles<UnitTemperature>
      * @availability iOS 18.0+
      */
-    get percentiles(): $SDK16;
-    set percentiles(value: $SDK16);
+    get percentiles(): $SDK13;
+    set percentiles(value: $SDK13);
     /**
      * var hour: Int
      * @availability iOS 18.0+
@@ -1119,7 +1119,7 @@ export declare class MonthlyWeatherStatistics<T = unknown> extends SDKHandle {
      * subscript(position: MonthlyWeatherStatistics<T>.Index) -> MonthlyWeatherStatistics<T>.Element { get }
      * @availability iOS 18.0+
      */
-    subscript(position: number): MonthlyWeatherStatistics<number>;
+    subscript(position: number): number;
     readonly $type: {
         "s:10WeatherKit07MonthlyA10StatisticsV": true;
     };
@@ -1243,14 +1243,14 @@ export declare class MoonEvents extends SDKHandle {
      * var moonset: Date?
      * @availability iOS 16.0+
      */
-    get moonset(): $SDK12;
-    set moonset(value: $SDK12);
+    get moonset(): $SDK10;
+    set moonset(value: $SDK10);
     /**
      * var moonrise: Date?
      * @availability iOS 16.0+
      */
-    get moonrise(): $SDK12;
-    set moonrise(value: $SDK12);
+    get moonrise(): $SDK10;
+    set moonrise(value: $SDK10);
     readonly $type: {
         "s:10WeatherKit10MoonEventsV": true;
     };
@@ -1311,20 +1311,20 @@ export declare class Percentiles<Dimension = unknown> extends SDKHandle {
      * var p10: Measurement<Dimension>
      * @availability iOS 18.0+
      */
-    get p10(): $SDK20;
-    set p10(value: $SDK20);
+    get p10(): $SDK16;
+    set p10(value: $SDK16);
     /**
      * var p50: Measurement<Dimension>
      * @availability iOS 18.0+
      */
-    get p50(): $SDK20;
-    set p50(value: $SDK20);
+    get p50(): $SDK16;
+    set p50(value: $SDK16);
     /**
      * var p90: Measurement<Dimension>
      * @availability iOS 18.0+
      */
-    get p90(): $SDK20;
-    set p90(value: $SDK20);
+    get p90(): $SDK16;
+    set p90(value: $SDK16);
     readonly $type: {
         "s:10WeatherKit11PercentilesV": true;
     };
@@ -1512,62 +1512,62 @@ export declare class SunEvents extends SDKHandle {
      * var nauticalDawn: Date?
      * @availability iOS 16.0+
      */
-    get nauticalDawn(): $SDK12;
-    set nauticalDawn(value: $SDK12);
+    get nauticalDawn(): $SDK10;
+    set nauticalDawn(value: $SDK10);
     /**
      * var nauticalDusk: Date?
      * @availability iOS 16.0+
      */
-    get nauticalDusk(): $SDK12;
-    set nauticalDusk(value: $SDK12);
+    get nauticalDusk(): $SDK10;
+    set nauticalDusk(value: $SDK10);
     /**
      * var solarMidnight: Date?
      * @availability iOS 16.0+
      */
-    get solarMidnight(): $SDK12;
-    set solarMidnight(value: $SDK12);
+    get solarMidnight(): $SDK10;
+    set solarMidnight(value: $SDK10);
     /**
      * var astronomicalDawn: Date?
      * @availability iOS 16.0+
      */
-    get astronomicalDawn(): $SDK12;
-    set astronomicalDawn(value: $SDK12);
+    get astronomicalDawn(): $SDK10;
+    set astronomicalDawn(value: $SDK10);
     /**
      * var astronomicalDusk: Date?
      * @availability iOS 16.0+
      */
-    get astronomicalDusk(): $SDK12;
-    set astronomicalDusk(value: $SDK12);
+    get astronomicalDusk(): $SDK10;
+    set astronomicalDusk(value: $SDK10);
     /**
      * var sunset: Date?
      * @availability iOS 16.0+
      */
-    get sunset(): $SDK12;
-    set sunset(value: $SDK12);
+    get sunset(): $SDK10;
+    set sunset(value: $SDK10);
     /**
      * var sunrise: Date?
      * @availability iOS 16.0+
      */
-    get sunrise(): $SDK12;
-    set sunrise(value: $SDK12);
+    get sunrise(): $SDK10;
+    set sunrise(value: $SDK10);
     /**
      * var civilDawn: Date?
      * @availability iOS 16.0+
      */
-    get civilDawn(): $SDK12;
-    set civilDawn(value: $SDK12);
+    get civilDawn(): $SDK10;
+    set civilDawn(value: $SDK10);
     /**
      * var civilDusk: Date?
      * @availability iOS 16.0+
      */
-    get civilDusk(): $SDK12;
-    set civilDusk(value: $SDK12);
+    get civilDusk(): $SDK10;
+    set civilDusk(value: $SDK10);
     /**
      * var solarNoon: Date?
      * @availability iOS 16.0+
      */
-    get solarNoon(): $SDK12;
-    set solarNoon(value: $SDK12);
+    get solarNoon(): $SDK10;
+    set solarNoon(value: $SDK10);
     readonly $type: {
         "s:10WeatherKit9SunEventsV": true;
     };
@@ -1581,8 +1581,8 @@ export declare class Trend<Dimension = unknown> extends SDKHandle {
      * var currentValue: Measurement<Dimension>
      * @availability iOS 18.0+
      */
-    get currentValue(): $SDK20;
-    set currentValue(value: $SDK20);
+    get currentValue(): $SDK16;
+    set currentValue(value: $SDK16);
     /**
      * var baseline: TrendBaseline<Dimension>
      * @availability iOS 18.0+
@@ -1613,7 +1613,7 @@ export declare class TrendBaseline<Dimension = unknown> extends SDKHandle {
      * let value: Measurement<Dimension>
      * @availability iOS 18.0+
      */
-    get value(): $SDK20;
+    get value(): $SDK16;
     /**
      * let startDate: Date
      * @availability iOS 18.0+
@@ -1674,7 +1674,7 @@ export declare const UVIndex_ExposureCategory: {
      * nonisolated static var allCases: [UVIndex.ExposureCategory] { get }
      * @availability iOS 16.0+
      */
-    readonly allCases: $SDK22;
+    readonly allCases: $SDK18;
     /**
      * init?(rawValue: String)
      * @availability iOS 16.0+
@@ -1690,7 +1690,7 @@ export declare const UVIndex_ExposureCategory: {
  * typealias AllCases = [UVIndex.ExposureCategory]
  * @availability iOS 16.0+
  */
-export type UVIndex_ExposureCategory_AllCases = $SDK22;
+export type UVIndex_ExposureCategory_AllCases = $SDK18;
 /**
  * typealias RawValue = String
  * @availability iOS 16.0+
@@ -1735,8 +1735,8 @@ export declare class Weather extends SDKHandle {
      * var minuteForecast: Forecast<MinuteWeather>?
      * @availability iOS 16.0+
      */
-    get minuteForecast(): $SDK24;
-    set minuteForecast(value: $SDK24);
+    get minuteForecast(): $SDK20;
+    set minuteForecast(value: $SDK20);
     readonly $type: {
         "s:10WeatherKit0A0V": true;
     };
@@ -2092,7 +2092,7 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * static var daily: WeatherQuery<Forecast<DayWeather>> { get }
      * @availability iOS 16.0+
      */
-    static get daily(): $SDK27;
+    static get daily(): $SDK23;
     /**
      * static var alerts: WeatherQuery<[WeatherAlert]?> { get }
      * @availability iOS 16.0+
@@ -2102,7 +2102,7 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * static var hourly: WeatherQuery<Forecast<HourWeather>> { get }
      * @availability iOS 16.0+
      */
-    static get hourly(): $SDK29;
+    static get hourly(): $SDK25;
     /**
      * static var minute: WeatherQuery<Forecast<MinuteWeather>?> { get }
      * @availability iOS 16.0+
@@ -2122,12 +2122,12 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * static func daily(startDate: Date, endDate: Date) -> WeatherQuery<T>
      * @availability iOS 16.0+
      */
-    static dailyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK27;
+    static dailyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK23;
     /**
      * static func hourly(startDate: Date, endDate: Date) -> WeatherQuery<T>
      * @availability iOS 16.0+
      */
-    static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK29;
+    static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK25;
     readonly $type: {
         "s:10WeatherKit0A5QueryV": true;
     };
@@ -2248,8 +2248,8 @@ export declare class Wind extends SDKHandle {
      * var gust: Measurement<UnitSpeed>?
      * @availability iOS 16.0+
      */
-    get gust(): $SDK11;
-    set gust(value: $SDK11);
+    get gust(): $SDK9;
+    set gust(value: $SDK9);
     /**
      * var speed: Measurement<UnitSpeed>
      * @availability iOS 16.0+
@@ -2260,8 +2260,8 @@ export declare class Wind extends SDKHandle {
      * var direction: Measurement<UnitAngle>
      * @availability iOS 16.0+
      */
-    get direction(): $SDK37;
-    set direction(value: $SDK37);
+    get direction(): $SDK33;
+    set direction(value: $SDK33);
     readonly $type: {
         "s:10WeatherKit4WindV": true;
     };

@@ -2,10 +2,21 @@
 import { SDKHandle, type NativeMap, type NativeError } from 'one/ios-runtime';
 import type { Predicate as _Foundation_Predicate } from "one/ios/Foundation";
 import type { NWEndpoint_Port as _Network_NWEndpoint_Port, NWParameters as _Network_NWParameters, NWListener_Service as _Network_NWListener_Service, NWBrowser_Result as _Network_NWBrowser_Result, NWBrowser_Descriptor as _Network_NWBrowser_Descriptor } from "one/ios/Network";
-type $SDK1 = Array<WACapabilities_Feature>;
-type $SDK5 = _Foundation_Predicate<WAPairedDevice>;
-type $SDK7 = Record<number, WAPairedDevice>;
-type $SDK8 = (Record<number, WAPairedDevice>) | null;
+type $SDK2 = Array<WACapabilities_Feature>;
+type $SDK6 = _Foundation_Predicate<WAPairedDevice>;
+type $SDK8 = Record<number, WAPairedDevice>;
+type $SDK9 = (Record<number, WAPairedDevice>) | null;
+export declare class NetworkConnection<ApplicationProtocol = unknown> extends SDKHandle {
+    /**
+     * final var wifiAware: WAConnection<ApplicationProtocol>? { get }
+     * @availability iOS 26.4+
+     */
+    get wifiAware(): (WAConnection<SDKHandle>) | null;
+    readonly $type: {
+        "s:7Network0A10ConnectionC": true;
+        "s:7Network0A7ChannelC": true;
+    };
+}
 export declare class NWEndpoint extends SDKHandle {
     /**
      * func wifiAware(port: NWEndpoint.Port) -> WAEndpoint?
@@ -83,7 +94,7 @@ export declare class WACapabilities extends SDKHandle {
      * static var supportedFeatures: Set<WACapabilities.Feature> { get }
      * @availability iOS 26.0+
      */
-    static get supportedFeatures(): $SDK1;
+    static get supportedFeatures(): $SDK2;
     /**
      * static var maximumConnectableDevices: Int { get }
      * @availability iOS 26.0+
@@ -113,18 +124,23 @@ export declare const WACapabilities_Feature: {
      * nonisolated static var allCases: [WACapabilities.Feature] { get }
      * @availability iOS 26.0+
      */
-    readonly allCases: $SDK1;
+    readonly allCases: $SDK2;
 };
 /**
  * typealias AllCases = [WACapabilities.Feature]
  * @availability iOS 26.0+
  */
-export type WACapabilities_Feature_AllCases = $SDK1;
+export type WACapabilities_Feature_AllCases = $SDK2;
 /**
  * class WAConnection<ApplicationProtocol> where ApplicationProtocol : NetworkProtocolOptions
  * @availability iOS 26.4+
  */
 export declare class WAConnection<ApplicationProtocol = unknown> extends SDKHandle {
+    /**
+     * func deriveSharedSecret(for protocolName: WASharedSecret.ProtocolName, method: WASharedSecret.DerivationMethod, context: WASharedSecret.Context = .bundleID) async -> WASharedSecret?
+     * @availability iOS 26.4+
+     */
+    deriveSharedSecret(protocolName: WASharedSecret_ProtocolName, method: WASharedSecret_DerivationMethod, context?: WASharedSecret_Context): Promise<(WASharedSecret) | null>;
     readonly $type: {
         "s:9WiFiAware12WAConnectionC": true;
     };
@@ -316,7 +332,7 @@ export declare class WAPairedDevice extends SDKHandle {
      * static func allDevices(matching: Predicate<WAPairedDevice>) -> WAPairedDevice.DevicesSequence
      * @availability iOS 26.0+
      */
-    static allDevicesMatching(matching: $SDK5): WAPairedDevice_DevicesSequence;
+    static allDevicesMatching(matching: $SDK6): WAPairedDevice_DevicesSequence;
     /**
      * static var allDevices: WAPairedDevice.DevicesSequence { get }
      * @availability iOS 26.0+
@@ -350,7 +366,7 @@ export declare class WAPairedDevice extends SDKHandle {
  * typealias Devices = [WAPairedDevice.ID : WAPairedDevice]
  * @availability iOS 26.0+
  */
-export type WAPairedDevice_Devices = $SDK7;
+export type WAPairedDevice_Devices = $SDK8;
 /**
  * struct DevicesSequence
  * @availability iOS 26.0+
@@ -365,11 +381,11 @@ export declare class WAPairedDevice_DevicesSequence extends SDKHandle {
      * func current() async throws -> WAPairedDevice.DevicesSequence.Element?
      * @availability iOS 26.0+
      */
-    current(): Promise<$SDK8>;
+    current(): Promise<$SDK9>;
     readonly $type: {
         "s:9WiFiAware14WAPairedDeviceV15DevicesSequenceV": true;
     };
-    readonly $element: $SDK7;
+    readonly $element: $SDK8;
 }
 /**
  * class AsyncIterator
@@ -380,7 +396,7 @@ export declare class WAPairedDevice_DevicesSequence_AsyncIterator extends SDKHan
      * func next() async throws -> WAPairedDevice.DevicesSequence.AsyncIterator.Element?
      * @availability iOS 26.0+
      */
-    next(): Promise<$SDK8>;
+    next(): Promise<$SDK9>;
     readonly $type: {
         "s:9WiFiAware14WAPairedDeviceV15DevicesSequenceV13AsyncIteratorC": true;
     };
@@ -389,7 +405,7 @@ export declare class WAPairedDevice_DevicesSequence_AsyncIterator extends SDKHan
  * typealias Element = WAPairedDevice.Devices
  * @availability iOS 26.0+
  */
-export type WAPairedDevice_DevicesSequence_AsyncIterator_Element = $SDK7;
+export type WAPairedDevice_DevicesSequence_AsyncIterator_Element = $SDK8;
 /**
  * typealias Failure = Error
  * @availability iOS 26.0+
@@ -399,7 +415,7 @@ export type WAPairedDevice_DevicesSequence_AsyncIterator_Failure = NativeError;
  * typealias Element = WAPairedDevice.Devices
  * @availability iOS 26.0+
  */
-export type WAPairedDevice_DevicesSequence_Element = $SDK7;
+export type WAPairedDevice_DevicesSequence_Element = $SDK8;
 /**
  * typealias ID = UInt64
  * @availability iOS 26.0+
@@ -732,12 +748,12 @@ export declare class WAPublisherListener_Devices extends SDKHandle {
      * static func matching(_ pairedDevicesFilter: Predicate<WAPairedDevice>) -> WAPublisherListener.Devices
      * @availability iOS 26.0+
      */
-    static matching(pairedDevicesFilter: $SDK5): WAPublisherListener_Devices;
+    static matching(pairedDevicesFilter: $SDK6): WAPublisherListener_Devices;
     /**
      * static func selected(_ pairedDevices: WAPairedDevice.Devices) -> WAPublisherListener.Devices
      * @availability iOS 26.0+
      */
-    static selected(pairedDevices: $SDK7): WAPublisherListener_Devices;
+    static selected(pairedDevices: $SDK8): WAPublisherListener_Devices;
     readonly $type: {
         "s:9WiFiAware19WAPublisherListenerV7DevicesV": true;
     };
@@ -925,12 +941,12 @@ export declare class WASubscriberBrowser_Devices extends SDKHandle {
      * static func matching(_ pairedDevicesFilter: Predicate<WAPairedDevice>) -> WASubscriberBrowser.Devices
      * @availability iOS 26.0+
      */
-    static matching(pairedDevicesFilter: $SDK5): WASubscriberBrowser_Devices;
+    static matching(pairedDevicesFilter: $SDK6): WASubscriberBrowser_Devices;
     /**
      * static func selected(_ pairedDevices: WAPairedDevice.Devices) -> WASubscriberBrowser.Devices
      * @availability iOS 26.0+
      */
-    static selected(pairedDevices: $SDK7): WASubscriberBrowser_Devices;
+    static selected(pairedDevices: $SDK8): WASubscriberBrowser_Devices;
     readonly $type: {
         "s:9WiFiAware19WASubscriberBrowserV7DevicesV": true;
     };

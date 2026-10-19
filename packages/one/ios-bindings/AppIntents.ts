@@ -30,47 +30,51 @@ type $SDK27 = (DisplayRepresentation_Image) | null;
 
 type $SDK28 = (_Foundation_LocalizedStringResource) | null;
 
-type $SDK29 = IntentParameterContext<number>;
+type $SDK30 = IntentParameterContext<number>;
 
-type $SDK32 = IntentParameterDependency<unknown>;
+type $SDK33 = IntentParameterDependency<unknown>;
 
-type $SDK34 = EmptyResolverSpecification<EntityIdentifier>;
+type $SDK35 = EmptyResolverSpecification<EntityIdentifier>;
 
-type $SDK35 = NativeMap<unknown, DisplayRepresentation>;
+type $SDK37 = NativeMap<unknown, DisplayRepresentation>;
 
-type $SDK45 = (_Foundation_NSPredicate) | null;
+type $SDK52 = (_Foundation_NSPredicate) | null;
 
-type $SDK46 = EmptyResolverSpecification<IntentCurrencyAmount>;
+type $SDK53 = EmptyResolverSpecification<IntentCurrencyAmount>;
 
-type $SDK48 = Array<IntentDonationIdentifier>;
+type $SDK55 = Array<IntentDonationIdentifier>;
 
-type $SDK50 = (_UniformTypeIdentifiers_UTType) | null;
+type $SDK58 = (_UniformTypeIdentifiers_UTType) | null;
 
-type $SDK76 = EmptyResolverSpecification<IntentPaymentMethod>;
+type $SDK60 = Array<IntentItemSection<SDKHandle>>;
 
-type $SDK77 = (IntentPerson_Handle) | null;
+type $SDK61 = (DisplayRepresentation) | null;
 
-type $SDK78 = Array<IntentPerson_Handle>;
+type $SDK90 = EmptyResolverSpecification<IntentPaymentMethod>;
 
-type $SDK79 = EmptyResolverSpecification<IntentPerson>;
+type $SDK91 = (IntentPerson_Handle) | null;
 
-type $SDK81 = EmptyResolverSpecification<IntentWidgetFamily>;
+type $SDK92 = Array<IntentPerson_Handle>;
 
-type $SDK82 = _Foundation_Measurement<unknown>;
+type $SDK93 = EmptyResolverSpecification<IntentPerson>;
 
-type $SDK84 = IntentResultContainer<never, never, never, never>;
+type $SDK95 = IntentValueRepresentation<string, IntentPerson>;
 
-type $SDK87 = IntentURLRepresentation<unknown>;
+type $SDK96 = ((arg0: string) => Promise<IntentPerson>);
 
-type $SDK88 = IntentParameterContext<string>;
+type $SDK98 = EmptyResolverSpecification<IntentWidgetFamily>;
 
-type $SDK89 = Array<StringSearchScope>;
+type $SDK99 = _Foundation_Measurement<unknown>;
 
-type $SDK92 = NativeMap<StringSearchScope, DisplayRepresentation>;
+type $SDK101 = IntentResultContainer<never, never, never, never>;
 
-type $SDK93 = EmptyResolverSpecification<SystemShortcut>;
+type $SDK106 = Array<StringSearchScope>;
 
-type $SDK96 = NativeMap<VideoCategory, DisplayRepresentation>;
+type $SDK109 = NativeMap<StringSearchScope, DisplayRepresentation>;
+
+type $SDK110 = EmptyResolverSpecification<SystemShortcut>;
+
+type $SDK113 = NativeMap<VideoCategory, DisplayRepresentation>;
 
 /**
  * struct AnyEntityQueryComparator<Entity, Subject, Property, PropertyType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable
@@ -97,18 +101,23 @@ export class AppDependency<Value = unknown> extends SDKHandle {
    * final var wrappedValue: Value { get set }
    * @availability iOS 16.0+
    */
-  get wrappedValue(): number { return callSDK<number>("AppIntents_0e503aef608672fa", 3262736866192108, this, []); }
-  set wrappedValue(value: number) { callSDK<void>("AppIntents_0e503aef608672fa", 2965026973070641, this, [value]); }
+  get wrappedValue(): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 3262736866192108, this, []); }
+  set wrappedValue(value: number) { callSDK<void>("AppIntents_212edf3d13b127f5", 2965026973070641, this, [value]); }
   /**
    * final var projectedValue: AppDependency<Value> { get }
    * @availability iOS 16.0+
    */
-  get projectedValue(): AppDependency<number> { return callSDK<AppDependency<number>>("AppIntents_0e503aef608672fa", 1024711799179895, this, []); }
+  get projectedValue(): AppDependency<number> { return callSDK<AppDependency<number>>("AppIntents_212edf3d13b127f5", 1024711799179895, this, []); }
+  /**
+   * convenience init(key: AnyHashable? = nil, manager: AppDependencyManager = .shared, default defaultValueProvider: @escaping () async throws -> Value)
+   * @availability iOS 16.0+
+   */
+  static initKeyManagerDefault(key: (unknown) | null, manager: AppDependencyManager, defaultValueProvider: (() => Promise<number>)): AppDependency<number> { return callSDK<AppDependency<number>>("AppIntents_212edf3d13b127f5", 2820463539217155, undefined, [key, manager, defaultValueProvider], [null,null,{"callback":{"out":[]}}]); }
   /**
    * convenience init(key: AnyHashable? = nil, manager: AppDependencyManager = .shared)
    * @availability iOS 16.0+
    */
-  static init(key?: (unknown) | null, manager?: AppDependencyManager): AppDependency<number> { return callSDK<AppDependency<number>>("AppIntents_0e503aef608672fa", 3503880421053937, undefined, [key, manager]); }
+  static initKeyManager(key?: (unknown) | null, manager?: AppDependencyManager): AppDependency<number> { return callSDK<AppDependency<number>>("AppIntents_212edf3d13b127f5", 3503880421053937, undefined, [key, manager]); }
   declare readonly $type: { "s:10AppIntents0A10DependencyC": true };
 }
 
@@ -118,15 +127,20 @@ export class AppDependency<Value = unknown> extends SDKHandle {
  */
 export class AppDependencyManager extends SDKHandle {
   /**
+   * final func add<Dependency>(key: AnyHashable? = nil, dependency dependencyProvider: @escaping @Sendable () async throws -> Dependency) where Dependency : Sendable
+   * @availability iOS 16.0+
+   */
+  add(key: (unknown) | null, dependencyProvider: (() => Promise<number>)): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 1683288626002577, this, [key, dependencyProvider], [null,{"callback":{"out":[]}}]); }
+  /**
    * nonisolated(unsafe) static let shared: AppDependencyManager
    * @availability iOS 16.0+
    */
-  static get shared(): AppDependencyManager { return callSDK<AppDependencyManager>("AppIntents_0e503aef608672fa", 4014181928165570, undefined, []); }
+  static get shared(): AppDependencyManager { return callSDK<AppDependencyManager>("AppIntents_212edf3d13b127f5", 4014181928165570, undefined, []); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): AppDependencyManager { return callSDK<AppDependencyManager>("AppIntents_0e503aef608672fa", 2462282751731772, undefined, []); }
+  static init(): AppDependencyManager { return callSDK<AppDependencyManager>("AppIntents_212edf3d13b127f5", 2462282751731772, undefined, []); }
   declare readonly $type: { "s:10AppIntents0A17DependencyManagerC": true };
 }
 
@@ -139,7 +153,7 @@ export class AppDependencyManager_Error<Value = unknown> extends SDKHandle {
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 3218737327649616, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 3218737327649616, this, []); }
   declare readonly $type: { "s:10AppIntents0A17DependencyManagerC5ErrorO": true };
 }
 
@@ -180,7 +194,7 @@ export class AppEntityContext extends SDKHandle {
    * static func audio(_ audioContext: AudioContext) -> AppEntityContext
    * @availability iOS 27.0+
    */
-  static audio(audioContext: AudioContext): AppEntityContext { return callSDK<AppEntityContext>("AppIntents_0e503aef608672fa", 2412750507117704, undefined, [audioContext]); }
+  static audio(audioContext: AudioContext): AppEntityContext { return callSDK<AppEntityContext>("AppIntents_212edf3d13b127f5", 2412750507117704, undefined, [audioContext]); }
   declare readonly $type: { "s:10AppIntents0A13EntityContextV": true };
 }
 
@@ -193,31 +207,31 @@ export class AppEntityUIElement extends SDKHandle {
    * init(identifier: EntityIdentifier, bounds: CGRect, state: AppEntityUIElement.State = .init(), subelements: [AppEntityUIElement] = [])
    * @availability iOS 18.4+
    */
-  static init(identifier: EntityIdentifier, bounds: $SDK1, state?: AppEntityUIElement_State, subelements?: $SDK2): AppEntityUIElement { return callSDK<AppEntityUIElement>("AppIntents_0e503aef608672fa", 1831095515315917, undefined, [identifier, bounds, state, subelements]); }
+  static init(identifier: EntityIdentifier, bounds: $SDK1, state?: AppEntityUIElement_State, subelements?: $SDK2): AppEntityUIElement { return callSDK<AppEntityUIElement>("AppIntents_212edf3d13b127f5", 1831095515315917, undefined, [identifier, bounds, state, subelements]); }
   /**
    * var identifier: EntityIdentifier
    * @availability iOS 18.4+
    */
-  get identifier(): EntityIdentifier { return callSDK<EntityIdentifier>("AppIntents_0e503aef608672fa", 3942111944407892, this, []); }
-  set identifier(value: EntityIdentifier) { callSDK<void>("AppIntents_0e503aef608672fa", 91689079106337, this, [value]); }
+  get identifier(): EntityIdentifier { return callSDK<EntityIdentifier>("AppIntents_212edf3d13b127f5", 3942111944407892, this, []); }
+  set identifier(value: EntityIdentifier) { callSDK<void>("AppIntents_212edf3d13b127f5", 91689079106337, this, [value]); }
   /**
    * var subelements: [AppEntityUIElement]
    * @availability iOS 18.4+
    */
-  get subelements(): $SDK2 { return callSDK<$SDK2>("AppIntents_0e503aef608672fa", 761011257051055, this, []); }
-  set subelements(value: $SDK2) { callSDK<void>("AppIntents_0e503aef608672fa", 1283727634338205, this, [value]); }
+  get subelements(): $SDK2 { return callSDK<$SDK2>("AppIntents_212edf3d13b127f5", 761011257051055, this, []); }
+  set subelements(value: $SDK2) { callSDK<void>("AppIntents_212edf3d13b127f5", 1283727634338205, this, [value]); }
   /**
    * var state: AppEntityUIElement.State
    * @availability iOS 18.4+
    */
-  get state(): AppEntityUIElement_State { return callSDK<AppEntityUIElement_State>("AppIntents_0e503aef608672fa", 1952741411693129, this, []); }
-  set state(value: AppEntityUIElement_State) { callSDK<void>("AppIntents_0e503aef608672fa", 1826162331938359, this, [value]); }
+  get state(): AppEntityUIElement_State { return callSDK<AppEntityUIElement_State>("AppIntents_212edf3d13b127f5", 1952741411693129, this, []); }
+  set state(value: AppEntityUIElement_State) { callSDK<void>("AppIntents_212edf3d13b127f5", 1826162331938359, this, [value]); }
   /**
    * var bounds: CGRect
    * @availability iOS 18.4+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("AppIntents_0e503aef608672fa", 1254632006436656, this, []); }
-  set bounds(value: $SDK1) { callSDK<void>("AppIntents_0e503aef608672fa", 486000200414718, this, [value]); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("AppIntents_212edf3d13b127f5", 1254632006436656, this, []); }
+  set bounds(value: $SDK1) { callSDK<void>("AppIntents_212edf3d13b127f5", 486000200414718, this, [value]); }
   declare readonly $type: { "s:10AppIntents0A15EntityUIElementV": true };
 }
 
@@ -230,13 +244,13 @@ export class AppEntityUIElement_State extends SDKHandle {
    * init(isSelected: Bool = false)
    * @availability iOS 18.4+
    */
-  static init(isSelected?: boolean): AppEntityUIElement_State { return callSDK<AppEntityUIElement_State>("AppIntents_0e503aef608672fa", 4032553557108167, undefined, [isSelected]); }
+  static init(isSelected?: boolean): AppEntityUIElement_State { return callSDK<AppEntityUIElement_State>("AppIntents_212edf3d13b127f5", 4032553557108167, undefined, [isSelected]); }
   /**
    * var isSelected: Bool
    * @availability iOS 18.4+
    */
-  get isSelected(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 2988768121205765, this, []); }
-  set isSelected(value: boolean) { callSDK<void>("AppIntents_0e503aef608672fa", 3859197138683653, this, [value]); }
+  get isSelected(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 2988768121205765, this, []); }
+  set isSelected(value: boolean) { callSDK<void>("AppIntents_212edf3d13b127f5", 3859197138683653, this, [value]); }
   declare readonly $type: { "s:10AppIntents0A15EntityUIElementV5StateV": true };
 }
 
@@ -249,12 +263,12 @@ export class AppEntityUIElementsContext extends SDKHandle {
    * let bounds: CGRect
    * @availability iOS 18.4+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("AppIntents_0e503aef608672fa", 2258559280523617, this, []); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("AppIntents_212edf3d13b127f5", 2258559280523617, this, []); }
   /**
    * let requests: Set<AppEntityUIElementsContext.ElementsRequest>
    * @availability iOS 18.4+
    */
-  get requests(): Array<AppEntityUIElementsContext_ElementsRequest> { return callSDK<Array<AppEntityUIElementsContext_ElementsRequest>>("AppIntents_0e503aef608672fa", 321881304349245, this, []); }
+  get requests(): Array<AppEntityUIElementsContext_ElementsRequest> { return callSDK<Array<AppEntityUIElementsContext_ElementsRequest>>("AppIntents_212edf3d13b127f5", 321881304349245, this, []); }
   declare readonly $type: { "s:10AppIntents0A23EntityUIElementsContextV": true };
 }
 
@@ -283,7 +297,7 @@ export interface AppIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -348,27 +362,27 @@ export class AppIntentError extends SDKHandle {
    * init(predefinedError: AppIntentError, description: LocalizedStringResource)
    * @availability iOS 27.0+
    */
-  static initPredefinedErrorDescription(predefinedError: AppIntentError, description: _Foundation_LocalizedStringResource): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 4196044376294034, undefined, [predefinedError, description]); }
+  static initPredefinedErrorDescription(predefinedError: AppIntentError, description: _Foundation_LocalizedStringResource): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 4196044376294034, undefined, [predefinedError, description]); }
   /**
    * init(description: LocalizedStringResource)
    * @availability iOS 27.0+
    */
-  static initDescription(description: _Foundation_LocalizedStringResource): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 1996644292375363, undefined, [description]); }
+  static initDescription(description: _Foundation_LocalizedStringResource): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 1996644292375363, undefined, [description]); }
   /**
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 4152040308255743, this, []); }
+  get description(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 4152040308255743, this, []); }
   /**
    * static var restartPerform: AppIntentError { get }
    * @availability iOS 16.0+
    */
-  static get restartPerform(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 4383878643600751, undefined, []); }
+  static get restartPerform(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 4383878643600751, undefined, []); }
   /**
    * var localizedStringResource: LocalizedStringResource { get }
    * @availability iOS 18.0+
    */
-  get localizedStringResource(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 1717429089733142, this, []); }
+  get localizedStringResource(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 1717429089733142, this, []); }
   declare readonly $type: { "s:10AppIntents0A11IntentErrorV": true };
 }
 
@@ -381,32 +395,32 @@ export class AppIntentError_PermissionRequired extends SDKHandle {
    * static let localNetwork: AppIntentError
    * @availability iOS 18.0+
    */
-  static get localNetwork(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 36589958139356, undefined, []); }
+  static get localNetwork(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 36589958139356, undefined, []); }
   /**
    * static let siri: AppIntentError
    * @availability iOS 18.0+
    */
-  static get siri(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 3791559261412730, undefined, []); }
+  static get siri(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 3791559261412730, undefined, []); }
   /**
    * static let photos: AppIntentError
    * @availability iOS 18.0+
    */
-  static get photos(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 3578398262804491, undefined, []); }
+  static get photos(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 3578398262804491, undefined, []); }
   /**
    * static let contacts: AppIntentError
    * @availability iOS 18.0+
    */
-  static get contacts(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 322986998599042, undefined, []); }
+  static get contacts(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 322986998599042, undefined, []); }
   /**
    * static func location(precise: Bool = false) -> AppIntentError
    * @availability iOS 18.0+
    */
-  static location(precise?: boolean): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 3514580124023039, undefined, [precise]); }
+  static location(precise?: boolean): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 3514580124023039, undefined, [precise]); }
   /**
    * static let bluetooth: AppIntentError
    * @availability iOS 18.0+
    */
-  static get bluetooth(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 44769797198508, undefined, []); }
+  static get bluetooth(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 44769797198508, undefined, []); }
   declare readonly $type: { "s:10AppIntents0A11IntentErrorV18PermissionRequiredO": true };
 }
 
@@ -419,37 +433,37 @@ export class AppIntentError_Unrecoverable extends SDKHandle {
    * static let notAllowed: AppIntentError
    * @availability iOS 18.0+
    */
-  static get notAllowed(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 3916270706891640, undefined, []); }
+  static get notAllowed(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 3916270706891640, undefined, []); }
   /**
    * static let entityNotFound: AppIntentError
    * @availability iOS 18.0+
    */
-  static get entityNotFound(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 276262919773966, undefined, []); }
+  static get entityNotFound(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 276262919773966, undefined, []); }
   /**
    * static let networkFailure: AppIntentError
    * @availability iOS 18.0+
    */
-  static get networkFailure(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 2823647954816334, undefined, []); }
+  static get networkFailure(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 2823647954816334, undefined, []); }
   /**
    * static let partialFailure: AppIntentError
    * @availability iOS 18.0+
    */
-  static get partialFailure(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 2298309924497067, undefined, []); }
+  static get partialFailure(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 2298309924497067, undefined, []); }
   /**
    * static let unsupportedOnDevice: AppIntentError
    * @availability iOS 18.0+
    */
-  static get unsupportedOnDevice(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 3049471381729852, undefined, []); }
+  static get unsupportedOnDevice(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 3049471381729852, undefined, []); }
   /**
    * static let featureCurrentlyRestricted: AppIntentError
    * @availability iOS 18.0+
    */
-  static get featureCurrentlyRestricted(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 2017656103577796, undefined, []); }
+  static get featureCurrentlyRestricted(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 2017656103577796, undefined, []); }
   /**
    * static let unknown: AppIntentError
    * @availability iOS 18.0+
    */
-  static get unknown(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 1576704128812599, undefined, []); }
+  static get unknown(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 1576704128812599, undefined, []); }
   declare readonly $type: { "s:10AppIntents0A11IntentErrorV13UnrecoverableO": true };
 }
 
@@ -462,17 +476,17 @@ export class AppIntentError_UserActionRequired extends SDKHandle {
    * static let accountSetup: AppIntentError
    * @availability iOS 18.0+
    */
-  static get accountSetup(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 4220814873283567, undefined, []); }
+  static get accountSetup(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 4220814873283567, undefined, []); }
   /**
    * static let confirmation: AppIntentError
    * @availability iOS 18.0+
    */
-  static get confirmation(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 637022400511672, undefined, []); }
+  static get confirmation(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 637022400511672, undefined, []); }
   /**
    * static let signin: AppIntentError
    * @availability iOS 18.0+
    */
-  static get signin(): AppIntentError { return callSDK<AppIntentError>("AppIntents_0e503aef608672fa", 3384163506157106, undefined, []); }
+  static get signin(): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 3384163506157106, undefined, []); }
   declare readonly $type: { "s:10AppIntents0A11IntentErrorV18UserActionRequiredO": true };
 }
 
@@ -501,17 +515,17 @@ export class AppSchema extends SDKHandle {
    * init(_ schema: some AppSchemaEnum)
    * @availability iOS 18.0+
    */
-  static init(schema: Implements<AppSchemaEnum> | SDKHandle): AppSchema { return callSDK<AppSchema>("AppIntents_0e503aef608672fa", 1825902619539563, undefined, [schema], [{"protocol":"s:10AppIntents0A10SchemaEnumP"}]); }
+  static init(schema: Implements<AppSchemaEnum> | SDKHandle): AppSchema { return callSDK<AppSchema>("AppIntents_212edf3d13b127f5", 1825902619539563, undefined, [schema], [{"protocol":"s:10AppIntents0A10SchemaEnumP"}]); }
   /**
    * init(_ schema: some AppSchemaEntity)
    * @availability iOS 18.0+
    */
-  static init72054(schema: Implements<AppSchemaEntity> | SDKHandle): AppSchema { return callSDK<AppSchema>("AppIntents_0e503aef608672fa", 665192245143041, undefined, [schema], [{"protocol":"s:10AppIntents0A12SchemaEntityP"}]); }
+  static init72054(schema: Implements<AppSchemaEntity> | SDKHandle): AppSchema { return callSDK<AppSchema>("AppIntents_212edf3d13b127f5", 665192245143041, undefined, [schema], [{"protocol":"s:10AppIntents0A12SchemaEntityP"}]); }
   /**
    * init(_ schema: some AppSchemaIntent)
    * @availability iOS 18.0+
    */
-  static init63367(schema: Implements<AppSchemaIntent> | SDKHandle): AppSchema { return callSDK<AppSchema>("AppIntents_0e503aef608672fa", 185920364356652, undefined, [schema], [{"protocol":"s:10AppIntents0A12SchemaIntentP"}]); }
+  static init63367(schema: Implements<AppSchemaIntent> | SDKHandle): AppSchema { return callSDK<AppSchema>("AppIntents_212edf3d13b127f5", 185920364356652, undefined, [schema], [{"protocol":"s:10AppIntents0A12SchemaIntentP"}]); }
   declare readonly $type: { "s:10AppIntents0A6SchemaV": true };
 }
 
@@ -1032,6 +1046,16 @@ export class AppShortcut extends SDKHandle {
  * @availability iOS 17.0+
  */
 export class AppShortcutOptionsCollection<Provider = unknown> extends SDKHandle {
+  /**
+   * let systemImageName: String?
+   * @availability iOS 17.0+
+   */
+  get systemImageName(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 1366361435348626, this, []); }
+  /**
+   * let title: LocalizedStringResource
+   * @availability iOS 17.0+
+   */
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 2070538630006221, this, []); }
   declare readonly $type: { "s:10AppIntents0A25ShortcutOptionsCollectionV": true };
 }
 
@@ -1094,6 +1118,11 @@ export type AppShortcutParameterPresentationSummaryString_ExtendedGraphemeCluste
  * @availability iOS 17.0+
  */
 export class AppShortcutParameterPresentationSummaryString_StringInterpolation<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 17.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 1016051639033942, this, [literal]); }
   declare readonly $type: { "s:10AppIntents0A42ShortcutParameterPresentationSummaryStringV0G13InterpolationV": true };
 }
 
@@ -1142,6 +1171,11 @@ export type AppShortcutParameterPresentationTitleString_ExtendedGraphemeClusterL
  * @availability iOS 17.0+
  */
 export class AppShortcutParameterPresentationTitleString_StringInterpolation<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 17.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 215342569716381, this, [literal]); }
   declare readonly $type: { "s:10AppIntents0A40ShortcutParameterPresentationTitleStringV0G13InterpolationV": true };
 }
 
@@ -1182,6 +1216,16 @@ export type AppShortcutPhrase_ExtendedGraphemeClusterLiteralType<Intent = unknow
  * @availability iOS 16.0+
  */
 export class AppShortcutPhrase_StringInterpolation<Intent = unknown> extends SDKHandle {
+  /**
+   * mutating func appendInterpolation(_ token: AppShortcutPhraseToken)
+   * @availability iOS 16.0+
+   */
+  appendInterpolation(token: AppShortcutPhraseToken): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 873321139224766, this, [token]); }
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 16.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 2934962343569654, this, [literal]); }
   declare readonly $type: { "s:10AppIntents0A14ShortcutPhraseV19StringInterpolationV": true };
 }
 
@@ -1218,32 +1262,32 @@ export class AppShortcutsBuilder extends SDKHandle {
    * static func buildBlock() -> [AppShortcut]
    * @availability iOS 17.4+
    */
-  static buildBlock(): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_0e503aef608672fa", 1731113880057588, undefined, []); }
+  static buildBlock(): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_212edf3d13b127f5", 1731113880057588, undefined, []); }
   /**
    * static func buildOptional(_ component: (any _AppShortcutsContentMarker & _LimitedAvailabilityAppShortcutsContentMarker)?) -> [AppShortcut]
    * @availability iOS 17.4+
    */
-  static buildOptional(component?: ((SDKHandle) & (SDKHandle)) | null): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_0e503aef608672fa", 332957549280827, undefined, [component]); }
+  static buildOptional(component?: ((SDKHandle) & (SDKHandle)) | null): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_212edf3d13b127f5", 332957549280827, undefined, [component]); }
   /**
    * static func buildOptional(_ component: (any _AppShortcutsContentEmitterMarker & _AppShortcutsContentMarker & _LimitedAvailabilityAppShortcutsContentMarker)?) -> [AppShortcut]
    * @availability iOS 17.4+
    */
-  static buildOptional19352(component?: ((SDKHandle) & (SDKHandle) & (SDKHandle)) | null): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_0e503aef608672fa", 4405579188916426, undefined, [component]); }
+  static buildOptional19352(component?: ((SDKHandle) & (SDKHandle) & (SDKHandle)) | null): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_212edf3d13b127f5", 4405579188916426, undefined, [component]); }
   /**
    * static func buildExpression(_ component: AppShortcut) -> AppShortcut
    * @availability iOS 16.0+
    */
-  static buildExpression(component: AppShortcut): AppShortcut { return callSDK<AppShortcut>("AppIntents_0e503aef608672fa", 162782421767990, undefined, [component]); }
+  static buildExpression(component: AppShortcut): AppShortcut { return callSDK<AppShortcut>("AppIntents_212edf3d13b127f5", 162782421767990, undefined, [component]); }
   /**
    * static func buildExpression(_ component: AppShortcut) -> [AppShortcut]
    * @availability iOS 17.4+
    */
-  static buildExpression69621(component: AppShortcut): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_0e503aef608672fa", 2168602650177059, undefined, [component]); }
+  static buildExpression69621(component: AppShortcut): Array<AppShortcut> { return callSDK<Array<AppShortcut>>("AppIntents_212edf3d13b127f5", 2168602650177059, undefined, [component]); }
   /**
    * static func buildLimitedAvailability(_ components: [AppShortcut]) -> any _AppShortcutsContentMarker & _LimitedAvailabilityAppShortcutsContentMarker
    * @availability iOS 17.4+
    */
-  static buildLimitedAvailability(components: Array<AppShortcut>): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("AppIntents_0e503aef608672fa", 2269517063048217, undefined, [components]); }
+  static buildLimitedAvailability(components: Array<AppShortcut>): (SDKHandle) & (SDKHandle) { return callSDK<(SDKHandle) & (SDKHandle)>("AppIntents_212edf3d13b127f5", 2269517063048217, undefined, [components]); }
   declare readonly $type: { "s:10AppIntents0A16ShortcutsBuilderO": true };
 }
 
@@ -1366,7 +1410,7 @@ export interface AssistantIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -1431,7 +1475,7 @@ export interface AssistantSchemaIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -1786,7 +1830,7 @@ export class AttributedStringFromStringResolver extends SDKHandle {
    * func resolve(from input: String, context: IntentParameterContext<AttributedString>) async throws -> AttributedString?
    * @availability iOS 16.0+
    */
-  resolve(input: string, context: IntentParameterContext<_Foundation_AttributedString>): Promise<(_Foundation_AttributedString) | null> { return callSDKAsync<(_Foundation_AttributedString) | null>("AppIntents_0e503aef608672fa", 1837657449558591, this, [input, context]); }
+  resolve(input: string, context: IntentParameterContext<_Foundation_AttributedString>): Promise<(_Foundation_AttributedString) | null> { return callSDKAsync<(_Foundation_AttributedString) | null>("AppIntents_212edf3d13b127f5", 1837657449558591, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents020AttributedStringFromD8ResolverV": true };
 }
 
@@ -1817,7 +1861,7 @@ export class AudioContext extends SDKHandle {
    * static var nowPlaying: AudioContext { get }
    * @availability iOS 27.0+
    */
-  static get nowPlaying(): AudioContext { return callSDK<AudioContext>("AppIntents_0e503aef608672fa", 3103129503433452, undefined, []); }
+  static get nowPlaying(): AudioContext { return callSDK<AudioContext>("AppIntents_212edf3d13b127f5", 3103129503433452, undefined, []); }
   declare readonly $type: { "s:10AppIntents12AudioContextV": true };
 }
 
@@ -1830,7 +1874,7 @@ export interface AudioPlaybackIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -1847,7 +1891,7 @@ export interface AudioRecordingIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -1865,7 +1909,7 @@ export interface AudioStartingIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -1908,7 +1952,7 @@ export class BoolFromStringResolver extends SDKHandle {
    * func resolve(from input: String, context: IntentParameterContext<Bool>) async throws -> Bool?
    * @availability iOS 16.0+
    */
-  resolve(input: string, context: IntentParameterContext<boolean>): Promise<(boolean) | null> { return callSDKAsync<(boolean) | null>("AppIntents_0e503aef608672fa", 1194436431516685, this, [input, context]); }
+  resolve(input: string, context: IntentParameterContext<boolean>): Promise<(boolean) | null> { return callSDKAsync<(boolean) | null>("AppIntents_212edf3d13b127f5", 1194436431516685, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents22BoolFromStringResolverV": true };
 }
 
@@ -1957,7 +2001,7 @@ export interface CameraCaptureIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -1974,7 +2018,7 @@ export interface CancellableIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -2026,172 +2070,172 @@ export class ConfirmationActionName extends SDKHandle {
    * static var startNavigation: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get startNavigation(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3642070814638444, undefined, []); }
+  static get startNavigation(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3642070814638444, undefined, []); }
   /**
    * static var `do`: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get do(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3939853486633576, undefined, []); }
+  static get do(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3939853486633576, undefined, []); }
   /**
    * static var go: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get go(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3624839292063960, undefined, []); }
+  static get go(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3624839292063960, undefined, []); }
   /**
    * static var add: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get add(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3896581564865568, undefined, []); }
+  static get add(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3896581564865568, undefined, []); }
   /**
    * static var buy: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get buy(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 2681963667630534, undefined, []); }
+  static get buy(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 2681963667630534, undefined, []); }
   /**
    * static var get: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get get(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4305450204246239, undefined, []); }
+  static get get(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4305450204246239, undefined, []); }
   /**
    * static var log: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get log(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 1987539706520619, undefined, []); }
+  static get log(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 1987539706520619, undefined, []); }
   /**
    * static var pay: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get pay(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 267920565345057, undefined, []); }
+  static get pay(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 267920565345057, undefined, []); }
   /**
    * static var run: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get run(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 1351992712447186, undefined, []); }
+  static get run(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 1351992712447186, undefined, []); }
   /**
    * static var set: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get set(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4399994665928586, undefined, []); }
+  static get set(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4399994665928586, undefined, []); }
   /**
    * static var book: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get book(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 409772548728503, undefined, []); }
+  static get book(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 409772548728503, undefined, []); }
   /**
    * static var call: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get call(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4016287426096925, undefined, []); }
+  static get call(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4016287426096925, undefined, []); }
   /**
    * static var find: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get find(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3020621534516807, undefined, []); }
+  static get find(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3020621534516807, undefined, []); }
   /**
    * static var open: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get open(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 170117229911277, undefined, []); }
+  static get open(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 170117229911277, undefined, []); }
   /**
    * static var play: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get play(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 2540949047070007, undefined, []); }
+  static get play(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 2540949047070007, undefined, []); }
   /**
    * static var post: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get post(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3631372634783889, undefined, []); }
+  static get post(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3631372634783889, undefined, []); }
   /**
    * static var send: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get send(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4441802168075393, undefined, []); }
+  static get send(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4441802168075393, undefined, []); }
   /**
    * static var view: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get view(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 943898612723752, undefined, []); }
+  static get view(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 943898612723752, undefined, []); }
   /**
    * static var order: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get order(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4157979290412117, undefined, []); }
+  static get order(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4157979290412117, undefined, []); }
   /**
    * static var share: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get share(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4216812751848476, undefined, []); }
+  static get share(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4216812751848476, undefined, []); }
   /**
    * static var start: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get start(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 1653213908677909, undefined, []); }
+  static get start(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 1653213908677909, undefined, []); }
   /**
    * static var create: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get create(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4028229915555154, undefined, []); }
+  static get create(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4028229915555154, undefined, []); }
   /**
    * static func custom(acceptLabel: LocalizedStringResource, acceptAlternatives: [LocalizedStringResource], denyLabel: LocalizedStringResource, denyAlternatives: [LocalizedStringResource], destructive: Bool = false) -> ConfirmationActionName
    * @availability iOS 16.0+
    */
-  static custom(acceptLabel: _Foundation_LocalizedStringResource, acceptAlternatives: $SDK26, denyLabel: _Foundation_LocalizedStringResource, denyAlternatives: $SDK26, destructive?: boolean): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 738790236977461, undefined, [acceptLabel, acceptAlternatives, denyLabel, denyAlternatives, destructive]); }
+  static custom(acceptLabel: _Foundation_LocalizedStringResource, acceptAlternatives: $SDK26, denyLabel: _Foundation_LocalizedStringResource, denyAlternatives: $SDK26, destructive?: boolean): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 738790236977461, undefined, [acceptLabel, acceptAlternatives, denyLabel, denyAlternatives, destructive]); }
   /**
    * static var filter: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get filter(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4146036744306680, undefined, []); }
+  static get filter(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4146036744306680, undefined, []); }
   /**
    * static var search: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get search(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 1202606588149152, undefined, []); }
+  static get search(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 1202606588149152, undefined, []); }
   /**
    * static var toggle: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get toggle(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 318262717296033, undefined, []); }
+  static get toggle(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 318262717296033, undefined, []); }
   /**
    * static var turnOn: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get turnOn(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 2139457695019492, undefined, []); }
+  static get turnOn(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 2139457695019492, undefined, []); }
   /**
    * static var addData: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get addData(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 784820622105982, undefined, []); }
+  static get addData(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 784820622105982, undefined, []); }
   /**
    * static var checkIn: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get checkIn(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 2695345374461305, undefined, []); }
+  static get checkIn(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 2695345374461305, undefined, []); }
   /**
    * static var request: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get request(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 1802247135569603, undefined, []); }
+  static get request(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 1802247135569603, undefined, []); }
   /**
    * static var turnOff: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get turnOff(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 2912608394396622, undefined, []); }
+  static get turnOff(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 2912608394396622, undefined, []); }
   /**
    * static var `continue`: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get continue(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 3450300844074303, undefined, []); }
+  static get continue(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 3450300844074303, undefined, []); }
   /**
    * static var download: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get download(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 2250923799306391, undefined, []); }
+  static get download(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 2250923799306391, undefined, []); }
   /**
    * static var playSound: ConfirmationActionName { get }
    * @availability iOS 16.0+
    */
-  static get playSound(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_0e503aef608672fa", 4341862340493173, undefined, []); }
+  static get playSound(): ConfirmationActionName { return callSDK<ConfirmationActionName>("AppIntents_212edf3d13b127f5", 4341862340493173, undefined, []); }
   declare readonly $type: { "s:10AppIntents22ConfirmationActionNameV": true };
 }
 
@@ -2206,17 +2250,17 @@ export const ConfirmationConditions = {
    * static let lowConfidenceSource: ConfirmationConditions
    * @availability iOS 18.0+
    */
-  get lowConfidenceSource(): ConfirmationConditions { return callSDK<ConfirmationConditions>("AppIntents_0e503aef608672fa", 3613390519321143, undefined, []); },
+  get lowConfidenceSource(): ConfirmationConditions { return callSDK<ConfirmationConditions>("AppIntents_212edf3d13b127f5", 3613390519321143, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): ConfirmationConditions { return callSDK<ConfirmationConditions>("AppIntents_0e503aef608672fa", 4463345732492553, undefined, [rawValue]); },
+  init(rawValue: number): ConfirmationConditions { return callSDK<ConfirmationConditions>("AppIntents_212edf3d13b127f5", 4463345732492553, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 18.0+
    */
-  getRawValue($self: ConfirmationConditions): number { return callSDK<number>("AppIntents_0e503aef608672fa", 3421961386317181, $self, []); }
+  getRawValue($self: ConfirmationConditions): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 3421961386317181, $self, []); }
 };
 
 /**
@@ -2262,7 +2306,7 @@ export interface ControlConfigurationIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -2287,7 +2331,7 @@ export interface CustomIntentMigratedAppIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -2348,7 +2392,7 @@ export interface DeleteIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -2365,7 +2409,7 @@ export interface DeprecatedAppIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -2390,41 +2434,46 @@ export class DisplayRepresentation extends SDKHandle {
    * init(stringLiteral value: String)
    * @availability iOS 16.0+
    */
-  static initStringLiteral(value: string): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 1345955071441743, undefined, [value]); }
+  static initStringLiteral(value: string): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 1345955071441743, undefined, [value]); }
   /**
    * var image: DisplayRepresentation.Image?
    * @availability iOS 16.0+
    */
-  get image(): $SDK27 { return callSDK<$SDK27>("AppIntents_0e503aef608672fa", 4385051338945236, this, []); }
-  set image(value: $SDK27) { callSDK<void>("AppIntents_0e503aef608672fa", 4372772071740221, this, [value]); }
+  get image(): $SDK27 { return callSDK<$SDK27>("AppIntents_212edf3d13b127f5", 4385051338945236, this, []); }
+  set image(value: $SDK27) { callSDK<void>("AppIntents_212edf3d13b127f5", 4372772071740221, this, [value]); }
   /**
    * var title: LocalizedStringResource
    * @availability iOS 16.0+
    */
-  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 196853226787178, this, []); }
-  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_0e503aef608672fa", 1911863525208545, this, [value]); }
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 196853226787178, this, []); }
+  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 1911863525208545, this, [value]); }
   /**
    * init(title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil, image: DisplayRepresentation.Image? = nil, synonyms: [LocalizedStringResource] = [])
    * @availability iOS 17.0+
    */
-  static initTitleSubtitleImageSynonyms(title: _Foundation_LocalizedStringResource, subtitle?: $SDK28, image?: $SDK27, synonyms?: $SDK26): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 294750604025818, undefined, [title, subtitle, image, synonyms]); }
+  static initTitleSubtitleImageSynonyms(title: _Foundation_LocalizedStringResource, subtitle?: $SDK28, image?: $SDK27, synonyms?: $SDK26): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 294750604025818, undefined, [title, subtitle, image, synonyms]); }
   /**
    * init(title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil, image: DisplayRepresentation.Image? = nil)
    * @availability iOS 16.0+
    */
-  static initTitleSubtitleImage(title: _Foundation_LocalizedStringResource, subtitle?: $SDK28, image?: $SDK27): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 3329349141497553, undefined, [title, subtitle, image]); }
+  static initTitleSubtitleImage(title: _Foundation_LocalizedStringResource, subtitle?: $SDK28, image?: $SDK27): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 3329349141497553, undefined, [title, subtitle, image]); }
+  /**
+   * init(title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil, synonyms: [LocalizedStringResource] = [], image: @escaping @Sendable () async throws -> DisplayRepresentation.Image?)
+   * @availability iOS 27.0+
+   */
+  static initTitleSubtitleSynonymsImage(title: _Foundation_LocalizedStringResource, subtitle: $SDK28, synonyms: $SDK26, image: (() => Promise<(DisplayRepresentation_Image) | null>)): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 4230957362960825, undefined, [title, subtitle, synonyms, image], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var subtitle: LocalizedStringResource?
    * @availability iOS 16.0+
    */
-  get subtitle(): $SDK28 { return callSDK<$SDK28>("AppIntents_0e503aef608672fa", 705164576620150, this, []); }
-  set subtitle(value: $SDK28) { callSDK<void>("AppIntents_0e503aef608672fa", 3134079490270504, this, [value]); }
+  get subtitle(): $SDK28 { return callSDK<$SDK28>("AppIntents_212edf3d13b127f5", 705164576620150, this, []); }
+  set subtitle(value: $SDK28) { callSDK<void>("AppIntents_212edf3d13b127f5", 3134079490270504, this, [value]); }
   /**
    * var synonyms: [LocalizedStringResource]
    * @availability iOS 17.0+
    */
-  get synonyms(): $SDK26 { return callSDK<$SDK26>("AppIntents_0e503aef608672fa", 1365050946498255, this, []); }
-  set synonyms(value: $SDK26) { callSDK<void>("AppIntents_0e503aef608672fa", 2717773148745932, this, [value]); }
+  get synonyms(): $SDK26 { return callSDK<$SDK26>("AppIntents_212edf3d13b127f5", 1365050946498255, this, []); }
+  set synonyms(value: $SDK26) { callSDK<void>("AppIntents_212edf3d13b127f5", 2717773148745932, this, [value]); }
   declare readonly $type: { "s:10AppIntents21DisplayRepresentationV": true };
 }
 
@@ -2443,47 +2492,47 @@ export class DisplayRepresentation_Image extends SDKHandle {
    * init(systemName name: String, isTemplate: Bool? = nil)
    * @availability iOS 16.0+
    */
-  static initSystemNameIsTemplate(name: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 4195503289066348, undefined, [name, isTemplate]); }
+  static initSystemNameIsTemplate(name: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 4195503289066348, undefined, [name, isTemplate]); }
   /**
    * init(url: URL, isTemplate: Bool? = nil, displayStyle: DisplayRepresentation.Image.DisplayStyle)
    * @availability iOS 17.0+
    */
-  static initUrlIsTemplateDisplayStyle(url: string, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 3386154384974219, undefined, [url, isTemplate, displayStyle]); }
+  static initUrlIsTemplateDisplayStyle(url: string, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 3386154384974219, undefined, [url, isTemplate, displayStyle]); }
   /**
    * init(url: URL, isTemplate: Bool? = nil)
    * @availability iOS 16.0+
    */
-  static initUrlIsTemplate(url: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 328981549745247, undefined, [url, isTemplate]); }
+  static initUrlIsTemplate(url: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 328981549745247, undefined, [url, isTemplate]); }
   /**
    * init(url: URL, width: Double, height: Double, isTemplate: Bool? = nil, displayStyle: DisplayRepresentation.Image.DisplayStyle)
    * @availability iOS 17.0+
    */
-  static initUrlWidthHeightIsTemplateDisplayStyle(url: string, width: number, height: number, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 2291316284356785, undefined, [url, width, height, isTemplate, displayStyle]); }
+  static initUrlWidthHeightIsTemplateDisplayStyle(url: string, width: number, height: number, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 2291316284356785, undefined, [url, width, height, isTemplate, displayStyle]); }
   /**
    * init(url: URL, width: Double, height: Double, isTemplate: Bool? = nil)
    * @availability iOS 16.0+
    */
-  static initUrlWidthHeightIsTemplate(url: string, width: number, height: number, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 3418998088988279, undefined, [url, width, height, isTemplate]); }
+  static initUrlWidthHeightIsTemplate(url: string, width: number, height: number, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 3418998088988279, undefined, [url, width, height, isTemplate]); }
   /**
    * init(data: Data, isTemplate: Bool? = nil, displayStyle: DisplayRepresentation.Image.DisplayStyle)
    * @availability iOS 17.0+
    */
-  static initDataIsTemplateDisplayStyle(data: ArrayBuffer, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 4362827233224242, undefined, [data, isTemplate, displayStyle]); }
+  static initDataIsTemplateDisplayStyle(data: ArrayBuffer, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 4362827233224242, undefined, [data, isTemplate, displayStyle]); }
   /**
    * init(data: Data, isTemplate: Bool? = nil)
    * @availability iOS 16.0+
    */
-  static initDataIsTemplate(data: ArrayBuffer, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 873736164284739, undefined, [data, isTemplate]); }
+  static initDataIsTemplate(data: ArrayBuffer, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 873736164284739, undefined, [data, isTemplate]); }
   /**
    * init(named name: String, isTemplate: Bool? = nil, displayStyle: DisplayRepresentation.Image.DisplayStyle)
    * @availability iOS 17.0+
    */
-  static initNamedIsTemplateDisplayStyle(name: string, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 2349634345249100, undefined, [name, isTemplate, displayStyle]); }
+  static initNamedIsTemplateDisplayStyle(name: string, isTemplate: (boolean) | null, displayStyle: DisplayRepresentation_Image_DisplayStyle): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 2349634345249100, undefined, [name, isTemplate, displayStyle]); }
   /**
    * init(named name: String, isTemplate: Bool? = nil)
    * @availability iOS 16.0+
    */
-  static initNamedIsTemplate(name: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_0e503aef608672fa", 322948571962501, undefined, [name, isTemplate]); }
+  static initNamedIsTemplate(name: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image { return callSDK<DisplayRepresentation_Image>("AppIntents_212edf3d13b127f5", 322948571962501, undefined, [name, isTemplate]); }
   declare readonly $type: { "s:10AppIntents21DisplayRepresentationV5ImageV": true };
 }
 
@@ -2496,12 +2545,12 @@ export class DisplayRepresentation_Image_DisplayStyle extends SDKHandle {
    * static var `default`: DisplayRepresentation.Image.DisplayStyle { get }
    * @availability iOS 17.0+
    */
-  static get default(): DisplayRepresentation_Image_DisplayStyle { return callSDK<DisplayRepresentation_Image_DisplayStyle>("AppIntents_0e503aef608672fa", 2242961144738812, undefined, []); }
+  static get default(): DisplayRepresentation_Image_DisplayStyle { return callSDK<DisplayRepresentation_Image_DisplayStyle>("AppIntents_212edf3d13b127f5", 2242961144738812, undefined, []); }
   /**
    * static var circular: DisplayRepresentation.Image.DisplayStyle { get }
    * @availability iOS 17.0+
    */
-  static get circular(): DisplayRepresentation_Image_DisplayStyle { return callSDK<DisplayRepresentation_Image_DisplayStyle>("AppIntents_0e503aef608672fa", 3625180977855963, undefined, []); }
+  static get circular(): DisplayRepresentation_Image_DisplayStyle { return callSDK<DisplayRepresentation_Image_DisplayStyle>("AppIntents_212edf3d13b127f5", 3625180977855963, undefined, []); }
   declare readonly $type: { "s:10AppIntents21DisplayRepresentationV5ImageV0C5StyleV": true };
 }
 
@@ -2544,7 +2593,7 @@ export class DoubleFromIntResolver extends SDKHandle {
    * func resolve(from input: Int, context: IntentParameterContext<Double>) async throws -> Double?
    * @availability iOS 16.0+
    */
-  resolve(input: number, context: $SDK29): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_0e503aef608672fa", 159652396701111, this, [input, context]); }
+  resolve(input: number, context: $SDK30): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_212edf3d13b127f5", 159652396701111, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents21DoubleFromIntResolverV": true };
 }
 
@@ -2575,7 +2624,7 @@ export class DoubleFromStringResolver extends SDKHandle {
    * func resolve(from input: String, context: IntentParameterContext<Double>) async throws -> Double?
    * @availability iOS 16.0+
    */
-  resolve(input: string, context: $SDK29): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_0e503aef608672fa", 4447602242834259, this, [input, context]); }
+  resolve(input: string, context: $SDK30): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_212edf3d13b127f5", 4447602242834259, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents24DoubleFromStringResolverV": true };
 }
 
@@ -2606,7 +2655,7 @@ export class DoubleResolver extends SDKHandle {
    * func resolve(from input: Double, context: IntentParameterContext<Double>) async throws -> Double?
    * @availability iOS 16.0+
    */
-  resolve(input: number, context: $SDK29): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_0e503aef608672fa", 1100580202012435, this, [input, context]); }
+  resolve(input: number, context: $SDK30): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_212edf3d13b127f5", 1100580202012435, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents14DoubleResolverV": true };
 }
 
@@ -2655,12 +2704,12 @@ export interface DynamicOptionsProvider {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
 }
 
 /**
@@ -2685,13 +2734,18 @@ export type DynamicOptionsProvider_ItemSection<R = unknown> = IntentItemSection<
  * typealias ParameterDependency = IntentParameterDependency
  * @availability iOS 17.0+
  */
-export type DynamicOptionsProvider_ParameterDependency = $SDK32;
+export type DynamicOptionsProvider_ParameterDependency = $SDK33;
 
 /**
  * struct EmptyResolverSpecification<Value> where Value : _IntentValue
  * @availability iOS 16.0+
  */
 export class EmptyResolverSpecification<Value = unknown> extends SDKHandle {
+  /**
+   * func makeIterator() -> IndexingIterator<[any Resolver]>
+   * @availability iOS 16.0+
+   */
+  makeIterator(): SDKHandle { return callSDK<SDKHandle>("AppIntents_212edf3d13b127f5", 579677578687353, this, []); }
   declare readonly $type: { "s:10AppIntents26EmptyResolverSpecificationV": true };
 }
 
@@ -2705,7 +2759,7 @@ export type EmptyResolverSpecification_Element<Value = unknown> = SDKHandle;
  * typealias Iterator = IndexingIterator<[any Resolver]>
  * @availability iOS 16.0+
  */
-export type EmptyResolverSpecification_Iterator<Value = unknown> = unknown;
+export type EmptyResolverSpecification_Iterator<Value = unknown> = SDKHandle;
 
 /**
  * typealias Output = Value
@@ -2722,25 +2776,25 @@ export class EmptySnippetIntent extends SDKHandle {
    * static var isDiscoverable: Bool
    * @availability iOS 26.0+
    */
-  static get isDiscoverable(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 3516221917839790, undefined, []); }
-  static set isDiscoverable(value: boolean) { callSDK<void>("AppIntents_0e503aef608672fa", 327491818924823, undefined, [value]); }
+  static get isDiscoverable(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 3516221917839790, undefined, []); }
+  static set isDiscoverable(value: boolean) { callSDK<void>("AppIntents_212edf3d13b127f5", 327491818924823, undefined, [value]); }
   /**
    * static var title: LocalizedStringResource
    * @availability iOS 26.0+
    */
-  static get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 3332668175996484, undefined, []); }
-  static set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_0e503aef608672fa", 4333058167151700, undefined, [value]); }
+  static get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 3332668175996484, undefined, []); }
+  static set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 4333058167151700, undefined, [value]); }
   /**
    * func perform() async throws -> some ShowsSnippetView
   
    * @availability iOS 26.0+
    */
-  perform(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("AppIntents_0e503aef608672fa", 293746278906358, this, []); }
+  perform(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("AppIntents_212edf3d13b127f5", 293746278906358, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): EmptySnippetIntent { return callSDK<EmptySnippetIntent>("AppIntents_0e503aef608672fa", 790966509333697, undefined, []); }
+  static init(): EmptySnippetIntent { return callSDK<EmptySnippetIntent>("AppIntents_212edf3d13b127f5", 790966509333697, undefined, []); }
   declare readonly $type: { "s:10AppIntents18EmptySnippetIntentV": true };
 }
 
@@ -2815,6 +2869,31 @@ export type EmptySnippetIntent_When = $SDK9;
  * @availability iOS 27.0+
  */
 export class EntityCollection<Entity = unknown> extends SDKHandle {
+  /**
+   * var startIndex: Int { get }
+   * @availability iOS 27.0+
+   */
+  get startIndex(): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 3551514424506356, this, []); }
+  /**
+   * var count: Int { get }
+   * @availability iOS 27.0+
+   */
+  get count(): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 3050687507685210, this, []); }
+  /**
+   * func index(after i: Int) -> Int
+   * @availability iOS 27.0+
+   */
+  index(i: number): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 3270419215856649, this, [i]); }
+  /**
+   * var isEmpty: Bool { get }
+   * @availability iOS 27.0+
+   */
+  get isEmpty(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 149862693553682, this, []); }
+  /**
+   * var endIndex: Int { get }
+   * @availability iOS 27.0+
+   */
+  get endIndex(): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 1592435366419002, this, []); }
   declare readonly $type: { "s:10AppIntents16EntityCollectionV": true };
 }
 
@@ -2881,28 +2960,28 @@ export class EntityIdentifier extends SDKHandle {
    * init?(activityIdentifier: String)
    * @availability iOS 18.0+
    */
-  static init(activityIdentifier: string): (EntityIdentifier) | null { return callSDK<(EntityIdentifier) | null>("AppIntents_0e503aef608672fa", 995225169418240, undefined, [activityIdentifier]); }
+  static init(activityIdentifier: string): (EntityIdentifier) | null { return callSDK<(EntityIdentifier) | null>("AppIntents_212edf3d13b127f5", 995225169418240, undefined, [activityIdentifier]); }
   /**
    * let identifier: String
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 562624975332737, this, []); }
+  get identifier(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 562624975332737, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 4081700613758513, this, []); }
+  get description(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 4081700613758513, this, []); }
   /**
    * static let valueMaximumLength: Int
    * @availability iOS 16.0+
    */
-  static get valueMaximumLength(): number { return callSDK<number>("AppIntents_0e503aef608672fa", 925766700169709, undefined, []); }
+  static get valueMaximumLength(): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 925766700169709, undefined, []); }
   /**
    * static var defaultResolverSpecification: EmptyResolverSpecification<EntityIdentifier>
    * @availability iOS 16.0+
    */
-  static get defaultResolverSpecification(): $SDK34 { return callSDK<$SDK34>("AppIntents_0e503aef608672fa", 2650055287687346, undefined, []); }
-  static set defaultResolverSpecification(value: $SDK34) { callSDK<void>("AppIntents_0e503aef608672fa", 670391077017330, undefined, [value]); }
+  static get defaultResolverSpecification(): $SDK35 { return callSDK<$SDK35>("AppIntents_212edf3d13b127f5", 2650055287687346, undefined, []); }
+  static set defaultResolverSpecification(value: $SDK35) { callSDK<void>("AppIntents_212edf3d13b127f5", 670391077017330, undefined, [value]); }
   declare readonly $type: { "s:10AppIntents16EntityIdentifierV": true };
 }
 
@@ -2910,7 +2989,7 @@ export class EntityIdentifier extends SDKHandle {
  * typealias Specification = EmptyResolverSpecification<EntityIdentifier>
  * @availability iOS 16.0+
  */
-export type EntityIdentifier_Specification = $SDK34;
+export type EntityIdentifier_Specification = $SDK35;
 
 /**
  * typealias UnwrappedType = EntityIdentifier
@@ -2947,27 +3026,27 @@ export const EntityOwnership = {
    * static let `public`: EntityOwnership
    * @availability iOS 27.0+
    */
-  get public(): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_0e503aef608672fa", 1424507513425601, undefined, []); },
+  get public(): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_212edf3d13b127f5", 1424507513425601, undefined, []); },
   /**
    * static let shared: EntityOwnership
    * @availability iOS 27.0+
    */
-  get shared(): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_0e503aef608672fa", 1147595947400766, undefined, []); },
+  get shared(): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_212edf3d13b127f5", 1147595947400766, undefined, []); },
   /**
    * static let unknown: EntityOwnership
    * @availability iOS 27.0+
    */
-  get unknown(): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_0e503aef608672fa", 1066377919878977, undefined, []); },
+  get unknown(): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_212edf3d13b127f5", 1066377919878977, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_0e503aef608672fa", 3747481663385637, undefined, [rawValue]); },
+  init(rawValue: number): EntityOwnership { return callSDK<EntityOwnership>("AppIntents_212edf3d13b127f5", 3747481663385637, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 27.0+
    */
-  getRawValue($self: EntityOwnership): number { return callSDK<number>("AppIntents_0e503aef608672fa", 119523012971145, $self, []); }
+  getRawValue($self: EntityOwnership): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 119523012971145, $self, []); }
 };
 
 /**
@@ -2993,6 +3072,27 @@ export type EntityOwnership_RawValue = number;
  * @availability iOS 16.0+
  */
 export class EntityProperty<Value = unknown> extends SDKHandle {
+  /**
+   * final var isOptional: Bool { get }
+   * @availability iOS 16.0+
+   */
+  get isOptional(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 3005501116415508, this, []); }
+  /**
+   * final var description: String { get }
+   * @availability iOS 18.4+
+   */
+  get description(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 3788471194487103, this, []); }
+  /**
+   * final var projectedValue: EntityProperty<Value> { get }
+   * @availability iOS 16.0+
+   */
+  get projectedValue(): EntityProperty<SDKHandle> { return callSDK<EntityProperty<SDKHandle>>("AppIntents_212edf3d13b127f5", 4061345193500223, this, []); }
+  /**
+   * final var title: LocalizedStringResource { get set }
+   * @availability iOS 16.0+
+   */
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 1230285903250607, this, []); }
+  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 1746866241273712, this, [value]); }
   declare readonly $type: { "s:10AppIntents14EntityPropertyC": true };
 }
 
@@ -3007,23 +3107,23 @@ export const EntityPropertyModifiers = {
    * static let async: EntityPropertyModifiers
    * @availability iOS 26.0+
    */
-  get async(): EntityPropertyModifiers { return callSDK<EntityPropertyModifiers>("AppIntents_0e503aef608672fa", 2861757012433871, undefined, []); },
+  get async(): EntityPropertyModifiers { return callSDK<EntityPropertyModifiers>("AppIntents_212edf3d13b127f5", 2861757012433871, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): EntityPropertyModifiers { return callSDK<EntityPropertyModifiers>("AppIntents_0e503aef608672fa", 4224524981327193, undefined, [rawValue]); },
+  init(rawValue: number): EntityPropertyModifiers { return callSDK<EntityPropertyModifiers>("AppIntents_212edf3d13b127f5", 4224524981327193, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: EntityPropertyModifiers): number { return callSDK<number>("AppIntents_0e503aef608672fa", 4196946750293140, $self, []); },
-  setRawValue($self: EntityPropertyModifiers, value: number): void { return callSDK<void>("AppIntents_0e503aef608672fa", 1478470556935195, $self, [value]); },
+  getRawValue($self: EntityPropertyModifiers): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 4196946750293140, $self, []); },
+  setRawValue($self: EntityPropertyModifiers, value: number): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 1478470556935195, $self, [value]); },
   /**
    * static let readOnly: EntityPropertyModifiers
    * @availability iOS 26.0+
    */
-  get readOnly(): EntityPropertyModifiers { return callSDK<EntityPropertyModifiers>("AppIntents_0e503aef608672fa", 410253302567430, undefined, []); }
+  get readOnly(): EntityPropertyModifiers { return callSDK<EntityPropertyModifiers>("AppIntents_212edf3d13b127f5", 410253302567430, undefined, []); }
 };
 
 /**
@@ -3053,12 +3153,12 @@ export interface EntityPropertyQuery {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -3068,22 +3168,22 @@ export interface EntityPropertyQuery {
    * func entities(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity]
    * @availability iOS 16.0+
    */
-  "entitiesFor"?: (arg0: Array<unknown>) => Array<unknown>;
+  "entitiesFor"?: (arg0: Array<unknown>) => Promise<Array<unknown>>;
   /**
    * func suggestedEntities() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "suggestedEntities"?: () => unknown;
+  "suggestedEntities"?: () => Promise<unknown>;
   /**
    * func displayRepresentations(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity.ID : DisplayRepresentation]
    * @availability iOS 27.0+
    */
-  "displayRepresentationsFor"?: (arg0: Array<unknown>) => $SDK35;
+  "displayRepresentationsFor"?: (arg0: Array<unknown>) => Promise<$SDK37>;
   /**
    * func entities(matching comparators: [Self.ComparatorMappingType], mode: Self.ComparatorMode, sortedBy: [EntityQuerySort<Self.Entity>], limit: Int?) async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "entitiesMatchingModeSortedByLimit"?: (arg0: Array<unknown>, arg1: EntityQueryComparatorMode, arg2: Array<EntityQuerySort<unknown>>, arg3: (number) | null) => unknown;
+  "entitiesMatchingModeSortedByLimit"?: (arg0: Array<unknown>, arg1: EntityQueryComparatorMode, arg2: Array<EntityQuerySort<unknown>>, arg3: (number) | null) => Promise<unknown>;
 }
 
 /**
@@ -3131,12 +3231,12 @@ export interface EntityQuery {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -3146,17 +3246,17 @@ export interface EntityQuery {
    * func entities(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity]
    * @availability iOS 16.0+
    */
-  "entitiesFor"?: (arg0: Array<unknown>) => Array<unknown>;
+  "entitiesFor"?: (arg0: Array<unknown>) => Promise<Array<unknown>>;
   /**
    * func suggestedEntities() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "suggestedEntities"?: () => unknown;
+  "suggestedEntities"?: () => Promise<unknown>;
   /**
    * func displayRepresentations(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity.ID : DisplayRepresentation]
    * @availability iOS 27.0+
    */
-  "displayRepresentationsFor"?: (arg0: Array<unknown>) => $SDK35;
+  "displayRepresentationsFor"?: (arg0: Array<unknown>) => Promise<$SDK37>;
 }
 
 /**
@@ -3184,6 +3284,11 @@ export class EntityQueryComparatorsBuilder<Entity = unknown, Subject = unknown, 
  * @availability iOS 16.0+
  */
 export class EntityQueryProperties<Entity = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+  /**
+   * subscript(index: Int) -> EntityQueryPropertyDeclaration<Entity, ComparatorMappingType> { get }
+   * @availability iOS 16.0+
+   */
+  subscript(index: number): EntityQueryPropertyDeclaration<SDKHandle, unknown> { return callSDK<EntityQueryPropertyDeclaration<SDKHandle, unknown>>("AppIntents_212edf3d13b127f5", 4140169960448619, this, [index]); }
   declare readonly $type: { "s:10AppIntents21EntityQueryPropertiesV": true };
 }
 
@@ -3222,6 +3327,11 @@ export type EntityQueryProperty_QueryComparators<Entity = unknown, Subject = unk
  * @availability iOS 16.0+
  */
 export class EntityQuerySort<Entity = unknown> extends SDKHandle {
+  /**
+   * let order: EntityQuerySort<Entity>.Ordering
+   * @availability iOS 16.0+
+   */
+  get order(): EntityQuerySort_Ordering<SDKHandle> { return callSDK<EntityQuerySort_Ordering<SDKHandle>>("AppIntents_212edf3d13b127f5", 3132769053622309, this, []); }
   declare readonly $type: { "s:10AppIntents15EntityQuerySortV": true };
 }
 
@@ -3244,6 +3354,11 @@ export class EntityQuerySortableByProperty<Entity = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  */
 export class EntityQuerySortingOptions<Entity = unknown> extends SDKHandle {
+  /**
+   * subscript(index: Int) -> EntityQuerySortableByProperty<Entity> { get }
+   * @availability iOS 16.0+
+   */
+  subscript(index: number): EntityQuerySortableByProperty<SDKHandle> { return callSDK<EntityQuerySortableByProperty<SDKHandle>>("AppIntents_212edf3d13b127f5", 3536803859992182, this, [index]); }
   declare readonly $type: { "s:10AppIntents25EntityQuerySortingOptionsV": true };
 }
 
@@ -3264,12 +3379,12 @@ export interface EntityStringQuery {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -3279,22 +3394,22 @@ export interface EntityStringQuery {
    * func entities(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity]
    * @availability iOS 16.0+
    */
-  "entitiesFor"?: (arg0: Array<unknown>) => Array<unknown>;
+  "entitiesFor"?: (arg0: Array<unknown>) => Promise<Array<unknown>>;
   /**
    * func suggestedEntities() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "suggestedEntities"?: () => unknown;
+  "suggestedEntities"?: () => Promise<unknown>;
   /**
    * func displayRepresentations(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity.ID : DisplayRepresentation]
    * @availability iOS 27.0+
    */
-  "displayRepresentationsFor"?: (arg0: Array<unknown>) => $SDK35;
+  "displayRepresentationsFor"?: (arg0: Array<unknown>) => Promise<$SDK37>;
   /**
    * func entities(matching string: String) async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "entitiesMatching"?: (arg0: string) => unknown;
+  "entitiesMatching"?: (arg0: string) => Promise<unknown>;
 }
 
 /**
@@ -3316,6 +3431,16 @@ export type EntityURLRepresentation_ExtendedGraphemeClusterLiteralType<Entity = 
  * @availability iOS 18.0+
  */
 export class EntityURLRepresentation_StringInterpolation<Entity = unknown> extends SDKHandle {
+  /**
+   * mutating func appendInterpolation(_ subject: EntityURLRepresentation<Entity>.StringInterpolation.Token)
+   * @availability iOS 18.0+
+   */
+  appendInterpolation(subject: EntityURLRepresentation_StringInterpolation_Token<SDKHandle>): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 2479765594877605, this, [subject]); }
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 18.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 3349050020040311, this, [literal]); }
   declare readonly $type: { "s:10AppIntents23EntityURLRepresentationV19StringInterpolationV": true };
 }
 
@@ -3352,12 +3477,12 @@ export interface EnumerableEntityQuery {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -3367,22 +3492,22 @@ export interface EnumerableEntityQuery {
    * func entities(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity]
    * @availability iOS 16.0+
    */
-  "entitiesFor"?: (arg0: Array<unknown>) => Array<unknown>;
+  "entitiesFor"?: (arg0: Array<unknown>) => Promise<Array<unknown>>;
   /**
    * func suggestedEntities() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "suggestedEntities"?: () => unknown;
+  "suggestedEntities"?: () => Promise<unknown>;
   /**
    * func displayRepresentations(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity.ID : DisplayRepresentation]
    * @availability iOS 27.0+
    */
-  "displayRepresentationsFor"?: (arg0: Array<unknown>) => $SDK35;
+  "displayRepresentationsFor"?: (arg0: Array<unknown>) => Promise<$SDK37>;
   /**
    * func allEntities() async throws -> Self.Result
    * @availability iOS 17.0+
    */
-  "allEntities"?: () => unknown;
+  "allEntities"?: () => Promise<unknown>;
 }
 
 /**
@@ -3436,6 +3561,16 @@ export type EnumURLRepresentation_ExtendedGraphemeClusterLiteralType<Enum = unkn
  * @availability iOS 18.0+
  */
 export class EnumURLRepresentation_StringInterpolation<Enum = unknown> extends SDKHandle {
+  /**
+   * mutating func appendInterpolation(_ subject: EnumURLRepresentation<Enum>.StringInterpolation.Token)
+   * @availability iOS 18.0+
+   */
+  appendInterpolation(subject: EnumURLRepresentation_StringInterpolation_Token<SDKHandle>): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 3923072067534449, this, [subject]); }
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 18.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 3422332567293660, this, [literal]); }
   declare readonly $type: { "s:10AppIntents21EnumURLRepresentationV19StringInterpolationV": true };
 }
 
@@ -3494,37 +3629,37 @@ export class FileEntityIdentifier extends SDKHandle {
    * var draftIdentifier: String? { get }
    * @availability iOS 18.0+
    */
-  get draftIdentifier(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 3845086475767018, this, []); }
+  get draftIdentifier(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 3845086475767018, this, []); }
   /**
    * static func entityIdentifier(for entityIdentifierString: String) -> FileEntityIdentifier?
    * @availability iOS 18.0+
    */
-  static entityIdentifier(entityIdentifierString: string): (FileEntityIdentifier) | null { return callSDK<(FileEntityIdentifier) | null>("AppIntents_0e503aef608672fa", 790757557250348, undefined, [entityIdentifierString]); }
+  static entityIdentifier(entityIdentifierString: string): (FileEntityIdentifier) | null { return callSDK<(FileEntityIdentifier) | null>("AppIntents_212edf3d13b127f5", 790757557250348, undefined, [entityIdentifierString]); }
   /**
    * var entityIdentifierString: String { get }
    * @availability iOS 18.0+
    */
-  get entityIdentifierString(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 1723600468880877, this, []); }
+  get entityIdentifierString(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 1723600468880877, this, []); }
   /**
    * static func file(url: URL) throws -> FileEntityIdentifier
    * @availability iOS 18.0+
    */
-  static file(url: string): FileEntityIdentifier { return callSDK<FileEntityIdentifier>("AppIntents_0e503aef608672fa", 2294306910439032, undefined, [url]); }
+  static file(url: string): FileEntityIdentifier { return callSDK<FileEntityIdentifier>("AppIntents_212edf3d13b127f5", 2294306910439032, undefined, [url]); }
   /**
    * static func draft(identifier: String) -> FileEntityIdentifier
    * @availability iOS 18.0+
    */
-  static draft(identifier: string): FileEntityIdentifier { return callSDK<FileEntityIdentifier>("AppIntents_0e503aef608672fa", 3772862171348411, undefined, [identifier]); }
+  static draft(identifier: string): FileEntityIdentifier { return callSDK<FileEntityIdentifier>("AppIntents_212edf3d13b127f5", 3772862171348411, undefined, [identifier]); }
   /**
    * var fileURL: URL? { get async throws }
    * @availability iOS 18.0+
    */
-  get fileURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("AppIntents_0e503aef608672fa", 1863790058840238, this, []); }
+  get fileURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("AppIntents_212edf3d13b127f5", 1863790058840238, this, []); }
   /**
    * var isDraft: Bool { get }
    * @availability iOS 18.0+
    */
-  get isDraft(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 4395470464443963, this, []); }
+  get isDraft(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 4395470464443963, this, []); }
   declare readonly $type: { "s:10AppIntents20FileEntityIdentifierV": true };
 }
 
@@ -3537,22 +3672,22 @@ export class FocusFilterAppContext extends SDKHandle {
    * init(notificationFilterPredicate: NSPredicate? = nil, targetContentIdentifierPrefix: String? = nil)
    * @availability iOS 17.0+
    */
-  static initNotificationFilterPredicateTargetContentIdentifierPrefix(notificationFilterPredicate?: $SDK45, targetContentIdentifierPrefix?: (string) | null): FocusFilterAppContext { return callSDK<FocusFilterAppContext>("AppIntents_0e503aef608672fa", 1566474243642517, undefined, [notificationFilterPredicate, targetContentIdentifierPrefix]); }
+  static initNotificationFilterPredicateTargetContentIdentifierPrefix(notificationFilterPredicate?: $SDK52, targetContentIdentifierPrefix?: (string) | null): FocusFilterAppContext { return callSDK<FocusFilterAppContext>("AppIntents_212edf3d13b127f5", 1566474243642517, undefined, [notificationFilterPredicate, targetContentIdentifierPrefix]); }
   /**
    * init(notificationFilterPredicate: NSPredicate? = nil)
    * @availability iOS 16.0+
    */
-  static initNotificationFilterPredicate(notificationFilterPredicate?: $SDK45): FocusFilterAppContext { return callSDK<FocusFilterAppContext>("AppIntents_0e503aef608672fa", 111961060574616, undefined, [notificationFilterPredicate]); }
+  static initNotificationFilterPredicate(notificationFilterPredicate?: $SDK52): FocusFilterAppContext { return callSDK<FocusFilterAppContext>("AppIntents_212edf3d13b127f5", 111961060574616, undefined, [notificationFilterPredicate]); }
   /**
    * let notificationFilterPredicate: NSPredicate?
    * @availability iOS 16.0+
    */
-  get notificationFilterPredicate(): $SDK45 { return callSDK<$SDK45>("AppIntents_0e503aef608672fa", 3120852720912942, this, []); }
+  get notificationFilterPredicate(): $SDK52 { return callSDK<$SDK52>("AppIntents_212edf3d13b127f5", 3120852720912942, this, []); }
   /**
    * let targetContentIdentifierPrefix: String?
    * @availability iOS 17.0+
    */
-  get targetContentIdentifierPrefix(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 2217252319909313, this, []); }
+  get targetContentIdentifierPrefix(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 2217252319909313, this, []); }
   declare readonly $type: { "s:10AppIntents011FocusFilterA7ContextV": true };
 }
 
@@ -3574,7 +3709,7 @@ export interface ForegroundContinuableIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -3637,12 +3772,12 @@ export interface IndexedEntityQuery {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -3652,17 +3787,17 @@ export interface IndexedEntityQuery {
    * func entities(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity]
    * @availability iOS 16.0+
    */
-  "entitiesFor"?: (arg0: Array<unknown>) => Array<unknown>;
+  "entitiesFor"?: (arg0: Array<unknown>) => Promise<Array<unknown>>;
   /**
    * func suggestedEntities() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "suggestedEntities"?: () => unknown;
+  "suggestedEntities"?: () => Promise<unknown>;
   /**
    * func displayRepresentations(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity.ID : DisplayRepresentation]
    * @availability iOS 27.0+
    */
-  "displayRepresentationsFor"?: (arg0: Array<unknown>) => $SDK35;
+  "displayRepresentationsFor"?: (arg0: Array<unknown>) => Promise<$SDK37>;
   /**
    * func reindexEntities(for identifiers: [Self.Entity.ID], indexDescription: CSSearchableIndexDescription) async throws
    * @availability iOS 27.0+
@@ -3722,17 +3857,17 @@ export class IntentCancellationReason extends SDKHandle {
    * static var userCancelled: IntentCancellationReason { get }
    * @availability iOS 26.4+
    */
-  static get userCancelled(): IntentCancellationReason { return callSDK<IntentCancellationReason>("AppIntents_0e503aef608672fa", 2430211704260167, undefined, []); }
+  static get userCancelled(): IntentCancellationReason { return callSDK<IntentCancellationReason>("AppIntents_212edf3d13b127f5", 2430211704260167, undefined, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 26.4+
    */
-  get debugDescription(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 4095290574972706, this, []); }
+  get debugDescription(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 4095290574972706, this, []); }
   /**
    * static var timeout: IntentCancellationReason { get }
    * @availability iOS 26.4+
    */
-  static get timeout(): IntentCancellationReason { return callSDK<IntentCancellationReason>("AppIntents_0e503aef608672fa", 1546371285052171, undefined, []); }
+  static get timeout(): IntentCancellationReason { return callSDK<IntentCancellationReason>("AppIntents_212edf3d13b127f5", 1546371285052171, undefined, []); }
   declare readonly $type: { "s:10AppIntents24IntentCancellationReasonV": true };
 }
 
@@ -3745,22 +3880,22 @@ export class IntentChoiceOption extends SDKHandle {
    * let style: IntentChoiceOption.Style
    * @availability iOS 26.0+
    */
-  get style(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_0e503aef608672fa", 3409516962999276, this, []); }
+  get style(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_212edf3d13b127f5", 3409516962999276, this, []); }
   /**
    * let title: LocalizedStringResource
    * @availability iOS 26.0+
    */
-  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 1864481598365726, this, []); }
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 1864481598365726, this, []); }
   /**
    * init(title: LocalizedStringResource, style: IntentChoiceOption.Style = .default)
    * @availability iOS 26.0+
    */
-  static init(title: _Foundation_LocalizedStringResource, style?: IntentChoiceOption_Style): IntentChoiceOption { return callSDK<IntentChoiceOption>("AppIntents_0e503aef608672fa", 3476021225537510, undefined, [title, style]); }
+  static init(title: _Foundation_LocalizedStringResource, style?: IntentChoiceOption_Style): IntentChoiceOption { return callSDK<IntentChoiceOption>("AppIntents_212edf3d13b127f5", 3476021225537510, undefined, [title, style]); }
   /**
    * static var cancel: IntentChoiceOption { get }
    * @availability iOS 26.0+
    */
-  static get cancel(): IntentChoiceOption { return callSDK<IntentChoiceOption>("AppIntents_0e503aef608672fa", 2914062598325634, undefined, []); }
+  static get cancel(): IntentChoiceOption { return callSDK<IntentChoiceOption>("AppIntents_212edf3d13b127f5", 2914062598325634, undefined, []); }
   declare readonly $type: { "s:10AppIntents18IntentChoiceOptionV": true };
 }
 
@@ -3773,17 +3908,17 @@ export class IntentChoiceOption_Style extends SDKHandle {
    * static var destructive: IntentChoiceOption.Style { get }
    * @availability iOS 26.0+
    */
-  static get destructive(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_0e503aef608672fa", 3012123427779200, undefined, []); }
+  static get destructive(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_212edf3d13b127f5", 3012123427779200, undefined, []); }
   /**
    * static var cancel: IntentChoiceOption.Style { get }
    * @availability iOS 26.0+
    */
-  static get cancel(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_0e503aef608672fa", 4318610793110659, undefined, []); }
+  static get cancel(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_212edf3d13b127f5", 4318610793110659, undefined, []); }
   /**
    * static var `default`: IntentChoiceOption.Style { get }
    * @availability iOS 26.0+
    */
-  static get default(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_0e503aef608672fa", 4444976939616893, undefined, []); }
+  static get default(): IntentChoiceOption_Style { return callSDK<IntentChoiceOption_Style>("AppIntents_212edf3d13b127f5", 4444976939616893, undefined, []); }
   declare readonly $type: { "s:10AppIntents18IntentChoiceOptionV5StyleV": true };
 }
 
@@ -3796,7 +3931,7 @@ export class IntentCollectionSize extends SDKHandle {
    * init(integerLiteral value: Int)
    * @availability iOS 17.0+
    */
-  static init(value: number): IntentCollectionSize { return callSDK<IntentCollectionSize>("AppIntents_0e503aef608672fa", 4218474966327948, undefined, [value]); }
+  static init(value: number): IntentCollectionSize { return callSDK<IntentCollectionSize>("AppIntents_212edf3d13b127f5", 4218474966327948, undefined, [value]); }
   declare readonly $type: { "s:10AppIntents20IntentCollectionSizeV": true };
 }
 
@@ -3815,32 +3950,32 @@ export class IntentCurrencyAmount extends SDKHandle {
    * let currencyCode: String
    * @availability iOS 16.0+
    */
-  get currencyCode(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 3760580068648441, this, []); }
+  get currencyCode(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 3760580068648441, this, []); }
   /**
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 2741844466221541, this, []); }
+  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 2741844466221541, this, []); }
   /**
    * static var typeDisplayRepresentation: TypeDisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 4480601289273300, undefined, []); }
+  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 4480601289273300, undefined, []); }
   /**
    * static var defaultResolverSpecification: EmptyResolverSpecification<IntentCurrencyAmount> { get }
    * @availability iOS 16.0+
    */
-  static get defaultResolverSpecification(): $SDK46 { return callSDK<$SDK46>("AppIntents_0e503aef608672fa", 487847318160492, undefined, []); }
+  static get defaultResolverSpecification(): $SDK53 { return callSDK<$SDK53>("AppIntents_212edf3d13b127f5", 487847318160492, undefined, []); }
   /**
    * init(amount: Decimal, currencyCode: String)
    * @availability iOS 16.0+
    */
-  static init(amount: _Foundation_Decimal, currencyCode: string): IntentCurrencyAmount { return callSDK<IntentCurrencyAmount>("AppIntents_0e503aef608672fa", 3138775508212423, undefined, [amount, currencyCode]); }
+  static init(amount: _Foundation_Decimal, currencyCode: string): IntentCurrencyAmount { return callSDK<IntentCurrencyAmount>("AppIntents_212edf3d13b127f5", 3138775508212423, undefined, [amount, currencyCode]); }
   /**
    * let amount: Decimal
    * @availability iOS 16.0+
    */
-  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("AppIntents_0e503aef608672fa", 822393426367539, this, []); }
+  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("AppIntents_212edf3d13b127f5", 822393426367539, this, []); }
   declare readonly $type: { "s:10AppIntents20IntentCurrencyAmountV": true };
 }
 
@@ -3848,7 +3983,7 @@ export class IntentCurrencyAmount extends SDKHandle {
  * typealias Specification = EmptyResolverSpecification<IntentCurrencyAmount>
  * @availability iOS 16.0+
  */
-export type IntentCurrencyAmount_Specification = $SDK46;
+export type IntentCurrencyAmount_Specification = $SDK53;
 
 /**
  * typealias UnwrappedType = IntentCurrencyAmount
@@ -3868,10 +4003,16 @@ export type IntentCurrencyAmount_ValueType = IntentCurrencyAmount;
  */
 export class IntentDeprecation<ReplacementIntent = unknown> extends SDKHandle {
   /**
+   * var message: LocalizedStringResource
+   * @availability iOS 17.0+
+   */
+  get message(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 3988722627958872, this, []); }
+  set message(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 525697090122919, this, [value]); }
+  /**
    * init(message: LocalizedStringResource) where ReplacementIntent == Never
    * @availability iOS 17.0+
    */
-  static init(message: _Foundation_LocalizedStringResource): IntentDeprecation<never> { return callSDK<IntentDeprecation<never>>("AppIntents_0e503aef608672fa", 2695900985583034, undefined, [message]); }
+  static init(message: _Foundation_LocalizedStringResource): IntentDeprecation<never> { return callSDK<IntentDeprecation<never>>("AppIntents_212edf3d13b127f5", 2695900985583034, undefined, [message]); }
   declare readonly $type: { "s:10AppIntents17IntentDeprecationV": true };
 }
 
@@ -3884,41 +4025,41 @@ export class IntentDescription extends SDKHandle {
    * var categoryName: LocalizedStringResource?
    * @availability iOS 16.0+
    */
-  get categoryName(): $SDK28 { return callSDK<$SDK28>("AppIntents_0e503aef608672fa", 368807311870932, this, []); }
-  set categoryName(value: $SDK28) { callSDK<void>("AppIntents_0e503aef608672fa", 2071856274601760, this, [value]); }
+  get categoryName(): $SDK28 { return callSDK<$SDK28>("AppIntents_212edf3d13b127f5", 368807311870932, this, []); }
+  set categoryName(value: $SDK28) { callSDK<void>("AppIntents_212edf3d13b127f5", 2071856274601760, this, [value]); }
   /**
    * init(stringLiteral value: String)
    * @availability iOS 16.0+
    */
-  static initStringLiteral(value: string): IntentDescription { return callSDK<IntentDescription>("AppIntents_0e503aef608672fa", 1281322472861231, undefined, [value]); }
+  static initStringLiteral(value: string): IntentDescription { return callSDK<IntentDescription>("AppIntents_212edf3d13b127f5", 1281322472861231, undefined, [value]); }
   /**
    * var searchKeywords: [LocalizedStringResource]
    * @availability iOS 16.0+
    */
-  get searchKeywords(): $SDK26 { return callSDK<$SDK26>("AppIntents_0e503aef608672fa", 2737154236002679, this, []); }
-  set searchKeywords(value: $SDK26) { callSDK<void>("AppIntents_0e503aef608672fa", 1468192915152351, this, [value]); }
+  get searchKeywords(): $SDK26 { return callSDK<$SDK26>("AppIntents_212edf3d13b127f5", 2737154236002679, this, []); }
+  set searchKeywords(value: $SDK26) { callSDK<void>("AppIntents_212edf3d13b127f5", 1468192915152351, this, [value]); }
   /**
    * var descriptionText: LocalizedStringResource
    * @availability iOS 16.0+
    */
-  get descriptionText(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 3509230293597833, this, []); }
-  set descriptionText(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_0e503aef608672fa", 1058199472925351, this, [value]); }
+  get descriptionText(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 3509230293597833, this, []); }
+  set descriptionText(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 1058199472925351, this, [value]); }
   /**
    * var resultValueName: LocalizedStringResource?
    * @availability iOS 17.0+
    */
-  get resultValueName(): $SDK28 { return callSDK<$SDK28>("AppIntents_0e503aef608672fa", 3774721824785335, this, []); }
-  set resultValueName(value: $SDK28) { callSDK<void>("AppIntents_0e503aef608672fa", 2905835034332462, this, [value]); }
+  get resultValueName(): $SDK28 { return callSDK<$SDK28>("AppIntents_212edf3d13b127f5", 3774721824785335, this, []); }
+  set resultValueName(value: $SDK28) { callSDK<void>("AppIntents_212edf3d13b127f5", 2905835034332462, this, [value]); }
   /**
    * init(_ descriptionText: LocalizedStringResource, categoryName: LocalizedStringResource? = nil, searchKeywords: [LocalizedStringResource] = [], resultValueName: LocalizedStringResource?)
    * @availability iOS 17.0+
    */
-  static initCategoryNameSearchKeywordsResultValueName(descriptionText: _Foundation_LocalizedStringResource, categoryName?: $SDK28, searchKeywords?: $SDK26, resultValueName?: $SDK28): IntentDescription { return callSDK<IntentDescription>("AppIntents_0e503aef608672fa", 3713051737981012, undefined, [descriptionText, categoryName, searchKeywords, resultValueName]); }
+  static initCategoryNameSearchKeywordsResultValueName(descriptionText: _Foundation_LocalizedStringResource, categoryName?: $SDK28, searchKeywords?: $SDK26, resultValueName?: $SDK28): IntentDescription { return callSDK<IntentDescription>("AppIntents_212edf3d13b127f5", 3713051737981012, undefined, [descriptionText, categoryName, searchKeywords, resultValueName]); }
   /**
    * init(_ descriptionText: LocalizedStringResource, categoryName: LocalizedStringResource? = nil, searchKeywords: [LocalizedStringResource] = [])
    * @availability iOS 16.0+
    */
-  static initCategoryNameSearchKeywords(descriptionText: _Foundation_LocalizedStringResource, categoryName?: $SDK28, searchKeywords?: $SDK26): IntentDescription { return callSDK<IntentDescription>("AppIntents_0e503aef608672fa", 2217838555963987, undefined, [descriptionText, categoryName, searchKeywords]); }
+  static initCategoryNameSearchKeywords(descriptionText: _Foundation_LocalizedStringResource, categoryName?: $SDK28, searchKeywords?: $SDK26): IntentDescription { return callSDK<IntentDescription>("AppIntents_212edf3d13b127f5", 2217838555963987, undefined, [descriptionText, categoryName, searchKeywords]); }
   declare readonly $type: { "s:10AppIntents17IntentDescriptionV": true };
 }
 
@@ -3949,32 +4090,32 @@ export class IntentDialog extends SDKHandle {
    * init(stringLiteral value: String)
    * @availability iOS 16.0+
    */
-  static initStringLiteral(value: string): IntentDialog { return callSDK<IntentDialog>("AppIntents_0e503aef608672fa", 1667621879443773, undefined, [value]); }
+  static initStringLiteral(value: string): IntentDialog { return callSDK<IntentDialog>("AppIntents_212edf3d13b127f5", 1667621879443773, undefined, [value]); }
   /**
    * init(stringInterpolation: String.LocalizationValue.StringInterpolation)
    * @availability iOS 16.0+
    */
-  static initStringInterpolation(stringInterpolation: _Foundation_String_LocalizationValue_StringInterpolation): IntentDialog { return callSDK<IntentDialog>("AppIntents_0e503aef608672fa", 272168684366414, undefined, [stringInterpolation]); }
+  static initStringInterpolation(stringInterpolation: _Foundation_String_LocalizationValue_StringInterpolation): IntentDialog { return callSDK<IntentDialog>("AppIntents_212edf3d13b127f5", 272168684366414, undefined, [stringInterpolation]); }
   /**
    * init(full: LocalizedStringResource, supporting: LocalizedStringResource, systemImageName: String)
    * @availability iOS 17.2+
    */
-  static initFullSupportingSystemImageName(full: _Foundation_LocalizedStringResource, supporting: _Foundation_LocalizedStringResource, systemImageName: string): IntentDialog { return callSDK<IntentDialog>("AppIntents_0e503aef608672fa", 3500718593675774, undefined, [full, supporting, systemImageName]); }
+  static initFullSupportingSystemImageName(full: _Foundation_LocalizedStringResource, supporting: _Foundation_LocalizedStringResource, systemImageName: string): IntentDialog { return callSDK<IntentDialog>("AppIntents_212edf3d13b127f5", 3500718593675774, undefined, [full, supporting, systemImageName]); }
   /**
    * init(full: LocalizedStringResource, supporting: LocalizedStringResource)
    * @availability iOS 16.0+
    */
-  static initFullSupporting(full: _Foundation_LocalizedStringResource, supporting: _Foundation_LocalizedStringResource): IntentDialog { return callSDK<IntentDialog>("AppIntents_0e503aef608672fa", 1170490441073218, undefined, [full, supporting]); }
+  static initFullSupporting(full: _Foundation_LocalizedStringResource, supporting: _Foundation_LocalizedStringResource): IntentDialog { return callSDK<IntentDialog>("AppIntents_212edf3d13b127f5", 1170490441073218, undefined, [full, supporting]); }
   /**
    * init(full: LocalizedStringResource, systemImageName: String)
    * @availability iOS 17.2+
    */
-  static initFullSystemImageName(full: _Foundation_LocalizedStringResource, systemImageName: string): IntentDialog { return callSDK<IntentDialog>("AppIntents_0e503aef608672fa", 2554787347476894, undefined, [full, systemImageName]); }
+  static initFullSystemImageName(full: _Foundation_LocalizedStringResource, systemImageName: string): IntentDialog { return callSDK<IntentDialog>("AppIntents_212edf3d13b127f5", 2554787347476894, undefined, [full, systemImageName]); }
   /**
    * init(_ string: LocalizedStringResource)
    * @availability iOS 16.0+
    */
-  static init(string: _Foundation_LocalizedStringResource): IntentDialog { return callSDK<IntentDialog>("AppIntents_0e503aef608672fa", 674984437439027, undefined, [string]); }
+  static init(string: _Foundation_LocalizedStringResource): IntentDialog { return callSDK<IntentDialog>("AppIntents_212edf3d13b127f5", 674984437439027, undefined, [string]); }
   declare readonly $type: { "s:10AppIntents12IntentDialogV": true };
 }
 
@@ -4019,12 +4160,12 @@ export class IntentDonationManager extends SDKHandle {
    * @discardableResult func deleteDonations(matching predicate: IntentDonationMatchingPredicate) async throws -> [IntentDonationIdentifier]
    * @availability iOS 16.0+
    */
-  deleteDonations(predicate: IntentDonationMatchingPredicate): Promise<$SDK48> { return callSDKAsync<$SDK48>("AppIntents_0e503aef608672fa", 2160989066833033, this, [predicate]); }
+  deleteDonations(predicate: IntentDonationMatchingPredicate): Promise<$SDK55> { return callSDKAsync<$SDK55>("AppIntents_212edf3d13b127f5", 2160989066833033, this, [predicate]); }
   /**
    * nonisolated(unsafe) static let shared: IntentDonationManager
    * @availability iOS 16.0+
    */
-  static get shared(): IntentDonationManager { return callSDK<IntentDonationManager>("AppIntents_0e503aef608672fa", 3167847862961534, undefined, []); }
+  static get shared(): IntentDonationManager { return callSDK<IntentDonationManager>("AppIntents_212edf3d13b127f5", 3167847862961534, undefined, []); }
   declare readonly $type: { "s:10AppIntents21IntentDonationManagerV": true };
 }
 
@@ -4037,22 +4178,22 @@ export class IntentDonationMatchingPredicate extends SDKHandle {
    * static func entityIdentifier(_ identifier: EntityIdentifier) -> IntentDonationMatchingPredicate
    * @availability iOS 16.0+
    */
-  static entityIdentifier(identifier: EntityIdentifier): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_0e503aef608672fa", 1153909868329636, undefined, [identifier]); }
+  static entityIdentifier(identifier: EntityIdentifier): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_212edf3d13b127f5", 1153909868329636, undefined, [identifier]); }
   /**
    * static func entityIdentifiers(_ identifiers: [EntityIdentifier]) -> IntentDonationMatchingPredicate
    * @availability iOS 26.4+
    */
-  static entityIdentifiers(identifiers: Array<EntityIdentifier>): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_0e503aef608672fa", 4238896182598619, undefined, [identifiers]); }
+  static entityIdentifiers(identifiers: Array<EntityIdentifier>): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_212edf3d13b127f5", 4238896182598619, undefined, [identifiers]); }
   /**
    * static func donationIdentifier(_ identifier: IntentDonationIdentifier) -> IntentDonationMatchingPredicate
    * @availability iOS 16.0+
    */
-  static donationIdentifier(identifier: IntentDonationIdentifier): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_0e503aef608672fa", 3017049758774257, undefined, [identifier]); }
+  static donationIdentifier(identifier: IntentDonationIdentifier): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_212edf3d13b127f5", 3017049758774257, undefined, [identifier]); }
   /**
    * static func donationIdentifiers(_ identifiers: [IntentDonationIdentifier]) -> IntentDonationMatchingPredicate
    * @availability iOS 26.4+
    */
-  static donationIdentifiers(identifiers: $SDK48): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_0e503aef608672fa", 188889694701137, undefined, [identifiers]); }
+  static donationIdentifiers(identifiers: $SDK55): IntentDonationMatchingPredicate { return callSDK<IntentDonationMatchingPredicate>("AppIntents_212edf3d13b127f5", 188889694701137, undefined, [identifiers]); }
   declare readonly $type: { "s:10AppIntents31IntentDonationMatchingPredicateV": true };
 }
 
@@ -4067,48 +4208,48 @@ export const IntentExecutionTargets = {
    * static var appIntentsExtension: IntentExecutionTargets { get }
    * @availability iOS 27.0+
    */
-  get appIntentsExtension(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_0e503aef608672fa", 1133909939441999, undefined, []); },
+  get appIntentsExtension(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_212edf3d13b127f5", 1133909939441999, undefined, []); },
   /**
    * mutating func formIntersection(_ other: IntentExecutionTargets)
    * @availability iOS 27.0+
    */
-  formIntersection($self: IntentExecutionTargets, other: IntentExecutionTargets): void { return callSDK<void>("AppIntents_0e503aef608672fa", 778863511214519, $self, [other]); },
+  formIntersection($self: IntentExecutionTargets, other: IntentExecutionTargets): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 778863511214519, $self, [other]); },
   /**
    * static var widgetKitExtension: IntentExecutionTargets { get }
    * @availability iOS 27.0+
    */
-  get widgetKitExtension(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_0e503aef608672fa", 2767821100054135, undefined, []); },
+  get widgetKitExtension(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_212edf3d13b127f5", 2767821100054135, undefined, []); },
   /**
    * mutating func formSymmetricDifference(_ other: IntentExecutionTargets)
    * @availability iOS 27.0+
    */
-  formSymmetricDifference($self: IntentExecutionTargets, other: IntentExecutionTargets): void { return callSDK<void>("AppIntents_0e503aef608672fa", 2333282463597770, $self, [other]); },
+  formSymmetricDifference($self: IntentExecutionTargets, other: IntentExecutionTargets): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 2333282463597770, $self, [other]); },
   /**
    * static var main: IntentExecutionTargets { get }
    * @availability iOS 27.0+
    */
-  get main(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_0e503aef608672fa", 2135810737425802, undefined, []); },
+  get main(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_212edf3d13b127f5", 2135810737425802, undefined, []); },
   /**
    * static var `default`: IntentExecutionTargets { get }
    * @availability iOS 27.0+
    */
-  get default(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_0e503aef608672fa", 697437240162944, undefined, []); },
+  get default(): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_212edf3d13b127f5", 697437240162944, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_0e503aef608672fa", 2561650001489630, undefined, [rawValue]); },
+  init(rawValue: number): IntentExecutionTargets { return callSDK<IntentExecutionTargets>("AppIntents_212edf3d13b127f5", 2561650001489630, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 27.0+
    */
-  getRawValue($self: IntentExecutionTargets): number { return callSDK<number>("AppIntents_0e503aef608672fa", 786679674426317, $self, []); },
-  setRawValue($self: IntentExecutionTargets, value: number): void { return callSDK<void>("AppIntents_0e503aef608672fa", 1215969574984121, $self, [value]); },
+  getRawValue($self: IntentExecutionTargets): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 786679674426317, $self, []); },
+  setRawValue($self: IntentExecutionTargets, value: number): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 1215969574984121, $self, [value]); },
   /**
    * mutating func formUnion(_ other: IntentExecutionTargets)
    * @availability iOS 27.0+
    */
-  formUnion($self: IntentExecutionTargets, other: IntentExecutionTargets): void { return callSDK<void>("AppIntents_0e503aef608672fa", 2787411974158665, $self, [other]); }
+  formUnion($self: IntentExecutionTargets, other: IntentExecutionTargets): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 2787411974158665, $self, [other]); }
 };
 
 /**
@@ -4135,66 +4276,71 @@ export type IntentExecutionTargets_RawValue = number;
  */
 export class IntentFile extends SDKHandle {
   /**
+   * func withFile<Result>(contentType: UTType, allowOpenInPlace: Bool = false, fileHandler: @escaping (URL, Bool) async throws -> Result) async throws -> Result
+   * @availability iOS 18.0+
+   */
+  withFile(contentType: _UniformTypeIdentifiers_UTType, allowOpenInPlace: boolean, fileHandler: ((arg0: string, arg1: boolean) => Promise<unknown>)): Promise<unknown> { return callSDKAsync<unknown>("AppIntents_212edf3d13b127f5", 2203344893889971, this, [contentType, allowOpenInPlace, fileHandler], [null,null,{"callback":{"out":[]}}]); }
+  /**
    * var removedOnCompletion: Bool { get set }
    * @availability iOS 16.0+
    */
-  get removedOnCompletion(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 1725020042313095, this, []); }
-  set removedOnCompletion(value: boolean) { callSDK<void>("AppIntents_0e503aef608672fa", 3270611438976374, this, [value]); }
+  get removedOnCompletion(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 1725020042313095, this, []); }
+  set removedOnCompletion(value: boolean) { callSDK<void>("AppIntents_212edf3d13b127f5", 3270611438976374, this, [value]); }
   /**
    * var availableContentTypes: [UTType] { get }
    * @availability iOS 18.0+
    */
-  get availableContentTypes(): Array<_UniformTypeIdentifiers_UTType> { return callSDK<Array<_UniformTypeIdentifiers_UTType>>("AppIntents_0e503aef608672fa", 2358656745657229, this, []); }
+  get availableContentTypes(): Array<_UniformTypeIdentifiers_UTType> { return callSDK<Array<_UniformTypeIdentifiers_UTType>>("AppIntents_212edf3d13b127f5", 2358656745657229, this, []); }
   /**
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 3122334328778298, this, []); }
+  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 3122334328778298, this, []); }
   /**
    * static var typeDisplayRepresentation: TypeDisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 1087675613338653, undefined, []); }
+  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 1087675613338653, undefined, []); }
   /**
    * var data: Data { get }
    * @availability iOS 16.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AppIntents_0e503aef608672fa", 665495462165499, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("AppIntents_212edf3d13b127f5", 665495462165499, this, []); }
   /**
    * func data(contentType: UTType) async throws -> Data
    * @availability iOS 18.0+
    */
-  dataContentType(contentType: _UniformTypeIdentifiers_UTType): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("AppIntents_0e503aef608672fa", 4057662287698716, this, [contentType]); }
+  dataContentType(contentType: _UniformTypeIdentifiers_UTType): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("AppIntents_212edf3d13b127f5", 4057662287698716, this, [contentType]); }
   /**
    * init(data: Data, filename: String, type: UTType? = nil)
    * @availability iOS 16.0+
    */
-  static initDataFilenameType(data: ArrayBuffer, filename: string, type?: $SDK50): IntentFile { return callSDK<IntentFile>("AppIntents_0e503aef608672fa", 1479219140565203, undefined, [data, filename, type]); }
+  static initDataFilenameType(data: ArrayBuffer, filename: string, type?: $SDK58): IntentFile { return callSDK<IntentFile>("AppIntents_212edf3d13b127f5", 1479219140565203, undefined, [data, filename, type]); }
   /**
    * func file(contentType: UTType, destinationDirectory: URL? = nil) async throws -> (fileURL: URL, openedInPlace: Bool)
    * @availability iOS 18.0+
    */
-  file(contentType: _UniformTypeIdentifiers_UTType, destinationDirectory?: (string) | null): Promise<{ "fileURL": string; "openedInPlace": boolean }> { return callSDKAsync<{ "fileURL": string; "openedInPlace": boolean }>("AppIntents_0e503aef608672fa", 761214762202843, this, [contentType, destinationDirectory]); }
+  file(contentType: _UniformTypeIdentifiers_UTType, destinationDirectory?: (string) | null): Promise<{ "fileURL": string; "openedInPlace": boolean }> { return callSDKAsync<{ "fileURL": string; "openedInPlace": boolean }>("AppIntents_212edf3d13b127f5", 761214762202843, this, [contentType, destinationDirectory]); }
   /**
    * var type: UTType? { get }
    * @availability iOS 16.0+
    */
-  get type(): $SDK50 { return callSDK<$SDK50>("AppIntents_0e503aef608672fa", 1236738912390895, this, []); }
+  get type(): $SDK58 { return callSDK<$SDK58>("AppIntents_212edf3d13b127f5", 1236738912390895, this, []); }
   /**
    * var fileURL: URL? { get }
    * @availability iOS 16.0+
    */
-  get fileURL(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 4189055352629029, this, []); }
+  get fileURL(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 4189055352629029, this, []); }
   /**
    * init(fileURL: URL, filename: String? = nil, type: UTType? = nil)
    * @availability iOS 16.0+
    */
-  static initFileURLFilenameType(fileURL: string, filename?: (string) | null, type?: $SDK50): IntentFile { return callSDK<IntentFile>("AppIntents_0e503aef608672fa", 1514607272217274, undefined, [fileURL, filename, type]); }
+  static initFileURLFilenameType(fileURL: string, filename?: (string) | null, type?: $SDK58): IntentFile { return callSDK<IntentFile>("AppIntents_212edf3d13b127f5", 1514607272217274, undefined, [fileURL, filename, type]); }
   /**
    * var filename: String { get }
    * @availability iOS 16.0+
    */
-  get filename(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 224344398855761, this, []); }
+  get filename(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 224344398855761, this, []); }
   declare readonly $type: { "s:10AppIntents10IntentFileV": true };
 }
 
@@ -4209,17 +4355,17 @@ export const IntentFile_IntentFileError = {
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  get errorDomain(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 1510267083417265, undefined, []); },
+  get errorDomain(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 1510267083417265, undefined, []); },
   /**
    * var errorUserInfo: [String : Any] { get }
    * @availability iOS 16.0+
    */
-  getErrorUserInfo($self: IntentFile_IntentFileError): Record<string, unknown> { return callSDK<Record<string, unknown>>("AppIntents_0e503aef608672fa", 2632791301183752, $self, []); },
+  getErrorUserInfo($self: IntentFile_IntentFileError): Record<string, unknown> { return callSDK<Record<string, unknown>>("AppIntents_212edf3d13b127f5", 2632791301183752, $self, []); },
   /**
    * var errorCode: Int { get }
    * @availability iOS 16.0+
    */
-  getErrorCode($self: IntentFile_IntentFileError): number { return callSDK<number>("AppIntents_0e503aef608672fa", 382782966987165, $self, []); }
+  getErrorCode($self: IntentFile_IntentFileError): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 382782966987165, $self, []); }
 };
 
 /**
@@ -4245,6 +4391,12 @@ export type IntentFile_ValueType = IntentFile;
  * @availability iOS 16.0+
  */
 export class IntentItem<Value = unknown> extends SDKHandle {
+  /**
+   * var description: DisplayRepresentation
+   * @availability iOS 16.0+
+   */
+  get description(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 2651846144043057, this, []); }
+  set description(value: DisplayRepresentation) { callSDK<void>("AppIntents_212edf3d13b127f5", 1970832120180702, this, [value]); }
   declare readonly $type: { "s:10AppIntents10IntentItemV": true };
 }
 
@@ -4261,6 +4413,24 @@ export class IntentItem_Builder<Value = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  */
 export class IntentItemCollection<Result = unknown> extends SDKHandle {
+  /**
+   * var promptLabel: LocalizedStringResource?
+   * @availability iOS 16.0+
+   */
+  get promptLabel(): $SDK28 { return callSDK<$SDK28>("AppIntents_212edf3d13b127f5", 2067024162079075, this, []); }
+  set promptLabel(value: $SDK28) { callSDK<void>("AppIntents_212edf3d13b127f5", 3754936304168968, this, [value]); }
+  /**
+   * var usesIndexedCollation: Bool
+   * @availability iOS 16.0+
+   */
+  get usesIndexedCollation(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 2354493749250761, this, []); }
+  set usesIndexedCollation(value: boolean) { callSDK<void>("AppIntents_212edf3d13b127f5", 594780197899354, this, [value]); }
+  /**
+   * var sections: [IntentItemSection<Result>]
+   * @availability iOS 16.0+
+   */
+  get sections(): $SDK60 { return callSDK<$SDK60>("AppIntents_212edf3d13b127f5", 1143208344063172, this, []); }
+  set sections(value: $SDK60) { callSDK<void>("AppIntents_212edf3d13b127f5", 2940062395969996, this, [value]); }
   declare readonly $type: { "s:10AppIntents20IntentItemCollectionV": true };
 }
 
@@ -4269,6 +4439,18 @@ export class IntentItemCollection<Result = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  */
 export class IntentItemSection<Result = unknown> extends SDKHandle {
+  /**
+   * var description: DisplayRepresentation?
+   * @availability iOS 16.0+
+   */
+  get description(): $SDK61 { return callSDK<$SDK61>("AppIntents_212edf3d13b127f5", 2458728304817316, this, []); }
+  set description(value: $SDK61) { callSDK<void>("AppIntents_212edf3d13b127f5", 967241208662555, this, [value]); }
+  /**
+   * var items: [IntentItem<Result>]
+   * @availability iOS 16.0+
+   */
+  get items(): Array<IntentItem<SDKHandle>> { return callSDK<Array<IntentItem<SDKHandle>>>("AppIntents_212edf3d13b127f5", 1694508190490222, this, []); }
+  set items(value: Array<IntentItem<SDKHandle>>) { callSDK<void>("AppIntents_212edf3d13b127f5", 3084341202142094, this, [value]); }
   declare readonly $type: { "s:10AppIntents17IntentItemSectionV": true };
 }
 
@@ -4291,27 +4473,27 @@ export const IntentModes = {
    * static var background: IntentModes { get }
    * @availability iOS 26.0+
    */
-  get background(): IntentModes { return callSDK<IntentModes>("AppIntents_0e503aef608672fa", 4032389989751804, undefined, []); },
+  get background(): IntentModes { return callSDK<IntentModes>("AppIntents_212edf3d13b127f5", 4032389989751804, undefined, []); },
   /**
    * static var foreground: IntentModes { get }
    * @availability iOS 26.0+
    */
-  get foreground(): IntentModes { return callSDK<IntentModes>("AppIntents_0e503aef608672fa", 2810720931147260, undefined, []); },
+  get foreground(): IntentModes { return callSDK<IntentModes>("AppIntents_212edf3d13b127f5", 2810720931147260, undefined, []); },
   /**
    * static func foreground(_ foregroundMode: IntentModes.ForegroundMode) -> IntentModes
    * @availability iOS 26.0+
    */
-  foreground60895(foregroundMode: IntentModes_ForegroundMode): IntentModes { return callSDK<IntentModes>("AppIntents_0e503aef608672fa", 3329429634611864, undefined, [foregroundMode]); },
+  foreground60895(foregroundMode: IntentModes_ForegroundMode): IntentModes { return callSDK<IntentModes>("AppIntents_212edf3d13b127f5", 3329429634611864, undefined, [foregroundMode]); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): IntentModes { return callSDK<IntentModes>("AppIntents_0e503aef608672fa", 2966476617341627, undefined, [rawValue]); },
+  init(rawValue: number): IntentModes { return callSDK<IntentModes>("AppIntents_212edf3d13b127f5", 2966476617341627, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: IntentModes): number { return callSDK<number>("AppIntents_0e503aef608672fa", 1412398356337362, $self, []); }
+  getRawValue($self: IntentModes): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 1412398356337362, $self, []); }
 };
 
 /**
@@ -4329,22 +4511,22 @@ export class IntentModes_Current extends SDKHandle {
    * static var background: IntentModes.Current { get }
    * @availability iOS 26.0+
    */
-  static get background(): IntentModes_Current { return callSDK<IntentModes_Current>("AppIntents_0e503aef608672fa", 2941489583854035, undefined, []); }
+  static get background(): IntentModes_Current { return callSDK<IntentModes_Current>("AppIntents_212edf3d13b127f5", 2941489583854035, undefined, []); }
   /**
    * static var foreground: IntentModes.Current { get }
    * @availability iOS 26.0+
    */
-  static get foreground(): IntentModes_Current { return callSDK<IntentModes_Current>("AppIntents_0e503aef608672fa", 3584709134884968, undefined, []); }
+  static get foreground(): IntentModes_Current { return callSDK<IntentModes_Current>("AppIntents_212edf3d13b127f5", 3584709134884968, undefined, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 192933427966868, this, []); }
+  get debugDescription(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 192933427966868, this, []); }
   /**
    * var canContinueInForeground: Bool { get }
    * @availability iOS 26.0+
    */
-  get canContinueInForeground(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 4252727254468383, this, []); }
+  get canContinueInForeground(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 4252727254468383, this, []); }
   declare readonly $type: { "s:10AppIntents11IntentModesV7CurrentV": true };
 }
 
@@ -4363,17 +4545,17 @@ export class IntentModes_ForegroundMode extends SDKHandle {
    * static var dynamic: IntentModes.ForegroundMode { get }
    * @availability iOS 26.0+
    */
-  static get dynamic(): IntentModes_ForegroundMode { return callSDK<IntentModes_ForegroundMode>("AppIntents_0e503aef608672fa", 2722466919655631, undefined, []); }
+  static get dynamic(): IntentModes_ForegroundMode { return callSDK<IntentModes_ForegroundMode>("AppIntents_212edf3d13b127f5", 2722466919655631, undefined, []); }
   /**
    * static var deferred: IntentModes.ForegroundMode { get }
    * @availability iOS 26.0+
    */
-  static get deferred(): IntentModes_ForegroundMode { return callSDK<IntentModes_ForegroundMode>("AppIntents_0e503aef608672fa", 1228995039970958, undefined, []); }
+  static get deferred(): IntentModes_ForegroundMode { return callSDK<IntentModes_ForegroundMode>("AppIntents_212edf3d13b127f5", 1228995039970958, undefined, []); }
   /**
    * static var immediate: IntentModes.ForegroundMode { get }
    * @availability iOS 26.0+
    */
-  static get immediate(): IntentModes_ForegroundMode { return callSDK<IntentModes_ForegroundMode>("AppIntents_0e503aef608672fa", 1692129290517101, undefined, []); }
+  static get immediate(): IntentModes_ForegroundMode { return callSDK<IntentModes_ForegroundMode>("AppIntents_212edf3d13b127f5", 1692129290517101, undefined, []); }
   declare readonly $type: { "s:10AppIntents11IntentModesV14ForegroundModeV": true };
 }
 
@@ -4388,6 +4570,36 @@ export type IntentModes_RawValue = number;
  * @availability iOS 16.0+
  */
 export class IntentParameter<Value = unknown> extends SDKHandle {
+  /**
+   * final var isOptional: Bool { get }
+   * @availability iOS 16.0+
+   */
+  get isOptional(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 90226608646284, this, []); }
+  /**
+   * final var valueState: IntentParameter<Value>.ValueState { get }
+   * @availability iOS 18.2+
+   */
+  get valueState(): IntentParameter_ValueState<SDKHandle> { return callSDK<IntentParameter_ValueState<SDKHandle>>("AppIntents_212edf3d13b127f5", 1876755399036239, this, []); }
+  /**
+   * final func requestValue(_ dialog: IntentDialog? = nil) -> any Error
+   * @availability iOS 16.0+
+   */
+  requestValue(dialog?: (IntentDialog) | null): NativeError { return callSDK<NativeError>("AppIntents_212edf3d13b127f5", 885953353634391, this, [dialog]); }
+  /**
+   * final var projectedValue: IntentParameter<Value> { get }
+   * @availability iOS 16.0+
+   */
+  get projectedValue(): IntentParameter<SDKHandle> { return callSDK<IntentParameter<SDKHandle>>("AppIntents_212edf3d13b127f5", 1066082067321537, this, []); }
+  /**
+   * final func needsValueError(_ dialog: IntentDialog? = nil) -> AppIntentError
+   * @availability iOS 16.0+
+   */
+  needsValueError(dialog?: (IntentDialog) | null): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 2370799397146239, this, [dialog]); }
+  /**
+   * final let title: LocalizedStringResource
+   * @availability iOS 16.0+
+   */
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 2570373423661286, this, []); }
   declare readonly $type: { "s:10AppIntents15IntentParameterC": true };
 }
 
@@ -4486,6 +4698,14 @@ export type IntentParameter_Duration_AllCases<Value = unknown> = Array<IntentPar
  * @availability iOS 26.0+
  */
 export type IntentParameter_DurationUnit<Value = unknown> = "hours" | "microseconds" | "milliseconds" | "minutes" | "nanoseconds" | "picoseconds" | "seconds";
+
+export const IntentParameter_DurationUnit = {
+  /**
+   * var rawValue: String { get }
+   * @availability iOS 26.0+
+   */
+  getRawValue($self: IntentParameter_DurationUnit): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 2761731464756846, $self, []); }
+};
 
 /**
  * typealias AllCases = [IntentParameter<Value>.DurationUnit]
@@ -4722,6 +4942,21 @@ export type IntentParameter_Volume_AllCases<Value = unknown> = Array<IntentParam
  * @availability iOS 16.0+
  */
 export class IntentParameterContext<Value = unknown> extends SDKHandle {
+  /**
+   * var isOptional: Bool { get }
+   * @availability iOS 16.0+
+   */
+  get isOptional(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 413048776915181, this, []); }
+  /**
+   * func needsValueError(_ dialog: IntentDialog? = nil) -> AppIntentError
+   * @availability iOS 16.0+
+   */
+  needsValueError(dialog?: (IntentDialog) | null): AppIntentError { return callSDK<AppIntentError>("AppIntents_212edf3d13b127f5", 997470037230049, this, [dialog]); }
+  /**
+   * var title: LocalizedStringResource { get }
+   * @availability iOS 16.0+
+   */
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 4384634587004395, this, []); }
   declare readonly $type: { "s:10AppIntents22IntentParameterContextV": true };
 }
 
@@ -4730,6 +4965,16 @@ export class IntentParameterContext<Value = unknown> extends SDKHandle {
  * @availability iOS 17.0+
  */
 export class IntentParameterDependency<Intent = unknown> extends SDKHandle {
+  /**
+   * final var wrappedValue: IntentProjection<Intent>? { get }
+   * @availability iOS 17.0+
+   */
+  get wrappedValue(): (IntentProjection<SDKHandle>) | null { return callSDK<(IntentProjection<SDKHandle>) | null>("AppIntents_212edf3d13b127f5", 2670103857445247, this, []); }
+  /**
+   * final var debugDescription: String { get }
+   * @availability iOS 17.0+
+   */
+  get debugDescription(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 712249549484773, this, []); }
   declare readonly $type: { "s:10AppIntents25IntentParameterDependencyC": true };
 }
 
@@ -4758,42 +5003,42 @@ export class IntentPaymentMethod extends SDKHandle {
    * var paymentType: IntentPaymentMethod.PaymentType { get }
    * @availability iOS 16.0+
    */
-  get paymentType(): IntentPaymentMethod_PaymentType { return callSDK<IntentPaymentMethod_PaymentType>("AppIntents_0e503aef608672fa", 1806048536050333, this, []); }
+  get paymentType(): IntentPaymentMethod_PaymentType { return callSDK<IntentPaymentMethod_PaymentType>("AppIntents_212edf3d13b127f5", 1806048536050333, this, []); }
   /**
    * var identificationHint: String? { get }
    * @availability iOS 16.0+
    */
-  get identificationHint(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 1579428050444997, this, []); }
+  get identificationHint(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 1579428050444997, this, []); }
   /**
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 1928305029421434, this, []); }
+  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 1928305029421434, this, []); }
   /**
    * static var typeDisplayRepresentation: TypeDisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 4347271725055453, undefined, []); }
+  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 4347271725055453, undefined, []); }
   /**
    * static var defaultResolverSpecification: EmptyResolverSpecification<IntentPaymentMethod> { get }
    * @availability iOS 16.0+
    */
-  static get defaultResolverSpecification(): $SDK76 { return callSDK<$SDK76>("AppIntents_0e503aef608672fa", 3937927138521412, undefined, []); }
+  static get defaultResolverSpecification(): $SDK90 { return callSDK<$SDK90>("AppIntents_212edf3d13b127f5", 3937927138521412, undefined, []); }
   /**
    * var icon: DisplayRepresentation.Image? { get }
    * @availability iOS 16.0+
    */
-  get icon(): $SDK27 { return callSDK<$SDK27>("AppIntents_0e503aef608672fa", 1359625808201852, this, []); }
+  get icon(): $SDK27 { return callSDK<$SDK27>("AppIntents_212edf3d13b127f5", 1359625808201852, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 16.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 1621113489989828, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 1621113489989828, this, []); }
   /**
    * init(type: IntentPaymentMethod.PaymentType, name: LocalizedStringResource? = nil, identificationHint: String? = nil, icon: DisplayRepresentation.Image? = nil)
    * @availability iOS 16.0+
    */
-  static init(type: IntentPaymentMethod_PaymentType, name?: $SDK28, identificationHint?: (string) | null, icon?: $SDK27): IntentPaymentMethod { return callSDK<IntentPaymentMethod>("AppIntents_0e503aef608672fa", 998278941722011, undefined, [type, name, identificationHint, icon]); }
+  static init(type: IntentPaymentMethod_PaymentType, name?: $SDK28, identificationHint?: (string) | null, icon?: $SDK27): IntentPaymentMethod { return callSDK<IntentPaymentMethod>("AppIntents_212edf3d13b127f5", 998278941722011, undefined, [type, name, identificationHint, icon]); }
   declare readonly $type: { "s:10AppIntents19IntentPaymentMethodV": true };
 }
 
@@ -4807,7 +5052,7 @@ export type IntentPaymentMethod_PaymentType = "unknown" | "checking" | "savings"
  * typealias Specification = EmptyResolverSpecification<IntentPaymentMethod>
  * @availability iOS 16.0+
  */
-export type IntentPaymentMethod_Specification = $SDK76;
+export type IntentPaymentMethod_Specification = $SDK90;
 
 /**
  * typealias UnwrappedType = IntentPaymentMethod
@@ -4830,63 +5075,63 @@ export class IntentPerson extends SDKHandle {
    * init(identifier: IntentPerson.Identifier, name: IntentPerson.Name, handle: IntentPerson.Handle?, aliases: [IntentPerson.Handle] = [], isMe: Bool = false, image: DisplayRepresentation.Image? = nil)
    * @availability iOS 16.0+
    */
-  static initIdentifierNameHandleAliasesIsMeImage(identifier: IntentPerson_Identifier, name: IntentPerson_Name, handle?: $SDK77, aliases?: $SDK78, isMe?: boolean, image?: $SDK27): IntentPerson { return callSDK<IntentPerson>("AppIntents_0e503aef608672fa", 4315151598464884, undefined, [identifier, name, handle, aliases, isMe, image]); }
+  static initIdentifierNameHandleAliasesIsMeImage(identifier: IntentPerson_Identifier, name: IntentPerson_Name, handle?: $SDK91, aliases?: $SDK92, isMe?: boolean, image?: $SDK27): IntentPerson { return callSDK<IntentPerson>("AppIntents_212edf3d13b127f5", 4315151598464884, undefined, [identifier, name, handle, aliases, isMe, image]); }
   /**
    * var identifier: IntentPerson.Identifier
    * @availability iOS 16.0+
    */
-  get identifier(): IntentPerson_Identifier { return callSDK<IntentPerson_Identifier>("AppIntents_0e503aef608672fa", 1903775407070961, this, []); }
-  set identifier(value: IntentPerson_Identifier) { callSDK<void>("AppIntents_0e503aef608672fa", 1364682062660741, this, [value]); }
+  get identifier(): IntentPerson_Identifier { return callSDK<IntentPerson_Identifier>("AppIntents_212edf3d13b127f5", 1903775407070961, this, []); }
+  set identifier(value: IntentPerson_Identifier) { callSDK<void>("AppIntents_212edf3d13b127f5", 1364682062660741, this, [value]); }
   /**
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 3279700029338267, this, []); }
+  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 3279700029338267, this, []); }
   /**
    * static var typeDisplayRepresentation: TypeDisplayRepresentation { get }
    * @availability iOS 16.0+
    */
-  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 4363054520387176, undefined, []); }
+  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 4363054520387176, undefined, []); }
   /**
    * static var defaultResolverSpecification: EmptyResolverSpecification<IntentPerson> { get }
    * @availability iOS 16.0+
    */
-  static get defaultResolverSpecification(): $SDK79 { return callSDK<$SDK79>("AppIntents_0e503aef608672fa", 3633909899626245, undefined, []); }
+  static get defaultResolverSpecification(): $SDK93 { return callSDK<$SDK93>("AppIntents_212edf3d13b127f5", 3633909899626245, undefined, []); }
   /**
    * var isMe: Bool
    * @availability iOS 16.0+
    */
-  get isMe(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 4375093677757352, this, []); }
-  set isMe(value: boolean) { callSDK<void>("AppIntents_0e503aef608672fa", 3969525108971796, this, [value]); }
+  get isMe(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 4375093677757352, this, []); }
+  set isMe(value: boolean) { callSDK<void>("AppIntents_212edf3d13b127f5", 3969525108971796, this, [value]); }
   /**
    * var name: IntentPerson.Name
    * @availability iOS 16.0+
    */
-  get name(): IntentPerson_Name { return callSDK<IntentPerson_Name>("AppIntents_0e503aef608672fa", 1614319647569099, this, []); }
-  set name(value: IntentPerson_Name) { callSDK<void>("AppIntents_0e503aef608672fa", 3478989788738167, this, [value]); }
+  get name(): IntentPerson_Name { return callSDK<IntentPerson_Name>("AppIntents_212edf3d13b127f5", 1614319647569099, this, []); }
+  set name(value: IntentPerson_Name) { callSDK<void>("AppIntents_212edf3d13b127f5", 3478989788738167, this, [value]); }
   /**
    * var image: DisplayRepresentation.Image?
    * @availability iOS 16.0+
    */
-  get image(): $SDK27 { return callSDK<$SDK27>("AppIntents_0e503aef608672fa", 389417338557629, this, []); }
-  set image(value: $SDK27) { callSDK<void>("AppIntents_0e503aef608672fa", 149235182093739, this, [value]); }
+  get image(): $SDK27 { return callSDK<$SDK27>("AppIntents_212edf3d13b127f5", 389417338557629, this, []); }
+  set image(value: $SDK27) { callSDK<void>("AppIntents_212edf3d13b127f5", 149235182093739, this, [value]); }
   /**
    * init(handle: IntentPerson.Handle)
    * @availability iOS 18.0+
    */
-  static initHandle(handle: IntentPerson_Handle): IntentPerson { return callSDK<IntentPerson>("AppIntents_0e503aef608672fa", 2145858775522196, undefined, [handle]); }
+  static initHandle(handle: IntentPerson_Handle): IntentPerson { return callSDK<IntentPerson>("AppIntents_212edf3d13b127f5", 2145858775522196, undefined, [handle]); }
   /**
    * var handle: IntentPerson.Handle?
    * @availability iOS 16.0+
    */
-  get handle(): $SDK77 { return callSDK<$SDK77>("AppIntents_0e503aef608672fa", 4245710933018708, this, []); }
-  set handle(value: $SDK77) { callSDK<void>("AppIntents_0e503aef608672fa", 999683518599030, this, [value]); }
+  get handle(): $SDK91 { return callSDK<$SDK91>("AppIntents_212edf3d13b127f5", 4245710933018708, this, []); }
+  set handle(value: $SDK91) { callSDK<void>("AppIntents_212edf3d13b127f5", 999683518599030, this, [value]); }
   /**
    * var aliases: [IntentPerson.Handle]
    * @availability iOS 16.0+
    */
-  get aliases(): $SDK78 { return callSDK<$SDK78>("AppIntents_0e503aef608672fa", 658512635898890, this, []); }
-  set aliases(value: $SDK78) { callSDK<void>("AppIntents_0e503aef608672fa", 3555355800254607, this, [value]); }
+  get aliases(): $SDK92 { return callSDK<$SDK92>("AppIntents_212edf3d13b127f5", 658512635898890, this, []); }
+  set aliases(value: $SDK92) { callSDK<void>("AppIntents_212edf3d13b127f5", 3555355800254607, this, [value]); }
   declare readonly $type: { "s:10AppIntents12IntentPersonV": true };
 }
 
@@ -4899,34 +5144,34 @@ export class IntentPerson_Handle extends SDKHandle {
    * init(phoneNumber phoneNumberString: String, label: IntentPerson.Handle.Label = .other)
    * @availability iOS 16.0+
    */
-  static initPhoneNumberLabel(phoneNumberString: string, label?: IntentPerson_Handle_Label): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_0e503aef608672fa", 961461096654701, undefined, [phoneNumberString, label]); }
+  static initPhoneNumberLabel(phoneNumberString: string, label?: IntentPerson_Handle_Label): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_212edf3d13b127f5", 961461096654701, undefined, [phoneNumberString, label]); }
   /**
    * init(emailAddress emailAddressString: String, label: IntentPerson.Handle.Label = .other)
    * @availability iOS 16.0+
    */
-  static initEmailAddressLabel(emailAddressString: string, label?: IntentPerson_Handle_Label): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_0e503aef608672fa", 1237838566673912, undefined, [emailAddressString, label]); }
+  static initEmailAddressLabel(emailAddressString: string, label?: IntentPerson_Handle_Label): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_212edf3d13b127f5", 1237838566673912, undefined, [emailAddressString, label]); }
   /**
    * init(applicationDefined stringValue: String, label labelString: String? = nil)
    * @availability iOS 16.0+
    */
-  static initApplicationDefinedLabel(stringValue: string, labelString?: (string) | null): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_0e503aef608672fa", 4009215545323904, undefined, [stringValue, labelString]); }
+  static initApplicationDefinedLabel(stringValue: string, labelString?: (string) | null): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_212edf3d13b127f5", 4009215545323904, undefined, [stringValue, labelString]); }
   /**
    * var label: IntentPerson.Handle.Label
    * @availability iOS 16.0+
    */
-  get label(): IntentPerson_Handle_Label { return callSDK<IntentPerson_Handle_Label>("AppIntents_0e503aef608672fa", 1726099194474480, this, []); }
-  set label(value: IntentPerson_Handle_Label) { callSDK<void>("AppIntents_0e503aef608672fa", 2522075412872335, this, [value]); }
+  get label(): IntentPerson_Handle_Label { return callSDK<IntentPerson_Handle_Label>("AppIntents_212edf3d13b127f5", 1726099194474480, this, []); }
+  set label(value: IntentPerson_Handle_Label) { callSDK<void>("AppIntents_212edf3d13b127f5", 2522075412872335, this, [value]); }
   /**
    * var value: IntentPerson.Handle.Value
    * @availability iOS 16.0+
    */
-  get value(): IntentPerson_Handle_Value { return callSDK<IntentPerson_Handle_Value>("AppIntents_0e503aef608672fa", 2001000907107452, this, []); }
-  set value(value: IntentPerson_Handle_Value) { callSDK<void>("AppIntents_0e503aef608672fa", 4490926737403067, this, [value]); }
+  get value(): IntentPerson_Handle_Value { return callSDK<IntentPerson_Handle_Value>("AppIntents_212edf3d13b127f5", 2001000907107452, this, []); }
+  set value(value: IntentPerson_Handle_Value) { callSDK<void>("AppIntents_212edf3d13b127f5", 4490926737403067, this, [value]); }
   /**
    * init(_ value: IntentPerson.Handle.Value, label: IntentPerson.Handle.Label = .other)
    * @availability iOS 16.0+
    */
-  static initLabel(value: IntentPerson_Handle_Value, label?: IntentPerson_Handle_Label): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_0e503aef608672fa", 2186029124956035, undefined, [value, label]); }
+  static initLabel(value: IntentPerson_Handle_Value, label?: IntentPerson_Handle_Label): IntentPerson_Handle { return callSDK<IntentPerson_Handle>("AppIntents_212edf3d13b127f5", 2186029124956035, undefined, [value, label]); }
   declare readonly $type: { "s:10AppIntents12IntentPersonV6HandleV": true };
 }
 
@@ -4973,12 +5218,12 @@ export const IntentPerson_ParameterMode = {
    * init?(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): (IntentPerson_ParameterMode) | null { return callSDK<(IntentPerson_ParameterMode) | null>("AppIntents_0e503aef608672fa", 4370579413445582, undefined, [rawValue]); },
+  init(rawValue: string): (IntentPerson_ParameterMode) | null { return callSDK<(IntentPerson_ParameterMode) | null>("AppIntents_212edf3d13b127f5", 4370579413445582, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: IntentPerson_ParameterMode): string { return callSDK<string>("AppIntents_0e503aef608672fa", 4059802158193677, $self, []); }
+  getRawValue($self: IntentPerson_ParameterMode): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 4059802158193677, $self, []); }
 };
 
 /**
@@ -4997,7 +5242,7 @@ export type IntentPerson_Representation = SDKHandle;
  * typealias Specification = EmptyResolverSpecification<IntentPerson>
  * @availability iOS 16.0+
  */
-export type IntentPerson_Specification = $SDK79;
+export type IntentPerson_Specification = $SDK93;
 
 /**
  * typealias UnwrappedType = IntentPerson
@@ -5064,6 +5309,18 @@ export interface IntentResult {
  * @availability iOS 16.0+
  */
 export class IntentResultContainer<Value = unknown, OpensAppIntent = unknown, Snippet = unknown, Dialog = unknown> extends SDKHandle {
+  /**
+   * var activityIdentifier: String?
+   * @availability iOS 17.2+
+   */
+  get activityIdentifier(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 746513216404754, this, []); }
+  set activityIdentifier(value: (string) | null) { callSDK<void>("AppIntents_212edf3d13b127f5", 1570053182963819, this, [value]); }
+  /**
+   * var dialog: IntentDialog?
+   * @availability iOS 16.0+
+   */
+  get dialog(): (IntentDialog) | null { return callSDK<(IntentDialog) | null>("AppIntents_212edf3d13b127f5", 4445938795996611, this, []); }
+  set dialog(value: (IntentDialog) | null) { callSDK<void>("AppIntents_212edf3d13b127f5", 1553406957577100, this, [value]); }
   declare readonly $type: { "s:10AppIntents21IntentResultContainerV": true };
 }
 
@@ -5076,22 +5333,22 @@ export class IntentSystemContext extends SDKHandle {
    * var currentMode: IntentModes.Current { get }
    * @availability iOS 26.0+
    */
-  get currentMode(): IntentModes_Current { return callSDK<IntentModes_Current>("AppIntents_0e503aef608672fa", 2729963435298970, this, []); }
+  get currentMode(): IntentModes_Current { return callSDK<IntentModes_Current>("AppIntents_212edf3d13b127f5", 2729963435298970, this, []); }
   /**
    * var isVoiceOnly: Bool { get }
    * @availability iOS 27.0+
    */
-  get isVoiceOnly(): boolean { return callSDK<boolean>("AppIntents_0e503aef608672fa", 4168735228102190, this, []); }
+  get isVoiceOnly(): boolean { return callSDK<boolean>("AppIntents_212edf3d13b127f5", 4168735228102190, this, []); }
   /**
    * var preciseTimestamp: Date? { get }
    * @availability iOS 16.0+
    */
-  get preciseTimestamp(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("AppIntents_0e503aef608672fa", 4190318401748048, this, []); }
+  get preciseTimestamp(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("AppIntents_212edf3d13b127f5", 4190318401748048, this, []); }
   /**
    * var locale: Locale { get }
    * @availability iOS 27.0+
    */
-  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("AppIntents_0e503aef608672fa", 2525534358321780, this, []); }
+  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("AppIntents_212edf3d13b127f5", 2525534358321780, this, []); }
   declare readonly $type: { "s:10AppIntents19IntentSystemContextV": true };
 }
 
@@ -5114,6 +5371,11 @@ export type IntentURLRepresentation_ExtendedGraphemeClusterLiteralType<Intent = 
  * @availability iOS 18.0+
  */
 export class IntentURLRepresentation_StringInterpolation<Intent = unknown> extends SDKHandle {
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 18.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 939792334803616, this, [literal]); }
   declare readonly $type: { "s:10AppIntents23IntentURLRepresentationV19StringInterpolationV": true };
 }
 
@@ -5149,7 +5411,7 @@ export interface IntentValueQuery {
    * func values(for input: Self.Input) async throws -> Self.Result
    * @availability iOS 26.0+
    */
-  "valuesFor"?: (arg0: unknown) => unknown;
+  "valuesFor"?: (arg0: unknown) => Promise<unknown>;
 }
 
 /**
@@ -5163,6 +5425,16 @@ export type IntentValueQuery_ExecutionTargets = IntentExecutionTargets;
  * @availability iOS 26.4+
  */
 export class IntentValueRepresentation<Item = unknown, IntentValue = unknown> extends SDKHandle {
+  /**
+   * init(exporting: @escaping @Sendable (Item) async throws -> IntentValue, importing: @escaping @Sendable (IntentValue) async throws -> Item)
+   * @availability iOS 26.4+
+   */
+  static initExportingImporting(exporting: $SDK96, importing: ((arg0: IntentPerson) => Promise<string>)): $SDK95 { return callSDK<$SDK95>("AppIntents_212edf3d13b127f5", 2046400130484541, undefined, [exporting, importing], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  /**
+   * init(exporting: @escaping @Sendable (Item) async throws -> IntentValue)
+   * @availability iOS 26.4+
+   */
+  static initExporting(exporting: $SDK96): $SDK95 { return callSDK<$SDK95>("AppIntents_212edf3d13b127f5", 4284541839085275, undefined, [exporting], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:10AppIntents25IntentValueRepresentationV": true };
 }
 
@@ -5183,15 +5455,15 @@ export const IntentWidgetFamily = {
    * static var defaultResolverSpecification: EmptyResolverSpecification<IntentWidgetFamily>
    * @availability iOS 17.0+
    */
-  get defaultResolverSpecification(): $SDK81 { return callSDK<$SDK81>("AppIntents_0e503aef608672fa", 2115398729699422, undefined, []); },
-  set defaultResolverSpecification(value: $SDK81) { callSDK<void>("AppIntents_0e503aef608672fa", 1829821458271372, undefined, [value]); }
+  get defaultResolverSpecification(): $SDK98 { return callSDK<$SDK98>("AppIntents_212edf3d13b127f5", 2115398729699422, undefined, []); },
+  set defaultResolverSpecification(value: $SDK98) { callSDK<void>("AppIntents_212edf3d13b127f5", 1829821458271372, undefined, [value]); }
 };
 
 /**
  * typealias Specification = EmptyResolverSpecification<IntentWidgetFamily>
  * @availability iOS 17.0+
  */
-export type IntentWidgetFamily_Specification = $SDK81;
+export type IntentWidgetFamily_Specification = $SDK98;
 
 /**
  * typealias UnwrappedType = IntentWidgetFamily
@@ -5214,18 +5486,18 @@ export class IntFromDoubleResolver extends SDKHandle {
    * init(roundingRule: FloatingPointRoundingRule = .towardZero)
    * @availability iOS 16.0+
    */
-  static init(roundingRule?: SDKHandle): IntFromDoubleResolver { return callSDK<IntFromDoubleResolver>("AppIntents_0e503aef608672fa", 3533166021478749, undefined, [roundingRule]); }
+  static init(roundingRule?: SDKHandle): IntFromDoubleResolver { return callSDK<IntFromDoubleResolver>("AppIntents_212edf3d13b127f5", 3533166021478749, undefined, [roundingRule]); }
   /**
    * var roundingRule: FloatingPointRoundingRule
    * @availability iOS 16.0+
    */
-  get roundingRule(): SDKHandle { return callSDK<SDKHandle>("AppIntents_0e503aef608672fa", 3355779856456724, this, []); }
-  set roundingRule(value: SDKHandle) { callSDK<void>("AppIntents_0e503aef608672fa", 3895493055872815, this, [value]); }
+  get roundingRule(): SDKHandle { return callSDK<SDKHandle>("AppIntents_212edf3d13b127f5", 3355779856456724, this, []); }
+  set roundingRule(value: SDKHandle) { callSDK<void>("AppIntents_212edf3d13b127f5", 3895493055872815, this, [value]); }
   /**
    * func resolve(from input: Double, context: IntentParameterContext<Int>) async throws -> Int?
    * @availability iOS 16.0+
    */
-  resolve(input: number, context: $SDK29): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_0e503aef608672fa", 822288018921077, this, [input, context]); }
+  resolve(input: number, context: $SDK30): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_212edf3d13b127f5", 822288018921077, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents21IntFromDoubleResolverV": true };
 }
 
@@ -5256,18 +5528,18 @@ export class IntFromStringResolver extends SDKHandle {
    * init(radix: Int = 10)
    * @availability iOS 16.0+
    */
-  static init(radix?: number): IntFromStringResolver { return callSDK<IntFromStringResolver>("AppIntents_0e503aef608672fa", 967639695335029, undefined, [radix]); }
+  static init(radix?: number): IntFromStringResolver { return callSDK<IntFromStringResolver>("AppIntents_212edf3d13b127f5", 967639695335029, undefined, [radix]); }
   /**
    * var radix: Int
    * @availability iOS 16.0+
    */
-  get radix(): number { return callSDK<number>("AppIntents_0e503aef608672fa", 986176156676564, this, []); }
-  set radix(value: number) { callSDK<void>("AppIntents_0e503aef608672fa", 3245622709942970, this, [value]); }
+  get radix(): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 986176156676564, this, []); }
+  set radix(value: number) { callSDK<void>("AppIntents_212edf3d13b127f5", 3245622709942970, this, [value]); }
   /**
    * func resolve(from input: String, context: IntentParameterContext<Int>) async throws -> Int?
    * @availability iOS 16.0+
    */
-  resolve(input: string, context: $SDK29): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_0e503aef608672fa", 2742296215237993, this, [input, context]); }
+  resolve(input: string, context: $SDK30): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_212edf3d13b127f5", 2742296215237993, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents21IntFromStringResolverV": true };
 }
 
@@ -5298,7 +5570,7 @@ export class IntResolver extends SDKHandle {
    * func resolve(from input: Int, context: IntentParameterContext<Int>) async throws -> Int?
    * @availability iOS 16.0+
    */
-  resolve(input: number, context: $SDK29): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_0e503aef608672fa", 2397013902334440, this, [input, context]); }
+  resolve(input: number, context: $SDK30): Promise<(number) | null> { return callSDKAsync<(number) | null>("AppIntents_212edf3d13b127f5", 2397013902334440, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents11IntResolverV": true };
 }
 
@@ -5353,7 +5625,7 @@ export interface LiveActivityIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -5371,7 +5643,7 @@ export interface LiveActivityStartingIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -5388,7 +5660,7 @@ export interface LongRunningIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -5407,17 +5679,17 @@ export const LongRunningTaskOptions = {
    * static let requiresGPU: LongRunningTaskOptions
    * @availability iOS 27.0+
    */
-  get requiresGPU(): LongRunningTaskOptions { return callSDK<LongRunningTaskOptions>("AppIntents_0e503aef608672fa", 2981089923850874, undefined, []); },
+  get requiresGPU(): LongRunningTaskOptions { return callSDK<LongRunningTaskOptions>("AppIntents_212edf3d13b127f5", 2981089923850874, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): LongRunningTaskOptions { return callSDK<LongRunningTaskOptions>("AppIntents_0e503aef608672fa", 1466712950343664, undefined, [rawValue]); },
+  init(rawValue: number): LongRunningTaskOptions { return callSDK<LongRunningTaskOptions>("AppIntents_212edf3d13b127f5", 1466712950343664, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 27.0+
    */
-  getRawValue($self: LongRunningTaskOptions): number { return callSDK<number>("AppIntents_0e503aef608672fa", 3962284686181076, $self, []); }
+  getRawValue($self: LongRunningTaskOptions): number { return callSDK<number>("AppIntents_212edf3d13b127f5", 3962284686181076, $self, []); }
 };
 
 /**
@@ -5448,13 +5720,13 @@ export type Measurement_Specification<UnitType = unknown> = SDKHandle;
  * typealias UnwrappedType = Measurement<UnitType>
  * @availability iOS 16.0+
  */
-export type Measurement_UnwrappedType<UnitType = unknown> = $SDK82;
+export type Measurement_UnwrappedType<UnitType = unknown> = $SDK99;
 
 /**
  * typealias ValueType = Measurement<UnitType>
  * @availability iOS 16.0+
  */
-export type Measurement_ValueType<UnitType = unknown> = $SDK82;
+export type Measurement_ValueType<UnitType = unknown> = $SDK99;
 
 /**
  * struct NegativeAppShortcutPhrase
@@ -5465,17 +5737,17 @@ export class NegativeAppShortcutPhrase extends SDKHandle {
    * init(stringLiteral value: StringLiteralType)
    * @availability iOS 17.0+
    */
-  static initStringLiteral(value: SDKHandle): NegativeAppShortcutPhrase { return callSDK<NegativeAppShortcutPhrase>("AppIntents_0e503aef608672fa", 3432890158739787, undefined, [value]); }
+  static initStringLiteral(value: SDKHandle): NegativeAppShortcutPhrase { return callSDK<NegativeAppShortcutPhrase>("AppIntents_212edf3d13b127f5", 3432890158739787, undefined, [value]); }
   /**
    * init(stringInterpolation: NegativeAppShortcutPhrase.StringInterpolation)
    * @availability iOS 17.0+
    */
-  static initStringInterpolation(stringInterpolation: NegativeAppShortcutPhrase_StringInterpolation): NegativeAppShortcutPhrase { return callSDK<NegativeAppShortcutPhrase>("AppIntents_0e503aef608672fa", 3640721178563803, undefined, [stringInterpolation]); }
+  static initStringInterpolation(stringInterpolation: NegativeAppShortcutPhrase_StringInterpolation): NegativeAppShortcutPhrase { return callSDK<NegativeAppShortcutPhrase>("AppIntents_212edf3d13b127f5", 3640721178563803, undefined, [stringInterpolation]); }
   /**
    * init(_ phraseKey: String)
    * @availability iOS 17.0+
    */
-  static init(phraseKey: string): NegativeAppShortcutPhrase { return callSDK<NegativeAppShortcutPhrase>("AppIntents_0e503aef608672fa", 967733516218418, undefined, [phraseKey]); }
+  static init(phraseKey: string): NegativeAppShortcutPhrase { return callSDK<NegativeAppShortcutPhrase>("AppIntents_212edf3d13b127f5", 967733516218418, undefined, [phraseKey]); }
   declare readonly $type: { "s:10AppIntents08NegativeA14ShortcutPhraseV": true };
 }
 
@@ -5494,17 +5766,17 @@ export class NegativeAppShortcutPhrase_StringInterpolation extends SDKHandle {
    * mutating func appendInterpolation(_ token: AppShortcutPhraseToken)
    * @availability iOS 17.0+
    */
-  appendInterpolation(token: AppShortcutPhraseToken): void { return callSDK<void>("AppIntents_0e503aef608672fa", 2992996907780328, this, [token]); }
+  appendInterpolation(token: AppShortcutPhraseToken): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 2992996907780328, this, [token]); }
   /**
    * mutating func appendLiteral(_ literal: String)
    * @availability iOS 17.0+
    */
-  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_0e503aef608672fa", 3898359122359233, this, [literal]); }
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 3898359122359233, this, [literal]); }
   /**
    * init(literalCapacity: Int, interpolationCount: Int)
    * @availability iOS 17.0+
    */
-  static init(literalCapacity: number, interpolationCount: number): NegativeAppShortcutPhrase_StringInterpolation { return callSDK<NegativeAppShortcutPhrase_StringInterpolation>("AppIntents_0e503aef608672fa", 4094391400208987, undefined, [literalCapacity, interpolationCount]); }
+  static init(literalCapacity: number, interpolationCount: number): NegativeAppShortcutPhrase_StringInterpolation { return callSDK<NegativeAppShortcutPhrase_StringInterpolation>("AppIntents_212edf3d13b127f5", 4094391400208987, undefined, [literalCapacity, interpolationCount]); }
   declare readonly $type: { "s:10AppIntents08NegativeA14ShortcutPhraseV19StringInterpolationV": true };
 }
 
@@ -5535,7 +5807,7 @@ export class NegativeAppShortcutPhrases extends SDKHandle {
    * init(phrases: [NegativeAppShortcutPhrase])
    * @availability iOS 17.0+
    */
-  static init(phrases: Array<NegativeAppShortcutPhrase>): NegativeAppShortcutPhrases { return callSDK<NegativeAppShortcutPhrases>("AppIntents_0e503aef608672fa", 4314102426915171, undefined, [phrases]); }
+  static init(phrases: Array<NegativeAppShortcutPhrase>): NegativeAppShortcutPhrases { return callSDK<NegativeAppShortcutPhrases>("AppIntents_212edf3d13b127f5", 4314102426915171, undefined, [phrases]); }
   declare readonly $type: { "s:10AppIntents08NegativeA15ShortcutPhrasesV": true };
 }
 
@@ -5597,7 +5869,7 @@ export type Never_Parameter = $SDK6;
  * typealias PerformResult = IntentResultContainer<Never, Never, Never, Never>
  * @availability iOS 16.0+
  */
-export type Never_PerformResult = $SDK84;
+export type Never_PerformResult = $SDK101;
 
 /**
  * typealias Snippet = Never
@@ -5666,8 +5938,8 @@ export class NSUserActivity extends SDKHandle {
    * var appEntityIdentifier: EntityIdentifier? { get set }
    * @availability iOS 18.2+
    */
-  get appEntityIdentifier(): (EntityIdentifier) | null { return callSDK<(EntityIdentifier) | null>("AppIntents_0e503aef608672fa", 4262160143887181, this, []); }
-  set appEntityIdentifier(value: (EntityIdentifier) | null) { callSDK<void>("AppIntents_0e503aef608672fa", 981118570424394, this, [value]); }
+  get appEntityIdentifier(): (EntityIdentifier) | null { return callSDK<(EntityIdentifier) | null>("AppIntents_212edf3d13b127f5", 4262160143887181, this, []); }
+  set appEntityIdentifier(value: (EntityIdentifier) | null) { callSDK<void>("AppIntents_212edf3d13b127f5", 981118570424394, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5686,7 +5958,7 @@ export interface OpenIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -5711,29 +5983,29 @@ export class OpenURLIntent extends SDKHandle {
    * @IntentParameter<URL> var url: URL { get nonmutating set }
    * @availability iOS 18.0+
    */
-  get url(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 1131054903665541, this, []); }
-  set url(value: string) { callSDK<void>("AppIntents_0e503aef608672fa", 2182199515160525, this, [value]); }
+  get url(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 1131054903665541, this, []); }
+  set url(value: string) { callSDK<void>("AppIntents_212edf3d13b127f5", 2182199515160525, this, [value]); }
   /**
    * var $url: IntentParameter<URL> { get }
    * @availability iOS 18.0+
    */
-  get $url(): IntentParameter<string> { return callSDK<IntentParameter<string>>("AppIntents_0e503aef608672fa", 2614304390959425, this, []); }
+  get $url(): IntentParameter<string> { return callSDK<IntentParameter<string>>("AppIntents_212edf3d13b127f5", 2614304390959425, this, []); }
   /**
    * static var title: LocalizedStringResource
    * @availability iOS 18.0+
    */
-  static get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 2721901938388820, undefined, []); }
-  static set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_0e503aef608672fa", 3332805065143691, undefined, [value]); }
+  static get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 2721901938388820, undefined, []); }
+  static set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 3332805065143691, undefined, [value]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): OpenURLIntent { return callSDK<OpenURLIntent>("AppIntents_0e503aef608672fa", 4293928683246238, undefined, []); }
+  static init(): OpenURLIntent { return callSDK<OpenURLIntent>("AppIntents_212edf3d13b127f5", 4293928683246238, undefined, []); }
   /**
    * init(_ url: URL)
    * @availability iOS 18.0+
    */
-  static init42381(url: string): OpenURLIntent { return callSDK<OpenURLIntent>("AppIntents_0e503aef608672fa", 3573886555034197, undefined, [url]); }
+  static init42381(url: string): OpenURLIntent { return callSDK<OpenURLIntent>("AppIntents_212edf3d13b127f5", 3573886555034197, undefined, [url]); }
   declare readonly $type: { "s:10AppIntents13OpenURLIntentV": true };
 }
 
@@ -5801,7 +6073,7 @@ export type OpenURLIntent_Switch<Value = unknown, CaseCondition = unknown> = $SD
  * typealias URLRepresentation = IntentURLRepresentation<Self>
  * @availability iOS 18.0+
  */
-export type OpenURLIntent_URLRepresentation = $SDK87;
+export type OpenURLIntent_URLRepresentation = IntentURLRepresentation<unknown>;
 
 /**
  * typealias When = ParameterSummaryWhenCondition
@@ -5894,6 +6166,11 @@ export type ParameterSummaryString_ExtendedGraphemeClusterLiteralType<Intent = u
  * @availability iOS 16.0+
  */
 export class ParameterSummaryString_StringInterpolation<Intent = unknown> extends SDKHandle {
+  /**
+   * mutating func appendLiteral(_ literal: String)
+   * @availability iOS 16.0+
+   */
+  appendLiteral(literal: string): void { return callSDK<void>("AppIntents_212edf3d13b127f5", 1101618026310581, this, [literal]); }
   declare readonly $type: { "s:10AppIntents22ParameterSummaryStringV0E13InterpolationV": true };
 }
 
@@ -5960,7 +6237,7 @@ export interface PauseWorkoutIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -5981,13 +6258,13 @@ export class PersonNameComponents extends SDKHandle {
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 26.0+
    */
-  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 3711510551252225, this, []); }
+  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 3711510551252225, this, []); }
   /**
    * static var typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 26.0+
    */
-  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 3845386428599427, undefined, []); }
-  static set typeDisplayRepresentation(value: TypeDisplayRepresentation) { callSDK<void>("AppIntents_0e503aef608672fa", 1352169331321273, undefined, [value]); }
+  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 3845386428599427, undefined, []); }
+  static set typeDisplayRepresentation(value: TypeDisplayRepresentation) { callSDK<void>("AppIntents_212edf3d13b127f5", 1352169331321273, undefined, [value]); }
   declare readonly $type: { "s:10Foundation20PersonNameComponentsV": true };
 }
 
@@ -6018,7 +6295,7 @@ export interface PlayVideoIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6035,7 +6312,7 @@ export interface PredictableIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6052,7 +6329,7 @@ export interface ProgressReportingIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6077,7 +6354,7 @@ export interface PushToTalkTransmissionIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6094,7 +6371,7 @@ export interface RangeCheckingResolver {
    * func resolve(from input: Self.Input, context: IntentParameterContext<Self.Output>) async throws -> Self.Output?
    * @availability iOS 16.0+
    */
-  "resolveFromContext"?: (arg0: unknown, arg1: $SDK23) => (unknown) | null;
+  "resolveFromContext"?: (arg0: unknown, arg1: $SDK23) => Promise<(unknown) | null>;
 }
 
 /**
@@ -6111,20 +6388,35 @@ export interface RangeComparableProperty {
  */
 export class RelevantEntities extends SDKHandle {
   /**
+   * func removeEntities(_ entities: [any AppEntity], from context: AppEntityContext) async throws
+   * @availability iOS 27.0+
+   */
+  removeEntitiesFrom(entities: Array<SDKHandle>, context: AppEntityContext): Promise<void> { return callSDKAsync<void>("AppIntents_212edf3d13b127f5", 3801949423115283, this, [entities, context]); }
+  /**
+   * func removeEntities(_ entities: [any AppEntity]) async throws
+   * @availability iOS 27.0+
+   */
+  removeEntities(entities: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("AppIntents_212edf3d13b127f5", 2654669180431459, this, [entities]); }
+  /**
+   * func updateEntities(_ entities: [any AppEntity], for context: AppEntityContext) async throws
+   * @availability iOS 27.0+
+   */
+  updateEntities(entities: Array<SDKHandle>, context: AppEntityContext): Promise<void> { return callSDKAsync<void>("AppIntents_212edf3d13b127f5", 1799405261849894, this, [entities, context]); }
+  /**
    * func removeAllEntities(for context: AppEntityContext) async throws
    * @availability iOS 27.0+
    */
-  removeAllEntitiesFor(context: AppEntityContext): Promise<void> { return callSDKAsync<void>("AppIntents_0e503aef608672fa", 489623688908304, this, [context]); }
+  removeAllEntitiesFor(context: AppEntityContext): Promise<void> { return callSDKAsync<void>("AppIntents_212edf3d13b127f5", 489623688908304, this, [context]); }
   /**
    * func removeAllEntities() async throws
    * @availability iOS 27.0+
    */
-  removeAllEntities(): Promise<void> { return callSDKAsync<void>("AppIntents_0e503aef608672fa", 664006967350022, this, []); }
+  removeAllEntities(): Promise<void> { return callSDKAsync<void>("AppIntents_212edf3d13b127f5", 664006967350022, this, []); }
   /**
    * static let shared: RelevantEntities
    * @availability iOS 27.0+
    */
-  static get shared(): RelevantEntities { return callSDK<RelevantEntities>("AppIntents_0e503aef608672fa", 3278152916340732, undefined, []); }
+  static get shared(): RelevantEntities { return callSDK<RelevantEntities>("AppIntents_212edf3d13b127f5", 3278152916340732, undefined, []); }
   declare readonly $type: { "s:10AppIntents16RelevantEntitiesV": true };
 }
 
@@ -6137,7 +6429,7 @@ export class RelevantIntent extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 1412720194791175, this, []); }
+  get debugDescription(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 1412720194791175, this, []); }
   declare readonly $type: { "s:10AppIntents14RelevantIntentV": true };
 }
 
@@ -6150,12 +6442,12 @@ export class RelevantIntentManager extends SDKHandle {
    * final func updateRelevantIntents(_ relevantIntents: [RelevantIntent]) async throws
    * @availability iOS 17.0+
    */
-  updateRelevantIntents(relevantIntents: Array<RelevantIntent>): Promise<void> { return callSDKAsync<void>("AppIntents_0e503aef608672fa", 2843143873059316, this, [relevantIntents]); }
+  updateRelevantIntents(relevantIntents: Array<RelevantIntent>): Promise<void> { return callSDKAsync<void>("AppIntents_212edf3d13b127f5", 2843143873059316, this, [relevantIntents]); }
   /**
    * static let shared: RelevantIntentManager
    * @availability iOS 17.0+
    */
-  static get shared(): RelevantIntentManager { return callSDK<RelevantIntentManager>("AppIntents_0e503aef608672fa", 2491116410259810, undefined, []); }
+  static get shared(): RelevantIntentManager { return callSDK<RelevantIntentManager>("AppIntents_212edf3d13b127f5", 2491116410259810, undefined, []); }
   declare readonly $type: { "s:10AppIntents21RelevantIntentManagerC": true };
 }
 
@@ -6168,7 +6460,7 @@ export interface Resolver {
    * func resolve(from input: Self.Input, context: IntentParameterContext<Self.Output>) async throws -> Self.Output?
    * @availability iOS 16.0+
    */
-  "resolveFromContext"?: (arg0: unknown, arg1: $SDK23) => (unknown) | null;
+  "resolveFromContext"?: (arg0: unknown, arg1: $SDK23) => Promise<(unknown) | null>;
 }
 
 /**
@@ -6198,6 +6490,11 @@ export class ResolverSpecificationBuilder<Property = unknown> extends SDKHandle 
  * @availability iOS 18.0+
  */
 export class ResolverSpecificationBuilder_Specification<Property = unknown, Output = unknown, R = unknown> extends SDKHandle {
+  /**
+   * func makeIterator() -> Array<any Resolver>.Iterator
+   * @availability iOS 18.0+
+   */
+  makeIterator(): SDKHandle { return callSDK<SDKHandle>("AppIntents_212edf3d13b127f5", 218752877140477, this, []); }
   declare readonly $type: { "s:10AppIntents28ResolverSpecificationBuilderO0D0V": true };
 }
 
@@ -6211,7 +6508,7 @@ export type ResolverSpecificationBuilder_Specification_Element<Property = unknow
  * typealias Iterator = Array<any Resolver>.Iterator
  * @availability iOS 18.0+
  */
-export type ResolverSpecificationBuilder_Specification_Iterator<Property = unknown, Output = unknown, R = unknown> = unknown;
+export type ResolverSpecificationBuilder_Specification_Iterator<Property = unknown, Output = unknown, R = unknown> = SDKHandle;
 
 /**
  * protocol ResultsCollection<Result>
@@ -6230,7 +6527,7 @@ export interface ResumeWorkoutIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6255,27 +6552,27 @@ export class RunSystemShortcutIntent extends SDKHandle {
    * static let persistentIdentifier: String
    * @availability iOS 27.0+
    */
-  static get persistentIdentifier(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 3298975804808157, undefined, []); }
+  static get persistentIdentifier(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 3298975804808157, undefined, []); }
   /**
    * static let title: LocalizedStringResource
    * @availability iOS 27.0+
    */
-  static get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 2245643098330377, undefined, []); }
+  static get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 2245643098330377, undefined, []); }
   /**
    * func perform() async throws -> IntentResultContainer<Never, Never, Never, Never>
    * @availability iOS 27.0+
    */
-  perform(): Promise<$SDK84> { return callSDKAsync<$SDK84>("AppIntents_0e503aef608672fa", 1135938022070316, this, []); }
+  perform(): Promise<$SDK101> { return callSDKAsync<$SDK101>("AppIntents_212edf3d13b127f5", 1135938022070316, this, []); }
   /**
    * init(shortcut: SystemShortcut)
    * @availability iOS 27.0+
    */
-  static initShortcut(shortcut: SystemShortcut): RunSystemShortcutIntent { return callSDK<RunSystemShortcutIntent>("AppIntents_0e503aef608672fa", 541346305504512, undefined, [shortcut]); }
+  static initShortcut(shortcut: SystemShortcut): RunSystemShortcutIntent { return callSDK<RunSystemShortcutIntent>("AppIntents_212edf3d13b127f5", 541346305504512, undefined, [shortcut]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): RunSystemShortcutIntent { return callSDK<RunSystemShortcutIntent>("AppIntents_0e503aef608672fa", 4052530037869769, undefined, []); }
+  static init(): RunSystemShortcutIntent { return callSDK<RunSystemShortcutIntent>("AppIntents_212edf3d13b127f5", 4052530037869769, undefined, []); }
   declare readonly $type: { "s:10AppIntents23RunSystemShortcutIntentV": true };
 }
 
@@ -6319,7 +6616,7 @@ export type RunSystemShortcutIntent_Parameter = $SDK6;
  * typealias PerformResult = IntentResultContainer<Never, Never, Never, Never>
  * @availability iOS 27.0+
  */
-export type RunSystemShortcutIntent_PerformResult = $SDK84;
+export type RunSystemShortcutIntent_PerformResult = $SDK101;
 
 /**
  * typealias Summary = IntentParameterSummary<Self>
@@ -6386,7 +6683,7 @@ export interface SetFocusFilterIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6396,7 +6693,7 @@ export interface SetFocusFilterIntent {
    * static func suggestedFocusFilters(for context: FocusFilterSuggestionContext) async -> [Self]
    * @availability iOS 16.0+
    */
-  "suggestedFocusFiltersFor"?: (arg0: FocusFilterSuggestionContext) => Array<unknown>;
+  "suggestedFocusFiltersFor"?: (arg0: FocusFilterSuggestionContext) => Promise<Array<unknown>>;
 }
 
 /**
@@ -6414,7 +6711,7 @@ export interface SetValueIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6437,7 +6734,7 @@ export interface ShowInAppSearchResultsIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6470,7 +6767,7 @@ export interface SnippetIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6487,7 +6784,7 @@ export interface StartWorkoutIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6556,7 +6853,7 @@ export class StringFromDoubleResolver extends SDKHandle {
    * func resolve(from input: Double, context: IntentParameterContext<String>) async throws -> String?
    * @availability iOS 16.0+
    */
-  resolve(input: number, context: $SDK88): Promise<(string) | null> { return callSDKAsync<(string) | null>("AppIntents_0e503aef608672fa", 847123294465863, this, [input, context]); }
+  resolve(input: number, context: IntentParameterContext<string>): Promise<(string) | null> { return callSDKAsync<(string) | null>("AppIntents_212edf3d13b127f5", 847123294465863, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents24StringFromDoubleResolverV": true };
 }
 
@@ -6601,13 +6898,13 @@ export class StringSearchCriteria extends SDKHandle {
    * init(term: String)
    * @availability iOS 17.2+
    */
-  static init(term: string): StringSearchCriteria { return callSDK<StringSearchCriteria>("AppIntents_0e503aef608672fa", 2694837192513187, undefined, [term]); }
+  static init(term: string): StringSearchCriteria { return callSDK<StringSearchCriteria>("AppIntents_212edf3d13b127f5", 2694837192513187, undefined, [term]); }
   /**
    * var term: String
    * @availability iOS 17.2+
    */
-  get term(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 3794225124335419, this, []); }
-  set term(value: string) { callSDK<void>("AppIntents_0e503aef608672fa", 2218950744010397, this, [value]); }
+  get term(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 3794225124335419, this, []); }
+  set term(value: string) { callSDK<void>("AppIntents_212edf3d13b127f5", 2218950744010397, this, [value]); }
   declare readonly $type: { "s:10AppIntents20StringSearchCriteriaV": true };
 }
 
@@ -6615,7 +6912,7 @@ export class StringSearchCriteria extends SDKHandle {
  * typealias SearchScopes = [StringSearchScope]
  * @availability iOS 17.2+
  */
-export type StringSearchCriteria_SearchScopes = $SDK89;
+export type StringSearchCriteria_SearchScopes = $SDK106;
 
 /**
  * typealias Specification = some ResolverSpecification
@@ -6644,7 +6941,7 @@ export class StringSearchCriteriaFromStringResolverSpecificification extends SDK
    * func resolve(from input: String, context: IntentParameterContext<StringSearchCriteria>) async throws -> StringSearchCriteria?
    * @availability iOS 17.2+
    */
-  resolve(input: string, context: IntentParameterContext<StringSearchCriteria>): Promise<(StringSearchCriteria) | null> { return callSDKAsync<(StringSearchCriteria) | null>("AppIntents_0e503aef608672fa", 2483986005730572, this, [input, context]); }
+  resolve(input: string, context: IntentParameterContext<StringSearchCriteria>): Promise<(StringSearchCriteria) | null> { return callSDKAsync<(StringSearchCriteria) | null>("AppIntents_212edf3d13b127f5", 2483986005730572, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents024StringSearchCriteriaFromC25ResolverSpecificificationV": true };
 }
 
@@ -6677,36 +6974,36 @@ export const StringSearchScope = {
    * static var typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 17.2+
    */
-  get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 2105667947135072, undefined, []); },
-  set typeDisplayRepresentation(value: TypeDisplayRepresentation) { callSDK<void>("AppIntents_0e503aef608672fa", 3073073195190485, undefined, [value]); },
+  get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 2105667947135072, undefined, []); },
+  set typeDisplayRepresentation(value: TypeDisplayRepresentation) { callSDK<void>("AppIntents_212edf3d13b127f5", 3073073195190485, undefined, [value]); },
   /**
    * static var caseDisplayRepresentations: [StringSearchScope : DisplayRepresentation]
    * @availability iOS 17.2+
    */
-  get caseDisplayRepresentations(): $SDK92 { return callSDK<$SDK92>("AppIntents_0e503aef608672fa", 3710280015197993, undefined, []); },
-  set caseDisplayRepresentations(value: $SDK92) { callSDK<void>("AppIntents_0e503aef608672fa", 412398357726520, undefined, [value]); },
+  get caseDisplayRepresentations(): $SDK109 { return callSDK<$SDK109>("AppIntents_212edf3d13b127f5", 3710280015197993, undefined, []); },
+  set caseDisplayRepresentations(value: $SDK109) { callSDK<void>("AppIntents_212edf3d13b127f5", 412398357726520, undefined, [value]); },
   /**
    * nonisolated static var allCases: [StringSearchScope] { get }
    * @availability iOS 17.2+
    */
-  get allCases(): $SDK89 { return callSDK<$SDK89>("AppIntents_0e503aef608672fa", 2048762561561939, undefined, []); },
+  get allCases(): $SDK106 { return callSDK<$SDK106>("AppIntents_212edf3d13b127f5", 2048762561561939, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.2+
    */
-  init(rawValue: string): (StringSearchScope) | null { return callSDK<(StringSearchScope) | null>("AppIntents_0e503aef608672fa", 1944039619484785, undefined, [rawValue]); },
+  init(rawValue: string): (StringSearchScope) | null { return callSDK<(StringSearchScope) | null>("AppIntents_212edf3d13b127f5", 1944039619484785, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.2+
    */
-  getRawValue($self: StringSearchScope): string { return callSDK<string>("AppIntents_0e503aef608672fa", 4494732263766489, $self, []); }
+  getRawValue($self: StringSearchScope): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 4494732263766489, $self, []); }
 };
 
 /**
  * typealias AllCases = [StringSearchScope]
  * @availability iOS 17.2+
  */
-export type StringSearchScope_AllCases = $SDK89;
+export type StringSearchScope_AllCases = $SDK106;
 
 /**
  * typealias RawValue = String
@@ -6745,6 +7042,16 @@ export interface SyncableEntity {
  * @availability iOS 27.0+
  */
 export class SyncableEntityIdentifier<LocalID = unknown, StableID = unknown> extends SDKHandle {
+  /**
+   * var entityIdentifierString: String { get }
+   * @availability iOS 27.0+
+   */
+  get entityIdentifierString(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 3622699298906698, this, []); }
+  /**
+   * var description: String { get }
+   * @availability iOS 27.0+
+   */
+  get description(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 4379305581564260, this, []); }
   declare readonly $type: { "s:10AppIntents24SyncableEntityIdentifierV": true };
 }
 
@@ -6757,7 +7064,7 @@ export interface SystemIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6774,22 +7081,22 @@ export class SystemShortcut extends SDKHandle {
    * static let persistentIdentifier: String
    * @availability iOS 27.0+
    */
-  static get persistentIdentifier(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 1498820478394168, undefined, []); }
+  static get persistentIdentifier(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 1498820478394168, undefined, []); }
   /**
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 27.0+
    */
-  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_0e503aef608672fa", 4471089837559966, this, []); }
+  get displayRepresentation(): DisplayRepresentation { return callSDK<DisplayRepresentation>("AppIntents_212edf3d13b127f5", 4471089837559966, this, []); }
   /**
    * static let typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 27.0+
    */
-  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 295425449720156, undefined, []); }
+  static get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 295425449720156, undefined, []); }
   /**
    * static let defaultResolverSpecification: EmptyResolverSpecification<SystemShortcut>
    * @availability iOS 27.0+
    */
-  static get defaultResolverSpecification(): $SDK93 { return callSDK<$SDK93>("AppIntents_0e503aef608672fa", 4010821865559948, undefined, []); }
+  static get defaultResolverSpecification(): $SDK110 { return callSDK<$SDK110>("AppIntents_212edf3d13b127f5", 4010821865559948, undefined, []); }
   declare readonly $type: { "s:10AppIntents14SystemShortcutV": true };
 }
 
@@ -6797,7 +7104,7 @@ export class SystemShortcut extends SDKHandle {
  * typealias Specification = EmptyResolverSpecification<SystemShortcut>
  * @availability iOS 27.0+
  */
-export type SystemShortcut_Specification = $SDK93;
+export type SystemShortcut_Specification = $SDK110;
 
 /**
  * typealias UnwrappedType = SystemShortcut
@@ -6820,7 +7127,7 @@ export interface TargetContentProvidingIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6865,35 +7172,35 @@ export class TypeDisplayRepresentation extends SDKHandle {
    * var numericFormat: LocalizedStringResource?
    * @availability iOS 16.0+
    */
-  get numericFormat(): $SDK28 { return callSDK<$SDK28>("AppIntents_0e503aef608672fa", 2640287723635213, this, []); }
-  set numericFormat(value: $SDK28) { callSDK<void>("AppIntents_0e503aef608672fa", 3228349305980029, this, [value]); }
+  get numericFormat(): $SDK28 { return callSDK<$SDK28>("AppIntents_212edf3d13b127f5", 2640287723635213, this, []); }
+  set numericFormat(value: $SDK28) { callSDK<void>("AppIntents_212edf3d13b127f5", 3228349305980029, this, [value]); }
   /**
    * init(stringLiteral value: String)
    * @availability iOS 16.0+
    */
-  static initStringLiteral(value: string): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 636434679515017, undefined, [value]); }
+  static initStringLiteral(value: string): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 636434679515017, undefined, [value]); }
   /**
    * var name: LocalizedStringResource
    * @availability iOS 16.0+
    */
-  get name(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_0e503aef608672fa", 1494352854599458, this, []); }
-  set name(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_0e503aef608672fa", 3016337163766167, this, [value]); }
+  get name(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AppIntents_212edf3d13b127f5", 1494352854599458, this, []); }
+  set name(value: _Foundation_LocalizedStringResource) { callSDK<void>("AppIntents_212edf3d13b127f5", 3016337163766167, this, [value]); }
   /**
    * init(name: LocalizedStringResource, numericFormat: LocalizedStringResource? = nil, synonyms: [LocalizedStringResource] = [])
    * @availability iOS 17.0+
    */
-  static initNameNumericFormatSynonyms(name: _Foundation_LocalizedStringResource, numericFormat?: $SDK28, synonyms?: $SDK26): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 1876719301221189, undefined, [name, numericFormat, synonyms]); }
+  static initNameNumericFormatSynonyms(name: _Foundation_LocalizedStringResource, numericFormat?: $SDK28, synonyms?: $SDK26): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 1876719301221189, undefined, [name, numericFormat, synonyms]); }
   /**
    * init(name: LocalizedStringResource, numericFormat: LocalizedStringResource? = nil)
    * @availability iOS 16.0+
    */
-  static initNameNumericFormat(name: _Foundation_LocalizedStringResource, numericFormat?: $SDK28): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 3999915125684236, undefined, [name, numericFormat]); }
+  static initNameNumericFormat(name: _Foundation_LocalizedStringResource, numericFormat?: $SDK28): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 3999915125684236, undefined, [name, numericFormat]); }
   /**
    * var synonyms: [LocalizedStringResource]
    * @availability iOS 17.0+
    */
-  get synonyms(): $SDK26 { return callSDK<$SDK26>("AppIntents_0e503aef608672fa", 1563894199113742, this, []); }
-  set synonyms(value: $SDK26) { callSDK<void>("AppIntents_0e503aef608672fa", 3573798605575129, this, [value]); }
+  get synonyms(): $SDK26 { return callSDK<$SDK26>("AppIntents_212edf3d13b127f5", 1563894199113742, this, []); }
+  set synonyms(value: $SDK26) { callSDK<void>("AppIntents_212edf3d13b127f5", 3573798605575129, this, [value]); }
   declare readonly $type: { "s:10AppIntents25TypeDisplayRepresentationV": true };
 }
 
@@ -6924,7 +7231,7 @@ export interface UndoableIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -6982,7 +7289,7 @@ export type UniqueAppEntityProvider_ItemSection<R = unknown> = IntentItemSection
  * typealias ParameterDependency = IntentParameterDependency
  * @availability iOS 17.0+
  */
-export type UniqueAppEntityProvider_ParameterDependency = $SDK32;
+export type UniqueAppEntityProvider_ParameterDependency = $SDK33;
 
 /**
  * typealias Result = [Entity]
@@ -7005,12 +7312,12 @@ export interface UniqueAppEntityQuery {
    * func results() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "results"?: () => unknown;
+  "results"?: () => Promise<unknown>;
   /**
    * func defaultResult() async -> Self.DefaultValue?
    * @availability iOS 16.0+
    */
-  "defaultResult"?: () => (unknown) | null;
+  "defaultResult"?: () => Promise<(unknown) | null>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -7020,27 +7327,27 @@ export interface UniqueAppEntityQuery {
    * func entities(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity]
    * @availability iOS 16.0+
    */
-  "entitiesFor"?: (arg0: Array<unknown>) => Array<unknown>;
+  "entitiesFor"?: (arg0: Array<unknown>) => Promise<Array<unknown>>;
   /**
    * func suggestedEntities() async throws -> Self.Result
    * @availability iOS 16.0+
    */
-  "suggestedEntities"?: () => unknown;
+  "suggestedEntities"?: () => Promise<unknown>;
   /**
    * func displayRepresentations(for identifiers: [Self.Entity.ID]) async throws -> [Self.Entity.ID : DisplayRepresentation]
    * @availability iOS 27.0+
    */
-  "displayRepresentationsFor"?: (arg0: Array<unknown>) => $SDK35;
+  "displayRepresentationsFor"?: (arg0: Array<unknown>) => Promise<$SDK37>;
   /**
    * func allEntities() async throws -> Self.Result
    * @availability iOS 17.0+
    */
-  "allEntities"?: () => unknown;
+  "allEntities"?: () => Promise<unknown>;
   /**
    * func uniqueEntity() async throws -> Self.Unique
    * @availability iOS 18.0+
    */
-  "uniqueEntity"?: () => unknown;
+  "uniqueEntity"?: () => Promise<unknown>;
 }
 
 export class URL extends SDKHandle {
@@ -7048,7 +7355,7 @@ export class URL extends SDKHandle {
    * var urlRepresentationParameter: String? { get }
    * @availability iOS 18.0+
    */
-  get urlRepresentationParameter(): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 1266740544430890, this, []); }
+  get urlRepresentationParameter(): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 1266740544430890, this, []); }
   declare readonly $type: { "s:10Foundation3URLV": true };
 }
 
@@ -7079,7 +7386,7 @@ export class URLFromStringResolver extends SDKHandle {
    * func resolve(from input: String, context: IntentParameterContext<URL>) async throws -> URL?
    * @availability iOS 16.0+
    */
-  resolve(input: string, context: $SDK88): Promise<(string) | null> { return callSDKAsync<(string) | null>("AppIntents_0e503aef608672fa", 4401617281261882, this, [input, context]); }
+  resolve(input: string, context: IntentParameterContext<string>): Promise<(string) | null> { return callSDKAsync<(string) | null>("AppIntents_212edf3d13b127f5", 4401617281261882, this, [input, context]); }
   declare readonly $type: { "s:10AppIntents21URLFromStringResolverV": true };
 }
 
@@ -7138,7 +7445,7 @@ export interface URLRepresentableIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -7150,19 +7457,19 @@ export interface URLRepresentableIntent {
  * typealias URLRepresentation = IntentURLRepresentation<Self>
  * @availability iOS 18.0+
  */
-export type URLRepresentableIntent_URLRepresentation = $SDK87;
+export type URLRepresentableIntent_URLRepresentation = IntentURLRepresentation<unknown>;
 
 export class UUID extends SDKHandle {
   /**
    * static func entityIdentifier(for entityIdentifierString: String) -> UUID?
    * @availability iOS 16.0+
    */
-  static entityIdentifier(entityIdentifierString: string): (string) | null { return callSDK<(string) | null>("AppIntents_0e503aef608672fa", 469891306877200, undefined, [entityIdentifierString]); }
+  static entityIdentifier(entityIdentifierString: string): (string) | null { return callSDK<(string) | null>("AppIntents_212edf3d13b127f5", 469891306877200, undefined, [entityIdentifierString]); }
   /**
    * var entityIdentifierString: String { get }
    * @availability iOS 16.0+
    */
-  get entityIdentifierString(): string { return callSDK<string>("AppIntents_0e503aef608672fa", 3569437020393019, this, []); }
+  get entityIdentifierString(): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 3569437020393019, this, []); }
   declare readonly $type: { "s:10Foundation4UUIDV": true };
 }
 
@@ -7177,29 +7484,29 @@ export const VideoCategory = {
    * static var typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 17.2+
    */
-  get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_0e503aef608672fa", 3672532737973379, undefined, []); },
-  set typeDisplayRepresentation(value: TypeDisplayRepresentation) { callSDK<void>("AppIntents_0e503aef608672fa", 3048059993195753, undefined, [value]); },
+  get typeDisplayRepresentation(): TypeDisplayRepresentation { return callSDK<TypeDisplayRepresentation>("AppIntents_212edf3d13b127f5", 3672532737973379, undefined, []); },
+  set typeDisplayRepresentation(value: TypeDisplayRepresentation) { callSDK<void>("AppIntents_212edf3d13b127f5", 3048059993195753, undefined, [value]); },
   /**
    * static var caseDisplayRepresentations: [VideoCategory : DisplayRepresentation]
    * @availability iOS 17.2+
    */
-  get caseDisplayRepresentations(): $SDK96 { return callSDK<$SDK96>("AppIntents_0e503aef608672fa", 1398918590758762, undefined, []); },
-  set caseDisplayRepresentations(value: $SDK96) { callSDK<void>("AppIntents_0e503aef608672fa", 2381118406361045, undefined, [value]); },
+  get caseDisplayRepresentations(): $SDK113 { return callSDK<$SDK113>("AppIntents_212edf3d13b127f5", 1398918590758762, undefined, []); },
+  set caseDisplayRepresentations(value: $SDK113) { callSDK<void>("AppIntents_212edf3d13b127f5", 2381118406361045, undefined, [value]); },
   /**
    * nonisolated static var allCases: [VideoCategory] { get }
    * @availability iOS 17.2+
    */
-  get allCases(): Array<VideoCategory> { return callSDK<Array<VideoCategory>>("AppIntents_0e503aef608672fa", 575797436745669, undefined, []); },
+  get allCases(): Array<VideoCategory> { return callSDK<Array<VideoCategory>>("AppIntents_212edf3d13b127f5", 575797436745669, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.2+
    */
-  init(rawValue: string): (VideoCategory) | null { return callSDK<(VideoCategory) | null>("AppIntents_0e503aef608672fa", 3677606724150728, undefined, [rawValue]); },
+  init(rawValue: string): (VideoCategory) | null { return callSDK<(VideoCategory) | null>("AppIntents_212edf3d13b127f5", 3677606724150728, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.2+
    */
-  getRawValue($self: VideoCategory): string { return callSDK<string>("AppIntents_0e503aef608672fa", 1050869270541743, $self, []); }
+  getRawValue($self: VideoCategory): string { return callSDK<string>("AppIntents_212edf3d13b127f5", 1050869270541743, $self, []); }
 };
 
 /**
@@ -7241,7 +7548,7 @@ export interface WidgetConfigurationIntent {
    * func perform() async throws -> Self.PerformResult
    * @availability iOS 16.0+
    */
-  "perform"?: () => unknown;
+  "perform"?: () => Promise<unknown>;
   /**
    * init()
    * @availability iOS 16.0+
@@ -7249,27 +7556,27 @@ export interface WidgetConfigurationIntent {
   "init"?: () => void;
 }
 
-registerSDKClass("AppIntents.AnyEntityQueryComparator", AnyEntityQueryComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AnyEntityQueryComparator", AnyEntityQueryComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents14AnyIntentValueP", {});
-registerSDKClass("AppIntents.AppDependency", AppDependency, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppDependencyManager", AppDependencyManager, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppDependencyManager.Error", AppDependencyManager_Error, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppDependency", AppDependency, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppDependencyManager", AppDependencyManager, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"add":{"id":1683288626002577,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("AppIntents.AppDependencyManager.Error", AppDependencyManager_Error, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A6EntityP", {});
 registerSDKProtocol("s:10AppIntents0A17EntityAnnotatableP", {});
-registerSDKClass("AppIntents.AppEntityContext", AppEntityContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppEntityUIElement", AppEntityUIElement, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppEntityUIElement.State", AppEntityUIElement_State, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppEntityUIElementsContext", AppEntityUIElementsContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppEntityUIElementsContext.ElementsRequest", AppEntityUIElementsContext_ElementsRequest, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppEntityContext", AppEntityContext, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppEntityUIElement", AppEntityUIElement, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppEntityUIElement.State", AppEntityUIElement_State, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppEntityUIElementsContext", AppEntityUIElementsContext, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppEntityUIElementsContext.ElementsRequest", AppEntityUIElementsContext_ElementsRequest, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A4EnumP", {});
 registerSDKProtocol("s:10AppIntents0A6IntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.AppIntentError", AppIntentError, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppIntentError.PermissionRequired", AppIntentError_PermissionRequired, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppIntentError.Unrecoverable", AppIntentError_Unrecoverable, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppIntentError.UserActionRequired", AppIntentError_UserActionRequired, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppIntentError", AppIntentError, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppIntentError.PermissionRequired", AppIntentError_PermissionRequired, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppIntentError.Unrecoverable", AppIntentError_Unrecoverable, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppIntentError.UserActionRequired", AppIntentError_UserActionRequired, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0aB9ExtensionP", {"init":"init()"});
 registerSDKProtocol("s:10AppIntents0aB7PackageP", {});
-registerSDKClass("AppIntents.AppSchema", AppSchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppSchema", AppSchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A6SchemaV15AssistantIntentP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV11AudioEntityP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV9AudioEnumP", {});
@@ -7288,11 +7595,11 @@ registerSDKProtocol("s:10AppIntents0A6SchemaV12CameraIntentP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV11ClockEntityP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV9ClockEnumP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV11ClockIntentP", {});
-registerSDKClass("AppIntents.AppSchema.Entity", AppSchema_Entity, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppSchema.Enum", AppSchema_Enum, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppSchema.Entity", AppSchema_Entity, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppSchema.Enum", AppSchema_Enum, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A6SchemaV11FilesEntityP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV11FilesIntentP", {});
-registerSDKClass("AppIntents.AppSchema.Intent", AppSchema_Intent, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppSchema.Intent", AppSchema_Intent, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A6SchemaV13JournalEntityP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV13JournalIntentP", {});
 registerSDKProtocol("s:10AppIntents0A6SchemaV4KindP", {});
@@ -7333,21 +7640,21 @@ registerSDKProtocol("s:10AppIntents0A6SchemaV19WordProcessorIntentP", {});
 registerSDKProtocol("s:10AppIntents0A12SchemaEntityP", {});
 registerSDKProtocol("s:10AppIntents0A10SchemaEnumP", {});
 registerSDKProtocol("s:10AppIntents0A12SchemaIntentP", {});
-registerSDKClass("AppIntents.AppShortcut", AppShortcut, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutOptionsCollection", AppShortcutOptionsCollection, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppShortcut", AppShortcut, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutOptionsCollection", AppShortcutOptionsCollection, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A33ShortcutOptionsCollectionProtocolP", {});
 registerSDKProtocol("s:10AppIntents0A38ShortcutOptionsCollectionSpecificationP", {});
-registerSDKClass("AppIntents.AppShortcutOptionsCollectionSpecificationBuilder", AppShortcutOptionsCollectionSpecificationBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentation", AppShortcutParameterPresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentationSummary", AppShortcutParameterPresentationSummary, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentationSummaryString", AppShortcutParameterPresentationSummaryString, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentationSummaryString.StringInterpolation", AppShortcutParameterPresentationSummaryString_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentationTitle", AppShortcutParameterPresentationTitle, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentationTitleString", AppShortcutParameterPresentationTitleString, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutParameterPresentationTitleString.StringInterpolation", AppShortcutParameterPresentationTitleString_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutPhrase", AppShortcutPhrase, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutPhrase.StringInterpolation", AppShortcutPhrase_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AppShortcutsBuilder", AppShortcutsBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AppShortcutOptionsCollectionSpecificationBuilder", AppShortcutOptionsCollectionSpecificationBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentation", AppShortcutParameterPresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentationSummary", AppShortcutParameterPresentationSummary, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentationSummaryString", AppShortcutParameterPresentationSummaryString, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentationSummaryString.StringInterpolation", AppShortcutParameterPresentationSummaryString_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendLiteral":{"id":1016051639033942}} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentationTitle", AppShortcutParameterPresentationTitle, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentationTitleString", AppShortcutParameterPresentationTitleString, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutParameterPresentationTitleString.StringInterpolation", AppShortcutParameterPresentationTitleString_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendLiteral":{"id":215342569716381}} });
+registerSDKClass("AppIntents.AppShortcutPhrase", AppShortcutPhrase, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AppShortcutPhrase.StringInterpolation", AppShortcutPhrase_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendInterpolation":{"id":873321139224766},"appendLiteral":{"id":2934962343569654}} });
+registerSDKClass("AppIntents.AppShortcutsBuilder", AppShortcutsBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents0A16ShortcutsContentP", {});
 registerSDKProtocol("s:10AppIntents0A17ShortcutsProviderP", {});
 registerSDKProtocol("s:10AppIntents0A10UnionValueP", {});
@@ -7356,14 +7663,14 @@ registerSDKProtocol("s:10AppIntents0A5ValueP", {});
 registerSDKProtocol("s:10AppIntents15AssistantEntityP", {});
 registerSDKProtocol("s:10AppIntents13AssistantEnumP", {});
 registerSDKProtocol("s:10AppIntents15AssistantIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.AssistantSchema", AssistantSchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AssistantSchema.EntitySchema", AssistantSchema_EntitySchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AssistantSchema.EnumSchema", AssistantSchema_EnumSchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.AssistantSchema.IntentSchema", AssistantSchema_IntentSchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AssistantSchema", AssistantSchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AssistantSchema.EntitySchema", AssistantSchema_EntitySchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AssistantSchema.EnumSchema", AssistantSchema_EnumSchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.AssistantSchema.IntentSchema", AssistantSchema_IntentSchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents21AssistantSchemaEntityP", {});
 registerSDKProtocol("s:10AppIntents19AssistantSchemaEnumP", {});
 registerSDKProtocol("s:10AppIntents21AssistantSchemaIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.AssistantSchemas", AssistantSchemas, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AssistantSchemas", AssistantSchemas, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO0C6IntentP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO11BooksEntityP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO9BooksEnumP", {});
@@ -7374,13 +7681,13 @@ registerSDKProtocol("s:10AppIntents16AssistantSchemasO13BrowserIntentP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO10CameraEnumP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO12CameraIntentP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO6EntityP", {});
-registerSDKClass("AppIntents.AssistantSchemas.EntitySchema", AssistantSchemas_EntitySchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AssistantSchemas.EntitySchema", AssistantSchemas_EntitySchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO4EnumP", {});
-registerSDKClass("AppIntents.AssistantSchemas.EnumSchema", AssistantSchemas_EnumSchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AssistantSchemas.EnumSchema", AssistantSchemas_EnumSchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO11FilesEntityP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO11FilesIntentP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO6IntentP", {});
-registerSDKClass("AppIntents.AssistantSchemas.IntentSchema", AssistantSchemas_IntentSchema, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AssistantSchemas.IntentSchema", AssistantSchemas_IntentSchema, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO13JournalEntityP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO13JournalIntentP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO10MailEntityP", {});
@@ -7403,19 +7710,19 @@ registerSDKProtocol("s:10AppIntents16AssistantSchemasO14WhiteboardEnumP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO16WhiteboardIntentP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO19WordProcessorEntityP", {});
 registerSDKProtocol("s:10AppIntents16AssistantSchemasO19WordProcessorIntentP", {});
-registerSDKClass("AppIntents.AttributedStringFromStringResolver", AttributedStringFromStringResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":1837657449558591}} });
-registerSDKClass("AppIntents.AudioContext", AudioContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.AttributedStringFromStringResolver", AttributedStringFromStringResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":1837657449558591}} });
+registerSDKClass("AppIntents.AudioContext", AudioContext, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents19AudioPlaybackIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents20AudioRecordingIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents19AudioStartingIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.Bool.IntentDisplayName", Bool_IntentDisplayName, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.BoolFromStringResolver", BoolFromStringResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":1194436431516685}} });
+registerSDKClass("AppIntents.Bool.IntentDisplayName", Bool_IntentDisplayName, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.BoolFromStringResolver", BoolFromStringResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":1194436431516685}} });
 registerSDKProtocol("s:10AppIntents19CameraCaptureIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents17CancellableIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents24CaseDisplayRepresentableP", {});
-registerSDKClass("AppIntents.ConfirmationActionName", ConfirmationActionName, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQueryComparator", EntityQueryComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ContainsComparator", ContainsComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.ConfirmationActionName", ConfirmationActionName, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQueryComparator", EntityQueryComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ContainsComparator", ContainsComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents26ControlConfigurationIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents06CustomA22IntentErrorConvertibleP", {});
 registerSDKProtocol("s:10AppIntents020CustomIntentMigratedaD0P", {"perform":"perform()","init":"init()"});
@@ -7423,125 +7730,125 @@ registerSDKProtocol("s:10AppIntents43CustomURLRepresentationParameterConvertible
 registerSDKProtocol("s:10AppIntents12DeleteIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents010DeprecatedA6IntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents20DisplayRepresentableP", {});
-registerSDKClass("AppIntents.DisplayRepresentation", DisplayRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.DisplayRepresentation.Image", DisplayRepresentation_Image, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.DisplayRepresentation.Image.DisplayStyle", DisplayRepresentation_Image_DisplayStyle, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.DoubleFromIntResolver", DoubleFromIntResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":159652396701111}} });
-registerSDKClass("AppIntents.DoubleFromStringResolver", DoubleFromStringResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":4447602242834259}} });
-registerSDKClass("AppIntents.DoubleResolver", DoubleResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":1100580202012435}} });
+registerSDKClass("AppIntents.DisplayRepresentation", DisplayRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.DisplayRepresentation.Image", DisplayRepresentation_Image, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.DisplayRepresentation.Image.DisplayStyle", DisplayRepresentation_Image_DisplayStyle, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.DoubleFromIntResolver", DoubleFromIntResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":159652396701111}} });
+registerSDKClass("AppIntents.DoubleFromStringResolver", DoubleFromStringResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":4447602242834259}} });
+registerSDKClass("AppIntents.DoubleResolver", DoubleResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":1100580202012435}} });
 registerSDKProtocol("s:10AppIntents22DynamicOptionsProviderP", {"results":"results()","defaultResult":"defaultResult()"});
-registerSDKClass("AppIntents.EmptyResolverSpecification", EmptyResolverSpecification, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EmptySnippetIntent", EmptySnippetIntent, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"perform":{"id":293746278906358}} });
-registerSDKClass("AppIntents.EntityCollection", EntityCollection, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityIdentifier", EntityIdentifier, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.EmptyResolverSpecification", EmptyResolverSpecification, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"makeIterator":{"id":579677578687353}} });
+registerSDKClass("AppIntents.EmptySnippetIntent", EmptySnippetIntent, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"perform":{"id":293746278906358}} });
+registerSDKClass("AppIntents.EntityCollection", EntityCollection, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"index":{"id":3270419215856649}} });
+registerSDKClass("AppIntents.EntityIdentifier", EntityIdentifier, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents27EntityIdentifierConvertibleP", {"entityIdentifierFor":"entityIdentifier(for:)"});
-registerSDKClass("AppIntents.EntityProperty", EntityProperty, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.EntityProperty", EntityProperty, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents19EntityPropertyQueryP", {"results":"results()","defaultResult":"defaultResult()","init":"init()","entitiesFor":"entities(for:)","suggestedEntities":"suggestedEntities()","displayRepresentationsFor":"displayRepresentations(for:)","entitiesMatchingModeSortedByLimit":"entities(matching:mode:sortedBy:limit:)"});
 registerSDKProtocol("s:10AppIntents11EntityQueryP", {"results":"results()","defaultResult":"defaultResult()","init":"init()","entitiesFor":"entities(for:)","suggestedEntities":"suggestedEntities()","displayRepresentationsFor":"displayRepresentations(for:)"});
-registerSDKClass("AppIntents.EntityQueryComparatorsBuilder", EntityQueryComparatorsBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQueryProperties", EntityQueryProperties, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQueryPropertiesBuilder", EntityQueryPropertiesBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQueryPropertyDeclaration", EntityQueryPropertyDeclaration, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQueryProperty", EntityQueryProperty, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQuerySort", EntityQuerySort, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQuerySortableByProperty", EntityQuerySortableByProperty, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQuerySortingOptions", EntityQuerySortingOptions, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityQuerySortingOptionsBuilder", EntityQuerySortingOptionsBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.EntityQueryComparatorsBuilder", EntityQueryComparatorsBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQueryProperties", EntityQueryProperties, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":4140169960448619}} });
+registerSDKClass("AppIntents.EntityQueryPropertiesBuilder", EntityQueryPropertiesBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQueryPropertyDeclaration", EntityQueryPropertyDeclaration, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQueryProperty", EntityQueryProperty, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQuerySort", EntityQuerySort, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQuerySortableByProperty", EntityQuerySortableByProperty, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityQuerySortingOptions", EntityQuerySortingOptions, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":3536803859992182}} });
+registerSDKClass("AppIntents.EntityQuerySortingOptionsBuilder", EntityQuerySortingOptionsBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents17EntityStringQueryP", {"results":"results()","defaultResult":"defaultResult()","init":"init()","entitiesFor":"entities(for:)","suggestedEntities":"suggestedEntities()","displayRepresentationsFor":"displayRepresentations(for:)","entitiesMatching":"entities(matching:)"});
-registerSDKClass("AppIntents.EntityURLRepresentation", EntityURLRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EntityURLRepresentation.StringInterpolation", EntityURLRepresentation_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.EntityURLRepresentation", EntityURLRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EntityURLRepresentation.StringInterpolation", EntityURLRepresentation_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendInterpolation":{"id":2479765594877605},"appendLiteral":{"id":3349050020040311}} });
 registerSDKProtocol("s:10AppIntents21EnumerableEntityQueryP", {"results":"results()","defaultResult":"defaultResult()","init":"init()","entitiesFor":"entities(for:)","suggestedEntities":"suggestedEntities()","displayRepresentationsFor":"displayRepresentations(for:)","allEntities":"allEntities()"});
-registerSDKClass("AppIntents.EnumURLRepresentation", EnumURLRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EnumURLRepresentation.EnumSingleURLRepresentation", EnumURLRepresentation_EnumSingleURLRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EnumURLRepresentation.StringInterpolation", EnumURLRepresentation_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.EqualToComparator", EqualToComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.EnumURLRepresentation", EnumURLRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EnumURLRepresentation.EnumSingleURLRepresentation", EnumURLRepresentation_EnumSingleURLRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.EnumURLRepresentation.StringInterpolation", EnumURLRepresentation_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendInterpolation":{"id":3923072067534449},"appendLiteral":{"id":3422332567293660}} });
+registerSDKClass("AppIntents.EqualToComparator", EqualToComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents10FileEntityP", {});
-registerSDKClass("AppIntents.FileEntityIdentifier", FileEntityIdentifier, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.FocusFilterAppContext", FocusFilterAppContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.FocusFilterSuggestionContext", FocusFilterSuggestionContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.FileEntityIdentifier", FileEntityIdentifier, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.FocusFilterAppContext", FocusFilterAppContext, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.FocusFilterSuggestionContext", FocusFilterSuggestionContext, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents27ForegroundContinuableIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.GreaterThanComparator", GreaterThanComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.GreaterThanOrEqualToComparator", GreaterThanOrEqualToComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.HasPrefixComparator", HasPrefixComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.HasSuffixComparator", HasSuffixComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.GreaterThanComparator", GreaterThanComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.GreaterThanOrEqualToComparator", GreaterThanOrEqualToComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.HasPrefixComparator", HasPrefixComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.HasSuffixComparator", HasSuffixComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents13IndexedEntityP", {});
 registerSDKProtocol("s:10AppIntents18IndexedEntityQueryP", {"results":"results()","defaultResult":"defaultResult()","init":"init()","entitiesFor":"entities(for:)","suggestedEntities":"suggestedEntities()","displayRepresentationsFor":"displayRepresentations(for:)","reindexEntitiesForIndexDescription":"reindexEntities(for:indexDescription:)","reindexAllEntitiesIndexDescription":"reindexAllEntities(indexDescription:)"});
 registerSDKProtocol("s:10AppIntents28InstanceDisplayRepresentableP", {});
-registerSDKClass("AppIntents.IntentCancellationReason", IntentCancellationReason, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentChoiceOption", IntentChoiceOption, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentChoiceOption.Style", IntentChoiceOption_Style, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentCollectionSize", IntentCollectionSize, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentCurrencyAmount", IntentCurrencyAmount, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentDeprecation", IntentDeprecation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentDescription", IntentDescription, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentDialog", IntentDialog, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentDonationIdentifier", IntentDonationIdentifier, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentDonationManager", IntentDonationManager, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"deleteDonations":{"id":2160989066833033}} });
-registerSDKClass("AppIntents.IntentDonationMatchingPredicate", IntentDonationMatchingPredicate, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentFile", IntentFile, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"dataContentType":{"id":4057662287698716},"file":{"id":761214762202843}} });
-registerSDKClass("AppIntents.IntentItem", IntentItem, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentItem.Builder", IntentItem_Builder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentItemCollection", IntentItemCollection, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentItemSection", IntentItemSection, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentItemSection.Builder", IntentItemSection_Builder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentModes.Current", IntentModes_Current, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentModes.ForegroundMode", IntentModes_ForegroundMode, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentParameter", IntentParameter, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentParameter.ValueState", IntentParameter_ValueState, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentParameterContext", IntentParameterContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentParameterDependency", IntentParameterDependency, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentParameterSummary", IntentParameterSummary, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentParameterSummary.ParameterKeyPathsBuilder", IntentParameterSummary_ParameterKeyPathsBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPaymentMethod", IntentPaymentMethod, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPerson", IntentPerson, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPerson.Handle", IntentPerson_Handle, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPerson.Handle.Label", IntentPerson_Handle_Label, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPerson.Handle.Value", IntentPerson_Handle_Value, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPerson.Identifier", IntentPerson_Identifier, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPerson.Name", IntentPerson_Name, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentPrediction", IntentPrediction, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.IntentCancellationReason", IntentCancellationReason, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentChoiceOption", IntentChoiceOption, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentChoiceOption.Style", IntentChoiceOption_Style, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentCollectionSize", IntentCollectionSize, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentCurrencyAmount", IntentCurrencyAmount, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentDeprecation", IntentDeprecation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentDescription", IntentDescription, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentDialog", IntentDialog, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentDonationIdentifier", IntentDonationIdentifier, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentDonationManager", IntentDonationManager, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"deleteDonations":{"id":2160989066833033}} });
+registerSDKClass("AppIntents.IntentDonationMatchingPredicate", IntentDonationMatchingPredicate, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentFile", IntentFile, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"withFile":{"id":2203344893889971,"hints":[null,null,{"callback":{"out":[]}}]},"dataContentType":{"id":4057662287698716},"file":{"id":761214762202843}} });
+registerSDKClass("AppIntents.IntentItem", IntentItem, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentItem.Builder", IntentItem_Builder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentItemCollection", IntentItemCollection, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentItemSection", IntentItemSection, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentItemSection.Builder", IntentItemSection_Builder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentModes.Current", IntentModes_Current, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentModes.ForegroundMode", IntentModes_ForegroundMode, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentParameter", IntentParameter, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"requestValue":{"id":885953353634391},"needsValueError":{"id":2370799397146239}} });
+registerSDKClass("AppIntents.IntentParameter.ValueState", IntentParameter_ValueState, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentParameterContext", IntentParameterContext, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"needsValueError":{"id":997470037230049}} });
+registerSDKClass("AppIntents.IntentParameterDependency", IntentParameterDependency, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentParameterSummary", IntentParameterSummary, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentParameterSummary.ParameterKeyPathsBuilder", IntentParameterSummary_ParameterKeyPathsBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPaymentMethod", IntentPaymentMethod, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPerson", IntentPerson, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPerson.Handle", IntentPerson_Handle, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPerson.Handle.Label", IntentPerson_Handle_Label, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPerson.Handle.Value", IntentPerson_Handle_Value, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPerson.Identifier", IntentPerson_Identifier, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPerson.Name", IntentPerson_Name, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentPrediction", IntentPrediction, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents29IntentPredictionConfigurationP", {});
-registerSDKClass("AppIntents.IntentPredictionsBuilder", IntentPredictionsBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentProjection", IntentProjection, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentResponseStream", IntentResponseStream, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.IntentPredictionsBuilder", IntentPredictionsBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentProjection", IntentProjection, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentResponseStream", IntentResponseStream, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents12IntentResultP", {});
-registerSDKClass("AppIntents.IntentResultContainer", IntentResultContainer, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentSystemContext", IntentSystemContext, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentURLRepresentation", IntentURLRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntentURLRepresentation.StringInterpolation", IntentURLRepresentation_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.IntentResultContainer", IntentResultContainer, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentSystemContext", IntentSystemContext, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentURLRepresentation", IntentURLRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntentURLRepresentation.StringInterpolation", IntentURLRepresentation_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendLiteral":{"id":939792334803616}} });
 registerSDKProtocol("s:10AppIntents16IntentValueQueryP", {"init":"init()","valuesFor":"values(for:)"});
-registerSDKClass("AppIntents.IntentValueRepresentation", IntentValueRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.IntFromDoubleResolver", IntFromDoubleResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":822288018921077}} });
-registerSDKClass("AppIntents.IntFromStringResolver", IntFromStringResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":2742296215237993}} });
-registerSDKClass("AppIntents.IntResolver", IntResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":2397013902334440}} });
-registerSDKClass("AppIntents.IsBetweenComparator", IsBetweenComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.LessThanComparator", LessThanComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.LessThanOrEqualToComparator", LessThanOrEqualToComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.IntentValueRepresentation", IntentValueRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.IntFromDoubleResolver", IntFromDoubleResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":822288018921077}} });
+registerSDKClass("AppIntents.IntFromStringResolver", IntFromStringResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":2742296215237993}} });
+registerSDKClass("AppIntents.IntResolver", IntResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":2397013902334440}} });
+registerSDKClass("AppIntents.IsBetweenComparator", IsBetweenComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.LessThanComparator", LessThanComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.LessThanOrEqualToComparator", LessThanOrEqualToComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents18LiveActivityIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents26LiveActivityStartingIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents17LongRunningIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.NegativeAppShortcutPhrase", NegativeAppShortcutPhrase, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.NegativeAppShortcutPhrase.StringInterpolation", NegativeAppShortcutPhrase_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"appendInterpolation":{"id":2992996907780328},"appendLiteral":{"id":3898359122359233}} });
-registerSDKClass("AppIntents.NegativeAppShortcutPhrases", NegativeAppShortcutPhrases, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.NotEqualToComparator", NotEqualToComparator, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "AppIntents_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("AppIntents.NegativeAppShortcutPhrase", NegativeAppShortcutPhrase, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.NegativeAppShortcutPhrase.StringInterpolation", NegativeAppShortcutPhrase_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendInterpolation":{"id":2992996907780328},"appendLiteral":{"id":3898359122359233}} });
+registerSDKClass("AppIntents.NegativeAppShortcutPhrases", NegativeAppShortcutPhrases, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.NotEqualToComparator", NotEqualToComparator, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "AppIntents_212edf3d13b127f5", properties: {} }, true);
 registerSDKProtocol("s:10AppIntents10OpenIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents11OpensIntentP", {});
-registerSDKClass("AppIntents.OpenURLIntent", OpenURLIntent, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.OpenURLIntent", OpenURLIntent, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents24OwnershipProvidingEntityP", {});
 registerSDKProtocol("s:10AppIntents16ParameterSummaryP", {});
-registerSDKClass("AppIntents.ParameterSummaryBuilder", ParameterSummaryBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryCaseBuilder", ParameterSummaryCaseBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryCaseCondition", ParameterSummaryCaseCondition, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryDefaultCaseCondition", ParameterSummaryDefaultCaseCondition, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryString", ParameterSummaryString, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryString.StringInterpolation", ParameterSummaryString_StringInterpolation, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummarySwitchCondition", ParameterSummarySwitchCondition, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryTupleCaseCondition", ParameterSummaryTupleCaseCondition, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ParameterSummaryWhenCondition", ParameterSummaryWhenCondition, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryBuilder", ParameterSummaryBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryCaseBuilder", ParameterSummaryCaseBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryCaseCondition", ParameterSummaryCaseCondition, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryDefaultCaseCondition", ParameterSummaryDefaultCaseCondition, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryString", ParameterSummaryString, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryString.StringInterpolation", ParameterSummaryString_StringInterpolation, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"appendLiteral":{"id":1101618026310581}} });
+registerSDKClass("AppIntents.ParameterSummarySwitchCondition", ParameterSummarySwitchCondition, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryTupleCaseCondition", ParameterSummaryTupleCaseCondition, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ParameterSummaryWhenCondition", ParameterSummaryWhenCondition, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents18PauseWorkoutIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents24PersistentlyIdentifiableP", {});
-registerSDKClass("Foundation.PersonNameComponents", PersonNameComponents, { module: "AppIntents_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("Foundation.PersonNameComponents", PersonNameComponents, { module: "AppIntents_212edf3d13b127f5", properties: {} }, true);
 registerSDKProtocol("s:10AppIntents15PlayVideoIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents17PredictableIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents23ProgressReportingIntentP", {"perform":"perform()","init":"init()"});
@@ -7549,17 +7856,17 @@ registerSDKProtocol("s:10AppIntents14ProvidesDialogP", {});
 registerSDKProtocol("s:10AppIntents28PushToTalkTransmissionIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents21RangeCheckingResolverP", {"resolveFromContext":"resolve(from:context:)"});
 registerSDKProtocol("s:10AppIntents23RangeComparablePropertyP", {});
-registerSDKClass("AppIntents.RelevantEntities", RelevantEntities, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"removeAllEntitiesFor":{"id":489623688908304},"removeAllEntities":{"id":664006967350022}} });
-registerSDKClass("AppIntents.RelevantIntent", RelevantIntent, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.RelevantIntentManager", RelevantIntentManager, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"updateRelevantIntents":{"id":2843143873059316}} });
+registerSDKClass("AppIntents.RelevantEntities", RelevantEntities, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"removeEntitiesFrom":{"id":3801949423115283},"removeEntities":{"id":2654669180431459},"updateEntities":{"id":1799405261849894},"removeAllEntitiesFor":{"id":489623688908304},"removeAllEntities":{"id":664006967350022}} });
+registerSDKClass("AppIntents.RelevantIntent", RelevantIntent, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.RelevantIntentManager", RelevantIntentManager, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"updateRelevantIntents":{"id":2843143873059316}} });
 registerSDKProtocol("s:10AppIntents8ResolverP", {"resolveFromContext":"resolve(from:context:)"});
 registerSDKProtocol("s:10AppIntents21ResolverSpecificationP", {});
-registerSDKClass("AppIntents.ResolverSpecificationBuilder", ResolverSpecificationBuilder, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.ResolverSpecificationBuilder.Specification", ResolverSpecificationBuilder_Specification, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.ResolverSpecificationBuilder", ResolverSpecificationBuilder, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.ResolverSpecificationBuilder.Specification", ResolverSpecificationBuilder_Specification, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"makeIterator":{"id":218752877140477}} });
 registerSDKProtocol("s:10AppIntents17ResultsCollectionP", {});
 registerSDKProtocol("s:10AppIntents19ResumeWorkoutIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents12ReturnsValueP", {});
-registerSDKClass("AppIntents.RunSystemShortcutIntent", RunSystemShortcutIntent, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"perform":{"id":1135938022070316}} });
+registerSDKClass("AppIntents.RunSystemShortcutIntent", RunSystemShortcutIntent, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"perform":{"id":1135938022070316}} });
 registerSDKProtocol("s:10AppIntents14SearchCriteriaP", {});
 registerSDKProtocol("s:10AppIntents20SetFocusFilterIntentP", {"perform":"perform()","init":"init()","suggestedFocusFiltersFor":"suggestedFocusFilters(for:)"});
 registerSDKProtocol("s:10AppIntents14SetValueIntentP", {"perform":"perform()","init":"init()"});
@@ -7569,28 +7876,28 @@ registerSDKProtocol("s:10AppIntents16ShowsSnippetViewP", {});
 registerSDKProtocol("s:10AppIntents13SnippetIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents18StartWorkoutIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents26StaticDisplayRepresentableP", {});
-registerSDKClass("AppIntents.String.IntentInputOptions", String_IntentInputOptions, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.StringFromDoubleResolver", StringFromDoubleResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":847123294465863}} });
-registerSDKClass("AppIntents.StringFromIntResolver", StringFromIntResolver, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.StringSearchCriteria", StringSearchCriteria, { module: "AppIntents_0e503aef608672fa", properties: {} });
-registerSDKClass("AppIntents.StringSearchCriteriaFromStringResolverSpecificification", StringSearchCriteriaFromStringResolverSpecificification, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":2483986005730572}} });
+registerSDKClass("AppIntents.String.IntentInputOptions", String_IntentInputOptions, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.StringFromDoubleResolver", StringFromDoubleResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":847123294465863}} });
+registerSDKClass("AppIntents.StringFromIntResolver", StringFromIntResolver, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.StringSearchCriteria", StringSearchCriteria, { module: "AppIntents_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppIntents.StringSearchCriteriaFromStringResolverSpecificification", StringSearchCriteriaFromStringResolverSpecificification, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":2483986005730572}} });
 registerSDKProtocol("s:10AppIntents14SyncableEntityP", {});
-registerSDKClass("AppIntents.SyncableEntityIdentifier", SyncableEntityIdentifier, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.SyncableEntityIdentifier", SyncableEntityIdentifier, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents12SystemIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("AppIntents.SystemShortcut", SystemShortcut, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.SystemShortcut", SystemShortcut, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents28TargetContentProvidingIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents09TransientA6EntityP", {"init":"init()"});
-registerSDKClass("AppIntents.TupleIntentPrediction", TupleIntentPrediction, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.TupleIntentPrediction", TupleIntentPrediction, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents24TypeDisplayRepresentableP", {});
-registerSDKClass("AppIntents.TypeDisplayRepresentation", TypeDisplayRepresentation, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.TypeDisplayRepresentation", TypeDisplayRepresentation, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents14UndoableIntentP", {"perform":"perform()","init":"init()"});
 registerSDKProtocol("s:10AppIntents06UniqueA6EntityP", {});
-registerSDKClass("AppIntents.UniqueAppEntityProvider", UniqueAppEntityProvider, { module: "AppIntents_0e503aef608672fa", properties: {} });
+registerSDKClass("AppIntents.UniqueAppEntityProvider", UniqueAppEntityProvider, { module: "AppIntents_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:10AppIntents06UniqueA11EntityQueryP", {"results":"results()","defaultResult":"defaultResult()","init":"init()","entitiesFor":"entities(for:)","suggestedEntities":"suggestedEntities()","displayRepresentationsFor":"displayRepresentations(for:)","allEntities":"allEntities()","uniqueEntity":"uniqueEntity()"});
-registerSDKClass("Foundation.URL", URL, { module: "AppIntents_0e503aef608672fa", properties: {} }, true);
-registerSDKClass("AppIntents.URLFromStringResolver", URLFromStringResolver, { module: "AppIntents_0e503aef608672fa", properties: {}, methods: {"resolve":{"id":4401617281261882}} });
+registerSDKClass("Foundation.URL", URL, { module: "AppIntents_212edf3d13b127f5", properties: {} }, true);
+registerSDKClass("AppIntents.URLFromStringResolver", URLFromStringResolver, { module: "AppIntents_212edf3d13b127f5", properties: {}, methods: {"resolve":{"id":4401617281261882}} });
 registerSDKProtocol("s:10AppIntents22URLRepresentableEntityP", {});
 registerSDKProtocol("s:10AppIntents20URLRepresentableEnumP", {});
 registerSDKProtocol("s:10AppIntents22URLRepresentableIntentP", {"perform":"perform()","init":"init()"});
-registerSDKClass("Foundation.UUID", UUID, { module: "AppIntents_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("Foundation.UUID", UUID, { module: "AppIntents_212edf3d13b127f5", properties: {} }, true);
 registerSDKProtocol("s:10AppIntents25WidgetConfigurationIntentP", {"perform":"perform()","init":"init()"});

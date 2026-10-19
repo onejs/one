@@ -6,7 +6,7 @@ import type { DocMember, DocType, FrameworkSummary, FrameworkDoc } from './doc-t
 import { frameworkGroups, frameworkSummaries } from './doc-frameworks'
 import { loadGraph, sdkModules, sdkVersion, type Symbol } from './graph'
 import { Bridge, buildIndex, collectFacts } from './bridge'
-import { facadeCallFormatter } from './emit-ts'
+import { facadePublishedKeys, facadeCallFormatter } from './emit-ts'
 
 type DocumentedSymbol = Symbol & { docComment?: { lines: { text: string }[] } }
 
@@ -85,12 +85,18 @@ function referenceBridge() {
     )
   ))
 }
+// use the exporter's own publication decisions, including inherited aliases.
+function publishedKeys(module: string, entries: Entry[], skipped: Skipped[]): Set<string> {
+  return facadePublishedKeys({ module, entries, skipped }, referenceBridge())
+}
 export function typescriptCallShape(entry: Entry): string | undefined {
   const module = entry.owner?.split('.')[0] ?? ''
-  return facadeCallFormatter(
+  const shape = facadeCallFormatter(
     { module, entries: [entry], skipped: [] },
     referenceBridge()
   )(entry)
+  if (!publishedKeys(module, [entry], []).has(entry.key)) return undefined
+  return shape
 }
 
 export function emitFrameworkDocs(
@@ -106,6 +112,8 @@ export function emitFrameworkDocs(
     callShape === typescriptCallShape
       ? facadeCallFormatter({ module, entries, skipped }, referenceBridge())
       : callShape
+  const published =
+    callShape === typescriptCallShape ? publishedKeys(module, entries, skipped) : undefined
   const symbols = new Map(
     graph.symbols.map((s) => [s.identifier.precise, s as DocumentedSymbol])
   )
@@ -122,9 +130,10 @@ export function emitFrameworkDocs(
   }
   const globals: DocMember[] = []
   for (const entry of entries) {
+    const typescript = formatCall(entry)
     const doc = {
       ...describe(symbols.get(entry.usr), entry.name, entry.kind),
-      typescript: formatCall(entry),
+      typescript: published && !published.has(entry.key) ? undefined : typescript,
       out: entry.params.some((p) => p.out || p.inout)
         ? entry.params.filter((p) => p.out || p.inout).map((p) => p.name)
         : undefined,

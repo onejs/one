@@ -2,16 +2,16 @@
 import { SDKHandle } from 'one/ios-runtime';
 import type { CGImage as _CoreGraphics_CGImage } from "one/ios/CoreGraphics";
 type $SDK0 = Array<AnimatedArtwork_AspectRatio>;
-type $SDK1 = (AnimatedArtwork) | null;
-type $SDK2 = ({
+type $SDK4 = (AnimatedArtwork) | null;
+type $SDK5 = ({
     "current": number;
     "total": number;
 }) | null;
-type $SDK3 = Array<MediaCommand_FeedbackStatus>;
-type $SDK4 = Array<MediaCommand_RepeatMode>;
-type $SDK5 = Array<MediaCommand_ShuffleMode>;
-type $SDK6 = Array<MediaDevice_Capability>;
-type $SDK7 = (globalThis.Date) | null;
+type $SDK6 = ((arg0: number) => Promise<void>);
+type $SDK12 = Array<MediaCommand_FeedbackStatus>;
+type $SDK13 = Array<MediaCommand_RepeatMode>;
+type $SDK14 = Array<MediaCommand_ShuffleMode>;
+type $SDK16 = (globalThis.Date) | null;
 /**
  * struct AnimatedArtwork
  * @availability iOS 27.0+
@@ -27,6 +27,17 @@ export declare class AnimatedArtwork extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get compatibleAspectRatios(): $SDK0;
+    /**
+     * init(id: String, supportedAspectRatios: [AnimatedArtwork.AspectRatio] = [.square], preview previewProvider: @escaping @Sendable (CGSize, AnimatedArtwork.AspectRatio) async throws -> ArtworkRepresentation, video videoProvider: @escaping @Sendable (CGSize, AnimatedArtwork.AspectRatio) async throws -> URL)
+     * @availability iOS 27.0+
+     */
+    static init(id: string, supportedAspectRatios: $SDK0, previewProvider: ((arg0: {
+        width: number;
+        height: number;
+    }, arg1: AnimatedArtwork_AspectRatio) => Promise<ArtworkRepresentation>), videoProvider: ((arg0: {
+        width: number;
+        height: number;
+    }, arg1: AnimatedArtwork_AspectRatio) => Promise<string>)): AnimatedArtwork;
     /**
      * let id: String
      * @availability iOS 27.0+
@@ -51,6 +62,14 @@ export type AnimatedArtwork_ID = string;
  * @availability iOS 27.0+
  */
 export declare class Artwork extends SDKHandle {
+    /**
+     * init(id: String, artworkProvider: @escaping @Sendable (CGSize) async throws -> ArtworkRepresentation)
+     * @availability iOS 27.0+
+     */
+    static init(id: string, artworkProvider: ((arg0: {
+        width: number;
+        height: number;
+    }) => Promise<ArtworkRepresentation>)): Artwork;
     /**
      * let id: String
      * @availability iOS 27.0+
@@ -114,7 +133,7 @@ export declare class BookContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -125,7 +144,7 @@ export declare class BookContent extends SDKHandle {
      * init(id: String, title: String, authorName: String, narratorName: String? = nil, type: MediaType = .audio, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdTitleAuthorNameNarratorNameTypeDurationArtworkAnimatedArtwork(id: string, title: string, authorName: string, narratorName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): BookContent;
+    static initIdTitleAuthorNameNarratorNameTypeDurationArtworkAnimatedArtwork(id: string, title: string, authorName: string, narratorName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): BookContent;
     /**
      * init(id: String, title: String, authorName: String, narratorName: String? = nil, type: MediaType = .audio, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+
@@ -161,8 +180,8 @@ export declare class BookContent extends SDKHandle {
      * var chapter: (current: Int, total: Int)?
      * @availability iOS 27.0+
      */
-    get chapter(): $SDK2;
-    set chapter(value: $SDK2);
+    get chapter(): $SDK5;
+    set chapter(value: $SDK5);
     /**
      * let duration: MediaDuration?
      * @availability iOS 27.0+
@@ -192,7 +211,7 @@ export declare class GenericContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -203,7 +222,7 @@ export declare class GenericContent extends SDKHandle {
      * init(id: String, title: String, subtitle: String? = nil, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdTitleSubtitleTypeDurationArtworkAnimatedArtwork(id: string, title: string, subtitle: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): GenericContent;
+    static initIdTitleSubtitleTypeDurationArtworkAnimatedArtwork(id: string, title: string, subtitle: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): GenericContent;
     /**
      * init(id: String, title: String, subtitle: String? = nil, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+
@@ -274,7 +293,7 @@ export declare class HomeMediaContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * let contentDescription: String?
      * @availability iOS 27.0+
@@ -290,7 +309,7 @@ export declare class HomeMediaContent extends SDKHandle {
      * init(id: String, sourceName: String, contentDescription: String?, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdSourceNameContentDescriptionTypeDurationArtworkAnimatedArtwork(id: string, sourceName: string, contentDescription: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): HomeMediaContent;
+    static initIdSourceNameContentDescriptionTypeDurationArtworkAnimatedArtwork(id: string, sourceName: string, contentDescription: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): HomeMediaContent;
     /**
      * init(id: String, sourceName: String, contentDescription: String?, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+
@@ -337,10 +356,85 @@ export type HomeMediaContent_ID = string;
  */
 export declare class MediaCommand extends SDKHandle {
     /**
+     * static func seekForward(beginAction: @escaping () async throws -> Void, endAction: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static seekForward(beginAction: (() => Promise<void>), endAction: (() => Promise<void>)): MediaCommand;
+    /**
+     * static func skipForward(preferredIntervals: [TimeInterval] = [10], _ action: @escaping (TimeInterval) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static skipForward(preferredIntervals: Array<number>, action: $SDK6): MediaCommand;
+    /**
+     * static func seekBackward(beginAction: @escaping () async throws -> Void, endAction: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static seekBackward(beginAction: (() => Promise<void>), endAction: (() => Promise<void>)): MediaCommand;
+    /**
+     * static func skipBackward(preferredIntervals: [TimeInterval] = [10], _ action: @escaping (TimeInterval) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static skipBackward(preferredIntervals: Array<number>, action: $SDK6): MediaCommand;
+    /**
+     * static func seekToPosition(_ action: @escaping (TimeInterval) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static seekToPosition(action: $SDK6): MediaCommand;
+    /**
+     * static func togglePlayPause(_ action: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static togglePlayPause(action: (() => Promise<void>)): MediaCommand;
+    /**
+     * static func changeRepeatMode(current: MediaCommand.RepeatMode, supported: [MediaCommand.RepeatMode]? = nil, _ action: @escaping (MediaCommand.RepeatMode) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static changeRepeatMode(current: MediaCommand_RepeatMode, supported: (Array<MediaCommand_RepeatMode>) | null, action: ((arg0: MediaCommand_RepeatMode) => Promise<void>)): MediaCommand;
+    /**
+     * static func changeShuffleMode(current: MediaCommand.ShuffleMode, supported: [MediaCommand.ShuffleMode]? = nil, _ action: @escaping (MediaCommand.ShuffleMode) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static changeShuffleMode(current: MediaCommand_ShuffleMode, supported: (Array<MediaCommand_ShuffleMode>) | null, action: ((arg0: MediaCommand_ShuffleMode) => Promise<void>)): MediaCommand;
+    /**
+     * static func changePlaybackRate(supported: [Float], _ action: @escaping (Float) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static changePlaybackRate(supported: Array<number>, action: $SDK6): MediaCommand;
+    /**
+     * static func next(_ action: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static next(action: (() => Promise<void>)): MediaCommand;
+    /**
+     * static func play(_ action: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static play(action: (() => Promise<void>)): MediaCommand;
+    /**
+     * static func stop(_ action: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static stop(action: (() => Promise<void>)): MediaCommand;
+    /**
+     * static func pause(_ action: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static pause(action: (() => Promise<void>)): MediaCommand;
+    /**
      * func enabled(_ isEnabled: Bool) -> MediaCommand
      * @availability iOS 27.0+
      */
     enabled(isEnabled: boolean): MediaCommand;
+    /**
+     * static func feedback(title: String? = nil, shortTitle: String? = nil, status: MediaCommand.FeedbackStatus = .neutral, _ action: @escaping (MediaCommand.FeedbackStatus) async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static feedback(title: (string) | null, shortTitle: (string) | null, status: MediaCommand_FeedbackStatus, action: ((arg0: MediaCommand_FeedbackStatus) => Promise<void>)): MediaCommand;
+    /**
+     * static func previous(_ action: @escaping () async throws -> Void) -> MediaCommand
+     * @availability iOS 27.0+
+     */
+    static previous(action: (() => Promise<void>)): MediaCommand;
     readonly $type: {
         "s:10NowPlaying12MediaCommandV": true;
     };
@@ -355,13 +449,13 @@ export declare const MediaCommand_FeedbackStatus: {
      * nonisolated static var allCases: [MediaCommand.FeedbackStatus] { get }
      * @availability iOS 27.0+
      */
-    readonly allCases: $SDK3;
+    readonly allCases: $SDK12;
 };
 /**
  * typealias AllCases = [MediaCommand.FeedbackStatus]
  * @availability iOS 27.0+
  */
-export type MediaCommand_FeedbackStatus_AllCases = $SDK3;
+export type MediaCommand_FeedbackStatus_AllCases = $SDK12;
 /**
  * enum RepeatMode
  * @availability iOS 27.0+
@@ -372,13 +466,13 @@ export declare const MediaCommand_RepeatMode: {
      * nonisolated static var allCases: [MediaCommand.RepeatMode] { get }
      * @availability iOS 27.0+
      */
-    readonly allCases: $SDK4;
+    readonly allCases: $SDK13;
 };
 /**
  * typealias AllCases = [MediaCommand.RepeatMode]
  * @availability iOS 27.0+
  */
-export type MediaCommand_RepeatMode_AllCases = $SDK4;
+export type MediaCommand_RepeatMode_AllCases = $SDK13;
 /**
  * enum ShuffleMode
  * @availability iOS 27.0+
@@ -389,13 +483,13 @@ export declare const MediaCommand_ShuffleMode: {
      * nonisolated static var allCases: [MediaCommand.ShuffleMode] { get }
      * @availability iOS 27.0+
      */
-    readonly allCases: $SDK5;
+    readonly allCases: $SDK14;
 };
 /**
  * typealias AllCases = [MediaCommand.ShuffleMode]
  * @availability iOS 27.0+
  */
-export type MediaCommand_ShuffleMode_AllCases = $SDK5;
+export type MediaCommand_ShuffleMode_AllCases = $SDK14;
 /**
  * protocol MediaContentRepresentable : Identifiable
  * @availability iOS 27.0+
@@ -411,12 +505,12 @@ export declare class MediaDevice extends SDKHandle {
      * let capabilities: [MediaDevice.Capability]
      * @availability iOS 27.0+
      */
-    get capabilities(): $SDK6;
+    get capabilities(): Array<MediaDevice_Capability>;
     /**
      * init(id: String, name: String, type: MediaDevice.DeviceType, capabilities: [MediaDevice.Capability])
      * @availability iOS 27.0+
      */
-    static init(id: string, name: string, type: MediaDevice_DeviceType, capabilities: $SDK6): MediaDevice;
+    static init(id: string, name: string, type: MediaDevice_DeviceType, capabilities: Array<MediaDevice_Capability>): MediaDevice;
     /**
      * let id: String
      * @availability iOS 27.0+
@@ -441,6 +535,16 @@ export declare class MediaDevice extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class MediaDevice_Capability extends SDKHandle {
+    /**
+     * static func absoluteVolume(_ currentLevel: Float, onChange: @escaping @Sendable (Float) async throws -> Void) -> MediaDevice.Capability
+     * @availability iOS 27.0+
+     */
+    static absoluteVolume(currentLevel: number, onChange: $SDK6): MediaDevice_Capability;
+    /**
+     * static func relativeVolume(onIncrement: @escaping @Sendable () async throws -> Void, onDecrement: @escaping @Sendable () async throws -> Void) -> MediaDevice.Capability
+     * @availability iOS 27.0+
+     */
+    static relativeVolume(onIncrement: (() => Promise<void>), onDecrement: (() => Promise<void>)): MediaDevice_Capability;
     readonly $type: {
         "s:10NowPlaying11MediaDeviceV10CapabilityV": true;
     };
@@ -473,7 +577,7 @@ export declare class MediaPlaybackSnapshot extends SDKHandle {
      * init(state: MediaPlaybackSnapshot.PlaybackState, defaultPlaybackRate: Float = 1.0, elapsedTime: TimeInterval? = nil, timestamp: Date? = nil)
      * @availability iOS 27.0+
      */
-    static init(state: MediaPlaybackSnapshot_PlaybackState, defaultPlaybackRate?: number, elapsedTime?: (number) | null, timestamp?: $SDK7): MediaPlaybackSnapshot;
+    static init(state: MediaPlaybackSnapshot_PlaybackState, defaultPlaybackRate?: number, elapsedTime?: (number) | null, timestamp?: $SDK16): MediaPlaybackSnapshot;
     readonly $type: {
         "s:10NowPlaying21MediaPlaybackSnapshotV": true;
     };
@@ -532,7 +636,7 @@ export declare class MovieContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -543,7 +647,7 @@ export declare class MovieContent extends SDKHandle {
      * init(id: String, title: String, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdTitleDurationArtworkAnimatedArtwork(id: string, title: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): MovieContent;
+    static initIdTitleDurationArtworkAnimatedArtwork(id: string, title: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): MovieContent;
     /**
      * init(id: String, title: String, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+
@@ -609,7 +713,7 @@ export declare class MusicContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -620,7 +724,7 @@ export declare class MusicContent extends SDKHandle {
      * init(id: String, songTitle: String, artistName: String, albumName: String, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdSongTitleArtistNameAlbumNameTypeDurationArtworkAnimatedArtwork(id: string, songTitle: string, artistName: string, albumName: string, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): MusicContent;
+    static initIdSongTitleArtistNameAlbumNameTypeDurationArtworkAnimatedArtwork(id: string, songTitle: string, artistName: string, albumName: string, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): MusicContent;
     /**
      * init(id: String, songTitle: String, artistName: String, albumName: String, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+
@@ -698,7 +802,7 @@ export declare class PodcastContent extends SDKHandle {
      * let releaseDate: Date?
      * @availability iOS 27.0+
      */
-    get releaseDate(): $SDK7;
+    get releaseDate(): $SDK16;
     /**
      * let episodeTitle: String
      * @availability iOS 27.0+
@@ -708,7 +812,7 @@ export declare class PodcastContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -719,12 +823,12 @@ export declare class PodcastContent extends SDKHandle {
      * init(id: String, episodeTitle: String, showName: String, releaseDate: Date?, type: MediaType, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK7, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): PodcastContent;
+    static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK16, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): PodcastContent;
     /**
      * init(id: String, episodeTitle: String, showName: String, releaseDate: Date?, type: MediaType, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+
      */
-    static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK7, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): PodcastContent;
+    static initIdEpisodeTitleShowNameReleaseDateTypeDurationArtwork(id: string, episodeTitle: string, showName: string, releaseDate: $SDK16, type: MediaType, duration?: (MediaDuration) | null, artwork?: (Artwork) | null): PodcastContent;
     /**
      * let id: String
      * @availability iOS 27.0+
@@ -790,7 +894,7 @@ export declare class RadioContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -801,7 +905,7 @@ export declare class RadioContent extends SDKHandle {
      * init(id: String, stationName: String, programName: String? = nil, type: MediaType = .audio, duration: MediaDuration? = .live, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdStationNameProgramNameTypeDurationArtworkAnimatedArtwork(id: string, stationName: string, programName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): RadioContent;
+    static initIdStationNameProgramNameTypeDurationArtworkAnimatedArtwork(id: string, stationName: string, programName: (string) | null, type: MediaType, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): RadioContent;
     /**
      * init(id: String, stationName: String, programName: String? = nil, type: MediaType = .audio, duration: MediaDuration? = .live, artwork: Artwork?)
      * @availability iOS 27.0+
@@ -877,7 +981,7 @@ export interface RemoteMediaSessionExtension {
      * @MainActor func session(_ attributes: Self.Attributes) async throws -> Self.Session
      * @availability iOS 27.0+
      */
-    "session"?: (arg0: unknown) => unknown;
+    "session"?: (arg0: unknown) => Promise<unknown>;
 }
 /**
  * @MainActor final class RemoteMediaSessionExtensionConfiguration<Extension> where Extension : RemoteMediaSessionExtension
@@ -919,7 +1023,7 @@ export declare class TVShowContent extends SDKHandle {
      * let animatedArtwork: AnimatedArtwork?
      * @availability iOS 27.0+
      */
-    get animatedArtwork(): $SDK1;
+    get animatedArtwork(): $SDK4;
     /**
      * var isExcludedFromSuggestions: Bool?
      * @availability iOS 27.0+
@@ -930,7 +1034,7 @@ export declare class TVShowContent extends SDKHandle {
      * init(id: String, episodeTitle: String, showName: String, duration: MediaDuration?, artwork: Artwork, animatedArtwork: AnimatedArtwork?)
      * @availability iOS 27.0+
      */
-    static initIdEpisodeTitleShowNameDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK1): TVShowContent;
+    static initIdEpisodeTitleShowNameDurationArtworkAnimatedArtwork(id: string, episodeTitle: string, showName: string, duration: (MediaDuration) | null, artwork: Artwork, animatedArtwork?: $SDK4): TVShowContent;
     /**
      * init(id: String, episodeTitle: String, showName: String, duration: MediaDuration?, artwork: Artwork?)
      * @availability iOS 27.0+

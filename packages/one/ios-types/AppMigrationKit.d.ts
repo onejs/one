@@ -289,6 +289,11 @@ export type MigrationRequest = MigrationRequestWithOptions<MigrationDefaultSuppo
  * @availability iOS 26.0+
  */
 export declare class MigrationRequestWithOptions<OptionsType = unknown> extends SDKHandle {
+    /**
+     * let destinationPlatform: MigrationPlatform
+     * @availability iOS 26.0+
+     */
+    get destinationPlatform(): MigrationPlatform;
     readonly $type: {
         "s:15AppMigrationKit0B18RequestWithOptionsV": true;
     };

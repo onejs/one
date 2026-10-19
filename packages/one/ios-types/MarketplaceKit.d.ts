@@ -435,22 +435,22 @@ export interface MarketplaceAppExtension {
      * func additionalHeaders(for request: URLRequest, account: String) async -> [String : String]
      * @availability iOS 26.0+
      */
-    "additionalHeadersForAccount"?: (arg0: _Foundation_URLRequest, arg1: string) => Record<string, string>;
+    "additionalHeadersForAccount"?: (arg0: _Foundation_URLRequest, arg1: string) => Promise<Record<string, string>>;
     /**
      * func automaticUpdates(for installedAppVersions: [AppVersion]) async throws -> [AutomaticUpdate]
      * @availability iOS 26.0+
      */
-    "automaticUpdatesFor"?: (arg0: Array<AppVersion>) => Array<AutomaticUpdate>;
+    "automaticUpdatesFor"?: (arg0: Array<AppVersion>) => Promise<Array<AutomaticUpdate>>;
     /**
      * func requestFailed(response: HTTPURLResponse) async -> Bool
      * @availability iOS 26.0+
      */
-    "requestFailedResponse"?: (arg0: _Foundation_HTTPURLResponse) => boolean;
+    "requestFailedResponse"?: (arg0: _Foundation_HTTPURLResponse) => Promise<boolean>;
     /**
      * func availableAppVersions(forAppleItemIDs ids: [AppleItemID]) async -> [AppVersion]
      * @availability iOS 26.0+
      */
-    "availableAppVersionsForAppleItemIDs"?: (arg0: Array<number>) => Array<AppVersion>;
+    "availableAppVersionsForAppleItemIDs"?: (arg0: Array<number>) => Promise<Array<AppVersion>>;
 }
 /**
  * protocol MarketplaceExtension : AppExtension, Sendable
@@ -482,7 +482,7 @@ export interface MarketplaceExtension {
      * @availability iOS 17.4+
      * @deprecated iOS 26.0
      */
-    "automaticUpdatesFor"?: (arg0: Array<AppVersion>) => Array<AutomaticUpdate>;
+    "automaticUpdatesFor"?: (arg0: Array<AppVersion>) => Promise<Array<AutomaticUpdate>>;
 }
 /**
  * @MainActor @preconcurrency protocol MarketplaceExtensionConfiguration : AppExtensionConfiguration

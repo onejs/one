@@ -48,7 +48,7 @@ describe('vxrn Expo project patches', () => {
   it('keeps WebGPU header resolution inside its own CocoaPods target', () => {
     const generated = patches.injectWebGPUHeaderPathsIntoPodfile(podfile)
     expect(patches.injectWebGPUHeaderPathsIntoPodfile(generated)).toBe(generated)
-    const result = JSON.parse(execFileSync('ruby', ['-rjson', '-e', `
+    const result = JSON.parse(execFileSync('ruby', ['--disable-gems', '-rjson', '-e', `
       Config = Struct.new(:build_settings)
       Target = Struct.new(:name, :build_configurations)
       Project = Struct.new(:targets)

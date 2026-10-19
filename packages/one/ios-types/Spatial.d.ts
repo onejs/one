@@ -1061,17 +1061,17 @@ export declare class EulerAngles extends SDKHandle {
      * init(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles.Order)
      * @availability iOS 17.0+
      */
-    static initXYZOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles): EulerAngles;
+    static initXYZOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: SDKHandle): EulerAngles;
     /**
      * init(angles: simd_float3, order: EulerAngles.Order)
      * @availability iOS 16.0+
      */
-    static initAnglesOrder17621(angles: SDKHandle, order: EulerAngles): EulerAngles;
+    static initAnglesOrder17621(angles: SDKHandle, order: SDKHandle): EulerAngles;
     /**
      * init(_ x: Angle2D, _ y: Angle2D, _ z: Angle2D, order: EulerAngles.Order)
      * @availability iOS 17.0+
      */
-    static initOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles): EulerAngles;
+    static initOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: SDKHandle): EulerAngles;
     /**
      * init()
      * @availability iOS 16.0+
@@ -1112,7 +1112,7 @@ export declare class EulerAnglesFloat extends SDKHandle {
      * init(x: Angle2DFloat, y: Angle2DFloat, z: Angle2DFloat, order: EulerAngles.Order)
      * @availability iOS 26.0+
      */
-    static initXYZOrder(x: Angle2DFloat, y: Angle2DFloat, z: Angle2DFloat, order: EulerAngles): EulerAnglesFloat;
+    static initXYZOrder(x: Angle2DFloat, y: Angle2DFloat, z: Angle2DFloat, order: SDKHandle): EulerAnglesFloat;
     /**
      * init()
      * @availability iOS 26.0+

@@ -50,6 +50,11 @@ export declare class AnyDynamicInstructions extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): never;
+    /**
+     * init(_ dynamicInstructions: any DynamicInstructions)
+     * @availability iOS 27.0+
+     */
+    static init(dynamicInstructions: SDKHandle): AnyDynamicInstructions;
     readonly $type: {
         "s:16FoundationModels22AnyDynamicInstructionsV": true;
     };
@@ -128,6 +133,11 @@ export type Bool_PartiallyGenerated = unknown;
  * @availability iOS 27.0+
  */
 export declare class ConditionalDynamicInstructions<TrueContent = unknown, FalseContent = unknown> extends SDKHandle {
+    /**
+     * var body: Never { get }
+     * @availability iOS 27.0+
+     */
+    get body(): never;
     readonly $type: {
         "s:16FoundationModels30ConditionalDynamicInstructionsV": true;
     };
@@ -341,6 +351,11 @@ export declare class DynamicInstructionsBuilder extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class DynamicInstructionsForEach<Data = unknown, ID = unknown, Content = unknown> extends SDKHandle {
+    /**
+     * var body: Never { get }
+     * @availability iOS 27.0+
+     */
+    get body(): never;
     readonly $type: {
         "s:16FoundationModels26DynamicInstructionsForEachV": true;
     };
@@ -2140,22 +2155,22 @@ export declare class LanguageModelSession extends SDKHandle {
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], transcript: Transcript)
      * @availability iOS 26.0+
      */
-    static initModelTranscript(model: SystemLanguageModel, transcript: Transcript): LanguageModelSession;
+    static initModelToolsTranscript(model: SystemLanguageModel, tools: Array<SDKHandle>, transcript: Transcript): LanguageModelSession;
     /**
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], instructions: Instructions? = nil)
      * @availability iOS 26.0+
      */
-    static initModelInstructions(model?: SystemLanguageModel, instructions?: (Instructions) | null): LanguageModelSession;
+    static initModelToolsInstructions(model?: SystemLanguageModel, tools?: Array<SDKHandle>, instructions?: (Instructions) | null): LanguageModelSession;
     /**
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], @InstructionsBuilder instructions: () throws -> Instructions) rethrows
      * @availability iOS 26.0+
      */
-    static initModelInstructions11508(model: SystemLanguageModel, instructions: (() => Instructions)): LanguageModelSession;
+    static initModelToolsInstructions11508(model: SystemLanguageModel, tools: Array<SDKHandle>, instructions: (() => Instructions)): LanguageModelSession;
     /**
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], instructions: String? = nil)
      * @availability iOS 26.0+
      */
-    static initModelInstructions81584(model?: SystemLanguageModel, instructions?: (string) | null): LanguageModelSession;
+    static initModelToolsInstructions81584(model?: SystemLanguageModel, tools?: Array<SDKHandle>, instructions?: (string) | null): LanguageModelSession;
     /**
      * final var usage: LanguageModelSession.Usage { get }
      * @availability iOS 27.0+
@@ -2247,6 +2262,11 @@ export declare class LanguageModelSession_AnyDynamicProfile extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): never;
+    /**
+     * init(_ dynamicProfile: any LanguageModelSession.DynamicProfile)
+     * @availability iOS 27.0+
+     */
+    static init(dynamicProfile: SDKHandle): LanguageModelSession_AnyDynamicProfile;
     readonly $type: {
         "s:16FoundationModels20LanguageModelSessionC17AnyDynamicProfileV": true;
     };
@@ -2276,6 +2296,11 @@ export type LanguageModelSession_AnyDynamicProfile_SessionProperty = $SDK1;
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_ConditionalDynamicProfile<TrueContent = unknown, FalseContent = unknown> extends SDKHandle {
+    /**
+     * var body: Never { get }
+     * @availability iOS 27.0+
+     */
+    get body(): never;
     readonly $type: {
         "s:16FoundationModels20LanguageModelSessionC25ConditionalDynamicProfileV": true;
     };
@@ -2361,6 +2386,11 @@ export type LanguageModelSession_DynamicProfileModifier_SessionProperty = $SDK1;
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_DynamicProfileModifierContent<Modifier = unknown> extends SDKHandle {
+    /**
+     * var body: Never { get }
+     * @availability iOS 27.0+
+     */
+    get body(): never;
     readonly $type: {
         "s:16FoundationModels20LanguageModelSessionC29DynamicProfileModifierContentV": true;
     };
@@ -2475,6 +2505,11 @@ export declare class LanguageModelSession_GenerationError_Refusal extends SDKHan
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_ModifiedDynamicProfile<Content = unknown, Modifier = unknown> extends SDKHandle {
+    /**
+     * var body: Never { get }
+     * @availability iOS 27.0+
+     */
+    get body(): never;
     readonly $type: {
         "s:16FoundationModels20LanguageModelSessionC22ModifiedDynamicProfileV": true;
     };
@@ -2675,6 +2710,17 @@ export declare class LanguageModelSession_ToolCallError extends SDKHandle {
      * @availability iOS 26.0+
      */
     get errorDescription(): (string) | null;
+    /**
+     * init(tool: any Tool, underlyingError: any Error)
+     * @availability iOS 26.0+
+     */
+    static init(tool: SDKHandle, underlyingError: NativeError): LanguageModelSession_ToolCallError;
+    /**
+     * var tool: any Tool
+     * @availability iOS 26.0+
+     */
+    get tool(): SDKHandle;
+    set tool(value: SDKHandle);
     readonly $type: {
         "s:16FoundationModels20LanguageModelSessionC13ToolCallErrorV": true;
     };
@@ -3220,6 +3266,11 @@ export declare class SystemLanguageModel extends SDKHandle {
      */
     tokenCountFor79776(schema: GenerationSchema): Promise<number>;
     /**
+     * nonisolated(nonsending) final func tokenCount(for tools: [any Tool]) async throws -> Int
+     * @availability iOS 26.4+
+     */
+    tokenCountFor31777(tools: Array<SDKHandle>): Promise<number>;
+    /**
      * nonisolated(nonsending) final func tokenCount(for prompt: some PromptRepresentable) async throws -> Int
      * @availability iOS 26.4+
      */
@@ -3504,7 +3555,7 @@ export interface Tool {
      * @concurrent func call(arguments: Self.Arguments) async throws -> Self.Output
      * @availability iOS 26.0+
      */
-    "callArguments"?: (arg0: unknown) => unknown;
+    "callArguments"?: (arg0: unknown) => Promise<unknown>;
 }
 /**
  * typealias SessionProperty = LanguageModelSession.SessionProperty

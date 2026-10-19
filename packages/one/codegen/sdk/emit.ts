@@ -3,7 +3,8 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, OBSERVABLE, cErrorOut, inUniverse, judge, outPointee, callbackOut, pickOf, unmanagedReturn, type DeclarationInfo, type Generics } from './bridge'
+export { effectsOf } from './bridge'
+import { Bridge, OBSERVABLE, cErrorOut, effectsOf, inUniverse, judge, outPointee, callbackOut, pickOf, unmanagedReturn, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { namedText, parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
@@ -210,23 +211,6 @@ export function typeUsrs(type: SwiftType, out: string[] = []): string[] {
   return out
 }
 
-// the effects a function declares after its parameter list
-function effectsOf(decl: string) {
-  const open = decl.indexOf('(')
-  if (open < 0) return { isAsync: false, throws: false }
-  let depth = 0
-  let close = decl.length
-  for (let i = open; i < decl.length; i++) {
-    if (decl[i] === '(') depth++
-    if (decl[i] === ')' && --depth === 0) {
-      close = i
-      break
-    }
-  }
-  const tail = decl.slice(close + 1).split(/->|\{|\bwhere\b/)[0]
-  return { isAsync: /\basync\b/.test(tail), throws: /\b(re)?throws\b/.test(tail) }
-}
-
 function declarationText(symbol: Symbol) {
   return text(symbol.declarationFragments)
 }
@@ -342,8 +326,30 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     }
     const generics = bridge.generics(symbol, ownerSymbol)
     const unresolved = [...generics.params].filter((name) => !generics.resolved.has(name) && !generics.objcOpen.has(name))
-    if (unresolved.length) {
-      skipped.push({ usr, path, reason: `generic${ownerSymbol?.swiftGenerics?.parameters?.length ? ' owner' : ''}: no canonical witness for ${unresolved.join(', ')}` })
+    const ownerParams = new Set((ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => p.name))
+    const decl = declarationText(symbol)
+    const isStatic = kind === 'swift.type.method' || kind === 'swift.type.property' || /\b(static|class)\s+(func|var|let|subscript)\b/.test(decl)
+    const main = mainIsolated(usr)
+    // an instance member of a generic type binds inside an extension of that
+    // type, so one entry serves every specialization rather than only the
+    // canonical witness. a member adding generic parameters or constraints
+    // cannot, and one the compiler rejects there falls back to the witness.
+    // objective-c extensions cannot access generic parameters, so those use
+    // erasure instead.
+    const ownerConstraints = ownerSymbol?.swiftGenerics?.constraints ?? []
+    const openable = !!ownerUsr && !!ownerInfo && ownerParams.size > 0 && ownerInfo.kind !== 'protocol' && !isStatic && !main &&
+      !ownerUsr.startsWith('c:objc') &&
+      [...generics.params].every((name) => ownerParams.has(name)) &&
+      [...(symbol.swiftGenerics?.constraints ?? []), ...(symbol.swiftExtension?.constraints ?? [])]
+        .every((c) => ownerConstraints.some((o) => JSON.stringify(o) === JSON.stringify(c))) &&
+      !exclude.has(`open:${ownerUsr}`)
+    const opens = (key: string) => openable && !exclude.has(`open:${key}`)
+    // an owner parameter without a witness needs no specialization when the
+    // member binds inside its owner, where swift sees the actual argument
+    const witnessless = `generic${ownerParams.size ? ' owner' : ''}: no canonical witness for ${unresolved.join(', ')}`
+    const bindsOpen = ['swift.method', 'swift.subscript', 'swift.property'].includes(kind) && openable
+    if (unresolved.length && !bindsOpen) {
+      skipped.push({ usr, path, reason: witnessless })
       continue
     }
     // objective-c erases generics, so reads go through the first witness while
@@ -356,7 +362,6 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         [p, { k: 'named', name: `${objcErasure.module}.${objcErasure.path.join('.')}`, usr: objcErasure.usr, args: [] }])]) }
       : generics
     const specialization = generics.params.size ? Object.fromEntries(generics.resolved) : undefined
-    const ownerParams = new Set((ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => p.name))
     // generic parameters bound where the entry runs stay open
     const replaceWith = (open: Set<string>) => (source: string) => {
       const names = [...swiftGenerics.resolved.keys()].filter((name) => !open.has(name))
@@ -389,31 +394,18 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       k: 'named', name: `${ownerInfo.module}.${ownerInfo.path.join('.')}`, usr: ownerInfo.usr,
       args: (ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => bridge.substitute({ k: 'named', name: p.name, args: [] }, generics)),
     } : undefined
-    const decl = declarationText(symbol)
-    const isStatic = kind === 'swift.type.method' || kind === 'swift.type.property' || /\b(static|class)\s+(func|var|let|subscript)\b/.test(decl)
     if (isStatic && ownerInfo?.kind === 'protocol') {
       skipped.push({ usr, path, reason: 'static protocol member' })
       continue
     }
     const valueOwner = ownerInfo && ownerInfo.kind !== 'class' && ownerInfo.kind !== 'actor' && ownerInfo.kind !== 'protocol'
-    const main = mainIsolated(usr)
     const receiverType = ownerInfo?.kind === 'protocol' ? `any ${owner}` : owner
     const { base, labels } = splitTitle(symbol.pathComponents.at(-1)!)
-    // an instance member of a generic type binds inside an extension of that
-    // type, so one entry serves every specialization rather than only the
-    // canonical witness. a member adding generic parameters or constraints
-    // cannot, and one the compiler rejects there falls back to the witness.
-    // objective-c extensions cannot access generic parameters, so those use
-    // erasure instead.
-    const ownerConstraints = ownerSymbol?.swiftGenerics?.constraints ?? []
-    const openable = !!ownerUsr && !!ownerInfo && ownerParams.size > 0 && ownerInfo.kind !== 'protocol' && !isStatic && !main &&
-      !ownerUsr.startsWith('c:objc') &&
-      [...generics.params].every((name) => ownerParams.has(name)) &&
-      [...(symbol.swiftGenerics?.constraints ?? []), ...(symbol.swiftExtension?.constraints ?? [])]
-        .every((c) => ownerConstraints.some((o) => JSON.stringify(o) === JSON.stringify(c))) &&
-      !exclude.has(`open:${ownerUsr}`)
-    const opens = (key: string) => openable && !exclude.has(`open:${key}`)
     const push = (entry: Entry, open: boolean, mutates = false) => {
+      if (unresolved.length && !open) {
+        skipped.push({ usr, path, reason: exclude.get(`open:${entry.key}`) ?? witnessless })
+        return
+      }
       entries.push(entry)
       if (!open) return
       if (!opened.has(ownerUsr!)) opened.set(ownerUsr!, { info: ownerInfo!, value: !!valueOwner, bodies: new Map() })
@@ -627,7 +619,9 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       params.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
       const fn = functionOf(type)
       if (fn) {
-        if (fn.fn.async) reason = 'async callback'
+        // an async callback awaits the javascript promise; without throws a
+        // rejected promise has no way back into swift
+        if (fn.fn.async && !fn.fn.throws) reason = 'async callback: nonthrowing, so a rejected promise cannot reach swift'
         const names = fn.fn.params.map((_, n) => `p${n}`)
         const fetch = fn.optional ? `c.has(${at}) ? try c.callback(${at}) : nil` : `try c.callback(${at})`
         hoisted.push(`let f${i} = ${fetch}`)
@@ -641,7 +635,11 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
           return written ? `["$out": ${value}]` : value
         })
         let body: string
-        if (needsSync) {
+        if (fn.fn.async) {
+          if (outputs.length) reason = 'async callback: output parameters'
+          const target = `f${i}${fn.optional ? '!' : ''}`
+          body = callbackVoid ? `_ = try await ${target}.responseAsync([${values.join(', ')}])` : `return try await ${target}.resultAsync([${values.join(', ')}])`
+        } else if (needsSync) {
           syncCallbacks = true
           if (!canSync) reason = 'synchronous callback requires a nonescaping JS-thread call'
           const target = `f${i}${fn.optional ? '!' : ''}`

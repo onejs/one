@@ -151,6 +151,18 @@ export interface QLPreviewControllerDelegate {
 }
 /** protocol QLPreviewingController : NSObjectProtocol */
 export interface QLPreviewingController {
+    /** optional func preparePreviewOfSearchableItem(identifier: String, queryString: String?) async throws */
+    "preparePreviewOfSearchableItemIdentifierQueryString"?: (arg0: string, arg1: (string) | null) => void;
+    /**
+     * optional func preparePreviewOfFile(at url: URL) async throws
+     * @availability iOS 8.0+
+     */
+    "preparePreviewOfFileAt"?: (arg0: string) => void;
+    /**
+     * optional func providePreview(for request: QLFilePreviewRequest) async throws -> QLPreviewReply
+     * @availability iOS 15.0+
+     */
+    "providePreviewFor"?: (arg0: QLFilePreviewRequest) => Promise<QLPreviewReply>;
 }
 /** protocol QLPreviewItem : NSObjectProtocol */
 export interface QLPreviewItem {

@@ -5,7 +5,7 @@ import type { SecAccessControl as _Security_SecAccessControl } from "one/ios/Sec
 type $SDK0 = ((arg0: ArrayBuffer) => unknown);
 type $SDK2 = ((arg0: ArrayBuffer) => Promise<SDKHandle>);
 type $SDK3 = ((arg0: SDKHandle) => Promise<SDKHandle>);
-type $SDK9 = (_LocalAuthentication_LAContext) | null;
+type $SDK10 = (_LocalAuthentication_LAContext) | null;
 /**
  * enum AES
  * @availability iOS 13.0+
@@ -470,6 +470,16 @@ export interface Digest {
  * @availability iOS 13.0+
  */
 export declare class HashedAuthenticationCode<H = unknown> extends SDKHandle {
+    /**
+     * var description: String { get }
+     * @availability iOS 13.0+
+     */
+    get description(): string;
+    /**
+     * var byteCount: Int { get }
+     * @availability iOS 13.0+
+     */
+    get byteCount(): number;
     readonly $type: {
         "s:9CryptoKit24HashedAuthenticationCodeV": true;
     };
@@ -519,6 +529,11 @@ export declare class HKDF<H = unknown> extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class HMAC<H = unknown> extends SDKHandle {
+    /**
+     * func finalize() -> HMAC<H>.MAC
+     * @availability iOS 13.0+
+     */
+    finalize(): HashedAuthenticationCode<SDKHandle>;
     readonly $type: {
         "s:9CryptoKit4HMACV": true;
     };
@@ -2582,7 +2597,7 @@ export declare class SecureEnclave_MLDSA65_PrivateKey extends SDKHandle {
      * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
      * @availability iOS 26.0+
      */
-    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_MLDSA65_PrivateKey;
+    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLDSA65_PrivateKey;
     /**
      * let dataRepresentation: Data
      * @availability iOS 26.0+
@@ -2592,7 +2607,7 @@ export declare class SecureEnclave_MLDSA65_PrivateKey extends SDKHandle {
      * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
      * @availability iOS 26.0+
      */
-    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK9): SecureEnclave_MLDSA65_PrivateKey;
+    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLDSA65_PrivateKey;
     /**
      * func signature<D>(for data: D) throws -> Data where D : DataProtocol
      * @availability iOS 26.0+
@@ -2630,7 +2645,7 @@ export declare class SecureEnclave_MLDSA87_PrivateKey extends SDKHandle {
      * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
      * @availability iOS 26.0+
      */
-    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_MLDSA87_PrivateKey;
+    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLDSA87_PrivateKey;
     /**
      * let dataRepresentation: Data
      * @availability iOS 26.0+
@@ -2640,7 +2655,7 @@ export declare class SecureEnclave_MLDSA87_PrivateKey extends SDKHandle {
      * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
      * @availability iOS 26.0+
      */
-    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK9): SecureEnclave_MLDSA87_PrivateKey;
+    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLDSA87_PrivateKey;
     /**
      * func signature<D>(for data: D) throws -> Data where D : DataProtocol
      * @availability iOS 26.0+
@@ -2683,7 +2698,7 @@ export declare class SecureEnclave_MLKEM1024_PrivateKey extends SDKHandle {
      * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
      * @availability iOS 26.0+
      */
-    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_MLKEM1024_PrivateKey;
+    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLKEM1024_PrivateKey;
     /**
      * let dataRepresentation: Data
      * @availability iOS 26.0+
@@ -2693,7 +2708,7 @@ export declare class SecureEnclave_MLKEM1024_PrivateKey extends SDKHandle {
      * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
      * @availability iOS 26.0+
      */
-    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK9): SecureEnclave_MLKEM1024_PrivateKey;
+    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLKEM1024_PrivateKey;
     /**
      * static func generate() throws -> SecureEnclave.MLKEM1024.PrivateKey
      * @availability iOS 26.0+
@@ -2736,7 +2751,7 @@ export declare class SecureEnclave_MLKEM768_PrivateKey extends SDKHandle {
      * init(accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
      * @availability iOS 26.0+
      */
-    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_MLKEM768_PrivateKey;
+    static initAccessControlAuthenticationContext(accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_MLKEM768_PrivateKey;
     /**
      * let dataRepresentation: Data
      * @availability iOS 26.0+
@@ -2746,7 +2761,7 @@ export declare class SecureEnclave_MLKEM768_PrivateKey extends SDKHandle {
      * init<D>(dataRepresentation: D, authenticationContext: LAContext? = nil) throws where D : DataProtocol
      * @availability iOS 26.0+
      */
-    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK9): SecureEnclave_MLKEM768_PrivateKey;
+    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_MLKEM768_PrivateKey;
     /**
      * static func generate() throws -> SecureEnclave.MLKEM768.PrivateKey
      * @availability iOS 26.0+
@@ -2803,12 +2818,12 @@ export declare class SecureEnclave_P256_KeyAgreement_PrivateKey extends SDKHandl
      * init(dataRepresentation: Data, authenticationContext: LAContext? = nil) throws
      * @availability iOS 13.0+
      */
-    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK9): SecureEnclave_P256_KeyAgreement_PrivateKey;
+    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_P256_KeyAgreement_PrivateKey;
     /**
      * init(compactRepresentable: Bool = true, accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
      * @availability iOS 13.0+
      */
-    static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_P256_KeyAgreement_PrivateKey;
+    static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_P256_KeyAgreement_PrivateKey;
     readonly $type: {
         "s:9CryptoKit13SecureEnclaveO4P256O12KeyAgreementO07PrivateF0V": true;
     };
@@ -2846,12 +2861,12 @@ export declare class SecureEnclave_P256_Signing_PrivateKey extends SDKHandle {
      * init(dataRepresentation: Data, authenticationContext: LAContext? = nil) throws
      * @availability iOS 13.0+
      */
-    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK9): SecureEnclave_P256_Signing_PrivateKey;
+    static initDataRepresentationAuthenticationContext(dataRepresentation: ArrayBuffer, authenticationContext?: $SDK10): SecureEnclave_P256_Signing_PrivateKey;
     /**
      * init(compactRepresentable: Bool = true, accessControl: SecAccessControl = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!, authenticationContext: LAContext? = nil) throws
      * @availability iOS 13.0+
      */
-    static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_P256_Signing_PrivateKey;
+    static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK10): SecureEnclave_P256_Signing_PrivateKey;
     /**
      * func signature<D>(for data: D) throws -> P256.Signing.ECDSASignature where D : DataProtocol
      * @availability iOS 13.0+

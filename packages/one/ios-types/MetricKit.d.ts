@@ -7,13 +7,13 @@ type $SDK1 = Histogram<_Foundation_UnitDuration>;
 type $SDK2 = _Foundation_Measurement<_Foundation_Dimension>;
 type $SDK8 = Array<MetricManager_ReportedState>;
 type $SDK9 = _Foundation_Measurement<_Foundation_UnitInformationStorage>;
-type $SDK18 = NativeMap<unknown, unknown>;
-type $SDK19 = _Foundation_Measurement<_Foundation_Unit>;
-type $SDK21 = MXHistogram<_Foundation_UnitDuration>;
-type $SDK24 = (_Foundation_NSNumber) | null;
-type $SDK35 = Implements<MXMetricManagerSubscriber> | SDKHandle;
-type $SDK49 = (_Foundation_Measurement<_Foundation_UnitDuration>) | null;
-type $SDK51 = (_Foundation_Measurement<_Foundation_UnitInformationStorage>) | null;
+type $SDK20 = NativeMap<unknown, unknown>;
+type $SDK21 = _Foundation_Measurement<_Foundation_Unit>;
+type $SDK23 = MXHistogram<_Foundation_UnitDuration>;
+type $SDK26 = (_Foundation_NSNumber) | null;
+type $SDK37 = Implements<MXMetricManagerSubscriber> | SDKHandle;
+type $SDK51 = (_Foundation_Measurement<_Foundation_UnitDuration>) | null;
+type $SDK53 = (_Foundation_Measurement<_Foundation_UnitInformationStorage>) | null;
 /**
  * struct AppLaunchDiagnostic
  * @availability iOS 27.0+
@@ -1047,6 +1047,11 @@ export declare class MetricManager extends SDKHandle {
      */
     get metricReports(): SDKHandle;
     /**
+     * @MainActor final func trackLaunchTask<Result, Failure>(id: LaunchTaskID, onTrackingError: ((MetricManager.LaunchTaskError) -> Void)? = nil, _ operation: () async throws(Failure) -> Result) async throws(Failure) -> Result where Failure : Error
+     * @availability iOS 27.0+
+     */
+    trackLaunchTask(id: LaunchTaskID, onTrackingError: (((arg0: MetricManager_LaunchTaskError) => void)) | null, operation: (() => Promise<unknown>)): Promise<unknown>;
+    /**
      * final var diagnosticReports: some AsyncSequence<DiagnosticReport, Never> { get }
      * @availability iOS 27.0+
      */
@@ -1322,7 +1327,7 @@ export declare class MXMetric extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXMetric;
     readonly $type: {
@@ -1344,13 +1349,13 @@ export declare class MXAnimationMetric extends MXAnimationMetric_base {
      * @availability iOS 26.0+
      * @deprecated iOS 100000.0
      */
-    get hitchTimeRatio(): $SDK19;
+    get hitchTimeRatio(): $SDK21;
     /**
      * var scrollHitchTimeRatio: Measurement<Unit> { get }
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    get scrollHitchTimeRatio(): $SDK19;
+    get scrollHitchTimeRatio(): $SDK21;
     readonly $type: {
         "c:objc(cs)MXAnimationMetric": true;
         "c:objc(cs)MXMetric": true;
@@ -1409,7 +1414,7 @@ export declare class MXDiagnostic extends SDKHandle {
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXDiagnostic;
     /**
@@ -1488,25 +1493,25 @@ export declare class MXAppLaunchMetric extends MXAppLaunchMetric_base {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get histogrammedApplicationResumeTime(): $SDK21;
+    get histogrammedApplicationResumeTime(): $SDK23;
     /**
      * var histogrammedExtendedLaunch: MXHistogram<UnitDuration> { get }
      * @availability iOS 16.0+
      * @deprecated iOS 100000.0
      */
-    get histogrammedExtendedLaunch(): $SDK21;
+    get histogrammedExtendedLaunch(): $SDK23;
     /**
      * var histogrammedOptimizedTimeToFirstDraw: MXHistogram<UnitDuration> { get }
      * @availability iOS 15.2+
      * @deprecated iOS 100000.0
      */
-    get histogrammedOptimizedTimeToFirstDraw(): $SDK21;
+    get histogrammedOptimizedTimeToFirstDraw(): $SDK23;
     /**
      * var histogrammedTimeToFirstDraw: MXHistogram<UnitDuration> { get }
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get histogrammedTimeToFirstDraw(): $SDK21;
+    get histogrammedTimeToFirstDraw(): $SDK23;
     readonly $type: {
         "c:objc(cs)MXAppLaunchMetric": true;
         "c:objc(cs)MXMetric": true;
@@ -1533,7 +1538,7 @@ export declare class MXAppResponsivenessMetric extends MXAppResponsivenessMetric
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get histogrammedApplicationHangTime(): $SDK21;
+    get histogrammedApplicationHangTime(): $SDK23;
     readonly $type: {
         "c:objc(cs)MXAppResponsivenessMetric": true;
         "c:objc(cs)MXMetric": true;
@@ -1601,7 +1606,7 @@ export declare class MXAverage<UnitType = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get averageMeasurement(): $SDK19;
+    get averageMeasurement(): $SDK21;
     /**
      * var sampleCount: Int { get }
      * @availability iOS 13.0+
@@ -1807,7 +1812,7 @@ export declare class MXCPUMetric extends MXCPUMetric_base {
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    get cumulativeCPUInstructions(): $SDK19;
+    get cumulativeCPUInstructions(): $SDK21;
     /**
      * var cumulativeCPUTime: Measurement<UnitDuration> { get }
      * @availability iOS 13.0+
@@ -1844,7 +1849,7 @@ export declare class MXCrashDiagnostic extends MXCrashDiagnostic_base {
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    get exceptionCode(): $SDK24;
+    get exceptionCode(): $SDK26;
     /**
      * var exceptionReason: MXCrashDiagnosticObjectiveCExceptionReason? { get }
      * @availability iOS 17.0+
@@ -1856,13 +1861,13 @@ export declare class MXCrashDiagnostic extends MXCrashDiagnostic_base {
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    get exceptionType(): $SDK24;
+    get exceptionType(): $SDK26;
     /**
      * var signal: NSNumber? { get }
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    get signal(): $SDK24;
+    get signal(): $SDK26;
     /**
      * var terminationReason: String? { get }
      * @availability iOS 14.0+
@@ -1910,7 +1915,7 @@ export declare class MXCrashDiagnosticObjectiveCExceptionReason extends SDKHandl
      * @availability iOS 17.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXCrashDiagnosticObjectiveCExceptionReason;
     /**
@@ -1979,7 +1984,7 @@ export declare class MXDiagnosticPayload extends SDKHandle {
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXDiagnosticPayload;
     /**
@@ -2422,13 +2427,13 @@ export declare class MXHistogramBucket<UnitType = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get bucketEnd(): $SDK19;
+    get bucketEnd(): $SDK21;
     /**
      * var bucketStart: Measurement<UnitType> { get }
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get bucketStart(): $SDK19;
+    get bucketStart(): $SDK21;
     readonly $type: {
         "c:objc(cs)MXHistogramBucket": true;
         "c:objc(cs)NSObject": true;
@@ -2566,7 +2571,7 @@ export declare class MXMetaData extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXMetaData;
     /**
@@ -2674,7 +2679,7 @@ export declare class MXMetricManager extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    add(subscriber: $SDK35): void;
+    add(subscriber: $SDK37): void;
     /** init() */
     static init(): MXMetricManager;
     /**
@@ -2682,7 +2687,7 @@ export declare class MXMetricManager extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    remove(subscriber: $SDK35): void;
+    remove(subscriber: $SDK37): void;
     /**
      * var pastDiagnosticPayloads: [MXDiagnosticPayload] { get }
      * @availability iOS 14.0+
@@ -2734,7 +2739,7 @@ export declare class MXMetricPayload extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXMetricPayload;
     /**
@@ -2948,7 +2953,7 @@ export declare class MXSignpostIntervalData extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get cumulativeCPUTime(): $SDK49;
+    get cumulativeCPUTime(): $SDK51;
     /**
      * var cumulativeHitchTimeRatio: Measurement<Unit>? { get }
      * @availability iOS 15.0+
@@ -2960,13 +2965,13 @@ export declare class MXSignpostIntervalData extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get cumulativeLogicalWrites(): $SDK51;
+    get cumulativeLogicalWrites(): $SDK53;
     /**
      * var histogrammedSignpostDuration: MXHistogram<UnitDuration> { get }
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    get histogrammedSignpostDuration(): $SDK21;
+    get histogrammedSignpostDuration(): $SDK23;
     readonly $type: {
         "c:objc(cs)MXSignpostIntervalData": true;
         "c:objc(cs)NSObject": true;
@@ -3041,7 +3046,7 @@ export declare class MXSignpostRecord extends SDKHandle {
      * @availability iOS 17.0+
      * @deprecated iOS 100000.0
      */
-    dictionaryRepresentation(): $SDK18;
+    dictionaryRepresentation(): $SDK20;
     /** init() */
     static init(): MXSignpostRecord;
     /**
@@ -3061,7 +3066,7 @@ export declare class MXSignpostRecord extends SDKHandle {
      * @availability iOS 17.0+
      * @deprecated iOS 100000.0
      */
-    get duration(): $SDK49;
+    get duration(): $SDK51;
     /**
      * var endTimeStamp: Date? { get }
      * @availability iOS 17.0+
@@ -3245,7 +3250,7 @@ export declare class SignpostIntervalMetric extends SDKHandle {
      * let logicalWrites: Measurement<UnitInformationStorage>?
      * @availability iOS 27.0+
      */
-    get logicalWrites(): $SDK51;
+    get logicalWrites(): $SDK53;
     /**
      * let hitchTimeRatio: Measurement<HitchTimeRatio>?
      * @availability iOS 27.0+
@@ -3255,7 +3260,7 @@ export declare class SignpostIntervalMetric extends SDKHandle {
      * let totalHitchTime: Measurement<UnitDuration>?
      * @availability iOS 27.0+
      */
-    get totalHitchTime(): $SDK49;
+    get totalHitchTime(): $SDK51;
     /**
      * let signpostCategory: String
      * @availability iOS 27.0+
@@ -3270,12 +3275,12 @@ export declare class SignpostIntervalMetric extends SDKHandle {
      * let totalAnimationTime: Measurement<UnitDuration>?
      * @availability iOS 27.0+
      */
-    get totalAnimationTime(): $SDK49;
+    get totalAnimationTime(): $SDK51;
     /**
      * let cpuTime: Measurement<UnitDuration>?
      * @availability iOS 27.0+
      */
-    get cpuTime(): $SDK49;
+    get cpuTime(): $SDK51;
     readonly $type: {
         "s:9MetricKit016SignpostIntervalA0V": true;
     };

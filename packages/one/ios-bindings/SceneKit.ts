@@ -72,36 +72,36 @@ export class CAAnimation extends SDKHandle {
    * init(SCNAnimation animation: SCNAnimation)
    * @availability iOS 11.0+
    */
-  static init(animation: SCNAnimation): _QuartzCore_CAAnimation { return callSDK<_QuartzCore_CAAnimation>("SceneKit_0e503aef608672fa", 2194999144095790, undefined, [animation]); }
+  static init(animation: SCNAnimation): _QuartzCore_CAAnimation { return callSDK<_QuartzCore_CAAnimation>("SceneKit_212edf3d13b127f5", 2194999144095790, undefined, [animation]); }
   /** var animationEvents: [SCNAnimationEvent]? { get set } */
-  get animationEvents(): $SDK0 { return callSDK<$SDK0>("SceneKit_0e503aef608672fa", 3921748990907302, this, []); }
-  set animationEvents(value: $SDK0) { callSDK<void>("SceneKit_0e503aef608672fa", 3065889820682054, this, [value]); }
+  get animationEvents(): $SDK0 { return callSDK<$SDK0>("SceneKit_212edf3d13b127f5", 3921748990907302, this, []); }
+  set animationEvents(value: $SDK0) { callSDK<void>("SceneKit_212edf3d13b127f5", 3065889820682054, this, [value]); }
   /** var fadeInDuration: CGFloat { get set } */
-  get fadeInDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1034963688052925, this, []); }
-  set fadeInDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1145438007916059, this, [value]); }
+  get fadeInDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1034963688052925, this, []); }
+  set fadeInDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1145438007916059, this, [value]); }
   /** var fadeOutDuration: CGFloat { get set } */
-  get fadeOutDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 300468116241922, this, []); }
-  set fadeOutDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3804682942110412, this, [value]); }
+  get fadeOutDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 300468116241922, this, []); }
+  set fadeOutDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3804682942110412, this, [value]); }
   /** var usesSceneTimeBase: Bool { get set } */
-  get usesSceneTimeBase(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3176540205027000, this, []); }
-  set usesSceneTimeBase(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3168404502539766, this, [value]); }
+  get usesSceneTimeBase(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3176540205027000, this, []); }
+  set usesSceneTimeBase(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3168404502539766, this, [value]); }
   declare readonly $type: { "c:objc(cs)CAAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animationEvents": true; "fadeInDuration": true; "fadeOutDuration": true; "usesSceneTimeBase": true };
 }
 
 export class NSValue extends SDKHandle {
   /** init(SCNMatrix4 v: SCNMatrix4) */
-  static initScnMatrix4(v: SCNMatrix4): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("SceneKit_0e503aef608672fa", 507330628922925, undefined, [v]); }
+  static initScnMatrix4(v: SCNMatrix4): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("SceneKit_212edf3d13b127f5", 507330628922925, undefined, [v]); }
   /** init(SCNVector3 v: SCNVector3) */
-  static initScnVector3(v: SCNVector3): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("SceneKit_0e503aef608672fa", 3927979491036534, undefined, [v]); }
+  static initScnVector3(v: SCNVector3): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("SceneKit_212edf3d13b127f5", 3927979491036534, undefined, [v]); }
   /** init(SCNVector4 v: SCNVector4) */
-  static initScnVector4(v: SCNVector4): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("SceneKit_0e503aef608672fa", 236571364909481, undefined, [v]); }
+  static initScnVector4(v: SCNVector4): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("SceneKit_212edf3d13b127f5", 236571364909481, undefined, [v]); }
   /** var scnMatrix4Value: SCNMatrix4 { get } */
-  get scnMatrix4Value(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 923012054887202, this, []); }
+  get scnMatrix4Value(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 923012054887202, this, []); }
   /** var scnVector3Value: SCNVector3 { get } */
-  get scnVector3Value(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4222960476644768, this, []); }
+  get scnVector3Value(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4222960476644768, this, []); }
   /** var scnVector4Value: SCNVector4 { get } */
-  get scnVector4Value(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 2829288093610704, this, []); }
+  get scnVector4Value(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 2829288093610704, this, []); }
   declare readonly $type: { "c:objc(cs)NSValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "scnMatrix4Value": true; "scnVector3Value": true; "scnVector4Value": true };
 }
@@ -109,19 +109,19 @@ export class NSValue extends SDKHandle {
 /** class SCNConstraint */
 export class SCNConstraint extends SDKHandle {
   /** init() */
-  static init(): SCNConstraint { return callSDK<SCNConstraint>("SceneKit_0e503aef608672fa", 2510580143356746, undefined, []); }
+  static init(): SCNConstraint { return callSDK<SCNConstraint>("SceneKit_212edf3d13b127f5", 2510580143356746, undefined, []); }
   /** var isEnabled: Bool { get set } */
-  get isEnabled(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2914500149989081, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4191986560324239, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2914500149989081, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4191986560324239, this, [value]); }
   /**
    * var isIncremental: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isIncremental(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 4297032230869502, this, []); }
-  set isIncremental(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 44718894501146, this, [value]); }
+  get isIncremental(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 4297032230869502, this, []); }
+  set isIncremental(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 44718894501146, this, [value]); }
   /** var influenceFactor: CGFloat { get set } */
-  get influenceFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 969880600481367, this, []); }
-  set influenceFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 397540339632746, this, [value]); }
+  get influenceFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 969880600481367, this, []); }
+  set influenceFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 397540339632746, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true };
 }
@@ -132,31 +132,31 @@ export class SCNConstraint extends SDKHandle {
  */
 export class SCNAccelerationConstraint extends (SCNConstraint as unknown as Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint)) {
   /** init() */
-  static init(): SCNAccelerationConstraint { return callSDK<SCNAccelerationConstraint>("SceneKit_0e503aef608672fa", 63267822515821, undefined, []); }
+  static init(): SCNAccelerationConstraint { return callSDK<SCNAccelerationConstraint>("SceneKit_212edf3d13b127f5", 63267822515821, undefined, []); }
   /**
    * var damping: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get damping(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4198829658052127, this, []); }
-  set damping(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1644860982303463, this, [value]); }
+  get damping(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4198829658052127, this, []); }
+  set damping(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1644860982303463, this, [value]); }
   /**
    * var decelerationDistance: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get decelerationDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2019386022042460, this, []); }
-  set decelerationDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2504353197061964, this, [value]); }
+  get decelerationDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2019386022042460, this, []); }
+  set decelerationDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2504353197061964, this, [value]); }
   /**
    * var maximumLinearAcceleration: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumLinearAcceleration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2663177101736258, this, []); }
-  set maximumLinearAcceleration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1751770311378548, this, [value]); }
+  get maximumLinearAcceleration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2663177101736258, this, []); }
+  set maximumLinearAcceleration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1751770311378548, this, [value]); }
   /**
    * var maximumLinearVelocity: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumLinearVelocity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 414163309785084, this, []); }
-  set maximumLinearVelocity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2593031097920257, this, [value]); }
+  get maximumLinearVelocity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 414163309785084, this, []); }
+  set maximumLinearVelocity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2593031097920257, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNAccelerationConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "damping": true; "decelerationDistance": true; "maximumLinearAcceleration": true; "maximumLinearVelocity": true };
 }
@@ -164,85 +164,85 @@ export class SCNAccelerationConstraint extends (SCNConstraint as unknown as Omit
 /** class SCNAction */
 export class SCNAction extends SDKHandle {
   /** class func customAction(duration seconds: TimeInterval, action block: @escaping @Sendable (SCNNode, CGFloat) -> Void) -> SCNAction */
-  static customAction(seconds: number, block: ((arg0: SCNNode, arg1: number) => void)): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1458136723403933, undefined, [seconds, block], [null,{"callback":{"out":[]}}]); }
+  static customAction(seconds: number, block: ((arg0: SCNNode, arg1: number) => void)): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1458136723403933, undefined, [seconds, block], [null,{"callback":{"out":[]}}]); }
   /** class func fadeIn(duration sec: TimeInterval) -> SCNAction */
-  static fadeIn(sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3384698834324626, undefined, [sec]); }
+  static fadeIn(sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3384698834324626, undefined, [sec]); }
   /** class func fadeOpacity(by factor: CGFloat, duration sec: TimeInterval) -> SCNAction */
-  static fadeOpacityByDuration(factor: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1993498517448053, undefined, [factor, sec]); }
+  static fadeOpacityByDuration(factor: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1993498517448053, undefined, [factor, sec]); }
   /** class func fadeOpacity(to opacity: CGFloat, duration sec: TimeInterval) -> SCNAction */
-  static fadeOpacityToDuration(opacity: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1441073961726447, undefined, [opacity, sec]); }
+  static fadeOpacityToDuration(opacity: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1441073961726447, undefined, [opacity, sec]); }
   /** class func fadeOut(duration sec: TimeInterval) -> SCNAction */
-  static fadeOut(sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1367967248899946, undefined, [sec]); }
+  static fadeOut(sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1367967248899946, undefined, [sec]); }
   /** class func group(_ actions: [SCNAction]) -> SCNAction */
-  static group(actions: Array<SCNAction>): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1568395872596917, undefined, [actions]); }
+  static group(actions: Array<SCNAction>): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1568395872596917, undefined, [actions]); }
   /**
    * class func hide() -> SCNAction
    * @availability iOS 9.0+
    */
-  static hide(): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 499003366122395, undefined, []); }
+  static hide(): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 499003366122395, undefined, []); }
   /** class func javaScriptAction(withScript script: String, duration seconds: TimeInterval) -> SCNAction */
-  static javaScriptAction(script: string, seconds: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3945003019919183, undefined, [script, seconds]); }
+  static javaScriptAction(script: string, seconds: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3945003019919183, undefined, [script, seconds]); }
   /** class func move(by delta: SCNVector3, duration: TimeInterval) -> SCNAction */
-  static moveByDuration(delta: SCNVector3, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1929155726761776, undefined, [delta, duration]); }
+  static moveByDuration(delta: SCNVector3, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1929155726761776, undefined, [delta, duration]); }
   /** class func moveBy(x deltaX: CGFloat, y deltaY: CGFloat, z deltaZ: CGFloat, duration: TimeInterval) -> SCNAction */
-  static moveBy(deltaX: number, deltaY: number, deltaZ: number, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3306007194257486, undefined, [deltaX, deltaY, deltaZ, duration]); }
+  static moveBy(deltaX: number, deltaY: number, deltaZ: number, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3306007194257486, undefined, [deltaX, deltaY, deltaZ, duration]); }
   /** class func move(to location: SCNVector3, duration: TimeInterval) -> SCNAction */
-  static moveToDuration(location: SCNVector3, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2294848515501480, undefined, [location, duration]); }
+  static moveToDuration(location: SCNVector3, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2294848515501480, undefined, [location, duration]); }
   /**
    * class func playAudio(_ source: SCNAudioSource, waitForCompletion wait: Bool) -> SCNAction
    * @availability iOS 9.0+
    */
-  static playAudio(source: SCNAudioSource, wait: boolean): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1764724537041100, undefined, [source, wait]); }
+  static playAudio(source: SCNAudioSource, wait: boolean): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1764724537041100, undefined, [source, wait]); }
   /** class func removeFromParentNode() -> SCNAction */
-  static removeFromParentNode(): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2763493873945438, undefined, []); }
+  static removeFromParentNode(): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2763493873945438, undefined, []); }
   /** class func `repeat`(_ action: SCNAction, count: Int) -> SCNAction */
-  static repeat(action: SCNAction, count: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3097962194176306, undefined, [action, count]); }
+  static repeat(action: SCNAction, count: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3097962194176306, undefined, [action, count]); }
   /** class func repeatForever(_ action: SCNAction) -> SCNAction */
-  static repeatForever(action: SCNAction): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 4120988504108881, undefined, [action]); }
+  static repeatForever(action: SCNAction): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 4120988504108881, undefined, [action]); }
   /** class func rotate(by angle: CGFloat, around axis: SCNVector3, duration: TimeInterval) -> SCNAction */
-  static rotateByAroundDuration(angle: number, axis: SCNVector3, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 471558054121861, undefined, [angle, axis, duration]); }
+  static rotateByAroundDuration(angle: number, axis: SCNVector3, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 471558054121861, undefined, [angle, axis, duration]); }
   /** class func rotateBy(x xAngle: CGFloat, y yAngle: CGFloat, z zAngle: CGFloat, duration: TimeInterval) -> SCNAction */
-  static rotateBy(xAngle: number, yAngle: number, zAngle: number, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3541546273879968, undefined, [xAngle, yAngle, zAngle, duration]); }
+  static rotateBy(xAngle: number, yAngle: number, zAngle: number, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3541546273879968, undefined, [xAngle, yAngle, zAngle, duration]); }
   /** class func rotate(toAxisAngle axisAngle: SCNVector4, duration: TimeInterval) -> SCNAction */
-  static rotateToAxisAngleDuration(axisAngle: SCNVector4, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3806201878764239, undefined, [axisAngle, duration]); }
+  static rotateToAxisAngleDuration(axisAngle: SCNVector4, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3806201878764239, undefined, [axisAngle, duration]); }
   /** class func rotateTo(x xAngle: CGFloat, y yAngle: CGFloat, z zAngle: CGFloat, duration: TimeInterval) -> SCNAction */
-  static rotateToXYZDuration(xAngle: number, yAngle: number, zAngle: number, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 995910901411336, undefined, [xAngle, yAngle, zAngle, duration]); }
+  static rotateToXYZDuration(xAngle: number, yAngle: number, zAngle: number, duration: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 995910901411336, undefined, [xAngle, yAngle, zAngle, duration]); }
   /** class func rotateTo(x xAngle: CGFloat, y yAngle: CGFloat, z zAngle: CGFloat, duration: TimeInterval, usesShortestUnitArc shortestUnitArc: Bool) -> SCNAction */
-  static rotateToXYZDurationUsesShortestUnitArc(xAngle: number, yAngle: number, zAngle: number, duration: number, shortestUnitArc: boolean): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3926926854264678, undefined, [xAngle, yAngle, zAngle, duration, shortestUnitArc]); }
+  static rotateToXYZDurationUsesShortestUnitArc(xAngle: number, yAngle: number, zAngle: number, duration: number, shortestUnitArc: boolean): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3926926854264678, undefined, [xAngle, yAngle, zAngle, duration, shortestUnitArc]); }
   /** class func run(_ block: @escaping @Sendable (SCNNode) -> Void) -> SCNAction */
-  static run(block: ((arg0: SCNNode) => void)): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2874610668069649, undefined, [block], [{"callback":{"out":[]}}]); }
+  static run(block: ((arg0: SCNNode) => void)): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2874610668069649, undefined, [block], [{"callback":{"out":[]}}]); }
   /** class func run(_ block: @escaping @Sendable (SCNNode) -> Void, queue: dispatch_queue_t) -> SCNAction */
-  static runQueue(block: ((arg0: SCNNode) => void), queue: _Dispatch_DispatchQueue): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2948722801676369, undefined, [block, queue], [{"callback":{"out":[]}},null]); }
+  static runQueue(block: ((arg0: SCNNode) => void), queue: _Dispatch_DispatchQueue): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2948722801676369, undefined, [block, queue], [{"callback":{"out":[]}},null]); }
   /** class func scale(by scale: CGFloat, duration sec: TimeInterval) -> SCNAction */
-  static scaleByDuration(scale: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3677858611955902, undefined, [scale, sec]); }
+  static scaleByDuration(scale: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3677858611955902, undefined, [scale, sec]); }
   /** class func scale(to scale: CGFloat, duration sec: TimeInterval) -> SCNAction */
-  static scaleToDuration(scale: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 3779303441058305, undefined, [scale, sec]); }
+  static scaleToDuration(scale: number, sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 3779303441058305, undefined, [scale, sec]); }
   /** class func sequence(_ actions: [SCNAction]) -> SCNAction */
-  static sequence(actions: Array<SCNAction>): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1969893380901802, undefined, [actions]); }
+  static sequence(actions: Array<SCNAction>): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1969893380901802, undefined, [actions]); }
   /**
    * class func unhide() -> SCNAction
    * @availability iOS 9.0+
    */
-  static unhide(): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2846075283499806, undefined, []); }
+  static unhide(): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2846075283499806, undefined, []); }
   /** class func wait(duration sec: TimeInterval) -> SCNAction */
-  static waitDuration(sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1654828694627506, undefined, [sec]); }
+  static waitDuration(sec: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1654828694627506, undefined, [sec]); }
   /** class func wait(duration sec: TimeInterval, withRange durationRange: TimeInterval) -> SCNAction */
-  static waitDurationWithRange(sec: number, durationRange: number): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 1124024836145236, undefined, [sec, durationRange]); }
+  static waitDurationWithRange(sec: number, durationRange: number): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 1124024836145236, undefined, [sec, durationRange]); }
   /** init() */
-  static init(): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2458962698597792, undefined, []); }
+  static init(): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2458962698597792, undefined, []); }
   /** func reversed() -> SCNAction */
-  reversed(): SCNAction { return callSDK<SCNAction>("SceneKit_0e503aef608672fa", 2608704771153285, this, []); }
+  reversed(): SCNAction { return callSDK<SCNAction>("SceneKit_212edf3d13b127f5", 2608704771153285, this, []); }
   /** var duration: TimeInterval { get set } */
-  get duration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2955981309068050, this, []); }
-  set duration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4388763410530359, this, [value]); }
+  get duration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2955981309068050, this, []); }
+  set duration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4388763410530359, this, [value]); }
   /** var speed: CGFloat { get set } */
-  get speed(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1646319630835855, this, []); }
-  set speed(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3582805022636139, this, [value]); }
+  get speed(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1646319630835855, this, []); }
+  set speed(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3582805022636139, this, [value]); }
   /** var timingFunction: SCNActionTimingFunction? { get set } */
-  get timingFunction(): (((arg0: number) => Promise<number>)) | null { return callSDK<(((arg0: number) => Promise<number>)) | null>("SceneKit_0e503aef608672fa", 565585044935499, this, []); }
+  get timingFunction(): (((arg0: number) => Promise<number>)) | null { return callSDK<(((arg0: number) => Promise<number>)) | null>("SceneKit_212edf3d13b127f5", 565585044935499, this, []); }
   /** var timingMode: SCNActionTimingMode { get set } */
-  get timingMode(): SCNActionTimingMode { return callSDK<SCNActionTimingMode>("SceneKit_0e503aef608672fa", 3837964894007853, this, []); }
-  set timingMode(value: SCNActionTimingMode) { callSDK<void>("SceneKit_0e503aef608672fa", 3715887499454776, this, [value]); }
+  get timingMode(): SCNActionTimingMode { return callSDK<SCNActionTimingMode>("SceneKit_212edf3d13b127f5", 3837964894007853, this, []); }
+  set timingMode(value: SCNActionTimingMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 3715887499454776, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "speed": true; "timingMode": true };
 }
@@ -275,7 +275,7 @@ export const SCNActionTimingMode = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (SCNActionTimingMode) | null { return callSDK<(SCNActionTimingMode) | null>("SceneKit_0e503aef608672fa", 4236944180104887, undefined, [rawValue]); }
+  init(rawValue: number): (SCNActionTimingMode) | null { return callSDK<(SCNActionTimingMode) | null>("SceneKit_212edf3d13b127f5", 4236944180104887, undefined, [rawValue]); }
 };
 
 /** protocol SCNAnimatable : NSObjectProtocol */
@@ -353,131 +353,131 @@ export class SCNAnimation extends SDKHandle {
    * init(named animationName: String)
    * @availability iOS 11.0+
    */
-  static initNamed(animationName: string): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_0e503aef608672fa", 1881916301522338, undefined, [animationName]); }
+  static initNamed(animationName: string): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_212edf3d13b127f5", 1881916301522338, undefined, [animationName]); }
   /**
    * init(caAnimation: CAAnimation)
    * @availability iOS 11.0+
    */
-  static initCaAnimation(caAnimation: _QuartzCore_CAAnimation): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_0e503aef608672fa", 1027846645154336, undefined, [caAnimation]); }
+  static initCaAnimation(caAnimation: _QuartzCore_CAAnimation): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_212edf3d13b127f5", 1027846645154336, undefined, [caAnimation]); }
   /**
    * init(contentsOf animationUrl: URL)
    * @availability iOS 11.0+
    */
-  static initContentsOf(animationUrl: string): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_0e503aef608672fa", 4221793301495363, undefined, [animationUrl]); }
+  static initContentsOf(animationUrl: string): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_212edf3d13b127f5", 4221793301495363, undefined, [animationUrl]); }
   /**
    * var isAdditive: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isAdditive(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3825346009433471, this, []); }
-  set isAdditive(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2368162579194149, this, [value]); }
+  get isAdditive(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3825346009433471, this, []); }
+  set isAdditive(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2368162579194149, this, [value]); }
   /**
    * var animationDidStart: SCNAnimationDidStartBlock? { get set }
    * @availability iOS 11.0+
    */
-  get animationDidStart(): (((arg0: SCNAnimation, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: SCNAnimation, arg1: SDKHandle) => Promise<void>)) | null>("SceneKit_0e503aef608672fa", 3861138017765323, this, []); }
-  set animationDidStart(value: (((arg0: SCNAnimation, arg1: SDKHandle) => void)) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3284714491868836, this, [value], [{"callback":{"out":[]}}]); }
+  get animationDidStart(): (((arg0: SCNAnimation, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: SCNAnimation, arg1: SDKHandle) => Promise<void>)) | null>("SceneKit_212edf3d13b127f5", 3861138017765323, this, []); }
+  set animationDidStart(value: (((arg0: SCNAnimation, arg1: SDKHandle) => void)) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3284714491868836, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var animationDidStop: SCNAnimationDidStopBlock? { get set }
    * @availability iOS 11.0+
    */
-  get animationDidStop(): (((arg0: SCNAnimation, arg1: SDKHandle, arg2: boolean) => Promise<void>)) | null { return callSDK<(((arg0: SCNAnimation, arg1: SDKHandle, arg2: boolean) => Promise<void>)) | null>("SceneKit_0e503aef608672fa", 698300466187214, this, []); }
-  set animationDidStop(value: (((arg0: SCNAnimation, arg1: SDKHandle, arg2: boolean) => void)) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 438424958570752, this, [value], [{"callback":{"out":[]}}]); }
+  get animationDidStop(): (((arg0: SCNAnimation, arg1: SDKHandle, arg2: boolean) => Promise<void>)) | null { return callSDK<(((arg0: SCNAnimation, arg1: SDKHandle, arg2: boolean) => Promise<void>)) | null>("SceneKit_212edf3d13b127f5", 698300466187214, this, []); }
+  set animationDidStop(value: (((arg0: SCNAnimation, arg1: SDKHandle, arg2: boolean) => void)) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 438424958570752, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var animationEvents: [SCNAnimationEvent]? { get set }
    * @availability iOS 11.0+
    */
-  get animationEvents(): $SDK0 { return callSDK<$SDK0>("SceneKit_0e503aef608672fa", 2835923130071931, this, []); }
-  set animationEvents(value: $SDK0) { callSDK<void>("SceneKit_0e503aef608672fa", 778986412438249, this, [value]); }
+  get animationEvents(): $SDK0 { return callSDK<$SDK0>("SceneKit_212edf3d13b127f5", 2835923130071931, this, []); }
+  set animationEvents(value: $SDK0) { callSDK<void>("SceneKit_212edf3d13b127f5", 778986412438249, this, [value]); }
   /**
    * var isAppliedOnCompletion: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isAppliedOnCompletion(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 37400410785193, this, []); }
-  set isAppliedOnCompletion(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3279397055355174, this, [value]); }
+  get isAppliedOnCompletion(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 37400410785193, this, []); }
+  set isAppliedOnCompletion(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3279397055355174, this, [value]); }
   /**
    * var autoreverses: Bool { get set }
    * @availability iOS 11.0+
    */
-  get autoreverses(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 79313337341494, this, []); }
-  set autoreverses(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1315387698420312, this, [value]); }
+  get autoreverses(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 79313337341494, this, []); }
+  set autoreverses(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1315387698420312, this, [value]); }
   /**
    * var blendInDuration: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get blendInDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 603775660206333, this, []); }
-  set blendInDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3518292792902457, this, [value]); }
+  get blendInDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 603775660206333, this, []); }
+  set blendInDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3518292792902457, this, [value]); }
   /**
    * var blendOutDuration: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get blendOutDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3141412045290999, this, []); }
-  set blendOutDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1842219002501973, this, [value]); }
+  get blendOutDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3141412045290999, this, []); }
+  set blendOutDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1842219002501973, this, [value]); }
   /**
    * var isCumulative: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isCumulative(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1465986215513867, this, []); }
-  set isCumulative(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2121785815171029, this, [value]); }
+  get isCumulative(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1465986215513867, this, []); }
+  set isCumulative(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2121785815171029, this, [value]); }
   /**
    * var duration: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get duration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3229711725854961, this, []); }
-  set duration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1303420460325325, this, [value]); }
+  get duration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3229711725854961, this, []); }
+  set duration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1303420460325325, this, [value]); }
   /**
    * var fillsBackward: Bool { get set }
    * @availability iOS 11.0+
    */
-  get fillsBackward(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 4425687525511555, this, []); }
-  set fillsBackward(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1823565010806118, this, [value]); }
+  get fillsBackward(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 4425687525511555, this, []); }
+  set fillsBackward(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1823565010806118, this, [value]); }
   /**
    * var fillsForward: Bool { get set }
    * @availability iOS 11.0+
    */
-  get fillsForward(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 994521817987862, this, []); }
-  set fillsForward(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 956483542879381, this, [value]); }
+  get fillsForward(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 994521817987862, this, []); }
+  set fillsForward(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 956483542879381, this, [value]); }
   /**
    * var keyPath: String? { get set }
    * @availability iOS 11.0+
    */
-  get keyPath(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 3485797175057976, this, []); }
-  set keyPath(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4353881164621652, this, [value]); }
+  get keyPath(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 3485797175057976, this, []); }
+  set keyPath(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4353881164621652, this, [value]); }
   /**
    * var isRemovedOnCompletion: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isRemovedOnCompletion(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2629407971301577, this, []); }
-  set isRemovedOnCompletion(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2393544187633400, this, [value]); }
+  get isRemovedOnCompletion(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2629407971301577, this, []); }
+  set isRemovedOnCompletion(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2393544187633400, this, [value]); }
   /**
    * var repeatCount: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get repeatCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3606484934741177, this, []); }
-  set repeatCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 140993256936710, this, [value]); }
+  get repeatCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3606484934741177, this, []); }
+  set repeatCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 140993256936710, this, [value]); }
   /**
    * var startDelay: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get startDelay(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2541800002679672, this, []); }
-  set startDelay(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 34253334017725, this, [value]); }
+  get startDelay(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2541800002679672, this, []); }
+  set startDelay(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 34253334017725, this, [value]); }
   /**
    * var timeOffset: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get timeOffset(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1077120190119590, this, []); }
-  set timeOffset(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 672970205931654, this, [value]); }
+  get timeOffset(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1077120190119590, this, []); }
+  set timeOffset(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 672970205931654, this, [value]); }
   /**
    * var timingFunction: SCNTimingFunction { get set }
    * @availability iOS 11.0+
    */
-  get timingFunction(): SCNTimingFunction { return callSDK<SCNTimingFunction>("SceneKit_0e503aef608672fa", 1768223170219459, this, []); }
-  set timingFunction(value: SCNTimingFunction) { callSDK<void>("SceneKit_0e503aef608672fa", 1972761662532200, this, [value]); }
+  get timingFunction(): SCNTimingFunction { return callSDK<SCNTimingFunction>("SceneKit_212edf3d13b127f5", 1768223170219459, this, []); }
+  set timingFunction(value: SCNTimingFunction) { callSDK<void>("SceneKit_212edf3d13b127f5", 1972761662532200, this, [value]); }
   /**
    * var usesSceneTimeBase: Bool { get set }
    * @availability iOS 11.0+
    */
-  get usesSceneTimeBase(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3465735906071280, this, []); }
-  set usesSceneTimeBase(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2287153447890409, this, [value]); }
+  get usesSceneTimeBase(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3465735906071280, this, []); }
+  set usesSceneTimeBase(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2287153447890409, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNAnimation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAdditive": true; "animationEvents": true; "isAppliedOnCompletion": true; "autoreverses": true; "blendInDuration": true; "blendOutDuration": true; "isCumulative": true; "duration": true; "fillsBackward": true; "fillsForward": true; "keyPath": true; "isRemovedOnCompletion": true; "repeatCount": true; "startDelay": true; "timeOffset": true; "timingFunction": true; "usesSceneTimeBase": true };
 }
@@ -491,7 +491,7 @@ export type SCNAnimationDidStopBlock = ((arg0: SCNAnimation, arg1: SDKHandle, ar
 /** class SCNAnimationEvent */
 export class SCNAnimationEvent extends SDKHandle {
   /** convenience init(keyTime time: CGFloat, block eventBlock: @escaping SCNAnimationEventBlock) */
-  static init(time: number, eventBlock: ((arg0: SDKHandle, arg1: unknown, arg2: boolean) => void)): SCNAnimationEvent { return callSDK<SCNAnimationEvent>("SceneKit_0e503aef608672fa", 3459220173251115, undefined, [time, eventBlock], [null,{"callback":{"out":[]}}]); }
+  static init(time: number, eventBlock: ((arg0: SDKHandle, arg1: unknown, arg2: boolean) => void)): SCNAnimationEvent { return callSDK<SCNAnimationEvent>("SceneKit_212edf3d13b127f5", 3459220173251115, undefined, [time, eventBlock], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SCNAnimationEvent": true; "c:objc(cs)NSObject": true };
 }
 
@@ -507,45 +507,45 @@ export class SCNAnimationPlayer extends SDKHandle {
    * init(animation: SCNAnimation)
    * @availability iOS 11.0+
    */
-  static init(animation: SCNAnimation): SCNAnimationPlayer { return callSDK<SCNAnimationPlayer>("SceneKit_0e503aef608672fa", 454718024756184, undefined, [animation]); }
+  static init(animation: SCNAnimation): SCNAnimationPlayer { return callSDK<SCNAnimationPlayer>("SceneKit_212edf3d13b127f5", 454718024756184, undefined, [animation]); }
   /**
    * func play()
    * @availability iOS 11.0+
    */
-  play(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2613886831998015, this, []); }
+  play(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2613886831998015, this, []); }
   /**
    * func stop()
    * @availability iOS 11.0+
    */
-  stop(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 523453629292280, this, []); }
+  stop(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 523453629292280, this, []); }
   /**
    * func stop(withBlendOutDuration duration: TimeInterval)
    * @availability iOS 11.0+
    */
-  stopWithBlendOutDuration(duration: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4156639452965918, this, [duration]); }
+  stopWithBlendOutDuration(duration: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4156639452965918, this, [duration]); }
   /**
    * var animation: SCNAnimation { get }
    * @availability iOS 11.0+
    */
-  get animation(): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_0e503aef608672fa", 515860328035810, this, []); }
+  get animation(): SCNAnimation { return callSDK<SCNAnimation>("SceneKit_212edf3d13b127f5", 515860328035810, this, []); }
   /**
    * var blendFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get blendFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4318511645580631, this, []); }
-  set blendFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2572103071416069, this, [value]); }
+  get blendFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4318511645580631, this, []); }
+  set blendFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2572103071416069, this, [value]); }
   /**
    * var paused: Bool { get set }
    * @availability iOS 11.0+
    */
-  get paused(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 685631216860188, this, []); }
-  set paused(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2385592244216167, this, [value]); }
+  get paused(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 685631216860188, this, []); }
+  set paused(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2385592244216167, this, [value]); }
   /**
    * var speed: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get speed(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3130486136921754, this, []); }
-  set speed(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2281346907135800, this, [value]); }
+  get speed(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3130486136921754, this, []); }
+  set speed(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2281346907135800, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNAnimationPlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animation": true; "blendFactor": true; "paused": true; "speed": true };
 }
@@ -560,7 +560,7 @@ export type SCNAntialiasingMode = "none" | "multisampling2X" | "multisampling4X"
 
 export const SCNAntialiasingMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (SCNAntialiasingMode) | null { return callSDK<(SCNAntialiasingMode) | null>("SceneKit_0e503aef608672fa", 847430262253166, undefined, [rawValue]); }
+  init(rawValue: number): (SCNAntialiasingMode) | null { return callSDK<(SCNAntialiasingMode) | null>("SceneKit_212edf3d13b127f5", 847430262253166, undefined, [rawValue]); }
 };
 
 /**
@@ -572,34 +572,34 @@ export class SCNAudioPlayer extends SDKHandle {
    * init(avAudioNode audioNode: AVAudioNode)
    * @availability iOS 9.0+
    */
-  static initAvAudioNode(audioNode: _AVFAudio_AVAudioNode): SCNAudioPlayer { return callSDK<SCNAudioPlayer>("SceneKit_0e503aef608672fa", 2330665036129232, undefined, [audioNode]); }
+  static initAvAudioNode(audioNode: _AVFAudio_AVAudioNode): SCNAudioPlayer { return callSDK<SCNAudioPlayer>("SceneKit_212edf3d13b127f5", 2330665036129232, undefined, [audioNode]); }
   /**
    * init(source: SCNAudioSource)
    * @availability iOS 9.0+
    */
-  static initSource(source: SCNAudioSource): SCNAudioPlayer { return callSDK<SCNAudioPlayer>("SceneKit_0e503aef608672fa", 4087849713333746, undefined, [source]); }
+  static initSource(source: SCNAudioSource): SCNAudioPlayer { return callSDK<SCNAudioPlayer>("SceneKit_212edf3d13b127f5", 4087849713333746, undefined, [source]); }
   /**
    * var audioNode: AVAudioNode? { get }
    * @availability iOS 9.0+
    */
-  get audioNode(): (_AVFAudio_AVAudioNode) | null { return callSDK<(_AVFAudio_AVAudioNode) | null>("SceneKit_0e503aef608672fa", 4030830317785578, this, []); }
+  get audioNode(): (_AVFAudio_AVAudioNode) | null { return callSDK<(_AVFAudio_AVAudioNode) | null>("SceneKit_212edf3d13b127f5", 4030830317785578, this, []); }
   /**
    * var audioSource: SCNAudioSource? { get }
    * @availability iOS 9.0+
    */
-  get audioSource(): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_0e503aef608672fa", 4318121330427360, this, []); }
+  get audioSource(): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_212edf3d13b127f5", 4318121330427360, this, []); }
   /**
    * var didFinishPlayback: (() -> Void)? { get set }
    * @availability iOS 9.0+
    */
-  get didFinishPlayback(): $SDK16 { return callSDK<$SDK16>("SceneKit_0e503aef608672fa", 1373969306059959, this, []); }
-  set didFinishPlayback(value: ((() => void)) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3714530759419111, this, [value], [{"callback":{"out":[]}}]); }
+  get didFinishPlayback(): $SDK16 { return callSDK<$SDK16>("SceneKit_212edf3d13b127f5", 1373969306059959, this, []); }
+  set didFinishPlayback(value: ((() => void)) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3714530759419111, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var willStartPlayback: (() -> Void)? { get set }
    * @availability iOS 9.0+
    */
-  get willStartPlayback(): $SDK16 { return callSDK<$SDK16>("SceneKit_0e503aef608672fa", 1145441240722057, this, []); }
-  set willStartPlayback(value: ((() => void)) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4272611939721775, this, [value], [{"callback":{"out":[]}}]); }
+  get willStartPlayback(): $SDK16 { return callSDK<$SDK16>("SceneKit_212edf3d13b127f5", 1145441240722057, this, []); }
+  set willStartPlayback(value: ((() => void)) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4272611939721775, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SCNAudioPlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioNode": true; "audioSource": true };
 }
@@ -613,58 +613,58 @@ export class SCNAudioSource extends SDKHandle {
    * convenience init?(named fileName: String)
    * @availability iOS 9.0+
    */
-  static initNamed(fileName: string): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_0e503aef608672fa", 63582403722062, undefined, [fileName]); }
+  static initNamed(fileName: string): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_212edf3d13b127f5", 63582403722062, undefined, [fileName]); }
   /**
    * convenience init?(fileNamed name: String)
    * @availability iOS 9.0+
    */
-  static initFileNamed(name: string): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_0e503aef608672fa", 2467749538834613, undefined, [name]); }
+  static initFileNamed(name: string): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_212edf3d13b127f5", 2467749538834613, undefined, [name]); }
   /**
    * init?(url: URL)
    * @availability iOS 9.0+
    */
-  static initUrl(url: string): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_0e503aef608672fa", 3484421743236527, undefined, [url]); }
+  static initUrl(url: string): (SCNAudioSource) | null { return callSDK<(SCNAudioSource) | null>("SceneKit_212edf3d13b127f5", 3484421743236527, undefined, [url]); }
   /**
    * func load()
    * @availability iOS 9.0+
    */
-  load(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2550518535473983, this, []); }
+  load(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2550518535473983, this, []); }
   /**
    * var loops: Bool { get set }
    * @availability iOS 9.0+
    */
-  get loops(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3795864455788933, this, []); }
-  set loops(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1926036266015391, this, [value]); }
+  get loops(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3795864455788933, this, []); }
+  set loops(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1926036266015391, this, [value]); }
   /**
    * var isPositional: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isPositional(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 405629346954196, this, []); }
-  set isPositional(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 77619756263450, this, [value]); }
+  get isPositional(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 405629346954196, this, []); }
+  set isPositional(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 77619756263450, this, [value]); }
   /**
    * var rate: Float { get set }
    * @availability iOS 9.0+
    */
-  get rate(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1843095884488918, this, []); }
-  set rate(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4042938717791475, this, [value]); }
+  get rate(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1843095884488918, this, []); }
+  set rate(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4042938717791475, this, [value]); }
   /**
    * var reverbBlend: Float { get set }
    * @availability iOS 9.0+
    */
-  get reverbBlend(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3059128015598661, this, []); }
-  set reverbBlend(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1442451053910579, this, [value]); }
+  get reverbBlend(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3059128015598661, this, []); }
+  set reverbBlend(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1442451053910579, this, [value]); }
   /**
    * var shouldStream: Bool { get set }
    * @availability iOS 9.0+
    */
-  get shouldStream(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 582741517626155, this, []); }
-  set shouldStream(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4119218243629473, this, [value]); }
+  get shouldStream(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 582741517626155, this, []); }
+  set shouldStream(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4119218243629473, this, [value]); }
   /**
    * var volume: Float { get set }
    * @availability iOS 9.0+
    */
-  get volume(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3347578144705665, this, []); }
-  set volume(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2564225553064347, this, [value]); }
+  get volume(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3347578144705665, this, []); }
+  set volume(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2564225553064347, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNAudioSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "loops": true; "isPositional": true; "rate": true; "reverbBlend": true; "shouldStream": true; "volume": true };
 }
@@ -678,31 +678,31 @@ export class SCNAvoidOccluderConstraint extends (SCNConstraint as unknown as Omi
    * convenience init(target: SCNNode?)
    * @availability iOS 11.0+
    */
-  static init(target?: (SCNNode) | null): SCNAvoidOccluderConstraint { return callSDK<SCNAvoidOccluderConstraint>("SceneKit_0e503aef608672fa", 1761943717741718, undefined, [target]); }
+  static init(target?: (SCNNode) | null): SCNAvoidOccluderConstraint { return callSDK<SCNAvoidOccluderConstraint>("SceneKit_212edf3d13b127f5", 1761943717741718, undefined, [target]); }
   /**
    * var bias: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get bias(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 212172704727727, this, []); }
-  set bias(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 106877457811949, this, [value]); }
+  get bias(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 212172704727727, this, []); }
+  set bias(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 106877457811949, this, [value]); }
   /**
    * unowned(unsafe) var delegate: any SCNAvoidOccluderConstraintDelegate { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 114935925914010, this, []); }
-  set delegate(value: Implements<SCNAvoidOccluderConstraintDelegate> | SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 987591922195288, this, [value], [{"protocol":"c:objc(pl)SCNAvoidOccluderConstraintDelegate"}]); }
+  get delegate(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 114935925914010, this, []); }
+  set delegate(value: Implements<SCNAvoidOccluderConstraintDelegate> | SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 987591922195288, this, [value], [{"protocol":"c:objc(pl)SCNAvoidOccluderConstraintDelegate"}]); }
   /**
    * var occluderCategoryBitMask: Int { get set }
    * @availability iOS 11.0+
    */
-  get occluderCategoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1098870448394773, this, []); }
-  set occluderCategoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2055547196337366, this, [value]); }
+  get occluderCategoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1098870448394773, this, []); }
+  set occluderCategoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2055547196337366, this, [value]); }
   /**
    * var target: SCNNode? { get set }
    * @availability iOS 11.0+
    */
-  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 171855025237517, this, []); }
-  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 979628281788171, this, [value]); }
+  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 171855025237517, this, []); }
+  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 979628281788171, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNAvoidOccluderConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "bias": true; "delegate": true; "occluderCategoryBitMask": true; "target": true };
 }
@@ -724,15 +724,15 @@ export type SCNBillboardAxis = Array<"X" | "Y" | "Z" | "all">;
 
 export const SCNBillboardAxis = {
   /** static var all: SCNBillboardAxis { get } */
-  get all(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_0e503aef608672fa", 2033305872861088, undefined, []); },
+  get all(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_212edf3d13b127f5", 2033305872861088, undefined, []); },
   /** static var X: SCNBillboardAxis { get } */
-  get X(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_0e503aef608672fa", 3154543873909099, undefined, []); },
+  get X(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_212edf3d13b127f5", 3154543873909099, undefined, []); },
   /** static var Y: SCNBillboardAxis { get } */
-  get Y(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_0e503aef608672fa", 2145112707365401, undefined, []); },
+  get Y(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_212edf3d13b127f5", 2145112707365401, undefined, []); },
   /** static var Z: SCNBillboardAxis { get } */
-  get Z(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_0e503aef608672fa", 15976792348778, undefined, []); },
+  get Z(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_212edf3d13b127f5", 15976792348778, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_0e503aef608672fa", 4431796356846042, undefined, [rawValue]); }
+  init(rawValue: number): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_212edf3d13b127f5", 4431796356846042, undefined, [rawValue]); }
 };
 
 /**
@@ -741,13 +741,13 @@ export const SCNBillboardAxis = {
  */
 export class SCNBillboardConstraint extends (SCNConstraint as unknown as Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint)) {
   /** init() */
-  static init(): SCNBillboardConstraint { return callSDK<SCNBillboardConstraint>("SceneKit_0e503aef608672fa", 2254673329066612, undefined, []); }
+  static init(): SCNBillboardConstraint { return callSDK<SCNBillboardConstraint>("SceneKit_212edf3d13b127f5", 2254673329066612, undefined, []); }
   /**
    * var freeAxes: SCNBillboardAxis { get set }
    * @availability iOS 9.0+
    */
-  get freeAxes(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_0e503aef608672fa", 4502884343274936, this, []); }
-  set freeAxes(value: SCNBillboardAxis) { callSDK<void>("SceneKit_0e503aef608672fa", 1512578665102438, this, [value]); }
+  get freeAxes(): SCNBillboardAxis { return callSDK<SCNBillboardAxis>("SceneKit_212edf3d13b127f5", 4502884343274936, this, []); }
+  set freeAxes(value: SCNBillboardAxis) { callSDK<void>("SceneKit_212edf3d13b127f5", 1512578665102438, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNBillboardConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "freeAxes": true };
 }
@@ -766,7 +766,7 @@ export const SCNBlendMode = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (SCNBlendMode) | null { return callSDK<(SCNBlendMode) | null>("SceneKit_0e503aef608672fa", 2980671659783018, undefined, [rawValue]); }
+  init(rawValue: number): (SCNBlendMode) | null { return callSDK<(SCNBlendMode) | null>("SceneKit_212edf3d13b127f5", 2980671659783018, undefined, [rawValue]); }
 };
 
 /** protocol SCNBoundingVolume : NSObjectProtocol */
@@ -777,68 +777,68 @@ export interface SCNBoundingVolume {
 /** class SCNGeometry */
 export class SCNGeometry extends SDKHandle {
   /** convenience init(sources: [SCNGeometrySource], elements: [SCNGeometryElement]?) */
-  static initSourcesElements(sources: $SDK19, elements?: $SDK20): SCNGeometry { return callSDK<SCNGeometry>("SceneKit_0e503aef608672fa", 3885556623852524, undefined, [sources, elements]); }
+  static initSourcesElements(sources: $SDK19, elements?: $SDK20): SCNGeometry { return callSDK<SCNGeometry>("SceneKit_212edf3d13b127f5", 3885556623852524, undefined, [sources, elements]); }
   /**
    * convenience init(sources: [SCNGeometrySource], elements: [SCNGeometryElement]?, sourceChannels: [NSNumber]?)
    * @availability iOS 16.0+
    */
-  static initSourcesElementsSourceChannels(sources: $SDK19, elements?: $SDK20, sourceChannels?: $SDK21): SCNGeometry { return callSDK<SCNGeometry>("SceneKit_0e503aef608672fa", 2190925019038571, undefined, [sources, elements, sourceChannels]); }
+  static initSourcesElementsSourceChannels(sources: $SDK19, elements?: $SDK20, sourceChannels?: $SDK21): SCNGeometry { return callSDK<SCNGeometry>("SceneKit_212edf3d13b127f5", 2190925019038571, undefined, [sources, elements, sourceChannels]); }
   /** func element(at elementIndex: Int) -> SCNGeometryElement */
-  element(elementIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_0e503aef608672fa", 791797444328174, this, [elementIndex]); }
+  element(elementIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_212edf3d13b127f5", 791797444328174, this, [elementIndex]); }
   /** func sources(for semantic: SCNGeometrySource.Semantic) -> [SCNGeometrySource] */
-  sourcesFor(semantic: SCNGeometrySource_Semantic): $SDK19 { return callSDK<$SDK19>("SceneKit_0e503aef608672fa", 1028555125666308, this, [semantic]); }
+  sourcesFor(semantic: SCNGeometrySource_Semantic): $SDK19 { return callSDK<$SDK19>("SceneKit_212edf3d13b127f5", 1028555125666308, this, [semantic]); }
   /** func insertMaterial(_ material: SCNMaterial, at index: Int) */
-  insertMaterial(material: SCNMaterial, index: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2477163974287069, this, [material, index]); }
+  insertMaterial(material: SCNMaterial, index: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2477163974287069, this, [material, index]); }
   /** func material(named name: String) -> SCNMaterial? */
-  material(name: string): (SCNMaterial) | null { return callSDK<(SCNMaterial) | null>("SceneKit_0e503aef608672fa", 1516696926072306, this, [name]); }
+  material(name: string): (SCNMaterial) | null { return callSDK<(SCNMaterial) | null>("SceneKit_212edf3d13b127f5", 1516696926072306, this, [name]); }
   /** func removeMaterial(at index: Int) */
-  removeMaterial(index: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2726570577371775, this, [index]); }
+  removeMaterial(index: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2726570577371775, this, [index]); }
   /** func replaceMaterial(at index: Int, with material: SCNMaterial) */
-  replaceMaterial(index: number, material: SCNMaterial): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2573463835828896, this, [index, material]); }
+  replaceMaterial(index: number, material: SCNMaterial): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2573463835828896, this, [index, material]); }
   /** var edgeCreasesElement: SCNGeometryElement? { get set } */
-  get edgeCreasesElement(): (SCNGeometryElement) | null { return callSDK<(SCNGeometryElement) | null>("SceneKit_0e503aef608672fa", 771753559109665, this, []); }
-  set edgeCreasesElement(value: (SCNGeometryElement) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2601391030040088, this, [value]); }
+  get edgeCreasesElement(): (SCNGeometryElement) | null { return callSDK<(SCNGeometryElement) | null>("SceneKit_212edf3d13b127f5", 771753559109665, this, []); }
+  set edgeCreasesElement(value: (SCNGeometryElement) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2601391030040088, this, [value]); }
   /** var edgeCreasesSource: SCNGeometrySource? { get set } */
-  get edgeCreasesSource(): (SCNGeometrySource) | null { return callSDK<(SCNGeometrySource) | null>("SceneKit_0e503aef608672fa", 1115137466462842, this, []); }
-  set edgeCreasesSource(value: (SCNGeometrySource) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3207530054805668, this, [value]); }
+  get edgeCreasesSource(): (SCNGeometrySource) | null { return callSDK<(SCNGeometrySource) | null>("SceneKit_212edf3d13b127f5", 1115137466462842, this, []); }
+  set edgeCreasesSource(value: (SCNGeometrySource) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3207530054805668, this, [value]); }
   /** var firstMaterial: SCNMaterial? { get set } */
-  get firstMaterial(): (SCNMaterial) | null { return callSDK<(SCNMaterial) | null>("SceneKit_0e503aef608672fa", 1572001727700684, this, []); }
-  set firstMaterial(value: (SCNMaterial) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1379788564360967, this, [value]); }
+  get firstMaterial(): (SCNMaterial) | null { return callSDK<(SCNMaterial) | null>("SceneKit_212edf3d13b127f5", 1572001727700684, this, []); }
+  set firstMaterial(value: (SCNMaterial) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1379788564360967, this, [value]); }
   /** var elementCount: Int { get } */
-  get elementCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 188930865012631, this, []); }
+  get elementCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 188930865012631, this, []); }
   /** var elements: [SCNGeometryElement] { get } */
-  get elements(): Array<SCNGeometryElement> { return callSDK<Array<SCNGeometryElement>>("SceneKit_0e503aef608672fa", 3672366057446080, this, []); }
+  get elements(): Array<SCNGeometryElement> { return callSDK<Array<SCNGeometryElement>>("SceneKit_212edf3d13b127f5", 3672366057446080, this, []); }
   /**
    * var geometrySourceChannels: [NSNumber]? { get }
    * @availability iOS 16.0+
    */
-  get geometrySourceChannels(): $SDK21 { return callSDK<$SDK21>("SceneKit_0e503aef608672fa", 1065168815639383, this, []); }
+  get geometrySourceChannels(): $SDK21 { return callSDK<$SDK21>("SceneKit_212edf3d13b127f5", 1065168815639383, this, []); }
   /** var sources: [SCNGeometrySource] { get } */
-  get sources(): $SDK19 { return callSDK<$SDK19>("SceneKit_0e503aef608672fa", 1391019671266696, this, []); }
+  get sources(): $SDK19 { return callSDK<$SDK19>("SceneKit_212edf3d13b127f5", 1391019671266696, this, []); }
   /** var levelsOfDetail: [SCNLevelOfDetail]? { get set } */
-  get levelsOfDetail(): $SDK25 { return callSDK<$SDK25>("SceneKit_0e503aef608672fa", 2794415562129706, this, []); }
-  set levelsOfDetail(value: $SDK25) { callSDK<void>("SceneKit_0e503aef608672fa", 1749564740518625, this, [value]); }
+  get levelsOfDetail(): $SDK25 { return callSDK<$SDK25>("SceneKit_212edf3d13b127f5", 2794415562129706, this, []); }
+  set levelsOfDetail(value: $SDK25) { callSDK<void>("SceneKit_212edf3d13b127f5", 1749564740518625, this, [value]); }
   /** var materials: [SCNMaterial] { get set } */
-  get materials(): Array<SCNMaterial> { return callSDK<Array<SCNMaterial>>("SceneKit_0e503aef608672fa", 81382431732346, this, []); }
-  set materials(value: Array<SCNMaterial>) { callSDK<void>("SceneKit_0e503aef608672fa", 4223294827730048, this, [value]); }
+  get materials(): Array<SCNMaterial> { return callSDK<Array<SCNMaterial>>("SceneKit_212edf3d13b127f5", 81382431732346, this, []); }
+  set materials(value: Array<SCNMaterial>) { callSDK<void>("SceneKit_212edf3d13b127f5", 4223294827730048, this, [value]); }
   /** var name: String? { get set } */
-  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 2551538640832021, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2736283377279505, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 2551538640832021, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2736283377279505, this, [value]); }
   /** var subdivisionLevel: Int { get set } */
-  get subdivisionLevel(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1538394254718016, this, []); }
-  set subdivisionLevel(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1499985802005567, this, [value]); }
+  get subdivisionLevel(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1538394254718016, this, []); }
+  set subdivisionLevel(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1499985802005567, this, [value]); }
   /**
    * var tessellator: SCNGeometryTessellator? { get set }
    * @availability iOS 11.0+
    */
-  get tessellator(): $SDK26 { return callSDK<$SDK26>("SceneKit_0e503aef608672fa", 1558266916481294, this, []); }
-  set tessellator(value: $SDK26) { callSDK<void>("SceneKit_0e503aef608672fa", 2170786839508284, this, [value]); }
+  get tessellator(): $SDK26 { return callSDK<$SDK26>("SceneKit_212edf3d13b127f5", 1558266916481294, this, []); }
+  set tessellator(value: $SDK26) { callSDK<void>("SceneKit_212edf3d13b127f5", 2170786839508284, this, [value]); }
   /**
    * var wantsAdaptiveSubdivision: Bool { get set }
    * @availability iOS 11.0+
    */
-  get wantsAdaptiveSubdivision(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2415683909696204, this, []); }
-  set wantsAdaptiveSubdivision(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3442752140891583, this, [value]); }
+  get wantsAdaptiveSubdivision(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2415683909696204, this, []); }
+  set wantsAdaptiveSubdivision(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3442752140891583, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true };
 }
@@ -846,31 +846,31 @@ export class SCNGeometry extends SDKHandle {
 /** class SCNBox */
 export class SCNBox extends SCNGeometry {
   /** convenience init(width: CGFloat, height: CGFloat, length: CGFloat, chamferRadius: CGFloat) */
-  static init(width: number, height: number, length: number, chamferRadius: number): SCNBox { return callSDK<SCNBox>("SceneKit_0e503aef608672fa", 1391165478906968, undefined, [width, height, length, chamferRadius]); }
+  static init(width: number, height: number, length: number, chamferRadius: number): SCNBox { return callSDK<SCNBox>("SceneKit_212edf3d13b127f5", 1391165478906968, undefined, [width, height, length, chamferRadius]); }
   /** var chamferRadius: CGFloat { get set } */
-  get chamferRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1903639256988198, this, []); }
-  set chamferRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4101190423762918, this, [value]); }
+  get chamferRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1903639256988198, this, []); }
+  set chamferRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4101190423762918, this, [value]); }
   /** var chamferSegmentCount: Int { get set } */
-  get chamferSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3331823590386690, this, []); }
-  set chamferSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2646477979529351, this, [value]); }
+  get chamferSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3331823590386690, this, []); }
+  set chamferSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2646477979529351, this, [value]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 582117933380204, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4479880776220462, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 582117933380204, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4479880776220462, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2832086440422501, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4069440285343143, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2832086440422501, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4069440285343143, this, [value]); }
   /** var length: CGFloat { get set } */
-  get length(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1773535982549792, this, []); }
-  set length(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2858313360414588, this, [value]); }
+  get length(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1773535982549792, this, []); }
+  set length(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2858313360414588, this, [value]); }
   /** var lengthSegmentCount: Int { get set } */
-  get lengthSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1581762745106661, this, []); }
-  set lengthSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2324343752543068, this, [value]); }
+  get lengthSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1581762745106661, this, []); }
+  set lengthSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2324343752543068, this, [value]); }
   /** var width: CGFloat { get set } */
-  get width(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2257615111634360, this, []); }
-  set width(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 156373019843951, this, [value]); }
+  get width(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2257615111634360, this, []); }
+  set width(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 156373019843951, this, [value]); }
   /** var widthSegmentCount: Int { get set } */
-  get widthSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 436096637281184, this, []); }
-  set widthSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 537070560936190, this, [value]); }
+  get widthSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 436096637281184, this, []); }
+  set widthSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 537070560936190, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNBox": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "chamferRadius": true; "chamferSegmentCount": true; "height": true; "heightSegmentCount": true; "length": true; "lengthSegmentCount": true; "width": true; "widthSegmentCount": true };
 }
@@ -889,7 +889,7 @@ export const SCNBufferFrequency = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (SCNBufferFrequency) | null { return callSDK<(SCNBufferFrequency) | null>("SceneKit_0e503aef608672fa", 3231097104564474, undefined, [rawValue]); }
+  init(rawValue: number): (SCNBufferFrequency) | null { return callSDK<(SCNBufferFrequency) | null>("SceneKit_212edf3d13b127f5", 3231097104564474, undefined, [rawValue]); }
 };
 
 /** protocol SCNBufferStream : NSObjectProtocol */
@@ -901,323 +901,323 @@ export interface SCNBufferStream {
 /** class SCNCamera */
 export class SCNCamera extends SDKHandle {
   /** init() */
-  static init(): SCNCamera { return callSDK<SCNCamera>("SceneKit_0e503aef608672fa", 475930795405731, undefined, []); }
+  static init(): SCNCamera { return callSDK<SCNCamera>("SceneKit_212edf3d13b127f5", 475930795405731, undefined, []); }
   /**
    * func projectionTransform(withViewportSize viewportSize: CGSize) -> SCNMatrix4
    * @availability iOS 13.0+
    */
-  projectionTransformWithViewportSize(viewportSize: $SDK28): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 582902472380778, this, [viewportSize]); }
+  projectionTransformWithViewportSize(viewportSize: $SDK28): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 582902472380778, this, [viewportSize]); }
   /**
    * var aperture: CGFloat { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get aperture(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2466217231459883, this, []); }
-  set aperture(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2175169730871690, this, [value]); }
+  get aperture(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2466217231459883, this, []); }
+  set aperture(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2175169730871690, this, [value]); }
   /**
    * var apertureBladeCount: Int { get set }
    * @availability iOS 11.0+
    */
-  get apertureBladeCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2282246863751299, this, []); }
-  set apertureBladeCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4000188714280986, this, [value]); }
+  get apertureBladeCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2282246863751299, this, []); }
+  set apertureBladeCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4000188714280986, this, [value]); }
   /** var automaticallyAdjustsZRange: Bool { get set } */
-  get automaticallyAdjustsZRange(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3880450243975303, this, []); }
-  set automaticallyAdjustsZRange(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2013719664307580, this, [value]); }
+  get automaticallyAdjustsZRange(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3880450243975303, this, []); }
+  set automaticallyAdjustsZRange(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2013719664307580, this, [value]); }
   /**
    * var averageGray: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get averageGray(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1436940102187947, this, []); }
-  set averageGray(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 600678934649715, this, [value]); }
+  get averageGray(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1436940102187947, this, []); }
+  set averageGray(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 600678934649715, this, [value]); }
   /**
    * var bloomBlurRadius: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get bloomBlurRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1867679278271510, this, []); }
-  set bloomBlurRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2812928626109044, this, [value]); }
+  get bloomBlurRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1867679278271510, this, []); }
+  set bloomBlurRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2812928626109044, this, [value]); }
   /**
    * var bloomIntensity: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get bloomIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1798364109641990, this, []); }
-  set bloomIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3254407847507827, this, [value]); }
+  get bloomIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1798364109641990, this, []); }
+  set bloomIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3254407847507827, this, [value]); }
   /**
    * var bloomIterationCount: Int { get set }
    * @availability iOS 13.0+
    */
-  get bloomIterationCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3338287211426267, this, []); }
-  set bloomIterationCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2406294917349975, this, [value]); }
+  get bloomIterationCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3338287211426267, this, []); }
+  set bloomIterationCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2406294917349975, this, [value]); }
   /**
    * var bloomIterationSpread: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get bloomIterationSpread(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3895026901456086, this, []); }
-  set bloomIterationSpread(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3780033995134152, this, [value]); }
+  get bloomIterationSpread(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3895026901456086, this, []); }
+  set bloomIterationSpread(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3780033995134152, this, [value]); }
   /**
    * var bloomThreshold: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get bloomThreshold(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3342228009333539, this, []); }
-  set bloomThreshold(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1958465388101783, this, [value]); }
+  get bloomThreshold(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3342228009333539, this, []); }
+  set bloomThreshold(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1958465388101783, this, [value]); }
   /** var categoryBitMask: Int { get set } */
-  get categoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1626676735636932, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2035179768903430, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1626676735636932, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2035179768903430, this, [value]); }
   /**
    * var colorFringeIntensity: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get colorFringeIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4108221513025138, this, []); }
-  set colorFringeIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1402451613683945, this, [value]); }
+  get colorFringeIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4108221513025138, this, []); }
+  set colorFringeIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1402451613683945, this, [value]); }
   /**
    * var colorFringeStrength: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get colorFringeStrength(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2192685752454282, this, []); }
-  set colorFringeStrength(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3536965975445692, this, [value]); }
+  get colorFringeStrength(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2192685752454282, this, []); }
+  set colorFringeStrength(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3536965975445692, this, [value]); }
   /**
    * var colorGrading: SCNMaterialProperty { get }
    * @availability iOS 10.0+
    */
-  get colorGrading(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 3129183179201280, this, []); }
+  get colorGrading(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 3129183179201280, this, []); }
   /**
    * var contrast: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get contrast(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1106461079207183, this, []); }
-  set contrast(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 908976870819431, this, [value]); }
+  get contrast(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1106461079207183, this, []); }
+  set contrast(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 908976870819431, this, [value]); }
   /**
    * var exposureAdaptationBrighteningSpeedFactor: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get exposureAdaptationBrighteningSpeedFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 760421562231069, this, []); }
-  set exposureAdaptationBrighteningSpeedFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2973448188214550, this, [value]); }
+  get exposureAdaptationBrighteningSpeedFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 760421562231069, this, []); }
+  set exposureAdaptationBrighteningSpeedFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2973448188214550, this, [value]); }
   /**
    * var exposureAdaptationDarkeningSpeedFactor: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get exposureAdaptationDarkeningSpeedFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 525865537016199, this, []); }
-  set exposureAdaptationDarkeningSpeedFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4111320736822464, this, [value]); }
+  get exposureAdaptationDarkeningSpeedFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 525865537016199, this, []); }
+  set exposureAdaptationDarkeningSpeedFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4111320736822464, this, [value]); }
   /**
    * var exposureOffset: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get exposureOffset(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2583265761105740, this, []); }
-  set exposureOffset(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 140274507669803, this, [value]); }
+  get exposureOffset(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2583265761105740, this, []); }
+  set exposureOffset(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 140274507669803, this, [value]); }
   /**
    * var fStop: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get fStop(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 337124078803544, this, []); }
-  set fStop(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1265742708658171, this, [value]); }
+  get fStop(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 337124078803544, this, []); }
+  set fStop(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1265742708658171, this, [value]); }
   /**
    * var fieldOfView: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get fieldOfView(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3157972019685233, this, []); }
-  set fieldOfView(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3532417887057298, this, [value]); }
+  get fieldOfView(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3157972019685233, this, []); }
+  set fieldOfView(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3532417887057298, this, [value]); }
   /**
    * var focalBlurRadius: CGFloat { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get focalBlurRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3269151047496366, this, []); }
-  set focalBlurRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 775031326372947, this, [value]); }
+  get focalBlurRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3269151047496366, this, []); }
+  set focalBlurRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 775031326372947, this, [value]); }
   /**
    * var focalBlurSampleCount: Int { get set }
    * @availability iOS 11.0+
    */
-  get focalBlurSampleCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1029445554889342, this, []); }
-  set focalBlurSampleCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 887487864766285, this, [value]); }
+  get focalBlurSampleCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1029445554889342, this, []); }
+  set focalBlurSampleCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 887487864766285, this, [value]); }
   /**
    * var focalDistance: CGFloat { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get focalDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 526919371756537, this, []); }
-  set focalDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 780048439384912, this, [value]); }
+  get focalDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 526919371756537, this, []); }
+  set focalDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 780048439384912, this, [value]); }
   /**
    * var focalLength: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get focalLength(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1374305954751820, this, []); }
-  set focalLength(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1916337359916875, this, [value]); }
+  get focalLength(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1374305954751820, this, []); }
+  set focalLength(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1916337359916875, this, [value]); }
   /**
    * var focalSize: CGFloat { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get focalSize(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 551922388939422, this, []); }
-  set focalSize(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4017325477803622, this, [value]); }
+  get focalSize(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 551922388939422, this, []); }
+  set focalSize(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4017325477803622, this, [value]); }
   /**
    * var focusDistance: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get focusDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 7195999746990, this, []); }
-  set focusDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2093790023954331, this, [value]); }
+  get focusDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 7195999746990, this, []); }
+  set focusDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2093790023954331, this, [value]); }
   /**
    * var grainIntensity: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get grainIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3107691449503585, this, []); }
-  set grainIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3749700377686734, this, [value]); }
+  get grainIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3107691449503585, this, []); }
+  set grainIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3749700377686734, this, [value]); }
   /**
    * var grainIsColored: Bool { get set }
    * @availability iOS 13.0+
    */
-  get grainIsColored(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 667196226542867, this, []); }
-  set grainIsColored(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2161426485806454, this, [value]); }
+  get grainIsColored(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 667196226542867, this, []); }
+  set grainIsColored(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2161426485806454, this, [value]); }
   /**
    * var grainScale: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get grainScale(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 433579408896814, this, []); }
-  set grainScale(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1872326153936295, this, [value]); }
+  get grainScale(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 433579408896814, this, []); }
+  set grainScale(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1872326153936295, this, [value]); }
   /**
    * var maximumExposure: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get maximumExposure(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3377823565692487, this, []); }
-  set maximumExposure(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4270010560992633, this, [value]); }
+  get maximumExposure(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3377823565692487, this, []); }
+  set maximumExposure(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4270010560992633, this, [value]); }
   /**
    * var minimumExposure: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get minimumExposure(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2125301380145996, this, []); }
-  set minimumExposure(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2643158147154700, this, [value]); }
+  get minimumExposure(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2125301380145996, this, []); }
+  set minimumExposure(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2643158147154700, this, [value]); }
   /**
    * var motionBlurIntensity: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get motionBlurIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3618419884920786, this, []); }
-  set motionBlurIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 844377757474218, this, [value]); }
+  get motionBlurIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3618419884920786, this, []); }
+  set motionBlurIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 844377757474218, this, [value]); }
   /** var name: String? { get set } */
-  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 3926408101709390, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2574595632955247, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 3926408101709390, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2574595632955247, this, [value]); }
   /** var orthographicScale: Double { get set } */
-  get orthographicScale(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1971248539539245, this, []); }
-  set orthographicScale(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3452594480911901, this, [value]); }
+  get orthographicScale(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1971248539539245, this, []); }
+  set orthographicScale(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3452594480911901, this, [value]); }
   /**
    * var projectionDirection: SCNCameraProjectionDirection { get set }
    * @availability iOS 11.0+
    */
-  get projectionDirection(): SCNCameraProjectionDirection { return callSDK<SCNCameraProjectionDirection>("SceneKit_0e503aef608672fa", 4108784169393311, this, []); }
-  set projectionDirection(value: SCNCameraProjectionDirection) { callSDK<void>("SceneKit_0e503aef608672fa", 2094408355075518, this, [value]); }
+  get projectionDirection(): SCNCameraProjectionDirection { return callSDK<SCNCameraProjectionDirection>("SceneKit_212edf3d13b127f5", 4108784169393311, this, []); }
+  set projectionDirection(value: SCNCameraProjectionDirection) { callSDK<void>("SceneKit_212edf3d13b127f5", 2094408355075518, this, [value]); }
   /** var projectionTransform: SCNMatrix4 { get set } */
-  get projectionTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 625343048076125, this, []); }
-  set projectionTransform(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 693518622652016, this, [value]); }
+  get projectionTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 625343048076125, this, []); }
+  set projectionTransform(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 693518622652016, this, [value]); }
   /**
    * var saturation: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get saturation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4009574602587423, this, []); }
-  set saturation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2441865117455654, this, [value]); }
+  get saturation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4009574602587423, this, []); }
+  set saturation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2441865117455654, this, [value]); }
   /**
    * var screenSpaceAmbientOcclusionBias: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get screenSpaceAmbientOcclusionBias(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 778972977735144, this, []); }
-  set screenSpaceAmbientOcclusionBias(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1129480048207054, this, [value]); }
+  get screenSpaceAmbientOcclusionBias(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 778972977735144, this, []); }
+  set screenSpaceAmbientOcclusionBias(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1129480048207054, this, [value]); }
   /**
    * var screenSpaceAmbientOcclusionDepthThreshold: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get screenSpaceAmbientOcclusionDepthThreshold(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 795204120968942, this, []); }
-  set screenSpaceAmbientOcclusionDepthThreshold(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4070505375079354, this, [value]); }
+  get screenSpaceAmbientOcclusionDepthThreshold(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 795204120968942, this, []); }
+  set screenSpaceAmbientOcclusionDepthThreshold(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4070505375079354, this, [value]); }
   /**
    * var screenSpaceAmbientOcclusionIntensity: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get screenSpaceAmbientOcclusionIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1966692976804908, this, []); }
-  set screenSpaceAmbientOcclusionIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3513413801039257, this, [value]); }
+  get screenSpaceAmbientOcclusionIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1966692976804908, this, []); }
+  set screenSpaceAmbientOcclusionIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3513413801039257, this, [value]); }
   /**
    * var screenSpaceAmbientOcclusionNormalThreshold: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get screenSpaceAmbientOcclusionNormalThreshold(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3178933901905669, this, []); }
-  set screenSpaceAmbientOcclusionNormalThreshold(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 485322672894514, this, [value]); }
+  get screenSpaceAmbientOcclusionNormalThreshold(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3178933901905669, this, []); }
+  set screenSpaceAmbientOcclusionNormalThreshold(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 485322672894514, this, [value]); }
   /**
    * var screenSpaceAmbientOcclusionRadius: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get screenSpaceAmbientOcclusionRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3836943190617159, this, []); }
-  set screenSpaceAmbientOcclusionRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 424985972870089, this, [value]); }
+  get screenSpaceAmbientOcclusionRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3836943190617159, this, []); }
+  set screenSpaceAmbientOcclusionRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 424985972870089, this, [value]); }
   /**
    * var sensorHeight: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get sensorHeight(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 74086749264014, this, []); }
-  set sensorHeight(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1475286808512667, this, [value]); }
+  get sensorHeight(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 74086749264014, this, []); }
+  set sensorHeight(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1475286808512667, this, [value]); }
   /** var usesOrthographicProjection: Bool { get set } */
-  get usesOrthographicProjection(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3736352998551878, this, []); }
-  set usesOrthographicProjection(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3635587345619917, this, [value]); }
+  get usesOrthographicProjection(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3736352998551878, this, []); }
+  set usesOrthographicProjection(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3635587345619917, this, [value]); }
   /**
    * var vignettingIntensity: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get vignettingIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3542676314949092, this, []); }
-  set vignettingIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4198526897157506, this, [value]); }
+  get vignettingIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3542676314949092, this, []); }
+  set vignettingIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4198526897157506, this, [value]); }
   /**
    * var vignettingPower: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get vignettingPower(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3504984447590979, this, []); }
-  set vignettingPower(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3946422728128472, this, [value]); }
+  get vignettingPower(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3504984447590979, this, []); }
+  set vignettingPower(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3946422728128472, this, [value]); }
   /**
    * var wantsDepthOfField: Bool { get set }
    * @availability iOS 11.0+
    */
-  get wantsDepthOfField(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1088415259755226, this, []); }
-  set wantsDepthOfField(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4467857686693986, this, [value]); }
+  get wantsDepthOfField(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1088415259755226, this, []); }
+  set wantsDepthOfField(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4467857686693986, this, [value]); }
   /**
    * var wantsExposureAdaptation: Bool { get set }
    * @availability iOS 10.0+
    */
-  get wantsExposureAdaptation(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1059681726401458, this, []); }
-  set wantsExposureAdaptation(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1647219820446441, this, [value]); }
+  get wantsExposureAdaptation(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1059681726401458, this, []); }
+  set wantsExposureAdaptation(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1647219820446441, this, [value]); }
   /**
    * var wantsHDR: Bool { get set }
    * @availability iOS 10.0+
    */
-  get wantsHDR(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3363754318522322, this, []); }
-  set wantsHDR(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3850236384977471, this, [value]); }
+  get wantsHDR(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3363754318522322, this, []); }
+  set wantsHDR(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3850236384977471, this, [value]); }
   /**
    * var whiteBalanceTemperature: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get whiteBalanceTemperature(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3139546872336837, this, []); }
-  set whiteBalanceTemperature(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2514881718107023, this, [value]); }
+  get whiteBalanceTemperature(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3139546872336837, this, []); }
+  set whiteBalanceTemperature(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2514881718107023, this, [value]); }
   /**
    * var whiteBalanceTint: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get whiteBalanceTint(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2693041629522717, this, []); }
-  set whiteBalanceTint(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2877516909257332, this, [value]); }
+  get whiteBalanceTint(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2693041629522717, this, []); }
+  set whiteBalanceTint(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2877516909257332, this, [value]); }
   /**
    * var whitePoint: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get whitePoint(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1429461993752984, this, []); }
-  set whitePoint(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3681359306818973, this, [value]); }
+  get whitePoint(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1429461993752984, this, []); }
+  set whitePoint(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3681359306818973, this, [value]); }
   /**
    * var xFov: Double { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get xFov(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1299191200400615, this, []); }
-  set xFov(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 39121403277832, this, [value]); }
+  get xFov(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1299191200400615, this, []); }
+  set xFov(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 39121403277832, this, [value]); }
   /**
    * var yFov: Double { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get yFov(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4210025470293647, this, []); }
-  set yFov(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4259297771742321, this, [value]); }
+  get yFov(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4210025470293647, this, []); }
+  set yFov(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4259297771742321, this, [value]); }
   /** var zFar: Double { get set } */
-  get zFar(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1016922036302172, this, []); }
-  set zFar(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4215245946339705, this, [value]); }
+  get zFar(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1016922036302172, this, []); }
+  set zFar(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4215245946339705, this, [value]); }
   /** var zNear: Double { get set } */
-  get zNear(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2021525716464953, this, []); }
-  set zNear(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1853636640923314, this, [value]); }
+  get zNear(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2021525716464953, this, []); }
+  set zNear(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1853636640923314, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNCamera": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aperture": true; "apertureBladeCount": true; "automaticallyAdjustsZRange": true; "averageGray": true; "bloomBlurRadius": true; "bloomIntensity": true; "bloomIterationCount": true; "bloomIterationSpread": true; "bloomThreshold": true; "categoryBitMask": true; "colorFringeIntensity": true; "colorFringeStrength": true; "colorGrading": true; "contrast": true; "exposureAdaptationBrighteningSpeedFactor": true; "exposureAdaptationDarkeningSpeedFactor": true; "exposureOffset": true; "fStop": true; "fieldOfView": true; "focalBlurRadius": true; "focalBlurSampleCount": true; "focalDistance": true; "focalLength": true; "focalSize": true; "focusDistance": true; "grainIntensity": true; "grainIsColored": true; "grainScale": true; "maximumExposure": true; "minimumExposure": true; "motionBlurIntensity": true; "name": true; "orthographicScale": true; "projectionDirection": true; "projectionTransform": true; "saturation": true; "screenSpaceAmbientOcclusionBias": true; "screenSpaceAmbientOcclusionDepthThreshold": true; "screenSpaceAmbientOcclusionIntensity": true; "screenSpaceAmbientOcclusionNormalThreshold": true; "screenSpaceAmbientOcclusionRadius": true; "sensorHeight": true; "usesOrthographicProjection": true; "vignettingIntensity": true; "vignettingPower": true; "wantsDepthOfField": true; "wantsExposureAdaptation": true; "wantsHDR": true; "whiteBalanceTemperature": true; "whiteBalanceTint": true; "whitePoint": true; "xFov": true; "yFov": true; "zFar": true; "zNear": true };
 }
@@ -1239,141 +1239,141 @@ export class SCNCameraController extends SDKHandle {
    * func beginInteraction(_ location: CGPoint, withViewport viewport: CGSize)
    * @availability iOS 11.0+
    */
-  beginInteraction(location: $SDK29, viewport: $SDK28): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3858343210431033, this, [location, viewport]); }
+  beginInteraction(location: $SDK29, viewport: $SDK28): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3858343210431033, this, [location, viewport]); }
   /**
    * func clearRoll()
    * @availability iOS 11.0+
    */
-  clearRoll(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3504644497309096, this, []); }
+  clearRoll(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3504644497309096, this, []); }
   /**
    * func continueInteraction(_ location: CGPoint, withViewport viewport: CGSize, sensitivity: CGFloat)
    * @availability iOS 11.0+
    */
-  continueInteraction(location: $SDK29, viewport: $SDK28, sensitivity: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1348157145035412, this, [location, viewport, sensitivity]); }
+  continueInteraction(location: $SDK29, viewport: $SDK28, sensitivity: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1348157145035412, this, [location, viewport, sensitivity]); }
   /**
    * func dolly(by delta: Float, onScreenPoint point: CGPoint, viewport: CGSize)
    * @availability iOS 11.0+
    */
-  dollyByOnScreenPointViewport(delta: number, point: $SDK29, viewport: $SDK28): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1384696721405367, this, [delta, point, viewport]); }
+  dollyByOnScreenPointViewport(delta: number, point: $SDK29, viewport: $SDK28): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1384696721405367, this, [delta, point, viewport]); }
   /**
    * func dolly(toTarget delta: Float)
    * @availability iOS 11.0+
    */
-  dollyToTarget(delta: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 301201448135955, this, [delta]); }
+  dollyToTarget(delta: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 301201448135955, this, [delta]); }
   /**
    * func endInteraction(_ location: CGPoint, withViewport viewport: CGSize, velocity: CGPoint)
    * @availability iOS 11.0+
    */
-  endInteraction(location: $SDK29, viewport: $SDK28, velocity: $SDK29): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2626773982095164, this, [location, viewport, velocity]); }
+  endInteraction(location: $SDK29, viewport: $SDK28, velocity: $SDK29): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2626773982095164, this, [location, viewport, velocity]); }
   /**
    * func frameNodes(_ nodes: [SCNNode])
    * @availability iOS 11.0+
    */
-  frameNodes(nodes: Array<SCNNode>): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2770162954973468, this, [nodes]); }
+  frameNodes(nodes: Array<SCNNode>): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2770162954973468, this, [nodes]); }
   /** init() */
-  static init(): SCNCameraController { return callSDK<SCNCameraController>("SceneKit_0e503aef608672fa", 3847557709727262, undefined, []); }
+  static init(): SCNCameraController { return callSDK<SCNCameraController>("SceneKit_212edf3d13b127f5", 3847557709727262, undefined, []); }
   /**
    * func rollAroundTarget(_ delta: Float)
    * @availability iOS 11.0+
    */
-  rollAroundTarget(delta: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4310762997630656, this, [delta]); }
+  rollAroundTarget(delta: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4310762997630656, this, [delta]); }
   /**
    * func roll(by delta: Float, aroundScreenPoint point: CGPoint, viewport: CGSize)
    * @availability iOS 11.0+
    */
-  roll(delta: number, point: $SDK29, viewport: $SDK28): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2512885433060849, this, [delta, point, viewport]); }
+  roll(delta: number, point: $SDK29, viewport: $SDK28): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2512885433060849, this, [delta, point, viewport]); }
   /**
    * func rotateBy(x deltaX: Float, y deltaY: Float)
    * @availability iOS 11.0+
    */
-  rotateBy(deltaX: number, deltaY: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4110874313458576, this, [deltaX, deltaY]); }
+  rotateBy(deltaX: number, deltaY: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4110874313458576, this, [deltaX, deltaY]); }
   /**
    * func stopInertia()
    * @availability iOS 11.0+
    */
-  stopInertia(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3945326827166696, this, []); }
+  stopInertia(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3945326827166696, this, []); }
   /**
    * func translateInCameraSpaceBy(x deltaX: Float, y deltaY: Float, z deltaZ: Float)
    * @availability iOS 11.0+
    */
-  translateInCameraSpaceBy(deltaX: number, deltaY: number, deltaZ: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2722307851381610, this, [deltaX, deltaY, deltaZ]); }
+  translateInCameraSpaceBy(deltaX: number, deltaY: number, deltaZ: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2722307851381610, this, [deltaX, deltaY, deltaZ]); }
   /**
    * var automaticTarget: Bool { get set }
    * @availability iOS 11.0+
    */
-  get automaticTarget(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 605552024625522, this, []); }
-  set automaticTarget(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4151394253224209, this, [value]); }
+  get automaticTarget(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 605552024625522, this, []); }
+  set automaticTarget(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4151394253224209, this, [value]); }
   /**
    * unowned(unsafe) var delegate: (any SCNCameraControllerDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_0e503aef608672fa", 2940604040976961, this, []); }
-  set delegate(value: (Implements<SCNCameraControllerDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1521813894123616, this, [value], [{"protocol":"c:objc(pl)SCNCameraControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_212edf3d13b127f5", 2940604040976961, this, []); }
+  set delegate(value: (Implements<SCNCameraControllerDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1521813894123616, this, [value], [{"protocol":"c:objc(pl)SCNCameraControllerDelegate"}]); }
   /**
    * var inertiaEnabled: Bool { get set }
    * @availability iOS 11.0+
    */
-  get inertiaEnabled(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 4031350805768629, this, []); }
-  set inertiaEnabled(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1435582780245431, this, [value]); }
+  get inertiaEnabled(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 4031350805768629, this, []); }
+  set inertiaEnabled(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1435582780245431, this, [value]); }
   /**
    * var inertiaFriction: Float { get set }
    * @availability iOS 11.0+
    */
-  get inertiaFriction(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3388780923918440, this, []); }
-  set inertiaFriction(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2093794620172903, this, [value]); }
+  get inertiaFriction(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3388780923918440, this, []); }
+  set inertiaFriction(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2093794620172903, this, [value]); }
   /**
    * var isInertiaRunning: Bool { get }
    * @availability iOS 11.0+
    */
-  get isInertiaRunning(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2696792208645492, this, []); }
+  get isInertiaRunning(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2696792208645492, this, []); }
   /**
    * var interactionMode: SCNInteractionMode { get set }
    * @availability iOS 11.0+
    */
-  get interactionMode(): SCNInteractionMode { return callSDK<SCNInteractionMode>("SceneKit_0e503aef608672fa", 679931560381780, this, []); }
-  set interactionMode(value: SCNInteractionMode) { callSDK<void>("SceneKit_0e503aef608672fa", 3519105452050756, this, [value]); }
+  get interactionMode(): SCNInteractionMode { return callSDK<SCNInteractionMode>("SceneKit_212edf3d13b127f5", 679931560381780, this, []); }
+  set interactionMode(value: SCNInteractionMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 3519105452050756, this, [value]); }
   /**
    * var maximumHorizontalAngle: Float { get set }
    * @availability iOS 11.0+
    */
-  get maximumHorizontalAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1896393890675544, this, []); }
-  set maximumHorizontalAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3222068753854700, this, [value]); }
+  get maximumHorizontalAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1896393890675544, this, []); }
+  set maximumHorizontalAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3222068753854700, this, [value]); }
   /**
    * var maximumVerticalAngle: Float { get set }
    * @availability iOS 11.0+
    */
-  get maximumVerticalAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1198698394096798, this, []); }
-  set maximumVerticalAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3643488472619223, this, [value]); }
+  get maximumVerticalAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1198698394096798, this, []); }
+  set maximumVerticalAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3643488472619223, this, [value]); }
   /**
    * var minimumHorizontalAngle: Float { get set }
    * @availability iOS 11.0+
    */
-  get minimumHorizontalAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1189282084978057, this, []); }
-  set minimumHorizontalAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 448153092187098, this, [value]); }
+  get minimumHorizontalAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1189282084978057, this, []); }
+  set minimumHorizontalAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 448153092187098, this, [value]); }
   /**
    * var minimumVerticalAngle: Float { get set }
    * @availability iOS 11.0+
    */
-  get minimumVerticalAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2122492628638263, this, []); }
-  set minimumVerticalAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3237024165058084, this, [value]); }
+  get minimumVerticalAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2122492628638263, this, []); }
+  set minimumVerticalAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3237024165058084, this, [value]); }
   /**
    * var pointOfView: SCNNode? { get set }
    * @availability iOS 11.0+
    */
-  get pointOfView(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 1049139328773483, this, []); }
-  set pointOfView(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2082654520254113, this, [value]); }
+  get pointOfView(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 1049139328773483, this, []); }
+  set pointOfView(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2082654520254113, this, [value]); }
   /**
    * var target: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get target(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4293220517944904, this, []); }
-  set target(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1728853952891356, this, [value]); }
+  get target(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4293220517944904, this, []); }
+  set target(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1728853952891356, this, [value]); }
   /**
    * var worldUp: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get worldUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1758974577228967, this, []); }
-  set worldUp(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1786856014905407, this, [value]); }
+  get worldUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1758974577228967, this, []); }
+  set worldUp(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1786856014905407, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNCameraController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticTarget": true; "delegate": true; "inertiaEnabled": true; "inertiaFriction": true; "isInertiaRunning": true; "interactionMode": true; "maximumHorizontalAngle": true; "maximumVerticalAngle": true; "minimumHorizontalAngle": true; "minimumVerticalAngle": true; "pointOfView": true; "target": true; "worldUp": true };
 }
@@ -1406,28 +1406,28 @@ export const SCNCameraProjectionDirection = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SCNCameraProjectionDirection) | null { return callSDK<(SCNCameraProjectionDirection) | null>("SceneKit_0e503aef608672fa", 2098128448019048, undefined, [rawValue]); }
+  init(rawValue: number): (SCNCameraProjectionDirection) | null { return callSDK<(SCNCameraProjectionDirection) | null>("SceneKit_212edf3d13b127f5", 2098128448019048, undefined, [rawValue]); }
 };
 
 /** class SCNCapsule */
 export class SCNCapsule extends SCNGeometry {
   /** convenience init(capRadius: CGFloat, height: CGFloat) */
-  static init(capRadius: number, height: number): SCNCapsule { return callSDK<SCNCapsule>("SceneKit_0e503aef608672fa", 3727413510330690, undefined, [capRadius, height]); }
+  static init(capRadius: number, height: number): SCNCapsule { return callSDK<SCNCapsule>("SceneKit_212edf3d13b127f5", 3727413510330690, undefined, [capRadius, height]); }
   /** var capRadius: CGFloat { get set } */
-  get capRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1771557521648529, this, []); }
-  set capRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1695402730379360, this, [value]); }
+  get capRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1771557521648529, this, []); }
+  set capRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1695402730379360, this, [value]); }
   /** var capSegmentCount: Int { get set } */
-  get capSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3136500168579221, this, []); }
-  set capSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3949534246602652, this, [value]); }
+  get capSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3136500168579221, this, []); }
+  set capSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3949534246602652, this, [value]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 500842667357575, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 584275292830986, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 500842667357575, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 584275292830986, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4403452686224284, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3804073901132903, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4403452686224284, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3804073901132903, this, [value]); }
   /** var radialSegmentCount: Int { get set } */
-  get radialSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1076477715889302, this, []); }
-  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3798221771739678, this, [value]); }
+  get radialSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1076477715889302, this, []); }
+  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3798221771739678, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNCapsule": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "capRadius": true; "capSegmentCount": true; "height": true; "heightSegmentCount": true; "radialSegmentCount": true };
 }
@@ -1437,7 +1437,7 @@ export type SCNChamferMode = "both" | "front" | "back";
 
 export const SCNChamferMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNChamferMode) | null { return callSDK<(SCNChamferMode) | null>("SceneKit_0e503aef608672fa", 623310317481579, undefined, [rawValue]); }
+  init(rawValue: number): (SCNChamferMode) | null { return callSDK<(SCNChamferMode) | null>("SceneKit_212edf3d13b127f5", 623310317481579, undefined, [rawValue]); }
 };
 
 /**
@@ -1451,53 +1451,53 @@ export const SCNColorMask = {
    * static var all: SCNColorMask { get }
    * @availability iOS 11.0+
    */
-  get all(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 734312348721926, undefined, []); },
+  get all(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 734312348721926, undefined, []); },
   /**
    * static var alpha: SCNColorMask { get }
    * @availability iOS 11.0+
    */
-  get alpha(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 4231176452344292, undefined, []); },
+  get alpha(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 4231176452344292, undefined, []); },
   /**
    * static var blue: SCNColorMask { get }
    * @availability iOS 11.0+
    */
-  get blue(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 3481200302847692, undefined, []); },
+  get blue(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 3481200302847692, undefined, []); },
   /**
    * static var green: SCNColorMask { get }
    * @availability iOS 11.0+
    */
-  get green(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 1026180761173830, undefined, []); },
+  get green(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 1026180761173830, undefined, []); },
   /**
    * static var red: SCNColorMask { get }
    * @availability iOS 11.0+
    */
-  get red(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 2167499273704876, undefined, []); },
+  get red(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 2167499273704876, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 3197509458895290, undefined, [rawValue]); }
+  init(rawValue: number): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 3197509458895290, undefined, [rawValue]); }
 };
 
 /** class SCNCone */
 export class SCNCone extends SCNGeometry {
   /** convenience init(topRadius: CGFloat, bottomRadius: CGFloat, height: CGFloat) */
-  static init(topRadius: number, bottomRadius: number, height: number): SCNCone { return callSDK<SCNCone>("SceneKit_0e503aef608672fa", 2992849524565757, undefined, [topRadius, bottomRadius, height]); }
+  static init(topRadius: number, bottomRadius: number, height: number): SCNCone { return callSDK<SCNCone>("SceneKit_212edf3d13b127f5", 2992849524565757, undefined, [topRadius, bottomRadius, height]); }
   /** var bottomRadius: CGFloat { get set } */
-  get bottomRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 913864094803085, this, []); }
-  set bottomRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1859144958554025, this, [value]); }
+  get bottomRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 913864094803085, this, []); }
+  set bottomRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1859144958554025, this, [value]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3571561912605886, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3256741345924474, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3571561912605886, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3256741345924474, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3872742534241184, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2268353696547863, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3872742534241184, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2268353696547863, this, [value]); }
   /** var radialSegmentCount: Int { get set } */
-  get radialSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3439925026930100, this, []); }
-  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4462502016078569, this, [value]); }
+  get radialSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3439925026930100, this, []); }
+  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4462502016078569, this, [value]); }
   /** var topRadius: CGFloat { get set } */
-  get topRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2246022849295954, this, []); }
-  set topRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 45083860250936, this, [value]); }
+  get topRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2246022849295954, this, []); }
+  set topRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 45083860250936, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNCone": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "bottomRadius": true; "height": true; "heightSegmentCount": true; "radialSegmentCount": true; "topRadius": true };
 }
@@ -1507,25 +1507,25 @@ export type SCNCullMode = "back" | "front";
 
 export const SCNCullMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNCullMode) | null { return callSDK<(SCNCullMode) | null>("SceneKit_0e503aef608672fa", 449808869442001, undefined, [rawValue]); }
+  init(rawValue: number): (SCNCullMode) | null { return callSDK<(SCNCullMode) | null>("SceneKit_212edf3d13b127f5", 449808869442001, undefined, [rawValue]); }
 };
 
 /** class SCNCylinder */
 export class SCNCylinder extends SCNGeometry {
   /** convenience init(radius: CGFloat, height: CGFloat) */
-  static init(radius: number, height: number): SCNCylinder { return callSDK<SCNCylinder>("SceneKit_0e503aef608672fa", 3466372153487747, undefined, [radius, height]); }
+  static init(radius: number, height: number): SCNCylinder { return callSDK<SCNCylinder>("SceneKit_212edf3d13b127f5", 3466372153487747, undefined, [radius, height]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1045641238355059, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2119674236844901, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1045641238355059, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2119674236844901, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2350731022632253, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1197069749342742, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2350731022632253, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1197069749342742, this, [value]); }
   /** var radialSegmentCount: Int { get set } */
-  get radialSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3849383629081636, this, []); }
-  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4061679852254470, this, [value]); }
+  get radialSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3849383629081636, this, []); }
+  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4061679852254470, this, [value]); }
   /** var radius: CGFloat { get set } */
-  get radius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1140048005122384, this, []); }
-  set radius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 355783657113437, this, [value]); }
+  get radius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1140048005122384, this, []); }
+  set radius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 355783657113437, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNCylinder": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "height": true; "heightSegmentCount": true; "radialSegmentCount": true; "radius": true };
 }
@@ -1541,62 +1541,62 @@ export const SCNDebugOptions = {
    * static var renderAsWireframe: SCNDebugOptions { get }
    * @availability iOS 11.0+
    */
-  get renderAsWireframe(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 2609230497388582, undefined, []); },
+  get renderAsWireframe(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 2609230497388582, undefined, []); },
   /**
    * static var showBoundingBoxes: SCNDebugOptions { get }
    * @availability iOS 9.0+
    */
-  get showBoundingBoxes(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 2236460128415862, undefined, []); },
+  get showBoundingBoxes(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 2236460128415862, undefined, []); },
   /**
    * static var showCameras: SCNDebugOptions { get }
    * @availability iOS 11.0+
    */
-  get showCameras(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 2015027805320497, undefined, []); },
+  get showCameras(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 2015027805320497, undefined, []); },
   /**
    * static var showConstraints: SCNDebugOptions { get }
    * @availability iOS 11.0+
    */
-  get showConstraints(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 4353097887503286, undefined, []); },
+  get showConstraints(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 4353097887503286, undefined, []); },
   /**
    * static var showCreases: SCNDebugOptions { get }
    * @availability iOS 11.0+
    */
-  get showCreases(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 68271643148779, undefined, []); },
+  get showCreases(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 68271643148779, undefined, []); },
   /**
    * static var showLightExtents: SCNDebugOptions { get }
    * @availability iOS 9.0+
    */
-  get showLightExtents(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 4324289029270951, undefined, []); },
+  get showLightExtents(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 4324289029270951, undefined, []); },
   /**
    * static var showLightInfluences: SCNDebugOptions { get }
    * @availability iOS 9.0+
    */
-  get showLightInfluences(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 3525930950716795, undefined, []); },
+  get showLightInfluences(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 3525930950716795, undefined, []); },
   /**
    * static var showPhysicsFields: SCNDebugOptions { get }
    * @availability iOS 9.0+
    */
-  get showPhysicsFields(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 153985263272102, undefined, []); },
+  get showPhysicsFields(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 153985263272102, undefined, []); },
   /**
    * static var showPhysicsShapes: SCNDebugOptions { get }
    * @availability iOS 9.0+
    */
-  get showPhysicsShapes(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 2539718167972212, undefined, []); },
+  get showPhysicsShapes(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 2539718167972212, undefined, []); },
   /**
    * static var showSkeletons: SCNDebugOptions { get }
    * @availability iOS 11.0+
    */
-  get showSkeletons(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 59921591230034, undefined, []); },
+  get showSkeletons(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 59921591230034, undefined, []); },
   /**
    * static var showWireframe: SCNDebugOptions { get }
    * @availability iOS 9.0+
    */
-  get showWireframe(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 3330082474075739, undefined, []); },
+  get showWireframe(): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 3330082474075739, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_0e503aef608672fa", 244754756115230, undefined, [rawValue]); }
+  init(rawValue: number): SCNDebugOptions { return callSDK<SCNDebugOptions>("SceneKit_212edf3d13b127f5", 244754756115230, undefined, [rawValue]); }
 };
 
 /**
@@ -1608,25 +1608,25 @@ export class SCNDistanceConstraint extends (SCNConstraint as unknown as Omit<typ
    * convenience init(target: SCNNode?)
    * @availability iOS 11.0+
    */
-  static init(target?: (SCNNode) | null): SCNDistanceConstraint { return callSDK<SCNDistanceConstraint>("SceneKit_0e503aef608672fa", 1998572076013007, undefined, [target]); }
+  static init(target?: (SCNNode) | null): SCNDistanceConstraint { return callSDK<SCNDistanceConstraint>("SceneKit_212edf3d13b127f5", 1998572076013007, undefined, [target]); }
   /**
    * var maximumDistance: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2138989441652636, this, []); }
-  set maximumDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3483460706549467, this, [value]); }
+  get maximumDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2138989441652636, this, []); }
+  set maximumDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3483460706549467, this, [value]); }
   /**
    * var minimumDistance: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get minimumDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3479118421739628, this, []); }
-  set minimumDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1804244300282846, this, [value]); }
+  get minimumDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3479118421739628, this, []); }
+  set minimumDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1804244300282846, this, [value]); }
   /**
    * var target: SCNNode? { get set }
    * @availability iOS 11.0+
    */
-  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 512431156561723, this, []); }
-  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2356473426247028, this, [value]); }
+  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 512431156561723, this, []); }
+  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2356473426247028, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNDistanceConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "maximumDistance": true; "minimumDistance": true; "target": true };
 }
@@ -1645,7 +1645,7 @@ export const SCNFillMode = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SCNFillMode) | null { return callSDK<(SCNFillMode) | null>("SceneKit_0e503aef608672fa", 3006676906390082, undefined, [rawValue]); }
+  init(rawValue: number): (SCNFillMode) | null { return callSDK<(SCNFillMode) | null>("SceneKit_212edf3d13b127f5", 3006676906390082, undefined, [rawValue]); }
 };
 
 /** enum SCNFilterMode */
@@ -1653,7 +1653,7 @@ export type SCNFilterMode = "none" | "nearest" | "linear";
 
 export const SCNFilterMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNFilterMode) | null { return callSDK<(SCNFilterMode) | null>("SceneKit_0e503aef608672fa", 914624782994432, undefined, [rawValue]); }
+  init(rawValue: number): (SCNFilterMode) | null { return callSDK<(SCNFilterMode) | null>("SceneKit_212edf3d13b127f5", 914624782994432, undefined, [rawValue]); }
 };
 
 /** typealias SCNFloat = Float */
@@ -1662,37 +1662,37 @@ export type SCNFloat = number;
 /** class SCNFloor */
 export class SCNFloor extends SCNGeometry {
   /** init() */
-  static init(): SCNFloor { return callSDK<SCNFloor>("SceneKit_0e503aef608672fa", 433098052973240, undefined, []); }
+  static init(): SCNFloor { return callSDK<SCNFloor>("SceneKit_212edf3d13b127f5", 433098052973240, undefined, []); }
   /**
    * var length: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get length(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1854662075806311, this, []); }
-  set length(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2012690604031781, this, [value]); }
+  get length(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1854662075806311, this, []); }
+  set length(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2012690604031781, this, [value]); }
   /**
    * var reflectionCategoryBitMask: Int { get set }
    * @availability iOS 10.0+
    */
-  get reflectionCategoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1532054883661352, this, []); }
-  set reflectionCategoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1223152965852691, this, [value]); }
+  get reflectionCategoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1532054883661352, this, []); }
+  set reflectionCategoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1223152965852691, this, [value]); }
   /** var reflectionFalloffEnd: CGFloat { get set } */
-  get reflectionFalloffEnd(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4204682553426517, this, []); }
-  set reflectionFalloffEnd(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2368930425018894, this, [value]); }
+  get reflectionFalloffEnd(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4204682553426517, this, []); }
+  set reflectionFalloffEnd(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2368930425018894, this, [value]); }
   /** var reflectionFalloffStart: CGFloat { get set } */
-  get reflectionFalloffStart(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4202846536683539, this, []); }
-  set reflectionFalloffStart(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4007956632638001, this, [value]); }
+  get reflectionFalloffStart(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4202846536683539, this, []); }
+  set reflectionFalloffStart(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4007956632638001, this, [value]); }
   /** var reflectionResolutionScaleFactor: CGFloat { get set } */
-  get reflectionResolutionScaleFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4300043155774793, this, []); }
-  set reflectionResolutionScaleFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3735567864264435, this, [value]); }
+  get reflectionResolutionScaleFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4300043155774793, this, []); }
+  set reflectionResolutionScaleFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3735567864264435, this, [value]); }
   /** var reflectivity: CGFloat { get set } */
-  get reflectivity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3883316561576066, this, []); }
-  set reflectivity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2117120820946430, this, [value]); }
+  get reflectivity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3883316561576066, this, []); }
+  set reflectivity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2117120820946430, this, [value]); }
   /**
    * var width: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get width(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1263162567317767, this, []); }
-  set width(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1986588338307858, this, [value]); }
+  get width(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1263162567317767, this, []); }
+  set width(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1986588338307858, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNFloor": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "length": true; "reflectionCategoryBitMask": true; "reflectionFalloffEnd": true; "reflectionFalloffStart": true; "reflectionResolutionScaleFactor": true; "reflectivity": true; "width": true };
 }
@@ -1703,66 +1703,66 @@ export class SCNGeometryElement extends SDKHandle {
    * convenience init(buffer: any MTLBuffer, primitiveType: SCNGeometryPrimitiveType, primitiveCount: Int, bytesPerIndex: Int)
    * @availability iOS 14.0+
    */
-  static initBufferPrimitiveTypePrimitiveCountBytesPerIndex(buffer: SDKHandle, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_0e503aef608672fa", 4403901668247180, undefined, [buffer, primitiveType, primitiveCount, bytesPerIndex]); }
+  static initBufferPrimitiveTypePrimitiveCountBytesPerIndex(buffer: SDKHandle, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_212edf3d13b127f5", 4403901668247180, undefined, [buffer, primitiveType, primitiveCount, bytesPerIndex]); }
   /**
    * convenience init(buffer: any MTLBuffer, primitiveType: SCNGeometryPrimitiveType, primitiveCount: Int, indicesChannelCount: Int, interleavedIndicesChannels: Bool, bytesPerIndex: Int)
    * @availability iOS 16.0+
    */
-  static initBufferPrimitiveTypePrimitiveCountIndicesChannelCountInterleavedIndicesChannelsBytesPerIndex(buffer: SDKHandle, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, indicesChannelCount: number, interleavedIndicesChannels: boolean, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_0e503aef608672fa", 2881762985150104, undefined, [buffer, primitiveType, primitiveCount, indicesChannelCount, interleavedIndicesChannels, bytesPerIndex]); }
+  static initBufferPrimitiveTypePrimitiveCountIndicesChannelCountInterleavedIndicesChannelsBytesPerIndex(buffer: SDKHandle, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, indicesChannelCount: number, interleavedIndicesChannels: boolean, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_212edf3d13b127f5", 2881762985150104, undefined, [buffer, primitiveType, primitiveCount, indicesChannelCount, interleavedIndicesChannels, bytesPerIndex]); }
   /** convenience init(data: Data?, primitiveType: SCNGeometryPrimitiveType, primitiveCount: Int, bytesPerIndex: Int) */
-  static initDataPrimitiveTypePrimitiveCountBytesPerIndex(data: (ArrayBuffer) | null, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_0e503aef608672fa", 318557539152261, undefined, [data, primitiveType, primitiveCount, bytesPerIndex]); }
+  static initDataPrimitiveTypePrimitiveCountBytesPerIndex(data: (ArrayBuffer) | null, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_212edf3d13b127f5", 318557539152261, undefined, [data, primitiveType, primitiveCount, bytesPerIndex]); }
   /**
    * convenience init(data: Data?, primitiveType: SCNGeometryPrimitiveType, primitiveCount: Int, indicesChannelCount: Int, interleavedIndicesChannels: Bool, bytesPerIndex: Int)
    * @availability iOS 16.0+
    */
-  static initDataPrimitiveTypePrimitiveCountIndicesChannelCountInterleavedIndicesChannelsBytesPerIndex(data: (ArrayBuffer) | null, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, indicesChannelCount: number, interleavedIndicesChannels: boolean, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_0e503aef608672fa", 2276045801857041, undefined, [data, primitiveType, primitiveCount, indicesChannelCount, interleavedIndicesChannels, bytesPerIndex]); }
+  static initDataPrimitiveTypePrimitiveCountIndicesChannelCountInterleavedIndicesChannelsBytesPerIndex(data: (ArrayBuffer) | null, primitiveType: SCNGeometryPrimitiveType, primitiveCount: number, indicesChannelCount: number, interleavedIndicesChannels: boolean, bytesPerIndex: number): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_212edf3d13b127f5", 2276045801857041, undefined, [data, primitiveType, primitiveCount, indicesChannelCount, interleavedIndicesChannels, bytesPerIndex]); }
   /** var bytesPerIndex: Int { get } */
-  get bytesPerIndex(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 942183309806292, this, []); }
+  get bytesPerIndex(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 942183309806292, this, []); }
   /** var data: Data { get } */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_0e503aef608672fa", 3348150102798538, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_212edf3d13b127f5", 3348150102798538, this, []); }
   /**
    * var indicesChannelCount: Int { get }
    * @availability iOS 16.0+
    */
-  get indicesChannelCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3360622298273703, this, []); }
+  get indicesChannelCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3360622298273703, this, []); }
   /**
    * var hasInterleavedIndicesChannels: Bool { get }
    * @availability iOS 16.0+
    */
-  get hasInterleavedIndicesChannels(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2549558491502867, this, []); }
+  get hasInterleavedIndicesChannels(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2549558491502867, this, []); }
   /**
    * var maximumPointScreenSpaceRadius: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumPointScreenSpaceRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3789844612216256, this, []); }
-  set maximumPointScreenSpaceRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 830941031996535, this, [value]); }
+  get maximumPointScreenSpaceRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3789844612216256, this, []); }
+  set maximumPointScreenSpaceRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 830941031996535, this, [value]); }
   /**
    * var minimumPointScreenSpaceRadius: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get minimumPointScreenSpaceRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4410666139223863, this, []); }
-  set minimumPointScreenSpaceRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3155427615557583, this, [value]); }
+  get minimumPointScreenSpaceRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4410666139223863, this, []); }
+  set minimumPointScreenSpaceRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3155427615557583, this, [value]); }
   /**
    * var pointSize: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get pointSize(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3767128610995471, this, []); }
-  set pointSize(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3659584001319382, this, [value]); }
+  get pointSize(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3767128610995471, this, []); }
+  set pointSize(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3659584001319382, this, [value]); }
   /** var primitiveCount: Int { get } */
-  get primitiveCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1707439335359816, this, []); }
+  get primitiveCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1707439335359816, this, []); }
   /**
    * var primitiveRange: NSRange { get set }
    * @availability iOS 11.0+
    */
-  get primitiveRange(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3310258460950947, this, []); }
-  set primitiveRange(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 690372263701992, this, [value]); }
+  get primitiveRange(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3310258460950947, this, []); }
+  set primitiveRange(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 690372263701992, this, [value]); }
   /** var primitiveType: SCNGeometryPrimitiveType { get } */
-  get primitiveType(): SCNGeometryPrimitiveType { return callSDK<SCNGeometryPrimitiveType>("SceneKit_0e503aef608672fa", 3513157631075862, this, []); }
+  get primitiveType(): SCNGeometryPrimitiveType { return callSDK<SCNGeometryPrimitiveType>("SceneKit_212edf3d13b127f5", 3513157631075862, this, []); }
   /**
    * convenience init<IndexType>(indices: [IndexType], primitiveType: SCNGeometryPrimitiveType) where IndexType : FixedWidthInteger
    * @availability iOS 8.0+
    */
-  static initIndicesPrimitiveType(indices: Array<number>, primitiveType: SCNGeometryPrimitiveType): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_0e503aef608672fa", 1835491003926011, undefined, [indices, primitiveType]); }
+  static initIndicesPrimitiveType(indices: Array<number>, primitiveType: SCNGeometryPrimitiveType): SCNGeometryElement { return callSDK<SCNGeometryElement>("SceneKit_212edf3d13b127f5", 1835491003926011, undefined, [indices, primitiveType]); }
   declare readonly $type: { "c:objc(cs)SCNGeometryElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bytesPerIndex": true; "data": true; "indicesChannelCount": true; "hasInterleavedIndicesChannels": true; "maximumPointScreenSpaceRadius": true; "minimumPointScreenSpaceRadius": true; "pointSize": true; "primitiveCount": true; "primitiveRange": true; "primitiveType": true };
 }
@@ -1772,7 +1772,7 @@ export type SCNGeometryPrimitiveType = "triangles" | "triangleStrip" | "line" | 
 
 export const SCNGeometryPrimitiveType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNGeometryPrimitiveType) | null { return callSDK<(SCNGeometryPrimitiveType) | null>("SceneKit_0e503aef608672fa", 4302857697831354, undefined, [rawValue]); }
+  init(rawValue: number): (SCNGeometryPrimitiveType) | null { return callSDK<(SCNGeometryPrimitiveType) | null>("SceneKit_212edf3d13b127f5", 4302857697831354, undefined, [rawValue]); }
 };
 
 /** class SCNGeometrySource */
@@ -1781,40 +1781,40 @@ export class SCNGeometrySource extends SDKHandle {
    * convenience init(buffer: any MTLBuffer, vertexFormat: MTLVertexFormat, semantic: SCNGeometrySource.Semantic, vertexCount: Int, dataOffset offset: Int, dataStride stride: Int)
    * @availability iOS 9.0+
    */
-  static initBufferVertexFormatSemanticVertexCountDataOffsetDataStride(buffer: SDKHandle, vertexFormat: _Metal_MTLVertexFormat, semantic: SCNGeometrySource_Semantic, vertexCount: number, offset: number, stride: number): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 4048488406756886, undefined, [buffer, vertexFormat, semantic, vertexCount, offset, stride]); }
+  static initBufferVertexFormatSemanticVertexCountDataOffsetDataStride(buffer: SDKHandle, vertexFormat: _Metal_MTLVertexFormat, semantic: SCNGeometrySource_Semantic, vertexCount: number, offset: number, stride: number): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 4048488406756886, undefined, [buffer, vertexFormat, semantic, vertexCount, offset, stride]); }
   /** convenience init(data: Data, semantic: SCNGeometrySource.Semantic, vectorCount: Int, usesFloatComponents floatComponents: Bool, componentsPerVector: Int, bytesPerComponent: Int, dataOffset offset: Int, dataStride stride: Int) */
-  static initDataSemanticVectorCountUsesFloatComponentsComponentsPerVectorBytesPerComponentDataOffsetDataStride(data: ArrayBuffer, semantic: SCNGeometrySource_Semantic, vectorCount: number, floatComponents: boolean, componentsPerVector: number, bytesPerComponent: number, offset: number, stride: number): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 4066970899577104, undefined, [data, semantic, vectorCount, floatComponents, componentsPerVector, bytesPerComponent, offset, stride]); }
+  static initDataSemanticVectorCountUsesFloatComponentsComponentsPerVectorBytesPerComponentDataOffsetDataStride(data: ArrayBuffer, semantic: SCNGeometrySource_Semantic, vectorCount: number, floatComponents: boolean, componentsPerVector: number, bytesPerComponent: number, offset: number, stride: number): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 4066970899577104, undefined, [data, semantic, vectorCount, floatComponents, componentsPerVector, bytesPerComponent, offset, stride]); }
   /** var bytesPerComponent: Int { get } */
-  get bytesPerComponent(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1855316075868469, this, []); }
+  get bytesPerComponent(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1855316075868469, this, []); }
   /** var componentsPerVector: Int { get } */
-  get componentsPerVector(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1118701401405215, this, []); }
+  get componentsPerVector(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1118701401405215, this, []); }
   /** var data: Data { get } */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_0e503aef608672fa", 498486059313718, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_212edf3d13b127f5", 498486059313718, this, []); }
   /** var dataOffset: Int { get } */
-  get dataOffset(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1070142159223794, this, []); }
+  get dataOffset(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1070142159223794, this, []); }
   /** var dataStride: Int { get } */
-  get dataStride(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 142697850109931, this, []); }
+  get dataStride(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 142697850109931, this, []); }
   /** var usesFloatComponents: Bool { get } */
-  get usesFloatComponents(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 132584709806283, this, []); }
+  get usesFloatComponents(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 132584709806283, this, []); }
   /** var semantic: SCNGeometrySource.Semantic { get } */
-  get semantic(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 2433506742447921, this, []); }
+  get semantic(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 2433506742447921, this, []); }
   /** var vectorCount: Int { get } */
-  get vectorCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 648314224122821, this, []); }
+  get vectorCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 648314224122821, this, []); }
   /**
    * @nonobjc convenience init(textureCoordinates: [CGPoint])
    * @availability iOS 8.0+
    */
-  static initTextureCoordinates(textureCoordinates: Array<{ x: number; y: number }>): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 2790742422203166, undefined, [textureCoordinates]); }
+  static initTextureCoordinates(textureCoordinates: Array<{ x: number; y: number }>): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 2790742422203166, undefined, [textureCoordinates]); }
   /**
    * @nonobjc convenience init(normals: [SCNVector3])
    * @availability iOS 8.0+
    */
-  static initNormals(normals: Array<SCNVector3>): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 3596771413590617, undefined, [normals]); }
+  static initNormals(normals: Array<SCNVector3>): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 3596771413590617, undefined, [normals]); }
   /**
    * @nonobjc convenience init(vertices: [SCNVector3])
    * @availability iOS 8.0+
    */
-  static initVertices(vertices: Array<SCNVector3>): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 437641438382658, undefined, [vertices]); }
+  static initVertices(vertices: Array<SCNVector3>): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 437641438382658, undefined, [vertices]); }
   declare readonly $type: { "c:objc(cs)SCNGeometrySource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bytesPerComponent": true; "componentsPerVector": true; "data": true; "dataOffset": true; "dataStride": true; "usesFloatComponents": true; "semantic": true; "vectorCount": true };
 }
@@ -1824,30 +1824,30 @@ export type SCNGeometrySource_Semantic = "vertex" | "normal" | "color" | "texcoo
 
 export const SCNGeometrySource_Semantic = {
   /** static let boneIndices: SCNGeometrySource.Semantic */
-  get boneIndices(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 639194509040724, undefined, []); },
+  get boneIndices(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 639194509040724, undefined, []); },
   /** static let boneWeights: SCNGeometrySource.Semantic */
-  get boneWeights(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 3920313164516477, undefined, []); },
+  get boneWeights(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 3920313164516477, undefined, []); },
   /** static let color: SCNGeometrySource.Semantic */
-  get color(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 2557298316120640, undefined, []); },
+  get color(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 2557298316120640, undefined, []); },
   /** static let edgeCrease: SCNGeometrySource.Semantic */
-  get edgeCrease(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 1149567539929478, undefined, []); },
+  get edgeCrease(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 1149567539929478, undefined, []); },
   /** static let normal: SCNGeometrySource.Semantic */
-  get normal(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 4028319342282115, undefined, []); },
+  get normal(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 4028319342282115, undefined, []); },
   /**
    * static let tangent: SCNGeometrySource.Semantic
    * @availability iOS 10.0+
    */
-  get tangent(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 2674126595006601, undefined, []); },
+  get tangent(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 2674126595006601, undefined, []); },
   /** static let texcoord: SCNGeometrySource.Semantic */
-  get texcoord(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 1203998160932740, undefined, []); },
+  get texcoord(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 1203998160932740, undefined, []); },
   /** static let vertex: SCNGeometrySource.Semantic */
-  get vertex(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 3383197807271729, undefined, []); },
+  get vertex(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 3383197807271729, undefined, []); },
   /** static let vertexCrease: SCNGeometrySource.Semantic */
-  get vertexCrease(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 99920606814335, undefined, []); },
+  get vertexCrease(): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 99920606814335, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 4027749347824535, undefined, [rawValue]); },
+  initRawValue(rawValue: string): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 4027749347824535, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_0e503aef608672fa", 132498693887376, undefined, [rawValue]); }
+  init(rawValue: string): SCNGeometrySource_Semantic { return callSDK<SCNGeometrySource_Semantic>("SceneKit_212edf3d13b127f5", 132498693887376, undefined, [rawValue]); }
 };
 
 /**
@@ -1856,55 +1856,55 @@ export const SCNGeometrySource_Semantic = {
  */
 export class SCNGeometryTessellator extends SDKHandle {
   /** init() */
-  static init(): SCNGeometryTessellator { return callSDK<SCNGeometryTessellator>("SceneKit_0e503aef608672fa", 3039233809309929, undefined, []); }
+  static init(): SCNGeometryTessellator { return callSDK<SCNGeometryTessellator>("SceneKit_212edf3d13b127f5", 3039233809309929, undefined, []); }
   /**
    * var isAdaptive: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isAdaptive(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3986379321757006, this, []); }
-  set isAdaptive(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4225211140015259, this, [value]); }
+  get isAdaptive(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3986379321757006, this, []); }
+  set isAdaptive(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4225211140015259, this, [value]); }
   /**
    * var edgeTessellationFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get edgeTessellationFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1578049598899642, this, []); }
-  set edgeTessellationFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 168816340352781, this, [value]); }
+  get edgeTessellationFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1578049598899642, this, []); }
+  set edgeTessellationFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 168816340352781, this, [value]); }
   /**
    * var insideTessellationFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get insideTessellationFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2210387922530998, this, []); }
-  set insideTessellationFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1082507944087419, this, [value]); }
+  get insideTessellationFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2210387922530998, this, []); }
+  set insideTessellationFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1082507944087419, this, [value]); }
   /**
    * var maximumEdgeLength: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumEdgeLength(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4210321783826284, this, []); }
-  set maximumEdgeLength(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3692120312015468, this, [value]); }
+  get maximumEdgeLength(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4210321783826284, this, []); }
+  set maximumEdgeLength(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3692120312015468, this, [value]); }
   /**
    * var isScreenSpace: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isScreenSpace(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1450667996462452, this, []); }
-  set isScreenSpace(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1375870598929033, this, [value]); }
+  get isScreenSpace(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1450667996462452, this, []); }
+  set isScreenSpace(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1375870598929033, this, [value]); }
   /**
    * var smoothingMode: SCNTessellationSmoothingMode { get set }
    * @availability iOS 11.0+
    */
-  get smoothingMode(): SCNTessellationSmoothingMode { return callSDK<SCNTessellationSmoothingMode>("SceneKit_0e503aef608672fa", 3192887015678287, this, []); }
-  set smoothingMode(value: SCNTessellationSmoothingMode) { callSDK<void>("SceneKit_0e503aef608672fa", 1764629117860302, this, [value]); }
+  get smoothingMode(): SCNTessellationSmoothingMode { return callSDK<SCNTessellationSmoothingMode>("SceneKit_212edf3d13b127f5", 3192887015678287, this, []); }
+  set smoothingMode(value: SCNTessellationSmoothingMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 1764629117860302, this, [value]); }
   /**
    * var tessellationFactorScale: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get tessellationFactorScale(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2800900712735531, this, []); }
-  set tessellationFactorScale(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1442848197134577, this, [value]); }
+  get tessellationFactorScale(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2800900712735531, this, []); }
+  set tessellationFactorScale(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1442848197134577, this, [value]); }
   /**
    * var tessellationPartitionMode: MTLTessellationPartitionMode { get set }
    * @availability iOS 11.0+
    */
-  get tessellationPartitionMode(): _Metal_MTLTessellationPartitionMode { return callSDK<_Metal_MTLTessellationPartitionMode>("SceneKit_0e503aef608672fa", 3917118365019110, this, []); }
-  set tessellationPartitionMode(value: _Metal_MTLTessellationPartitionMode) { callSDK<void>("SceneKit_0e503aef608672fa", 3762523538705856, this, [value]); }
+  get tessellationPartitionMode(): _Metal_MTLTessellationPartitionMode { return callSDK<_Metal_MTLTessellationPartitionMode>("SceneKit_212edf3d13b127f5", 3917118365019110, this, []); }
+  set tessellationPartitionMode(value: _Metal_MTLTessellationPartitionMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 3762523538705856, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNGeometryTessellator": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAdaptive": true; "edgeTessellationFactor": true; "insideTessellationFactor": true; "maximumEdgeLength": true; "isScreenSpace": true; "smoothingMode": true; "tessellationFactorScale": true; "tessellationPartitionMode": true };
 }
@@ -1914,92 +1914,92 @@ export type SCNHitTestOption = "clipToZRange" | "backFaceCulling" | "boundingBox
 
 export const SCNHitTestOption = {
   /** static let backFaceCulling: SCNHitTestOption */
-  get backFaceCulling(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 4145566182676802, undefined, []); },
+  get backFaceCulling(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 4145566182676802, undefined, []); },
   /** static let boundingBoxOnly: SCNHitTestOption */
-  get boundingBoxOnly(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 1619200041094658, undefined, []); },
+  get boundingBoxOnly(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 1619200041094658, undefined, []); },
   /** static let clipToZRange: SCNHitTestOption */
-  get clipToZRange(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 2522168006674201, undefined, []); },
+  get clipToZRange(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 2522168006674201, undefined, []); },
   /** static let firstFoundOnly: SCNHitTestOption */
-  get firstFoundOnly(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 1033790124826013, undefined, []); },
+  get firstFoundOnly(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 1033790124826013, undefined, []); },
   /** static let ignoreChildNodes: SCNHitTestOption */
-  get ignoreChildNodes(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 3018449324388110, undefined, []); },
+  get ignoreChildNodes(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 3018449324388110, undefined, []); },
   /** static let ignoreHiddenNodes: SCNHitTestOption */
-  get ignoreHiddenNodes(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 3408431462656374, undefined, []); },
+  get ignoreHiddenNodes(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 3408431462656374, undefined, []); },
   /**
    * static let categoryBitMask: SCNHitTestOption
    * @availability iOS 10.0+
    */
-  get categoryBitMask(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 3412182648326137, undefined, []); },
+  get categoryBitMask(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 3412182648326137, undefined, []); },
   /**
    * static let ignoreLightArea: SCNHitTestOption
    * @availability iOS 13.0+
    */
-  get ignoreLightArea(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 1802413420008077, undefined, []); },
+  get ignoreLightArea(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 1802413420008077, undefined, []); },
   /**
    * static let searchMode: SCNHitTestOption
    * @availability iOS 11.0+
    */
-  get searchMode(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 830359093910072, undefined, []); },
+  get searchMode(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 830359093910072, undefined, []); },
   /** static let rootNode: SCNHitTestOption */
-  get rootNode(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 45033695674857, undefined, []); },
+  get rootNode(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 45033695674857, undefined, []); },
   /** static let sortResults: SCNHitTestOption */
-  get sortResults(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 564941831206160, undefined, []); },
+  get sortResults(): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 564941831206160, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_0e503aef608672fa", 1521571646873916, undefined, [rawValue]); }
+  init(rawValue: string): SCNHitTestOption { return callSDK<SCNHitTestOption>("SceneKit_212edf3d13b127f5", 1521571646873916, undefined, [rawValue]); }
 };
 
 /** class SCNHitTestResult */
 export class SCNHitTestResult extends SDKHandle {
   /** init() */
-  static init(): SCNHitTestResult { return callSDK<SCNHitTestResult>("SceneKit_0e503aef608672fa", 3471405041318562, undefined, []); }
+  static init(): SCNHitTestResult { return callSDK<SCNHitTestResult>("SceneKit_212edf3d13b127f5", 3471405041318562, undefined, []); }
   /** func textureCoordinates(withMappingChannel channel: Int) -> CGPoint */
-  textureCoordinates(channel: number): $SDK29 { return callSDK<$SDK29>("SceneKit_0e503aef608672fa", 1051441810112491, this, [channel]); }
+  textureCoordinates(channel: number): $SDK29 { return callSDK<$SDK29>("SceneKit_212edf3d13b127f5", 1051441810112491, this, [channel]); }
   /**
    * var boneNode: SCNNode? { get }
    * @availability iOS 10.0+
    */
-  get boneNode(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 938434977295705, this, []); }
+  get boneNode(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 938434977295705, this, []); }
   /** var faceIndex: Int { get } */
-  get faceIndex(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3930018141282247, this, []); }
+  get faceIndex(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3930018141282247, this, []); }
   /** var geometryIndex: Int { get } */
-  get geometryIndex(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2967930663532430, this, []); }
+  get geometryIndex(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2967930663532430, this, []); }
   /** var localCoordinates: SCNVector3 { get } */
-  get localCoordinates(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 983075704046888, this, []); }
+  get localCoordinates(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 983075704046888, this, []); }
   /** var localNormal: SCNVector3 { get } */
-  get localNormal(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3690013033776274, this, []); }
+  get localNormal(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3690013033776274, this, []); }
   /** var modelTransform: SCNMatrix4 { get } */
-  get modelTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 3563049575566782, this, []); }
+  get modelTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 3563049575566782, this, []); }
   /** var node: SCNNode { get } */
-  get node(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 4185583675488209, this, []); }
+  get node(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 4185583675488209, this, []); }
   /**
    * var simdLocalCoordinates: simd_float3 { get }
    * @availability iOS 13.0+
    */
-  get simdLocalCoordinates(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 499825755251416, this, []); }
+  get simdLocalCoordinates(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 499825755251416, this, []); }
   /**
    * var simdLocalNormal: simd_float3 { get }
    * @availability iOS 13.0+
    */
-  get simdLocalNormal(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1736847327108665, this, []); }
+  get simdLocalNormal(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1736847327108665, this, []); }
   /**
    * var simdModelTransform: simd_float4x4 { get }
    * @availability iOS 13.0+
    */
-  get simdModelTransform(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 708482443947557, this, []); }
+  get simdModelTransform(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 708482443947557, this, []); }
   /**
    * var simdWorldCoordinates: simd_float3 { get }
    * @availability iOS 13.0+
    */
-  get simdWorldCoordinates(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1644677183734317, this, []); }
+  get simdWorldCoordinates(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1644677183734317, this, []); }
   /**
    * var simdWorldNormal: simd_float3 { get }
    * @availability iOS 13.0+
    */
-  get simdWorldNormal(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1009618479805485, this, []); }
+  get simdWorldNormal(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1009618479805485, this, []); }
   /** var worldCoordinates: SCNVector3 { get } */
-  get worldCoordinates(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3180282099959053, this, []); }
+  get worldCoordinates(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3180282099959053, this, []); }
   /** var worldNormal: SCNVector3 { get } */
-  get worldNormal(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1504727794848038, this, []); }
+  get worldNormal(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1504727794848038, this, []); }
   declare readonly $type: { "c:objc(cs)SCNHitTestResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "boneNode": true; "faceIndex": true; "geometryIndex": true; "localCoordinates": true; "localNormal": true; "modelTransform": true; "node": true; "simdLocalCoordinates": true; "simdLocalNormal": true; "simdModelTransform": true; "simdWorldCoordinates": true; "simdWorldNormal": true; "worldCoordinates": true; "worldNormal": true };
 }
@@ -2015,27 +2015,27 @@ export const SCNHitTestSearchMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SCNHitTestSearchMode) | null { return callSDK<(SCNHitTestSearchMode) | null>("SceneKit_0e503aef608672fa", 1184879697332142, undefined, [rawValue]); }
+  init(rawValue: number): (SCNHitTestSearchMode) | null { return callSDK<(SCNHitTestSearchMode) | null>("SceneKit_212edf3d13b127f5", 1184879697332142, undefined, [rawValue]); }
 };
 
 /** class SCNIKConstraint */
 export class SCNIKConstraint extends (SCNConstraint as unknown as Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint)) {
   /** class func inverseKinematicsConstraint(chainRootNode: SCNNode) -> Self */
-  static inverseKinematicsConstraint(chainRootNode: SCNNode): SCNIKConstraint { return callSDK<SCNIKConstraint>("SceneKit_0e503aef608672fa", 2457541591647077, undefined, [chainRootNode]); }
+  static inverseKinematicsConstraint(chainRootNode: SCNNode): SCNIKConstraint { return callSDK<SCNIKConstraint>("SceneKit_212edf3d13b127f5", 2457541591647077, undefined, [chainRootNode]); }
   /**
    * init(chainRootNode: SCNNode)
    * @availability iOS 9.0+
    */
-  static init(chainRootNode: SCNNode): SCNIKConstraint { return callSDK<SCNIKConstraint>("SceneKit_0e503aef608672fa", 1384083274032131, undefined, [chainRootNode]); }
+  static init(chainRootNode: SCNNode): SCNIKConstraint { return callSDK<SCNIKConstraint>("SceneKit_212edf3d13b127f5", 1384083274032131, undefined, [chainRootNode]); }
   /** func maxAllowedRotationAngle(forJoint node: SCNNode) -> CGFloat */
-  maxAllowedRotationAngle(node: SCNNode): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3045390837652367, this, [node]); }
+  maxAllowedRotationAngle(node: SCNNode): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3045390837652367, this, [node]); }
   /** func setMaxAllowedRotationAngle(_ angle: CGFloat, forJoint node: SCNNode) */
-  setMaxAllowedRotationAngle(angle: number, node: SCNNode): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3883280841333448, this, [angle, node]); }
+  setMaxAllowedRotationAngle(angle: number, node: SCNNode): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3883280841333448, this, [angle, node]); }
   /** var chainRootNode: SCNNode { get } */
-  get chainRootNode(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 2715183086691867, this, []); }
+  get chainRootNode(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 2715183086691867, this, []); }
   /** var targetPosition: SCNVector3 { get set } */
-  get targetPosition(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1209564276725200, this, []); }
-  set targetPosition(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1886331587255356, this, [value]); }
+  get targetPosition(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1209564276725200, this, []); }
+  set targetPosition(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1886331587255356, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNIKConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "chainRootNode": true; "targetPosition": true };
 }
@@ -2051,21 +2051,21 @@ export const SCNInteractionMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SCNInteractionMode) | null { return callSDK<(SCNInteractionMode) | null>("SceneKit_0e503aef608672fa", 1479216100917917, undefined, [rawValue]); }
+  init(rawValue: number): (SCNInteractionMode) | null { return callSDK<(SCNInteractionMode) | null>("SceneKit_212edf3d13b127f5", 1479216100917917, undefined, [rawValue]); }
 };
 
 /** class SCNLevelOfDetail */
 export class SCNLevelOfDetail extends SDKHandle {
   /** convenience init(geometry: SCNGeometry?, screenSpaceRadius radius: CGFloat) */
-  static initGeometryScreenSpaceRadius(geometry: (SCNGeometry) | null, radius: number): SCNLevelOfDetail { return callSDK<SCNLevelOfDetail>("SceneKit_0e503aef608672fa", 1754901776232734, undefined, [geometry, radius]); }
+  static initGeometryScreenSpaceRadius(geometry: (SCNGeometry) | null, radius: number): SCNLevelOfDetail { return callSDK<SCNLevelOfDetail>("SceneKit_212edf3d13b127f5", 1754901776232734, undefined, [geometry, radius]); }
   /** convenience init(geometry: SCNGeometry?, worldSpaceDistance distance: CGFloat) */
-  static initGeometryWorldSpaceDistance(geometry: (SCNGeometry) | null, distance: number): SCNLevelOfDetail { return callSDK<SCNLevelOfDetail>("SceneKit_0e503aef608672fa", 4419135808086667, undefined, [geometry, distance]); }
+  static initGeometryWorldSpaceDistance(geometry: (SCNGeometry) | null, distance: number): SCNLevelOfDetail { return callSDK<SCNLevelOfDetail>("SceneKit_212edf3d13b127f5", 4419135808086667, undefined, [geometry, distance]); }
   /** var geometry: SCNGeometry? { get } */
-  get geometry(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_0e503aef608672fa", 2204911031685900, this, []); }
+  get geometry(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_212edf3d13b127f5", 2204911031685900, this, []); }
   /** var screenSpaceRadius: CGFloat { get } */
-  get screenSpaceRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1223164089533410, this, []); }
+  get screenSpaceRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1223164089533410, this, []); }
   /** var worldSpaceDistance: CGFloat { get } */
-  get worldSpaceDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1044172593510984, this, []); }
+  get worldSpaceDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1044172593510984, this, []); }
   declare readonly $type: { "c:objc(cs)SCNLevelOfDetail": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "geometry": true; "screenSpaceRadius": true; "worldSpaceDistance": true };
 }
@@ -2073,202 +2073,202 @@ export class SCNLevelOfDetail extends SDKHandle {
 /** class SCNLight */
 export class SCNLight extends SDKHandle {
   /** init() */
-  static init(): SCNLight { return callSDK<SCNLight>("SceneKit_0e503aef608672fa", 4234624959726478, undefined, []); }
+  static init(): SCNLight { return callSDK<SCNLight>("SceneKit_212edf3d13b127f5", 4234624959726478, undefined, []); }
   /**
    * var iesProfileURL: URL? { get set }
    * @availability iOS 10.0+
    */
-  get iesProfileURL(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 3041971074220311, this, []); }
-  set iesProfileURL(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4498483431076712, this, [value]); }
+  get iesProfileURL(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 3041971074220311, this, []); }
+  set iesProfileURL(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4498483431076712, this, [value]); }
   /**
    * var areaExtents: simd_float3 { get set }
    * @availability iOS 13.0+
    */
-  get areaExtents(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3410820708884622, this, []); }
-  set areaExtents(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 1498016842051626, this, [value]); }
+  get areaExtents(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3410820708884622, this, []); }
+  set areaExtents(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 1498016842051626, this, [value]); }
   /**
    * var areaPolygonVertices: [NSValue]? { get set }
    * @availability iOS 13.0+
    */
-  get areaPolygonVertices(): $SDK33 { return callSDK<$SDK33>("SceneKit_0e503aef608672fa", 3834798887264529, this, []); }
-  set areaPolygonVertices(value: $SDK33) { callSDK<void>("SceneKit_0e503aef608672fa", 3368278367913609, this, [value]); }
+  get areaPolygonVertices(): $SDK33 { return callSDK<$SDK33>("SceneKit_212edf3d13b127f5", 3834798887264529, this, []); }
+  set areaPolygonVertices(value: $SDK33) { callSDK<void>("SceneKit_212edf3d13b127f5", 3368278367913609, this, [value]); }
   /**
    * var areaType: SCNLightAreaType { get set }
    * @availability iOS 13.0+
    */
-  get areaType(): SCNLightAreaType { return callSDK<SCNLightAreaType>("SceneKit_0e503aef608672fa", 188808532400826, this, []); }
-  set areaType(value: SCNLightAreaType) { callSDK<void>("SceneKit_0e503aef608672fa", 243621049230842, this, [value]); }
+  get areaType(): SCNLightAreaType { return callSDK<SCNLightAreaType>("SceneKit_212edf3d13b127f5", 188808532400826, this, []); }
+  set areaType(value: SCNLightAreaType) { callSDK<void>("SceneKit_212edf3d13b127f5", 243621049230842, this, [value]); }
   /** var attenuationEndDistance: CGFloat { get set } */
-  get attenuationEndDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2817816315578136, this, []); }
-  set attenuationEndDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3243191123659166, this, [value]); }
+  get attenuationEndDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2817816315578136, this, []); }
+  set attenuationEndDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3243191123659166, this, [value]); }
   /** var attenuationFalloffExponent: CGFloat { get set } */
-  get attenuationFalloffExponent(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1904728425737338, this, []); }
-  set attenuationFalloffExponent(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2172796561628667, this, [value]); }
+  get attenuationFalloffExponent(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1904728425737338, this, []); }
+  set attenuationFalloffExponent(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2172796561628667, this, [value]); }
   /** var attenuationStartDistance: CGFloat { get set } */
-  get attenuationStartDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2821592718274405, this, []); }
-  set attenuationStartDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3614935256352636, this, [value]); }
+  get attenuationStartDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2821592718274405, this, []); }
+  set attenuationStartDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3614935256352636, this, [value]); }
   /**
    * var automaticallyAdjustsShadowProjection: Bool { get set }
    * @availability iOS 11.0+
    */
-  get automaticallyAdjustsShadowProjection(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2780520868714952, this, []); }
-  set automaticallyAdjustsShadowProjection(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 482452030172791, this, [value]); }
+  get automaticallyAdjustsShadowProjection(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2780520868714952, this, []); }
+  set automaticallyAdjustsShadowProjection(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 482452030172791, this, [value]); }
   /** var castsShadow: Bool { get set } */
-  get castsShadow(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2964206874282467, this, []); }
-  set castsShadow(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 644963985827058, this, [value]); }
+  get castsShadow(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2964206874282467, this, []); }
+  set castsShadow(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 644963985827058, this, [value]); }
   /** var categoryBitMask: Int { get set } */
-  get categoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1349875657610107, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 16951494273652, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1349875657610107, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 16951494273652, this, [value]); }
   /** var color: Any { get set } */
-  get color(): unknown { return callSDK<unknown>("SceneKit_0e503aef608672fa", 3700835155406455, this, []); }
-  set color(value: unknown) { callSDK<void>("SceneKit_0e503aef608672fa", 1922578149811049, this, [value]); }
+  get color(): unknown { return callSDK<unknown>("SceneKit_212edf3d13b127f5", 3700835155406455, this, []); }
+  set color(value: unknown) { callSDK<void>("SceneKit_212edf3d13b127f5", 1922578149811049, this, [value]); }
   /**
    * var doubleSided: Bool { get set }
    * @availability iOS 13.0+
    */
-  get doubleSided(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 4209592463618078, this, []); }
-  set doubleSided(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3634715526200624, this, [value]); }
+  get doubleSided(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 4209592463618078, this, []); }
+  set doubleSided(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3634715526200624, this, [value]); }
   /**
    * var drawsArea: Bool { get set }
    * @availability iOS 13.0+
    */
-  get drawsArea(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2438252921390220, this, []); }
-  set drawsArea(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4231506007314547, this, [value]); }
+  get drawsArea(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2438252921390220, this, []); }
+  set drawsArea(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4231506007314547, this, [value]); }
   /**
    * var forcesBackFaceCasters: Bool { get set }
    * @availability iOS 11.0+
    */
-  get forcesBackFaceCasters(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 132107449955117, this, []); }
-  set forcesBackFaceCasters(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1968323411640714, this, [value]); }
+  get forcesBackFaceCasters(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 132107449955117, this, []); }
+  set forcesBackFaceCasters(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1968323411640714, this, [value]); }
   /** var gobo: SCNMaterialProperty? { get } */
-  get gobo(): (SCNMaterialProperty) | null { return callSDK<(SCNMaterialProperty) | null>("SceneKit_0e503aef608672fa", 2014963314547543, this, []); }
+  get gobo(): (SCNMaterialProperty) | null { return callSDK<(SCNMaterialProperty) | null>("SceneKit_212edf3d13b127f5", 2014963314547543, this, []); }
   /**
    * var intensity: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get intensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 183369686732758, this, []); }
-  set intensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2776329229331121, this, [value]); }
+  get intensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 183369686732758, this, []); }
+  set intensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2776329229331121, this, [value]); }
   /**
    * var maximumShadowDistance: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumShadowDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1370162682927197, this, []); }
-  set maximumShadowDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 455887617333277, this, [value]); }
+  get maximumShadowDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1370162682927197, this, []); }
+  set maximumShadowDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 455887617333277, this, [value]); }
   /** var name: String? { get set } */
-  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 1080146057317535, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2462612710244648, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 1080146057317535, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2462612710244648, this, [value]); }
   /** var orthographicScale: CGFloat { get set } */
-  get orthographicScale(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3875857525423504, this, []); }
-  set orthographicScale(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3785338028221834, this, [value]); }
+  get orthographicScale(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3875857525423504, this, []); }
+  set orthographicScale(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3785338028221834, this, [value]); }
   /**
    * var parallaxCenterOffset: simd_float3 { get set }
    * @availability iOS 13.0+
    */
-  get parallaxCenterOffset(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1484982031470897, this, []); }
-  set parallaxCenterOffset(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 4163960405299055, this, [value]); }
+  get parallaxCenterOffset(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1484982031470897, this, []); }
+  set parallaxCenterOffset(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 4163960405299055, this, [value]); }
   /**
    * var parallaxCorrectionEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get parallaxCorrectionEnabled(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2872795423141098, this, []); }
-  set parallaxCorrectionEnabled(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1428749640844580, this, [value]); }
+  get parallaxCorrectionEnabled(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2872795423141098, this, []); }
+  set parallaxCorrectionEnabled(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1428749640844580, this, [value]); }
   /**
    * var parallaxExtentsFactor: simd_float3 { get set }
    * @availability iOS 13.0+
    */
-  get parallaxExtentsFactor(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2841773983616326, this, []); }
-  set parallaxExtentsFactor(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 3556491659555637, this, [value]); }
+  get parallaxExtentsFactor(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2841773983616326, this, []); }
+  set parallaxExtentsFactor(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 3556491659555637, this, [value]); }
   /**
    * var probeEnvironment: SCNMaterialProperty? { get }
    * @availability iOS 12.0+
    */
-  get probeEnvironment(): (SCNMaterialProperty) | null { return callSDK<(SCNMaterialProperty) | null>("SceneKit_0e503aef608672fa", 3861316920695818, this, []); }
+  get probeEnvironment(): (SCNMaterialProperty) | null { return callSDK<(SCNMaterialProperty) | null>("SceneKit_212edf3d13b127f5", 3861316920695818, this, []); }
   /**
    * var probeExtents: simd_float3 { get set }
    * @availability iOS 13.0+
    */
-  get probeExtents(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1299206335066292, this, []); }
-  set probeExtents(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 2450413859295605, this, [value]); }
+  get probeExtents(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1299206335066292, this, []); }
+  set probeExtents(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 2450413859295605, this, [value]); }
   /**
    * var probeOffset: simd_float3 { get set }
    * @availability iOS 13.0+
    */
-  get probeOffset(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 4377143092742977, this, []); }
-  set probeOffset(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 238955390879860, this, [value]); }
+  get probeOffset(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 4377143092742977, this, []); }
+  set probeOffset(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 238955390879860, this, [value]); }
   /**
    * var probeType: SCNLightProbeType { get set }
    * @availability iOS 13.0+
    */
-  get probeType(): SCNLightProbeType { return callSDK<SCNLightProbeType>("SceneKit_0e503aef608672fa", 3552243386815305, this, []); }
-  set probeType(value: SCNLightProbeType) { callSDK<void>("SceneKit_0e503aef608672fa", 1966198895122814, this, [value]); }
+  get probeType(): SCNLightProbeType { return callSDK<SCNLightProbeType>("SceneKit_212edf3d13b127f5", 3552243386815305, this, []); }
+  set probeType(value: SCNLightProbeType) { callSDK<void>("SceneKit_212edf3d13b127f5", 1966198895122814, this, [value]); }
   /**
    * var probeUpdateType: SCNLightProbeUpdateType { get set }
    * @availability iOS 13.0+
    */
-  get probeUpdateType(): SCNLightProbeUpdateType { return callSDK<SCNLightProbeUpdateType>("SceneKit_0e503aef608672fa", 3028584310964104, this, []); }
-  set probeUpdateType(value: SCNLightProbeUpdateType) { callSDK<void>("SceneKit_0e503aef608672fa", 358050755574457, this, [value]); }
+  get probeUpdateType(): SCNLightProbeUpdateType { return callSDK<SCNLightProbeUpdateType>("SceneKit_212edf3d13b127f5", 3028584310964104, this, []); }
+  set probeUpdateType(value: SCNLightProbeUpdateType) { callSDK<void>("SceneKit_212edf3d13b127f5", 358050755574457, this, [value]); }
   /**
    * var sampleDistributedShadowMaps: Bool { get set }
    * @availability iOS 11.0+
    */
-  get sampleDistributedShadowMaps(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3757029461326950, this, []); }
-  set sampleDistributedShadowMaps(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4007031252298663, this, [value]); }
+  get sampleDistributedShadowMaps(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3757029461326950, this, []); }
+  set sampleDistributedShadowMaps(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4007031252298663, this, [value]); }
   /** var shadowBias: CGFloat { get set } */
-  get shadowBias(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4278640139303299, this, []); }
-  set shadowBias(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2398739766218981, this, [value]); }
+  get shadowBias(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4278640139303299, this, []); }
+  set shadowBias(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2398739766218981, this, [value]); }
   /**
    * var shadowCascadeCount: Int { get set }
    * @availability iOS 11.0+
    */
-  get shadowCascadeCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1052746661156806, this, []); }
-  set shadowCascadeCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1611682176841064, this, [value]); }
+  get shadowCascadeCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1052746661156806, this, []); }
+  set shadowCascadeCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1611682176841064, this, [value]); }
   /**
    * var shadowCascadeSplittingFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get shadowCascadeSplittingFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4444637411751589, this, []); }
-  set shadowCascadeSplittingFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1762505207688975, this, [value]); }
+  get shadowCascadeSplittingFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4444637411751589, this, []); }
+  set shadowCascadeSplittingFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1762505207688975, this, [value]); }
   /** var shadowColor: Any { get set } */
-  get shadowColor(): unknown { return callSDK<unknown>("SceneKit_0e503aef608672fa", 927505395788014, this, []); }
-  set shadowColor(value: unknown) { callSDK<void>("SceneKit_0e503aef608672fa", 2502698210095624, this, [value]); }
+  get shadowColor(): unknown { return callSDK<unknown>("SceneKit_212edf3d13b127f5", 927505395788014, this, []); }
+  set shadowColor(value: unknown) { callSDK<void>("SceneKit_212edf3d13b127f5", 2502698210095624, this, [value]); }
   /** var shadowMapSize: CGSize { get set } */
-  get shadowMapSize(): $SDK28 { return callSDK<$SDK28>("SceneKit_0e503aef608672fa", 2468504075165301, this, []); }
-  set shadowMapSize(value: $SDK28) { callSDK<void>("SceneKit_0e503aef608672fa", 1545388649334182, this, [value]); }
+  get shadowMapSize(): $SDK28 { return callSDK<$SDK28>("SceneKit_212edf3d13b127f5", 2468504075165301, this, []); }
+  set shadowMapSize(value: $SDK28) { callSDK<void>("SceneKit_212edf3d13b127f5", 1545388649334182, this, [value]); }
   /** var shadowMode: SCNShadowMode { get set } */
-  get shadowMode(): SCNShadowMode { return callSDK<SCNShadowMode>("SceneKit_0e503aef608672fa", 2601477254295787, this, []); }
-  set shadowMode(value: SCNShadowMode) { callSDK<void>("SceneKit_0e503aef608672fa", 4438790020897227, this, [value]); }
+  get shadowMode(): SCNShadowMode { return callSDK<SCNShadowMode>("SceneKit_212edf3d13b127f5", 2601477254295787, this, []); }
+  set shadowMode(value: SCNShadowMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 4438790020897227, this, [value]); }
   /** var shadowRadius: CGFloat { get set } */
-  get shadowRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3763309256578913, this, []); }
-  set shadowRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 218189656868960, this, [value]); }
+  get shadowRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3763309256578913, this, []); }
+  set shadowRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 218189656868960, this, [value]); }
   /** var shadowSampleCount: Int { get set } */
-  get shadowSampleCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3365598947461381, this, []); }
-  set shadowSampleCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4233826636441393, this, [value]); }
+  get shadowSampleCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3365598947461381, this, []); }
+  set shadowSampleCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4233826636441393, this, [value]); }
   /**
    * var sphericalHarmonicsCoefficients: Data { get }
    * @availability iOS 11.0+
    */
-  get sphericalHarmonicsCoefficients(): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_0e503aef608672fa", 4247653136524599, this, []); }
+  get sphericalHarmonicsCoefficients(): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_212edf3d13b127f5", 4247653136524599, this, []); }
   /** var spotInnerAngle: CGFloat { get set } */
-  get spotInnerAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3728821908785498, this, []); }
-  set spotInnerAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4227623893929763, this, [value]); }
+  get spotInnerAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3728821908785498, this, []); }
+  set spotInnerAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4227623893929763, this, [value]); }
   /** var spotOuterAngle: CGFloat { get set } */
-  get spotOuterAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2327751426772098, this, []); }
-  set spotOuterAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3529972887852730, this, [value]); }
+  get spotOuterAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2327751426772098, this, []); }
+  set spotOuterAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3529972887852730, this, [value]); }
   /**
    * var temperature: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get temperature(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1360540157079651, this, []); }
-  set temperature(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 888997994135346, this, [value]); }
+  get temperature(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1360540157079651, this, []); }
+  set temperature(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 888997994135346, this, [value]); }
   /** var type: SCNLight.LightType { get set } */
-  get type(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 766126343761485, this, []); }
-  set type(value: SCNLight_LightType) { callSDK<void>("SceneKit_0e503aef608672fa", 4501035793519961, this, [value]); }
+  get type(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 766126343761485, this, []); }
+  set type(value: SCNLight_LightType) { callSDK<void>("SceneKit_212edf3d13b127f5", 4501035793519961, this, [value]); }
   /** var zFar: CGFloat { get set } */
-  get zFar(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 493415331638942, this, []); }
-  set zFar(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 449428072720965, this, [value]); }
+  get zFar(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 493415331638942, this, []); }
+  set zFar(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 449428072720965, this, [value]); }
   /** var zNear: CGFloat { get set } */
-  get zNear(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2437322235803855, this, []); }
-  set zNear(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 654186629953740, this, [value]); }
+  get zNear(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2437322235803855, this, []); }
+  set zNear(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 654186629953740, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNLight": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "iesProfileURL": true; "areaExtents": true; "areaPolygonVertices": true; "areaType": true; "attenuationEndDistance": true; "attenuationFalloffExponent": true; "attenuationStartDistance": true; "automaticallyAdjustsShadowProjection": true; "castsShadow": true; "categoryBitMask": true; "color": true; "doubleSided": true; "drawsArea": true; "forcesBackFaceCasters": true; "gobo": true; "intensity": true; "maximumShadowDistance": true; "name": true; "orthographicScale": true; "parallaxCenterOffset": true; "parallaxCorrectionEnabled": true; "parallaxExtentsFactor": true; "probeEnvironment": true; "probeExtents": true; "probeOffset": true; "probeType": true; "probeUpdateType": true; "sampleDistributedShadowMaps": true; "shadowBias": true; "shadowCascadeCount": true; "shadowCascadeSplittingFactor": true; "shadowColor": true; "shadowMapSize": true; "shadowMode": true; "shadowRadius": true; "shadowSampleCount": true; "sphericalHarmonicsCoefficients": true; "spotInnerAngle": true; "spotOuterAngle": true; "temperature": true; "type": true; "zFar": true; "zNear": true };
 }
@@ -2278,30 +2278,30 @@ export type SCNLight_LightType = "ambient" | "omni" | "directional" | "spot" | "
 
 export const SCNLight_LightType = {
   /** static let ambient: SCNLight.LightType */
-  get ambient(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 1595257212793870, undefined, []); },
+  get ambient(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 1595257212793870, undefined, []); },
   /**
    * static let area: SCNLight.LightType
    * @availability iOS 13.0+
    */
-  get area(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 3680326877976558, undefined, []); },
+  get area(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 3680326877976558, undefined, []); },
   /** static let directional: SCNLight.LightType */
-  get directional(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 3356207482773044, undefined, []); },
+  get directional(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 3356207482773044, undefined, []); },
   /**
    * static let IES: SCNLight.LightType
    * @availability iOS 10.0+
    */
-  get IES(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 3813144421000548, undefined, []); },
+  get IES(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 3813144421000548, undefined, []); },
   /** static let omni: SCNLight.LightType */
-  get omni(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 3887127316347959, undefined, []); },
+  get omni(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 3887127316347959, undefined, []); },
   /**
    * static let probe: SCNLight.LightType
    * @availability iOS 10.0+
    */
-  get probe(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 654041524779845, undefined, []); },
+  get probe(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 654041524779845, undefined, []); },
   /** static let spot: SCNLight.LightType */
-  get spot(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 3077723054124187, undefined, []); },
+  get spot(): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 3077723054124187, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_0e503aef608672fa", 2520431582732394, undefined, [rawValue]); }
+  init(rawValue: string): SCNLight_LightType { return callSDK<SCNLight_LightType>("SceneKit_212edf3d13b127f5", 2520431582732394, undefined, [rawValue]); }
 };
 
 /**
@@ -2315,7 +2315,7 @@ export const SCNLightAreaType = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (SCNLightAreaType) | null { return callSDK<(SCNLightAreaType) | null>("SceneKit_0e503aef608672fa", 4209961733131550, undefined, [rawValue]); }
+  init(rawValue: number): (SCNLightAreaType) | null { return callSDK<(SCNLightAreaType) | null>("SceneKit_212edf3d13b127f5", 4209961733131550, undefined, [rawValue]); }
 };
 
 /**
@@ -2329,7 +2329,7 @@ export const SCNLightProbeType = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (SCNLightProbeType) | null { return callSDK<(SCNLightProbeType) | null>("SceneKit_0e503aef608672fa", 1085929989245685, undefined, [rawValue]); }
+  init(rawValue: number): (SCNLightProbeType) | null { return callSDK<(SCNLightProbeType) | null>("SceneKit_212edf3d13b127f5", 1085929989245685, undefined, [rawValue]); }
 };
 
 /**
@@ -2343,37 +2343,37 @@ export const SCNLightProbeUpdateType = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (SCNLightProbeUpdateType) | null { return callSDK<(SCNLightProbeUpdateType) | null>("SceneKit_0e503aef608672fa", 1540773094121186, undefined, [rawValue]); }
+  init(rawValue: number): (SCNLightProbeUpdateType) | null { return callSDK<(SCNLightProbeUpdateType) | null>("SceneKit_212edf3d13b127f5", 1540773094121186, undefined, [rawValue]); }
 };
 
 /** class SCNLookAtConstraint */
 export class SCNLookAtConstraint extends (SCNConstraint as unknown as Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint)) {
   /** convenience init(target: SCNNode?) */
-  static init(target?: (SCNNode) | null): SCNLookAtConstraint { return callSDK<SCNLookAtConstraint>("SceneKit_0e503aef608672fa", 4113810550177076, undefined, [target]); }
+  static init(target?: (SCNNode) | null): SCNLookAtConstraint { return callSDK<SCNLookAtConstraint>("SceneKit_212edf3d13b127f5", 4113810550177076, undefined, [target]); }
   /** var isGimbalLockEnabled: Bool { get set } */
-  get isGimbalLockEnabled(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1272755509257900, this, []); }
-  set isGimbalLockEnabled(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 386064309566235, this, [value]); }
+  get isGimbalLockEnabled(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1272755509257900, this, []); }
+  set isGimbalLockEnabled(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 386064309566235, this, [value]); }
   /**
    * var localFront: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get localFront(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4286876923681854, this, []); }
-  set localFront(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 344397636260364, this, [value]); }
+  get localFront(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4286876923681854, this, []); }
+  set localFront(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 344397636260364, this, [value]); }
   /** var target: SCNNode? { get set } */
-  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 2965341382288634, this, []); }
-  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4144440162412271, this, [value]); }
+  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 2965341382288634, this, []); }
+  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4144440162412271, this, [value]); }
   /**
    * var targetOffset: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get targetOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1004248473302040, this, []); }
-  set targetOffset(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 2479382645609475, this, [value]); }
+  get targetOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1004248473302040, this, []); }
+  set targetOffset(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 2479382645609475, this, [value]); }
   /**
    * var worldUp: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get worldUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2626204871040759, this, []); }
-  set worldUp(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 174310628092123, this, [value]); }
+  get worldUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2626204871040759, this, []); }
+  set worldUp(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 174310628092123, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNLookAtConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "isGimbalLockEnabled": true; "localFront": true; "target": true; "targetOffset": true; "worldUp": true };
 }
@@ -2381,117 +2381,117 @@ export class SCNLookAtConstraint extends (SCNConstraint as unknown as Omit<typeo
 /** class SCNMaterial */
 export class SCNMaterial extends SDKHandle {
   /** init() */
-  static init(): SCNMaterial { return callSDK<SCNMaterial>("SceneKit_0e503aef608672fa", 4491281964582944, undefined, []); }
+  static init(): SCNMaterial { return callSDK<SCNMaterial>("SceneKit_212edf3d13b127f5", 4491281964582944, undefined, []); }
   /** var ambient: SCNMaterialProperty { get } */
-  get ambient(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 3252009567877896, this, []); }
+  get ambient(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 3252009567877896, this, []); }
   /**
    * var ambientOcclusion: SCNMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get ambientOcclusion(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 1094126930493479, this, []); }
+  get ambientOcclusion(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 1094126930493479, this, []); }
   /**
    * var blendMode: SCNBlendMode { get set }
    * @availability iOS 9.0+
    */
-  get blendMode(): SCNBlendMode { return callSDK<SCNBlendMode>("SceneKit_0e503aef608672fa", 2379917352634953, this, []); }
-  set blendMode(value: SCNBlendMode) { callSDK<void>("SceneKit_0e503aef608672fa", 1599029641026287, this, [value]); }
+  get blendMode(): SCNBlendMode { return callSDK<SCNBlendMode>("SceneKit_212edf3d13b127f5", 2379917352634953, this, []); }
+  set blendMode(value: SCNBlendMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 1599029641026287, this, [value]); }
   /**
    * var clearCoat: SCNMaterialProperty { get }
    * @availability iOS 13.0+
    */
-  get clearCoat(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 3532818307659182, this, []); }
+  get clearCoat(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 3532818307659182, this, []); }
   /**
    * var clearCoatNormal: SCNMaterialProperty { get }
    * @availability iOS 13.0+
    */
-  get clearCoatNormal(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 511127627099741, this, []); }
+  get clearCoatNormal(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 511127627099741, this, []); }
   /**
    * var clearCoatRoughness: SCNMaterialProperty { get }
    * @availability iOS 13.0+
    */
-  get clearCoatRoughness(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 1561851205103867, this, []); }
+  get clearCoatRoughness(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 1561851205103867, this, []); }
   /**
    * var colorBufferWriteMask: SCNColorMask { get set }
    * @availability iOS 11.0+
    */
-  get colorBufferWriteMask(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 4440875130309155, this, []); }
-  set colorBufferWriteMask(value: SCNColorMask) { callSDK<void>("SceneKit_0e503aef608672fa", 3948834164220646, this, [value]); }
+  get colorBufferWriteMask(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 4440875130309155, this, []); }
+  set colorBufferWriteMask(value: SCNColorMask) { callSDK<void>("SceneKit_212edf3d13b127f5", 3948834164220646, this, [value]); }
   /** var cullMode: SCNCullMode { get set } */
-  get cullMode(): SCNCullMode { return callSDK<SCNCullMode>("SceneKit_0e503aef608672fa", 2212826873337523, this, []); }
-  set cullMode(value: SCNCullMode) { callSDK<void>("SceneKit_0e503aef608672fa", 404092908230505, this, [value]); }
+  get cullMode(): SCNCullMode { return callSDK<SCNCullMode>("SceneKit_212edf3d13b127f5", 2212826873337523, this, []); }
+  set cullMode(value: SCNCullMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 404092908230505, this, [value]); }
   /** var diffuse: SCNMaterialProperty { get } */
-  get diffuse(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 1561932107399313, this, []); }
+  get diffuse(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 1561932107399313, this, []); }
   /**
    * var displacement: SCNMaterialProperty { get }
    * @availability iOS 11.0+
    */
-  get displacement(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 1930836519540946, this, []); }
+  get displacement(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 1930836519540946, this, []); }
   /** var isDoubleSided: Bool { get set } */
-  get isDoubleSided(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 709042585341758, this, []); }
-  set isDoubleSided(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3609899256465366, this, [value]); }
+  get isDoubleSided(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 709042585341758, this, []); }
+  set isDoubleSided(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3609899256465366, this, [value]); }
   /** var emission: SCNMaterialProperty { get } */
-  get emission(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 2810041993021795, this, []); }
+  get emission(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 2810041993021795, this, []); }
   /**
    * var fillMode: SCNFillMode { get set }
    * @availability iOS 11.0+
    */
-  get fillMode(): SCNFillMode { return callSDK<SCNFillMode>("SceneKit_0e503aef608672fa", 4168572160497411, this, []); }
-  set fillMode(value: SCNFillMode) { callSDK<void>("SceneKit_0e503aef608672fa", 4100408627265064, this, [value]); }
+  get fillMode(): SCNFillMode { return callSDK<SCNFillMode>("SceneKit_212edf3d13b127f5", 4168572160497411, this, []); }
+  set fillMode(value: SCNFillMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 4100408627265064, this, [value]); }
   /** var fresnelExponent: CGFloat { get set } */
-  get fresnelExponent(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3195275821784080, this, []); }
-  set fresnelExponent(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1710375555847900, this, [value]); }
+  get fresnelExponent(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3195275821784080, this, []); }
+  set fresnelExponent(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1710375555847900, this, [value]); }
   /** var lightingModel: SCNMaterial.LightingModel { get set } */
-  get lightingModel(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 290133755267949, this, []); }
-  set lightingModel(value: SCNMaterial_LightingModel) { callSDK<void>("SceneKit_0e503aef608672fa", 4497265401679816, this, [value]); }
+  get lightingModel(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 290133755267949, this, []); }
+  set lightingModel(value: SCNMaterial_LightingModel) { callSDK<void>("SceneKit_212edf3d13b127f5", 4497265401679816, this, [value]); }
   /** var isLitPerPixel: Bool { get set } */
-  get isLitPerPixel(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2108147186913161, this, []); }
-  set isLitPerPixel(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4436038591837422, this, [value]); }
+  get isLitPerPixel(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2108147186913161, this, []); }
+  set isLitPerPixel(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4436038591837422, this, [value]); }
   /** var locksAmbientWithDiffuse: Bool { get set } */
-  get locksAmbientWithDiffuse(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3622910754778628, this, []); }
-  set locksAmbientWithDiffuse(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1561900100512076, this, [value]); }
+  get locksAmbientWithDiffuse(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3622910754778628, this, []); }
+  set locksAmbientWithDiffuse(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1561900100512076, this, [value]); }
   /**
    * var metalness: SCNMaterialProperty { get }
    * @availability iOS 10.0+
    */
-  get metalness(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 3558147406226254, this, []); }
+  get metalness(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 3558147406226254, this, []); }
   /** var multiply: SCNMaterialProperty { get } */
-  get multiply(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 223525461164477, this, []); }
+  get multiply(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 223525461164477, this, []); }
   /** var name: String? { get set } */
-  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 2815154489870562, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3679073135561274, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 2815154489870562, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3679073135561274, this, [value]); }
   /** var normal: SCNMaterialProperty { get } */
-  get normal(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 4472904100115054, this, []); }
+  get normal(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 4472904100115054, this, []); }
   /** var readsFromDepthBuffer: Bool { get set } */
-  get readsFromDepthBuffer(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1949452926593097, this, []); }
-  set readsFromDepthBuffer(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1773442726266805, this, [value]); }
+  get readsFromDepthBuffer(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1949452926593097, this, []); }
+  set readsFromDepthBuffer(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1773442726266805, this, [value]); }
   /** var reflective: SCNMaterialProperty { get } */
-  get reflective(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 2629427067392093, this, []); }
+  get reflective(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 2629427067392093, this, []); }
   /**
    * var roughness: SCNMaterialProperty { get }
    * @availability iOS 10.0+
    */
-  get roughness(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 3046582069381972, this, []); }
+  get roughness(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 3046582069381972, this, []); }
   /**
    * var selfIllumination: SCNMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get selfIllumination(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 2112043195401059, this, []); }
+  get selfIllumination(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 2112043195401059, this, []); }
   /** var shininess: CGFloat { get set } */
-  get shininess(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1928248514311548, this, []); }
-  set shininess(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 687902503756122, this, [value]); }
+  get shininess(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1928248514311548, this, []); }
+  set shininess(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 687902503756122, this, [value]); }
   /** var specular: SCNMaterialProperty { get } */
-  get specular(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 968173333691929, this, []); }
+  get specular(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 968173333691929, this, []); }
   /** var transparency: CGFloat { get set } */
-  get transparency(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3957016635565213, this, []); }
-  set transparency(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3811047745482729, this, [value]); }
+  get transparency(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3957016635565213, this, []); }
+  set transparency(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3811047745482729, this, [value]); }
   /** var transparencyMode: SCNTransparencyMode { get set } */
-  get transparencyMode(): SCNTransparencyMode { return callSDK<SCNTransparencyMode>("SceneKit_0e503aef608672fa", 3379506002665574, this, []); }
-  set transparencyMode(value: SCNTransparencyMode) { callSDK<void>("SceneKit_0e503aef608672fa", 1679316033033268, this, [value]); }
+  get transparencyMode(): SCNTransparencyMode { return callSDK<SCNTransparencyMode>("SceneKit_212edf3d13b127f5", 3379506002665574, this, []); }
+  set transparencyMode(value: SCNTransparencyMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 1679316033033268, this, [value]); }
   /** var transparent: SCNMaterialProperty { get } */
-  get transparent(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 2873879369040703, this, []); }
+  get transparent(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 2873879369040703, this, []); }
   /** var writesToDepthBuffer: Bool { get set } */
-  get writesToDepthBuffer(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 123050649624899, this, []); }
-  set writesToDepthBuffer(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4251285632130919, this, [value]); }
+  get writesToDepthBuffer(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 123050649624899, this, []); }
+  set writesToDepthBuffer(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4251285632130919, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNMaterial": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambient": true; "ambientOcclusion": true; "blendMode": true; "clearCoat": true; "clearCoatNormal": true; "clearCoatRoughness": true; "colorBufferWriteMask": true; "cullMode": true; "diffuse": true; "displacement": true; "isDoubleSided": true; "emission": true; "fillMode": true; "fresnelExponent": true; "lightingModel": true; "isLitPerPixel": true; "locksAmbientWithDiffuse": true; "metalness": true; "multiply": true; "name": true; "normal": true; "readsFromDepthBuffer": true; "reflective": true; "roughness": true; "selfIllumination": true; "shininess": true; "specular": true; "transparency": true; "transparencyMode": true; "transparent": true; "writesToDepthBuffer": true };
 }
@@ -2501,89 +2501,89 @@ export type SCNMaterial_LightingModel = "phong" | "blinn" | "lambert" | "constan
 
 export const SCNMaterial_LightingModel = {
   /** static let blinn: SCNMaterial.LightingModel */
-  get blinn(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 3565598352659191, undefined, []); },
+  get blinn(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 3565598352659191, undefined, []); },
   /** static let constant: SCNMaterial.LightingModel */
-  get constant(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 2859405109060530, undefined, []); },
+  get constant(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 2859405109060530, undefined, []); },
   /** static let lambert: SCNMaterial.LightingModel */
-  get lambert(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 2447608493544538, undefined, []); },
+  get lambert(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 2447608493544538, undefined, []); },
   /** static let phong: SCNMaterial.LightingModel */
-  get phong(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 1256336038189318, undefined, []); },
+  get phong(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 1256336038189318, undefined, []); },
   /**
    * static let physicallyBased: SCNMaterial.LightingModel
    * @availability iOS 10.0+
    */
-  get physicallyBased(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 4482619988184994, undefined, []); },
+  get physicallyBased(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 4482619988184994, undefined, []); },
   /**
    * static let shadowOnly: SCNMaterial.LightingModel
    * @availability iOS 13.0+
    */
-  get shadowOnly(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 3451292283523676, undefined, []); },
+  get shadowOnly(): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 3451292283523676, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_0e503aef608672fa", 3344033203681813, undefined, [rawValue]); }
+  init(rawValue: string): SCNMaterial_LightingModel { return callSDK<SCNMaterial_LightingModel>("SceneKit_212edf3d13b127f5", 3344033203681813, undefined, [rawValue]); }
 };
 
 /** class SCNMaterialProperty */
 export class SCNMaterialProperty extends SDKHandle {
   /** convenience init(contents: Any) */
-  static init(contents: unknown): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 826584909279297, undefined, [contents]); }
+  static init(contents: unknown): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 826584909279297, undefined, [contents]); }
   /**
    * class func precomputedLightingEnvironmentContents(with data: Data) throws -> Any
    * @availability iOS 17.0+
    */
-  static precomputedLightingEnvironmentContentsWith(data: ArrayBuffer): unknown { return callSDK<unknown>("SceneKit_0e503aef608672fa", 2881458051758181, undefined, [data]); }
+  static precomputedLightingEnvironmentContentsWith(data: ArrayBuffer): unknown { return callSDK<unknown>("SceneKit_212edf3d13b127f5", 2881458051758181, undefined, [data]); }
   /**
    * class func precomputedLightingEnvironmentContents(with url: URL) throws -> Any
    * @availability iOS 17.0+
    */
-  static precomputedLightingEnvironmentContentsWith21998(url: string): unknown { return callSDK<unknown>("SceneKit_0e503aef608672fa", 4305060273521293, undefined, [url]); }
+  static precomputedLightingEnvironmentContentsWith21998(url: string): unknown { return callSDK<unknown>("SceneKit_212edf3d13b127f5", 4305060273521293, undefined, [url]); }
   /**
    * class func precomputedLightingEnvironmentData(forContents contents: Any, device: (any MTLDevice)?) throws -> Data
    * @availability iOS 17.0+
    */
-  static precomputedLightingEnvironmentData(contents: unknown, device?: (SDKHandle) | null): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_0e503aef608672fa", 3641866053383270, undefined, [contents, device]); }
+  static precomputedLightingEnvironmentData(contents: unknown, device?: (SDKHandle) | null): ArrayBuffer { return callSDK<ArrayBuffer>("SceneKit_212edf3d13b127f5", 3641866053383270, undefined, [contents, device]); }
   /**
    * var borderColor: Any? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 10.0
    */
-  get borderColor(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 84441950317280, this, []); }
-  set borderColor(value: (unknown) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 834980433194866, this, [value]); }
+  get borderColor(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 84441950317280, this, []); }
+  set borderColor(value: (unknown) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 834980433194866, this, [value]); }
   /** var contents: Any? { get set } */
-  get contents(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 197437532422638, this, []); }
-  set contents(value: (unknown) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 201866116310652, this, [value]); }
+  get contents(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 197437532422638, this, []); }
+  set contents(value: (unknown) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 201866116310652, this, [value]); }
   /** var contentsTransform: SCNMatrix4 { get set } */
-  get contentsTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 3516948904107092, this, []); }
-  set contentsTransform(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 532899667546680, this, [value]); }
+  get contentsTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 3516948904107092, this, []); }
+  set contentsTransform(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 532899667546680, this, [value]); }
   /** var intensity: CGFloat { get set } */
-  get intensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1578350624719693, this, []); }
-  set intensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 115992060680599, this, [value]); }
+  get intensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1578350624719693, this, []); }
+  set intensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 115992060680599, this, [value]); }
   /** var magnificationFilter: SCNFilterMode { get set } */
-  get magnificationFilter(): SCNFilterMode { return callSDK<SCNFilterMode>("SceneKit_0e503aef608672fa", 2173240262811597, this, []); }
-  set magnificationFilter(value: SCNFilterMode) { callSDK<void>("SceneKit_0e503aef608672fa", 2165665699522090, this, [value]); }
+  get magnificationFilter(): SCNFilterMode { return callSDK<SCNFilterMode>("SceneKit_212edf3d13b127f5", 2173240262811597, this, []); }
+  set magnificationFilter(value: SCNFilterMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 2165665699522090, this, [value]); }
   /** var mappingChannel: Int { get set } */
-  get mappingChannel(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 615233049838777, this, []); }
-  set mappingChannel(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 640974873324526, this, [value]); }
+  get mappingChannel(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 615233049838777, this, []); }
+  set mappingChannel(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 640974873324526, this, [value]); }
   /** var maxAnisotropy: CGFloat { get set } */
-  get maxAnisotropy(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3325846824590401, this, []); }
-  set maxAnisotropy(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4332989612890729, this, [value]); }
+  get maxAnisotropy(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3325846824590401, this, []); }
+  set maxAnisotropy(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4332989612890729, this, [value]); }
   /** var minificationFilter: SCNFilterMode { get set } */
-  get minificationFilter(): SCNFilterMode { return callSDK<SCNFilterMode>("SceneKit_0e503aef608672fa", 2181661791560322, this, []); }
-  set minificationFilter(value: SCNFilterMode) { callSDK<void>("SceneKit_0e503aef608672fa", 4282548453335102, this, [value]); }
+  get minificationFilter(): SCNFilterMode { return callSDK<SCNFilterMode>("SceneKit_212edf3d13b127f5", 2181661791560322, this, []); }
+  set minificationFilter(value: SCNFilterMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 4282548453335102, this, [value]); }
   /** var mipFilter: SCNFilterMode { get set } */
-  get mipFilter(): SCNFilterMode { return callSDK<SCNFilterMode>("SceneKit_0e503aef608672fa", 1670463393584631, this, []); }
-  set mipFilter(value: SCNFilterMode) { callSDK<void>("SceneKit_0e503aef608672fa", 3771338812160055, this, [value]); }
+  get mipFilter(): SCNFilterMode { return callSDK<SCNFilterMode>("SceneKit_212edf3d13b127f5", 1670463393584631, this, []); }
+  set mipFilter(value: SCNFilterMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 3771338812160055, this, [value]); }
   /**
    * var textureComponents: SCNColorMask { get set }
    * @availability iOS 11.0+
    */
-  get textureComponents(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_0e503aef608672fa", 544409413864000, this, []); }
-  set textureComponents(value: SCNColorMask) { callSDK<void>("SceneKit_0e503aef608672fa", 2514661702249961, this, [value]); }
+  get textureComponents(): SCNColorMask { return callSDK<SCNColorMask>("SceneKit_212edf3d13b127f5", 544409413864000, this, []); }
+  set textureComponents(value: SCNColorMask) { callSDK<void>("SceneKit_212edf3d13b127f5", 2514661702249961, this, [value]); }
   /** var wrapS: SCNWrapMode { get set } */
-  get wrapS(): SCNWrapMode { return callSDK<SCNWrapMode>("SceneKit_0e503aef608672fa", 466423968951294, this, []); }
-  set wrapS(value: SCNWrapMode) { callSDK<void>("SceneKit_0e503aef608672fa", 15808088954045, this, [value]); }
+  get wrapS(): SCNWrapMode { return callSDK<SCNWrapMode>("SceneKit_212edf3d13b127f5", 466423968951294, this, []); }
+  set wrapS(value: SCNWrapMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 15808088954045, this, [value]); }
   /** var wrapT: SCNWrapMode { get set } */
-  get wrapT(): SCNWrapMode { return callSDK<SCNWrapMode>("SceneKit_0e503aef608672fa", 3484834988360206, this, []); }
-  set wrapT(value: SCNWrapMode) { callSDK<void>("SceneKit_0e503aef608672fa", 365496559026658, this, [value]); }
+  get wrapT(): SCNWrapMode { return callSDK<SCNWrapMode>("SceneKit_212edf3d13b127f5", 3484834988360206, this, []); }
+  set wrapT(value: SCNWrapMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 365496559026658, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNMaterialProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "borderColor": true; "contents": true; "contentsTransform": true; "intensity": true; "magnificationFilter": true; "mappingChannel": true; "maxAnisotropy": true; "minificationFilter": true; "mipFilter": true; "textureComponents": true; "wrapS": true; "wrapT": true };
 }
@@ -2591,100 +2591,100 @@ export class SCNMaterialProperty extends SDKHandle {
 /** struct SCNMatrix4 */
 export class SCNMatrix4 extends SDKHandle {
   /** var m11: Float */
-  get m11(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 819915017874630, this, []); }
-  set m11(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3741488127464715, this, [value]); }
+  get m11(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 819915017874630, this, []); }
+  set m11(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3741488127464715, this, [value]); }
   /** var m12: Float */
-  get m12(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3743998650891852, this, []); }
-  set m12(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1297679066206028, this, [value]); }
+  get m12(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3743998650891852, this, []); }
+  set m12(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1297679066206028, this, [value]); }
   /** var m13: Float */
-  get m13(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1269624676630494, this, []); }
-  set m13(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4071043464808046, this, [value]); }
+  get m13(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1269624676630494, this, []); }
+  set m13(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4071043464808046, this, [value]); }
   /** var m14: Float */
-  get m14(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1810715967214635, this, []); }
-  set m14(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2184338033491568, this, [value]); }
+  get m14(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1810715967214635, this, []); }
+  set m14(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2184338033491568, this, [value]); }
   /** var m21: Float */
-  get m21(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3945656242381854, this, []); }
-  set m21(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 111737766637609, this, [value]); }
+  get m21(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3945656242381854, this, []); }
+  set m21(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 111737766637609, this, [value]); }
   /** var m22: Float */
-  get m22(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 681890236364268, this, []); }
-  set m22(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2383902007341125, this, [value]); }
+  get m22(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 681890236364268, this, []); }
+  set m22(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2383902007341125, this, [value]); }
   /** var m23: Float */
-  get m23(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1872312766936635, this, []); }
-  set m23(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2197295990303413, this, [value]); }
+  get m23(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1872312766936635, this, []); }
+  set m23(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2197295990303413, this, [value]); }
   /** var m24: Float */
-  get m24(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4303678861098219, this, []); }
-  set m24(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 203688411250691, this, [value]); }
+  get m24(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4303678861098219, this, []); }
+  set m24(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 203688411250691, this, [value]); }
   /** var m31: Float */
-  get m31(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1358908445169895, this, []); }
-  set m31(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1344977056647138, this, [value]); }
+  get m31(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1358908445169895, this, []); }
+  set m31(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1344977056647138, this, [value]); }
   /** var m32: Float */
-  get m32(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1315436602069398, this, []); }
-  set m32(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1388950751530295, this, [value]); }
+  get m32(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1315436602069398, this, []); }
+  set m32(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1388950751530295, this, [value]); }
   /** var m33: Float */
-  get m33(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1110520809218901, this, []); }
-  set m33(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1569537279567578, this, [value]); }
+  get m33(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1110520809218901, this, []); }
+  set m33(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1569537279567578, this, [value]); }
   /** var m34: Float */
-  get m34(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2606221127413205, this, []); }
-  set m34(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1876675259377736, this, [value]); }
+  get m34(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2606221127413205, this, []); }
+  set m34(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1876675259377736, this, [value]); }
   /** var m41: Float */
-  get m41(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1532510791222320, this, []); }
-  set m41(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3750056866458058, this, [value]); }
+  get m41(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1532510791222320, this, []); }
+  set m41(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3750056866458058, this, [value]); }
   /** var m42: Float */
-  get m42(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1673311115326729, this, []); }
-  set m42(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2161086759391336, this, [value]); }
+  get m42(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1673311115326729, this, []); }
+  set m42(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2161086759391336, this, [value]); }
   /** var m43: Float */
-  get m43(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 266778223948547, this, []); }
-  set m43(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4441034437893490, this, [value]); }
+  get m43(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 266778223948547, this, []); }
+  set m43(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4441034437893490, this, [value]); }
   /** var m44: Float */
-  get m44(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1543368325099965, this, []); }
-  set m44(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3739561299227067, this, [value]); }
+  get m44(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1543368325099965, this, []); }
+  set m44(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3739561299227067, this, [value]); }
   /** init(m11: Float, m12: Float, m13: Float, m14: Float, m21: Float, m22: Float, m23: Float, m24: Float, m31: Float, m32: Float, m33: Float, m34: Float, m41: Float, m42: Float, m43: Float, m44: Float) */
-  static initM11M12M13M14M21M22M23M24M31M32M33M34M41M42M43M44(m11: number, m12: number, m13: number, m14: number, m21: number, m22: number, m23: number, m24: number, m31: number, m32: number, m33: number, m34: number, m41: number, m42: number, m43: number, m44: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 1538453688568748, undefined, [m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44]); }
+  static initM11M12M13M14M21M22M23M24M31M32M33M34M41M42M43M44(m11: number, m12: number, m13: number, m14: number, m21: number, m22: number, m23: number, m24: number, m31: number, m32: number, m33: number, m34: number, m41: number, m42: number, m43: number, m44: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 1538453688568748, undefined, [m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44]); }
   /** init(_ m: float4x4) */
-  static init(m: SDKHandle): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 2429607362479643, undefined, [m]); }
+  static init(m: SDKHandle): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 2429607362479643, undefined, [m]); }
   /** init(_ m: double4x4) */
-  static init67618(m: SDKHandle): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 274576564330505, undefined, [m]); }
+  static init67618(m: SDKHandle): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 274576564330505, undefined, [m]); }
   /** init() */
-  static init14026(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 3961615758816260, undefined, []); }
+  static init14026(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 3961615758816260, undefined, []); }
   declare readonly $type: { "c:@S@SCNMatrix4": true };
 }
 
 /** class SCNMorpher */
 export class SCNMorpher extends SDKHandle {
   /** init() */
-  static init(): SCNMorpher { return callSDK<SCNMorpher>("SceneKit_0e503aef608672fa", 4049058412858981, undefined, []); }
+  static init(): SCNMorpher { return callSDK<SCNMorpher>("SceneKit_212edf3d13b127f5", 4049058412858981, undefined, []); }
   /** func setWeight(_ weight: CGFloat, forTargetAt targetIndex: Int) */
-  setWeightForTargetAt(weight: number, targetIndex: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3976550936096652, this, [weight, targetIndex]); }
+  setWeightForTargetAt(weight: number, targetIndex: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3976550936096652, this, [weight, targetIndex]); }
   /**
    * func setWeight(_ weight: CGFloat, forTargetNamed targetName: String)
    * @availability iOS 11.0+
    */
-  setWeightForTargetNamed(weight: number, targetName: string): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1428992794383807, this, [weight, targetName]); }
+  setWeightForTargetNamed(weight: number, targetName: string): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1428992794383807, this, [weight, targetName]); }
   /** func weight(forTargetAt targetIndex: Int) -> CGFloat */
-  weightForTargetAt(targetIndex: number): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1495816941651244, this, [targetIndex]); }
+  weightForTargetAt(targetIndex: number): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1495816941651244, this, [targetIndex]); }
   /**
    * func weight(forTargetNamed targetName: String) -> CGFloat
    * @availability iOS 11.0+
    */
-  weightForTargetNamed(targetName: string): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2508927209828887, this, [targetName]); }
+  weightForTargetNamed(targetName: string): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2508927209828887, this, [targetName]); }
   /** var calculationMode: SCNMorpherCalculationMode { get set } */
-  get calculationMode(): SCNMorpherCalculationMode { return callSDK<SCNMorpherCalculationMode>("SceneKit_0e503aef608672fa", 3341565181485507, this, []); }
-  set calculationMode(value: SCNMorpherCalculationMode) { callSDK<void>("SceneKit_0e503aef608672fa", 2950602599473025, this, [value]); }
+  get calculationMode(): SCNMorpherCalculationMode { return callSDK<SCNMorpherCalculationMode>("SceneKit_212edf3d13b127f5", 3341565181485507, this, []); }
+  set calculationMode(value: SCNMorpherCalculationMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 2950602599473025, this, [value]); }
   /** var targets: [SCNGeometry] { get set } */
-  get targets(): Array<SCNGeometry> { return callSDK<Array<SCNGeometry>>("SceneKit_0e503aef608672fa", 2869767652607447, this, []); }
-  set targets(value: Array<SCNGeometry>) { callSDK<void>("SceneKit_0e503aef608672fa", 441890508459322, this, [value]); }
+  get targets(): Array<SCNGeometry> { return callSDK<Array<SCNGeometry>>("SceneKit_212edf3d13b127f5", 2869767652607447, this, []); }
+  set targets(value: Array<SCNGeometry>) { callSDK<void>("SceneKit_212edf3d13b127f5", 441890508459322, this, [value]); }
   /**
    * var unifiesNormals: Bool { get set }
    * @availability iOS 11.0+
    */
-  get unifiesNormals(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1021738987096695, this, []); }
-  set unifiesNormals(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 243455841516964, this, [value]); }
+  get unifiesNormals(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1021738987096695, this, []); }
+  set unifiesNormals(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 243455841516964, this, [value]); }
   /**
    * var weights: [NSNumber] { get set }
    * @availability iOS 11.0+
    */
-  get weights(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("SceneKit_0e503aef608672fa", 2123134906456179, this, []); }
-  set weights(value: Array<_Foundation_NSNumber>) { callSDK<void>("SceneKit_0e503aef608672fa", 123889307383846, this, [value]); }
+  get weights(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("SceneKit_212edf3d13b127f5", 2123134906456179, this, []); }
+  set weights(value: Array<_Foundation_NSNumber>) { callSDK<void>("SceneKit_212edf3d13b127f5", 123889307383846, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNMorpher": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "calculationMode": true; "targets": true; "unifiesNormals": true; "weights": true };
 }
@@ -2694,7 +2694,7 @@ export type SCNMorpherCalculationMode = "normalized" | "additive";
 
 export const SCNMorpherCalculationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNMorpherCalculationMode) | null { return callSDK<(SCNMorpherCalculationMode) | null>("SceneKit_0e503aef608672fa", 3464756926586047, undefined, [rawValue]); }
+  init(rawValue: number): (SCNMorpherCalculationMode) | null { return callSDK<(SCNMorpherCalculationMode) | null>("SceneKit_212edf3d13b127f5", 3464756926586047, undefined, [rawValue]); }
 };
 
 /**
@@ -2708,391 +2708,391 @@ export const SCNMovabilityHint = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SCNMovabilityHint) | null { return callSDK<(SCNMovabilityHint) | null>("SceneKit_0e503aef608672fa", 1517898942487483, undefined, [rawValue]); }
+  init(rawValue: number): (SCNMovabilityHint) | null { return callSDK<(SCNMovabilityHint) | null>("SceneKit_212edf3d13b127f5", 1517898942487483, undefined, [rawValue]); }
 };
 
 /** class SCNNode */
 export class SCNNode extends SDKHandle {
   /** init(geometry: SCNGeometry?) */
-  static init(geometry?: (SCNGeometry) | null): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 3968370793930477, undefined, [geometry]); }
+  static init(geometry?: (SCNGeometry) | null): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 3968370793930477, undefined, [geometry]); }
   /**
    * class var localFront: SCNVector3 { get }
    * @availability iOS 11.0+
    */
-  static get localFront(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 160952770300063, undefined, []); }
+  static get localFront(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 160952770300063, undefined, []); }
   /**
    * class var localRight: SCNVector3 { get }
    * @availability iOS 11.0+
    */
-  static get localRight(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4272050408432751, undefined, []); }
+  static get localRight(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4272050408432751, undefined, []); }
   /**
    * class var localUp: SCNVector3 { get }
    * @availability iOS 11.0+
    */
-  static get localUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2505723259718199, undefined, []); }
+  static get localUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2505723259718199, undefined, []); }
   /**
    * class var simdLocalFront: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  static get simdLocalFront(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3173152278352097, undefined, []); }
+  static get simdLocalFront(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3173152278352097, undefined, []); }
   /**
    * class var simdLocalRight: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  static get simdLocalRight(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3818495523256322, undefined, []); }
+  static get simdLocalRight(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3818495523256322, undefined, []); }
   /**
    * class var simdLocalUp: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  static get simdLocalUp(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3047302119503088, undefined, []); }
+  static get simdLocalUp(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3047302119503088, undefined, []); }
   /**
    * func addAudioPlayer(_ player: SCNAudioPlayer)
    * @availability iOS 9.0+
    */
-  addAudioPlayer(player: SCNAudioPlayer): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4358995844633376, this, [player]); }
+  addAudioPlayer(player: SCNAudioPlayer): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4358995844633376, this, [player]); }
   /** func addChildNode(_ child: SCNNode) */
-  addChildNode(child: SCNNode): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3993728344439177, this, [child]); }
+  addChildNode(child: SCNNode): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3993728344439177, this, [child]); }
   /** func addParticleSystem(_ system: SCNParticleSystem) */
-  addParticleSystem(system: SCNParticleSystem): void { return callSDK<void>("SceneKit_0e503aef608672fa", 711480760458493, this, [system]); }
+  addParticleSystem(system: SCNParticleSystem): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 711480760458493, this, [system]); }
   /** func childNode(withName name: String, recursively: Bool) -> SCNNode? */
-  childNode(name: string, recursively: boolean): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 27353091767474, this, [name, recursively]); }
+  childNode(name: string, recursively: boolean): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 27353091767474, this, [name, recursively]); }
   /** func clone() -> Self */
-  clone(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 2241269706461214, this, []); }
+  clone(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 2241269706461214, this, []); }
   /** func convertPosition(_ position: SCNVector3, from node: SCNNode?) -> SCNVector3 */
-  convertPositionFrom(position: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1733415341493090, this, [position, node]); }
+  convertPositionFrom(position: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1733415341493090, this, [position, node]); }
   /** func convertPosition(_ position: SCNVector3, to node: SCNNode?) -> SCNVector3 */
-  convertPositionTo(position: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1320438413572998, this, [position, node]); }
+  convertPositionTo(position: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1320438413572998, this, [position, node]); }
   /** func convertTransform(_ transform: SCNMatrix4, from node: SCNNode?) -> SCNMatrix4 */
-  convertTransformFrom(transform: SCNMatrix4, node?: (SCNNode) | null): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 4175386790861063, this, [transform, node]); }
+  convertTransformFrom(transform: SCNMatrix4, node?: (SCNNode) | null): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 4175386790861063, this, [transform, node]); }
   /** func convertTransform(_ transform: SCNMatrix4, to node: SCNNode?) -> SCNMatrix4 */
-  convertTransformTo(transform: SCNMatrix4, node?: (SCNNode) | null): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 2988226251012924, this, [transform, node]); }
+  convertTransformTo(transform: SCNMatrix4, node?: (SCNNode) | null): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 2988226251012924, this, [transform, node]); }
   /**
    * func convertVector(_ vector: SCNVector3, from node: SCNNode?) -> SCNVector3
    * @availability iOS 11.0+
    */
-  convertVectorFrom(vector: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4263701111157126, this, [vector, node]); }
+  convertVectorFrom(vector: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4263701111157126, this, [vector, node]); }
   /**
    * func convertVector(_ vector: SCNVector3, to node: SCNNode?) -> SCNVector3
    * @availability iOS 11.0+
    */
-  convertVectorTo(vector: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1963390944848503, this, [vector, node]); }
+  convertVectorTo(vector: SCNVector3, node?: (SCNNode) | null): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1963390944848503, this, [vector, node]); }
   /** func enumerateChildNodes(_ block: (SCNNode, UnsafeMutablePointer<ObjCBool>) -> Void) */
-  enumerateChildNodes(block: $SDK36): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4349579739973328, this, [block], [{"callback":{"out":[1]}}], true); }
+  enumerateChildNodes(block: $SDK36): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4349579739973328, this, [block], [{"callback":{"out":[1]}}], true); }
   /**
    * func enumerateHierarchy(_ block: (SCNNode, UnsafeMutablePointer<ObjCBool>) -> Void)
    * @availability iOS 10.0+
    */
-  enumerateHierarchy(block: $SDK36): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1147806404439160, this, [block], [{"callback":{"out":[1]}}], true); }
+  enumerateHierarchy(block: $SDK36): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1147806404439160, this, [block], [{"callback":{"out":[1]}}], true); }
   /** func flattenedClone() -> Self */
-  flattenedClone(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 2158092138697981, this, []); }
+  flattenedClone(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 2158092138697981, this, []); }
   /** func hitTestWithSegment(from pointA: SCNVector3, to pointB: SCNVector3, options: [String : Any]? = nil) -> [SCNHitTestResult] */
-  hitTestWithSegment(pointA: SCNVector3, pointB: SCNVector3, options?: $SDK37): Array<SCNHitTestResult> { return callSDK<Array<SCNHitTestResult>>("SceneKit_0e503aef608672fa", 1444298849175186, this, [pointA, pointB, options]); }
+  hitTestWithSegment(pointA: SCNVector3, pointB: SCNVector3, options?: $SDK37): Array<SCNHitTestResult> { return callSDK<Array<SCNHitTestResult>>("SceneKit_212edf3d13b127f5", 1444298849175186, this, [pointA, pointB, options]); }
   /** func insertChildNode(_ child: SCNNode, at index: Int) */
-  insertChildNode(child: SCNNode, index: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3561196601617083, this, [child, index]); }
+  insertChildNode(child: SCNNode, index: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3561196601617083, this, [child, index]); }
   /**
    * func localRotate(by rotation: SCNQuaternion)
    * @availability iOS 11.0+
    */
-  localRotate(rotation: SCNVector4): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4169742098735476, this, [rotation]); }
+  localRotate(rotation: SCNVector4): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4169742098735476, this, [rotation]); }
   /**
    * func localTranslate(by translation: SCNVector3)
    * @availability iOS 11.0+
    */
-  localTranslate(translation: SCNVector3): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1738036650344385, this, [translation]); }
+  localTranslate(translation: SCNVector3): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1738036650344385, this, [translation]); }
   /**
    * func look(at worldTarget: SCNVector3)
    * @availability iOS 11.0+
    */
-  lookAt(worldTarget: SCNVector3): void { return callSDK<void>("SceneKit_0e503aef608672fa", 159383918801434, this, [worldTarget]); }
+  lookAt(worldTarget: SCNVector3): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 159383918801434, this, [worldTarget]); }
   /**
    * func look(at worldTarget: SCNVector3, up worldUp: SCNVector3, localFront: SCNVector3)
    * @availability iOS 11.0+
    */
-  lookAtUpLocalFront(worldTarget: SCNVector3, worldUp: SCNVector3, localFront: SCNVector3): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3647063098481271, this, [worldTarget, worldUp, localFront]); }
+  lookAtUpLocalFront(worldTarget: SCNVector3, worldUp: SCNVector3, localFront: SCNVector3): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3647063098481271, this, [worldTarget, worldUp, localFront]); }
   /**
    * func removeAllAudioPlayers()
    * @availability iOS 9.0+
    */
-  removeAllAudioPlayers(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4330990304777099, this, []); }
+  removeAllAudioPlayers(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4330990304777099, this, []); }
   /** func removeAllParticleSystems() */
-  removeAllParticleSystems(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3244622458340080, this, []); }
+  removeAllParticleSystems(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3244622458340080, this, []); }
   /**
    * func removeAudioPlayer(_ player: SCNAudioPlayer)
    * @availability iOS 9.0+
    */
-  removeAudioPlayer(player: SCNAudioPlayer): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3774453057907095, this, [player]); }
+  removeAudioPlayer(player: SCNAudioPlayer): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3774453057907095, this, [player]); }
   /** func removeFromParentNode() */
-  removeFromParentNode(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3648103331497626, this, []); }
+  removeFromParentNode(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3648103331497626, this, []); }
   /** func removeParticleSystem(_ system: SCNParticleSystem) */
-  removeParticleSystem(system: SCNParticleSystem): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1719644428465096, this, [system]); }
+  removeParticleSystem(system: SCNParticleSystem): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1719644428465096, this, [system]); }
   /** func replaceChildNode(_ oldChild: SCNNode, with newChild: SCNNode) */
-  replaceChildNode(oldChild: SCNNode, newChild: SCNNode): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3534854334205909, this, [oldChild, newChild]); }
+  replaceChildNode(oldChild: SCNNode, newChild: SCNNode): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3534854334205909, this, [oldChild, newChild]); }
   /**
    * func rotate(by worldRotation: SCNQuaternion, aroundTarget worldTarget: SCNVector3)
    * @availability iOS 11.0+
    */
-  rotate(worldRotation: SCNVector4, worldTarget: SCNVector3): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2918587977001566, this, [worldRotation, worldTarget]); }
+  rotate(worldRotation: SCNVector4, worldTarget: SCNVector3): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2918587977001566, this, [worldRotation, worldTarget]); }
   /**
    * func setWorldTransform(_ worldTransform: SCNMatrix4)
    * @availability iOS 11.0+
    */
-  setWorldTransform(worldTransform: SCNMatrix4): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1584185296719012, this, [worldTransform]); }
+  setWorldTransform(worldTransform: SCNMatrix4): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1584185296719012, this, [worldTransform]); }
   /**
    * func simdConvertPosition(_ position: simd_float3, from node: SCNNode?) -> simd_float3
    * @availability iOS 11.0+
    */
-  simdConvertPositionFrom(position: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3751535399348188, this, [position, node]); }
+  simdConvertPositionFrom(position: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3751535399348188, this, [position, node]); }
   /**
    * func simdConvertPosition(_ position: simd_float3, to node: SCNNode?) -> simd_float3
    * @availability iOS 11.0+
    */
-  simdConvertPositionTo(position: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3683639754251552, this, [position, node]); }
+  simdConvertPositionTo(position: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3683639754251552, this, [position, node]); }
   /**
    * func simdConvertTransform(_ transform: simd_float4x4, from node: SCNNode?) -> simd_float4x4
    * @availability iOS 11.0+
    */
-  simdConvertTransformFrom(transform: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2200119724464485, this, [transform, node]); }
+  simdConvertTransformFrom(transform: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2200119724464485, this, [transform, node]); }
   /**
    * func simdConvertTransform(_ transform: simd_float4x4, to node: SCNNode?) -> simd_float4x4
    * @availability iOS 11.0+
    */
-  simdConvertTransformTo(transform: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 892489444934807, this, [transform, node]); }
+  simdConvertTransformTo(transform: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 892489444934807, this, [transform, node]); }
   /**
    * func simdConvertVector(_ vector: simd_float3, from node: SCNNode?) -> simd_float3
    * @availability iOS 11.0+
    */
-  simdConvertVectorFrom(vector: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 111678658078226, this, [vector, node]); }
+  simdConvertVectorFrom(vector: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 111678658078226, this, [vector, node]); }
   /**
    * func simdConvertVector(_ vector: simd_float3, to node: SCNNode?) -> simd_float3
    * @availability iOS 11.0+
    */
-  simdConvertVectorTo(vector: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3643377176919465, this, [vector, node]); }
+  simdConvertVectorTo(vector: SDKHandle, node?: (SCNNode) | null): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3643377176919465, this, [vector, node]); }
   /**
    * func simdLocalRotate(by rotation: simd_quatf)
    * @availability iOS 11.0+
    */
-  simdLocalRotate(rotation: SDKHandle): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1850980954357716, this, [rotation]); }
+  simdLocalRotate(rotation: SDKHandle): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1850980954357716, this, [rotation]); }
   /**
    * func simdLocalTranslate(by translation: simd_float3)
    * @availability iOS 11.0+
    */
-  simdLocalTranslate(translation: SDKHandle): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2386013220518034, this, [translation]); }
+  simdLocalTranslate(translation: SDKHandle): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2386013220518034, this, [translation]); }
   /**
    * func simdLook(at worldTarget: simd_float3)
    * @availability iOS 11.0+
    */
-  simdLookAt(worldTarget: SDKHandle): void { return callSDK<void>("SceneKit_0e503aef608672fa", 672935009860510, this, [worldTarget]); }
+  simdLookAt(worldTarget: SDKHandle): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 672935009860510, this, [worldTarget]); }
   /**
    * func simdLook(at worldTarget: simd_float3, up worldUp: simd_float3, localFront: simd_float3)
    * @availability iOS 11.0+
    */
-  simdLookAtUpLocalFront(worldTarget: SDKHandle, worldUp: SDKHandle, localFront: SDKHandle): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2443175294845865, this, [worldTarget, worldUp, localFront]); }
+  simdLookAtUpLocalFront(worldTarget: SDKHandle, worldUp: SDKHandle, localFront: SDKHandle): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2443175294845865, this, [worldTarget, worldUp, localFront]); }
   /**
    * func simdRotate(by worldRotation: simd_quatf, aroundTarget worldTarget: simd_float3)
    * @availability iOS 11.0+
    */
-  simdRotate(worldRotation: SDKHandle, worldTarget: SDKHandle): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3748221429496146, this, [worldRotation, worldTarget]); }
+  simdRotate(worldRotation: SDKHandle, worldTarget: SDKHandle): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3748221429496146, this, [worldRotation, worldTarget]); }
   /**
    * var audioPlayers: [SCNAudioPlayer] { get }
    * @availability iOS 9.0+
    */
-  get audioPlayers(): Array<SCNAudioPlayer> { return callSDK<Array<SCNAudioPlayer>>("SceneKit_0e503aef608672fa", 2565215681397128, this, []); }
+  get audioPlayers(): Array<SCNAudioPlayer> { return callSDK<Array<SCNAudioPlayer>>("SceneKit_212edf3d13b127f5", 2565215681397128, this, []); }
   /** var camera: SCNCamera? { get set } */
-  get camera(): (SCNCamera) | null { return callSDK<(SCNCamera) | null>("SceneKit_0e503aef608672fa", 2339760721733990, this, []); }
-  set camera(value: (SCNCamera) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2693291874997764, this, [value]); }
+  get camera(): (SCNCamera) | null { return callSDK<(SCNCamera) | null>("SceneKit_212edf3d13b127f5", 2339760721733990, this, []); }
+  set camera(value: (SCNCamera) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2693291874997764, this, [value]); }
   /** var castsShadow: Bool { get set } */
-  get castsShadow(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 762141584899959, this, []); }
-  set castsShadow(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4051893243928363, this, [value]); }
+  get castsShadow(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 762141584899959, this, []); }
+  set castsShadow(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4051893243928363, this, [value]); }
   /** var categoryBitMask: Int { get set } */
-  get categoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1454617291520416, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1187910108045501, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1454617291520416, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1187910108045501, this, [value]); }
   /** var childNodes: [SCNNode] { get } */
-  get childNodes(): Array<SCNNode> { return callSDK<Array<SCNNode>>("SceneKit_0e503aef608672fa", 3784364590444400, this, []); }
+  get childNodes(): Array<SCNNode> { return callSDK<Array<SCNNode>>("SceneKit_212edf3d13b127f5", 3784364590444400, this, []); }
   /** var constraints: [SCNConstraint]? { get set } */
-  get constraints(): (Array<SCNConstraint>) | null { return callSDK<(Array<SCNConstraint>) | null>("SceneKit_0e503aef608672fa", 2726407034333671, this, []); }
-  set constraints(value: (Array<SCNConstraint>) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 208998488539813, this, [value]); }
+  get constraints(): (Array<SCNConstraint>) | null { return callSDK<(Array<SCNConstraint>) | null>("SceneKit_212edf3d13b127f5", 2726407034333671, this, []); }
+  set constraints(value: (Array<SCNConstraint>) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 208998488539813, this, [value]); }
   /** var eulerAngles: SCNVector3 { get set } */
-  get eulerAngles(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3041136752511202, this, []); }
-  set eulerAngles(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1286070073264340, this, [value]); }
+  get eulerAngles(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3041136752511202, this, []); }
+  set eulerAngles(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1286070073264340, this, [value]); }
   /** var filters: [CIFilter]? { get set } */
-  get filters(): $SDK39 { return callSDK<$SDK39>("SceneKit_0e503aef608672fa", 4145406552424971, this, []); }
-  set filters(value: $SDK39) { callSDK<void>("SceneKit_0e503aef608672fa", 1926187660801822, this, [value]); }
+  get filters(): $SDK39 { return callSDK<$SDK39>("SceneKit_212edf3d13b127f5", 4145406552424971, this, []); }
+  set filters(value: $SDK39) { callSDK<void>("SceneKit_212edf3d13b127f5", 1926187660801822, this, [value]); }
   /**
    * var focusBehavior: SCNNodeFocusBehavior { get set }
    * @availability iOS 11.0+
    */
-  get focusBehavior(): SCNNodeFocusBehavior { return callSDK<SCNNodeFocusBehavior>("SceneKit_0e503aef608672fa", 2091282074520869, this, []); }
-  set focusBehavior(value: SCNNodeFocusBehavior) { callSDK<void>("SceneKit_0e503aef608672fa", 4374628339700613, this, [value]); }
+  get focusBehavior(): SCNNodeFocusBehavior { return callSDK<SCNNodeFocusBehavior>("SceneKit_212edf3d13b127f5", 2091282074520869, this, []); }
+  set focusBehavior(value: SCNNodeFocusBehavior) { callSDK<void>("SceneKit_212edf3d13b127f5", 4374628339700613, this, [value]); }
   /** var geometry: SCNGeometry? { get set } */
-  get geometry(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_0e503aef608672fa", 3903322600268479, this, []); }
-  set geometry(value: (SCNGeometry) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4230453652682092, this, [value]); }
+  get geometry(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_212edf3d13b127f5", 3903322600268479, this, []); }
+  set geometry(value: (SCNGeometry) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4230453652682092, this, [value]); }
   /** var isHidden: Bool { get set } */
-  get isHidden(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 670810592825438, this, []); }
-  set isHidden(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 4013155931016683, this, [value]); }
+  get isHidden(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 670810592825438, this, []); }
+  set isHidden(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 4013155931016683, this, [value]); }
   /** var light: SCNLight? { get set } */
-  get light(): (SCNLight) | null { return callSDK<(SCNLight) | null>("SceneKit_0e503aef608672fa", 137375142193288, this, []); }
-  set light(value: (SCNLight) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2778961466341475, this, [value]); }
+  get light(): (SCNLight) | null { return callSDK<(SCNLight) | null>("SceneKit_212edf3d13b127f5", 137375142193288, this, []); }
+  set light(value: (SCNLight) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2778961466341475, this, [value]); }
   /** var morpher: SCNMorpher? { get set } */
-  get morpher(): (SCNMorpher) | null { return callSDK<(SCNMorpher) | null>("SceneKit_0e503aef608672fa", 2714480527746330, this, []); }
-  set morpher(value: (SCNMorpher) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1527210525900142, this, [value]); }
+  get morpher(): (SCNMorpher) | null { return callSDK<(SCNMorpher) | null>("SceneKit_212edf3d13b127f5", 2714480527746330, this, []); }
+  set morpher(value: (SCNMorpher) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1527210525900142, this, [value]); }
   /**
    * var movabilityHint: SCNMovabilityHint { get set }
    * @availability iOS 10.0+
    */
-  get movabilityHint(): SCNMovabilityHint { return callSDK<SCNMovabilityHint>("SceneKit_0e503aef608672fa", 1939158138947470, this, []); }
-  set movabilityHint(value: SCNMovabilityHint) { callSDK<void>("SceneKit_0e503aef608672fa", 1010628318788986, this, [value]); }
+  get movabilityHint(): SCNMovabilityHint { return callSDK<SCNMovabilityHint>("SceneKit_212edf3d13b127f5", 1939158138947470, this, []); }
+  set movabilityHint(value: SCNMovabilityHint) { callSDK<void>("SceneKit_212edf3d13b127f5", 1010628318788986, this, [value]); }
   /** var name: String? { get set } */
-  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 1420312249061667, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 196947637510320, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 1420312249061667, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 196947637510320, this, [value]); }
   /** var opacity: CGFloat { get set } */
-  get opacity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4437864431590874, this, []); }
-  set opacity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 520506647670048, this, [value]); }
+  get opacity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4437864431590874, this, []); }
+  set opacity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 520506647670048, this, [value]); }
   /** var orientation: SCNQuaternion { get set } */
-  get orientation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 4052322738082003, this, []); }
-  set orientation(value: SCNVector4) { callSDK<void>("SceneKit_0e503aef608672fa", 2625151212776577, this, [value]); }
+  get orientation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 4052322738082003, this, []); }
+  set orientation(value: SCNVector4) { callSDK<void>("SceneKit_212edf3d13b127f5", 2625151212776577, this, [value]); }
   /** var parent: SCNNode? { get } */
-  get parent(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 1682725623628466, this, []); }
+  get parent(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 1682725623628466, this, []); }
   /** var particleSystems: [SCNParticleSystem]? { get } */
-  get particleSystems(): $SDK40 { return callSDK<$SDK40>("SceneKit_0e503aef608672fa", 1058816323482614, this, []); }
+  get particleSystems(): $SDK40 { return callSDK<$SDK40>("SceneKit_212edf3d13b127f5", 1058816323482614, this, []); }
   /** var isPaused: Bool { get set } */
-  get isPaused(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1260275903137757, this, []); }
-  set isPaused(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1368617754772130, this, [value]); }
+  get isPaused(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1260275903137757, this, []); }
+  set isPaused(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1368617754772130, this, [value]); }
   /** var physicsBody: SCNPhysicsBody? { get set } */
-  get physicsBody(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_0e503aef608672fa", 2898767850802143, this, []); }
-  set physicsBody(value: (SCNPhysicsBody) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1093954420055263, this, [value]); }
+  get physicsBody(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_212edf3d13b127f5", 2898767850802143, this, []); }
+  set physicsBody(value: (SCNPhysicsBody) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1093954420055263, this, [value]); }
   /** var physicsField: SCNPhysicsField? { get set } */
-  get physicsField(): (SCNPhysicsField) | null { return callSDK<(SCNPhysicsField) | null>("SceneKit_0e503aef608672fa", 1261068782386270, this, []); }
-  set physicsField(value: (SCNPhysicsField) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4235182348904523, this, [value]); }
+  get physicsField(): (SCNPhysicsField) | null { return callSDK<(SCNPhysicsField) | null>("SceneKit_212edf3d13b127f5", 1261068782386270, this, []); }
+  set physicsField(value: (SCNPhysicsField) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4235182348904523, this, [value]); }
   /** var pivot: SCNMatrix4 { get set } */
-  get pivot(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 2855217808577982, this, []); }
-  set pivot(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 2043825474166652, this, [value]); }
+  get pivot(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 2855217808577982, this, []); }
+  set pivot(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 2043825474166652, this, [value]); }
   /** var position: SCNVector3 { get set } */
-  get position(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1100291095966959, this, []); }
-  set position(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 2995381513623957, this, [value]); }
+  get position(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1100291095966959, this, []); }
+  set position(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 2995381513623957, this, [value]); }
   /** var presentation: SCNNode { get } */
-  get presentation(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 4347537987936966, this, []); }
+  get presentation(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 4347537987936966, this, []); }
   /** unowned(unsafe) var rendererDelegate: (any SCNNodeRendererDelegate)? { get set } */
-  get rendererDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_0e503aef608672fa", 4117117684301507, this, []); }
-  set rendererDelegate(value: (Implements<SCNNodeRendererDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 769158781401013, this, [value], [{"protocol":"c:objc(pl)SCNNodeRendererDelegate"}]); }
+  get rendererDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_212edf3d13b127f5", 4117117684301507, this, []); }
+  set rendererDelegate(value: (Implements<SCNNodeRendererDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 769158781401013, this, [value], [{"protocol":"c:objc(pl)SCNNodeRendererDelegate"}]); }
   /** var renderingOrder: Int { get set } */
-  get renderingOrder(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1194844965623641, this, []); }
-  set renderingOrder(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1560957481607536, this, [value]); }
+  get renderingOrder(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1194844965623641, this, []); }
+  set renderingOrder(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1560957481607536, this, [value]); }
   /** var rotation: SCNVector4 { get set } */
-  get rotation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 4143463427812876, this, []); }
-  set rotation(value: SCNVector4) { callSDK<void>("SceneKit_0e503aef608672fa", 1906312632709703, this, [value]); }
+  get rotation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 4143463427812876, this, []); }
+  set rotation(value: SCNVector4) { callSDK<void>("SceneKit_212edf3d13b127f5", 1906312632709703, this, [value]); }
   /** var scale: SCNVector3 { get set } */
-  get scale(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1495023091255401, this, []); }
-  set scale(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 2901799839886850, this, [value]); }
+  get scale(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1495023091255401, this, []); }
+  set scale(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 2901799839886850, this, [value]); }
   /**
    * var simdEulerAngles: simd_float3 { get set }
    * @availability iOS 11.0+
    */
-  get simdEulerAngles(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 110323336835243, this, []); }
-  set simdEulerAngles(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 3964262792307710, this, [value]); }
+  get simdEulerAngles(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 110323336835243, this, []); }
+  set simdEulerAngles(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 3964262792307710, this, [value]); }
   /**
    * var simdOrientation: simd_quatf { get set }
    * @availability iOS 11.0+
    */
-  get simdOrientation(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2185632330482914, this, []); }
-  set simdOrientation(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 890798708781569, this, [value]); }
+  get simdOrientation(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2185632330482914, this, []); }
+  set simdOrientation(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 890798708781569, this, [value]); }
   /**
    * var simdPivot: simd_float4x4 { get set }
    * @availability iOS 11.0+
    */
-  get simdPivot(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2496293265319657, this, []); }
-  set simdPivot(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 1745376707869661, this, [value]); }
+  get simdPivot(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2496293265319657, this, []); }
+  set simdPivot(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 1745376707869661, this, [value]); }
   /**
    * var simdPosition: simd_float3 { get set }
    * @availability iOS 11.0+
    */
-  get simdPosition(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 4098466390553245, this, []); }
-  set simdPosition(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 3563717847389133, this, [value]); }
+  get simdPosition(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 4098466390553245, this, []); }
+  set simdPosition(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 3563717847389133, this, [value]); }
   /**
    * var simdRotation: simd_float4 { get set }
    * @availability iOS 11.0+
    */
-  get simdRotation(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 626556041408520, this, []); }
-  set simdRotation(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 3589198977624867, this, [value]); }
+  get simdRotation(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 626556041408520, this, []); }
+  set simdRotation(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 3589198977624867, this, [value]); }
   /**
    * var simdScale: simd_float3 { get set }
    * @availability iOS 11.0+
    */
-  get simdScale(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3019784936315896, this, []); }
-  set simdScale(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 3667210435434080, this, [value]); }
+  get simdScale(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3019784936315896, this, []); }
+  set simdScale(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 3667210435434080, this, [value]); }
   /**
    * var simdTransform: simd_float4x4 { get set }
    * @availability iOS 11.0+
    */
-  get simdTransform(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1482035752417735, this, []); }
-  set simdTransform(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 2653417211214758, this, [value]); }
+  get simdTransform(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1482035752417735, this, []); }
+  set simdTransform(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 2653417211214758, this, [value]); }
   /**
    * var simdWorldFront: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  get simdWorldFront(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2583422580085872, this, []); }
+  get simdWorldFront(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2583422580085872, this, []); }
   /**
    * var simdWorldOrientation: simd_quatf { get set }
    * @availability iOS 11.0+
    */
-  get simdWorldOrientation(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3183172681067466, this, []); }
-  set simdWorldOrientation(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 2825658415693900, this, [value]); }
+  get simdWorldOrientation(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3183172681067466, this, []); }
+  set simdWorldOrientation(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 2825658415693900, this, [value]); }
   /**
    * var simdWorldPosition: simd_float3 { get set }
    * @availability iOS 11.0+
    */
-  get simdWorldPosition(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 146927194167313, this, []); }
-  set simdWorldPosition(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 3838590845595984, this, [value]); }
+  get simdWorldPosition(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 146927194167313, this, []); }
+  set simdWorldPosition(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 3838590845595984, this, [value]); }
   /**
    * var simdWorldRight: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  get simdWorldRight(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2832563163417778, this, []); }
+  get simdWorldRight(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2832563163417778, this, []); }
   /**
    * var simdWorldTransform: simd_float4x4 { get set }
    * @availability iOS 11.0+
    */
-  get simdWorldTransform(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1070856014521920, this, []); }
-  set simdWorldTransform(value: SDKHandle) { callSDK<void>("SceneKit_0e503aef608672fa", 1276982452571435, this, [value]); }
+  get simdWorldTransform(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1070856014521920, this, []); }
+  set simdWorldTransform(value: SDKHandle) { callSDK<void>("SceneKit_212edf3d13b127f5", 1276982452571435, this, [value]); }
   /**
    * var simdWorldUp: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  get simdWorldUp(): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 625912234316802, this, []); }
+  get simdWorldUp(): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 625912234316802, this, []); }
   /** var skinner: SCNSkinner? { get set } */
-  get skinner(): (SCNSkinner) | null { return callSDK<(SCNSkinner) | null>("SceneKit_0e503aef608672fa", 3554300626938965, this, []); }
-  set skinner(value: (SCNSkinner) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3847086805045269, this, [value]); }
+  get skinner(): (SCNSkinner) | null { return callSDK<(SCNSkinner) | null>("SceneKit_212edf3d13b127f5", 3554300626938965, this, []); }
+  set skinner(value: (SCNSkinner) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3847086805045269, this, [value]); }
   /** var transform: SCNMatrix4 { get set } */
-  get transform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 4377312359871786, this, []); }
-  set transform(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 1983136471022824, this, [value]); }
+  get transform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 4377312359871786, this, []); }
+  set transform(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 1983136471022824, this, [value]); }
   /**
    * var worldFront: SCNVector3 { get }
    * @availability iOS 11.0+
    */
-  get worldFront(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3921628048897907, this, []); }
+  get worldFront(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3921628048897907, this, []); }
   /**
    * var worldOrientation: SCNQuaternion { get set }
    * @availability iOS 11.0+
    */
-  get worldOrientation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 2489512366103789, this, []); }
-  set worldOrientation(value: SCNVector4) { callSDK<void>("SceneKit_0e503aef608672fa", 772732684087628, this, [value]); }
+  get worldOrientation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 2489512366103789, this, []); }
+  set worldOrientation(value: SCNVector4) { callSDK<void>("SceneKit_212edf3d13b127f5", 772732684087628, this, [value]); }
   /**
    * var worldPosition: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get worldPosition(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 175942402547563, this, []); }
-  set worldPosition(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1082485728031037, this, [value]); }
+  get worldPosition(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 175942402547563, this, []); }
+  set worldPosition(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1082485728031037, this, [value]); }
   /**
    * var worldRight: SCNVector3 { get }
    * @availability iOS 11.0+
    */
-  get worldRight(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2497664312965708, this, []); }
+  get worldRight(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2497664312965708, this, []); }
   /** var worldTransform: SCNMatrix4 { get } */
-  get worldTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 1581222565349550, this, []); }
+  get worldTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 1581222565349550, this, []); }
   /**
    * var worldUp: SCNVector3 { get }
    * @availability iOS 11.0+
    */
-  get worldUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 553386621255246, this, []); }
+  get worldUp(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 553386621255246, this, []); }
   declare readonly $type: { "c:objc(cs)SCNNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioPlayers": true; "camera": true; "castsShadow": true; "categoryBitMask": true; "childNodes": true; "constraints": true; "eulerAngles": true; "filters": true; "focusBehavior": true; "geometry": true; "isHidden": true; "light": true; "morpher": true; "movabilityHint": true; "name": true; "opacity": true; "orientation": true; "parent": true; "particleSystems": true; "isPaused": true; "physicsBody": true; "physicsField": true; "pivot": true; "position": true; "presentation": true; "rendererDelegate": true; "renderingOrder": true; "rotation": true; "scale": true; "simdEulerAngles": true; "simdOrientation": true; "simdPivot": true; "simdPosition": true; "simdRotation": true; "simdScale": true; "simdTransform": true; "simdWorldFront": true; "simdWorldOrientation": true; "simdWorldPosition": true; "simdWorldRight": true; "simdWorldTransform": true; "simdWorldUp": true; "skinner": true; "transform": true; "worldFront": true; "worldOrientation": true; "worldPosition": true; "worldRight": true; "worldTransform": true; "worldUp": true };
 }
@@ -3108,7 +3108,7 @@ export const SCNNodeFocusBehavior = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SCNNodeFocusBehavior) | null { return callSDK<(SCNNodeFocusBehavior) | null>("SceneKit_0e503aef608672fa", 2880826016342361, undefined, [rawValue]); }
+  init(rawValue: number): (SCNNodeFocusBehavior) | null { return callSDK<(SCNNodeFocusBehavior) | null>("SceneKit_212edf3d13b127f5", 2880826016342361, undefined, [rawValue]); }
 };
 
 /** protocol SCNNodeRendererDelegate : NSObjectProtocol */
@@ -3122,7 +3122,7 @@ export type SCNParticleBirthDirection = "constant" | "surfaceNormal" | "random";
 
 export const SCNParticleBirthDirection = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleBirthDirection) | null { return callSDK<(SCNParticleBirthDirection) | null>("SceneKit_0e503aef608672fa", 1333636424771259, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleBirthDirection) | null { return callSDK<(SCNParticleBirthDirection) | null>("SceneKit_212edf3d13b127f5", 1333636424771259, undefined, [rawValue]); }
 };
 
 /** enum SCNParticleBirthLocation */
@@ -3130,7 +3130,7 @@ export type SCNParticleBirthLocation = "surface" | "volume" | "vertex";
 
 export const SCNParticleBirthLocation = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleBirthLocation) | null { return callSDK<(SCNParticleBirthLocation) | null>("SceneKit_0e503aef608672fa", 2265783912371826, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleBirthLocation) | null { return callSDK<(SCNParticleBirthLocation) | null>("SceneKit_212edf3d13b127f5", 2265783912371826, undefined, [rawValue]); }
 };
 
 /** enum SCNParticleBlendMode */
@@ -3138,7 +3138,7 @@ export type SCNParticleBlendMode = "additive" | "subtract" | "multiply" | "scree
 
 export const SCNParticleBlendMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleBlendMode) | null { return callSDK<(SCNParticleBlendMode) | null>("SceneKit_0e503aef608672fa", 3047239568983989, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleBlendMode) | null { return callSDK<(SCNParticleBlendMode) | null>("SceneKit_212edf3d13b127f5", 3047239568983989, undefined, [rawValue]); }
 };
 
 /** enum SCNParticleEvent */
@@ -3146,7 +3146,7 @@ export type SCNParticleEvent = "birth" | "death" | "collision";
 
 export const SCNParticleEvent = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleEvent) | null { return callSDK<(SCNParticleEvent) | null>("SceneKit_0e503aef608672fa", 4052537559622314, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleEvent) | null { return callSDK<(SCNParticleEvent) | null>("SceneKit_212edf3d13b127f5", 4052537559622314, undefined, [rawValue]); }
 };
 
 /** typealias SCNParticleEventBlock = (UnsafeMutablePointer<UnsafeMutableRawPointer>, UnsafeMutablePointer<Int>, UnsafeMutablePointer<UInt32>?, Int) -> Void */
@@ -3157,7 +3157,7 @@ export type SCNParticleImageSequenceAnimationMode = "repeat" | "clamp" | "autoRe
 
 export const SCNParticleImageSequenceAnimationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleImageSequenceAnimationMode) | null { return callSDK<(SCNParticleImageSequenceAnimationMode) | null>("SceneKit_0e503aef608672fa", 1534286704234073, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleImageSequenceAnimationMode) | null { return callSDK<(SCNParticleImageSequenceAnimationMode) | null>("SceneKit_212edf3d13b127f5", 1534286704234073, undefined, [rawValue]); }
 };
 
 /** enum SCNParticleInputMode */
@@ -3165,7 +3165,7 @@ export type SCNParticleInputMode = "overLife" | "overDistance" | "overOtherPrope
 
 export const SCNParticleInputMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleInputMode) | null { return callSDK<(SCNParticleInputMode) | null>("SceneKit_0e503aef608672fa", 3982739076712343, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleInputMode) | null { return callSDK<(SCNParticleInputMode) | null>("SceneKit_212edf3d13b127f5", 3982739076712343, undefined, [rawValue]); }
 };
 
 /** typealias SCNParticleModifierBlock = (UnsafeMutablePointer<UnsafeMutableRawPointer>, UnsafeMutablePointer<Int>, Int, Int, Float) -> Void */
@@ -3176,7 +3176,7 @@ export type SCNParticleModifierStage = "preDynamics" | "postDynamics" | "preColl
 
 export const SCNParticleModifierStage = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleModifierStage) | null { return callSDK<(SCNParticleModifierStage) | null>("SceneKit_0e503aef608672fa", 3888813668920698, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleModifierStage) | null { return callSDK<(SCNParticleModifierStage) | null>("SceneKit_212edf3d13b127f5", 3888813668920698, undefined, [rawValue]); }
 };
 
 /** enum SCNParticleOrientationMode */
@@ -3184,31 +3184,31 @@ export type SCNParticleOrientationMode = "billboardScreenAligned" | "billboardVi
 
 export const SCNParticleOrientationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleOrientationMode) | null { return callSDK<(SCNParticleOrientationMode) | null>("SceneKit_0e503aef608672fa", 3210247723723721, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleOrientationMode) | null { return callSDK<(SCNParticleOrientationMode) | null>("SceneKit_212edf3d13b127f5", 3210247723723721, undefined, [rawValue]); }
 };
 
 /** class SCNParticlePropertyController */
 export class SCNParticlePropertyController extends SDKHandle {
   /** convenience init(animation: CAAnimation) */
-  static init(animation: _QuartzCore_CAAnimation): SCNParticlePropertyController { return callSDK<SCNParticlePropertyController>("SceneKit_0e503aef608672fa", 2060983882807532, undefined, [animation]); }
+  static init(animation: _QuartzCore_CAAnimation): SCNParticlePropertyController { return callSDK<SCNParticlePropertyController>("SceneKit_212edf3d13b127f5", 2060983882807532, undefined, [animation]); }
   /** var animation: CAAnimation { get set } */
-  get animation(): _QuartzCore_CAAnimation { return callSDK<_QuartzCore_CAAnimation>("SceneKit_0e503aef608672fa", 794513404179436, this, []); }
-  set animation(value: _QuartzCore_CAAnimation) { callSDK<void>("SceneKit_0e503aef608672fa", 999254547689756, this, [value]); }
+  get animation(): _QuartzCore_CAAnimation { return callSDK<_QuartzCore_CAAnimation>("SceneKit_212edf3d13b127f5", 794513404179436, this, []); }
+  set animation(value: _QuartzCore_CAAnimation) { callSDK<void>("SceneKit_212edf3d13b127f5", 999254547689756, this, [value]); }
   /** var inputBias: CGFloat { get set } */
-  get inputBias(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1253451195670069, this, []); }
-  set inputBias(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1682000220796908, this, [value]); }
+  get inputBias(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1253451195670069, this, []); }
+  set inputBias(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1682000220796908, this, [value]); }
   /** var inputMode: SCNParticleInputMode { get set } */
-  get inputMode(): SCNParticleInputMode { return callSDK<SCNParticleInputMode>("SceneKit_0e503aef608672fa", 3907305121643253, this, []); }
-  set inputMode(value: SCNParticleInputMode) { callSDK<void>("SceneKit_0e503aef608672fa", 3467878124780548, this, [value]); }
+  get inputMode(): SCNParticleInputMode { return callSDK<SCNParticleInputMode>("SceneKit_212edf3d13b127f5", 3907305121643253, this, []); }
+  set inputMode(value: SCNParticleInputMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 3467878124780548, this, [value]); }
   /** weak var inputOrigin: SCNNode? { get set } */
-  get inputOrigin(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 2268356272843071, this, []); }
-  set inputOrigin(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4392419850077524, this, [value]); }
+  get inputOrigin(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 2268356272843071, this, []); }
+  set inputOrigin(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4392419850077524, this, [value]); }
   /** var inputProperty: SCNParticleSystem.ParticleProperty? { get set } */
-  get inputProperty(): $SDK45 { return callSDK<$SDK45>("SceneKit_0e503aef608672fa", 2866311133210159, this, []); }
-  set inputProperty(value: $SDK45) { callSDK<void>("SceneKit_0e503aef608672fa", 3510294495074655, this, [value]); }
+  get inputProperty(): $SDK45 { return callSDK<$SDK45>("SceneKit_212edf3d13b127f5", 2866311133210159, this, []); }
+  set inputProperty(value: $SDK45) { callSDK<void>("SceneKit_212edf3d13b127f5", 3510294495074655, this, [value]); }
   /** var inputScale: CGFloat { get set } */
-  get inputScale(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2906124217388504, this, []); }
-  set inputScale(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4125601268525672, this, [value]); }
+  get inputScale(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2906124217388504, this, []); }
+  set inputScale(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4125601268525672, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNParticlePropertyController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animation": true; "inputBias": true; "inputMode": true; "inputOrigin": true; "inputProperty": true; "inputScale": true };
 }
@@ -3218,223 +3218,223 @@ export type SCNParticleSortingMode = "none" | "projectedDepth" | "distance" | "o
 
 export const SCNParticleSortingMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNParticleSortingMode) | null { return callSDK<(SCNParticleSortingMode) | null>("SceneKit_0e503aef608672fa", 3855517505692141, undefined, [rawValue]); }
+  init(rawValue: number): (SCNParticleSortingMode) | null { return callSDK<(SCNParticleSortingMode) | null>("SceneKit_212edf3d13b127f5", 3855517505692141, undefined, [rawValue]); }
 };
 
 /** class SCNParticleSystem */
 export class SCNParticleSystem extends SDKHandle {
   /** convenience init?(named name: String, inDirectory directory: String?) */
-  static init(name: string, directory?: (string) | null): (SCNParticleSystem) | null { return callSDK<(SCNParticleSystem) | null>("SceneKit_0e503aef608672fa", 279397899855581, undefined, [name, directory]); }
+  static init(name: string, directory?: (string) | null): (SCNParticleSystem) | null { return callSDK<(SCNParticleSystem) | null>("SceneKit_212edf3d13b127f5", 279397899855581, undefined, [name, directory]); }
   /** func removeAllModifiers() */
-  removeAllModifiers(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 798999872940064, this, []); }
+  removeAllModifiers(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 798999872940064, this, []); }
   /** func removeModifiers(at stage: SCNParticleModifierStage) */
-  removeModifiers(stage: SCNParticleModifierStage): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4447860239437343, this, [stage]); }
+  removeModifiers(stage: SCNParticleModifierStage): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4447860239437343, this, [stage]); }
   /** func reset() */
-  reset(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4185140446312355, this, []); }
+  reset(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4185140446312355, this, []); }
   /** var acceleration: SCNVector3 { get set } */
-  get acceleration(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3243554344810018, this, []); }
-  set acceleration(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1704651167023697, this, [value]); }
+  get acceleration(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3243554344810018, this, []); }
+  set acceleration(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1704651167023697, this, [value]); }
   /** var isAffectedByGravity: Bool { get set } */
-  get isAffectedByGravity(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2639726465553413, this, []); }
-  set isAffectedByGravity(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1236546728432121, this, [value]); }
+  get isAffectedByGravity(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2639726465553413, this, []); }
+  set isAffectedByGravity(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1236546728432121, this, [value]); }
   /** var isAffectedByPhysicsFields: Bool { get set } */
-  get isAffectedByPhysicsFields(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 4137426730882899, this, []); }
-  set isAffectedByPhysicsFields(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 751779120317749, this, [value]); }
+  get isAffectedByPhysicsFields(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 4137426730882899, this, []); }
+  set isAffectedByPhysicsFields(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 751779120317749, this, [value]); }
   /** var birthDirection: SCNParticleBirthDirection { get set } */
-  get birthDirection(): SCNParticleBirthDirection { return callSDK<SCNParticleBirthDirection>("SceneKit_0e503aef608672fa", 2698978931347447, this, []); }
-  set birthDirection(value: SCNParticleBirthDirection) { callSDK<void>("SceneKit_0e503aef608672fa", 3789694547218680, this, [value]); }
+  get birthDirection(): SCNParticleBirthDirection { return callSDK<SCNParticleBirthDirection>("SceneKit_212edf3d13b127f5", 2698978931347447, this, []); }
+  set birthDirection(value: SCNParticleBirthDirection) { callSDK<void>("SceneKit_212edf3d13b127f5", 3789694547218680, this, [value]); }
   /** var birthLocation: SCNParticleBirthLocation { get set } */
-  get birthLocation(): SCNParticleBirthLocation { return callSDK<SCNParticleBirthLocation>("SceneKit_0e503aef608672fa", 507674190982516, this, []); }
-  set birthLocation(value: SCNParticleBirthLocation) { callSDK<void>("SceneKit_0e503aef608672fa", 99251083393550, this, [value]); }
+  get birthLocation(): SCNParticleBirthLocation { return callSDK<SCNParticleBirthLocation>("SceneKit_212edf3d13b127f5", 507674190982516, this, []); }
+  set birthLocation(value: SCNParticleBirthLocation) { callSDK<void>("SceneKit_212edf3d13b127f5", 99251083393550, this, [value]); }
   /** var birthRate: CGFloat { get set } */
-  get birthRate(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2205726546512935, this, []); }
-  set birthRate(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2489343534337913, this, [value]); }
+  get birthRate(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2205726546512935, this, []); }
+  set birthRate(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2489343534337913, this, [value]); }
   /** var birthRateVariation: CGFloat { get set } */
-  get birthRateVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1894844134113591, this, []); }
-  set birthRateVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 676462761926086, this, [value]); }
+  get birthRateVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1894844134113591, this, []); }
+  set birthRateVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 676462761926086, this, [value]); }
   /** var isBlackPassEnabled: Bool { get set } */
-  get isBlackPassEnabled(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3207676904482372, this, []); }
-  set isBlackPassEnabled(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1413361965323220, this, [value]); }
+  get isBlackPassEnabled(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3207676904482372, this, []); }
+  set isBlackPassEnabled(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1413361965323220, this, [value]); }
   /** var blendMode: SCNParticleBlendMode { get set } */
-  get blendMode(): SCNParticleBlendMode { return callSDK<SCNParticleBlendMode>("SceneKit_0e503aef608672fa", 914356509575624, this, []); }
-  set blendMode(value: SCNParticleBlendMode) { callSDK<void>("SceneKit_0e503aef608672fa", 383334195694208, this, [value]); }
+  get blendMode(): SCNParticleBlendMode { return callSDK<SCNParticleBlendMode>("SceneKit_212edf3d13b127f5", 914356509575624, this, []); }
+  set blendMode(value: SCNParticleBlendMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 383334195694208, this, [value]); }
   /** var colliderNodes: [SCNNode]? { get set } */
-  get colliderNodes(): (Array<SCNNode>) | null { return callSDK<(Array<SCNNode>) | null>("SceneKit_0e503aef608672fa", 3254554989572687, this, []); }
-  set colliderNodes(value: (Array<SCNNode>) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4394899160469685, this, [value]); }
+  get colliderNodes(): (Array<SCNNode>) | null { return callSDK<(Array<SCNNode>) | null>("SceneKit_212edf3d13b127f5", 3254554989572687, this, []); }
+  set colliderNodes(value: (Array<SCNNode>) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4394899160469685, this, [value]); }
   /** var dampingFactor: CGFloat { get set } */
-  get dampingFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1505421010233176, this, []); }
-  set dampingFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2429976228617511, this, [value]); }
+  get dampingFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1505421010233176, this, []); }
+  set dampingFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2429976228617511, this, [value]); }
   /** var emissionDuration: CGFloat { get set } */
-  get emissionDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4207016053936431, this, []); }
-  set emissionDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2936436969378783, this, [value]); }
+  get emissionDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4207016053936431, this, []); }
+  set emissionDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2936436969378783, this, [value]); }
   /** var emissionDurationVariation: CGFloat { get set } */
-  get emissionDurationVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3385718423924711, this, []); }
-  set emissionDurationVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1422979718714899, this, [value]); }
+  get emissionDurationVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3385718423924711, this, []); }
+  set emissionDurationVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1422979718714899, this, [value]); }
   /** var emitterShape: SCNGeometry? { get set } */
-  get emitterShape(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_0e503aef608672fa", 2332709648396610, this, []); }
-  set emitterShape(value: (SCNGeometry) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1947877796981607, this, [value]); }
+  get emitterShape(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_212edf3d13b127f5", 2332709648396610, this, []); }
+  set emitterShape(value: (SCNGeometry) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1947877796981607, this, [value]); }
   /** var emittingDirection: SCNVector3 { get set } */
-  get emittingDirection(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 169591585118495, this, []); }
-  set emittingDirection(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 4334040193977235, this, [value]); }
+  get emittingDirection(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 169591585118495, this, []); }
+  set emittingDirection(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 4334040193977235, this, [value]); }
   /** var fresnelExponent: CGFloat { get set } */
-  get fresnelExponent(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1510665906800323, this, []); }
-  set fresnelExponent(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4223070350093460, this, [value]); }
+  get fresnelExponent(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1510665906800323, this, []); }
+  set fresnelExponent(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4223070350093460, this, [value]); }
   /** var idleDuration: CGFloat { get set } */
-  get idleDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1633958244147550, this, []); }
-  set idleDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3092340544983266, this, [value]); }
+  get idleDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1633958244147550, this, []); }
+  set idleDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3092340544983266, this, [value]); }
   /** var idleDurationVariation: CGFloat { get set } */
-  get idleDurationVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4237158854520684, this, []); }
-  set idleDurationVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 704610086721556, this, [value]); }
+  get idleDurationVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4237158854520684, this, []); }
+  set idleDurationVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 704610086721556, this, [value]); }
   /** var imageSequenceAnimationMode: SCNParticleImageSequenceAnimationMode { get set } */
-  get imageSequenceAnimationMode(): SCNParticleImageSequenceAnimationMode { return callSDK<SCNParticleImageSequenceAnimationMode>("SceneKit_0e503aef608672fa", 2100190016751055, this, []); }
-  set imageSequenceAnimationMode(value: SCNParticleImageSequenceAnimationMode) { callSDK<void>("SceneKit_0e503aef608672fa", 663998407862259, this, [value]); }
+  get imageSequenceAnimationMode(): SCNParticleImageSequenceAnimationMode { return callSDK<SCNParticleImageSequenceAnimationMode>("SceneKit_212edf3d13b127f5", 2100190016751055, this, []); }
+  set imageSequenceAnimationMode(value: SCNParticleImageSequenceAnimationMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 663998407862259, this, [value]); }
   /** var imageSequenceColumnCount: Int { get set } */
-  get imageSequenceColumnCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1394253301907165, this, []); }
-  set imageSequenceColumnCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 583816403623194, this, [value]); }
+  get imageSequenceColumnCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1394253301907165, this, []); }
+  set imageSequenceColumnCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 583816403623194, this, [value]); }
   /** var imageSequenceFrameRate: CGFloat { get set } */
-  get imageSequenceFrameRate(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3547126239119973, this, []); }
-  set imageSequenceFrameRate(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4174859909896899, this, [value]); }
+  get imageSequenceFrameRate(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3547126239119973, this, []); }
+  set imageSequenceFrameRate(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4174859909896899, this, [value]); }
   /** var imageSequenceFrameRateVariation: CGFloat { get set } */
-  get imageSequenceFrameRateVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3291450630678311, this, []); }
-  set imageSequenceFrameRateVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2097392906519507, this, [value]); }
+  get imageSequenceFrameRateVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3291450630678311, this, []); }
+  set imageSequenceFrameRateVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2097392906519507, this, [value]); }
   /** var imageSequenceInitialFrame: CGFloat { get set } */
-  get imageSequenceInitialFrame(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 557248301957159, this, []); }
-  set imageSequenceInitialFrame(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4474761739423322, this, [value]); }
+  get imageSequenceInitialFrame(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 557248301957159, this, []); }
+  set imageSequenceInitialFrame(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4474761739423322, this, [value]); }
   /** var imageSequenceInitialFrameVariation: CGFloat { get set } */
-  get imageSequenceInitialFrameVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2477122301127905, this, []); }
-  set imageSequenceInitialFrameVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3594771993413594, this, [value]); }
+  get imageSequenceInitialFrameVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2477122301127905, this, []); }
+  set imageSequenceInitialFrameVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3594771993413594, this, [value]); }
   /** var imageSequenceRowCount: Int { get set } */
-  get imageSequenceRowCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1613989780048484, this, []); }
-  set imageSequenceRowCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 241861989928454, this, [value]); }
+  get imageSequenceRowCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1613989780048484, this, []); }
+  set imageSequenceRowCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 241861989928454, this, [value]); }
   /** var isLightingEnabled: Bool { get set } */
-  get isLightingEnabled(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 162849787586936, this, []); }
-  set isLightingEnabled(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2261998105315328, this, [value]); }
+  get isLightingEnabled(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 162849787586936, this, []); }
+  set isLightingEnabled(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2261998105315328, this, [value]); }
   /** var isLocal: Bool { get set } */
-  get isLocal(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3841523336240419, this, []); }
-  set isLocal(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2977081766663853, this, [value]); }
+  get isLocal(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3841523336240419, this, []); }
+  set isLocal(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2977081766663853, this, [value]); }
   /** var loops: Bool { get set } */
-  get loops(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1655538647406738, this, []); }
-  set loops(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1888835565549154, this, [value]); }
+  get loops(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1655538647406738, this, []); }
+  set loops(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1888835565549154, this, [value]); }
   /**
    * var orientationDirection: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get orientationDirection(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2734254247556224, this, []); }
-  set orientationDirection(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 402036959629440, this, [value]); }
+  get orientationDirection(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2734254247556224, this, []); }
+  set orientationDirection(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 402036959629440, this, [value]); }
   /** var orientationMode: SCNParticleOrientationMode { get set } */
-  get orientationMode(): SCNParticleOrientationMode { return callSDK<SCNParticleOrientationMode>("SceneKit_0e503aef608672fa", 1741289225860481, this, []); }
-  set orientationMode(value: SCNParticleOrientationMode) { callSDK<void>("SceneKit_0e503aef608672fa", 4080943977589544, this, [value]); }
+  get orientationMode(): SCNParticleOrientationMode { return callSDK<SCNParticleOrientationMode>("SceneKit_212edf3d13b127f5", 1741289225860481, this, []); }
+  set orientationMode(value: SCNParticleOrientationMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 4080943977589544, this, [value]); }
   /** var particleAngle: CGFloat { get set } */
-  get particleAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 701376245913608, this, []); }
-  set particleAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2383167330658288, this, [value]); }
+  get particleAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 701376245913608, this, []); }
+  set particleAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2383167330658288, this, [value]); }
   /** var particleAngleVariation: CGFloat { get set } */
-  get particleAngleVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1852803193004451, this, []); }
-  set particleAngleVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3903838257720768, this, [value]); }
+  get particleAngleVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1852803193004451, this, []); }
+  set particleAngleVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3903838257720768, this, [value]); }
   /** var particleAngularVelocity: CGFloat { get set } */
-  get particleAngularVelocity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1479281199593659, this, []); }
-  set particleAngularVelocity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2568804805522577, this, [value]); }
+  get particleAngularVelocity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1479281199593659, this, []); }
+  set particleAngularVelocity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2568804805522577, this, [value]); }
   /** var particleAngularVelocityVariation: CGFloat { get set } */
-  get particleAngularVelocityVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2737135344255014, this, []); }
-  set particleAngularVelocityVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2472466802181862, this, [value]); }
+  get particleAngularVelocityVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2737135344255014, this, []); }
+  set particleAngularVelocityVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2472466802181862, this, [value]); }
   /** var particleBounce: CGFloat { get set } */
-  get particleBounce(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 611058793931615, this, []); }
-  set particleBounce(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1949219169297858, this, [value]); }
+  get particleBounce(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 611058793931615, this, []); }
+  set particleBounce(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1949219169297858, this, [value]); }
   /** var particleBounceVariation: CGFloat { get set } */
-  get particleBounceVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 683174013500271, this, []); }
-  set particleBounceVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3844694057060695, this, [value]); }
+  get particleBounceVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 683174013500271, this, []); }
+  set particleBounceVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3844694057060695, this, [value]); }
   /** var particleCharge: CGFloat { get set } */
-  get particleCharge(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3688239063549910, this, []); }
-  set particleCharge(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3219550739055717, this, [value]); }
+  get particleCharge(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3688239063549910, this, []); }
+  set particleCharge(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3219550739055717, this, [value]); }
   /** var particleChargeVariation: CGFloat { get set } */
-  get particleChargeVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1085327859413339, this, []); }
-  set particleChargeVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1857132583003317, this, [value]); }
+  get particleChargeVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1085327859413339, this, []); }
+  set particleChargeVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1857132583003317, this, [value]); }
   /** var particleColor: UIColor { get set } */
-  get particleColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SceneKit_0e503aef608672fa", 4060315541366162, this, []); }
-  set particleColor(value: _UIKit_UIColor) { callSDK<void>("SceneKit_0e503aef608672fa", 275462683779827, this, [value]); }
+  get particleColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SceneKit_212edf3d13b127f5", 4060315541366162, this, []); }
+  set particleColor(value: _UIKit_UIColor) { callSDK<void>("SceneKit_212edf3d13b127f5", 275462683779827, this, [value]); }
   /** var particleColorVariation: SCNVector4 { get set } */
-  get particleColorVariation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1597740314920912, this, []); }
-  set particleColorVariation(value: SCNVector4) { callSDK<void>("SceneKit_0e503aef608672fa", 4237090641420153, this, [value]); }
+  get particleColorVariation(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1597740314920912, this, []); }
+  set particleColorVariation(value: SCNVector4) { callSDK<void>("SceneKit_212edf3d13b127f5", 4237090641420153, this, [value]); }
   /** var particleDiesOnCollision: Bool { get set } */
-  get particleDiesOnCollision(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1762401303683911, this, []); }
-  set particleDiesOnCollision(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3885353313054898, this, [value]); }
+  get particleDiesOnCollision(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1762401303683911, this, []); }
+  set particleDiesOnCollision(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3885353313054898, this, [value]); }
   /** var particleFriction: CGFloat { get set } */
-  get particleFriction(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2386903612033565, this, []); }
-  set particleFriction(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1117098006807270, this, [value]); }
+  get particleFriction(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2386903612033565, this, []); }
+  set particleFriction(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1117098006807270, this, [value]); }
   /** var particleFrictionVariation: CGFloat { get set } */
-  get particleFrictionVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3191605776477716, this, []); }
-  set particleFrictionVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 290356873329149, this, [value]); }
+  get particleFrictionVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3191605776477716, this, []); }
+  set particleFrictionVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 290356873329149, this, [value]); }
   /** var particleImage: Any? { get set } */
-  get particleImage(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 3721162436148617, this, []); }
-  set particleImage(value: (unknown) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3953138497867616, this, [value]); }
+  get particleImage(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 3721162436148617, this, []); }
+  set particleImage(value: (unknown) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3953138497867616, this, [value]); }
   /**
    * var particleIntensity: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get particleIntensity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2843587786581120, this, []); }
-  set particleIntensity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3434012810916684, this, [value]); }
+  get particleIntensity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2843587786581120, this, []); }
+  set particleIntensity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3434012810916684, this, [value]); }
   /**
    * var particleIntensityVariation: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get particleIntensityVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 419187154012708, this, []); }
-  set particleIntensityVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1295027833388097, this, [value]); }
+  get particleIntensityVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 419187154012708, this, []); }
+  set particleIntensityVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1295027833388097, this, [value]); }
   /** var particleLifeSpan: CGFloat { get set } */
-  get particleLifeSpan(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 793957160935109, this, []); }
-  set particleLifeSpan(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4379934319207591, this, [value]); }
+  get particleLifeSpan(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 793957160935109, this, []); }
+  set particleLifeSpan(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4379934319207591, this, [value]); }
   /** var particleLifeSpanVariation: CGFloat { get set } */
-  get particleLifeSpanVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 746122240366081, this, []); }
-  set particleLifeSpanVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2570797324047798, this, [value]); }
+  get particleLifeSpanVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 746122240366081, this, []); }
+  set particleLifeSpanVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2570797324047798, this, [value]); }
   /** var particleMass: CGFloat { get set } */
-  get particleMass(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4058005938888092, this, []); }
-  set particleMass(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3533284582508987, this, [value]); }
+  get particleMass(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4058005938888092, this, []); }
+  set particleMass(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3533284582508987, this, [value]); }
   /** var particleMassVariation: CGFloat { get set } */
-  get particleMassVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4075383352457752, this, []); }
-  set particleMassVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 144609751980421, this, [value]); }
+  get particleMassVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4075383352457752, this, []); }
+  set particleMassVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 144609751980421, this, [value]); }
   /** var particleSize: CGFloat { get set } */
-  get particleSize(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1794230107414907, this, []); }
-  set particleSize(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1563044541964779, this, [value]); }
+  get particleSize(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1794230107414907, this, []); }
+  set particleSize(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1563044541964779, this, [value]); }
   /** var particleSizeVariation: CGFloat { get set } */
-  get particleSizeVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 334911032158713, this, []); }
-  set particleSizeVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2211474505604950, this, [value]); }
+  get particleSizeVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 334911032158713, this, []); }
+  set particleSizeVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2211474505604950, this, [value]); }
   /** var particleVelocity: CGFloat { get set } */
-  get particleVelocity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2876406864254392, this, []); }
-  set particleVelocity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3068628530279899, this, [value]); }
+  get particleVelocity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2876406864254392, this, []); }
+  set particleVelocity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3068628530279899, this, [value]); }
   /** var particleVelocityVariation: CGFloat { get set } */
-  get particleVelocityVariation(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2429766623475106, this, []); }
-  set particleVelocityVariation(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3249487461964146, this, [value]); }
+  get particleVelocityVariation(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2429766623475106, this, []); }
+  set particleVelocityVariation(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3249487461964146, this, [value]); }
   /** var propertyControllers: [SCNParticleSystem.ParticleProperty : SCNParticlePropertyController]? { get set } */
-  get propertyControllers(): $SDK46 { return callSDK<$SDK46>("SceneKit_0e503aef608672fa", 3678162575901140, this, []); }
-  set propertyControllers(value: $SDK46) { callSDK<void>("SceneKit_0e503aef608672fa", 810433073464322, this, [value]); }
+  get propertyControllers(): $SDK46 { return callSDK<$SDK46>("SceneKit_212edf3d13b127f5", 3678162575901140, this, []); }
+  set propertyControllers(value: $SDK46) { callSDK<void>("SceneKit_212edf3d13b127f5", 810433073464322, this, [value]); }
   /** var sortingMode: SCNParticleSortingMode { get set } */
-  get sortingMode(): SCNParticleSortingMode { return callSDK<SCNParticleSortingMode>("SceneKit_0e503aef608672fa", 1759795424827705, this, []); }
-  set sortingMode(value: SCNParticleSortingMode) { callSDK<void>("SceneKit_0e503aef608672fa", 3812236482695360, this, [value]); }
+  get sortingMode(): SCNParticleSortingMode { return callSDK<SCNParticleSortingMode>("SceneKit_212edf3d13b127f5", 1759795424827705, this, []); }
+  set sortingMode(value: SCNParticleSortingMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 3812236482695360, this, [value]); }
   /** var speedFactor: CGFloat { get set } */
-  get speedFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 736678847337636, this, []); }
-  set speedFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 167611093014585, this, [value]); }
+  get speedFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 736678847337636, this, []); }
+  set speedFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 167611093014585, this, [value]); }
   /** var spreadingAngle: CGFloat { get set } */
-  get spreadingAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2018426793871489, this, []); }
-  set spreadingAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2240505317837014, this, [value]); }
+  get spreadingAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2018426793871489, this, []); }
+  set spreadingAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2240505317837014, this, [value]); }
   /** var stretchFactor: CGFloat { get set } */
-  get stretchFactor(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3486979286890153, this, []); }
-  set stretchFactor(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4483776543020520, this, [value]); }
+  get stretchFactor(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3486979286890153, this, []); }
+  set stretchFactor(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4483776543020520, this, [value]); }
   /** var systemSpawnedOnCollision: SCNParticleSystem? { get set } */
-  get systemSpawnedOnCollision(): $SDK47 { return callSDK<$SDK47>("SceneKit_0e503aef608672fa", 630069257171159, this, []); }
-  set systemSpawnedOnCollision(value: $SDK47) { callSDK<void>("SceneKit_0e503aef608672fa", 2209474956739493, this, [value]); }
+  get systemSpawnedOnCollision(): $SDK47 { return callSDK<$SDK47>("SceneKit_212edf3d13b127f5", 630069257171159, this, []); }
+  set systemSpawnedOnCollision(value: $SDK47) { callSDK<void>("SceneKit_212edf3d13b127f5", 2209474956739493, this, [value]); }
   /** var systemSpawnedOnDying: SCNParticleSystem? { get set } */
-  get systemSpawnedOnDying(): $SDK47 { return callSDK<$SDK47>("SceneKit_0e503aef608672fa", 2040915149914155, this, []); }
-  set systemSpawnedOnDying(value: $SDK47) { callSDK<void>("SceneKit_0e503aef608672fa", 3226731150072901, this, [value]); }
+  get systemSpawnedOnDying(): $SDK47 { return callSDK<$SDK47>("SceneKit_212edf3d13b127f5", 2040915149914155, this, []); }
+  set systemSpawnedOnDying(value: $SDK47) { callSDK<void>("SceneKit_212edf3d13b127f5", 3226731150072901, this, [value]); }
   /** var systemSpawnedOnLiving: SCNParticleSystem? { get set } */
-  get systemSpawnedOnLiving(): $SDK47 { return callSDK<$SDK47>("SceneKit_0e503aef608672fa", 3532985926806642, this, []); }
-  set systemSpawnedOnLiving(value: $SDK47) { callSDK<void>("SceneKit_0e503aef608672fa", 1810440470704081, this, [value]); }
+  get systemSpawnedOnLiving(): $SDK47 { return callSDK<$SDK47>("SceneKit_212edf3d13b127f5", 3532985926806642, this, []); }
+  set systemSpawnedOnLiving(value: $SDK47) { callSDK<void>("SceneKit_212edf3d13b127f5", 1810440470704081, this, [value]); }
   /** var warmupDuration: CGFloat { get set } */
-  get warmupDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2643055293258425, this, []); }
-  set warmupDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 39979207469517, this, [value]); }
+  get warmupDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2643055293258425, this, []); }
+  set warmupDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 39979207469517, this, [value]); }
   /**
    * var writesToDepthBuffer: Bool { get set }
    * @availability iOS 15.0+
    */
-  get writesToDepthBuffer(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1030180836824493, this, []); }
-  set writesToDepthBuffer(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2555284879723523, this, [value]); }
+  get writesToDepthBuffer(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1030180836824493, this, []); }
+  set writesToDepthBuffer(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2555284879723523, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNParticleSystem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "acceleration": true; "isAffectedByGravity": true; "isAffectedByPhysicsFields": true; "birthDirection": true; "birthLocation": true; "birthRate": true; "birthRateVariation": true; "isBlackPassEnabled": true; "blendMode": true; "colliderNodes": true; "dampingFactor": true; "emissionDuration": true; "emissionDurationVariation": true; "emitterShape": true; "emittingDirection": true; "fresnelExponent": true; "idleDuration": true; "idleDurationVariation": true; "imageSequenceAnimationMode": true; "imageSequenceColumnCount": true; "imageSequenceFrameRate": true; "imageSequenceFrameRateVariation": true; "imageSequenceInitialFrame": true; "imageSequenceInitialFrameVariation": true; "imageSequenceRowCount": true; "isLightingEnabled": true; "isLocal": true; "loops": true; "orientationDirection": true; "orientationMode": true; "particleAngle": true; "particleAngleVariation": true; "particleAngularVelocity": true; "particleAngularVelocityVariation": true; "particleBounce": true; "particleBounceVariation": true; "particleCharge": true; "particleChargeVariation": true; "particleColor": true; "particleColorVariation": true; "particleDiesOnCollision": true; "particleFriction": true; "particleFrictionVariation": true; "particleImage": true; "particleIntensity": true; "particleIntensityVariation": true; "particleLifeSpan": true; "particleLifeSpanVariation": true; "particleMass": true; "particleMassVariation": true; "particleSize": true; "particleSizeVariation": true; "particleVelocity": true; "particleVelocityVariation": true; "propertyControllers": true; "sortingMode": true; "speedFactor": true; "spreadingAngle": true; "stretchFactor": true; "systemSpawnedOnCollision": true; "systemSpawnedOnDying": true; "systemSpawnedOnLiving": true; "warmupDuration": true; "writesToDepthBuffer": true };
 }
@@ -3444,64 +3444,64 @@ export type SCNParticleSystem_ParticleProperty = "position" | "angle" | "rotatio
 
 export const SCNParticleSystem_ParticleProperty = {
   /** static let angle: SCNParticleSystem.ParticleProperty */
-  get angle(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 135668482312739, undefined, []); },
+  get angle(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 135668482312739, undefined, []); },
   /** static let angularVelocity: SCNParticleSystem.ParticleProperty */
-  get angularVelocity(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 617792953114273, undefined, []); },
+  get angularVelocity(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 617792953114273, undefined, []); },
   /** static let bounce: SCNParticleSystem.ParticleProperty */
-  get bounce(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 2023073978289556, undefined, []); },
+  get bounce(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 2023073978289556, undefined, []); },
   /** static let charge: SCNParticleSystem.ParticleProperty */
-  get charge(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 3790808237031495, undefined, []); },
+  get charge(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 3790808237031495, undefined, []); },
   /** static let color: SCNParticleSystem.ParticleProperty */
-  get color(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 548188271634242, undefined, []); },
+  get color(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 548188271634242, undefined, []); },
   /** static let contactNormal: SCNParticleSystem.ParticleProperty */
-  get contactNormal(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 2497933737939531, undefined, []); },
+  get contactNormal(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 2497933737939531, undefined, []); },
   /** static let contactPoint: SCNParticleSystem.ParticleProperty */
-  get contactPoint(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 2875983426328800, undefined, []); },
+  get contactPoint(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 2875983426328800, undefined, []); },
   /** static let frame: SCNParticleSystem.ParticleProperty */
-  get frame(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 2089414202098384, undefined, []); },
+  get frame(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 2089414202098384, undefined, []); },
   /** static let frameRate: SCNParticleSystem.ParticleProperty */
-  get frameRate(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 3628448487585721, undefined, []); },
+  get frameRate(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 3628448487585721, undefined, []); },
   /** static let friction: SCNParticleSystem.ParticleProperty */
-  get friction(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 1539619631714154, undefined, []); },
+  get friction(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 1539619631714154, undefined, []); },
   /** static let life: SCNParticleSystem.ParticleProperty */
-  get life(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 3682297002934714, undefined, []); },
+  get life(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 3682297002934714, undefined, []); },
   /** static let opacity: SCNParticleSystem.ParticleProperty */
-  get opacity(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 1226753489502476, undefined, []); },
+  get opacity(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 1226753489502476, undefined, []); },
   /** static let position: SCNParticleSystem.ParticleProperty */
-  get position(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 826920174143351, undefined, []); },
+  get position(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 826920174143351, undefined, []); },
   /** static let rotationAxis: SCNParticleSystem.ParticleProperty */
-  get rotationAxis(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 406988595432735, undefined, []); },
+  get rotationAxis(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 406988595432735, undefined, []); },
   /** static let size: SCNParticleSystem.ParticleProperty */
-  get size(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 4427072009811890, undefined, []); },
+  get size(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 4427072009811890, undefined, []); },
   /** static let velocity: SCNParticleSystem.ParticleProperty */
-  get velocity(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 2519078640070736, undefined, []); },
+  get velocity(): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 2519078640070736, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_0e503aef608672fa", 2990161653924118, undefined, [rawValue]); }
+  init(rawValue: string): SCNParticleSystem_ParticleProperty { return callSDK<SCNParticleSystem_ParticleProperty>("SceneKit_212edf3d13b127f5", 2990161653924118, undefined, [rawValue]); }
 };
 
 /** class SCNPhysicsBehavior */
 export class SCNPhysicsBehavior extends SDKHandle {
   /** init() */
-  static init(): SCNPhysicsBehavior { return callSDK<SCNPhysicsBehavior>("SceneKit_0e503aef608672fa", 3155397689873483, undefined, []); }
+  static init(): SCNPhysicsBehavior { return callSDK<SCNPhysicsBehavior>("SceneKit_212edf3d13b127f5", 3155397689873483, undefined, []); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsBehavior": true; "c:objc(cs)NSObject": true };
 }
 
 /** class SCNPhysicsBallSocketJoint */
 export class SCNPhysicsBallSocketJoint extends SCNPhysicsBehavior {
   /** convenience init(body: SCNPhysicsBody, anchor: SCNVector3) */
-  static initBodyAnchor(body: SCNPhysicsBody, anchor: SCNVector3): SCNPhysicsBallSocketJoint { return callSDK<SCNPhysicsBallSocketJoint>("SceneKit_0e503aef608672fa", 3647524293106830, undefined, [body, anchor]); }
+  static initBodyAnchor(body: SCNPhysicsBody, anchor: SCNVector3): SCNPhysicsBallSocketJoint { return callSDK<SCNPhysicsBallSocketJoint>("SceneKit_212edf3d13b127f5", 3647524293106830, undefined, [body, anchor]); }
   /** convenience init(bodyA: SCNPhysicsBody, anchorA: SCNVector3, bodyB: SCNPhysicsBody, anchorB: SCNVector3) */
-  static initBodyAAnchorABodyBAnchorB(bodyA: SCNPhysicsBody, anchorA: SCNVector3, bodyB: SCNPhysicsBody, anchorB: SCNVector3): SCNPhysicsBallSocketJoint { return callSDK<SCNPhysicsBallSocketJoint>("SceneKit_0e503aef608672fa", 1771094140904817, undefined, [bodyA, anchorA, bodyB, anchorB]); }
+  static initBodyAAnchorABodyBAnchorB(bodyA: SCNPhysicsBody, anchorA: SCNVector3, bodyB: SCNPhysicsBody, anchorB: SCNVector3): SCNPhysicsBallSocketJoint { return callSDK<SCNPhysicsBallSocketJoint>("SceneKit_212edf3d13b127f5", 1771094140904817, undefined, [bodyA, anchorA, bodyB, anchorB]); }
   /** var anchorA: SCNVector3 { get set } */
-  get anchorA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1355941213298622, this, []); }
-  set anchorA(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 2704317311304867, this, [value]); }
+  get anchorA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1355941213298622, this, []); }
+  set anchorA(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 2704317311304867, this, [value]); }
   /** var anchorB: SCNVector3 { get set } */
-  get anchorB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 103773956223123, this, []); }
-  set anchorB(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 3892650711703435, this, [value]); }
+  get anchorB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 103773956223123, this, []); }
+  set anchorB(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 3892650711703435, this, [value]); }
   /** var bodyA: SCNPhysicsBody { get } */
-  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 2021969669929335, this, []); }
+  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 2021969669929335, this, []); }
   /** var bodyB: SCNPhysicsBody? { get } */
-  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_0e503aef608672fa", 3730122533315546, this, []); }
+  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_212edf3d13b127f5", 3730122533315546, this, []); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsBallSocketJoint": true; "c:objc(cs)SCNPhysicsBehavior": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchorA": true; "anchorB": true; "bodyA": true; "bodyB": true };
 }
@@ -3509,126 +3509,126 @@ export class SCNPhysicsBallSocketJoint extends SCNPhysicsBehavior {
 /** class SCNPhysicsBody */
 export class SCNPhysicsBody extends SDKHandle {
   /** convenience init(type: SCNPhysicsBodyType, shape: SCNPhysicsShape?) */
-  static init(type: SCNPhysicsBodyType, shape?: $SDK48): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 3717195850866999, undefined, [type, shape]); }
+  static init(type: SCNPhysicsBodyType, shape?: $SDK48): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 3717195850866999, undefined, [type, shape]); }
   /** class func dynamic() -> Self */
-  static dynamic(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 2645836085996728, undefined, []); }
+  static dynamic(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 2645836085996728, undefined, []); }
   /** class func kinematic() -> Self */
-  static kinematic(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 2988656565084041, undefined, []); }
+  static kinematic(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 2988656565084041, undefined, []); }
   /** class func `static`() -> Self */
-  static static(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 1238104072205891, undefined, []); }
+  static static(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 1238104072205891, undefined, []); }
   /** func applyForce(_ direction: SCNVector3, at position: SCNVector3, asImpulse impulse: Bool) */
-  applyForceAtAsImpulse(direction: SCNVector3, position: SCNVector3, impulse: boolean): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3803132007402428, this, [direction, position, impulse]); }
+  applyForceAtAsImpulse(direction: SCNVector3, position: SCNVector3, impulse: boolean): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3803132007402428, this, [direction, position, impulse]); }
   /** func applyForce(_ direction: SCNVector3, asImpulse impulse: Bool) */
-  applyForceAsImpulse(direction: SCNVector3, impulse: boolean): void { return callSDK<void>("SceneKit_0e503aef608672fa", 854041978894213, this, [direction, impulse]); }
+  applyForceAsImpulse(direction: SCNVector3, impulse: boolean): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 854041978894213, this, [direction, impulse]); }
   /** func applyTorque(_ torque: SCNVector4, asImpulse impulse: Bool) */
-  applyTorque(torque: SCNVector4, impulse: boolean): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1879532454454687, this, [torque, impulse]); }
+  applyTorque(torque: SCNVector4, impulse: boolean): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1879532454454687, this, [torque, impulse]); }
   /** func clearAllForces() */
-  clearAllForces(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 557234927485747, this, []); }
+  clearAllForces(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 557234927485747, this, []); }
   /** func resetTransform() */
-  resetTransform(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3049853453908365, this, []); }
+  resetTransform(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3049853453908365, this, []); }
   /**
    * func setResting(_ resting: Bool)
    * @availability iOS 12.0+
    */
-  setResting(resting: boolean): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1841979667938105, this, [resting]); }
+  setResting(resting: boolean): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1841979667938105, this, [resting]); }
   /**
    * var isAffectedByGravity: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isAffectedByGravity(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 797717283096712, this, []); }
-  set isAffectedByGravity(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2634169940618710, this, [value]); }
+  get isAffectedByGravity(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 797717283096712, this, []); }
+  set isAffectedByGravity(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2634169940618710, this, [value]); }
   /** var allowsResting: Bool { get set } */
-  get allowsResting(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2637344099287212, this, []); }
-  set allowsResting(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1835013702982323, this, [value]); }
+  get allowsResting(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2637344099287212, this, []); }
+  set allowsResting(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1835013702982323, this, [value]); }
   /** var angularDamping: CGFloat { get set } */
-  get angularDamping(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 573658924349978, this, []); }
-  set angularDamping(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 941334094864190, this, [value]); }
+  get angularDamping(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 573658924349978, this, []); }
+  set angularDamping(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 941334094864190, this, [value]); }
   /**
    * var angularRestingThreshold: CGFloat { get set }
    * @availability iOS 12.0+
    */
-  get angularRestingThreshold(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2589447285599388, this, []); }
-  set angularRestingThreshold(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1364139055860674, this, [value]); }
+  get angularRestingThreshold(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2589447285599388, this, []); }
+  set angularRestingThreshold(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1364139055860674, this, [value]); }
   /** var angularVelocity: SCNVector4 { get set } */
-  get angularVelocity(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1715263892660618, this, []); }
-  set angularVelocity(value: SCNVector4) { callSDK<void>("SceneKit_0e503aef608672fa", 1288917375909479, this, [value]); }
+  get angularVelocity(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1715263892660618, this, []); }
+  set angularVelocity(value: SCNVector4) { callSDK<void>("SceneKit_212edf3d13b127f5", 1288917375909479, this, [value]); }
   /** var angularVelocityFactor: SCNVector3 { get set } */
-  get angularVelocityFactor(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3647934782782516, this, []); }
-  set angularVelocityFactor(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 3660003626386558, this, [value]); }
+  get angularVelocityFactor(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3647934782782516, this, []); }
+  set angularVelocityFactor(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 3660003626386558, this, [value]); }
   /** var categoryBitMask: Int { get set } */
-  get categoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2477556162158977, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 535794874592231, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2477556162158977, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 535794874592231, this, [value]); }
   /**
    * var centerOfMassOffset: SCNVector3 { get set }
    * @availability iOS 12.0+
    */
-  get centerOfMassOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4334337292371303, this, []); }
-  set centerOfMassOffset(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 3196651269697045, this, [value]); }
+  get centerOfMassOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4334337292371303, this, []); }
+  set centerOfMassOffset(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 3196651269697045, this, [value]); }
   /** var charge: CGFloat { get set } */
-  get charge(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4028241791424616, this, []); }
-  set charge(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1403865637188438, this, [value]); }
+  get charge(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4028241791424616, this, []); }
+  set charge(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1403865637188438, this, [value]); }
   /** var collisionBitMask: Int { get set } */
-  get collisionBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3772812731695532, this, []); }
-  set collisionBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 588744357875149, this, [value]); }
+  get collisionBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3772812731695532, this, []); }
+  set collisionBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 588744357875149, this, [value]); }
   /**
    * var contactTestBitMask: Int { get set }
    * @availability iOS 9.0+
    */
-  get contactTestBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3251441096114526, this, []); }
-  set contactTestBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 115940713660230, this, [value]); }
+  get contactTestBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3251441096114526, this, []); }
+  set contactTestBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 115940713660230, this, [value]); }
   /**
    * var continuousCollisionDetectionThreshold: CGFloat { get set }
    * @availability iOS 12.0+
    */
-  get continuousCollisionDetectionThreshold(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1035036290195043, this, []); }
-  set continuousCollisionDetectionThreshold(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2812710248657062, this, [value]); }
+  get continuousCollisionDetectionThreshold(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1035036290195043, this, []); }
+  set continuousCollisionDetectionThreshold(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2812710248657062, this, [value]); }
   /** var damping: CGFloat { get set } */
-  get damping(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3671401926481103, this, []); }
-  set damping(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4359470974545231, this, [value]); }
+  get damping(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3671401926481103, this, []); }
+  set damping(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4359470974545231, this, [value]); }
   /** var friction: CGFloat { get set } */
-  get friction(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2337655401538813, this, []); }
-  set friction(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 15130244691727, this, [value]); }
+  get friction(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2337655401538813, this, []); }
+  set friction(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 15130244691727, this, [value]); }
   /** var isResting: Bool { get } */
-  get isResting(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2359177374857904, this, []); }
+  get isResting(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2359177374857904, this, []); }
   /**
    * var linearRestingThreshold: CGFloat { get set }
    * @availability iOS 12.0+
    */
-  get linearRestingThreshold(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3652338089574518, this, []); }
-  set linearRestingThreshold(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3385439389559049, this, [value]); }
+  get linearRestingThreshold(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3652338089574518, this, []); }
+  set linearRestingThreshold(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3385439389559049, this, [value]); }
   /** var mass: CGFloat { get set } */
-  get mass(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 124793661482510, this, []); }
-  set mass(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 630424986096323, this, [value]); }
+  get mass(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 124793661482510, this, []); }
+  set mass(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 630424986096323, this, [value]); }
   /**
    * var momentOfInertia: SCNVector3 { get set }
    * @availability iOS 9.0+
    */
-  get momentOfInertia(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2001563809641349, this, []); }
-  set momentOfInertia(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 365367525442349, this, [value]); }
+  get momentOfInertia(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2001563809641349, this, []); }
+  set momentOfInertia(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 365367525442349, this, [value]); }
   /** var physicsShape: SCNPhysicsShape? { get set } */
-  get physicsShape(): $SDK48 { return callSDK<$SDK48>("SceneKit_0e503aef608672fa", 176358427492344, this, []); }
-  set physicsShape(value: $SDK48) { callSDK<void>("SceneKit_0e503aef608672fa", 3954722442889742, this, [value]); }
+  get physicsShape(): $SDK48 { return callSDK<$SDK48>("SceneKit_212edf3d13b127f5", 176358427492344, this, []); }
+  set physicsShape(value: $SDK48) { callSDK<void>("SceneKit_212edf3d13b127f5", 3954722442889742, this, [value]); }
   /** var restitution: CGFloat { get set } */
-  get restitution(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2996387301320312, this, []); }
-  set restitution(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2666895007731220, this, [value]); }
+  get restitution(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2996387301320312, this, []); }
+  set restitution(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2666895007731220, this, [value]); }
   /** var rollingFriction: CGFloat { get set } */
-  get rollingFriction(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 251199130759080, this, []); }
-  set rollingFriction(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3576803873990965, this, [value]); }
+  get rollingFriction(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 251199130759080, this, []); }
+  set rollingFriction(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3576803873990965, this, [value]); }
   /** var type: SCNPhysicsBodyType { get set } */
-  get type(): SCNPhysicsBodyType { return callSDK<SCNPhysicsBodyType>("SceneKit_0e503aef608672fa", 2758046400821805, this, []); }
-  set type(value: SCNPhysicsBodyType) { callSDK<void>("SceneKit_0e503aef608672fa", 2190350462035807, this, [value]); }
+  get type(): SCNPhysicsBodyType { return callSDK<SCNPhysicsBodyType>("SceneKit_212edf3d13b127f5", 2758046400821805, this, []); }
+  set type(value: SCNPhysicsBodyType) { callSDK<void>("SceneKit_212edf3d13b127f5", 2190350462035807, this, [value]); }
   /**
    * var usesDefaultMomentOfInertia: Bool { get set }
    * @availability iOS 9.0+
    */
-  get usesDefaultMomentOfInertia(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 942726467715483, this, []); }
-  set usesDefaultMomentOfInertia(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3060194435062082, this, [value]); }
+  get usesDefaultMomentOfInertia(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 942726467715483, this, []); }
+  set usesDefaultMomentOfInertia(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3060194435062082, this, [value]); }
   /** var velocity: SCNVector3 { get set } */
-  get velocity(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2137239727057720, this, []); }
-  set velocity(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 633188199353232, this, [value]); }
+  get velocity(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2137239727057720, this, []); }
+  set velocity(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 633188199353232, this, [value]); }
   /** var velocityFactor: SCNVector3 { get set } */
-  get velocityFactor(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1324852620386597, this, []); }
-  set velocityFactor(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 241513327274836, this, [value]); }
+  get velocityFactor(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1324852620386597, this, []); }
+  set velocityFactor(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 241513327274836, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsBody": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAffectedByGravity": true; "allowsResting": true; "angularDamping": true; "angularRestingThreshold": true; "angularVelocity": true; "angularVelocityFactor": true; "categoryBitMask": true; "centerOfMassOffset": true; "charge": true; "collisionBitMask": true; "contactTestBitMask": true; "continuousCollisionDetectionThreshold": true; "damping": true; "friction": true; "isResting": true; "linearRestingThreshold": true; "mass": true; "momentOfInertia": true; "physicsShape": true; "restitution": true; "rollingFriction": true; "type": true; "usesDefaultMomentOfInertia": true; "velocity": true; "velocityFactor": true };
 }
@@ -3638,7 +3638,7 @@ export type SCNPhysicsBodyType = "static" | "dynamic" | "kinematic";
 
 export const SCNPhysicsBodyType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNPhysicsBodyType) | null { return callSDK<(SCNPhysicsBodyType) | null>("SceneKit_0e503aef608672fa", 2984648717142090, undefined, [rawValue]); }
+  init(rawValue: number): (SCNPhysicsBodyType) | null { return callSDK<(SCNPhysicsBodyType) | null>("SceneKit_212edf3d13b127f5", 2984648717142090, undefined, [rawValue]); }
 };
 
 /** struct SCNPhysicsCollisionCategory */
@@ -3646,13 +3646,13 @@ export type SCNPhysicsCollisionCategory = Array<"default" | "static" | "all">;
 
 export const SCNPhysicsCollisionCategory = {
   /** static var all: SCNPhysicsCollisionCategory { get } */
-  get all(): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_0e503aef608672fa", 3341161015695988, undefined, []); },
+  get all(): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_212edf3d13b127f5", 3341161015695988, undefined, []); },
   /** static var `default`: SCNPhysicsCollisionCategory { get } */
-  get default(): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_0e503aef608672fa", 1864762259446165, undefined, []); },
+  get default(): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_212edf3d13b127f5", 1864762259446165, undefined, []); },
   /** static var `static`: SCNPhysicsCollisionCategory { get } */
-  get static(): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_0e503aef608672fa", 2059214310233664, undefined, []); },
+  get static(): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_212edf3d13b127f5", 2059214310233664, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_0e503aef608672fa", 4097833579743499, undefined, [rawValue]); }
+  init(rawValue: number): SCNPhysicsCollisionCategory { return callSDK<SCNPhysicsCollisionCategory>("SceneKit_212edf3d13b127f5", 4097833579743499, undefined, [rawValue]); }
 };
 
 /**
@@ -3664,52 +3664,52 @@ export class SCNPhysicsConeTwistJoint extends SCNPhysicsBehavior {
    * convenience init(body: SCNPhysicsBody, frame: SCNMatrix4)
    * @availability iOS 11.0+
    */
-  static initBodyFrame(body: SCNPhysicsBody, frame: SCNMatrix4): SCNPhysicsConeTwistJoint { return callSDK<SCNPhysicsConeTwistJoint>("SceneKit_0e503aef608672fa", 860072679500514, undefined, [body, frame]); }
+  static initBodyFrame(body: SCNPhysicsBody, frame: SCNMatrix4): SCNPhysicsConeTwistJoint { return callSDK<SCNPhysicsConeTwistJoint>("SceneKit_212edf3d13b127f5", 860072679500514, undefined, [body, frame]); }
   /**
    * convenience init(bodyA: SCNPhysicsBody, frameA: SCNMatrix4, bodyB: SCNPhysicsBody, frameB: SCNMatrix4)
    * @availability iOS 11.0+
    */
-  static initBodyAFrameABodyBFrameB(bodyA: SCNPhysicsBody, frameA: SCNMatrix4, bodyB: SCNPhysicsBody, frameB: SCNMatrix4): SCNPhysicsConeTwistJoint { return callSDK<SCNPhysicsConeTwistJoint>("SceneKit_0e503aef608672fa", 933131193256500, undefined, [bodyA, frameA, bodyB, frameB]); }
+  static initBodyAFrameABodyBFrameB(bodyA: SCNPhysicsBody, frameA: SCNMatrix4, bodyB: SCNPhysicsBody, frameB: SCNMatrix4): SCNPhysicsConeTwistJoint { return callSDK<SCNPhysicsConeTwistJoint>("SceneKit_212edf3d13b127f5", 933131193256500, undefined, [bodyA, frameA, bodyB, frameB]); }
   /**
    * var bodyA: SCNPhysicsBody { get }
    * @availability iOS 11.0+
    */
-  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 1448712285780240, this, []); }
+  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 1448712285780240, this, []); }
   /**
    * var bodyB: SCNPhysicsBody? { get }
    * @availability iOS 11.0+
    */
-  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_0e503aef608672fa", 4128050529660289, this, []); }
+  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_212edf3d13b127f5", 4128050529660289, this, []); }
   /**
    * var frameA: SCNMatrix4 { get set }
    * @availability iOS 11.0+
    */
-  get frameA(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 4303534623735283, this, []); }
-  set frameA(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 3677525485263413, this, [value]); }
+  get frameA(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 4303534623735283, this, []); }
+  set frameA(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 3677525485263413, this, [value]); }
   /**
    * var frameB: SCNMatrix4 { get set }
    * @availability iOS 11.0+
    */
-  get frameB(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 68984206669987, this, []); }
-  set frameB(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 3728085750008467, this, [value]); }
+  get frameB(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 68984206669987, this, []); }
+  set frameB(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 3728085750008467, this, [value]); }
   /**
    * var maximumAngularLimit1: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumAngularLimit1(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2388049149233673, this, []); }
-  set maximumAngularLimit1(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1215346054980311, this, [value]); }
+  get maximumAngularLimit1(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2388049149233673, this, []); }
+  set maximumAngularLimit1(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1215346054980311, this, [value]); }
   /**
    * var maximumAngularLimit2: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumAngularLimit2(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1370366921233060, this, []); }
-  set maximumAngularLimit2(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 237943291296586, this, [value]); }
+  get maximumAngularLimit2(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1370366921233060, this, []); }
+  set maximumAngularLimit2(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 237943291296586, this, [value]); }
   /**
    * var maximumTwistAngle: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maximumTwistAngle(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3409568334057733, this, []); }
-  set maximumTwistAngle(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3496911015233321, this, [value]); }
+  get maximumTwistAngle(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3409568334057733, this, []); }
+  set maximumTwistAngle(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3496911015233321, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsConeTwistJoint": true; "c:objc(cs)SCNPhysicsBehavior": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "frameA": true; "frameB": true; "maximumAngularLimit1": true; "maximumAngularLimit2": true; "maximumTwistAngle": true };
 }
@@ -3717,24 +3717,24 @@ export class SCNPhysicsConeTwistJoint extends SCNPhysicsBehavior {
 /** class SCNPhysicsContact */
 export class SCNPhysicsContact extends SDKHandle {
   /** init() */
-  static init(): SCNPhysicsContact { return callSDK<SCNPhysicsContact>("SceneKit_0e503aef608672fa", 207083773076244, undefined, []); }
+  static init(): SCNPhysicsContact { return callSDK<SCNPhysicsContact>("SceneKit_212edf3d13b127f5", 207083773076244, undefined, []); }
   /** var collisionImpulse: CGFloat { get } */
-  get collisionImpulse(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1101677464740979, this, []); }
+  get collisionImpulse(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1101677464740979, this, []); }
   /** var contactNormal: SCNVector3 { get } */
-  get contactNormal(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3663677040648335, this, []); }
+  get contactNormal(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3663677040648335, this, []); }
   /** var contactPoint: SCNVector3 { get } */
-  get contactPoint(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 285093734120730, this, []); }
+  get contactPoint(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 285093734120730, this, []); }
   /** var nodeA: SCNNode { get } */
-  get nodeA(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 4369034250201165, this, []); }
+  get nodeA(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 4369034250201165, this, []); }
   /** var nodeB: SCNNode { get } */
-  get nodeB(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 1706638020186281, this, []); }
+  get nodeB(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 1706638020186281, this, []); }
   /** var penetrationDistance: CGFloat { get } */
-  get penetrationDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 915126558623049, this, []); }
+  get penetrationDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 915126558623049, this, []); }
   /**
    * var sweepTestFraction: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get sweepTestFraction(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 391221434425855, this, []); }
+  get sweepTestFraction(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 391221434425855, this, []); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsContact": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "collisionImpulse": true; "contactNormal": true; "contactPoint": true; "nodeA": true; "nodeB": true; "penetrationDistance": true; "sweepTestFraction": true };
 }
@@ -3752,58 +3752,58 @@ export interface SCNPhysicsContactDelegate {
 /** class SCNPhysicsField */
 export class SCNPhysicsField extends SDKHandle {
   /** class func drag() -> SCNPhysicsField */
-  static drag(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 3509062679318527, undefined, []); }
+  static drag(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 3509062679318527, undefined, []); }
   /** class func electric() -> SCNPhysicsField */
-  static electric(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 1502045562179715, undefined, []); }
+  static electric(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 1502045562179715, undefined, []); }
   /** class func linearGravity() -> SCNPhysicsField */
-  static linearGravity(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 3964155993149804, undefined, []); }
+  static linearGravity(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 3964155993149804, undefined, []); }
   /** class func magnetic() -> SCNPhysicsField */
-  static magnetic(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 751912762565462, undefined, []); }
+  static magnetic(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 751912762565462, undefined, []); }
   /** class func noiseField(smoothness: CGFloat, animationSpeed speed: CGFloat) -> SCNPhysicsField */
-  static noiseField(smoothness: number, speed: number): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 255889455015461, undefined, [smoothness, speed]); }
+  static noiseField(smoothness: number, speed: number): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 255889455015461, undefined, [smoothness, speed]); }
   /** class func radialGravity() -> SCNPhysicsField */
-  static radialGravity(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 263805769266324, undefined, []); }
+  static radialGravity(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 263805769266324, undefined, []); }
   /** class func spring() -> SCNPhysicsField */
-  static spring(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 3492236104761549, undefined, []); }
+  static spring(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 3492236104761549, undefined, []); }
   /** class func turbulenceField(smoothness: CGFloat, animationSpeed speed: CGFloat) -> SCNPhysicsField */
-  static turbulenceField(smoothness: number, speed: number): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 3725775559253142, undefined, [smoothness, speed]); }
+  static turbulenceField(smoothness: number, speed: number): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 3725775559253142, undefined, [smoothness, speed]); }
   /** class func vortex() -> SCNPhysicsField */
-  static vortex(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 1268215586640372, undefined, []); }
+  static vortex(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 1268215586640372, undefined, []); }
   /** init() */
-  static init(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_0e503aef608672fa", 898140368230552, undefined, []); }
+  static init(): SCNPhysicsField { return callSDK<SCNPhysicsField>("SceneKit_212edf3d13b127f5", 898140368230552, undefined, []); }
   /** var isActive: Bool { get set } */
-  get isActive(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3216967358588654, this, []); }
-  set isActive(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3023491670048560, this, [value]); }
+  get isActive(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3216967358588654, this, []); }
+  set isActive(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3023491670048560, this, [value]); }
   /** var categoryBitMask: Int { get set } */
-  get categoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1220754860641796, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4300777956990342, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1220754860641796, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4300777956990342, this, [value]); }
   /** var direction: SCNVector3 { get set } */
-  get direction(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2200687404228260, this, []); }
-  set direction(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 2826656598924048, this, [value]); }
+  get direction(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2200687404228260, this, []); }
+  set direction(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 2826656598924048, this, [value]); }
   /** var isExclusive: Bool { get set } */
-  get isExclusive(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 724961702256062, this, []); }
-  set isExclusive(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 440453436144389, this, [value]); }
+  get isExclusive(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 724961702256062, this, []); }
+  set isExclusive(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 440453436144389, this, [value]); }
   /** var falloffExponent: CGFloat { get set } */
-  get falloffExponent(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1444771995886026, this, []); }
-  set falloffExponent(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2854530027389140, this, [value]); }
+  get falloffExponent(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1444771995886026, this, []); }
+  set falloffExponent(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2854530027389140, this, [value]); }
   /** var halfExtent: SCNVector3 { get set } */
-  get halfExtent(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3376889807035542, this, []); }
-  set halfExtent(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 3379629869056084, this, [value]); }
+  get halfExtent(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3376889807035542, this, []); }
+  set halfExtent(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 3379629869056084, this, [value]); }
   /** var minimumDistance: CGFloat { get set } */
-  get minimumDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1359909694296926, this, []); }
-  set minimumDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2489993221829606, this, [value]); }
+  get minimumDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1359909694296926, this, []); }
+  set minimumDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2489993221829606, this, [value]); }
   /** var offset: SCNVector3 { get set } */
-  get offset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4182983432131207, this, []); }
-  set offset(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 3215471528719295, this, [value]); }
+  get offset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4182983432131207, this, []); }
+  set offset(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 3215471528719295, this, [value]); }
   /** var scope: SCNPhysicsFieldScope { get set } */
-  get scope(): SCNPhysicsFieldScope { return callSDK<SCNPhysicsFieldScope>("SceneKit_0e503aef608672fa", 3193789697909788, this, []); }
-  set scope(value: SCNPhysicsFieldScope) { callSDK<void>("SceneKit_0e503aef608672fa", 4246091898481546, this, [value]); }
+  get scope(): SCNPhysicsFieldScope { return callSDK<SCNPhysicsFieldScope>("SceneKit_212edf3d13b127f5", 3193789697909788, this, []); }
+  set scope(value: SCNPhysicsFieldScope) { callSDK<void>("SceneKit_212edf3d13b127f5", 4246091898481546, this, [value]); }
   /** var strength: CGFloat { get set } */
-  get strength(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3448452767837304, this, []); }
-  set strength(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2785246355725549, this, [value]); }
+  get strength(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3448452767837304, this, []); }
+  set strength(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2785246355725549, this, [value]); }
   /** var usesEllipsoidalExtent: Bool { get set } */
-  get usesEllipsoidalExtent(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1542049240244704, this, []); }
-  set usesEllipsoidalExtent(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 384159648137681, this, [value]); }
+  get usesEllipsoidalExtent(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1542049240244704, this, []); }
+  set usesEllipsoidalExtent(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 384159648137681, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsField": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "categoryBitMask": true; "direction": true; "isExclusive": true; "falloffExponent": true; "halfExtent": true; "minimumDistance": true; "offset": true; "scope": true; "strength": true; "usesEllipsoidalExtent": true };
 }
@@ -3813,31 +3813,31 @@ export type SCNPhysicsFieldScope = "insideExtent" | "outsideExtent";
 
 export const SCNPhysicsFieldScope = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNPhysicsFieldScope) | null { return callSDK<(SCNPhysicsFieldScope) | null>("SceneKit_0e503aef608672fa", 3038657583625255, undefined, [rawValue]); }
+  init(rawValue: number): (SCNPhysicsFieldScope) | null { return callSDK<(SCNPhysicsFieldScope) | null>("SceneKit_212edf3d13b127f5", 3038657583625255, undefined, [rawValue]); }
 };
 
 /** class SCNPhysicsHingeJoint */
 export class SCNPhysicsHingeJoint extends SCNPhysicsBehavior {
   /** convenience init(body: SCNPhysicsBody, axis: SCNVector3, anchor: SCNVector3) */
-  static initBodyAxisAnchor(body: SCNPhysicsBody, axis: SCNVector3, anchor: SCNVector3): SCNPhysicsHingeJoint { return callSDK<SCNPhysicsHingeJoint>("SceneKit_0e503aef608672fa", 3559311309686867, undefined, [body, axis, anchor]); }
+  static initBodyAxisAnchor(body: SCNPhysicsBody, axis: SCNVector3, anchor: SCNVector3): SCNPhysicsHingeJoint { return callSDK<SCNPhysicsHingeJoint>("SceneKit_212edf3d13b127f5", 3559311309686867, undefined, [body, axis, anchor]); }
   /** convenience init(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3) */
-  static initBodyAAxisAAnchorABodyBAxisBAnchorB(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3): SCNPhysicsHingeJoint { return callSDK<SCNPhysicsHingeJoint>("SceneKit_0e503aef608672fa", 649238032454601, undefined, [bodyA, axisA, anchorA, bodyB, axisB, anchorB]); }
+  static initBodyAAxisAAnchorABodyBAxisBAnchorB(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3): SCNPhysicsHingeJoint { return callSDK<SCNPhysicsHingeJoint>("SceneKit_212edf3d13b127f5", 649238032454601, undefined, [bodyA, axisA, anchorA, bodyB, axisB, anchorB]); }
   /** var anchorA: SCNVector3 { get set } */
-  get anchorA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3762223354102181, this, []); }
-  set anchorA(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 867673251701310, this, [value]); }
+  get anchorA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3762223354102181, this, []); }
+  set anchorA(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 867673251701310, this, [value]); }
   /** var anchorB: SCNVector3 { get set } */
-  get anchorB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3407066254755743, this, []); }
-  set anchorB(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 295410077065936, this, [value]); }
+  get anchorB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3407066254755743, this, []); }
+  set anchorB(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 295410077065936, this, [value]); }
   /** var axisA: SCNVector3 { get set } */
-  get axisA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2306544854506064, this, []); }
-  set axisA(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1313468328641082, this, [value]); }
+  get axisA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2306544854506064, this, []); }
+  set axisA(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1313468328641082, this, [value]); }
   /** var axisB: SCNVector3 { get set } */
-  get axisB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 97907103401743, this, []); }
-  set axisB(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1564805954404201, this, [value]); }
+  get axisB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 97907103401743, this, []); }
+  set axisB(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1564805954404201, this, [value]); }
   /** var bodyA: SCNPhysicsBody { get } */
-  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 2044258159444489, this, []); }
+  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 2044258159444489, this, []); }
   /** var bodyB: SCNPhysicsBody? { get } */
-  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_0e503aef608672fa", 49788126080614, this, []); }
+  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_212edf3d13b127f5", 49788126080614, this, []); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsHingeJoint": true; "c:objc(cs)SCNPhysicsBehavior": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchorA": true; "anchorB": true; "axisA": true; "axisB": true; "bodyA": true; "bodyB": true };
 }
@@ -3845,26 +3845,26 @@ export class SCNPhysicsHingeJoint extends SCNPhysicsBehavior {
 /** class SCNPhysicsShape */
 export class SCNPhysicsShape extends SDKHandle {
   /** convenience init(geometry: SCNGeometry, options: [SCNPhysicsShape.Option : Any]? = nil) */
-  static initGeometryOptions(geometry: SCNGeometry, options?: $SDK49): SCNPhysicsShape { return callSDK<SCNPhysicsShape>("SceneKit_0e503aef608672fa", 3233682847045457, undefined, [geometry, options]); }
+  static initGeometryOptions(geometry: SCNGeometry, options?: $SDK49): SCNPhysicsShape { return callSDK<SCNPhysicsShape>("SceneKit_212edf3d13b127f5", 3233682847045457, undefined, [geometry, options]); }
   /** convenience init(node: SCNNode, options: [SCNPhysicsShape.Option : Any]? = nil) */
-  static initNodeOptions(node: SCNNode, options?: $SDK49): SCNPhysicsShape { return callSDK<SCNPhysicsShape>("SceneKit_0e503aef608672fa", 885571940176175, undefined, [node, options]); }
+  static initNodeOptions(node: SCNNode, options?: $SDK49): SCNPhysicsShape { return callSDK<SCNPhysicsShape>("SceneKit_212edf3d13b127f5", 885571940176175, undefined, [node, options]); }
   /** convenience init(shapes: [SCNPhysicsShape], transforms: [NSValue]?) */
-  static initShapesTransforms(shapes: Array<SCNPhysicsShape>, transforms?: $SDK33): SCNPhysicsShape { return callSDK<SCNPhysicsShape>("SceneKit_0e503aef608672fa", 4478469086946766, undefined, [shapes, transforms]); }
+  static initShapesTransforms(shapes: Array<SCNPhysicsShape>, transforms?: $SDK33): SCNPhysicsShape { return callSDK<SCNPhysicsShape>("SceneKit_212edf3d13b127f5", 4478469086946766, undefined, [shapes, transforms]); }
   /**
    * var options: [SCNPhysicsShape.Option : Any]? { get }
    * @availability iOS 9.0+
    */
-  get options(): $SDK49 { return callSDK<$SDK49>("SceneKit_0e503aef608672fa", 703707169113023, this, []); }
+  get options(): $SDK49 { return callSDK<$SDK49>("SceneKit_212edf3d13b127f5", 703707169113023, this, []); }
   /**
    * var sourceObject: Any { get }
    * @availability iOS 9.0+
    */
-  get sourceObject(): unknown { return callSDK<unknown>("SceneKit_0e503aef608672fa", 2032770280838878, this, []); }
+  get sourceObject(): unknown { return callSDK<unknown>("SceneKit_212edf3d13b127f5", 2032770280838878, this, []); }
   /**
    * var transforms: [NSValue]? { get }
    * @availability iOS 9.0+
    */
-  get transforms(): $SDK33 { return callSDK<$SDK33>("SceneKit_0e503aef608672fa", 1701452981002267, this, []); }
+  get transforms(): $SDK33 { return callSDK<$SDK33>("SceneKit_212edf3d13b127f5", 1701452981002267, this, []); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "options": true; "sourceObject": true; "transforms": true };
 }
@@ -3874,18 +3874,18 @@ export type SCNPhysicsShape_Option = "type" | "keepAsCompound" | "scale" | "coll
 
 export const SCNPhysicsShape_Option = {
   /** static let keepAsCompound: SCNPhysicsShape.Option */
-  get keepAsCompound(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_0e503aef608672fa", 1360127538699081, undefined, []); },
+  get keepAsCompound(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_212edf3d13b127f5", 1360127538699081, undefined, []); },
   /**
    * static let collisionMargin: SCNPhysicsShape.Option
    * @availability iOS 10.0+
    */
-  get collisionMargin(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_0e503aef608672fa", 2318201457895149, undefined, []); },
+  get collisionMargin(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_212edf3d13b127f5", 2318201457895149, undefined, []); },
   /** static let scale: SCNPhysicsShape.Option */
-  get scale(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_0e503aef608672fa", 2938803545785907, undefined, []); },
+  get scale(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_212edf3d13b127f5", 2938803545785907, undefined, []); },
   /** static let type: SCNPhysicsShape.Option */
-  get type(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_0e503aef608672fa", 3999511522881257, undefined, []); },
+  get type(): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_212edf3d13b127f5", 3999511522881257, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_0e503aef608672fa", 4026693023861706, undefined, [rawValue]); }
+  init(rawValue: string): SCNPhysicsShape_Option { return callSDK<SCNPhysicsShape_Option>("SceneKit_212edf3d13b127f5", 4026693023861706, undefined, [rawValue]); }
 };
 
 /** struct ShapeType */
@@ -3893,61 +3893,61 @@ export type SCNPhysicsShape_ShapeType = "boundingBox" | "convexHull" | "concaveP
 
 export const SCNPhysicsShape_ShapeType = {
   /** static let boundingBox: SCNPhysicsShape.ShapeType */
-  get boundingBox(): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_0e503aef608672fa", 667667136053513, undefined, []); },
+  get boundingBox(): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_212edf3d13b127f5", 667667136053513, undefined, []); },
   /** static let concavePolyhedron: SCNPhysicsShape.ShapeType */
-  get concavePolyhedron(): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_0e503aef608672fa", 2347602851749033, undefined, []); },
+  get concavePolyhedron(): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_212edf3d13b127f5", 2347602851749033, undefined, []); },
   /** static let convexHull: SCNPhysicsShape.ShapeType */
-  get convexHull(): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_0e503aef608672fa", 750184157759623, undefined, []); },
+  get convexHull(): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_212edf3d13b127f5", 750184157759623, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_0e503aef608672fa", 2051210563603837, undefined, [rawValue]); }
+  init(rawValue: string): SCNPhysicsShape_ShapeType { return callSDK<SCNPhysicsShape_ShapeType>("SceneKit_212edf3d13b127f5", 2051210563603837, undefined, [rawValue]); }
 };
 
 /** class SCNPhysicsSliderJoint */
 export class SCNPhysicsSliderJoint extends SCNPhysicsBehavior {
   /** convenience init(body: SCNPhysicsBody, axis: SCNVector3, anchor: SCNVector3) */
-  static initBodyAxisAnchor(body: SCNPhysicsBody, axis: SCNVector3, anchor: SCNVector3): SCNPhysicsSliderJoint { return callSDK<SCNPhysicsSliderJoint>("SceneKit_0e503aef608672fa", 3739129947564990, undefined, [body, axis, anchor]); }
+  static initBodyAxisAnchor(body: SCNPhysicsBody, axis: SCNVector3, anchor: SCNVector3): SCNPhysicsSliderJoint { return callSDK<SCNPhysicsSliderJoint>("SceneKit_212edf3d13b127f5", 3739129947564990, undefined, [body, axis, anchor]); }
   /** convenience init(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3) */
-  static initBodyAAxisAAnchorABodyBAxisBAnchorB(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3): SCNPhysicsSliderJoint { return callSDK<SCNPhysicsSliderJoint>("SceneKit_0e503aef608672fa", 3262375971820429, undefined, [bodyA, axisA, anchorA, bodyB, axisB, anchorB]); }
+  static initBodyAAxisAAnchorABodyBAxisBAnchorB(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3): SCNPhysicsSliderJoint { return callSDK<SCNPhysicsSliderJoint>("SceneKit_212edf3d13b127f5", 3262375971820429, undefined, [bodyA, axisA, anchorA, bodyB, axisB, anchorB]); }
   /** var anchorA: SCNVector3 { get set } */
-  get anchorA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4100591057475206, this, []); }
-  set anchorA(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 204183077977220, this, [value]); }
+  get anchorA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4100591057475206, this, []); }
+  set anchorA(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 204183077977220, this, [value]); }
   /** var anchorB: SCNVector3 { get set } */
-  get anchorB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1279708670045304, this, []); }
-  set anchorB(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1282153167656584, this, [value]); }
+  get anchorB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1279708670045304, this, []); }
+  set anchorB(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1282153167656584, this, [value]); }
   /** var axisA: SCNVector3 { get set } */
-  get axisA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 216012120587500, this, []); }
-  set axisA(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1752984764478223, this, [value]); }
+  get axisA(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 216012120587500, this, []); }
+  set axisA(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1752984764478223, this, [value]); }
   /** var axisB: SCNVector3 { get set } */
-  get axisB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3740841274144916, this, []); }
-  set axisB(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1332492573472772, this, [value]); }
+  get axisB(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3740841274144916, this, []); }
+  set axisB(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1332492573472772, this, [value]); }
   /** var bodyA: SCNPhysicsBody { get } */
-  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 886977055031054, this, []); }
+  get bodyA(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 886977055031054, this, []); }
   /** var bodyB: SCNPhysicsBody? { get } */
-  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_0e503aef608672fa", 603883338832107, this, []); }
+  get bodyB(): (SCNPhysicsBody) | null { return callSDK<(SCNPhysicsBody) | null>("SceneKit_212edf3d13b127f5", 603883338832107, this, []); }
   /** var maximumAngularLimit: CGFloat { get set } */
-  get maximumAngularLimit(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3233546724402214, this, []); }
-  set maximumAngularLimit(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4018554158409000, this, [value]); }
+  get maximumAngularLimit(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3233546724402214, this, []); }
+  set maximumAngularLimit(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4018554158409000, this, [value]); }
   /** var maximumLinearLimit: CGFloat { get set } */
-  get maximumLinearLimit(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 137535038164890, this, []); }
-  set maximumLinearLimit(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3010428764744836, this, [value]); }
+  get maximumLinearLimit(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 137535038164890, this, []); }
+  set maximumLinearLimit(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3010428764744836, this, [value]); }
   /** var minimumAngularLimit: CGFloat { get set } */
-  get minimumAngularLimit(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3700200864409245, this, []); }
-  set minimumAngularLimit(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2070326152060945, this, [value]); }
+  get minimumAngularLimit(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3700200864409245, this, []); }
+  set minimumAngularLimit(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2070326152060945, this, [value]); }
   /** var minimumLinearLimit: CGFloat { get set } */
-  get minimumLinearLimit(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3625372183617968, this, []); }
-  set minimumLinearLimit(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3420205499500316, this, [value]); }
+  get minimumLinearLimit(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3625372183617968, this, []); }
+  set minimumLinearLimit(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3420205499500316, this, [value]); }
   /** var motorMaximumForce: CGFloat { get set } */
-  get motorMaximumForce(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4067679548604457, this, []); }
-  set motorMaximumForce(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3415673968633900, this, [value]); }
+  get motorMaximumForce(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4067679548604457, this, []); }
+  set motorMaximumForce(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3415673968633900, this, [value]); }
   /** var motorMaximumTorque: CGFloat { get set } */
-  get motorMaximumTorque(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2351105984098159, this, []); }
-  set motorMaximumTorque(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1483222549323967, this, [value]); }
+  get motorMaximumTorque(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2351105984098159, this, []); }
+  set motorMaximumTorque(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1483222549323967, this, [value]); }
   /** var motorTargetAngularVelocity: CGFloat { get set } */
-  get motorTargetAngularVelocity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4337786165159763, this, []); }
-  set motorTargetAngularVelocity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 238655293442903, this, [value]); }
+  get motorTargetAngularVelocity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4337786165159763, this, []); }
+  set motorTargetAngularVelocity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 238655293442903, this, [value]); }
   /** var motorTargetLinearVelocity: CGFloat { get set } */
-  get motorTargetLinearVelocity(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 513138153389782, this, []); }
-  set motorTargetLinearVelocity(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 601775473850249, this, [value]); }
+  get motorTargetLinearVelocity(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 513138153389782, this, []); }
+  set motorTargetLinearVelocity(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 601775473850249, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsSliderJoint": true; "c:objc(cs)SCNPhysicsBehavior": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchorA": true; "anchorB": true; "axisA": true; "axisB": true; "bodyA": true; "bodyB": true; "maximumAngularLimit": true; "maximumLinearLimit": true; "minimumAngularLimit": true; "minimumLinearLimit": true; "motorMaximumForce": true; "motorMaximumTorque": true; "motorTargetAngularVelocity": true; "motorTargetLinearVelocity": true };
 }
@@ -3955,19 +3955,19 @@ export class SCNPhysicsSliderJoint extends SCNPhysicsBehavior {
 /** class SCNPhysicsVehicle */
 export class SCNPhysicsVehicle extends (SCNPhysicsBehavior as unknown as Omit<typeof SCNPhysicsBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNPhysicsBehavior)) {
   /** convenience init(chassisBody: SCNPhysicsBody, wheels: [SCNPhysicsVehicleWheel]) */
-  static init(chassisBody: SCNPhysicsBody, wheels: Array<SCNPhysicsVehicleWheel>): SCNPhysicsVehicle { return callSDK<SCNPhysicsVehicle>("SceneKit_0e503aef608672fa", 3792553674761970, undefined, [chassisBody, wheels]); }
+  static init(chassisBody: SCNPhysicsBody, wheels: Array<SCNPhysicsVehicleWheel>): SCNPhysicsVehicle { return callSDK<SCNPhysicsVehicle>("SceneKit_212edf3d13b127f5", 3792553674761970, undefined, [chassisBody, wheels]); }
   /** func applyBrakingForce(_ value: CGFloat, forWheelAt index: Int) */
-  applyBrakingForce(value: number, index: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3875048767627987, this, [value, index]); }
+  applyBrakingForce(value: number, index: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3875048767627987, this, [value, index]); }
   /** func applyEngineForce(_ value: CGFloat, forWheelAt index: Int) */
-  applyEngineForce(value: number, index: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 71598200944135, this, [value, index]); }
+  applyEngineForce(value: number, index: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 71598200944135, this, [value, index]); }
   /** func setSteeringAngle(_ value: CGFloat, forWheelAt index: Int) */
-  setSteeringAngle(value: number, index: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3046581776738910, this, [value, index]); }
+  setSteeringAngle(value: number, index: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3046581776738910, this, [value, index]); }
   /** var chassisBody: SCNPhysicsBody { get } */
-  get chassisBody(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_0e503aef608672fa", 825361224132224, this, []); }
+  get chassisBody(): SCNPhysicsBody { return callSDK<SCNPhysicsBody>("SceneKit_212edf3d13b127f5", 825361224132224, this, []); }
   /** var speedInKilometersPerHour: CGFloat { get } */
-  get speedInKilometersPerHour(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4364076435473073, this, []); }
+  get speedInKilometersPerHour(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4364076435473073, this, []); }
   /** var wheels: [SCNPhysicsVehicleWheel] { get } */
-  get wheels(): Array<SCNPhysicsVehicleWheel> { return callSDK<Array<SCNPhysicsVehicleWheel>>("SceneKit_0e503aef608672fa", 991702041051920, this, []); }
+  get wheels(): Array<SCNPhysicsVehicleWheel> { return callSDK<Array<SCNPhysicsVehicleWheel>>("SceneKit_212edf3d13b127f5", 991702041051920, this, []); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsVehicle": true; "c:objc(cs)SCNPhysicsBehavior": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "chassisBody": true; "speedInKilometersPerHour": true; "wheels": true };
 }
@@ -3975,42 +3975,42 @@ export class SCNPhysicsVehicle extends (SCNPhysicsBehavior as unknown as Omit<ty
 /** class SCNPhysicsVehicleWheel */
 export class SCNPhysicsVehicleWheel extends SDKHandle {
   /** convenience init(node: SCNNode) */
-  static init(node: SCNNode): SCNPhysicsVehicleWheel { return callSDK<SCNPhysicsVehicleWheel>("SceneKit_0e503aef608672fa", 911327787193645, undefined, [node]); }
+  static init(node: SCNNode): SCNPhysicsVehicleWheel { return callSDK<SCNPhysicsVehicleWheel>("SceneKit_212edf3d13b127f5", 911327787193645, undefined, [node]); }
   /** var axle: SCNVector3 { get set } */
-  get axle(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2275172893280649, this, []); }
-  set axle(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 4192643969017294, this, [value]); }
+  get axle(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2275172893280649, this, []); }
+  set axle(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 4192643969017294, this, [value]); }
   /** var connectionPosition: SCNVector3 { get set } */
-  get connectionPosition(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 500554151881268, this, []); }
-  set connectionPosition(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 296341003409523, this, [value]); }
+  get connectionPosition(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 500554151881268, this, []); }
+  set connectionPosition(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 296341003409523, this, [value]); }
   /** var frictionSlip: CGFloat { get set } */
-  get frictionSlip(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4037532378458751, this, []); }
-  set frictionSlip(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1356885846998143, this, [value]); }
+  get frictionSlip(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4037532378458751, this, []); }
+  set frictionSlip(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1356885846998143, this, [value]); }
   /** var maximumSuspensionForce: CGFloat { get set } */
-  get maximumSuspensionForce(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3287356810653201, this, []); }
-  set maximumSuspensionForce(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2402046753898770, this, [value]); }
+  get maximumSuspensionForce(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3287356810653201, this, []); }
+  set maximumSuspensionForce(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2402046753898770, this, [value]); }
   /** var maximumSuspensionTravel: CGFloat { get set } */
-  get maximumSuspensionTravel(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 349403507446461, this, []); }
-  set maximumSuspensionTravel(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1840528437972033, this, [value]); }
+  get maximumSuspensionTravel(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 349403507446461, this, []); }
+  set maximumSuspensionTravel(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1840528437972033, this, [value]); }
   /** var node: SCNNode { get } */
-  get node(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 3437313917999760, this, []); }
+  get node(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 3437313917999760, this, []); }
   /** var radius: CGFloat { get set } */
-  get radius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4134645299919093, this, []); }
-  set radius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3233666870848809, this, [value]); }
+  get radius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4134645299919093, this, []); }
+  set radius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3233666870848809, this, [value]); }
   /** var steeringAxis: SCNVector3 { get set } */
-  get steeringAxis(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 470606591091007, this, []); }
-  set steeringAxis(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1715291402974147, this, [value]); }
+  get steeringAxis(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 470606591091007, this, []); }
+  set steeringAxis(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1715291402974147, this, [value]); }
   /** var suspensionCompression: CGFloat { get set } */
-  get suspensionCompression(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3494340419333552, this, []); }
-  set suspensionCompression(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 712973468068287, this, [value]); }
+  get suspensionCompression(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3494340419333552, this, []); }
+  set suspensionCompression(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 712973468068287, this, [value]); }
   /** var suspensionDamping: CGFloat { get set } */
-  get suspensionDamping(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3988885346767032, this, []); }
-  set suspensionDamping(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4464979084444058, this, [value]); }
+  get suspensionDamping(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3988885346767032, this, []); }
+  set suspensionDamping(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4464979084444058, this, [value]); }
   /** var suspensionRestLength: CGFloat { get set } */
-  get suspensionRestLength(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2480020122440157, this, []); }
-  set suspensionRestLength(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4072643264915462, this, [value]); }
+  get suspensionRestLength(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2480020122440157, this, []); }
+  set suspensionRestLength(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4072643264915462, this, [value]); }
   /** var suspensionStiffness: CGFloat { get set } */
-  get suspensionStiffness(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2895974952410163, this, []); }
-  set suspensionStiffness(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1725359094390845, this, [value]); }
+  get suspensionStiffness(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2895974952410163, this, []); }
+  set suspensionStiffness(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1725359094390845, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsVehicleWheel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "axle": true; "connectionPosition": true; "frictionSlip": true; "maximumSuspensionForce": true; "maximumSuspensionTravel": true; "node": true; "radius": true; "steeringAxis": true; "suspensionCompression": true; "suspensionDamping": true; "suspensionRestLength": true; "suspensionStiffness": true };
 }
@@ -4018,37 +4018,37 @@ export class SCNPhysicsVehicleWheel extends SDKHandle {
 /** class SCNPhysicsWorld */
 export class SCNPhysicsWorld extends SDKHandle {
   /** func addBehavior(_ behavior: SCNPhysicsBehavior) */
-  addBehavior(behavior: SCNPhysicsBehavior): void { return callSDK<void>("SceneKit_0e503aef608672fa", 976454265754545, this, [behavior]); }
+  addBehavior(behavior: SCNPhysicsBehavior): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 976454265754545, this, [behavior]); }
   /** func contactTestBetween(_ bodyA: SCNPhysicsBody, _ bodyB: SCNPhysicsBody, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNPhysicsContact] */
-  contactTestBetween(bodyA: SCNPhysicsBody, bodyB: SCNPhysicsBody, options?: $SDK52): $SDK51 { return callSDK<$SDK51>("SceneKit_0e503aef608672fa", 1452650490594589, this, [bodyA, bodyB, options]); }
+  contactTestBetween(bodyA: SCNPhysicsBody, bodyB: SCNPhysicsBody, options?: $SDK52): $SDK51 { return callSDK<$SDK51>("SceneKit_212edf3d13b127f5", 1452650490594589, this, [bodyA, bodyB, options]); }
   /** func contactTest(with body: SCNPhysicsBody, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNPhysicsContact] */
-  contactTest(body: SCNPhysicsBody, options?: $SDK52): $SDK51 { return callSDK<$SDK51>("SceneKit_0e503aef608672fa", 3937732446386848, this, [body, options]); }
+  contactTest(body: SCNPhysicsBody, options?: $SDK52): $SDK51 { return callSDK<$SDK51>("SceneKit_212edf3d13b127f5", 3937732446386848, this, [body, options]); }
   /** func convexSweepTest(with shape: SCNPhysicsShape, from: SCNMatrix4, to: SCNMatrix4, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNPhysicsContact] */
-  convexSweepTest(shape: SCNPhysicsShape, from: SCNMatrix4, to: SCNMatrix4, options?: $SDK52): $SDK51 { return callSDK<$SDK51>("SceneKit_0e503aef608672fa", 4490286227567947, this, [shape, from, to, options]); }
+  convexSweepTest(shape: SCNPhysicsShape, from: SCNMatrix4, to: SCNMatrix4, options?: $SDK52): $SDK51 { return callSDK<$SDK51>("SceneKit_212edf3d13b127f5", 4490286227567947, this, [shape, from, to, options]); }
   /** init() */
-  static init(): SCNPhysicsWorld { return callSDK<SCNPhysicsWorld>("SceneKit_0e503aef608672fa", 4235478857642788, undefined, []); }
+  static init(): SCNPhysicsWorld { return callSDK<SCNPhysicsWorld>("SceneKit_212edf3d13b127f5", 4235478857642788, undefined, []); }
   /** func rayTestWithSegment(from origin: SCNVector3, to dest: SCNVector3, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNHitTestResult] */
-  rayTestWithSegment(origin: SCNVector3, dest: SCNVector3, options?: $SDK52): Array<SCNHitTestResult> { return callSDK<Array<SCNHitTestResult>>("SceneKit_0e503aef608672fa", 3024293082211745, this, [origin, dest, options]); }
+  rayTestWithSegment(origin: SCNVector3, dest: SCNVector3, options?: $SDK52): Array<SCNHitTestResult> { return callSDK<Array<SCNHitTestResult>>("SceneKit_212edf3d13b127f5", 3024293082211745, this, [origin, dest, options]); }
   /** func removeAllBehaviors() */
-  removeAllBehaviors(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3834428571263954, this, []); }
+  removeAllBehaviors(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3834428571263954, this, []); }
   /** func removeBehavior(_ behavior: SCNPhysicsBehavior) */
-  removeBehavior(behavior: SCNPhysicsBehavior): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3089242999880326, this, [behavior]); }
+  removeBehavior(behavior: SCNPhysicsBehavior): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3089242999880326, this, [behavior]); }
   /** func updateCollisionPairs() */
-  updateCollisionPairs(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 676491247787225, this, []); }
+  updateCollisionPairs(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 676491247787225, this, []); }
   /** var allBehaviors: [SCNPhysicsBehavior] { get } */
-  get allBehaviors(): Array<SCNPhysicsBehavior> { return callSDK<Array<SCNPhysicsBehavior>>("SceneKit_0e503aef608672fa", 1672371815593527, this, []); }
+  get allBehaviors(): Array<SCNPhysicsBehavior> { return callSDK<Array<SCNPhysicsBehavior>>("SceneKit_212edf3d13b127f5", 1672371815593527, this, []); }
   /** weak var contactDelegate: (any SCNPhysicsContactDelegate)? { get set } */
-  get contactDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_0e503aef608672fa", 1506519232539799, this, []); }
-  set contactDelegate(value: (Implements<SCNPhysicsContactDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1859900014191930, this, [value], [{"protocol":"c:objc(pl)SCNPhysicsContactDelegate"}]); }
+  get contactDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_212edf3d13b127f5", 1506519232539799, this, []); }
+  set contactDelegate(value: (Implements<SCNPhysicsContactDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1859900014191930, this, [value], [{"protocol":"c:objc(pl)SCNPhysicsContactDelegate"}]); }
   /** var gravity: SCNVector3 { get set } */
-  get gravity(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2971858858617430, this, []); }
-  set gravity(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 139789453801365, this, [value]); }
+  get gravity(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2971858858617430, this, []); }
+  set gravity(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 139789453801365, this, [value]); }
   /** var speed: CGFloat { get set } */
-  get speed(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3622971995284235, this, []); }
-  set speed(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3381410800169729, this, [value]); }
+  get speed(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3622971995284235, this, []); }
+  set speed(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3381410800169729, this, [value]); }
   /** var timeStep: TimeInterval { get set } */
-  get timeStep(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1193822672022512, this, []); }
-  set timeStep(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2720816180633431, this, [value]); }
+  get timeStep(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1193822672022512, this, []); }
+  set timeStep(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2720816180633431, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPhysicsWorld": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allBehaviors": true; "contactDelegate": true; "gravity": true; "speed": true; "timeStep": true };
 }
@@ -4058,13 +4058,13 @@ export type SCNPhysicsWorld_TestOption = "collisionBitMask" | "searchMode" | "ba
 
 export const SCNPhysicsWorld_TestOption = {
   /** static let backfaceCulling: SCNPhysicsWorld.TestOption */
-  get backfaceCulling(): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_0e503aef608672fa", 3236566526670285, undefined, []); },
+  get backfaceCulling(): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_212edf3d13b127f5", 3236566526670285, undefined, []); },
   /** static let collisionBitMask: SCNPhysicsWorld.TestOption */
-  get collisionBitMask(): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_0e503aef608672fa", 865729712696989, undefined, []); },
+  get collisionBitMask(): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_212edf3d13b127f5", 865729712696989, undefined, []); },
   /** static let searchMode: SCNPhysicsWorld.TestOption */
-  get searchMode(): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_0e503aef608672fa", 4235422423545924, undefined, []); },
+  get searchMode(): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_212edf3d13b127f5", 4235422423545924, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_0e503aef608672fa", 2030957425300260, undefined, [rawValue]); }
+  init(rawValue: string): SCNPhysicsWorld_TestOption { return callSDK<SCNPhysicsWorld_TestOption>("SceneKit_212edf3d13b127f5", 2030957425300260, undefined, [rawValue]); }
 };
 
 /** struct TestSearchMode */
@@ -4072,37 +4072,37 @@ export type SCNPhysicsWorld_TestSearchMode = "any" | "closest" | "all" | (string
 
 export const SCNPhysicsWorld_TestSearchMode = {
   /** static let all: SCNPhysicsWorld.TestSearchMode */
-  get all(): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_0e503aef608672fa", 2560352319347448, undefined, []); },
+  get all(): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_212edf3d13b127f5", 2560352319347448, undefined, []); },
   /** static let any: SCNPhysicsWorld.TestSearchMode */
-  get any(): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_0e503aef608672fa", 1614889076459311, undefined, []); },
+  get any(): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_212edf3d13b127f5", 1614889076459311, undefined, []); },
   /** static let closest: SCNPhysicsWorld.TestSearchMode */
-  get closest(): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_0e503aef608672fa", 124867587249545, undefined, []); },
+  get closest(): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_212edf3d13b127f5", 124867587249545, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_0e503aef608672fa", 1864975250231416, undefined, [rawValue]); }
+  init(rawValue: string): SCNPhysicsWorld_TestSearchMode { return callSDK<SCNPhysicsWorld_TestSearchMode>("SceneKit_212edf3d13b127f5", 1864975250231416, undefined, [rawValue]); }
 };
 
 /** class SCNPlane */
 export class SCNPlane extends SCNGeometry {
   /** convenience init(width: CGFloat, height: CGFloat) */
-  static init(width: number, height: number): SCNPlane { return callSDK<SCNPlane>("SceneKit_0e503aef608672fa", 1652400304857059, undefined, [width, height]); }
+  static init(width: number, height: number): SCNPlane { return callSDK<SCNPlane>("SceneKit_212edf3d13b127f5", 1652400304857059, undefined, [width, height]); }
   /** var cornerRadius: CGFloat { get set } */
-  get cornerRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 33855239867194, this, []); }
-  set cornerRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1359785666088824, this, [value]); }
+  get cornerRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 33855239867194, this, []); }
+  set cornerRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1359785666088824, this, [value]); }
   /** var cornerSegmentCount: Int { get set } */
-  get cornerSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 742489650213106, this, []); }
-  set cornerSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2901257396509438, this, [value]); }
+  get cornerSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 742489650213106, this, []); }
+  set cornerSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2901257396509438, this, [value]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2440885959267453, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1375069105833410, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2440885959267453, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1375069105833410, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3868932175363669, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1595110360596869, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3868932175363669, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1595110360596869, this, [value]); }
   /** var width: CGFloat { get set } */
-  get width(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3240333973673091, this, []); }
-  set width(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2605966822831607, this, [value]); }
+  get width(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3240333973673091, this, []); }
+  set width(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2605966822831607, this, [value]); }
   /** var widthSegmentCount: Int { get set } */
-  get widthSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1127424515829193, this, []); }
-  set widthSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1534024512145354, this, [value]); }
+  get widthSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1127424515829193, this, []); }
+  set widthSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1534024512145354, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPlane": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "cornerRadius": true; "cornerSegmentCount": true; "height": true; "heightSegmentCount": true; "width": true; "widthSegmentCount": true };
 }
@@ -4113,43 +4113,43 @@ export class SCNProgram extends SDKHandle {
    * func handleBinding(ofBufferNamed name: String, frequency: SCNBufferFrequency, handler block: @escaping SCNBufferBindingBlock)
    * @availability iOS 9.0+
    */
-  handleBinding(name: string, frequency: SCNBufferFrequency, block: ((arg0: SDKHandle, arg1: SCNNode, arg2: SDKHandle, arg3: SCNRenderer) => void)): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2092496144815307, this, [name, frequency, block], [null,null,{"callback":{"out":[]}}]); }
+  handleBinding(name: string, frequency: SCNBufferFrequency, block: ((arg0: SDKHandle, arg1: SCNNode, arg2: SDKHandle, arg3: SCNRenderer) => void)): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2092496144815307, this, [name, frequency, block], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SCNProgram { return callSDK<SCNProgram>("SceneKit_0e503aef608672fa", 4214844463626454, undefined, []); }
+  static init(): SCNProgram { return callSDK<SCNProgram>("SceneKit_212edf3d13b127f5", 4214844463626454, undefined, []); }
   /** func semantic(forSymbol symbol: String) -> String? */
-  semantic(symbol: string): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 880999342292345, this, [symbol]); }
+  semantic(symbol: string): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 880999342292345, this, [symbol]); }
   /** func setSemantic(_ semantic: String?, forSymbol symbol: String, options: [String : Any]? = nil) */
-  setSemantic(semantic: (string) | null, symbol: string, options?: $SDK37): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3860423730232928, this, [semantic, symbol, options]); }
+  setSemantic(semantic: (string) | null, symbol: string, options?: $SDK37): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3860423730232928, this, [semantic, symbol, options]); }
   /** unowned(unsafe) var delegate: (any SCNProgramDelegate)? { get set } */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_0e503aef608672fa", 3596344768005217, this, []); }
-  set delegate(value: (Implements<SCNProgramDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 813319644270194, this, [value], [{"protocol":"c:objc(pl)SCNProgramDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_212edf3d13b127f5", 3596344768005217, this, []); }
+  set delegate(value: (Implements<SCNProgramDelegate> | SDKHandle) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 813319644270194, this, [value], [{"protocol":"c:objc(pl)SCNProgramDelegate"}]); }
   /**
    * var fragmentFunctionName: String? { get set }
    * @availability iOS 9.0+
    */
-  get fragmentFunctionName(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 368506760422996, this, []); }
-  set fragmentFunctionName(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1892631873869412, this, [value]); }
+  get fragmentFunctionName(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 368506760422996, this, []); }
+  set fragmentFunctionName(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1892631873869412, this, [value]); }
   /** var fragmentShader: String? { get set } */
-  get fragmentShader(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 2448716297855040, this, []); }
-  set fragmentShader(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3899812648440058, this, [value]); }
+  get fragmentShader(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 2448716297855040, this, []); }
+  set fragmentShader(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3899812648440058, this, [value]); }
   /**
    * var library: (any MTLLibrary)? { get set }
    * @availability iOS 9.0+
    */
-  get library(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_0e503aef608672fa", 1248570170802384, this, []); }
-  set library(value: (SDKHandle) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 522836771978529, this, [value]); }
+  get library(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_212edf3d13b127f5", 1248570170802384, this, []); }
+  set library(value: (SDKHandle) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 522836771978529, this, [value]); }
   /** var isOpaque: Bool { get set } */
-  get isOpaque(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1262082799510656, this, []); }
-  set isOpaque(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 740289481642807, this, [value]); }
+  get isOpaque(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1262082799510656, this, []); }
+  set isOpaque(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 740289481642807, this, [value]); }
   /**
    * var vertexFunctionName: String? { get set }
    * @availability iOS 9.0+
    */
-  get vertexFunctionName(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 245182618637310, this, []); }
-  set vertexFunctionName(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 2034068939299588, this, [value]); }
+  get vertexFunctionName(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 245182618637310, this, []); }
+  set vertexFunctionName(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 2034068939299588, this, [value]); }
   /** var vertexShader: String? { get set } */
-  get vertexShader(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 2744043442867419, this, []); }
-  set vertexShader(value: (string) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3203349713939318, this, [value]); }
+  get vertexShader(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 2744043442867419, this, []); }
+  set vertexShader(value: (string) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3203349713939318, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNProgram": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "fragmentFunctionName": true; "fragmentShader": true; "library": true; "isOpaque": true; "vertexFunctionName": true; "vertexShader": true };
 }
@@ -4163,25 +4163,25 @@ export interface SCNProgramDelegate {
 /** class SCNPyramid */
 export class SCNPyramid extends SCNGeometry {
   /** convenience init(width: CGFloat, height: CGFloat, length: CGFloat) */
-  static init(width: number, height: number, length: number): SCNPyramid { return callSDK<SCNPyramid>("SceneKit_0e503aef608672fa", 2201891365634306, undefined, [width, height, length]); }
+  static init(width: number, height: number, length: number): SCNPyramid { return callSDK<SCNPyramid>("SceneKit_212edf3d13b127f5", 2201891365634306, undefined, [width, height, length]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2197080526970588, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3023242132331850, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2197080526970588, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3023242132331850, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2190804786170988, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 521255560537238, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2190804786170988, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 521255560537238, this, [value]); }
   /** var length: CGFloat { get set } */
-  get length(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2678559447660109, this, []); }
-  set length(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3772457917720826, this, [value]); }
+  get length(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2678559447660109, this, []); }
+  set length(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3772457917720826, this, [value]); }
   /** var lengthSegmentCount: Int { get set } */
-  get lengthSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2090280017571629, this, []); }
-  set lengthSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 426743322071919, this, [value]); }
+  get lengthSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2090280017571629, this, []); }
+  set lengthSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 426743322071919, this, [value]); }
   /** var width: CGFloat { get set } */
-  get width(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2020831565090992, this, []); }
-  set width(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2831792326709521, this, [value]); }
+  get width(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2020831565090992, this, []); }
+  set width(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2831792326709521, this, [value]); }
   /** var widthSegmentCount: Int { get set } */
-  get widthSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 323030168970211, this, []); }
-  set widthSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4385569803558667, this, [value]); }
+  get widthSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 323030168970211, this, []); }
+  set widthSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4385569803558667, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNPyramid": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "height": true; "heightSegmentCount": true; "length": true; "lengthSegmentCount": true; "width": true; "widthSegmentCount": true };
 }
@@ -4200,7 +4200,7 @@ export const SCNReferenceLoadingPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (SCNReferenceLoadingPolicy) | null { return callSDK<(SCNReferenceLoadingPolicy) | null>("SceneKit_0e503aef608672fa", 3109252163550453, undefined, [rawValue]); }
+  init(rawValue: number): (SCNReferenceLoadingPolicy) | null { return callSDK<(SCNReferenceLoadingPolicy) | null>("SceneKit_212edf3d13b127f5", 3109252163550453, undefined, [rawValue]); }
 };
 
 /**
@@ -4212,39 +4212,39 @@ export class SCNReferenceNode extends SCNNode {
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 9.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SCNReferenceNode) | null> { return callSDKAsync<(SCNReferenceNode) | null>("SceneKit_0e503aef608672fa", 1806015483120381, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SCNReferenceNode) | null> { return callSDKAsync<(SCNReferenceNode) | null>("SceneKit_212edf3d13b127f5", 1806015483120381, undefined, [aDecoder]); }
   /**
    * init?(url referenceURL: URL)
    * @availability iOS 9.0+
    */
-  static initUrl(referenceURL: string): Promise<(SCNReferenceNode) | null> { return callSDKAsync<(SCNReferenceNode) | null>("SceneKit_0e503aef608672fa", 3510967543145515, undefined, [referenceURL]); }
+  static initUrl(referenceURL: string): Promise<(SCNReferenceNode) | null> { return callSDKAsync<(SCNReferenceNode) | null>("SceneKit_212edf3d13b127f5", 3510967543145515, undefined, [referenceURL]); }
   /**
    * func load()
    * @availability iOS 9.0+
    */
-  load(): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2942680613868793, this, []); }
+  load(): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2942680613868793, this, []); }
   /**
    * func unload()
    * @availability iOS 9.0+
    */
-  unload(): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2312093587443900, this, []); }
+  unload(): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2312093587443900, this, []); }
   /**
    * var isLoaded: Bool { get }
    * @availability iOS 9.0+
    */
-  get isLoaded(): Promise<boolean> { return callSDKAsync<boolean>("SceneKit_0e503aef608672fa", 1818435905209317, this, []); }
+  get isLoaded(): Promise<boolean> { return callSDKAsync<boolean>("SceneKit_212edf3d13b127f5", 1818435905209317, this, []); }
   /**
    * var loadingPolicy: SCNReferenceLoadingPolicy { get set }
    * @availability iOS 9.0+
    */
-  get loadingPolicy(): Promise<SCNReferenceLoadingPolicy> { return callSDKAsync<SCNReferenceLoadingPolicy>("SceneKit_0e503aef608672fa", 743678140674434, this, []); }
-  setLoadingPolicy(value: SCNReferenceLoadingPolicy): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 3248274844479999, this, [value]); }
+  get loadingPolicy(): Promise<SCNReferenceLoadingPolicy> { return callSDKAsync<SCNReferenceLoadingPolicy>("SceneKit_212edf3d13b127f5", 743678140674434, this, []); }
+  setLoadingPolicy(value: SCNReferenceLoadingPolicy): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 3248274844479999, this, [value]); }
   /**
    * var referenceURL: URL { get set }
    * @availability iOS 9.0+
    */
-  get referenceURL(): Promise<string> { return callSDKAsync<string>("SceneKit_0e503aef608672fa", 2685886889501728, this, []); }
-  setReferenceURL(value: string): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2804270390453602, this, [value]); }
+  get referenceURL(): Promise<string> { return callSDKAsync<string>("SceneKit_212edf3d13b127f5", 2685886889501728, this, []); }
+  setReferenceURL(value: string): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2804270390453602, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNReferenceNode": true; "c:objc(cs)SCNNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioPlayers": true; "camera": true; "castsShadow": true; "categoryBitMask": true; "childNodes": true; "constraints": true; "eulerAngles": true; "filters": true; "focusBehavior": true; "geometry": true; "isHidden": true; "light": true; "morpher": true; "movabilityHint": true; "name": true; "opacity": true; "orientation": true; "parent": true; "particleSystems": true; "isPaused": true; "physicsBody": true; "physicsField": true; "pivot": true; "position": true; "presentation": true; "rendererDelegate": true; "renderingOrder": true; "rotation": true; "scale": true; "simdEulerAngles": true; "simdOrientation": true; "simdPivot": true; "simdPosition": true; "simdRotation": true; "simdScale": true; "simdTransform": true; "simdWorldFront": true; "simdWorldOrientation": true; "simdWorldPosition": true; "simdWorldRight": true; "simdWorldTransform": true; "simdWorldUp": true; "skinner": true; "transform": true; "worldFront": true; "worldOrientation": true; "worldPosition": true; "worldRight": true; "worldTransform": true; "worldUp": true; "isLoaded": true; "loadingPolicy": true; "referenceURL": true };
 }
@@ -4252,50 +4252,50 @@ export class SCNReferenceNode extends SCNNode {
 /** class SCNRenderer */
 export class SCNRenderer extends SDKHandle {
   /** convenience init(context: EAGLContext?, options: [AnyHashable : Any]? = nil) */
-  static initContextOptions(context?: $SDK57, options?: $SDK58): SCNRenderer { return callSDK<SCNRenderer>("SceneKit_0e503aef608672fa", 4242467276196008, undefined, [context, options]); }
+  static initContextOptions(context?: $SDK57, options?: $SDK58): SCNRenderer { return callSDK<SCNRenderer>("SceneKit_212edf3d13b127f5", 4242467276196008, undefined, [context, options]); }
   /**
    * convenience init(device: (any MTLDevice)?, options: [AnyHashable : Any]? = nil)
    * @availability iOS 9.0+
    */
-  static initDeviceOptions(device?: (SDKHandle) | null, options?: $SDK58): SCNRenderer { return callSDK<SCNRenderer>("SceneKit_0e503aef608672fa", 3193051723817305, undefined, [device, options]); }
+  static initDeviceOptions(device?: (SDKHandle) | null, options?: $SDK58): SCNRenderer { return callSDK<SCNRenderer>("SceneKit_212edf3d13b127f5", 3193051723817305, undefined, [device, options]); }
   /**
    * func render()
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  render(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1274830813833453, this, []); }
+  render(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1274830813833453, this, []); }
   /** func render(atTime time: CFTimeInterval) */
-  renderAtTime(time: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2947669455785324, this, [time]); }
+  renderAtTime(time: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2947669455785324, this, [time]); }
   /**
    * func render(atTime time: CFTimeInterval, viewport: CGRect, commandBuffer: any MTLCommandBuffer, passDescriptor renderPassDescriptor: MTLRenderPassDescriptor)
    * @availability iOS 9.0+
    */
-  renderAtTimeViewportCommandBufferPassDescriptor(time: number, viewport: $SDK59, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4097700848124787, this, [time, viewport, commandBuffer, renderPassDescriptor]); }
+  renderAtTimeViewportCommandBufferPassDescriptor(time: number, viewport: $SDK59, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4097700848124787, this, [time, viewport, commandBuffer, renderPassDescriptor]); }
   /**
    * func render(withViewport viewport: CGRect, commandBuffer: any MTLCommandBuffer, passDescriptor renderPassDescriptor: MTLRenderPassDescriptor)
    * @availability iOS 11.0+
    */
-  renderWithViewportCommandBufferPassDescriptor(viewport: $SDK59, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void { return callSDK<void>("SceneKit_0e503aef608672fa", 3939905090357915, this, [viewport, commandBuffer, renderPassDescriptor]); }
+  renderWithViewportCommandBufferPassDescriptor(viewport: $SDK59, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 3939905090357915, this, [viewport, commandBuffer, renderPassDescriptor]); }
   /**
    * func snapshot(atTime time: CFTimeInterval, with size: CGSize, antialiasingMode: SCNAntialiasingMode) -> UIImage
    * @availability iOS 10.0+
    */
-  snapshot(time: number, size: $SDK28, antialiasingMode: SCNAntialiasingMode): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("SceneKit_0e503aef608672fa", 1082127499480664, this, [time, size, antialiasingMode]); }
+  snapshot(time: number, size: $SDK28, antialiasingMode: SCNAntialiasingMode): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("SceneKit_212edf3d13b127f5", 1082127499480664, this, [time, size, antialiasingMode]); }
   /**
    * func update(atTime time: CFTimeInterval)
    * @availability iOS 11.0+
    */
-  update(time: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2124975225793246, this, [time]); }
+  update(time: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2124975225793246, this, [time]); }
   /**
    * func updateProbes(_ lightProbes: [SCNNode], atTime time: CFTimeInterval)
    * @availability iOS 10.0+
    */
-  updateProbes(lightProbes: Array<SCNNode>, time: number): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4250393591179221, this, [lightProbes, time]); }
+  updateProbes(lightProbes: Array<SCNNode>, time: number): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4250393591179221, this, [lightProbes, time]); }
   /** var nextFrameTime: CFTimeInterval { get } */
-  get nextFrameTime(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 333104451622387, this, []); }
+  get nextFrameTime(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 333104451622387, this, []); }
   /** var scene: SCNScene? { get set } */
-  get scene(): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_0e503aef608672fa", 3769756194624006, this, []); }
-  set scene(value: (SCNScene) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3123746472977821, this, [value]); }
+  get scene(): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_212edf3d13b127f5", 3769756194624006, this, []); }
+  set scene(value: (SCNScene) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3123746472977821, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "nextFrameTime": true; "scene": true };
 }
@@ -4311,7 +4311,7 @@ export const SCNRenderingAPI = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (SCNRenderingAPI) | null { return callSDK<(SCNRenderingAPI) | null>("SceneKit_0e503aef608672fa", 3413407569382444, undefined, [rawValue]); }
+  init(rawValue: number): (SCNRenderingAPI) | null { return callSDK<(SCNRenderingAPI) | null>("SceneKit_212edf3d13b127f5", 3413407569382444, undefined, [rawValue]); }
 };
 
 /**
@@ -4323,49 +4323,49 @@ export class SCNReplicatorConstraint extends (SCNConstraint as unknown as Omit<t
    * convenience init(target: SCNNode?)
    * @availability iOS 11.0+
    */
-  static init(target?: (SCNNode) | null): SCNReplicatorConstraint { return callSDK<SCNReplicatorConstraint>("SceneKit_0e503aef608672fa", 1717197199224881, undefined, [target]); }
+  static init(target?: (SCNNode) | null): SCNReplicatorConstraint { return callSDK<SCNReplicatorConstraint>("SceneKit_212edf3d13b127f5", 1717197199224881, undefined, [target]); }
   /**
    * var orientationOffset: SCNQuaternion { get set }
    * @availability iOS 11.0+
    */
-  get orientationOffset(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1333514538091212, this, []); }
-  set orientationOffset(value: SCNVector4) { callSDK<void>("SceneKit_0e503aef608672fa", 2772276969742113, this, [value]); }
+  get orientationOffset(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1333514538091212, this, []); }
+  set orientationOffset(value: SCNVector4) { callSDK<void>("SceneKit_212edf3d13b127f5", 2772276969742113, this, [value]); }
   /**
    * var positionOffset: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get positionOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1283293733592639, this, []); }
-  set positionOffset(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 3368275175449934, this, [value]); }
+  get positionOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1283293733592639, this, []); }
+  set positionOffset(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 3368275175449934, this, [value]); }
   /**
    * var replicatesOrientation: Bool { get set }
    * @availability iOS 11.0+
    */
-  get replicatesOrientation(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 4308487195789410, this, []); }
-  set replicatesOrientation(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 3836754763095123, this, [value]); }
+  get replicatesOrientation(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 4308487195789410, this, []); }
+  set replicatesOrientation(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 3836754763095123, this, [value]); }
   /**
    * var replicatesPosition: Bool { get set }
    * @availability iOS 11.0+
    */
-  get replicatesPosition(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2510840262606202, this, []); }
-  set replicatesPosition(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2605041073142912, this, [value]); }
+  get replicatesPosition(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2510840262606202, this, []); }
+  set replicatesPosition(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2605041073142912, this, [value]); }
   /**
    * var replicatesScale: Bool { get set }
    * @availability iOS 11.0+
    */
-  get replicatesScale(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2320299489213901, this, []); }
-  set replicatesScale(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1462204325086753, this, [value]); }
+  get replicatesScale(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2320299489213901, this, []); }
+  set replicatesScale(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1462204325086753, this, [value]); }
   /**
    * var scaleOffset: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get scaleOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 472876911627991, this, []); }
-  set scaleOffset(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 1339160448787027, this, [value]); }
+  get scaleOffset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 472876911627991, this, []); }
+  set scaleOffset(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 1339160448787027, this, [value]); }
   /**
    * var target: SCNNode? { get set }
    * @availability iOS 11.0+
    */
-  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 3711646967751129, this, []); }
-  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3606332273521900, this, [value]); }
+  get target(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 3711646967751129, this, []); }
+  set target(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3606332273521900, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNReplicatorConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "orientationOffset": true; "positionOffset": true; "replicatesOrientation": true; "replicatesPosition": true; "replicatesScale": true; "scaleOffset": true; "target": true };
 }
@@ -4373,78 +4373,78 @@ export class SCNReplicatorConstraint extends (SCNConstraint as unknown as Omit<t
 /** class SCNScene */
 export class SCNScene extends SDKHandle {
   /** convenience init?(named name: String) */
-  static initNamed(name: string): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_0e503aef608672fa", 1782605293009499, undefined, [name]); }
+  static initNamed(name: string): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_212edf3d13b127f5", 1782605293009499, undefined, [name]); }
   /** convenience init?(named name: String, inDirectory directory: String?, options: [SCNSceneSource.LoadingOption : Any]? = nil) */
-  static initNamedInDirectoryOptions(name: string, directory?: (string) | null, options?: $SDK60): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_0e503aef608672fa", 1772633246094087, undefined, [name, directory, options]); }
+  static initNamedInDirectoryOptions(name: string, directory?: (string) | null, options?: $SDK60): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_212edf3d13b127f5", 1772633246094087, undefined, [name, directory, options]); }
   /** convenience init(url: URL, options: [SCNSceneSource.LoadingOption : Any]? = nil) throws */
-  static initUrlOptions(url: string, options?: $SDK60): SCNScene { return callSDK<SCNScene>("SceneKit_0e503aef608672fa", 3517138523145672, undefined, [url, options]); }
+  static initUrlOptions(url: string, options?: $SDK60): SCNScene { return callSDK<SCNScene>("SceneKit_212edf3d13b127f5", 3517138523145672, undefined, [url, options]); }
   /** func addParticleSystem(_ system: SCNParticleSystem, transform: SCNMatrix4) */
-  addParticleSystem(system: SCNParticleSystem, transform: SCNMatrix4): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2101751661133481, this, [system, transform]); }
+  addParticleSystem(system: SCNParticleSystem, transform: SCNMatrix4): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2101751661133481, this, [system, transform]); }
   /** func attribute(forKey key: String) -> Any? */
-  attribute(key: string): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 2662606454453450, this, [key]); }
+  attribute(key: string): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 2662606454453450, this, [key]); }
   /** func removeAllParticleSystems() */
-  removeAllParticleSystems(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4255945718992514, this, []); }
+  removeAllParticleSystems(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4255945718992514, this, []); }
   /** func removeParticleSystem(_ system: SCNParticleSystem) */
-  removeParticleSystem(system: SCNParticleSystem): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1743196770984925, this, [system]); }
+  removeParticleSystem(system: SCNParticleSystem): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1743196770984925, this, [system]); }
   /** func setAttribute(_ attribute: Any?, forKey key: String) */
-  setAttribute(attribute: (unknown) | null, key: string): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2693634635622812, this, [attribute, key]); }
+  setAttribute(attribute: (unknown) | null, key: string): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2693634635622812, this, [attribute, key]); }
   /**
    * func write(to url: URL, options: [String : Any]? = nil, delegate: (any SCNSceneExportDelegate)?, progressHandler: SCNSceneExportProgressHandler? = nil) -> Bool
    * @availability iOS 10.0+
    */
-  write(url: string, options?: $SDK37, delegate?: (Implements<SCNSceneExportDelegate> | SDKHandle) | null, progressHandler?: (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>) => void)) | null): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1954603861213596, this, [url, options, delegate, progressHandler], [null,null,{"protocol":"c:objc(pl)SCNSceneExportDelegate"},{"callback":{"out":[2]}}], true); }
+  write(url: string, options?: $SDK37, delegate?: (Implements<SCNSceneExportDelegate> | SDKHandle) | null, progressHandler?: (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>) => void)) | null): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1954603861213596, this, [url, options, delegate, progressHandler], [null,null,{"protocol":"c:objc(pl)SCNSceneExportDelegate"},{"callback":{"out":[2]}}], true); }
   /** var background: SCNMaterialProperty { get } */
-  get background(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 1415796738174156, this, []); }
+  get background(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 1415796738174156, this, []); }
   /** var fogColor: Any { get set } */
-  get fogColor(): unknown { return callSDK<unknown>("SceneKit_0e503aef608672fa", 1520316492257622, this, []); }
-  set fogColor(value: unknown) { callSDK<void>("SceneKit_0e503aef608672fa", 4047888234420708, this, [value]); }
+  get fogColor(): unknown { return callSDK<unknown>("SceneKit_212edf3d13b127f5", 1520316492257622, this, []); }
+  set fogColor(value: unknown) { callSDK<void>("SceneKit_212edf3d13b127f5", 4047888234420708, this, [value]); }
   /** var fogDensityExponent: CGFloat { get set } */
-  get fogDensityExponent(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3335922261025656, this, []); }
-  set fogDensityExponent(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3305886724903754, this, [value]); }
+  get fogDensityExponent(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3335922261025656, this, []); }
+  set fogDensityExponent(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3305886724903754, this, [value]); }
   /** var fogEndDistance: CGFloat { get set } */
-  get fogEndDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1106222392966236, this, []); }
-  set fogEndDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 40001848662386, this, [value]); }
+  get fogEndDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1106222392966236, this, []); }
+  set fogEndDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 40001848662386, this, [value]); }
   /** var fogStartDistance: CGFloat { get set } */
-  get fogStartDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2653091276210910, this, []); }
-  set fogStartDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 536783276068374, this, [value]); }
+  get fogStartDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2653091276210910, this, []); }
+  set fogStartDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 536783276068374, this, [value]); }
   /**
    * var lightingEnvironment: SCNMaterialProperty { get }
    * @availability iOS 10.0+
    */
-  get lightingEnvironment(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_0e503aef608672fa", 2421458709746740, this, []); }
+  get lightingEnvironment(): SCNMaterialProperty { return callSDK<SCNMaterialProperty>("SceneKit_212edf3d13b127f5", 2421458709746740, this, []); }
   /** var particleSystems: [SCNParticleSystem]? { get } */
-  get particleSystems(): $SDK40 { return callSDK<$SDK40>("SceneKit_0e503aef608672fa", 3379079839594372, this, []); }
+  get particleSystems(): $SDK40 { return callSDK<$SDK40>("SceneKit_212edf3d13b127f5", 3379079839594372, this, []); }
   /** var isPaused: Bool { get set } */
-  get isPaused(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 997731284239190, this, []); }
-  set isPaused(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2191185325993817, this, [value]); }
+  get isPaused(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 997731284239190, this, []); }
+  set isPaused(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2191185325993817, this, [value]); }
   /** var physicsWorld: SCNPhysicsWorld { get } */
-  get physicsWorld(): SCNPhysicsWorld { return callSDK<SCNPhysicsWorld>("SceneKit_0e503aef608672fa", 1748267757782026, this, []); }
+  get physicsWorld(): SCNPhysicsWorld { return callSDK<SCNPhysicsWorld>("SceneKit_212edf3d13b127f5", 1748267757782026, this, []); }
   /** var rootNode: SCNNode { get } */
-  get rootNode(): SCNNode { return callSDK<SCNNode>("SceneKit_0e503aef608672fa", 316320820938314, this, []); }
+  get rootNode(): SCNNode { return callSDK<SCNNode>("SceneKit_212edf3d13b127f5", 316320820938314, this, []); }
   /**
    * var screenSpaceReflectionMaximumDistance: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get screenSpaceReflectionMaximumDistance(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2065743523009883, this, []); }
-  set screenSpaceReflectionMaximumDistance(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3771030964862641, this, [value]); }
+  get screenSpaceReflectionMaximumDistance(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2065743523009883, this, []); }
+  set screenSpaceReflectionMaximumDistance(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3771030964862641, this, [value]); }
   /**
    * var screenSpaceReflectionSampleCount: Int { get set }
    * @availability iOS 13.0+
    */
-  get screenSpaceReflectionSampleCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 329505825064974, this, []); }
-  set screenSpaceReflectionSampleCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 804779737897615, this, [value]); }
+  get screenSpaceReflectionSampleCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 329505825064974, this, []); }
+  set screenSpaceReflectionSampleCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 804779737897615, this, [value]); }
   /**
    * var screenSpaceReflectionStride: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get screenSpaceReflectionStride(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1441747557375939, this, []); }
-  set screenSpaceReflectionStride(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4124897480042032, this, [value]); }
+  get screenSpaceReflectionStride(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1441747557375939, this, []); }
+  set screenSpaceReflectionStride(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4124897480042032, this, [value]); }
   /**
    * var wantsScreenSpaceReflection: Bool { get set }
    * @availability iOS 13.0+
    */
-  get wantsScreenSpaceReflection(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3530022838503777, this, []); }
-  set wantsScreenSpaceReflection(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 2285935554571973, this, [value]); }
+  get wantsScreenSpaceReflection(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3530022838503777, this, []); }
+  set wantsScreenSpaceReflection(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 2285935554571973, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNScene": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "background": true; "fogColor": true; "fogDensityExponent": true; "fogEndDistance": true; "fogStartDistance": true; "lightingEnvironment": true; "particleSystems": true; "isPaused": true; "physicsWorld": true; "rootNode": true; "screenSpaceReflectionMaximumDistance": true; "screenSpaceReflectionSampleCount": true; "screenSpaceReflectionStride": true; "wantsScreenSpaceReflection": true };
 }
@@ -4454,15 +4454,15 @@ export type SCNScene_Attribute = "startTime" | "endTime" | "frameRate" | "upAxis
 
 export const SCNScene_Attribute = {
   /** static let endTime: SCNScene.Attribute */
-  get endTime(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_0e503aef608672fa", 1690286870184158, undefined, []); },
+  get endTime(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_212edf3d13b127f5", 1690286870184158, undefined, []); },
   /** static let frameRate: SCNScene.Attribute */
-  get frameRate(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_0e503aef608672fa", 1430552628798880, undefined, []); },
+  get frameRate(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_212edf3d13b127f5", 1430552628798880, undefined, []); },
   /** static let startTime: SCNScene.Attribute */
-  get startTime(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_0e503aef608672fa", 3645803109890581, undefined, []); },
+  get startTime(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_212edf3d13b127f5", 3645803109890581, undefined, []); },
   /** static let upAxis: SCNScene.Attribute */
-  get upAxis(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_0e503aef608672fa", 2982819325281306, undefined, []); },
+  get upAxis(): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_212edf3d13b127f5", 2982819325281306, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_0e503aef608672fa", 2492382613241495, undefined, [rawValue]); }
+  init(rawValue: string): SCNScene_Attribute { return callSDK<SCNScene_Attribute>("SceneKit_212edf3d13b127f5", 2492382613241495, undefined, [rawValue]); }
 };
 
 /**
@@ -4499,7 +4499,7 @@ export interface SCNSceneRenderer {
   /** func prepare(_ object: Any, shouldAbortBlock block: (() -> Bool)? = nil) -> Bool */
   "prepareShouldAbortBlock"?: (arg0: unknown, arg1: ((() => Promise<boolean>)) | null) => boolean;
   /** func prepare(_ objects: [Any]) async -> Bool */
-  "prepare"?: (arg0: Array<unknown>) => boolean;
+  "prepare"?: (arg0: Array<unknown>) => Promise<boolean>;
 }
 
 /** protocol SCNSceneRendererDelegate : NSObjectProtocol */
@@ -4524,21 +4524,21 @@ export interface SCNSceneRendererDelegate {
 /** class SCNSceneSource */
 export class SCNSceneSource extends SDKHandle {
   /** func identifiersOfEntries(withClass entryClass: AnyClass) -> [String] */
-  identifiersOfEntries(entryClass: string): Array<string> { return callSDK<Array<string>>("SceneKit_0e503aef608672fa", 3025660890088116, this, [entryClass]); }
+  identifiersOfEntries(entryClass: string): Array<string> { return callSDK<Array<string>>("SceneKit_212edf3d13b127f5", 3025660890088116, this, [entryClass]); }
   /** init?(data: Data, options: [SCNSceneSource.LoadingOption : Any]? = nil) */
-  static initDataOptions(data: ArrayBuffer, options?: $SDK60): (SCNSceneSource) | null { return callSDK<(SCNSceneSource) | null>("SceneKit_0e503aef608672fa", 4239033705595256, undefined, [data, options]); }
+  static initDataOptions(data: ArrayBuffer, options?: $SDK60): (SCNSceneSource) | null { return callSDK<(SCNSceneSource) | null>("SceneKit_212edf3d13b127f5", 4239033705595256, undefined, [data, options]); }
   /** init?(url: URL, options: [SCNSceneSource.LoadingOption : Any]? = nil) */
-  static initUrlOptions(url: string, options?: $SDK60): (SCNSceneSource) | null { return callSDK<(SCNSceneSource) | null>("SceneKit_0e503aef608672fa", 4002752696187720, undefined, [url, options]); }
+  static initUrlOptions(url: string, options?: $SDK60): (SCNSceneSource) | null { return callSDK<(SCNSceneSource) | null>("SceneKit_212edf3d13b127f5", 4002752696187720, undefined, [url, options]); }
   /** func property(forKey key: String) -> Any? */
-  property(key: string): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 1119581472932187, this, [key]); }
+  property(key: string): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 1119581472932187, this, [key]); }
   /** func scene(options: [SCNSceneSource.LoadingOption : Any]? = nil) throws -> SCNScene */
-  sceneOptions(options?: $SDK60): SCNScene { return callSDK<SCNScene>("SceneKit_0e503aef608672fa", 4451108540155960, this, [options]); }
+  sceneOptions(options?: $SDK60): SCNScene { return callSDK<SCNScene>("SceneKit_212edf3d13b127f5", 4451108540155960, this, [options]); }
   /** func scene(options: [SCNSceneSource.LoadingOption : Any]? = nil, statusHandler: SCNSceneSourceStatusHandler? = nil) -> SCNScene? */
-  sceneOptionsStatusHandler(options?: $SDK60, statusHandler?: (((arg0: number, arg1: SCNSceneSourceStatus, arg2: (NativeError) | null, arg3: NativeOut<boolean>) => void)) | null): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_0e503aef608672fa", 1150813389653752, this, [options, statusHandler], [null,{"callback":{"out":[3]}}], true); }
+  sceneOptionsStatusHandler(options?: $SDK60, statusHandler?: (((arg0: number, arg1: SCNSceneSourceStatus, arg2: (NativeError) | null, arg3: NativeOut<boolean>) => void)) | null): (SCNScene) | null { return callSDK<(SCNScene) | null>("SceneKit_212edf3d13b127f5", 1150813389653752, this, [options, statusHandler], [null,{"callback":{"out":[3]}}], true); }
   /** var data: Data? { get } */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("SceneKit_0e503aef608672fa", 1673146251362512, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("SceneKit_212edf3d13b127f5", 1673146251362512, this, []); }
   /** var url: URL? { get } */
-  get url(): (string) | null { return callSDK<(string) | null>("SceneKit_0e503aef608672fa", 4070487061702960, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("SceneKit_212edf3d13b127f5", 4070487061702960, this, []); }
   declare readonly $type: { "c:objc(cs)SCNSceneSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "url": true };
 }
@@ -4548,15 +4548,15 @@ export type SCNSceneSource_AnimationImportPolicy = "play" | "playRepeatedly" | "
 
 export const SCNSceneSource_AnimationImportPolicy = {
   /** static let doNotPlay: SCNSceneSource.AnimationImportPolicy */
-  get doNotPlay(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_0e503aef608672fa", 4476954334022343, undefined, []); },
+  get doNotPlay(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_212edf3d13b127f5", 4476954334022343, undefined, []); },
   /** static let play: SCNSceneSource.AnimationImportPolicy */
-  get play(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_0e503aef608672fa", 3956935903513686, undefined, []); },
+  get play(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_212edf3d13b127f5", 3956935903513686, undefined, []); },
   /** static let playRepeatedly: SCNSceneSource.AnimationImportPolicy */
-  get playRepeatedly(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_0e503aef608672fa", 1462179924149946, undefined, []); },
+  get playRepeatedly(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_212edf3d13b127f5", 1462179924149946, undefined, []); },
   /** static let playUsingSceneTimeBase: SCNSceneSource.AnimationImportPolicy */
-  get playUsingSceneTimeBase(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_0e503aef608672fa", 4053182648675828, undefined, []); },
+  get playUsingSceneTimeBase(): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_212edf3d13b127f5", 4053182648675828, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_0e503aef608672fa", 1471980965896636, undefined, [rawValue]); }
+  init(rawValue: string): SCNSceneSource_AnimationImportPolicy { return callSDK<SCNSceneSource_AnimationImportPolicy>("SceneKit_212edf3d13b127f5", 1471980965896636, undefined, [rawValue]); }
 };
 
 /** struct LoadingOption */
@@ -4564,42 +4564,42 @@ export type SCNSceneSource_LoadingOption = "createNormalsIfAbsent" | "checkConsi
 
 export const SCNSceneSource_LoadingOption = {
   /** static let animationImportPolicy: SCNSceneSource.LoadingOption */
-  get animationImportPolicy(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 975080191708417, undefined, []); },
+  get animationImportPolicy(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 975080191708417, undefined, []); },
   /** static let assetDirectoryURLs: SCNSceneSource.LoadingOption */
-  get assetDirectoryURLs(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 3577740717127887, undefined, []); },
+  get assetDirectoryURLs(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 3577740717127887, undefined, []); },
   /** static let checkConsistency: SCNSceneSource.LoadingOption */
-  get checkConsistency(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 1847623551925212, undefined, []); },
+  get checkConsistency(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 1847623551925212, undefined, []); },
   /**
    * static let convertToYUp: SCNSceneSource.LoadingOption
    * @availability iOS 11.0+
    */
-  get convertToYUp(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 1310585877393209, undefined, []); },
+  get convertToYUp(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 1310585877393209, undefined, []); },
   /**
    * static let convertUnitsToMeters: SCNSceneSource.LoadingOption
    * @availability iOS 11.0+
    */
-  get convertUnitsToMeters(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 171669251076386, undefined, []); },
+  get convertUnitsToMeters(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 171669251076386, undefined, []); },
   /** static let createNormalsIfAbsent: SCNSceneSource.LoadingOption */
-  get createNormalsIfAbsent(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 48170239248823, undefined, []); },
+  get createNormalsIfAbsent(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 48170239248823, undefined, []); },
   /** static let flattenScene: SCNSceneSource.LoadingOption */
-  get flattenScene(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 3102582390252681, undefined, []); },
+  get flattenScene(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 3102582390252681, undefined, []); },
   /**
    * static let preserveOriginalTopology: SCNSceneSource.LoadingOption
    * @availability iOS 10.0+
    */
-  get preserveOriginalTopology(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 3204488892249189, undefined, []); },
+  get preserveOriginalTopology(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 3204488892249189, undefined, []); },
   /** static let overrideAssetURLs: SCNSceneSource.LoadingOption */
-  get overrideAssetURLs(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 3944797552239656, undefined, []); },
+  get overrideAssetURLs(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 3944797552239656, undefined, []); },
   /** static let strictConformance: SCNSceneSource.LoadingOption */
-  get strictConformance(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 3044856745287216, undefined, []); },
+  get strictConformance(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 3044856745287216, undefined, []); },
   /**
    * static let useSafeMode: SCNSceneSource.LoadingOption
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get useSafeMode(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 2850637482187907, undefined, []); },
+  get useSafeMode(): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 2850637482187907, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_0e503aef608672fa", 4372100294599446, undefined, [rawValue]); }
+  init(rawValue: string): SCNSceneSource_LoadingOption { return callSDK<SCNSceneSource_LoadingOption>("SceneKit_212edf3d13b127f5", 4372100294599446, undefined, [rawValue]); }
 };
 
 /** enum SCNSceneSourceStatus */
@@ -4607,7 +4607,7 @@ export type SCNSceneSourceStatus = "error" | "parsing" | "validating" | "process
 
 export const SCNSceneSourceStatus = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNSceneSourceStatus) | null { return callSDK<(SCNSceneSourceStatus) | null>("SceneKit_0e503aef608672fa", 288869293955717, undefined, [rawValue]); }
+  init(rawValue: number): (SCNSceneSourceStatus) | null { return callSDK<(SCNSceneSourceStatus) | null>("SceneKit_212edf3d13b127f5", 288869293955717, undefined, [rawValue]); }
 };
 
 /** typealias SCNSceneSourceStatusHandler = (Float, SCNSceneSourceStatus, (any Error)?, UnsafeMutablePointer<ObjCBool>) -> Void */
@@ -4626,15 +4626,15 @@ export type SCNShaderModifierEntryPoint = "geometry" | "surface" | "lightingMode
 
 export const SCNShaderModifierEntryPoint = {
   /** static let fragment: SCNShaderModifierEntryPoint */
-  get fragment(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_0e503aef608672fa", 1060160807879368, undefined, []); },
+  get fragment(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_212edf3d13b127f5", 1060160807879368, undefined, []); },
   /** static let geometry: SCNShaderModifierEntryPoint */
-  get geometry(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_0e503aef608672fa", 3259630726034329, undefined, []); },
+  get geometry(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_212edf3d13b127f5", 3259630726034329, undefined, []); },
   /** static let lightingModel: SCNShaderModifierEntryPoint */
-  get lightingModel(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_0e503aef608672fa", 1190441646889763, undefined, []); },
+  get lightingModel(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_212edf3d13b127f5", 1190441646889763, undefined, []); },
   /** static let surface: SCNShaderModifierEntryPoint */
-  get surface(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_0e503aef608672fa", 2188064852427075, undefined, []); },
+  get surface(): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_212edf3d13b127f5", 2188064852427075, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_0e503aef608672fa", 2448033351777774, undefined, [rawValue]); }
+  init(rawValue: string): SCNShaderModifierEntryPoint { return callSDK<SCNShaderModifierEntryPoint>("SceneKit_212edf3d13b127f5", 2448033351777774, undefined, [rawValue]); }
 };
 
 /** enum SCNShadowMode */
@@ -4642,28 +4642,28 @@ export type SCNShadowMode = "forward" | "deferred" | "modulated";
 
 export const SCNShadowMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNShadowMode) | null { return callSDK<(SCNShadowMode) | null>("SceneKit_0e503aef608672fa", 3904878718695763, undefined, [rawValue]); }
+  init(rawValue: number): (SCNShadowMode) | null { return callSDK<(SCNShadowMode) | null>("SceneKit_212edf3d13b127f5", 3904878718695763, undefined, [rawValue]); }
 };
 
 /** class SCNShape */
 export class SCNShape extends SCNGeometry {
   /** convenience init(path: UIBezierPath?, extrusionDepth: CGFloat) */
-  static init(path: $SDK69, extrusionDepth: number): SCNShape { return callSDK<SCNShape>("SceneKit_0e503aef608672fa", 4106149697940488, undefined, [path, extrusionDepth]); }
+  static init(path: $SDK69, extrusionDepth: number): SCNShape { return callSDK<SCNShape>("SceneKit_212edf3d13b127f5", 4106149697940488, undefined, [path, extrusionDepth]); }
   /** var chamferMode: SCNChamferMode { get set } */
-  get chamferMode(): SCNChamferMode { return callSDK<SCNChamferMode>("SceneKit_0e503aef608672fa", 2148181651823963, this, []); }
-  set chamferMode(value: SCNChamferMode) { callSDK<void>("SceneKit_0e503aef608672fa", 1814079864346028, this, [value]); }
+  get chamferMode(): SCNChamferMode { return callSDK<SCNChamferMode>("SceneKit_212edf3d13b127f5", 2148181651823963, this, []); }
+  set chamferMode(value: SCNChamferMode) { callSDK<void>("SceneKit_212edf3d13b127f5", 1814079864346028, this, [value]); }
   /** @NSCopying var chamferProfile: UIBezierPath? { get set } */
-  get chamferProfile(): $SDK69 { return callSDK<$SDK69>("SceneKit_0e503aef608672fa", 963292820837301, this, []); }
-  set chamferProfile(value: $SDK69) { callSDK<void>("SceneKit_0e503aef608672fa", 679937381575719, this, [value]); }
+  get chamferProfile(): $SDK69 { return callSDK<$SDK69>("SceneKit_212edf3d13b127f5", 963292820837301, this, []); }
+  set chamferProfile(value: $SDK69) { callSDK<void>("SceneKit_212edf3d13b127f5", 679937381575719, this, [value]); }
   /** var chamferRadius: CGFloat { get set } */
-  get chamferRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4234667808484560, this, []); }
-  set chamferRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2913286031230199, this, [value]); }
+  get chamferRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4234667808484560, this, []); }
+  set chamferRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2913286031230199, this, [value]); }
   /** var extrusionDepth: CGFloat { get set } */
-  get extrusionDepth(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1827535504322517, this, []); }
-  set extrusionDepth(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 363761799647338, this, [value]); }
+  get extrusionDepth(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1827535504322517, this, []); }
+  set extrusionDepth(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 363761799647338, this, [value]); }
   /** @NSCopying var path: UIBezierPath? { get set } */
-  get path(): $SDK69 { return callSDK<$SDK69>("SceneKit_0e503aef608672fa", 77473552932151, this, []); }
-  set path(value: $SDK69) { callSDK<void>("SceneKit_0e503aef608672fa", 414216026385119, this, [value]); }
+  get path(): $SDK69 { return callSDK<$SDK69>("SceneKit_212edf3d13b127f5", 77473552932151, this, []); }
+  set path(value: $SDK69) { callSDK<void>("SceneKit_212edf3d13b127f5", 414216026385119, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNShape": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "chamferMode": true; "chamferProfile": true; "chamferRadius": true; "extrusionDepth": true; "path": true };
 }
@@ -4671,24 +4671,24 @@ export class SCNShape extends SCNGeometry {
 /** class SCNSkinner */
 export class SCNSkinner extends SDKHandle {
   /** convenience init(baseGeometry: SCNGeometry?, bones: [SCNNode], boneInverseBindTransforms: [NSValue]?, boneWeights: SCNGeometrySource, boneIndices: SCNGeometrySource) */
-  static init(baseGeometry: (SCNGeometry) | null, bones: Array<SCNNode>, boneInverseBindTransforms: $SDK33, boneWeights: SCNGeometrySource, boneIndices: SCNGeometrySource): SCNSkinner { return callSDK<SCNSkinner>("SceneKit_0e503aef608672fa", 4348195727743685, undefined, [baseGeometry, bones, boneInverseBindTransforms, boneWeights, boneIndices]); }
+  static init(baseGeometry: (SCNGeometry) | null, bones: Array<SCNNode>, boneInverseBindTransforms: $SDK33, boneWeights: SCNGeometrySource, boneIndices: SCNGeometrySource): SCNSkinner { return callSDK<SCNSkinner>("SceneKit_212edf3d13b127f5", 4348195727743685, undefined, [baseGeometry, bones, boneInverseBindTransforms, boneWeights, boneIndices]); }
   /** var baseGeometry: SCNGeometry? { get set } */
-  get baseGeometry(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_0e503aef608672fa", 231757372543887, this, []); }
-  set baseGeometry(value: (SCNGeometry) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 835800881017301, this, [value]); }
+  get baseGeometry(): (SCNGeometry) | null { return callSDK<(SCNGeometry) | null>("SceneKit_212edf3d13b127f5", 231757372543887, this, []); }
+  set baseGeometry(value: (SCNGeometry) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 835800881017301, this, [value]); }
   /** var baseGeometryBindTransform: SCNMatrix4 { get set } */
-  get baseGeometryBindTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 4066206943634815, this, []); }
-  set baseGeometryBindTransform(value: SCNMatrix4) { callSDK<void>("SceneKit_0e503aef608672fa", 2234951512944351, this, [value]); }
+  get baseGeometryBindTransform(): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 4066206943634815, this, []); }
+  set baseGeometryBindTransform(value: SCNMatrix4) { callSDK<void>("SceneKit_212edf3d13b127f5", 2234951512944351, this, [value]); }
   /** var boneIndices: SCNGeometrySource { get } */
-  get boneIndices(): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 4094136954593600, this, []); }
+  get boneIndices(): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 4094136954593600, this, []); }
   /** var boneInverseBindTransforms: [NSValue]? { get } */
-  get boneInverseBindTransforms(): $SDK33 { return callSDK<$SDK33>("SceneKit_0e503aef608672fa", 4440129365823486, this, []); }
+  get boneInverseBindTransforms(): $SDK33 { return callSDK<$SDK33>("SceneKit_212edf3d13b127f5", 4440129365823486, this, []); }
   /** var boneWeights: SCNGeometrySource { get } */
-  get boneWeights(): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_0e503aef608672fa", 881890724694961, this, []); }
+  get boneWeights(): SCNGeometrySource { return callSDK<SCNGeometrySource>("SceneKit_212edf3d13b127f5", 881890724694961, this, []); }
   /** var bones: [SCNNode] { get } */
-  get bones(): Array<SCNNode> { return callSDK<Array<SCNNode>>("SceneKit_0e503aef608672fa", 1207820122036651, this, []); }
+  get bones(): Array<SCNNode> { return callSDK<Array<SCNNode>>("SceneKit_212edf3d13b127f5", 1207820122036651, this, []); }
   /** weak var skeleton: SCNNode? { get set } */
-  get skeleton(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_0e503aef608672fa", 3407785039009187, this, []); }
-  set skeleton(value: (SCNNode) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1737311979910893, this, [value]); }
+  get skeleton(): (SCNNode) | null { return callSDK<(SCNNode) | null>("SceneKit_212edf3d13b127f5", 3407785039009187, this, []); }
+  set skeleton(value: (SCNNode) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1737311979910893, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNSkinner": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "baseGeometry": true; "baseGeometryBindTransform": true; "boneIndices": true; "boneInverseBindTransforms": true; "boneWeights": true; "bones": true; "skeleton": true };
 }
@@ -4699,25 +4699,25 @@ export class SCNSkinner extends SDKHandle {
  */
 export class SCNSliderConstraint extends (SCNConstraint as unknown as Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint)) {
   /** init() */
-  static init(): SCNSliderConstraint { return callSDK<SCNSliderConstraint>("SceneKit_0e503aef608672fa", 1941574875982413, undefined, []); }
+  static init(): SCNSliderConstraint { return callSDK<SCNSliderConstraint>("SceneKit_212edf3d13b127f5", 1941574875982413, undefined, []); }
   /**
    * var collisionCategoryBitMask: Int { get set }
    * @availability iOS 11.0+
    */
-  get collisionCategoryBitMask(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 988241344491215, this, []); }
-  set collisionCategoryBitMask(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 510006978408171, this, [value]); }
+  get collisionCategoryBitMask(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 988241344491215, this, []); }
+  set collisionCategoryBitMask(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 510006978408171, this, [value]); }
   /**
    * var offset: SCNVector3 { get set }
    * @availability iOS 11.0+
    */
-  get offset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 449286731670991, this, []); }
-  set offset(value: SCNVector3) { callSDK<void>("SceneKit_0e503aef608672fa", 2594965062527404, this, [value]); }
+  get offset(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 449286731670991, this, []); }
+  set offset(value: SCNVector3) { callSDK<void>("SceneKit_212edf3d13b127f5", 2594965062527404, this, [value]); }
   /**
    * var radius: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get radius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 460090828666024, this, []); }
-  set radius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3012717403434755, this, [value]); }
+  get radius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 460090828666024, this, []); }
+  set radius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3012717403434755, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNSliderConstraint": true; "c:objc(cs)SCNConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isIncremental": true; "influenceFactor": true; "collisionCategoryBitMask": true; "offset": true; "radius": true };
 }
@@ -4725,16 +4725,16 @@ export class SCNSliderConstraint extends (SCNConstraint as unknown as Omit<typeo
 /** class SCNSphere */
 export class SCNSphere extends SCNGeometry {
   /** convenience init(radius: CGFloat) */
-  static init(radius: number): SCNSphere { return callSDK<SCNSphere>("SceneKit_0e503aef608672fa", 4224871029140642, undefined, [radius]); }
+  static init(radius: number): SCNSphere { return callSDK<SCNSphere>("SceneKit_212edf3d13b127f5", 4224871029140642, undefined, [radius]); }
   /** var isGeodesic: Bool { get set } */
-  get isGeodesic(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3801364692310942, this, []); }
-  set isGeodesic(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 164667811680834, this, [value]); }
+  get isGeodesic(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3801364692310942, this, []); }
+  set isGeodesic(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 164667811680834, this, [value]); }
   /** var radius: CGFloat { get set } */
-  get radius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1469068483224759, this, []); }
-  set radius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2072538669121424, this, [value]); }
+  get radius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1469068483224759, this, []); }
+  set radius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2072538669121424, this, [value]); }
   /** var segmentCount: Int { get set } */
-  get segmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1548050484245248, this, []); }
-  set segmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 331219515477229, this, [value]); }
+  get segmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1548050484245248, this, []); }
+  set segmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 331219515477229, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNSphere": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "isGeodesic": true; "radius": true; "segmentCount": true };
 }
@@ -4742,26 +4742,26 @@ export class SCNSphere extends SCNGeometry {
 /** class SCNTechnique */
 export class SCNTechnique extends SDKHandle {
   /** init?(bySequencingTechniques techniques: [SCNTechnique]) */
-  static initBySequencingTechniques(techniques: Array<SCNTechnique>): (SCNTechnique) | null { return callSDK<(SCNTechnique) | null>("SceneKit_0e503aef608672fa", 4175609720804398, undefined, [techniques]); }
+  static initBySequencingTechniques(techniques: Array<SCNTechnique>): (SCNTechnique) | null { return callSDK<(SCNTechnique) | null>("SceneKit_212edf3d13b127f5", 4175609720804398, undefined, [techniques]); }
   /** init?(dictionary: [String : Any]) */
-  static initDictionary(dictionary: Record<string, unknown>): (SCNTechnique) | null { return callSDK<(SCNTechnique) | null>("SceneKit_0e503aef608672fa", 2096076793544916, undefined, [dictionary]); }
+  static initDictionary(dictionary: Record<string, unknown>): (SCNTechnique) | null { return callSDK<(SCNTechnique) | null>("SceneKit_212edf3d13b127f5", 2096076793544916, undefined, [dictionary]); }
   /** func handleBinding(ofSymbol symbol: String, using block: SCNBindingBlock? = nil) */
-  handleBinding(symbol: string, block?: (((arg0: number, arg1: number, arg2: (SCNNode) | null, arg3: SCNRenderer) => void)) | null): void { return callSDK<void>("SceneKit_0e503aef608672fa", 84006026284749, this, [symbol, block], [null,{"callback":{"out":[]}}]); }
+  handleBinding(symbol: string, block?: (((arg0: number, arg1: number, arg2: (SCNNode) | null, arg3: SCNRenderer) => void)) | null): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 84006026284749, this, [symbol, block], [null,{"callback":{"out":[]}}]); }
   /** subscript(key: Any) -> Any? { get } */
-  subscript(key: unknown): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 2701469896143171, this, [key]); }
+  subscript(key: unknown): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 2701469896143171, this, [key]); }
   /**
    * func setObject(_ obj: Any?, forKeyedSubscript key: any NSCopying)
    * @availability iOS 9.0+
    */
-  setObject(obj: (unknown) | null, key: SDKHandle): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2550551099434893, this, [obj, key]); }
+  setObject(obj: (unknown) | null, key: SDKHandle): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2550551099434893, this, [obj, key]); }
   /** var dictionaryRepresentation: [String : Any] { get } */
-  get dictionaryRepresentation(): Record<string, unknown> { return callSDK<Record<string, unknown>>("SceneKit_0e503aef608672fa", 208186882408232, this, []); }
+  get dictionaryRepresentation(): Record<string, unknown> { return callSDK<Record<string, unknown>>("SceneKit_212edf3d13b127f5", 208186882408232, this, []); }
   /**
    * var library: (any MTLLibrary)? { get set }
    * @availability iOS 12.0+
    */
-  get library(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_0e503aef608672fa", 1003240964936819, this, []); }
-  set library(value: (SDKHandle) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4427297291815879, this, [value]); }
+  get library(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SceneKit_212edf3d13b127f5", 1003240964936819, this, []); }
+  set library(value: (SDKHandle) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4427297291815879, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNTechnique": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dictionaryRepresentation": true; "library": true };
 }
@@ -4782,43 +4782,43 @@ export const SCNTessellationSmoothingMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SCNTessellationSmoothingMode) | null { return callSDK<(SCNTessellationSmoothingMode) | null>("SceneKit_0e503aef608672fa", 2308519275858808, undefined, [rawValue]); }
+  init(rawValue: number): (SCNTessellationSmoothingMode) | null { return callSDK<(SCNTessellationSmoothingMode) | null>("SceneKit_212edf3d13b127f5", 2308519275858808, undefined, [rawValue]); }
 };
 
 /** class SCNText */
 export class SCNText extends SCNGeometry {
   /** convenience init(string: Any?, extrusionDepth: CGFloat) */
-  static init(string: (unknown) | null, extrusionDepth: number): SCNText { return callSDK<SCNText>("SceneKit_0e503aef608672fa", 2441127677837554, undefined, [string, extrusionDepth]); }
+  static init(string: (unknown) | null, extrusionDepth: number): SCNText { return callSDK<SCNText>("SceneKit_212edf3d13b127f5", 2441127677837554, undefined, [string, extrusionDepth]); }
   /** var alignmentMode: String { get set } */
-  get alignmentMode(): string { return callSDK<string>("SceneKit_0e503aef608672fa", 2246170834944, this, []); }
-  set alignmentMode(value: string) { callSDK<void>("SceneKit_0e503aef608672fa", 2237794025787121, this, [value]); }
+  get alignmentMode(): string { return callSDK<string>("SceneKit_212edf3d13b127f5", 2246170834944, this, []); }
+  set alignmentMode(value: string) { callSDK<void>("SceneKit_212edf3d13b127f5", 2237794025787121, this, [value]); }
   /** @NSCopying var chamferProfile: UIBezierPath? { get set } */
-  get chamferProfile(): $SDK69 { return callSDK<$SDK69>("SceneKit_0e503aef608672fa", 3354573634448612, this, []); }
-  set chamferProfile(value: $SDK69) { callSDK<void>("SceneKit_0e503aef608672fa", 2382829138333528, this, [value]); }
+  get chamferProfile(): $SDK69 { return callSDK<$SDK69>("SceneKit_212edf3d13b127f5", 3354573634448612, this, []); }
+  set chamferProfile(value: $SDK69) { callSDK<void>("SceneKit_212edf3d13b127f5", 2382829138333528, this, [value]); }
   /** var chamferRadius: CGFloat { get set } */
-  get chamferRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3115034307804668, this, []); }
-  set chamferRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3937371737298828, this, [value]); }
+  get chamferRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3115034307804668, this, []); }
+  set chamferRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3937371737298828, this, [value]); }
   /** var containerFrame: CGRect { get set } */
-  get containerFrame(): $SDK59 { return callSDK<$SDK59>("SceneKit_0e503aef608672fa", 4370812811178078, this, []); }
-  set containerFrame(value: $SDK59) { callSDK<void>("SceneKit_0e503aef608672fa", 1877453194488227, this, [value]); }
+  get containerFrame(): $SDK59 { return callSDK<$SDK59>("SceneKit_212edf3d13b127f5", 4370812811178078, this, []); }
+  set containerFrame(value: $SDK59) { callSDK<void>("SceneKit_212edf3d13b127f5", 1877453194488227, this, [value]); }
   /** var extrusionDepth: CGFloat { get set } */
-  get extrusionDepth(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 838732000445916, this, []); }
-  set extrusionDepth(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2692768636313199, this, [value]); }
+  get extrusionDepth(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 838732000445916, this, []); }
+  set extrusionDepth(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2692768636313199, this, [value]); }
   /** var flatness: CGFloat { get set } */
-  get flatness(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1043550907633532, this, []); }
-  set flatness(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 1137909409691859, this, [value]); }
+  get flatness(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1043550907633532, this, []); }
+  set flatness(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 1137909409691859, this, [value]); }
   /** var font: UIFont! { get set } */
-  get font(): (_UIKit_UIFont) | null { return callSDK<(_UIKit_UIFont) | null>("SceneKit_0e503aef608672fa", 1577934013092477, this, []); }
-  set font(value: (_UIKit_UIFont) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 4210379476498006, this, [value]); }
+  get font(): (_UIKit_UIFont) | null { return callSDK<(_UIKit_UIFont) | null>("SceneKit_212edf3d13b127f5", 1577934013092477, this, []); }
+  set font(value: (_UIKit_UIFont) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 4210379476498006, this, [value]); }
   /** var string: Any? { get set } */
-  get string(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 2993828395516117, this, []); }
-  set string(value: (unknown) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 1592865532411779, this, [value]); }
+  get string(): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 2993828395516117, this, []); }
+  set string(value: (unknown) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 1592865532411779, this, [value]); }
   /** var truncationMode: String { get set } */
-  get truncationMode(): string { return callSDK<string>("SceneKit_0e503aef608672fa", 1965429850762439, this, []); }
-  set truncationMode(value: string) { callSDK<void>("SceneKit_0e503aef608672fa", 1233941359298621, this, [value]); }
+  get truncationMode(): string { return callSDK<string>("SceneKit_212edf3d13b127f5", 1965429850762439, this, []); }
+  set truncationMode(value: string) { callSDK<void>("SceneKit_212edf3d13b127f5", 1233941359298621, this, [value]); }
   /** var isWrapped: Bool { get set } */
-  get isWrapped(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1041106394055308, this, []); }
-  set isWrapped(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 499373414476563, this, [value]); }
+  get isWrapped(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1041106394055308, this, []); }
+  set isWrapped(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 499373414476563, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNText": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "alignmentMode": true; "chamferProfile": true; "chamferRadius": true; "containerFrame": true; "extrusionDepth": true; "flatness": true; "font": true; "string": true; "truncationMode": true; "isWrapped": true };
 }
@@ -4832,31 +4832,31 @@ export class SCNTimingFunction extends SDKHandle {
    * init(caMediaTimingFunction caTimingFunction: CAMediaTimingFunction)
    * @availability iOS 11.0+
    */
-  static initCaMediaTimingFunction(caTimingFunction: _QuartzCore_CAMediaTimingFunction): SCNTimingFunction { return callSDK<SCNTimingFunction>("SceneKit_0e503aef608672fa", 2151355873810742, undefined, [caTimingFunction]); }
+  static initCaMediaTimingFunction(caTimingFunction: _QuartzCore_CAMediaTimingFunction): SCNTimingFunction { return callSDK<SCNTimingFunction>("SceneKit_212edf3d13b127f5", 2151355873810742, undefined, [caTimingFunction]); }
   /**
    * init(timingMode: SCNActionTimingMode)
    * @availability iOS 11.0+
    */
-  static initTimingMode(timingMode: SCNActionTimingMode): SCNTimingFunction { return callSDK<SCNTimingFunction>("SceneKit_0e503aef608672fa", 228582628802289, undefined, [timingMode]); }
+  static initTimingMode(timingMode: SCNActionTimingMode): SCNTimingFunction { return callSDK<SCNTimingFunction>("SceneKit_212edf3d13b127f5", 228582628802289, undefined, [timingMode]); }
   declare readonly $type: { "c:objc(cs)SCNTimingFunction": true; "c:objc(cs)NSObject": true };
 }
 
 /** class SCNTorus */
 export class SCNTorus extends SCNGeometry {
   /** convenience init(ringRadius: CGFloat, pipeRadius: CGFloat) */
-  static init(ringRadius: number, pipeRadius: number): SCNTorus { return callSDK<SCNTorus>("SceneKit_0e503aef608672fa", 2655165201096866, undefined, [ringRadius, pipeRadius]); }
+  static init(ringRadius: number, pipeRadius: number): SCNTorus { return callSDK<SCNTorus>("SceneKit_212edf3d13b127f5", 2655165201096866, undefined, [ringRadius, pipeRadius]); }
   /** var pipeRadius: CGFloat { get set } */
-  get pipeRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 730545785036365, this, []); }
-  set pipeRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 129434065477915, this, [value]); }
+  get pipeRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 730545785036365, this, []); }
+  set pipeRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 129434065477915, this, [value]); }
   /** var pipeSegmentCount: Int { get set } */
-  get pipeSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4452521906857512, this, []); }
-  set pipeSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3325313003041101, this, [value]); }
+  get pipeSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4452521906857512, this, []); }
+  set pipeSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3325313003041101, this, [value]); }
   /** var ringRadius: CGFloat { get set } */
-  get ringRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3469226336196432, this, []); }
-  set ringRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 642690979651430, this, [value]); }
+  get ringRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3469226336196432, this, []); }
+  set ringRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 642690979651430, this, [value]); }
   /** var ringSegmentCount: Int { get set } */
-  get ringSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1152757357681229, this, []); }
-  set ringSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 371836914862092, this, [value]); }
+  get ringSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1152757357681229, this, []); }
+  set ringSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 371836914862092, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNTorus": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "pipeRadius": true; "pipeSegmentCount": true; "ringRadius": true; "ringSegmentCount": true };
 }
@@ -4864,33 +4864,33 @@ export class SCNTorus extends SCNGeometry {
 /** class SCNTransaction */
 export class SCNTransaction extends SDKHandle {
   /** class func begin() */
-  static begin(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 4280138703641001, undefined, []); }
+  static begin(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 4280138703641001, undefined, []); }
   /** class func commit() */
-  static commit(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1737448967948797, undefined, []); }
+  static commit(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1737448967948797, undefined, []); }
   /** class func flush() */
-  static flush(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2992332127477528, undefined, []); }
+  static flush(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2992332127477528, undefined, []); }
   /** class func lock() */
-  static lock(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2031019752322415, undefined, []); }
+  static lock(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2031019752322415, undefined, []); }
   /** class func setValue(_ value: Any?, forKey key: String) */
-  static setValue(value: (unknown) | null, key: string): void { return callSDK<void>("SceneKit_0e503aef608672fa", 49554490461961, undefined, [value, key]); }
+  static setValue(value: (unknown) | null, key: string): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 49554490461961, undefined, [value, key]); }
   /** class func unlock() */
-  static unlock(): void { return callSDK<void>("SceneKit_0e503aef608672fa", 2763755052410536, undefined, []); }
+  static unlock(): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 2763755052410536, undefined, []); }
   /** class func value(forKey key: String) -> Any? */
-  static value(key: string): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_0e503aef608672fa", 1176238896580767, undefined, [key]); }
+  static value(key: string): (unknown) | null { return callSDK<(unknown) | null>("SceneKit_212edf3d13b127f5", 1176238896580767, undefined, [key]); }
   /** class var animationDuration: CFTimeInterval { get set } */
-  static get animationDuration(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4370057700942609, undefined, []); }
-  static set animationDuration(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 350887408057930, undefined, [value]); }
+  static get animationDuration(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4370057700942609, undefined, []); }
+  static set animationDuration(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 350887408057930, undefined, [value]); }
   /** @NSCopying class var animationTimingFunction: CAMediaTimingFunction? { get set } */
-  static get animationTimingFunction(): $SDK71 { return callSDK<$SDK71>("SceneKit_0e503aef608672fa", 2726397351165804, undefined, []); }
-  static set animationTimingFunction(value: $SDK71) { callSDK<void>("SceneKit_0e503aef608672fa", 1992675558187298, undefined, [value]); }
+  static get animationTimingFunction(): $SDK71 { return callSDK<$SDK71>("SceneKit_212edf3d13b127f5", 2726397351165804, undefined, []); }
+  static set animationTimingFunction(value: $SDK71) { callSDK<void>("SceneKit_212edf3d13b127f5", 1992675558187298, undefined, [value]); }
   /** class var completionBlock: (() -> Void)? { get set } */
-  static get completionBlock(): $SDK16 { return callSDK<$SDK16>("SceneKit_0e503aef608672fa", 2711821521070980, undefined, []); }
-  static set completionBlock(value: ((() => void)) | null) { callSDK<void>("SceneKit_0e503aef608672fa", 3345403317579912, undefined, [value], [{"callback":{"out":[]}}]); }
+  static get completionBlock(): $SDK16 { return callSDK<$SDK16>("SceneKit_212edf3d13b127f5", 2711821521070980, undefined, []); }
+  static set completionBlock(value: ((() => void)) | null) { callSDK<void>("SceneKit_212edf3d13b127f5", 3345403317579912, undefined, [value], [{"callback":{"out":[]}}]); }
   /** class var disableActions: Bool { get set } */
-  static get disableActions(): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 1252039166068899, undefined, []); }
-  static set disableActions(value: boolean) { callSDK<void>("SceneKit_0e503aef608672fa", 1616514972957595, undefined, [value]); }
+  static get disableActions(): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 1252039166068899, undefined, []); }
+  static set disableActions(value: boolean) { callSDK<void>("SceneKit_212edf3d13b127f5", 1616514972957595, undefined, [value]); }
   /** init() */
-  static init(): SCNTransaction { return callSDK<SCNTransaction>("SceneKit_0e503aef608672fa", 3493692878519255, undefined, []); }
+  static init(): SCNTransaction { return callSDK<SCNTransaction>("SceneKit_212edf3d13b127f5", 3493692878519255, undefined, []); }
   declare readonly $type: { "c:objc(cs)SCNTransaction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4908,30 +4908,30 @@ export const SCNTransparencyMode = {
    * static var `default`: SCNTransparencyMode { get }
    * @availability iOS 11.0+
    */
-  get default(): SCNTransparencyMode { return callSDK<SCNTransparencyMode>("SceneKit_0e503aef608672fa", 4412726367437466, undefined, []); },
+  get default(): SCNTransparencyMode { return callSDK<SCNTransparencyMode>("SceneKit_212edf3d13b127f5", 4412726367437466, undefined, []); },
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNTransparencyMode) | null { return callSDK<(SCNTransparencyMode) | null>("SceneKit_0e503aef608672fa", 1087153929669841, undefined, [rawValue]); }
+  init(rawValue: number): (SCNTransparencyMode) | null { return callSDK<(SCNTransparencyMode) | null>("SceneKit_212edf3d13b127f5", 1087153929669841, undefined, [rawValue]); }
 };
 
 /** class SCNTube */
 export class SCNTube extends SCNGeometry {
   /** convenience init(innerRadius: CGFloat, outerRadius: CGFloat, height: CGFloat) */
-  static init(innerRadius: number, outerRadius: number, height: number): SCNTube { return callSDK<SCNTube>("SceneKit_0e503aef608672fa", 458594429626132, undefined, [innerRadius, outerRadius, height]); }
+  static init(innerRadius: number, outerRadius: number, height: number): SCNTube { return callSDK<SCNTube>("SceneKit_212edf3d13b127f5", 458594429626132, undefined, [innerRadius, outerRadius, height]); }
   /** var height: CGFloat { get set } */
-  get height(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2032700956251500, this, []); }
-  set height(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2056208474035797, this, [value]); }
+  get height(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2032700956251500, this, []); }
+  set height(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2056208474035797, this, [value]); }
   /** var heightSegmentCount: Int { get set } */
-  get heightSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4151008814400947, this, []); }
-  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2291114325703677, this, [value]); }
+  get heightSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4151008814400947, this, []); }
+  set heightSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2291114325703677, this, [value]); }
   /** var innerRadius: CGFloat { get set } */
-  get innerRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1151007191940519, this, []); }
-  set innerRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4244331742260579, this, [value]); }
+  get innerRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1151007191940519, this, []); }
+  set innerRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4244331742260579, this, [value]); }
   /** var outerRadius: CGFloat { get set } */
-  get outerRadius(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 115471375706166, this, []); }
-  set outerRadius(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 989224860910618, this, [value]); }
+  get outerRadius(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 115471375706166, this, []); }
+  set outerRadius(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 989224860910618, this, [value]); }
   /** var radialSegmentCount: Int { get set } */
-  get radialSegmentCount(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 4346320926575952, this, []); }
-  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3065229956264524, this, [value]); }
+  get radialSegmentCount(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 4346320926575952, this, []); }
+  set radialSegmentCount(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3065229956264524, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNTube": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreasesElement": true; "edgeCreasesSource": true; "firstMaterial": true; "elementCount": true; "elements": true; "geometrySourceChannels": true; "sources": true; "levelsOfDetail": true; "materials": true; "name": true; "subdivisionLevel": true; "tessellator": true; "wantsAdaptiveSubdivision": true; "height": true; "heightSegmentCount": true; "innerRadius": true; "outerRadius": true; "radialSegmentCount": true };
 }
@@ -4939,110 +4939,110 @@ export class SCNTube extends SCNGeometry {
 /** struct SCNVector3 */
 export class SCNVector3 extends SDKHandle {
   /** var x: Float */
-  get x(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1861292725299723, this, []); }
-  set x(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 4060304478401461, this, [value]); }
+  get x(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1861292725299723, this, []); }
+  set x(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 4060304478401461, this, [value]); }
   /** var y: Float */
-  get y(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2252560681873836, this, []); }
-  set y(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 953980551936565, this, [value]); }
+  get y(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2252560681873836, this, []); }
+  set y(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 953980551936565, this, [value]); }
   /** var z: Float */
-  get z(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 3976867447257293, this, []); }
-  set z(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2283967007789793, this, [value]); }
+  get z(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 3976867447257293, this, []); }
+  set z(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2283967007789793, this, [value]); }
   /** init(x: Float, y: Float, z: Float) */
-  static initXYZ(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3146933343093381, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3146933343093381, undefined, [x, y, z]); }
   /** init(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat) */
-  static init(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1444898789966824, undefined, [x, y, z]); }
+  static init(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1444898789966824, undefined, [x, y, z]); }
   /** init(_ x: Double, _ y: Double, _ z: Double) */
-  static init54797(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3620924314297320, undefined, [x, y, z]); }
+  static init54797(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3620924314297320, undefined, [x, y, z]); }
   /** init(_ x: Float, _ y: Float, _ z: Float) */
-  static init56153(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4139914870516326, undefined, [x, y, z]); }
+  static init56153(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4139914870516326, undefined, [x, y, z]); }
   /** init(_ x: Int, _ y: Int, _ z: Int) */
-  static init12297(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3700334281453744, undefined, [x, y, z]); }
+  static init12297(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3700334281453744, undefined, [x, y, z]); }
   /** init(_ v: SIMD3<Double>) */
-  static init57929(v: SDKHandle): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1218713760397906, undefined, [v]); }
+  static init57929(v: SDKHandle): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1218713760397906, undefined, [v]); }
   /** init(_ v: SIMD3<Float>) */
-  static init93695(v: SDKHandle): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3885891066961347, undefined, [v]); }
+  static init93695(v: SDKHandle): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3885891066961347, undefined, [v]); }
   /** init() */
-  static init3315(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 3844042528022199, undefined, []); }
+  static init3315(): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 3844042528022199, undefined, []); }
   declare readonly $type: { "c:@S@SCNVector3": true };
 }
 
 /** struct SCNVector4 */
 export class SCNVector4 extends SDKHandle {
   /** var w: Float */
-  get w(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 1417546772938330, this, []); }
-  set w(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 302013384991403, this, [value]); }
+  get w(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 1417546772938330, this, []); }
+  set w(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 302013384991403, this, [value]); }
   /** var x: Float */
-  get x(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 2963936176994483, this, []); }
-  set x(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 2785063635559816, this, [value]); }
+  get x(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 2963936176994483, this, []); }
+  set x(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 2785063635559816, this, [value]); }
   /** var y: Float */
-  get y(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 655690131520780, this, []); }
-  set y(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3988947090655107, this, [value]); }
+  get y(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 655690131520780, this, []); }
+  set y(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3988947090655107, this, [value]); }
   /** var z: Float */
-  get z(): number { return callSDK<number>("SceneKit_0e503aef608672fa", 974771466547788, this, []); }
-  set z(value: number) { callSDK<void>("SceneKit_0e503aef608672fa", 3447838569314991, this, [value]); }
+  get z(): number { return callSDK<number>("SceneKit_212edf3d13b127f5", 974771466547788, this, []); }
+  set z(value: number) { callSDK<void>("SceneKit_212edf3d13b127f5", 3447838569314991, this, [value]); }
   /** init(x: Float, y: Float, z: Float, w: Float) */
-  static initXYZW(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1360082150402643, undefined, [x, y, z, w]); }
+  static initXYZW(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1360082150402643, undefined, [x, y, z, w]); }
   /** init(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) */
-  static init(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 4086071235099507, undefined, [x, y, z, w]); }
+  static init(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 4086071235099507, undefined, [x, y, z, w]); }
   /** init(_ x: Double, _ y: Double, _ z: Double, _ w: Double) */
-  static init98833(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 3574349544147013, undefined, [x, y, z, w]); }
+  static init98833(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 3574349544147013, undefined, [x, y, z, w]); }
   /** init(_ x: Float, _ y: Float, _ z: Float, _ w: Float) */
-  static init50137(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 2321310669181669, undefined, [x, y, z, w]); }
+  static init50137(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 2321310669181669, undefined, [x, y, z, w]); }
   /** init(_ x: Int, _ y: Int, _ z: Int, _ w: Int) */
-  static init35049(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1359998560991500, undefined, [x, y, z, w]); }
+  static init35049(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1359998560991500, undefined, [x, y, z, w]); }
   /** init(_ v: SIMD4<Double>) */
-  static init90219(v: SDKHandle): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 2537542457864005, undefined, [v]); }
+  static init90219(v: SDKHandle): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 2537542457864005, undefined, [v]); }
   /** init(_ v: SIMD4<Float>) */
-  static init92901(v: SDKHandle): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1000689506379447, undefined, [v]); }
+  static init92901(v: SDKHandle): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1000689506379447, undefined, [v]); }
   /** init() */
-  static init42708(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 157572628295289, undefined, []); }
+  static init42708(): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 157572628295289, undefined, []); }
   declare readonly $type: { "c:@S@SCNVector4": true };
 }
 
 /** class SCNView */
 export class SCNView extends SDKHandle {
   /** init(frame: CGRect, options: [String : Any]? = nil) */
-  static init(frame: $SDK59, options?: $SDK37): Promise<SCNView> { return callSDKAsync<SCNView>("SceneKit_0e503aef608672fa", 4301819607284444, undefined, [frame, options]); }
+  static init(frame: $SDK59, options?: $SDK37): Promise<SCNView> { return callSDKAsync<SCNView>("SceneKit_212edf3d13b127f5", 4301819607284444, undefined, [frame, options]); }
   /** @IBAction func pause(_ sender: Any?) */
-  pause(sender?: (unknown) | null): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2229093807982047, this, [sender]); }
+  pause(sender?: (unknown) | null): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2229093807982047, this, [sender]); }
   /** @IBAction func play(_ sender: Any?) */
-  play(sender?: (unknown) | null): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 365881197969786, this, [sender]); }
+  play(sender?: (unknown) | null): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 365881197969786, this, [sender]); }
   /** func snapshot() -> UIImage */
-  snapshot(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("SceneKit_0e503aef608672fa", 3154124638994459, this, []); }
+  snapshot(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("SceneKit_212edf3d13b127f5", 3154124638994459, this, []); }
   /** @IBAction func stop(_ sender: Any?) */
-  stop(sender?: (unknown) | null): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 4234686903023454, this, [sender]); }
+  stop(sender?: (unknown) | null): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 4234686903023454, this, [sender]); }
   /** var allowsCameraControl: Bool { get set } */
-  get allowsCameraControl(): Promise<boolean> { return callSDKAsync<boolean>("SceneKit_0e503aef608672fa", 3471633988802633, this, []); }
-  setAllowsCameraControl(value: boolean): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2152858634764387, this, [value]); }
+  get allowsCameraControl(): Promise<boolean> { return callSDKAsync<boolean>("SceneKit_212edf3d13b127f5", 3471633988802633, this, []); }
+  setAllowsCameraControl(value: boolean): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2152858634764387, this, [value]); }
   /** var antialiasingMode: SCNAntialiasingMode { get set } */
-  get antialiasingMode(): Promise<SCNAntialiasingMode> { return callSDKAsync<SCNAntialiasingMode>("SceneKit_0e503aef608672fa", 877393228151273, this, []); }
-  setAntialiasingMode(value: SCNAntialiasingMode): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2203622045247331, this, [value]); }
+  get antialiasingMode(): Promise<SCNAntialiasingMode> { return callSDKAsync<SCNAntialiasingMode>("SceneKit_212edf3d13b127f5", 877393228151273, this, []); }
+  setAntialiasingMode(value: SCNAntialiasingMode): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2203622045247331, this, [value]); }
   /**
    * var cameraControlConfiguration: any SCNCameraControlConfiguration { get }
    * @availability iOS 11.0+
    */
-  get cameraControlConfiguration(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SceneKit_0e503aef608672fa", 2785482988479268, this, []); }
+  get cameraControlConfiguration(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SceneKit_212edf3d13b127f5", 2785482988479268, this, []); }
   /**
    * var defaultCameraController: SCNCameraController { get }
    * @availability iOS 11.0+
    */
-  get defaultCameraController(): Promise<SCNCameraController> { return callSDKAsync<SCNCameraController>("SceneKit_0e503aef608672fa", 791558075405490, this, []); }
+  get defaultCameraController(): Promise<SCNCameraController> { return callSDKAsync<SCNCameraController>("SceneKit_212edf3d13b127f5", 791558075405490, this, []); }
   /**
    * var eaglContext: EAGLContext? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 12.0
    */
-  get eaglContext(): Promise<$SDK57> { return callSDKAsync<$SDK57>("SceneKit_0e503aef608672fa", 909890503026304, this, []); }
-  setEaglContext(value?: $SDK57): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 2156513902687427, this, [value]); }
+  get eaglContext(): Promise<$SDK57> { return callSDKAsync<$SDK57>("SceneKit_212edf3d13b127f5", 909890503026304, this, []); }
+  setEaglContext(value?: $SDK57): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 2156513902687427, this, [value]); }
   /** var preferredFramesPerSecond: Int { get set } */
-  get preferredFramesPerSecond(): Promise<number> { return callSDKAsync<number>("SceneKit_0e503aef608672fa", 2659898320441086, this, []); }
-  setPreferredFramesPerSecond(value: number): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 3278135886459849, this, [value]); }
+  get preferredFramesPerSecond(): Promise<number> { return callSDKAsync<number>("SceneKit_212edf3d13b127f5", 2659898320441086, this, []); }
+  setPreferredFramesPerSecond(value: number): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 3278135886459849, this, [value]); }
   /** var rendersContinuously: Bool { get set } */
-  get rendersContinuously(): Promise<boolean> { return callSDKAsync<boolean>("SceneKit_0e503aef608672fa", 4231484173535443, this, []); }
-  setRendersContinuously(value: boolean): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 316428154634128, this, [value]); }
+  get rendersContinuously(): Promise<boolean> { return callSDKAsync<boolean>("SceneKit_212edf3d13b127f5", 4231484173535443, this, []); }
+  setRendersContinuously(value: boolean): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 316428154634128, this, [value]); }
   /** var scene: SCNScene? { get set } */
-  get scene(): Promise<(SCNScene) | null> { return callSDKAsync<(SCNScene) | null>("SceneKit_0e503aef608672fa", 2281605505189143, this, []); }
-  setScene(value?: (SCNScene) | null): Promise<void> { return callSDKAsync<void>("SceneKit_0e503aef608672fa", 1624193113530047, this, [value]); }
+  get scene(): Promise<(SCNScene) | null> { return callSDKAsync<(SCNScene) | null>("SceneKit_212edf3d13b127f5", 2281605505189143, this, []); }
+  setScene(value?: (SCNScene) | null): Promise<void> { return callSDKAsync<void>("SceneKit_212edf3d13b127f5", 1624193113530047, this, [value]); }
   declare readonly $type: { "c:objc(cs)SCNView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCameraControl": true; "antialiasingMode": true; "cameraControlConfiguration": true; "defaultCameraController": true; "eaglContext": true; "preferredFramesPerSecond": true; "rendersContinuously": true; "scene": true };
 }
@@ -5055,19 +5055,19 @@ export const SCNView_Option = {
    * static let preferLowPowerDevice: SCNView.Option
    * @availability iOS 9.0+
    */
-  get preferLowPowerDevice(): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_0e503aef608672fa", 4501321198405907, undefined, []); },
+  get preferLowPowerDevice(): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_212edf3d13b127f5", 4501321198405907, undefined, []); },
   /**
    * static let preferredDevice: SCNView.Option
    * @availability iOS 9.0+
    */
-  get preferredDevice(): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_0e503aef608672fa", 1414575875512499, undefined, []); },
+  get preferredDevice(): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_212edf3d13b127f5", 1414575875512499, undefined, []); },
   /**
    * static let preferredRenderingAPI: SCNView.Option
    * @availability iOS 9.0+
    */
-  get preferredRenderingAPI(): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_0e503aef608672fa", 3319234277976444, undefined, []); },
+  get preferredRenderingAPI(): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_212edf3d13b127f5", 3319234277976444, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_0e503aef608672fa", 3112880973439672, undefined, [rawValue]); }
+  init(rawValue: string): Promise<SCNView_Option> { return callSDKAsync<SCNView_Option>("SceneKit_212edf3d13b127f5", 3112880973439672, undefined, [rawValue]); }
 };
 
 /** enum SCNWrapMode */
@@ -5075,257 +5075,257 @@ export type SCNWrapMode = "clamp" | "repeat" | "clampToBorder" | "mirror";
 
 export const SCNWrapMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SCNWrapMode) | null { return callSDK<(SCNWrapMode) | null>("SceneKit_0e503aef608672fa", 299095606344501, undefined, [rawValue]); }
+  init(rawValue: number): (SCNWrapMode) | null { return callSDK<(SCNWrapMode) | null>("SceneKit_212edf3d13b127f5", 299095606344501, undefined, [rawValue]); }
 };
 
 /** func SCNExportJavaScriptModule(_ context: JSContext) */
-export function SCNExportJavaScriptModule(context: _JavaScriptCore_JSContext): void { return callSDK<void>("SceneKit_0e503aef608672fa", 1196301334694806, undefined, [context]); }
+export function SCNExportJavaScriptModule(context: _JavaScriptCore_JSContext): void { return callSDK<void>("SceneKit_212edf3d13b127f5", 1196301334694806, undefined, [context]); }
 
 /** func SCNMatrix4EqualToMatrix4(_ a: SCNMatrix4, _ b: SCNMatrix4) -> Bool */
-export function SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2421903398205431, undefined, [a, b]); }
+export function SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2421903398205431, undefined, [a, b]); }
 
 /** func SCNMatrix4FromGLKMatrix4(_ mat: GLKMatrix4) -> SCNMatrix4 */
-export function SCNMatrix4FromGLKMatrix4(mat: SDKHandle): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 891711117150498, undefined, [mat]); }
+export function SCNMatrix4FromGLKMatrix4(mat: SDKHandle): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 891711117150498, undefined, [mat]); }
 
 /** func SCNMatrix4Invert(_ m: SCNMatrix4) -> SCNMatrix4 */
-export function SCNMatrix4Invert(m: SCNMatrix4): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 561144329442486, undefined, [m]); }
+export function SCNMatrix4Invert(m: SCNMatrix4): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 561144329442486, undefined, [m]); }
 
 /** func SCNMatrix4IsIdentity(_ m: SCNMatrix4) -> Bool */
-export function SCNMatrix4IsIdentity(m: SCNMatrix4): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 144823907246121, undefined, [m]); }
+export function SCNMatrix4IsIdentity(m: SCNMatrix4): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 144823907246121, undefined, [m]); }
 
 /** func SCNMatrix4MakeRotation(_ angle: Float, _ x: Float, _ y: Float, _ z: Float) -> SCNMatrix4 */
-export function SCNMatrix4MakeRotation(angle: number, x: number, y: number, z: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 362943466385617, undefined, [angle, x, y, z]); }
+export function SCNMatrix4MakeRotation(angle: number, x: number, y: number, z: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 362943466385617, undefined, [angle, x, y, z]); }
 
 /** func SCNMatrix4MakeScale(_ sx: Float, _ sy: Float, _ sz: Float) -> SCNMatrix4 */
-export function SCNMatrix4MakeScale(sx: number, sy: number, sz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 1977836618627647, undefined, [sx, sy, sz]); }
+export function SCNMatrix4MakeScale(sx: number, sy: number, sz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 1977836618627647, undefined, [sx, sy, sz]); }
 
 /** func SCNMatrix4MakeTranslation(_ tx: Float, _ ty: Float, _ tz: Float) -> SCNMatrix4 */
-export function SCNMatrix4MakeTranslation(tx: number, ty: number, tz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 231840637127545, undefined, [tx, ty, tz]); }
+export function SCNMatrix4MakeTranslation(tx: number, ty: number, tz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 231840637127545, undefined, [tx, ty, tz]); }
 
 /** func SCNMatrix4Mult(_ a: SCNMatrix4, _ b: SCNMatrix4) -> SCNMatrix4 */
-export function SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 949066538366594, undefined, [a, b]); }
+export function SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 949066538366594, undefined, [a, b]); }
 
 /** func SCNMatrix4Rotate(_ m: SCNMatrix4, _ angle: Float, _ x: Float, _ y: Float, _ z: Float) -> SCNMatrix4 */
-export function SCNMatrix4Rotate(m: SCNMatrix4, angle: number, x: number, y: number, z: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 1620683020855018, undefined, [m, angle, x, y, z]); }
+export function SCNMatrix4Rotate(m: SCNMatrix4, angle: number, x: number, y: number, z: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 1620683020855018, undefined, [m, angle, x, y, z]); }
 
 /** func SCNMatrix4Scale(_ m: SCNMatrix4, _ sx: Float, _ sy: Float, _ sz: Float) -> SCNMatrix4 */
-export function SCNMatrix4Scale(m: SCNMatrix4, sx: number, sy: number, sz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 3235651393311094, undefined, [m, sx, sy, sz]); }
+export function SCNMatrix4Scale(m: SCNMatrix4, sx: number, sy: number, sz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 3235651393311094, undefined, [m, sx, sy, sz]); }
 
 /** func SCNMatrix4ToGLKMatrix4(_ mat: SCNMatrix4) -> GLKMatrix4 */
-export function SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 1283851294129701, undefined, [mat]); }
+export function SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 1283851294129701, undefined, [mat]); }
 
 /** func SCNMatrix4Translate(_ m: SCNMatrix4, _ tx: Float, _ ty: Float, _ tz: Float) -> SCNMatrix4 */
-export function SCNMatrix4Translate(m: SCNMatrix4, tx: number, ty: number, tz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 3160231754175477, undefined, [m, tx, ty, tz]); }
+export function SCNMatrix4Translate(m: SCNMatrix4, tx: number, ty: number, tz: number): SCNMatrix4 { return callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 3160231754175477, undefined, [m, tx, ty, tz]); }
 
 /** func SCNVector3EqualToVector3(_ a: SCNVector3, _ b: SCNVector3) -> Bool */
-export function SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 3653337517378874, undefined, [a, b]); }
+export function SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 3653337517378874, undefined, [a, b]); }
 
 /** func SCNVector3FromGLKVector3(_ vector: GLKVector3) -> SCNVector3 */
-export function SCNVector3FromGLKVector3(vector: SDKHandle): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 1254712960190288, undefined, [vector]); }
+export function SCNVector3FromGLKVector3(vector: SDKHandle): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 1254712960190288, undefined, [vector]); }
 
 /** func SCNVector3Make(_ x: Float, _ y: Float, _ z: Float) -> SCNVector3 */
-export function SCNVector3Make(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 2763559732110482, undefined, [x, y, z]); }
+export function SCNVector3Make(x: number, y: number, z: number): SCNVector3 { return callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 2763559732110482, undefined, [x, y, z]); }
 
 /** func SCNVector3ToGLKVector3(_ vector: SCNVector3) -> GLKVector3 */
-export function SCNVector3ToGLKVector3(vector: SCNVector3): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 3723897660541906, undefined, [vector]); }
+export function SCNVector3ToGLKVector3(vector: SCNVector3): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 3723897660541906, undefined, [vector]); }
 
 /** func SCNVector4EqualToVector4(_ a: SCNVector4, _ b: SCNVector4) -> Bool */
-export function SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4): boolean { return callSDK<boolean>("SceneKit_0e503aef608672fa", 2323271426386838, undefined, [a, b]); }
+export function SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4): boolean { return callSDK<boolean>("SceneKit_212edf3d13b127f5", 2323271426386838, undefined, [a, b]); }
 
 /** func SCNVector4FromGLKVector4(_ vector: GLKVector4) -> SCNVector4 */
-export function SCNVector4FromGLKVector4(vector: SDKHandle): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 2715712490439813, undefined, [vector]); }
+export function SCNVector4FromGLKVector4(vector: SDKHandle): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 2715712490439813, undefined, [vector]); }
 
 /** func SCNVector4Make(_ x: Float, _ y: Float, _ z: Float, _ w: Float) -> SCNVector4 */
-export function SCNVector4Make(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1694540927651212, undefined, [x, y, z, w]); }
+export function SCNVector4Make(x: number, y: number, z: number, w: number): SCNVector4 { return callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1694540927651212, undefined, [x, y, z, w]); }
 
 /** func SCNVector4ToGLKVector4(_ vector: SCNVector4) -> GLKVector4 */
-export function SCNVector4ToGLKVector4(vector: SCNVector4): SDKHandle { return callSDK<SDKHandle>("SceneKit_0e503aef608672fa", 2086158292376092, undefined, [vector]); }
+export function SCNVector4ToGLKVector4(vector: SCNVector4): SDKHandle { return callSDK<SDKHandle>("SceneKit_212edf3d13b127f5", 2086158292376092, undefined, [vector]); }
 
 /** var SCNConsistencyInvalidArgumentError: Int { get } */
-export const SCNConsistencyInvalidArgumentError: number = callSDK<number>("SceneKit_0e503aef608672fa", 2550466872101372, undefined, []);
+export const SCNConsistencyInvalidArgumentError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 2550466872101372, undefined, []);
 
 /** var SCNConsistencyInvalidCountError: Int { get } */
-export const SCNConsistencyInvalidCountError: number = callSDK<number>("SceneKit_0e503aef608672fa", 2682937140473265, undefined, []);
+export const SCNConsistencyInvalidCountError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 2682937140473265, undefined, []);
 
 /** var SCNConsistencyInvalidURIError: Int { get } */
-export const SCNConsistencyInvalidURIError: number = callSDK<number>("SceneKit_0e503aef608672fa", 1121027632946270, undefined, []);
+export const SCNConsistencyInvalidURIError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 1121027632946270, undefined, []);
 
 /** var SCNConsistencyMissingAttributeError: Int { get } */
-export const SCNConsistencyMissingAttributeError: number = callSDK<number>("SceneKit_0e503aef608672fa", 4239669837814259, undefined, []);
+export const SCNConsistencyMissingAttributeError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 4239669837814259, undefined, []);
 
 /** var SCNConsistencyMissingElementError: Int { get } */
-export const SCNConsistencyMissingElementError: number = callSDK<number>("SceneKit_0e503aef608672fa", 2700839528132475, undefined, []);
+export const SCNConsistencyMissingElementError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 2700839528132475, undefined, []);
 
 /** var SCNConsistencyXMLSchemaValidationError: Int { get } */
-export const SCNConsistencyXMLSchemaValidationError: number = callSDK<number>("SceneKit_0e503aef608672fa", 886388545154951, undefined, []);
+export const SCNConsistencyXMLSchemaValidationError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 886388545154951, undefined, []);
 
 /** var SCNProgramCompilationError: Int { get } */
-export const SCNProgramCompilationError: number = callSDK<number>("SceneKit_0e503aef608672fa", 1401575023820534, undefined, []);
+export const SCNProgramCompilationError: number = callSDK<number>("SceneKit_212edf3d13b127f5", 1401575023820534, undefined, []);
 
 /** let SCNConsistencyElementIDErrorKey: String */
-export const SCNConsistencyElementIDErrorKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 1609805250743762, undefined, []);
+export const SCNConsistencyElementIDErrorKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 1609805250743762, undefined, []);
 
 /** let SCNConsistencyElementTypeErrorKey: String */
-export const SCNConsistencyElementTypeErrorKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 4332332532232396, undefined, []);
+export const SCNConsistencyElementTypeErrorKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 4332332532232396, undefined, []);
 
 /** let SCNConsistencyLineNumberErrorKey: String */
-export const SCNConsistencyLineNumberErrorKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 300521612915941, undefined, []);
+export const SCNConsistencyLineNumberErrorKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 300521612915941, undefined, []);
 
 /** let SCNDetailedErrorsKey: String */
-export const SCNDetailedErrorsKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 3277802986510806, undefined, []);
+export const SCNDetailedErrorsKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 3277802986510806, undefined, []);
 
 /** let SCNErrorDomain: String */
-export const SCNErrorDomain: string = callSDK<string>("SceneKit_0e503aef608672fa", 563621178347452, undefined, []);
+export const SCNErrorDomain: string = callSDK<string>("SceneKit_212edf3d13b127f5", 563621178347452, undefined, []);
 
 /** let SCNMatrix4Identity: SCNMatrix4 */
-export const SCNMatrix4Identity: SCNMatrix4 = callSDK<SCNMatrix4>("SceneKit_0e503aef608672fa", 92233085844316, undefined, []);
+export const SCNMatrix4Identity: SCNMatrix4 = callSDK<SCNMatrix4>("SceneKit_212edf3d13b127f5", 92233085844316, undefined, []);
 
 /** let SCNModelTransform: String */
-export const SCNModelTransform: string = callSDK<string>("SceneKit_0e503aef608672fa", 3628180516950994, undefined, []);
+export const SCNModelTransform: string = callSDK<string>("SceneKit_212edf3d13b127f5", 3628180516950994, undefined, []);
 
 /** let SCNModelViewProjectionTransform: String */
-export const SCNModelViewProjectionTransform: string = callSDK<string>("SceneKit_0e503aef608672fa", 3330982312620570, undefined, []);
+export const SCNModelViewProjectionTransform: string = callSDK<string>("SceneKit_212edf3d13b127f5", 3330982312620570, undefined, []);
 
 /** let SCNModelViewTransform: String */
-export const SCNModelViewTransform: string = callSDK<string>("SceneKit_0e503aef608672fa", 609059945099802, undefined, []);
+export const SCNModelViewTransform: string = callSDK<string>("SceneKit_212edf3d13b127f5", 609059945099802, undefined, []);
 
 /** let SCNNormalTransform: String */
-export const SCNNormalTransform: string = callSDK<string>("SceneKit_0e503aef608672fa", 2872996421097053, undefined, []);
+export const SCNNormalTransform: string = callSDK<string>("SceneKit_212edf3d13b127f5", 2872996421097053, undefined, []);
 
 /** let SCNProgramMappingChannelKey: String */
-export const SCNProgramMappingChannelKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 4167114890897528, undefined, []);
+export const SCNProgramMappingChannelKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 4167114890897528, undefined, []);
 
 /** let SCNProjectionTransform: String */
-export const SCNProjectionTransform: string = callSDK<string>("SceneKit_0e503aef608672fa", 317934500300518, undefined, []);
+export const SCNProjectionTransform: string = callSDK<string>("SceneKit_212edf3d13b127f5", 317934500300518, undefined, []);
 
 /** let SCNSceneExportDestinationURL: String */
-export const SCNSceneExportDestinationURL: string = callSDK<string>("SceneKit_0e503aef608672fa", 466568497797631, undefined, []);
+export const SCNSceneExportDestinationURL: string = callSDK<string>("SceneKit_212edf3d13b127f5", 466568497797631, undefined, []);
 
 /** let SCNSceneSourceAssetAuthorKey: String */
-export const SCNSceneSourceAssetAuthorKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 947827221286121, undefined, []);
+export const SCNSceneSourceAssetAuthorKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 947827221286121, undefined, []);
 
 /** let SCNSceneSourceAssetAuthoringToolKey: String */
-export const SCNSceneSourceAssetAuthoringToolKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 3295347194193698, undefined, []);
+export const SCNSceneSourceAssetAuthoringToolKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 3295347194193698, undefined, []);
 
 /** let SCNSceneSourceAssetContributorsKey: String */
-export const SCNSceneSourceAssetContributorsKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 1410475625636952, undefined, []);
+export const SCNSceneSourceAssetContributorsKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 1410475625636952, undefined, []);
 
 /** let SCNSceneSourceAssetCreatedDateKey: String */
-export const SCNSceneSourceAssetCreatedDateKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 3278346811019413, undefined, []);
+export const SCNSceneSourceAssetCreatedDateKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 3278346811019413, undefined, []);
 
 /** let SCNSceneSourceAssetModifiedDateKey: String */
-export const SCNSceneSourceAssetModifiedDateKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 925980648501712, undefined, []);
+export const SCNSceneSourceAssetModifiedDateKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 925980648501712, undefined, []);
 
 /** let SCNSceneSourceAssetUnitKey: String */
-export const SCNSceneSourceAssetUnitKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 1502801612282360, undefined, []);
+export const SCNSceneSourceAssetUnitKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 1502801612282360, undefined, []);
 
 /** let SCNSceneSourceAssetUnitMeterKey: String */
-export const SCNSceneSourceAssetUnitMeterKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 325523583559704, undefined, []);
+export const SCNSceneSourceAssetUnitMeterKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 325523583559704, undefined, []);
 
 /** let SCNSceneSourceAssetUnitNameKey: String */
-export const SCNSceneSourceAssetUnitNameKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 3751412703705608, undefined, []);
+export const SCNSceneSourceAssetUnitNameKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 3751412703705608, undefined, []);
 
 /** let SCNSceneSourceAssetUpAxisKey: String */
-export const SCNSceneSourceAssetUpAxisKey: string = callSDK<string>("SceneKit_0e503aef608672fa", 2857872446783846, undefined, []);
+export const SCNSceneSourceAssetUpAxisKey: string = callSDK<string>("SceneKit_212edf3d13b127f5", 2857872446783846, undefined, []);
 
 /** let SCNVector3Zero: SCNVector3 */
-export const SCNVector3Zero: SCNVector3 = callSDK<SCNVector3>("SceneKit_0e503aef608672fa", 4330715642021805, undefined, []);
+export const SCNVector3Zero: SCNVector3 = callSDK<SCNVector3>("SceneKit_212edf3d13b127f5", 4330715642021805, undefined, []);
 
 /** let SCNVector4Zero: SCNVector4 */
-export const SCNVector4Zero: SCNVector4 = callSDK<SCNVector4>("SceneKit_0e503aef608672fa", 1835685939050254, undefined, []);
+export const SCNVector4Zero: SCNVector4 = callSDK<SCNVector4>("SceneKit_212edf3d13b127f5", 1835685939050254, undefined, []);
 
 /** let SCNViewTransform: String */
-export const SCNViewTransform: string = callSDK<string>("SceneKit_0e503aef608672fa", 2555840228141722, undefined, []);
+export const SCNViewTransform: string = callSDK<string>("SceneKit_212edf3d13b127f5", 2555840228141722, undefined, []);
 
 /** var SCN_ENABLE_METAL: Int32 { get } */
-export const SCN_ENABLE_METAL: number = callSDK<number>("SceneKit_0e503aef608672fa", 2137641059442253, undefined, []);
+export const SCN_ENABLE_METAL: number = callSDK<number>("SceneKit_212edf3d13b127f5", 2137641059442253, undefined, []);
 
 /** var SCN_ENABLE_OPENGL: Int32 { get } */
-export const SCN_ENABLE_OPENGL: number = callSDK<number>("SceneKit_0e503aef608672fa", 341863101552161, undefined, []);
+export const SCN_ENABLE_OPENGL: number = callSDK<number>("SceneKit_212edf3d13b127f5", 341863101552161, undefined, []);
 
-registerSDKClass("CAAnimation", CAAnimation, { module: "SceneKit_0e503aef608672fa", properties: {"animationEvents":3921748990907302,"fadeInDuration":1034963688052925,"fadeOutDuration":300468116241922,"usesSceneTimeBase":3176540205027000} }, true);
-registerSDKClass("NSValue", NSValue, { module: "SceneKit_0e503aef608672fa", properties: {"scnMatrix4Value":923012054887202,"scnVector3Value":4222960476644768,"scnVector4Value":2829288093610704} }, true);
-registerSDKClass("SCNConstraint", SCNConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"isEnabled":2914500149989081,"isIncremental":4297032230869502,"influenceFactor":969880600481367} });
-registerSDKClass("SCNAccelerationConstraint", SCNAccelerationConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"damping":4198829658052127,"decelerationDistance":2019386022042460,"maximumLinearAcceleration":2663177101736258,"maximumLinearVelocity":414163309785084} });
-registerSDKClass("SCNAction", SCNAction, { module: "SceneKit_0e503aef608672fa", properties: {"duration":2955981309068050,"speed":1646319630835855,"timingMode":3837964894007853}, methods: {"reversed":{"id":2608704771153285}} });
+registerSDKClass("CAAnimation", CAAnimation, { module: "SceneKit_212edf3d13b127f5", properties: {"animationEvents":3921748990907302,"fadeInDuration":1034963688052925,"fadeOutDuration":300468116241922,"usesSceneTimeBase":3176540205027000} }, true);
+registerSDKClass("NSValue", NSValue, { module: "SceneKit_212edf3d13b127f5", properties: {"scnMatrix4Value":923012054887202,"scnVector3Value":4222960476644768,"scnVector4Value":2829288093610704} }, true);
+registerSDKClass("SCNConstraint", SCNConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"isEnabled":2914500149989081,"isIncremental":4297032230869502,"influenceFactor":969880600481367} });
+registerSDKClass("SCNAccelerationConstraint", SCNAccelerationConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"damping":4198829658052127,"decelerationDistance":2019386022042460,"maximumLinearAcceleration":2663177101736258,"maximumLinearVelocity":414163309785084} });
+registerSDKClass("SCNAction", SCNAction, { module: "SceneKit_212edf3d13b127f5", properties: {"duration":2955981309068050,"speed":1646319630835855,"timingMode":3837964894007853}, methods: {"reversed":{"id":2608704771153285}} });
 registerSDKProtocol("c:objc(pl)SCNActionable", {"runAction":"runAction(_:)","runActionForKey":"runAction(_:forKey:)","actionForKey":"action(forKey:)","removeActionForKey":"removeAction(forKey:)","removeAllActions":"removeAllActions()"});
 registerSDKProtocol("c:objc(pl)SCNAnimatable", {"addAnimationForKey":"addAnimation(_:forKey:)","addAnimationPlayerForKey":"addAnimationPlayer(_:forKey:)","removeAllAnimations":"removeAllAnimations()","removeAllAnimationsWithBlendOutDuration":"removeAllAnimations(withBlendOutDuration:)","removeAnimationForKey":"removeAnimation(forKey:)","removeAnimationForKeyBlendOutDuration":"removeAnimation(forKey:blendOutDuration:)","animationPlayerForKey":"animationPlayer(forKey:)","removeAnimationForKeyFadeOutDuration":"removeAnimation(forKey:fadeOutDuration:)","animationForKey":"animation(forKey:)","pauseAnimationForKey":"pauseAnimation(forKey:)","resumeAnimationForKey":"resumeAnimation(forKey:)","setAnimationSpeedForKey":"setAnimationSpeed(_:forKey:)","isAnimationPausedForKey":"isAnimationPaused(forKey:)"});
-registerSDKClass("SCNAnimation", SCNAnimation, { module: "SceneKit_0e503aef608672fa", properties: {"isAdditive":3825346009433471,"animationEvents":2835923130071931,"isAppliedOnCompletion":37400410785193,"autoreverses":79313337341494,"blendInDuration":603775660206333,"blendOutDuration":3141412045290999,"isCumulative":1465986215513867,"duration":3229711725854961,"fillsBackward":4425687525511555,"fillsForward":994521817987862,"keyPath":3485797175057976,"isRemovedOnCompletion":2629407971301577,"repeatCount":3606484934741177,"startDelay":2541800002679672,"timeOffset":1077120190119590,"timingFunction":1768223170219459,"usesSceneTimeBase":3465735906071280} });
-registerSDKClass("SCNAnimationEvent", SCNAnimationEvent, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNAnimationPlayer", SCNAnimationPlayer, { module: "SceneKit_0e503aef608672fa", properties: {"animation":515860328035810,"blendFactor":4318511645580631,"paused":685631216860188,"speed":3130486136921754}, methods: {"play":{"id":2613886831998015},"stop":{"id":523453629292280},"stopWithBlendOutDuration":{"id":4156639452965918}} });
+registerSDKClass("SCNAnimation", SCNAnimation, { module: "SceneKit_212edf3d13b127f5", properties: {"isAdditive":3825346009433471,"animationEvents":2835923130071931,"isAppliedOnCompletion":37400410785193,"autoreverses":79313337341494,"blendInDuration":603775660206333,"blendOutDuration":3141412045290999,"isCumulative":1465986215513867,"duration":3229711725854961,"fillsBackward":4425687525511555,"fillsForward":994521817987862,"keyPath":3485797175057976,"isRemovedOnCompletion":2629407971301577,"repeatCount":3606484934741177,"startDelay":2541800002679672,"timeOffset":1077120190119590,"timingFunction":1768223170219459,"usesSceneTimeBase":3465735906071280} });
+registerSDKClass("SCNAnimationEvent", SCNAnimationEvent, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNAnimationPlayer", SCNAnimationPlayer, { module: "SceneKit_212edf3d13b127f5", properties: {"animation":515860328035810,"blendFactor":4318511645580631,"paused":685631216860188,"speed":3130486136921754}, methods: {"play":{"id":2613886831998015},"stop":{"id":523453629292280},"stopWithBlendOutDuration":{"id":4156639452965918}} });
 registerSDKProtocol("c:objc(pl)SCNAnimation", {});
-registerSDKClass("SCNAudioPlayer", SCNAudioPlayer, { module: "SceneKit_0e503aef608672fa", properties: {"audioNode":4030830317785578,"audioSource":4318121330427360} });
-registerSDKClass("SCNAudioSource", SCNAudioSource, { module: "SceneKit_0e503aef608672fa", properties: {"loops":3795864455788933,"isPositional":405629346954196,"rate":1843095884488918,"reverbBlend":3059128015598661,"shouldStream":582741517626155,"volume":3347578144705665}, methods: {"load":{"id":2550518535473983}} });
-registerSDKClass("SCNAvoidOccluderConstraint", SCNAvoidOccluderConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"bias":212172704727727,"delegate":114935925914010,"occluderCategoryBitMask":1098870448394773,"target":171855025237517} });
+registerSDKClass("SCNAudioPlayer", SCNAudioPlayer, { module: "SceneKit_212edf3d13b127f5", properties: {"audioNode":4030830317785578,"audioSource":4318121330427360} });
+registerSDKClass("SCNAudioSource", SCNAudioSource, { module: "SceneKit_212edf3d13b127f5", properties: {"loops":3795864455788933,"isPositional":405629346954196,"rate":1843095884488918,"reverbBlend":3059128015598661,"shouldStream":582741517626155,"volume":3347578144705665}, methods: {"load":{"id":2550518535473983}} });
+registerSDKClass("SCNAvoidOccluderConstraint", SCNAvoidOccluderConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"bias":212172704727727,"delegate":114935925914010,"occluderCategoryBitMask":1098870448394773,"target":171855025237517} });
 registerSDKProtocol("c:objc(pl)SCNAvoidOccluderConstraintDelegate", {"avoidOccluderConstraintDidAvoidOccluderFor":"avoidOccluderConstraint(_:didAvoidOccluder:for:)"});
-registerSDKClass("SCNBillboardConstraint", SCNBillboardConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"freeAxes":4502884343274936} });
+registerSDKClass("SCNBillboardConstraint", SCNBillboardConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"freeAxes":4502884343274936} });
 registerSDKProtocol("c:objc(pl)SCNBoundingVolume", {});
-registerSDKClass("SCNGeometry", SCNGeometry, { module: "SceneKit_0e503aef608672fa", properties: {"edgeCreasesElement":771753559109665,"edgeCreasesSource":1115137466462842,"firstMaterial":1572001727700684,"elementCount":188930865012631,"elements":3672366057446080,"geometrySourceChannels":1065168815639383,"sources":1391019671266696,"levelsOfDetail":2794415562129706,"materials":81382431732346,"name":2551538640832021,"subdivisionLevel":1538394254718016,"tessellator":1558266916481294,"wantsAdaptiveSubdivision":2415683909696204}, methods: {"element":{"id":791797444328174},"sourcesFor":{"id":1028555125666308},"insertMaterial":{"id":2477163974287069},"material":{"id":1516696926072306},"removeMaterial":{"id":2726570577371775},"replaceMaterial":{"id":2573463835828896}} });
-registerSDKClass("SCNBox", SCNBox, { module: "SceneKit_0e503aef608672fa", properties: {"chamferRadius":1903639256988198,"chamferSegmentCount":3331823590386690,"height":582117933380204,"heightSegmentCount":2832086440422501,"length":1773535982549792,"lengthSegmentCount":1581762745106661,"width":2257615111634360,"widthSegmentCount":436096637281184} });
+registerSDKClass("SCNGeometry", SCNGeometry, { module: "SceneKit_212edf3d13b127f5", properties: {"edgeCreasesElement":771753559109665,"edgeCreasesSource":1115137466462842,"firstMaterial":1572001727700684,"elementCount":188930865012631,"elements":3672366057446080,"geometrySourceChannels":1065168815639383,"sources":1391019671266696,"levelsOfDetail":2794415562129706,"materials":81382431732346,"name":2551538640832021,"subdivisionLevel":1538394254718016,"tessellator":1558266916481294,"wantsAdaptiveSubdivision":2415683909696204}, methods: {"element":{"id":791797444328174},"sourcesFor":{"id":1028555125666308},"insertMaterial":{"id":2477163974287069},"material":{"id":1516696926072306},"removeMaterial":{"id":2726570577371775},"replaceMaterial":{"id":2573463835828896}} });
+registerSDKClass("SCNBox", SCNBox, { module: "SceneKit_212edf3d13b127f5", properties: {"chamferRadius":1903639256988198,"chamferSegmentCount":3331823590386690,"height":582117933380204,"heightSegmentCount":2832086440422501,"length":1773535982549792,"lengthSegmentCount":1581762745106661,"width":2257615111634360,"widthSegmentCount":436096637281184} });
 registerSDKProtocol("c:objc(pl)SCNBufferStream", {"writeBytesCount":"writeBytes(_:count:)"});
-registerSDKClass("SCNCamera", SCNCamera, { module: "SceneKit_0e503aef608672fa", properties: {"aperture":2466217231459883,"apertureBladeCount":2282246863751299,"automaticallyAdjustsZRange":3880450243975303,"averageGray":1436940102187947,"bloomBlurRadius":1867679278271510,"bloomIntensity":1798364109641990,"bloomIterationCount":3338287211426267,"bloomIterationSpread":3895026901456086,"bloomThreshold":3342228009333539,"categoryBitMask":1626676735636932,"colorFringeIntensity":4108221513025138,"colorFringeStrength":2192685752454282,"colorGrading":3129183179201280,"contrast":1106461079207183,"exposureAdaptationBrighteningSpeedFactor":760421562231069,"exposureAdaptationDarkeningSpeedFactor":525865537016199,"exposureOffset":2583265761105740,"fStop":337124078803544,"fieldOfView":3157972019685233,"focalBlurRadius":3269151047496366,"focalBlurSampleCount":1029445554889342,"focalDistance":526919371756537,"focalLength":1374305954751820,"focalSize":551922388939422,"focusDistance":7195999746990,"grainIntensity":3107691449503585,"grainIsColored":667196226542867,"grainScale":433579408896814,"maximumExposure":3377823565692487,"minimumExposure":2125301380145996,"motionBlurIntensity":3618419884920786,"name":3926408101709390,"orthographicScale":1971248539539245,"projectionDirection":4108784169393311,"projectionTransform":625343048076125,"saturation":4009574602587423,"screenSpaceAmbientOcclusionBias":778972977735144,"screenSpaceAmbientOcclusionDepthThreshold":795204120968942,"screenSpaceAmbientOcclusionIntensity":1966692976804908,"screenSpaceAmbientOcclusionNormalThreshold":3178933901905669,"screenSpaceAmbientOcclusionRadius":3836943190617159,"sensorHeight":74086749264014,"usesOrthographicProjection":3736352998551878,"vignettingIntensity":3542676314949092,"vignettingPower":3504984447590979,"wantsDepthOfField":1088415259755226,"wantsExposureAdaptation":1059681726401458,"wantsHDR":3363754318522322,"whiteBalanceTemperature":3139546872336837,"whiteBalanceTint":2693041629522717,"whitePoint":1429461993752984,"xFov":1299191200400615,"yFov":4210025470293647,"zFar":1016922036302172,"zNear":2021525716464953}, methods: {"projectionTransformWithViewportSize":{"id":582902472380778}} });
+registerSDKClass("SCNCamera", SCNCamera, { module: "SceneKit_212edf3d13b127f5", properties: {"aperture":2466217231459883,"apertureBladeCount":2282246863751299,"automaticallyAdjustsZRange":3880450243975303,"averageGray":1436940102187947,"bloomBlurRadius":1867679278271510,"bloomIntensity":1798364109641990,"bloomIterationCount":3338287211426267,"bloomIterationSpread":3895026901456086,"bloomThreshold":3342228009333539,"categoryBitMask":1626676735636932,"colorFringeIntensity":4108221513025138,"colorFringeStrength":2192685752454282,"colorGrading":3129183179201280,"contrast":1106461079207183,"exposureAdaptationBrighteningSpeedFactor":760421562231069,"exposureAdaptationDarkeningSpeedFactor":525865537016199,"exposureOffset":2583265761105740,"fStop":337124078803544,"fieldOfView":3157972019685233,"focalBlurRadius":3269151047496366,"focalBlurSampleCount":1029445554889342,"focalDistance":526919371756537,"focalLength":1374305954751820,"focalSize":551922388939422,"focusDistance":7195999746990,"grainIntensity":3107691449503585,"grainIsColored":667196226542867,"grainScale":433579408896814,"maximumExposure":3377823565692487,"minimumExposure":2125301380145996,"motionBlurIntensity":3618419884920786,"name":3926408101709390,"orthographicScale":1971248539539245,"projectionDirection":4108784169393311,"projectionTransform":625343048076125,"saturation":4009574602587423,"screenSpaceAmbientOcclusionBias":778972977735144,"screenSpaceAmbientOcclusionDepthThreshold":795204120968942,"screenSpaceAmbientOcclusionIntensity":1966692976804908,"screenSpaceAmbientOcclusionNormalThreshold":3178933901905669,"screenSpaceAmbientOcclusionRadius":3836943190617159,"sensorHeight":74086749264014,"usesOrthographicProjection":3736352998551878,"vignettingIntensity":3542676314949092,"vignettingPower":3504984447590979,"wantsDepthOfField":1088415259755226,"wantsExposureAdaptation":1059681726401458,"wantsHDR":3363754318522322,"whiteBalanceTemperature":3139546872336837,"whiteBalanceTint":2693041629522717,"whitePoint":1429461993752984,"xFov":1299191200400615,"yFov":4210025470293647,"zFar":1016922036302172,"zNear":2021525716464953}, methods: {"projectionTransformWithViewportSize":{"id":582902472380778}} });
 registerSDKProtocol("c:objc(pl)SCNCameraControlConfiguration", {});
-registerSDKClass("SCNCameraController", SCNCameraController, { module: "SceneKit_0e503aef608672fa", properties: {"automaticTarget":605552024625522,"delegate":2940604040976961,"inertiaEnabled":4031350805768629,"inertiaFriction":3388780923918440,"isInertiaRunning":2696792208645492,"interactionMode":679931560381780,"maximumHorizontalAngle":1896393890675544,"maximumVerticalAngle":1198698394096798,"minimumHorizontalAngle":1189282084978057,"minimumVerticalAngle":2122492628638263,"pointOfView":1049139328773483,"target":4293220517944904,"worldUp":1758974577228967}, methods: {"beginInteraction":{"id":3858343210431033},"clearRoll":{"id":3504644497309096},"continueInteraction":{"id":1348157145035412},"dollyByOnScreenPointViewport":{"id":1384696721405367},"dollyToTarget":{"id":301201448135955},"endInteraction":{"id":2626773982095164},"frameNodes":{"id":2770162954973468},"rollAroundTarget":{"id":4310762997630656},"roll":{"id":2512885433060849},"rotateBy":{"id":4110874313458576},"stopInertia":{"id":3945326827166696},"translateInCameraSpaceBy":{"id":2722307851381610}} });
+registerSDKClass("SCNCameraController", SCNCameraController, { module: "SceneKit_212edf3d13b127f5", properties: {"automaticTarget":605552024625522,"delegate":2940604040976961,"inertiaEnabled":4031350805768629,"inertiaFriction":3388780923918440,"isInertiaRunning":2696792208645492,"interactionMode":679931560381780,"maximumHorizontalAngle":1896393890675544,"maximumVerticalAngle":1198698394096798,"minimumHorizontalAngle":1189282084978057,"minimumVerticalAngle":2122492628638263,"pointOfView":1049139328773483,"target":4293220517944904,"worldUp":1758974577228967}, methods: {"beginInteraction":{"id":3858343210431033},"clearRoll":{"id":3504644497309096},"continueInteraction":{"id":1348157145035412},"dollyByOnScreenPointViewport":{"id":1384696721405367},"dollyToTarget":{"id":301201448135955},"endInteraction":{"id":2626773982095164},"frameNodes":{"id":2770162954973468},"rollAroundTarget":{"id":4310762997630656},"roll":{"id":2512885433060849},"rotateBy":{"id":4110874313458576},"stopInertia":{"id":3945326827166696},"translateInCameraSpaceBy":{"id":2722307851381610}} });
 registerSDKProtocol("c:objc(pl)SCNCameraControllerDelegate", {"cameraInertiaWillStartFor":"cameraInertiaWillStart(for:)","cameraInertiaDidEndFor":"cameraInertiaDidEnd(for:)"});
-registerSDKClass("SCNCapsule", SCNCapsule, { module: "SceneKit_0e503aef608672fa", properties: {"capRadius":1771557521648529,"capSegmentCount":3136500168579221,"height":500842667357575,"heightSegmentCount":4403452686224284,"radialSegmentCount":1076477715889302} });
-registerSDKClass("SCNCone", SCNCone, { module: "SceneKit_0e503aef608672fa", properties: {"bottomRadius":913864094803085,"height":3571561912605886,"heightSegmentCount":3872742534241184,"radialSegmentCount":3439925026930100,"topRadius":2246022849295954} });
-registerSDKClass("SCNCylinder", SCNCylinder, { module: "SceneKit_0e503aef608672fa", properties: {"height":1045641238355059,"heightSegmentCount":2350731022632253,"radialSegmentCount":3849383629081636,"radius":1140048005122384} });
-registerSDKClass("SCNDistanceConstraint", SCNDistanceConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"maximumDistance":2138989441652636,"minimumDistance":3479118421739628,"target":512431156561723} });
-registerSDKClass("SCNFloor", SCNFloor, { module: "SceneKit_0e503aef608672fa", properties: {"length":1854662075806311,"reflectionCategoryBitMask":1532054883661352,"reflectionFalloffEnd":4204682553426517,"reflectionFalloffStart":4202846536683539,"reflectionResolutionScaleFactor":4300043155774793,"reflectivity":3883316561576066,"width":1263162567317767} });
-registerSDKClass("SCNGeometryElement", SCNGeometryElement, { module: "SceneKit_0e503aef608672fa", properties: {"bytesPerIndex":942183309806292,"data":3348150102798538,"indicesChannelCount":3360622298273703,"hasInterleavedIndicesChannels":2549558491502867,"maximumPointScreenSpaceRadius":3789844612216256,"minimumPointScreenSpaceRadius":4410666139223863,"pointSize":3767128610995471,"primitiveCount":1707439335359816,"primitiveRange":3310258460950947,"primitiveType":3513157631075862} });
-registerSDKClass("SCNGeometrySource", SCNGeometrySource, { module: "SceneKit_0e503aef608672fa", properties: {"bytesPerComponent":1855316075868469,"componentsPerVector":1118701401405215,"data":498486059313718,"dataOffset":1070142159223794,"dataStride":142697850109931,"usesFloatComponents":132584709806283,"semantic":2433506742447921,"vectorCount":648314224122821} });
-registerSDKClass("SCNGeometryTessellator", SCNGeometryTessellator, { module: "SceneKit_0e503aef608672fa", properties: {"isAdaptive":3986379321757006,"edgeTessellationFactor":1578049598899642,"insideTessellationFactor":2210387922530998,"maximumEdgeLength":4210321783826284,"isScreenSpace":1450667996462452,"smoothingMode":3192887015678287,"tessellationFactorScale":2800900712735531,"tessellationPartitionMode":3917118365019110} });
-registerSDKClass("SCNHitTestResult", SCNHitTestResult, { module: "SceneKit_0e503aef608672fa", properties: {"boneNode":938434977295705,"faceIndex":3930018141282247,"geometryIndex":2967930663532430,"localCoordinates":983075704046888,"localNormal":3690013033776274,"modelTransform":3563049575566782,"node":4185583675488209,"simdLocalCoordinates":499825755251416,"simdLocalNormal":1736847327108665,"simdModelTransform":708482443947557,"simdWorldCoordinates":1644677183734317,"simdWorldNormal":1009618479805485,"worldCoordinates":3180282099959053,"worldNormal":1504727794848038}, methods: {"textureCoordinates":{"id":1051441810112491}} });
-registerSDKClass("SCNIKConstraint", SCNIKConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"chainRootNode":2715183086691867,"targetPosition":1209564276725200}, methods: {"maxAllowedRotationAngle":{"id":3045390837652367},"setMaxAllowedRotationAngle":{"id":3883280841333448}} });
-registerSDKClass("SCNLevelOfDetail", SCNLevelOfDetail, { module: "SceneKit_0e503aef608672fa", properties: {"geometry":2204911031685900,"screenSpaceRadius":1223164089533410,"worldSpaceDistance":1044172593510984} });
-registerSDKClass("SCNLight", SCNLight, { module: "SceneKit_0e503aef608672fa", properties: {"iesProfileURL":3041971074220311,"areaExtents":3410820708884622,"areaPolygonVertices":3834798887264529,"areaType":188808532400826,"attenuationEndDistance":2817816315578136,"attenuationFalloffExponent":1904728425737338,"attenuationStartDistance":2821592718274405,"automaticallyAdjustsShadowProjection":2780520868714952,"castsShadow":2964206874282467,"categoryBitMask":1349875657610107,"color":3700835155406455,"doubleSided":4209592463618078,"drawsArea":2438252921390220,"forcesBackFaceCasters":132107449955117,"gobo":2014963314547543,"intensity":183369686732758,"maximumShadowDistance":1370162682927197,"name":1080146057317535,"orthographicScale":3875857525423504,"parallaxCenterOffset":1484982031470897,"parallaxCorrectionEnabled":2872795423141098,"parallaxExtentsFactor":2841773983616326,"probeEnvironment":3861316920695818,"probeExtents":1299206335066292,"probeOffset":4377143092742977,"probeType":3552243386815305,"probeUpdateType":3028584310964104,"sampleDistributedShadowMaps":3757029461326950,"shadowBias":4278640139303299,"shadowCascadeCount":1052746661156806,"shadowCascadeSplittingFactor":4444637411751589,"shadowColor":927505395788014,"shadowMapSize":2468504075165301,"shadowMode":2601477254295787,"shadowRadius":3763309256578913,"shadowSampleCount":3365598947461381,"sphericalHarmonicsCoefficients":4247653136524599,"spotInnerAngle":3728821908785498,"spotOuterAngle":2327751426772098,"temperature":1360540157079651,"type":766126343761485,"zFar":493415331638942,"zNear":2437322235803855} });
-registerSDKClass("SCNLookAtConstraint", SCNLookAtConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"isGimbalLockEnabled":1272755509257900,"localFront":4286876923681854,"target":2965341382288634,"targetOffset":1004248473302040,"worldUp":2626204871040759} });
-registerSDKClass("SCNMaterial", SCNMaterial, { module: "SceneKit_0e503aef608672fa", properties: {"ambient":3252009567877896,"ambientOcclusion":1094126930493479,"blendMode":2379917352634953,"clearCoat":3532818307659182,"clearCoatNormal":511127627099741,"clearCoatRoughness":1561851205103867,"colorBufferWriteMask":4440875130309155,"cullMode":2212826873337523,"diffuse":1561932107399313,"displacement":1930836519540946,"isDoubleSided":709042585341758,"emission":2810041993021795,"fillMode":4168572160497411,"fresnelExponent":3195275821784080,"lightingModel":290133755267949,"isLitPerPixel":2108147186913161,"locksAmbientWithDiffuse":3622910754778628,"metalness":3558147406226254,"multiply":223525461164477,"name":2815154489870562,"normal":4472904100115054,"readsFromDepthBuffer":1949452926593097,"reflective":2629427067392093,"roughness":3046582069381972,"selfIllumination":2112043195401059,"shininess":1928248514311548,"specular":968173333691929,"transparency":3957016635565213,"transparencyMode":3379506002665574,"transparent":2873879369040703,"writesToDepthBuffer":123050649624899} });
-registerSDKClass("SCNMaterialProperty", SCNMaterialProperty, { module: "SceneKit_0e503aef608672fa", properties: {"borderColor":84441950317280,"contents":197437532422638,"contentsTransform":3516948904107092,"intensity":1578350624719693,"magnificationFilter":2173240262811597,"mappingChannel":615233049838777,"maxAnisotropy":3325846824590401,"minificationFilter":2181661791560322,"mipFilter":1670463393584631,"textureComponents":544409413864000,"wrapS":466423968951294,"wrapT":3484834988360206} });
-registerSDKClass("SceneKit.SCNMatrix4", SCNMatrix4, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNMorpher", SCNMorpher, { module: "SceneKit_0e503aef608672fa", properties: {"calculationMode":3341565181485507,"targets":2869767652607447,"unifiesNormals":1021738987096695,"weights":2123134906456179}, methods: {"setWeightForTargetAt":{"id":3976550936096652},"setWeightForTargetNamed":{"id":1428992794383807},"weightForTargetAt":{"id":1495816941651244},"weightForTargetNamed":{"id":2508927209828887}} });
-registerSDKClass("SCNNode", SCNNode, { module: "SceneKit_0e503aef608672fa", properties: {"audioPlayers":2565215681397128,"camera":2339760721733990,"castsShadow":762141584899959,"categoryBitMask":1454617291520416,"childNodes":3784364590444400,"constraints":2726407034333671,"eulerAngles":3041136752511202,"filters":4145406552424971,"focusBehavior":2091282074520869,"geometry":3903322600268479,"isHidden":670810592825438,"light":137375142193288,"morpher":2714480527746330,"movabilityHint":1939158138947470,"name":1420312249061667,"opacity":4437864431590874,"orientation":4052322738082003,"parent":1682725623628466,"particleSystems":1058816323482614,"isPaused":1260275903137757,"physicsBody":2898767850802143,"physicsField":1261068782386270,"pivot":2855217808577982,"position":1100291095966959,"presentation":4347537987936966,"rendererDelegate":4117117684301507,"renderingOrder":1194844965623641,"rotation":4143463427812876,"scale":1495023091255401,"simdEulerAngles":110323336835243,"simdOrientation":2185632330482914,"simdPivot":2496293265319657,"simdPosition":4098466390553245,"simdRotation":626556041408520,"simdScale":3019784936315896,"simdTransform":1482035752417735,"simdWorldFront":2583422580085872,"simdWorldOrientation":3183172681067466,"simdWorldPosition":146927194167313,"simdWorldRight":2832563163417778,"simdWorldTransform":1070856014521920,"simdWorldUp":625912234316802,"skinner":3554300626938965,"transform":4377312359871786,"worldFront":3921628048897907,"worldOrientation":2489512366103789,"worldPosition":175942402547563,"worldRight":2497664312965708,"worldTransform":1581222565349550,"worldUp":553386621255246}, methods: {"addAudioPlayer":{"id":4358995844633376},"addChildNode":{"id":3993728344439177},"addParticleSystem":{"id":711480760458493},"childNode":{"id":27353091767474},"clone":{"id":2241269706461214},"convertPositionFrom":{"id":1733415341493090},"convertPositionTo":{"id":1320438413572998},"convertTransformFrom":{"id":4175386790861063},"convertTransformTo":{"id":2988226251012924},"convertVectorFrom":{"id":4263701111157126},"convertVectorTo":{"id":1963390944848503},"flattenedClone":{"id":2158092138697981},"hitTestWithSegment":{"id":1444298849175186},"insertChildNode":{"id":3561196601617083},"localRotate":{"id":4169742098735476},"localTranslate":{"id":1738036650344385},"lookAt":{"id":159383918801434},"lookAtUpLocalFront":{"id":3647063098481271},"removeAllAudioPlayers":{"id":4330990304777099},"removeAllParticleSystems":{"id":3244622458340080},"removeAudioPlayer":{"id":3774453057907095},"removeFromParentNode":{"id":3648103331497626},"removeParticleSystem":{"id":1719644428465096},"replaceChildNode":{"id":3534854334205909},"rotate":{"id":2918587977001566},"setWorldTransform":{"id":1584185296719012},"simdConvertPositionFrom":{"id":3751535399348188},"simdConvertPositionTo":{"id":3683639754251552},"simdConvertTransformFrom":{"id":2200119724464485},"simdConvertTransformTo":{"id":892489444934807},"simdConvertVectorFrom":{"id":111678658078226},"simdConvertVectorTo":{"id":3643377176919465},"simdLocalRotate":{"id":1850980954357716},"simdLocalTranslate":{"id":2386013220518034},"simdLookAt":{"id":672935009860510},"simdLookAtUpLocalFront":{"id":2443175294845865},"simdRotate":{"id":3748221429496146}} });
+registerSDKClass("SCNCapsule", SCNCapsule, { module: "SceneKit_212edf3d13b127f5", properties: {"capRadius":1771557521648529,"capSegmentCount":3136500168579221,"height":500842667357575,"heightSegmentCount":4403452686224284,"radialSegmentCount":1076477715889302} });
+registerSDKClass("SCNCone", SCNCone, { module: "SceneKit_212edf3d13b127f5", properties: {"bottomRadius":913864094803085,"height":3571561912605886,"heightSegmentCount":3872742534241184,"radialSegmentCount":3439925026930100,"topRadius":2246022849295954} });
+registerSDKClass("SCNCylinder", SCNCylinder, { module: "SceneKit_212edf3d13b127f5", properties: {"height":1045641238355059,"heightSegmentCount":2350731022632253,"radialSegmentCount":3849383629081636,"radius":1140048005122384} });
+registerSDKClass("SCNDistanceConstraint", SCNDistanceConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"maximumDistance":2138989441652636,"minimumDistance":3479118421739628,"target":512431156561723} });
+registerSDKClass("SCNFloor", SCNFloor, { module: "SceneKit_212edf3d13b127f5", properties: {"length":1854662075806311,"reflectionCategoryBitMask":1532054883661352,"reflectionFalloffEnd":4204682553426517,"reflectionFalloffStart":4202846536683539,"reflectionResolutionScaleFactor":4300043155774793,"reflectivity":3883316561576066,"width":1263162567317767} });
+registerSDKClass("SCNGeometryElement", SCNGeometryElement, { module: "SceneKit_212edf3d13b127f5", properties: {"bytesPerIndex":942183309806292,"data":3348150102798538,"indicesChannelCount":3360622298273703,"hasInterleavedIndicesChannels":2549558491502867,"maximumPointScreenSpaceRadius":3789844612216256,"minimumPointScreenSpaceRadius":4410666139223863,"pointSize":3767128610995471,"primitiveCount":1707439335359816,"primitiveRange":3310258460950947,"primitiveType":3513157631075862} });
+registerSDKClass("SCNGeometrySource", SCNGeometrySource, { module: "SceneKit_212edf3d13b127f5", properties: {"bytesPerComponent":1855316075868469,"componentsPerVector":1118701401405215,"data":498486059313718,"dataOffset":1070142159223794,"dataStride":142697850109931,"usesFloatComponents":132584709806283,"semantic":2433506742447921,"vectorCount":648314224122821} });
+registerSDKClass("SCNGeometryTessellator", SCNGeometryTessellator, { module: "SceneKit_212edf3d13b127f5", properties: {"isAdaptive":3986379321757006,"edgeTessellationFactor":1578049598899642,"insideTessellationFactor":2210387922530998,"maximumEdgeLength":4210321783826284,"isScreenSpace":1450667996462452,"smoothingMode":3192887015678287,"tessellationFactorScale":2800900712735531,"tessellationPartitionMode":3917118365019110} });
+registerSDKClass("SCNHitTestResult", SCNHitTestResult, { module: "SceneKit_212edf3d13b127f5", properties: {"boneNode":938434977295705,"faceIndex":3930018141282247,"geometryIndex":2967930663532430,"localCoordinates":983075704046888,"localNormal":3690013033776274,"modelTransform":3563049575566782,"node":4185583675488209,"simdLocalCoordinates":499825755251416,"simdLocalNormal":1736847327108665,"simdModelTransform":708482443947557,"simdWorldCoordinates":1644677183734317,"simdWorldNormal":1009618479805485,"worldCoordinates":3180282099959053,"worldNormal":1504727794848038}, methods: {"textureCoordinates":{"id":1051441810112491}} });
+registerSDKClass("SCNIKConstraint", SCNIKConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"chainRootNode":2715183086691867,"targetPosition":1209564276725200}, methods: {"maxAllowedRotationAngle":{"id":3045390837652367},"setMaxAllowedRotationAngle":{"id":3883280841333448}} });
+registerSDKClass("SCNLevelOfDetail", SCNLevelOfDetail, { module: "SceneKit_212edf3d13b127f5", properties: {"geometry":2204911031685900,"screenSpaceRadius":1223164089533410,"worldSpaceDistance":1044172593510984} });
+registerSDKClass("SCNLight", SCNLight, { module: "SceneKit_212edf3d13b127f5", properties: {"iesProfileURL":3041971074220311,"areaExtents":3410820708884622,"areaPolygonVertices":3834798887264529,"areaType":188808532400826,"attenuationEndDistance":2817816315578136,"attenuationFalloffExponent":1904728425737338,"attenuationStartDistance":2821592718274405,"automaticallyAdjustsShadowProjection":2780520868714952,"castsShadow":2964206874282467,"categoryBitMask":1349875657610107,"color":3700835155406455,"doubleSided":4209592463618078,"drawsArea":2438252921390220,"forcesBackFaceCasters":132107449955117,"gobo":2014963314547543,"intensity":183369686732758,"maximumShadowDistance":1370162682927197,"name":1080146057317535,"orthographicScale":3875857525423504,"parallaxCenterOffset":1484982031470897,"parallaxCorrectionEnabled":2872795423141098,"parallaxExtentsFactor":2841773983616326,"probeEnvironment":3861316920695818,"probeExtents":1299206335066292,"probeOffset":4377143092742977,"probeType":3552243386815305,"probeUpdateType":3028584310964104,"sampleDistributedShadowMaps":3757029461326950,"shadowBias":4278640139303299,"shadowCascadeCount":1052746661156806,"shadowCascadeSplittingFactor":4444637411751589,"shadowColor":927505395788014,"shadowMapSize":2468504075165301,"shadowMode":2601477254295787,"shadowRadius":3763309256578913,"shadowSampleCount":3365598947461381,"sphericalHarmonicsCoefficients":4247653136524599,"spotInnerAngle":3728821908785498,"spotOuterAngle":2327751426772098,"temperature":1360540157079651,"type":766126343761485,"zFar":493415331638942,"zNear":2437322235803855} });
+registerSDKClass("SCNLookAtConstraint", SCNLookAtConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"isGimbalLockEnabled":1272755509257900,"localFront":4286876923681854,"target":2965341382288634,"targetOffset":1004248473302040,"worldUp":2626204871040759} });
+registerSDKClass("SCNMaterial", SCNMaterial, { module: "SceneKit_212edf3d13b127f5", properties: {"ambient":3252009567877896,"ambientOcclusion":1094126930493479,"blendMode":2379917352634953,"clearCoat":3532818307659182,"clearCoatNormal":511127627099741,"clearCoatRoughness":1561851205103867,"colorBufferWriteMask":4440875130309155,"cullMode":2212826873337523,"diffuse":1561932107399313,"displacement":1930836519540946,"isDoubleSided":709042585341758,"emission":2810041993021795,"fillMode":4168572160497411,"fresnelExponent":3195275821784080,"lightingModel":290133755267949,"isLitPerPixel":2108147186913161,"locksAmbientWithDiffuse":3622910754778628,"metalness":3558147406226254,"multiply":223525461164477,"name":2815154489870562,"normal":4472904100115054,"readsFromDepthBuffer":1949452926593097,"reflective":2629427067392093,"roughness":3046582069381972,"selfIllumination":2112043195401059,"shininess":1928248514311548,"specular":968173333691929,"transparency":3957016635565213,"transparencyMode":3379506002665574,"transparent":2873879369040703,"writesToDepthBuffer":123050649624899} });
+registerSDKClass("SCNMaterialProperty", SCNMaterialProperty, { module: "SceneKit_212edf3d13b127f5", properties: {"borderColor":84441950317280,"contents":197437532422638,"contentsTransform":3516948904107092,"intensity":1578350624719693,"magnificationFilter":2173240262811597,"mappingChannel":615233049838777,"maxAnisotropy":3325846824590401,"minificationFilter":2181661791560322,"mipFilter":1670463393584631,"textureComponents":544409413864000,"wrapS":466423968951294,"wrapT":3484834988360206} });
+registerSDKClass("SceneKit.SCNMatrix4", SCNMatrix4, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNMorpher", SCNMorpher, { module: "SceneKit_212edf3d13b127f5", properties: {"calculationMode":3341565181485507,"targets":2869767652607447,"unifiesNormals":1021738987096695,"weights":2123134906456179}, methods: {"setWeightForTargetAt":{"id":3976550936096652},"setWeightForTargetNamed":{"id":1428992794383807},"weightForTargetAt":{"id":1495816941651244},"weightForTargetNamed":{"id":2508927209828887}} });
+registerSDKClass("SCNNode", SCNNode, { module: "SceneKit_212edf3d13b127f5", properties: {"audioPlayers":2565215681397128,"camera":2339760721733990,"castsShadow":762141584899959,"categoryBitMask":1454617291520416,"childNodes":3784364590444400,"constraints":2726407034333671,"eulerAngles":3041136752511202,"filters":4145406552424971,"focusBehavior":2091282074520869,"geometry":3903322600268479,"isHidden":670810592825438,"light":137375142193288,"morpher":2714480527746330,"movabilityHint":1939158138947470,"name":1420312249061667,"opacity":4437864431590874,"orientation":4052322738082003,"parent":1682725623628466,"particleSystems":1058816323482614,"isPaused":1260275903137757,"physicsBody":2898767850802143,"physicsField":1261068782386270,"pivot":2855217808577982,"position":1100291095966959,"presentation":4347537987936966,"rendererDelegate":4117117684301507,"renderingOrder":1194844965623641,"rotation":4143463427812876,"scale":1495023091255401,"simdEulerAngles":110323336835243,"simdOrientation":2185632330482914,"simdPivot":2496293265319657,"simdPosition":4098466390553245,"simdRotation":626556041408520,"simdScale":3019784936315896,"simdTransform":1482035752417735,"simdWorldFront":2583422580085872,"simdWorldOrientation":3183172681067466,"simdWorldPosition":146927194167313,"simdWorldRight":2832563163417778,"simdWorldTransform":1070856014521920,"simdWorldUp":625912234316802,"skinner":3554300626938965,"transform":4377312359871786,"worldFront":3921628048897907,"worldOrientation":2489512366103789,"worldPosition":175942402547563,"worldRight":2497664312965708,"worldTransform":1581222565349550,"worldUp":553386621255246}, methods: {"addAudioPlayer":{"id":4358995844633376},"addChildNode":{"id":3993728344439177},"addParticleSystem":{"id":711480760458493},"childNode":{"id":27353091767474},"clone":{"id":2241269706461214},"convertPositionFrom":{"id":1733415341493090},"convertPositionTo":{"id":1320438413572998},"convertTransformFrom":{"id":4175386790861063},"convertTransformTo":{"id":2988226251012924},"convertVectorFrom":{"id":4263701111157126},"convertVectorTo":{"id":1963390944848503},"flattenedClone":{"id":2158092138697981},"hitTestWithSegment":{"id":1444298849175186},"insertChildNode":{"id":3561196601617083},"localRotate":{"id":4169742098735476},"localTranslate":{"id":1738036650344385},"lookAt":{"id":159383918801434},"lookAtUpLocalFront":{"id":3647063098481271},"removeAllAudioPlayers":{"id":4330990304777099},"removeAllParticleSystems":{"id":3244622458340080},"removeAudioPlayer":{"id":3774453057907095},"removeFromParentNode":{"id":3648103331497626},"removeParticleSystem":{"id":1719644428465096},"replaceChildNode":{"id":3534854334205909},"rotate":{"id":2918587977001566},"setWorldTransform":{"id":1584185296719012},"simdConvertPositionFrom":{"id":3751535399348188},"simdConvertPositionTo":{"id":3683639754251552},"simdConvertTransformFrom":{"id":2200119724464485},"simdConvertTransformTo":{"id":892489444934807},"simdConvertVectorFrom":{"id":111678658078226},"simdConvertVectorTo":{"id":3643377176919465},"simdLocalRotate":{"id":1850980954357716},"simdLocalTranslate":{"id":2386013220518034},"simdLookAt":{"id":672935009860510},"simdLookAtUpLocalFront":{"id":2443175294845865},"simdRotate":{"id":3748221429496146}} });
 registerSDKProtocol("c:objc(pl)SCNNodeRendererDelegate", {"renderNodeRendererArguments":"renderNode(_:renderer:arguments:)"});
-registerSDKClass("SCNParticlePropertyController", SCNParticlePropertyController, { module: "SceneKit_0e503aef608672fa", properties: {"animation":794513404179436,"inputBias":1253451195670069,"inputMode":3907305121643253,"inputOrigin":2268356272843071,"inputProperty":2866311133210159,"inputScale":2906124217388504} });
-registerSDKClass("SCNParticleSystem", SCNParticleSystem, { module: "SceneKit_0e503aef608672fa", properties: {"acceleration":3243554344810018,"isAffectedByGravity":2639726465553413,"isAffectedByPhysicsFields":4137426730882899,"birthDirection":2698978931347447,"birthLocation":507674190982516,"birthRate":2205726546512935,"birthRateVariation":1894844134113591,"isBlackPassEnabled":3207676904482372,"blendMode":914356509575624,"colliderNodes":3254554989572687,"dampingFactor":1505421010233176,"emissionDuration":4207016053936431,"emissionDurationVariation":3385718423924711,"emitterShape":2332709648396610,"emittingDirection":169591585118495,"fresnelExponent":1510665906800323,"idleDuration":1633958244147550,"idleDurationVariation":4237158854520684,"imageSequenceAnimationMode":2100190016751055,"imageSequenceColumnCount":1394253301907165,"imageSequenceFrameRate":3547126239119973,"imageSequenceFrameRateVariation":3291450630678311,"imageSequenceInitialFrame":557248301957159,"imageSequenceInitialFrameVariation":2477122301127905,"imageSequenceRowCount":1613989780048484,"isLightingEnabled":162849787586936,"isLocal":3841523336240419,"loops":1655538647406738,"orientationDirection":2734254247556224,"orientationMode":1741289225860481,"particleAngle":701376245913608,"particleAngleVariation":1852803193004451,"particleAngularVelocity":1479281199593659,"particleAngularVelocityVariation":2737135344255014,"particleBounce":611058793931615,"particleBounceVariation":683174013500271,"particleCharge":3688239063549910,"particleChargeVariation":1085327859413339,"particleColor":4060315541366162,"particleColorVariation":1597740314920912,"particleDiesOnCollision":1762401303683911,"particleFriction":2386903612033565,"particleFrictionVariation":3191605776477716,"particleImage":3721162436148617,"particleIntensity":2843587786581120,"particleIntensityVariation":419187154012708,"particleLifeSpan":793957160935109,"particleLifeSpanVariation":746122240366081,"particleMass":4058005938888092,"particleMassVariation":4075383352457752,"particleSize":1794230107414907,"particleSizeVariation":334911032158713,"particleVelocity":2876406864254392,"particleVelocityVariation":2429766623475106,"propertyControllers":3678162575901140,"sortingMode":1759795424827705,"speedFactor":736678847337636,"spreadingAngle":2018426793871489,"stretchFactor":3486979286890153,"systemSpawnedOnCollision":630069257171159,"systemSpawnedOnDying":2040915149914155,"systemSpawnedOnLiving":3532985926806642,"warmupDuration":2643055293258425,"writesToDepthBuffer":1030180836824493}, methods: {"removeAllModifiers":{"id":798999872940064},"removeModifiers":{"id":4447860239437343},"reset":{"id":4185140446312355}} });
-registerSDKClass("SCNPhysicsBehavior", SCNPhysicsBehavior, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNPhysicsBallSocketJoint", SCNPhysicsBallSocketJoint, { module: "SceneKit_0e503aef608672fa", properties: {"anchorA":1355941213298622,"anchorB":103773956223123,"bodyA":2021969669929335,"bodyB":3730122533315546} });
-registerSDKClass("SCNPhysicsBody", SCNPhysicsBody, { module: "SceneKit_0e503aef608672fa", properties: {"isAffectedByGravity":797717283096712,"allowsResting":2637344099287212,"angularDamping":573658924349978,"angularRestingThreshold":2589447285599388,"angularVelocity":1715263892660618,"angularVelocityFactor":3647934782782516,"categoryBitMask":2477556162158977,"centerOfMassOffset":4334337292371303,"charge":4028241791424616,"collisionBitMask":3772812731695532,"contactTestBitMask":3251441096114526,"continuousCollisionDetectionThreshold":1035036290195043,"damping":3671401926481103,"friction":2337655401538813,"isResting":2359177374857904,"linearRestingThreshold":3652338089574518,"mass":124793661482510,"momentOfInertia":2001563809641349,"physicsShape":176358427492344,"restitution":2996387301320312,"rollingFriction":251199130759080,"type":2758046400821805,"usesDefaultMomentOfInertia":942726467715483,"velocity":2137239727057720,"velocityFactor":1324852620386597}, methods: {"applyForceAtAsImpulse":{"id":3803132007402428},"applyForceAsImpulse":{"id":854041978894213},"applyTorque":{"id":1879532454454687},"clearAllForces":{"id":557234927485747},"resetTransform":{"id":3049853453908365},"setResting":{"id":1841979667938105}} });
-registerSDKClass("SCNPhysicsConeTwistJoint", SCNPhysicsConeTwistJoint, { module: "SceneKit_0e503aef608672fa", properties: {"bodyA":1448712285780240,"bodyB":4128050529660289,"frameA":4303534623735283,"frameB":68984206669987,"maximumAngularLimit1":2388049149233673,"maximumAngularLimit2":1370366921233060,"maximumTwistAngle":3409568334057733} });
-registerSDKClass("SCNPhysicsContact", SCNPhysicsContact, { module: "SceneKit_0e503aef608672fa", properties: {"collisionImpulse":1101677464740979,"contactNormal":3663677040648335,"contactPoint":285093734120730,"nodeA":4369034250201165,"nodeB":1706638020186281,"penetrationDistance":915126558623049,"sweepTestFraction":391221434425855} });
+registerSDKClass("SCNParticlePropertyController", SCNParticlePropertyController, { module: "SceneKit_212edf3d13b127f5", properties: {"animation":794513404179436,"inputBias":1253451195670069,"inputMode":3907305121643253,"inputOrigin":2268356272843071,"inputProperty":2866311133210159,"inputScale":2906124217388504} });
+registerSDKClass("SCNParticleSystem", SCNParticleSystem, { module: "SceneKit_212edf3d13b127f5", properties: {"acceleration":3243554344810018,"isAffectedByGravity":2639726465553413,"isAffectedByPhysicsFields":4137426730882899,"birthDirection":2698978931347447,"birthLocation":507674190982516,"birthRate":2205726546512935,"birthRateVariation":1894844134113591,"isBlackPassEnabled":3207676904482372,"blendMode":914356509575624,"colliderNodes":3254554989572687,"dampingFactor":1505421010233176,"emissionDuration":4207016053936431,"emissionDurationVariation":3385718423924711,"emitterShape":2332709648396610,"emittingDirection":169591585118495,"fresnelExponent":1510665906800323,"idleDuration":1633958244147550,"idleDurationVariation":4237158854520684,"imageSequenceAnimationMode":2100190016751055,"imageSequenceColumnCount":1394253301907165,"imageSequenceFrameRate":3547126239119973,"imageSequenceFrameRateVariation":3291450630678311,"imageSequenceInitialFrame":557248301957159,"imageSequenceInitialFrameVariation":2477122301127905,"imageSequenceRowCount":1613989780048484,"isLightingEnabled":162849787586936,"isLocal":3841523336240419,"loops":1655538647406738,"orientationDirection":2734254247556224,"orientationMode":1741289225860481,"particleAngle":701376245913608,"particleAngleVariation":1852803193004451,"particleAngularVelocity":1479281199593659,"particleAngularVelocityVariation":2737135344255014,"particleBounce":611058793931615,"particleBounceVariation":683174013500271,"particleCharge":3688239063549910,"particleChargeVariation":1085327859413339,"particleColor":4060315541366162,"particleColorVariation":1597740314920912,"particleDiesOnCollision":1762401303683911,"particleFriction":2386903612033565,"particleFrictionVariation":3191605776477716,"particleImage":3721162436148617,"particleIntensity":2843587786581120,"particleIntensityVariation":419187154012708,"particleLifeSpan":793957160935109,"particleLifeSpanVariation":746122240366081,"particleMass":4058005938888092,"particleMassVariation":4075383352457752,"particleSize":1794230107414907,"particleSizeVariation":334911032158713,"particleVelocity":2876406864254392,"particleVelocityVariation":2429766623475106,"propertyControllers":3678162575901140,"sortingMode":1759795424827705,"speedFactor":736678847337636,"spreadingAngle":2018426793871489,"stretchFactor":3486979286890153,"systemSpawnedOnCollision":630069257171159,"systemSpawnedOnDying":2040915149914155,"systemSpawnedOnLiving":3532985926806642,"warmupDuration":2643055293258425,"writesToDepthBuffer":1030180836824493}, methods: {"removeAllModifiers":{"id":798999872940064},"removeModifiers":{"id":4447860239437343},"reset":{"id":4185140446312355}} });
+registerSDKClass("SCNPhysicsBehavior", SCNPhysicsBehavior, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNPhysicsBallSocketJoint", SCNPhysicsBallSocketJoint, { module: "SceneKit_212edf3d13b127f5", properties: {"anchorA":1355941213298622,"anchorB":103773956223123,"bodyA":2021969669929335,"bodyB":3730122533315546} });
+registerSDKClass("SCNPhysicsBody", SCNPhysicsBody, { module: "SceneKit_212edf3d13b127f5", properties: {"isAffectedByGravity":797717283096712,"allowsResting":2637344099287212,"angularDamping":573658924349978,"angularRestingThreshold":2589447285599388,"angularVelocity":1715263892660618,"angularVelocityFactor":3647934782782516,"categoryBitMask":2477556162158977,"centerOfMassOffset":4334337292371303,"charge":4028241791424616,"collisionBitMask":3772812731695532,"contactTestBitMask":3251441096114526,"continuousCollisionDetectionThreshold":1035036290195043,"damping":3671401926481103,"friction":2337655401538813,"isResting":2359177374857904,"linearRestingThreshold":3652338089574518,"mass":124793661482510,"momentOfInertia":2001563809641349,"physicsShape":176358427492344,"restitution":2996387301320312,"rollingFriction":251199130759080,"type":2758046400821805,"usesDefaultMomentOfInertia":942726467715483,"velocity":2137239727057720,"velocityFactor":1324852620386597}, methods: {"applyForceAtAsImpulse":{"id":3803132007402428},"applyForceAsImpulse":{"id":854041978894213},"applyTorque":{"id":1879532454454687},"clearAllForces":{"id":557234927485747},"resetTransform":{"id":3049853453908365},"setResting":{"id":1841979667938105}} });
+registerSDKClass("SCNPhysicsConeTwistJoint", SCNPhysicsConeTwistJoint, { module: "SceneKit_212edf3d13b127f5", properties: {"bodyA":1448712285780240,"bodyB":4128050529660289,"frameA":4303534623735283,"frameB":68984206669987,"maximumAngularLimit1":2388049149233673,"maximumAngularLimit2":1370366921233060,"maximumTwistAngle":3409568334057733} });
+registerSDKClass("SCNPhysicsContact", SCNPhysicsContact, { module: "SceneKit_212edf3d13b127f5", properties: {"collisionImpulse":1101677464740979,"contactNormal":3663677040648335,"contactPoint":285093734120730,"nodeA":4369034250201165,"nodeB":1706638020186281,"penetrationDistance":915126558623049,"sweepTestFraction":391221434425855} });
 registerSDKProtocol("c:objc(pl)SCNPhysicsContactDelegate", {"physicsWorldDidBegin":"physicsWorld(_:didBegin:)","physicsWorldDidUpdate":"physicsWorld(_:didUpdate:)","physicsWorldDidEnd":"physicsWorld(_:didEnd:)"});
-registerSDKClass("SCNPhysicsField", SCNPhysicsField, { module: "SceneKit_0e503aef608672fa", properties: {"isActive":3216967358588654,"categoryBitMask":1220754860641796,"direction":2200687404228260,"isExclusive":724961702256062,"falloffExponent":1444771995886026,"halfExtent":3376889807035542,"minimumDistance":1359909694296926,"offset":4182983432131207,"scope":3193789697909788,"strength":3448452767837304,"usesEllipsoidalExtent":1542049240244704} });
-registerSDKClass("SCNPhysicsHingeJoint", SCNPhysicsHingeJoint, { module: "SceneKit_0e503aef608672fa", properties: {"anchorA":3762223354102181,"anchorB":3407066254755743,"axisA":2306544854506064,"axisB":97907103401743,"bodyA":2044258159444489,"bodyB":49788126080614} });
-registerSDKClass("SCNPhysicsShape", SCNPhysicsShape, { module: "SceneKit_0e503aef608672fa", properties: {"options":703707169113023,"sourceObject":2032770280838878,"transforms":1701452981002267} });
-registerSDKClass("SCNPhysicsSliderJoint", SCNPhysicsSliderJoint, { module: "SceneKit_0e503aef608672fa", properties: {"anchorA":4100591057475206,"anchorB":1279708670045304,"axisA":216012120587500,"axisB":3740841274144916,"bodyA":886977055031054,"bodyB":603883338832107,"maximumAngularLimit":3233546724402214,"maximumLinearLimit":137535038164890,"minimumAngularLimit":3700200864409245,"minimumLinearLimit":3625372183617968,"motorMaximumForce":4067679548604457,"motorMaximumTorque":2351105984098159,"motorTargetAngularVelocity":4337786165159763,"motorTargetLinearVelocity":513138153389782} });
-registerSDKClass("SCNPhysicsVehicle", SCNPhysicsVehicle, { module: "SceneKit_0e503aef608672fa", properties: {"chassisBody":825361224132224,"speedInKilometersPerHour":4364076435473073,"wheels":991702041051920}, methods: {"applyBrakingForce":{"id":3875048767627987},"applyEngineForce":{"id":71598200944135},"setSteeringAngle":{"id":3046581776738910}} });
-registerSDKClass("SCNPhysicsVehicleWheel", SCNPhysicsVehicleWheel, { module: "SceneKit_0e503aef608672fa", properties: {"axle":2275172893280649,"connectionPosition":500554151881268,"frictionSlip":4037532378458751,"maximumSuspensionForce":3287356810653201,"maximumSuspensionTravel":349403507446461,"node":3437313917999760,"radius":4134645299919093,"steeringAxis":470606591091007,"suspensionCompression":3494340419333552,"suspensionDamping":3988885346767032,"suspensionRestLength":2480020122440157,"suspensionStiffness":2895974952410163} });
-registerSDKClass("SCNPhysicsWorld", SCNPhysicsWorld, { module: "SceneKit_0e503aef608672fa", properties: {"allBehaviors":1672371815593527,"contactDelegate":1506519232539799,"gravity":2971858858617430,"speed":3622971995284235,"timeStep":1193822672022512}, methods: {"addBehavior":{"id":976454265754545},"contactTestBetween":{"id":1452650490594589},"contactTest":{"id":3937732446386848},"convexSweepTest":{"id":4490286227567947},"rayTestWithSegment":{"id":3024293082211745},"removeAllBehaviors":{"id":3834428571263954},"removeBehavior":{"id":3089242999880326},"updateCollisionPairs":{"id":676491247787225}} });
-registerSDKClass("SCNPlane", SCNPlane, { module: "SceneKit_0e503aef608672fa", properties: {"cornerRadius":33855239867194,"cornerSegmentCount":742489650213106,"height":2440885959267453,"heightSegmentCount":3868932175363669,"width":3240333973673091,"widthSegmentCount":1127424515829193} });
-registerSDKClass("SCNProgram", SCNProgram, { module: "SceneKit_0e503aef608672fa", properties: {"delegate":3596344768005217,"fragmentFunctionName":368506760422996,"fragmentShader":2448716297855040,"library":1248570170802384,"isOpaque":1262082799510656,"vertexFunctionName":245182618637310,"vertexShader":2744043442867419}, methods: {"handleBinding":{"id":2092496144815307,"hints":[null,null,{"callback":{"out":[]}}]},"semantic":{"id":880999342292345},"setSemantic":{"id":3860423730232928}} });
+registerSDKClass("SCNPhysicsField", SCNPhysicsField, { module: "SceneKit_212edf3d13b127f5", properties: {"isActive":3216967358588654,"categoryBitMask":1220754860641796,"direction":2200687404228260,"isExclusive":724961702256062,"falloffExponent":1444771995886026,"halfExtent":3376889807035542,"minimumDistance":1359909694296926,"offset":4182983432131207,"scope":3193789697909788,"strength":3448452767837304,"usesEllipsoidalExtent":1542049240244704} });
+registerSDKClass("SCNPhysicsHingeJoint", SCNPhysicsHingeJoint, { module: "SceneKit_212edf3d13b127f5", properties: {"anchorA":3762223354102181,"anchorB":3407066254755743,"axisA":2306544854506064,"axisB":97907103401743,"bodyA":2044258159444489,"bodyB":49788126080614} });
+registerSDKClass("SCNPhysicsShape", SCNPhysicsShape, { module: "SceneKit_212edf3d13b127f5", properties: {"options":703707169113023,"sourceObject":2032770280838878,"transforms":1701452981002267} });
+registerSDKClass("SCNPhysicsSliderJoint", SCNPhysicsSliderJoint, { module: "SceneKit_212edf3d13b127f5", properties: {"anchorA":4100591057475206,"anchorB":1279708670045304,"axisA":216012120587500,"axisB":3740841274144916,"bodyA":886977055031054,"bodyB":603883338832107,"maximumAngularLimit":3233546724402214,"maximumLinearLimit":137535038164890,"minimumAngularLimit":3700200864409245,"minimumLinearLimit":3625372183617968,"motorMaximumForce":4067679548604457,"motorMaximumTorque":2351105984098159,"motorTargetAngularVelocity":4337786165159763,"motorTargetLinearVelocity":513138153389782} });
+registerSDKClass("SCNPhysicsVehicle", SCNPhysicsVehicle, { module: "SceneKit_212edf3d13b127f5", properties: {"chassisBody":825361224132224,"speedInKilometersPerHour":4364076435473073,"wheels":991702041051920}, methods: {"applyBrakingForce":{"id":3875048767627987},"applyEngineForce":{"id":71598200944135},"setSteeringAngle":{"id":3046581776738910}} });
+registerSDKClass("SCNPhysicsVehicleWheel", SCNPhysicsVehicleWheel, { module: "SceneKit_212edf3d13b127f5", properties: {"axle":2275172893280649,"connectionPosition":500554151881268,"frictionSlip":4037532378458751,"maximumSuspensionForce":3287356810653201,"maximumSuspensionTravel":349403507446461,"node":3437313917999760,"radius":4134645299919093,"steeringAxis":470606591091007,"suspensionCompression":3494340419333552,"suspensionDamping":3988885346767032,"suspensionRestLength":2480020122440157,"suspensionStiffness":2895974952410163} });
+registerSDKClass("SCNPhysicsWorld", SCNPhysicsWorld, { module: "SceneKit_212edf3d13b127f5", properties: {"allBehaviors":1672371815593527,"contactDelegate":1506519232539799,"gravity":2971858858617430,"speed":3622971995284235,"timeStep":1193822672022512}, methods: {"addBehavior":{"id":976454265754545},"contactTestBetween":{"id":1452650490594589},"contactTest":{"id":3937732446386848},"convexSweepTest":{"id":4490286227567947},"rayTestWithSegment":{"id":3024293082211745},"removeAllBehaviors":{"id":3834428571263954},"removeBehavior":{"id":3089242999880326},"updateCollisionPairs":{"id":676491247787225}} });
+registerSDKClass("SCNPlane", SCNPlane, { module: "SceneKit_212edf3d13b127f5", properties: {"cornerRadius":33855239867194,"cornerSegmentCount":742489650213106,"height":2440885959267453,"heightSegmentCount":3868932175363669,"width":3240333973673091,"widthSegmentCount":1127424515829193} });
+registerSDKClass("SCNProgram", SCNProgram, { module: "SceneKit_212edf3d13b127f5", properties: {"delegate":3596344768005217,"fragmentFunctionName":368506760422996,"fragmentShader":2448716297855040,"library":1248570170802384,"isOpaque":1262082799510656,"vertexFunctionName":245182618637310,"vertexShader":2744043442867419}, methods: {"handleBinding":{"id":2092496144815307,"hints":[null,null,{"callback":{"out":[]}}]},"semantic":{"id":880999342292345},"setSemantic":{"id":3860423730232928}} });
 registerSDKProtocol("c:objc(pl)SCNProgramDelegate", {"programHandleError":"program(_:handleError:)"});
-registerSDKClass("SCNPyramid", SCNPyramid, { module: "SceneKit_0e503aef608672fa", properties: {"height":2197080526970588,"heightSegmentCount":2190804786170988,"length":2678559447660109,"lengthSegmentCount":2090280017571629,"width":2020831565090992,"widthSegmentCount":323030168970211} });
-registerSDKClass("SCNReferenceNode", SCNReferenceNode, { module: "SceneKit_0e503aef608672fa", properties: {"isLoaded":1818435905209317,"loadingPolicy":743678140674434,"referenceURL":2685886889501728}, methods: {"load":{"id":2942680613868793},"unload":{"id":2312093587443900}} });
-registerSDKClass("SCNRenderer", SCNRenderer, { module: "SceneKit_0e503aef608672fa", properties: {"nextFrameTime":333104451622387,"scene":3769756194624006}, methods: {"render":{"id":1274830813833453},"renderAtTime":{"id":2947669455785324},"renderAtTimeViewportCommandBufferPassDescriptor":{"id":4097700848124787},"renderWithViewportCommandBufferPassDescriptor":{"id":3939905090357915},"snapshot":{"id":1082127499480664},"update":{"id":2124975225793246},"updateProbes":{"id":4250393591179221}} });
-registerSDKClass("SCNReplicatorConstraint", SCNReplicatorConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"orientationOffset":1333514538091212,"positionOffset":1283293733592639,"replicatesOrientation":4308487195789410,"replicatesPosition":2510840262606202,"replicatesScale":2320299489213901,"scaleOffset":472876911627991,"target":3711646967751129} });
-registerSDKClass("SCNScene", SCNScene, { module: "SceneKit_0e503aef608672fa", properties: {"background":1415796738174156,"fogColor":1520316492257622,"fogDensityExponent":3335922261025656,"fogEndDistance":1106222392966236,"fogStartDistance":2653091276210910,"lightingEnvironment":2421458709746740,"particleSystems":3379079839594372,"isPaused":997731284239190,"physicsWorld":1748267757782026,"rootNode":316320820938314,"screenSpaceReflectionMaximumDistance":2065743523009883,"screenSpaceReflectionSampleCount":329505825064974,"screenSpaceReflectionStride":1441747557375939,"wantsScreenSpaceReflection":3530022838503777}, methods: {"addParticleSystem":{"id":2101751661133481},"attribute":{"id":2662606454453450},"removeAllParticleSystems":{"id":4255945718992514},"removeParticleSystem":{"id":1743196770984925},"setAttribute":{"id":2693634635622812}} });
+registerSDKClass("SCNPyramid", SCNPyramid, { module: "SceneKit_212edf3d13b127f5", properties: {"height":2197080526970588,"heightSegmentCount":2190804786170988,"length":2678559447660109,"lengthSegmentCount":2090280017571629,"width":2020831565090992,"widthSegmentCount":323030168970211} });
+registerSDKClass("SCNReferenceNode", SCNReferenceNode, { module: "SceneKit_212edf3d13b127f5", properties: {"isLoaded":1818435905209317,"loadingPolicy":743678140674434,"referenceURL":2685886889501728}, methods: {"load":{"id":2942680613868793},"unload":{"id":2312093587443900}} });
+registerSDKClass("SCNRenderer", SCNRenderer, { module: "SceneKit_212edf3d13b127f5", properties: {"nextFrameTime":333104451622387,"scene":3769756194624006}, methods: {"render":{"id":1274830813833453},"renderAtTime":{"id":2947669455785324},"renderAtTimeViewportCommandBufferPassDescriptor":{"id":4097700848124787},"renderWithViewportCommandBufferPassDescriptor":{"id":3939905090357915},"snapshot":{"id":1082127499480664},"update":{"id":2124975225793246},"updateProbes":{"id":4250393591179221}} });
+registerSDKClass("SCNReplicatorConstraint", SCNReplicatorConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"orientationOffset":1333514538091212,"positionOffset":1283293733592639,"replicatesOrientation":4308487195789410,"replicatesPosition":2510840262606202,"replicatesScale":2320299489213901,"scaleOffset":472876911627991,"target":3711646967751129} });
+registerSDKClass("SCNScene", SCNScene, { module: "SceneKit_212edf3d13b127f5", properties: {"background":1415796738174156,"fogColor":1520316492257622,"fogDensityExponent":3335922261025656,"fogEndDistance":1106222392966236,"fogStartDistance":2653091276210910,"lightingEnvironment":2421458709746740,"particleSystems":3379079839594372,"isPaused":997731284239190,"physicsWorld":1748267757782026,"rootNode":316320820938314,"screenSpaceReflectionMaximumDistance":2065743523009883,"screenSpaceReflectionSampleCount":329505825064974,"screenSpaceReflectionStride":1441747557375939,"wantsScreenSpaceReflection":3530022838503777}, methods: {"addParticleSystem":{"id":2101751661133481},"attribute":{"id":2662606454453450},"removeAllParticleSystems":{"id":4255945718992514},"removeParticleSystem":{"id":1743196770984925},"setAttribute":{"id":2693634635622812}} });
 registerSDKProtocol("c:objc(pl)SCNSceneExportDelegate", {});
 registerSDKProtocol("c:objc(pl)SCNSceneRenderer", {"presentWithIncomingPointOfView":"present(_:with:incomingPointOfView:)","hitTestOptions":"hitTest(_:options:)","isNodeInsideFrustumOf":"isNode(_:insideFrustumOf:)","nodesInsideFrustumOf":"nodesInsideFrustum(of:)","projectPoint":"projectPoint(_:)","unprojectPoint":"unprojectPoint(_:)","prepareShouldAbortBlock":"prepare(_:shouldAbortBlock:)","prepare":"prepare(_:)"});
 registerSDKProtocol("c:objc(pl)SCNSceneRendererDelegate", {"rendererUpdateAtTime":"renderer(_:updateAtTime:)","rendererDidApplyAnimationsAtTime":"renderer(_:didApplyAnimationsAtTime:)","rendererDidSimulatePhysicsAtTime":"renderer(_:didSimulatePhysicsAtTime:)","rendererDidApplyConstraintsAtTime":"renderer(_:didApplyConstraintsAtTime:)","rendererWillRenderSceneAtTime":"renderer(_:willRenderScene:atTime:)","rendererDidRenderSceneAtTime":"renderer(_:didRenderScene:atTime:)"});
-registerSDKClass("SCNSceneSource", SCNSceneSource, { module: "SceneKit_0e503aef608672fa", properties: {"data":1673146251362512,"url":4070487061702960}, methods: {"identifiersOfEntries":{"id":3025660890088116},"property":{"id":1119581472932187},"sceneOptions":{"id":4451108540155960}} });
+registerSDKClass("SCNSceneSource", SCNSceneSource, { module: "SceneKit_212edf3d13b127f5", properties: {"data":1673146251362512,"url":4070487061702960}, methods: {"identifiersOfEntries":{"id":3025660890088116},"property":{"id":1119581472932187},"sceneOptions":{"id":4451108540155960}} });
 registerSDKProtocol("c:objc(pl)SCNShadable", {"handleBindingOfSymbolHandler":"handleBinding(ofSymbol:handler:)","handleUnbindingOfSymbolHandler":"handleUnbinding(ofSymbol:handler:)"});
-registerSDKClass("SCNShape", SCNShape, { module: "SceneKit_0e503aef608672fa", properties: {"chamferMode":2148181651823963,"chamferProfile":963292820837301,"chamferRadius":4234667808484560,"extrusionDepth":1827535504322517,"path":77473552932151} });
-registerSDKClass("SCNSkinner", SCNSkinner, { module: "SceneKit_0e503aef608672fa", properties: {"baseGeometry":231757372543887,"baseGeometryBindTransform":4066206943634815,"boneIndices":4094136954593600,"boneInverseBindTransforms":4440129365823486,"boneWeights":881890724694961,"bones":1207820122036651,"skeleton":3407785039009187} });
-registerSDKClass("SCNSliderConstraint", SCNSliderConstraint, { module: "SceneKit_0e503aef608672fa", properties: {"collisionCategoryBitMask":988241344491215,"offset":449286731670991,"radius":460090828666024} });
-registerSDKClass("SCNSphere", SCNSphere, { module: "SceneKit_0e503aef608672fa", properties: {"isGeodesic":3801364692310942,"radius":1469068483224759,"segmentCount":1548050484245248} });
-registerSDKClass("SCNTechnique", SCNTechnique, { module: "SceneKit_0e503aef608672fa", properties: {"dictionaryRepresentation":208186882408232,"library":1003240964936819}, methods: {"handleBinding":{"id":84006026284749,"hints":[null,{"callback":{"out":[]}}]},"subscript":{"id":2701469896143171},"setObject":{"id":2550551099434893}} });
+registerSDKClass("SCNShape", SCNShape, { module: "SceneKit_212edf3d13b127f5", properties: {"chamferMode":2148181651823963,"chamferProfile":963292820837301,"chamferRadius":4234667808484560,"extrusionDepth":1827535504322517,"path":77473552932151} });
+registerSDKClass("SCNSkinner", SCNSkinner, { module: "SceneKit_212edf3d13b127f5", properties: {"baseGeometry":231757372543887,"baseGeometryBindTransform":4066206943634815,"boneIndices":4094136954593600,"boneInverseBindTransforms":4440129365823486,"boneWeights":881890724694961,"bones":1207820122036651,"skeleton":3407785039009187} });
+registerSDKClass("SCNSliderConstraint", SCNSliderConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {"collisionCategoryBitMask":988241344491215,"offset":449286731670991,"radius":460090828666024} });
+registerSDKClass("SCNSphere", SCNSphere, { module: "SceneKit_212edf3d13b127f5", properties: {"isGeodesic":3801364692310942,"radius":1469068483224759,"segmentCount":1548050484245248} });
+registerSDKClass("SCNTechnique", SCNTechnique, { module: "SceneKit_212edf3d13b127f5", properties: {"dictionaryRepresentation":208186882408232,"library":1003240964936819}, methods: {"handleBinding":{"id":84006026284749,"hints":[null,{"callback":{"out":[]}}]},"subscript":{"id":2701469896143171},"setObject":{"id":2550551099434893}} });
 registerSDKProtocol("c:objc(pl)SCNTechniqueSupport", {});
-registerSDKClass("SCNText", SCNText, { module: "SceneKit_0e503aef608672fa", properties: {"alignmentMode":2246170834944,"chamferProfile":3354573634448612,"chamferRadius":3115034307804668,"containerFrame":4370812811178078,"extrusionDepth":838732000445916,"flatness":1043550907633532,"font":1577934013092477,"string":2993828395516117,"truncationMode":1965429850762439,"isWrapped":1041106394055308} });
-registerSDKClass("SCNTimingFunction", SCNTimingFunction, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNTorus", SCNTorus, { module: "SceneKit_0e503aef608672fa", properties: {"pipeRadius":730545785036365,"pipeSegmentCount":4452521906857512,"ringRadius":3469226336196432,"ringSegmentCount":1152757357681229} });
-registerSDKClass("SCNTransaction", SCNTransaction, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNTransformConstraint", SCNTransformConstraint, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNTube", SCNTube, { module: "SceneKit_0e503aef608672fa", properties: {"height":2032700956251500,"heightSegmentCount":4151008814400947,"innerRadius":1151007191940519,"outerRadius":115471375706166,"radialSegmentCount":4346320926575952} });
-registerSDKClass("SceneKit.SCNVector3", SCNVector3, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SceneKit.SCNVector4", SCNVector4, { module: "SceneKit_0e503aef608672fa", properties: {} });
-registerSDKClass("SCNView", SCNView, { module: "SceneKit_0e503aef608672fa", properties: {"allowsCameraControl":3471633988802633,"antialiasingMode":877393228151273,"cameraControlConfiguration":2785482988479268,"defaultCameraController":791558075405490,"eaglContext":909890503026304,"preferredFramesPerSecond":2659898320441086,"rendersContinuously":4231484173535443,"scene":2281605505189143}, methods: {"pause":{"id":2229093807982047},"play":{"id":365881197969786},"snapshot":{"id":3154124638994459},"stop":{"id":4234686903023454}} });
+registerSDKClass("SCNText", SCNText, { module: "SceneKit_212edf3d13b127f5", properties: {"alignmentMode":2246170834944,"chamferProfile":3354573634448612,"chamferRadius":3115034307804668,"containerFrame":4370812811178078,"extrusionDepth":838732000445916,"flatness":1043550907633532,"font":1577934013092477,"string":2993828395516117,"truncationMode":1965429850762439,"isWrapped":1041106394055308} });
+registerSDKClass("SCNTimingFunction", SCNTimingFunction, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNTorus", SCNTorus, { module: "SceneKit_212edf3d13b127f5", properties: {"pipeRadius":730545785036365,"pipeSegmentCount":4452521906857512,"ringRadius":3469226336196432,"ringSegmentCount":1152757357681229} });
+registerSDKClass("SCNTransaction", SCNTransaction, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNTransformConstraint", SCNTransformConstraint, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNTube", SCNTube, { module: "SceneKit_212edf3d13b127f5", properties: {"height":2032700956251500,"heightSegmentCount":4151008814400947,"innerRadius":1151007191940519,"outerRadius":115471375706166,"radialSegmentCount":4346320926575952} });
+registerSDKClass("SceneKit.SCNVector3", SCNVector3, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SceneKit.SCNVector4", SCNVector4, { module: "SceneKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("SCNView", SCNView, { module: "SceneKit_212edf3d13b127f5", properties: {"allowsCameraControl":3471633988802633,"antialiasingMode":877393228151273,"cameraControlConfiguration":2785482988479268,"defaultCameraController":791558075405490,"eaglContext":909890503026304,"preferredFramesPerSecond":2659898320441086,"rendersContinuously":4231484173535443,"scene":2281605505189143}, methods: {"pause":{"id":2229093807982047},"play":{"id":365881197969786},"snapshot":{"id":3154124638994459},"stop":{"id":4234686903023454}} });

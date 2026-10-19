@@ -64,7 +64,7 @@ export interface DistributedActorSystem {
      * func remoteCall<Act, Err, Res>(on actor: Act, target: RemoteCallTarget, invocation: inout Self.InvocationEncoder, throwing: Err.Type, returning: Res.Type) async throws -> Res where Act : DistributedActor, Err : Error, Self.ActorID == Act.ID
      * @availability iOS 18.0+
      */
-    "remoteCallOnTargetInvocationThrowingReturning"?: (arg0: SDKHandle, arg1: RemoteCallTarget, arg2: unknown, arg3: string, arg4: string) => SDKHandle;
+    "remoteCallOnTargetInvocationThrowingReturning"?: (arg0: SDKHandle, arg1: RemoteCallTarget, arg2: unknown, arg3: string, arg4: string) => Promise<SDKHandle>;
     /**
      * func remoteCallVoid<Act, Err>(on actor: Act, target: RemoteCallTarget, invocation: inout Self.InvocationEncoder, throwing: Err.Type) async throws where Act : DistributedActor, Err : Error, Self.ActorID == Act.ID
      * @availability iOS 18.0+

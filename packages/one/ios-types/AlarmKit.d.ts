@@ -150,6 +150,18 @@ export type Alarm_State = "scheduled" | "countdown" | "paused" | "alerting";
  * @availability iOS 26.0+
  */
 export declare class AlarmAttributes<Metadata = unknown> extends SDKHandle {
+    /**
+     * var presentation: AlarmPresentation
+     * @availability iOS 26.0+
+     */
+    get presentation(): AlarmPresentation;
+    set presentation(value: AlarmPresentation);
+    /**
+     * var tintColor: Color
+     * @availability iOS 26.0+
+     */
+    get tintColor(): _SwiftUICore_Color;
+    set tintColor(value: _SwiftUICore_Color);
     readonly $type: {
         "s:8AlarmKit0A10AttributesV": true;
     };

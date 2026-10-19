@@ -23,48 +23,48 @@ export class CardSession extends SDKHandle {
    * func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): void { return callSDK<void>("CoreNFC_0e503aef608672fa", 2344847152986314, this, []); }
+  invalidate(): void { return callSDK<void>("CoreNFC_212edf3d13b127f5", 2344847152986314, this, []); }
   /**
    * static var isEligible: Bool { get async }
    * @availability iOS 17.4+
    */
-  static get isEligible(): Promise<boolean> { return callSDKAsync<boolean>("CoreNFC_0e503aef608672fa", 139922990921948, undefined, []); }
+  static get isEligible(): Promise<boolean> { return callSDKAsync<boolean>("CoreNFC_212edf3d13b127f5", 139922990921948, undefined, []); }
   /**
    * var eventStream: CardSession.EventStream { get }
    * @availability iOS 17.4+
    */
-  get eventStream(): CardSession_EventStream { return callSDK<CardSession_EventStream>("CoreNFC_0e503aef608672fa", 1941252821655891, this, []); }
+  get eventStream(): CardSession_EventStream { return callSDK<CardSession_EventStream>("CoreNFC_212edf3d13b127f5", 1941252821655891, this, []); }
   /**
    * class var isSupported: Bool { get }
    * @availability iOS 17.4+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("CoreNFC_0e503aef608672fa", 3419581099997738, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("CoreNFC_212edf3d13b127f5", 3419581099997738, undefined, []); }
   /**
    * var alertMessage: String { get set }
    * @availability iOS 17.4+
    */
-  get alertMessage(): string { return callSDK<string>("CoreNFC_0e503aef608672fa", 3784363094177265, this, []); }
-  set alertMessage(value: string) { callSDK<void>("CoreNFC_0e503aef608672fa", 1070620041498606, this, [value]); }
+  get alertMessage(): string { return callSDK<string>("CoreNFC_212edf3d13b127f5", 3784363094177265, this, []); }
+  set alertMessage(value: string) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1070620041498606, this, [value]); }
   /**
    * func stopEmulation(status: CardSession.EmulationUIStatus) async
    * @availability iOS 17.4+
    */
-  stopEmulation(status: CardSession_EmulationUIStatus): Promise<void> { return callSDKAsync<void>("CoreNFC_0e503aef608672fa", 2300060222606938, this, [status]); }
+  stopEmulation(status: CardSession_EmulationUIStatus): Promise<void> { return callSDKAsync<void>("CoreNFC_212edf3d13b127f5", 2300060222606938, this, [status]); }
   /**
    * func startEmulation() async throws
    * @availability iOS 17.4+
    */
-  startEmulation(): Promise<void> { return callSDKAsync<void>("CoreNFC_0e503aef608672fa", 1326317869591614, this, []); }
+  startEmulation(): Promise<void> { return callSDKAsync<void>("CoreNFC_212edf3d13b127f5", 1326317869591614, this, []); }
   /**
    * var isEmulationInProgress: Bool { get async }
    * @availability iOS 17.4+
    */
-  get isEmulationInProgress(): Promise<boolean> { return callSDKAsync<boolean>("CoreNFC_0e503aef608672fa", 936763726006010, this, []); }
+  get isEmulationInProgress(): Promise<boolean> { return callSDKAsync<boolean>("CoreNFC_212edf3d13b127f5", 936763726006010, this, []); }
   /**
    * init() async throws
    * @availability iOS 17.4+
    */
-  static init(): Promise<CardSession> { return callSDKAsync<CardSession>("CoreNFC_0e503aef608672fa", 2967293108697626, undefined, []); }
+  static init(): Promise<CardSession> { return callSDKAsync<CardSession>("CoreNFC_212edf3d13b127f5", 2967293108697626, undefined, []); }
   declare readonly $type: { "s:7CoreNFC11CardSessionC": true };
 }
 
@@ -77,17 +77,17 @@ export class CardSession_APDU extends SDKHandle {
    * final var debugDescription: String { get }
    * @availability iOS 17.4+
    */
-  get debugDescription(): string { return callSDK<string>("CoreNFC_0e503aef608672fa", 2250429265296192, this, []); }
+  get debugDescription(): string { return callSDK<string>("CoreNFC_212edf3d13b127f5", 2250429265296192, this, []); }
   /**
    * final let payload: Data
    * @availability iOS 17.4+
    */
-  get payload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 2754867267351978, this, []); }
+  get payload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 2754867267351978, this, []); }
   /**
    * final func respond(response: Data) async throws
    * @availability iOS 17.4+
    */
-  respond(response: ArrayBuffer): Promise<void> { return callSDKAsync<void>("CoreNFC_0e503aef608672fa", 295338350705852, this, [response]); }
+  respond(response: ArrayBuffer): Promise<void> { return callSDKAsync<void>("CoreNFC_212edf3d13b127f5", 295338350705852, this, [response]); }
   declare readonly $type: { "s:7CoreNFC11CardSessionC4APDUC": true };
 }
 
@@ -120,7 +120,7 @@ export class CardSession_EventStream extends SDKHandle {
    * final func makeAsyncIterator() -> CardSession.EventStream.Iterator
    * @availability iOS 17.4+
    */
-  makeAsyncIterator(): CardSession_EventStream_Iterator { return callSDK<CardSession_EventStream_Iterator>("CoreNFC_0e503aef608672fa", 3416351221066565, this, []); }
+  makeAsyncIterator(): CardSession_EventStream_Iterator { return callSDK<CardSession_EventStream_Iterator>("CoreNFC_212edf3d13b127f5", 3416351221066565, this, []); }
   declare readonly $type: { "s:7CoreNFC11CardSessionC11EventStreamC": true };
   declare readonly $element: CardSession_Event;
 }
@@ -146,7 +146,7 @@ export class CardSession_EventStream_Iterator extends SDKHandle {
    * func next() async throws -> CardSession.Event?
    * @availability iOS 17.4+
    */
-  next(): Promise<(CardSession_Event) | null> { return callSDKAsync<(CardSession_Event) | null>("CoreNFC_0e503aef608672fa", 3616440387959993, this, []); }
+  next(): Promise<(CardSession_Event) | null> { return callSDKAsync<(CardSession_Event) | null>("CoreNFC_212edf3d13b127f5", 3616440387959993, this, []); }
   declare readonly $type: { "s:7CoreNFC11CardSessionC11EventStreamC8IteratorC": true };
 }
 
@@ -175,18 +175,18 @@ export const NFCFeliCaEncryptionId = {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get aes(): NFCFeliCaEncryptionId { return callSDK<NFCFeliCaEncryptionId>("CoreNFC_0e503aef608672fa", 3949883668075926, undefined, []); },
+  get aes(): NFCFeliCaEncryptionId { return callSDK<NFCFeliCaEncryptionId>("CoreNFC_212edf3d13b127f5", 3949883668075926, undefined, []); },
   /**
    * static var aes_des: NFCFeliCaEncryptionId { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get aes_des(): NFCFeliCaEncryptionId { return callSDK<NFCFeliCaEncryptionId>("CoreNFC_0e503aef608672fa", 3083822706587350, undefined, []); },
+  get aes_des(): NFCFeliCaEncryptionId { return callSDK<NFCFeliCaEncryptionId>("CoreNFC_212edf3d13b127f5", 3083822706587350, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCFeliCaEncryptionId) | null { return callSDK<(NFCFeliCaEncryptionId) | null>("CoreNFC_0e503aef608672fa", 860934342121669, undefined, [rawValue]); }
+  init(rawValue: number): (NFCFeliCaEncryptionId) | null { return callSDK<(NFCFeliCaEncryptionId) | null>("CoreNFC_212edf3d13b127f5", 860934342121669, undefined, [rawValue]); }
 };
 
 /**
@@ -201,24 +201,24 @@ export const NFCFeliCaPollingRequestCode = {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingRequestCodeCommunicationPerformance(): NFCFeliCaPollingRequestCode { return callSDK<NFCFeliCaPollingRequestCode>("CoreNFC_0e503aef608672fa", 1002700410521323, undefined, []); },
+  get PollingRequestCodeCommunicationPerformance(): NFCFeliCaPollingRequestCode { return callSDK<NFCFeliCaPollingRequestCode>("CoreNFC_212edf3d13b127f5", 1002700410521323, undefined, []); },
   /**
    * static var PollingRequestCodeNoRequest: NFCFeliCaPollingRequestCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingRequestCodeNoRequest(): NFCFeliCaPollingRequestCode { return callSDK<NFCFeliCaPollingRequestCode>("CoreNFC_0e503aef608672fa", 1556748565112823, undefined, []); },
+  get PollingRequestCodeNoRequest(): NFCFeliCaPollingRequestCode { return callSDK<NFCFeliCaPollingRequestCode>("CoreNFC_212edf3d13b127f5", 1556748565112823, undefined, []); },
   /**
    * static var PollingRequestCodeSystemCode: NFCFeliCaPollingRequestCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingRequestCodeSystemCode(): NFCFeliCaPollingRequestCode { return callSDK<NFCFeliCaPollingRequestCode>("CoreNFC_0e503aef608672fa", 1355500426653564, undefined, []); },
+  get PollingRequestCodeSystemCode(): NFCFeliCaPollingRequestCode { return callSDK<NFCFeliCaPollingRequestCode>("CoreNFC_212edf3d13b127f5", 1355500426653564, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCFeliCaPollingRequestCode) | null { return callSDK<(NFCFeliCaPollingRequestCode) | null>("CoreNFC_0e503aef608672fa", 2776267787805100, undefined, [rawValue]); }
+  init(rawValue: number): (NFCFeliCaPollingRequestCode) | null { return callSDK<(NFCFeliCaPollingRequestCode) | null>("CoreNFC_212edf3d13b127f5", 2776267787805100, undefined, [rawValue]); }
 };
 
 /**
@@ -230,14 +230,14 @@ export class NFCFeliCaPollingResponse extends SDKHandle {
    * var requestData: Data?
    * @availability iOS 14.0+
    */
-  get requestData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_0e503aef608672fa", 1213821057512849, this, []); }
-  set requestData(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_0e503aef608672fa", 844826830480889, this, [value]); }
+  get requestData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_212edf3d13b127f5", 1213821057512849, this, []); }
+  set requestData(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_212edf3d13b127f5", 844826830480889, this, [value]); }
   /**
    * var manufactureParameter: Data
    * @availability iOS 14.0+
    */
-  get manufactureParameter(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 3865577770449972, this, []); }
-  set manufactureParameter(value: ArrayBuffer) { callSDK<void>("CoreNFC_0e503aef608672fa", 4371415028622253, this, [value]); }
+  get manufactureParameter(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 3865577770449972, this, []); }
+  set manufactureParameter(value: ArrayBuffer) { callSDK<void>("CoreNFC_212edf3d13b127f5", 4371415028622253, this, [value]); }
   declare readonly $type: { "s:7CoreNFC24NFCFeliCaPollingResponseV": true };
 }
 
@@ -253,36 +253,36 @@ export const NFCFeliCaPollingTimeSlot = {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingTimeSlotMax16(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_0e503aef608672fa", 1668402154875591, undefined, []); },
+  get PollingTimeSlotMax16(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_212edf3d13b127f5", 1668402154875591, undefined, []); },
   /**
    * static var PollingTimeSlotMax1: NFCFeliCaPollingTimeSlot { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingTimeSlotMax1(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_0e503aef608672fa", 4158527963774262, undefined, []); },
+  get PollingTimeSlotMax1(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_212edf3d13b127f5", 4158527963774262, undefined, []); },
   /**
    * static var PollingTimeSlotMax2: NFCFeliCaPollingTimeSlot { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingTimeSlotMax2(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_0e503aef608672fa", 3492445045517780, undefined, []); },
+  get PollingTimeSlotMax2(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_212edf3d13b127f5", 3492445045517780, undefined, []); },
   /**
    * static var PollingTimeSlotMax4: NFCFeliCaPollingTimeSlot { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingTimeSlotMax4(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_0e503aef608672fa", 1322910001718795, undefined, []); },
+  get PollingTimeSlotMax4(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_212edf3d13b127f5", 1322910001718795, undefined, []); },
   /**
    * static var PollingTimeSlotMax8: NFCFeliCaPollingTimeSlot { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get PollingTimeSlotMax8(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_0e503aef608672fa", 2145983469514058, undefined, []); },
+  get PollingTimeSlotMax8(): NFCFeliCaPollingTimeSlot { return callSDK<NFCFeliCaPollingTimeSlot>("CoreNFC_212edf3d13b127f5", 2145983469514058, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCFeliCaPollingTimeSlot) | null { return callSDK<(NFCFeliCaPollingTimeSlot) | null>("CoreNFC_0e503aef608672fa", 3196272407304573, undefined, [rawValue]); }
+  init(rawValue: number): (NFCFeliCaPollingTimeSlot) | null { return callSDK<(NFCFeliCaPollingTimeSlot) | null>("CoreNFC_212edf3d13b127f5", 3196272407304573, undefined, [rawValue]); }
 };
 
 /**
@@ -294,26 +294,26 @@ export class NFCFeliCaRequestSpecificationVersionResponse extends SDKHandle {
    * var basicVersion: Data?
    * @availability iOS 14.0+
    */
-  get basicVersion(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_0e503aef608672fa", 1660317393258719, this, []); }
-  set basicVersion(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_0e503aef608672fa", 1907481298980473, this, [value]); }
+  get basicVersion(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_212edf3d13b127f5", 1660317393258719, this, []); }
+  set basicVersion(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1907481298980473, this, [value]); }
   /**
    * var optionVersion: Data?
    * @availability iOS 14.0+
    */
-  get optionVersion(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_0e503aef608672fa", 4461799204374492, this, []); }
-  set optionVersion(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_0e503aef608672fa", 2156364521683864, this, [value]); }
+  get optionVersion(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_212edf3d13b127f5", 4461799204374492, this, []); }
+  set optionVersion(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2156364521683864, this, [value]); }
   /**
    * var statusFlag1: Int
    * @availability iOS 14.0+
    */
-  get statusFlag1(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 1897340871882476, this, []); }
-  set statusFlag1(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 1768645730924782, this, [value]); }
+  get statusFlag1(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 1897340871882476, this, []); }
+  set statusFlag1(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1768645730924782, this, [value]); }
   /**
    * var statusFlag2: Int
    * @availability iOS 14.0+
    */
-  get statusFlag2(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 2162263625036877, this, []); }
-  set statusFlag2(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 1567815161180975, this, [value]); }
+  get statusFlag2(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 2162263625036877, this, []); }
+  set statusFlag2(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1567815161180975, this, [value]); }
   declare readonly $type: { "s:7CoreNFC44NFCFeliCaRequestSpecificationVersionResponseV": true };
 }
 
@@ -326,32 +326,32 @@ export class NFCFeliCaRequsetServiceV2Response extends SDKHandle {
    * var statusFlag1: Int
    * @availability iOS 14.0+
    */
-  get statusFlag1(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3665169767982296, this, []); }
-  set statusFlag1(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 80656757820971, this, [value]); }
+  get statusFlag1(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3665169767982296, this, []); }
+  set statusFlag1(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 80656757820971, this, [value]); }
   /**
    * var statusFlag2: Int
    * @availability iOS 14.0+
    */
-  get statusFlag2(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3969907400217338, this, []); }
-  set statusFlag2(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 1569037820392724, this, [value]); }
+  get statusFlag2(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3969907400217338, this, []); }
+  set statusFlag2(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1569037820392724, this, [value]); }
   /**
    * var encryptionIdentifier: NFCFeliCaEncryptionId
    * @availability iOS 14.0+
    */
-  get encryptionIdentifier(): NFCFeliCaEncryptionId { return callSDK<NFCFeliCaEncryptionId>("CoreNFC_0e503aef608672fa", 2640045197172419, this, []); }
-  set encryptionIdentifier(value: NFCFeliCaEncryptionId) { callSDK<void>("CoreNFC_0e503aef608672fa", 2058351567014556, this, [value]); }
+  get encryptionIdentifier(): NFCFeliCaEncryptionId { return callSDK<NFCFeliCaEncryptionId>("CoreNFC_212edf3d13b127f5", 2640045197172419, this, []); }
+  set encryptionIdentifier(value: NFCFeliCaEncryptionId) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2058351567014556, this, [value]); }
   /**
    * var nodeKeyVersionListAES: [Data]?
    * @availability iOS 14.0+
    */
-  get nodeKeyVersionListAES(): $SDK1 { return callSDK<$SDK1>("CoreNFC_0e503aef608672fa", 1461442259299460, this, []); }
-  set nodeKeyVersionListAES(value: $SDK1) { callSDK<void>("CoreNFC_0e503aef608672fa", 3858322834507833, this, [value]); }
+  get nodeKeyVersionListAES(): $SDK1 { return callSDK<$SDK1>("CoreNFC_212edf3d13b127f5", 1461442259299460, this, []); }
+  set nodeKeyVersionListAES(value: $SDK1) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3858322834507833, this, [value]); }
   /**
    * var nodeKeyVersionListDES: [Data]?
    * @availability iOS 14.0+
    */
-  get nodeKeyVersionListDES(): $SDK1 { return callSDK<$SDK1>("CoreNFC_0e503aef608672fa", 3228863378866886, this, []); }
-  set nodeKeyVersionListDES(value: $SDK1) { callSDK<void>("CoreNFC_0e503aef608672fa", 2508975810119898, this, [value]); }
+  get nodeKeyVersionListDES(): $SDK1 { return callSDK<$SDK1>("CoreNFC_212edf3d13b127f5", 3228863378866886, this, []); }
+  set nodeKeyVersionListDES(value: $SDK1) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2508975810119898, this, [value]); }
   declare readonly $type: { "s:7CoreNFC33NFCFeliCaRequsetServiceV2ResponseV": true };
 }
 
@@ -364,14 +364,14 @@ export class NFCFeliCaStatusFlag extends SDKHandle {
    * var statusFlag1: Int
    * @availability iOS 14.0+
    */
-  get statusFlag1(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 1238768254542533, this, []); }
-  set statusFlag1(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 791425201082809, this, [value]); }
+  get statusFlag1(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 1238768254542533, this, []); }
+  set statusFlag1(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 791425201082809, this, [value]); }
   /**
    * var statusFlag2: Int
    * @availability iOS 14.0+
    */
-  get statusFlag2(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3059718948754969, this, []); }
-  set statusFlag2(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 4385421735862594, this, [value]); }
+  get statusFlag2(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3059718948754969, this, []); }
+  set statusFlag2(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 4385421735862594, this, [value]); }
   declare readonly $type: { "s:7CoreNFC19NFCFeliCaStatusFlagV": true };
 }
 
@@ -387,12 +387,12 @@ export interface NFCFeliCaTag {
    * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
    * @availability iOS 13.0+
    */
-  "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+  "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
   /**
    * func readNDEF() async throws -> NFCNDEFMessage
    * @availability iOS 13.0+
    */
-  "readNDEF"?: () => NFCNDEFMessage;
+  "readNDEF"?: () => Promise<NFCNDEFMessage>;
   /**
    * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
    * @availability iOS 13.0+
@@ -407,52 +407,52 @@ export interface NFCFeliCaTag {
    * func polling(systemCode: Data, requestCode: NFCFeliCaPollingRequestCode, timeSlot: NFCFeliCaPollingTimeSlot) async throws -> (Data, Data)
    * @availability iOS 13.0+
    */
-  "pollingSystemCodeRequestCodeTimeSlot"?: (arg0: ArrayBuffer, arg1: NFCFeliCaPollingRequestCode, arg2: NFCFeliCaPollingTimeSlot) => [ArrayBuffer, ArrayBuffer];
+  "pollingSystemCodeRequestCodeTimeSlot"?: (arg0: ArrayBuffer, arg1: NFCFeliCaPollingRequestCode, arg2: NFCFeliCaPollingTimeSlot) => Promise<[ArrayBuffer, ArrayBuffer]>;
   /**
    * func requestService(nodeCodeList: [Data]) async throws -> [Data]
    * @availability iOS 13.0+
    */
-  "requestServiceNodeCodeList"?: (arg0: Array<ArrayBuffer>) => Array<ArrayBuffer>;
+  "requestServiceNodeCodeList"?: (arg0: Array<ArrayBuffer>) => Promise<Array<ArrayBuffer>>;
   /**
    * func requestResponse() async throws -> Int
    * @availability iOS 13.0+
    */
-  "requestResponse"?: () => number;
+  "requestResponse"?: () => Promise<number>;
   /**
    * func readWithoutEncryption(serviceCodeList: [Data], blockList: [Data]) async throws -> (Int, Int, [Data])
    * @availability iOS 13.0+
    */
-  "readWithoutEncryptionServiceCodeListBlockList"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>) => [number, number, Array<ArrayBuffer>];
+  "readWithoutEncryptionServiceCodeListBlockList"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>) => Promise<[number, number, Array<ArrayBuffer>]>;
   /**
    * func writeWithoutEncryption(serviceCodeList: [Data], blockList: [Data], blockData: [Data]) async throws -> (Int, Int)
    * @availability iOS 13.0+
    */
-  "writeWithoutEncryptionServiceCodeListBlockListBlockData"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>, arg2: Array<ArrayBuffer>) => [number, number];
+  "writeWithoutEncryptionServiceCodeListBlockListBlockData"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>, arg2: Array<ArrayBuffer>) => Promise<[number, number]>;
   /**
    * func requestSystemCode() async throws -> [Data]
    * @availability iOS 13.0+
    */
-  "requestSystemCode"?: () => Array<ArrayBuffer>;
+  "requestSystemCode"?: () => Promise<Array<ArrayBuffer>>;
   /**
    * func requestServiceV2(nodeCodeList: [Data]) async throws -> (Int, Int, NFCFeliCaEncryptionId, [Data], [Data])
    * @availability iOS 13.0+
    */
-  "requestServiceV2NodeCodeList"?: (arg0: Array<ArrayBuffer>) => [number, number, NFCFeliCaEncryptionId, Array<ArrayBuffer>, Array<ArrayBuffer>];
+  "requestServiceV2NodeCodeList"?: (arg0: Array<ArrayBuffer>) => Promise<[number, number, NFCFeliCaEncryptionId, Array<ArrayBuffer>, Array<ArrayBuffer>]>;
   /**
    * func requestSpecificationVersion() async throws -> (Int, Int, Data, Data)
    * @availability iOS 13.0+
    */
-  "requestSpecificationVersion"?: () => [number, number, ArrayBuffer, ArrayBuffer];
+  "requestSpecificationVersion"?: () => Promise<[number, number, ArrayBuffer, ArrayBuffer]>;
   /**
    * func resetMode() async throws -> (Int, Int)
    * @availability iOS 13.0+
    */
-  "resetMode"?: () => [number, number];
+  "resetMode"?: () => Promise<[number, number]>;
   /**
    * func sendFeliCaCommand(commandPacket: Data) async throws -> Data
    * @availability iOS 13.0+
    */
-  "sendFeliCaCommandCommandPacket"?: (arg0: ArrayBuffer) => ArrayBuffer;
+  "sendFeliCaCommandCommandPacket"?: (arg0: ArrayBuffer) => Promise<ArrayBuffer>;
 }
 
 /**
@@ -461,19 +461,19 @@ export interface NFCFeliCaTag {
  */
 export class NFCTagCommandConfiguration extends SDKHandle {
   /** init() */
-  static init(): NFCTagCommandConfiguration { return callSDK<NFCTagCommandConfiguration>("CoreNFC_0e503aef608672fa", 897703510009275, undefined, []); }
+  static init(): NFCTagCommandConfiguration { return callSDK<NFCTagCommandConfiguration>("CoreNFC_212edf3d13b127f5", 897703510009275, undefined, []); }
   /**
    * var maximumRetries: Int { get set }
    * @availability iOS 11.0+
    */
-  get maximumRetries(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3696664591938215, this, []); }
-  set maximumRetries(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 1425396844129873, this, [value]); }
+  get maximumRetries(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3696664591938215, this, []); }
+  set maximumRetries(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1425396844129873, this, [value]); }
   /**
    * var retryInterval: TimeInterval { get set }
    * @availability iOS 11.0+
    */
-  get retryInterval(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 2324926643039488, this, []); }
-  set retryInterval(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 1051512492444769, this, [value]); }
+  get retryInterval(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 2324926643039488, this, []); }
+  set retryInterval(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1051512492444769, this, [value]); }
   declare readonly $type: { "c:objc(cs)NFCTagCommandConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maximumRetries": true; "retryInterval": true };
 }
@@ -487,30 +487,30 @@ export class NFCISO15693CustomCommandConfiguration extends NFCTagCommandConfigur
    * init(manufacturerCode: Int, customCommandCode: Int, requestParameters: Data?)
    * @availability iOS 11.0+
    */
-  static initManufacturerCodeCustomCommandCodeRequestParameters(manufacturerCode: number, customCommandCode: number, requestParameters?: (ArrayBuffer) | null): NFCISO15693CustomCommandConfiguration { return callSDK<NFCISO15693CustomCommandConfiguration>("CoreNFC_0e503aef608672fa", 1502669015914639, undefined, [manufacturerCode, customCommandCode, requestParameters]); }
+  static initManufacturerCodeCustomCommandCodeRequestParameters(manufacturerCode: number, customCommandCode: number, requestParameters?: (ArrayBuffer) | null): NFCISO15693CustomCommandConfiguration { return callSDK<NFCISO15693CustomCommandConfiguration>("CoreNFC_212edf3d13b127f5", 1502669015914639, undefined, [manufacturerCode, customCommandCode, requestParameters]); }
   /**
    * init(manufacturerCode: Int, customCommandCode: Int, requestParameters: Data?, maximumRetries: Int, retryInterval: TimeInterval)
    * @availability iOS 11.0+
    */
-  static initManufacturerCodeCustomCommandCodeRequestParametersMaximumRetriesRetryInterval(manufacturerCode: number, customCommandCode: number, requestParameters: (ArrayBuffer) | null, maximumRetries: number, retryInterval: number): NFCISO15693CustomCommandConfiguration { return callSDK<NFCISO15693CustomCommandConfiguration>("CoreNFC_0e503aef608672fa", 544616946648226, undefined, [manufacturerCode, customCommandCode, requestParameters, maximumRetries, retryInterval]); }
+  static initManufacturerCodeCustomCommandCodeRequestParametersMaximumRetriesRetryInterval(manufacturerCode: number, customCommandCode: number, requestParameters: (ArrayBuffer) | null, maximumRetries: number, retryInterval: number): NFCISO15693CustomCommandConfiguration { return callSDK<NFCISO15693CustomCommandConfiguration>("CoreNFC_212edf3d13b127f5", 544616946648226, undefined, [manufacturerCode, customCommandCode, requestParameters, maximumRetries, retryInterval]); }
   /**
    * var customCommandCode: Int { get set }
    * @availability iOS 11.0+
    */
-  get customCommandCode(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3170353773751126, this, []); }
-  set customCommandCode(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 3595815712233282, this, [value]); }
+  get customCommandCode(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3170353773751126, this, []); }
+  set customCommandCode(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3595815712233282, this, [value]); }
   /**
    * var manufacturerCode: Int { get set }
    * @availability iOS 11.0+
    */
-  get manufacturerCode(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 4241629681445338, this, []); }
-  set manufacturerCode(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 1143160547423702, this, [value]); }
+  get manufacturerCode(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 4241629681445338, this, []); }
+  set manufacturerCode(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1143160547423702, this, [value]); }
   /**
    * var requestParameters: Data { get set }
    * @availability iOS 11.0+
    */
-  get requestParameters(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 3168165381053202, this, []); }
-  set requestParameters(value: ArrayBuffer) { callSDK<void>("CoreNFC_0e503aef608672fa", 219663402099618, this, [value]); }
+  get requestParameters(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 3168165381053202, this, []); }
+  set requestParameters(value: ArrayBuffer) { callSDK<void>("CoreNFC_212edf3d13b127f5", 219663402099618, this, [value]); }
   declare readonly $type: { "c:objc(cs)NFCISO15693CustomCommandConfiguration": true; "c:objc(cs)NFCTagCommandConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maximumRetries": true; "retryInterval": true; "customCommandCode": true; "manufacturerCode": true; "requestParameters": true };
 }
@@ -524,8 +524,8 @@ export class NFCISO15693MultipleBlockSecurityStatus extends SDKHandle {
    * var blockSecurityStatus: [Int]
    * @availability iOS 14.0+
    */
-  get blockSecurityStatus(): Array<number> { return callSDK<Array<number>>("CoreNFC_0e503aef608672fa", 2707987511758375, this, []); }
-  set blockSecurityStatus(value: Array<number>) { callSDK<void>("CoreNFC_0e503aef608672fa", 3734678945483793, this, [value]); }
+  get blockSecurityStatus(): Array<number> { return callSDK<Array<number>>("CoreNFC_212edf3d13b127f5", 2707987511758375, this, []); }
+  set blockSecurityStatus(value: Array<number>) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3734678945483793, this, [value]); }
   declare readonly $type: { "s:7CoreNFC38NFCISO15693MultipleBlockSecurityStatusV": true };
 }
 
@@ -538,24 +538,24 @@ export class NFCISO15693ReadMultipleBlocksConfiguration extends NFCTagCommandCon
    * init(range: NSRange, chunkSize: Int)
    * @availability iOS 11.0+
    */
-  static initRangeChunkSize(range: SDKHandle, chunkSize: number): NFCISO15693ReadMultipleBlocksConfiguration { return callSDK<NFCISO15693ReadMultipleBlocksConfiguration>("CoreNFC_0e503aef608672fa", 4254250619618849, undefined, [range, chunkSize]); }
+  static initRangeChunkSize(range: SDKHandle, chunkSize: number): NFCISO15693ReadMultipleBlocksConfiguration { return callSDK<NFCISO15693ReadMultipleBlocksConfiguration>("CoreNFC_212edf3d13b127f5", 4254250619618849, undefined, [range, chunkSize]); }
   /**
    * init(range: NSRange, chunkSize: Int, maximumRetries: Int, retryInterval: TimeInterval)
    * @availability iOS 11.0+
    */
-  static initRangeChunkSizeMaximumRetriesRetryInterval(range: SDKHandle, chunkSize: number, maximumRetries: number, retryInterval: number): NFCISO15693ReadMultipleBlocksConfiguration { return callSDK<NFCISO15693ReadMultipleBlocksConfiguration>("CoreNFC_0e503aef608672fa", 1754684384893497, undefined, [range, chunkSize, maximumRetries, retryInterval]); }
+  static initRangeChunkSizeMaximumRetriesRetryInterval(range: SDKHandle, chunkSize: number, maximumRetries: number, retryInterval: number): NFCISO15693ReadMultipleBlocksConfiguration { return callSDK<NFCISO15693ReadMultipleBlocksConfiguration>("CoreNFC_212edf3d13b127f5", 1754684384893497, undefined, [range, chunkSize, maximumRetries, retryInterval]); }
   /**
    * var chunkSize: Int { get set }
    * @availability iOS 11.0+
    */
-  get chunkSize(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 1726282215445730, this, []); }
-  set chunkSize(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 3827696806516257, this, [value]); }
+  get chunkSize(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 1726282215445730, this, []); }
+  set chunkSize(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3827696806516257, this, [value]); }
   /**
    * var range: NSRange { get set }
    * @availability iOS 11.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("CoreNFC_0e503aef608672fa", 2857584029928739, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("CoreNFC_0e503aef608672fa", 546443681215390, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("CoreNFC_212edf3d13b127f5", 2857584029928739, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("CoreNFC_212edf3d13b127f5", 546443681215390, this, [value]); }
   declare readonly $type: { "c:objc(cs)NFCISO15693ReadMultipleBlocksConfiguration": true; "c:objc(cs)NFCTagCommandConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maximumRetries": true; "retryInterval": true; "chunkSize": true; "range": true };
 }
@@ -571,78 +571,78 @@ export const NFCISO15693RequestFlag = {
    * static var address: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    */
-  get address(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 1830356034245661, undefined, []); },
+  get address(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 1830356034245661, undefined, []); },
   /**
    * static var commandSpecificBit8: NFCISO15693RequestFlag { get }
    * @availability iOS 14.0+
    */
-  get commandSpecificBit8(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 3055868844793843, undefined, []); },
+  get commandSpecificBit8(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 3055868844793843, undefined, []); },
   /**
    * static var dualSubCarriers: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    */
-  get dualSubCarriers(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 4065223547100847, undefined, []); },
+  get dualSubCarriers(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 4065223547100847, undefined, []); },
   /**
    * static var highDataRate: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    */
-  get highDataRate(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2331532646473415, undefined, []); },
+  get highDataRate(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2331532646473415, undefined, []); },
   /**
    * static var option: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    */
-  get option(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2490829429383393, undefined, []); },
+  get option(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2490829429383393, undefined, []); },
   /**
    * static var protocolExtension: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    */
-  get protocolExtension(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2260615554952317, undefined, []); },
+  get protocolExtension(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2260615554952317, undefined, []); },
   /**
    * static var select: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    */
-  get select(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2091016043353129, undefined, []); },
+  get select(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2091016043353129, undefined, []); },
   /**
    * static var RequestFlagAddress: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get RequestFlagAddress(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 3978175516782834, undefined, []); },
+  get RequestFlagAddress(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 3978175516782834, undefined, []); },
   /**
    * static var RequestFlagDualSubCarriers: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get RequestFlagDualSubCarriers(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 3874902602986471, undefined, []); },
+  get RequestFlagDualSubCarriers(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 3874902602986471, undefined, []); },
   /**
    * static var RequestFlagHighDataRate: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get RequestFlagHighDataRate(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2848643010741178, undefined, []); },
+  get RequestFlagHighDataRate(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2848643010741178, undefined, []); },
   /**
    * static var RequestFlagOption: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get RequestFlagOption(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2015514728762898, undefined, []); },
+  get RequestFlagOption(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2015514728762898, undefined, []); },
   /**
    * static var RequestFlagProtocolExtension: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get RequestFlagProtocolExtension(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2619098290265194, undefined, []); },
+  get RequestFlagProtocolExtension(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2619098290265194, undefined, []); },
   /**
    * static var RequestFlagSelect: NFCISO15693RequestFlag { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get RequestFlagSelect(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 2485157965917298, undefined, []); },
+  get RequestFlagSelect(): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 2485157965917298, undefined, []); },
   /**
    * init(rawValue: UInt8)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_0e503aef608672fa", 1487090855263595, undefined, [rawValue]); }
+  init(rawValue: number): NFCISO15693RequestFlag { return callSDK<NFCISO15693RequestFlag>("CoreNFC_212edf3d13b127f5", 1487090855263595, undefined, [rawValue]); }
 };
 
 /**
@@ -656,42 +656,42 @@ export const NFCISO15693ResponseFlag = {
    * static var blockSecurityStatusBit5: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get blockSecurityStatusBit5(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 3616671860548685, undefined, []); },
+  get blockSecurityStatusBit5(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 3616671860548685, undefined, []); },
   /**
    * static var blockSecurityStatusBit6: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get blockSecurityStatusBit6(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 3700921534273794, undefined, []); },
+  get blockSecurityStatusBit6(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 3700921534273794, undefined, []); },
   /**
    * static var error: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get error(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 1256377042694053, undefined, []); },
+  get error(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 1256377042694053, undefined, []); },
   /**
    * static var finalResponse: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get finalResponse(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 3978233347479924, undefined, []); },
+  get finalResponse(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 3978233347479924, undefined, []); },
   /**
    * static var protocolExtension: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get protocolExtension(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 3651766195909643, undefined, []); },
+  get protocolExtension(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 3651766195909643, undefined, []); },
   /**
    * static var responseBufferValid: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get responseBufferValid(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 318723959060762, undefined, []); },
+  get responseBufferValid(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 318723959060762, undefined, []); },
   /**
    * static var waitTimeExtension: NFCISO15693ResponseFlag { get }
    * @availability iOS 14.0+
    */
-  get waitTimeExtension(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 2350477655338429, undefined, []); },
+  get waitTimeExtension(): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 2350477655338429, undefined, []); },
   /**
    * init(rawValue: UInt8)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_0e503aef608672fa", 2967387444230179, undefined, [rawValue]); }
+  init(rawValue: number): NFCISO15693ResponseFlag { return callSDK<NFCISO15693ResponseFlag>("CoreNFC_212edf3d13b127f5", 2967387444230179, undefined, [rawValue]); }
 };
 
 /**
@@ -703,38 +703,38 @@ export class NFCISO15693SystemInfo extends SDKHandle {
    * var icReference: Int
    * @availability iOS 14.0+
    */
-  get icReference(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 2376224266943147, this, []); }
-  set icReference(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 2873092053991531, this, [value]); }
+  get icReference(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 2376224266943147, this, []); }
+  set icReference(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2873092053991531, this, [value]); }
   /**
    * var totalBlocks: Int
    * @availability iOS 14.0+
    */
-  get totalBlocks(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3850532481712686, this, []); }
-  set totalBlocks(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 2141722892497348, this, [value]); }
+  get totalBlocks(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3850532481712686, this, []); }
+  set totalBlocks(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2141722892497348, this, [value]); }
   /**
    * var uniqueIdentifier: Data
    * @availability iOS 14.0+
    */
-  get uniqueIdentifier(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 4122962787490896, this, []); }
-  set uniqueIdentifier(value: ArrayBuffer) { callSDK<void>("CoreNFC_0e503aef608672fa", 4148057919047160, this, [value]); }
+  get uniqueIdentifier(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 4122962787490896, this, []); }
+  set uniqueIdentifier(value: ArrayBuffer) { callSDK<void>("CoreNFC_212edf3d13b127f5", 4148057919047160, this, [value]); }
   /**
    * var applicationFamilyIdentifier: Int
    * @availability iOS 14.0+
    */
-  get applicationFamilyIdentifier(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 8049734509403, this, []); }
-  set applicationFamilyIdentifier(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 2874628418263743, this, [value]); }
+  get applicationFamilyIdentifier(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 8049734509403, this, []); }
+  set applicationFamilyIdentifier(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2874628418263743, this, [value]); }
   /**
    * var dataStorageFormatIdentifier: Int
    * @availability iOS 14.0+
    */
-  get dataStorageFormatIdentifier(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3001084941949876, this, []); }
-  set dataStorageFormatIdentifier(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 62555500188946, this, [value]); }
+  get dataStorageFormatIdentifier(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3001084941949876, this, []); }
+  set dataStorageFormatIdentifier(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 62555500188946, this, [value]); }
   /**
    * var blockSize: Int
    * @availability iOS 14.0+
    */
-  get blockSize(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 4317818164620870, this, []); }
-  set blockSize(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 3103841322749159, this, [value]); }
+  get blockSize(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 4317818164620870, this, []); }
+  set blockSize(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3103841322749159, this, [value]); }
   declare readonly $type: { "s:7CoreNFC21NFCISO15693SystemInfoV": true };
 }
 
@@ -750,12 +750,12 @@ export interface NFCISO15693Tag {
    * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
    * @availability iOS 13.0+
    */
-  "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+  "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
   /**
    * func readNDEF() async throws -> NFCNDEFMessage
    * @availability iOS 13.0+
    */
-  "readNDEF"?: () => NFCNDEFMessage;
+  "readNDEF"?: () => Promise<NFCNDEFMessage>;
   /**
    * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
    * @availability iOS 13.0+
@@ -785,7 +785,7 @@ export interface NFCISO15693Tag {
    * func readSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: UInt8) async throws -> Data
    * @availability iOS 13.0+
    */
-  "readSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => ArrayBuffer;
+  "readSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => Promise<ArrayBuffer>;
   /**
    * func writeSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: UInt8, dataBlock: Data) async throws
    * @availability iOS 13.0+
@@ -800,7 +800,7 @@ export interface NFCISO15693Tag {
    * func readMultipleBlocks(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange) async throws -> [Data]
    * @availability iOS 13.0+
    */
-  "readMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Array<ArrayBuffer>;
+  "readMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Promise<Array<ArrayBuffer>>;
   /**
    * func writeMultipleBlocks(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange, dataBlocks: [Data]) async throws
    * @availability iOS 13.0+
@@ -852,17 +852,17 @@ export interface NFCISO15693Tag {
    * func getMultipleBlockSecurityStatus(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange) async throws -> [NSNumber]
    * @availability iOS 13.0+
    */
-  "getMultipleBlockSecurityStatusRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Array<_Foundation_NSNumber>;
+  "getMultipleBlockSecurityStatusRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Promise<Array<_Foundation_NSNumber>>;
   /**
    * func customCommand(requestFlags flags: NFCISO15693RequestFlag, customCommandCode: Int, customRequestParameters: Data) async throws -> Data
    * @availability iOS 13.0+
    */
-  "customCommandRequestFlagsCustomCommandCodeCustomRequestParameters"?: (arg0: NFCISO15693RequestFlag, arg1: number, arg2: ArrayBuffer) => ArrayBuffer;
+  "customCommandRequestFlagsCustomCommandCodeCustomRequestParameters"?: (arg0: NFCISO15693RequestFlag, arg1: number, arg2: ArrayBuffer) => Promise<ArrayBuffer>;
   /**
    * func extendedReadSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: Int) async throws -> Data
    * @availability iOS 13.0+
    */
-  "extendedReadSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => ArrayBuffer;
+  "extendedReadSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => Promise<ArrayBuffer>;
   /**
    * func extendedWriteSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: Int, dataBlock: Data) async throws
    * @availability iOS 13.0+
@@ -877,7 +877,7 @@ export interface NFCISO15693Tag {
    * func extendedReadMultipleBlocks(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange) async throws -> [Data]
    * @availability iOS 13.0+
    */
-  "extendedReadMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Array<ArrayBuffer>;
+  "extendedReadMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Promise<Array<ArrayBuffer>>;
 }
 
 /**
@@ -889,42 +889,42 @@ export class NFCISO7816APDU extends SDKHandle {
    * init?(data: Data)
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): (NFCISO7816APDU) | null { return callSDK<(NFCISO7816APDU) | null>("CoreNFC_0e503aef608672fa", 31991894326629, undefined, [data]); }
+  static initData(data: ArrayBuffer): (NFCISO7816APDU) | null { return callSDK<(NFCISO7816APDU) | null>("CoreNFC_212edf3d13b127f5", 31991894326629, undefined, [data]); }
   /**
    * init(instructionClass: UInt8, instructionCode: UInt8, p1Parameter: UInt8, p2Parameter: UInt8, data: Data, expectedResponseLength: Int)
    * @availability iOS 13.0+
    */
-  static initInstructionClassInstructionCodeP1ParameterP2ParameterDataExpectedResponseLength(instructionClass: number, instructionCode: number, p1Parameter: number, p2Parameter: number, data: ArrayBuffer, expectedResponseLength: number): NFCISO7816APDU { return callSDK<NFCISO7816APDU>("CoreNFC_0e503aef608672fa", 79159083339311, undefined, [instructionClass, instructionCode, p1Parameter, p2Parameter, data, expectedResponseLength]); }
+  static initInstructionClassInstructionCodeP1ParameterP2ParameterDataExpectedResponseLength(instructionClass: number, instructionCode: number, p1Parameter: number, p2Parameter: number, data: ArrayBuffer, expectedResponseLength: number): NFCISO7816APDU { return callSDK<NFCISO7816APDU>("CoreNFC_212edf3d13b127f5", 79159083339311, undefined, [instructionClass, instructionCode, p1Parameter, p2Parameter, data, expectedResponseLength]); }
   /**
    * var data: Data? { get }
    * @availability iOS 13.0+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_0e503aef608672fa", 622420579509761, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_212edf3d13b127f5", 622420579509761, this, []); }
   /**
    * var expectedResponseLength: Int { get }
    * @availability iOS 13.0+
    */
-  get expectedResponseLength(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 1755993505356106, this, []); }
+  get expectedResponseLength(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 1755993505356106, this, []); }
   /**
    * var instructionClass: UInt8 { get }
    * @availability iOS 13.0+
    */
-  get instructionClass(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 503828621402116, this, []); }
+  get instructionClass(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 503828621402116, this, []); }
   /**
    * var instructionCode: UInt8 { get }
    * @availability iOS 13.0+
    */
-  get instructionCode(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3781537573271395, this, []); }
+  get instructionCode(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3781537573271395, this, []); }
   /**
    * var p1Parameter: UInt8 { get }
    * @availability iOS 13.0+
    */
-  get p1Parameter(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 1243764054840347, this, []); }
+  get p1Parameter(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 1243764054840347, this, []); }
   /**
    * var p2Parameter: UInt8 { get }
    * @availability iOS 13.0+
    */
-  get p2Parameter(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 119884285311135, this, []); }
+  get p2Parameter(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 119884285311135, this, []); }
   declare readonly $type: { "c:objc(cs)NFCISO7816APDU": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "expectedResponseLength": true; "instructionClass": true; "instructionCode": true; "p1Parameter": true; "p2Parameter": true };
 }
@@ -938,20 +938,20 @@ export class NFCISO7816ResponseAPDU extends SDKHandle {
    * var statusWord1: UInt8
    * @availability iOS 14.0+
    */
-  get statusWord1(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 2734548695640319, this, []); }
-  set statusWord1(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 2532551301144532, this, [value]); }
+  get statusWord1(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 2734548695640319, this, []); }
+  set statusWord1(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2532551301144532, this, [value]); }
   /**
    * var statusWord2: UInt8
    * @availability iOS 14.0+
    */
-  get statusWord2(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 884727442491459, this, []); }
-  set statusWord2(value: number) { callSDK<void>("CoreNFC_0e503aef608672fa", 3654984514658122, this, [value]); }
+  get statusWord2(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 884727442491459, this, []); }
+  set statusWord2(value: number) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3654984514658122, this, [value]); }
   /**
    * var payload: Data?
    * @availability iOS 14.0+
    */
-  get payload(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_0e503aef608672fa", 63416652171811, this, []); }
-  set payload(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_0e503aef608672fa", 1726599489360449, this, [value]); }
+  get payload(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreNFC_212edf3d13b127f5", 63416652171811, this, []); }
+  set payload(value: (ArrayBuffer) | null) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1726599489360449, this, [value]); }
   declare readonly $type: { "s:7CoreNFC22NFCISO7816ResponseAPDUV": true };
 }
 
@@ -967,12 +967,12 @@ export interface NFCISO7816Tag {
    * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
    * @availability iOS 13.0+
    */
-  "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+  "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
   /**
    * func readNDEF() async throws -> NFCNDEFMessage
    * @availability iOS 13.0+
    */
-  "readNDEF"?: () => NFCNDEFMessage;
+  "readNDEF"?: () => Promise<NFCNDEFMessage>;
   /**
    * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
    * @availability iOS 13.0+
@@ -987,7 +987,7 @@ export interface NFCISO7816Tag {
    * func sendCommand(apdu: NFCISO7816APDU) async throws -> (Data, UInt8, UInt8)
    * @availability iOS 13.0+
    */
-  "sendCommandApdu"?: (arg0: NFCISO7816APDU) => [ArrayBuffer, number, number];
+  "sendCommandApdu"?: (arg0: NFCISO7816APDU) => Promise<[ArrayBuffer, number, number]>;
 }
 
 /**
@@ -1001,7 +1001,7 @@ export const NFCMiFareFamily = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCMiFareFamily) | null { return callSDK<(NFCMiFareFamily) | null>("CoreNFC_0e503aef608672fa", 4498228019240011, undefined, [rawValue]); }
+  init(rawValue: number): (NFCMiFareFamily) | null { return callSDK<(NFCMiFareFamily) | null>("CoreNFC_212edf3d13b127f5", 4498228019240011, undefined, [rawValue]); }
 };
 
 /**
@@ -1016,12 +1016,12 @@ export interface NFCMiFareTag {
    * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
    * @availability iOS 13.0+
    */
-  "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+  "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
   /**
    * func readNDEF() async throws -> NFCNDEFMessage
    * @availability iOS 13.0+
    */
-  "readNDEF"?: () => NFCNDEFMessage;
+  "readNDEF"?: () => Promise<NFCNDEFMessage>;
   /**
    * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
    * @availability iOS 13.0+
@@ -1036,12 +1036,12 @@ export interface NFCMiFareTag {
    * func sendMiFareCommand(commandPacket command: Data) async throws -> Data
    * @availability iOS 13.0+
    */
-  "sendMiFareCommandCommandPacket"?: (arg0: ArrayBuffer) => ArrayBuffer;
+  "sendMiFareCommandCommandPacket"?: (arg0: ArrayBuffer) => Promise<ArrayBuffer>;
   /**
    * func sendMiFareISO7816Command(_ apdu: NFCISO7816APDU) async throws -> (Data, UInt8, UInt8)
    * @availability iOS 13.0+
    */
-  "sendMiFareISO7816Command"?: (arg0: NFCISO7816APDU) => [ArrayBuffer, number, number];
+  "sendMiFareISO7816Command"?: (arg0: NFCISO7816APDU) => Promise<[ArrayBuffer, number, number]>;
 }
 
 /**
@@ -1053,23 +1053,23 @@ export class NFCNDEFMessage extends SDKHandle {
    * convenience init?(data: Data)
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): (NFCNDEFMessage) | null { return callSDK<(NFCNDEFMessage) | null>("CoreNFC_0e503aef608672fa", 4329507422249199, undefined, [data]); }
+  static initData(data: ArrayBuffer): (NFCNDEFMessage) | null { return callSDK<(NFCNDEFMessage) | null>("CoreNFC_212edf3d13b127f5", 4329507422249199, undefined, [data]); }
   /**
    * init(records: [NFCNDEFPayload])
    * @availability iOS 13.0+
    */
-  static initRecords(records: Array<NFCNDEFPayload>): NFCNDEFMessage { return callSDK<NFCNDEFMessage>("CoreNFC_0e503aef608672fa", 1535498388574702, undefined, [records]); }
+  static initRecords(records: Array<NFCNDEFPayload>): NFCNDEFMessage { return callSDK<NFCNDEFMessage>("CoreNFC_212edf3d13b127f5", 1535498388574702, undefined, [records]); }
   /**
    * var length: Int { get }
    * @availability iOS 13.0+
    */
-  get length(): number { return callSDK<number>("CoreNFC_0e503aef608672fa", 3196599891133580, this, []); }
+  get length(): number { return callSDK<number>("CoreNFC_212edf3d13b127f5", 3196599891133580, this, []); }
   /**
    * var records: [NFCNDEFPayload] { get set }
    * @availability iOS 11.0+
    */
-  get records(): Array<NFCNDEFPayload> { return callSDK<Array<NFCNDEFPayload>>("CoreNFC_0e503aef608672fa", 624436298919521, this, []); }
-  set records(value: Array<NFCNDEFPayload>) { callSDK<void>("CoreNFC_0e503aef608672fa", 2132418514895790, this, [value]); }
+  get records(): Array<NFCNDEFPayload> { return callSDK<Array<NFCNDEFPayload>>("CoreNFC_212edf3d13b127f5", 624436298919521, this, []); }
+  set records(value: Array<NFCNDEFPayload>) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2132418514895790, this, [value]); }
   declare readonly $type: { "c:objc(cs)NFCNDEFMessage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "length": true; "records": true };
 }
@@ -1084,66 +1084,66 @@ export class NFCNDEFPayload extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  static wellKnowTypeTextPayload(text: string, locale: _Foundation_Locale): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_0e503aef608672fa", 4087600104275502, undefined, [text, locale]); }
+  static wellKnowTypeTextPayload(text: string, locale: _Foundation_Locale): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_212edf3d13b127f5", 4087600104275502, undefined, [text, locale]); }
   /**
    * class func wellKnownTypeTextPayload(string text: String, locale: Locale) -> Self?
    * @availability iOS 13.0+
    */
-  static wellKnownTypeTextPayloadStringLocale(text: string, locale: _Foundation_Locale): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_0e503aef608672fa", 1212846267237069, undefined, [text, locale]); }
+  static wellKnownTypeTextPayloadStringLocale(text: string, locale: _Foundation_Locale): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_212edf3d13b127f5", 1212846267237069, undefined, [text, locale]); }
   /**
    * class func wellKnownTypeURIPayload(string uri: String) -> Self?
    * @availability iOS 13.0+
    */
-  static wellKnownTypeURIPayloadString(uri: string): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_0e503aef608672fa", 3038172005407337, undefined, [uri]); }
+  static wellKnownTypeURIPayloadString(uri: string): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_212edf3d13b127f5", 3038172005407337, undefined, [uri]); }
   /**
    * class func wellKnownTypeURIPayload(url: URL) -> Self?
    * @availability iOS 13.0+
    */
-  static wellKnownTypeURIPayloadUrl(url: string): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_0e503aef608672fa", 3828014899724135, undefined, [url]); }
+  static wellKnownTypeURIPayloadUrl(url: string): (NFCNDEFPayload) | null { return callSDK<(NFCNDEFPayload) | null>("CoreNFC_212edf3d13b127f5", 3828014899724135, undefined, [url]); }
   /**
    * init(format: NFCTypeNameFormat, type: Data, identifier: Data, payload: Data)
    * @availability iOS 13.0+
    */
-  static initFormatTypeIdentifierPayload(format: NFCTypeNameFormat, type: ArrayBuffer, identifier: ArrayBuffer, payload: ArrayBuffer): NFCNDEFPayload { return callSDK<NFCNDEFPayload>("CoreNFC_0e503aef608672fa", 4030665797567618, undefined, [format, type, identifier, payload]); }
+  static initFormatTypeIdentifierPayload(format: NFCTypeNameFormat, type: ArrayBuffer, identifier: ArrayBuffer, payload: ArrayBuffer): NFCNDEFPayload { return callSDK<NFCNDEFPayload>("CoreNFC_212edf3d13b127f5", 4030665797567618, undefined, [format, type, identifier, payload]); }
   /**
    * init(format: NFCTypeNameFormat, type: Data, identifier: Data, payload: Data, chunkSize: Int)
    * @availability iOS 13.0+
    */
-  static initFormatTypeIdentifierPayloadChunkSize(format: NFCTypeNameFormat, type: ArrayBuffer, identifier: ArrayBuffer, payload: ArrayBuffer, chunkSize: number): NFCNDEFPayload { return callSDK<NFCNDEFPayload>("CoreNFC_0e503aef608672fa", 4394792069764185, undefined, [format, type, identifier, payload, chunkSize]); }
+  static initFormatTypeIdentifierPayloadChunkSize(format: NFCTypeNameFormat, type: ArrayBuffer, identifier: ArrayBuffer, payload: ArrayBuffer, chunkSize: number): NFCNDEFPayload { return callSDK<NFCNDEFPayload>("CoreNFC_212edf3d13b127f5", 4394792069764185, undefined, [format, type, identifier, payload, chunkSize]); }
   /**
    * func wellKnownTypeURIPayload() -> URL?
    * @availability iOS 13.0+
    */
-  wellKnownTypeURIPayload(): (string) | null { return callSDK<(string) | null>("CoreNFC_0e503aef608672fa", 2441430521979576, this, []); }
+  wellKnownTypeURIPayload(): (string) | null { return callSDK<(string) | null>("CoreNFC_212edf3d13b127f5", 2441430521979576, this, []); }
   /**
    * var identifier: Data { get set }
    * @availability iOS 11.0+
    */
-  get identifier(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 1679197298716408, this, []); }
-  set identifier(value: ArrayBuffer) { callSDK<void>("CoreNFC_0e503aef608672fa", 684853416682771, this, [value]); }
+  get identifier(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 1679197298716408, this, []); }
+  set identifier(value: ArrayBuffer) { callSDK<void>("CoreNFC_212edf3d13b127f5", 684853416682771, this, [value]); }
   /**
    * var payload: Data { get set }
    * @availability iOS 11.0+
    */
-  get payload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 1908938987955994, this, []); }
-  set payload(value: ArrayBuffer) { callSDK<void>("CoreNFC_0e503aef608672fa", 703715418898585, this, [value]); }
+  get payload(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 1908938987955994, this, []); }
+  set payload(value: ArrayBuffer) { callSDK<void>("CoreNFC_212edf3d13b127f5", 703715418898585, this, [value]); }
   /**
    * var type: Data { get set }
    * @availability iOS 11.0+
    */
-  get type(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 1128520190519252, this, []); }
-  set type(value: ArrayBuffer) { callSDK<void>("CoreNFC_0e503aef608672fa", 2574261978135691, this, [value]); }
+  get type(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 1128520190519252, this, []); }
+  set type(value: ArrayBuffer) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2574261978135691, this, [value]); }
   /**
    * var typeNameFormat: NFCTypeNameFormat { get set }
    * @availability iOS 11.0+
    */
-  get typeNameFormat(): NFCTypeNameFormat { return callSDK<NFCTypeNameFormat>("CoreNFC_0e503aef608672fa", 3501565689996147, this, []); }
-  set typeNameFormat(value: NFCTypeNameFormat) { callSDK<void>("CoreNFC_0e503aef608672fa", 1051028717274060, this, [value]); }
+  get typeNameFormat(): NFCTypeNameFormat { return callSDK<NFCTypeNameFormat>("CoreNFC_212edf3d13b127f5", 3501565689996147, this, []); }
+  set typeNameFormat(value: NFCTypeNameFormat) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1051028717274060, this, [value]); }
   /**
    * func wellKnownTypeTextPayload() -> (String?, Locale?)
    * @availability iOS 13.0+
    */
-  wellKnownTypeTextPayload(): [(string) | null, (_Foundation_Locale) | null] { return callSDK<[(string) | null, (_Foundation_Locale) | null]>("CoreNFC_0e503aef608672fa", 1768660196938253, this, []); }
+  wellKnownTypeTextPayload(): [(string) | null, (_Foundation_Locale) | null] { return callSDK<[(string) | null, (_Foundation_Locale) | null]>("CoreNFC_212edf3d13b127f5", 1768660196938253, this, []); }
   declare readonly $type: { "c:objc(cs)NFCNDEFPayload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "payload": true; "type": true; "typeNameFormat": true };
 }
@@ -1157,17 +1157,17 @@ export class NFCReaderSession extends SDKHandle {
    * class var readingAvailable: Bool { get }
    * @availability iOS 11.0+
    */
-  static get readingAvailable(): boolean { return callSDK<boolean>("CoreNFC_0e503aef608672fa", 3666525943977981, undefined, []); }
+  static get readingAvailable(): boolean { return callSDK<boolean>("CoreNFC_212edf3d13b127f5", 3666525943977981, undefined, []); }
   /**
    * weak var delegate: AnyObject? { get }
    * @availability iOS 11.0+
    */
-  get delegate(): (unknown) | null { return callSDK<(unknown) | null>("CoreNFC_0e503aef608672fa", 1837780666041688, this, []); }
+  get delegate(): (unknown) | null { return callSDK<(unknown) | null>("CoreNFC_212edf3d13b127f5", 1837780666041688, this, []); }
   /**
    * var sessionQueue: dispatch_queue_t { get }
    * @availability iOS 11.0+
    */
-  get sessionQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("CoreNFC_0e503aef608672fa", 3479910296131288, this, []); }
+  get sessionQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("CoreNFC_212edf3d13b127f5", 3479910296131288, this, []); }
   declare readonly $type: { "c:objc(cs)NFCReaderSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "sessionQueue": true };
 }
@@ -1181,17 +1181,17 @@ export class NFCNDEFReaderSession extends NFCReaderSession {
    * func connect(to tag: any NFCNDEFTag) async throws
    * @availability iOS 13.0+
    */
-  connect(tag: SDKHandle, completionHandler: $SDK13): void { return callSDK<void>("CoreNFC_0e503aef608672fa", 1073124719409899, this, [tag, completionHandler], [null,{"callback":{"out":[]}}]); }
+  connect(tag: SDKHandle, completionHandler: $SDK13): void { return callSDK<void>("CoreNFC_212edf3d13b127f5", 1073124719409899, this, [tag, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(delegate: any NFCNDEFReaderSessionDelegate, queue: dispatch_queue_t?, invalidateAfterFirstRead: Bool)
    * @availability iOS 11.0+
    */
-  static init(delegate: Implements<NFCNDEFReaderSessionDelegate> | SDKHandle, queue: $SDK15, invalidateAfterFirstRead: boolean): NFCNDEFReaderSession { return callSDK<NFCNDEFReaderSession>("CoreNFC_0e503aef608672fa", 1738291236591990, undefined, [delegate, queue, invalidateAfterFirstRead], [{"protocol":"c:objc(pl)NFCNDEFReaderSessionDelegate"},null,null]); }
+  static init(delegate: Implements<NFCNDEFReaderSessionDelegate> | SDKHandle, queue: $SDK15, invalidateAfterFirstRead: boolean): NFCNDEFReaderSession { return callSDK<NFCNDEFReaderSession>("CoreNFC_212edf3d13b127f5", 1738291236591990, undefined, [delegate, queue, invalidateAfterFirstRead], [{"protocol":"c:objc(pl)NFCNDEFReaderSessionDelegate"},null,null]); }
   /**
    * func restartPolling()
    * @availability iOS 13.0+
    */
-  restartPolling(): void { return callSDK<void>("CoreNFC_0e503aef608672fa", 3196439676454903, this, []); }
+  restartPolling(): void { return callSDK<void>("CoreNFC_212edf3d13b127f5", 3196439676454903, this, []); }
   declare readonly $type: { "c:objc(cs)NFCNDEFReaderSession": true; "c:objc(cs)NFCReaderSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "sessionQueue": true };
 }
@@ -1234,7 +1234,7 @@ export const NFCNDEFStatus = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCNDEFStatus) | null { return callSDK<(NFCNDEFStatus) | null>("CoreNFC_0e503aef608672fa", 4419051503460797, undefined, [rawValue]); }
+  init(rawValue: number): (NFCNDEFStatus) | null { return callSDK<(NFCNDEFStatus) | null>("CoreNFC_212edf3d13b127f5", 4419051503460797, undefined, [rawValue]); }
 };
 
 /**
@@ -1249,12 +1249,12 @@ export interface NFCNDEFTag {
    * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
    * @availability iOS 13.0+
    */
-  "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+  "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
   /**
    * func readNDEF() async throws -> NFCNDEFMessage
    * @availability iOS 13.0+
    */
-  "readNDEF"?: () => NFCNDEFMessage;
+  "readNDEF"?: () => Promise<NFCNDEFMessage>;
   /**
    * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
    * @availability iOS 13.0+
@@ -1276,38 +1276,38 @@ export class NFCTagReaderSession extends NFCReaderSession {
    * func restartPolling()
    * @availability iOS 13.0+
    */
-  restartPolling(): void { return callSDK<void>("CoreNFC_0e503aef608672fa", 4273451841062071, this, []); }
+  restartPolling(): void { return callSDK<void>("CoreNFC_212edf3d13b127f5", 4273451841062071, this, []); }
   /**
    * var connectedTag: NFCTag? { get }
    * @availability iOS 13.0+
    */
-  get connectedTag(): (NFCTag) | null { return callSDK<(NFCTag) | null>("CoreNFC_0e503aef608672fa", 3444655900882281, this, []); }
+  get connectedTag(): (NFCTag) | null { return callSDK<(NFCTag) | null>("CoreNFC_212edf3d13b127f5", 3444655900882281, this, []); }
   /**
    * convenience init(configuration: NFCTagReaderSession.Configuration, delegate: any NFCTagReaderSessionDelegate, queue: DispatchQueue? = nil)
    * @availability iOS 26.4+
    */
-  static initConfigurationDelegateQueue(configuration: NFCTagReaderSession_Configuration, delegate: SDKHandle, queue?: $SDK15): NFCTagReaderSession { return callSDK<NFCTagReaderSession>("CoreNFC_0e503aef608672fa", 691512994059730, undefined, [configuration, delegate, queue]); }
+  static initConfigurationDelegateQueue(configuration: NFCTagReaderSession_Configuration, delegate: SDKHandle, queue?: $SDK15): NFCTagReaderSession { return callSDK<NFCTagReaderSession>("CoreNFC_212edf3d13b127f5", 691512994059730, undefined, [configuration, delegate, queue]); }
   /**
    * convenience init?(pollingOption: NFCTagReaderSession.PollingOption, delegate: any NFCTagReaderSessionDelegate, queue: DispatchQueue? = nil)
    * @availability iOS 13.0+
    * @deprecated iOS 26.4
    */
-  static initPollingOptionDelegateQueue(pollingOption: NFCTagReaderSession_PollingOption, delegate: SDKHandle, queue?: $SDK15): (NFCTagReaderSession) | null { return callSDK<(NFCTagReaderSession) | null>("CoreNFC_0e503aef608672fa", 1623123166947695, undefined, [pollingOption, delegate, queue]); }
+  static initPollingOptionDelegateQueue(pollingOption: NFCTagReaderSession_PollingOption, delegate: SDKHandle, queue?: $SDK15): (NFCTagReaderSession) | null { return callSDK<(NFCTagReaderSession) | null>("CoreNFC_212edf3d13b127f5", 1623123166947695, undefined, [pollingOption, delegate, queue]); }
   /**
    * func restartPolling(configuration: NFCTagReaderSession.Configuration)
    * @availability iOS 26.4+
    */
-  restartPollingConfiguration(configuration: NFCTagReaderSession_Configuration): void { return callSDK<void>("CoreNFC_0e503aef608672fa", 1725490124990492, this, [configuration]); }
+  restartPollingConfiguration(configuration: NFCTagReaderSession_Configuration): void { return callSDK<void>("CoreNFC_212edf3d13b127f5", 1725490124990492, this, [configuration]); }
   /**
    * @preconcurrency func connect(to tag: NFCTag, completionHandler: @escaping @Sendable ((any Error)?) -> Void)
    * @availability iOS 13.0+
    */
-  connectToCompletionHandler(tag: NFCTag, completionHandler: $SDK13): void { return callSDK<void>("CoreNFC_0e503aef608672fa", 4355448853115839, this, [tag, completionHandler], [null,{"callback":{"out":[]}}]); }
+  connectToCompletionHandler(tag: NFCTag, completionHandler: $SDK13): void { return callSDK<void>("CoreNFC_212edf3d13b127f5", 4355448853115839, this, [tag, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func connect(to tag: NFCTag) async throws
    * @availability iOS 13.0+
    */
-  connectTo(tag: NFCTag): Promise<void> { return callSDKAsync<void>("CoreNFC_0e503aef608672fa", 2175244528331831, this, [tag]); }
+  connectTo(tag: NFCTag): Promise<void> { return callSDKAsync<void>("CoreNFC_212edf3d13b127f5", 2175244528331831, this, [tag]); }
   declare readonly $type: { "c:objc(cs)NFCTagReaderSession": true; "c:objc(cs)NFCReaderSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "sessionQueue": true };
 }
@@ -1321,7 +1321,7 @@ export class NFCPaymentTagReaderSession extends NFCTagReaderSession {
    * @nonobjc convenience init(delegate: any NFCTagReaderSessionDelegate, queue: DispatchQueue? = nil)
    * @availability iOS 26.0+
    */
-  static init(delegate: SDKHandle, queue?: $SDK15): NFCPaymentTagReaderSession { return callSDK<NFCPaymentTagReaderSession>("CoreNFC_0e503aef608672fa", 781635784960443, undefined, [delegate, queue]); }
+  static init(delegate: SDKHandle, queue?: $SDK15): NFCPaymentTagReaderSession { return callSDK<NFCPaymentTagReaderSession>("CoreNFC_212edf3d13b127f5", 781635784960443, undefined, [delegate, queue]); }
   declare readonly $type: { "c:objc(cs)NFCPaymentTagReaderSession": true; "c:objc(cs)NFCTagReaderSession": true; "c:objc(cs)NFCReaderSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "sessionQueue": true };
 }
@@ -1335,12 +1335,12 @@ export class NFCPresentmentIntentAssertion extends SDKHandle {
    * static func acquire() async throws -> NFCPresentmentIntentAssertion
    * @availability iOS 17.4+
    */
-  static acquire(): Promise<NFCPresentmentIntentAssertion> { return callSDKAsync<NFCPresentmentIntentAssertion>("CoreNFC_0e503aef608672fa", 4099400061899992, undefined, []); }
+  static acquire(): Promise<NFCPresentmentIntentAssertion> { return callSDKAsync<NFCPresentmentIntentAssertion>("CoreNFC_212edf3d13b127f5", 4099400061899992, undefined, []); }
   /**
    * final var isValid: Bool { get }
    * @availability iOS 17.4+
    */
-  get isValid(): boolean { return callSDK<boolean>("CoreNFC_0e503aef608672fa", 3120124169407669, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("CoreNFC_212edf3d13b127f5", 3120124169407669, this, []); }
   declare readonly $type: { "s:7CoreNFC29NFCPresentmentIntentAssertionC": true };
 }
 
@@ -1359,142 +1359,142 @@ export class NFCReaderError extends SDKHandle {
    * static var readerTransceiveErrorPacketTooLong: NFCReaderError.Code { get }
    * @availability iOS 14.0+
    */
-  static get readerTransceiveErrorPacketTooLong(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 2826227244494309, undefined, []); }
+  static get readerTransceiveErrorPacketTooLong(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 2826227244494309, undefined, []); }
   /**
    * static var readerTransceiveErrorRetryExceeded: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerTransceiveErrorRetryExceeded(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 3773108973847589, undefined, []); }
+  static get readerTransceiveErrorRetryExceeded(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 3773108973847589, undefined, []); }
   /**
    * static var readerTransceiveErrorTagNotConnected: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get readerTransceiveErrorTagNotConnected(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 4226199383998820, undefined, []); }
+  static get readerTransceiveErrorTagNotConnected(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 4226199383998820, undefined, []); }
   /**
    * static var readerTransceiveErrorTagConnectionLost: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerTransceiveErrorTagConnectionLost(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 3983728137819327, undefined, []); }
+  static get readerTransceiveErrorTagConnectionLost(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 3983728137819327, undefined, []); }
   /**
    * static var readerTransceiveErrorSessionInvalidated: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get readerTransceiveErrorSessionInvalidated(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1228470396394184, undefined, []); }
+  static get readerTransceiveErrorSessionInvalidated(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1228470396394184, undefined, []); }
   /**
    * static var readerTransceiveErrorTagResponseError: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerTransceiveErrorTagResponseError(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 3956564139235165, undefined, []); }
+  static get readerTransceiveErrorTagResponseError(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 3956564139235165, undefined, []); }
   /**
    * static var ndefReaderSessionErrorTagNotWritable: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get ndefReaderSessionErrorTagNotWritable(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 3767449477845915, undefined, []); }
+  static get ndefReaderSessionErrorTagNotWritable(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 3767449477845915, undefined, []); }
   /**
    * static var ndefReaderSessionErrorTagSizeTooSmall: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get ndefReaderSessionErrorTagSizeTooSmall(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 2592643978097370, undefined, []); }
+  static get ndefReaderSessionErrorTagSizeTooSmall(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 2592643978097370, undefined, []); }
   /**
    * static var ndefReaderSessionErrorTagUpdateFailure: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get ndefReaderSessionErrorTagUpdateFailure(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 89288192628111, undefined, []); }
+  static get ndefReaderSessionErrorTagUpdateFailure(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 89288192628111, undefined, []); }
   /**
    * static var ndefReaderSessionErrorZeroLengthMessage: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get ndefReaderSessionErrorZeroLengthMessage(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1281389743827860, undefined, []); }
+  static get ndefReaderSessionErrorZeroLengthMessage(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1281389743827860, undefined, []); }
   /**
    * static var paymentTagReaderSessionErrorLocationServiceRestricted: NFCReaderError.Code { get }
    * @availability iOS 26.6+
    */
-  static get paymentTagReaderSessionErrorLocationServiceRestricted(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 2603684300617710, undefined, []); }
+  static get paymentTagReaderSessionErrorLocationServiceRestricted(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 2603684300617710, undefined, []); }
   /**
    * static var paymentTagReaderSessionErrorLocationAuthorizationDenied: NFCReaderError.Code { get }
    * @availability iOS 26.6+
    */
-  static get paymentTagReaderSessionErrorLocationAuthorizationDenied(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 138701687493343, undefined, []); }
+  static get paymentTagReaderSessionErrorLocationAuthorizationDenied(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 138701687493343, undefined, []); }
   /**
    * static var paymentTagReaderSessionErrorOnDeviceLocationUnavailable: NFCReaderError.Code { get }
    * @availability iOS 26.6+
    */
-  static get paymentTagReaderSessionErrorOnDeviceLocationUnavailable(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1560817296575409, undefined, []); }
+  static get paymentTagReaderSessionErrorOnDeviceLocationUnavailable(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1560817296575409, undefined, []); }
   /**
    * static var tagCommandConfigurationErrorInvalidParameters: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get tagCommandConfigurationErrorInvalidParameters(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 4336780689824085, undefined, []); }
+  static get tagCommandConfigurationErrorInvalidParameters(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 4336780689824085, undefined, []); }
   /**
    * static var readerSessionInvalidationErrorSystemIsBusy: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerSessionInvalidationErrorSystemIsBusy(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1560132888505817, undefined, []); }
+  static get readerSessionInvalidationErrorSystemIsBusy(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1560132888505817, undefined, []); }
   /**
    * static var readerSessionInvalidationErrorUserCanceled: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerSessionInvalidationErrorUserCanceled(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1602046314845421, undefined, []); }
+  static get readerSessionInvalidationErrorUserCanceled(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1602046314845421, undefined, []); }
   /**
    * static var readerSessionInvalidationErrorFirstNDEFTagRead: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerSessionInvalidationErrorFirstNDEFTagRead(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 2688841718043300, undefined, []); }
+  static get readerSessionInvalidationErrorFirstNDEFTagRead(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 2688841718043300, undefined, []); }
   /**
    * static var readerSessionInvalidationErrorSessionTerminatedUnexpectedly: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerSessionInvalidationErrorSessionTerminatedUnexpectedly(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1647674534196093, undefined, []); }
+  static get readerSessionInvalidationErrorSessionTerminatedUnexpectedly(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1647674534196093, undefined, []); }
   /**
    * static var readerSessionInvalidationErrorSessionTimeout: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerSessionInvalidationErrorSessionTimeout(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 404757295681716, undefined, []); }
+  static get readerSessionInvalidationErrorSessionTimeout(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 404757295681716, undefined, []); }
   /**
    * static var readerErrorIneligible: NFCReaderError.Code { get }
    * @availability iOS 26.0+
    */
-  static get readerErrorIneligible(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 2456087283763643, undefined, []); }
+  static get readerErrorIneligible(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 2456087283763643, undefined, []); }
   /**
    * static var readerErrorRadioDisabled: NFCReaderError.Code { get }
    * @availability iOS 14.0+
    */
-  static get readerErrorRadioDisabled(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1467632357200931, undefined, []); }
+  static get readerErrorRadioDisabled(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1467632357200931, undefined, []); }
   /**
    * static var readerErrorInvalidParameter: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get readerErrorInvalidParameter(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 978791911092370, undefined, []); }
+  static get readerErrorInvalidParameter(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 978791911092370, undefined, []); }
   /**
    * static var readerErrorAccessNotAccepted: NFCReaderError.Code { get }
    * @availability iOS 26.0+
    */
-  static get readerErrorAccessNotAccepted(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1447121035777609, undefined, []); }
+  static get readerErrorAccessNotAccepted(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1447121035777609, undefined, []); }
   /**
    * static var readerErrorSecurityViolation: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerErrorSecurityViolation(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 1012688023501098, undefined, []); }
+  static get readerErrorSecurityViolation(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 1012688023501098, undefined, []); }
   /**
    * static var readerErrorUnsupportedFeature: NFCReaderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get readerErrorUnsupportedFeature(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 2589550033828049, undefined, []); }
+  static get readerErrorUnsupportedFeature(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 2589550033828049, undefined, []); }
   /**
    * static var readerErrorParameterOutOfBound: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get readerErrorParameterOutOfBound(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 3410916778434165, undefined, []); }
+  static get readerErrorParameterOutOfBound(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 3410916778434165, undefined, []); }
   /**
    * static var readerErrorInvalidParameterLength: NFCReaderError.Code { get }
    * @availability iOS 13.0+
    */
-  static get readerErrorInvalidParameterLength(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_0e503aef608672fa", 3407935083213371, undefined, []); }
+  static get readerErrorInvalidParameterLength(): NFCReaderError_Code { return callSDK<NFCReaderError_Code>("CoreNFC_212edf3d13b127f5", 3407935083213371, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CoreNFC_0e503aef608672fa", 4088909162759967, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreNFC_212edf3d13b127f5", 4088909162759967, undefined, []); }
   declare readonly $type: { "s:SC14NFCReaderErrorLeV": true };
 }
 
@@ -1509,7 +1509,7 @@ export const NFCReaderError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (NFCReaderError_Code) | null { return callSDK<(NFCReaderError_Code) | null>("CoreNFC_0e503aef608672fa", 3341927223437077, undefined, [rawValue]); }
+  init(rawValue: number): (NFCReaderError_Code) | null { return callSDK<(NFCReaderError_Code) | null>("CoreNFC_212edf3d13b127f5", 3341927223437077, undefined, [rawValue]); }
 };
 
 /**
@@ -1543,7 +1543,7 @@ export class NFCTag extends SDKHandle {
    * var isAvailable: Bool { get }
    * @availability iOS 13.0+
    */
-  get isAvailable(): boolean { return callSDK<boolean>("CoreNFC_0e503aef608672fa", 3295323553971192, this, []); }
+  get isAvailable(): boolean { return callSDK<boolean>("CoreNFC_212edf3d13b127f5", 3295323553971192, this, []); }
   declare readonly $type: { "s:7CoreNFC6NFCTagO": true };
 }
 
@@ -1556,25 +1556,25 @@ export class NFCTagReaderSession_Configuration extends SDKHandle {
    * init(pollingOption: NFCTagReaderSession.PollingOption, iso7816SelectIdentifiers: [String] = [], feliCaSystemCodes: [String] = [])
    * @availability iOS 26.4+
    */
-  static init(pollingOption: NFCTagReaderSession_PollingOption, iso7816SelectIdentifiers?: Array<string>, feliCaSystemCodes?: Array<string>): NFCTagReaderSession_Configuration { return callSDK<NFCTagReaderSession_Configuration>("CoreNFC_0e503aef608672fa", 4021731886760627, undefined, [pollingOption, iso7816SelectIdentifiers, feliCaSystemCodes]); }
+  static init(pollingOption: NFCTagReaderSession_PollingOption, iso7816SelectIdentifiers?: Array<string>, feliCaSystemCodes?: Array<string>): NFCTagReaderSession_Configuration { return callSDK<NFCTagReaderSession_Configuration>("CoreNFC_212edf3d13b127f5", 4021731886760627, undefined, [pollingOption, iso7816SelectIdentifiers, feliCaSystemCodes]); }
   /**
    * var pollingOption: NFCTagReaderSession.PollingOption
    * @availability iOS 26.4+
    */
-  get pollingOption(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_0e503aef608672fa", 4082907306088173, this, []); }
-  set pollingOption(value: NFCTagReaderSession_PollingOption) { callSDK<void>("CoreNFC_0e503aef608672fa", 4044022163312207, this, [value]); }
+  get pollingOption(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_212edf3d13b127f5", 4082907306088173, this, []); }
+  set pollingOption(value: NFCTagReaderSession_PollingOption) { callSDK<void>("CoreNFC_212edf3d13b127f5", 4044022163312207, this, [value]); }
   /**
    * var feliCaSystemCodes: [String]
    * @availability iOS 26.4+
    */
-  get feliCaSystemCodes(): Array<string> { return callSDK<Array<string>>("CoreNFC_0e503aef608672fa", 137946871617218, this, []); }
-  set feliCaSystemCodes(value: Array<string>) { callSDK<void>("CoreNFC_0e503aef608672fa", 1929942994151759, this, [value]); }
+  get feliCaSystemCodes(): Array<string> { return callSDK<Array<string>>("CoreNFC_212edf3d13b127f5", 137946871617218, this, []); }
+  set feliCaSystemCodes(value: Array<string>) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1929942994151759, this, [value]); }
   /**
    * var iso7816SelectIdentifiers: [String]
    * @availability iOS 26.4+
    */
-  get iso7816SelectIdentifiers(): Array<string> { return callSDK<Array<string>>("CoreNFC_0e503aef608672fa", 517185818161498, this, []); }
-  set iso7816SelectIdentifiers(value: Array<string>) { callSDK<void>("CoreNFC_0e503aef608672fa", 3790117168519353, this, [value]); }
+  get iso7816SelectIdentifiers(): Array<string> { return callSDK<Array<string>>("CoreNFC_212edf3d13b127f5", 517185818161498, this, []); }
+  set iso7816SelectIdentifiers(value: Array<string>) { callSDK<void>("CoreNFC_212edf3d13b127f5", 3790117168519353, this, [value]); }
   declare readonly $type: { "s:So19NFCTagReaderSessionC7CoreNFCE13ConfigurationV": true };
 }
 
@@ -1586,24 +1586,24 @@ export const NFCTagReaderSession_PollingOption = {
    * static var iso14443: NFCTagReaderSession.PollingOption { get }
    * @availability iOS 13.0+
    */
-  get iso14443(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_0e503aef608672fa", 2539821920453831, undefined, []); },
+  get iso14443(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_212edf3d13b127f5", 2539821920453831, undefined, []); },
   /**
    * static var iso15693: NFCTagReaderSession.PollingOption { get }
    * @availability iOS 13.0+
    */
-  get iso15693(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_0e503aef608672fa", 4260576572591001, undefined, []); },
+  get iso15693(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_212edf3d13b127f5", 4260576572591001, undefined, []); },
   /**
    * static var iso18092: NFCTagReaderSession.PollingOption { get }
    * @availability iOS 13.0+
    */
-  get iso18092(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_0e503aef608672fa", 3789019847399793, undefined, []); },
+  get iso18092(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_212edf3d13b127f5", 3789019847399793, undefined, []); },
   /**
    * static var pace: NFCTagReaderSession.PollingOption { get }
    * @availability iOS 16.0+
    */
-  get pace(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_0e503aef608672fa", 924793869829731, undefined, []); },
+  get pace(): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_212edf3d13b127f5", 924793869829731, undefined, []); },
   /** init(rawValue: Int) */
-  init(rawValue: number): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_0e503aef608672fa", 378260829727831, undefined, [rawValue]); }
+  init(rawValue: number): NFCTagReaderSession_PollingOption { return callSDK<NFCTagReaderSession_PollingOption>("CoreNFC_212edf3d13b127f5", 378260829727831, undefined, [rawValue]); }
 };
 
 /**
@@ -1639,7 +1639,7 @@ export const NFCTypeNameFormat = {
    * init?(rawValue: UInt8)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (NFCTypeNameFormat) | null { return callSDK<(NFCTypeNameFormat) | null>("CoreNFC_0e503aef608672fa", 3400542781443208, undefined, [rawValue]); }
+  init(rawValue: number): (NFCTypeNameFormat) | null { return callSDK<(NFCTypeNameFormat) | null>("CoreNFC_212edf3d13b127f5", 3400542781443208, undefined, [rawValue]); }
 };
 
 /**
@@ -1651,25 +1651,25 @@ export class NFCVASCommandConfiguration extends SDKHandle {
    * init(vasMode mode: NFCVASCommandConfiguration.Mode, passTypeIdentifier: String, url: URL?)
    * @availability iOS 13.0+
    */
-  static init(mode: NFCVASCommandConfiguration_Mode, passTypeIdentifier: string, url?: (string) | null): NFCVASCommandConfiguration { return callSDK<NFCVASCommandConfiguration>("CoreNFC_0e503aef608672fa", 2425208439937307, undefined, [mode, passTypeIdentifier, url]); }
+  static init(mode: NFCVASCommandConfiguration_Mode, passTypeIdentifier: string, url?: (string) | null): NFCVASCommandConfiguration { return callSDK<NFCVASCommandConfiguration>("CoreNFC_212edf3d13b127f5", 2425208439937307, undefined, [mode, passTypeIdentifier, url]); }
   /**
    * var mode: NFCVASCommandConfiguration.Mode { get set }
    * @availability iOS 13.0+
    */
-  get mode(): NFCVASCommandConfiguration_Mode { return callSDK<NFCVASCommandConfiguration_Mode>("CoreNFC_0e503aef608672fa", 3708077739146753, this, []); }
-  set mode(value: NFCVASCommandConfiguration_Mode) { callSDK<void>("CoreNFC_0e503aef608672fa", 71154226483582, this, [value]); }
+  get mode(): NFCVASCommandConfiguration_Mode { return callSDK<NFCVASCommandConfiguration_Mode>("CoreNFC_212edf3d13b127f5", 3708077739146753, this, []); }
+  set mode(value: NFCVASCommandConfiguration_Mode) { callSDK<void>("CoreNFC_212edf3d13b127f5", 71154226483582, this, [value]); }
   /**
    * var passTypeIdentifier: String { get set }
    * @availability iOS 13.0+
    */
-  get passTypeIdentifier(): string { return callSDK<string>("CoreNFC_0e503aef608672fa", 3398262991076153, this, []); }
-  set passTypeIdentifier(value: string) { callSDK<void>("CoreNFC_0e503aef608672fa", 2349604718218899, this, [value]); }
+  get passTypeIdentifier(): string { return callSDK<string>("CoreNFC_212edf3d13b127f5", 3398262991076153, this, []); }
+  set passTypeIdentifier(value: string) { callSDK<void>("CoreNFC_212edf3d13b127f5", 2349604718218899, this, [value]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 13.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("CoreNFC_0e503aef608672fa", 687751604072177, this, []); }
-  set url(value: (string) | null) { callSDK<void>("CoreNFC_0e503aef608672fa", 1685091462223300, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("CoreNFC_212edf3d13b127f5", 687751604072177, this, []); }
+  set url(value: (string) | null) { callSDK<void>("CoreNFC_212edf3d13b127f5", 1685091462223300, this, [value]); }
   declare readonly $type: { "c:objc(cs)NFCVASCommandConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mode": true; "passTypeIdentifier": true; "url": true };
 }
@@ -1686,18 +1686,18 @@ export const NFCVASCommandConfiguration_Mode = {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASModeNormal(): NFCVASCommandConfiguration_Mode { return callSDK<NFCVASCommandConfiguration_Mode>("CoreNFC_0e503aef608672fa", 1094895729599271, undefined, []); },
+  get VASModeNormal(): NFCVASCommandConfiguration_Mode { return callSDK<NFCVASCommandConfiguration_Mode>("CoreNFC_212edf3d13b127f5", 1094895729599271, undefined, []); },
   /**
    * static var VASModeURLOnly: NFCVASCommandConfiguration.Mode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASModeURLOnly(): NFCVASCommandConfiguration_Mode { return callSDK<NFCVASCommandConfiguration_Mode>("CoreNFC_0e503aef608672fa", 3205070575284667, undefined, []); },
+  get VASModeURLOnly(): NFCVASCommandConfiguration_Mode { return callSDK<NFCVASCommandConfiguration_Mode>("CoreNFC_212edf3d13b127f5", 3205070575284667, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCVASCommandConfiguration_Mode) | null { return callSDK<(NFCVASCommandConfiguration_Mode) | null>("CoreNFC_0e503aef608672fa", 2286933514520744, undefined, [rawValue]); }
+  init(rawValue: number): (NFCVASCommandConfiguration_Mode) | null { return callSDK<(NFCVASCommandConfiguration_Mode) | null>("CoreNFC_212edf3d13b127f5", 2286933514520744, undefined, [rawValue]); }
 };
 
 /**
@@ -1709,7 +1709,7 @@ export class NFCVASReaderSession extends NFCReaderSession {
    * init(vasCommandConfigurations commandConfigurations: [NFCVASCommandConfiguration], delegate: any NFCVASReaderSessionDelegate, queue: dispatch_queue_t?)
    * @availability iOS 13.0+
    */
-  static init(commandConfigurations: Array<NFCVASCommandConfiguration>, delegate: Implements<NFCVASReaderSessionDelegate> | SDKHandle, queue?: $SDK15): NFCVASReaderSession { return callSDK<NFCVASReaderSession>("CoreNFC_0e503aef608672fa", 2649769750483654, undefined, [commandConfigurations, delegate, queue], [null,{"protocol":"c:objc(pl)NFCVASReaderSessionDelegate"},null]); }
+  static init(commandConfigurations: Array<NFCVASCommandConfiguration>, delegate: Implements<NFCVASReaderSessionDelegate> | SDKHandle, queue?: $SDK15): NFCVASReaderSession { return callSDK<NFCVASReaderSession>("CoreNFC_212edf3d13b127f5", 2649769750483654, undefined, [commandConfigurations, delegate, queue], [null,{"protocol":"c:objc(pl)NFCVASReaderSessionDelegate"},null]); }
   declare readonly $type: { "c:objc(cs)NFCVASReaderSession": true; "c:objc(cs)NFCReaderSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "sessionQueue": true };
 }
@@ -1742,22 +1742,22 @@ export interface NFCVASReaderSessionDelegate {
  */
 export class NFCVASResponse extends SDKHandle {
   /** init() */
-  static init(): NFCVASResponse { return callSDK<NFCVASResponse>("CoreNFC_0e503aef608672fa", 1669621945678703, undefined, []); }
+  static init(): NFCVASResponse { return callSDK<NFCVASResponse>("CoreNFC_212edf3d13b127f5", 1669621945678703, undefined, []); }
   /**
    * var mobileToken: Data { get }
    * @availability iOS 13.0+
    */
-  get mobileToken(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 3793690840891499, this, []); }
+  get mobileToken(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 3793690840891499, this, []); }
   /**
    * var status: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    */
-  get status(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 1542497888014086, this, []); }
+  get status(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 1542497888014086, this, []); }
   /**
    * var vasData: Data { get }
    * @availability iOS 13.0+
    */
-  get vasData(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_0e503aef608672fa", 3860308359427221, this, []); }
+  get vasData(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreNFC_212edf3d13b127f5", 3860308359427221, this, []); }
   declare readonly $type: { "c:objc(cs)NFCVASResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mobileToken": true; "status": true; "vasData": true };
 }
@@ -1774,54 +1774,54 @@ export const NFCVASResponse_ErrorCode = {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeDataNotActivated(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 3925092152273438, undefined, []); },
+  get VASErrorCodeDataNotActivated(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 3925092152273438, undefined, []); },
   /**
    * static var VASErrorCodeDataNotFound: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeDataNotFound(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 4393817393786796, undefined, []); },
+  get VASErrorCodeDataNotFound(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 4393817393786796, undefined, []); },
   /**
    * static var VASErrorCodeIncorrectData: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeIncorrectData(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 540927531944533, undefined, []); },
+  get VASErrorCodeIncorrectData(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 540927531944533, undefined, []); },
   /**
    * static var VASErrorCodeSuccess: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeSuccess(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 2056355628233796, undefined, []); },
+  get VASErrorCodeSuccess(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 2056355628233796, undefined, []); },
   /**
    * static var VASErrorCodeUnsupportedApplicationVersion: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeUnsupportedApplicationVersion(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 3751163318087944, undefined, []); },
+  get VASErrorCodeUnsupportedApplicationVersion(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 3751163318087944, undefined, []); },
   /**
    * static var VASErrorCodeUserIntervention: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeUserIntervention(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 1626005023323061, undefined, []); },
+  get VASErrorCodeUserIntervention(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 1626005023323061, undefined, []); },
   /**
    * static var VASErrorCodeWrongLCField: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeWrongLCField(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 989797419394253, undefined, []); },
+  get VASErrorCodeWrongLCField(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 989797419394253, undefined, []); },
   /**
    * static var VASErrorCodeWrongParameters: NFCVASResponse.ErrorCode { get }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get VASErrorCodeWrongParameters(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_0e503aef608672fa", 89028056517360, undefined, []); },
+  get VASErrorCodeWrongParameters(): NFCVASResponse_ErrorCode { return callSDK<NFCVASResponse_ErrorCode>("CoreNFC_212edf3d13b127f5", 89028056517360, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NFCVASResponse_ErrorCode) | null { return callSDK<(NFCVASResponse_ErrorCode) | null>("CoreNFC_0e503aef608672fa", 1538427000729310, undefined, [rawValue]); }
+  init(rawValue: number): (NFCVASResponse_ErrorCode) | null { return callSDK<(NFCVASResponse_ErrorCode) | null>("CoreNFC_212edf3d13b127f5", 1538427000729310, undefined, [rawValue]); }
 };
 
 export class NSUserActivity extends SDKHandle {
@@ -1829,7 +1829,7 @@ export class NSUserActivity extends SDKHandle {
    * var ndefMessagePayload: NFCNDEFMessage { get }
    * @availability iOS 12.0+
    */
-  get ndefMessagePayload(): NFCNDEFMessage { return callSDK<NFCNDEFMessage>("CoreNFC_0e503aef608672fa", 4339184277809774, this, []); }
+  get ndefMessagePayload(): NFCNDEFMessage { return callSDK<NFCNDEFMessage>("CoreNFC_212edf3d13b127f5", 4339184277809774, this, []); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ndefMessagePayload": true };
 }
@@ -1872,56 +1872,56 @@ export type VASMode = NFCVASCommandConfiguration_Mode;
  * let NFCErrorDomain: String
  * @availability iOS 11.0+
  */
-export const NFCErrorDomain: string = callSDK<string>("CoreNFC_0e503aef608672fa", 3546225591266125, undefined, []);
+export const NFCErrorDomain: string = callSDK<string>("CoreNFC_212edf3d13b127f5", 3546225591266125, undefined, []);
 
 /**
  * let NFCISO15693TagResponseErrorKey: String
  * @availability iOS 11.0+
  */
-export const NFCISO15693TagResponseErrorKey: string = callSDK<string>("CoreNFC_0e503aef608672fa", 4462033727833379, undefined, []);
+export const NFCISO15693TagResponseErrorKey: string = callSDK<string>("CoreNFC_212edf3d13b127f5", 4462033727833379, undefined, []);
 
 /**
  * let NFCTagResponseUnexpectedLengthErrorKey: String
  * @availability iOS 13.0+
  */
-export const NFCTagResponseUnexpectedLengthErrorKey: string = callSDK<string>("CoreNFC_0e503aef608672fa", 343201229384173, undefined, []);
+export const NFCTagResponseUnexpectedLengthErrorKey: string = callSDK<string>("CoreNFC_212edf3d13b127f5", 343201229384173, undefined, []);
 
-registerSDKClass("CoreNFC.CardSession", CardSession, { module: "CoreNFC_0e503aef608672fa", properties: {}, methods: {"invalidate":{"id":2344847152986314},"stopEmulation":{"id":2300060222606938},"startEmulation":{"id":1326317869591614}} });
-registerSDKClass("CoreNFC.CardSession.APDU", CardSession_APDU, { module: "CoreNFC_0e503aef608672fa", properties: {}, methods: {"respond":{"id":295338350705852}} });
-registerSDKClass("CoreNFC.CardSession.Event", CardSession_Event, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.CardSession.EventStream", CardSession_EventStream, { module: "CoreNFC_0e503aef608672fa", properties: {}, methods: {"makeAsyncIterator":{"id":3416351221066565}} });
-registerSDKClass("CoreNFC.CardSession.EventStream.Iterator", CardSession_EventStream_Iterator, { module: "CoreNFC_0e503aef608672fa", properties: {}, methods: {"next":{"id":3616440387959993}} });
-registerSDKClass("CoreNFC.NFCFeliCaPollingResponse", NFCFeliCaPollingResponse, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.NFCFeliCaRequestSpecificationVersionResponse", NFCFeliCaRequestSpecificationVersionResponse, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.NFCFeliCaRequsetServiceV2Response", NFCFeliCaRequsetServiceV2Response, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.NFCFeliCaStatusFlag", NFCFeliCaStatusFlag, { module: "CoreNFC_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreNFC.CardSession", CardSession, { module: "CoreNFC_212edf3d13b127f5", properties: {}, methods: {"invalidate":{"id":2344847152986314},"stopEmulation":{"id":2300060222606938},"startEmulation":{"id":1326317869591614}} });
+registerSDKClass("CoreNFC.CardSession.APDU", CardSession_APDU, { module: "CoreNFC_212edf3d13b127f5", properties: {}, methods: {"respond":{"id":295338350705852}} });
+registerSDKClass("CoreNFC.CardSession.Event", CardSession_Event, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.CardSession.EventStream", CardSession_EventStream, { module: "CoreNFC_212edf3d13b127f5", properties: {}, methods: {"makeAsyncIterator":{"id":3416351221066565}} });
+registerSDKClass("CoreNFC.CardSession.EventStream.Iterator", CardSession_EventStream_Iterator, { module: "CoreNFC_212edf3d13b127f5", properties: {}, methods: {"next":{"id":3616440387959993}} });
+registerSDKClass("CoreNFC.NFCFeliCaPollingResponse", NFCFeliCaPollingResponse, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.NFCFeliCaRequestSpecificationVersionResponse", NFCFeliCaRequestSpecificationVersionResponse, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.NFCFeliCaRequsetServiceV2Response", NFCFeliCaRequsetServiceV2Response, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.NFCFeliCaStatusFlag", NFCFeliCaStatusFlag, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("c:objc(pl)NFCFeliCaTag", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)","queryNDEFStatus":"queryNDEFStatus()","readNDEF":"readNDEF()","writeNDEF":"writeNDEF(_:)","writeLock":"writeLock()","pollingSystemCodeRequestCodeTimeSlot":"polling(systemCode:requestCode:timeSlot:)","requestServiceNodeCodeList":"requestService(nodeCodeList:)","requestResponse":"requestResponse()","readWithoutEncryptionServiceCodeListBlockList":"readWithoutEncryption(serviceCodeList:blockList:)","writeWithoutEncryptionServiceCodeListBlockListBlockData":"writeWithoutEncryption(serviceCodeList:blockList:blockData:)","requestSystemCode":"requestSystemCode()","requestServiceV2NodeCodeList":"requestServiceV2(nodeCodeList:)","requestSpecificationVersion":"requestSpecificationVersion()","resetMode":"resetMode()","sendFeliCaCommandCommandPacket":"sendFeliCaCommand(commandPacket:)"});
-registerSDKClass("NFCTagCommandConfiguration", NFCTagCommandConfiguration, { module: "CoreNFC_0e503aef608672fa", properties: {"maximumRetries":3696664591938215,"retryInterval":2324926643039488} });
-registerSDKClass("NFCISO15693CustomCommandConfiguration", NFCISO15693CustomCommandConfiguration, { module: "CoreNFC_0e503aef608672fa", properties: {"customCommandCode":3170353773751126,"manufacturerCode":4241629681445338,"requestParameters":3168165381053202} });
-registerSDKClass("CoreNFC.NFCISO15693MultipleBlockSecurityStatus", NFCISO15693MultipleBlockSecurityStatus, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("NFCISO15693ReadMultipleBlocksConfiguration", NFCISO15693ReadMultipleBlocksConfiguration, { module: "CoreNFC_0e503aef608672fa", properties: {"chunkSize":1726282215445730,"range":2857584029928739} });
-registerSDKClass("CoreNFC.NFCISO15693SystemInfo", NFCISO15693SystemInfo, { module: "CoreNFC_0e503aef608672fa", properties: {} });
+registerSDKClass("NFCTagCommandConfiguration", NFCTagCommandConfiguration, { module: "CoreNFC_212edf3d13b127f5", properties: {"maximumRetries":3696664591938215,"retryInterval":2324926643039488} });
+registerSDKClass("NFCISO15693CustomCommandConfiguration", NFCISO15693CustomCommandConfiguration, { module: "CoreNFC_212edf3d13b127f5", properties: {"customCommandCode":3170353773751126,"manufacturerCode":4241629681445338,"requestParameters":3168165381053202} });
+registerSDKClass("CoreNFC.NFCISO15693MultipleBlockSecurityStatus", NFCISO15693MultipleBlockSecurityStatus, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("NFCISO15693ReadMultipleBlocksConfiguration", NFCISO15693ReadMultipleBlocksConfiguration, { module: "CoreNFC_212edf3d13b127f5", properties: {"chunkSize":1726282215445730,"range":2857584029928739} });
+registerSDKClass("CoreNFC.NFCISO15693SystemInfo", NFCISO15693SystemInfo, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("c:objc(pl)NFCISO15693Tag", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)","queryNDEFStatus":"queryNDEFStatus()","readNDEF":"readNDEF()","writeNDEF":"writeNDEF(_:)","writeLock":"writeLock()","sendCustomCommandCommandConfigurationCompletionHandler":"sendCustomCommand(commandConfiguration:completionHandler:)","readMultipleBlockReadConfigurationCompletionHandler":"readMultipleBlock(readConfiguration:completionHandler:)","stayQuiet":"stayQuiet()","readSingleBlockRequestFlagsBlockNumber":"readSingleBlock(requestFlags:blockNumber:)","writeSingleBlockRequestFlagsBlockNumberDataBlock":"writeSingleBlock(requestFlags:blockNumber:dataBlock:)","lockBlockRequestFlagsBlockNumber":"lockBlock(requestFlags:blockNumber:)","readMultipleBlocksRequestFlagsBlockRange":"readMultipleBlocks(requestFlags:blockRange:)","writeMultipleBlocksRequestFlagsBlockRangeDataBlocks":"writeMultipleBlocks(requestFlags:blockRange:dataBlocks:)","selectRequestFlags":"select(requestFlags:)","resetToReadyRequestFlags":"resetToReady(requestFlags:)","writeAFIRequestFlagsAfi":"writeAFI(requestFlags:afi:)","lockAFIRequestFlags":"lockAFI(requestFlags:)","writeDSFIDRequestFlagsDsfid":"writeDSFID(requestFlags:dsfid:)","lockDFSIDRequestFlagsCompletionHandler":"lockDFSID(requestFlags:completionHandler:)","lockDSFIDRequestFlags":"lockDSFID(requestFlags:)","getSystemInfoRequestFlagsCompletionHandler":"getSystemInfo(requestFlags:completionHandler:)","getMultipleBlockSecurityStatusRequestFlagsBlockRange":"getMultipleBlockSecurityStatus(requestFlags:blockRange:)","customCommandRequestFlagsCustomCommandCodeCustomRequestParameters":"customCommand(requestFlags:customCommandCode:customRequestParameters:)","extendedReadSingleBlockRequestFlagsBlockNumber":"extendedReadSingleBlock(requestFlags:blockNumber:)","extendedWriteSingleBlockRequestFlagsBlockNumberDataBlock":"extendedWriteSingleBlock(requestFlags:blockNumber:dataBlock:)","extendedLockBlockRequestFlagsBlockNumber":"extendedLockBlock(requestFlags:blockNumber:)","extendedReadMultipleBlocksRequestFlagsBlockRange":"extendedReadMultipleBlocks(requestFlags:blockRange:)"});
-registerSDKClass("NFCISO7816APDU", NFCISO7816APDU, { module: "CoreNFC_0e503aef608672fa", properties: {"data":622420579509761,"expectedResponseLength":1755993505356106,"instructionClass":503828621402116,"instructionCode":3781537573271395,"p1Parameter":1243764054840347,"p2Parameter":119884285311135} });
-registerSDKClass("CoreNFC.NFCISO7816ResponseAPDU", NFCISO7816ResponseAPDU, { module: "CoreNFC_0e503aef608672fa", properties: {} });
+registerSDKClass("NFCISO7816APDU", NFCISO7816APDU, { module: "CoreNFC_212edf3d13b127f5", properties: {"data":622420579509761,"expectedResponseLength":1755993505356106,"instructionClass":503828621402116,"instructionCode":3781537573271395,"p1Parameter":1243764054840347,"p2Parameter":119884285311135} });
+registerSDKClass("CoreNFC.NFCISO7816ResponseAPDU", NFCISO7816ResponseAPDU, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("c:objc(pl)NFCISO7816Tag", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)","queryNDEFStatus":"queryNDEFStatus()","readNDEF":"readNDEF()","writeNDEF":"writeNDEF(_:)","writeLock":"writeLock()","sendCommandApdu":"sendCommand(apdu:)"});
 registerSDKProtocol("c:objc(pl)NFCMiFareTag", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)","queryNDEFStatus":"queryNDEFStatus()","readNDEF":"readNDEF()","writeNDEF":"writeNDEF(_:)","writeLock":"writeLock()","sendMiFareCommandCommandPacket":"sendMiFareCommand(commandPacket:)","sendMiFareISO7816Command":"sendMiFareISO7816Command(_:)"});
-registerSDKClass("NFCNDEFMessage", NFCNDEFMessage, { module: "CoreNFC_0e503aef608672fa", properties: {"length":3196599891133580,"records":624436298919521} });
-registerSDKClass("NFCNDEFPayload", NFCNDEFPayload, { module: "CoreNFC_0e503aef608672fa", properties: {"identifier":1679197298716408,"payload":1908938987955994,"type":1128520190519252,"typeNameFormat":3501565689996147}, methods: {"wellKnownTypeURIPayload":{"id":2441430521979576},"wellKnownTypeTextPayload":{"id":1768660196938253}} });
-registerSDKClass("NFCReaderSession", NFCReaderSession, { module: "CoreNFC_0e503aef608672fa", properties: {"delegate":1837780666041688,"sessionQueue":3479910296131288} });
-registerSDKClass("NFCNDEFReaderSession", NFCNDEFReaderSession, { module: "CoreNFC_0e503aef608672fa", properties: {}, methods: {"connect":{"id":1073124719409899,"hints":[null,{"callback":{"out":[]}}]},"restartPolling":{"id":3196439676454903}} });
+registerSDKClass("NFCNDEFMessage", NFCNDEFMessage, { module: "CoreNFC_212edf3d13b127f5", properties: {"length":3196599891133580,"records":624436298919521} });
+registerSDKClass("NFCNDEFPayload", NFCNDEFPayload, { module: "CoreNFC_212edf3d13b127f5", properties: {"identifier":1679197298716408,"payload":1908938987955994,"type":1128520190519252,"typeNameFormat":3501565689996147}, methods: {"wellKnownTypeURIPayload":{"id":2441430521979576},"wellKnownTypeTextPayload":{"id":1768660196938253}} });
+registerSDKClass("NFCReaderSession", NFCReaderSession, { module: "CoreNFC_212edf3d13b127f5", properties: {"delegate":1837780666041688,"sessionQueue":3479910296131288} });
+registerSDKClass("NFCNDEFReaderSession", NFCNDEFReaderSession, { module: "CoreNFC_212edf3d13b127f5", properties: {}, methods: {"connect":{"id":1073124719409899,"hints":[null,{"callback":{"out":[]}}]},"restartPolling":{"id":3196439676454903}} });
 registerSDKProtocol("c:objc(pl)NFCNDEFReaderSessionDelegate", {"readerSessionDidInvalidateWithError":"readerSession(_:didInvalidateWithError:)","readerSessionDidDetectNDEFs":"readerSession(_:didDetectNDEFs:)","readerSessionDidDetect":"readerSession(_:didDetect:)","readerSessionDidBecomeActive":"readerSessionDidBecomeActive(_:)"});
 registerSDKProtocol("c:objc(pl)NFCNDEFTag", {"copyWith":"copy(with:)","encodeWith":"encode(with:)","initCoder":"init(coder:)","queryNDEFStatus":"queryNDEFStatus()","readNDEF":"readNDEF()","writeNDEF":"writeNDEF(_:)","writeLock":"writeLock()"});
-registerSDKClass("NFCTagReaderSession", NFCTagReaderSession, { module: "CoreNFC_0e503aef608672fa", properties: {}, methods: {"restartPolling":{"id":4273451841062071},"restartPollingConfiguration":{"id":1725490124990492},"connectToCompletionHandler":{"id":4355448853115839,"hints":[null,{"callback":{"out":[]}}]},"connectTo":{"id":2175244528331831}} });
-registerSDKClass("NFCPaymentTagReaderSession", NFCPaymentTagReaderSession, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.NFCPresentmentIntentAssertion", NFCPresentmentIntentAssertion, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.NFCReaderError", NFCReaderError, { module: "CoreNFC_0e503aef608672fa", properties: {} });
+registerSDKClass("NFCTagReaderSession", NFCTagReaderSession, { module: "CoreNFC_212edf3d13b127f5", properties: {}, methods: {"restartPolling":{"id":4273451841062071},"restartPollingConfiguration":{"id":1725490124990492},"connectToCompletionHandler":{"id":4355448853115839,"hints":[null,{"callback":{"out":[]}}]},"connectTo":{"id":2175244528331831}} });
+registerSDKClass("NFCPaymentTagReaderSession", NFCPaymentTagReaderSession, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.NFCPresentmentIntentAssertion", NFCPresentmentIntentAssertion, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.NFCReaderError", NFCReaderError, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("c:objc(pl)NFCReaderSession", {"begin":"begin()","invalidate":"invalidate()","invalidateErrorMessage":"invalidate(errorMessage:)"});
-registerSDKClass("CoreNFC.NFCTag", NFCTag, { module: "CoreNFC_0e503aef608672fa", properties: {} });
-registerSDKClass("CoreNFC.NFCTagReaderSession.Configuration", NFCTagReaderSession_Configuration, { module: "CoreNFC_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreNFC.NFCTag", NFCTag, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreNFC.NFCTagReaderSession.Configuration", NFCTagReaderSession_Configuration, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:7CoreNFC27NFCTagReaderSessionDelegateP", {"tagReaderSessionDidBecomeActive":"tagReaderSessionDidBecomeActive(_:)","tagReaderSessionDidInvalidateWithError":"tagReaderSession(_:didInvalidateWithError:)","tagReaderSessionDidDetect":"tagReaderSession(_:didDetect:)"});
-registerSDKClass("NFCVASCommandConfiguration", NFCVASCommandConfiguration, { module: "CoreNFC_0e503aef608672fa", properties: {"mode":3708077739146753,"passTypeIdentifier":3398262991076153,"url":687751604072177} });
-registerSDKClass("NFCVASReaderSession", NFCVASReaderSession, { module: "CoreNFC_0e503aef608672fa", properties: {} });
+registerSDKClass("NFCVASCommandConfiguration", NFCVASCommandConfiguration, { module: "CoreNFC_212edf3d13b127f5", properties: {"mode":3708077739146753,"passTypeIdentifier":3398262991076153,"url":687751604072177} });
+registerSDKClass("NFCVASReaderSession", NFCVASReaderSession, { module: "CoreNFC_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("c:objc(pl)NFCVASReaderSessionDelegate", {"readerSessionDidBecomeActive":"readerSessionDidBecomeActive(_:)","readerSessionDidInvalidateWithError":"readerSession(_:didInvalidateWithError:)","readerSessionDidReceive":"readerSession(_:didReceive:)"});
-registerSDKClass("NFCVASResponse", NFCVASResponse, { module: "CoreNFC_0e503aef608672fa", properties: {"mobileToken":3793690840891499,"status":1542497888014086,"vasData":3860308359427221} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "CoreNFC_0e503aef608672fa", properties: {"ndefMessagePayload":4339184277809774} }, true);
+registerSDKClass("NFCVASResponse", NFCVASResponse, { module: "CoreNFC_212edf3d13b127f5", properties: {"mobileToken":3793690840891499,"status":1542497888014086,"vasData":3860308359427221} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "CoreNFC_212edf3d13b127f5", properties: {"ndefMessagePayload":4339184277809774} }, true);

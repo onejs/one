@@ -408,7 +408,7 @@ export interface NotificationsForwarding_AccessoryNotificationsHandler {
      * func addNotification(_ notification: AccessoryNotification, alertingContext: AlertingContext) async throws -> Bool
      * @availability iOS 26.5+
      */
-    "addNotificationAlertingContext"?: (arg0: AccessoryNotification, arg1: AlertingContext) => boolean;
+    "addNotificationAlertingContext"?: (arg0: AccessoryNotification, arg1: AlertingContext) => Promise<boolean>;
     /**
      * func updateNotification(_ notification: AccessoryNotification)
      * @availability iOS 26.5+

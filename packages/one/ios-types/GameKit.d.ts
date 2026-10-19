@@ -2639,7 +2639,7 @@ export interface GKLocalPlayerListener {
      * optional func player(_ player: GKPlayer, wantsToPlay activity: GKGameActivity) async -> Bool
      * @availability iOS 26.0+
      */
-    "playerWantsToPlay"?: (arg0: GKPlayer, arg1: GKGameActivity | GKChallenge) => boolean | void;
+    "playerWantsToPlay"?: (arg0: GKPlayer, arg1: GKGameActivity | GKChallenge) => Promise<boolean> | void;
     /**
      * optional func player(_ player: GKPlayer, didReceive challenge: GKChallenge)
      * @availability iOS 7.0+

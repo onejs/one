@@ -36,7 +36,7 @@ export declare class InsightEvaluation<InsightResult = unknown> extends SDKHandl
      * final func reportConsumption(_ status: InsightEvaluationConsumptionStatus, insightsUsed: [any TrustInsight] = [])
      * @availability iOS 27.0+
      */
-    reportConsumption(status: InsightEvaluationConsumptionStatus): void;
+    reportConsumptionInsightsUsed(status: InsightEvaluationConsumptionStatus, insightsUsed?: Array<SDKHandle>): void;
     /**
      * final func reportConsumption(_ status: InsightEvaluationConsumptionStatus, insightIDsUsed: [String])
      * @availability iOS 27.0+

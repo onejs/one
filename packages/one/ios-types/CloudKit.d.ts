@@ -13,47 +13,48 @@ type $SDK15 = ((arg0: (CKUserIdentity) | null, arg1: (NativeError) | null) => vo
 type $SDK17 = ((arg0: (CKShare_Participant) | null, arg1: (NativeError) | null) => void);
 type $SDK18 = ((arg0: (CKRecord_ID) | null, arg1: (NativeError) | null) => void);
 type $SDK19 = ((arg0: CKContainer_ApplicationPermissionStatus, arg1: (NativeError) | null) => void);
-type $SDK21 = Record<string, SDKHandle>;
-type $SDK22 = Record<string, CKUserIdentity>;
-type $SDK24 = NativeMap<CKRecord_ID, SDKHandle>;
-type $SDK26 = Array<CKUserIdentity_LookupInfo>;
-type $SDK27 = ((arg0: SDKHandle) => void);
-type $SDK31 = ((arg0: CKContainer_ApplicationPermissionStatus, arg1: (NativeError) | null) => Promise<void>);
-type $SDK35 = ((arg0: (CKRecord) | null, arg1: (NativeError) | null) => void);
-type $SDK36 = ((arg0: (CKRecordZone) | null, arg1: (NativeError) | null) => void);
-type $SDK37 = (CKRecordZone_ID) | null;
-type $SDK39 = ((arg0: (CKSubscription) | null, arg1: (NativeError) | null) => void);
-type $SDK44 = (CKServerChangeToken) | null;
-type $SDK49 = {
+type $SDK22 = Record<string, SDKHandle>;
+type $SDK23 = Record<string, CKUserIdentity>;
+type $SDK25 = NativeMap<CKRecord_ID, SDKHandle>;
+type $SDK27 = Array<CKUserIdentity_LookupInfo>;
+type $SDK28 = ((arg0: SDKHandle) => void);
+type $SDK32 = ((arg0: CKContainer_ApplicationPermissionStatus, arg1: (NativeError) | null) => Promise<void>);
+type $SDK36 = ((arg0: (CKRecord) | null, arg1: (NativeError) | null) => void);
+type $SDK37 = ((arg0: (CKRecordZone) | null, arg1: (NativeError) | null) => void);
+type $SDK38 = (CKRecordZone_ID) | null;
+type $SDK40 = ((arg0: (CKSubscription) | null, arg1: (NativeError) | null) => void);
+type $SDK46 = (CKServerChangeToken) | null;
+type $SDK51 = {
     "matchResults": Array<[CKRecord_ID, SDKHandle]>;
     "queryCursor": (CKQueryOperation_Cursor) | null;
 };
-type $SDK53 = (CKSubscription_NotificationInfo) | null;
-type $SDK63 = (((arg0: CKRecordZone_ID) => Promise<void>)) | null;
-type $SDK64 = (((arg0: CKRecordZone_ID) => void)) | null;
-type $SDK67 = (((arg0: CKRecord) => Promise<void>)) | null;
-type $SDK68 = (((arg0: CKRecord) => void)) | null;
-type $SDK77 = (Array<CKRecord_ID>) | null;
-type $SDK78 = (((arg0: CKRecord_ID, arg1: SDKHandle) => Promise<void>)) | null;
-type $SDK79 = (((arg0: CKRecord_ID, arg1: SDKHandle) => void)) | null;
-type $SDK80 = (NativeMap<CKRecordZone_ID, CKFetchRecordZoneChangesOperation_ZoneOptions>) | null;
-type $SDK81 = (NativeMap<CKRecordZone_ID, CKFetchRecordZoneChangesOperation_ZoneConfiguration>) | null;
-type $SDK86 = (Array<CKRecordZone_ID>) | null;
-type $SDK87 = (((arg0: CKRecordZone_ID, arg1: SDKHandle) => Promise<void>)) | null;
-type $SDK88 = (((arg0: CKRecordZone_ID, arg1: SDKHandle) => void)) | null;
-type $SDK95 = (((arg0: string, arg1: SDKHandle) => Promise<void>)) | null;
-type $SDK96 = (((arg0: string, arg1: SDKHandle) => void)) | null;
-type $SDK99 = (Array<CKUserIdentity_LookupInfo>) | null;
-type $SDK112 = (Array<CKRecord>) | null;
-type $SDK115 = (Array<CKRecordZone>) | null;
-type $SDK116 = (Array<CKSubscription>) | null;
-type $SDK119 = (Array<_Foundation_NSSortDescriptor>) | null;
-type $SDK124 = (globalThis.Date) | null;
-type $SDK126 = (CKRecord_Reference) | null;
-type $SDK128 = Array<CKShare_AccessRequester>;
-type $SDK133 = (CKSyncEngine_State_Serialization) | null;
-type $SDK142 = Array<CKSyncEngine_PendingDatabaseChange>;
-type $SDK143 = Array<CKSyncEngine_PendingRecordZoneChange>;
+type $SDK55 = (CKSubscription_NotificationInfo) | null;
+type $SDK65 = (((arg0: CKRecordZone_ID) => Promise<void>)) | null;
+type $SDK66 = (((arg0: CKRecordZone_ID) => void)) | null;
+type $SDK69 = (((arg0: CKRecord) => Promise<void>)) | null;
+type $SDK70 = (((arg0: CKRecord) => void)) | null;
+type $SDK79 = (Array<CKRecord_ID>) | null;
+type $SDK80 = (((arg0: CKRecord_ID, arg1: SDKHandle) => Promise<void>)) | null;
+type $SDK81 = (((arg0: CKRecord_ID, arg1: SDKHandle) => void)) | null;
+type $SDK82 = (NativeMap<CKRecordZone_ID, CKFetchRecordZoneChangesOperation_ZoneOptions>) | null;
+type $SDK83 = (NativeMap<CKRecordZone_ID, CKFetchRecordZoneChangesOperation_ZoneConfiguration>) | null;
+type $SDK88 = (Array<CKRecordZone_ID>) | null;
+type $SDK89 = (((arg0: CKRecordZone_ID, arg1: SDKHandle) => Promise<void>)) | null;
+type $SDK90 = (((arg0: CKRecordZone_ID, arg1: SDKHandle) => void)) | null;
+type $SDK97 = (((arg0: string, arg1: SDKHandle) => Promise<void>)) | null;
+type $SDK98 = (((arg0: string, arg1: SDKHandle) => void)) | null;
+type $SDK101 = (Array<CKUserIdentity_LookupInfo>) | null;
+type $SDK114 = (Array<CKRecord>) | null;
+type $SDK117 = (Array<CKRecordZone>) | null;
+type $SDK118 = (Array<CKSubscription>) | null;
+type $SDK121 = (Array<_Foundation_NSSortDescriptor>) | null;
+type $SDK126 = (globalThis.Date) | null;
+type $SDK128 = (CKRecord_Reference) | null;
+type $SDK130 = Array<CKShare_AccessRequester>;
+type $SDK134 = CKShareTransferRepresentation_ExportedShare<string>;
+type $SDK136 = (CKSyncEngine_State_Serialization) | null;
+type $SDK145 = Array<CKSyncEngine_PendingDatabaseChange>;
+type $SDK146 = Array<CKSyncEngine_PendingRecordZoneChange>;
 /**
  * class CKOperation
  * @availability iOS 8.0+
@@ -432,18 +433,23 @@ export declare class CKContainer extends SDKHandle {
      * @discardableResult func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: (CKContainer) throws -> R) rethrows -> R
      * @availability iOS 15.0+
      */
-    configuredWith(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => unknown)): unknown;
+    configuredWithConfigurationGroupBody(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => unknown)): unknown;
+    /**
+     * @discardableResult @preconcurrency func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: @Sendable (CKContainer) async throws -> R) async rethrows -> R
+     * @availability iOS 15.0+
+     */
+    configuredWithConfigurationGroupBody21466(configuration: $SDK0, group: $SDK1, body: ((arg0: CKContainer) => Promise<unknown>)): Promise<unknown>;
     /**
      * func shareMetadatas(for urls: [URL]) async throws -> [URL : Result<CKShare.Metadata, any Error>]
      * @availability iOS 15.0+
      */
-    shareMetadatas(urls: Array<string>): Promise<$SDK21>;
+    shareMetadatas(urls: Array<string>): Promise<$SDK22>;
     /**
      * func userIdentities(forPhoneNumbers phoneNumbers: [String]) async throws -> [String : CKUserIdentity]
      * @availability iOS 15.0+
      * @deprecated iOS 17.0
      */
-    userIdentitiesForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK22>;
+    userIdentitiesForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK23>;
     /**
      * func userIdentities(forUserRecordIDs userRecordIDs: [CKRecord.ID]) async throws -> [CKRecord.ID : CKUserIdentity]
      * @availability iOS 15.0+
@@ -455,7 +461,7 @@ export declare class CKContainer extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 17.0
      */
-    userIdentitiesForEmailAddresses(emails: Array<string>): Promise<$SDK22>;
+    userIdentitiesForEmailAddresses(emails: Array<string>): Promise<$SDK23>;
     /**
      * func shareParticipant(forPhoneNumber phoneNumber: String) async throws -> CKShare.Participant
      * @availability iOS 15.0+
@@ -475,22 +481,22 @@ export declare class CKContainer extends SDKHandle {
      * func shareParticipants(forPhoneNumbers phoneNumbers: [String]) async throws -> [String : Result<CKShare.Participant, any Error>]
      * @availability iOS 15.0+
      */
-    shareParticipantsForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK21>;
+    shareParticipantsForPhoneNumbers(phoneNumbers: Array<string>): Promise<$SDK22>;
     /**
      * func shareParticipants(forUserRecordIDs userRecordIDs: [CKRecord.ID]) async throws -> [CKRecord.ID : Result<CKShare.Participant, any Error>]
      * @availability iOS 15.0+
      */
-    shareParticipantsForUserRecordIDs(userRecordIDs: Array<CKRecord_ID>): Promise<$SDK24>;
+    shareParticipantsForUserRecordIDs(userRecordIDs: Array<CKRecord_ID>): Promise<$SDK25>;
     /**
      * func shareParticipants(forEmailAddresses emails: [String]) async throws -> [String : Result<CKShare.Participant, any Error>]
      * @availability iOS 15.0+
      */
-    shareParticipantsForEmailAddresses(emails: Array<string>): Promise<$SDK21>;
+    shareParticipantsForEmailAddresses(emails: Array<string>): Promise<$SDK22>;
     /**
      * func shareParticipants(for lookupInfos: [CKUserIdentity.LookupInfo]) async throws -> [CKUserIdentity.LookupInfo : Result<CKShare.Participant, any Error>]
      * @availability iOS 26.0+
      */
-    shareParticipantsFor(lookupInfos: $SDK26): Promise<NativeMap<CKUserIdentity_LookupInfo, SDKHandle>>;
+    shareParticipantsFor(lookupInfos: $SDK27): Promise<NativeMap<CKUserIdentity_LookupInfo, SDKHandle>>;
     /**
      * func longLivedOperation(for operationID: CKOperation.ID) async throws -> CKOperation?
      * @availability iOS 15.0+
@@ -500,45 +506,45 @@ export declare class CKContainer extends SDKHandle {
      * func requestShareAccess(for urls: [URL]) async throws -> [URL : Result<Void, any Error>]
      * @availability iOS 26.0+
      */
-    requestShareAccess(urls: Array<string>): Promise<$SDK21>;
+    requestShareAccess(urls: Array<string>): Promise<$SDK22>;
     /**
      * @preconcurrency func fetchShareMetadatas(for urls: [URL], completionHandler: @escaping @Sendable (Result<[URL : Result<CKShare.Metadata, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchShareMetadatas(urls: Array<string>, completionHandler: $SDK27): void;
+    fetchShareMetadatas(urls: Array<string>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func discoverUserIdentities(forUserRecordIDs userRecordIDs: [CKRecord.ID], completionHandler: @escaping @Sendable (Result<[CKRecord.ID : CKUserIdentity], any Error>) -> Void)
      * @availability iOS 15.0+
      * @deprecated iOS 17.0
      */
-    discoverUserIdentitiesForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK27): void;
+    discoverUserIdentitiesForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func discoverUserIdentities(forPhoneNumbers phoneNumbers: [String], completionHandler: @escaping @Sendable (Result<[String : CKUserIdentity], any Error>) -> Void)
      * @availability iOS 15.0+
      * @deprecated iOS 17.0
      */
-    discoverUserIdentitiesForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK27): void;
+    discoverUserIdentitiesForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func discoverUserIdentities(forEmailAddresses emails: [String], completionHandler: @escaping @Sendable (Result<[String : CKUserIdentity], any Error>) -> Void)
      * @availability iOS 15.0+
      * @deprecated iOS 17.0
      */
-    discoverUserIdentitiesForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK27): void;
+    discoverUserIdentitiesForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetchShareParticipants(forPhoneNumbers phoneNumbers: [String], completionHandler: @escaping @Sendable (Result<[String : Result<CKShare.Participant, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchShareParticipantsForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK27): void;
+    fetchShareParticipantsForPhoneNumbersCompletionHandler(phoneNumbers: Array<string>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetchShareParticipants(forUserRecordIDs userRecordIDs: [CKRecord.ID], completionHandler: @escaping @Sendable (Result<[CKRecord.ID : Result<CKShare.Participant, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchShareParticipantsForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK27): void;
+    fetchShareParticipantsForUserRecordIDsCompletionHandler(userRecordIDs: Array<CKRecord_ID>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetchShareParticipants(forEmailAddresses emails: [String], completionHandler: @escaping @Sendable (Result<[String : Result<CKShare.Participant, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchShareParticipantsForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK27): void;
+    fetchShareParticipantsForEmailAddressesCompletionHandler(emails: Array<string>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetchLongLivedOperation(withID operationID: CKOperation.ID, completionHandler: @escaping @Sendable (CKOperation?, (any Error)?) -> Void)
      * @availability iOS 9.3+
@@ -564,7 +570,7 @@ export declare class CKContainer extends SDKHandle {
      * @preconcurrency func accept(_ metadatas: [CKShare.Metadata], completionHandler: @escaping @Sendable (Result<[CKShare.Metadata : Result<CKShare, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    acceptCompletionHandler19311(metadatas: Array<CKShare_Metadata>, completionHandler: $SDK27): void;
+    acceptCompletionHandler19311(metadatas: Array<CKShare_Metadata>, completionHandler: $SDK28): void;
     /**
      * func accept(_ metadatas: [CKShare.Metadata]) async throws -> [CKShare.Metadata : Result<CKShare, any Error>]
      * @availability iOS 15.0+
@@ -591,7 +597,7 @@ export declare class CKContainer extends SDKHandle {
  * @availability iOS 8.0+
  * @deprecated
  */
-export type CKContainer_Application_PermissionBlock = $SDK31;
+export type CKContainer_Application_PermissionBlock = $SDK32;
 /**
  * typealias CKContainer_Application_Permissions = CKContainer.ApplicationPermissions
  * @availability iOS 8.0+
@@ -618,7 +624,7 @@ export declare class CKContainer_Application extends SDKHandle {
  * @availability iOS 8.0+
  * @deprecated iOS 17.0
  */
-export type CKContainer_ApplicationPermissionBlock = $SDK31;
+export type CKContainer_ApplicationPermissionBlock = $SDK32;
 /**
  * struct ApplicationPermissions
  * @availability iOS 8.0+
@@ -673,24 +679,24 @@ export declare class CKDatabase extends SDKHandle {
      */
     fetchAllSubscriptions(completionHandler: ((arg0: (Array<CKSubscription>) | null, arg1: (NativeError) | null) => void)): void;
     /** func fetch(withRecordID recordID: CKRecord.ID) async throws -> CKRecord */
-    fetchWithRecordIDCompletionHandler(recordID: CKRecord_ID, completionHandler: $SDK35): void;
+    fetchWithRecordIDCompletionHandler(recordID: CKRecord_ID, completionHandler: $SDK36): void;
     /** func fetch(withRecordZoneID zoneID: CKRecordZone.ID) async throws -> CKRecordZone */
-    fetchWithRecordZoneIDCompletionHandler(zoneID: CKRecordZone_ID, completionHandler: $SDK36): void;
+    fetchWithRecordZoneIDCompletionHandler(zoneID: CKRecordZone_ID, completionHandler: $SDK37): void;
     /**
      * func perform(_ query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?, completionHandler: @escaping @Sendable ([CKRecord]?, (any Error)?) -> Void)
      * @availability iOS 8.0+
      * @deprecated iOS 15.0
      */
-    performInZoneWithCompletionHandler(query: CKQuery, zoneID: $SDK37, completionHandler: ((arg0: (Array<CKRecord>) | null, arg1: (NativeError) | null) => void)): void;
+    performInZoneWithCompletionHandler(query: CKQuery, zoneID: $SDK38, completionHandler: ((arg0: (Array<CKRecord>) | null, arg1: (NativeError) | null) => void)): void;
     /** func save(_ record: CKRecord, completionHandler: @escaping @Sendable (CKRecord?, (any Error)?) -> Void) */
-    saveCompletionHandler(record: CKRecord, completionHandler: $SDK35): void;
+    saveCompletionHandler(record: CKRecord, completionHandler: $SDK36): void;
     /** func save(_ zone: CKRecordZone, completionHandler: @escaping @Sendable (CKRecordZone?, (any Error)?) -> Void) */
-    saveCompletionHandler10675(zone: CKRecordZone, completionHandler: $SDK36): void;
+    saveCompletionHandler10675(zone: CKRecordZone, completionHandler: $SDK37): void;
     /**
      * func save(_ subscription: CKSubscription, completionHandler: @escaping @Sendable (CKSubscription?, (any Error)?) -> Void)
      * @availability iOS 8.0+
      */
-    saveCompletionHandler5505(subscription: CKSubscription, completionHandler: $SDK39): void;
+    saveCompletionHandler5505(subscription: CKSubscription, completionHandler: $SDK40): void;
     /**
      * var databaseScope: CKDatabase.Scope { get }
      * @availability iOS 10.0+
@@ -720,7 +726,7 @@ export declare class CKDatabase extends SDKHandle {
      * @preconcurrency func modifyRecords(saving recordsToSave: [CKRecord], deleting recordIDsToDelete: [CKRecord.ID], savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .ifServerRecordUnchanged, atomically: Bool = true, completionHandler: @escaping @Sendable (Result<(saveResults: [CKRecord.ID : Result<CKRecord, any Error>], deleteResults: [CKRecord.ID : Result<Void, any Error>]), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    modifyRecordsSavingDeletingSavePolicyAtomicallyCompletionHandler(recordsToSave: Array<CKRecord>, recordIDsToDelete: Array<CKRecord_ID>, savePolicy: CKModifyRecordsOperation_RecordSavePolicy, atomically: boolean, completionHandler: $SDK27): void;
+    modifyRecordsSavingDeletingSavePolicyAtomicallyCompletionHandler(recordsToSave: Array<CKRecord>, recordIDsToDelete: Array<CKRecord_ID>, savePolicy: CKModifyRecordsOperation_RecordSavePolicy, atomically: boolean, completionHandler: $SDK28): void;
     /**
      * func modifyRecords(saving recordsToSave: [CKRecord], deleting recordIDsToDelete: [CKRecord.ID], savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .ifServerRecordUnchanged, atomically: Bool = true) async throws -> (saveResults: [CKRecord.ID : Result<CKRecord, any Error>], deleteResults: [CKRecord.ID : Result<Void, any Error>])
      * @availability iOS 15.0+
@@ -733,7 +739,7 @@ export declare class CKDatabase extends SDKHandle {
      * func subscriptions(for ids: [CKSubscription.ID]) async throws -> [CKSubscription.ID : Result<CKSubscription, any Error>]
      * @availability iOS 15.0+
      */
-    subscriptions(ids: Array<string>): Promise<$SDK21>;
+    subscriptions(ids: Array<string>): Promise<$SDK22>;
     /**
      * func allRecordZones() async throws -> [CKRecordZone]
      * @availability iOS 15.0+
@@ -743,12 +749,17 @@ export declare class CKDatabase extends SDKHandle {
      * @discardableResult func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: (CKDatabase) throws -> R) rethrows -> R
      * @availability iOS 15.0+
      */
-    configuredWith(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => unknown)): unknown;
+    configuredWithConfigurationGroupBody(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => unknown)): unknown;
+    /**
+     * @discardableResult @preconcurrency func configuredWith<R>(configuration: CKOperation.Configuration? = nil, group: CKOperationGroup? = nil, body: @Sendable (CKDatabase) async throws -> R) async rethrows -> R
+     * @availability iOS 15.0+
+     */
+    configuredWithConfigurationGroupBody35481(configuration: $SDK0, group: $SDK1, body: ((arg0: CKDatabase) => Promise<unknown>)): Promise<unknown>;
     /**
      * func databaseChanges(since changeToken: CKServerChangeToken?, resultsLimit: Int? = nil) async throws -> (modifications: [CKDatabase.DatabaseChange.Modification], deletions: [CKDatabase.DatabaseChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool)
      * @availability iOS 15.0+
      */
-    databaseChanges(changeToken?: $SDK44, resultsLimit?: (number) | null): Promise<{
+    databaseChanges(changeToken?: $SDK46, resultsLimit?: (number) | null): Promise<{
         "modifications": Array<CKDatabase_DatabaseChange_Modification>;
         "deletions": Array<CKDatabase_DatabaseChange_Deletion>;
         "changeToken": CKServerChangeToken;
@@ -768,7 +779,7 @@ export declare class CKDatabase extends SDKHandle {
      * @preconcurrency func modifyRecordZones(saving recordZonesToSave: [CKRecordZone], deleting recordZoneIDsToDelete: [CKRecordZone.ID], completionHandler: @escaping @Sendable (Result<(saveResults: [CKRecordZone.ID : Result<CKRecordZone, any Error>], deleteResults: [CKRecordZone.ID : Result<Void, any Error>]), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    modifyRecordZonesSavingDeletingCompletionHandler(recordZonesToSave: Array<CKRecordZone>, recordZoneIDsToDelete: Array<CKRecordZone_ID>, completionHandler: $SDK27): void;
+    modifyRecordZonesSavingDeletingCompletionHandler(recordZonesToSave: Array<CKRecordZone>, recordZoneIDsToDelete: Array<CKRecordZone_ID>, completionHandler: $SDK28): void;
     /**
      * func modifyRecordZones(saving recordZonesToSave: [CKRecordZone], deleting recordZoneIDsToDelete: [CKRecordZone.ID]) async throws -> (saveResults: [CKRecordZone.ID : Result<CKRecordZone, any Error>], deleteResults: [CKRecordZone.ID : Result<Void, any Error>])
      * @availability iOS 15.0+
@@ -781,7 +792,7 @@ export declare class CKDatabase extends SDKHandle {
      * func recordZoneChanges(inZoneWith zoneID: CKRecordZone.ID, since changeToken: CKServerChangeToken?, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int? = nil) async throws -> (modificationResultsByID: [CKRecord.ID : Result<CKDatabase.RecordZoneChange.Modification, any Error>], deletions: [CKDatabase.RecordZoneChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool)
      * @availability iOS 15.0+
      */
-    recordZoneChanges(zoneID: CKRecordZone_ID, changeToken?: $SDK44, desiredKeys?: (Array<string>) | null, resultsLimit?: (number) | null): Promise<{
+    recordZoneChanges(zoneID: CKRecordZone_ID, changeToken?: $SDK46, desiredKeys?: (Array<string>) | null, resultsLimit?: (number) | null): Promise<{
         "modificationResultsByID": NativeMap<CKRecord_ID, SDKHandle>;
         "deletions": Array<CKDatabase_RecordZoneChange_Deletion>;
         "changeToken": CKServerChangeToken;
@@ -796,7 +807,7 @@ export declare class CKDatabase extends SDKHandle {
      * @preconcurrency func modifySubscriptions(saving subscriptionsToSave: [CKSubscription], deleting subscriptionIDsToDelete: [CKSubscription.ID], completionHandler: @escaping @Sendable (Result<(saveResults: [CKSubscription.ID : Result<CKSubscription, any Error>], deleteResults: [CKSubscription.ID : Result<Void, any Error>]), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    modifySubscriptionsSavingDeletingCompletionHandler(subscriptionsToSave: Array<CKSubscription>, subscriptionIDsToDelete: Array<string>, completionHandler: $SDK27): void;
+    modifySubscriptionsSavingDeletingCompletionHandler(subscriptionsToSave: Array<CKSubscription>, subscriptionIDsToDelete: Array<string>, completionHandler: $SDK28): void;
     /**
      * func modifySubscriptions(saving subscriptionsToSave: [CKSubscription], deleting subscriptionIDsToDelete: [CKSubscription.ID]) async throws -> (saveResults: [CKSubscription.ID : Result<CKSubscription, any Error>], deleteResults: [CKSubscription.ID : Result<Void, any Error>])
      * @availability iOS 15.0+
@@ -809,12 +820,12 @@ export declare class CKDatabase extends SDKHandle {
      * @preconcurrency func fetchDatabaseChanges(since changeToken: CKServerChangeToken?, resultsLimit: Int? = nil, completionHandler: @escaping @Sendable (Result<(modifications: [CKDatabase.DatabaseChange.Modification], deletions: [CKDatabase.DatabaseChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchDatabaseChanges(changeToken: $SDK44, resultsLimit: (number) | null, completionHandler: $SDK27): void;
+    fetchDatabaseChanges(changeToken: $SDK46, resultsLimit: (number) | null, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetchRecordZoneChanges(inZoneWith zoneID: CKRecordZone.ID, since changeToken: CKServerChangeToken?, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int? = nil, completionHandler: @escaping @Sendable (Result<(modificationResultsByID: [CKRecord.ID : Result<CKDatabase.RecordZoneChange.Modification, any Error>], deletions: [CKDatabase.RecordZoneChange.Deletion], changeToken: CKServerChangeToken, moreComing: Bool), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchRecordZoneChanges(zoneID: CKRecordZone_ID, changeToken: $SDK44, desiredKeys: (Array<string>) | null, resultsLimit: (number) | null, completionHandler: $SDK27): void;
+    fetchRecordZoneChanges(zoneID: CKRecordZone_ID, changeToken: $SDK46, desiredKeys: (Array<string>) | null, resultsLimit: (number) | null, completionHandler: $SDK28): void;
     /**
      * func save(_ zone: CKRecordZone) async throws -> CKRecordZone
      * @availability iOS 15.0+
@@ -834,32 +845,32 @@ export declare class CKDatabase extends SDKHandle {
      * @preconcurrency func fetch(withCursor queryCursor: CKQueryOperation.Cursor, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults, completionHandler: @escaping @Sendable (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchWithCursorDesiredKeysResultsLimitCompletionHandler(queryCursor: CKQueryOperation_Cursor, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK27): void;
+    fetchWithCursorDesiredKeysResultsLimitCompletionHandler(queryCursor: CKQueryOperation_Cursor, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetch(withRecordIDs recordIDs: [CKRecord.ID], desiredKeys: [CKRecord.FieldKey]? = nil, completionHandler: @escaping @Sendable (Result<[CKRecord.ID : Result<CKRecord, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchWithRecordIDsDesiredKeysCompletionHandler(recordIDs: Array<CKRecord_ID>, desiredKeys: (Array<string>) | null, completionHandler: $SDK27): void;
+    fetchWithRecordIDsDesiredKeysCompletionHandler(recordIDs: Array<CKRecord_ID>, desiredKeys: (Array<string>) | null, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetch(withRecordZoneIDs zoneIDs: [CKRecordZone.ID], completionHandler: @escaping @Sendable (Result<[CKRecordZone.ID : Result<CKRecordZone, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchWithRecordZoneIDsCompletionHandler(zoneIDs: Array<CKRecordZone_ID>, completionHandler: $SDK27): void;
+    fetchWithRecordZoneIDsCompletionHandler(zoneIDs: Array<CKRecordZone_ID>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetch(withSubscriptionID subscriptionID: CKSubscription.ID, completionHandler: @escaping @Sendable (CKSubscription?, (any Error)?) -> Void)
      * @availability iOS 8.0+
      */
-    fetchWithSubscriptionIDCompletionHandler(subscriptionID: string, completionHandler: $SDK39): void;
+    fetchWithSubscriptionIDCompletionHandler(subscriptionID: string, completionHandler: $SDK40): void;
     /**
      * @preconcurrency func fetch(withSubscriptionIDs subscriptionIDs: [CKSubscription.ID], completionHandler: @escaping @Sendable (Result<[CKSubscription.ID : Result<CKSubscription, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchWithSubscriptionIDsCompletionHandler(subscriptionIDs: Array<string>, completionHandler: $SDK27): void;
+    fetchWithSubscriptionIDsCompletionHandler(subscriptionIDs: Array<string>, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func fetch(withQuery query: CKQuery, inZoneWith zoneID: CKRecordZone.ID? = nil, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults, completionHandler: @escaping @Sendable (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?), any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    fetchWithQueryInZoneWithDesiredKeysResultsLimitCompletionHandler(query: CKQuery, zoneID: $SDK37, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK27): void;
+    fetchWithQueryInZoneWithDesiredKeysResultsLimitCompletionHandler(query: CKQuery, zoneID: $SDK38, desiredKeys: (Array<string>) | null, resultsLimit: number, completionHandler: $SDK28): void;
     /**
      * @preconcurrency func delete(withSubscriptionID subscriptionID: CKSubscription.ID, completionHandler: @escaping @Sendable (String?, (any Error)?) -> Void)
      * @availability iOS 8.0+
@@ -875,28 +886,28 @@ export declare class CKDatabase extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 15.0
      */
-    performInZoneWith(query: CKQuery, zoneID?: $SDK37): Promise<Array<CKRecord>>;
+    performInZoneWith(query: CKQuery, zoneID?: $SDK38): Promise<Array<CKRecord>>;
     /**
      * func records(continuingMatchFrom queryCursor: CKQueryOperation.Cursor, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults) async throws -> (matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?)
      * @availability iOS 15.0+
      */
-    recordsContinuingMatchFromDesiredKeysResultsLimit(queryCursor: CKQueryOperation_Cursor, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK49>;
+    recordsContinuingMatchFromDesiredKeysResultsLimit(queryCursor: CKQueryOperation_Cursor, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK51>;
     /**
      * func records(for ids: [CKRecord.ID], desiredKeys: [CKRecord.FieldKey]? = nil) async throws -> [CKRecord.ID : Result<CKRecord, any Error>]
      * @availability iOS 15.0+
      */
-    recordsForDesiredKeys(ids: Array<CKRecord_ID>, desiredKeys?: (Array<string>) | null): Promise<$SDK24>;
+    recordsForDesiredKeys(ids: Array<CKRecord_ID>, desiredKeys?: (Array<string>) | null): Promise<$SDK25>;
     /**
      * func records(matching query: CKQuery, inZoneWith zoneID: CKRecordZone.ID? = nil, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults) async throws -> (matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?)
      * @availability iOS 15.0+
      */
-    recordsMatchingInZoneWithDesiredKeysResultsLimit(query: CKQuery, zoneID?: $SDK37, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK49>;
+    recordsMatchingInZoneWithDesiredKeysResultsLimit(query: CKQuery, zoneID?: $SDK38, desiredKeys?: (Array<string>) | null, resultsLimit?: number): Promise<$SDK51>;
     /**
      * func records(matching query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?) async throws -> [CKRecord]
      * @availability iOS 15.0+
      * @deprecated iOS 15.0
      */
-    recordsMatchingInZoneWith(query: CKQuery, zoneID?: $SDK37): Promise<Array<CKRecord>>;
+    recordsMatchingInZoneWith(query: CKQuery, zoneID?: $SDK38): Promise<Array<CKRecord>>;
     readonly $type: {
         "c:objc(cs)CKDatabase": true;
         "c:objc(cs)NSObject": true;
@@ -1240,8 +1251,8 @@ export declare class CKSubscription extends SDKHandle {
      * @NSCopying var notificationInfo: CKSubscription.NotificationInfo? { get set }
      * @availability iOS 8.0+
      */
-    get notificationInfo(): $SDK53;
-    set notificationInfo(value: $SDK53);
+    get notificationInfo(): $SDK55;
+    set notificationInfo(value: $SDK55);
     /**
      * var subscriptionType: CKSubscription.SubscriptionType { get }
      * @availability iOS 8.0+
@@ -1366,7 +1377,7 @@ export declare class CKDiscoverUserIdentitiesOperation extends CKDiscoverUserIde
      * @availability iOS 10.0+
      * @deprecated iOS 17.0
      */
-    static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK26): CKDiscoverUserIdentitiesOperation;
+    static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK27): CKDiscoverUserIdentitiesOperation;
     /**
      * var discoverUserIdentitiesCompletionBlock: (((any Error)?) -> Void)? { get set }
      * @availability iOS 10.0+
@@ -1386,8 +1397,8 @@ export declare class CKDiscoverUserIdentitiesOperation extends CKDiscoverUserIde
      * @availability iOS 10.0+
      * @deprecated iOS 17.0
      */
-    get userIdentityLookupInfos(): $SDK26;
-    set userIdentityLookupInfos(value: $SDK26);
+    get userIdentityLookupInfos(): $SDK27;
+    set userIdentityLookupInfos(value: $SDK27);
     /**
      * var discoverUserIdentitiesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -1664,7 +1675,7 @@ export declare class CKFetchDatabaseChangesOperation extends CKFetchDatabaseChan
      * convenience init(previousServerChangeToken: CKServerChangeToken?)
      * @availability iOS 10.0+
      */
-    static initPreviousServerChangeToken(previousServerChangeToken?: $SDK44): CKFetchDatabaseChangesOperation;
+    static initPreviousServerChangeToken(previousServerChangeToken?: $SDK46): CKFetchDatabaseChangesOperation;
     /**
      * var changeTokenUpdatedBlock: ((CKServerChangeToken) -> Void)? { get set }
      * @availability iOS 10.0+
@@ -1688,32 +1699,32 @@ export declare class CKFetchDatabaseChangesOperation extends CKFetchDatabaseChan
      * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
      * @availability iOS 10.0+
      */
-    get previousServerChangeToken(): $SDK44;
-    set previousServerChangeToken(value: $SDK44);
+    get previousServerChangeToken(): $SDK46;
+    set previousServerChangeToken(value: $SDK46);
     /**
      * var recordZoneWithIDChangedBlock: ((CKRecordZone.ID) -> Void)? { get set }
      * @availability iOS 10.0+
      */
-    get recordZoneWithIDChangedBlock(): $SDK63;
-    set recordZoneWithIDChangedBlock(value: $SDK64);
+    get recordZoneWithIDChangedBlock(): $SDK65;
+    set recordZoneWithIDChangedBlock(value: $SDK66);
     /**
      * var recordZoneWithIDWasDeletedBlock: ((CKRecordZone.ID) -> Void)? { get set }
      * @availability iOS 10.0+
      */
-    get recordZoneWithIDWasDeletedBlock(): $SDK63;
-    set recordZoneWithIDWasDeletedBlock(value: $SDK64);
+    get recordZoneWithIDWasDeletedBlock(): $SDK65;
+    set recordZoneWithIDWasDeletedBlock(value: $SDK66);
     /**
      * var recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock: ((CKRecordZone.ID) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(): $SDK63;
-    set recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value: $SDK64);
+    get recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(): $SDK65;
+    set recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value: $SDK66);
     /**
      * var recordZoneWithIDWasPurgedBlock: ((CKRecordZone.ID) -> Void)? { get set }
      * @availability iOS 11.0+
      */
-    get recordZoneWithIDWasPurgedBlock(): $SDK63;
-    set recordZoneWithIDWasPurgedBlock(value: $SDK64);
+    get recordZoneWithIDWasPurgedBlock(): $SDK65;
+    set recordZoneWithIDWasPurgedBlock(value: $SDK66);
     /**
      * var resultsLimit: Int { get set }
      * @availability iOS 10.0+
@@ -1765,7 +1776,7 @@ export declare class CKFetchRecordChangesOperation extends CKFetchRecordChangesO
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    static initRecordZoneIDPreviousServerChangeToken(recordZoneID: CKRecordZone_ID, previousServerChangeToken?: $SDK44): CKFetchRecordChangesOperation;
+    static initRecordZoneIDPreviousServerChangeToken(recordZoneID: CKRecordZone_ID, previousServerChangeToken?: $SDK46): CKFetchRecordChangesOperation;
     /**
      * var desiredKeys: [String]? { get set }
      * @availability iOS 8.0+
@@ -1791,15 +1802,15 @@ export declare class CKFetchRecordChangesOperation extends CKFetchRecordChangesO
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get previousServerChangeToken(): $SDK44;
-    set previousServerChangeToken(value: $SDK44);
+    get previousServerChangeToken(): $SDK46;
+    set previousServerChangeToken(value: $SDK46);
     /**
      * var recordChangedBlock: ((CKRecord) -> Void)? { get set }
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get recordChangedBlock(): $SDK67;
-    set recordChangedBlock(value: $SDK68);
+    get recordChangedBlock(): $SDK69;
+    set recordChangedBlock(value: $SDK70);
     /**
      * var recordWithIDWasDeletedBlock: ((CKRecord.ID) -> Void)? { get set }
      * @availability iOS 8.0+
@@ -1812,8 +1823,8 @@ export declare class CKFetchRecordChangesOperation extends CKFetchRecordChangesO
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get recordZoneID(): $SDK37;
-    set recordZoneID(value: $SDK37);
+    get recordZoneID(): $SDK38;
+    set recordZoneID(value: $SDK38);
     /**
      * var resultsLimit: Int { get set }
      * @availability iOS 8.0+
@@ -1889,8 +1900,8 @@ export declare class CKFetchRecordsOperation extends CKFetchRecordsOperation_bas
      * var recordIDs: [CKRecord.ID]? { get set }
      * @availability iOS 8.0+
      */
-    get recordIDs(): $SDK77;
-    set recordIDs(value: $SDK77);
+    get recordIDs(): $SDK79;
+    set recordIDs(value: $SDK79);
     /**
      * var fetchRecordsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -1907,8 +1918,8 @@ export declare class CKFetchRecordsOperation extends CKFetchRecordsOperation_bas
      * var perRecordResultBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perRecordResultBlock(): $SDK78;
-    set perRecordResultBlock(value: $SDK79);
+    get perRecordResultBlock(): $SDK80;
+    set perRecordResultBlock(value: $SDK81);
     readonly $type: {
         "c:objc(cs)CKFetchRecordsOperation": true;
         "c:objc(cs)CKDatabaseOperation": true;
@@ -1944,13 +1955,13 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs: Array<CKRecordZone_ID>, optionsByRecordZoneID?: $SDK80): CKFetchRecordZoneChangesOperation;
+    static initRecordZoneIDsOptionsByRecordZoneID(recordZoneIDs: Array<CKRecordZone_ID>, optionsByRecordZoneID?: $SDK82): CKFetchRecordZoneChangesOperation;
     /**
      * var configurationsByRecordZoneID: [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneConfiguration]? { get set }
      * @availability iOS 12.0+
      */
-    get configurationsByRecordZoneID(): $SDK81;
-    set configurationsByRecordZoneID(value: $SDK81);
+    get configurationsByRecordZoneID(): $SDK83;
+    set configurationsByRecordZoneID(value: $SDK83);
     /**
      * var fetchAllChanges: Bool { get set }
      * @availability iOS 10.0+
@@ -1969,15 +1980,15 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    get optionsByRecordZoneID(): $SDK80;
-    set optionsByRecordZoneID(value: $SDK80);
+    get optionsByRecordZoneID(): $SDK82;
+    set optionsByRecordZoneID(value: $SDK82);
     /**
      * var recordChangedBlock: ((CKRecord) -> Void)? { get set }
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    get recordChangedBlock(): $SDK67;
-    set recordChangedBlock(value: $SDK68);
+    get recordChangedBlock(): $SDK69;
+    set recordChangedBlock(value: $SDK70);
     /**
      * var recordZoneChangeTokensUpdatedBlock: ((CKRecordZone.ID, CKServerChangeToken?, Data?) -> Void)? { get set }
      * @availability iOS 10.0+
@@ -1995,8 +2006,8 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
      * var recordZoneIDs: [CKRecordZone.ID]? { get set }
      * @availability iOS 10.0+
      */
-    get recordZoneIDs(): $SDK86;
-    set recordZoneIDs(value: $SDK86);
+    get recordZoneIDs(): $SDK88;
+    set recordZoneIDs(value: $SDK88);
     /**
      * var fetchRecordZoneChangesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -2007,19 +2018,19 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
      * var recordZoneFetchResultBlock: ((CKRecordZone.ID, Result<(serverChangeToken: CKServerChangeToken, clientChangeTokenData: Data?, moreComing: Bool), any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get recordZoneFetchResultBlock(): $SDK87;
-    set recordZoneFetchResultBlock(value: $SDK88);
+    get recordZoneFetchResultBlock(): $SDK89;
+    set recordZoneFetchResultBlock(value: $SDK90);
     /**
      * convenience init(recordZoneIDs: [CKRecordZone.ID]? = nil, configurationsByRecordZoneID: [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneConfiguration]? = nil)
      * @availability iOS 12.0+
      */
-    static initRecordZoneIDsConfigurationsByRecordZoneID(recordZoneIDs?: $SDK86, configurationsByRecordZoneID?: $SDK81): CKFetchRecordZoneChangesOperation;
+    static initRecordZoneIDsConfigurationsByRecordZoneID(recordZoneIDs?: $SDK88, configurationsByRecordZoneID?: $SDK83): CKFetchRecordZoneChangesOperation;
     /**
      * var recordWasChangedBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get recordWasChangedBlock(): $SDK78;
-    set recordWasChangedBlock(value: $SDK79);
+    get recordWasChangedBlock(): $SDK80;
+    set recordWasChangedBlock(value: $SDK81);
     /**
      * var recordWithIDWasDeletedBlock: ((CKRecord.ID, CKRecord.RecordType) -> Void)? { get set }
      * @availability iOS 10.0+
@@ -2057,8 +2068,8 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends
      * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
      * @availability iOS 12.0+
      */
-    get previousServerChangeToken(): $SDK44;
-    set previousServerChangeToken(value: $SDK44);
+    get previousServerChangeToken(): $SDK46;
+    set previousServerChangeToken(value: $SDK46);
     /**
      * var resultsLimit: Int { get set }
      * @availability iOS 12.0+
@@ -2075,7 +2086,7 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends
      * convenience init(previousServerChangeToken: CKServerChangeToken? = nil, resultsLimit: Int? = nil, desiredKeys: [CKRecord.FieldKey]? = nil)
      * @availability iOS 12.0+
      */
-    static init(previousServerChangeToken?: $SDK44, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration;
+    static init(previousServerChangeToken?: $SDK46, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration;
     readonly $type: {
         "c:objc(cs)CKFetchRecordZoneChangesConfiguration": true;
         "c:objc(cs)NSObject": true;
@@ -2105,8 +2116,8 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneOptions extends SDKHa
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    get previousServerChangeToken(): $SDK44;
-    set previousServerChangeToken(value: $SDK44);
+    get previousServerChangeToken(): $SDK46;
+    set previousServerChangeToken(value: $SDK46);
     /**
      * var resultsLimit: Int { get set }
      * @availability iOS 10.0+
@@ -2156,14 +2167,14 @@ export declare class CKFetchRecordZonesOperation extends CKFetchRecordZonesOpera
      * var recordZoneIDs: [CKRecordZone.ID]? { get set }
      * @availability iOS 8.0+
      */
-    get recordZoneIDs(): $SDK86;
-    set recordZoneIDs(value: $SDK86);
+    get recordZoneIDs(): $SDK88;
+    set recordZoneIDs(value: $SDK88);
     /**
      * var perRecordZoneResultBlock: ((CKRecordZone.ID, Result<CKRecordZone, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perRecordZoneResultBlock(): $SDK87;
-    set perRecordZoneResultBlock(value: $SDK88);
+    get perRecordZoneResultBlock(): $SDK89;
+    set perRecordZoneResultBlock(value: $SDK90);
     /**
      * var fetchRecordZonesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -2235,8 +2246,8 @@ export declare class CKFetchShareMetadataOperation extends CKFetchShareMetadataO
      * var perShareMetadataResultBlock: ((URL, Result<CKShare.Metadata, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perShareMetadataResultBlock(): $SDK95;
-    set perShareMetadataResultBlock(value: $SDK96);
+    get perShareMetadataResultBlock(): $SDK97;
+    set perShareMetadataResultBlock(value: $SDK98);
     /**
      * var fetchShareMetadataResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -2282,7 +2293,7 @@ export declare class CKFetchShareParticipantsOperation extends CKFetchShareParti
      * convenience init(userIdentityLookupInfos: [CKUserIdentity.LookupInfo])
      * @availability iOS 10.0+
      */
-    static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK26): CKFetchShareParticipantsOperation;
+    static initUserIdentityLookupInfos(userIdentityLookupInfos: $SDK27): CKFetchShareParticipantsOperation;
     /**
      * var fetchShareParticipantsCompletionBlock: (((any Error)?) -> Void)? { get set }
      * @availability iOS 10.0+
@@ -2301,8 +2312,8 @@ export declare class CKFetchShareParticipantsOperation extends CKFetchShareParti
      * var userIdentityLookupInfos: [CKUserIdentity.LookupInfo]? { get set }
      * @availability iOS 10.0+
      */
-    get userIdentityLookupInfos(): $SDK99;
-    set userIdentityLookupInfos(value: $SDK99);
+    get userIdentityLookupInfos(): $SDK101;
+    set userIdentityLookupInfos(value: $SDK101);
     /**
      * var perShareParticipantResultBlock: ((CKUserIdentity.LookupInfo, Result<CKShare.Participant, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -2369,8 +2380,8 @@ export declare class CKFetchSubscriptionsOperation extends CKFetchSubscriptionsO
      * var perSubscriptionResultBlock: ((CKSubscription.ID, Result<CKSubscription, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perSubscriptionResultBlock(): $SDK95;
-    set perSubscriptionResultBlock(value: $SDK96);
+    get perSubscriptionResultBlock(): $SDK97;
+    set perSubscriptionResultBlock(value: $SDK98);
     /**
      * var fetchSubscriptionCompletionBlock: (([CKSubscription.ID : CKSubscription]?, (any Error)?) -> Void)? { get set }
      * @availability iOS 8.0+
@@ -2526,14 +2537,14 @@ export declare class CKModifyRecordsOperation extends CKModifyRecordsOperation_b
      * var recordIDsToDelete: [CKRecord.ID]? { get set }
      * @availability iOS 8.0+
      */
-    get recordIDsToDelete(): $SDK77;
-    set recordIDsToDelete(value: $SDK77);
+    get recordIDsToDelete(): $SDK79;
+    set recordIDsToDelete(value: $SDK79);
     /**
      * var recordsToSave: [CKRecord]? { get set }
      * @availability iOS 8.0+
      */
-    get recordsToSave(): $SDK112;
-    set recordsToSave(value: $SDK112);
+    get recordsToSave(): $SDK114;
+    set recordsToSave(value: $SDK114);
     /**
      * var savePolicy: CKModifyRecordsOperation.RecordSavePolicy { get set }
      * @availability iOS 8.0+
@@ -2550,19 +2561,19 @@ export declare class CKModifyRecordsOperation extends CKModifyRecordsOperation_b
      * convenience init(recordsToSave: [CKRecord]? = nil, recordIDsToDelete: [CKRecord.ID]? = nil)
      * @availability iOS 8.0+
      */
-    static initRecordsToSaveRecordIDsToDelete(recordsToSave?: $SDK112, recordIDsToDelete?: $SDK77): CKModifyRecordsOperation;
+    static initRecordsToSaveRecordIDsToDelete(recordsToSave?: $SDK114, recordIDsToDelete?: $SDK79): CKModifyRecordsOperation;
     /**
      * var perRecordSaveBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perRecordSaveBlock(): $SDK78;
-    set perRecordSaveBlock(value: $SDK79);
+    get perRecordSaveBlock(): $SDK80;
+    set perRecordSaveBlock(value: $SDK81);
     /**
      * var perRecordDeleteBlock: ((CKRecord.ID, Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perRecordDeleteBlock(): $SDK78;
-    set perRecordDeleteBlock(value: $SDK79);
+    get perRecordDeleteBlock(): $SDK80;
+    set perRecordDeleteBlock(value: $SDK81);
     readonly $type: {
         "c:objc(cs)CKModifyRecordsOperation": true;
         "c:objc(cs)CKDatabaseOperation": true;
@@ -2620,26 +2631,26 @@ export declare class CKModifyRecordZonesOperation extends CKModifyRecordZonesOpe
      * var recordZoneIDsToDelete: [CKRecordZone.ID]? { get set }
      * @availability iOS 8.0+
      */
-    get recordZoneIDsToDelete(): $SDK86;
-    set recordZoneIDsToDelete(value: $SDK86);
+    get recordZoneIDsToDelete(): $SDK88;
+    set recordZoneIDsToDelete(value: $SDK88);
     /**
      * var recordZonesToSave: [CKRecordZone]? { get set }
      * @availability iOS 8.0+
      */
-    get recordZonesToSave(): $SDK115;
-    set recordZonesToSave(value: $SDK115);
+    get recordZonesToSave(): $SDK117;
+    set recordZonesToSave(value: $SDK117);
     /**
      * var perRecordZoneSaveBlock: ((CKRecordZone.ID, Result<CKRecordZone, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perRecordZoneSaveBlock(): $SDK87;
-    set perRecordZoneSaveBlock(value: $SDK88);
+    get perRecordZoneSaveBlock(): $SDK89;
+    set perRecordZoneSaveBlock(value: $SDK90);
     /**
      * var perRecordZoneDeleteBlock: ((CKRecordZone.ID, Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perRecordZoneDeleteBlock(): $SDK87;
-    set perRecordZoneDeleteBlock(value: $SDK88);
+    get perRecordZoneDeleteBlock(): $SDK89;
+    set perRecordZoneDeleteBlock(value: $SDK90);
     /**
      * var modifyRecordZonesResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -2650,7 +2661,7 @@ export declare class CKModifyRecordZonesOperation extends CKModifyRecordZonesOpe
      * convenience init(recordZonesToSave: [CKRecordZone]? = nil, recordZoneIDsToDelete: [CKRecordZone.ID]? = nil)
      * @availability iOS 8.0+
      */
-    static initRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave?: $SDK115, recordZoneIDsToDelete?: $SDK86): CKModifyRecordZonesOperation;
+    static initRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave?: $SDK117, recordZoneIDsToDelete?: $SDK88): CKModifyRecordZonesOperation;
     readonly $type: {
         "c:objc(cs)CKModifyRecordZonesOperation": true;
         "c:objc(cs)CKDatabaseOperation": true;
@@ -2686,8 +2697,8 @@ export declare class CKModifySubscriptionsOperation extends CKModifySubscription
      * var subscriptionsToSave: [CKSubscription]? { get set }
      * @availability iOS 8.0+
      */
-    get subscriptionsToSave(): $SDK116;
-    set subscriptionsToSave(value: $SDK116);
+    get subscriptionsToSave(): $SDK118;
+    set subscriptionsToSave(value: $SDK118);
     /**
      * var modifySubscriptionsResultBlock: ((Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
@@ -2705,7 +2716,7 @@ export declare class CKModifySubscriptionsOperation extends CKModifySubscription
      * convenience init(subscriptionsToSave: [CKSubscription]? = nil, subscriptionIDsToDelete: [CKSubscription.ID]? = nil)
      * @availability iOS 8.0+
      */
-    static initSubscriptionsToSaveSubscriptionIDsToDelete(subscriptionsToSave?: $SDK116, subscriptionIDsToDelete?: (Array<string>) | null): CKModifySubscriptionsOperation;
+    static initSubscriptionsToSaveSubscriptionIDsToDelete(subscriptionsToSave?: $SDK118, subscriptionIDsToDelete?: (Array<string>) | null): CKModifySubscriptionsOperation;
     /**
      * var subscriptionIDsToDelete: [CKSubscription.ID]? { get set }
      * @availability iOS 8.0+
@@ -2716,14 +2727,14 @@ export declare class CKModifySubscriptionsOperation extends CKModifySubscription
      * var perSubscriptionSaveBlock: ((CKSubscription.ID, Result<CKSubscription, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perSubscriptionSaveBlock(): $SDK95;
-    set perSubscriptionSaveBlock(value: $SDK96);
+    get perSubscriptionSaveBlock(): $SDK97;
+    set perSubscriptionSaveBlock(value: $SDK98);
     /**
      * var perSubscriptionDeleteBlock: ((CKSubscription.ID, Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get perSubscriptionDeleteBlock(): $SDK95;
-    set perSubscriptionDeleteBlock(value: $SDK96);
+    get perSubscriptionDeleteBlock(): $SDK97;
+    set perSubscriptionDeleteBlock(value: $SDK98);
     readonly $type: {
         "c:objc(cs)CKModifySubscriptionsOperation": true;
         "c:objc(cs)CKDatabaseOperation": true;
@@ -2922,8 +2933,8 @@ export declare class CKQuery extends SDKHandle {
      * var sortDescriptors: [NSSortDescriptor]? { get set }
      * @availability iOS 8.0+
      */
-    get sortDescriptors(): $SDK119;
-    set sortDescriptors(value: $SDK119);
+    get sortDescriptors(): $SDK121;
+    set sortDescriptors(value: $SDK121);
     /**
      * convenience init(recordType: CKRecord.RecordType, predicate: NSPredicate)
      * @availability iOS 8.0+
@@ -3061,8 +3072,8 @@ export declare class CKQueryOperation extends CKQueryOperation_base {
      * @availability iOS 8.0+
      * @deprecated iOS 15.0
      */
-    get recordFetchedBlock(): $SDK67;
-    set recordFetchedBlock(value: $SDK68);
+    get recordFetchedBlock(): $SDK69;
+    set recordFetchedBlock(value: $SDK70);
     /**
      * var resultsLimit: Int { get set }
      * @availability iOS 8.0+
@@ -3073,8 +3084,8 @@ export declare class CKQueryOperation extends CKQueryOperation_base {
      * @NSCopying var zoneID: CKRecordZone.ID? { get set }
      * @availability iOS 8.0+
      */
-    get zoneID(): $SDK37;
-    set zoneID(value: $SDK37);
+    get zoneID(): $SDK38;
+    set zoneID(value: $SDK38);
     /**
      * var desiredKeys: [CKRecord.FieldKey]? { get set }
      * @availability iOS 8.0+
@@ -3091,8 +3102,8 @@ export declare class CKQueryOperation extends CKQueryOperation_base {
      * var recordMatchedBlock: ((CKRecord.ID, Result<CKRecord, any Error>) -> Void)? { get set }
      * @availability iOS 15.0+
      */
-    get recordMatchedBlock(): $SDK78;
-    set recordMatchedBlock(value: $SDK79);
+    get recordMatchedBlock(): $SDK80;
+    set recordMatchedBlock(value: $SDK81);
     readonly $type: {
         "c:objc(cs)CKQueryOperation": true;
         "c:objc(cs)CKDatabaseOperation": true;
@@ -3149,8 +3160,8 @@ export declare class CKQuerySubscription extends CKSubscription {
      * @NSCopying var zoneID: CKRecordZone.ID? { get set }
      * @availability iOS 10.0+
      */
-    get zoneID(): $SDK37;
-    set zoneID(value: $SDK37);
+    get zoneID(): $SDK38;
+    set zoneID(value: $SDK38);
     /**
      * convenience init(recordType: CKRecord.RecordType, predicate: NSPredicate, subscriptionID: CKSubscription.ID, options querySubscriptionOptions: CKQuerySubscription.Options = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
      * @availability iOS 10.0+
@@ -3246,7 +3257,7 @@ export declare class CKRecord extends SDKHandle {
      * var creationDate: Date? { get }
      * @availability iOS 8.0+
      */
-    get creationDate(): $SDK124;
+    get creationDate(): $SDK126;
     /**
      * @NSCopying var creatorUserRecordID: CKRecord.ID? { get }
      * @availability iOS 8.0+
@@ -3266,13 +3277,13 @@ export declare class CKRecord extends SDKHandle {
      * var modificationDate: Date? { get }
      * @availability iOS 8.0+
      */
-    get modificationDate(): $SDK124;
+    get modificationDate(): $SDK126;
     /**
      * @NSCopying var parent: CKRecord.Reference? { get set }
      * @availability iOS 10.0+
      */
-    get parent(): $SDK126;
-    set parent(value: $SDK126);
+    get parent(): $SDK128;
+    set parent(value: $SDK128);
     /**
      * var recordChangeTag: String? { get }
      * @availability iOS 8.0+
@@ -3287,7 +3298,7 @@ export declare class CKRecord extends SDKHandle {
      * @NSCopying var share: CKRecord.Reference? { get }
      * @availability iOS 10.0+
      */
-    get share(): $SDK126;
+    get share(): $SDK128;
     /**
      * convenience init(recordType: CKRecord.RecordType, recordID: CKRecord.ID = CKRecord.ID())
      * @availability iOS 8.0+
@@ -3619,7 +3630,7 @@ export declare class CKRecordZone extends SDKHandle {
      * @NSCopying var share: CKRecord.Reference? { get }
      * @availability iOS 15.0+
      */
-    get share(): $SDK126;
+    get share(): $SDK128;
     /**
      * @NSCopying var zoneID: CKRecordZone.ID { get }
      * @availability iOS 8.0+
@@ -3739,7 +3750,7 @@ export declare class CKRecordZoneNotification extends CKNotification {
      * @NSCopying var recordZoneID: CKRecordZone.ID? { get }
      * @availability iOS 8.0+
      */
-    get recordZoneID(): $SDK37;
+    get recordZoneID(): $SDK38;
     readonly $type: {
         "c:objc(cs)CKRecordZoneNotification": true;
         "c:objc(cs)CKNotification": true;
@@ -3836,12 +3847,12 @@ export declare class CKShare extends CKRecord {
      * func blockRequesters(_ requesters: [CKShare.AccessRequester])
      * @availability iOS 26.0+
      */
-    blockRequesters(requesters: $SDK128): void;
+    blockRequesters(requesters: $SDK130): void;
     /**
      * func denyRequesters(_ requesters: [CKShare.AccessRequester])
      * @availability iOS 26.0+
      */
-    denyRequesters(requesters: $SDK128): void;
+    denyRequesters(requesters: $SDK130): void;
     /**
      * init(coder aDecoder: NSCoder)
      * @availability iOS 10.0+
@@ -3913,7 +3924,7 @@ export declare class CKShare extends CKRecord {
      * var requesters: [CKShare.AccessRequester] { get }
      * @availability iOS 26.0+
      */
-    get requesters(): $SDK128;
+    get requesters(): $SDK130;
     /**
      * func oneTimeURL(for participantID: CKShare.Participant.ID) -> URL?
      * @availability iOS 26.0+
@@ -4101,7 +4112,7 @@ export declare class CKShare_Participant extends SDKHandle {
      * var dateAddedToShare: Date? { get }
      * @availability iOS 26.0+
      */
-    get dateAddedToShare(): $SDK124;
+    get dateAddedToShare(): $SDK126;
     /**
      * var isApprovedRequester: Bool { get }
      * @availability iOS 26.0+
@@ -4246,8 +4257,8 @@ export declare class CKShareRequestAccessOperation extends CKShareRequestAccessO
      * var perShareAccessRequestResultBlock: ((URL, Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 26.0+
      */
-    get perShareAccessRequestResultBlock(): $SDK95;
-    set perShareAccessRequestResultBlock(value: $SDK96);
+    get perShareAccessRequestResultBlock(): $SDK97;
+    set perShareAccessRequestResultBlock(value: $SDK98);
     readonly $type: {
         "c:objc(cs)CKShareRequestAccessOperation": true;
         "c:objc(cs)CKOperation": true;
@@ -4285,10 +4296,15 @@ export type CKShareTransferRepresentation_Body<Item = unknown> = SDKHandle;
  */
 export declare class CKShareTransferRepresentation_ExportedShare<Item = unknown> extends SDKHandle {
     /**
+     * static func prepareShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard, preparationHandler: @escaping @Sendable () async throws -> CKShare) -> CKShareTransferRepresentation<Item>.ExportedShare
+     * @availability iOS 16.0+
+     */
+    static prepareShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions, preparationHandler: (() => Promise<CKShare>)): $SDK134;
+    /**
      * static func existing(_ share: CKShare, container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard) -> CKShareTransferRepresentation<Item>.ExportedShare
      * @availability iOS 16.0+
      */
-    static existing(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): CKShareTransferRepresentation_ExportedShare<string>;
+    static existing(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): $SDK134;
     readonly $type: {
         "s:8CloudKit29CKShareTransferRepresentationV13ExportedShareV": true;
     };
@@ -4578,13 +4594,13 @@ export declare class CKSyncEngine_Configuration extends SDKHandle {
      * var stateSerialization: CKSyncEngine.State.Serialization?
      * @availability iOS 17.0+
      */
-    get stateSerialization(): $SDK133;
-    set stateSerialization(value: $SDK133);
+    get stateSerialization(): $SDK136;
+    set stateSerialization(value: $SDK136);
     /**
      * init(database: CKDatabase, stateSerialization: CKSyncEngine.State.Serialization?, delegate: any CKSyncEngineDelegate)
      * @availability iOS 17.0+
      */
-    static init(database: CKDatabase, stateSerialization: $SDK133, delegate: SDKHandle): CKSyncEngine_Configuration;
+    static init(database: CKDatabase, stateSerialization: $SDK136, delegate: SDKHandle): CKSyncEngine_Configuration;
     /**
      * var database: CKDatabase
      * @availability iOS 17.0+
@@ -5178,12 +5194,12 @@ export declare class CKSyncEngine_State extends SDKHandle {
      * final var pendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange] { get }
      * @availability iOS 17.0+
      */
-    get pendingDatabaseChanges(): $SDK142;
+    get pendingDatabaseChanges(): $SDK145;
     /**
      * final var pendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange] { get }
      * @availability iOS 17.0+
      */
-    get pendingRecordZoneChanges(): $SDK143;
+    get pendingRecordZoneChanges(): $SDK146;
     /**
      * final var hasPendingUntrackedChanges: Bool { get set }
      * @availability iOS 17.0+
@@ -5199,22 +5215,22 @@ export declare class CKSyncEngine_State extends SDKHandle {
      * final func add(pendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange])
      * @availability iOS 17.0+
      */
-    addPendingDatabaseChanges(pendingDatabaseChanges: $SDK142): void;
+    addPendingDatabaseChanges(pendingDatabaseChanges: $SDK145): void;
     /**
      * final func add(pendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange])
      * @availability iOS 17.0+
      */
-    addPendingRecordZoneChanges(pendingRecordZoneChanges: $SDK143): void;
+    addPendingRecordZoneChanges(pendingRecordZoneChanges: $SDK146): void;
     /**
      * final func remove(pendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange])
      * @availability iOS 17.0+
      */
-    removePendingDatabaseChanges(pendingDatabaseChanges: $SDK142): void;
+    removePendingDatabaseChanges(pendingDatabaseChanges: $SDK145): void;
     /**
      * final func remove(pendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange])
      * @availability iOS 17.0+
      */
-    removePendingRecordZoneChanges(pendingRecordZoneChanges: $SDK143): void;
+    removePendingRecordZoneChanges(pendingRecordZoneChanges: $SDK146): void;
     readonly $type: {
         "s:8CloudKit12CKSyncEngineC5StateC": true;
     };
@@ -5266,12 +5282,12 @@ export interface CKSyncEngineDelegate {
      * func nextRecordZoneChangeBatch(_ context: CKSyncEngine.SendChangesContext, syncEngine: CKSyncEngine) async -> CKSyncEngine.RecordZoneChangeBatch?
      * @availability iOS 17.0+
      */
-    "nextRecordZoneChangeBatchSyncEngine"?: (arg0: CKSyncEngine_SendChangesContext, arg1: CKSyncEngine) => (CKSyncEngine_RecordZoneChangeBatch) | null;
+    "nextRecordZoneChangeBatchSyncEngine"?: (arg0: CKSyncEngine_SendChangesContext, arg1: CKSyncEngine) => Promise<(CKSyncEngine_RecordZoneChangeBatch) | null>;
     /**
      * func nextFetchChangesOptions(_ context: CKSyncEngine.FetchChangesContext, syncEngine: CKSyncEngine) async -> CKSyncEngine.FetchChangesOptions
      * @availability iOS 17.0+
      */
-    "nextFetchChangesOptionsSyncEngine"?: (arg0: CKSyncEngine_FetchChangesContext, arg1: CKSyncEngine) => CKSyncEngine_FetchChangesOptions;
+    "nextFetchChangesOptionsSyncEngine"?: (arg0: CKSyncEngine_FetchChangesContext, arg1: CKSyncEngine) => Promise<CKSyncEngine_FetchChangesOptions>;
 }
 /**
  * enum CKSyncEngineEventType
@@ -5347,14 +5363,14 @@ export declare class CKSystemSharingUIObserver extends SDKHandle {
      * @preconcurrency var systemSharingUIDidSaveShareBlock: (@Sendable (CKRecord.ID, Result<CKShare, any Error>) -> Void)? { get set }
      * @availability iOS 16.0+
      */
-    get systemSharingUIDidSaveShareBlock(): $SDK78;
-    set systemSharingUIDidSaveShareBlock(value: $SDK79);
+    get systemSharingUIDidSaveShareBlock(): $SDK80;
+    set systemSharingUIDidSaveShareBlock(value: $SDK81);
     /**
      * @preconcurrency var systemSharingUIDidStopSharingBlock: (@Sendable (CKRecord.ID, Result<Void, any Error>) -> Void)? { get set }
      * @availability iOS 16.0+
      */
-    get systemSharingUIDidStopSharingBlock(): $SDK78;
-    set systemSharingUIDidStopSharingBlock(value: $SDK79);
+    get systemSharingUIDidStopSharingBlock(): $SDK80;
+    set systemSharingUIDidStopSharingBlock(value: $SDK81);
     readonly $type: {
         "c:objc(cs)CKSystemSharingUIObserver": true;
         "c:objc(cs)NSObject": true;
@@ -5412,17 +5428,17 @@ export declare class CKUserIdentity_LookupInfo extends SDKHandle {
      * class func lookupInfos(withEmails emails: [String]) -> [CKUserIdentity.LookupInfo]
      * @availability iOS 10.0+
      */
-    static lookupInfosWithEmails(emails: Array<string>): $SDK26;
+    static lookupInfosWithEmails(emails: Array<string>): $SDK27;
     /**
      * class func lookupInfos(withPhoneNumbers phoneNumbers: [String]) -> [CKUserIdentity.LookupInfo]
      * @availability iOS 10.0+
      */
-    static lookupInfosWithPhoneNumbers(phoneNumbers: Array<string>): $SDK26;
+    static lookupInfosWithPhoneNumbers(phoneNumbers: Array<string>): $SDK27;
     /**
      * class func lookupInfos(with recordIDs: [CKRecord.ID]) -> [CKUserIdentity.LookupInfo]
      * @availability iOS 10.0+
      */
-    static lookupInfosWith(recordIDs: Array<CKRecord_ID>): $SDK26;
+    static lookupInfosWith(recordIDs: Array<CKRecord_ID>): $SDK27;
     /**
      * init(emailAddress: String)
      * @availability iOS 10.0+
@@ -5465,10 +5481,15 @@ export declare class CKUserIdentity_LookupInfo extends SDKHandle {
 }
 export declare class NSItemProvider extends SDKHandle {
     /**
+     * func registerCKShare(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard, preparationHandler: @escaping @Sendable () async throws -> CKShare)
+     * @availability iOS 16.0+
+     */
+    registerCKShareContainerAllowedSharingOptionsPreparationHandler(container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions, preparationHandler: (() => Promise<CKShare>)): void;
+    /**
      * func registerCKShare(_ share: CKShare, container: CKContainer, allowedSharingOptions: CKAllowedSharingOptions = CKAllowedSharingOptions.standard)
      * @availability iOS 16.0+
      */
-    registerCKShare(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): void;
+    registerCKShareContainerAllowedSharingOptions(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): void;
     readonly $type: {
         "c:objc(cs)NSItemProvider": true;
         "c:objc(cs)NSObject": true;

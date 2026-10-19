@@ -100,6 +100,16 @@ export declare class ReportableMetadataValue extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class StateReporter<StableMetadata = unknown, VolatileMetadata = unknown> extends SDKHandle {
+    /**
+     * final func reportTransition(to stateLabel: String?, stableMetadata: StableMetadata? = nil, volatileMetadata: VolatileMetadata? = nil)
+     * @availability iOS 27.0+
+     */
+    reportTransition(stateLabel?: (string) | null): void;
+    /**
+     * final let domain: String
+     * @availability iOS 27.0+
+     */
+    get domain(): string;
     readonly $type: {
         "s:14StateReporting0A8ReporterC": true;
     };

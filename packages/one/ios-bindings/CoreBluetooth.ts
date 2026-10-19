@@ -21,46 +21,46 @@ type $SDK14 = (Implements<CBPeripheralManagerDelegate> | SDKHandle) | null;
 /** struct CBATTError */
 export class CBATTError extends SDKHandle {
   /** static var invalidPdu: CBATTError.Code { get } */
-  static get invalidPdu(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 2782800409424816, undefined, []); }
+  static get invalidPdu(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 2782800409424816, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("CoreBluetooth_0e503aef608672fa", 93483836710223, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreBluetooth_212edf3d13b127f5", 93483836710223, undefined, []); }
   /** static var invalidHandle: CBATTError.Code { get } */
-  static get invalidHandle(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 4236398101002845, undefined, []); }
+  static get invalidHandle(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 4236398101002845, undefined, []); }
   /** static var invalidOffset: CBATTError.Code { get } */
-  static get invalidOffset(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 575899347544219, undefined, []); }
+  static get invalidOffset(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 575899347544219, undefined, []); }
   /** static var unlikelyError: CBATTError.Code { get } */
-  static get unlikelyError(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 1946814657988754, undefined, []); }
+  static get unlikelyError(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 1946814657988754, undefined, []); }
   /** static var attributeNotLong: CBATTError.Code { get } */
-  static get attributeNotLong(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 3462405286830821, undefined, []); }
+  static get attributeNotLong(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 3462405286830821, undefined, []); }
   /** static var prepareQueueFull: CBATTError.Code { get } */
-  static get prepareQueueFull(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 167756436773208, undefined, []); }
+  static get prepareQueueFull(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 167756436773208, undefined, []); }
   /** static var readNotPermitted: CBATTError.Code { get } */
-  static get readNotPermitted(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 1784670290208107, undefined, []); }
+  static get readNotPermitted(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 1784670290208107, undefined, []); }
   /** static var attributeNotFound: CBATTError.Code { get } */
-  static get attributeNotFound(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 346114191881736, undefined, []); }
+  static get attributeNotFound(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 346114191881736, undefined, []); }
   /** static var writeNotPermitted: CBATTError.Code { get } */
-  static get writeNotPermitted(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 2164111399980044, undefined, []); }
+  static get writeNotPermitted(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 2164111399980044, undefined, []); }
   /** static var requestNotSupported: CBATTError.Code { get } */
-  static get requestNotSupported(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 381535950712636, undefined, []); }
+  static get requestNotSupported(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 381535950712636, undefined, []); }
   /** static var unsupportedGroupType: CBATTError.Code { get } */
-  static get unsupportedGroupType(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 600360324759049, undefined, []); }
+  static get unsupportedGroupType(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 600360324759049, undefined, []); }
   /** static var insufficientResources: CBATTError.Code { get } */
-  static get insufficientResources(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 1042852078749219, undefined, []); }
+  static get insufficientResources(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 1042852078749219, undefined, []); }
   /** static var insufficientEncryption: CBATTError.Code { get } */
-  static get insufficientEncryption(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 1432055582002471, undefined, []); }
+  static get insufficientEncryption(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 1432055582002471, undefined, []); }
   /** static var insufficientAuthorization: CBATTError.Code { get } */
-  static get insufficientAuthorization(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 3436647967981475, undefined, []); }
+  static get insufficientAuthorization(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 3436647967981475, undefined, []); }
   /** static var insufficientAuthentication: CBATTError.Code { get } */
-  static get insufficientAuthentication(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 3140550132202151, undefined, []); }
+  static get insufficientAuthentication(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 3140550132202151, undefined, []); }
   /** static var invalidAttributeValueLength: CBATTError.Code { get } */
-  static get invalidAttributeValueLength(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 2771510578391949, undefined, []); }
+  static get invalidAttributeValueLength(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 2771510578391949, undefined, []); }
   /** static var insufficientEncryptionKeySize: CBATTError.Code { get } */
-  static get insufficientEncryptionKeySize(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 1992354440409982, undefined, []); }
+  static get insufficientEncryptionKeySize(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 1992354440409982, undefined, []); }
   /**
    * static var success: CBATTError.Code { get }
    * @availability iOS 6.0+
    */
-  static get success(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_0e503aef608672fa", 1458389947255621, undefined, []); }
+  static get success(): CBATTError_Code { return callSDK<CBATTError_Code>("CoreBluetooth_212edf3d13b127f5", 1458389947255621, undefined, []); }
   declare readonly $type: { "s:SC10CBATTErrorLeV": true };
 }
 
@@ -69,7 +69,7 @@ export type CBATTError_Code = "success" | "invalidHandle" | "readNotPermitted" |
 
 export const CBATTError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CBATTError_Code) | null { return callSDK<(CBATTError_Code) | null>("CoreBluetooth_0e503aef608672fa", 1942561284922515, undefined, [rawValue]); }
+  init(rawValue: number): (CBATTError_Code) | null { return callSDK<(CBATTError_Code) | null>("CoreBluetooth_212edf3d13b127f5", 1942561284922515, undefined, [rawValue]); }
 };
 
 /**
@@ -81,23 +81,23 @@ export class CBATTRequest extends SDKHandle {
    * var central: CBCentral { get }
    * @availability iOS 6.0+
    */
-  get central(): CBCentral { return callSDK<CBCentral>("CoreBluetooth_0e503aef608672fa", 4152440488782259, this, []); }
+  get central(): CBCentral { return callSDK<CBCentral>("CoreBluetooth_212edf3d13b127f5", 4152440488782259, this, []); }
   /**
    * var characteristic: CBCharacteristic { get }
    * @availability iOS 6.0+
    */
-  get characteristic(): CBCharacteristic { return callSDK<CBCharacteristic>("CoreBluetooth_0e503aef608672fa", 257302815532823, this, []); }
+  get characteristic(): CBCharacteristic { return callSDK<CBCharacteristic>("CoreBluetooth_212edf3d13b127f5", 257302815532823, this, []); }
   /**
    * var offset: Int { get }
    * @availability iOS 6.0+
    */
-  get offset(): number { return callSDK<number>("CoreBluetooth_0e503aef608672fa", 245788062127509, this, []); }
+  get offset(): number { return callSDK<number>("CoreBluetooth_212edf3d13b127f5", 245788062127509, this, []); }
   /**
    * var value: Data? { get set }
    * @availability iOS 6.0+
    */
-  get value(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreBluetooth_0e503aef608672fa", 997998442404017, this, []); }
-  set value(value: (ArrayBuffer) | null) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 3165036709759470, this, [value]); }
+  get value(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreBluetooth_212edf3d13b127f5", 997998442404017, this, []); }
+  set value(value: (ArrayBuffer) | null) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3165036709759470, this, [value]); }
   declare readonly $type: { "c:objc(cs)CBATTRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "central": true; "characteristic": true; "offset": true; "value": true };
 }
@@ -111,7 +111,7 @@ export class CBAttribute extends SDKHandle {
    * var uuid: CBUUID { get }
    * @availability iOS 8.0+
    */
-  get uuid(): CBUUID { return callSDK<CBUUID>("CoreBluetooth_0e503aef608672fa", 3901295899797227, this, []); }
+  get uuid(): CBUUID { return callSDK<CBUUID>("CoreBluetooth_212edf3d13b127f5", 3901295899797227, this, []); }
   declare readonly $type: { "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true };
 }
@@ -127,27 +127,27 @@ export const CBAttributePermissions = {
    * static var readEncryptionRequired: CBAttributePermissions { get }
    * @availability iOS 6.0+
    */
-  get readEncryptionRequired(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_0e503aef608672fa", 3438894911286788, undefined, []); },
+  get readEncryptionRequired(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_212edf3d13b127f5", 3438894911286788, undefined, []); },
   /**
    * static var readable: CBAttributePermissions { get }
    * @availability iOS 6.0+
    */
-  get readable(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_0e503aef608672fa", 3746135892783120, undefined, []); },
+  get readable(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_212edf3d13b127f5", 3746135892783120, undefined, []); },
   /**
    * static var writeEncryptionRequired: CBAttributePermissions { get }
    * @availability iOS 6.0+
    */
-  get writeEncryptionRequired(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_0e503aef608672fa", 320651152129365, undefined, []); },
+  get writeEncryptionRequired(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_212edf3d13b127f5", 320651152129365, undefined, []); },
   /**
    * static var writeable: CBAttributePermissions { get }
    * @availability iOS 6.0+
    */
-  get writeable(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_0e503aef608672fa", 3065759249689721, undefined, []); },
+  get writeable(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_212edf3d13b127f5", 3065759249689721, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_0e503aef608672fa", 3940810141190717, undefined, [rawValue]); }
+  init(rawValue: number): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_212edf3d13b127f5", 3940810141190717, undefined, [rawValue]); }
 };
 
 /**
@@ -159,7 +159,7 @@ export class CBPeer extends SDKHandle {
    * var identifier: UUID { get }
    * @availability iOS 7.0+
    */
-  get identifier(): string { return callSDK<string>("CoreBluetooth_0e503aef608672fa", 4261622113006151, this, []); }
+  get identifier(): string { return callSDK<string>("CoreBluetooth_212edf3d13b127f5", 4261622113006151, this, []); }
   declare readonly $type: { "c:objc(cs)CBPeer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -173,7 +173,7 @@ export class CBCentral extends CBPeer {
    * var maximumUpdateValueLength: Int { get }
    * @availability iOS 6.0+
    */
-  get maximumUpdateValueLength(): number { return callSDK<number>("CoreBluetooth_0e503aef608672fa", 1093082932973555, this, []); }
+  get maximumUpdateValueLength(): number { return callSDK<number>("CoreBluetooth_212edf3d13b127f5", 1093082932973555, this, []); }
   declare readonly $type: { "c:objc(cs)CBCentral": true; "c:objc(cs)CBPeer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "maximumUpdateValueLength": true };
 }
@@ -187,18 +187,18 @@ export class CBManager extends SDKHandle {
    * class var authorization: CBManagerAuthorization { get }
    * @availability iOS 13.1+
    */
-  static get authorization(): CBManagerAuthorization { return callSDK<CBManagerAuthorization>("CoreBluetooth_0e503aef608672fa", 2169108295203054, undefined, []); }
+  static get authorization(): CBManagerAuthorization { return callSDK<CBManagerAuthorization>("CoreBluetooth_212edf3d13b127f5", 2169108295203054, undefined, []); }
   /**
    * var authorization: CBManagerAuthorization { get }
    * @availability iOS 13.0+
    * @deprecated iOS 13.1
    */
-  get authorization8916(): CBManagerAuthorization { return callSDK<CBManagerAuthorization>("CoreBluetooth_0e503aef608672fa", 2204809715554936, this, []); }
+  get authorization8916(): CBManagerAuthorization { return callSDK<CBManagerAuthorization>("CoreBluetooth_212edf3d13b127f5", 2204809715554936, this, []); }
   /**
    * var state: CBManagerState { get }
    * @availability iOS 10.0+
    */
-  get state(): CBManagerState { return callSDK<CBManagerState>("CoreBluetooth_0e503aef608672fa", 3892742769975625, this, []); }
+  get state(): CBManagerState { return callSDK<CBManagerState>("CoreBluetooth_212edf3d13b127f5", 3892742769975625, this, []); }
   declare readonly $type: { "c:objc(cs)CBManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorization8916": true; "state": true };
 }
@@ -212,68 +212,68 @@ export class CBCentralManager extends CBManager {
    * class func supports(_ features: CBCentralManager.Feature) -> Bool
    * @availability iOS 13.0+
    */
-  static supports(features: CBCentralManager_Feature): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 2113264716475562, undefined, [features]); }
+  static supports(features: CBCentralManager_Feature): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 2113264716475562, undefined, [features]); }
   /**
    * func cancelPeripheralConnection(_ peripheral: CBPeripheral)
    * @availability iOS 5.0+
    */
-  cancelPeripheralConnection(peripheral: CBPeripheral): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2484122326146083, this, [peripheral]); }
+  cancelPeripheralConnection(peripheral: CBPeripheral): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2484122326146083, this, [peripheral]); }
   /**
    * func connect(_ peripheral: CBPeripheral, options: [String : Any]? = nil)
    * @availability iOS 5.0+
    */
-  connect(peripheral: CBPeripheral, options?: $SDK0): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2814184947631791, this, [peripheral, options]); }
+  connect(peripheral: CBPeripheral, options?: $SDK0): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2814184947631791, this, [peripheral, options]); }
   /**
    * convenience init()
    * @availability iOS 5.0+
    */
-  static init(): CBCentralManager { return callSDK<CBCentralManager>("CoreBluetooth_0e503aef608672fa", 1781495037369518, undefined, []); }
+  static init(): CBCentralManager { return callSDK<CBCentralManager>("CoreBluetooth_212edf3d13b127f5", 1781495037369518, undefined, []); }
   /**
    * convenience init(delegate: (any CBCentralManagerDelegate)?, queue: dispatch_queue_t?)
    * @availability iOS 5.0+
    */
-  static initDelegateQueue(delegate?: $SDK1, queue?: $SDK2): CBCentralManager { return callSDK<CBCentralManager>("CoreBluetooth_0e503aef608672fa", 291841697960429, undefined, [delegate, queue], [{"protocol":"c:objc(pl)CBCentralManagerDelegate"},null]); }
+  static initDelegateQueue(delegate?: $SDK1, queue?: $SDK2): CBCentralManager { return callSDK<CBCentralManager>("CoreBluetooth_212edf3d13b127f5", 291841697960429, undefined, [delegate, queue], [{"protocol":"c:objc(pl)CBCentralManagerDelegate"},null]); }
   /**
    * init(delegate: (any CBCentralManagerDelegate)?, queue: dispatch_queue_t?, options: [String : Any]? = nil)
    * @availability iOS 7.0+
    */
-  static initDelegateQueueOptions(delegate?: $SDK1, queue?: $SDK2, options?: $SDK0): CBCentralManager { return callSDK<CBCentralManager>("CoreBluetooth_0e503aef608672fa", 2022161841153474, undefined, [delegate, queue, options], [{"protocol":"c:objc(pl)CBCentralManagerDelegate"},null,null]); }
+  static initDelegateQueueOptions(delegate?: $SDK1, queue?: $SDK2, options?: $SDK0): CBCentralManager { return callSDK<CBCentralManager>("CoreBluetooth_212edf3d13b127f5", 2022161841153474, undefined, [delegate, queue, options], [{"protocol":"c:objc(pl)CBCentralManagerDelegate"},null,null]); }
   /**
    * func registerForConnectionEvents(options: [CBConnectionEventMatchingOption : Any]? = nil)
    * @availability iOS 13.0+
    */
-  registerForConnectionEvents(options?: (NativeMap<CBConnectionEventMatchingOption, unknown>) | null): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 3227950988567091, this, [options]); }
+  registerForConnectionEvents(options?: (NativeMap<CBConnectionEventMatchingOption, unknown>) | null): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3227950988567091, this, [options]); }
   /**
    * func retrieveConnectedPeripherals(withServices serviceUUIDs: [CBUUID]) -> [CBPeripheral]
    * @availability iOS 7.0+
    */
-  retrieveConnectedPeripherals(serviceUUIDs: Array<CBUUID>): Array<CBPeripheral> { return callSDK<Array<CBPeripheral>>("CoreBluetooth_0e503aef608672fa", 3108966446882539, this, [serviceUUIDs]); }
+  retrieveConnectedPeripherals(serviceUUIDs: Array<CBUUID>): Array<CBPeripheral> { return callSDK<Array<CBPeripheral>>("CoreBluetooth_212edf3d13b127f5", 3108966446882539, this, [serviceUUIDs]); }
   /**
    * func retrievePeripherals(withIdentifiers identifiers: [UUID]) -> [CBPeripheral]
    * @availability iOS 7.0+
    */
-  retrievePeripherals(identifiers: Array<string>): Array<CBPeripheral> { return callSDK<Array<CBPeripheral>>("CoreBluetooth_0e503aef608672fa", 3787363913741959, this, [identifiers]); }
+  retrievePeripherals(identifiers: Array<string>): Array<CBPeripheral> { return callSDK<Array<CBPeripheral>>("CoreBluetooth_212edf3d13b127f5", 3787363913741959, this, [identifiers]); }
   /**
    * func scanForPeripherals(withServices serviceUUIDs: [CBUUID]?, options: [String : Any]? = nil)
    * @availability iOS 5.0+
    */
-  scanForPeripherals(serviceUUIDs?: (Array<CBUUID>) | null, options?: $SDK0): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1563324385815024, this, [serviceUUIDs, options]); }
+  scanForPeripherals(serviceUUIDs?: (Array<CBUUID>) | null, options?: $SDK0): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1563324385815024, this, [serviceUUIDs, options]); }
   /**
    * func stopScan()
    * @availability iOS 5.0+
    */
-  stopScan(): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 4499320720103494, this, []); }
+  stopScan(): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4499320720103494, this, []); }
   /**
    * weak var delegate: (any CBCentralManagerDelegate)? { get set }
    * @availability iOS 5.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreBluetooth_0e503aef608672fa", 2916019837917224, this, []); }
-  set delegate(value: $SDK1) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 258415586764583, this, [value], [{"protocol":"c:objc(pl)CBCentralManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreBluetooth_212edf3d13b127f5", 2916019837917224, this, []); }
+  set delegate(value: $SDK1) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 258415586764583, this, [value], [{"protocol":"c:objc(pl)CBCentralManagerDelegate"}]); }
   /**
    * var isScanning: Bool { get }
    * @availability iOS 9.0+
    */
-  get isScanning(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 537606139803042, this, []); }
+  get isScanning(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 537606139803042, this, []); }
   declare readonly $type: { "c:objc(cs)CBCentralManager": true; "c:objc(cs)CBManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorization8916": true; "state": true; "delegate": true; "isScanning": true };
 }
@@ -286,14 +286,14 @@ export const CBCentralManager_Feature = {
    * static var channelSounding: CBCentralManager.Feature { get }
    * @availability iOS 27.0+
    */
-  get channelSounding(): CBCentralManager_Feature { return callSDK<CBCentralManager_Feature>("CoreBluetooth_0e503aef608672fa", 4192392164644037, undefined, []); },
+  get channelSounding(): CBCentralManager_Feature { return callSDK<CBCentralManager_Feature>("CoreBluetooth_212edf3d13b127f5", 4192392164644037, undefined, []); },
   /**
    * static var extendedScanAndConnect: CBCentralManager.Feature { get }
    * @availability iOS 13.0+
    */
-  get extendedScanAndConnect(): CBCentralManager_Feature { return callSDK<CBCentralManager_Feature>("CoreBluetooth_0e503aef608672fa", 3717747520297026, undefined, []); },
+  get extendedScanAndConnect(): CBCentralManager_Feature { return callSDK<CBCentralManager_Feature>("CoreBluetooth_212edf3d13b127f5", 3717747520297026, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): CBCentralManager_Feature { return callSDK<CBCentralManager_Feature>("CoreBluetooth_0e503aef608672fa", 494456592729605, undefined, [rawValue]); }
+  init(rawValue: number): CBCentralManager_Feature { return callSDK<CBCentralManager_Feature>("CoreBluetooth_212edf3d13b127f5", 494456592729605, undefined, [rawValue]); }
 };
 
 /** protocol CBCentralManagerDelegate : NSObjectProtocol */
@@ -358,7 +358,7 @@ export const CBCentralManagerState = {
    * @availability iOS 5.0+
    * @deprecated iOS 10.0
    */
-  init(rawValue: number): (CBCentralManagerState) | null { return callSDK<(CBCentralManagerState) | null>("CoreBluetooth_0e503aef608672fa", 2457024510336522, undefined, [rawValue]); }
+  init(rawValue: number): (CBCentralManagerState) | null { return callSDK<(CBCentralManagerState) | null>("CoreBluetooth_212edf3d13b127f5", 2457024510336522, undefined, [rawValue]); }
 };
 
 /**
@@ -370,7 +370,7 @@ export class CBChannelSoundingProcedureResults extends SDKHandle {
    * var distance: Double { get }
    * @availability iOS 27.0+
    */
-  get distance(): number { return callSDK<number>("CoreBluetooth_0e503aef608672fa", 2829115215347490, this, []); }
+  get distance(): number { return callSDK<number>("CoreBluetooth_212edf3d13b127f5", 2829115215347490, this, []); }
   declare readonly $type: { "c:objc(cs)CBChannelSoundingProcedureResults": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "distance": true };
 }
@@ -384,12 +384,12 @@ export class CBChannelSoundingSessionConfiguration extends SDKHandle {
    * init(role: CBChannelSoundingSessionConfiguration.Role)
    * @availability iOS 27.0+
    */
-  static init(role: CBChannelSoundingSessionConfiguration_Role): CBChannelSoundingSessionConfiguration { return callSDK<CBChannelSoundingSessionConfiguration>("CoreBluetooth_0e503aef608672fa", 2167551025129624, undefined, [role]); }
+  static init(role: CBChannelSoundingSessionConfiguration_Role): CBChannelSoundingSessionConfiguration { return callSDK<CBChannelSoundingSessionConfiguration>("CoreBluetooth_212edf3d13b127f5", 2167551025129624, undefined, [role]); }
   /**
    * var role: CBChannelSoundingSessionConfiguration.Role { get }
    * @availability iOS 27.0+
    */
-  get role(): CBChannelSoundingSessionConfiguration_Role { return callSDK<CBChannelSoundingSessionConfiguration_Role>("CoreBluetooth_0e503aef608672fa", 1108344915591915, this, []); }
+  get role(): CBChannelSoundingSessionConfiguration_Role { return callSDK<CBChannelSoundingSessionConfiguration_Role>("CoreBluetooth_212edf3d13b127f5", 1108344915591915, this, []); }
   declare readonly $type: { "c:objc(cs)CBChannelSoundingSessionConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "role": true };
 }
@@ -405,7 +405,7 @@ export const CBChannelSoundingSessionConfiguration_Role = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (CBChannelSoundingSessionConfiguration_Role) | null { return callSDK<(CBChannelSoundingSessionConfiguration_Role) | null>("CoreBluetooth_0e503aef608672fa", 1513796961889371, undefined, [rawValue]); }
+  init(rawValue: number): (CBChannelSoundingSessionConfiguration_Role) | null { return callSDK<(CBChannelSoundingSessionConfiguration_Role) | null>("CoreBluetooth_212edf3d13b127f5", 1513796961889371, undefined, [rawValue]); }
 };
 
 /**
@@ -417,33 +417,33 @@ export class CBCharacteristic extends CBAttribute {
    * var descriptors: [CBDescriptor]? { get }
    * @availability iOS 5.0+
    */
-  get descriptors(): $SDK4 { return callSDK<$SDK4>("CoreBluetooth_0e503aef608672fa", 3961304050948790, this, []); }
+  get descriptors(): $SDK4 { return callSDK<$SDK4>("CoreBluetooth_212edf3d13b127f5", 3961304050948790, this, []); }
   /**
    * var isBroadcasted: Bool { get }
    * @availability iOS 5.0+
    * @deprecated iOS 8.0
    */
-  get isBroadcasted(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 3062204905513554, this, []); }
+  get isBroadcasted(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 3062204905513554, this, []); }
   /**
    * var isNotifying: Bool { get }
    * @availability iOS 5.0+
    */
-  get isNotifying(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 4101173278663984, this, []); }
+  get isNotifying(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 4101173278663984, this, []); }
   /**
    * var properties: CBCharacteristicProperties { get }
    * @availability iOS 5.0+
    */
-  get properties(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 68377057675099, this, []); }
+  get properties(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 68377057675099, this, []); }
   /**
    * weak var service: CBService? { get }
    * @availability iOS 5.0+
    */
-  get service(): (CBService) | null { return callSDK<(CBService) | null>("CoreBluetooth_0e503aef608672fa", 1657921327805250, this, []); }
+  get service(): (CBService) | null { return callSDK<(CBService) | null>("CoreBluetooth_212edf3d13b127f5", 1657921327805250, this, []); }
   /**
    * var value: Data? { get }
    * @availability iOS 5.0+
    */
-  get value(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreBluetooth_0e503aef608672fa", 1672519214457064, this, []); }
+  get value(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreBluetooth_212edf3d13b127f5", 1672519214457064, this, []); }
   declare readonly $type: { "c:objc(cs)CBCharacteristic": true; "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "descriptors": true; "isBroadcasted": true; "isNotifying": true; "properties": true; "service": true; "value": true };
 }
@@ -453,33 +453,33 @@ export type CBCharacteristicProperties = Array<"broadcast" | "read" | "writeWith
 
 export const CBCharacteristicProperties = {
   /** static var authenticatedSignedWrites: CBCharacteristicProperties { get } */
-  get authenticatedSignedWrites(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 3209846920054511, undefined, []); },
+  get authenticatedSignedWrites(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 3209846920054511, undefined, []); },
   /** static var broadcast: CBCharacteristicProperties { get } */
-  get broadcast(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 4226037476313979, undefined, []); },
+  get broadcast(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 4226037476313979, undefined, []); },
   /** static var extendedProperties: CBCharacteristicProperties { get } */
-  get extendedProperties(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 3159140912701826, undefined, []); },
+  get extendedProperties(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 3159140912701826, undefined, []); },
   /** static var indicate: CBCharacteristicProperties { get } */
-  get indicate(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 2775549443902490, undefined, []); },
+  get indicate(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 2775549443902490, undefined, []); },
   /**
    * static var indicateEncryptionRequired: CBCharacteristicProperties { get }
    * @availability iOS 6.0+
    */
-  get indicateEncryptionRequired(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 257634340448188, undefined, []); },
+  get indicateEncryptionRequired(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 257634340448188, undefined, []); },
   /** static var notify: CBCharacteristicProperties { get } */
-  get notify(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 82471315596334, undefined, []); },
+  get notify(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 82471315596334, undefined, []); },
   /**
    * static var notifyEncryptionRequired: CBCharacteristicProperties { get }
    * @availability iOS 6.0+
    */
-  get notifyEncryptionRequired(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 4477785457903014, undefined, []); },
+  get notifyEncryptionRequired(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 4477785457903014, undefined, []); },
   /** static var read: CBCharacteristicProperties { get } */
-  get read(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 3176873786200562, undefined, []); },
+  get read(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 3176873786200562, undefined, []); },
   /** static var write: CBCharacteristicProperties { get } */
-  get write(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 307673840024344, undefined, []); },
+  get write(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 307673840024344, undefined, []); },
   /** static var writeWithoutResponse: CBCharacteristicProperties { get } */
-  get writeWithoutResponse(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 642519336993189, undefined, []); },
+  get writeWithoutResponse(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 642519336993189, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 694204239695036, undefined, [rawValue]); }
+  init(rawValue: number): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 694204239695036, undefined, [rawValue]); }
 };
 
 /** enum CBCharacteristicWriteType */
@@ -487,7 +487,7 @@ export type CBCharacteristicWriteType = "withResponse" | "withoutResponse";
 
 export const CBCharacteristicWriteType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CBCharacteristicWriteType) | null { return callSDK<(CBCharacteristicWriteType) | null>("CoreBluetooth_0e503aef608672fa", 4369976186804195, undefined, [rawValue]); }
+  init(rawValue: number): (CBCharacteristicWriteType) | null { return callSDK<(CBCharacteristicWriteType) | null>("CoreBluetooth_212edf3d13b127f5", 4369976186804195, undefined, [rawValue]); }
 };
 
 /** enum CBConnectionEvent */
@@ -495,7 +495,7 @@ export type CBConnectionEvent = "peerDisconnected" | "peerConnected";
 
 export const CBConnectionEvent = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CBConnectionEvent) | null { return callSDK<(CBConnectionEvent) | null>("CoreBluetooth_0e503aef608672fa", 4206087916446245, undefined, [rawValue]); }
+  init(rawValue: number): (CBConnectionEvent) | null { return callSDK<(CBConnectionEvent) | null>("CoreBluetooth_212edf3d13b127f5", 4206087916446245, undefined, [rawValue]); }
 };
 
 /** struct CBConnectionEventMatchingOption */
@@ -506,14 +506,14 @@ export const CBConnectionEventMatchingOption = {
    * static let peripheralUUIDs: CBConnectionEventMatchingOption
    * @availability iOS 13.0+
    */
-  get peripheralUUIDs(): CBConnectionEventMatchingOption { return callSDK<CBConnectionEventMatchingOption>("CoreBluetooth_0e503aef608672fa", 3058241994313898, undefined, []); },
+  get peripheralUUIDs(): CBConnectionEventMatchingOption { return callSDK<CBConnectionEventMatchingOption>("CoreBluetooth_212edf3d13b127f5", 3058241994313898, undefined, []); },
   /**
    * static let serviceUUIDs: CBConnectionEventMatchingOption
    * @availability iOS 13.0+
    */
-  get serviceUUIDs(): CBConnectionEventMatchingOption { return callSDK<CBConnectionEventMatchingOption>("CoreBluetooth_0e503aef608672fa", 546348637180328, undefined, []); },
+  get serviceUUIDs(): CBConnectionEventMatchingOption { return callSDK<CBConnectionEventMatchingOption>("CoreBluetooth_212edf3d13b127f5", 546348637180328, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CBConnectionEventMatchingOption { return callSDK<CBConnectionEventMatchingOption>("CoreBluetooth_0e503aef608672fa", 2694216302439474, undefined, [rawValue]); }
+  init(rawValue: string): CBConnectionEventMatchingOption { return callSDK<CBConnectionEventMatchingOption>("CoreBluetooth_212edf3d13b127f5", 2694216302439474, undefined, [rawValue]); }
 };
 
 /**
@@ -525,12 +525,12 @@ export class CBDescriptor extends CBAttribute {
    * weak var characteristic: CBCharacteristic? { get }
    * @availability iOS 5.0+
    */
-  get characteristic(): (CBCharacteristic) | null { return callSDK<(CBCharacteristic) | null>("CoreBluetooth_0e503aef608672fa", 2405405282119017, this, []); }
+  get characteristic(): (CBCharacteristic) | null { return callSDK<(CBCharacteristic) | null>("CoreBluetooth_212edf3d13b127f5", 2405405282119017, this, []); }
   /**
    * var value: Any? { get }
    * @availability iOS 5.0+
    */
-  get value(): (unknown) | null { return callSDK<(unknown) | null>("CoreBluetooth_0e503aef608672fa", 1719634886528946, this, []); }
+  get value(): (unknown) | null { return callSDK<(unknown) | null>("CoreBluetooth_212edf3d13b127f5", 1719634886528946, this, []); }
   declare readonly $type: { "c:objc(cs)CBDescriptor": true; "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "characteristic": true; "value": true };
 }
@@ -541,102 +541,102 @@ export class CBError extends SDKHandle {
    * static var outOfSpace: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get outOfSpace(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 283931591965238, undefined, []); }
+  static get outOfSpace(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 283931591965238, undefined, []); }
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("CoreBluetooth_0e503aef608672fa", 960250369633787, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreBluetooth_212edf3d13b127f5", 960250369633787, undefined, []); }
   /**
    * static var notConnected: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get notConnected(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 2196513484531572, undefined, []); }
+  static get notConnected(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 2196513484531572, undefined, []); }
   /**
    * static var unkownDevice: CBError.Code { get }
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  static get unkownDevice(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 3939992872001128, undefined, []); }
+  static get unkownDevice(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 3939992872001128, undefined, []); }
   /**
    * static var invalidHandle: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get invalidHandle(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 2880550064093346, undefined, []); }
+  static get invalidHandle(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 2880550064093346, undefined, []); }
   /**
    * static var unknownDevice: CBError.Code { get }
    * @availability iOS 12.0+
    */
-  static get unknownDevice(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 2026086335152721, undefined, []); }
+  static get unknownDevice(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 2026086335152721, undefined, []); }
   /**
    * static var uuidNotAllowed: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get uuidNotAllowed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 3990151966243562, undefined, []); }
+  static get uuidNotAllowed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 3990151966243562, undefined, []); }
   /**
    * static var connectionFailed: CBError.Code { get }
    * @availability iOS 7.1+
    */
-  static get connectionFailed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 232167523207649, undefined, []); }
+  static get connectionFailed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 232167523207649, undefined, []); }
   /**
    * static var connectionTimeout: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get connectionTimeout(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 4081396317713471, undefined, []); }
+  static get connectionTimeout(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 4081396317713471, undefined, []); }
   /**
    * static var invalidParameters: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get invalidParameters(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 507952234000780, undefined, []); }
+  static get invalidParameters(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 507952234000780, undefined, []); }
   /**
    * static var alreadyAdvertising: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get alreadyAdvertising(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 817328253092461, undefined, []); }
+  static get alreadyAdvertising(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 817328253092461, undefined, []); }
   /**
    * static var encryptionTimedOut: CBError.Code { get }
    * @availability iOS 13.4+
    */
-  static get encryptionTimedOut(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 4119796526107313, undefined, []); }
+  static get encryptionTimedOut(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 4119796526107313, undefined, []); }
   /**
    * static var operationCancelled: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get operationCancelled(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 1844383978488713, undefined, []); }
+  static get operationCancelled(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 1844383978488713, undefined, []); }
   /**
    * static var operationNotSupported: CBError.Code { get }
    * @availability iOS 12.0+
    */
-  static get operationNotSupported(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 4171707748201128, undefined, []); }
+  static get operationNotSupported(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 4171707748201128, undefined, []); }
   /**
    * static var connectionLimitReached: CBError.Code { get }
    * @availability iOS 9.0+
    */
-  static get connectionLimitReached(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 3229592153338693, undefined, []); }
+  static get connectionLimitReached(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 3229592153338693, undefined, []); }
   /**
    * static var peripheralDisconnected: CBError.Code { get }
    * @availability iOS 6.0+
    */
-  static get peripheralDisconnected(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 1872537532856487, undefined, []); }
+  static get peripheralDisconnected(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 1872537532856487, undefined, []); }
   /**
    * static var tooManyLEPairedDevices: CBError.Code { get }
    * @availability iOS 14.0+
    */
-  static get tooManyLEPairedDevices(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 4285982180098862, undefined, []); }
+  static get tooManyLEPairedDevices(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 4285982180098862, undefined, []); }
   /**
    * static var peerRemovedPairingInformation: CBError.Code { get }
    * @availability iOS 13.4+
    */
-  static get peerRemovedPairingInformation(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 1345790885904267, undefined, []); }
+  static get peerRemovedPairingInformation(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 1345790885904267, undefined, []); }
   /**
    * static var channelSoundingProcedureFailed: CBError.Code { get }
    * @availability iOS 27.0+
    */
-  static get channelSoundingProcedureFailed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 3837186952389528, undefined, []); }
+  static get channelSoundingProcedureFailed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 3837186952389528, undefined, []); }
   /**
    * static var channelSoundingConfigurationFailed: CBError.Code { get }
    * @availability iOS 27.0+
    */
-  static get channelSoundingConfigurationFailed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 2022205822004091, undefined, []); }
+  static get channelSoundingConfigurationFailed(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 2022205822004091, undefined, []); }
   /** static var unknown: CBError.Code { get } */
-  static get unknown(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 2344622539615341, undefined, []); }
+  static get unknown(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 2344622539615341, undefined, []); }
   declare readonly $type: { "s:SC7CBErrorLeV": true };
 }
 
@@ -648,9 +648,9 @@ export const CBError_Code = {
    * static var unknownDevice: CBError.Code { get }
    * @availability iOS 12.0+
    */
-  get unknownDevice(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_0e503aef608672fa", 2007767880580626, undefined, []); },
+  get unknownDevice(): CBError_Code { return callSDK<CBError_Code>("CoreBluetooth_212edf3d13b127f5", 2007767880580626, undefined, []); },
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CBError_Code) | null { return callSDK<(CBError_Code) | null>("CoreBluetooth_0e503aef608672fa", 1409229974422131, undefined, [rawValue]); }
+  init(rawValue: number): (CBError_Code) | null { return callSDK<(CBError_Code) | null>("CoreBluetooth_212edf3d13b127f5", 1409229974422131, undefined, [rawValue]); }
 };
 
 /**
@@ -659,27 +659,27 @@ export const CBError_Code = {
  */
 export class CBL2CAPChannel extends SDKHandle {
   /** init() */
-  static init(): CBL2CAPChannel { return callSDK<CBL2CAPChannel>("CoreBluetooth_0e503aef608672fa", 583278167184775, undefined, []); }
+  static init(): CBL2CAPChannel { return callSDK<CBL2CAPChannel>("CoreBluetooth_212edf3d13b127f5", 583278167184775, undefined, []); }
   /**
    * var psm: CBL2CAPPSM { get }
    * @availability iOS 11.0+
    */
-  get psm(): number { return callSDK<number>("CoreBluetooth_0e503aef608672fa", 2603777674304817, this, []); }
+  get psm(): number { return callSDK<number>("CoreBluetooth_212edf3d13b127f5", 2603777674304817, this, []); }
   /**
    * var inputStream: InputStream! { get }
    * @availability iOS 11.0+
    */
-  get inputStream(): (_Foundation_InputStream) | null { return callSDK<(_Foundation_InputStream) | null>("CoreBluetooth_0e503aef608672fa", 579230244876563, this, []); }
+  get inputStream(): (_Foundation_InputStream) | null { return callSDK<(_Foundation_InputStream) | null>("CoreBluetooth_212edf3d13b127f5", 579230244876563, this, []); }
   /**
    * var outputStream: OutputStream! { get }
    * @availability iOS 11.0+
    */
-  get outputStream(): (_Foundation_OutputStream) | null { return callSDK<(_Foundation_OutputStream) | null>("CoreBluetooth_0e503aef608672fa", 586652570610901, this, []); }
+  get outputStream(): (_Foundation_OutputStream) | null { return callSDK<(_Foundation_OutputStream) | null>("CoreBluetooth_212edf3d13b127f5", 586652570610901, this, []); }
   /**
    * var peer: CBPeer! { get }
    * @availability iOS 11.0+
    */
-  get peer(): (CBPeer) | null { return callSDK<(CBPeer) | null>("CoreBluetooth_0e503aef608672fa", 2208093636578740, this, []); }
+  get peer(): (CBPeer) | null { return callSDK<(CBPeer) | null>("CoreBluetooth_212edf3d13b127f5", 2208093636578740, this, []); }
   declare readonly $type: { "c:objc(cs)CBL2CAPChannel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "psm": true; "inputStream": true; "outputStream": true; "peer": true };
 }
@@ -698,7 +698,7 @@ export const CBManagerAuthorization = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (CBManagerAuthorization) | null { return callSDK<(CBManagerAuthorization) | null>("CoreBluetooth_0e503aef608672fa", 885143676259635, undefined, [rawValue]); }
+  init(rawValue: number): (CBManagerAuthorization) | null { return callSDK<(CBManagerAuthorization) | null>("CoreBluetooth_212edf3d13b127f5", 885143676259635, undefined, [rawValue]); }
 };
 
 /**
@@ -712,7 +712,7 @@ export const CBManagerState = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CBManagerState) | null { return callSDK<(CBManagerState) | null>("CoreBluetooth_0e503aef608672fa", 93509065949457, undefined, [rawValue]); }
+  init(rawValue: number): (CBManagerState) | null { return callSDK<(CBManagerState) | null>("CoreBluetooth_212edf3d13b127f5", 93509065949457, undefined, [rawValue]); }
 };
 
 /**
@@ -724,36 +724,36 @@ export class CBMutableCharacteristic extends (CBCharacteristic as unknown as Omi
    * init(type UUID: CBUUID, properties: CBCharacteristicProperties, value: Data?, permissions: CBAttributePermissions)
    * @availability iOS 6.0+
    */
-  static init(UUID: CBUUID, properties: CBCharacteristicProperties, value: (ArrayBuffer) | null, permissions: CBAttributePermissions): CBMutableCharacteristic { return callSDK<CBMutableCharacteristic>("CoreBluetooth_0e503aef608672fa", 1492789177743553, undefined, [UUID, properties, value, permissions]); }
+  static init(UUID: CBUUID, properties: CBCharacteristicProperties, value: (ArrayBuffer) | null, permissions: CBAttributePermissions): CBMutableCharacteristic { return callSDK<CBMutableCharacteristic>("CoreBluetooth_212edf3d13b127f5", 1492789177743553, undefined, [UUID, properties, value, permissions]); }
   /**
    * var descriptors: [CBDescriptor]? { get set }
    * @availability iOS 6.0+
    */
-  get descriptors(): $SDK4 { return callSDK<$SDK4>("CoreBluetooth_0e503aef608672fa", 2771822040052325, this, []); }
-  set descriptors(value: $SDK4) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 455067687342659, this, [value]); }
+  get descriptors(): $SDK4 { return callSDK<$SDK4>("CoreBluetooth_212edf3d13b127f5", 2771822040052325, this, []); }
+  set descriptors(value: $SDK4) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 455067687342659, this, [value]); }
   /**
    * var permissions: CBAttributePermissions { get set }
    * @availability iOS 6.0+
    */
-  get permissions(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_0e503aef608672fa", 2315760934708865, this, []); }
-  set permissions(value: CBAttributePermissions) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 3264682623760819, this, [value]); }
+  get permissions(): CBAttributePermissions { return callSDK<CBAttributePermissions>("CoreBluetooth_212edf3d13b127f5", 2315760934708865, this, []); }
+  set permissions(value: CBAttributePermissions) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3264682623760819, this, [value]); }
   /**
    * var properties: CBCharacteristicProperties { get set }
    * @availability iOS 6.0+
    */
-  get properties(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_0e503aef608672fa", 3100688012502376, this, []); }
-  set properties(value: CBCharacteristicProperties) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 2980040893328215, this, [value]); }
+  get properties(): CBCharacteristicProperties { return callSDK<CBCharacteristicProperties>("CoreBluetooth_212edf3d13b127f5", 3100688012502376, this, []); }
+  set properties(value: CBCharacteristicProperties) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2980040893328215, this, [value]); }
   /**
    * var subscribedCentrals: [CBCentral]? { get }
    * @availability iOS 7.0+
    */
-  get subscribedCentrals(): (Array<CBCentral>) | null { return callSDK<(Array<CBCentral>) | null>("CoreBluetooth_0e503aef608672fa", 507261837752608, this, []); }
+  get subscribedCentrals(): (Array<CBCentral>) | null { return callSDK<(Array<CBCentral>) | null>("CoreBluetooth_212edf3d13b127f5", 507261837752608, this, []); }
   /**
    * var value: Data? { get set }
    * @availability iOS 6.0+
    */
-  get value(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreBluetooth_0e503aef608672fa", 658387280905156, this, []); }
-  set value(value: (ArrayBuffer) | null) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 3429535210446706, this, [value]); }
+  get value(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreBluetooth_212edf3d13b127f5", 658387280905156, this, []); }
+  set value(value: (ArrayBuffer) | null) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3429535210446706, this, [value]); }
   declare readonly $type: { "c:objc(cs)CBMutableCharacteristic": true; "c:objc(cs)CBCharacteristic": true; "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "descriptors": true; "isBroadcasted": true; "isNotifying": true; "properties": true; "service": true; "value": true; "permissions": true; "subscribedCentrals": true };
 }
@@ -767,7 +767,7 @@ export class CBMutableDescriptor extends CBDescriptor {
    * init(type UUID: CBUUID, value: Any?)
    * @availability iOS 6.0+
    */
-  static init(UUID: CBUUID, value?: (unknown) | null): CBMutableDescriptor { return callSDK<CBMutableDescriptor>("CoreBluetooth_0e503aef608672fa", 1136888807506409, undefined, [UUID, value]); }
+  static init(UUID: CBUUID, value?: (unknown) | null): CBMutableDescriptor { return callSDK<CBMutableDescriptor>("CoreBluetooth_212edf3d13b127f5", 1136888807506409, undefined, [UUID, value]); }
   declare readonly $type: { "c:objc(cs)CBMutableDescriptor": true; "c:objc(cs)CBDescriptor": true; "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "characteristic": true; "value": true };
 }
@@ -781,22 +781,22 @@ export class CBService extends CBAttribute {
    * var characteristics: [CBCharacteristic]? { get }
    * @availability iOS 5.0+
    */
-  get characteristics(): $SDK9 { return callSDK<$SDK9>("CoreBluetooth_0e503aef608672fa", 1152063573324003, this, []); }
+  get characteristics(): $SDK9 { return callSDK<$SDK9>("CoreBluetooth_212edf3d13b127f5", 1152063573324003, this, []); }
   /**
    * var includedServices: [CBService]? { get }
    * @availability iOS 5.0+
    */
-  get includedServices(): $SDK10 { return callSDK<$SDK10>("CoreBluetooth_0e503aef608672fa", 3552095574551466, this, []); }
+  get includedServices(): $SDK10 { return callSDK<$SDK10>("CoreBluetooth_212edf3d13b127f5", 3552095574551466, this, []); }
   /**
    * var isPrimary: Bool { get }
    * @availability iOS 5.0+
    */
-  get isPrimary(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 738836180893340, this, []); }
+  get isPrimary(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 738836180893340, this, []); }
   /**
    * weak var peripheral: CBPeripheral? { get }
    * @availability iOS 5.0+
    */
-  get peripheral(): (CBPeripheral) | null { return callSDK<(CBPeripheral) | null>("CoreBluetooth_0e503aef608672fa", 1921318684415502, this, []); }
+  get peripheral(): (CBPeripheral) | null { return callSDK<(CBPeripheral) | null>("CoreBluetooth_212edf3d13b127f5", 1921318684415502, this, []); }
   declare readonly $type: { "c:objc(cs)CBService": true; "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "characteristics": true; "includedServices": true; "isPrimary": true; "peripheral": true };
 }
@@ -810,19 +810,19 @@ export class CBMutableService extends (CBService as unknown as Omit<typeof CBSer
    * init(type UUID: CBUUID, primary isPrimary: Bool)
    * @availability iOS 6.0+
    */
-  static init(UUID: CBUUID, isPrimary: boolean): CBMutableService { return callSDK<CBMutableService>("CoreBluetooth_0e503aef608672fa", 2395988814202515, undefined, [UUID, isPrimary]); }
+  static init(UUID: CBUUID, isPrimary: boolean): CBMutableService { return callSDK<CBMutableService>("CoreBluetooth_212edf3d13b127f5", 2395988814202515, undefined, [UUID, isPrimary]); }
   /**
    * var characteristics: [CBCharacteristic]? { get set }
    * @availability iOS 6.0+
    */
-  get characteristics(): $SDK9 { return callSDK<$SDK9>("CoreBluetooth_0e503aef608672fa", 396884183922415, this, []); }
-  set characteristics(value: $SDK9) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 744379692747840, this, [value]); }
+  get characteristics(): $SDK9 { return callSDK<$SDK9>("CoreBluetooth_212edf3d13b127f5", 396884183922415, this, []); }
+  set characteristics(value: $SDK9) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 744379692747840, this, [value]); }
   /**
    * var includedServices: [CBService]? { get set }
    * @availability iOS 6.0+
    */
-  get includedServices(): $SDK10 { return callSDK<$SDK10>("CoreBluetooth_0e503aef608672fa", 1400282221117918, this, []); }
-  set includedServices(value: $SDK10) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 3408250631619349, this, [value]); }
+  get includedServices(): $SDK10 { return callSDK<$SDK10>("CoreBluetooth_212edf3d13b127f5", 1400282221117918, this, []); }
+  set includedServices(value: $SDK10) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3408250631619349, this, [value]); }
   declare readonly $type: { "c:objc(cs)CBMutableService": true; "c:objc(cs)CBService": true; "c:objc(cs)CBAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "characteristics": true; "includedServices": true; "isPrimary": true; "peripheral": true };
 }
@@ -836,109 +836,109 @@ export class CBPeripheral extends CBPeer {
    * func cancelChannelSoundingSession()
    * @availability iOS 27.0+
    */
-  cancelChannelSoundingSession(): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2453160944109667, this, []); }
+  cancelChannelSoundingSession(): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2453160944109667, this, []); }
   /**
    * func discoverCharacteristics(_ characteristicUUIDs: [CBUUID]?, for service: CBService)
    * @availability iOS 5.0+
    */
-  discoverCharacteristics(characteristicUUIDs: (Array<CBUUID>) | null, service: CBService): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 4462071311992466, this, [characteristicUUIDs, service]); }
+  discoverCharacteristics(characteristicUUIDs: (Array<CBUUID>) | null, service: CBService): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4462071311992466, this, [characteristicUUIDs, service]); }
   /**
    * func discoverDescriptors(for characteristic: CBCharacteristic)
    * @availability iOS 5.0+
    */
-  discoverDescriptors(characteristic: CBCharacteristic): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2936686528593860, this, [characteristic]); }
+  discoverDescriptors(characteristic: CBCharacteristic): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2936686528593860, this, [characteristic]); }
   /**
    * func discoverIncludedServices(_ includedServiceUUIDs: [CBUUID]?, for service: CBService)
    * @availability iOS 5.0+
    */
-  discoverIncludedServices(includedServiceUUIDs: (Array<CBUUID>) | null, service: CBService): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2868779289105029, this, [includedServiceUUIDs, service]); }
+  discoverIncludedServices(includedServiceUUIDs: (Array<CBUUID>) | null, service: CBService): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2868779289105029, this, [includedServiceUUIDs, service]); }
   /**
    * func discoverServices(_ serviceUUIDs: [CBUUID]?)
    * @availability iOS 5.0+
    */
-  discoverServices(serviceUUIDs?: (Array<CBUUID>) | null): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 4192349361169488, this, [serviceUUIDs]); }
+  discoverServices(serviceUUIDs?: (Array<CBUUID>) | null): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4192349361169488, this, [serviceUUIDs]); }
   /**
    * func maximumWriteValueLength(for type: CBCharacteristicWriteType) -> Int
    * @availability iOS 9.0+
    */
-  maximumWriteValueLength(type: CBCharacteristicWriteType): number { return callSDK<number>("CoreBluetooth_0e503aef608672fa", 4313984983530139, this, [type]); }
+  maximumWriteValueLength(type: CBCharacteristicWriteType): number { return callSDK<number>("CoreBluetooth_212edf3d13b127f5", 4313984983530139, this, [type]); }
   /**
    * func openL2CAPChannel(_ PSM: CBL2CAPPSM)
    * @availability iOS 11.0+
    */
-  openL2CAPChannel(PSM: number): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2455545726777632, this, [PSM]); }
+  openL2CAPChannel(PSM: number): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2455545726777632, this, [PSM]); }
   /**
    * func readRSSI()
    * @availability iOS 5.0+
    */
-  readRSSI(): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1621735375599338, this, []); }
+  readRSSI(): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1621735375599338, this, []); }
   /**
    * func readValue(for characteristic: CBCharacteristic)
    * @availability iOS 5.0+
    */
-  readValueFor(characteristic: CBCharacteristic): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1819705061668668, this, [characteristic]); }
+  readValueFor(characteristic: CBCharacteristic): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1819705061668668, this, [characteristic]); }
   /**
    * func readValue(for descriptor: CBDescriptor)
    * @availability iOS 5.0+
    */
-  readValueFor17880(descriptor: CBDescriptor): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 3278616255671991, this, [descriptor]); }
+  readValueFor17880(descriptor: CBDescriptor): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3278616255671991, this, [descriptor]); }
   /**
    * func setNotifyValue(_ enabled: Bool, for characteristic: CBCharacteristic)
    * @availability iOS 5.0+
    */
-  setNotifyValue(enabled: boolean, characteristic: CBCharacteristic): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 83275071278495, this, [enabled, characteristic]); }
+  setNotifyValue(enabled: boolean, characteristic: CBCharacteristic): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 83275071278495, this, [enabled, characteristic]); }
   /**
    * func startChannelSoundingSession(_ configuration: CBChannelSoundingSessionConfiguration)
    * @availability iOS 27.0+
    */
-  startChannelSoundingSession(configuration: CBChannelSoundingSessionConfiguration): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 2028669580080191, this, [configuration]); }
+  startChannelSoundingSession(configuration: CBChannelSoundingSessionConfiguration): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 2028669580080191, this, [configuration]); }
   /**
    * func writeValue(_ data: Data, for characteristic: CBCharacteristic, type: CBCharacteristicWriteType)
    * @availability iOS 5.0+
    */
-  writeValueForType(data: ArrayBuffer, characteristic: CBCharacteristic, type: CBCharacteristicWriteType): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 416046400128717, this, [data, characteristic, type]); }
+  writeValueForType(data: ArrayBuffer, characteristic: CBCharacteristic, type: CBCharacteristicWriteType): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 416046400128717, this, [data, characteristic, type]); }
   /**
    * func writeValue(_ data: Data, for descriptor: CBDescriptor)
    * @availability iOS 5.0+
    */
-  writeValueFor(data: ArrayBuffer, descriptor: CBDescriptor): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 4201198865367202, this, [data, descriptor]); }
+  writeValueFor(data: ArrayBuffer, descriptor: CBDescriptor): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4201198865367202, this, [data, descriptor]); }
   /**
    * var rssi: NSNumber? { get }
    * @availability iOS 5.0+
    * @deprecated iOS 8.0
    */
-  get rssi(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("CoreBluetooth_0e503aef608672fa", 312320830653691, this, []); }
+  get rssi(): (_Foundation_NSNumber) | null { return callSDK<(_Foundation_NSNumber) | null>("CoreBluetooth_212edf3d13b127f5", 312320830653691, this, []); }
   /**
    * var ancsAuthorized: Bool { get }
    * @availability iOS 13.0+
    */
-  get ancsAuthorized(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 1432246091944386, this, []); }
+  get ancsAuthorized(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 1432246091944386, this, []); }
   /**
    * var canSendWriteWithoutResponse: Bool { get }
    * @availability iOS 11.0+
    */
-  get canSendWriteWithoutResponse(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 4475484340246009, this, []); }
+  get canSendWriteWithoutResponse(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 4475484340246009, this, []); }
   /**
    * weak var delegate: (any CBPeripheralDelegate)? { get set }
    * @availability iOS 5.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreBluetooth_0e503aef608672fa", 2745291343042127, this, []); }
-  set delegate(value: (Implements<CBPeripheralDelegate> | SDKHandle) | null) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 4166558085962960, this, [value], [{"protocol":"c:objc(pl)CBPeripheralDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreBluetooth_212edf3d13b127f5", 2745291343042127, this, []); }
+  set delegate(value: (Implements<CBPeripheralDelegate> | SDKHandle) | null) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4166558085962960, this, [value], [{"protocol":"c:objc(pl)CBPeripheralDelegate"}]); }
   /**
    * var name: String? { get }
    * @availability iOS 5.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreBluetooth_0e503aef608672fa", 96501750240586, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreBluetooth_212edf3d13b127f5", 96501750240586, this, []); }
   /**
    * var services: [CBService]? { get }
    * @availability iOS 5.0+
    */
-  get services(): $SDK10 { return callSDK<$SDK10>("CoreBluetooth_0e503aef608672fa", 1646097742866561, this, []); }
+  get services(): $SDK10 { return callSDK<$SDK10>("CoreBluetooth_212edf3d13b127f5", 1646097742866561, this, []); }
   /**
    * var state: CBPeripheralState { get }
    * @availability iOS 5.0+
    */
-  get state(): CBPeripheralState { return callSDK<CBPeripheralState>("CoreBluetooth_0e503aef608672fa", 1787888249972222, this, []); }
+  get state(): CBPeripheralState { return callSDK<CBPeripheralState>("CoreBluetooth_212edf3d13b127f5", 1787888249972222, this, []); }
   declare readonly $type: { "c:objc(cs)CBPeripheral": true; "c:objc(cs)CBPeer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "rssi": true; "ancsAuthorized": true; "canSendWriteWithoutResponse": true; "delegate": true; "name": true; "services": true; "state": true };
 }
@@ -1033,83 +1033,83 @@ export class CBPeripheralManager extends CBManager {
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static authorizationStatus(): CBPeripheralManagerAuthorizationStatus { return callSDK<CBPeripheralManagerAuthorizationStatus>("CoreBluetooth_0e503aef608672fa", 2228573283643973, undefined, []); }
+  static authorizationStatus(): CBPeripheralManagerAuthorizationStatus { return callSDK<CBPeripheralManagerAuthorizationStatus>("CoreBluetooth_212edf3d13b127f5", 2228573283643973, undefined, []); }
   /**
    * func add(_ service: CBMutableService)
    * @availability iOS 6.0+
    */
-  add(service: CBMutableService): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 660338424925091, this, [service]); }
+  add(service: CBMutableService): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 660338424925091, this, [service]); }
   /**
    * convenience init()
    * @availability iOS 6.0+
    */
-  static init(): CBPeripheralManager { return callSDK<CBPeripheralManager>("CoreBluetooth_0e503aef608672fa", 1500472948499597, undefined, []); }
+  static init(): CBPeripheralManager { return callSDK<CBPeripheralManager>("CoreBluetooth_212edf3d13b127f5", 1500472948499597, undefined, []); }
   /**
    * convenience init(delegate: (any CBPeripheralManagerDelegate)?, queue: dispatch_queue_t?)
    * @availability iOS 6.0+
    */
-  static initDelegateQueue(delegate?: $SDK14, queue?: $SDK2): CBPeripheralManager { return callSDK<CBPeripheralManager>("CoreBluetooth_0e503aef608672fa", 1878379207188656, undefined, [delegate, queue], [{"protocol":"c:objc(pl)CBPeripheralManagerDelegate"},null]); }
+  static initDelegateQueue(delegate?: $SDK14, queue?: $SDK2): CBPeripheralManager { return callSDK<CBPeripheralManager>("CoreBluetooth_212edf3d13b127f5", 1878379207188656, undefined, [delegate, queue], [{"protocol":"c:objc(pl)CBPeripheralManagerDelegate"},null]); }
   /**
    * init(delegate: (any CBPeripheralManagerDelegate)?, queue: dispatch_queue_t?, options: [String : Any]? = nil)
    * @availability iOS 7.0+
    */
-  static initDelegateQueueOptions(delegate?: $SDK14, queue?: $SDK2, options?: $SDK0): CBPeripheralManager { return callSDK<CBPeripheralManager>("CoreBluetooth_0e503aef608672fa", 1671764602072149, undefined, [delegate, queue, options], [{"protocol":"c:objc(pl)CBPeripheralManagerDelegate"},null,null]); }
+  static initDelegateQueueOptions(delegate?: $SDK14, queue?: $SDK2, options?: $SDK0): CBPeripheralManager { return callSDK<CBPeripheralManager>("CoreBluetooth_212edf3d13b127f5", 1671764602072149, undefined, [delegate, queue, options], [{"protocol":"c:objc(pl)CBPeripheralManagerDelegate"},null,null]); }
   /**
    * func publishL2CAPChannel(withEncryption encryptionRequired: Bool)
    * @availability iOS 11.0+
    */
-  publishL2CAPChannel(encryptionRequired: boolean): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1966300713327523, this, [encryptionRequired]); }
+  publishL2CAPChannel(encryptionRequired: boolean): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1966300713327523, this, [encryptionRequired]); }
   /**
    * func removeAllServices()
    * @availability iOS 6.0+
    */
-  removeAllServices(): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1301193458132324, this, []); }
+  removeAllServices(): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1301193458132324, this, []); }
   /**
    * func remove(_ service: CBMutableService)
    * @availability iOS 6.0+
    */
-  remove(service: CBMutableService): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1580611442395643, this, [service]); }
+  remove(service: CBMutableService): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1580611442395643, this, [service]); }
   /**
    * func respond(to request: CBATTRequest, withResult result: CBATTError.Code)
    * @availability iOS 6.0+
    */
-  respond(request: CBATTRequest, result: CBATTError_Code): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 4410001357975047, this, [request, result]); }
+  respond(request: CBATTRequest, result: CBATTError_Code): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4410001357975047, this, [request, result]); }
   /**
    * func setDesiredConnectionLatency(_ latency: CBPeripheralManagerConnectionLatency, for central: CBCentral)
    * @availability iOS 6.0+
    */
-  setDesiredConnectionLatency(latency: CBPeripheralManagerConnectionLatency, central: CBCentral): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1795112134484056, this, [latency, central]); }
+  setDesiredConnectionLatency(latency: CBPeripheralManagerConnectionLatency, central: CBCentral): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1795112134484056, this, [latency, central]); }
   /**
    * func startAdvertising(_ advertisementData: [String : Any]?)
    * @availability iOS 6.0+
    */
-  startAdvertising(advertisementData?: $SDK0): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1102890682915263, this, [advertisementData]); }
+  startAdvertising(advertisementData?: $SDK0): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1102890682915263, this, [advertisementData]); }
   /**
    * func stopAdvertising()
    * @availability iOS 6.0+
    */
-  stopAdvertising(): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 1733037669762843, this, []); }
+  stopAdvertising(): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 1733037669762843, this, []); }
   /**
    * func unpublishL2CAPChannel(_ PSM: CBL2CAPPSM)
    * @availability iOS 11.0+
    */
-  unpublishL2CAPChannel(PSM: number): void { return callSDK<void>("CoreBluetooth_0e503aef608672fa", 4252122879833062, this, [PSM]); }
+  unpublishL2CAPChannel(PSM: number): void { return callSDK<void>("CoreBluetooth_212edf3d13b127f5", 4252122879833062, this, [PSM]); }
   /**
    * func updateValue(_ value: Data, for characteristic: CBMutableCharacteristic, onSubscribedCentrals centrals: [CBCentral]?) -> Bool
    * @availability iOS 6.0+
    */
-  updateValue(value: ArrayBuffer, characteristic: CBMutableCharacteristic, centrals?: (Array<CBCentral>) | null): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 1596052988856802, this, [value, characteristic, centrals]); }
+  updateValue(value: ArrayBuffer, characteristic: CBMutableCharacteristic, centrals?: (Array<CBCentral>) | null): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 1596052988856802, this, [value, characteristic, centrals]); }
   /**
    * weak var delegate: (any CBPeripheralManagerDelegate)? { get set }
    * @availability iOS 6.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreBluetooth_0e503aef608672fa", 1808905471783004, this, []); }
-  set delegate(value: $SDK14) { callSDK<void>("CoreBluetooth_0e503aef608672fa", 3188996125691932, this, [value], [{"protocol":"c:objc(pl)CBPeripheralManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreBluetooth_212edf3d13b127f5", 1808905471783004, this, []); }
+  set delegate(value: $SDK14) { callSDK<void>("CoreBluetooth_212edf3d13b127f5", 3188996125691932, this, [value], [{"protocol":"c:objc(pl)CBPeripheralManagerDelegate"}]); }
   /**
    * var isAdvertising: Bool { get }
    * @availability iOS 6.0+
    */
-  get isAdvertising(): boolean { return callSDK<boolean>("CoreBluetooth_0e503aef608672fa", 598729128149434, this, []); }
+  get isAdvertising(): boolean { return callSDK<boolean>("CoreBluetooth_212edf3d13b127f5", 598729128149434, this, []); }
   declare readonly $type: { "c:objc(cs)CBPeripheralManager": true; "c:objc(cs)CBManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorization8916": true; "state": true; "delegate": true; "isAdvertising": true };
 }
@@ -1127,7 +1127,7 @@ export const CBPeripheralManagerAuthorizationStatus = {
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  init(rawValue: number): (CBPeripheralManagerAuthorizationStatus) | null { return callSDK<(CBPeripheralManagerAuthorizationStatus) | null>("CoreBluetooth_0e503aef608672fa", 1024612805699801, undefined, [rawValue]); }
+  init(rawValue: number): (CBPeripheralManagerAuthorizationStatus) | null { return callSDK<(CBPeripheralManagerAuthorizationStatus) | null>("CoreBluetooth_212edf3d13b127f5", 1024612805699801, undefined, [rawValue]); }
 };
 
 /**
@@ -1141,7 +1141,7 @@ export const CBPeripheralManagerConnectionLatency = {
    * init?(rawValue: Int)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): (CBPeripheralManagerConnectionLatency) | null { return callSDK<(CBPeripheralManagerConnectionLatency) | null>("CoreBluetooth_0e503aef608672fa", 3568122427918843, undefined, [rawValue]); }
+  init(rawValue: number): (CBPeripheralManagerConnectionLatency) | null { return callSDK<(CBPeripheralManagerConnectionLatency) | null>("CoreBluetooth_212edf3d13b127f5", 3568122427918843, undefined, [rawValue]); }
 };
 
 /** protocol CBPeripheralManagerDelegate : NSObjectProtocol */
@@ -1221,7 +1221,7 @@ export const CBPeripheralManagerState = {
    * @availability iOS 6.0+
    * @deprecated iOS 10.0
    */
-  init(rawValue: number): (CBPeripheralManagerState) | null { return callSDK<(CBPeripheralManagerState) | null>("CoreBluetooth_0e503aef608672fa", 2557139698279813, undefined, [rawValue]); }
+  init(rawValue: number): (CBPeripheralManagerState) | null { return callSDK<(CBPeripheralManagerState) | null>("CoreBluetooth_212edf3d13b127f5", 2557139698279813, undefined, [rawValue]); }
 };
 
 /**
@@ -1235,7 +1235,7 @@ export const CBPeripheralState = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (CBPeripheralState) | null { return callSDK<(CBPeripheralState) | null>("CoreBluetooth_0e503aef608672fa", 453733524436337, undefined, [rawValue]); }
+  init(rawValue: number): (CBPeripheralState) | null { return callSDK<(CBPeripheralState) | null>("CoreBluetooth_212edf3d13b127f5", 453733524436337, undefined, [rawValue]); }
 };
 
 /**
@@ -1248,233 +1248,233 @@ export class CBUUID extends SDKHandle {
    * @availability iOS 5.0+
    * @deprecated iOS 9.0
    */
-  static initCfuuid(theUUID: _CoreFoundation_CFUUID): CBUUID { return callSDK<CBUUID>("CoreBluetooth_0e503aef608672fa", 978665590585226, undefined, [theUUID]); }
+  static initCfuuid(theUUID: _CoreFoundation_CFUUID): CBUUID { return callSDK<CBUUID>("CoreBluetooth_212edf3d13b127f5", 978665590585226, undefined, [theUUID]); }
   /**
    * init(data theData: Data)
    * @availability iOS 5.0+
    */
-  static initData(theData: ArrayBuffer): CBUUID { return callSDK<CBUUID>("CoreBluetooth_0e503aef608672fa", 1119147056711790, undefined, [theData]); }
+  static initData(theData: ArrayBuffer): CBUUID { return callSDK<CBUUID>("CoreBluetooth_212edf3d13b127f5", 1119147056711790, undefined, [theData]); }
   /**
    * init(nsuuid theUUID: UUID)
    * @availability iOS 7.0+
    */
-  static initNsuuid(theUUID: string): CBUUID { return callSDK<CBUUID>("CoreBluetooth_0e503aef608672fa", 1137259313584873, undefined, [theUUID]); }
+  static initNsuuid(theUUID: string): CBUUID { return callSDK<CBUUID>("CoreBluetooth_212edf3d13b127f5", 1137259313584873, undefined, [theUUID]); }
   /**
    * init(string theString: String)
    * @availability iOS 5.0+
    */
-  static initString(theString: string): CBUUID { return callSDK<CBUUID>("CoreBluetooth_0e503aef608672fa", 1195044724730091, undefined, [theString]); }
+  static initString(theString: string): CBUUID { return callSDK<CBUUID>("CoreBluetooth_212edf3d13b127f5", 1195044724730091, undefined, [theString]); }
   /**
    * var uuidString: String { get }
    * @availability iOS 7.1+
    */
-  get uuidString(): string { return callSDK<string>("CoreBluetooth_0e503aef608672fa", 1695692312291495, this, []); }
+  get uuidString(): string { return callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1695692312291495, this, []); }
   /**
    * var data: Data { get }
    * @availability iOS 5.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreBluetooth_0e503aef608672fa", 3682780912303076, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreBluetooth_212edf3d13b127f5", 3682780912303076, this, []); }
   declare readonly $type: { "c:objc(cs)CBUUID": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuidString": true; "data": true };
 }
 
 /** let CBATTErrorDomain: String */
-export const CBATTErrorDomain: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2340352684488539, undefined, []);
+export const CBATTErrorDomain: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2340352684488539, undefined, []);
 
 /**
  * let CBAdvertisementDataIsConnectable: String
  * @availability iOS 7.0+
  */
-export const CBAdvertisementDataIsConnectable: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2598508056193237, undefined, []);
+export const CBAdvertisementDataIsConnectable: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2598508056193237, undefined, []);
 
 /** let CBAdvertisementDataLocalNameKey: String */
-export const CBAdvertisementDataLocalNameKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2853759666839986, undefined, []);
+export const CBAdvertisementDataLocalNameKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2853759666839986, undefined, []);
 
 /** let CBAdvertisementDataManufacturerDataKey: String */
-export const CBAdvertisementDataManufacturerDataKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1666377098661438, undefined, []);
+export const CBAdvertisementDataManufacturerDataKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1666377098661438, undefined, []);
 
 /**
  * let CBAdvertisementDataOverflowServiceUUIDsKey: String
  * @availability iOS 6.0+
  */
-export const CBAdvertisementDataOverflowServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1842895734932751, undefined, []);
+export const CBAdvertisementDataOverflowServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1842895734932751, undefined, []);
 
 /** let CBAdvertisementDataServiceDataKey: String */
-export const CBAdvertisementDataServiceDataKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 4253948374396588, undefined, []);
+export const CBAdvertisementDataServiceDataKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 4253948374396588, undefined, []);
 
 /** let CBAdvertisementDataServiceUUIDsKey: String */
-export const CBAdvertisementDataServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3638693046391398, undefined, []);
+export const CBAdvertisementDataServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3638693046391398, undefined, []);
 
 /**
  * let CBAdvertisementDataSolicitedServiceUUIDsKey: String
  * @availability iOS 7.0+
  */
-export const CBAdvertisementDataSolicitedServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3885956143211015, undefined, []);
+export const CBAdvertisementDataSolicitedServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3885956143211015, undefined, []);
 
 /** let CBAdvertisementDataTxPowerLevelKey: String */
-export const CBAdvertisementDataTxPowerLevelKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 960161463737978, undefined, []);
+export const CBAdvertisementDataTxPowerLevelKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 960161463737978, undefined, []);
 
 /**
  * let CBCentralManagerOptionDeviceAccessForMedia: String
  * @availability iOS 16.0+
  */
-export const CBCentralManagerOptionDeviceAccessForMedia: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2579891496367489, undefined, []);
+export const CBCentralManagerOptionDeviceAccessForMedia: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2579891496367489, undefined, []);
 
 /**
  * let CBCentralManagerOptionRestoreIdentifierKey: String
  * @availability iOS 7.0+
  */
-export const CBCentralManagerOptionRestoreIdentifierKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3131249223394082, undefined, []);
+export const CBCentralManagerOptionRestoreIdentifierKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3131249223394082, undefined, []);
 
 /**
  * let CBCentralManagerOptionShowPowerAlertKey: String
  * @availability iOS 7.0+
  */
-export const CBCentralManagerOptionShowPowerAlertKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2488890260353894, undefined, []);
+export const CBCentralManagerOptionShowPowerAlertKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2488890260353894, undefined, []);
 
 /**
  * let CBCentralManagerRestoredStatePeripheralsKey: String
  * @availability iOS 7.0+
  */
-export const CBCentralManagerRestoredStatePeripheralsKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3049125695350258, undefined, []);
+export const CBCentralManagerRestoredStatePeripheralsKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3049125695350258, undefined, []);
 
 /**
  * let CBCentralManagerRestoredStateScanOptionsKey: String
  * @availability iOS 7.0+
  */
-export const CBCentralManagerRestoredStateScanOptionsKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2174444553548523, undefined, []);
+export const CBCentralManagerRestoredStateScanOptionsKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2174444553548523, undefined, []);
 
 /**
  * let CBCentralManagerRestoredStateScanServicesKey: String
  * @availability iOS 7.0+
  */
-export const CBCentralManagerRestoredStateScanServicesKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1508664556474911, undefined, []);
+export const CBCentralManagerRestoredStateScanServicesKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1508664556474911, undefined, []);
 
 /** let CBCentralManagerScanOptionAllowDuplicatesKey: String */
-export const CBCentralManagerScanOptionAllowDuplicatesKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3090616591088590, undefined, []);
+export const CBCentralManagerScanOptionAllowDuplicatesKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3090616591088590, undefined, []);
 
 /**
  * let CBCentralManagerScanOptionSolicitedServiceUUIDsKey: String
  * @availability iOS 7.0+
  */
-export const CBCentralManagerScanOptionSolicitedServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2597665757180244, undefined, []);
+export const CBCentralManagerScanOptionSolicitedServiceUUIDsKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2597665757180244, undefined, []);
 
 /**
  * let CBConnectPeripheralOptionEnableAutoReconnect: String
  * @availability iOS 17.0+
  */
-export const CBConnectPeripheralOptionEnableAutoReconnect: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3041194952909950, undefined, []);
+export const CBConnectPeripheralOptionEnableAutoReconnect: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3041194952909950, undefined, []);
 
 /**
  * let CBConnectPeripheralOptionEnableTransportBridgingKey: String
  * @availability iOS 13.0+
  */
-export const CBConnectPeripheralOptionEnableTransportBridgingKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2629288207935143, undefined, []);
+export const CBConnectPeripheralOptionEnableTransportBridgingKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2629288207935143, undefined, []);
 
 /**
  * let CBConnectPeripheralOptionNotifyOnConnectionKey: String
  * @availability iOS 6.0+
  */
-export const CBConnectPeripheralOptionNotifyOnConnectionKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 60525258405604, undefined, []);
+export const CBConnectPeripheralOptionNotifyOnConnectionKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 60525258405604, undefined, []);
 
 /** let CBConnectPeripheralOptionNotifyOnDisconnectionKey: String */
-export const CBConnectPeripheralOptionNotifyOnDisconnectionKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3805433863057692, undefined, []);
+export const CBConnectPeripheralOptionNotifyOnDisconnectionKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3805433863057692, undefined, []);
 
 /**
  * let CBConnectPeripheralOptionNotifyOnNotificationKey: String
  * @availability iOS 6.0+
  */
-export const CBConnectPeripheralOptionNotifyOnNotificationKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2985483374956358, undefined, []);
+export const CBConnectPeripheralOptionNotifyOnNotificationKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2985483374956358, undefined, []);
 
 /**
  * let CBConnectPeripheralOptionRequiresANCS: String
  * @availability iOS 13.0+
  */
-export const CBConnectPeripheralOptionRequiresANCS: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3181781214008508, undefined, []);
+export const CBConnectPeripheralOptionRequiresANCS: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3181781214008508, undefined, []);
 
 /**
  * let CBConnectPeripheralOptionStartDelayKey: String
  * @availability iOS 6.0+
  */
-export const CBConnectPeripheralOptionStartDelayKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1336938375345766, undefined, []);
+export const CBConnectPeripheralOptionStartDelayKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1336938375345766, undefined, []);
 
 /** let CBErrorDomain: String */
-export const CBErrorDomain: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2958361971393452, undefined, []);
+export const CBErrorDomain: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2958361971393452, undefined, []);
 
 /**
  * let CBPeripheralManagerOptionRestoreIdentifierKey: String
  * @availability iOS 7.0+
  */
-export const CBPeripheralManagerOptionRestoreIdentifierKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 850951963635354, undefined, []);
+export const CBPeripheralManagerOptionRestoreIdentifierKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 850951963635354, undefined, []);
 
 /**
  * let CBPeripheralManagerOptionShowPowerAlertKey: String
  * @availability iOS 7.0+
  */
-export const CBPeripheralManagerOptionShowPowerAlertKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2873152759347048, undefined, []);
+export const CBPeripheralManagerOptionShowPowerAlertKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2873152759347048, undefined, []);
 
 /**
  * let CBPeripheralManagerRestoredStateAdvertisementDataKey: String
  * @availability iOS 7.0+
  */
-export const CBPeripheralManagerRestoredStateAdvertisementDataKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1513230180286511, undefined, []);
+export const CBPeripheralManagerRestoredStateAdvertisementDataKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1513230180286511, undefined, []);
 
 /**
  * let CBPeripheralManagerRestoredStateServicesKey: String
  * @availability iOS 7.0+
  */
-export const CBPeripheralManagerRestoredStateServicesKey: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1410831531376029, undefined, []);
+export const CBPeripheralManagerRestoredStateServicesKey: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1410831531376029, undefined, []);
 
 /** let CBUUIDCharacteristicAggregateFormatString: String */
-export const CBUUIDCharacteristicAggregateFormatString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3289871445011750, undefined, []);
+export const CBUUIDCharacteristicAggregateFormatString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3289871445011750, undefined, []);
 
 /** let CBUUIDCharacteristicExtendedPropertiesString: String */
-export const CBUUIDCharacteristicExtendedPropertiesString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 1793584877172025, undefined, []);
+export const CBUUIDCharacteristicExtendedPropertiesString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 1793584877172025, undefined, []);
 
 /** let CBUUIDCharacteristicFormatString: String */
-export const CBUUIDCharacteristicFormatString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 2889272301728009, undefined, []);
+export const CBUUIDCharacteristicFormatString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 2889272301728009, undefined, []);
 
 /** let CBUUIDCharacteristicObservationScheduleString: String */
-export const CBUUIDCharacteristicObservationScheduleString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 339447572811974, undefined, []);
+export const CBUUIDCharacteristicObservationScheduleString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 339447572811974, undefined, []);
 
 /** let CBUUIDCharacteristicUserDescriptionString: String */
-export const CBUUIDCharacteristicUserDescriptionString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3703644530190330, undefined, []);
+export const CBUUIDCharacteristicUserDescriptionString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3703644530190330, undefined, []);
 
 /** let CBUUIDCharacteristicValidRangeString: String */
-export const CBUUIDCharacteristicValidRangeString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 3009212875111421, undefined, []);
+export const CBUUIDCharacteristicValidRangeString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 3009212875111421, undefined, []);
 
 /** let CBUUIDClientCharacteristicConfigurationString: String */
-export const CBUUIDClientCharacteristicConfigurationString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 963216808950277, undefined, []);
+export const CBUUIDClientCharacteristicConfigurationString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 963216808950277, undefined, []);
 
 /**
  * let CBUUIDL2CAPPSMCharacteristicString: String
  * @availability iOS 11.0+
  */
-export const CBUUIDL2CAPPSMCharacteristicString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 4354014963500257, undefined, []);
+export const CBUUIDL2CAPPSMCharacteristicString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 4354014963500257, undefined, []);
 
 /** let CBUUIDServerCharacteristicConfigurationString: String */
-export const CBUUIDServerCharacteristicConfigurationString: string = callSDK<string>("CoreBluetooth_0e503aef608672fa", 4143251708975271, undefined, []);
+export const CBUUIDServerCharacteristicConfigurationString: string = callSDK<string>("CoreBluetooth_212edf3d13b127f5", 4143251708975271, undefined, []);
 
-registerSDKClass("CoreBluetooth.CBATTError", CBATTError, { module: "CoreBluetooth_0e503aef608672fa", properties: {} });
-registerSDKClass("CBATTRequest", CBATTRequest, { module: "CoreBluetooth_0e503aef608672fa", properties: {"central":4152440488782259,"characteristic":257302815532823,"offset":245788062127509,"value":997998442404017} });
-registerSDKClass("CBAttribute", CBAttribute, { module: "CoreBluetooth_0e503aef608672fa", properties: {"uuid":3901295899797227} });
-registerSDKClass("CBPeer", CBPeer, { module: "CoreBluetooth_0e503aef608672fa", properties: {"identifier":4261622113006151} });
-registerSDKClass("CBCentral", CBCentral, { module: "CoreBluetooth_0e503aef608672fa", properties: {"maximumUpdateValueLength":1093082932973555} });
-registerSDKClass("CBManager", CBManager, { module: "CoreBluetooth_0e503aef608672fa", properties: {"authorization8916":2204809715554936,"state":3892742769975625} });
-registerSDKClass("CBCentralManager", CBCentralManager, { module: "CoreBluetooth_0e503aef608672fa", properties: {"delegate":2916019837917224,"isScanning":537606139803042}, methods: {"cancelPeripheralConnection":{"id":2484122326146083},"connect":{"id":2814184947631791},"registerForConnectionEvents":{"id":3227950988567091},"retrieveConnectedPeripherals":{"id":3108966446882539},"retrievePeripherals":{"id":3787363913741959},"scanForPeripherals":{"id":1563324385815024},"stopScan":{"id":4499320720103494}} });
+registerSDKClass("CoreBluetooth.CBATTError", CBATTError, { module: "CoreBluetooth_212edf3d13b127f5", properties: {} });
+registerSDKClass("CBATTRequest", CBATTRequest, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"central":4152440488782259,"characteristic":257302815532823,"offset":245788062127509,"value":997998442404017} });
+registerSDKClass("CBAttribute", CBAttribute, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"uuid":3901295899797227} });
+registerSDKClass("CBPeer", CBPeer, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"identifier":4261622113006151} });
+registerSDKClass("CBCentral", CBCentral, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"maximumUpdateValueLength":1093082932973555} });
+registerSDKClass("CBManager", CBManager, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"authorization8916":2204809715554936,"state":3892742769975625} });
+registerSDKClass("CBCentralManager", CBCentralManager, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"delegate":2916019837917224,"isScanning":537606139803042}, methods: {"cancelPeripheralConnection":{"id":2484122326146083},"connect":{"id":2814184947631791},"registerForConnectionEvents":{"id":3227950988567091},"retrieveConnectedPeripherals":{"id":3108966446882539},"retrievePeripherals":{"id":3787363913741959},"scanForPeripherals":{"id":1563324385815024},"stopScan":{"id":4499320720103494}} });
 registerSDKProtocol("c:objc(pl)CBCentralManagerDelegate", {"centralManagerDidUpdateState":"centralManagerDidUpdateState(_:)","centralManagerWillRestoreState":"centralManager(_:willRestoreState:)","centralManagerDidDiscoverAdvertisementDataRssi":"centralManager(_:didDiscover:advertisementData:rssi:)","centralManagerDidConnect":"centralManager(_:didConnect:)","centralManagerDidFailToConnectError":"centralManager(_:didFailToConnect:error:)","centralManagerDidDisconnectPeripheralError":"centralManager(_:didDisconnectPeripheral:error:)","centralManagerDidDisconnectPeripheralTimestampIsReconnectingError":"centralManager(_:didDisconnectPeripheral:timestamp:isReconnecting:error:)","centralManagerConnectionEventDidOccurFor":"centralManager(_:connectionEventDidOccur:for:)","centralManagerDidUpdateANCSAuthorizationFor":"centralManager(_:didUpdateANCSAuthorizationFor:)"});
-registerSDKClass("CBChannelSoundingProcedureResults", CBChannelSoundingProcedureResults, { module: "CoreBluetooth_0e503aef608672fa", properties: {"distance":2829115215347490} });
-registerSDKClass("CBChannelSoundingSessionConfiguration", CBChannelSoundingSessionConfiguration, { module: "CoreBluetooth_0e503aef608672fa", properties: {"role":1108344915591915} });
-registerSDKClass("CBCharacteristic", CBCharacteristic, { module: "CoreBluetooth_0e503aef608672fa", properties: {"descriptors":3961304050948790,"isBroadcasted":3062204905513554,"isNotifying":4101173278663984,"properties":68377057675099,"service":1657921327805250,"value":1672519214457064} });
-registerSDKClass("CBDescriptor", CBDescriptor, { module: "CoreBluetooth_0e503aef608672fa", properties: {"characteristic":2405405282119017,"value":1719634886528946} });
-registerSDKClass("CoreBluetooth.CBError", CBError, { module: "CoreBluetooth_0e503aef608672fa", properties: {} });
-registerSDKClass("CBL2CAPChannel", CBL2CAPChannel, { module: "CoreBluetooth_0e503aef608672fa", properties: {"psm":2603777674304817,"inputStream":579230244876563,"outputStream":586652570610901,"peer":2208093636578740} });
-registerSDKClass("CBMutableCharacteristic", CBMutableCharacteristic, { module: "CoreBluetooth_0e503aef608672fa", properties: {"descriptors":2771822040052325,"permissions":2315760934708865,"properties":3100688012502376,"subscribedCentrals":507261837752608,"value":658387280905156} });
-registerSDKClass("CBMutableDescriptor", CBMutableDescriptor, { module: "CoreBluetooth_0e503aef608672fa", properties: {} });
-registerSDKClass("CBService", CBService, { module: "CoreBluetooth_0e503aef608672fa", properties: {"characteristics":1152063573324003,"includedServices":3552095574551466,"isPrimary":738836180893340,"peripheral":1921318684415502} });
-registerSDKClass("CBMutableService", CBMutableService, { module: "CoreBluetooth_0e503aef608672fa", properties: {"characteristics":396884183922415,"includedServices":1400282221117918} });
-registerSDKClass("CBPeripheral", CBPeripheral, { module: "CoreBluetooth_0e503aef608672fa", properties: {"rssi":312320830653691,"ancsAuthorized":1432246091944386,"canSendWriteWithoutResponse":4475484340246009,"delegate":2745291343042127,"name":96501750240586,"services":1646097742866561,"state":1787888249972222}, methods: {"cancelChannelSoundingSession":{"id":2453160944109667},"discoverCharacteristics":{"id":4462071311992466},"discoverDescriptors":{"id":2936686528593860},"discoverIncludedServices":{"id":2868779289105029},"discoverServices":{"id":4192349361169488},"maximumWriteValueLength":{"id":4313984983530139},"openL2CAPChannel":{"id":2455545726777632},"readRSSI":{"id":1621735375599338},"readValueFor":{"id":1819705061668668},"readValueFor17880":{"id":3278616255671991},"setNotifyValue":{"id":83275071278495},"startChannelSoundingSession":{"id":2028669580080191},"writeValueForType":{"id":416046400128717},"writeValueFor":{"id":4201198865367202}} });
+registerSDKClass("CBChannelSoundingProcedureResults", CBChannelSoundingProcedureResults, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"distance":2829115215347490} });
+registerSDKClass("CBChannelSoundingSessionConfiguration", CBChannelSoundingSessionConfiguration, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"role":1108344915591915} });
+registerSDKClass("CBCharacteristic", CBCharacteristic, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"descriptors":3961304050948790,"isBroadcasted":3062204905513554,"isNotifying":4101173278663984,"properties":68377057675099,"service":1657921327805250,"value":1672519214457064} });
+registerSDKClass("CBDescriptor", CBDescriptor, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"characteristic":2405405282119017,"value":1719634886528946} });
+registerSDKClass("CoreBluetooth.CBError", CBError, { module: "CoreBluetooth_212edf3d13b127f5", properties: {} });
+registerSDKClass("CBL2CAPChannel", CBL2CAPChannel, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"psm":2603777674304817,"inputStream":579230244876563,"outputStream":586652570610901,"peer":2208093636578740} });
+registerSDKClass("CBMutableCharacteristic", CBMutableCharacteristic, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"descriptors":2771822040052325,"permissions":2315760934708865,"properties":3100688012502376,"subscribedCentrals":507261837752608,"value":658387280905156} });
+registerSDKClass("CBMutableDescriptor", CBMutableDescriptor, { module: "CoreBluetooth_212edf3d13b127f5", properties: {} });
+registerSDKClass("CBService", CBService, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"characteristics":1152063573324003,"includedServices":3552095574551466,"isPrimary":738836180893340,"peripheral":1921318684415502} });
+registerSDKClass("CBMutableService", CBMutableService, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"characteristics":396884183922415,"includedServices":1400282221117918} });
+registerSDKClass("CBPeripheral", CBPeripheral, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"rssi":312320830653691,"ancsAuthorized":1432246091944386,"canSendWriteWithoutResponse":4475484340246009,"delegate":2745291343042127,"name":96501750240586,"services":1646097742866561,"state":1787888249972222}, methods: {"cancelChannelSoundingSession":{"id":2453160944109667},"discoverCharacteristics":{"id":4462071311992466},"discoverDescriptors":{"id":2936686528593860},"discoverIncludedServices":{"id":2868779289105029},"discoverServices":{"id":4192349361169488},"maximumWriteValueLength":{"id":4313984983530139},"openL2CAPChannel":{"id":2455545726777632},"readRSSI":{"id":1621735375599338},"readValueFor":{"id":1819705061668668},"readValueFor17880":{"id":3278616255671991},"setNotifyValue":{"id":83275071278495},"startChannelSoundingSession":{"id":2028669580080191},"writeValueForType":{"id":416046400128717},"writeValueFor":{"id":4201198865367202}} });
 registerSDKProtocol("c:objc(pl)CBPeripheralDelegate", {"peripheralDidUpdateName":"peripheralDidUpdateName(_:)","peripheralDidModifyServices":"peripheral(_:didModifyServices:)","peripheralDidUpdateRSSIError":"peripheralDidUpdateRSSI(_:error:)","peripheralDidReadRSSIError":"peripheral(_:didReadRSSI:error:)","peripheralDidDiscoverServices":"peripheral(_:didDiscoverServices:)","peripheralDidDiscoverIncludedServicesForError":"peripheral(_:didDiscoverIncludedServicesFor:error:)","peripheralDidDiscoverCharacteristicsForError":"peripheral(_:didDiscoverCharacteristicsFor:error:)","peripheralDidUpdateValueForError":"peripheral(_:didUpdateValueFor:error:)","peripheralDidWriteValueForError":"peripheral(_:didWriteValueFor:error:)","peripheralDidUpdateNotificationStateForError":"peripheral(_:didUpdateNotificationStateFor:error:)","peripheralDidDiscoverDescriptorsForError":"peripheral(_:didDiscoverDescriptorsFor:error:)","peripheralIsReadyToSendWriteWithoutResponse":"peripheralIsReady(toSendWriteWithoutResponse:)","peripheralDidOpenError":"peripheral(_:didOpen:error:)","peripheralDidReceiveError":"peripheral(_:didReceive:error:)","peripheralDidCompleteChannelSoundingSession":"peripheral(_:didCompleteChannelSoundingSession:)"});
-registerSDKClass("CBPeripheralManager", CBPeripheralManager, { module: "CoreBluetooth_0e503aef608672fa", properties: {"delegate":1808905471783004,"isAdvertising":598729128149434}, methods: {"add":{"id":660338424925091},"publishL2CAPChannel":{"id":1966300713327523},"removeAllServices":{"id":1301193458132324},"remove":{"id":1580611442395643},"respond":{"id":4410001357975047},"setDesiredConnectionLatency":{"id":1795112134484056},"startAdvertising":{"id":1102890682915263},"stopAdvertising":{"id":1733037669762843},"unpublishL2CAPChannel":{"id":4252122879833062},"updateValue":{"id":1596052988856802}} });
+registerSDKClass("CBPeripheralManager", CBPeripheralManager, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"delegate":1808905471783004,"isAdvertising":598729128149434}, methods: {"add":{"id":660338424925091},"publishL2CAPChannel":{"id":1966300713327523},"removeAllServices":{"id":1301193458132324},"remove":{"id":1580611442395643},"respond":{"id":4410001357975047},"setDesiredConnectionLatency":{"id":1795112134484056},"startAdvertising":{"id":1102890682915263},"stopAdvertising":{"id":1733037669762843},"unpublishL2CAPChannel":{"id":4252122879833062},"updateValue":{"id":1596052988856802}} });
 registerSDKProtocol("c:objc(pl)CBPeripheralManagerDelegate", {"peripheralManagerDidUpdateState":"peripheralManagerDidUpdateState(_:)","peripheralManagerWillRestoreState":"peripheralManager(_:willRestoreState:)","peripheralManagerDidStartAdvertisingError":"peripheralManagerDidStartAdvertising(_:error:)","peripheralManagerDidAddError":"peripheralManager(_:didAdd:error:)","peripheralManagerCentralDidSubscribeTo":"peripheralManager(_:central:didSubscribeTo:)","peripheralManagerCentralDidUnsubscribeFrom":"peripheralManager(_:central:didUnsubscribeFrom:)","peripheralManagerDidReceiveRead":"peripheralManager(_:didReceiveRead:)","peripheralManagerDidReceiveWrite":"peripheralManager(_:didReceiveWrite:)","peripheralManagerIsReadyToUpdateSubscribers":"peripheralManagerIsReady(toUpdateSubscribers:)","peripheralManagerDidPublishL2CAPChannelError":"peripheralManager(_:didPublishL2CAPChannel:error:)","peripheralManagerDidUnpublishL2CAPChannelError":"peripheralManager(_:didUnpublishL2CAPChannel:error:)","peripheralManagerDidOpenError":"peripheralManager(_:didOpen:error:)"});
-registerSDKClass("CBUUID", CBUUID, { module: "CoreBluetooth_0e503aef608672fa", properties: {"uuidString":1695692312291495,"data":3682780912303076} });
+registerSDKClass("CBUUID", CBUUID, { module: "CoreBluetooth_212edf3d13b127f5", properties: {"uuidString":1695692312291495,"data":3682780912303076} });

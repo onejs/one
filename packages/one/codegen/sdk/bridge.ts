@@ -164,6 +164,23 @@ export type IndexFacts = {
   zeroInitializers?: { owner: string; usr: string; imported: boolean }[]
 }
 
+// the effects a function declares after its parameter list
+export function effectsOf(decl: string) {
+  const open = decl.indexOf('(')
+  if (open < 0) return { isAsync: false, throws: false }
+  let depth = 0
+  let close = decl.length
+  for (let i = open; i < decl.length; i++) {
+    if (decl[i] === '(') depth++
+    if (decl[i] === ')' && --depth === 0) {
+      close = i
+      break
+    }
+  }
+  const tail = decl.slice(close + 1).split(/->|\{|\bwhere\b/)[0]
+  return { isAsync: /\basync\b/.test(tail), throws: /\b(re)?throws\b/.test(tail) }
+}
+
 export function collectFacts(graph: Graph): IndexFacts {
   const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [], specializations: [], zeroInitializers: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
@@ -253,11 +270,19 @@ export function collectFacts(graph: Graph): IndexFacts {
     if (rel.kind === 'requirementOf' || rel.kind === 'optionalRequirementOf') {
       const returns = member.functionSignature?.returns ?? []
       const returnsVoid = !returns.length || ['()', 'Void'].includes(returns.map((f) => f.spelling).join('').trim())
+      // javascript answers a throwing async requirement later through its
+      // promise, unless the signature names the method's own generics or the
+      // protocol's associated types, which have no concrete wire type
+      const effects = effectsOf((member.declarationFragments ?? []).map((f) => f.spelling).join(''))
+      const fragments = [...(member.functionSignature?.parameters ?? []).flatMap((p) => p.declarationFragments), ...returns]
+      const answersLater = effects.isAsync && effects.throws &&
+        (member.swiftGenerics?.parameters ?? []).every((p) => p.name === 'Self') &&
+        !fragments.some((f) => /^Self\b/.test(f.spelling) || byUsr.get(f.preciseIdentifier ?? '')?.kind.identifier === 'swift.associatedtype')
       // a required member javascript cannot answer synchronously rules the protocol out
       facts.requirements.push({
         owner: rel.target,
         associated: kind === 'swift.associatedtype',
-        blocks: rel.kind === 'requirementOf' && (kind !== 'swift.method' || !returnsVoid),
+        blocks: rel.kind === 'requirementOf' && (kind !== 'swift.method' || !(returnsVoid || answersLater)),
       })
     }
   }
@@ -501,8 +526,13 @@ export class Bridge {
       }
       case 'function':
         return this.callback(type, position, generics)
-      case 'existential':
+      case 'existential': {
+        // a spelled `any P` with associated types is a native value javascript
+        // only holds and passes back; it never implements one
+        const info = !type.some && type.t.k === 'named' && !type.t.args.length && type.t.usr ? this.index.get(type.t.usr) : undefined
+        if (info?.associatedTypes) return { ok: true, ts: `Handle<'${tsName(`${info.module}.${info.path.join('.')}`)}'>` }
         return this.protocolType(type.t, position, generics)
+      }
       case 'composition': {
         const items = type.items.map((item) => this.protocolType(item, position, generics))
         const bad = items.find((item) => !item.ok)

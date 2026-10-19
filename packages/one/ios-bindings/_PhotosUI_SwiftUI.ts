@@ -29,42 +29,42 @@ export class PhotosPicker<Label = unknown> extends SDKHandle {
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary)
    * @availability iOS 16.0+
    */
-  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncodingPhotoLibrary(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK1, maxSelectionCount: (number) | null, selectionBehavior: PhotosPickerSelectionBehavior, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 1960063720314396, undefined, [titleKey, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, photoLibrary]); }
+  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncodingPhotoLibrary(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK1, maxSelectionCount: (number) | null, selectionBehavior: PhotosPickerSelectionBehavior, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 1960063720314396, undefined, [titleKey, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, photoLibrary]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncodingPhotoLibrary71217(title: string, selection: $SDK1, maxSelectionCount: (number) | null, selectionBehavior: PhotosPickerSelectionBehavior, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 4354644009778255, undefined, [title, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, photoLibrary]); }
+  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncodingPhotoLibrary71217(title: string, selection: $SDK1, maxSelectionCount: (number) | null, selectionBehavior: PhotosPickerSelectionBehavior, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 4354644009778255, undefined, [title, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, photoLibrary]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic)
    * @availability iOS 16.0+
    */
-  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncoding(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK1, maxSelectionCount?: (number) | null, selectionBehavior?: PhotosPickerSelectionBehavior, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 2742285723531963, undefined, [titleKey, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding]); }
+  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncoding(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK1, maxSelectionCount?: (number) | null, selectionBehavior?: PhotosPickerSelectionBehavior, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 2742285723531963, undefined, [titleKey, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncoding9462(title: string, selection: $SDK1, maxSelectionCount?: (number) | null, selectionBehavior?: PhotosPickerSelectionBehavior, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 3155292949313693, undefined, [title, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding]); }
+  static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncoding9462(title: string, selection: $SDK1, maxSelectionCount?: (number) | null, selectionBehavior?: PhotosPickerSelectionBehavior, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3155292949313693, undefined, [title, selection, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary)
    * @availability iOS 16.0+
    */
-  static initSelectionMatchingPreferredItemEncodingPhotoLibrary(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK3, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 3165326491460092, undefined, [titleKey, selection, filter, preferredItemEncoding, photoLibrary]); }
+  static initSelectionMatchingPreferredItemEncodingPhotoLibrary(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK3, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3165326491460092, undefined, [titleKey, selection, filter, preferredItemEncoding, photoLibrary]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionMatchingPreferredItemEncodingPhotoLibrary43487(title: string, selection: $SDK3, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 284156540646545, undefined, [title, selection, filter, preferredItemEncoding, photoLibrary]); }
+  static initSelectionMatchingPreferredItemEncodingPhotoLibrary43487(title: string, selection: $SDK3, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 284156540646545, undefined, [title, selection, filter, preferredItemEncoding, photoLibrary]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic)
    * @availability iOS 16.0+
    */
-  static initSelectionMatchingPreferredItemEncoding(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 630007472076222, undefined, [titleKey, selection, filter, preferredItemEncoding]); }
+  static initSelectionMatchingPreferredItemEncoding(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 630007472076222, undefined, [titleKey, selection, filter, preferredItemEncoding]); }
   /**
    * nonisolated init<S>(_ title: S, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initSelectionMatchingPreferredItemEncoding50544(title: string, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_0e503aef608672fa", 488354196318095, undefined, [title, selection, filter, preferredItemEncoding]); }
+  static initSelectionMatchingPreferredItemEncoding50544(title: string, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0> { return callSDKAsync<$SDK0>("_PhotosUI_SwiftUI_212edf3d13b127f5", 488354196318095, undefined, [title, selection, filter, preferredItemEncoding]); }
   declare readonly $type: { "s:015_PhotosUI_SwiftB00A6PickerV": true };
 }
 
@@ -83,17 +83,17 @@ export class PhotosPickerItem extends SDKHandle {
    * init(itemIdentifier: String)
    * @availability iOS 16.0+
    */
-  static init(itemIdentifier: string): PhotosPickerItem { return callSDK<PhotosPickerItem>("_PhotosUI_SwiftUI_0e503aef608672fa", 1850024844116553, undefined, [itemIdentifier]); }
+  static init(itemIdentifier: string): PhotosPickerItem { return callSDK<PhotosPickerItem>("_PhotosUI_SwiftUI_212edf3d13b127f5", 1850024844116553, undefined, [itemIdentifier]); }
   /**
    * var itemIdentifier: String? { get }
    * @availability iOS 16.0+
    */
-  get itemIdentifier(): (string) | null { return callSDK<(string) | null>("_PhotosUI_SwiftUI_0e503aef608672fa", 3184590466727211, this, []); }
+  get itemIdentifier(): (string) | null { return callSDK<(string) | null>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3184590466727211, this, []); }
   /**
    * var supportedContentTypes: [UTType] { get }
    * @availability iOS 16.0+
    */
-  get supportedContentTypes(): Array<_UniformTypeIdentifiers_UTType> { return callSDK<Array<_UniformTypeIdentifiers_UTType>>("_PhotosUI_SwiftUI_0e503aef608672fa", 1096971810206463, this, []); }
+  get supportedContentTypes(): Array<_UniformTypeIdentifiers_UTType> { return callSDK<Array<_UniformTypeIdentifiers_UTType>>("_PhotosUI_SwiftUI_212edf3d13b127f5", 1096971810206463, this, []); }
   declare readonly $type: { "s:015_PhotosUI_SwiftB00A10PickerItemV": true };
 }
 
@@ -106,17 +106,17 @@ export class PhotosPickerItem_EncodingDisambiguationPolicy extends SDKHandle {
    * static let compatible: PhotosPickerItem.EncodingDisambiguationPolicy
    * @availability iOS 16.0+
    */
-  static get compatible(): PhotosPickerItem_EncodingDisambiguationPolicy { return callSDK<PhotosPickerItem_EncodingDisambiguationPolicy>("_PhotosUI_SwiftUI_0e503aef608672fa", 3565818915219198, undefined, []); }
+  static get compatible(): PhotosPickerItem_EncodingDisambiguationPolicy { return callSDK<PhotosPickerItem_EncodingDisambiguationPolicy>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3565818915219198, undefined, []); }
   /**
    * static let current: PhotosPickerItem.EncodingDisambiguationPolicy
    * @availability iOS 16.0+
    */
-  static get current(): PhotosPickerItem_EncodingDisambiguationPolicy { return callSDK<PhotosPickerItem_EncodingDisambiguationPolicy>("_PhotosUI_SwiftUI_0e503aef608672fa", 3835521382743951, undefined, []); }
+  static get current(): PhotosPickerItem_EncodingDisambiguationPolicy { return callSDK<PhotosPickerItem_EncodingDisambiguationPolicy>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3835521382743951, undefined, []); }
   /**
    * static let automatic: PhotosPickerItem.EncodingDisambiguationPolicy
    * @availability iOS 16.0+
    */
-  static get automatic(): PhotosPickerItem_EncodingDisambiguationPolicy { return callSDK<PhotosPickerItem_EncodingDisambiguationPolicy>("_PhotosUI_SwiftUI_0e503aef608672fa", 4417421580911852, undefined, []); }
+  static get automatic(): PhotosPickerItem_EncodingDisambiguationPolicy { return callSDK<PhotosPickerItem_EncodingDisambiguationPolicy>("_PhotosUI_SwiftUI_212edf3d13b127f5", 4417421580911852, undefined, []); }
   declare readonly $type: { "s:015_PhotosUI_SwiftB00A10PickerItemV28EncodingDisambiguationPolicyV": true };
 }
 
@@ -129,22 +129,22 @@ export class PhotosPickerSelectionBehavior extends SDKHandle {
    * static let continuous: PhotosPickerSelectionBehavior
    * @availability iOS 17.0+
    */
-  static get continuous(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_0e503aef608672fa", 4213696030879110, undefined, []); }
+  static get continuous(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_212edf3d13b127f5", 4213696030879110, undefined, []); }
   /**
    * static let continuousAndOrdered: PhotosPickerSelectionBehavior
    * @availability iOS 17.0+
    */
-  static get continuousAndOrdered(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_0e503aef608672fa", 3459393211461601, undefined, []); }
+  static get continuousAndOrdered(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3459393211461601, undefined, []); }
   /**
    * static let `default`: PhotosPickerSelectionBehavior
    * @availability iOS 16.0+
    */
-  static get default(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_0e503aef608672fa", 810250801714043, undefined, []); }
+  static get default(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_212edf3d13b127f5", 810250801714043, undefined, []); }
   /**
    * static let ordered: PhotosPickerSelectionBehavior
    * @availability iOS 16.0+
    */
-  static get ordered(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_0e503aef608672fa", 3053480084731288, undefined, []); }
+  static get ordered(): PhotosPickerSelectionBehavior { return callSDK<PhotosPickerSelectionBehavior>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3053480084731288, undefined, []); }
   declare readonly $type: { "s:015_PhotosUI_SwiftB00A23PickerSelectionBehaviorV": true };
 }
 
@@ -157,22 +157,22 @@ export class PhotosPickerStyle extends SDKHandle {
    * static let presentation: PhotosPickerStyle
    * @availability iOS 17.0+
    */
-  static get presentation(): PhotosPickerStyle { return callSDK<PhotosPickerStyle>("_PhotosUI_SwiftUI_0e503aef608672fa", 3379002663340650, undefined, []); }
+  static get presentation(): PhotosPickerStyle { return callSDK<PhotosPickerStyle>("_PhotosUI_SwiftUI_212edf3d13b127f5", 3379002663340650, undefined, []); }
   /**
    * static let inline: PhotosPickerStyle
    * @availability iOS 17.0+
    */
-  static get inline(): PhotosPickerStyle { return callSDK<PhotosPickerStyle>("_PhotosUI_SwiftUI_0e503aef608672fa", 1579619701429326, undefined, []); }
+  static get inline(): PhotosPickerStyle { return callSDK<PhotosPickerStyle>("_PhotosUI_SwiftUI_212edf3d13b127f5", 1579619701429326, undefined, []); }
   /**
    * static let compact: PhotosPickerStyle
    * @availability iOS 17.0+
    */
-  static get compact(): PhotosPickerStyle { return callSDK<PhotosPickerStyle>("_PhotosUI_SwiftUI_0e503aef608672fa", 2933971341535572, undefined, []); }
+  static get compact(): PhotosPickerStyle { return callSDK<PhotosPickerStyle>("_PhotosUI_SwiftUI_212edf3d13b127f5", 2933971341535572, undefined, []); }
   declare readonly $type: { "s:015_PhotosUI_SwiftB00A11PickerStyleV": true };
 }
 
-registerSDKClass("_PhotosUI_SwiftUI.PhotosPicker", PhotosPicker, { module: "_PhotosUI_SwiftUI_0e503aef608672fa", properties: {} });
-registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerItem", PhotosPickerItem, { module: "_PhotosUI_SwiftUI_0e503aef608672fa", properties: {} });
-registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerItem.EncodingDisambiguationPolicy", PhotosPickerItem_EncodingDisambiguationPolicy, { module: "_PhotosUI_SwiftUI_0e503aef608672fa", properties: {} });
-registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerSelectionBehavior", PhotosPickerSelectionBehavior, { module: "_PhotosUI_SwiftUI_0e503aef608672fa", properties: {} });
-registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerStyle", PhotosPickerStyle, { module: "_PhotosUI_SwiftUI_0e503aef608672fa", properties: {} });
+registerSDKClass("_PhotosUI_SwiftUI.PhotosPicker", PhotosPicker, { module: "_PhotosUI_SwiftUI_212edf3d13b127f5", properties: {} });
+registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerItem", PhotosPickerItem, { module: "_PhotosUI_SwiftUI_212edf3d13b127f5", properties: {} });
+registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerItem.EncodingDisambiguationPolicy", PhotosPickerItem_EncodingDisambiguationPolicy, { module: "_PhotosUI_SwiftUI_212edf3d13b127f5", properties: {} });
+registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerSelectionBehavior", PhotosPickerSelectionBehavior, { module: "_PhotosUI_SwiftUI_212edf3d13b127f5", properties: {} });
+registerSDKClass("_PhotosUI_SwiftUI.PhotosPickerStyle", PhotosPickerStyle, { module: "_PhotosUI_SwiftUI_212edf3d13b127f5", properties: {} });

@@ -90,6 +90,16 @@ export type ActivityPreviewViewKind_DynamicIslandPreviewViewState = "compact" | 
  * @availability iOS 16.1+
  */
 export declare class ActivityViewContext<Attributes = unknown> extends SDKHandle {
+    /**
+     * let activityID: String
+     * @availability iOS 16.1+
+     */
+    get activityID(): string;
+    /**
+     * let isStale: Bool
+     * @availability iOS 16.2+
+     */
+    get isStale(): boolean;
     readonly $type: {
         "s:9WidgetKit19ActivityViewContextV": true;
     };
@@ -136,7 +146,7 @@ export interface AppIntentControlValueProvider {
      * func currentValue(configuration: Self.Configuration) async throws -> Self.Value
      * @availability iOS 18.0+
      */
-    "currentValueConfiguration"?: (arg0: unknown) => unknown;
+    "currentValueConfiguration"?: (arg0: unknown) => Promise<unknown>;
 }
 /**
  * struct AppIntentRecommendation<Intent> where Intent : WidgetConfigurationIntent
@@ -166,17 +176,17 @@ export interface AppIntentTimelineProvider {
      * func snapshot(for configuration: Self.Intent, in context: Self.Context) async -> Self.Entry
      * @availability iOS 17.0+
      */
-    "snapshotForIn"?: (arg0: unknown, arg1: TimelineProviderContext) => unknown;
+    "snapshotForIn"?: (arg0: unknown, arg1: TimelineProviderContext) => Promise<unknown>;
     /**
      * func timeline(for configuration: Self.Intent, in context: Self.Context) async -> Timeline<Self.Entry>
      * @availability iOS 17.0+
      */
-    "timelineForIn"?: (arg0: unknown, arg1: TimelineProviderContext) => Timeline<unknown>;
+    "timelineForIn"?: (arg0: unknown, arg1: TimelineProviderContext) => Promise<Timeline<unknown>>;
     /**
      * func relevance() async -> WidgetRelevance<Self.Intent>
      * @availability iOS 18.0+
      */
-    "relevance"?: () => $SDK1;
+    "relevance"?: () => Promise<$SDK1>;
 }
 /**
  * typealias Context = TimelineProviderContext
@@ -291,7 +301,7 @@ export interface ControlValueProvider {
      * func currentValue() async throws -> Self.Value
      * @availability iOS 18.0+
      */
-    "currentValue"?: () => unknown;
+    "currentValue"?: () => Promise<unknown>;
 }
 /**
  * @MainActor @preconcurrency struct ControlWidgetButton<Label, ActionLabel, Action> where Label : View, ActionLabel : View
@@ -621,7 +631,7 @@ export interface IntentTimelineProvider {
      * func relevance() async -> WidgetRelevance<Self.Intent>
      * @availability iOS 18.0+
      */
-    "relevance"?: () => $SDK1;
+    "relevance"?: () => Promise<$SDK1>;
 }
 /**
  * typealias Context = TimelineProviderContext
@@ -732,6 +742,11 @@ export type SupportedActivityFamiliesEnvironmentKey_Value = Array<ActivityFamily
  * @availability iOS 14.0+
  */
 export declare class Timeline<EntryType = unknown> extends SDKHandle {
+    /**
+     * let policy: TimelineReloadPolicy
+     * @availability iOS 14.0+
+     */
+    get policy(): TimelineReloadPolicy;
     readonly $type: {
         "s:9WidgetKit8TimelineV": true;
     };
@@ -792,7 +807,7 @@ export interface TimelineProvider {
      * func relevance() async -> WidgetRelevance<Void>
      * @availability iOS 18.0+
      */
-    "relevance"?: () => WidgetRelevance<void>;
+    "relevance"?: () => Promise<WidgetRelevance<void>>;
 }
 /**
  * typealias Context = TimelineProviderContext

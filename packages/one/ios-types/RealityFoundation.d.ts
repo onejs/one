@@ -16,155 +16,156 @@ import type { UTType as _UniformTypeIdentifiers_UTType } from "one/ios/UniformTy
 type $SDK0 = Array<_Foundation_LocalizedStringResource>;
 type $SDK1 = Array<AccessibilityComponent_CustomContent>;
 type $SDK2 = (_Foundation_LocalizedStringResource) | null;
-type $SDK4 = ((arg0: ActionEvent<unknown>) => Promise<(SDKHandle) | null>);
-type $SDK5 = Array<Implements<Component> | SDKHandle>;
-type $SDK6 = (_Foundation_Bundle) | null;
-type $SDK7 = (AmbientAudioComponent) | null;
-type $SDK8 = (ChannelAudioComponent) | null;
-type $SDK9 = (SpatialAudioComponent) | null;
-type $SDK13 = Array<AnimationResource>;
-type $SDK14 = (CharacterControllerComponent) | null;
-type $SDK15 = LoadRequest<BodyTrackedEntity>;
-type $SDK16 = (CharacterControllerStateComponent) | null;
-type $SDK21 = Record<number, AnimationResource>;
-type $SDK23 = Record<string, AnimationResource>;
-type $SDK25 = {
+type $SDK3 = Array<ActionEventDefinition<SDKHandle>>;
+type $SDK5 = ((arg0: ActionEvent<unknown>) => Promise<(SDKHandle) | null>);
+type $SDK6 = Array<Implements<Component> | SDKHandle>;
+type $SDK7 = (_Foundation_Bundle) | null;
+type $SDK8 = (AmbientAudioComponent) | null;
+type $SDK9 = (ChannelAudioComponent) | null;
+type $SDK10 = (SpatialAudioComponent) | null;
+type $SDK14 = Array<AnimationResource>;
+type $SDK15 = (CharacterControllerComponent) | null;
+type $SDK16 = LoadRequest<BodyTrackedEntity>;
+type $SDK17 = (CharacterControllerStateComponent) | null;
+type $SDK22 = Record<number, AnimationResource>;
+type $SDK24 = Record<string, AnimationResource>;
+type $SDK26 = {
     "key": string;
     "value": AnimationResource;
 };
-type $SDK27 = (JointTransforms) | null;
-type $SDK29 = Array<[AudioResource, Entity]>;
-type $SDK31 = (AudioResource_Normalization) | null;
-type $SDK32 = (AudioResource_Calibration) | null;
-type $SDK34 = LoadRequest<AudioFileResource>;
-type $SDK35 = Record<string, AudioResource>;
-type $SDK37 = (BehaviorTreeResource) | null;
-type $SDK38 = Record<string, BehaviorTreeResource>;
-type $SDK39 = (BindableValue<unknown>) | null;
-type $SDK41 = MeshDeformParameter<SDKHandle, SDKHandle>;
-type $SDK42 = (BlendShapeWeightsData) | null;
-type $SDK45 = (CustomMaterial_GeometryModifier) | null;
-type $SDK46 = (CustomMaterial_CustomMaterialTexture) | null;
-type $SDK47 = (MaterialParameterTypes_BlendMode) | null;
-type $SDK48 = (MaterialParameterTypes_FaceCulling) | null;
-type $SDK49 = (RenderLayer_Set) | null;
-type $SDK50 = Entity_ChildCollection_IndexingIterator<Entity_ChildCollection>;
-type $SDK52 = Record<string, Entity_ConfigurationCatalog_ConfigurationSet>;
-type $SDK53 = Array<Entity_ConfigurationCatalog_ConfigurationCombination>;
-type $SDK55 = Record<string, Entity_ConfigurationCatalog_Configuration>;
-type $SDK58 = (TextureResource) | null;
-type $SDK60 = (ForceEffectComponent_SimulationState) | null;
-type $SDK61 = (UnsafeForceEffectBuffer<SDKHandle>) | null;
-type $SDK62 = (UnsafeForceEffectBuffer<number>) | null;
-type $SDK63 = FromToByAction<Transform>;
-type $SDK64 = FromToByAction_TransformMode<Transform>;
-type $SDK70 = (BlendShapeWeights) | null;
-type $SDK71 = (HoverEffectComponent_GroupID) | null;
-type $SDK72 = {
+type $SDK28 = (JointTransforms) | null;
+type $SDK30 = Array<[AudioResource, Entity]>;
+type $SDK32 = (AudioResource_Normalization) | null;
+type $SDK33 = (AudioResource_Calibration) | null;
+type $SDK35 = LoadRequest<AudioFileResource>;
+type $SDK36 = Record<string, AudioResource>;
+type $SDK38 = (BehaviorTreeResource) | null;
+type $SDK39 = Record<string, BehaviorTreeResource>;
+type $SDK40 = (BindableValue<unknown>) | null;
+type $SDK42 = MeshDeformParameter<SDKHandle, SDKHandle>;
+type $SDK43 = (BlendShapeWeightsData) | null;
+type $SDK46 = (CustomMaterial_GeometryModifier) | null;
+type $SDK47 = (CustomMaterial_CustomMaterialTexture) | null;
+type $SDK48 = (MaterialParameterTypes_BlendMode) | null;
+type $SDK49 = (MaterialParameterTypes_FaceCulling) | null;
+type $SDK50 = (RenderLayer_Set) | null;
+type $SDK51 = Entity_ChildCollection_IndexingIterator<Entity_ChildCollection>;
+type $SDK53 = Record<string, Entity_ConfigurationCatalog_ConfigurationSet>;
+type $SDK54 = Array<Entity_ConfigurationCatalog_ConfigurationCombination>;
+type $SDK56 = Record<string, Entity_ConfigurationCatalog_Configuration>;
+type $SDK59 = (TextureResource) | null;
+type $SDK63 = (ForceEffectComponent_SimulationState) | null;
+type $SDK64 = (UnsafeForceEffectBuffer<SDKHandle>) | null;
+type $SDK65 = (UnsafeForceEffectBuffer<number>) | null;
+type $SDK66 = FromToByAction<Transform>;
+type $SDK67 = FromToByAction_TransformMode<Transform>;
+type $SDK73 = (BlendShapeWeights) | null;
+type $SDK74 = (HoverEffectComponent_GroupID) | null;
+type $SDK75 = {
     "position": number;
     "rotation": number;
 };
-type $SDK73 = (IKComponent_Constraint) | null;
-type $SDK74 = (IKComponent_Joint) | null;
-type $SDK75 = (IKComponent_Solver) | null;
-type $SDK77 = (IKRig_Constraint_IKPositionDemand) | null;
-type $SDK78 = (IKRig_Constraint_IKOrientationDemand) | null;
-type $SDK79 = (IKRig_Constraint) | null;
-type $SDK80 = (IKRig_Joint_LimitsDefinition) | null;
-type $SDK85 = Array<LevelOfDetailComponent_SelectionStrategy_ResolutionMetric_DirectionalSwitchingResolutions>;
-type $SDK87 = Array<LightmapResource_EntityLightmapDescriptor>;
-type $SDK90 = ((arg0: ArrayBuffer) => void);
-type $SDK91 = ((arg0: SDKHandle) => void);
-type $SDK92 = Array<LowLevelMesh_Layout>;
-type $SDK93 = Array<LowLevelMesh_Attribute>;
-type $SDK95 = ((arg0: _Metal_MTLSamplerDescriptor) => unknown);
-type $SDK100 = MeshBuffer<MeshJointInfluence>;
-type $SDK101 = Array<MeshJointInfluence>;
-type $SDK102 = MeshBuffers_Semantic<SDKHandle>;
-type $SDK105 = MeshDeformParameter<Uint8Array, Uint8Array>;
-type $SDK107 = MeshDeformParameter_VertexBuffers<unknown, unknown, unknown>;
-type $SDK108 = (MeshDeformParameter_VertexBuffers_Data<unknown, unknown, unknown>) | null;
-type $SDK111 = (MeshDescriptor_Primitives) | null;
-type $SDK112 = NativeMap<MeshBuffers_Identifier, AnyMeshBuffer>;
-type $SDK113 = (MeshResource_Instance) | null;
-type $SDK116 = (MeshResource_Model) | null;
-type $SDK118 = (MeshResource_Part) | null;
-type $SDK120 = LoadRequest<MeshResource>;
-type $SDK121 = ({
+type $SDK76 = (IKComponent_Constraint) | null;
+type $SDK77 = (IKComponent_Joint) | null;
+type $SDK78 = (IKComponent_Solver) | null;
+type $SDK80 = (IKRig_Constraint_IKPositionDemand) | null;
+type $SDK81 = (IKRig_Constraint_IKOrientationDemand) | null;
+type $SDK82 = (IKRig_Constraint) | null;
+type $SDK83 = (IKRig_Joint_LimitsDefinition) | null;
+type $SDK88 = Array<LevelOfDetailComponent_SelectionStrategy_ResolutionMetric_DirectionalSwitchingResolutions>;
+type $SDK90 = Array<LightmapResource_EntityLightmapDescriptor>;
+type $SDK93 = ((arg0: ArrayBuffer) => void);
+type $SDK94 = ((arg0: SDKHandle) => void);
+type $SDK95 = Array<LowLevelMesh_Layout>;
+type $SDK96 = Array<LowLevelMesh_Attribute>;
+type $SDK98 = ((arg0: _Metal_MTLSamplerDescriptor) => unknown);
+type $SDK103 = MeshBuffer<MeshJointInfluence>;
+type $SDK104 = Array<MeshJointInfluence>;
+type $SDK105 = MeshBuffers_Semantic<SDKHandle>;
+type $SDK108 = MeshDeformParameter<Uint8Array, Uint8Array>;
+type $SDK110 = MeshDeformParameter_VertexBuffers<unknown, unknown, unknown>;
+type $SDK111 = (MeshDeformParameter_VertexBuffers_Data<unknown, unknown, unknown>) | null;
+type $SDK114 = (MeshDescriptor_Primitives) | null;
+type $SDK115 = NativeMap<MeshBuffers_Identifier, AnyMeshBuffer>;
+type $SDK116 = (MeshResource_Instance) | null;
+type $SDK119 = (MeshResource_Model) | null;
+type $SDK121 = (MeshResource_Part) | null;
+type $SDK123 = LoadRequest<MeshResource>;
+type $SDK124 = ({
     x: number;
     y: number;
     width: number;
     height: number;
 }) | null;
-type $SDK122 = (MeshResource_JointInfluences) | null;
-type $SDK126 = Array<MeshResource_Skeleton_Joint>;
-type $SDK127 = (MeshResource_Skeleton) | null;
-type $SDK130 = (ModelSortGroup_DepthPass) | null;
-type $SDK131 = ((arg0: SDKHandle) => Promise<void>);
-type $SDK132 = (Implements<_Metal_MTLBlitCommandEncoder> | SDKHandle) | null;
-type $SDK133 = (Implements<_Metal_MTLResourceStateCommandEncoder> | SDKHandle) | null;
-type $SDK136 = (NavigationMeshResource_Layer) | null;
-type $SDK137 = (NavigationComponent_Filter) | null;
-type $SDK138 = NativeMap<NavigationMeshResource_Area, number>;
-type $SDK139 = (Array<NavigationMeshResource_PathNode>) | null;
-type $SDK141 = Array<NavigationMeshResource>;
-type $SDK142 = Array<NavigationMeshResource_OffMeshConnection>;
-type $SDK143 = Array<NavigationMeshResource_Area>;
-type $SDK144 = Array<Array<NavigationMeshResource_Flag>>;
-type $SDK145 = (ParticleEmitterComponent_ParticleEmitter) | null;
-type $SDK146 = (ParticleEmitterComponent_ParticleEmitter_ImageSequence) | null;
-type $SDK147 = (_CoreVideo_CVBuffer) | null;
-type $SDK150 = (_CoreMotion_CMAcceleration) | null;
-type $SDK151 = (_AVFoundation_AVCameraCalibrationData) | null;
-type $SDK152 = Array<PhotogrammetrySession_Request>;
-type $SDK159 = (PhysicallyBasedMaterial_Normal) | null;
-type $SDK160 = (PhysicallyBasedMaterial_Opacity) | null;
-type $SDK161 = (PhysicallyBasedMaterial_EmissiveColor) | null;
-type $SDK162 = (PhysicallyBasedMaterial_Metallic) | null;
-type $SDK163 = (PhysicallyBasedMaterial_Specular) | null;
-type $SDK164 = (PhysicallyBasedMaterial_BaseColor) | null;
-type $SDK165 = (PhysicallyBasedMaterial_Roughness) | null;
-type $SDK166 = (PhysicallyBasedMaterial_SheenColor) | null;
-type $SDK167 = (MaterialParameters_Texture) | null;
-type $SDK168 = (PhysicsMaterialResource) | null;
-type $SDK169 = {
+type $SDK125 = (MeshResource_JointInfluences) | null;
+type $SDK129 = Array<MeshResource_Skeleton_Joint>;
+type $SDK130 = (MeshResource_Skeleton) | null;
+type $SDK133 = (ModelSortGroup_DepthPass) | null;
+type $SDK134 = ((arg0: SDKHandle) => Promise<void>);
+type $SDK135 = (Implements<_Metal_MTLBlitCommandEncoder> | SDKHandle) | null;
+type $SDK136 = (Implements<_Metal_MTLResourceStateCommandEncoder> | SDKHandle) | null;
+type $SDK139 = (NavigationMeshResource_Layer) | null;
+type $SDK140 = (NavigationComponent_Filter) | null;
+type $SDK141 = NativeMap<NavigationMeshResource_Area, number>;
+type $SDK142 = (Array<NavigationMeshResource_PathNode>) | null;
+type $SDK144 = Array<NavigationMeshResource>;
+type $SDK145 = Array<NavigationMeshResource_OffMeshConnection>;
+type $SDK146 = Array<NavigationMeshResource_Area>;
+type $SDK147 = Array<Array<NavigationMeshResource_Flag>>;
+type $SDK148 = (ParticleEmitterComponent_ParticleEmitter) | null;
+type $SDK149 = (ParticleEmitterComponent_ParticleEmitter_ImageSequence) | null;
+type $SDK150 = (_CoreVideo_CVBuffer) | null;
+type $SDK153 = (_CoreMotion_CMAcceleration) | null;
+type $SDK154 = (_AVFoundation_AVCameraCalibrationData) | null;
+type $SDK155 = Array<PhotogrammetrySession_Request>;
+type $SDK162 = (PhysicallyBasedMaterial_Normal) | null;
+type $SDK163 = (PhysicallyBasedMaterial_Opacity) | null;
+type $SDK164 = (PhysicallyBasedMaterial_EmissiveColor) | null;
+type $SDK165 = (PhysicallyBasedMaterial_Metallic) | null;
+type $SDK166 = (PhysicallyBasedMaterial_Specular) | null;
+type $SDK167 = (PhysicallyBasedMaterial_BaseColor) | null;
+type $SDK168 = (PhysicallyBasedMaterial_Roughness) | null;
+type $SDK169 = (PhysicallyBasedMaterial_SheenColor) | null;
+type $SDK170 = (MaterialParameters_Texture) | null;
+type $SDK171 = (PhysicsMaterialResource) | null;
+type $SDK172 = {
     "x": boolean;
     "y": boolean;
     "z": boolean;
 };
-type $SDK170 = {
+type $SDK173 = {
     "position": SDKHandle;
     "orientation": SDKHandle;
 };
-type $SDK171 = ([number, number]) | null;
-type $SDK172 = (PortalComponent_ClippingPlane) | null;
-type $SDK173 = (MaterialParameters_Value) | null;
-type $SDK174 = Record<string, MaterialParameters_Value>;
-type $SDK177 = (((arg0: RealityRenderer) => void)) | null;
-type $SDK178 = Array<RealityRenderer_MetalEventAction>;
-type $SDK179 = Array<RealityRenderer_CameraOutput_RelativeViewport>;
-type $SDK182 = Record<string, SDKHandle>;
-type $SDK184 = Array<SampledAnimation_SkeletalAnimationOperation<JointTransforms>>;
-type $SDK188 = Array<BlendShapeWeights>;
-type $SDK189 = SampledAnimation_SkeletalAnimationOperation<JointTransforms>;
-type $SDK190 = SampledAnimation_SkeletalAnimationOperation_RootMotionOptions<JointTransforms>;
-type $SDK191 = Entity_ChildCollection_IndexingIterator<Scene_AnchorCollection>;
-type $SDK193 = (SceneUnderstandingComponent_EntityType) | null;
-type $SDK195 = Array<SkeletonResource_BlendMask>;
-type $SDK196 = Array<SkeletonResource_Joint>;
-type $SDK199 = Array<SpatialTrackingSession_Configuration_AnchorCapability>;
-type $SDK200 = Array<SpatialTrackingSession_Configuration_SceneUnderstandingCapability>;
-type $SDK203 = {
+type $SDK174 = ([number, number]) | null;
+type $SDK175 = (PortalComponent_ClippingPlane) | null;
+type $SDK176 = (MaterialParameters_Value) | null;
+type $SDK177 = Record<string, MaterialParameters_Value>;
+type $SDK180 = (((arg0: RealityRenderer) => void)) | null;
+type $SDK181 = Array<RealityRenderer_MetalEventAction>;
+type $SDK182 = Array<RealityRenderer_CameraOutput_RelativeViewport>;
+type $SDK185 = Record<string, SDKHandle>;
+type $SDK187 = Array<SampledAnimation_SkeletalAnimationOperation<JointTransforms>>;
+type $SDK191 = Array<BlendShapeWeights>;
+type $SDK192 = SampledAnimation_SkeletalAnimationOperation<JointTransforms>;
+type $SDK193 = SampledAnimation_SkeletalAnimationOperation_RootMotionOptions<JointTransforms>;
+type $SDK194 = Entity_ChildCollection_IndexingIterator<Scene_AnchorCollection>;
+type $SDK196 = (SceneUnderstandingComponent_EntityType) | null;
+type $SDK198 = Array<SkeletonResource_BlendMask>;
+type $SDK199 = Array<SkeletonResource_Joint>;
+type $SDK202 = Array<SpatialTrackingSession_Configuration_AnchorCapability>;
+type $SDK203 = Array<SpatialTrackingSession_Configuration_SceneUnderstandingCapability>;
+type $SDK206 = {
     width: number;
     height: number;
 };
-type $SDK204 = (_Foundation_AttributedString) | null;
-type $SDK205 = LoadRequest<TextureResource>;
-type $SDK207 = Array<_CoreGraphics_CGImage>;
-type $SDK208 = (TextureResource_Semantic) | null;
-type $SDK213 = (_AVFoundation_AVSampleBufferVideoRenderer) | null;
-type $SDK214 = (_AVFoundation_AVPlayer) | null;
-type $SDK216 = (VideoPlaybackController_ViewingMode) | null;
+type $SDK207 = (_Foundation_AttributedString) | null;
+type $SDK208 = LoadRequest<TextureResource>;
+type $SDK210 = Array<_CoreGraphics_CGImage>;
+type $SDK211 = (TextureResource_Semantic) | null;
+type $SDK216 = (_AVFoundation_AVSampleBufferVideoRenderer) | null;
+type $SDK217 = (_AVFoundation_AVPlayer) | null;
+type $SDK219 = (VideoPlaybackController_ViewingMode) | null;
 /**
  * struct AccessibilityComponent
  * @availability iOS 17.0+
@@ -299,6 +300,83 @@ export type AccessibilityComponent_SupportedActions_RawValue = number;
  * @availability iOS 18.0+
  */
 export declare class ActionAnimation<ActionType = unknown> extends SDKHandle {
+    /**
+     * var bindTarget: BindTarget { get set }
+     * @availability iOS 18.0+
+     */
+    get bindTarget(): BindTarget;
+    set bindTarget(value: BindTarget);
+    /**
+     * var blendLayer: Int32 { get set }
+     * @availability iOS 18.0+
+     */
+    get blendLayer(): number;
+    set blendLayer(value: number);
+    /**
+     * var repeatMode: AnimationRepeatMode { get set }
+     * @availability iOS 18.0+
+     */
+    get repeatMode(): AnimationRepeatMode;
+    set repeatMode(value: AnimationRepeatMode);
+    /**
+     * var trimDuration: TimeInterval? { get set }
+     * @availability iOS 18.0+
+     */
+    get trimDuration(): (number) | null;
+    set trimDuration(value: (number) | null);
+    /**
+     * var eventDefinitions: [ActionEventDefinition<ActionType>] { get set }
+     * @availability iOS 18.0+
+     */
+    get eventDefinitions(): $SDK3;
+    set eventDefinitions(value: $SDK3);
+    /**
+     * var name: String { get set }
+     * @availability iOS 18.0+
+     */
+    get name(): string;
+    set name(value: string);
+    /**
+     * var delay: TimeInterval { get set }
+     * @availability iOS 18.0+
+     */
+    get delay(): number;
+    set delay(value: number);
+    /**
+     * var speed: Float { get set }
+     * @availability iOS 18.0+
+     */
+    get speed(): number;
+    set speed(value: number);
+    /**
+     * var offset: TimeInterval { get set }
+     * @availability iOS 18.0+
+     */
+    get offset(): number;
+    set offset(value: number);
+    /**
+     * var trimEnd: TimeInterval? { get set }
+     * @availability iOS 18.0+
+     */
+    get trimEnd(): (number) | null;
+    set trimEnd(value: (number) | null);
+    /**
+     * var duration: TimeInterval { get }
+     * @availability iOS 18.0+
+     */
+    get duration(): number;
+    /**
+     * var fillMode: AnimationFillMode { get set }
+     * @availability iOS 18.0+
+     */
+    get fillMode(): AnimationFillMode;
+    set fillMode(value: AnimationFillMode);
+    /**
+     * var trimStart: TimeInterval? { get set }
+     * @availability iOS 18.0+
+     */
+    get trimStart(): (number) | null;
+    set trimStart(value: (number) | null);
     readonly $type: {
         "s:17RealityFoundation15ActionAnimationV": true;
     };
@@ -332,6 +410,36 @@ export declare class ActionEntityResolution extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class ActionEvent<ActionType = unknown> extends SDKHandle {
+    /**
+     * let targetEntity: Entity?
+     * @availability iOS 18.0+
+     */
+    get targetEntity(): (Entity) | null;
+    /**
+     * var animationState: (any AnimationStateProtocol)? { get }
+     * @availability iOS 18.0+
+     */
+    get animationState(): (SDKHandle) | null;
+    /**
+     * let playbackController: AnimationPlaybackController
+     * @availability iOS 18.0+
+     */
+    get playbackController(): AnimationPlaybackController;
+    /**
+     * let duration: TimeInterval
+     * @availability iOS 18.0+
+     */
+    get duration(): number;
+    /**
+     * let reversed: Bool
+     * @availability iOS 18.0+
+     */
+    get reversed(): boolean;
+    /**
+     * let startTime: TimeInterval
+     * @availability iOS 18.0+
+     */
+    get startTime(): number;
     readonly $type: {
         "s:17RealityFoundation11ActionEventV": true;
     };
@@ -341,6 +449,24 @@ export declare class ActionEvent<ActionType = unknown> extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class ActionEventDefinition<ActionType = unknown> extends SDKHandle {
+    /**
+     * var duration: TimeInterval
+     * @availability iOS 18.0+
+     */
+    get duration(): number;
+    set duration(value: number);
+    /**
+     * var parameter: ActionEventDefinition<ActionType>.EventParameterType?
+     * @availability iOS 18.0+
+     */
+    get parameter(): (SDKHandle) | null;
+    set parameter(value: (SDKHandle) | null);
+    /**
+     * var startTime: TimeInterval
+     * @availability iOS 18.0+
+     */
+    get startTime(): number;
+    set startTime(value: number);
     readonly $type: {
         "s:17RealityFoundation21ActionEventDefinitionV": true;
     };
@@ -461,7 +587,7 @@ export interface ActionHandlerProtocol {
      * static func register(_ creationHandler: @escaping (Self.EventType) -> (any ActionHandlerProtocol)?)
      * @availability iOS 18.0+
      */
-    "register"?: (arg0: $SDK4) => void;
+    "register"?: (arg0: $SDK5) => void;
 }
 /**
  * typealias EventType = ActionEvent<Self.ActionType>
@@ -542,7 +668,7 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency convenience init(components: [any Component])
      * @availability iOS 13.0+
      */
-    static initComponents(components: $SDK5): Promise<Entity>;
+    static initComponents(components: $SDK6): Promise<Entity>;
     /**
      * @MainActor @preconcurrency convenience init(contentsOf url: URL, withName resourceName: String? = nil) async throws
      * @availability iOS 18.0+
@@ -562,7 +688,7 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency static func loadAnchor(named name: String, in bundle: Bundle? = nil) throws -> AnchorEntity
      * @availability iOS 13.0+
      */
-    static loadAnchorNamedIn(name: string, bundle?: $SDK6): Promise<AnchorEntity>;
+    static loadAnchorNamedIn(name: string, bundle?: $SDK7): Promise<AnchorEntity>;
     /**
      * @MainActor var observable: Entity.Observable { get set }
      * @availability iOS 26.0+
@@ -579,14 +705,14 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency var ambientAudio: AmbientAudioComponent? { get set }
      * @availability iOS 18.0+
      */
-    get ambientAudio(): Promise<$SDK7>;
-    setAmbientAudio(value?: $SDK7): Promise<void>;
+    get ambientAudio(): Promise<$SDK8>;
+    setAmbientAudio(value?: $SDK8): Promise<void>;
     /**
      * @MainActor @preconcurrency var channelAudio: ChannelAudioComponent? { get set }
      * @availability iOS 18.0+
      */
-    get channelAudio(): Promise<$SDK8>;
-    setChannelAudio(value?: $SDK8): Promise<void>;
+    get channelAudio(): Promise<$SDK9>;
+    setChannelAudio(value?: $SDK9): Promise<void>;
     /**
      * @MainActor @preconcurrency func prepareAudio(_ resource: AudioResource) -> AudioPlaybackController
      * @availability iOS 13.0+
@@ -596,8 +722,8 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency var spatialAudio: SpatialAudioComponent? { get set }
      * @availability iOS 18.0+
      */
-    get spatialAudio(): Promise<$SDK9>;
-    setSpatialAudio(value?: $SDK9): Promise<void>;
+    get spatialAudio(): Promise<$SDK10>;
+    setSpatialAudio(value?: $SDK10): Promise<void>;
     /**
      * @MainActor @preconcurrency func stopAllAudio()
      * @availability iOS 13.0+
@@ -646,7 +772,7 @@ export declare class Entity extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadModelAsyncNamedIn(name: string, bundle?: $SDK6): Promise<LoadRequest<ModelEntity>>;
+    static loadModelAsyncNamedIn(name: string, bundle?: $SDK7): Promise<LoadRequest<ModelEntity>>;
     /**
      * @MainActor @preconcurrency static func loadAnchorAsync(contentsOf url: URL, withName resourceName: String? = nil) -> LoadRequest<AnchorEntity>
      * @availability iOS 13.0+
@@ -658,7 +784,7 @@ export declare class Entity extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAnchorAsyncNamedIn(name: string, bundle?: $SDK6): Promise<LoadRequest<AnchorEntity>>;
+    static loadAnchorAsyncNamedIn(name: string, bundle?: $SDK7): Promise<LoadRequest<AnchorEntity>>;
     /**
      * @MainActor @preconcurrency static func loadBodyTracked(contentsOf url: URL, withName resourceName: String? = nil) throws -> BodyTrackedEntity
      * @availability iOS 13.0+
@@ -668,7 +794,7 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency static func loadBodyTracked(named name: String, in bundle: Bundle? = nil) throws -> BodyTrackedEntity
      * @availability iOS 13.0+
      */
-    static loadBodyTrackedNamedIn(name: string, bundle?: $SDK6): Promise<BodyTrackedEntity>;
+    static loadBodyTrackedNamedIn(name: string, bundle?: $SDK7): Promise<BodyTrackedEntity>;
     /**
      * @MainActor @preconcurrency var debugDescription: String { get }
      * @availability iOS 13.0+
@@ -695,13 +821,13 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency var availableAnimations: [AnimationResource] { get }
      * @availability iOS 13.0+
      */
-    get availableAnimations(): Promise<$SDK13>;
+    get availableAnimations(): Promise<$SDK14>;
     /**
      * @MainActor @preconcurrency var characterController: CharacterControllerComponent? { get set }
      * @availability iOS 15.0+
      */
-    get characterController(): Promise<$SDK14>;
-    setCharacterController(value?: $SDK14): Promise<void>;
+    get characterController(): Promise<$SDK15>;
+    setCharacterController(value?: $SDK15): Promise<void>;
     /**
      * @MainActor @preconcurrency func applyTapForBehaviors() -> Bool
      * @availability iOS 18.0+
@@ -717,13 +843,13 @@ export declare class Entity extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadBodyTrackedAsyncContentsOfWithName(url: string, resourceName?: (string) | null): Promise<$SDK15>;
+    static loadBodyTrackedAsyncContentsOfWithName(url: string, resourceName?: (string) | null): Promise<$SDK16>;
     /**
      * @MainActor @preconcurrency static func loadBodyTrackedAsync(named name: String, in bundle: Bundle? = nil) -> LoadRequest<BodyTrackedEntity>
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadBodyTrackedAsyncNamedIn(name: string, bundle?: $SDK6): Promise<$SDK15>;
+    static loadBodyTrackedAsyncNamedIn(name: string, bundle?: $SDK7): Promise<$SDK16>;
     /**
      * @MainActor @preconcurrency var defaultAnimationClock: CMClockOrTimebase { get set }
      * @availability iOS 15.0+
@@ -757,8 +883,8 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency var characterControllerState: CharacterControllerStateComponent? { get set }
      * @availability iOS 15.0+
      */
-    get characterControllerState(): Promise<$SDK16>;
-    setCharacterControllerState(value?: $SDK16): Promise<void>;
+    get characterControllerState(): Promise<$SDK17>;
+    setCharacterControllerState(value?: $SDK17): Promise<void>;
     /**
      * nonisolated var id: UInt64 { get }
      * @availability iOS 13.0+
@@ -789,7 +915,7 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency static func load(named name: String, in bundle: Bundle? = nil) throws -> Entity
      * @availability iOS 13.0+
      */
-    static loadNamedIn(name: string, bundle?: $SDK6): Promise<Entity>;
+    static loadNamedIn(name: string, bundle?: $SDK7): Promise<Entity>;
     /**
      * @MainActor @preconcurrency var name: String { get set }
      * @availability iOS 13.0+
@@ -810,7 +936,7 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency convenience init(named name: String, in bundle: Bundle? = nil) async throws
      * @availability iOS 18.0+
      */
-    static initNamedIn(name: string, bundle?: $SDK6): Promise<Entity>;
+    static initNamedIn(name: string, bundle?: $SDK7): Promise<Entity>;
     /**
      * @MainActor @preconcurrency var scene: Scene? { get }
      * @availability iOS 13.0+
@@ -868,7 +994,7 @@ export declare class Entity extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncNamedIn(name: string, bundle?: $SDK6): Promise<LoadRequest<Entity>>;
+    static loadAsyncNamedIn(name: string, bundle?: $SDK7): Promise<LoadRequest<Entity>>;
     /**
      * @MainActor @preconcurrency static func loadModel(contentsOf url: URL, withName resourceName: String? = nil) throws -> ModelEntity
      * @availability iOS 13.0+
@@ -878,7 +1004,7 @@ export declare class Entity extends SDKHandle {
      * @MainActor @preconcurrency static func loadModel(named name: String, in bundle: Bundle? = nil) throws -> ModelEntity
      * @availability iOS 13.0+
      */
-    static loadModelNamedIn(name: string, bundle?: $SDK6): Promise<ModelEntity>;
+    static loadModelNamedIn(name: string, bundle?: $SDK7): Promise<ModelEntity>;
     /**
      * @MainActor @preconcurrency func playAudio(_ resource: AudioResource, at time: AVAudioTime) throws -> AudioPlaybackController
      * @availability iOS 27.0+
@@ -1637,7 +1763,7 @@ export declare class AnimationGraphResource extends SDKHandle {
      * convenience init(definition: Data, nodeResourceMapping: [Int : AnimationResource] = [:], skeletonResource: SkeletonResource) throws
      * @availability iOS 27.0+
      */
-    static init(definition: ArrayBuffer, nodeResourceMapping: $SDK21, skeletonResource: SkeletonResource): AnimationGraphResource;
+    static init(definition: ArrayBuffer, nodeResourceMapping: $SDK22, skeletonResource: SkeletonResource): AnimationGraphResource;
     /**
      * var parameterNames: [String] { get }
      * @availability iOS 27.0+
@@ -1647,7 +1773,7 @@ export declare class AnimationGraphResource extends SDKHandle {
      * static func validate(definition: Data, nodeResourceMapping: [Int : AnimationResource] = [:], skeletonResource: SkeletonResource) -> [String]
      * @availability iOS 27.0+
      */
-    static validate(definition: ArrayBuffer, nodeResourceMapping: $SDK21, skeletonResource: SkeletonResource): Array<string>;
+    static validate(definition: ArrayBuffer, nodeResourceMapping: $SDK22, skeletonResource: SkeletonResource): Array<string>;
     readonly $type: {
         "s:17RealityFoundation22AnimationGraphResourceC": true;
     };
@@ -1807,7 +1933,7 @@ export declare class AnimationLibraryComponent extends SDKHandle {
      * init(animations: [String : AnimationResource], automaticallyPlaysDefaultAnimation: Bool)
      * @availability iOS 27.0+
      */
-    static initAnimationsAutomaticallyPlaysDefaultAnimation(animations: $SDK23, automaticallyPlaysDefaultAnimation: boolean): AnimationLibraryComponent;
+    static initAnimationsAutomaticallyPlaysDefaultAnimation(animations: $SDK24, automaticallyPlaysDefaultAnimation: boolean): AnimationLibraryComponent;
     /**
      * var animations: AnimationLibraryComponent.AnimationCollection
      * @availability iOS 18.0+
@@ -1818,7 +1944,7 @@ export declare class AnimationLibraryComponent extends SDKHandle {
      * init(animations: [String : AnimationResource])
      * @availability iOS 18.0+
      */
-    static initAnimations(animations: $SDK23): AnimationLibraryComponent;
+    static initAnimations(animations: $SDK24): AnimationLibraryComponent;
     /**
      * var defaultKey: String? { get set }
      * @availability iOS 18.0+
@@ -1898,7 +2024,7 @@ export declare class AnimationLibraryComponent_AnimationCollection extends SDKHa
      * subscript(position: AnimationLibraryComponent.AnimationCollection.Index) -> AnimationLibraryComponent.AnimationCollection.Element { get }
      * @availability iOS 18.0+
      */
-    subscript22305(position: AnimationLibraryComponent_AnimationCollection_Index): $SDK25;
+    subscript22305(position: AnimationLibraryComponent_AnimationCollection_Index): $SDK26;
     /**
      * subscript(bounds: Range<AnimationLibraryComponent.AnimationCollection.Index>) -> AnimationLibraryComponent.AnimationCollection.SubSequence { get }
      * @availability iOS 18.0+
@@ -1912,7 +2038,7 @@ export declare class AnimationLibraryComponent_AnimationCollection extends SDKHa
  * typealias Element = (key: String, value: AnimationResource)
  * @availability iOS 18.0+
  */
-export type AnimationLibraryComponent_AnimationCollection_Element = $SDK25;
+export type AnimationLibraryComponent_AnimationCollection_Element = $SDK26;
 /**
  * struct Index
  * @availability iOS 18.0+
@@ -1948,7 +2074,7 @@ export declare class AnimationLibraryComponent_AnimationCollection_Iterator exte
  * typealias Element = AnimationLibraryComponent.AnimationCollection.Element
  * @availability iOS 18.0+
  */
-export type AnimationLibraryComponent_AnimationCollection_Iterator_Element = $SDK25;
+export type AnimationLibraryComponent_AnimationCollection_Iterator_Element = $SDK26;
 /**
  * typealias SubSequence = Slice<AnimationLibraryComponent.AnimationCollection>
  * @availability iOS 18.0+
@@ -2089,7 +2215,7 @@ export declare class AnimationResource extends SDKHandle {
      * @MainActor @preconcurrency static func group(with resources: [AnimationResource]) throws -> AnimationResource
      * @availability iOS 15.0+
      */
-    static group(resources: $SDK13): Promise<AnimationResource>;
+    static group(resources: $SDK14): Promise<AnimationResource>;
     /**
      * @MainActor @preconcurrency func store(in: Entity)
      * @availability iOS 15.0+
@@ -2114,7 +2240,7 @@ export declare class AnimationResource extends SDKHandle {
      * @MainActor @preconcurrency static func sequence(with resources: [AnimationResource]) throws -> AnimationResource
      * @availability iOS 15.0+
      */
-    static sequence(resources: $SDK13): Promise<AnimationResource>;
+    static sequence(resources: $SDK14): Promise<AnimationResource>;
     readonly $type: {
         "s:17RealityFoundation17AnimationResourceC": true;
     };
@@ -2158,12 +2284,12 @@ export declare class AnimationState<Value = unknown> extends SDKHandle {
      * var defaultSource: JointTransforms? { get }
      * @availability iOS 18.0+
      */
-    get defaultSource93890(): $SDK27;
+    get defaultSource93890(): $SDK28;
     /**
      * var defaultTarget: JointTransforms? { get }
      * @availability iOS 18.0+
      */
-    get defaultTarget39026(): $SDK27;
+    get defaultTarget39026(): $SDK28;
     /**
      * func defaultSourceJoints(index: Int, count: Int, transforms: inout [Transform]) -> Bool
      * @availability iOS 18.0+
@@ -2413,17 +2539,17 @@ export declare class Audio extends SDKHandle {
      * @discardableResult @MainActor static func playAudio(_ resourcesAndEntities: [(AudioResource, Entity)], at time: AVAudioTime) throws -> AudioPlaybackGroupController
      * @availability iOS 27.0+
      */
-    static playAudioAt(resourcesAndEntities: $SDK29, time: _AVFAudio_AVAudioTime): Promise<AudioPlaybackGroupController>;
+    static playAudioAt(resourcesAndEntities: $SDK30, time: _AVFAudio_AVAudioTime): Promise<AudioPlaybackGroupController>;
     /**
      * @discardableResult @MainActor static func playAudio(_ resourcesAndEntities: [(AudioResource, Entity)]) throws -> AudioPlaybackGroupController
      * @availability iOS 27.0+
      */
-    static playAudio(resourcesAndEntities: $SDK29): Promise<AudioPlaybackGroupController>;
+    static playAudio(resourcesAndEntities: $SDK30): Promise<AudioPlaybackGroupController>;
     /**
      * @MainActor static func prepareAudio(_ resourcesAndEntities: [(AudioResource, Entity)]) throws -> AudioPlaybackGroupController
      * @availability iOS 27.0+
      */
-    static prepareAudio(resourcesAndEntities: $SDK29): Promise<AudioPlaybackGroupController>;
+    static prepareAudio(resourcesAndEntities: $SDK30): Promise<AudioPlaybackGroupController>;
     readonly $type: {
         "s:17RealityFoundation5AudioO": true;
     };
@@ -2746,7 +2872,7 @@ export declare class AudioBufferResource_Configuration extends SDKHandle {
      * init(shouldLoop: Bool = false, shouldRandomizeStartTime: Bool = false, normalization: AudioResource.Normalization? = nil, calibration: AudioResource.Calibration? = nil, mixGroupName: String? = nil)
      * @availability iOS 18.0+
      */
-    static init(shouldLoop?: boolean, shouldRandomizeStartTime?: boolean, normalization?: $SDK31, calibration?: $SDK32, mixGroupName?: (string) | null): Promise<AudioBufferResource_Configuration>;
+    static init(shouldLoop?: boolean, shouldRandomizeStartTime?: boolean, normalization?: $SDK32, calibration?: $SDK33, mixGroupName?: (string) | null): Promise<AudioBufferResource_Configuration>;
     /**
      * var shouldLoop: Bool
      * @availability iOS 18.0+
@@ -2757,8 +2883,8 @@ export declare class AudioBufferResource_Configuration extends SDKHandle {
      * var calibration: AudioResource.Calibration?
      * @availability iOS 18.0+
      */
-    get calibration(): Promise<$SDK32>;
-    setCalibration(value?: $SDK32): Promise<void>;
+    get calibration(): Promise<$SDK33>;
+    setCalibration(value?: $SDK33): Promise<void>;
     /**
      * var mixGroupName: String?
      * @availability iOS 18.0+
@@ -2769,8 +2895,8 @@ export declare class AudioBufferResource_Configuration extends SDKHandle {
      * var normalization: AudioResource.Normalization?
      * @availability iOS 18.0+
      */
-    get normalization(): Promise<$SDK31>;
-    setNormalization(value?: $SDK31): Promise<void>;
+    get normalization(): Promise<$SDK32>;
+    setNormalization(value?: $SDK32): Promise<void>;
     /**
      * var shouldRandomizeStartTime: Bool
      * @availability iOS 18.0+
@@ -2829,7 +2955,7 @@ export declare class AudioFileGroupResource extends AudioResource {
      * @MainActor @preconcurrency static func load(named name: String, from scene: String, in bundle: Bundle? = nil) throws -> AudioFileGroupResource
      * @availability iOS 18.0+
      */
-    static load(name: string, scene: string, bundle?: $SDK6): Promise<AudioFileGroupResource>;
+    static load(name: string, scene: string, bundle?: $SDK7): Promise<AudioFileGroupResource>;
     /**
      * @MainActor @preconcurrency convenience init(named name: String, from scene: String, in bundle: Bundle) async throws
      * @availability iOS 18.0+
@@ -2899,18 +3025,18 @@ export declare class AudioFileResource extends AudioResource {
      * @MainActor @preconcurrency static func load(named name: String, in bundle: Bundle? = nil, configuration: AudioFileResource.Configuration = .init()) throws -> AudioFileResource
      * @availability iOS 18.0+
      */
-    static loadNamedInConfiguration(name: string, bundle?: $SDK6, configuration?: AudioFileResource_Configuration): Promise<AudioFileResource>;
+    static loadNamedInConfiguration(name: string, bundle?: $SDK7, configuration?: AudioFileResource_Configuration): Promise<AudioFileResource>;
     /**
      * @MainActor @preconcurrency static func load(named name: String, in bundle: Bundle? = nil, inputMode: AudioResource.InputMode = .spatial, loadingStrategy: AudioFileResource.LoadingStrategy = .preload, shouldLoop: Bool = false) throws -> AudioFileResource
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadNamedInInputModeLoadingStrategyShouldLoop(name: string, bundle?: $SDK6, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<AudioFileResource>;
+    static loadNamedInInputModeLoadingStrategyShouldLoop(name: string, bundle?: $SDK7, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<AudioFileResource>;
     /**
      * @MainActor @preconcurrency static func load(named name: String, from scene: String, in bundle: Bundle? = nil) throws -> AudioFileResource
      * @availability iOS 18.0+
      */
-    static loadNamedFromIn(name: string, scene: string, bundle?: $SDK6): Promise<AudioFileResource>;
+    static loadNamedFromIn(name: string, scene: string, bundle?: $SDK7): Promise<AudioFileResource>;
     /**
      * @MainActor @preconcurrency final let name: String
      * @availability iOS 13.0+
@@ -2920,12 +3046,12 @@ export declare class AudioFileResource extends AudioResource {
      * @MainActor @preconcurrency convenience init(named name: String, in bundle: Bundle? = nil, configuration: AudioFileResource.Configuration = .init()) async throws
      * @availability iOS 18.0+
      */
-    static initNamedInConfiguration(name: string, bundle?: $SDK6, configuration?: AudioFileResource_Configuration): Promise<AudioFileResource>;
+    static initNamedInConfiguration(name: string, bundle?: $SDK7, configuration?: AudioFileResource_Configuration): Promise<AudioFileResource>;
     /**
      * @MainActor @preconcurrency convenience init(named name: String, from scene: String, in bundle: Bundle? = nil) async throws
      * @availability iOS 18.0+
      */
-    static initNamedFromIn(name: string, scene: string, bundle?: $SDK6): Promise<AudioFileResource>;
+    static initNamedFromIn(name: string, scene: string, bundle?: $SDK7): Promise<AudioFileResource>;
     /**
      * @MainActor @preconcurrency var duration: Duration { get }
      * @availability iOS 18.0+
@@ -2936,13 +3062,13 @@ export declare class AudioFileResource extends AudioResource {
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncContentsOfWithNameInputModeLoadingStrategyShouldLoop(url: string, resourceName?: (string) | null, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<$SDK34>;
+    static loadAsyncContentsOfWithNameInputModeLoadingStrategyShouldLoop(url: string, resourceName?: (string) | null, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<$SDK35>;
     /**
      * @MainActor @preconcurrency static func loadAsync(named name: String, in bundle: Bundle? = nil, inputMode: AudioResource.InputMode = .spatial, loadingStrategy: AudioFileResource.LoadingStrategy = .preload, shouldLoop: Bool = false) -> LoadRequest<AudioFileResource>
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncNamedInInputModeLoadingStrategyShouldLoop(name: string, bundle?: $SDK6, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<$SDK34>;
+    static loadAsyncNamedInInputModeLoadingStrategyShouldLoop(name: string, bundle?: $SDK7, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<$SDK35>;
     readonly $type: {
         "s:17RealityFoundation17AudioFileResourceC": true;
         "s:17RealityFoundation13AudioResourceC": true;
@@ -2963,8 +3089,8 @@ export declare class AudioFileResource_Configuration extends SDKHandle {
      * var calibration: AudioResource.Calibration?
      * @availability iOS 18.0+
      */
-    get calibration(): Promise<$SDK32>;
-    setCalibration(value?: $SDK32): Promise<void>;
+    get calibration(): Promise<$SDK33>;
+    setCalibration(value?: $SDK33): Promise<void>;
     /**
      * var mixGroupName: String?
      * @availability iOS 18.0+
@@ -2975,13 +3101,13 @@ export declare class AudioFileResource_Configuration extends SDKHandle {
      * var normalization: AudioResource.Normalization?
      * @availability iOS 18.0+
      */
-    get normalization(): Promise<$SDK31>;
-    setNormalization(value?: $SDK31): Promise<void>;
+    get normalization(): Promise<$SDK32>;
+    setNormalization(value?: $SDK32): Promise<void>;
     /**
      * init(loadingStrategy: AudioFileResource.LoadingStrategy = .preload, shouldLoop: Bool = false, shouldRandomizeStartTime: Bool = false, normalization: AudioResource.Normalization? = nil, calibration: AudioResource.Calibration? = nil, mixGroupName: String? = nil)
      * @availability iOS 18.0+
      */
-    static init(loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean, shouldRandomizeStartTime?: boolean, normalization?: $SDK31, calibration?: $SDK32, mixGroupName?: (string) | null): Promise<AudioFileResource_Configuration>;
+    static init(loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean, shouldRandomizeStartTime?: boolean, normalization?: $SDK32, calibration?: $SDK33, mixGroupName?: (string) | null): Promise<AudioFileResource_Configuration>;
     /**
      * var loadingStrategy: AudioFileResource.LoadingStrategy
      * @availability iOS 18.0+
@@ -3095,13 +3221,13 @@ export declare class AudioLibraryComponent extends SDKHandle {
      * init(resources: [String : AudioResource] = [:])
      * @availability iOS 18.0+
      */
-    static init(resources?: $SDK35): AudioLibraryComponent;
+    static init(resources?: $SDK36): AudioLibraryComponent;
     /**
      * var resources: [String : AudioResource]
      * @availability iOS 18.0+
      */
-    get resources(): $SDK35;
-    set resources(value: $SDK35);
+    get resources(): $SDK36;
+    set resources(value: $SDK36);
     readonly $type: {
         "s:17RealityFoundation21AudioLibraryComponentV": true;
     };
@@ -3291,7 +3417,7 @@ export declare class AudioPlaybackGroupController extends SDKHandle {
      * @MainActor @preconcurrency final let resourcesAndEntities: [(AudioResource, Entity)]
      * @availability iOS 27.0+
      */
-    get resourcesAndEntities(): Promise<$SDK29>;
+    get resourcesAndEntities(): Promise<$SDK30>;
     /**
      * @MainActor @preconcurrency var id: UInt64 { get }
      * @availability iOS 27.0+
@@ -3442,7 +3568,7 @@ export interface BehaviorTreeActionHandler {
      * static func register(_ creationHandler: @escaping (Self.EventType) -> (any ActionHandlerProtocol)?)
      * @availability iOS 18.0+
      */
-    "register"?: (arg0: $SDK4) => void;
+    "register"?: (arg0: $SDK5) => void;
     /**
      * mutating func actionStartedWithResult(event: Self.EventType) -> ActionResult?
      * @availability iOS 27.0+
@@ -3488,19 +3614,19 @@ export declare class BehaviorTreeComponent extends SDKHandle {
      * init(behaviorTree: BehaviorTreeResource?, availableBehaviorTrees: [String : BehaviorTreeResource])
      * @availability iOS 27.0+
      */
-    static init(behaviorTree: $SDK37, availableBehaviorTrees: $SDK38): BehaviorTreeComponent;
+    static init(behaviorTree: $SDK38, availableBehaviorTrees: $SDK39): BehaviorTreeComponent;
     /**
      * var behaviorTree: BehaviorTreeResource? { get set }
      * @availability iOS 27.0+
      */
-    get behaviorTree(): $SDK37;
-    set behaviorTree(value: $SDK37);
+    get behaviorTree(): $SDK38;
+    set behaviorTree(value: $SDK38);
     /**
      * var availableBehaviorTrees: [String : BehaviorTreeResource] { get set }
      * @availability iOS 27.0+
      */
-    get availableBehaviorTrees(): $SDK38;
-    set availableBehaviorTrees(value: $SDK38);
+    get availableBehaviorTrees(): $SDK39;
+    set availableBehaviorTrees(value: $SDK39);
     readonly $type: {
         "s:17RealityFoundation21BehaviorTreeComponentV": true;
     };
@@ -3653,7 +3779,7 @@ export declare class BindableValuesReference extends SDKHandle {
      * @MainActor @preconcurrency subscript<T>(bindTarget: BindTarget, type: T.Type = T.self) -> BindableValue<T>? where T : BindableData { get set }
      * @availability iOS 15.0+
      */
-    subscript(bindTarget: BindTarget, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
+    subscript(bindTarget: BindTarget, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK40>;
     readonly $type: {
         "s:17RealityFoundation23BindableValuesReferenceV": true;
     };
@@ -3944,7 +4070,7 @@ export declare class BlendShapeDeformer extends SDKHandle {
      * func deform(parameter: MeshDeformParameterGPU, encoder: any MTLComputeCommandEncoder)
      * @availability iOS 27.0+
      */
-    deform(parameter: $SDK41, encoder: SDKHandle): void;
+    deform(parameter: $SDK42, encoder: SDKHandle): void;
     /**
      * init()
      * @availability iOS 27.0+
@@ -4121,7 +4247,7 @@ export declare class BlendShapeWeightsSet extends SDKHandle {
      * @discardableResult mutating func set(_ newValue: BlendShapeWeightsSet.Element) -> BlendShapeWeightsSet.Element?
      * @availability iOS 18.0+
      */
-    set(newValue: BlendShapeWeightsData): $SDK42;
+    set(newValue: BlendShapeWeightsData): $SDK43;
     /**
      * var count: Int { get }
      * @availability iOS 18.0+
@@ -4141,8 +4267,8 @@ export declare class BlendShapeWeightsSet extends SDKHandle {
      * var `default`: BlendShapeWeightsSet.Element? { get set }
      * @availability iOS 18.0+
      */
-    get default(): $SDK42;
-    set default(value: $SDK42);
+    get default(): $SDK43;
+    set default(value: $SDK43);
     /**
      * var isEmpty: Bool { get }
      * @availability iOS 18.0+
@@ -4167,7 +4293,7 @@ export declare class BlendShapeWeightsSet extends SDKHandle {
      * subscript(blendShapeName: String) -> BlendShapeWeightsSet.Element? { get }
      * @availability iOS 18.0+
      */
-    subscript(blendShapeName: string): $SDK42;
+    subscript(blendShapeName: string): $SDK43;
     /**
      * subscript(index: BlendShapeWeightsSet.Index) -> BlendShapeWeightsSet.Element { get set }
      * @availability iOS 18.0+
@@ -4201,7 +4327,7 @@ export declare class BlendShapeWeightsSet_Iterator extends SDKHandle {
      * mutating func next() -> BlendShapeWeightsSet.Element?
      * @availability iOS 18.0+
      */
-    next(): $SDK42;
+    next(): $SDK43;
     readonly $type: {
         "s:17RealityFoundation20BlendShapeWeightsSetV8IteratorV": true;
     };
@@ -4701,7 +4827,7 @@ export declare class BoundingBoxCalculator extends SDKHandle {
      * func deform(parameter: MeshDeformParameterGPU, encoder: any MTLComputeCommandEncoder)
      * @availability iOS 27.0+
      */
-    deform(parameter: $SDK41, encoder: SDKHandle): void;
+    deform(parameter: $SDK42, encoder: SDKHandle): void;
     /**
      * init()
      * @availability iOS 27.0+
@@ -5686,7 +5812,7 @@ export declare class CustomMaterial extends SDKHandle {
      * init(surfaceShader: CustomMaterial.SurfaceShader, geometryModifier: CustomMaterial.GeometryModifier? = nil, lightingModel: CustomMaterial.LightingModel) throws
      * @availability iOS 15.0+
      */
-    static initSurfaceShaderGeometryModifierLightingModel(surfaceShader: CustomMaterial_SurfaceShader, geometryModifier: $SDK45, lightingModel: CustomMaterial_LightingModel): CustomMaterial;
+    static initSurfaceShaderGeometryModifierLightingModel(surfaceShader: CustomMaterial_SurfaceShader, geometryModifier: $SDK46, lightingModel: CustomMaterial_LightingModel): CustomMaterial;
     /**
      * var clearcoatNormal: CustomMaterial.ClearcoatNormal { get set }
      * @availability iOS 18.0+
@@ -5739,7 +5865,7 @@ export declare class CustomMaterial extends SDKHandle {
      * init(from material: any Material, surfaceShader: CustomMaterial.SurfaceShader, geometryModifier: CustomMaterial.GeometryModifier? = nil) throws
      * @availability iOS 15.0+
      */
-    static initFromSurfaceShaderGeometryModifier(material: SDKHandle, surfaceShader: CustomMaterial_SurfaceShader, geometryModifier?: $SDK45): CustomMaterial;
+    static initFromSurfaceShaderGeometryModifier(material: SDKHandle, surfaceShader: CustomMaterial_SurfaceShader, geometryModifier?: $SDK46): CustomMaterial;
     /**
      * init(from material: any Material, geometryModifier: CustomMaterial.GeometryModifier) throws
      * @availability iOS 15.0+
@@ -5817,13 +5943,13 @@ export declare class CustomMaterial_AmbientOcclusion extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initTexture(texture?: $SDK46): CustomMaterial_AmbientOcclusion;
+    static initTexture(texture?: $SDK47): CustomMaterial_AmbientOcclusion;
     /**
      * init(_ value: PhysicallyBasedMaterial.AmbientOcclusion)
      * @availability iOS 15.0+
@@ -5842,8 +5968,8 @@ export declare class CustomMaterial_BaseColor extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.BaseColor)
      * @availability iOS 15.0+
@@ -5881,7 +6007,7 @@ export declare class CustomMaterial_Clearcoat extends SDKHandle {
      * init(scale: Float = 1.0, texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK46): CustomMaterial_Clearcoat;
+    static initScaleTexture(scale?: number, texture?: $SDK47): CustomMaterial_Clearcoat;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -5892,8 +6018,8 @@ export declare class CustomMaterial_Clearcoat extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.Clearcoat)
      * @availability iOS 15.0+
@@ -5917,13 +6043,13 @@ export declare class CustomMaterial_ClearcoatNormal extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 18.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(texture: CustomMaterial.Texture? = nil)
      * @availability iOS 18.0+
      */
-    static initTexture(texture?: $SDK46): CustomMaterial_ClearcoatNormal;
+    static initTexture(texture?: $SDK47): CustomMaterial_ClearcoatNormal;
     /**
      * init(_ value: PhysicallyBasedMaterial.ClearcoatNormal)
      * @availability iOS 18.0+
@@ -5947,7 +6073,7 @@ export declare class CustomMaterial_ClearcoatRoughness extends SDKHandle {
      * init(scale: Float = 1.0, texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK46): CustomMaterial_ClearcoatRoughness;
+    static initScaleTexture(scale?: number, texture?: $SDK47): CustomMaterial_ClearcoatRoughness;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -5958,8 +6084,8 @@ export declare class CustomMaterial_ClearcoatRoughness extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.ClearcoatRoughness)
      * @availability iOS 15.0+
@@ -5983,7 +6109,7 @@ export declare class CustomMaterial_Custom extends SDKHandle {
      * init(value: SIMD4<Float> = .init(repeating: 0), texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static init(value?: SDKHandle, texture?: $SDK46): CustomMaterial_Custom;
+    static init(value?: SDKHandle, texture?: $SDK47): CustomMaterial_Custom;
     /**
      * var value: SIMD4<Float>
      * @availability iOS 15.0+
@@ -5994,8 +6120,8 @@ export declare class CustomMaterial_Custom extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     readonly $type: {
         "s:17RealityFoundation14CustomMaterialV0C0V": true;
     };
@@ -6045,8 +6171,8 @@ export declare class CustomMaterial_EmissiveColor extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.EmissiveColor)
      * @availability iOS 15.0+
@@ -6117,7 +6243,7 @@ export declare class CustomMaterial_Metallic extends SDKHandle {
      * init(scale: Float = 1.0, texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK46): CustomMaterial_Metallic;
+    static initScaleTexture(scale?: number, texture?: $SDK47): CustomMaterial_Metallic;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -6128,8 +6254,8 @@ export declare class CustomMaterial_Metallic extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.Metallic)
      * @availability iOS 15.0+
@@ -6153,13 +6279,13 @@ export declare class CustomMaterial_Normal extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initTexture(texture?: $SDK46): CustomMaterial_Normal;
+    static initTexture(texture?: $SDK47): CustomMaterial_Normal;
     /**
      * init(_ value: PhysicallyBasedMaterial.Normal)
      * @availability iOS 15.0+
@@ -6183,7 +6309,7 @@ export declare class CustomMaterial_Opacity extends SDKHandle {
      * init(scale: Float = 1.0, texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK46): CustomMaterial_Opacity;
+    static initScaleTexture(scale?: number, texture?: $SDK47): CustomMaterial_Opacity;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -6194,8 +6320,8 @@ export declare class CustomMaterial_Opacity extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.Opacity)
      * @availability iOS 15.0+
@@ -6229,7 +6355,7 @@ export declare class CustomMaterial_Program extends SDKHandle {
      * init(surfaceShader: CustomMaterial.SurfaceShader, geometryModifier: CustomMaterial.GeometryModifier? = nil, descriptor: CustomMaterial.Program.Descriptor) async throws
      * @availability iOS 18.0+
      */
-    static init(surfaceShader: CustomMaterial_SurfaceShader, geometryModifier: $SDK45, descriptor: CustomMaterial_Program_Descriptor): Promise<CustomMaterial_Program>;
+    static init(surfaceShader: CustomMaterial_SurfaceShader, geometryModifier: $SDK46, descriptor: CustomMaterial_Program_Descriptor): Promise<CustomMaterial_Program>;
     /**
      * final let surfaceShader: CustomMaterial.SurfaceShader
      * @availability iOS 18.0+
@@ -6239,7 +6365,7 @@ export declare class CustomMaterial_Program extends SDKHandle {
      * final let geometryModifier: CustomMaterial.GeometryModifier?
      * @availability iOS 18.0+
      */
-    get geometryModifier(): $SDK45;
+    get geometryModifier(): $SDK46;
     readonly $type: {
         "s:17RealityFoundation14CustomMaterialV7ProgramC": true;
     };
@@ -6259,8 +6385,8 @@ export declare class CustomMaterial_Program_Descriptor extends SDKHandle {
      * var blendMode: MaterialParameterTypes.BlendMode?
      * @availability iOS 18.0+
      */
-    get blendMode(): $SDK47;
-    set blendMode(value: $SDK47);
+    get blendMode(): $SDK48;
+    set blendMode(value: $SDK48);
     /**
      * init()
      * @availability iOS 18.0+
@@ -6293,7 +6419,7 @@ export declare class CustomMaterial_Roughness extends SDKHandle {
      * init(scale: Float = 1.0, texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK46): CustomMaterial_Roughness;
+    static initScaleTexture(scale?: number, texture?: $SDK47): CustomMaterial_Roughness;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -6304,8 +6430,8 @@ export declare class CustomMaterial_Roughness extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.Roughness)
      * @availability iOS 15.0+
@@ -6334,7 +6460,7 @@ export declare class CustomMaterial_Specular extends SDKHandle {
      * init(scale: Float = 1.0, texture: CustomMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK46): CustomMaterial_Specular;
+    static initScaleTexture(scale?: number, texture?: $SDK47): CustomMaterial_Specular;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -6345,8 +6471,8 @@ export declare class CustomMaterial_Specular extends SDKHandle {
      * var texture: CustomMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK46;
-    set texture(value: $SDK46);
+    get texture(): $SDK47;
+    set texture(value: $SDK47);
     /**
      * init(_ value: PhysicallyBasedMaterial.Specular)
      * @availability iOS 15.0+
@@ -6567,13 +6693,13 @@ export declare class DirectionalLightComponent_Shadow extends SDKHandle {
      * var cullModeOverride: DirectionalLightComponent.Shadow.ShadowMapCullMode? { get set }
      * @availability iOS 18.0+
      */
-    get cullModeOverride(): $SDK48;
-    set cullModeOverride(value: $SDK48);
+    get cullModeOverride(): $SDK49;
+    set cullModeOverride(value: $SDK49);
     /**
      * init(shadowProjection: DirectionalLightComponent.Shadow.ShadowProjectionType, depthBias: Float, cullMode: DirectionalLightComponent.Shadow.ShadowMapCullMode? = nil)
      * @availability iOS 18.0+
      */
-    static initShadowProjectionDepthBiasCullMode(shadowProjection: DirectionalLightComponent_Shadow_ShadowProjectionType, depthBias: number, cullMode?: $SDK48): DirectionalLightComponent_Shadow;
+    static initShadowProjectionDepthBiasCullMode(shadowProjection: DirectionalLightComponent_Shadow_ShadowProjectionType, depthBias: number, cullMode?: $SDK49): DirectionalLightComponent_Shadow;
     /**
      * var shadowProjection: DirectionalLightComponent.Shadow.ShadowProjectionType { get set }
      * @availability iOS 18.0+
@@ -6584,13 +6710,13 @@ export declare class DirectionalLightComponent_Shadow extends SDKHandle {
      * var layers: RenderLayer.Set? { get set }
      * @availability iOS 27.0+
      */
-    get layers(): $SDK49;
-    set layers(value: $SDK49);
+    get layers(): $SDK50;
+    set layers(value: $SDK50);
     /**
      * init(layers: RenderLayer.Set? = nil)
      * @availability iOS 27.0+
      */
-    static initLayers(layers?: $SDK49): DirectionalLightComponent_Shadow;
+    static initLayers(layers?: $SDK50): DirectionalLightComponent_Shadow;
     /**
      * var cascades: DirectionalLightComponent.Shadow.Cascades { get set }
      * @availability iOS 27.0+
@@ -6820,7 +6946,7 @@ export declare class Entity_ChildCollection extends SDKHandle {
      * @MainActor @preconcurrency func makeIterator() -> Entity.ChildCollection.Iterator
      * @availability iOS 13.0+
      */
-    makeIterator(): Promise<$SDK50>;
+    makeIterator(): Promise<$SDK51>;
     /**
      * @MainActor @preconcurrency func index(after i: Int) -> Int
      * @availability iOS 13.0+
@@ -6948,7 +7074,7 @@ export type Entity_ChildCollection_Indices = SDKHandle;
  * typealias Iterator = Entity.ChildCollection.IndexingIterator<Entity.ChildCollection>
  * @availability iOS 13.0+
  */
-export type Entity_ChildCollection_Iterator = $SDK50;
+export type Entity_ChildCollection_Iterator = $SDK51;
 /**
  * typealias SubSequence = Slice<Entity.ChildCollection>
  * @availability iOS 13.0+
@@ -6978,7 +7104,7 @@ export declare class Entity_ComponentSet extends SDKHandle {
      * @MainActor @preconcurrency func set(_ components: [any Component])
      * @availability iOS 13.0+
      */
-    set(components: $SDK5): Promise<void>;
+    set(components: $SDK6): Promise<void>;
     /**
      * @MainActor @preconcurrency var count: Int { get }
      * @availability iOS 13.0+
@@ -7174,17 +7300,17 @@ export declare class Entity_ConfigurationCatalog extends SDKHandle {
      * init(configurationSets: [String : Entity.ConfigurationCatalog.ConfigurationSet], combinations: [Entity.ConfigurationCatalog.ConfigurationCombination]) throws
      * @availability iOS 18.0+
      */
-    static initConfigurationSetsCombinations(configurationSets: $SDK52, combinations: $SDK53): Promise<Entity_ConfigurationCatalog>;
+    static initConfigurationSetsCombinations(configurationSets: $SDK53, combinations: $SDK54): Promise<Entity_ConfigurationCatalog>;
     /**
      * init(configurationSets: [Entity.ConfigurationCatalog.ConfigurationSet], combinations: [Entity.ConfigurationCatalog.ConfigurationCombination]) throws
      * @availability iOS 18.0+
      */
-    static initConfigurationSetsCombinations45872(configurationSets: Array<Entity_ConfigurationCatalog_ConfigurationSet>, combinations: $SDK53): Promise<Entity_ConfigurationCatalog>;
+    static initConfigurationSetsCombinations45872(configurationSets: Array<Entity_ConfigurationCatalog_ConfigurationSet>, combinations: $SDK54): Promise<Entity_ConfigurationCatalog>;
     /**
      * var configurationSets: [String : Entity.ConfigurationCatalog.ConfigurationSet] { get }
      * @availability iOS 18.0+
      */
-    get configurationSets(): Promise<$SDK52>;
+    get configurationSets(): Promise<$SDK53>;
     /**
      * nonisolated(nonsending) func write(to url: URL, options: Entity.WriteOptions) async throws
      * @availability iOS 27.0+
@@ -7261,12 +7387,12 @@ export declare class Entity_ConfigurationCatalog_ConfigurationSet extends SDKHan
      * var configurations: [String : Entity.ConfigurationCatalog.Configuration] { get }
      * @availability iOS 18.0+
      */
-    get configurations(): Promise<$SDK55>;
+    get configurations(): Promise<$SDK56>;
     /**
      * init(id: String, configurations: [String : Entity.ConfigurationCatalog.Configuration], defaultConfigurationId: String? = nil) throws
      * @availability iOS 18.0+
      */
-    static initIdConfigurationsDefaultConfigurationId(id: string, configurations: $SDK55, defaultConfigurationId?: (string) | null): Promise<Entity_ConfigurationCatalog_ConfigurationSet>;
+    static initIdConfigurationsDefaultConfigurationId(id: string, configurations: $SDK56, defaultConfigurationId?: (string) | null): Promise<Entity_ConfigurationCatalog_ConfigurationSet>;
     /**
      * init(id: String, configurations: [Entity.ConfigurationCatalog.Configuration], defaultConfigurationId: String? = nil) throws
      * @availability iOS 18.0+
@@ -7371,7 +7497,7 @@ export declare class Entity_ParameterSet extends SDKHandle {
      * @MainActor @preconcurrency subscript<T>(name: String, type: T.Type = T.self) -> BindableValue<T>? where T : BindableData { get set }
      * @availability iOS 15.0+
      */
-    subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
+    subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK40>;
     readonly $type: {
         "s:17RealityFoundation6EntityC12ParameterSetV": true;
     };
@@ -7640,23 +7766,23 @@ export declare class EnvironmentResource extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static load(name: string, bundle?: $SDK6): Promise<EnvironmentResource>;
+    static load(name: string, bundle?: $SDK7): Promise<EnvironmentResource>;
     /**
      * @MainActor @preconcurrency convenience init(named name: String, in bundle: Bundle? = nil, skyboxMode: EnvironmentResource.SkyboxMode) async throws
      * @availability iOS 27.0+
      */
-    static initNamedInSkyboxMode(name: string, bundle: $SDK6, skyboxMode: EnvironmentResource_SkyboxMode): Promise<EnvironmentResource>;
+    static initNamedInSkyboxMode(name: string, bundle: $SDK7, skyboxMode: EnvironmentResource_SkyboxMode): Promise<EnvironmentResource>;
     /**
      * @MainActor @preconcurrency convenience init(named name: String, in bundle: Bundle? = nil) async throws
      * @availability iOS 18.0+
      * @deprecated iOS 100000.0
      */
-    static initNamedIn(name: string, bundle?: $SDK6): Promise<EnvironmentResource>;
+    static initNamedIn(name: string, bundle?: $SDK7): Promise<EnvironmentResource>;
     /**
      * @MainActor convenience init(skybox skyboxTexture: TextureResource?, specular specularTexture: TextureResource, diffuse diffuseTexture: TextureResource) throws
      * @availability iOS 27.0+
      */
-    static initSkyboxSpecularDiffuse(skyboxTexture: $SDK58, specularTexture: TextureResource, diffuseTexture: TextureResource): Promise<EnvironmentResource>;
+    static initSkyboxSpecularDiffuse(skyboxTexture: $SDK59, specularTexture: TextureResource, diffuseTexture: TextureResource): Promise<EnvironmentResource>;
     /**
      * @MainActor @preconcurrency var skybox: TextureResource { get }
      * @availability iOS 18.0+
@@ -7667,7 +7793,7 @@ export declare class EnvironmentResource extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAsync(name: string, bundle?: $SDK6): Promise<LoadRequest<EnvironmentResource>>;
+    static loadAsync(name: string, bundle?: $SDK7): Promise<LoadRequest<EnvironmentResource>>;
     readonly $type: {
         "s:17RealityFoundation19EnvironmentResourceC": true;
     };
@@ -7780,6 +7906,42 @@ export declare class EventSubscription extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class ForceEffect<ForceEffectType = unknown> extends SDKHandle {
+    /**
+     * var orientation: simd_quatf
+     * @availability iOS 18.0+
+     */
+    get orientation(): SDKHandle;
+    set orientation(value: SDKHandle);
+    /**
+     * var timedFalloff: TimedForceFalloff?
+     * @availability iOS 18.0+
+     */
+    get timedFalloff(): (TimedForceFalloff) | null;
+    set timedFalloff(value: (TimedForceFalloff) | null);
+    /**
+     * var strengthScale: Float
+     * @availability iOS 18.0+
+     */
+    get strengthScale(): number;
+    set strengthScale(value: number);
+    /**
+     * var spatialFalloff: SpatialForceFalloff?
+     * @availability iOS 18.0+
+     */
+    get spatialFalloff(): (SpatialForceFalloff) | null;
+    set spatialFalloff(value: (SpatialForceFalloff) | null);
+    /**
+     * var mask: CollisionGroup
+     * @availability iOS 18.0+
+     */
+    get mask(): CollisionGroup;
+    set mask(value: CollisionGroup);
+    /**
+     * var position: SIMD3<Float>
+     * @availability iOS 18.0+
+     */
+    get position(): SDKHandle;
+    set position(value: SDKHandle);
     readonly $type: {
         "s:17RealityFoundation11ForceEffectV": true;
     };
@@ -7808,8 +7970,24 @@ export declare class ForceEffectComponent extends SDKHandle {
      * var simulationState: ForceEffectComponent.SimulationState?
      * @availability iOS 18.0+
      */
-    get simulationState(): $SDK60;
-    set simulationState(value: $SDK60);
+    get simulationState(): $SDK63;
+    set simulationState(value: $SDK63);
+    /**
+     * init(effect: any ForceEffectBase)
+     * @availability iOS 18.0+
+     */
+    static initEffect(effect: SDKHandle): ForceEffectComponent;
+    /**
+     * init(effects: [any ForceEffectBase], simulationState: ForceEffectComponent.SimulationState = .start)
+     * @availability iOS 18.0+
+     */
+    static initEffectsSimulationState(effects: Array<SDKHandle>, simulationState?: ForceEffectComponent_SimulationState): ForceEffectComponent;
+    /**
+     * var effects: [any ForceEffectBase]
+     * @availability iOS 18.0+
+     */
+    get effects(): Array<SDKHandle>;
+    set effects(value: Array<SDKHandle>);
     readonly $type: {
         "s:17RealityFoundation20ForceEffectComponentV": true;
     };
@@ -7824,6 +8002,12 @@ export type ForceEffectComponent_SimulationState = "start" | "pause" | "resume";
  * @availability iOS 18.0+
  */
 export declare class ForceEffectEvent<ForceEffectType = unknown> extends SDKHandle {
+    /**
+     * var parameters: ForceEffectParameters
+     * @availability iOS 18.0+
+     */
+    get parameters(): ForceEffectParameters;
+    set parameters(value: ForceEffectParameters);
     readonly $type: {
         "s:17RealityFoundation16ForceEffectEventV": true;
     };
@@ -7842,7 +8026,7 @@ export declare class ForceEffectParameters extends SDKHandle {
      * let velocities: UnsafeForceEffectBuffer<SIMD3<Float>>?
      * @availability iOS 18.0+
      */
-    get velocities(): $SDK61;
+    get velocities(): $SDK64;
     /**
      * let elapsedTime: TimeInterval
      * @availability iOS 18.0+
@@ -7852,7 +8036,7 @@ export declare class ForceEffectParameters extends SDKHandle {
      * let orientations: UnsafeForceEffectBuffer<simd_quatf>?
      * @availability iOS 18.0+
      */
-    get orientations(): $SDK61;
+    get orientations(): $SDK64;
     /**
      * let fixedDeltaTime: TimeInterval
      * @availability iOS 18.0+
@@ -7862,7 +8046,7 @@ export declare class ForceEffectParameters extends SDKHandle {
      * let inertiaTensors: UnsafeForceEffectBuffer<simd_float3x3>?
      * @availability iOS 18.0+
      */
-    get inertiaTensors(): $SDK61;
+    get inertiaTensors(): $SDK64;
     /**
      * let physicsBodyCount: Int
      * @availability iOS 18.0+
@@ -7872,7 +8056,7 @@ export declare class ForceEffectParameters extends SDKHandle {
      * let angularVelocities: UnsafeForceEffectBuffer<SIMD3<Float>>?
      * @availability iOS 18.0+
      */
-    get angularVelocities(): $SDK61;
+    get angularVelocities(): $SDK64;
     /**
      * let entity: Entity
      * @availability iOS 18.0+
@@ -7882,17 +8066,17 @@ export declare class ForceEffectParameters extends SDKHandle {
      * let masses: UnsafeForceEffectBuffer<Float>?
      * @availability iOS 18.0+
      */
-    get masses(): $SDK62;
+    get masses(): $SDK65;
     /**
      * let distances: UnsafeForceEffectBuffer<Float>?
      * @availability iOS 18.0+
      */
-    get distances(): $SDK62;
+    get distances(): $SDK65;
     /**
      * let positions: UnsafeForceEffectBuffer<SIMD3<Float>>?
      * @availability iOS 18.0+
      */
-    get positions(): $SDK61;
+    get positions(): $SDK64;
     /**
      * func setTorque(_ torque: SIMD3<Float>, index: Int)
      * @availability iOS 18.0+
@@ -7979,22 +8163,22 @@ export declare class FromToByAction<Value = unknown> extends SDKHandle {
      * init(by: Value, timing: AnimationTimingFunction = .linear, isAdditive: Bool = false)
      * @availability iOS 18.0+
      */
-    static initByTimingIsAdditive(by: Transform, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK63;
+    static initByTimingIsAdditive(by: Transform, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK66;
     /**
      * init(to: Value, by: Value, mode: FromToByAction<Value>.TransformMode = .default, timing: AnimationTimingFunction = .linear, isAdditive: Bool = false)
      * @availability iOS 18.0+
      */
-    static initToByModeTimingIsAdditive(to: Transform, by: Transform, mode?: $SDK64, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK63;
+    static initToByModeTimingIsAdditive(to: Transform, by: Transform, mode?: $SDK67, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK66;
     /**
      * init(from: Value, by: Value? = nil, mode: FromToByAction<Value>.TransformMode = .default, timing: AnimationTimingFunction = .linear, isAdditive: Bool = false)
      * @availability iOS 18.0+
      */
-    static initFromByModeTimingIsAdditive(from: Transform, by?: (Transform) | null, mode?: $SDK64, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK63;
+    static initFromByModeTimingIsAdditive(from: Transform, by?: (Transform) | null, mode?: $SDK67, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK66;
     /**
      * init(from: Value? = nil, to: Value, mode: FromToByAction<Value>.TransformMode = .default, timing: AnimationTimingFunction = .linear, isAdditive: Bool = false)
      * @availability iOS 18.0+
      */
-    static initFromToModeTimingIsAdditive(from: (Transform) | null, to: Transform, mode?: $SDK64, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK63;
+    static initFromToModeTimingIsAdditive(from: (Transform) | null, to: Transform, mode?: $SDK67, timing?: AnimationTimingFunction, isAdditive?: boolean): $SDK66;
     /**
      * var mode: FromToByAction<Transform>.TransformMode? { get }
      * @availability iOS 18.0+
@@ -8126,7 +8310,7 @@ export declare class FromToByAnimation<Value = unknown> extends SDKHandle {
      * init(jointNames: [String], name: String = "", isScaleAnimated: Bool = true, isRotationAnimated: Bool = true, isTranslationAnimated: Bool = true, from: Value? = nil, to: Value? = nil, by: Value? = nil, duration: TimeInterval = 1.0, timing: AnimationTimingFunction = .linear, isAdditive: Bool = false, bindTarget: BindTarget? = nil, blendLayer: Int32 = 0, repeatMode: AnimationRepeatMode = .none, fillMode: AnimationFillMode = [], trimStart: TimeInterval? = nil, trimEnd: TimeInterval? = nil, trimDuration: TimeInterval? = nil, offset: TimeInterval = 0, delay: TimeInterval = 0, speed: Float = 1.0)
      * @availability iOS 15.0+
      */
-    static initJointNamesNameIsScaleAnimatedIsRotationAnimatedIsTranslationAnimatedFromToByDurationTimingIsAdditiveBindTargetBlendLayerRepeatModeFillModeTrimStartTrimEndTrimDurationOffsetDelaySpeed(jointNames: Array<string>, name?: string, isScaleAnimated?: boolean, isRotationAnimated?: boolean, isTranslationAnimated?: boolean, from?: $SDK27, to?: $SDK27, by?: $SDK27, duration?: number, timing?: AnimationTimingFunction, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): FromToByAnimation<JointTransforms>;
+    static initJointNamesNameIsScaleAnimatedIsRotationAnimatedIsTranslationAnimatedFromToByDurationTimingIsAdditiveBindTargetBlendLayerRepeatModeFillModeTrimStartTrimEndTrimDurationOffsetDelaySpeed(jointNames: Array<string>, name?: string, isScaleAnimated?: boolean, isRotationAnimated?: boolean, isTranslationAnimated?: boolean, from?: $SDK28, to?: $SDK28, by?: $SDK28, duration?: number, timing?: AnimationTimingFunction, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): FromToByAnimation<JointTransforms>;
     /**
      * var jointNames: [String] { get set }
      * @availability iOS 15.0+
@@ -8155,25 +8339,25 @@ export declare class FromToByAnimation<Value = unknown> extends SDKHandle {
      * var byValue: JointTransforms? { get set }
      * @availability iOS 15.0+
      */
-    get byValue(): $SDK27;
-    set byValue(value: $SDK27);
+    get byValue(): $SDK28;
+    set byValue(value: $SDK28);
     /**
      * var toValue: JointTransforms? { get set }
      * @availability iOS 15.0+
      */
-    get toValue(): $SDK27;
-    set toValue(value: $SDK27);
+    get toValue(): $SDK28;
+    set toValue(value: $SDK28);
     /**
      * var fromValue: JointTransforms? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue(): $SDK27;
-    set fromValue(value: $SDK27);
+    get fromValue(): $SDK28;
+    set fromValue(value: $SDK28);
     /**
      * init(weightNames: [String], name: String = "", from: Value? = nil, to: Value? = nil, by: Value? = nil, duration: TimeInterval = 1.0, timing: AnimationTimingFunction = .linear, isAdditive: Bool = false, bindTarget: BindTarget? = nil, blendLayer: Int32 = 0, repeatMode: AnimationRepeatMode = .none, fillMode: AnimationFillMode = [], trimStart: TimeInterval? = nil, trimEnd: TimeInterval? = nil, trimDuration: TimeInterval? = nil, offset: TimeInterval = 0, delay: TimeInterval = 0, speed: Float = 1.0)
      * @availability iOS 18.0+
      */
-    static initWeightNamesNameFromToByDurationTimingIsAdditiveBindTargetBlendLayerRepeatModeFillModeTrimStartTrimEndTrimDurationOffsetDelaySpeed(weightNames: Array<string>, name?: string, from?: $SDK70, to?: $SDK70, by?: $SDK70, duration?: number, timing?: AnimationTimingFunction, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): FromToByAnimation<BlendShapeWeights>;
+    static initWeightNamesNameFromToByDurationTimingIsAdditiveBindTargetBlendLayerRepeatModeFillModeTrimStartTrimEndTrimDurationOffsetDelaySpeed(weightNames: Array<string>, name?: string, from?: $SDK73, to?: $SDK73, by?: $SDK73, duration?: number, timing?: AnimationTimingFunction, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): FromToByAnimation<BlendShapeWeights>;
     /**
      * var weightNames: [String] { get set }
      * @availability iOS 18.0+
@@ -8184,20 +8368,20 @@ export declare class FromToByAnimation<Value = unknown> extends SDKHandle {
      * var byValue: BlendShapeWeights? { get set }
      * @availability iOS 18.0+
      */
-    get byValue36059(): $SDK70;
-    set byValue36059(value: $SDK70);
+    get byValue36059(): $SDK73;
+    set byValue36059(value: $SDK73);
     /**
      * var toValue: BlendShapeWeights? { get set }
      * @availability iOS 18.0+
      */
-    get toValue30219(): $SDK70;
-    set toValue30219(value: $SDK70);
+    get toValue30219(): $SDK73;
+    set toValue30219(value: $SDK73);
     /**
      * var fromValue: BlendShapeWeights? { get set }
      * @availability iOS 18.0+
      */
-    get fromValue62030(): $SDK70;
-    set fromValue62030(value: $SDK70);
+    get fromValue62030(): $SDK73;
+    set fromValue62030(value: $SDK73);
     /**
      * var byValue: Transform? { get set }
      * @availability iOS 15.0+
@@ -8713,8 +8897,8 @@ export declare class HoverEffectComponent_HoverEffect extends SDKHandle {
      * var groupID: HoverEffectComponent.GroupID? { get set }
      * @availability iOS 26.0+
      */
-    get groupID(): $SDK71;
-    set groupID(value: $SDK71);
+    get groupID(): $SDK74;
+    set groupID(value: $SDK74);
     /**
      * static func highlight(_ style: HoverEffectComponent.HighlightHoverEffectStyle, groupID: HoverEffectComponent.GroupID) -> HoverEffectComponent.HoverEffect
      * @availability iOS 26.0+
@@ -8842,8 +9026,8 @@ export declare class IKComponent_Constraint extends SDKHandle {
      * var animationOverrideWeight: (position: Float, rotation: Float) { get set }
      * @availability iOS 18.0+
      */
-    get animationOverrideWeight(): $SDK72;
-    set animationOverrideWeight(value: $SDK72);
+    get animationOverrideWeight(): $SDK75;
+    set animationOverrideWeight(value: $SDK75);
     /**
      * final let id: IKComponent.Constraint.ID
      * @availability iOS 18.0+
@@ -8936,7 +9120,7 @@ export declare class IKComponent_ConstraintCollection extends SDKHandle {
      * @discardableResult mutating func set(_ newValue: IKComponent.ConstraintCollection.Element) -> IKComponent.ConstraintCollection.Element?
      * @availability iOS 18.0+
      */
-    set(newValue: IKComponent_Constraint): $SDK73;
+    set(newValue: IKComponent_Constraint): $SDK76;
     /**
      * var count: Int { get }
      * @availability iOS 18.0+
@@ -8966,12 +9150,12 @@ export declare class IKComponent_ConstraintCollection extends SDKHandle {
      * subscript(id: IKComponent.ConstraintCollection.Element.ID) -> IKComponent.ConstraintCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript(id: IKRig_Constraint_ID): $SDK73;
+    subscript(id: IKRig_Constraint_ID): $SDK76;
     /**
      * subscript(name: String) -> IKComponent.ConstraintCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript41475(name: string): $SDK73;
+    subscript41475(name: string): $SDK76;
     /**
      * subscript(position: IKComponent.ConstraintCollection.Index) -> IKComponent.ConstraintCollection.Element { get set }
      * @availability iOS 18.0+
@@ -9005,7 +9189,7 @@ export declare class IKComponent_ConstraintCollection_Iterator extends SDKHandle
      * mutating func next() -> IKComponent.ConstraintCollection.Element?
      * @availability iOS 18.0+
      */
-    next(): $SDK73;
+    next(): $SDK76;
     readonly $type: {
         "s:17RealityFoundation11IKComponentV20ConstraintCollectionV8IteratorV": true;
     };
@@ -9075,7 +9259,7 @@ export declare class IKComponent_JointCollection extends SDKHandle {
      * @discardableResult mutating func set(_ newValue: IKComponent.JointCollection.Element) -> IKComponent.JointCollection.Element?
      * @availability iOS 18.0+
      */
-    set(newValue: IKComponent_Joint): $SDK74;
+    set(newValue: IKComponent_Joint): $SDK77;
     /**
      * var count: Int { get }
      * @availability iOS 18.0+
@@ -9105,12 +9289,12 @@ export declare class IKComponent_JointCollection extends SDKHandle {
      * subscript(id: IKComponent.JointCollection.Element.ID) -> IKComponent.JointCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript(id: IKRig_Joint_ID): $SDK74;
+    subscript(id: IKRig_Joint_ID): $SDK77;
     /**
      * subscript(name: String) -> IKComponent.JointCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript4078(name: string): $SDK74;
+    subscript4078(name: string): $SDK77;
     /**
      * subscript(position: IKComponent.JointCollection.Index) -> IKComponent.JointCollection.Element { get set }
      * @availability iOS 18.0+
@@ -9144,7 +9328,7 @@ export declare class IKComponent_JointCollection_Iterator extends SDKHandle {
      * mutating func next() -> IKComponent.JointCollection.Element?
      * @availability iOS 18.0+
      */
-    next(): $SDK74;
+    next(): $SDK77;
     readonly $type: {
         "s:17RealityFoundation11IKComponentV15JointCollectionV8IteratorV": true;
     };
@@ -9230,7 +9414,7 @@ export declare class IKComponent_SolverCollection extends SDKHandle {
      * @discardableResult mutating func set(_ newValue: IKComponent.SolverCollection.Element) -> IKComponent.SolverCollection.Element?
      * @availability iOS 18.0+
      */
-    set(newValue: IKComponent_Solver): $SDK75;
+    set(newValue: IKComponent_Solver): $SDK78;
     /**
      * var count: Int { get }
      * @availability iOS 18.0+
@@ -9260,7 +9444,7 @@ export declare class IKComponent_SolverCollection extends SDKHandle {
      * subscript(id: IKComponent.SolverCollection.Element.ID) -> IKComponent.SolverCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript(id: IKComponent_Solver_ID): $SDK75;
+    subscript(id: IKComponent_Solver_ID): $SDK78;
     /**
      * subscript(position: IKComponent.SolverCollection.Index) -> IKComponent.SolverCollection.Element { get set }
      * @availability iOS 18.0+
@@ -9294,7 +9478,7 @@ export declare class IKComponent_SolverCollection_Iterator extends SDKHandle {
      * mutating func next() -> IKComponent.SolverCollection.Element?
      * @availability iOS 18.0+
      */
-    next(): $SDK75;
+    next(): $SDK78;
     readonly $type: {
         "s:17RealityFoundation11IKComponentV16SolverCollectionV8IteratorV": true;
     };
@@ -9396,14 +9580,14 @@ export declare class IKRig_Constraint extends SDKHandle {
      * var positionDemand: IKRig.Constraint.IKPositionDemand?
      * @availability iOS 18.0+
      */
-    get positionDemand(): $SDK77;
-    set positionDemand(value: $SDK77);
+    get positionDemand(): $SDK80;
+    set positionDemand(value: $SDK80);
     /**
      * var orientationDemand: IKRig.Constraint.IKOrientationDemand?
      * @availability iOS 18.0+
      */
-    get orientationDemand(): $SDK78;
-    set orientationDemand(value: $SDK78);
+    get orientationDemand(): $SDK81;
+    set orientationDemand(value: $SDK81);
     /**
      * var id: IKRig.Constraint.ID { get }
      * @availability iOS 18.0+
@@ -9552,7 +9736,7 @@ export declare class IKRig_ConstraintsCollection extends SDKHandle {
      * @discardableResult mutating func set(_ newValue: IKRig.ConstraintsCollection.Element) -> IKRig.ConstraintsCollection.Element?
      * @availability iOS 18.0+
      */
-    set(newValue: IKRig_Constraint): $SDK79;
+    set(newValue: IKRig_Constraint): $SDK82;
     /**
      * var count: Int { get }
      * @availability iOS 18.0+
@@ -9582,12 +9766,12 @@ export declare class IKRig_ConstraintsCollection extends SDKHandle {
      * subscript(id: IKRig.ConstraintsCollection.Element.ID) -> IKRig.ConstraintsCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript(id: IKRig_Constraint_ID): $SDK79;
+    subscript(id: IKRig_Constraint_ID): $SDK82;
     /**
      * subscript(name: String) -> IKRig.ConstraintsCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript65550(name: string): $SDK79;
+    subscript65550(name: string): $SDK82;
     /**
      * subscript(position: IKRig.ConstraintsCollection.Index) -> IKRig.ConstraintsCollection.Element { get set }
      * @availability iOS 18.0+
@@ -9631,7 +9815,7 @@ export declare class IKRig_ConstraintsCollection_Iterator extends SDKHandle {
      * mutating func next() -> IKRig.ConstraintsCollection.Element?
      * @availability iOS 18.0+
      */
-    next(): $SDK79;
+    next(): $SDK82;
     readonly $type: {
         "s:17RealityFoundation5IKRigV21ConstraintsCollectionV8IteratorV": true;
     };
@@ -9694,8 +9878,8 @@ export declare class IKRig_Joint extends SDKHandle {
      * var limits: IKRig.Joint.LimitsDefinition?
      * @availability iOS 18.0+
      */
-    get limits(): $SDK80;
-    set limits(value: $SDK80);
+    get limits(): $SDK83;
+    set limits(value: $SDK83);
     /**
      * var parentID: IKRig.Joint.ID?
      * @availability iOS 18.0+
@@ -10267,7 +10451,7 @@ export declare class LevelOfDetailComponent_SelectionStrategy extends SDKHandle 
      * static func resolutionMetric(switchingResolutions: [LevelOfDetailComponent.SelectionStrategy.ResolutionMetric.DirectionalSwitchingResolutions], boundingBox: BoundingBox) -> LevelOfDetailComponent.SelectionStrategy
      * @availability iOS 27.0+
      */
-    static resolutionMetric(switchingResolutions: $SDK85, boundingBox: BoundingBox): LevelOfDetailComponent_SelectionStrategy;
+    static resolutionMetric(switchingResolutions: $SDK88, boundingBox: BoundingBox): LevelOfDetailComponent_SelectionStrategy;
     readonly $type: {
         "s:17RealityFoundation22LevelOfDetailComponentV17SelectionStrategyV": true;
     };
@@ -10286,13 +10470,13 @@ export declare class LevelOfDetailComponent_SelectionStrategy_ResolutionMetric e
      * init(switchingResolutions: [LevelOfDetailComponent.SelectionStrategy.ResolutionMetric.DirectionalSwitchingResolutions], boundingBox: BoundingBox)
      * @availability iOS 27.0+
      */
-    static init(switchingResolutions: $SDK85, boundingBox: BoundingBox): LevelOfDetailComponent_SelectionStrategy_ResolutionMetric;
+    static init(switchingResolutions: $SDK88, boundingBox: BoundingBox): LevelOfDetailComponent_SelectionStrategy_ResolutionMetric;
     /**
      * var switchingResolutions: [LevelOfDetailComponent.SelectionStrategy.ResolutionMetric.DirectionalSwitchingResolutions]
      * @availability iOS 27.0+
      */
-    get switchingResolutions(): $SDK85;
-    set switchingResolutions(value: $SDK85);
+    get switchingResolutions(): $SDK88;
+    set switchingResolutions(value: $SDK88);
     readonly $type: {
         "s:17RealityFoundation22LevelOfDetailComponentV17SelectionStrategyV16ResolutionMetricV": true;
     };
@@ -10446,12 +10630,12 @@ export declare class LightmapResource extends SDKHandle {
      * convenience init(atlasTextures: [TextureResource], perEntityData: [LightmapResource.EntityLightmapDescriptor]) throws
      * @availability iOS 27.0+
      */
-    static initAtlasTexturesPerEntityData(atlasTextures: Array<TextureResource>, perEntityData: $SDK87): LightmapResource;
+    static initAtlasTexturesPerEntityData(atlasTextures: Array<TextureResource>, perEntityData: $SDK90): LightmapResource;
     /**
      * convenience init(perEntityData: [LightmapResource.EntityLightmapDescriptor]) throws
      * @availability iOS 27.0+
      */
-    static initPerEntityData(perEntityData: $SDK87): LightmapResource;
+    static initPerEntityData(perEntityData: $SDK90): LightmapResource;
     /**
      * final var bakeTypes: [LightmapResource.BakeType] { get }
      * @availability iOS 27.0+
@@ -10690,17 +10874,17 @@ export declare class LowLevelBuffer extends SDKHandle {
      * final func withUnsafeBytes(_ callback: (UnsafeRawBufferPointer) -> Void)
      * @availability iOS 26.0+
      */
-    withUnsafeBytes(callback: $SDK90): void;
+    withUnsafeBytes(callback: $SDK93): void;
     /**
      * final func withUnsafeMutableBytes(_ callback: (UnsafeMutableRawBufferPointer) -> Void)
      * @availability iOS 26.0+
      */
-    withUnsafeMutableBytes(callback: $SDK90): void;
+    withUnsafeMutableBytes(callback: $SDK93): void;
     /**
      * final func replaceUnsafeMutableBytes(_ callback: (UnsafeMutableRawBufferPointer) -> Void)
      * @availability iOS 26.0+
      */
-    replaceUnsafeMutableBytes(callback: $SDK90): void;
+    replaceUnsafeMutableBytes(callback: $SDK93): void;
     /**
      * final func read(using commandBuffer: any MTLCommandBuffer) -> any MTLBuffer
      * @availability iOS 26.0+
@@ -10791,7 +10975,7 @@ export declare class LowLevelInstanceData extends SDKHandle {
      * final func withTransforms(_ callback: (UnsafeBufferPointer<float4x4>) -> Void)
      * @availability iOS 26.0+
      */
-    withTransforms(callback: $SDK91): void;
+    withTransforms(callback: $SDK94): void;
     /**
      * final var instanceCapacity: Int { get }
      * @availability iOS 26.0+
@@ -10801,12 +10985,12 @@ export declare class LowLevelInstanceData extends SDKHandle {
      * final func withMutableTransforms(_ callback: (UnsafeMutableBufferPointer<float4x4>) -> Void)
      * @availability iOS 26.0+
      */
-    withMutableTransforms(callback: $SDK91): void;
+    withMutableTransforms(callback: $SDK94): void;
     /**
      * final func replaceMutableTransforms(_ callback: (UnsafeMutableBufferPointer<float4x4>) -> Void)
      * @availability iOS 26.0+
      */
-    replaceMutableTransforms(callback: $SDK91): void;
+    replaceMutableTransforms(callback: $SDK94): void;
     /**
      * final func read(using commandBuffer: any MTLCommandBuffer) -> any MTLBuffer
      * @availability iOS 26.0+
@@ -10860,32 +11044,32 @@ export declare class LowLevelMesh extends SDKHandle {
      * @MainActor func withUnsafeBytes(bufferIndex: Int, _ callback: (UnsafeRawBufferPointer) -> Void)
      * @availability iOS 18.0+
      */
-    withUnsafeBytes(bufferIndex: number, callback: $SDK90): Promise<void>;
+    withUnsafeBytes(bufferIndex: number, callback: $SDK93): Promise<void>;
     /**
      * @MainActor func withUnsafeIndices(_ callback: (UnsafeRawBufferPointer) -> Void)
      * @availability iOS 18.0+
      */
-    withUnsafeIndices(callback: $SDK90): Promise<void>;
+    withUnsafeIndices(callback: $SDK93): Promise<void>;
     /**
      * @MainActor func withUnsafeMutableBytes(bufferIndex: Int, _ callback: (UnsafeMutableRawBufferPointer) -> Void)
      * @availability iOS 18.0+
      */
-    withUnsafeMutableBytes(bufferIndex: number, callback: $SDK90): Promise<void>;
+    withUnsafeMutableBytes(bufferIndex: number, callback: $SDK93): Promise<void>;
     /**
      * @MainActor func withUnsafeMutableIndices(_ callback: (UnsafeMutableRawBufferPointer) -> Void)
      * @availability iOS 18.0+
      */
-    withUnsafeMutableIndices(callback: $SDK90): Promise<void>;
+    withUnsafeMutableIndices(callback: $SDK93): Promise<void>;
     /**
      * @MainActor func replaceUnsafeMutableBytes(bufferIndex: Int, _ callback: (UnsafeMutableRawBufferPointer) -> Void)
      * @availability iOS 18.0+
      */
-    replaceUnsafeMutableBytes(bufferIndex: number, callback: $SDK90): Promise<void>;
+    replaceUnsafeMutableBytes(bufferIndex: number, callback: $SDK93): Promise<void>;
     /**
      * @MainActor func replaceUnsafeMutableIndices(_ callback: (UnsafeMutableRawBufferPointer) -> Void)
      * @availability iOS 18.0+
      */
-    replaceUnsafeMutableIndices(callback: $SDK90): Promise<void>;
+    replaceUnsafeMutableIndices(callback: $SDK93): Promise<void>;
     /**
      * @MainActor func read(bufferIndex index: Int, using commandBuffer: any MTLCommandBuffer) -> any MTLBuffer
      * @availability iOS 18.0+
@@ -10959,18 +11143,18 @@ export declare class LowLevelMesh_Descriptor extends SDKHandle {
      * var vertexLayouts: [LowLevelMesh.Layout] { get set }
      * @availability iOS 18.0+
      */
-    get vertexLayouts(): Promise<$SDK92>;
-    setVertexLayouts(value: $SDK92): Promise<void>;
+    get vertexLayouts(): Promise<$SDK95>;
+    setVertexLayouts(value: $SDK95): Promise<void>;
     /**
      * init(vertexCapacity: Int = 0, vertexAttributes: [LowLevelMesh.Attribute] = [Attribute](), vertexLayouts: [LowLevelMesh.Layout] = [Layout](), indexCapacity: Int = 0, indexType: MTLIndexType = MTLIndexType.uint32, instanceCapacity: Int = 0)
      * @availability iOS 27.0+
      */
-    static initVertexCapacityVertexAttributesVertexLayoutsIndexCapacityIndexTypeInstanceCapacity(vertexCapacity?: number, vertexAttributes?: $SDK93, vertexLayouts?: $SDK92, indexCapacity?: number, indexType?: _Metal_MTLIndexType, instanceCapacity?: number): Promise<LowLevelMesh_Descriptor>;
+    static initVertexCapacityVertexAttributesVertexLayoutsIndexCapacityIndexTypeInstanceCapacity(vertexCapacity?: number, vertexAttributes?: $SDK96, vertexLayouts?: $SDK95, indexCapacity?: number, indexType?: _Metal_MTLIndexType, instanceCapacity?: number): Promise<LowLevelMesh_Descriptor>;
     /**
      * init(vertexCapacity: Int = 0, vertexAttributes: [LowLevelMesh.Attribute] = [Attribute](), vertexLayouts: [LowLevelMesh.Layout] = [Layout](), indexCapacity: Int = 0, indexType: MTLIndexType = MTLIndexType.uint32)
      * @availability iOS 18.0+
      */
-    static initVertexCapacityVertexAttributesVertexLayoutsIndexCapacityIndexType(vertexCapacity?: number, vertexAttributes?: $SDK93, vertexLayouts?: $SDK92, indexCapacity?: number, indexType?: _Metal_MTLIndexType): Promise<LowLevelMesh_Descriptor>;
+    static initVertexCapacityVertexAttributesVertexLayoutsIndexCapacityIndexType(vertexCapacity?: number, vertexAttributes?: $SDK96, vertexLayouts?: $SDK95, indexCapacity?: number, indexType?: _Metal_MTLIndexType): Promise<LowLevelMesh_Descriptor>;
     /**
      * var vertexCapacity: Int
      * @availability iOS 18.0+
@@ -10987,8 +11171,8 @@ export declare class LowLevelMesh_Descriptor extends SDKHandle {
      * var vertexAttributes: [LowLevelMesh.Attribute]
      * @availability iOS 18.0+
      */
-    get vertexAttributes(): Promise<$SDK93>;
-    setVertexAttributes(value: $SDK93): Promise<void>;
+    get vertexAttributes(): Promise<$SDK96>;
+    setVertexAttributes(value: $SDK96): Promise<void>;
     /**
      * var vertexBufferCount: Int { get }
      * @availability iOS 18.0+
@@ -11391,12 +11575,12 @@ export declare class MaterialParameters_Texture_Sampler extends SDKHandle {
      * func access<R>(_ closure: (MTLSamplerDescriptor) throws -> R) rethrows -> R
      * @availability iOS 15.0+
      */
-    access(closure: $SDK95): unknown;
+    access(closure: $SDK98): unknown;
     /**
      * mutating func modify<R>(_ closure: (MTLSamplerDescriptor) throws -> R) rethrows -> R
      * @availability iOS 15.0+
      */
-    modify(closure: $SDK95): unknown;
+    modify(closure: $SDK98): unknown;
     /**
      * init()
      * @availability iOS 15.0+
@@ -11555,17 +11739,17 @@ export declare class MeshBuffer<Element = unknown> extends SDKHandle {
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 18.0+
      */
-    static initElementsIndices(elements: $SDK101, indices: Array<number>): $SDK100;
+    static initElementsIndices(elements: $SDK104, indices: Array<number>): $SDK103;
     /**
      * init(_ array: [Element])
      * @availability iOS 18.0+
      */
-    static init(array: $SDK101): $SDK100;
+    static init(array: $SDK104): $SDK103;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == MeshJointInfluence
      * @availability iOS 18.0+
      */
-    static init29517(sequence: $SDK101): $SDK100;
+    static init29517(sequence: $SDK104): $SDK103;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
@@ -11774,7 +11958,7 @@ export declare class MeshBuffers extends SDKHandle {
      * static let bitangents: MeshBuffers.Semantic<SIMD3<Float>>
      * @availability iOS 15.0+
      */
-    static get bitangents(): $SDK102;
+    static get bitangents(): $SDK105;
     /**
      * static let jointInfluences: MeshBuffers.Semantic<MeshJointInfluence>
      * @availability iOS 18.0+
@@ -11789,97 +11973,97 @@ export declare class MeshBuffers extends SDKHandle {
      * static func blendShapeOffsets(named: String) -> MeshBuffers.Semantic<SIMD3<Float>>
      * @availability iOS 18.0+
      */
-    static blendShapeOffsets(named: string): $SDK102;
+    static blendShapeOffsets(named: string): $SDK105;
     /**
      * static let textureCoordinates: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 15.0+
      */
-    static get textureCoordinates(): $SDK102;
+    static get textureCoordinates(): $SDK105;
     /**
      * static func textureCoordinates(_ index: Int) -> MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static textureCoordinates66245(index: number): $SDK102;
+    static textureCoordinates66245(index: number): $SDK105;
     /**
      * static let textureCoordinates1: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates1(): $SDK102;
+    static get textureCoordinates1(): $SDK105;
     /**
      * static let textureCoordinates2: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates2(): $SDK102;
+    static get textureCoordinates2(): $SDK105;
     /**
      * static let textureCoordinates3: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates3(): $SDK102;
+    static get textureCoordinates3(): $SDK105;
     /**
      * static let textureCoordinates4: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates4(): $SDK102;
+    static get textureCoordinates4(): $SDK105;
     /**
      * static let textureCoordinates5: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates5(): $SDK102;
+    static get textureCoordinates5(): $SDK105;
     /**
      * static let textureCoordinates6: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates6(): $SDK102;
+    static get textureCoordinates6(): $SDK105;
     /**
      * static let textureCoordinates7: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static get textureCoordinates7(): $SDK102;
+    static get textureCoordinates7(): $SDK105;
     /**
      * static let uv2: MeshBuffers.Semantic<SIMD4<Float>>
      * @availability iOS 27.0+
      */
-    static get uv2(): $SDK102;
+    static get uv2(): $SDK105;
     /**
      * static let uv3: MeshBuffers.Semantic<SIMD4<Float>>
      * @availability iOS 27.0+
      */
-    static get uv3(): $SDK102;
+    static get uv3(): $SDK105;
     /**
      * static let uv4: MeshBuffers.Semantic<SIMD4<Float>>
      * @availability iOS 27.0+
      */
-    static get uv4(): $SDK102;
+    static get uv4(): $SDK105;
     /**
      * static let uv5: MeshBuffers.Semantic<SIMD4<Float>>
      * @availability iOS 27.0+
      */
-    static get uv5(): $SDK102;
+    static get uv5(): $SDK105;
     /**
      * static let uv6: MeshBuffers.Semantic<SIMD4<Float>>
      * @availability iOS 27.0+
      */
-    static get uv6(): $SDK102;
+    static get uv6(): $SDK105;
     /**
      * static let uv7: MeshBuffers.Semantic<SIMD4<Float>>
      * @availability iOS 27.0+
      */
-    static get uv7(): $SDK102;
+    static get uv7(): $SDK105;
     /**
      * static let normals: MeshBuffers.Semantic<SIMD3<Float>>
      * @availability iOS 15.0+
      */
-    static get normals(): $SDK102;
+    static get normals(): $SDK105;
     /**
      * static let tangents: MeshBuffers.Semantic<SIMD3<Float>>
      * @availability iOS 15.0+
      */
-    static get tangents(): $SDK102;
+    static get tangents(): $SDK105;
     /**
      * static let positions: MeshBuffers.Semantic<SIMD3<Float>>
      * @availability iOS 15.0+
      */
-    static get positions(): $SDK102;
+    static get positions(): $SDK105;
     readonly $type: {
         "s:17RealityFoundation11MeshBuffersO": true;
     };
@@ -12027,7 +12211,7 @@ export declare class MeshBuffers_Identifier extends SDKHandle {
  * typealias JointInfluences = MeshBuffer<MeshJointInfluence>
  * @availability iOS 18.0+
  */
-export type MeshBuffers_JointInfluences = $SDK100;
+export type MeshBuffers_JointInfluences = $SDK103;
 /**
  * typealias Normals = MeshBuffer<SIMD3<Float>>
  * @availability iOS 15.0+
@@ -12138,12 +12322,12 @@ export interface MeshDeformer {
      * func deform(parameter: MeshDeformParameterGPU, encoder: any MTLComputeCommandEncoder)
      * @availability iOS 27.0+
      */
-    "deformParameterEncoder"?: (arg0: $SDK41, arg1: SDKHandle) => void;
+    "deformParameterEncoder"?: (arg0: $SDK42, arg1: SDKHandle) => void;
     /**
      * func deform(parameter: MeshDeformParameterCPU)
      * @availability iOS 27.0+
      */
-    "deformParameter"?: (arg0: $SDK105) => void;
+    "deformParameter"?: (arg0: $SDK108) => void;
     /**
      * func isDeformerEqual(other: any MeshDeformer) -> Bool
      * @availability iOS 27.0+
@@ -12336,14 +12520,14 @@ export declare class MeshDeformParameter<InputBuffer = unknown, OutputBuffer = u
      * var inputBuffers: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<InputBuffer>
      * @availability iOS 27.0+
      */
-    get inputBuffers(): $SDK107;
-    set inputBuffers(value: $SDK107);
+    get inputBuffers(): $SDK110;
+    set inputBuffers(value: $SDK110);
     /**
      * var outputBuffers: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<OutputBuffer>
      * @availability iOS 27.0+
      */
-    get outputBuffers(): $SDK107;
-    set outputBuffers(value: $SDK107);
+    get outputBuffers(): $SDK110;
+    set outputBuffers(value: $SDK110);
     readonly $type: {
         "s:17RealityFoundation19MeshDeformParameterV": true;
     };
@@ -12357,47 +12541,47 @@ export declare class MeshDeformParameter_VertexBuffers<InputBuffer = unknown, Ou
      * let bitangents: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get bitangents(): $SDK108;
+    get bitangents(): $SDK111;
     /**
      * let uvs: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uvs(): $SDK108;
+    get uvs(): $SDK111;
     /**
      * let uv1s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv1s(): $SDK108;
+    get uv1s(): $SDK111;
     /**
      * let uv2s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv2s(): $SDK108;
+    get uv2s(): $SDK111;
     /**
      * let uv3s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv3s(): $SDK108;
+    get uv3s(): $SDK111;
     /**
      * let uv4s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv4s(): $SDK108;
+    get uv4s(): $SDK111;
     /**
      * let uv5s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv5s(): $SDK108;
+    get uv5s(): $SDK111;
     /**
      * let uv6s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv6s(): $SDK108;
+    get uv6s(): $SDK111;
     /**
      * let uv7s: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get uv7s(): $SDK108;
+    get uv7s(): $SDK111;
     /**
      * let count: Int
      * @availability iOS 27.0+
@@ -12407,17 +12591,17 @@ export declare class MeshDeformParameter_VertexBuffers<InputBuffer = unknown, Ou
      * let normals: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get normals(): $SDK108;
+    get normals(): $SDK111;
     /**
      * let tangents: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get tangents(): $SDK108;
+    get tangents(): $SDK111;
     /**
      * let positions: MeshDeformParameter<InputBuffer, OutputBuffer>.VertexBuffers<Buffer>.Data?
      * @availability iOS 27.0+
      */
-    get positions(): $SDK108;
+    get positions(): $SDK111;
     readonly $type: {
         "s:17RealityFoundation19MeshDeformParameterV13VertexBuffersV": true;
     };
@@ -12455,12 +12639,12 @@ export declare class MeshDeformParameter_VertexBuffers_Data<InputBuffer = unknow
  * typealias MeshDeformParameterCPU = MeshDeformParameter<MeshDeformCPUBufferInput, MeshDeformCPUBufferOutput>
  * @availability iOS 27.0+
  */
-export type MeshDeformParameterCPU = $SDK105;
+export type MeshDeformParameterCPU = $SDK108;
 /**
  * typealias MeshDeformParameterGPU = MeshDeformParameter<any MTLBuffer, any MTLBuffer>
  * @availability iOS 27.0+
  */
-export type MeshDeformParameterGPU = $SDK41;
+export type MeshDeformParameterGPU = $SDK42;
 /**
  * typealias MeshDeformParametersCPU = [MeshDeformParameterCPU]
  * @availability iOS 27.0+
@@ -12480,8 +12664,8 @@ export declare class MeshDescriptor extends SDKHandle {
      * var primitives: MeshDescriptor.Primitives?
      * @availability iOS 15.0+
      */
-    get primitives(): $SDK111;
-    set primitives(value: $SDK111);
+    get primitives(): $SDK114;
+    set primitives(value: $SDK114);
     /**
      * init(name: String = "")
      * @availability iOS 15.0+
@@ -12497,7 +12681,7 @@ export declare class MeshDescriptor extends SDKHandle {
      * var buffers: [MeshBuffers.Identifier : AnyMeshBuffer] { get }
      * @availability iOS 15.0+
      */
-    get buffers(): $SDK112;
+    get buffers(): $SDK115;
     /**
      * var materials: MeshDescriptor.Materials
      * @availability iOS 15.0+
@@ -12560,12 +12744,12 @@ export declare class MeshInstanceCollection extends SDKHandle {
      * @discardableResult mutating func remove(id: String) -> MeshResource.Instance?
      * @availability iOS 15.0+
      */
-    remove(id: string): $SDK113;
+    remove(id: string): $SDK116;
     /**
      * @discardableResult mutating func update(_ instance: MeshResource.Instance) -> MeshResource.Instance?
      * @availability iOS 15.0+
      */
-    update(instance: MeshResource_Instance): $SDK113;
+    update(instance: MeshResource_Instance): $SDK116;
     /**
      * var isEmpty: Bool { get }
      * @availability iOS 15.0+
@@ -12600,7 +12784,7 @@ export declare class MeshInstanceCollection extends SDKHandle {
      * subscript(id: String) -> MeshResource.Instance? { get }
      * @availability iOS 15.0+
      */
-    subscript(id: string): $SDK113;
+    subscript(id: string): $SDK116;
     /**
      * subscript(position: Int) -> MeshResource.Instance { get }
      * @availability iOS 18.0+
@@ -12644,7 +12828,7 @@ export declare class MeshInstanceCollection_Iterator extends SDKHandle {
      * mutating func next() -> MeshResource.Instance?
      * @availability iOS 15.0+
      */
-    next(): $SDK113;
+    next(): $SDK116;
     readonly $type: {
         "s:17RealityFoundation22MeshInstanceCollectionV8IteratorV": true;
     };
@@ -12774,12 +12958,12 @@ export declare class MeshModelCollection extends SDKHandle {
      * @discardableResult mutating func remove(id: String) -> MeshResource.Model?
      * @availability iOS 15.0+
      */
-    remove(id: string): $SDK116;
+    remove(id: string): $SDK119;
     /**
      * @discardableResult mutating func update(_ model: MeshResource.Model) -> MeshResource.Model?
      * @availability iOS 15.0+
      */
-    update(model: MeshResource_Model): $SDK116;
+    update(model: MeshResource_Model): $SDK119;
     /**
      * var isEmpty: Bool { get }
      * @availability iOS 15.0+
@@ -12814,7 +12998,7 @@ export declare class MeshModelCollection extends SDKHandle {
      * subscript(id: String) -> MeshResource.Model? { get }
      * @availability iOS 15.0+
      */
-    subscript(id: string): $SDK116;
+    subscript(id: string): $SDK119;
     /**
      * subscript(position: Int) -> MeshResource.Model { get }
      * @availability iOS 18.0+
@@ -12858,7 +13042,7 @@ export declare class MeshModelCollection_Iterator extends SDKHandle {
      * mutating func next() -> MeshResource.Model?
      * @availability iOS 15.0+
      */
-    next(): $SDK116;
+    next(): $SDK119;
     readonly $type: {
         "s:17RealityFoundation19MeshModelCollectionV8IteratorV": true;
     };
@@ -12907,12 +13091,12 @@ export declare class MeshPartCollection extends SDKHandle {
      * @discardableResult mutating func remove(id: String) -> MeshResource.Part?
      * @availability iOS 15.0+
      */
-    remove(id: string): $SDK118;
+    remove(id: string): $SDK121;
     /**
      * @discardableResult mutating func update(_ part: MeshResource.Part) -> MeshResource.Part?
      * @availability iOS 15.0+
      */
-    update(part: MeshResource_Part): $SDK118;
+    update(part: MeshResource_Part): $SDK121;
     /**
      * var isEmpty: Bool { get }
      * @availability iOS 15.0+
@@ -12947,7 +13131,7 @@ export declare class MeshPartCollection extends SDKHandle {
      * subscript(id: String) -> MeshResource.Part? { get }
      * @availability iOS 15.0+
      */
-    subscript(id: string): $SDK118;
+    subscript(id: string): $SDK121;
     /**
      * subscript(position: Int) -> MeshResource.Part { get }
      * @availability iOS 18.0+
@@ -12991,7 +13175,7 @@ export declare class MeshPartCollection_Iterator extends SDKHandle {
      * mutating func next() -> MeshResource.Part?
      * @availability iOS 15.0+
      */
-    next(): $SDK118;
+    next(): $SDK121;
     readonly $type: {
         "s:17RealityFoundation18MeshPartCollectionV8IteratorV": true;
     };
@@ -13046,19 +13230,19 @@ export declare class MeshResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    replaceAsync(content: MeshResource_Contents): Promise<$SDK120>;
+    replaceAsync(content: MeshResource_Contents): Promise<$SDK123>;
     /**
      * @MainActor @preconcurrency static func generateAsync(from content: MeshResource.Contents) -> LoadRequest<MeshResource>
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static generateAsyncFrom(content: MeshResource_Contents): Promise<$SDK120>;
+    static generateAsyncFrom(content: MeshResource_Contents): Promise<$SDK123>;
     /**
      * @MainActor @preconcurrency static func generateAsync(from descriptors: [MeshDescriptor]) -> LoadRequest<MeshResource>
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static generateAsyncFrom36111(descriptors: Array<MeshDescriptor>): Promise<$SDK120>;
+    static generateAsyncFrom36111(descriptors: Array<MeshDescriptor>): Promise<$SDK123>;
     /**
      * @MainActor @preconcurrency static func generatePlane(width: Float, depth: Float, cornerRadius: Float = 0) -> MeshResource
      * @availability iOS 13.0+
@@ -13184,8 +13368,8 @@ export declare class MeshResource_GenerateTextOptions extends SDKHandle {
      * var containerFrame: CGRect?
      * @availability iOS 18.0+
      */
-    get containerFrame(): Promise<$SDK121>;
-    setContainerFrame(value?: $SDK121): Promise<void>;
+    get containerFrame(): Promise<$SDK124>;
+    setContainerFrame(value?: $SDK124): Promise<void>;
     /**
      * init()
      * @availability iOS 18.0+
@@ -13241,12 +13425,12 @@ export declare class MeshResource_JointInfluences extends SDKHandle {
      * init(influences: MeshBuffers.JointInfluences, influencesPerVertex: Int)
      * @availability iOS 18.0+
      */
-    static init(influences: $SDK100, influencesPerVertex: number): Promise<MeshResource_JointInfluences>;
+    static init(influences: $SDK103, influencesPerVertex: number): Promise<MeshResource_JointInfluences>;
     /**
      * var influences: MeshBuffers.JointInfluences { get }
      * @availability iOS 18.0+
      */
-    get influences(): Promise<$SDK100>;
+    get influences(): Promise<$SDK103>;
     readonly $type: {
         "s:17RealityFoundation12MeshResourceC15JointInfluencesV": true;
     };
@@ -13308,8 +13492,8 @@ export declare class MeshResource_Part extends SDKHandle {
      * var jointInfluences: MeshResource.JointInfluences? { get set }
      * @availability iOS 18.0+
      */
-    get jointInfluences(): Promise<$SDK122>;
-    setJointInfluences(value?: $SDK122): Promise<void>;
+    get jointInfluences(): Promise<$SDK125>;
+    setJointInfluences(value?: $SDK125): Promise<void>;
     /**
      * var triangleIndices: MeshBuffers.TriangleIndices? { get set }
      * @availability iOS 15.0+
@@ -13331,7 +13515,7 @@ export declare class MeshResource_Part extends SDKHandle {
      * var buffers: [MeshBuffers.Identifier : AnyMeshBuffer] { get }
      * @availability iOS 15.0+
      */
-    get buffers(): Promise<$SDK112>;
+    get buffers(): Promise<$SDK115>;
     readonly $type: {
         "s:17RealityFoundation12MeshResourceC4PartV": true;
     };
@@ -13447,7 +13631,7 @@ export declare class MeshResource_Skeleton extends SDKHandle {
      * init(id: String, joints: [MeshResource.Skeleton.Joint])
      * @availability iOS 18.0+
      */
-    static initIdJoints(id: string, joints: $SDK126): Promise<MeshResource_Skeleton>;
+    static initIdJoints(id: string, joints: $SDK129): Promise<MeshResource_Skeleton>;
     /**
      * var id: String
      * @availability iOS 18.0+
@@ -13458,8 +13642,8 @@ export declare class MeshResource_Skeleton extends SDKHandle {
      * var joints: [MeshResource.Skeleton.Joint]
      * @availability iOS 18.0+
      */
-    get joints(): Promise<$SDK126>;
-    setJoints(value: $SDK126): Promise<void>;
+    get joints(): Promise<$SDK129>;
+    setJoints(value: $SDK129): Promise<void>;
     readonly $type: {
         "s:17RealityFoundation12MeshResourceC8SkeletonV": true;
     };
@@ -13585,12 +13769,12 @@ export declare class MeshSkeletonCollection extends SDKHandle {
      * @discardableResult mutating func remove(id: String) -> MeshResource.Skeleton?
      * @availability iOS 18.0+
      */
-    remove(id: string): $SDK127;
+    remove(id: string): $SDK130;
     /**
      * @discardableResult mutating func update(_ instance: MeshResource.Skeleton) -> MeshResource.Skeleton?
      * @availability iOS 18.0+
      */
-    update(instance: MeshResource_Skeleton): $SDK127;
+    update(instance: MeshResource_Skeleton): $SDK130;
     /**
      * var isEmpty: Bool { get }
      * @availability iOS 18.0+
@@ -13625,7 +13809,7 @@ export declare class MeshSkeletonCollection extends SDKHandle {
      * subscript(id: String) -> MeshResource.Skeleton? { get }
      * @availability iOS 18.0+
      */
-    subscript(id: string): $SDK127;
+    subscript(id: string): $SDK130;
     /**
      * subscript(position: Int) -> MeshResource.Skeleton { get }
      * @availability iOS 18.0+
@@ -13669,7 +13853,7 @@ export declare class MeshSkeletonCollection_Iterator extends SDKHandle {
      * mutating func next() -> MeshResource.Skeleton?
      * @availability iOS 18.0+
      */
-    next(): $SDK127;
+    next(): $SDK130;
     readonly $type: {
         "s:17RealityFoundation22MeshSkeletonCollectionV8IteratorV": true;
     };
@@ -13843,12 +14027,12 @@ export declare class ModelSortGroup extends SDKHandle {
      * init(depthPass: ModelSortGroup.DepthPass? = nil)
      * @availability iOS 18.0+
      */
-    static init(depthPass?: $SDK130): ModelSortGroup;
+    static init(depthPass?: $SDK133): ModelSortGroup;
     /**
      * var depthPass: ModelSortGroup.DepthPass? { get }
      * @availability iOS 18.0+
      */
-    get depthPass(): $SDK130;
+    get depthPass(): $SDK133;
     readonly $type: {
         "s:17RealityFoundation14ModelSortGroupV": true;
     };
@@ -13892,23 +14076,23 @@ export declare class ModelSortGroupComponent extends SDKHandle {
 export interface MTLCommandBuffer {
     "enqueue"?: () => void;
     "commit"?: () => void;
-    "addScheduledHandler"?: (arg0: $SDK131) => void;
+    "addScheduledHandler"?: (arg0: $SDK134) => void;
     "present"?: (arg0: SDKHandle) => void;
     "presentAtTime"?: (arg0: SDKHandle, arg1: number) => void;
     "waitUntilScheduled"?: () => void;
-    "addCompletedHandler"?: (arg0: $SDK131) => void;
+    "addCompletedHandler"?: (arg0: $SDK134) => void;
     "waitUntilCompleted"?: () => void;
-    "makeBlitCommandEncoder"?: () => $SDK132;
+    "makeBlitCommandEncoder"?: () => $SDK135;
     "makeRenderCommandEncoderDescriptor"?: (arg0: _Metal_MTLRenderPassDescriptor) => (SDKHandle) | null;
     "makeComputeCommandEncoderDescriptor"?: (arg0: _Metal_MTLComputePassDescriptor) => (SDKHandle) | null;
-    "makeBlitCommandEncoderDescriptor"?: (arg0: _Metal_MTLBlitPassDescriptor) => $SDK132;
+    "makeBlitCommandEncoderDescriptor"?: (arg0: _Metal_MTLBlitPassDescriptor) => $SDK135;
     "makeComputeCommandEncoder"?: () => (SDKHandle) | null;
     "makeComputeCommandEncoderDispatchType"?: (arg0: _Metal_MTLDispatchType) => (SDKHandle) | null;
     "encodeWaitForEventValue"?: (arg0: SDKHandle, arg1: number) => void;
     "encodeSignalEventValue"?: (arg0: SDKHandle, arg1: number) => void;
     "makeParallelRenderCommandEncoderDescriptor"?: (arg0: _Metal_MTLRenderPassDescriptor) => (SDKHandle) | null;
-    "makeResourceStateCommandEncoder"?: () => $SDK133;
-    "resourceStateCommandEncoderWith"?: (arg0: _Metal_MTLResourceStatePassDescriptor) => $SDK133;
+    "makeResourceStateCommandEncoder"?: () => $SDK136;
+    "resourceStateCommandEncoderWith"?: (arg0: _Metal_MTLResourceStatePassDescriptor) => $SDK136;
     "makeAccelerationStructureCommandEncoder"?: () => (Implements<_Metal_MTLAccelerationStructureCommandEncoder> | SDKHandle) | null;
     "makeAccelerationStructureCommandEncoderDescriptor"?: (arg0: _Metal_MTLAccelerationStructurePassDescriptor) => Implements<_Metal_MTLAccelerationStructureCommandEncoder> | SDKHandle;
     "pushDebugGroup"?: (arg0: string) => void;
@@ -13924,19 +14108,19 @@ export declare class NavigationComponent extends SDKHandle {
      * init(layer: NavigationMeshResource.Layer? = nil, filter: NavigationComponent.Filter? = nil)
      * @availability iOS 27.0+
      */
-    static init(layer?: $SDK136, filter?: $SDK137): NavigationComponent;
+    static init(layer?: $SDK139, filter?: $SDK140): NavigationComponent;
     /**
      * var layer: NavigationMeshResource.Layer? { get set }
      * @availability iOS 27.0+
      */
-    get layer(): $SDK136;
-    set layer(value: $SDK136);
+    get layer(): $SDK139;
+    set layer(value: $SDK139);
     /**
      * var filter: NavigationComponent.Filter? { get set }
      * @availability iOS 27.0+
      */
-    get filter(): $SDK137;
-    set filter(value: $SDK137);
+    get filter(): $SDK140;
+    set filter(value: $SDK140);
     readonly $type: {
         "s:17RealityFoundation19NavigationComponentV": true;
     };
@@ -13962,8 +14146,8 @@ export declare class NavigationComponent_Filter extends SDKHandle {
      * var areaCosts: [NavigationMeshResource.Area : Float]
      * @availability iOS 27.0+
      */
-    get areaCosts(): $SDK138;
-    set areaCosts(value: $SDK138);
+    get areaCosts(): $SDK141;
+    set areaCosts(value: $SDK141);
     /**
      * init()
      * @availability iOS 27.0+
@@ -13982,12 +14166,12 @@ export declare class NavigationController extends SDKHandle {
      * func computePath(to targetPosition: SIMD3<Float>) async -> [NavigationMeshResource.PathNode]?
      * @availability iOS 27.0+
      */
-    computePathTo(targetPosition: SDKHandle): Promise<$SDK139>;
+    computePathTo(targetPosition: SDKHandle): Promise<$SDK142>;
     /**
      * func computePath(from startPosition: SIMD3<Float>, to targetPosition: SIMD3<Float>) async -> [NavigationMeshResource.PathNode]?
      * @availability iOS 27.0+
      */
-    computePathFromTo(startPosition: SDKHandle, targetPosition: SDKHandle): Promise<$SDK139>;
+    computePathFromTo(startPosition: SDKHandle, targetPosition: SDKHandle): Promise<$SDK142>;
     /**
      * var currentPath: [NavigationMeshResource.PathNode] { get }
      * @availability iOS 27.0+
@@ -14036,13 +14220,13 @@ export declare class NavigationMeshComponent extends SDKHandle {
      * init(navigationMeshes: [NavigationMeshResource])
      * @availability iOS 27.0+
      */
-    static init(navigationMeshes: $SDK141): NavigationMeshComponent;
+    static init(navigationMeshes: $SDK144): NavigationMeshComponent;
     /**
      * var navigationMeshes: [NavigationMeshResource] { get set }
      * @availability iOS 27.0+
      */
-    get navigationMeshes(): $SDK141;
-    set navigationMeshes(value: $SDK141);
+    get navigationMeshes(): $SDK144;
+    set navigationMeshes(value: $SDK144);
     readonly $type: {
         "s:17RealityFoundation23NavigationMeshComponentV": true;
     };
@@ -14076,7 +14260,7 @@ export declare class NavigationMeshResource extends SDKHandle {
      * var offMeshConnections: [NavigationMeshResource.OffMeshConnection] { get }
      * @availability iOS 27.0+
      */
-    get offMeshConnections(): $SDK142;
+    get offMeshConnections(): $SDK145;
     /**
      * var heightData: NavigationMeshResource.HeightData { get }
      * @availability iOS 27.0+
@@ -14101,17 +14285,17 @@ export declare class NavigationMeshResource extends SDKHandle {
      * convenience init(meshDescriptor: MeshDescriptor, offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) throws
      * @availability iOS 27.0+
      */
-    static initMeshDescriptorOffMeshConnectionsConfiguration(meshDescriptor: MeshDescriptor, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): NavigationMeshResource;
+    static initMeshDescriptorOffMeshConnectionsConfiguration(meshDescriptor: MeshDescriptor, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration): NavigationMeshResource;
     /**
      * convenience init(meshDescriptor: MeshDescriptor, offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) async throws
      * @availability iOS 27.0+
      */
-    static initMeshDescriptorOffMeshConnectionsConfiguration92272(meshDescriptor: MeshDescriptor, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
+    static initMeshDescriptorOffMeshConnectionsConfiguration92272(meshDescriptor: MeshDescriptor, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
     /**
      * convenience init(polygonIndices: [[Int]], vertices: [SIMD3<Float>], offMeshConnections: [NavigationMeshResource.OffMeshConnection], configuration: NavigationMeshResource.Configuration, areas: [NavigationMeshResource.Area], flags: [[NavigationMeshResource.Flag]], heightData: NavigationMeshResource.HeightData) throws
      * @availability iOS 27.0+
      */
-    static initPolygonIndicesVerticesOffMeshConnectionsConfigurationAreasFlagsHeightData(polygonIndices: Array<Array<number>>, vertices: Array<SDKHandle>, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration, areas: $SDK143, flags: $SDK144, heightData: NavigationMeshResource_HeightData): NavigationMeshResource;
+    static initPolygonIndicesVerticesOffMeshConnectionsConfigurationAreasFlagsHeightData(polygonIndices: Array<Array<number>>, vertices: Array<SDKHandle>, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration, areas: $SDK146, flags: $SDK147, heightData: NavigationMeshResource_HeightData): NavigationMeshResource;
     /**
      * var polygonIndices: [[Int]] { get }
      * @availability iOS 27.0+
@@ -14131,12 +14315,12 @@ export declare class NavigationMeshResource extends SDKHandle {
      * init(triangleIndices: [UInt32], vertices: [SIMD3<Float>], offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) throws
      * @availability iOS 27.0+
      */
-    static initTriangleIndicesVerticesOffMeshConnectionsConfiguration(triangleIndices: Array<number>, vertices: Array<SDKHandle>, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): NavigationMeshResource;
+    static initTriangleIndicesVerticesOffMeshConnectionsConfiguration(triangleIndices: Array<number>, vertices: Array<SDKHandle>, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration): NavigationMeshResource;
     /**
      * convenience init(triangleIndices: [UInt32], vertices: [SIMD3<Float>], offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) async throws
      * @availability iOS 27.0+
      */
-    static initTriangleIndicesVerticesOffMeshConnectionsConfiguration92546(triangleIndices: Array<number>, vertices: Array<SDKHandle>, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
+    static initTriangleIndicesVerticesOffMeshConnectionsConfiguration92546(triangleIndices: Array<number>, vertices: Array<SDKHandle>, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
     /**
      * func markAreaInCylinder(position: SIMD3<Float>, radius: Float, halfHeight: Float, area: NavigationMeshResource.Area)
      * @availability iOS 27.0+
@@ -14181,38 +14365,38 @@ export declare class NavigationMeshResource extends SDKHandle {
      * convenience init(mesh: MeshResource, offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) throws
      * @availability iOS 27.0+
      */
-    static initMeshOffMeshConnectionsConfiguration(mesh: MeshResource, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): NavigationMeshResource;
+    static initMeshOffMeshConnectionsConfiguration(mesh: MeshResource, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration): NavigationMeshResource;
     /**
      * convenience init(mesh: MeshResource, offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) async throws
      * @availability iOS 27.0+
      */
-    static initMeshOffMeshConnectionsConfiguration60929(mesh: MeshResource, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
+    static initMeshOffMeshConnectionsConfiguration60929(mesh: MeshResource, offMeshConnections: $SDK145, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
     /**
      * var areas: [NavigationMeshResource.Area] { get }
      * @availability iOS 27.0+
      */
-    get areas(): $SDK143;
+    get areas(): $SDK146;
     /**
      * var flags: [[NavigationMeshResource.Flag]] { get }
      * @availability iOS 27.0+
      */
-    get flags(): $SDK144;
+    get flags(): $SDK147;
     /**
      * var layer: NavigationMeshResource.Layer? { get set }
      * @availability iOS 27.0+
      */
-    get layer(): $SDK136;
-    set layer(value: $SDK136);
+    get layer(): $SDK139;
+    set layer(value: $SDK139);
     /**
      * convenience init(named name: String, in bundle: Bundle? = nil) throws
      * @availability iOS 27.0+
      */
-    static initNamedIn(name: string, bundle?: $SDK6): NavigationMeshResource;
+    static initNamedIn(name: string, bundle?: $SDK7): NavigationMeshResource;
     /**
      * convenience init(named name: String, in bundle: Bundle? = nil) async throws
      * @availability iOS 27.0+
      */
-    static initNamedIn82766(name: string, bundle?: $SDK6): Promise<NavigationMeshResource>;
+    static initNamedIn82766(name: string, bundle?: $SDK7): Promise<NavigationMeshResource>;
     /**
      * var vertices: [SIMD3<Float>] { get }
      * @availability iOS 27.0+
@@ -14916,7 +15100,7 @@ export declare class ParameterSet extends SDKHandle {
      * @MainActor @preconcurrency subscript<T>(name: String, type: T.Type = T.self) -> BindableValue<T>? where T : BindableData { get set }
      * @availability iOS 15.0+
      */
-    subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
+    subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK40>;
     readonly $type: {
         "s:17RealityFoundation12ParameterSetV": true;
     };
@@ -14936,8 +15120,8 @@ export declare class ParticleEmitterComponent extends SDKHandle {
      * var spawnedEmitter: ParticleEmitterComponent.ParticleEmitter? { get set }
      * @availability iOS 18.0+
      */
-    get spawnedEmitter(): $SDK145;
-    set spawnedEmitter(value: $SDK145);
+    get spawnedEmitter(): $SDK148;
+    set spawnedEmitter(value: $SDK148);
     /**
      * var burstCount: Int
      * @availability iOS 18.0+
@@ -15141,8 +15325,8 @@ export declare class ParticleEmitterComponent_ParticleEmitter extends SDKHandle 
      * var imageSequence: ParticleEmitterComponent.ParticleEmitter.ImageSequence?
      * @availability iOS 18.0+
      */
-    get imageSequence(): $SDK146;
-    set imageSequence(value: $SDK146);
+    get imageSequence(): $SDK149;
+    set imageSequence(value: $SDK149);
     /**
      * var massVariation: Float
      * @availability iOS 18.0+
@@ -15273,8 +15457,8 @@ export declare class ParticleEmitterComponent_ParticleEmitter extends SDKHandle 
      * var image: TextureResource?
      * @availability iOS 18.0+
      */
-    get image(): $SDK58;
-    set image(value: $SDK58);
+    get image(): $SDK59;
+    set image(value: $SDK59);
     /**
      * var lifeSpan: Double
      * @availability iOS 18.0+
@@ -15512,8 +15696,8 @@ export declare class PhotogrammetrySample extends SDKHandle {
      * var objectMask: CVPixelBuffer? { get set }
      * @availability iOS 17.0+
      */
-    get objectMask(): $SDK147;
-    set objectMask(value: $SDK147);
+    get objectMask(): $SDK150;
+    set objectMask(value: $SDK150);
     /**
      * var scanPassID: Int? { get }
      * @availability iOS 18.0+
@@ -15543,13 +15727,13 @@ export declare class PhotogrammetrySample extends SDKHandle {
      * var depthDataMap: CVPixelBuffer? { get set }
      * @availability iOS 17.0+
      */
-    get depthDataMap(): $SDK147;
-    set depthDataMap(value: $SDK147);
+    get depthDataMap(): $SDK150;
+    set depthDataMap(value: $SDK150);
     /**
      * var depthConfidenceMap: CVPixelBuffer? { get }
      * @availability iOS 18.0+
      */
-    get depthConfidenceMap(): $SDK147;
+    get depthConfidenceMap(): $SDK150;
     /**
      * init(id: Int, image: CVPixelBuffer)
      * @availability iOS 17.0+
@@ -15574,8 +15758,8 @@ export declare class PhotogrammetrySample extends SDKHandle {
      * var gravity: CMAcceleration? { get set }
      * @availability iOS 17.0+
      */
-    get gravity(): $SDK150;
-    set gravity(value: $SDK150);
+    get gravity(): $SDK153;
+    set gravity(value: $SDK153);
     /**
      * var metadata: [String : Any] { get set }
      * @availability iOS 17.0+
@@ -15606,8 +15790,8 @@ export declare class PhotogrammetrySample_Camera extends SDKHandle {
      * var calibrationData: AVCameraCalibrationData?
      * @availability iOS 18.0+
      */
-    get calibrationData(): $SDK151;
-    set calibrationData(value: $SDK151);
+    get calibrationData(): $SDK154;
+    set calibrationData(value: $SDK154);
     /**
      * var id: UInt32
      * @availability iOS 18.0+
@@ -15653,7 +15837,7 @@ export declare class PhotogrammetrySession extends SDKHandle {
      * var activeRequests: [PhotogrammetrySession.Request] { get }
      * @availability iOS 17.0+
      */
-    get activeRequests(): $SDK152;
+    get activeRequests(): $SDK155;
     /**
      * var id: UUID { get }
      * @availability iOS 17.0+
@@ -15688,7 +15872,7 @@ export declare class PhotogrammetrySession extends SDKHandle {
      * func process(requests: [PhotogrammetrySession.Request]) throws
      * @availability iOS 17.0+
      */
-    process(requests: $SDK152): void;
+    process(requests: $SDK155): void;
     readonly $type: {
         "s:17RealityFoundation21PhotogrammetrySessionC": true;
     };
@@ -16067,38 +16251,38 @@ export declare class PhysicallyBasedDecalComponent extends SDKHandle {
      * var normal: PhysicallyBasedMaterial.Normal?
      * @availability iOS 27.0+
      */
-    get normal(): $SDK159;
-    set normal(value: $SDK159);
+    get normal(): $SDK162;
+    set normal(value: $SDK162);
     /**
      * var opacity: PhysicallyBasedMaterial.Opacity?
      * @availability iOS 27.0+
      */
-    get opacity(): $SDK160;
-    set opacity(value: $SDK160);
+    get opacity(): $SDK163;
+    set opacity(value: $SDK163);
     /**
      * var emissive: PhysicallyBasedMaterial.EmissiveColor?
      * @availability iOS 27.0+
      */
-    get emissive(): $SDK161;
-    set emissive(value: $SDK161);
+    get emissive(): $SDK164;
+    set emissive(value: $SDK164);
     /**
      * var metallic: PhysicallyBasedMaterial.Metallic?
      * @availability iOS 27.0+
      */
-    get metallic(): $SDK162;
-    set metallic(value: $SDK162);
+    get metallic(): $SDK165;
+    set metallic(value: $SDK165);
     /**
      * var specular: PhysicallyBasedMaterial.Specular?
      * @availability iOS 27.0+
      */
-    get specular(): $SDK163;
-    set specular(value: $SDK163);
+    get specular(): $SDK166;
+    set specular(value: $SDK166);
     /**
      * var baseColor: PhysicallyBasedMaterial.BaseColor?
      * @availability iOS 27.0+
      */
-    get baseColor(): $SDK164;
-    set baseColor(value: $SDK164);
+    get baseColor(): $SDK167;
+    set baseColor(value: $SDK167);
     /**
      * init(baseColor: PhysicallyBasedMaterial.BaseColor)
      * @availability iOS 27.0+
@@ -16108,8 +16292,8 @@ export declare class PhysicallyBasedDecalComponent extends SDKHandle {
      * var roughness: PhysicallyBasedMaterial.Roughness?
      * @availability iOS 27.0+
      */
-    get roughness(): $SDK165;
-    set roughness(value: $SDK165);
+    get roughness(): $SDK168;
+    set roughness(value: $SDK168);
     /**
      * var sortOrder: Int32
      * @availability iOS 27.0+
@@ -16260,8 +16444,8 @@ export declare class PhysicallyBasedMaterial extends SDKHandle {
      * var sheen: PhysicallyBasedMaterial.SheenColor? { get set }
      * @availability iOS 15.0+
      */
-    get sheen(): $SDK166;
-    set sheen(value: $SDK166);
+    get sheen(): $SDK169;
+    set sheen(value: $SDK169);
     /**
      * var normal: PhysicallyBasedMaterial.Normal { get set }
      * @availability iOS 15.0+
@@ -16338,13 +16522,13 @@ export declare class PhysicallyBasedMaterial_AmbientOcclusion extends SDKHandle 
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initTexture(texture?: $SDK167): PhysicallyBasedMaterial_AmbientOcclusion;
+    static initTexture(texture?: $SDK170): PhysicallyBasedMaterial_AmbientOcclusion;
     /**
      * init(_ value: CustomMaterial.AmbientOcclusion)
      * @availability iOS 15.0+
@@ -16373,7 +16557,7 @@ export declare class PhysicallyBasedMaterial_AnisotropyAngle extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_AnisotropyAngle;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_AnisotropyAngle;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16384,8 +16568,8 @@ export declare class PhysicallyBasedMaterial_AnisotropyAngle extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     readonly $type: {
         "s:17RealityFoundation23PhysicallyBasedMaterialV15AnisotropyAngleV": true;
     };
@@ -16414,7 +16598,7 @@ export declare class PhysicallyBasedMaterial_AnisotropyLevel extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_AnisotropyLevel;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_AnisotropyLevel;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16425,8 +16609,8 @@ export declare class PhysicallyBasedMaterial_AnisotropyLevel extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     readonly $type: {
         "s:17RealityFoundation23PhysicallyBasedMaterialV15AnisotropyLevelV": true;
     };
@@ -16450,8 +16634,8 @@ export declare class PhysicallyBasedMaterial_BaseColor extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.BaseColor)
      * @availability iOS 15.0+
@@ -16480,13 +16664,13 @@ export declare class PhysicallyBasedMaterial_BentNormal extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 27.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 27.0+
      */
-    static init(texture?: $SDK167): PhysicallyBasedMaterial_BentNormal;
+    static init(texture?: $SDK170): PhysicallyBasedMaterial_BentNormal;
     readonly $type: {
         "s:17RealityFoundation23PhysicallyBasedMaterialV10BentNormalV": true;
     };
@@ -16524,7 +16708,7 @@ export declare class PhysicallyBasedMaterial_Clearcoat extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_Clearcoat;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_Clearcoat;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16535,8 +16719,8 @@ export declare class PhysicallyBasedMaterial_Clearcoat extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.Clearcoat)
      * @availability iOS 15.0+
@@ -16565,13 +16749,13 @@ export declare class PhysicallyBasedMaterial_ClearcoatNormal extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 18.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 18.0+
      */
-    static initTexture(texture?: $SDK167): PhysicallyBasedMaterial_ClearcoatNormal;
+    static initTexture(texture?: $SDK170): PhysicallyBasedMaterial_ClearcoatNormal;
     /**
      * init(_ value: CustomMaterial.ClearcoatNormal)
      * @availability iOS 18.0+
@@ -16600,7 +16784,7 @@ export declare class PhysicallyBasedMaterial_ClearcoatRoughness extends SDKHandl
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_ClearcoatRoughness;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_ClearcoatRoughness;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16611,8 +16795,8 @@ export declare class PhysicallyBasedMaterial_ClearcoatRoughness extends SDKHandl
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.ClearcoatRoughness)
      * @availability iOS 15.0+
@@ -16641,8 +16825,8 @@ export declare class PhysicallyBasedMaterial_EmissiveColor extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.EmissiveColor)
      * @availability iOS 15.0+
@@ -16676,7 +16860,7 @@ export declare class PhysicallyBasedMaterial_Metallic extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_Metallic;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_Metallic;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16687,8 +16871,8 @@ export declare class PhysicallyBasedMaterial_Metallic extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.Metallic)
      * @availability iOS 15.0+
@@ -16717,13 +16901,13 @@ export declare class PhysicallyBasedMaterial_Normal extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initTexture(texture?: $SDK167): PhysicallyBasedMaterial_Normal;
+    static initTexture(texture?: $SDK170): PhysicallyBasedMaterial_Normal;
     /**
      * init(_ value: CustomMaterial.Normal)
      * @availability iOS 15.0+
@@ -16752,7 +16936,7 @@ export declare class PhysicallyBasedMaterial_Opacity extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_Opacity;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_Opacity;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16763,8 +16947,8 @@ export declare class PhysicallyBasedMaterial_Opacity extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.Opacity)
      * @availability iOS 15.0+
@@ -16812,8 +16996,8 @@ export declare class PhysicallyBasedMaterial_Program_Descriptor extends SDKHandl
      * var blendMode: MaterialParameterTypes.BlendMode?
      * @availability iOS 18.0+
      */
-    get blendMode(): $SDK47;
-    set blendMode(value: $SDK47);
+    get blendMode(): $SDK48;
+    set blendMode(value: $SDK48);
     /**
      * init()
      * @availability iOS 18.0+
@@ -16842,7 +17026,7 @@ export declare class PhysicallyBasedMaterial_Roughness extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_Roughness;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_Roughness;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16853,8 +17037,8 @@ export declare class PhysicallyBasedMaterial_Roughness extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.Roughness)
      * @availability iOS 15.0+
@@ -16883,8 +17067,8 @@ export declare class PhysicallyBasedMaterial_SheenColor extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     readonly $type: {
         "s:17RealityFoundation23PhysicallyBasedMaterialV10SheenColorV": true;
     };
@@ -16908,7 +17092,7 @@ export declare class PhysicallyBasedMaterial_Specular extends SDKHandle {
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 15.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_Specular;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_Specular;
     /**
      * var scale: Float
      * @availability iOS 15.0+
@@ -16919,8 +17103,8 @@ export declare class PhysicallyBasedMaterial_Specular extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 15.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(_ value: CustomMaterial.Specular)
      * @availability iOS 15.0+
@@ -16954,7 +17138,7 @@ export declare class PhysicallyBasedMaterial_SubsurfaceColor extends SDKHandle {
      * init(color: CGColor = .init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 27.0+
      */
-    static init(color?: _CoreGraphics_CGColor, texture?: $SDK167): PhysicallyBasedMaterial_SubsurfaceColor;
+    static init(color?: _CoreGraphics_CGColor, texture?: $SDK170): PhysicallyBasedMaterial_SubsurfaceColor;
     /**
      * var color: CGColor
      * @availability iOS 27.0+
@@ -16965,8 +17149,8 @@ export declare class PhysicallyBasedMaterial_SubsurfaceColor extends SDKHandle {
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 27.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * static let colorKey: String
      * @availability iOS 27.0+
@@ -17000,7 +17184,7 @@ export declare class PhysicallyBasedMaterial_SubsurfaceRadius extends SDKHandle 
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 27.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_SubsurfaceRadius;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_SubsurfaceRadius;
     /**
      * var scale: Float
      * @availability iOS 27.0+
@@ -17011,8 +17195,8 @@ export declare class PhysicallyBasedMaterial_SubsurfaceRadius extends SDKHandle 
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 27.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * static let scaleKey: String
      * @availability iOS 27.0+
@@ -17046,7 +17230,7 @@ export declare class PhysicallyBasedMaterial_SubsurfaceRadiusScale extends SDKHa
      * init(color: CGColor = .init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 27.0+
      */
-    static init(color?: _CoreGraphics_CGColor, texture?: $SDK167): PhysicallyBasedMaterial_SubsurfaceRadiusScale;
+    static init(color?: _CoreGraphics_CGColor, texture?: $SDK170): PhysicallyBasedMaterial_SubsurfaceRadiusScale;
     /**
      * var color: CGColor
      * @availability iOS 27.0+
@@ -17057,8 +17241,8 @@ export declare class PhysicallyBasedMaterial_SubsurfaceRadiusScale extends SDKHa
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 27.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * static let colorKey: String
      * @availability iOS 27.0+
@@ -17098,13 +17282,13 @@ export declare class PhysicallyBasedMaterial_SubsurfaceScatterAnisotropy extends
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 27.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * init(texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 27.0+
      */
-    static initTexture(texture?: $SDK167): PhysicallyBasedMaterial_SubsurfaceScatterAnisotropy;
+    static initTexture(texture?: $SDK170): PhysicallyBasedMaterial_SubsurfaceScatterAnisotropy;
     /**
      * static let scaleKey: String
      * @availability iOS 27.0+
@@ -17143,7 +17327,7 @@ export declare class PhysicallyBasedMaterial_SubsurfaceWeight extends SDKHandle 
      * init(scale: Float = 1.0, texture: PhysicallyBasedMaterial.Texture? = nil)
      * @availability iOS 27.0+
      */
-    static initScaleTexture(scale?: number, texture?: $SDK167): PhysicallyBasedMaterial_SubsurfaceWeight;
+    static initScaleTexture(scale?: number, texture?: $SDK170): PhysicallyBasedMaterial_SubsurfaceWeight;
     /**
      * var scale: Float
      * @availability iOS 27.0+
@@ -17154,8 +17338,8 @@ export declare class PhysicallyBasedMaterial_SubsurfaceWeight extends SDKHandle 
      * var texture: PhysicallyBasedMaterial.Texture?
      * @availability iOS 27.0+
      */
-    get texture(): $SDK167;
-    set texture(value: $SDK167);
+    get texture(): $SDK170;
+    set texture(value: $SDK170);
     /**
      * static let scaleKey: String
      * @availability iOS 27.0+
@@ -17206,7 +17390,7 @@ export declare class PhysicsBodyComponent extends SDKHandle {
      * init(massProperties: PhysicsMassProperties = .default, material: PhysicsMaterialResource? = nil, mode: PhysicsBodyMode = .dynamic)
      * @availability iOS 13.0+
      */
-    static initMassPropertiesMaterialMode(massProperties?: PhysicsMassProperties, material?: $SDK168, mode?: PhysicsBodyMode): PhysicsBodyComponent;
+    static initMassPropertiesMaterialMode(massProperties?: PhysicsMassProperties, material?: $SDK171, mode?: PhysicsBodyMode): PhysicsBodyComponent;
     /**
      * var massProperties: PhysicsMassProperties
      * @availability iOS 13.0+
@@ -17217,8 +17401,8 @@ export declare class PhysicsBodyComponent extends SDKHandle {
      * var isRotationLocked: (x: Bool, y: Bool, z: Bool)
      * @availability iOS 13.0+
      */
-    get isRotationLocked(): $SDK169;
-    set isRotationLocked(value: $SDK169);
+    get isRotationLocked(): $SDK172;
+    set isRotationLocked(value: $SDK172);
     /**
      * var isAffectedByGravity: Bool { get set }
      * @availability iOS 18.0+
@@ -17229,8 +17413,8 @@ export declare class PhysicsBodyComponent extends SDKHandle {
      * var isTranslationLocked: (x: Bool, y: Bool, z: Bool)
      * @availability iOS 13.0+
      */
-    get isTranslationLocked(): $SDK169;
-    set isTranslationLocked(value: $SDK169);
+    get isTranslationLocked(): $SDK172;
+    set isTranslationLocked(value: $SDK172);
     /**
      * var isContinuousCollisionDetectionEnabled: Bool
      * @availability iOS 13.0+
@@ -17247,12 +17431,12 @@ export declare class PhysicsBodyComponent extends SDKHandle {
      * @MainActor @preconcurrency init(shapes: [ShapeResource], mass: Float, material: PhysicsMaterialResource? = nil, mode: PhysicsBodyMode = .dynamic)
      * @availability iOS 13.0+
      */
-    static initShapesMassMaterialMode(shapes: Array<ShapeResource>, mass: number, material?: $SDK168, mode?: PhysicsBodyMode): Promise<PhysicsBodyComponent>;
+    static initShapesMassMaterialMode(shapes: Array<ShapeResource>, mass: number, material?: $SDK171, mode?: PhysicsBodyMode): Promise<PhysicsBodyComponent>;
     /**
      * @MainActor @preconcurrency init(shapes: [ShapeResource], density: Float, material: PhysicsMaterialResource? = nil, mode: PhysicsBodyMode = .dynamic)
      * @availability iOS 13.0+
      */
-    static initShapesDensityMaterialMode(shapes: Array<ShapeResource>, density: number, material?: $SDK168, mode?: PhysicsBodyMode): Promise<PhysicsBodyComponent>;
+    static initShapesDensityMaterialMode(shapes: Array<ShapeResource>, density: number, material?: $SDK171, mode?: PhysicsBodyMode): Promise<PhysicsBodyComponent>;
     /**
      * var material: PhysicsMaterialResource
      * @availability iOS 13.0+
@@ -17626,13 +17810,13 @@ export declare class PhysicsMassProperties extends SDKHandle {
      * var centerOfMass: (position: SIMD3<Float>, orientation: simd_quatf)
      * @availability iOS 13.0+
      */
-    get centerOfMass(): $SDK170;
-    set centerOfMass(value: $SDK170);
+    get centerOfMass(): $SDK173;
+    set centerOfMass(value: $SDK173);
     /**
      * init(mass: Float, inertia: SIMD3<Float> = SIMD3<Float>(x: 0.1, y: 0.1, z: 0.1), centerOfMass: (position: SIMD3<Float>, orientation: simd_quatf) = (SIMD3<Float>(x: 0, y: 0, z: 0), simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)))
      * @availability iOS 13.0+
      */
-    static initMassInertiaCenterOfMass(mass: number, inertia?: SDKHandle, centerOfMass?: $SDK170): PhysicsMassProperties;
+    static initMassInertiaCenterOfMass(mass: number, inertia?: SDKHandle, centerOfMass?: $SDK173): PhysicsMassProperties;
     /**
      * var mass: Float
      * @availability iOS 13.0+
@@ -17999,8 +18183,8 @@ export declare class PhysicsSphericalJoint extends SDKHandle {
      * var angularLimitInYZ: (Float, Float)?
      * @availability iOS 18.0+
      */
-    get angularLimitInYZ(): $SDK171;
-    set angularLimitInYZ(value: $SDK171);
+    get angularLimitInYZ(): $SDK174;
+    set angularLimitInYZ(value: $SDK174);
     /**
      * var checksForInternalCollisions: Bool
      * @availability iOS 18.0+
@@ -18011,7 +18195,7 @@ export declare class PhysicsSphericalJoint extends SDKHandle {
      * init(pin0: GeometricPin, pin1: GeometricPin, angularLimitInYZ: (Float, Float)? = nil, checksForInternalCollisions: Bool = false)
      * @availability iOS 18.0+
      */
-    static init(pin0: GeometricPin, pin1: GeometricPin, angularLimitInYZ?: $SDK171, checksForInternalCollisions?: boolean): PhysicsSphericalJoint;
+    static init(pin0: GeometricPin, pin1: GeometricPin, angularLimitInYZ?: $SDK174, checksForInternalCollisions?: boolean): PhysicsSphericalJoint;
     /**
      * var pin0: GeometricPin
      * @availability iOS 18.0+
@@ -18293,8 +18477,8 @@ export declare class PortalComponent extends SDKHandle {
      * var clippingPlane: PortalComponent.ClippingPlane? { get set }
      * @availability iOS 18.0+
      */
-    get clippingPlane(): $SDK172;
-    set clippingPlane(value: $SDK172);
+    get clippingPlane(): $SDK175;
+    set clippingPlane(value: $SDK175);
     /**
      * var lightingBlendDistance: Float { get set }
      * @availability iOS 27.0+
@@ -18310,7 +18494,7 @@ export declare class PortalComponent extends SDKHandle {
      * init(target: Entity, clippingPlane: PortalComponent.ClippingPlane? = nil)
      * @availability iOS 18.0+
      */
-    static initTargetClippingPlane(target: Entity, clippingPlane?: $SDK172): PortalComponent;
+    static initTargetClippingPlane(target: Entity, clippingPlane?: $SDK175): PortalComponent;
     /**
      * init(target: Entity, plane: PortalComponent.Plane, options: PortalComponent.Options)
      * @availability iOS 18.0+
@@ -18591,12 +18775,12 @@ export declare class PortalMaterial extends SDKHandle {
      * func getParameter(name: String) -> MaterialParameters.Value?
      * @availability iOS 27.0+
      */
-    getParameterName(name: string): $SDK173;
+    getParameterName(name: string): $SDK176;
     /**
      * func getParameter(handle: MaterialParameters.Handle) -> MaterialParameters.Value?
      * @availability iOS 27.0+
      */
-    getParameterHandle(handle: MaterialParameters_Handle): $SDK173;
+    getParameterHandle(handle: MaterialParameters_Handle): $SDK176;
     /**
      * mutating func setParameter(name: String, value newValue: MaterialParameters.Value) throws
      * @availability iOS 27.0+
@@ -18676,8 +18860,8 @@ export declare class PortalMaterial_Program_Descriptor extends SDKHandle {
      * var inputValues: [String : MaterialParameters.Value]
      * @availability iOS 27.0+
      */
-    get inputValues(): $SDK174;
-    set inputValues(value: $SDK174);
+    get inputValues(): $SDK177;
+    set inputValues(value: $SDK177);
     /**
      * var shaderGraph: ShaderGraph
      * @availability iOS 27.0+
@@ -18688,7 +18872,7 @@ export declare class PortalMaterial_Program_Descriptor extends SDKHandle {
      * init(shaderGraph: ShaderGraph, inputValues: [String : MaterialParameters.Value] = [:], constantValues: MTLFunctionConstantValues = .init())
      * @availability iOS 27.0+
      */
-    static init(shaderGraph: SDKHandle, inputValues?: $SDK174, constantValues?: _Metal_MTLFunctionConstantValues): PortalMaterial_Program_Descriptor;
+    static init(shaderGraph: SDKHandle, inputValues?: $SDK177, constantValues?: _Metal_MTLFunctionConstantValues): PortalMaterial_Program_Descriptor;
     /**
      * var constantValues: MTLFunctionConstantValues
      * @availability iOS 27.0+
@@ -18864,7 +19048,7 @@ export declare class RealityRenderer extends SDKHandle {
      * @MainActor @preconcurrency func updateAndRender(deltaTime: TimeInterval, cameraOutput: RealityRenderer.CameraOutput, whenScheduled: (@Sendable (RealityRenderer) -> Void)? = nil, onComplete: (@Sendable (RealityRenderer) -> Void)? = nil, actionsBeforeRender: [RealityRenderer.MetalEventAction] = [], actionsAfterRender: [RealityRenderer.MetalEventAction] = []) throws
      * @availability iOS 18.0+
      */
-    updateAndRender(deltaTime: number, cameraOutput: RealityRenderer_CameraOutput, whenScheduled?: $SDK177, onComplete?: $SDK177, actionsBeforeRender?: $SDK178, actionsAfterRender?: $SDK178): Promise<void>;
+    updateAndRender(deltaTime: number, cameraOutput: RealityRenderer_CameraOutput, whenScheduled?: $SDK180, onComplete?: $SDK180, actionsBeforeRender?: $SDK181, actionsAfterRender?: $SDK181): Promise<void>;
     /**
      * var extendedDynamicRangeOutput: Bool { get set }
      * @availability iOS 18.0+
@@ -18917,7 +19101,7 @@ export declare class RealityRenderer_CameraOutput extends SDKHandle {
      * var viewports: [RealityRenderer.CameraOutput.RelativeViewport] { get }
      * @availability iOS 18.0+
      */
-    get viewports(): $SDK179;
+    get viewports(): $SDK182;
     /**
      * init(_ descriptor: RealityRenderer.CameraOutput.Descriptor) throws
      * @availability iOS 18.0+
@@ -18947,8 +19131,8 @@ export declare class RealityRenderer_CameraOutput_Descriptor extends SDKHandle {
      * var viewports: [RealityRenderer.CameraOutput.RelativeViewport]
      * @availability iOS 18.0+
      */
-    get viewports(): $SDK179;
-    set viewports(value: $SDK179);
+    get viewports(): $SDK182;
+    set viewports(value: $SDK182);
     readonly $type: {
         "s:17RealityFoundation0A8RendererC12CameraOutputV10DescriptorV": true;
     };
@@ -19406,7 +19590,7 @@ export declare class RenormalizingDeformer extends SDKHandle {
      * func deform(parameter: MeshDeformParameterGPU, encoder: any MTLComputeCommandEncoder)
      * @availability iOS 27.0+
      */
-    deform(parameter: $SDK41, encoder: SDKHandle): void;
+    deform(parameter: $SDK42, encoder: SDKHandle): void;
     /**
      * init()
      * @availability iOS 27.0+
@@ -19431,12 +19615,12 @@ export declare class RetargetingConfiguration extends SDKHandle {
      * static func automatchBiped(_ sourceSkeleton: SkeletonResource, sourceTransform: Transform = .identity, to targetSkeleton: SkeletonResource, targetTransform: Transform = .identity, jointOffsets: [String : simd_quatf] = [:]) throws -> RetargetingConfiguration
      * @availability iOS 27.0+
      */
-    static automatchBipedSourceTransformToTargetTransformJointOffsets(sourceSkeleton: SkeletonResource, sourceTransform: Transform, targetSkeleton: SkeletonResource, targetTransform?: Transform, jointOffsets?: $SDK182): RetargetingConfiguration;
+    static automatchBipedSourceTransformToTargetTransformJointOffsets(sourceSkeleton: SkeletonResource, sourceTransform: Transform, targetSkeleton: SkeletonResource, targetTransform?: Transform, jointOffsets?: $SDK185): RetargetingConfiguration;
     /**
      * static func automatchBiped(_ sourceSkeleton: SkeletonResource, to targetSkeleton: SkeletonResource, jointOffsets: [String : simd_quatf] = [:]) throws -> RetargetingConfiguration
      * @availability iOS 27.0+
      */
-    static automatchBipedToJointOffsets(sourceSkeleton: SkeletonResource, targetSkeleton: SkeletonResource, jointOffsets?: $SDK182): RetargetingConfiguration;
+    static automatchBipedToJointOffsets(sourceSkeleton: SkeletonResource, targetSkeleton: SkeletonResource, jointOffsets?: $SDK185): RetargetingConfiguration;
     /**
      * var sourceSkeleton: SkeletonResource { get }
      * @availability iOS 27.0+
@@ -19451,7 +19635,7 @@ export declare class RetargetingConfiguration extends SDKHandle {
      * static func automatchQuadruped(_ sourceSkeleton: SkeletonResource, sourceTransform: Transform = .identity, to targetSkeleton: SkeletonResource, targetTransform: Transform = .identity, jointOffsets: [String : simd_quatf] = [:]) throws -> RetargetingConfiguration
      * @availability iOS 27.0+
      */
-    static automatchQuadruped(sourceSkeleton: SkeletonResource, sourceTransform: Transform, targetSkeleton: SkeletonResource, targetTransform?: Transform, jointOffsets?: $SDK182): RetargetingConfiguration;
+    static automatchQuadruped(sourceSkeleton: SkeletonResource, sourceTransform: Transform, targetSkeleton: SkeletonResource, targetTransform?: Transform, jointOffsets?: $SDK185): RetargetingConfiguration;
     readonly $type: {
         "s:17RealityFoundation24RetargetingConfigurationC": true;
     };
@@ -19704,12 +19888,12 @@ export declare class SampledAnimation<Value = unknown> extends SDKHandle {
      * func processAndCreateAnimation(retargeting config: RetargetingConfiguration, operations: [SampledAnimation<Value>.SkeletalAnimationOperation] = [], name: String = "") throws -> any AnimationDefinition
      * @availability iOS 27.0+
      */
-    processAndCreateAnimationRetargetingOperationsName(config: RetargetingConfiguration, operations?: $SDK184, name?: string): SDKHandle;
+    processAndCreateAnimationRetargetingOperationsName(config: RetargetingConfiguration, operations?: $SDK187, name?: string): SDKHandle;
     /**
      * func processAndCreateAnimation(for skeleton: SkeletonResource? = nil, operations: [SampledAnimation<Value>.SkeletalAnimationOperation], name: String = "") throws -> any AnimationDefinition
      * @availability iOS 27.0+
      */
-    processAndCreateAnimationForOperationsName(skeleton: (SkeletonResource) | null, operations: $SDK184, name?: string): SDKHandle;
+    processAndCreateAnimationForOperationsName(skeleton: (SkeletonResource) | null, operations: $SDK187, name?: string): SDKHandle;
     /**
      * init(jointNames: [String], frames: [Value], name: String = "", tweenMode: TweenMode = .linear, frameInterval: Float = 1.0 / 30.0, isAdditive: Bool = false, isScaleAnimated: Bool = true, isRotationAnimated: Bool = true, isTranslationAnimated: Bool = true, bindTarget: BindTarget? = nil, blendLayer: Int32 = 0, repeatMode: AnimationRepeatMode = .none, fillMode: AnimationFillMode = [], trimStart: TimeInterval? = nil, trimEnd: TimeInterval? = nil, trimDuration: TimeInterval? = nil, offset: TimeInterval = 0, delay: TimeInterval = 0, speed: Float = 1.0)
      * @availability iOS 15.0+
@@ -19749,7 +19933,7 @@ export declare class SampledAnimation<Value = unknown> extends SDKHandle {
      * init(weightNames: [String], frames: [Value], name: String = "", tweenMode: TweenMode = .linear, frameInterval: Float = 1.0 / 30.0, isAdditive: Bool = false, bindTarget: BindTarget? = nil, blendLayer: Int32 = 0, repeatMode: AnimationRepeatMode = .none, fillMode: AnimationFillMode = [], trimStart: TimeInterval? = nil, trimEnd: TimeInterval? = nil, trimDuration: TimeInterval? = nil, offset: TimeInterval = 0, delay: TimeInterval = 0, speed: Float = 1.0)
      * @availability iOS 18.0+
      */
-    static initWeightNamesFramesNameTweenModeFrameIntervalIsAdditiveBindTargetBlendLayerRepeatModeFillModeTrimStartTrimEndTrimDurationOffsetDelaySpeed(weightNames: Array<string>, frames: $SDK188, name?: string, tweenMode?: TweenMode, frameInterval?: number, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): SampledAnimation<BlendShapeWeights>;
+    static initWeightNamesFramesNameTweenModeFrameIntervalIsAdditiveBindTargetBlendLayerRepeatModeFillModeTrimStartTrimEndTrimDurationOffsetDelaySpeed(weightNames: Array<string>, frames: $SDK191, name?: string, tweenMode?: TweenMode, frameInterval?: number, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): SampledAnimation<BlendShapeWeights>;
     /**
      * var weightNames: [String] { get set }
      * @availability iOS 18.0+
@@ -19760,8 +19944,8 @@ export declare class SampledAnimation<Value = unknown> extends SDKHandle {
      * var frames: [BlendShapeWeights] { get set }
      * @availability iOS 18.0+
      */
-    get frames61181(): $SDK188;
-    set frames61181(value: $SDK188);
+    get frames61181(): $SDK191;
+    set frames61181(value: $SDK191);
     /**
      * var frames: [Transform] { get set }
      * @availability iOS 15.0+
@@ -19817,27 +20001,27 @@ export declare class SampledAnimation_SkeletalAnimationOperation<Value = unknown
      * static func removeAnimation(for jointName: String) -> SampledAnimation<Value>.SkeletalAnimationOperation
      * @availability iOS 27.0+
      */
-    static removeAnimation(jointName: string): $SDK189;
+    static removeAnimation(jointName: string): $SDK192;
     /**
      * static func convertToAdditive(baseAnimation: AnimationResource) -> SampledAnimation<Value>.SkeletalAnimationOperation
      * @availability iOS 27.0+
      */
-    static convertToAdditive(baseAnimation: AnimationResource): $SDK189;
+    static convertToAdditive(baseAnimation: AnimationResource): $SDK192;
     /**
      * static func extractRootMotion(jointName: String, options: SampledAnimation<Value>.SkeletalAnimationOperation.RootMotionOptions = .translationXZ, lockPosition: Transform? = nil) -> SampledAnimation<Value>.SkeletalAnimationOperation
      * @availability iOS 27.0+
      */
-    static extractRootMotion(jointName: string, options?: $SDK190, lockPosition?: (Transform) | null): $SDK189;
+    static extractRootMotion(jointName: string, options?: $SDK193, lockPosition?: (Transform) | null): $SDK192;
     /**
      * static func convertToAdditiveUsingRestPose() -> SampledAnimation<Value>.SkeletalAnimationOperation
      * @availability iOS 27.0+
      */
-    static convertToAdditiveUsingRestPose(): $SDK189;
+    static convertToAdditiveUsingRestPose(): $SDK192;
     /**
      * static func convertToAdditiveUsingFirstSample() -> SampledAnimation<Value>.SkeletalAnimationOperation
      * @availability iOS 27.0+
      */
-    static convertToAdditiveUsingFirstSample(): $SDK189;
+    static convertToAdditiveUsingFirstSample(): $SDK192;
     readonly $type: {
         "s:17RealityFoundation16SampledAnimationVA2A15JointTransformsVRszrlE08SkeletalD9OperationV": true;
     };
@@ -19852,32 +20036,32 @@ export declare const SampledAnimation_SkeletalAnimationOperation_RootMotionOptio
      * static let extractAll: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly extractAll: $SDK190;
+    readonly extractAll: $SDK193;
     /**
      * static let translationX: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly translationX: $SDK190;
+    readonly translationX: $SDK193;
     /**
      * static let translationY: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly translationY: $SDK190;
+    readonly translationY: $SDK193;
     /**
      * static let translationZ: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly translationZ: $SDK190;
+    readonly translationZ: $SDK193;
     /**
      * static let translationXZ: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly translationXZ: $SDK190;
+    readonly translationXZ: $SDK193;
     /**
      * init(rawValue: UInt16)
      * @availability iOS 27.0+
      */
-    init(rawValue: number): $SDK190;
+    init(rawValue: number): $SDK193;
     /**
      * let rawValue: UInt16
      * @availability iOS 27.0+
@@ -19887,28 +20071,28 @@ export declare const SampledAnimation_SkeletalAnimationOperation_RootMotionOptio
      * static let rotationX: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly rotationX: $SDK190;
+    readonly rotationX: $SDK193;
     /**
      * static let rotationY: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly rotationY: $SDK190;
+    readonly rotationY: $SDK193;
     /**
      * static let rotationZ: SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
      * @availability iOS 27.0+
      */
-    readonly rotationZ: $SDK190;
+    readonly rotationZ: $SDK193;
 };
 /**
  * typealias ArrayLiteralElement = SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
  * @availability iOS 27.0+
  */
-export type SampledAnimation_SkeletalAnimationOperation_RootMotionOptions_ArrayLiteralElement<Value = unknown> = $SDK190;
+export type SampledAnimation_SkeletalAnimationOperation_RootMotionOptions_ArrayLiteralElement<Value = unknown> = $SDK193;
 /**
  * typealias Element = SampledAnimation<JointTransforms>.SkeletalAnimationOperation.RootMotionOptions
  * @availability iOS 27.0+
  */
-export type SampledAnimation_SkeletalAnimationOperation_RootMotionOptions_Element<Value = unknown> = $SDK190;
+export type SampledAnimation_SkeletalAnimationOperation_RootMotionOptions_Element<Value = unknown> = $SDK193;
 /**
  * typealias RawValue = UInt16
  * @availability iOS 27.0+
@@ -20034,7 +20218,7 @@ export declare class Scene_AnchorCollection extends SDKHandle {
      * @MainActor @preconcurrency func makeIterator() -> Scene.AnchorCollection.Iterator
      * @availability iOS 13.0+
      */
-    makeIterator(): Promise<$SDK191>;
+    makeIterator(): Promise<$SDK194>;
     /**
      * @MainActor @preconcurrency func index(after i: Int) -> Int
      * @availability iOS 13.0+
@@ -20108,7 +20292,7 @@ export type Scene_AnchorCollection_Indices = SDKHandle;
  * typealias Iterator = Entity.ChildCollection.IndexingIterator<Scene.AnchorCollection>
  * @availability iOS 13.0+
  */
-export type Scene_AnchorCollection_Iterator = $SDK191;
+export type Scene_AnchorCollection_Iterator = $SDK194;
 /**
  * typealias SubSequence = Slice<Scene.AnchorCollection>
  * @availability iOS 13.0+
@@ -20284,13 +20468,13 @@ export declare class SceneUnderstandingComponent extends SDKHandle {
      * init(entityType: SceneUnderstandingComponent.EntityType?)
      * @availability iOS 15.0+
      */
-    static initEntityType(entityType?: $SDK193): SceneUnderstandingComponent;
+    static initEntityType(entityType?: $SDK196): SceneUnderstandingComponent;
     /**
      * var entityType: SceneUnderstandingComponent.EntityType?
      * @availability iOS 15.0+
      */
-    get entityType(): $SDK193;
-    set entityType(value: $SDK193);
+    get entityType(): $SDK196;
+    set entityType(value: $SDK196);
     /**
      * var origin: SceneUnderstandingComponent.Origin { get }
      * @availability iOS 18.0+
@@ -20399,12 +20583,12 @@ export declare class ShaderGraphMaterial extends SDKHandle {
      * func getParameter(name: String) -> MaterialParameters.Value?
      * @availability iOS 18.0+
      */
-    getParameterName(name: string): $SDK173;
+    getParameterName(name: string): $SDK176;
     /**
      * func getParameter(handle: MaterialParameters.Handle) -> MaterialParameters.Value?
      * @availability iOS 18.0+
      */
-    getParameterHandle(handle: MaterialParameters_Handle): $SDK173;
+    getParameterHandle(handle: MaterialParameters_Handle): $SDK176;
     /**
      * mutating func setParameter(name: String, value newValue: MaterialParameters.Value) throws
      * @availability iOS 18.0+
@@ -20440,7 +20624,7 @@ export declare class ShaderGraphMaterial extends SDKHandle {
      * init(named name: String, from file: String, in bundle: Bundle? = nil) async throws
      * @availability iOS 18.0+
      */
-    static initNamedFromIn(name: string, file: string, bundle?: $SDK6): Promise<ShaderGraphMaterial>;
+    static initNamedFromIn(name: string, file: string, bundle?: $SDK7): Promise<ShaderGraphMaterial>;
     /**
      * init(named name: String, from url: URL) async throws
      * @availability iOS 18.0+
@@ -20520,18 +20704,18 @@ export declare class ShaderGraphMaterial_Program_Descriptor extends SDKHandle {
      * init(shaderGraph: ShaderGraph, lightingModel: LightingModel, isColorDitheringEnabled: Bool = false, blendMode: MaterialParameterTypes.BlendMode? = nil, inputValues: [String : MaterialParameters.Value] = [:], constantValues: MTLFunctionConstantValues = .init())
      * @availability iOS 27.0+
      */
-    static initShaderGraphLightingModelIsColorDitheringEnabledBlendModeInputValuesConstantValues(shaderGraph: SDKHandle, lightingModel: LightingModel, isColorDitheringEnabled?: boolean, blendMode?: $SDK47, inputValues?: $SDK174, constantValues?: _Metal_MTLFunctionConstantValues): ShaderGraphMaterial_Program_Descriptor;
+    static initShaderGraphLightingModelIsColorDitheringEnabledBlendModeInputValuesConstantValues(shaderGraph: SDKHandle, lightingModel: LightingModel, isColorDitheringEnabled?: boolean, blendMode?: $SDK48, inputValues?: $SDK177, constantValues?: _Metal_MTLFunctionConstantValues): ShaderGraphMaterial_Program_Descriptor;
     /**
      * var inputValues: [String : MaterialParameters.Value]
      * @availability iOS 27.0+
      */
-    get inputValues(): $SDK174;
-    set inputValues(value: $SDK174);
+    get inputValues(): $SDK177;
+    set inputValues(value: $SDK177);
     /**
      * init(inferredFrom graph: ShaderGraph, inputValues: [String : MaterialParameters.Value] = [:], constantValues: MTLFunctionConstantValues = .init()) throws
      * @availability iOS 27.0+
      */
-    static initInferredFromInputValuesConstantValues(graph: SDKHandle, inputValues?: $SDK174, constantValues?: _Metal_MTLFunctionConstantValues): ShaderGraphMaterial_Program_Descriptor;
+    static initInferredFromInputValuesConstantValues(graph: SDKHandle, inputValues?: $SDK177, constantValues?: _Metal_MTLFunctionConstantValues): ShaderGraphMaterial_Program_Descriptor;
     /**
      * var lightingModel: LightingModel
      * @availability iOS 27.0+
@@ -20554,8 +20738,8 @@ export declare class ShaderGraphMaterial_Program_Descriptor extends SDKHandle {
      * var blendMode: MaterialParameterTypes.BlendMode?
      * @availability iOS 27.0+
      */
-    get blendMode(): $SDK47;
-    set blendMode(value: $SDK47);
+    get blendMode(): $SDK48;
+    set blendMode(value: $SDK48);
     readonly $type: {
         "s:17RealityFoundation19ShaderGraphMaterialV7ProgramV10DescriptorV": true;
     };
@@ -20946,12 +21130,12 @@ export declare class SkeletonResource_AnimationEvaluation extends SDKHandle {
      * let blendMasks: [SkeletonResource.BlendMask]
      * @availability iOS 27.0+
      */
-    get blendMasks(): $SDK195;
+    get blendMasks(): $SDK198;
     /**
      * init(ikResources: [IKResource] = [], blendMasks: [SkeletonResource.BlendMask] = [])
      * @availability iOS 27.0+
      */
-    static init(ikResources?: Array<IKResource>, blendMasks?: $SDK195): SkeletonResource_AnimationEvaluation;
+    static init(ikResources?: Array<IKResource>, blendMasks?: $SDK198): SkeletonResource_AnimationEvaluation;
     /**
      * let ikResources: [IKResource]
      * @availability iOS 27.0+
@@ -21021,7 +21205,7 @@ export declare class SkeletonResource_Joint extends SDKHandle {
      * let children: [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    get children(): $SDK196;
+    get children(): $SDK199;
     /**
      * init(_ name: String, restPoseTransform: Transform = .identity, @SkeletonResource.JointBuilder children: () throws -> [SkeletonResource.Joint] = { [] }) throws
      * @availability iOS 27.0+
@@ -21045,12 +21229,12 @@ export declare class SkeletonResource_JointBuilder extends SDKHandle {
      * static func buildExpression(_ expression: SkeletonResource.Joint) -> [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    static buildExpression(expression: SkeletonResource_Joint): $SDK196;
+    static buildExpression(expression: SkeletonResource_Joint): $SDK199;
     /**
      * static func buildExpression(_ expression: [SkeletonResource.Joint]) -> [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    static buildExpression41642(expression: $SDK196): $SDK196;
+    static buildExpression41642(expression: $SDK199): $SDK199;
     readonly $type: {
         "s:17RealityFoundation16SkeletonResourceC12JointBuilderV": true;
     };
@@ -21085,7 +21269,7 @@ export declare class SkinningDeformer extends SDKHandle {
      * func deform(parameter: MeshDeformParameterGPU, encoder: any MTLComputeCommandEncoder)
      * @availability iOS 27.0+
      */
-    deform(parameter: $SDK41, encoder: SDKHandle): void;
+    deform(parameter: $SDK42, encoder: SDKHandle): void;
     readonly $type: {
         "s:17RealityFoundation16SkinningDeformerV": true;
     };
@@ -21214,7 +21398,7 @@ export declare class SpatialTrackingSession_Configuration extends SDKHandle {
      * init(tracking anchorCapabilities: Set<SpatialTrackingSession.Configuration.AnchorCapability> = [], sceneUnderstanding: Set<SpatialTrackingSession.Configuration.SceneUnderstandingCapability> = [], camera: SpatialTrackingSession.Configuration.Camera = .back)
      * @availability iOS 18.0+
      */
-    static init(anchorCapabilities?: $SDK199, sceneUnderstanding?: $SDK200, camera?: SpatialTrackingSession_Configuration_Camera): SpatialTrackingSession_Configuration;
+    static init(anchorCapabilities?: $SDK202, sceneUnderstanding?: $SDK203, camera?: SpatialTrackingSession_Configuration_Camera): SpatialTrackingSession_Configuration;
     readonly $type: {
         "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV": true;
     };
@@ -21326,7 +21510,7 @@ export declare class SpatialTrackingSession_UnavailableCapabilities extends SDKH
      * var sceneUnderstanding: Set<SpatialTrackingSession.Configuration.SceneUnderstandingCapability> { get }
      * @availability iOS 18.0+
      */
-    get sceneUnderstanding(): $SDK200;
+    get sceneUnderstanding(): $SDK203;
     /**
      * var missingCameraAuthorization: Bool? { get }
      * @availability iOS 18.0+
@@ -21336,7 +21520,7 @@ export declare class SpatialTrackingSession_UnavailableCapabilities extends SDKH
      * var anchor: Set<SpatialTrackingSession.Configuration.AnchorCapability> { get }
      * @availability iOS 18.0+
      */
-    get anchor(): $SDK199;
+    get anchor(): $SDK202;
     /**
      * init()
      * @availability iOS 18.0+
@@ -21526,8 +21710,8 @@ export declare class SpotLightComponent_Shadow extends SDKHandle {
      * var cullModeOverride: SpotLightComponent.Shadow.ShadowMapCullMode? { get set }
      * @availability iOS 18.0+
      */
-    get cullModeOverride(): $SDK48;
-    set cullModeOverride(value: $SDK48);
+    get cullModeOverride(): $SDK49;
+    set cullModeOverride(value: $SDK49);
     /**
      * var zFar: SpotLightComponent.Shadow.ShadowClippingPlane { get set }
      * @availability iOS 18.0+
@@ -21544,13 +21728,13 @@ export declare class SpotLightComponent_Shadow extends SDKHandle {
      * var layers: RenderLayer.Set? { get set }
      * @availability iOS 27.0+
      */
-    get layers(): $SDK49;
-    set layers(value: $SDK49);
+    get layers(): $SDK50;
+    set layers(value: $SDK50);
     /**
      * init(layers: RenderLayer.Set? = nil)
      * @availability iOS 27.0+
      */
-    static initLayers(layers?: $SDK49): SpotLightComponent_Shadow;
+    static initLayers(layers?: $SDK50): SpotLightComponent_Shadow;
     /**
      * var quality: SpotLightComponent.Shadow.QualityMode { get set }
      * @availability iOS 27.0+
@@ -21644,7 +21828,7 @@ export declare class SubdivisionSurfaceDeformer extends SDKHandle {
      * func deform(parameter: MeshDeformParameterGPU, encoder: any MTLComputeCommandEncoder)
      * @availability iOS 27.0+
      */
-    deform(parameter: $SDK41, encoder: SDKHandle): void;
+    deform(parameter: $SDK42, encoder: SDKHandle): void;
     /**
      * init()
      * @availability iOS 27.0+
@@ -21838,14 +22022,14 @@ export declare class TextComponent extends SDKHandle {
      * var size: CGSize { get set }
      * @availability iOS 18.0+
      */
-    get size(): $SDK203;
-    set size(value: $SDK203);
+    get size(): $SDK206;
+    set size(value: $SDK206);
     /**
      * var text: AttributedString?
      * @availability iOS 18.0+
      */
-    get text(): $SDK204;
-    set text(value: $SDK204);
+    get text(): $SDK207;
+    set text(value: $SDK207);
     /**
      * init()
      * @availability iOS 18.0+
@@ -21930,7 +22114,7 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    replaceAsync(cgImage: _CoreGraphics_CGImage, options: TextureResource_CreateOptions): Promise<$SDK205>;
+    replaceAsync(cgImage: _CoreGraphics_CGImage, options: TextureResource_CreateOptions): Promise<$SDK208>;
     /**
      * @MainActor @preconcurrency convenience init(cubeFromImage cgImage: CGImage, named resourceName: String? = nil, options: TextureResource.CreateOptions) throws
      * @availability iOS 18.0+
@@ -21951,17 +22135,17 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static generateAsync(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK205>;
+    static generateAsync(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK208>;
     /**
      * @MainActor @preconcurrency static func texture2DArray(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture2DArraySlicesNamedOptions(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture2DArraySlicesNamedOptions(slices: $SDK210, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func texture2DArray(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture2DArraySlicesNamedOptions4110(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture2DArraySlicesNamedOptions4110(slices: $SDK210, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency var mipmapLevelCount: Int { get }
      * @availability iOS 15.0+
@@ -21991,12 +22175,12 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency static func cube(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static cubeSlicesNamedOptions(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static cubeSlicesNamedOptions(slices: $SDK210, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func cube(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static cubeSlicesNamedOptions866(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static cubeSlicesNamedOptions866(slices: $SDK210, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func load(contentsOf url: URL, withName resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 15.0+
@@ -22062,7 +22246,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency var semantic: TextureResource.Semantic? { get }
      * @availability iOS 15.0+
      */
-    get semantic(): Promise<$SDK208>;
+    get semantic(): Promise<$SDK211>;
     /**
      * @MainActor @preconcurrency func copyAsync(to texture: any MTLTexture, completionHandler: @escaping @MainActor ((any Error)?) -> Void)
      * @availability iOS 15.0+
@@ -22074,23 +22258,23 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncContentsOfWithNameOptions(url: string, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK205>;
+    static loadAsyncContentsOfWithNameOptions(url: string, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK208>;
     /**
      * @MainActor @preconcurrency static func loadAsync(contentsOf url: URL, withName resourceName: String? = nil) -> LoadRequest<TextureResource>
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncContentsOfWithName(url: string, resourceName?: (string) | null): Promise<$SDK205>;
+    static loadAsyncContentsOfWithName(url: string, resourceName?: (string) | null): Promise<$SDK208>;
     /**
      * @MainActor @preconcurrency static func texture3D(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture3DSlicesNamedOptions(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture3DSlicesNamedOptions(slices: $SDK210, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func texture3D(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture3DSlicesNamedOptions94552(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture3DSlicesNamedOptions94552(slices: $SDK210, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     readonly $type: {
         "s:17RealityFoundation15TextureResourceC": true;
     };
@@ -22212,18 +22396,18 @@ export declare class TextureResource_CreateOptions extends SDKHandle {
      * init(semantic: TextureResource.Semantic?, compression: TextureResource.Compression, mipmapsMode: TextureResource.MipmapsMode = .allocateAndGenerateAll)
      * @availability iOS 18.0+
      */
-    static initSemanticCompressionMipmapsMode(semantic: $SDK208, compression: TextureResource_Compression, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
+    static initSemanticCompressionMipmapsMode(semantic: $SDK211, compression: TextureResource_Compression, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
     /**
      * init(semantic: TextureResource.Semantic?, mipmapsMode: TextureResource.MipmapsMode = .allocateAndGenerateAll)
      * @availability iOS 15.0+
      */
-    static initSemanticMipmapsMode(semantic?: $SDK208, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
+    static initSemanticMipmapsMode(semantic?: $SDK211, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
     /**
      * var semantic: TextureResource.Semantic?
      * @availability iOS 15.0+
      */
-    get semantic(): Promise<$SDK208>;
-    setSemantic(value?: $SDK208): Promise<void>;
+    get semantic(): Promise<$SDK211>;
+    setSemantic(value?: $SDK211): Promise<void>;
     readonly $type: {
         "s:17RealityFoundation15TextureResourceC13CreateOptionsV": true;
     };
@@ -22897,8 +23081,8 @@ export declare class UnlitMaterial_Program_Descriptor extends SDKHandle {
      * var blendMode: MaterialParameterTypes.BlendMode?
      * @availability iOS 18.0+
      */
-    get blendMode(): $SDK47;
-    set blendMode(value: $SDK47);
+    get blendMode(): $SDK48;
+    set blendMode(value: $SDK48);
     /**
      * init()
      * @availability iOS 18.0+
@@ -23008,7 +23192,7 @@ export declare class VideoMaterial extends SDKHandle {
      * var videoRenderer: AVSampleBufferVideoRenderer? { get }
      * @availability iOS 18.0+
      */
-    get videoRenderer(): $SDK213;
+    get videoRenderer(): $SDK216;
     /**
      * var triangleFillMode: VideoMaterial.TriangleFillMode { get set }
      * @availability iOS 18.0+
@@ -23024,8 +23208,8 @@ export declare class VideoMaterial extends SDKHandle {
      * @MainActor @preconcurrency var avPlayer: AVPlayer? { get set }
      * @availability iOS 14.0+
      */
-    get avPlayer(): Promise<$SDK214>;
-    setAvPlayer(value?: $SDK214): Promise<void>;
+    get avPlayer(): Promise<$SDK217>;
+    setAvPlayer(value?: $SDK217): Promise<void>;
     readonly $type: {
         "s:17RealityFoundation13VideoMaterialV": true;
     };
@@ -23076,7 +23260,7 @@ export declare class VideoPlaybackController extends SDKHandle {
      * @MainActor @preconcurrency var currentViewingMode: VideoPlaybackController.ViewingMode? { get }
      * @availability iOS 18.0+
      */
-    get currentViewingMode(): Promise<$SDK216>;
+    get currentViewingMode(): Promise<$SDK219>;
     /**
      * @MainActor @preconcurrency var preferredViewingMode: VideoPlaybackController.ViewingMode { get set }
      * @availability iOS 18.0+
@@ -23106,7 +23290,7 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * var avPlayer: AVPlayer? { get }
      * @availability iOS 18.0+
      */
-    get avPlayer(): $SDK214;
+    get avPlayer(): $SDK217;
     /**
      * var screenVideoDimension: SIMD2<Float> { get }
      * @availability iOS 18.0+
@@ -23116,7 +23300,7 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * var viewingMode: VideoPlaybackController.ViewingMode? { get }
      * @availability iOS 18.0+
      */
-    get viewingMode(): $SDK216;
+    get viewingMode(): $SDK219;
     /**
      * init(videoRenderer: AVSampleBufferVideoRenderer)
      * @availability iOS 18.0+
@@ -23126,7 +23310,7 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * var videoRenderer: AVSampleBufferVideoRenderer? { get }
      * @availability iOS 18.0+
      */
-    get videoRenderer(): $SDK213;
+    get videoRenderer(): $SDK216;
     /**
      * var playerScreenSize: SIMD2<Float> { get }
      * @availability iOS 18.0+
@@ -23249,12 +23433,12 @@ export declare class VideoPlayerEvents_ViewingModeDidChange extends SDKHandle {
      * let currentViewingMode: VideoPlaybackController.ViewingMode?
      * @availability iOS 18.0+
      */
-    get currentViewingMode(): $SDK216;
+    get currentViewingMode(): $SDK219;
     /**
      * let previousViewingMode: VideoPlaybackController.ViewingMode?
      * @availability iOS 18.0+
      */
-    get previousViewingMode(): $SDK216;
+    get previousViewingMode(): $SDK219;
     readonly $type: {
         "s:17RealityFoundation17VideoPlayerEventsO20ViewingModeDidChangeV": true;
     };

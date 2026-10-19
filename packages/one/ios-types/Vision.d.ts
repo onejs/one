@@ -3706,7 +3706,7 @@ export interface ImageProcessingRequest {
      * func perform(on pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation?) async throws -> Self.Result
      * @availability iOS 18.0+
      */
-    "performOnOrientation"?: (arg0: _CoreVideo_CVBuffer | string | _CoreGraphics_CGImage | _CoreImage_CIImage | _CoreMedia_CMSampleBuffer | ArrayBuffer, arg1: $SDK112) => unknown;
+    "performOnOrientation"?: (arg0: _CoreVideo_CVBuffer | string | _CoreGraphics_CGImage | _CoreImage_CIImage | _CoreMedia_CMSampleBuffer | ArrayBuffer, arg1: $SDK112) => Promise<unknown>;
 }
 /**
  * final class ImageRequestHandler
@@ -5540,6 +5540,11 @@ export declare class TrajectoryObservation extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class VideoProcessor extends SDKHandle {
+    /**
+     * final func removeRequest(_ request: any VisionRequest) async -> Bool
+     * @availability iOS 18.0+
+     */
+    removeRequest(request: SDKHandle): Promise<boolean>;
     /**
      * final func startAnalysis(of timeRange: CMTimeRange? = nil)
      * @availability iOS 18.0+

@@ -3,16 +3,15 @@ import { SDKHandle, type Implements, type NativeError } from 'one/ios-runtime';
 import type { CLRegion as _CoreLocation_CLRegion } from "one/ios/CoreLocation";
 import type { DateComponents as _Foundation_DateComponents, NSNumber as _Foundation_NSNumber, NSPredicate as _Foundation_NSPredicate, NSComparisonPredicate_Operator as _Foundation_NSComparisonPredicate_Operator, NSXPCConnection as _Foundation_NSXPCConnection, TimeZone as _Foundation_TimeZone, Calendar as _Foundation_Calendar, NSNotification_Name as _Foundation_NSNotification_Name } from "one/ios/Foundation";
 type $SDK0 = ((arg0: (NativeError) | null) => void);
-type $SDK6 = (HMAccessorySetupPayload) | null;
-type $SDK8 = (HMCharacteristic) | null;
-type $SDK9 = (HMCameraAudioControl) | null;
-type $SDK17 = (_Foundation_NSNumber) | null;
-type $SDK20 = (_Foundation_DateComponents) | null;
-type $SDK21 = (Array<_Foundation_DateComponents>) | null;
-type $SDK22 = (_Foundation_NSPredicate) | null;
-type $SDK31 = (() => Promise<_Foundation_NSXPCConnection>);
-type $SDK35 = (_CoreLocation_CLRegion) | null;
-type $SDK37 = (_Foundation_TimeZone) | null;
+type $SDK7 = (HMAccessorySetupPayload) | null;
+type $SDK9 = (HMCharacteristic) | null;
+type $SDK18 = (_Foundation_NSNumber) | null;
+type $SDK21 = (_Foundation_DateComponents) | null;
+type $SDK22 = (Array<_Foundation_DateComponents>) | null;
+type $SDK23 = (_Foundation_NSPredicate) | null;
+type $SDK32 = (() => Promise<_Foundation_NSXPCConnection>);
+type $SDK36 = (_CoreLocation_CLRegion) | null;
+type $SDK39 = (_Foundation_TimeZone) | null;
 /**
  * class HMAccessControl
  * @availability iOS 11.2+
@@ -74,7 +73,7 @@ export declare class HMAccessory extends SDKHandle {
      * @availability iOS 8.0+
      */
     get delegate(): (SDKHandle) | null;
-    set delegate(value: (SDKHandle) | null);
+    set delegate(value: (Implements<HMAccessoryDelegate> | SDKHandle) | null);
     /**
      * var firmwareVersion: String? { get }
      * @availability iOS 11.0+
@@ -431,8 +430,8 @@ export declare class HMAccessorySetupRequest extends SDKHandle {
      * @NSCopying var payload: HMAccessorySetupPayload? { get set }
      * @availability iOS 15.4+
      */
-    get payload(): $SDK6;
-    set payload(value: $SDK6);
+    get payload(): $SDK7;
+    set payload(value: $SDK7);
     /**
      * var suggestedAccessoryName: String? { get set }
      * @availability iOS 15.4+
@@ -582,9 +581,9 @@ export declare class HMAddAccessoryRequest extends SDKHandle {
      */
     static init(): HMAddAccessoryRequest;
     /** func makePayload(ownershipToken: HMAccessoryOwnershipToken) -> HMAccessorySetupPayload? */
-    makePayloadOwnershipToken(ownershipToken: HMAccessoryOwnershipToken): $SDK6;
+    makePayloadOwnershipToken(ownershipToken: HMAccessoryOwnershipToken): $SDK7;
     /** func makePayload(url setupPayloadURL: URL, ownershipToken: HMAccessoryOwnershipToken) -> HMAccessorySetupPayload? */
-    makePayloadUrlOwnershipToken(setupPayloadURL: string, ownershipToken: HMAccessoryOwnershipToken): $SDK6;
+    makePayloadUrlOwnershipToken(setupPayloadURL: string, ownershipToken: HMAccessoryOwnershipToken): $SDK7;
     /** var accessoryCategory: HMAccessoryCategory { get } */
     get accessoryCategory(): HMAccessoryCategory;
     /** var accessoryName: String { get } */
@@ -715,12 +714,12 @@ export declare class HMCameraAudioControl extends HMCameraControl {
      * var mute: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get mute(): $SDK8;
+    get mute(): $SDK9;
     /**
      * var volume: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get volume(): $SDK8;
+    get volume(): $SDK9;
     readonly $type: {
         "c:objc(cs)HMCameraAudioControl": true;
         "c:objc(cs)HMCameraControl": true;
@@ -752,7 +751,7 @@ export declare class HMCameraProfile extends HMAccessoryProfile {
      * var microphoneControl: HMCameraAudioControl? { get }
      * @availability iOS 10.0+
      */
-    get microphoneControl(): $SDK9;
+    get microphoneControl(): (HMCameraAudioControl) | null;
     /**
      * var settingsControl: HMCameraSettingsControl? { get }
      * @availability iOS 10.0+
@@ -767,7 +766,7 @@ export declare class HMCameraProfile extends HMAccessoryProfile {
      * var speakerControl: HMCameraAudioControl? { get }
      * @availability iOS 10.0+
      */
-    get speakerControl(): $SDK9;
+    get speakerControl(): (HMCameraAudioControl) | null;
     /**
      * var streamControl: HMCameraStreamControl? { get }
      * @availability iOS 10.0+
@@ -798,47 +797,47 @@ export declare class HMCameraSettingsControl extends HMCameraControl {
      * var currentHorizontalTilt: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get currentHorizontalTilt(): $SDK8;
+    get currentHorizontalTilt(): $SDK9;
     /**
      * var currentVerticalTilt: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get currentVerticalTilt(): $SDK8;
+    get currentVerticalTilt(): $SDK9;
     /**
      * var digitalZoom: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get digitalZoom(): $SDK8;
+    get digitalZoom(): $SDK9;
     /**
      * var imageMirroring: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get imageMirroring(): $SDK8;
+    get imageMirroring(): $SDK9;
     /**
      * var imageRotation: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get imageRotation(): $SDK8;
+    get imageRotation(): $SDK9;
     /**
      * var nightVision: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get nightVision(): $SDK8;
+    get nightVision(): $SDK9;
     /**
      * var opticalZoom: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get opticalZoom(): $SDK8;
+    get opticalZoom(): $SDK9;
     /**
      * var targetHorizontalTilt: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get targetHorizontalTilt(): $SDK8;
+    get targetHorizontalTilt(): $SDK9;
     /**
      * var targetVerticalTilt: HMCharacteristic? { get }
      * @availability iOS 10.0+
      */
-    get targetVerticalTilt(): $SDK8;
+    get targetVerticalTilt(): $SDK9;
     readonly $type: {
         "c:objc(cs)HMCameraSettingsControl": true;
         "c:objc(cs)HMCameraControl": true;
@@ -1226,22 +1225,22 @@ export declare class HMCharacteristicMetadata extends SDKHandle {
      * var maxLength: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get maxLength(): $SDK17;
+    get maxLength(): $SDK18;
     /**
      * var maximumValue: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get maximumValue(): $SDK17;
+    get maximumValue(): $SDK18;
     /**
      * var minimumValue: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get minimumValue(): $SDK17;
+    get minimumValue(): $SDK18;
     /**
      * var stepValue: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get stepValue(): $SDK17;
+    get stepValue(): $SDK18;
     /**
      * var units: String? { get }
      * @availability iOS 8.0+
@@ -2708,7 +2707,7 @@ export declare class HMEventTrigger extends HMTrigger {
      * @availability iOS 9.0+
      * @deprecated iOS 11.0
      */
-    static predicateForEvaluatingTriggerOccurringAfterApplyingOffset(significantEvent: string, offset?: $SDK20): _Foundation_NSPredicate;
+    static predicateForEvaluatingTriggerOccurringAfterApplyingOffset(significantEvent: string, offset?: $SDK21): _Foundation_NSPredicate;
     /** class func predicateForEvaluatingTrigger(occurringBefore dateComponents: DateComponents) -> NSPredicate */
     static predicateForEvaluatingTriggerOccurringBefore(dateComponents: _Foundation_DateComponents): _Foundation_NSPredicate;
     /**
@@ -2721,7 +2720,7 @@ export declare class HMEventTrigger extends HMTrigger {
      * @availability iOS 9.0+
      * @deprecated iOS 11.0
      */
-    static predicateForEvaluatingTriggerOccurringBeforeApplyingOffset(significantEvent: string, offset?: $SDK20): _Foundation_NSPredicate;
+    static predicateForEvaluatingTriggerOccurringBeforeApplyingOffset(significantEvent: string, offset?: $SDK21): _Foundation_NSPredicate;
     /**
      * class func predicateForEvaluatingTriggerOccurringBetweenDate(with firstDateComponents: DateComponents, secondDateWith secondDateWithComponents: DateComponents) -> NSPredicate
      * @availability iOS 11.0+
@@ -2751,12 +2750,12 @@ export declare class HMEventTrigger extends HMTrigger {
      * init(name: String, events: [HMEvent], end endEvents: [HMEvent]?, recurrences: [DateComponents]?, predicate: NSPredicate?)
      * @availability iOS 11.0+
      */
-    static initNameEventsEndRecurrencesPredicate(name: string, events: Array<HMEvent>, endEvents?: (Array<HMEvent>) | null, recurrences?: $SDK21, predicate?: $SDK22): HMEventTrigger;
+    static initNameEventsEndRecurrencesPredicate(name: string, events: Array<HMEvent>, endEvents?: (Array<HMEvent>) | null, recurrences?: $SDK22, predicate?: $SDK23): HMEventTrigger;
     /**
      * init(name: String, events: [HMEvent], predicate: NSPredicate?)
      * @availability iOS 9.0+
      */
-    static initNameEventsPredicate(name: string, events: Array<HMEvent>, predicate?: $SDK22): HMEventTrigger;
+    static initNameEventsPredicate(name: string, events: Array<HMEvent>, predicate?: $SDK23): HMEventTrigger;
     /**
      * func removeEvent(_ event: HMEvent, completionHandler completion: @escaping @Sendable ((any Error)?) -> Void)
      * @availability iOS 9.0+
@@ -2782,12 +2781,12 @@ export declare class HMEventTrigger extends HMTrigger {
      * func updatePredicate(_ predicate: NSPredicate?) async throws
      * @availability iOS 9.0+
      */
-    updatePredicate(predicate: $SDK22, completion: $SDK0): void;
+    updatePredicate(predicate: $SDK23, completion: $SDK0): void;
     /**
      * func updateRecurrences(_ recurrences: [DateComponents]?) async throws
      * @availability iOS 11.0+
      */
-    updateRecurrences(recurrences: $SDK21, completion: $SDK0): void;
+    updateRecurrences(recurrences: $SDK22, completion: $SDK0): void;
     /**
      * var endEvents: [HMEvent] { get }
      * @availability iOS 11.0+
@@ -2807,12 +2806,12 @@ export declare class HMEventTrigger extends HMTrigger {
      * @NSCopying var predicate: NSPredicate? { get }
      * @availability iOS 9.0+
      */
-    get predicate(): $SDK22;
+    get predicate(): $SDK23;
     /**
      * var recurrences: [DateComponents]? { get }
      * @availability iOS 11.0+
      */
-    get recurrences(): $SDK21;
+    get recurrences(): $SDK22;
     /**
      * var triggerActivationState: HMEventTriggerActivationState { get }
      * @availability iOS 11.0+
@@ -2961,12 +2960,12 @@ export declare class HMHome extends SDKHandle {
      * var matterControllerXPCConnectBlock: () -> NSXPCConnection { get }
      * @availability iOS 16.1+
      */
-    get matterControllerXPCConnectBlock(): $SDK31;
+    get matterControllerXPCConnectBlock(): $SDK32;
     /**
      * var matterStartupParametersXPCConnectBlock: () -> NSXPCConnection { get }
      * @availability iOS 18.2+
      */
-    get matterStartupParametersXPCConnectBlock(): $SDK31;
+    get matterStartupParametersXPCConnectBlock(): $SDK32;
     /**
      * var name: String { get }
      * @availability iOS 8.0+
@@ -3273,7 +3272,7 @@ export declare class HMLocationEvent extends HMLocationEvent_base {
      * var region: CLRegion? { get }
      * @availability iOS 9.0+
      */
-    get region(): $SDK35;
+    get region(): $SDK36;
     readonly $type: {
         "c:objc(cs)HMLocationEvent": true;
         "c:objc(cs)HMEvent": true;
@@ -3309,7 +3308,7 @@ export declare class HMMediaSourceDisplayOrderProfile extends HMAccessoryProfile
      * @availability iOS 18.0+
      */
     get delegate(): (SDKHandle) | null;
-    set delegate(value: (SDKHandle) | null);
+    set delegate(value: (Implements<HMMediaSourceDisplayOrderProfile_Delegate> | SDKHandle) | null);
     readonly $type: {
         "c:@M@HomeKit@objc(cs)HMMediaSourceDisplayOrderProfile": true;
         "c:objc(cs)HMAccessoryProfile": true;
@@ -3435,8 +3434,8 @@ export declare class HMMutableLocationEvent extends HMMutableLocationEvent_base 
      * var region: CLRegion? { get set }
      * @availability iOS 11.0+
      */
-    get region(): $SDK35;
-    set region(value: $SDK35);
+    get region(): $SDK36;
+    set region(value: $SDK36);
     readonly $type: {
         "c:objc(cs)HMMutableLocationEvent": true;
         "c:objc(cs)HMLocationEvent": true;
@@ -3520,12 +3519,12 @@ export declare class HMSignificantTimeEvent extends HMSignificantTimeEvent_base 
      * init(significantEvent: HMSignificantEvent, offset: DateComponents?)
      * @availability iOS 11.0+
      */
-    static init(significantEvent: HMSignificantEvent, offset?: $SDK20): HMSignificantTimeEvent;
+    static init(significantEvent: HMSignificantEvent, offset?: $SDK21): HMSignificantTimeEvent;
     /**
      * var offset: DateComponents? { get }
      * @availability iOS 11.0+
      */
-    get offset(): $SDK20;
+    get offset(): $SDK21;
     /**
      * var significantEvent: HMSignificantEvent { get }
      * @availability iOS 11.0+
@@ -3638,12 +3637,12 @@ export declare class HMNumberRange extends SDKHandle {
      * var maxValue: NSNumber? { get }
      * @availability iOS 11.0+
      */
-    get maxValue(): $SDK17;
+    get maxValue(): $SDK18;
     /**
      * var minValue: NSNumber? { get }
      * @availability iOS 11.0+
      */
-    get minValue(): $SDK17;
+    get minValue(): $SDK18;
     readonly $type: {
         "c:objc(cs)HMNumberRange": true;
         "c:objc(cs)NSObject": true;
@@ -3887,13 +3886,13 @@ export declare class HMTimerTrigger extends HMTrigger {
      * init(name: String, fireDate: Date, recurrence: DateComponents?)
      * @availability iOS 16.4+
      */
-    static initNameFireDateRecurrence(name: string, fireDate: globalThis.Date, recurrence?: $SDK20): HMTimerTrigger;
+    static initNameFireDateRecurrence(name: string, fireDate: globalThis.Date, recurrence?: $SDK21): HMTimerTrigger;
     /**
      * init(name: String, fireDate: Date, timeZone: TimeZone?, recurrence: DateComponents?, recurrenceCalendar: Calendar?)
      * @availability iOS 8.0+
      * @deprecated iOS 16.4
      */
-    static initNameFireDateTimeZoneRecurrenceRecurrenceCalendar(name: string, fireDate: globalThis.Date, timeZone?: $SDK37, recurrence?: $SDK20, recurrenceCalendar?: (_Foundation_Calendar) | null): HMTimerTrigger;
+    static initNameFireDateTimeZoneRecurrenceRecurrenceCalendar(name: string, fireDate: globalThis.Date, timeZone?: $SDK39, recurrence?: $SDK21, recurrenceCalendar?: (_Foundation_Calendar) | null): HMTimerTrigger;
     /**
      * func updateFireDate(_ fireDate: Date) async throws
      * @availability iOS 8.0+
@@ -3903,13 +3902,13 @@ export declare class HMTimerTrigger extends HMTrigger {
      * func updateRecurrence(_ recurrence: DateComponents?) async throws
      * @availability iOS 8.0+
      */
-    updateRecurrence(recurrence: $SDK20, completion: $SDK0): void;
+    updateRecurrence(recurrence: $SDK21, completion: $SDK0): void;
     /**
      * func updateTimeZone(_ timeZone: TimeZone?) async throws
      * @availability iOS 8.0+
      * @deprecated iOS 16.4
      */
-    updateTimeZone(timeZone: $SDK37, completion: $SDK0): void;
+    updateTimeZone(timeZone: $SDK39, completion: $SDK0): void;
     /**
      * var fireDate: Date { get }
      * @availability iOS 8.0+
@@ -3919,7 +3918,7 @@ export declare class HMTimerTrigger extends HMTrigger {
      * var recurrence: DateComponents? { get }
      * @availability iOS 8.0+
      */
-    get recurrence(): $SDK20;
+    get recurrence(): $SDK21;
     /**
      * var recurrenceCalendar: Calendar? { get }
      * @availability iOS 8.0+
@@ -3931,7 +3930,7 @@ export declare class HMTimerTrigger extends HMTrigger {
      * @availability iOS 8.0+
      * @deprecated iOS 16.4
      */
-    get timeZone(): $SDK37;
+    get timeZone(): $SDK39;
     readonly $type: {
         "c:objc(cs)HMTimerTrigger": true;
         "c:objc(cs)HMTrigger": true;

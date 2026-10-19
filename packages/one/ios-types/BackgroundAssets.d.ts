@@ -519,7 +519,7 @@ export interface BADownloaderExtension {
      * func backgroundDownload(_ download: BADownload, didReceive challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?)
      * @availability iOS 16.1+
      */
-    "backgroundDownloadDidReceive"?: (arg0: BADownload, arg1: _Foundation_URLAuthenticationChallenge) => $SDK6;
+    "backgroundDownloadDidReceive"?: (arg0: BADownload, arg1: _Foundation_URLAuthenticationChallenge) => Promise<$SDK6>;
     /**
      * func backgroundDownload(_ failedDownload: BADownload, failedWithError error: any Error)
      * @availability iOS 16.1+
@@ -722,7 +722,7 @@ export interface ManagedDownloaderExtension {
      * func backgroundDownload(_ download: BADownload, didReceive challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?)
      * @availability iOS 16.1+
      */
-    "backgroundDownloadDidReceive"?: (arg0: BADownload, arg1: _Foundation_URLAuthenticationChallenge) => $SDK6;
+    "backgroundDownloadDidReceive"?: (arg0: BADownload, arg1: _Foundation_URLAuthenticationChallenge) => Promise<$SDK6>;
     /**
      * func backgroundDownload(_ failedDownload: BADownload, failedWithError error: any Error)
      * @availability iOS 16.1+

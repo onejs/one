@@ -7876,10 +7876,10 @@ export declare class SparseIterativeMethod extends SDKHandle {
     get method(): number;
     set method(value: number);
     /** var options: SparseIterativeMethod.__Unnamed_union_options */
-    get options(): SparseIterativeMethod;
-    set options(value: SparseIterativeMethod);
+    get options(): SDKHandle;
+    set options(value: SDKHandle);
     /** init(method: Int32, options: SparseIterativeMethod.__Unnamed_union_options) */
-    static initMethodOptions(method: number, options: SparseIterativeMethod): SparseIterativeMethod;
+    static initMethodOptions(method: number, options: SDKHandle): SparseIterativeMethod;
     /** init() */
     static init(): SparseIterativeMethod;
     readonly $type: {
@@ -11898,6 +11898,26 @@ export declare class vDSP_DiscreteFourierTransform<T = unknown> extends SDKHandl
  * @availability iOS 13.0+
  */
 export declare class vDSP_FFT<T = unknown> extends SDKHandle {
+    /**
+     * func forward(input: DSPSplitComplex, output: inout DSPSplitComplex)
+     * @availability iOS 13.0+
+     */
+    forward(input: DSPSplitComplex, output: DSPSplitComplex): {
+        $ret: null;
+        $out: {
+            "output": DSPSplitComplex;
+        };
+    };
+    /**
+     * func inverse(input: DSPSplitComplex, output: inout DSPSplitComplex)
+     * @availability iOS 13.0+
+     */
+    inverse(input: DSPSplitComplex, output: DSPSplitComplex): {
+        $ret: null;
+        $out: {
+            "output": DSPSplitComplex;
+        };
+    };
     readonly $type: {
         "s:10Accelerate4vDSPO3FFTC": true;
     };
@@ -14219,6 +14239,21 @@ export type vImage_Options_RawValue = number;
  * @availability iOS 16.0+
  */
 export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
+    /**
+     * var size: vImage.Size { get }
+     * @availability iOS 16.0+
+     */
+    get size(): vImage_Size;
+    /**
+     * var width: Int { get }
+     * @availability iOS 16.0+
+     */
+    get width(): number;
+    /**
+     * var height: Int { get }
+     * @availability iOS 16.0+
+     */
+    get height(): number;
     /**
      * static func makeDynamicPixelBufferAndCGImageFormat(cgImage: CGImage) throws -> (pixelBuffer: vImage.PixelBuffer<vImage.DynamicPixelFormat>, cgImageFormat: vImage_CGImageFormat)
      * @availability iOS 16.0+

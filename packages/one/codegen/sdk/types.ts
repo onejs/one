@@ -195,7 +195,9 @@ class Parser {
     for (;;) {
       const token = (this.is('kw') ? this.take('kw') : this.take('id')) as { text: string; usr?: string }
       parts.push(token.text)
-      usr = token.usr ?? usr
+      // a member type is never its owner, so a segment without its own
+      // identifier leaves the name unresolved
+      usr = token.usr
       const start = args.length
       if (this.is('p', '<')) {
         this.i++

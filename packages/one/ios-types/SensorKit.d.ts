@@ -511,6 +511,11 @@ export declare const SRAuthorizationStatus: {
      * @availability iOS 14.0+
      */
     init(rawValue: number): (SRAuthorizationStatus) | null;
+    /**
+     * static func requestAuthorization(for sensors: [any SRDataSensor]) async throws
+     * @availability iOS 27.0+
+     */
+    requestAuthorization(sensors: Array<SDKHandle>): Promise<void>;
 };
 /**
  * protocol SRDataSensor : Hashable, Sendable
@@ -2636,6 +2641,26 @@ export type SRPhotoplethysmogramSensor_Sample = Array<SRPhotoplethysmogramSample
  * @availability iOS 27.0+
  */
 export declare class SRReader<Sensor = unknown> extends SDKHandle {
+    /**
+     * final func stopRecording() async throws
+     * @availability iOS 27.0+
+     */
+    stopRecording(): Promise<void>;
+    /**
+     * final func startRecording() async throws
+     * @availability iOS 27.0+
+     */
+    startRecording(): Promise<void>;
+    /**
+     * final var authorizationStatus: SRAuthorizationStatus { get }
+     * @availability iOS 27.0+
+     */
+    get authorizationStatus(): SRAuthorizationStatus;
+    /**
+     * final var devices: [SRDevice] { get async throws }
+     * @availability iOS 27.0+
+     */
+    get devices(): Promise<Array<SRDevice>>;
     readonly $type: {
         "s:9SensorKit8SRReaderC": true;
     };

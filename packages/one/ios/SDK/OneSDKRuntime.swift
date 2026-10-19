@@ -400,8 +400,10 @@ public final class OneSDKCall {
   }
 }
 
-// a javascript function held by native code
-public final class OneSDKFunction {
+// a javascript function held by native code. its state is immutable: send
+// queues onto the js thread from any thread, and sync checks that it runs on
+// the js thread inside its active call, so it may cross concurrency domains.
+public final class OneSDKFunction: @unchecked Sendable {
   let send: (_ data: [String: Any], _ handles: [OneSDKHandleBox]) -> Void
   let sync: ((_ data: [String: Any], _ handles: [OneSDKHandleBox]) throws -> OneSDKCall)?
   init(sync: ((_ data: [String: Any], _ handles: [OneSDKHandleBox]) throws -> OneSDKCall)? = nil,
@@ -417,10 +419,74 @@ public final class OneSDKFunction {
     try response(args).arg(0)
   }
 
+  public func responseAsync(_ args: [Any?]) async throws -> OneSDKCall {
+    let reply = OneSDKAsyncReply()
+    return try await withTaskCancellationHandler {
+      try await withCheckedThrowingContinuation { continuation in
+        guard reply.install(continuation) else { return }
+        let call = OneSDKCall(handles: [])
+        let respond = OneSDKCallable.capture(OneSDKAsyncReplyLease(reply)) { lease, response in
+          do {
+            let failure: String? = try response.arg(1)
+            lease.reply.finish(failure.map { .failure(OneSDKError.callback($0)) } ?? .success(response))
+            return response.void
+          } catch {
+            lease.reply.finish(.failure(error))
+            throw error
+          }
+        }
+        send(["args": args.map { call.out($0) }, "$reply": call.out(respond)], call.handlesOut)
+      }
+    } onCancel: {
+      reply.finish(.failure(CancellationError()))
+    }
+  }
+
+  public func resultAsync<T>(_ args: [Any?], as: T.Type = T.self) async throws -> T {
+    try await responseAsync(args).arg(0)
+  }
+
   public func callAsFunction(_ args: Any?...) {
     let call = OneSDKCall(handles: [])
     let encoded = args.map { call.out($0) }
     send(["args": encoded], call.handlesOut)
+  }
+}
+
+// dropping the native reply handle must also release the suspended operation.
+private final class OneSDKAsyncReplyLease {
+  let reply: OneSDKAsyncReply
+  init(_ reply: OneSDKAsyncReply) { self.reply = reply }
+  deinit { reply.finish(.failure(OneSDKError.callback("JavaScript SDK callback reply was released"))) }
+}
+
+// one reply belongs to one suspended native call; cancellation and a late
+// javascript reply race safely without blocking either thread.
+private final class OneSDKAsyncReply: @unchecked Sendable {
+  private let lock = NSLock()
+  private var continuation: CheckedContinuation<OneSDKCall, Error>?
+  private var result: Result<OneSDKCall, Error>?
+
+  func install(_ continuation: CheckedContinuation<OneSDKCall, Error>) -> Bool {
+    lock.lock()
+    if let result {
+      lock.unlock()
+      continuation.resume(with: result)
+      return false
+    }
+    self.continuation = continuation
+    lock.unlock()
+    return true
+  }
+
+  func finish(_ result: Result<OneSDKCall, Error>) {
+    lock.lock()
+    guard self.result == nil else { lock.unlock(); return }
+    self.result = result
+    let continuation = self.continuation
+    self.continuation = nil
+    lock.unlock()
+    continuation?.resume(with: result)
   }
 }
 

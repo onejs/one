@@ -7,9 +7,9 @@ type $SDK7 = Array<FinanceStore_BackgroundDataType>;
 type $SDK8 = Array<CreditDebitIndicator>;
 type $SDK10 = (FinanceStore_HistoryToken) | null;
 type $SDK13 = Array<FinanceStore_ContainsOrderResult>;
-type $SDK17 = Array<FinanceStore_SaveOrderResult>;
-type $SDK22 = _Foundation_Predicate<Transaction>;
-type $SDK23 = Array<TransactionStatus>;
+type $SDK19 = Array<FinanceStore_SaveOrderResult>;
+type $SDK24 = _Foundation_Predicate<Transaction>;
+type $SDK25 = Array<TransactionStatus>;
 /**
  * enum Account
  * @availability iOS 17.4+
@@ -469,6 +469,11 @@ export type FinanceStore_BackgroundDataType = "accounts" | "accountBalances" | "
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_Changes<Model = unknown> extends SDKHandle {
+    /**
+     * let newToken: FinanceStore.HistoryToken
+     * @availability iOS 17.4+
+     */
+    get newToken(): FinanceStore_HistoryToken;
     readonly $type: {
         "s:10FinanceKit0A5StoreC7ChangesV": true;
     };
@@ -500,6 +505,11 @@ export type FinanceStore_DataType = "orders" | "financialData";
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_History<Model = unknown> extends SDKHandle {
+    /**
+     * func makeAsyncIterator() -> FinanceStore.History<Model>.Iterator
+     * @availability iOS 17.4+
+     */
+    makeAsyncIterator(): FinanceStore_History_Iterator<SDKHandle>;
     readonly $type: {
         "s:10FinanceKit0A5StoreC7HistoryV": true;
     };
@@ -520,6 +530,11 @@ export type FinanceStore_History_Element<Model = unknown> = FinanceStore_Changes
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_History_Iterator<Model = unknown> extends SDKHandle {
+    /**
+     * func next() async throws -> FinanceStore.Changes<Model>?
+     * @availability iOS 17.4+
+     */
+    next(): Promise<(FinanceStore_Changes<SDKHandle>) | null>;
     readonly $type: {
         "s:10FinanceKit0A5StoreC7HistoryV8IteratorV": true;
     };
@@ -548,13 +563,13 @@ export declare const FinanceStore_SaveOrderResult: {
      * nonisolated static var allCases: [FinanceStore.SaveOrderResult] { get }
      * @availability iOS 17.0+
      */
-    readonly allCases: $SDK17;
+    readonly allCases: $SDK19;
 };
 /**
  * typealias AllCases = [FinanceStore.SaveOrderResult]
  * @availability iOS 17.0+
  */
-export type FinanceStore_SaveOrderResult_AllCases = $SDK17;
+export type FinanceStore_SaveOrderResult_AllCases = $SDK19;
 /**
  * enum UpdateFrequency
  * @availability iOS 26.0+
@@ -770,17 +785,17 @@ export declare class TransactionQuery extends SDKHandle {
      * static func predicate(forTransactionTypes transactionTypes: [TransactionType]) -> Predicate<Transaction>
      * @availability iOS 17.4+
      */
-    static predicateForTransactionTypes(transactionTypes: Array<TransactionType>): $SDK22;
+    static predicateForTransactionTypes(transactionTypes: Array<TransactionType>): $SDK24;
     /**
      * static func predicate(forStatuses statuses: [TransactionStatus]) -> Predicate<Transaction>
      * @availability iOS 17.4+
      */
-    static predicateForStatuses(statuses: $SDK23): $SDK22;
+    static predicateForStatuses(statuses: $SDK25): $SDK24;
     /**
      * static func predicate(forMerchantCategoryCodes merchantCategoryCodes: [MerchantCategoryCode]) -> Predicate<Transaction>
      * @availability iOS 17.4+
      */
-    static predicateForMerchantCategoryCodes(merchantCategoryCodes: Array<MerchantCategoryCode>): $SDK22;
+    static predicateForMerchantCategoryCodes(merchantCategoryCodes: Array<MerchantCategoryCode>): $SDK24;
     readonly $type: {
         "s:10FinanceKit16TransactionQueryV": true;
     };
@@ -795,7 +810,7 @@ export declare const TransactionStatus: {
      * nonisolated static var allCases: [TransactionStatus] { get }
      * @availability iOS 17.4+
      */
-    readonly allCases: $SDK23;
+    readonly allCases: $SDK25;
     /**
      * init?(rawValue: Int16)
      * @availability iOS 17.4+
@@ -811,7 +826,7 @@ export declare const TransactionStatus: {
  * typealias AllCases = [TransactionStatus]
  * @availability iOS 17.4+
  */
-export type TransactionStatus_AllCases = $SDK23;
+export type TransactionStatus_AllCases = $SDK25;
 /**
  * typealias RawValue = Int16
  * @availability iOS 17.4+

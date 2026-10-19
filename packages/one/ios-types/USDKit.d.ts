@@ -7,14 +7,14 @@ type $SDK0 = (USDLayer_TimeCode) | null;
 type $SDK2 = (USDPrim_Relationship_Spec) | null;
 type $SDK5 = (USDPrim_Property_Spec) | null;
 type $SDK8 = (USDPrim_Attribute_Spec) | null;
-type $SDK11 = USDLayer_ListOperation<number>;
-type $SDK18 = Array<USDStage_TimeCode>;
-type $SDK19 = Record<string, USDValue>;
-type $SDK20 = (Array<USDLayer_Path>) | null;
-type $SDK25 = NativeMap<USDToken, USDPrim_VariantSetSpec>;
-type $SDK26 = (Array<USDToken>) | null;
-type $SDK30 = (NativeMap<USDLayer_Path, USDLayer_Path>) | null;
-type $SDK36 = "variantSelection" | SDKHandle;
+type $SDK12 = USDLayer_ListOperation<number>;
+type $SDK19 = Array<USDStage_TimeCode>;
+type $SDK20 = Record<string, USDValue>;
+type $SDK21 = (Array<USDLayer_Path>) | null;
+type $SDK26 = NativeMap<USDToken, USDPrim_VariantSetSpec>;
+type $SDK27 = (Array<USDToken>) | null;
+type $SDK31 = (NativeMap<USDLayer_Path, USDLayer_Path>) | null;
+type $SDK37 = "variantSelection" | SDKHandle;
 /**
  * struct USDArray<Element> where Element : USDValueProtocol
  * @availability iOS 27.0+
@@ -595,25 +595,50 @@ export declare class USDLayer_ChangeList_Entry_InfoChange extends SDKHandle {
  */
 export declare class USDLayer_ListOperation<T = unknown> extends SDKHandle {
     /**
+     * var isExplicit: Bool { get }
+     * @availability iOS 27.0+
+     */
+    get isExplicit(): boolean;
+    /**
+     * mutating func clearAndMakeExplicit()
+     * @availability iOS 27.0+
+     */
+    clearAndMakeExplicit(): void;
+    /**
+     * mutating func clear()
+     * @availability iOS 27.0+
+     */
+    clear(): void;
+    /**
+     * mutating func compose(stronger: USDLayer.ListOperation<T>, for operation: USDLayer.ListOperationType)
+     * @availability iOS 27.0+
+     */
+    compose(stronger: USDLayer_ListOperation<SDKHandle>, operation: USDLayer_ListOperationType): void;
+    /**
+     * var hasKeys: Bool { get }
+     * @availability iOS 27.0+
+     */
+    get hasKeys(): boolean;
+    /**
      * init(explicitItems: [Int])
      * @availability iOS 27.0+
      */
-    static initExplicitItems(explicitItems: Array<number>): $SDK11;
+    static initExplicitItems(explicitItems: Array<number>): $SDK12;
     /**
      * init(prependedItems: [Int] = [], appendedItems: [Int] = [], deletedItems: [Int] = [])
      * @availability iOS 27.0+
      */
-    static initPrependedItemsAppendedItemsDeletedItems(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK11;
+    static initPrependedItemsAppendedItemsDeletedItems(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK12;
     /**
      * init(explicitItems: [UInt])
      * @availability iOS 27.0+
      */
-    static initExplicitItems13658(explicitItems: Array<number>): $SDK11;
+    static initExplicitItems13658(explicitItems: Array<number>): $SDK12;
     /**
      * init(prependedItems: [UInt] = [], appendedItems: [UInt] = [], deletedItems: [UInt] = [])
      * @availability iOS 27.0+
      */
-    static initPrependedItemsAppendedItemsDeletedItems70000(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK11;
+    static initPrependedItemsAppendedItemsDeletedItems70000(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK12;
     readonly $type: {
         "s:6USDKit8USDLayerV13ListOperationV": true;
     };
@@ -1406,7 +1431,7 @@ export declare class USDPrim_Attribute extends SDKHandle {
      * var timeSamples: [USDStage.TimeCode] { get }
      * @availability iOS 27.0+
      */
-    get timeSamples(): $SDK18;
+    get timeSamples(): $SDK19;
     /**
      * var variability: USDPrim.Property.Variability { get }
      * @availability iOS 27.0+
@@ -1501,7 +1526,7 @@ export declare class USDPrim_Attribute_Spec extends SDKHandle {
      * var customData: Dictionary<String, USDValue> { get }
      * @availability iOS 27.0+
      */
-    get customData(): $SDK19;
+    get customData(): $SDK20;
     /**
      * var permission: USDLayer.Permission { get nonmutating set }
      * @availability iOS 27.0+
@@ -1538,7 +1563,7 @@ export declare class USDPrim_Attribute_Spec extends SDKHandle {
      * var connectionPaths: [USDLayer.Path]? { get }
      * @availability iOS 27.0+
      */
-    get connectionPaths(): $SDK20;
+    get connectionPaths(): $SDK21;
     /**
      * func clearConnectionPaths()
      * @availability iOS 27.0+
@@ -2227,7 +2252,7 @@ export declare class USDPrim_Property_Spec extends SDKHandle {
      * var customData: Dictionary<String, USDValue> { get }
      * @availability iOS 27.0+
      */
-    get customData(): $SDK19;
+    get customData(): $SDK20;
     /**
      * var permission: USDLayer.Permission { get nonmutating set }
      * @availability iOS 27.0+
@@ -2351,8 +2376,8 @@ export declare class USDPrim_Reference extends SDKHandle {
      * var customData: Dictionary<String, USDValue> { get set }
      * @availability iOS 27.0+
      */
-    get customData(): $SDK19;
-    set customData(value: $SDK19);
+    get customData(): $SDK20;
+    set customData(value: $SDK20);
     /**
      * var isInternal: Bool { get }
      * @availability iOS 27.0+
@@ -2379,7 +2404,7 @@ export declare class USDPrim_Reference extends SDKHandle {
      * init(assetPath: String? = nil, primPath: USDLayer.Path? = nil, layerOffset: USDLayer.TimeOffset = USDLayer.TimeOffset(), customData: Dictionary<String, USDValue> = [:])
      * @availability iOS 27.0+
      */
-    static init(assetPath?: (string) | null, primPath?: (USDLayer_Path) | null, layerOffset?: USDLayer_TimeOffset, customData?: $SDK19): USDPrim_Reference;
+    static init(assetPath?: (string) | null, primPath?: (USDLayer_Path) | null, layerOffset?: USDLayer_TimeOffset, customData?: $SDK20): USDPrim_Reference;
     /**
      * var assetPath: String? { get set }
      * @availability iOS 27.0+
@@ -2508,7 +2533,7 @@ export declare class USDPrim_Relationship_Spec extends SDKHandle {
      * var customData: Dictionary<String, USDValue> { get }
      * @availability iOS 27.0+
      */
-    get customData(): $SDK19;
+    get customData(): $SDK20;
     /**
      * var noLoadHint: Bool { get nonmutating set }
      * @availability iOS 27.0+
@@ -2525,7 +2550,7 @@ export declare class USDPrim_Relationship_Spec extends SDKHandle {
      * var targetPaths: [USDLayer.Path]? { get }
      * @availability iOS 27.0+
      */
-    get targetPaths(): $SDK20;
+    get targetPaths(): $SDK21;
     /**
      * func removeTarget(_ path: USDLayer.Path, preservingOrder: Bool = false)
      * @availability iOS 27.0+
@@ -2637,7 +2662,7 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var customData: Dictionary<String, USDValue> { get }
      * @availability iOS 27.0+
      */
-    get customData(): $SDK19;
+    get customData(): $SDK20;
     /**
      * var permission: USDLayer.Permission { get nonmutating set }
      * @availability iOS 27.0+
@@ -2689,12 +2714,12 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var specializes: [USDLayer.Path]? { get }
      * @availability iOS 27.0+
      */
-    get specializes(): $SDK20;
+    get specializes(): $SDK21;
     /**
      * var variantSets: [USDToken : USDPrim.VariantSetSpec] { get }
      * @availability iOS 27.0+
      */
-    get variantSets(): $SDK25;
+    get variantSets(): $SDK26;
     /**
      * func relationship(at path: USDLayer.Path) -> USDPrim.Relationship.Spec?
      * @availability iOS 27.0+
@@ -2714,8 +2739,8 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var childrenOrder: [USDToken]? { get nonmutating set }
      * @availability iOS 27.0+
      */
-    get childrenOrder(): $SDK26;
-    set childrenOrder(value: $SDK26);
+    get childrenOrder(): $SDK27;
+    set childrenOrder(value: $SDK27);
     /**
      * func clearInherits()
      * @availability iOS 27.0+
@@ -2736,8 +2761,8 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var propertyOrder: [USDToken]? { get nonmutating set }
      * @availability iOS 27.0+
      */
-    get propertyOrder(): $SDK26;
-    set propertyOrder(value: $SDK26);
+    get propertyOrder(): $SDK27;
+    set propertyOrder(value: $SDK27);
     /**
      * var relationships: [USDPrim.Relationship.Spec] { get }
      * @availability iOS 27.0+
@@ -2815,7 +2840,7 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var symmetryArguments: Dictionary<String, USDValue> { get }
      * @availability iOS 27.0+
      */
-    get symmetryArguments(): $SDK19;
+    get symmetryArguments(): $SDK20;
     /**
      * var variantSelections: [USDToken : USDToken] { get }
      * @availability iOS 27.0+
@@ -2825,8 +2850,8 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var prefixSubstitutions: Dictionary<String, USDValue> { get nonmutating set }
      * @availability iOS 27.0+
      */
-    get prefixSubstitutions(): $SDK19;
-    set prefixSubstitutions(value: $SDK19);
+    get prefixSubstitutions(): $SDK20;
+    set prefixSubstitutions(value: $SDK20);
     /**
      * func setSymmetryArgument(_ name: String, to value: USDValue)
      * @availability iOS 27.0+
@@ -2841,8 +2866,8 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var suffixSubstitutions: Dictionary<String, USDValue> { get nonmutating set }
      * @availability iOS 27.0+
      */
-    get suffixSubstitutions(): $SDK19;
-    set suffixSubstitutions(value: $SDK19);
+    get suffixSubstitutions(): $SDK20;
+    set suffixSubstitutions(value: $SDK20);
     /**
      * func blockVariantSelection(for setName: USDToken)
      * @availability iOS 27.0+
@@ -2922,7 +2947,7 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var inherits: [USDLayer.Path]? { get }
      * @availability iOS 27.0+
      */
-    get inherits(): $SDK20;
+    get inherits(): $SDK21;
     /**
      * var isActive: Bool? { get nonmutating set }
      * @availability iOS 27.0+
@@ -2949,7 +2974,7 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var assetInfo: Dictionary<String, USDValue> { get }
      * @availability iOS 27.0+
      */
-    get assetInfo(): $SDK19;
+    get assetInfo(): $SDK20;
     /**
      * func attribute(at path: USDLayer.Path) -> USDPrim.Attribute.Spec?
      * @availability iOS 27.0+
@@ -2959,8 +2984,8 @@ export declare class USDPrim_Spec extends SDKHandle {
      * var relocates: USDLayer.RelocatesMap? { get nonmutating set }
      * @availability iOS 27.0+
      */
-    get relocates(): $SDK30;
-    set relocates(value: $SDK30);
+    get relocates(): $SDK31;
+    set relocates(value: $SDK31);
     /**
      * var specifier: USDPrim.Specifier { get nonmutating set }
      * @availability iOS 27.0+
@@ -3191,7 +3216,7 @@ export declare class USDPrim_VariantSpec extends SDKHandle {
      * var variantSets: [USDToken : USDPrim.VariantSetSpec] { get }
      * @availability iOS 27.0+
      */
-    get variantSets(): $SDK25;
+    get variantSets(): $SDK26;
     /**
      * func variantNames(_ variantSetName: USDToken) -> [USDToken]
      * @availability iOS 27.0+
@@ -3609,12 +3634,12 @@ export declare class USDStage_ObjectsDidChange extends SDKHandle {
      * var changedPaths: some Collection<USDLayer.Path> { get }
      * @availability iOS 27.0+
      */
-    get changedPaths(): $SDK36;
+    get changedPaths(): $SDK37;
     /**
      * var resyncedPaths: some Collection<USDLayer.Path> { get }
      * @availability iOS 27.0+
      */
-    get resyncedPaths(): $SDK36;
+    get resyncedPaths(): $SDK37;
     /**
      * var stage: USDStage { get }
      * @availability iOS 27.0+
@@ -3824,12 +3849,12 @@ export declare class USDTransformOperation extends SDKHandle {
      * func timeSamples(in interval: ClosedRange<USDStage.TimeCode>) -> [USDStage.TimeCode]
      * @availability iOS 27.0+
      */
-    timeSamplesIn(interval: SDKHandle): $SDK18;
+    timeSamplesIn(interval: SDKHandle): $SDK19;
     /**
      * var timeSamples: [USDStage.TimeCode] { get }
      * @availability iOS 27.0+
      */
-    get timeSamples(): $SDK18;
+    get timeSamples(): $SDK19;
     /**
      * var hasTimeSamples: Bool { get }
      * @availability iOS 27.0+

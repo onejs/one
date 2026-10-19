@@ -6,6 +6,11 @@ import type { AttributedString as _Foundation_AttributedString } from "one/ios/F
  * @availability iOS 18.4+
  */
 export declare class TranslationProviderUIExtensionConfiguration extends SDKHandle {
+    /**
+     * @MainActor @preconcurrency init(_ appExtension: any TranslationUIProviderExtension)
+     * @availability iOS 18.4+
+     */
+    static init(appExtension: SDKHandle): Promise<TranslationProviderUIExtensionConfiguration>;
     readonly $type: {
         "s:21TranslationUIProvider0A32ProviderUIExtensionConfigurationV": true;
     };
