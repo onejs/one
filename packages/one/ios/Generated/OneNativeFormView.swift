@@ -29,10 +29,6 @@ public final class OneNativeFormView: OneNativeContainerView {
   public var onMeasure: ((CGFloat) -> Void)?
   private let model: FormModel
   private let environment: OneNativeEnvironmentModel
-
-  // a filling form is the screen's scroll view, so like a native Form it keeps the
-  // screen's insets: its rows start below a transparent navigation bar and scroll
-  // under it. a content-sized form sits inside a box react native placed and keeps none.
   @nonobjc override var hostingScreenInsets: Bool { model.sizing == "fill" }
 
   public init() {
@@ -49,10 +45,9 @@ public final class OneNativeFormView: OneNativeContainerView {
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   public func configure(sizing: String) {
-    guard model.sizing != sizing else { return }
-    model.sizing = sizing
-    // the host reads its safe area regions when it lays out.
-    setNeedsLayout()
+    let previousScreenInsets = hostingScreenInsets
+    if model.sizing != sizing { model.sizing = sizing }
+    if previousScreenInsets != hostingScreenInsets { setNeedsLayout() }
   }
 
   public func configureEnvironment(
