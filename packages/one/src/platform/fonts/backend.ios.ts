@@ -9,7 +9,7 @@ import {
   kCTFontNameAttribute,
 } from 'one/ios/CoreText'
 import { CFErrorGetCode, CFURL } from 'one/ios/CoreFoundation'
-import { NSArray, Data, FileManager, NSData, NSURL } from 'one/ios/Foundation'
+import { NSArray, FileManager, NSData, NSURL, URLSession } from 'one/ios/Foundation'
 import { SDKHandle } from 'one/ios-runtime'
 import type { HybridObject } from 'react-native-nitro-modules'
 import { Crypto } from '../crypto/index.native'
@@ -53,9 +53,13 @@ async function cachedFile(url: NSURL, name: string): Promise<NSURL> {
   const fileURL = NSURL.initString(file)
   if (!fileURL) throw failed('could not be downloaded')
   if (FileManager.default.fileExistsAtPath(fileURL.path ?? '')) return fileURL
+  // async network i/o, as the swift's utility-queue dispatch did: a remote
+  // transfer must never block the js thread. status codes pass through
+  // unread like Data(contentsOf:) did; only transport failure rejects here.
   let bytes: ArrayBuffer
   try {
-    bytes = Data.initContentsOfOptions(url.absoluteString ?? '')
+    const result = await URLSession.shared.dataFrom(url.absoluteString ?? '')
+    bytes = result[0]
   } catch {
     throw failed('could not be downloaded')
   }
