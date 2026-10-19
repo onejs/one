@@ -97,8 +97,8 @@ export default function OneNativeTabView() {
         <Page id="design" title="Design" />
       </One.iOS.Tab>
       <One.iOS.Tab
-        id="deploy"
-        title="Deploy"
+        value="deploy"
+        titleKey="Deploy"
         systemImage="paperplane"
         badge="new"
         customizationID="deploy"

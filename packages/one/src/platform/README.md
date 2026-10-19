@@ -266,8 +266,8 @@ legacy `TabView`, which has no roles.
 
 ```tsx
 <One.iOS.Tab
-  id="compose"
-  title="Compose"
+  value="compose"
+  titleKey="Compose"
   systemImage="plus"
   role="search"
   onPress={openComposer}

@@ -61,16 +61,16 @@ export default function OneNativeTabLifecycle() {
         </One.iOS.Tab>
         <One.iOS.Tab value="act" titleKey="Act" systemImage="bolt" onPress={() => setPresses((value) => value + 1)} />
         <One.iOS.Tab
-          id="gate"
-          title="Gate"
+          value="gate"
+          titleKey="Gate"
           systemImage="lock"
           disabled={!gateOpen}
           onPress={() => setGatePresses((value) => value + 1)}
         />
         {joined ? (
           <One.iOS.Tab
-            id="joined"
-            title="Joined"
+            value="joined"
+            titleKey="Joined"
             systemImage="plus"
             role="prominent"
             onPress={() => setJoinedPresses((value) => value + 1)}

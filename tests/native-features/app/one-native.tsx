@@ -250,8 +250,8 @@ export default function OneNativeScreen() {
         {tabOrder.map((id) => (
           <One.iOS.Tab
             key={id}
-            id={id}
-            title={titles[id]}
+            value={id}
+            titleKey={titles[id]}
             systemImage={images[id]}
             badge={id === FIRST ? '2' : undefined}
             role={id === SECOND && searchRole ? 'search' : undefined}
@@ -287,8 +287,8 @@ export default function OneNativeScreen() {
         ))}
         {actionTab && !searchRole ? (
           <One.iOS.Tab
-            id="compose"
-            title="Compose"
+            value="compose"
+            titleKey="Compose"
             systemImage="plus"
             role="search"
             testID="one-native-tab-compose"

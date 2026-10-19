@@ -154,7 +154,7 @@ Skipped, with the reason each cannot interact:
 - Ink boxes are ink, not frames. A glyph's ink box is the painted pixels of the SF Symbol, which
   is smaller than the frame SwiftUI lays out for it, and a label's ink box is the painted text,
   which depends on the string. Compare ink to ink, never ink to a layout constant.
-- `title: ''` is how an icon-only tab is expressed, because `TabProps.title` is required. That is
+- `titleKey: ''` is how an icon-only tab is expressed, because `TabProps.titleKey` is required. That is
   not the same thing as a SwiftUI `Tab` built without a label, and the cell is labelled as what
   it is.
 
