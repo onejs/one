@@ -197,34 +197,36 @@ export default function OneNativeSheet() {
   return (
     <View style={styles.screen} testID="one-native-sheet-screen">
       <Text style={styles.title}>One Native Sheet</Text>
-      <Pressable
-        accessibilityRole="button"
-        onPress={cycleFeatureMode}
-        style={styles.featureMode}
-        testID="one-native-sheet-feature-mode"
-      >
-        <Text style={styles.featureModeText}>
-          {featureMode === 'controlled'
-            ? `controlled:${typeof selectedDetent === 'string' ? selectedDetent : 'custom'}`
-            : featureMode}
-        </Text>
-      </Pressable>
-      <Pressable
-        accessibilityRole="button"
-        onPress={() => setTallContent((value) => !value)}
-        style={styles.featureMode}
-        testID="one-native-sheet-tall-toggle"
-      >
-        <Text style={styles.featureModeText}>{tallContent ? 'tall' : 'compact'}</Text>
-      </Pressable>
-      <Pressable
-        accessibilityRole="button"
-        onPress={() => setRevision((value) => value + 1)}
-        style={styles.featureMode}
-        testID="one-native-sheet-bump-revision"
-      >
-        <Text style={styles.featureModeText}>{`rev ${revision}`}</Text>
-      </Pressable>
+      <View style={styles.featureControls}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={cycleFeatureMode}
+          style={styles.featureMode}
+          testID="one-native-sheet-feature-mode"
+        >
+          <Text style={styles.featureModeText}>
+            {featureMode === 'controlled'
+              ? `controlled:${typeof selectedDetent === 'string' ? selectedDetent : 'custom'}`
+              : featureMode}
+          </Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => setTallContent((value) => !value)}
+          style={styles.featureMode}
+          testID="one-native-sheet-tall-toggle"
+        >
+          <Text style={styles.featureModeText}>{tallContent ? 'tall' : 'compact'}</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => setRevision((value) => value + 1)}
+          style={styles.featureMode}
+          testID="one-native-sheet-bump-revision"
+        >
+          <Text style={styles.featureModeText}>{`rev ${revision}`}</Text>
+        </Pressable>
+      </View>
 
       {/* visible presentation status card */}
       <View style={styles.statusCard}>
@@ -367,17 +369,20 @@ const styles = StyleSheet.create({
     color: '#1C1C1E',
     marginBottom: 12,
   },
+  featureControls: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 12,
+  },
   featureMode: {
-    position: 'absolute',
-    right: 16,
-    top: 16,
-    zIndex: 1,
+    flex: 1,
     borderRadius: 7,
     backgroundColor: '#E5E5EA',
     paddingHorizontal: 8,
     paddingVertical: 5,
   },
   featureModeText: {
+    textAlign: 'center',
     color: '#007AFF',
     fontSize: 12,
     fontWeight: '600',
