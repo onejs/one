@@ -222,6 +222,8 @@ private final class OneNativeContentHolder: UIView {
   private(set) var content: OneNativeContentView?
   // the cell, told when the content it shows changes height
   var onHeight: (() -> Void)?
+  // the cell, told when content enters or leaves this holder
+  var onContent: (() -> Void)?
 
   func show(_ next: OneNativeContentView?) {
     if let content, content !== next, content.superview === self {
@@ -251,6 +253,16 @@ private final class OneNativeContentHolder: UIView {
     if window != nil { claim() }
   }
 
+  override func didAddSubview(_ subview: UIView) {
+    super.didAddSubview(subview)
+    onContent?()
+  }
+
+  override func willRemoveSubview(_ subview: UIView) {
+    super.willRemoveSubview(subview)
+    onContent?()
+  }
+
   override func layoutSubviews() {
     super.layoutSubviews()
     if let content, content.superview === self { content.frame = bounds }
@@ -268,6 +280,7 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.addSubview(holder)
     holder.onHeight = { [weak self] in if self?.item != nil { self?.source?.remeasure() } }
+    holder.onContent = { [weak self] in self?.contentChanged() }
   }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
@@ -278,6 +291,14 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
   }
 
   func show(_ content: OneNativeContentView?) { holder.show(content) }
+
+  // UIKit caches a cell's accessibility children and clears them only when the cell's own
+  // subviews change, so content entering the nested holder would stay hidden from VoiceOver.
+  // inserting contentView at its own index runs that clear and keeps the subview order
+  private func contentChanged() {
+    guard let index = subviews.firstIndex(of: contentView) else { return }
+    insertSubview(contentView, at: index)
+  }
 
   override func prepareForReuse() {
     super.prepareForReuse()
@@ -303,6 +324,7 @@ final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.addSubview(holder)
     holder.onHeight = { [weak self] in if self?.item != nil { self?.source?.remeasure() } }
+    holder.onContent = { [weak self] in self?.contentChanged() }
   }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
@@ -313,6 +335,14 @@ final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
   }
 
   func show(_ content: OneNativeContentView?) { holder.show(content) }
+
+  // UIKit caches a cell's accessibility children and clears them only when the cell's own
+  // subviews change, so content entering the nested holder would stay hidden from VoiceOver.
+  // inserting contentView at its own index runs that clear and keeps the subview order
+  private func contentChanged() {
+    guard let index = subviews.firstIndex(of: contentView) else { return }
+    insertSubview(contentView, at: index)
+  }
 
   override func prepareForReuse() {
     super.prepareForReuse()
