@@ -11,6 +11,23 @@ Coverage describes the generated snapshot. A framework page also lists skipped d
 
 For APIs with output parameters, leave those parameters out of the call. The returned object contains `$ret` for the return value and `$out` for the named output values.
 
+## Background method calls
+
+Use `callSDKMethodAsync` from `one/ios-runtime` to await an instance method that does blocking native work. It keeps the generated method's argument and return types:
+
+```tsx
+import type { CNContactStore, CNSaveRequest } from 'one/ios/Contacts'
+import { callSDKMethodAsync } from 'one/ios-runtime'
+
+async function saveContacts(store: CNContactStore, request: CNSaveRequest) {
+  await callSDKMethodAsync(store, 'execute', request)
+}
+```
+
+A synchronous method runs on a background queue when it has no main actor requirement. Main actor methods and native async methods retain their declared execution rules. Choose a background call only for APIs that support background access. Methods requiring synchronous JavaScript callbacks are rejected before native execution.
+
+Native failures throw an `Error` with `code: 'E_SDK'`, the original NSError `domain`, and its numeric `nativeCode`. Use these fields to classify a failure independently of its localized message. Calls, returned functions, and subscription errors preserve the same metadata.
+
 ## React state from native objects
 
 Two hooks from `one/ios-runtime` turn changing native values into React state. Each returns `{ status, value, error }`, where `status` is `'pending'`, `'value'` or `'error'`. Subscriptions start when the component mounts and stop when it unmounts or its arguments change.

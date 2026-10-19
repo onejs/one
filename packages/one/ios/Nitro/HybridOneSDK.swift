@@ -27,7 +27,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
   typealias SyncDispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> OneSDKResult
 
   private static func observationError(_ error: Error) -> OneSDKResult {
-    OneSDKValues.envelope(["error": error.localizedDescription])
+    OneSDKValues.envelope(failureData(error))
   }
 
   private static func observationListener(_ listener: @escaping (OneSDKResult) -> Void) -> (Any) -> Void {
@@ -39,30 +39,40 @@ final class HybridOneSDK: HybridOneSDKSpec {
 
   func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)],
                listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
-    let table = try OneSDKTables.table(module)
-    let call = try Self.prepareEnvelope(OneSDKResult(data: data, handles: handles, buffers: nil), dispatch: nil)
-    let lifetime = OneSDKSubscription()
-    DispatchQueue.main.async {
-      lifetime.deliver {
-        do {
-          let observation = try table.observe(Int(id), call, Self.observationListener(listener))
-          lifetime.install { observation.cancel() }
-        } catch {
-          listener(Self.observationError(error))
+    do {
+      let table = try OneSDKTables.table(module)
+      let call = try Self.prepareEnvelope(OneSDKResult(data: data, handles: handles, buffers: nil), dispatch: nil)
+      let lifetime = OneSDKSubscription()
+      DispatchQueue.main.async {
+        lifetime.deliver {
+          do {
+            let observation = try table.observe(Int(id), call, Self.observationListener(listener))
+            lifetime.install { observation.cancel() }
+          } catch {
+            listener(Self.observationError(error))
+          }
         }
       }
+      return { lifetime.cancel() }
+    } catch {
+      listener(Self.observationError(error))
+      return {}
     }
-    return { lifetime.cancel() }
   }
 
   func subscribe(handle: any HybridOneSDKHandleSpec, listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
-    guard let handle = handle as? HybridOneSDKHandle else {
-      throw oneNativeError("E_SDK", "expected a handle from the sdk bindings")
-    }
-    let subscription = try handle.box.subscribe(Self.observationListener(listener)) { error in
+    do {
+      guard let handle = handle as? HybridOneSDKHandle else {
+        throw oneNativeError("E_SDK", "expected a handle from the sdk bindings")
+      }
+      let subscription = try handle.box.subscribe(Self.observationListener(listener)) { error in
+        listener(Self.observationError(error))
+      }
+      return { subscription.cancel() }
+    } catch {
       listener(Self.observationError(error))
+      return {}
     }
-    return { subscription.cancel() }
   }
 
   private static func boxes(_ handles: [(any HybridOneSDKHandleSpec)]) throws -> [OneSDKHandleBox] {
@@ -141,8 +151,15 @@ final class HybridOneSDK: HybridOneSDKSpec {
     return OneSDKValues.packValue(value, existingHandles: call.handlesOut)
   }
 
-  private static func failure(_ module: String, _ id: Double, _ error: Error) -> Error {
-    oneNativeError("E_SDK", "\(module) #\(Int(id)): \(error.localizedDescription)")
+  private static func failureData(_ error: Error, context: String? = nil) -> [String: Any] {
+    let native = error as NSError
+    let description = (error as? RuntimeError)?.description ?? native.localizedDescription
+    let message = context.map { "E_SDK: \($0): \(description)" } ?? description
+    return ["$error": ["message": message, "code": "E_SDK", "domain": native.domain, "nativeCode": Double(native.code)]]
+  }
+
+  private static func failure(_ module: String, _ id: Double, _ error: Error) -> OneSDKValue {
+    .ninth(OneSDKValues.envelope(failureData(error, context: "\(module) #\(Int(id))")))
   }
 
   func call(
@@ -153,7 +170,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
       let call = try Self.prepareCall(receiver: receiver, arg0: arg0, arg1: arg1, dispatch: dispatch)
       return Self.result(try table.sync(Int(id), call), call, table: table, id: Int(id))
     } catch {
-      throw Self.failure(module, id, error)
+      return Self.failure(module, id, error)
     }
   }
 
@@ -166,17 +183,24 @@ final class HybridOneSDK: HybridOneSDKSpec {
       let call = try Self.prepareEnvelope(data, dispatch: dispatch, syncDispatch: syncDispatch)
       defer { call.endSynchronousCallbacks() }
       return Self.result(try table.sync(Int(id), call), call, table: table, id: Int(id))
-    } catch { throw Self.failure(module, id, error) }
+    } catch { return Self.failure(module, id, error) }
   }
 
   func callFunction(
     handle: any HybridOneSDKHandleSpec, arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: Dispatch?
   ) throws -> Promise<OneSDKValue> {
-    guard let handle = handle as? HybridOneSDKHandle, let function = handle.box.value as? OneSDKCallable else {
-      throw oneNativeError("E_SDK", "expected a callable sdk handle")
+    do {
+      guard let handle = handle as? HybridOneSDKHandle, let function = handle.box.value as? OneSDKCallable else {
+        throw oneNativeError("E_SDK", "expected a callable sdk handle")
+      }
+      let call = try Self.prepareCall(receiver: nil, arg0: arg0, arg1: arg1, dispatch: dispatch)
+      return Promise.async {
+        do { return Self.result(try await function.call(call), call) }
+        catch { return .ninth(OneSDKValues.envelope(Self.failureData(error))) }
+      }
+    } catch {
+      return .resolved(withResult: .ninth(OneSDKValues.envelope(Self.failureData(error))))
     }
-    let call = try Self.prepareCall(receiver: nil, arg0: arg0, arg1: arg1, dispatch: dispatch)
-    return Promise.async { Self.result(try await function.call(call), call) }
   }
 
   func callAsync(
@@ -188,13 +212,13 @@ final class HybridOneSDK: HybridOneSDKSpec {
       table = try OneSDKTables.table(module)
       call = try Self.prepareCall(receiver: receiver, arg0: arg0, arg1: arg1, dispatch: dispatch)
     } catch {
-      throw Self.failure(module, id, error)
+      return .resolved(withResult: Self.failure(module, id, error))
     }
     return Promise.async {
       do {
         return Self.result(try await table.async(Int(id), call), call, table: table, id: Int(id))
       } catch {
-        throw Self.failure(module, id, error)
+        return Self.failure(module, id, error)
       }
     }
   }

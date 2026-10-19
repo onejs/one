@@ -4,6 +4,7 @@ import {
   SDKHandle,
   callSDK,
   callSDKAsync,
+  callSDKMethodAsync,
   decodeSDKResult,
   registerSDKClass,
   registerSDKProtocol,
@@ -168,11 +169,85 @@ describe('SDK wire', () => {
     ])
     dispatch(reply(0.5))
     expect(value).toHaveBeenCalledWith(0.5)
-    dispatch({ data: { error: 'observation failed' }, handles: [] })
+    dispatch({ data: { $error: { message: 'observation failed', code: 'E_SDK', domain: 'Test', nativeCode: 1 } }, handles: [] })
     expect(error.mock.calls[0][0].message).toBe('observation failed')
     cancel()
     expect(stop).toHaveBeenCalledOnce()
     expect(() => observeSDKProperty(object, 'typo', value, error)).toThrow('unregistered SDK property')
+    expect(() => observeSDKProperty(object, 'toString', value, error)).toThrow('unregistered SDK property')
+  })
+
+  it('preserves native error metadata across calls, functions and subscriptions', async () => {
+    const failure = { message: 'E_SDK: Contacts #42: localized failure', code: 'E_SDK', domain: 'CNErrorDomain', nativeCode: 200 }
+    const packet: OneSDKResult = { data: { $error: failure }, handles: [] }
+    const native = fake()
+    vi.mocked(native.call).mockReturnValue(packet)
+    vi.mocked(native.callSync).mockReturnValue(packet)
+    vi.mocked(native.callAsync).mockResolvedValue(packet)
+    vi.mocked(native.callFunction).mockResolvedValue(packet)
+    setSDKNative(native)
+    for (const invoke of [
+      () => callSDK('Contacts', 42, undefined, []),
+      () => callSDK('Contacts', 42, undefined, [() => {}], [], true),
+    ]) {
+      let thrown: unknown
+      try { invoke() } catch (error) { thrown = error }
+      expect(thrown).toMatchObject(failure)
+    }
+    await expect(callSDKAsync('Contacts', 42, undefined, [])).rejects.toMatchObject(failure)
+    const fn = decodeSDKResult<() => Promise<void>>(handle('WireTest.ErrorFunction', { callable: true }))
+    await expect(fn()).rejects.toMatchObject(failure)
+    class Contact extends SDKHandle {}
+    registerSDKClass('WireTest.ErrorContact', Contact, { module: 'Contacts', properties: { name: 42 } })
+    const contact = new Contact(handle('WireTest.ErrorContact'))
+    const value = vi.fn()
+    const error = vi.fn()
+    observeSDKProperty(contact, 'name', value, error)
+    vi.mocked(native.observe).mock.calls[0][4](packet)
+    subscribeSDK(contact, value, error)
+    vi.mocked(native.subscribe).mock.calls[0][1](packet)
+    expect(value).not.toHaveBeenCalled()
+    expect(error.mock.calls.map(([error]) => error)).toEqual([
+      expect.objectContaining(failure), expect.objectContaining(failure),
+    ])
+    expect(decodeSDKResult(reply({ $error: failure, error: 'user data' }))).toEqual({ $error: failure, error: 'user data' })
+  })
+
+  it('dispatches only registered method implementations with their original native slots', async () => {
+    const native = fake()
+    setSDKNative(native)
+    class Store extends SDKHandle {
+      work(_name: string, _limit?: number) { return 'sync' }
+      blocked(_callback: () => void) { return 'blocked' }
+    }
+    class Extension extends SDKHandle {
+      blocked(_name: string) { return 'extension' }
+      added(_name: string) { return 'added' }
+    }
+    class Derived extends Store {}
+    registerSDKClass('WireTest.MethodStore', Store, { module: 'Store', properties: {}, methods: {
+      work: { id: 41, args: [0, 1, null] },
+    } })
+    registerSDKClass('WireTest.MethodStore', Extension, { module: 'Extension', properties: {}, methods: {
+      blocked: { id: 77 }, added: { id: 78 },
+    } }, true)
+    const store = new Derived(handle('WireTest.MethodStore'))
+    await callSDKMethodAsync(store, 'work', 'name')
+    const call = vi.mocked(native.callAsync).mock.calls[0]
+    expect(call.slice(0, 3)).toEqual(['Store', 41, undefined])
+    expect((call[3] as OneSDKResult).data).toEqual({ self: { $h: 0 }, args: ['name', null, null] })
+    await expect(callSDKMethodAsync(store, 'blocked', () => {})).rejects.toThrow('unregistered')
+    await expect(callSDKMethodAsync(store, 'toString')).rejects.toThrow('unregistered')
+    expect(native.callAsync).toHaveBeenCalledOnce()
+    await callSDKMethodAsync(store as Store & Extension, 'added', 'name')
+    expect(vi.mocked(native.callAsync).mock.calls[1].slice(0, 2)).toEqual(['Extension', 78])
+    class Override extends Store { work() { return 'override' } }
+    await expect(callSDKMethodAsync(new Override(store.$handle), 'work')).rejects.toThrow('unregistered')
+    store.work = () => 'instance override'
+    await expect(callSDKMethodAsync(store, 'work', 'name')).rejects.toThrow('unregistered')
+    Store.prototype.work = () => 'replaced'
+    await expect(callSDKMethodAsync(new Store(store.$handle), 'work', 'name')).rejects.toThrow('unregistered')
+    expect(native.callAsync).toHaveBeenCalledTimes(2)
   })
 
   it('subscribes to native streams through their handles', () => {

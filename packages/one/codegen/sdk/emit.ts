@@ -867,6 +867,10 @@ function renderSwift(module: string, table: string, imports: string[], entries: 
   const name = `OneSDK_${module}`
   const sync = entries.filter((e) => !e.isAsync && !e.main)
   const async = entries.filter((e) => e.isAsync || e.main)
+  // stable ids interleave sync and async entries, so async range guards catch
+  // sync ids too; these reject before any dispatch, and the async fallthrough
+  // runs the rest through the existing sync cases off the calling thread
+  const syncCallbackIds = sync.filter((e) => e.syncCallbacks).map((e) => e.id)
   // actor-isolated defaults such as #isolation are evaluated in the caller context.
   const chunks = (list: Entry[], isAsync: boolean) => {
     const out: string[] = []
@@ -875,7 +879,7 @@ function renderSwift(module: string, table: string, imports: string[], entries: 
       out.push(`  static func ${isAsync ? 'async' : 'sync'}${at / CHUNK}(_ id: Int, _ c: OneSDKCall) ${isAsync ? 'async ' : ''}throws -> Any {
     switch id {
 ${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor in ${e.swift} }()` : e.swift}`).join('\n')}
-    default: throw OneSDKError.unknownSymbol("${module}.\\(id)")
+    default: ${isAsync ? 'return try await OneSDKBackground.run { try sync(id, c) }' : `throw OneSDKError.unknownSymbol("${module}.\\(id)")`}
     }
   }`)
     }
@@ -943,14 +947,14 @@ ${names.map((_, i) => { const slice = named.slice(i * CHUNK, (i + 1) * CHUNK); r
     return []
   }
 
-  static func sync(_ id: Int, _ c: OneSDKCall) throws -> Any {
+${syncCallbackIds.length ? `  static let syncCallbackIds: Set<Int> = [${syncCallbackIds.join(', ')}]\n\n` : ''}  static func sync(_ id: Int, _ c: OneSDKCall) throws -> Any {
 ${dispatch(sync, false).join('\n')}
     throw OneSDKError.unknownSymbol("${module}.\\(id)")
   }
 
   static func async(_ id: Int, _ c: OneSDKCall) async throws -> Any {
-${dispatch(async, true).join('\n')}
-    throw OneSDKError.unknownSymbol("${module}.\\(id)")
+${syncCallbackIds.length ? `    if syncCallbackIds.contains(id) { throw OneSDKError.unsupported("async ${module}.\\(id) with synchronous callbacks") }\n` : ''}${dispatch(async, true).join('\n')}
+    return try await OneSDKBackground.run { try sync(id, c) }
   }
 
 ${[...names, ...observations, ...chunks(sync, false), ...chunks(async, true)].join('\n\n')}

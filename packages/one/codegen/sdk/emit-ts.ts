@@ -601,13 +601,22 @@ class Facade {
       .map((p) => p.declaration)
       .join(', ')}): ${returned}`
   }
-  invoke(e: E, self?: string) {
+  // native argument slots: out pointers occupy their swift slot with no public
+  // value, every other slot takes the next public parameter. invoke and the
+  // registered methods table share this so their args and hints always agree.
+  slots(e: E) {
     const params = this.params(e)
-    // out pointers occupy their swift argument slot even though callers supply no value.
     let at = 0
-    const args = e.params.map((p) => (p.out ? 'null' : params[at++].name))
-    at = 0
-    const hints = e.params.map((p) => (p.out ? null : params[at++].hint))
+    return e.params.map((p) =>
+      p.out
+        ? { name: null as string | null, index: null as number | null, hint: null as WireHint | null }
+        : { name: params[at].name, index: at, hint: params[at++].hint }
+    )
+  }
+  invoke(e: E, self?: string) {
+    const slots = this.slots(e)
+    const args = slots.map((s) => s.name ?? 'null')
+    const hints = slots.map((s) => s.hint)
     const sync = !!e.syncCallbacks
     const receiver = self ?? (e.owner && !this.static(e) ? 'this' : 'undefined')
     return `${e.isAsync || e.main ? 'callSDKAsync' : 'callSDK'}<${this.result(e)}>(${quote(this.output.table ?? this.output.module)}, ${e.id}, ${receiver}, [${args.join(', ')}]${hints.some(Boolean) || sync ? `, ${quote(hints)}` : ''}${sync ? ', true' : ''})`
@@ -912,6 +921,19 @@ class Facade {
       const observedProperties = Object.fromEntries(own
         .filter((e) => e.observation)
         .map((e) => [this.names.get(e.key)!, e.id]))
+      // instance callable members for background calls: init, accessors,
+      // statics and synchronous callbacks stay on their existing facades.
+      // inherited members resolve along prototypes, so only own names register.
+      const methods = Object.fromEntries(own
+        .filter((e) => e.owner && !this.static(e) && !['init', 'get', 'set'].includes(e.kind) && !e.syncCallbacks)
+        .map((e) => {
+          const slots = this.slots(e)
+          const entry: { id: number; args?: (number | null)[]; hints?: (WireHint | null)[] } = { id: e.id }
+          if (e.params.some((p) => p.out)) entry.args = slots.map((s) => s.index)
+          const hints = slots.map((s) => s.hint)
+          if (hints.some((h) => h !== null)) entry.hints = hints
+          return [this.memberName(e), entry]
+        }))
       // type-only brands for the react hooks: the properties a hook can observe and
       // the element a stream delivers. a subclass keeps its parent's names even
       // where it renames an inherited getter.
@@ -926,7 +948,7 @@ class Facade {
         `${this.jsdoc(info.usr)}export class ${name}${generics} extends ${base} {\n${members.join('\n')}\n}`
       )
       registrations.push(
-        `registerSDKClass(${quote(runtimeName(info))}, ${name}, { module: ${quote(this.output.table ?? this.output.module)}, properties: ${quote(observedProperties)} }${info.module !== this.output.module ? ', true' : ''});`
+        `registerSDKClass(${quote(runtimeName(info))}, ${name}, { module: ${quote(this.output.table ?? this.output.module)}, properties: ${quote(observedProperties)}${Object.keys(methods).length ? `, methods: ${quote(methods)}` : ''} }${info.module !== this.output.module ? ', true' : ''});`
       )
     }
     // mutable globals expose live accessors; immutable globals and functions are named exports.

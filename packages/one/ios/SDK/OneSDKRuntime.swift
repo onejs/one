@@ -911,6 +911,29 @@ extension OneSDKNamedConstants {
   public func toJS(_ call: OneSDKCall) -> Any { rawValue.toJS(call) }
 }
 
+// runs synchronous entries off the calling thread for the async facade. the
+// caller suspends at await and never touches the call concurrently, so the
+// handoff is safe; generated async reuses the sync cases through this helper
+// instead of duplicating their bodies.
+public enum OneSDKBackground {
+  public static let queue = DispatchQueue.global(qos: .userInitiated)
+
+  private final class Work: @unchecked Sendable {
+    let body: () throws -> Any
+    init(_ body: @escaping () throws -> Any) { self.body = body }
+  }
+
+  public static func run(_ body: @escaping () throws -> Any) async throws -> Any {
+    let work = Work(body)
+    return try await withCheckedThrowingContinuation { continuation in
+      queue.async {
+        do { continuation.resume(returning: try work.body()) }
+        catch { continuation.resume(throwing: error) }
+      }
+    }
+  }
+}
+
 // each framework's generated table, found by name so an app links only the
 // frameworks it imports
 public protocol OneSDKTable: NSObject {
