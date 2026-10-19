@@ -214,6 +214,11 @@ const testScreens = [
     testID: 'nav-one-native-swift-gestures',
   },
   {
+    href: '/one-native-drag-binding',
+    label: 'One Native Drag Binding',
+    testID: 'nav-one-native-drag-binding',
+  },
+  {
     href: '/one-native-control-size',
     label: 'One Native Control Size',
     testID: 'nav-one-native-control-size',

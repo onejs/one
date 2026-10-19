@@ -7,6 +7,12 @@ import {
   type ProcessedColorValue,
 } from 'react-native'
 import { animatorStyleNative, animatorStyleOf } from '../animatorStyle'
+import {
+  getSyncStateId,
+  isSyncState,
+  publishNativeSyncState,
+  type SyncState as NativeState,
+} from '../syncStore'
 import type { OneNativeStyle, SDKAnimationValue } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
@@ -49,6 +55,68 @@ const colorFields = [
   'borderColor',
   'glassEffectTint',
 ] as const
+const numberFields: readonly string[] = [
+  'fontSize',
+  'padding',
+  'paddingTop',
+  'paddingLeading',
+  'paddingBottom',
+  'paddingTrailing',
+  'width',
+  'height',
+  'minWidth',
+  'idealWidth',
+  'maxWidth',
+  'minHeight',
+  'idealHeight',
+  'maxHeight',
+  'cornerRadius',
+  'opacity',
+  'borderWidth',
+]
+// scalar SDK modifiers taking a continuous number a NativeState<number> may feed.
+const sdkContinuousNumbers: readonly string[] = [
+  'accessibilitySortPriority',
+  'accessibilityWithSortPriority',
+  'baselineOffset',
+  'brightness',
+  'contrast',
+  'environmentDefaultMinListHeaderHeight',
+  'environmentDefaultMinListRowHeight',
+  'environmentDisplayScale',
+  'environmentLineSpacing',
+  'environmentMinimumScaleFactor',
+  'grayscale',
+  'inspectorColumnWidthWithCGFloat',
+  'kerning',
+  'labelIconToTitleSpacing',
+  'labelReservedIconWidth',
+  'layoutPriority',
+  'lineSpacing',
+  'listRowSpacing',
+  'listSectionSpacingWithCGFloat',
+  'minimumScaleFactor',
+  'navigationSplitViewColumnWidthWithCGFloat',
+  'presentationCornerRadius',
+  'safeAreaPaddingWithCGFloat',
+  'saturation',
+  'speechAdjustedPitch',
+  'tracking',
+  'transformEnvironmentDefaultMinListRowHeight',
+  'transformEnvironmentDisplayScale',
+  'transformEnvironmentLineSpacing',
+  'transformEnvironmentMinimumScaleFactor',
+  'zIndex',
+]
+
+// a NativeState<number> feeding a continuous number travels as its entry id. native
+// reads the entry where it applies the style, so the entry must hold a finite number.
+function sdkNumberState(state: object, context: string): string {
+  const value = (state as { get(): unknown }).get()
+  if (typeof value !== 'number' || !Number.isFinite(value))
+    throw new Error(context + ' state must hold a finite number')
+  return '$sync:' + getSyncStateId(state)
+}
 const sdkKinds = {
   accentColor: 'optionalEnum',
   accessibilityAction: 'event',
@@ -1557,10 +1625,14 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
     tap: null,
   },
 }
-// each gesture's initializer options and whether it reports changes.
+// each gesture's initializer options, whether it reports changes and whether it
+// can bind a native state (DragGesture alone).
 const sdkGestureInputs: Record<
   string,
-  Record<string, { parameters: readonly SDKValueParameter[]; changed: boolean }>
+  Record<
+    string,
+    { parameters: readonly SDKValueParameter[]; changed: boolean; binds: boolean }
+  >
 > = {
   gesture: {
     drag: {
@@ -1574,6 +1646,7 @@ const sdkGestureInputs: Record<
         },
       ],
       changed: true,
+      binds: true,
     },
     longPress: {
       parameters: [
@@ -1581,12 +1654,14 @@ const sdkGestureInputs: Record<
         { field: 'maximumDistance', kind: 'number', optional: true },
       ],
       changed: true,
+      binds: false,
     },
     magnify: {
       parameters: [{ field: 'minimumScaleDelta', kind: 'number', optional: true }],
       changed: true,
+      binds: false,
     },
-    rotate: { parameters: [], changed: true },
+    rotate: { parameters: [], changed: true, binds: false },
     spatialTap: {
       parameters: [
         { field: 'count', kind: 'number', optional: true, integer: true },
@@ -1598,10 +1673,12 @@ const sdkGestureInputs: Record<
         },
       ],
       changed: true,
+      binds: false,
     },
     tap: {
       parameters: [{ field: 'count', kind: 'number', optional: true, integer: true }],
       changed: false,
+      binds: false,
     },
   },
   highPriorityGesture: {
@@ -1616,6 +1693,7 @@ const sdkGestureInputs: Record<
         },
       ],
       changed: true,
+      binds: true,
     },
     longPress: {
       parameters: [
@@ -1623,12 +1701,14 @@ const sdkGestureInputs: Record<
         { field: 'maximumDistance', kind: 'number', optional: true },
       ],
       changed: true,
+      binds: false,
     },
     magnify: {
       parameters: [{ field: 'minimumScaleDelta', kind: 'number', optional: true }],
       changed: true,
+      binds: false,
     },
-    rotate: { parameters: [], changed: true },
+    rotate: { parameters: [], changed: true, binds: false },
     spatialTap: {
       parameters: [
         { field: 'count', kind: 'number', optional: true, integer: true },
@@ -1640,10 +1720,12 @@ const sdkGestureInputs: Record<
         },
       ],
       changed: true,
+      binds: false,
     },
     tap: {
       parameters: [{ field: 'count', kind: 'number', optional: true, integer: true }],
       changed: false,
+      binds: false,
     },
   },
   simultaneousGesture: {
@@ -1658,6 +1740,7 @@ const sdkGestureInputs: Record<
         },
       ],
       changed: true,
+      binds: true,
     },
     longPress: {
       parameters: [
@@ -1665,12 +1748,14 @@ const sdkGestureInputs: Record<
         { field: 'maximumDistance', kind: 'number', optional: true },
       ],
       changed: true,
+      binds: false,
     },
     magnify: {
       parameters: [{ field: 'minimumScaleDelta', kind: 'number', optional: true }],
       changed: true,
+      binds: false,
     },
-    rotate: { parameters: [], changed: true },
+    rotate: { parameters: [], changed: true, binds: false },
     spatialTap: {
       parameters: [
         { field: 'count', kind: 'number', optional: true, integer: true },
@@ -1682,10 +1767,12 @@ const sdkGestureInputs: Record<
         },
       ],
       changed: true,
+      binds: false,
     },
     tap: {
       parameters: [{ field: 'count', kind: 'number', optional: true, integer: true }],
       changed: false,
+      binds: false,
     },
   },
 }
@@ -1696,6 +1783,7 @@ const sdkRecords: Record<
     field: string
     kind: string
     optional: boolean
+    continuous?: true
     unique?: boolean
     fields?: readonly { name: string; type: string; integer: boolean }[]
     eventValue?: SDKEventValueShape
@@ -1784,11 +1872,11 @@ const sdkRecords: Record<
   ],
   alignmentGuideWithHorizontalAlignment: [
     { field: 'g', kind: 'enum', optional: false },
-    { field: 'computeValue', kind: 'number', optional: false },
+    { field: 'computeValue', kind: 'number', optional: false, continuous: true },
   ],
   alignmentGuideWithVerticalAlignment: [
     { field: 'g', kind: 'enum', optional: false },
-    { field: 'computeValue', kind: 'number', optional: false },
+    { field: 'computeValue', kind: 'number', optional: false, continuous: true },
   ],
   appStoreMerchandising: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
@@ -1804,11 +1892,11 @@ const sdkRecords: Record<
     { field: 'position', kind: 'enum', optional: false },
   ],
   aspectRatio: [
-    { field: 'aspectRatio', kind: 'number', optional: true },
+    { field: 'aspectRatio', kind: 'number', optional: true, continuous: true },
     { field: 'contentMode', kind: 'enum', optional: false },
   ],
   blur: [
-    { field: 'radius', kind: 'number', optional: false },
+    { field: 'radius', kind: 'number', optional: false, continuous: true },
     { field: 'opaque', kind: 'boolean', optional: false },
   ],
   colorEffect: [
@@ -1827,21 +1915,21 @@ const sdkRecords: Record<
     { field: 'axes', kind: 'enum', optional: false },
     { field: 'count', kind: 'number', optional: false },
     { field: 'span', kind: 'number', optional: false },
-    { field: 'spacing', kind: 'number', optional: false },
+    { field: 'spacing', kind: 'number', optional: false, continuous: true },
     { field: 'alignment', kind: 'enum', optional: false },
   ],
   contentMarginsWithEdgesAndLengthAndPlacement: [
     { field: 'edges', kind: 'enum', optional: false },
-    { field: 'length', kind: 'number', optional: true },
+    { field: 'length', kind: 'number', optional: true, continuous: true },
     { field: 'placement', kind: 'enum', optional: false },
   ],
   contentMarginsWithLengthAndPlacement: [
-    { field: 'length', kind: 'number', optional: false },
+    { field: 'length', kind: 'number', optional: false, continuous: true },
     { field: 'placement', kind: 'enum', optional: false },
   ],
   copyable: [{ field: 'payload', kind: 'stringArray', optional: false }],
   cornerRadiusWithRadiusAndAntialiased: [
-    { field: 'radius', kind: 'number', optional: false },
+    { field: 'radius', kind: 'number', optional: false, continuous: true },
     { field: 'antialiased', kind: 'boolean', optional: false },
   ],
   defaultScrollAnchorWithAnchorAndRole: [
@@ -1902,17 +1990,17 @@ const sdkRecords: Record<
   ],
   frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment:
     [
-      { field: 'minWidth', kind: 'number', optional: true },
-      { field: 'idealWidth', kind: 'number', optional: true },
-      { field: 'maxWidth', kind: 'number', optional: true },
-      { field: 'minHeight', kind: 'number', optional: true },
-      { field: 'idealHeight', kind: 'number', optional: true },
-      { field: 'maxHeight', kind: 'number', optional: true },
+      { field: 'minWidth', kind: 'number', optional: true, continuous: true },
+      { field: 'idealWidth', kind: 'number', optional: true, continuous: true },
+      { field: 'maxWidth', kind: 'number', optional: true, continuous: true },
+      { field: 'minHeight', kind: 'number', optional: true, continuous: true },
+      { field: 'idealHeight', kind: 'number', optional: true, continuous: true },
+      { field: 'maxHeight', kind: 'number', optional: true, continuous: true },
       { field: 'alignment', kind: 'enum', optional: false },
     ],
   frameWithWidthAndHeightAndAlignment: [
-    { field: 'width', kind: 'number', optional: true },
-    { field: 'height', kind: 'number', optional: true },
+    { field: 'width', kind: 'number', optional: true, continuous: true },
+    { field: 'height', kind: 'number', optional: true, continuous: true },
     { field: 'alignment', kind: 'enum', optional: false },
   ],
   glassEffectID: [{ field: 'id', kind: 'string', optional: true }],
@@ -1931,9 +2019,9 @@ const sdkRecords: Record<
     { field: 'alignment', kind: 'enum', optional: true },
   ],
   inspectorColumnWidthWithMinAndIdealAndMax: [
-    { field: 'min', kind: 'number', optional: true },
-    { field: 'ideal', kind: 'number', optional: false },
-    { field: 'max', kind: 'number', optional: true },
+    { field: 'min', kind: 'number', optional: true, continuous: true },
+    { field: 'ideal', kind: 'number', optional: false, continuous: true },
+    { field: 'max', kind: 'number', optional: true, continuous: true },
   ],
   keyboardShortcutWithKeyAndModifiers: [
     { field: 'key', kind: 'enum', optional: false },
@@ -1963,7 +2051,7 @@ const sdkRecords: Record<
   ],
   listRowInsets: [
     { field: 'edges', kind: 'enum', optional: false },
-    { field: 'length', kind: 'number', optional: true },
+    { field: 'length', kind: 'number', optional: true, continuous: true },
   ],
   listRowSeparator: [
     { field: 'visibility', kind: 'enum', optional: false },
@@ -1975,7 +2063,7 @@ const sdkRecords: Record<
   ],
   listSectionMargins: [
     { field: 'edges', kind: 'enum', optional: false },
-    { field: 'length', kind: 'number', optional: true },
+    { field: 'length', kind: 'number', optional: true, continuous: true },
   ],
   listSectionSeparator: [
     { field: 'visibility', kind: 'enum', optional: false },
@@ -2006,13 +2094,13 @@ const sdkRecords: Record<
     { field: 'displayMode', kind: 'enum', optional: false },
   ],
   navigationSplitViewColumnWidthWithMinAndIdealAndMax: [
-    { field: 'min', kind: 'number', optional: true },
-    { field: 'ideal', kind: 'number', optional: false },
-    { field: 'max', kind: 'number', optional: true },
+    { field: 'min', kind: 'number', optional: true, continuous: true },
+    { field: 'ideal', kind: 'number', optional: false, continuous: true },
+    { field: 'max', kind: 'number', optional: true, continuous: true },
   ],
   offset: [
-    { field: 'x', kind: 'number', optional: false },
-    { field: 'y', kind: 'number', optional: false },
+    { field: 'x', kind: 'number', optional: false, continuous: true },
+    { field: 'y', kind: 'number', optional: false, continuous: true },
   ],
   onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction:
     [
@@ -2125,8 +2213,8 @@ const sdkRecords: Record<
     { field: 'items', kind: 'stringArray', optional: false },
   ],
   position: [
-    { field: 'x', kind: 'number', optional: false },
-    { field: 'y', kind: 'number', optional: false },
+    { field: 'x', kind: 'number', optional: false, continuous: true },
+    { field: 'y', kind: 'number', optional: false, continuous: true },
   ],
   postToPhotosSharedAlbumSheet: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
@@ -2174,20 +2262,20 @@ const sdkRecords: Record<
       ],
     },
     { field: 'anchor', kind: 'enum', optional: false },
-    { field: 'anchorZ', kind: 'number', optional: false },
-    { field: 'perspective', kind: 'number', optional: false },
+    { field: 'anchorZ', kind: 'number', optional: false, continuous: true },
+    { field: 'perspective', kind: 'number', optional: false, continuous: true },
   ],
   rotationEffect: [
     { field: 'angle', kind: 'enum', optional: false, value: 'Angle' },
     { field: 'anchor', kind: 'enum', optional: false },
   ],
   scaleEffectWithSAndAnchor: [
-    { field: 's', kind: 'number', optional: false },
+    { field: 's', kind: 'number', optional: false, continuous: true },
     { field: 'anchor', kind: 'enum', optional: false },
   ],
   scaleEffectWithXAndYAndAnchor: [
-    { field: 'x', kind: 'number', optional: false },
-    { field: 'y', kind: 'number', optional: false },
+    { field: 'x', kind: 'number', optional: false, continuous: true },
+    { field: 'y', kind: 'number', optional: false, continuous: true },
     { field: 'anchor', kind: 'enum', optional: false },
   ],
   scenePaddingWithPaddingAndEdges: [
@@ -2220,9 +2308,9 @@ const sdkRecords: Record<
   ],
   shadow: [
     { field: 'color', kind: 'enum', optional: false, value: 'Color' },
-    { field: 'radius', kind: 'number', optional: false },
-    { field: 'x', kind: 'number', optional: false },
-    { field: 'y', kind: 'number', optional: false },
+    { field: 'radius', kind: 'number', optional: false, continuous: true },
+    { field: 'x', kind: 'number', optional: false, continuous: true },
+    { field: 'y', kind: 'number', optional: false, continuous: true },
   ],
   storeButton: [
     { field: 'visibility', kind: 'enum', optional: false },
@@ -3422,6 +3510,8 @@ function sdkGestureText(value: unknown, name: string): string {
       field !== 'kind' &&
       field !== 'onEnded' &&
       field !== 'onChanged' &&
+      field !== 'bind' &&
+      field !== 'snap' &&
       config[field] !== undefined
   )
   if (!fitsSDKOverload(given, input.parameters))
@@ -3432,7 +3522,8 @@ function sdkGestureText(value: unknown, name: string): string {
         ' takes ' +
         (input.parameters.map((parameter) => parameter.field).join(', ') || 'no options')
     )
-  if (!given.length && config.onChanged === undefined) return kind
+  const binding = sdkGestureBinding(config, input.binds, name)
+  if (!given.length && config.onChanged === undefined && !binding) return kind
   const options: Record<string, unknown> = JSON.parse(
     JSON.stringify(Object.fromEntries(given.map((field) => [field, config[field]])))
   )
@@ -3441,7 +3532,68 @@ function sdkGestureText(value: unknown, name: string): string {
     kind,
     ...options,
     ...(config.onChanged ? { onChanged: true } : {}),
+    ...binding,
   })
+}
+
+// a drag's bind and snap for native: the state's entry id, the axis, the clamp
+// range, and absolute snap targets with the animation that settles on one.
+function sdkGestureBinding(
+  config: Record<string, unknown>,
+  binds: boolean,
+  name: string
+): Record<string, unknown> | undefined {
+  const { bind, snap } = config as {
+    bind?: Record<string, unknown>
+    snap?: Record<string, unknown>
+  }
+  if (bind === undefined && snap === undefined) return undefined
+  if (!binds) throw new Error(name + '.bind is not available for ' + config.kind)
+  if (
+    !bind ||
+    typeof bind !== 'object' ||
+    !isSyncState(bind.state) ||
+    (bind.axis !== 'x' && bind.axis !== 'y')
+  )
+    throw new Error(name + '.bind must have a native state and an x or y axis')
+  sdkNumberState(bind.state, name + '.bind.state')
+  const range = bind.range as unknown[] | undefined
+  if (
+    range !== undefined &&
+    (!Array.isArray(range) ||
+      range.length !== 2 ||
+      !range.every((item) => typeof item === 'number' && Number.isFinite(item)) ||
+      (range[0] as number) > (range[1] as number))
+  )
+    throw new Error(name + '.bind.range must be [min, max]')
+  const encoded: Record<string, unknown> = {
+    bind: {
+      state: getSyncStateId(bind.state),
+      axis: bind.axis,
+      ...(range ? { range } : {}),
+    },
+  }
+  if (snap === undefined) return encoded
+  const targets = snap?.targets as unknown[] | undefined
+  if (
+    !snap ||
+    typeof snap !== 'object' ||
+    !Array.isArray(targets) ||
+    !targets.length ||
+    !targets.every((item) => typeof item === 'number' && Number.isFinite(item)) ||
+    snap.animation === undefined
+  )
+    throw new Error(name + '.snap must have finite targets and an animation')
+  return {
+    ...encoded,
+    snap: {
+      targets,
+      animation: encodeSDKAnimation(
+        snap.animation as SDKAnimationValue,
+        name + '.snap.animation'
+      ),
+    },
+  }
 }
 
 // the text withAnimation and PhaseAnimator hand native for an SDK Animation.
@@ -3570,6 +3722,7 @@ export function swiftStyleNative(
   if (animator) return animatorStyleNative(animator, swiftStyleNative)
   const native: Record<string, unknown> = {}
   const sdkModifiers: [string, string][] = []
+  const states: Record<string, number> = {}
   for (const [name, value] of Object.entries(style)) {
     if (value === undefined) continue
     if (Object.hasOwn(sdkKinds, name)) {
@@ -3639,6 +3792,8 @@ export function swiftStyleNative(
               )
             return JSON.stringify(item)
           }
+          if (argument.continuous && isSyncState(item))
+            return sdkNumberState(item, name + '.' + argument.field)
           if (
             argument.kind === 'number' &&
             (typeof item !== 'number' || !Number.isFinite(item))
@@ -4064,6 +4219,10 @@ export function swiftStyleNative(
         ])
         continue
       }
+      if (sdkContinuousNumbers.includes(name) && isSyncState(value)) {
+        sdkModifiers.push([name, sdkNumberState(value, name)])
+        continue
+      }
       if (
         Object.hasOwn(sdkModifierValues, name) &&
         typeof value === 'object' &&
@@ -4199,10 +4358,16 @@ export function swiftStyleNative(
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
+    } else if (numberFields.includes(name) && isSyncState(value)) {
+      sdkNumberState(value, name)
+      states[name] = getSyncStateId(value)!
     } else {
       native[name] = value
     }
   }
+  // number fields fed by native state ride one private pair the native style reads.
+  if (Object.keys(states).length)
+    sdkModifiers.push(['oneNativeState', JSON.stringify(states)])
   if (sdkModifiers.length) native.sdkModifiers = JSON.stringify(sdkModifiers)
   return native as OneNativeStyleNative
 }
@@ -4361,6 +4526,19 @@ export function dispatchSDKEvent(
       const payload: unknown = JSON.parse(value)
       if (!validSDKEventValue(payload, shape))
         throw new Error(name + ' emitted an invalid gesture event')
+      const binding = config as
+        | { bind?: { state: object }; snap?: { targets: readonly number[] } }
+        | undefined
+      if (
+        binding?.snap &&
+        !binding.snap.targets.includes(
+          (payload as { snapTarget?: unknown }).snapTarget as number
+        )
+      )
+        throw new Error(name + ' emitted an invalid snap target')
+      // the gesture wrote the entry natively; JS subscribers learn the settled value now.
+      if (binding?.bind)
+        publishNativeSyncState(binding.bind.state as NativeState<unknown>)
       config?.onEnded(payload)
     }
   } else if (kind === 'event') (modifier as (() => void) | undefined)?.()

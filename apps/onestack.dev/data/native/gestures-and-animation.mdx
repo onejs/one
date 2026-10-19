@@ -107,8 +107,45 @@ gesture's initializer options, and callbacks:
 `onEnded` receives the gesture's value: for a drag, its `location`,
 `translation`, `velocity` and predicted end. `onChanged` is available on
 every kind except `tap`, and native only reports changes when you pass it.
-Each change crosses to JavaScript, so use it for state and haptics, not to
-follow the finger; for that, use the Gesture Handler setup above.
+Each change crosses to JavaScript, so use it for state and haptics. To move
+a view with the finger, bind the drag to native state instead.
+
+### Binding a drag to native state
+
+A drag can write a `useNativeState` number itself, so the view follows the
+finger without waiting for JavaScript. Continuous number fields in
+`swiftStyle` (`CGFloat` or `Double` in SwiftUI, such as `width`, `height`,
+`offset` and the `frame` sizes) accept the same handle and read it natively.
+
+```tsx
+const offset = useNativeState(0)
+
+<One.iOS.Rectangle
+  style={{ height: 700 }}
+  swiftStyle={{
+    offset: { x: 0, y: offset },
+    gesture: {
+      kind: 'drag',
+      bind: { state: offset, axis: 'y', range: [0, 600] },
+      snap: {
+        targets: [0, 300, 600],
+        animation: { kind: 'spring', response: 0.35, dampingFraction: 0.8 },
+      },
+      onEnded: ({ snapTarget }) => setDetent(snapTarget),
+    },
+  }}
+/>
+```
+
+- `bind` writes the state's value at the start of the drag plus the
+  translation along `axis`, clamped to `range`.
+- `snap` takes absolute targets in the same units as the state. On release,
+  native code picks the target nearest the predicted end, animates to it,
+  and reports it to `onEnded` as `snapTarget`.
+- The state must hold a finite number. Integer fields do not take a handle.
+- Movement stays inside the SwiftUI content. The React Native host keeps its
+  frame, siblings do not reflow, and touches only reach content inside the
+  host's bounds, so size the host to the full travel with `style`.
 
 ## API reference
 

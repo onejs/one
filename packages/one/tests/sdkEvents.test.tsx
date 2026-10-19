@@ -1,5 +1,8 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
+import { createSyncState, getSyncStateId } from '../src/platform/syncStore'
+import { withNativeWrite } from './setupNativeState'
+
 const completeAsyncAction = vi.hoisted(() => vi.fn())
 const completeAsyncString = vi.hoisted(() => vi.fn())
 vi.mock('react-native', () => ({
@@ -1180,6 +1183,59 @@ describe('SDK callback and binding transport', () => {
     expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
       name: 'highPriorityGesture', value: '{"location":{"x":20,"y":"bad"}}',
     } })).toThrow('invalid gesture event')
+  })
+
+  it('feeds continuous numbers and a bound drag from native state', () => {
+    const { handle: offset, nativeWrite } = withNativeWrite(() => createSyncState(0))
+    const width = createSyncState(120)
+    const id = getSyncStateId(offset)
+    const onEnded = vi.fn()
+    const published = vi.fn()
+    offset.subscribe(published)
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      width,
+      offset: { x: 0, y: offset },
+      gesture: { kind: 'drag', bind: { state: offset, axis: 'y', range: [0, 600] },
+        snap: { targets: [0, 300, 600], animation: { kind: 'spring', response: 0.35, dampingFraction: 0.8 } },
+        onEnded },
+    } })
+    expect(element.props.swiftStyle.width).toBeUndefined()
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['offset', JSON.stringify(['0', '$sync:' + id])],
+      ['gesture', JSON.stringify({ kind: 'drag', bind: { state: id, axis: 'y', range: [0, 600] },
+        snap: { targets: [0, 300, 600], animation: '{"kind":"spring","response":0.35,"dampingFraction":0.8}' } })],
+      ['oneNativeState', JSON.stringify({ width: getSyncStateId(width) })],
+    ])
+    const drag = {
+      location: { x: 20, y: 30 }, startLocation: { x: 5, y: 10 },
+      translation: { width: 15, height: 20 }, velocity: { width: 300, height: 400 },
+      predictedEndLocation: { x: 80, y: 110 }, predictedEndTranslation: { width: 75, height: 100 },
+    }
+    // native wrote the settled target before reporting it.
+    nativeWrite(300)
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'gesture', value: JSON.stringify({ ...drag, snapTarget: 300 }),
+    } })
+    expect(onEnded).toHaveBeenCalledWith({ ...drag, snapTarget: 300 })
+    expect(published).toHaveBeenCalledWith(300)
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'gesture', value: JSON.stringify({ ...drag, snapTarget: 150 }),
+    } })).toThrow('invalid snap target')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      offset: { x: 0, y: createSyncState(Number.NaN) },
+    } })).toThrow('offset.y state must hold a finite number')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      lineLimitWithOptionalInt: createSyncState(2) as never,
+    } })).toThrow('must be finite or null')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'tap', bind: { state: offset, axis: 'y' }, onEnded } as never,
+    } })).toThrow('gesture.bind is not available for tap')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'drag', bind: { state: offset, axis: 'y', range: [600, 0] }, onEnded },
+    } })).toThrow('gesture.bind.range must be [min, max]')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'drag', snap: { targets: [0], animation: 'easeOut' }, onEnded },
+    } })).toThrow('gesture.bind must have a native state')
   })
 
   it('round trips a Codable customization binding through native JSON', () => {

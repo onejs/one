@@ -2434,30 +2434,30 @@ export type SDKUnitPointValue =
   | 'bottomTrailing'
 
 export interface OneNativeStyle {
-  fontSize?: number
+  fontSize?: number | NativeState<number>
   fontWeight?: string
   fontDesign?: string
   textStyle?: string
   foregroundStyle?: ColorValue
   tint?: ColorValue
   background?: ColorValue
-  padding?: number
-  paddingTop?: number
-  paddingLeading?: number
-  paddingBottom?: number
-  paddingTrailing?: number
-  width?: number
-  height?: number
-  minWidth?: number
-  idealWidth?: number
-  maxWidth?: number
-  minHeight?: number
-  idealHeight?: number
-  maxHeight?: number
-  cornerRadius?: number
-  opacity?: number
+  padding?: number | NativeState<number>
+  paddingTop?: number | NativeState<number>
+  paddingLeading?: number | NativeState<number>
+  paddingBottom?: number | NativeState<number>
+  paddingTrailing?: number | NativeState<number>
+  width?: number | NativeState<number>
+  height?: number | NativeState<number>
+  minWidth?: number | NativeState<number>
+  idealWidth?: number | NativeState<number>
+  maxWidth?: number | NativeState<number>
+  minHeight?: number | NativeState<number>
+  idealHeight?: number | NativeState<number>
+  maxHeight?: number | NativeState<number>
+  cornerRadius?: number | NativeState<number>
+  opacity?: number | NativeState<number>
   borderColor?: ColorValue
-  borderWidth?: number
+  borderWidth?: number | NativeState<number>
   glassEffect?: GlassEffect
   glassEffectInteractive?: boolean
   glassEffectTint?: ColorValue
@@ -2604,7 +2604,7 @@ export interface OneNativeStyle {
   accessibilityScrollAction?: (value: 'top' | 'leading' | 'bottom' | 'trailing') => void
   accessibilityScrollStatus?: Readonly<{ status: string; isEnabled: boolean }>
   accessibilityShowsLargeContentViewer?: boolean
-  accessibilitySortPriority?: number
+  accessibilitySortPriority?: number | NativeState<number>
   accessibilityTextContentType?: SDKAccessibilityTextContentType
   accessibilityValueWithText?: string
   accessibilityValueWithValueDescriptionAndIsEnabled?: Readonly<{
@@ -2622,7 +2622,7 @@ export interface OneNativeStyle {
   accessibilityWithRemoveTraits?:
     | SDKAccessibilityWithRemoveTraits
     | SDKAccessibilityTraitsRecord
-  accessibilityWithSortPriority?: number
+  accessibilityWithSortPriority?: number | NativeState<number>
   accessibilityWithValue?: string
   accessibilityZoomAction?: (value: {
     direction: 'zoomIn' | 'zoomOut'
@@ -2645,11 +2645,11 @@ export interface OneNativeStyle {
       | 'trailing'
       | 'listRowSeparatorLeading'
       | 'listRowSeparatorTrailing'
-    computeValue: number
+    computeValue: number | NativeState<number>
   }>
   alignmentGuideWithVerticalAlignment?: Readonly<{
     g: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline'
-    computeValue: number
+    computeValue: number | NativeState<number>
   }>
   allowedDynamicRange?: SDKAllowedDynamicRange | null
   allowsHitTesting?: boolean
@@ -2676,7 +2676,10 @@ export interface OneNativeStyle {
     appIdentifier: string
     position: 'bottom' | 'bottomRaised'
   }>
-  aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
+  aspectRatio?: Readonly<{
+    aspectRatio: number | NativeState<number> | null
+    contentMode: 'fit' | 'fill'
+  }>
   assistiveAccessNavigationIconWithImage?: string
   assistiveAccessNavigationIconWithSystemImage?: string
   asyncImageURLSession?: SDKAsyncImageURLSession
@@ -2689,11 +2692,11 @@ export interface OneNativeStyle {
   badgeProminence?: SDKBadgeProminence
   badgeWithInt?: number
   badgeWithOptionalText?: string | null
-  baselineOffset?: number
+  baselineOffset?: number | NativeState<number>
   blendMode?: SDKBlendMode
-  blur?: Readonly<{ radius: number; opaque: boolean }>
+  blur?: Readonly<{ radius: number | NativeState<number>; opaque: boolean }>
   bold?: boolean
-  brightness?: number
+  brightness?: number | NativeState<number>
   buttonBorderShape?: SDKButtonBorderShape | SDKButtonBorderShapeRecord
   buttonRepeatBehavior?: SDKButtonRepeatBehavior
   buttonSizing?: SDKButtonSizing
@@ -2732,7 +2735,7 @@ export interface OneNativeStyle {
     axes: 'horizontal' | 'vertical'
     count: number
     span: number
-    spacing: number
+    spacing: number | NativeState<number>
     alignment:
       | 'center'
       | 'leading'
@@ -2754,22 +2757,22 @@ export interface OneNativeStyle {
   containerValue?: string
   contentMarginsWithEdgesAndLengthAndPlacement?: Readonly<{
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-    length: number | null
+    length: number | NativeState<number> | null
     placement: 'automatic' | 'scrollContent' | 'scrollIndicators'
   }>
   contentMarginsWithLengthAndPlacement?: Readonly<{
-    length: number
+    length: number | NativeState<number>
     placement: 'automatic' | 'scrollContent' | 'scrollIndicators'
   }>
   contentShape?: SDKContentShape
   contentTransition?: SDKContentTransition | SDKContentTransitionRecord
-  contrast?: number
+  contrast?: number | NativeState<number>
   controlGroupStyle?: SDKControlGroupStyle
   controlSize?: SDKControlSize
   coordinateSpace?: string
   copyable?: Readonly<{ payload: readonly string[] }>
   cornerRadiusWithRadiusAndAntialiased?: Readonly<{
-    radius: number
+    radius: number | NativeState<number>
     antialiased: boolean
   }>
   currentEntitlementTask?: Readonly<{
@@ -2883,10 +2886,10 @@ export interface OneNativeStyle {
     | SDKContentTransitionRecord
   environmentContentTransitionAddsDrawingGroup?: boolean
   environmentControlSize?: SDKEnvironmentControlSize
-  environmentDefaultMinListHeaderHeight?: number | null
-  environmentDefaultMinListRowHeight?: number
+  environmentDefaultMinListHeaderHeight?: number | NativeState<number> | null
+  environmentDefaultMinListRowHeight?: number | NativeState<number>
   environmentDisableAutocorrection?: boolean | null
-  environmentDisplayScale?: number
+  environmentDisplayScale?: number | NativeState<number>
   environmentDynamicTypeSize?: SDKEnvironmentDynamicTypeSize
   environmentFont?: SDKEnvironmentFont | SDKFontRecord | null
   environmentHeaderProminence?: SDKEnvironmentHeaderProminence
@@ -2908,12 +2911,12 @@ export interface OneNativeStyle {
     | SDKAttributedStringLineHeightRecord
     | null
   environmentLineLimit?: number | null
-  environmentLineSpacing?: number
+  environmentLineSpacing?: number | NativeState<number>
   environmentLocale?: SDKEnvironmentLocale
   environmentMaterialActiveAppearance?: SDKEnvironmentMaterialActiveAppearance
   environmentMenuIndicatorVisibility?: SDKEnvironmentMenuIndicatorVisibility
   environmentMenuOrder?: SDKEnvironmentMenuOrder
-  environmentMinimumScaleFactor?: number
+  environmentMinimumScaleFactor?: number | NativeState<number>
   environmentMultilineTextAlignment?: SDKEnvironmentMultilineTextAlignment
   environmentObject?: string
   environmentRealityViewCameraControls?: SDKEnvironmentRealityViewCameraControls
@@ -2992,12 +2995,12 @@ export interface OneNativeStyle {
   foregroundColor?: SDKForegroundColor | SDKColorRecord | null
   formStyle?: SDKFormStyle
   frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment?: Readonly<{
-    minWidth: number | null
-    idealWidth: number | null
-    maxWidth: number | null
-    minHeight: number | null
-    idealHeight: number | null
-    maxHeight: number | null
+    minWidth: number | NativeState<number> | null
+    idealWidth: number | NativeState<number> | null
+    maxWidth: number | NativeState<number> | null
+    minHeight: number | NativeState<number> | null
+    idealHeight: number | NativeState<number> | null
+    maxHeight: number | NativeState<number> | null
     alignment:
       | 'center'
       | 'leading'
@@ -3017,8 +3020,8 @@ export interface OneNativeStyle {
   }>
   frameWithNoArguments?: boolean
   frameWithWidthAndHeightAndAlignment?: Readonly<{
-    width: number | null
-    height: number | null
+    width: number | NativeState<number> | null
+    height: number | NativeState<number> | null
     alignment:
       | 'center'
       | 'leading'
@@ -3043,6 +3046,12 @@ export interface OneNativeStyle {
         kind: 'drag'
         minimumDistance?: number
         coordinateSpace?: SDKCoordinateSpaceValue
+        bind?: Readonly<{
+          state: NativeState<number>
+          axis: 'x' | 'y'
+          range?: readonly [min: number, max: number]
+        }>
+        snap?: Readonly<{ targets: readonly number[]; animation: SDKAnimationValue }>
         onChanged?: (value: {
           location: { x: number; y: number }
           startLocation: { x: number; y: number }
@@ -3051,14 +3060,16 @@ export interface OneNativeStyle {
           predictedEndLocation: { x: number; y: number }
           predictedEndTranslation: { width: number; height: number }
         }) => void
-        onEnded: (value: {
-          location: { x: number; y: number }
-          startLocation: { x: number; y: number }
-          translation: { width: number; height: number }
-          velocity: { width: number; height: number }
-          predictedEndLocation: { x: number; y: number }
-          predictedEndTranslation: { width: number; height: number }
-        }) => void
+        onEnded: (
+          value: {
+            location: { x: number; y: number }
+            startLocation: { x: number; y: number }
+            translation: { width: number; height: number }
+            velocity: { width: number; height: number }
+            predictedEndLocation: { x: number; y: number }
+            predictedEndTranslation: { width: number; height: number }
+          } & Readonly<{ snapTarget?: number }>
+        ) => void
       }>
     | Readonly<{
         kind: 'longPress'
@@ -3111,7 +3122,7 @@ export interface OneNativeStyle {
   glassEffectTransition?: SDKGlassEffectTransition
   glassEffectUnion?: Readonly<{ id: string | null }>
   glassEffectWithGlass?: SDKGlassEffectWithGlass | SDKGlassRecord
-  grayscale?: number
+  grayscale?: number | NativeState<number>
   gridCellAnchor?: SDKGridCellAnchor
   gridCellColumns?: number
   gridCellUnsizedAxes?: SDKGridCellUnsizedAxes
@@ -3131,6 +3142,12 @@ export interface OneNativeStyle {
         kind: 'drag'
         minimumDistance?: number
         coordinateSpace?: SDKCoordinateSpaceValue
+        bind?: Readonly<{
+          state: NativeState<number>
+          axis: 'x' | 'y'
+          range?: readonly [min: number, max: number]
+        }>
+        snap?: Readonly<{ targets: readonly number[]; animation: SDKAnimationValue }>
         onChanged?: (value: {
           location: { x: number; y: number }
           startLocation: { x: number; y: number }
@@ -3139,14 +3156,16 @@ export interface OneNativeStyle {
           predictedEndLocation: { x: number; y: number }
           predictedEndTranslation: { width: number; height: number }
         }) => void
-        onEnded: (value: {
-          location: { x: number; y: number }
-          startLocation: { x: number; y: number }
-          translation: { width: number; height: number }
-          velocity: { width: number; height: number }
-          predictedEndLocation: { x: number; y: number }
-          predictedEndTranslation: { width: number; height: number }
-        }) => void
+        onEnded: (
+          value: {
+            location: { x: number; y: number }
+            startLocation: { x: number; y: number }
+            translation: { width: number; height: number }
+            velocity: { width: number; height: number }
+            predictedEndLocation: { x: number; y: number }
+            predictedEndTranslation: { width: number; height: number }
+          } & Readonly<{ snapTarget?: number }>
+        ) => void
       }>
     | Readonly<{
         kind: 'longPress'
@@ -3234,18 +3253,18 @@ export interface OneNativeStyle {
         kind: 'page'
         backgroundDisplayMode: SDKPageIndexViewStyleBackgroundDisplayModeValue
       }>
-  inspectorColumnWidthWithCGFloat?: number
+  inspectorColumnWidthWithCGFloat?: number | NativeState<number>
   inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
-    min: number | null
-    ideal: number
-    max: number | null
+    min: number | NativeState<number> | null
+    ideal: number | NativeState<number>
+    max: number | NativeState<number> | null
   }>
   interactionActivityTrackingTag?: string
   interactiveDismissDisabled?: boolean
   invalidatableContent?: boolean
   italic?: boolean
   itemProvider?: string
-  kerning?: number
+  kerning?: number | NativeState<number>
   keyboardShortcutWithKeyAndModifiers?: Readonly<{
     key:
       | 'upArrow'
@@ -3311,8 +3330,8 @@ export interface OneNativeStyle {
     repeating?: boolean
   }>
   labeledContentStyle?: SDKLabeledContentStyle
-  labelIconToTitleSpacing?: number
-  labelReservedIconWidth?: number
+  labelIconToTitleSpacing?: number | NativeState<number>
+  labelReservedIconWidth?: number | NativeState<number>
   labelsHidden?: boolean
   labelStyle?: SDKLabelStyle
   labelsVisibility?: SDKLabelsVisibility
@@ -3322,12 +3341,12 @@ export interface OneNativeStyle {
     isEnabled: boolean
   }>
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
-  layoutPriority?: number
+  layoutPriority?: number | NativeState<number>
   layoutValue?: string
   lineHeight?: SDKLineHeight | SDKAttributedStringLineHeightRecord | null
   lineLimitWithLimitAndReservesSpace?: Readonly<{ limit: number; reservesSpace: boolean }>
   lineLimitWithOptionalInt?: number | null
-  lineSpacing?: number
+  lineSpacing?: number | NativeState<number>
   listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | SDKColorRecord | null
   listItemTintWithOptionalListItemTint?:
     | SDKListItemTintWithOptionalListItemTint
@@ -3335,7 +3354,7 @@ export interface OneNativeStyle {
     | null
   listRowInsets?: Readonly<{
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-    length: number | null
+    length: number | NativeState<number> | null
   }>
   listRowSeparator?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
@@ -3366,11 +3385,11 @@ export interface OneNativeStyle {
       | null
     edges: 'top' | 'bottom' | 'all'
   }>
-  listRowSpacing?: number | null
+  listRowSpacing?: number | NativeState<number> | null
   listSectionIndexVisibility?: SDKListSectionIndexVisibility
   listSectionMargins?: Readonly<{
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-    length: number | null
+    length: number | NativeState<number> | null
   }>
   listSectionSeparator?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
@@ -3401,7 +3420,7 @@ export interface OneNativeStyle {
       | null
     edges: 'top' | 'bottom' | 'all'
   }>
-  listSectionSpacingWithCGFloat?: number
+  listSectionSpacingWithCGFloat?: number | NativeState<number>
   listSectionSpacingWithListSectionSpacing?:
     | SDKListSectionSpacingWithListSectionSpacing
     | SDKListSectionSpacingRecord
@@ -3451,7 +3470,7 @@ export interface OneNativeStyle {
   menuIndicator?: SDKMenuIndicator
   menuOrder?: SDKMenuOrder
   menuStyle?: SDKMenuStyle
-  minimumScaleFactor?: number
+  minimumScaleFactor?: number | NativeState<number>
   modelContainer?: string
   modelContext?: string
   modifier?: string
@@ -3489,11 +3508,11 @@ export interface OneNativeStyle {
   }>
   navigationDocument?: string
   navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
-  navigationSplitViewColumnWidthWithCGFloat?: number
+  navigationSplitViewColumnWidthWithCGFloat?: number | NativeState<number>
   navigationSplitViewColumnWidthWithMinAndIdealAndMax?: Readonly<{
-    min: number | null
-    ideal: number
-    max: number | null
+    min: number | NativeState<number> | null
+    ideal: number | NativeState<number>
+    max: number | NativeState<number> | null
   }>
   navigationSplitViewStyle?: SDKNavigationSplitViewStyle
   navigationSubtitle?: string
@@ -3505,7 +3524,7 @@ export interface OneNativeStyle {
   navigationTransition?: SDKNavigationTransition
   navigationViewStyle?: SDKNavigationViewStyle
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
-  offset?: Readonly<{ x: number; y: number }>
+  offset?: Readonly<{ x: number | NativeState<number>; y: number | NativeState<number> }>
   onAppear?: () => void
   onAppIntentExecution?: string
   onApplePayCouponCodeChange?: string
@@ -3732,7 +3751,10 @@ export interface OneNativeStyle {
     items: readonly string[]
   }>
   pickerStyle?: SDKPickerStyle
-  position?: Readonly<{ x: number; y: number }>
+  position?: Readonly<{
+    x: number | NativeState<number>
+    y: number | NativeState<number>
+  }>
   postToPhotosSharedAlbumSheet?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     items: readonly string[]
@@ -3751,7 +3773,7 @@ export interface OneNativeStyle {
   }>
   presentationCompactAdaptationWithPresentationAdaptation?: SDKPresentationCompactAdaptationWithPresentationAdaptation
   presentationContentInteraction?: SDKPresentationContentInteraction
-  presentationCornerRadius?: number | null
+  presentationCornerRadius?: number | NativeState<number> | null
   presentationDetents?: readonly SDKPresentationDetents[]
   presentationDragIndicator?: SDKPresentationDragIndicator
   presentationPlacement?: SDKPresentationPlacement
@@ -3815,8 +3837,8 @@ export interface OneNativeStyle {
       | 'topTrailing'
       | 'bottomLeading'
       | 'bottomTrailing'
-    anchorZ: number
-    perspective: number
+    anchorZ: number | NativeState<number>
+    perspective: number | NativeState<number>
   }>
   rotationEffect?: Readonly<{
     angle: 'zero' | SDKAngleRecord
@@ -3832,13 +3854,13 @@ export interface OneNativeStyle {
       | 'bottomLeading'
       | 'bottomTrailing'
   }>
-  safeAreaPaddingWithCGFloat?: number
+  safeAreaPaddingWithCGFloat?: number | NativeState<number>
   safeAreaPaddingWithSet?: SDKSafeAreaPaddingWithSet
-  saturation?: number
+  saturation?: number | NativeState<number>
   scaledToFill?: boolean
   scaledToFit?: boolean
   scaleEffectWithSAndAnchor?: Readonly<{
-    s: number
+    s: number | NativeState<number>
     anchor:
       | 'zero'
       | 'center'
@@ -3852,8 +3874,8 @@ export interface OneNativeStyle {
       | 'bottomTrailing'
   }>
   scaleEffectWithXAndYAndAnchor?: Readonly<{
-    x: number
-    y: number
+    x: number | NativeState<number>
+    y: number | NativeState<number>
     anchor:
       | 'zero'
       | 'center'
@@ -3961,9 +3983,9 @@ export interface OneNativeStyle {
       | 'primary'
       | 'secondary'
       | SDKColorRecord
-    radius: number
-    x: number
-    y: number
+    radius: number | NativeState<number>
+    x: number | NativeState<number>
+    y: number | NativeState<number>
   }>
   shortcutsLinkStyle?: SDKShortcutsLinkStyle
   signInWithAppleButtonStyle?: SDKSignInWithAppleButtonStyle
@@ -3972,6 +3994,12 @@ export interface OneNativeStyle {
         kind: 'drag'
         minimumDistance?: number
         coordinateSpace?: SDKCoordinateSpaceValue
+        bind?: Readonly<{
+          state: NativeState<number>
+          axis: 'x' | 'y'
+          range?: readonly [min: number, max: number]
+        }>
+        snap?: Readonly<{ targets: readonly number[]; animation: SDKAnimationValue }>
         onChanged?: (value: {
           location: { x: number; y: number }
           startLocation: { x: number; y: number }
@@ -3980,14 +4008,16 @@ export interface OneNativeStyle {
           predictedEndLocation: { x: number; y: number }
           predictedEndTranslation: { width: number; height: number }
         }) => void
-        onEnded: (value: {
-          location: { x: number; y: number }
-          startLocation: { x: number; y: number }
-          translation: { width: number; height: number }
-          velocity: { width: number; height: number }
-          predictedEndLocation: { x: number; y: number }
-          predictedEndTranslation: { width: number; height: number }
-        }) => void
+        onEnded: (
+          value: {
+            location: { x: number; y: number }
+            startLocation: { x: number; y: number }
+            translation: { width: number; height: number }
+            velocity: { width: number; height: number }
+            predictedEndLocation: { x: number; y: number }
+            predictedEndTranslation: { width: number; height: number }
+          } & Readonly<{ snapTarget?: number }>
+        ) => void
       }>
     | Readonly<{
         kind: 'longPress'
@@ -4037,7 +4067,7 @@ export interface OneNativeStyle {
     | Readonly<{ kind: 'tap'; count?: number; onEnded: () => void }>
   siriTipViewStyle?: SDKSiriTipViewStyle
   sliderThumbVisibility?: SDKSliderThumbVisibility
-  speechAdjustedPitch?: number
+  speechAdjustedPitch?: number | NativeState<number>
   speechAlwaysIncludesPunctuation?: boolean
   speechAnnouncementsQueued?: boolean
   speechSpellsOutCharacters?: boolean
@@ -4277,7 +4307,7 @@ export interface OneNativeStyle {
     visibility: 'automatic' | 'visible' | 'hidden'
     bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
   }>
-  tracking?: number
+  tracking?: number | NativeState<number>
   transaction?: Readonly<{
     transform: Readonly<{
       isContinuous?: boolean
@@ -4307,16 +4337,16 @@ export interface OneNativeStyle {
   transformEnvironmentAppearsActive?: boolean
   transformEnvironmentAutocorrectionDisabled?: boolean
   transformEnvironmentContentTransitionAddsDrawingGroup?: boolean
-  transformEnvironmentDefaultMinListRowHeight?: number
-  transformEnvironmentDisplayScale?: number
+  transformEnvironmentDefaultMinListRowHeight?: number | NativeState<number>
+  transformEnvironmentDisplayScale?: number | NativeState<number>
   transformEnvironmentIsEnabled?: boolean
   transformEnvironmentIsFocusEffectEnabled?: boolean
   transformEnvironmentIsHoverEffectEnabled?: boolean
   transformEnvironmentIsLuminanceReduced?: boolean
   transformEnvironmentIsSceneCaptured?: boolean
   transformEnvironmentIsScrollEnabled?: boolean
-  transformEnvironmentLineSpacing?: number
-  transformEnvironmentMinimumScaleFactor?: number
+  transformEnvironmentLineSpacing?: number | NativeState<number>
+  transformEnvironmentMinimumScaleFactor?: number | NativeState<number>
   transformEnvironmentSystemPrefersReducedResourceUsage?: boolean
   transformPreferencePreferredColorScheme?: SDKTransformPreferencePreferredColorScheme | null
   transition?: SDKTransition | SDKAnyTransitionRecord
@@ -4408,7 +4438,7 @@ export interface OneNativeStyle {
   writingDirection?: SDKWritingDirection
   writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility
   writingToolsBehavior?: SDKWritingToolsBehavior
-  zIndex?: number
+  zIndex?: number | NativeState<number>
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its

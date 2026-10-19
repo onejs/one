@@ -98,6 +98,7 @@ declare module 'one' {
         | `/one-native-disclosure-group`
         | `/one-native-document-camera`
         | `/one-native-document-picker`
+        | `/one-native-drag-binding`
         | `/one-native-edit-button`
         | `/one-native-editors`
         | `/one-native-effects`

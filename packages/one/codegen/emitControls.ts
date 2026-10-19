@@ -57,6 +57,9 @@ const syncNativeValue = (value: ControlValue, synced: string) =>
     synced
   )
 // an enum field defaulting to the empty string means unset; the Swift helper passes self through.
+// a number a NativeState<number> handle may feed: continuous CGFloat or Double.
+export const continuousNumber = (type: string, scalar?: { type: string }) =>
+  ['CoreFoundation.CGFloat', 'Swift.Double'].includes((scalar?.type ?? type).replace(/\?$/, ''))
 const optionalEnum = (field: ControlField) => Boolean(field.enum) && field.default === ''
 // a style field that lists its values gets a named alias, so Swift.Glass can take the same
 // names swiftStyle does. the spec keeps the plain string: React Native's codegen would turn
@@ -69,7 +72,7 @@ const styleFieldType = (field: StyleField) =>
   field.publicType
     ? field.publicType
     : field.kind === 'number'
-    ? 'number'
+    ? 'number | NativeState<number>'
     : field.kind === 'boolean'
       ? 'boolean'
       : field.kind === 'color'
@@ -232,7 +235,9 @@ ${styleFields
               : modifier.kind === 'optionalBoolean'
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'
-                  ? 'number | null'
+                  ? continuousNumber(modifier.type, modifier.scalarConstructor) ? 'number | NativeState<number> | null' : 'number | null'
+                : modifier.kind === 'number' && continuousNumber(modifier.type, modifier.scalarConstructor)
+                  ? 'number | NativeState<number>'
                 : modifier.kind === 'optionalString'
                   ? 'string | null'
                   : modifier.kind === 'optionalURL'
@@ -242,8 +247,13 @@ ${styleFields
                     : modifier.kind === 'gesture'
                       ? modifier.gestureOptions!.map((option) => {
                         const callback = `${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void`
+                        // a drag may bind a native state and snap it; onEnded then reports the target.
+                        const binds = option.type === 'SwiftUI.DragGesture'
                         return `Readonly<{ ${[`kind: ${JSON.stringify(option.name)}`, ...fieldsTS(option.options),
-                          ...(option.changed ? [`onChanged?: ${callback}`] : []), `onEnded: ${callback}`].join('; ')} }>`
+                          ...(binds ? [`bind?: Readonly<{ state: NativeState<number>; axis: 'x' | 'y'; range?: readonly [min: number, max: number] }>`,
+                            'snap?: Readonly<{ targets: readonly number[]; animation: SDKAnimationValue }>'] : []),
+                          ...(option.changed ? [`onChanged?: ${callback}`] : []),
+                          `onEnded: ${binds ? `(value: ${eventValueType(option.eventValue!)} & Readonly<{ snapTarget?: number }>) => void` : callback}`].join('; ')} }>`
                       }).join(' | ')
                     : modifier.kind === 'defaultFocusBoolean'
                       ? 'boolean'
@@ -256,7 +266,7 @@ ${styleFields
                     : modifier.kind === 'asyncObjectRequest'
                       ? `Readonly<{ ${modifier.predicateLabel}: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; latitude: number; longitude: number }>`
                     : modifier.kind === 'record'
-                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? `${argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}${hasRecords(argument.value) ? ` | SDK${valueKey(argument.value!.type)}Record` : ''}` : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? `${argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}${hasRecords(argument.value) ? ` | SDK${valueKey(argument.value!.type)}Record` : ''}` : argument.kind === 'number' ? continuousNumber(argument.type, argument.scalarConstructor) ? 'number | NativeState<number>' : 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
                       : modifier.kind === 'url' ? 'string'
               : modifier.kind === 'string' ? undefined : modifier.kind,
@@ -283,7 +293,8 @@ ${styleFields
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
-${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
+${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}import type { NativeState } from '../syncNativeState'
+
 
 ${publicStyleFields
   .filter((field) => field.values)
