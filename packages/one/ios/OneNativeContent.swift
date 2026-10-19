@@ -179,14 +179,17 @@ protocol OneNativeContentCell: UIView {
 // off-screen holder takes it only from another off-screen holder.
 private final class OneNativeContentHolder: UIView {
   private(set) var content: OneNativeContentView?
+  // the cell, told when the content it shows changes height
+  var onHeight: (() -> Void)?
 
   func show(_ next: OneNativeContentView?) {
-    if let content, content !== next {
+    if let content, content !== next, content.superview === self {
       content.onHeight = nil
-      if content.superview === self { content.removeFromSuperview() }
+      content.removeFromSuperview()
     }
     content = next
     claim()
+    onHeight?()
   }
 
   func claim() {
@@ -195,10 +198,12 @@ private final class OneNativeContentHolder: UIView {
       guard holder is OneNativeContentHolder, window != nil || holder.window == nil else { return }
     }
     addSubview(content)
+    content.onHeight = onHeight
     setNeedsLayout()
   }
 
-  var height: CGFloat { content?.height ?? 44 }
+  // a held content's height; an empty cell, or one whose content another cell shows, keeps the estimate
+  var height: CGFloat { content.flatMap { $0.superview === self ? $0.height : nil } ?? 44 }
 
   override func didMoveToWindow() {
     super.didMoveToWindow()
@@ -220,6 +225,7 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
     holder.frame = contentView.bounds
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.addSubview(holder)
+    holder.onHeight = { [weak self] in self?.invalidateIntrinsicContentSize() }
   }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
@@ -228,11 +234,7 @@ final class OneNativeContentCollectionCell: UICollectionViewCell, OneNativeConte
     show(source?.content(item))
   }
 
-  func show(_ content: OneNativeContentView?) {
-    holder.show(content)
-    content?.onHeight = { [weak self] in self?.invalidateIntrinsicContentSize() }
-    invalidateIntrinsicContentSize()
-  }
+  func show(_ content: OneNativeContentView?) { holder.show(content) }
 
   override func prepareForReuse() {
     super.prepareForReuse()
@@ -256,6 +258,7 @@ final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
     holder.frame = contentView.bounds
     holder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.addSubview(holder)
+    holder.onHeight = { [weak self] in self?.invalidateIntrinsicContentSize() }
   }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
@@ -264,11 +267,7 @@ final class OneNativeContentTableCell: UITableViewCell, OneNativeContentCell {
     show(source?.content(item))
   }
 
-  func show(_ content: OneNativeContentView?) {
-    holder.show(content)
-    content?.onHeight = { [weak self] in self?.invalidateIntrinsicContentSize() }
-    invalidateIntrinsicContentSize()
-  }
+  func show(_ content: OneNativeContentView?) { holder.show(content) }
 
   override func prepareForReuse() {
     super.prepareForReuse()
