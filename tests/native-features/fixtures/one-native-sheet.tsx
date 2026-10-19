@@ -34,7 +34,7 @@ interface SheetContentProps {
   detentProfile: DetentProfileKey
   onCycleDetents: () => void
   isParentPresented: boolean
-  fitToContents: boolean
+  fitted: boolean
 }
 
 function SheetContent({
@@ -43,7 +43,7 @@ function SheetContent({
   detentProfile,
   onCycleDetents,
   isParentPresented,
-  fitToContents,
+  fitted,
 }: SheetContentProps) {
   const [count, setCount] = useState(0)
   const [text, setText] = useState('')
@@ -57,7 +57,7 @@ function SheetContent({
   return (
     <View
       onLayout={handleLayout}
-      style={[styles.sheetContent, fitToContents && styles.fittedSheetContent]}
+      style={[styles.sheetContent, fitted && styles.fittedSheetContent]}
     >
       <Text style={styles.sheetHeading}>Sheet Content</Text>
 
@@ -295,7 +295,6 @@ export default function OneNativeSheet() {
         {...(featureMode === 'controlled'
           ? { selectedDetent, onSelectedDetentChange: setSelectedDetent }
           : {})}
-        fitToContents={featureMode === 'fit'}
         interactiveDismissDisabled={interactiveDismissDisabled}
         isPresented={isPresented}
         onDismiss={() => setDismissCount((c) => c + 1)}
@@ -308,11 +307,11 @@ export default function OneNativeSheet() {
         presentationContentInteraction={
           featureMode === 'styled' ? 'resizes' : 'automatic'
         }
-        presentationSizing={featureMode === 'styled' ? 'fitted' : 'automatic'}
+        presentationSizing={featureMode === 'styled' || featureMode === 'fit' ? 'fitted' : 'automatic'}
       >
         <SheetContent
           detentProfile={detentProfile}
-          fitToContents={featureMode === 'fit'}
+          fitted={featureMode === 'fit'}
           isParentPresented={isPresented}
           onClose={() => setIsPresented(false)}
           onCycleDetents={cycleDetents}

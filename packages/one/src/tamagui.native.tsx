@@ -26,9 +26,9 @@ function TamaguiNativeSheetRenderer({
     themeState?.scheme === 'light' || themeState?.scheme === 'dark'
       ? themeState.scheme
       : undefined
-  const fitToContents = snapPoints.length === 1 && snapPoints[0].type === 'fit'
+  const fitted = snapPoints.length === 1 && snapPoints[0].type === 'fit'
   const detents = useMemo(() => {
-    if (fitToContents) return undefined
+    if (fitted) return undefined
     return snapPoints.map((point): PresentationDetent => {
       if (point.type === 'fit') {
         throw new Error(
@@ -42,7 +42,7 @@ function TamaguiNativeSheetRenderer({
         ? { fraction: point.value / 100 }
         : { height: point.value }
     })
-  }, [snapPoints, fitToContents])
+  }, [snapPoints, fitted])
   if (disableDrag === dismissOnOverlayPress) {
     throw new Error(
       'One native Sheet cannot control drag and backdrop dismissal independently'
@@ -65,9 +65,9 @@ function TamaguiNativeSheetRenderer({
         <Sheet
           isPresented={open}
           onIsPresentedChange={onOpenChange}
-          onDidDismiss={onDismiss}
-          fitToContents={fitToContents}
+          onDismiss={onDismiss}
           presentationDetents={presentationDetents}
+          presentationSizing={fitted ? 'fitted' : 'automatic'}
           selectedDetent={disableDrag ? undefined : selectedDetent}
           onSelectedDetentChange={
             detents && !disableDrag
