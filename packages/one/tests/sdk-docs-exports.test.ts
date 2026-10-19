@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { Bridge, buildIndex, collectFacts } from '../codegen/sdk/bridge'
 import { emitFrameworkDocs, typescriptCallShape } from '../codegen/sdk/emit-docs'
-import { facadeCallFormatter } from '../codegen/sdk/emit-ts'
+import { emitFacade, facadeCallFormatter } from '../codegen/sdk/emit-ts'
 import type { Entry } from '../codegen/sdk/emit'
 import type { Graph, Symbol } from '../codegen/sdk/graph'
 import { assignEntryIds } from '../codegen/sdk/identity'
@@ -126,6 +126,15 @@ const globalEntry = entry({
   kind: 'function',
 })
 assignEntryIds([classEntry, protocolEntry, globalEntry])
+// an unrelated default argument printed in the facade is not an api call id.
+graphs.get('TestModule')!.symbols[4].declarationFragments = [
+  { kind: 'keyword', spelling: 'func' },
+  { kind: 'text', spelling: ` globalWork(_ value: Int = ${protocolEntry.id})` },
+]
+globalEntry.params.push({
+  label: '_', name: 'value', type: { k: 'named', name: 'Int', args: [] },
+  optional: false, hasDefault: true,
+})
 
 // the reference must not advertise callable typescript for entries the facade
 // never publishes (protocol requirements here), while keeping their swift
@@ -153,6 +162,10 @@ describe('SDK reference exports', () => {
   it('keeps published shapes identical to the facade formatter', () => {
     const graph = graphs.get('TestModule')!
     const bridge = new Bridge(buildIndex([collectFacts(graph)]))
+    expect(emitFacade(
+      { module: 'TestModule', entries: [classEntry, protocolEntry, globalEntry], skipped: [] },
+      bridge
+    )).toContain(`Int = ${protocolEntry.id}`)
     const format = facadeCallFormatter(
       { module: 'TestModule', entries: [classEntry, protocolEntry, globalEntry], skipped: [] },
       bridge

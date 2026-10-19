@@ -6,7 +6,7 @@ import type { DocMember, DocType, FrameworkSummary, FrameworkDoc } from './doc-t
 import { frameworkGroups, frameworkSummaries } from './doc-frameworks'
 import { loadGraph, sdkModules, sdkVersion, type Symbol } from './graph'
 import { Bridge, buildIndex, collectFacts } from './bridge'
-import { emitFacade, facadeCallFormatter } from './emit-ts'
+import { facadePublishedKeys, facadeCallFormatter } from './emit-ts'
 
 type DocumentedSymbol = Symbol & { docComment?: { lines: { text: string }[] } }
 
@@ -85,15 +85,9 @@ function referenceBridge() {
     )
   ))
 }
-// ids the facade actually publishes, read from its own output. an entry the
-// facade never emits (a protocol requirement, a typealias member, an unknown
-// owner) keeps its swift declaration but advertises no typescript call. entry
-// ids are unique signature hashes, so a whole-number match is the entry.
-function publishedIds(module: string, entries: Entry[], skipped: Skipped[]): Set<number> {
-  const facade = emitFacade({ module, entries, skipped }, referenceBridge())
-  const ids = new Set<number>()
-  for (const match of facade.matchAll(/\b\d+\b/g)) ids.add(Number(match[0]))
-  return ids
+// use the exporter's own publication decisions, including inherited aliases.
+function publishedKeys(module: string, entries: Entry[], skipped: Skipped[]): Set<string> {
+  return facadePublishedKeys({ module, entries, skipped }, referenceBridge())
 }
 export function typescriptCallShape(entry: Entry): string | undefined {
   const module = entry.owner?.split('.')[0] ?? ''
@@ -101,7 +95,7 @@ export function typescriptCallShape(entry: Entry): string | undefined {
     { module, entries: [entry], skipped: [] },
     referenceBridge()
   )(entry)
-  if (!publishedIds(module, [entry], []).has(entry.id)) return undefined
+  if (!publishedKeys(module, [entry], []).has(entry.key)) return undefined
   return shape
 }
 
@@ -119,7 +113,7 @@ export function emitFrameworkDocs(
       ? facadeCallFormatter({ module, entries, skipped }, referenceBridge())
       : callShape
   const published =
-    callShape === typescriptCallShape ? publishedIds(module, entries, skipped) : undefined
+    callShape === typescriptCallShape ? publishedKeys(module, entries, skipped) : undefined
   const symbols = new Map(
     graph.symbols.map((s) => [s.identifier.precise, s as DocumentedSymbol])
   )
@@ -139,7 +133,7 @@ export function emitFrameworkDocs(
     const typescript = formatCall(entry)
     const doc = {
       ...describe(symbols.get(entry.usr), entry.name, entry.kind),
-      typescript: published && !published.has(entry.id) ? undefined : typescript,
+      typescript: published && !published.has(entry.key) ? undefined : typescript,
       out: entry.params.some((p) => p.out || p.inout)
         ? entry.params.filter((p) => p.out || p.inout).map((p) => p.name)
         : undefined,
