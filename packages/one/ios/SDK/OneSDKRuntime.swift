@@ -400,8 +400,10 @@ public final class OneSDKCall {
   }
 }
 
-// a javascript function held by native code
-public final class OneSDKFunction {
+// a javascript function held by native code. its state is immutable: send
+// queues onto the js thread from any thread, and sync checks that it runs on
+// the js thread inside its active call, so it may cross concurrency domains.
+public final class OneSDKFunction: @unchecked Sendable {
   let send: (_ data: [String: Any], _ handles: [OneSDKHandleBox]) -> Void
   let sync: ((_ data: [String: Any], _ handles: [OneSDKHandleBox]) throws -> OneSDKCall)?
   init(sync: ((_ data: [String: Any], _ handles: [OneSDKHandleBox]) throws -> OneSDKCall)? = nil,

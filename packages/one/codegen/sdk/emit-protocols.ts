@@ -8,6 +8,10 @@ const text = (fragments: Fragment[] = []) => fragments.map((f) => f.spelling).jo
 const quoted = (name: string) => `\`${name.replace(/`/g, '')}\``
 const SYNC_REASON = 'synchronous protocol result requires an active JS-thread call; delegate invocations can escape it'
 
+// these standard-library markers have no method requirements. the compiler
+// checks the generated witness against their concurrency semantics.
+const MARKERS = new Set(['s:s8SendableP', 's:s16SendableMetatypeP'])
+
 export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude: Map<string, string>, skipped: Skipped[]) {
   const graphs = new Map([[graph.module, graph]])
   const imports = new Set<string>()
@@ -47,7 +51,7 @@ export function emitProtocols(graph: Graph, bridge: Bridge, all: Map<string, Sym
     let reason: string | undefined
     let classVersion = versionOf(symbol)
     const collect = (id: string) => {
-      if (visited.has(id) || id === 'c:objc(pl)NSObject') return
+      if (visited.has(id) || id === 'c:objc(pl)NSObject' || MARKERS.has(id)) return
       visited.add(id)
       const owner = bridge.index.get(id)
       classVersion = newest(classVersion, versionOf(all.get(id)))
