@@ -20,7 +20,8 @@ export const CXX_INTEROP = ['-cxx-interoperability-mode=default', '-Xcc', '-std=
 // xcode builds clang modules explicitly, and with c++ interop that drops some
 // imports implicit modules keep (UIEvent.ButtonMask.button), so the typecheck
 // builds them the same way
-const TARGET = ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`,
+let targetArgs: string[] | undefined
+const target = () => targetArgs ??= ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`,
   '-explicit-module-build', ...CXX_INTEROP]
 
 // the bindings compile in their own pod against One, so they typecheck against
@@ -29,7 +30,7 @@ let runtimeModule: Promise<string> | undefined
 function oneModule() {
   runtimeModule ??= (async () => {
     const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
-    await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...TARGET,
+    await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(),
       '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])
     return dir
   })()
@@ -39,8 +40,9 @@ function oneModule() {
 // silgen and the mandatory passes reject what the typecheck admits, such as a
 // capturing closure passed as a c function pointer, so the check emits sil
 export async function typecheck(files: string[]) {
+  const flags = target()
   try {
-    await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...TARGET, '-I', await oneModule(), ...files], { maxBuffer: 256 * 1024 * 1024 })
+    await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...flags, '-I', await oneModule(), ...files], { maxBuffer: 256 * 1024 * 1024 })
     return []
   } catch (error) {
     const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
