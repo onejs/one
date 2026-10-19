@@ -526,8 +526,13 @@ export class Bridge {
       }
       case 'function':
         return this.callback(type, position, generics)
-      case 'existential':
+      case 'existential': {
+        // a spelled `any P` with associated types is a native value javascript
+        // only holds and passes back; it never implements one
+        const info = !type.some && type.t.k === 'named' && !type.t.args.length && type.t.usr ? this.index.get(type.t.usr) : undefined
+        if (info?.associatedTypes) return { ok: true, ts: `Handle<'${tsName(`${info.module}.${info.path.join('.')}`)}'>` }
         return this.protocolType(type.t, position, generics)
+      }
       case 'composition': {
         const items = type.items.map((item) => this.protocolType(item, position, generics))
         const bad = items.find((item) => !item.ok)
