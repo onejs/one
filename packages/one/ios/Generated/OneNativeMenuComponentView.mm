@@ -3,7 +3,7 @@
 #import "OneNativeMenuComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
-#import "Generated/OneNativeMenuPayload.h"
+#import "OneNativeMenuPayload.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <react/renderer/components/OneNativeSpec/Props.h>
