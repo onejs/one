@@ -213,6 +213,8 @@ struct OneNativeSheetRoot: View {
     if let content = model.content {
       OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
         if model.active && model.controlled.value { model.onLayout?(frame) }
+      }, onWindowChange: { identity, attached in
+        model.presentedWindowChanged(identity, attached: attached)
       }, measuredHeight: model.measuredHeight)
       .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -220,12 +222,12 @@ struct OneNativeSheetRoot: View {
   var body: some View {
     if model.presentation == "fullScreenCover" {
       Color.clear
-        .fullScreenCover(isPresented: presented, onDismiss: { model.dismissed() }) {
+        .fullScreenCover(isPresented: presented) {
           content
         }
     } else {
       Color.clear
-        .sheet(isPresented: presented, onDismiss: { model.dismissed() }) {
+        .sheet(isPresented: presented) {
           content
             .oneNativeSheetPresentation(model)
         }

@@ -27,12 +27,34 @@ final class OneNativeSheetModel: ObservableObject {
   var onDetentChange: ((String, Double, Int, Int) -> Void)?
   var onDismiss: ((Int) -> Void)?
   var onLayout: ((CGRect) -> Void)?
+  // dismissal reports only after the presented content leaves its window, so
+  // an interrupted close or a reopen never completes an earlier presentation.
+  // the generation distinguishes presents; the revision matches React's update.
+  private var presentationGeneration = 0
+  private var presentedSlot: (identity: ObjectIdentifier, generation: Int, revision: Int)?
   func change(_ value: Bool) {
     guard active, controlled.value != value else { return }
+    if value { presentationGeneration += 1 }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
-  func dismissed() { if active { onDismiss?(controlled.revision) } }
+
+  func notePresented() {
+    presentationGeneration += 1
+  }
+
+  func presentedWindowChanged(_ identity: ObjectIdentifier, attached: Bool) {
+    if attached {
+      presentedSlot = (identity, presentationGeneration, controlled.revision)
+      return
+    }
+    guard let slot = presentedSlot, slot.identity == identity else { return }
+    presentedSlot = nil
+    // completion belongs to the original mounted presentation, never a later reopen.
+    guard active, !controlled.value, slot.generation == presentationGeneration,
+      slot.revision == controlled.revision else { return }
+    onDismiss?(slot.revision)
+  }
 
   var selectedPresentationDetent: PresentationDetent {
     detentValues.first(where: { $0.key == selectedDetent.value })?.detent
@@ -114,7 +136,10 @@ final class OneNativeSheetModel: ObservableObject {
     presentationContentInteraction: String, presentationSizing: String, presentation: String,
     colorScheme: String
   ) {
-    if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) {
+      if next.value && !model.controlled.value { model.notePresented() }
+      model.controlled = next
+    }
     let controlsSelectedDetent = !selectedDetentType.isEmpty
     if controlsSelectedDetent {
       let key = "\(selectedDetentType):\(selectedDetentValue)"
