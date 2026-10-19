@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { FileSystem } from '../src/platform/file-system/index'
 import { PathUtilities } from '../src/platform/file-system/paths'
+import { assertUri } from '../src/platform/file-system/validate'
 import {
   FileSystemReadableStreamSource,
   FileSystemWritableSink,
@@ -484,6 +485,42 @@ describe('native Paths', () => {
     file.create()
     expect(Paths.info('file:///cache/a.txt')).toEqual({ exists: true, isDirectory: false })
     expect(Paths.info('file:///cache/missing')).toEqual({ exists: false, isDirectory: null })
+  })
+})
+
+describe('asset bundle uris', () => {
+  it('admits asset uris at the js boundary and nothing else new', () => {
+    expect(() => assertUri('asset:///', 'Directory')).not.toThrow()
+    expect(() => assertUri('asset:///a/b.txt', 'File')).not.toThrow()
+    expect(() => assertUri('https://example.com/a.txt', 'File')).toThrow(
+      'File: expected an absolute file uri'
+    )
+    expect(() => assertUri('content:///a.txt', 'File')).toThrow(
+      'File: expected an absolute file uri'
+    )
+    expect(() => assertUri('asset:///a.txt?x=1', 'File')).toThrow(
+      'File: expected an absolute file uri'
+    )
+  })
+
+  it('builds asset files and directories that re-enter', async () => {
+    const { File, Directory } = await loadNativeClasses(fakeHybrid().hybrid)
+    expect(new Directory('asset://').uri).toBe('asset:///')
+    expect(new File('asset:///a/b.txt').uri).toBe('asset:///a/b.txt')
+    const bundle = new Directory('asset:///')
+    expect(new File(bundle, 'a.txt').uri).toBe('asset:///a.txt')
+    expect(new File('asset:///a/b.txt').parentDirectory.uri).toBe('asset:///a')
+    expect(() => new Directory('content:///a')).toThrow(
+      'Directory: expected an absolute file uri'
+    )
+  })
+
+  it('exposes an asset bundle directory', async () => {
+    const { Paths } = await loadNativeClasses({
+      ...fakeHybrid().hybrid,
+      getBundleDirectory: () => 'asset://',
+    })
+    expect(Paths.bundle.uri).toBe('asset:///')
   })
 })
 
