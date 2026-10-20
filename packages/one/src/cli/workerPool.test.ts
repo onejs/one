@@ -47,7 +47,7 @@ it('keeps serialized loader data in page artifacts and reuses the parent CSS', a
       preloads: [],
       allCSS: ['/assets/probe.css'],
       layoutCSS: [],
-      routePreloads: {},
+      routePreloads: [],
       allCSSContents: cssContents,
     })
     expect(result.cssContents).toBe(cssContents)

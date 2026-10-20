@@ -739,32 +739,30 @@ export async function build(args: {
       return [entry.file, ...collectImports(entry)]
     })
 
-    // create mapping of route keys to bundle paths for hydration preloading
-    const routePreloads: Record<string, string> = {}
+    // route keys the client loads and registers before rendering this page
+    const routePreloadKeys = new Set<string>()
 
     // add root layout
     const rootLayoutKey = `${routerRoot}/_layout.tsx`
-    const rootLayoutEntry = vxrnOutput.clientManifest[rootLayoutKey]
-    if (rootLayoutEntry) {
-      routePreloads[`/${rootLayoutKey}`] = `/${rootLayoutEntry.file}`
+    if (vxrnOutput.clientManifest[rootLayoutKey]) {
+      routePreloadKeys.add(`/${rootLayoutKey}`)
     }
 
     // add all layouts for this route
     if (foundRoute.layouts) {
       for (const layout of foundRoute.layouts) {
         const clientKey = `${routerRoot}${layout.contextKey.slice(1)}`
-        const entry = vxrnOutput.clientManifest[clientKey]
-        if (entry) {
-          routePreloads[`/${clientKey}`] = `/${entry.file}`
+        if (vxrnOutput.clientManifest[clientKey]) {
+          routePreloadKeys.add(`/${clientKey}`)
         }
       }
     }
 
     // add the page itself using the direct chunk lookup (more reliable than manifest)
-    const routeChunkFile = clientChunk?.fileName ?? clientManifestEntry?.file
-    if (routeChunkFile) {
-      routePreloads[`/${routerRoot}${foundRoute.file.slice(1)}`] = `/${routeChunkFile}`
+    if (clientChunk || clientManifestEntry) {
+      routePreloadKeys.add(`/${routerRoot}${foundRoute.file.slice(1)}`)
     }
+    const routePreloads = [...routePreloadKeys]
 
     const preloadSetupFilePreloads = (() => {
       if (!oneOptions.setupFile) return []
