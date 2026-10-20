@@ -87,11 +87,9 @@ async function waitForDisplayedOrAppCrash(
   while (true) {
     const remaining = timeout - (Date.now() - start)
     if (remaining <= 0) {
-      const error = new Error(
+      throw new Error(
         `Element "${await element.selector}" not displayed after ${timeout}ms`
       )
-      await takeScreenshotForError(driver, error)
-      throw error
     }
 
     const waitChunk = Math.min(crashCheckInterval, remaining)

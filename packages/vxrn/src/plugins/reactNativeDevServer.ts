@@ -573,42 +573,6 @@ export function createReactNativeDevServerPlugin(
           )
         }
 
-        // react native's default URLSession times out while waiting for a
-        // silent rebuild. start its multipart stream before building, as metro
-        // does, so the native loader can wait for the bundle on that stream.
-        const boundary = String(req.headers.accept || '').includes('multipart/mixed')
-          ? `vxrn-${randomUUID()}`
-          : undefined
-        let progressTimer: ReturnType<typeof setInterval> | undefined
-        if (boundary) {
-          res.writeHead(200, {
-            'Cache-Control': 'no-store',
-            'Content-Type': `multipart/mixed; boundary="${boundary}"`,
-          })
-          res.write('Bundling native code')
-          // URLSession also enforces an idle timeout after receiving headers.
-          // keep reporting the ongoing build until its final part is ready.
-          progressTimer = setInterval(() => {
-            res.write(
-              `\r\n--${boundary}\r\nContent-Type: application/json\r\n\r\n${JSON.stringify({ status: 'Bundling' })}`
-            )
-          }, 10_000)
-          progressTimer.unref()
-          res.once('close', () => clearInterval(progressTimer))
-        }
-        const sendBundle = (status: number, type: string, body: string | Buffer) => {
-          if (boundary) {
-            res.write(
-              `\r\n--${boundary}\r\nContent-Type: ${type}\r\nX-Http-Status: ${status}\r\n\r\n`
-            )
-            res.write(body)
-            res.end(`\r\n--${boundary}--\r\n`)
-          } else {
-            res.writeHead(status, { 'Cache-Control': 'no-store', 'Content-Type': type })
-            res.end(body)
-          }
-        }
-
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
           let body: string | Buffer = bundle.code
@@ -627,20 +591,19 @@ export function createReactNativeDevServerPlugin(
           // a DevSettings reload requests this exact URL again. native URL
           // loading may otherwise reuse the first response and restart the app
           // on a route map from before a file was added or removed.
-          sendBundle(200, 'text/javascript', body)
+          res.writeHead(200, {
+            'Cache-Control': 'no-store',
+            'Content-Type': 'text/javascript',
+          })
+          res.end(body)
         } catch (err) {
           console.error(` Error building React Native bundle`)
           console.error(err)
           console.error(
             `\n\n  Note, some errors may happen due to a stale Vite cache, you may want to try re-running with the "--clean" flag`
           )
-          sendBundle(
-            500,
-            'text/plain',
-            err instanceof Error ? err.stack || err.message : String(err)
-          )
-        } finally {
-          clearInterval(progressTimer)
+          res.writeHead(500, { 'Content-Type': 'text/plain' })
+          res.end(err instanceof Error ? err.stack || err.message : String(err))
         }
       }
 
