@@ -788,7 +788,7 @@ export declare namespace One {
         loaderData?: any;
         loaderProps?: any;
         mode?: 'spa' | 'ssg' | 'ssr' | 'spa-shell';
-        routePreloads?: Record<string, string>;
+        routePreloads?: string[];
         /**
          * All matched routes with their loader data.
          * Ordered from root layout to leaf page (parent → child).

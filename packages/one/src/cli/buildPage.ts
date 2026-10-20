@@ -58,7 +58,7 @@ export async function buildPage(
   preloads: string[],
   allCSS: string[],
   layoutCSS: string[],
-  routePreloads: Record<string, string>,
+  routePreloads: string[],
   allCSSContents?: string[],
   criticalPreloads?: string[],
   deferredPreloads?: string[],
@@ -89,29 +89,18 @@ export async function buildPage(
   let loaderData = {}
 
   try {
-    // generate preload file with route module registration
-    const routeImports: string[] = []
-    const routeRegistrations: string[] = []
-    let routeIndex = 0
-
-    for (const [routeKey, bundlePath] of Object.entries(routePreloads)) {
-      const varName = `_r${routeIndex++}`
-      routeImports.push(`import * as ${varName} from "${bundlePath}"`)
-      routeRegistrations.push(`registerPreloadedRoute("${routeKey}", ${varName})`)
-    }
-
-    // Use window global for registration since ES module exports get tree-shaken
-    const registrationCalls = routeRegistrations.map((call) =>
-      call.replace('registerPreloadedRoute(', 'window.__oneRegisterPreloadedRoute(')
-    )
-
+    // generate preload file with route module registration. each route loads
+    // through the client's own route import: a route that shares a chunk with
+    // another route is not that chunk's namespace (the bundler exports it
+    // under a generated name), so importing the chunk file would register a
+    // module with no default export and the route would render empty.
+    // registration goes through a window global since ES module exports get
+    // tree-shaken.
     const preloadContent = [
-      // import all route modules
-      ...routeImports,
-      // static imports for cache warming (original behavior)
+      // static imports for cache warming
       ...preloads.map((preload) => `import "${preload}"`),
-      // register all route modules using window global
-      ...registrationCalls,
+      `const routes = globalThis.__importMetaGlobbed`,
+      `await Promise.all(${JSON.stringify(routePreloads)}.map((key) => routes[key]().then((mod) => window.__oneRegisterPreloadedRoute(key, mod))))`,
     ].join('\n')
 
     t0 = performance.now()

@@ -121,7 +121,7 @@ export class BuildWorkerPool {
     preloads: string[]
     allCSS: string[]
     layoutCSS: string[]
-    routePreloads: Record<string, string>
+    routePreloads: string[]
     allCSSContents?: string[]
     criticalPreloads?: string[]
     deferredPreloads?: string[]
