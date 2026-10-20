@@ -4,18 +4,6 @@ import path from 'node:path'
 
 const subsystem = 'dev.onestack.one'
 
-// `log config --status --subsystem <name>` prints one line like
-// `Mode for 'dev.onestack.one'  INFO PERSIST_INFO`; only the level token
-// matters here since persist is left untouched throughout.
-function parsePriorLevel(status: string): string {
-  const line = status.split('\n').find((entry) => entry.includes('Mode for'))
-  const level = line?.match(/Mode for '[^']*'\s+([A-Za-z_]+)/)?.[1]?.toLowerCase()
-  if (level === 'off' || level === 'default' || level === 'info' || level === 'debug') {
-    return level
-  }
-  throw new Error(`could not parse prior log level from: ${status.trim() || '(empty)'}`)
-}
-
 function runLogConfig(simulatorId: string, args: string[]): string {
   const result = spawnSync('xcrun', ['simctl', 'spawn', simulatorId, 'log', 'config', ...args], {
     encoding: 'utf8',
@@ -35,27 +23,20 @@ export async function streamZoomCallbacks(simulatorId: string, pid: number, arti
   const outputFile = path.join(artifactDir, 'zoom-log-stream.txt')
   fs.writeFileSync(eventFile, '')
   fs.writeFileSync(outputFile, '')
-  // debug lines are only emitted when the subsystem level allows them, so a
-  // simulator left at INFO streams nothing despite firing callbacks. raise the
-  // level for the suite and restore the exact prior level on every exit.
-  let priorLevel: string | undefined
-  try {
-    priorLevel = parsePriorLevel(
-      runLogConfig(simulatorId, ['--status', '--subsystem', subsystem])
-    )
-  } catch (error) {
-    fs.appendFileSync(
-      outputFile,
-      `zoom log level unreadable, streaming without a level change: ${(error as Error).message}\n`
-    )
+  // raise the subsystem to debug so provider callbacks stream, restoring the exact prior level on every exit.
+  // an unreadable prior level fails here before the stream spawns, so ready always means debug is active.
+  const status = runLogConfig(simulatorId, ['--status', '--subsystem', subsystem])
+  const statusLine = status.split('\n').find((entry) => entry.includes('Mode for'))
+  const priorLevel =
+    statusLine?.match(/Mode for '[^']*'\s+([A-Za-z_]+)/)?.[1]?.toLowerCase()
+  if (priorLevel !== 'off' && priorLevel !== 'default' && priorLevel !== 'info' && priorLevel !== 'debug') {
+    throw new Error(`could not parse prior log level from: ${status.trim() || '(empty)'}`)
   }
-  if (priorLevel) {
-    runLogConfig(simulatorId, ['--mode', 'level:debug', '--subsystem', subsystem])
-    fs.appendFileSync(outputFile, `zoom log level for ${subsystem}: ${priorLevel} -> debug\n`)
-  }
+  runLogConfig(simulatorId, ['--mode', 'level:debug', '--subsystem', subsystem])
+  fs.appendFileSync(outputFile, `zoom log level for ${subsystem}: ${priorLevel} -> debug\n`)
   let restored = false
   const restoreLogLevel = () => {
-    if (!priorLevel || restored) return
+    if (restored) return
     runLogConfig(simulatorId, ['--mode', `level:${priorLevel}`, '--subsystem', subsystem])
     restored = true
     fs.appendFileSync(outputFile, `zoom log level for ${subsystem} restored to ${priorLevel}\n`)
@@ -104,7 +85,7 @@ export async function streamZoomCallbacks(simulatorId: string, pid: number, arti
       restoreLogLevel()
     } catch (restoreError) {
       throw new Error(
-        `${(error as Error).message}; also failed to restore the zoom log level: ${(restoreError as Error).message}`
+        `${String(error)}; also failed to restore the zoom log level: ${String(restoreError)}`
       )
     }
     throw error
