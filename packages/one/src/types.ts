@@ -36,7 +36,7 @@ export type RenderAppProps = {
   loaderServerData?: any
   loaderData?: any
   loaderProps?: LoaderProps
-  routePreloads?: Record<string, string>
+  routePreloads?: string[]
   /**
    * All matched routes with their loader data.
    * Ordered from root layout to leaf page (parent → child).

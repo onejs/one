@@ -245,8 +245,10 @@ export function createApp(options: CreateAppProps) {
   // preload routes using build-time mapping (production SSG)
   // for SPA/dev mode, fall back to importing root layout directly
   const preloadPromises = routePreloads
-    ? Object.entries(routePreloads).map(async ([routeKey, bundlePath]) => {
-        const mod = await import(/* @vite-ignore */ bundlePath as string)
+    ? routePreloads.map(async (routeKey) => {
+        // the route import, not its chunk file: a route sharing a chunk with
+        // another route is not that chunk's namespace
+        const mod = await options.routes[routeKey]()
         registerPreloadedRoute(routeKey, mod)
         return mod
       })
