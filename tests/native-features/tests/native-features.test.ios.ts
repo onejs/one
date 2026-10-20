@@ -1,4 +1,3 @@
-import { execFileSync } from 'node:child_process'
 import { runZoomWithAppium } from '../scripts/one-native-zoom-appium'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
@@ -21,39 +20,6 @@ async function dismissExpectedRenderError(driver: Browser, expectedMessage: stri
   expect(await message.getText()).toContain(expectedMessage)
   await (await waitForElement(driver, 'Dismiss')).click()
   await inspector.waitForDisplayed({ reverse: true, timeout: 30_000 })
-}
-
-function getSimulatorUdid(driver: Browser) {
-  const capabilities = driver.capabilities as Record<string, any>
-  return (
-    capabilities?.udid ||
-    capabilities?.['appium:udid'] ||
-    capabilities?.['appium:options']?.udid ||
-    process.env.SIMULATOR_UDID ||
-    'booted'
-  )
-}
-
-function openSimulatorUrl(driver: Browser, url: string) {
-  execFileSync('xcrun', ['simctl', 'openurl', getSimulatorUdid(driver), url], {
-    stdio: 'inherit',
-  })
-}
-
-// springboard asks before opening the app from a url, and on a loaded host the
-// prompt can appear seconds after `simctl openurl` returns.
-async function acceptOpenUrlPrompt(driver: Browser) {
-  await driver.waitUntil(
-    async () => {
-      try {
-        await driver.acceptAlert()
-        return true
-      } catch {
-        return false
-      }
-    },
-    { timeout: 30_000, timeoutMsg: 'the open url prompt never appeared' }
-  )
 }
 
 describe('one native integration tests', () => {
@@ -198,8 +164,10 @@ describe('one native integration tests', () => {
         await navigateTo(driver, '/')
         await waitForElement(driver, 'home-screen', { timeout: 30_000 })
 
-        openSimulatorUrl(driver, 'nativefeatures://app/deep-link/123')
-        await acceptOpenUrlPrompt(driver)
+        // let ios resolve the registered scheme without springboard's remembered prompt.
+        await driver.execute('mobile: deepLink', {
+          url: 'nativefeatures://app/deep-link/123',
+        })
 
         await waitForElement(driver, 'deep-link-screen', { timeout: 30_000 })
 
