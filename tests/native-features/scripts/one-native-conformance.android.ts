@@ -487,6 +487,7 @@ export async function waitFor(
   const started = Date.now()
   const deadline = started + timeoutMs
   lastFailedConjuncts = undefined
+  let lastNodes: Node[] | undefined
   while (Date.now() < deadline) {
     let current
     try {
@@ -509,12 +510,17 @@ export async function waitFor(
       }
       throw error
     }
+    lastNodes = current.nodes
+    lastFailedConjuncts = undefined
     if (predicate(current.nodes))
       return { snapshot: current, durationMs: Date.now() - started }
     await Bun.sleep(250)
   }
-  const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
-  const diagnosis = lastFailedConjuncts ? `; failed: ${lastFailedConjuncts}` : ''
+  const marker =
+    missingMarker && lastNodes && !exactlyOneId(lastNodes, missingMarker)
+      ? `; mount marker ${missingMarker}: ${matching(lastNodes, { id: missingMarker }).length} matches`
+      : ''
+  const diagnosis = `; failed: ${lastNodes ? (lastFailedConjuncts ?? `${name} predicate`) : 'no usable Android snapshot'}`
   throw new Error(`${name} timed out after ${timeoutMs}ms${marker}${diagnosis}`)
 }
 
@@ -4864,6 +4870,22 @@ async function run(config: Config) {
     // exclusion. the nested box sits below the status bar, so its top is 0
     // while the outer top stays positive, which proves per-view overlap
     // rather than forwarded window insets.
+    // back first dismisses an open ime; only a subsequent back pops the route.
+    if (keyboardShown(config)) {
+      pressBack(config)
+      await expect(
+        'inputs-ime-dismissed',
+        (nodes) =>
+          diagnose(nodes, [
+            ['keyboard hidden', () => !keyboardShown(config)],
+            [
+              'inputs screen kept',
+              (n) => exactlyOneId(n, 'one-native-android-inputs-mounted'),
+            ],
+          ]),
+        'one-native-android-inputs-mounted'
+      )
+    }
     pressBack(config)
     await expect(
       'safe-area-home',
@@ -5374,8 +5396,33 @@ async function run(config: Config) {
         .flatMap((node) => [node.text, node.contentDescription])
         .find((text) => text?.startsWith(`${name}: `))
         ?.slice(name.length + 2) ?? null
+    const speechLive = (nodes: Node[], name: string) =>
+      /^start(,transcript)*$/.test(speechLog(nodes, name) ?? '')
     const speechEnded = (nodes: Node[], name: string) =>
       /(^|,)end$/.test(speechLog(nodes, name) ?? '')
+    const expectSpeech = (
+      name: string,
+      predicate: (nodes: Node[]) => boolean,
+      marker: string
+    ) =>
+      expect(
+        name,
+        (nodes) => {
+          for (const session of ['A', 'B']) {
+            const log = speechLog(nodes, session)
+            if (/(^|,)error:/.test(log ?? '')) {
+              const message = nodes
+                .flatMap(nodeValues)
+                .find((value) => value.startsWith('Message: '))
+              throw new Error(
+                `${name}: speech session ${session} failed (${log}); ${message ?? 'no service message'}`
+              )
+            }
+          }
+          return predicate(nodes)
+        },
+        marker
+      )
     const tapSpeech = (id: string) =>
       tapFresh(config, id, { id, role: 'button', clickable: true })
     await expect(
@@ -5407,13 +5454,18 @@ async function run(config: Config) {
       'one-native-speech-request'
     )
     tapSpeech('one-native-speech-start')
+    // the preceding permission probe intentionally left an error in A's log.
+    // await its replacement before treating subsequent errors as terminal.
     await expect(
       'speech-session-opens',
-      (nodes) => speechLog(nodes, 'A')?.startsWith('start') === true,
+      (nodes) =>
+        diagnose(nodes, [
+          [`A live (observed ${speechLog(nodes, 'A')})`, (n) => speechLive(n, 'A')],
+        ]),
       'one-native-speech-start'
     )
     tapSpeech('one-native-speech-stop')
-    await expect(
+    await expectSpeech(
       'speech-stop-ends',
       (nodes) => speechEnded(nodes, 'A'),
       'one-native-speech-stop'
@@ -5422,32 +5474,32 @@ async function run(config: Config) {
     // seconds, so the fixture replaces or aborts an open session the moment
     // it reports start rather than a runner tap later.
     tapSpeech('one-native-speech-replace-live')
-    await expect(
+    await expectSpeech(
       'speech-session-b-opens',
       (nodes) =>
-        speechLog(nodes, 'A') === 'start' && speechLog(nodes, 'B')?.startsWith('start') === true,
+        speechLog(nodes, 'A') === 'start' && speechLive(nodes, 'B'),
       'one-native-speech-replace-live'
     )
     tapSpeech('one-native-speech-stop')
-    await expect(
+    await expectSpeech(
       'speech-replaced-a-stays-silent',
       (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
       'one-native-speech-stop'
     )
     tapSpeech('one-native-speech-abort-live')
-    await expect(
+    await expectSpeech(
       'speech-session-a-opens-then-aborts',
       (nodes) => speechLog(nodes, 'A') === 'start',
       'one-native-speech-abort-live'
     )
     tapSpeech('one-native-speech-replace')
-    await expect(
+    await expectSpeech(
       'speech-b-opens-after-abort',
-      (nodes) => speechLog(nodes, 'B')?.startsWith('start') === true,
+      (nodes) => speechLive(nodes, 'B'),
       'one-native-speech-replace'
     )
     tapSpeech('one-native-speech-stop')
-    await expect(
+    await expectSpeech(
       'speech-aborted-a-stays-silent',
       (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
       'one-native-speech-stop'
