@@ -112,6 +112,28 @@ test('waitFor tolerates transient dumps while awaiting its condition', async () 
   expect(dumpCalls).toBe(3)
 })
 
+test('waitFor reports the failed predicate and observes whether its mount marker is absent', async () => {
+  reset(['ok'], readyXml)
+  for (const marker of ['ready-marker', 'absent-marker']) {
+    const error = await waitFor(
+      config,
+      'speech-session-b-opens',
+      () => false,
+      marker,
+      100
+    ).then(
+      () => null,
+      (error: Error) => error
+    )
+    expect(error?.message).toContain('failed: speech-session-b-opens predicate')
+    if (marker === 'ready-marker') {
+      expect(error?.message).not.toContain('mount marker')
+    } else {
+      expect(error?.message).toContain('mount marker absent-marker: 0 matches')
+    }
+  }
+})
+
 test('awaitSnapshot awaits a valid dump through transient failures', async () => {
   reset(['fail', 'ok'], readyXml)
   const current = await awaitSnapshot(config, 'awaited dump', 5_000)
