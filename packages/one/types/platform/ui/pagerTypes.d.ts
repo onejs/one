@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ViewProps } from 'react-native';
+import type { HostInstance, ViewProps } from 'react-native';
 export type PagerScrollEvent = Readonly<{
     nativeEvent: Readonly<{
         position: number;
@@ -20,6 +20,11 @@ export interface PagerRef {
     setPage(index: number): void;
     setPageWithoutAnimation(index: number): void;
     setScrollEnabled(enabled: boolean): void;
+    /**
+     * The view that owns the pager's pan, under the name React Native's
+     * ScrollView uses, so a gesture library can relate its recognizers to it.
+     */
+    getNativeScrollRef(): HostInstance | HTMLElement | null;
 }
 export type PagerProps = ViewProps & {
     children?: ReactNode;
