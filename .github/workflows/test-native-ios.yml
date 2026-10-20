@@ -399,7 +399,26 @@ jobs:
           IOS_TEST_CONTAINER_PATH_PROD: ${{ matrix.env == 'prod' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.built-app-path) || '' }}
           HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || steps.download-hermesc-dev.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.hermesc-path) || '' }}
         run: |
+          if [ '${{ matrix.env }}' = dev ] && [ '${{ matrix.bundler }}' = rolldown ]; then
+            export ONE_NATIVE_BUNDLE_TRACE="$RUNNER_TEMP/native-bundle-transport.jsonl"
+            xcrun simctl spawn "$SIMULATOR_UDID" log stream \
+              --style ndjson --level debug \
+              --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CFNetwork"' \
+              > "$RUNNER_TEMP/native-bundle-network.jsonl" 2>&1 &
+            native_log_pid=$!
+            trap 'kill "$native_log_pid" 2>/dev/null || true; wait "$native_log_pid" 2>/dev/null || true' EXIT
+          fi
           bun run --filter test-test ${{ matrix.test-script }}
+
+      - name: Upload Native Bundle Diagnostics
+        uses: actions/upload-artifact@v7
+        if: ${{ always() && matrix.env == 'dev' && matrix.bundler == 'rolldown' }}
+        continue-on-error: true
+        with:
+          name: native-bundle-diagnostics
+          path: |
+            ${{ runner.temp }}/native-bundle-transport.jsonl
+            ${{ runner.temp }}/native-bundle-network.jsonl
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v7
