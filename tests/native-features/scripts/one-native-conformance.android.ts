@@ -759,6 +759,22 @@ function keyboardShown(config: Config) {
   return /mInputShown\s*=\s*true/.test(shown)
 }
 
+// read only the current client, excluding the service's historical editor records.
+function inputConnectionReady(config: Config) {
+  const client = adbText(config, [
+    'shell',
+    "dumpsys input_method | sed -n '/^Input method client state for /,/^Input method service state for /p'",
+  ])
+  const inputType = /^\s*inputType=0x([0-9a-f]+)/im.exec(client)?.[1]
+  return (
+    /^\s*mActive=true\b/m.test(client) &&
+    /^\s*mServedConnecting=false$/m.test(client) &&
+    /^\s*packageName=(\S+)/m.exec(client)?.[1] === config.packageId &&
+    Number.parseInt(inputType ?? '0', 16) !== 0 &&
+    /^\s*mServedInputConnection=RemoteInputConnectionImpl\{connection=(?!null)[^\s]+ mDeactivateRequested=false\b/m.test(client)
+  )
+}
+
 // the ime leg is vacuous unless the keyboard is actually raised, so fail
 // loudly when it is not.
 function requireKeyboardShown(config: Config) {
@@ -3042,11 +3058,22 @@ async function run(config: Config) {
       tapFresh(config, 'Disconnect the shared state binding', { id: 'one-native-state-disconnect' })
     }
     tapFresh(config, 'State primary native text field', { id: 'one-native-state-field' })
+    // focus starts an asynchronous editor handoff; do not inject keys into its old connection.
+    await expect(
+      'state-native-editor-ready',
+      (nodes) =>
+        diagnose(nodes, [
+          ['primary field focused', (n) => nodeById(n, 'one-native-state-field').attrs.focused === 'true'],
+          ['input connection active', () => inputConnectionReady(config)],
+        ]),
+      'one-native-state-field'
+    )
     adbType(config, 'grace')
     await expect(
       'state-native-edit-updates-hook-and-shared-field',
       (nodes) =>
         diagnose(nodes, [
+          ['primary field received complete native edit', (n) => nodeById(n, 'one-native-state-field').text === 'grace'],
           ['hook value follows native edit', (n) => textIncludes(n, 'Name: grace · Get: grace')],
           ['second bound native field follows edit', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'grace'],
         ]),
