@@ -1,5 +1,7 @@
-import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
+import type { NativeStackNavigationEventMap, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { type PropsWithChildren } from 'react';
+import type { ScreenProps } from '../../router/useScreens';
 export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
     presentation?: NativeStackNavigationOptions['presentation'] | 'sheet' | (string & {});
     /**
@@ -15,10 +17,7 @@ export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentatio
      */
     keepMounted?: boolean;
 };
-export interface StackScreenProps extends PropsWithChildren {
-    name?: string;
-    options?: StackScreenOptions;
-}
+export type StackScreenProps = PropsWithChildren<ScreenProps<StackScreenOptions, StackNavigationState<ParamListBase>, NativeStackNavigationEventMap>>;
 /**
  * Stack screen component with support for compositional header configuration.
  *
