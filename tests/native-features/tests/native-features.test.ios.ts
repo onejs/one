@@ -1237,12 +1237,14 @@ describe('one native integration tests', () => {
       await captureScreenshot(driver, 'one-native-timeline-view-periodic')
     })
 
-    test('explicit schedule settles on its last past date', sharedTestOptions, async () => {
+    test('explicit schedule delivers native entries in order', sharedTestOptions, async () => {
       const view = await waitForElement(driver, 'one-native-timeline-view-explicit')
+      const trail = view.$('XCUIElementTypeStaticText')
       await view.waitUntil(
-        async () => (await view.getText()).includes('2026-10-12T11:00:00.000Z'),
-        { timeout: 10_000, timeoutMsg: 'explicit timeline did not show its last date' }
+        async () => (await trail.getText()) === 'explicit entries 0 1',
+        { timeout: 10_000, timeoutMsg: 'explicit timeline did not deliver its entries in order' }
       )
+      await captureScreenshot(driver, 'one-native-timeline-view-explicit')
     })
 
     test('an invalid schedule throws instead of mounting', sharedTestOptions, async () => {
