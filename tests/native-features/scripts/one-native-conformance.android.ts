@@ -5400,6 +5400,7 @@ async function run(config: Config) {
       /^start(,transcript)*$/.test(speechLog(nodes, name) ?? '')
     const speechEnded = (nodes: Node[], name: string) =>
       /(^|,)end$/.test(speechLog(nodes, name) ?? '')
+    // a provider error after an accepted start fails the step; cancel has no completion callback: https://developer.android.com/reference/android/speech/SpeechRecognizer#cancel()
     const expectSpeech = (
       name: string,
       predicate: (nodes: Node[]) => boolean,
