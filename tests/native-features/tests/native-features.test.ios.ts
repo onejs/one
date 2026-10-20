@@ -1256,7 +1256,7 @@ describe('one native integration tests', () => {
     })
   })
 
-  // -- outline group (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+  // -- outline group --
 
   describe('One Native Outline Group', () => {
     test('tree rows mount and a branch discloses its children', sharedTestOptions, async () => {
@@ -1269,7 +1269,10 @@ describe('one native integration tests', () => {
       expect(await documents.isDisplayed()).toBe(true)
       await captureScreenshot(driver, 'one-native-outline-group-collapsed')
 
-      await documents.click()
+      // in a selectable sidebar list, the row label selects and its child button discloses.
+      const documentsDisclosure = documents.$('./XCUIElementTypeButton')
+      await documentsDisclosure.waitForDisplayed({ timeout: 30_000 })
+      await documentsDisclosure.click()
       const reports = await waitForElement(driver, 'Reports')
       expect(await reports.isDisplayed()).toBe(true)
       await captureScreenshot(driver, 'one-native-outline-group-expanded')
@@ -1278,7 +1281,9 @@ describe('one native integration tests', () => {
     test('adding a child to a leaf gives it a disclosure row', sharedTestOptions, async () => {
       await (await waitForElement(driver, 'one-native-outline-group-add')).click()
       const photos = await waitForElement(driver, 'Photos')
-      await photos.click()
+      const photosDisclosure = photos.$('./XCUIElementTypeButton')
+      await photosDisclosure.waitForDisplayed({ timeout: 30_000 })
+      await photosDisclosure.click()
       const trip = await waitForElement(driver, 'Trip')
       expect(await trip.isDisplayed()).toBe(true)
     })
