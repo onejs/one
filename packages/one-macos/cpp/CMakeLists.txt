@@ -7,14 +7,15 @@ project(OneMacosCore LANGUAGES C CXX OBJCXX)
 #   -DRN_ROOT=<path to node_modules/react-native>
 #   -DRN_DEPS_ROOT=<dir holding ReactNativeDependenciesHeaders.xcframework>
 #   -DNITRO_ROOT=<path to node_modules/react-native-nitro-modules>
+#   -DHERMES_ROOT=<extracted hermes-ios destroot, headers and hermesvm.framework>
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OBJCXX_STANDARD 20)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT)
-  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT and NITRO_ROOT")
+if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT OR NOT HERMES_ROOT)
+  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT, NITRO_ROOT and HERMES_ROOT")
 endif()
 
 set(RC ${RN_ROOT}/ReactCommon)
@@ -34,7 +35,6 @@ set(RN_DIRS
   jsinspector-modern/network
   jsinspector-modern/tracing
   jsitooling/react/runtime
-  jsc
   logger
   oscompat
   reactperflogger/reactperflogger
@@ -94,6 +94,8 @@ set(RN_DIRS
   react/renderer/viewtransition
   react/runtime
   react/runtime/nativeviewconfig
+  react/runtime/hermes
+  hermes/inspector-modern/chrome
 )
 
 set(RN_SOURCES "")
@@ -108,8 +110,6 @@ list(APPEND RN_SOURCES ${found})
 list(FILTER RN_SOURCES EXCLUDE REGEX "/(tests|test|iostests|android|windows|fantom|samples)/")
 list(FILTER RN_SOURCES EXCLUDE REGEX "(Windows|CdpNetworkDummy)\\.cpp$")
 
-# the pod build skips these; they drag in android or hermes only code
-list(FILTER RN_SOURCES EXCLUDE REGEX "/react/runtime/hermes/")
 
 file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/*.cpp
@@ -148,6 +148,7 @@ file(GLOB NITRO_INCLUDE_DIRS LIST_DIRECTORIES true ${NITRO_ROOT}/cpp/* ${NITRO_R
 
 target_include_directories(OneMacosCore PUBLIC
   ${DEPS_HEADERS}
+  ${HERMES_ROOT}/include
   ${RC}
   ${RC}/jsi
   ${RC}/callinvoker
@@ -181,6 +182,8 @@ target_compile_definitions(OneMacosCore PUBLIC
   FOLLY_CFG_NO_COROUTINES=1
   FOLLY_HAVE_CLOCK_GETTIME=1
   RCT_NEW_ARCH_ENABLED=1
+  HERMES_V1_ENABLED=1
+  $<$<CONFIG:Debug>:HERMES_ENABLE_DEBUGGER=1>
   REACT_NATIVE_DEBUGGER_ENABLED=1
   REACT_NATIVE_DEBUGGER_ENABLED_DEVONLY=1
   $<$<CONFIG:Debug>:DEBUG=1>

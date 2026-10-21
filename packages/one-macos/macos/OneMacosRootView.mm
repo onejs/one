@@ -3,7 +3,7 @@
 #include <ReactCommon/RuntimeExecutor.h>
 #include <ReactCommon/TurboModuleBinding.h>
 #include <cxxreact/JSBigString.h>
-#include <jsc/JSCRuntime.h>
+#include <react/runtime/hermes/HermesInstance.h>
 #include <jsi/jsi.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
 #include <react/renderer/componentregistry/native/NativeComponentRegistryBinding.h>
@@ -135,7 +135,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   };
 
   _instance = std::make_shared<ReactInstance>(
-      std::make_unique<JSIRuntimeHolder>(jsc::makeJSCRuntime()), _jsThread, timerManager, onJsError);
+      HermesInstance::createJSRuntime(nullptr, _jsThread, false), _jsThread, timerManager, onJsError);
   timerManager->setRuntimeExecutor(_instance->getBufferedRuntimeExecutor());
 
   std::weak_ptr<ReactInstance> weakInstance = _instance;

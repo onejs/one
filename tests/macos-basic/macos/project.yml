@@ -11,6 +11,7 @@ settings:
     RN_ROOT: $(SRCROOT)/../../../node_modules/react-native
     CORE_OUT: $(OBJROOT)/OneMacosCore
     ONE_DEPS: $(CORE_OUT)/deps/packages/react-native/third-party
+    ONE_HERMES: $(CORE_OUT)/hermes/destroot/Library/Frameworks/macosx
 targets:
   MacosBasic:
     type: application
@@ -31,13 +32,14 @@ targets:
           - $(CORE_OUT)/build
         FRAMEWORK_SEARCH_PATHS:
           - $(ONE_DEPS)/ReactNativeDependencies.xcframework/macos-arm64_x86_64
+          - $(ONE_HERMES)
         OTHER_LDFLAGS:
           - -lOneMacosCore
           - -lc++
           - -framework
           - ReactNativeDependencies
           - -framework
-          - JavaScriptCore
+          - hermesvm
           - -framework
           - QuartzCore
         LD_RUNPATH_SEARCH_PATHS:
@@ -60,3 +62,7 @@ targets:
         basedOnDependencyAnalysis: false
         script: |
           "$ONE_MACOS/template/macos/scripts/embed-deps.sh" "$ONE_DEPS" "$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
+      - name: Embed hermesvm
+        basedOnDependencyAnalysis: false
+        script: |
+          "$ONE_MACOS/template/macos/scripts/embed-hermes.sh" "$ONE_HERMES" "$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"

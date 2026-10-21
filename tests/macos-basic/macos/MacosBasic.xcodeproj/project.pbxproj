@@ -112,6 +112,7 @@
 				2EDE01A754EFF2EE3010530E /* Build One macOS core */,
 				D95DE88BF267C8A7F03F5E68 /* Sources */,
 				15BBFDF7F07DC8619487AE63 /* Embed ReactNativeDependencies */,
+				C64066B97381BC6F782AFC03 /* Embed hermesvm */,
 			);
 			buildRules = (
 			);
@@ -196,6 +197,25 @@
 			shellPath = /bin/sh;
 			shellScript = "export RN_ROOT=\"$(cd \"$RN_ROOT\" && pwd)\" ONE_MACOS=\"$(cd \"$ONE_MACOS\" && pwd)\" CORE_OUT=\"$CORE_OUT\"\nexport CORE_CONFIG=\"$CONFIGURATION\"\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\n\"$ONE_MACOS/template/macos/scripts/build-core.sh\"\n";
 		};
+		C64066B97381BC6F782AFC03 /* Embed hermesvm */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed hermesvm";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$ONE_MACOS/template/macos/scripts/embed-hermes.sh\" \"$ONE_HERMES\" \"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -267,6 +287,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONE_DEPS = "$(CORE_OUT)/deps/packages/react-native/third-party";
+				ONE_HERMES = "$(CORE_OUT)/hermes/destroot/Library/Frameworks/macosx";
 				ONE_MACOS = "$(SRCROOT)/../../../packages/one-macos";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -289,6 +310,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(ONE_DEPS)/ReactNativeDependencies.xcframework/macos-arm64_x86_64",
+					"$(ONE_HERMES)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(ONE_MACOS)/macos",
@@ -307,7 +329,7 @@
 					"-framework",
 					ReactNativeDependencies,
 					"-framework",
-					JavaScriptCore,
+					hermesvm,
 					"-framework",
 					QuartzCore,
 				);
@@ -328,6 +350,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(ONE_DEPS)/ReactNativeDependencies.xcframework/macos-arm64_x86_64",
+					"$(ONE_HERMES)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(ONE_MACOS)/macos",
@@ -346,7 +369,7 @@
 					"-framework",
 					ReactNativeDependencies,
 					"-framework",
-					JavaScriptCore,
+					hermesvm,
 					"-framework",
 					QuartzCore,
 				);
@@ -406,6 +429,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONE_DEPS = "$(CORE_OUT)/deps/packages/react-native/third-party";
+				ONE_HERMES = "$(CORE_OUT)/hermes/destroot/Library/Frameworks/macosx";
 				ONE_MACOS = "$(SRCROOT)/../../../packages/one-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RN_ROOT = "$(SRCROOT)/../../../node_modules/react-native";

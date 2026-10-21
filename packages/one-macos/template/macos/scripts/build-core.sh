@@ -14,6 +14,7 @@ nitro_root="$(dirname "$RN_ROOT")/react-native-nitro-modules"
 
 lower="$(echo "$config" | tr '[:upper:]' '[:lower:]')"
 RN_ROOT="$RN_ROOT" "$(dirname "$0")/prepare-deps.sh" "$deps" "$lower"
+RN_ROOT="$RN_ROOT" "$(dirname "$0")/prepare-hermes.sh" "$CORE_OUT/hermes" "$lower"
 
 cmake -G Ninja -S "$ONE_MACOS/cpp" -B "$CORE_OUT/build" \
   -DCMAKE_BUILD_TYPE="$config" \
@@ -21,5 +22,6 @@ cmake -G Ninja -S "$ONE_MACOS/cpp" -B "$CORE_OUT/build" \
   -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \
   -DRN_ROOT="$RN_ROOT" \
   -DNITRO_ROOT="$nitro_root" \
+  -DHERMES_ROOT="$CORE_OUT/hermes/destroot" \
   -DRN_DEPS_ROOT="$deps/packages/react-native/third-party" >/dev/null
 ninja -C "$CORE_OUT/build"
