@@ -1,6 +1,6 @@
 {
   "name": "test-route-chunking",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "private": true,
   "type": "module",
   "scripts": {
