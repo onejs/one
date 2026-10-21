@@ -2752,6 +2752,20 @@ async function run(config: Config) {
   }
 
   const launchScreen = async () => {
+    // the content budget starts once this launch's bundle has run. fetching
+    // the dev bundle from metro is cold-launch cost that freshLeg budgets at
+    // 60s, and a bundle that never runs fails here, before any predicate.
+    const pid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    if (!pid) throw new Error(`launch-screen: ${config.packageId} is not running after relaunch`)
+    const bundleStarted = Date.now()
+    const logcat = ['-s', config.deviceId, 'logcat', `--pid=${pid}`, '-s', 'ReactNativeJS:I',
+      '-e', '^Running "', '-m', '1']
+    try {
+      execFileSync('adb', logcat, { stdio: 'ignore', timeout: 60_000 })
+    } catch (error) {
+      throw commandError('adb', logcat, error)
+    }
+    console.log(`PASS launch-screen-bundle-ran after ${Date.now() - bundleStarted}ms`)
     // the proof setup calls preventAutoHide before react's first render.
     // android exposes that render to accessibility while pre-draw stays held.
     const ready = await expect('launch-screen-content-ready-under-hold', (nodes) =>
