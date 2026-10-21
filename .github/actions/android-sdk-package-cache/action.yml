@@ -1,16 +1,16 @@
 name: Android SDK package cache
 description: >-
   sdkmanager unzips a download without checking its length, so a transfer that
-  ends early fails setup. this restores one installed sdk package before
-  setup-android, which then skips it, or saves the package setup-android
-  installed, keyed on its package id and installed revision. on a miss
-  sdkmanager downloads the package as before.
+  ends early fails setup. this restores the installed sdk packages before
+  setup-android, which then skips them, or saves the packages setup-android
+  installed, keyed on their package ids and installed revisions. on a miss
+  sdkmanager downloads the packages as before.
 inputs:
-  package:
-    description: sdkmanager package id, such as ndk;27.1.12297006
+  packages:
+    description: space-separated sdkmanager package ids, as setup-android takes them
     required: true
   save:
-    description: "'true' saves the installed package instead of restoring it"
+    description: "'true' saves the installed packages instead of restoring them"
     default: 'false'
 runs:
   using: composite
@@ -18,30 +18,49 @@ runs:
     - id: locate
       shell: bash
       env:
-        PACKAGE: ${{ inputs.package }}
+        PACKAGES: ${{ inputs.packages }}
       run: |
-        dir="$ANDROID_HOME/${PACKAGE//;//}"
-        key="android-sdk-$RUNNER_OS-${PACKAGE//;/-}-"
-        echo "dir=$dir" >> "$GITHUB_OUTPUT"
-        echo "key=$key" >> "$GITHUB_OUTPUT"
+        dirs=()
+        for package in $PACKAGES; do dirs+=("$ANDROID_HOME/${package//;//}"); done
+        {
+          echo 'dirs<<EOF'
+          printf '%s\n' "${dirs[@]}"
+          echo EOF
+          echo "key=android-sdk-$RUNNER_OS-$(printf '%s\n' $PACKAGES | sha256sum | cut -c1-16)-"
+        } >> "$GITHUB_OUTPUT"
         if [ '${{ inputs.save }}' = true ]; then
-          echo "revision=$(sed -n 's/^Pkg\.Revision *= *//p' "$dir/source.properties")" >> "$GITHUB_OUTPUT"
+          revisions=$(for dir in "${dirs[@]}"; do sed -n 's/^Pkg\.Revision *= *//p' "$dir/source.properties"; done)
+          echo "revisions=$(echo "$revisions" | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
         fi
     - if: ${{ inputs.save != 'true' }}
+      id: found
       uses: actions/cache/restore@v5
       with:
-        path: ${{ steps.locate.outputs.dir }}
+        path: ${{ steps.locate.outputs.dirs }}
         key: ${{ steps.locate.outputs.key }}
         restore-keys: ${{ steps.locate.outputs.key }}
+        lookup-only: true
+    # a hit replaces the runner image's copies whole, so no file of an older
+    # preinstalled revision survives beside the restored one.
+    - if: ${{ inputs.save != 'true' && steps.found.outputs.cache-matched-key != '' }}
+      shell: bash
+      env:
+        DIRS: ${{ steps.locate.outputs.dirs }}
+      run: echo "$DIRS" | xargs rm -rf
+    - if: ${{ inputs.save != 'true' && steps.found.outputs.cache-matched-key != '' }}
+      uses: actions/cache/restore@v5
+      with:
+        path: ${{ steps.locate.outputs.dirs }}
+        key: ${{ steps.found.outputs.cache-matched-key }}
     - if: ${{ inputs.save == 'true' }}
       id: saved
       uses: actions/cache/restore@v5
       with:
-        path: ${{ steps.locate.outputs.dir }}
-        key: ${{ steps.locate.outputs.key }}${{ steps.locate.outputs.revision }}
+        path: ${{ steps.locate.outputs.dirs }}
+        key: ${{ steps.locate.outputs.key }}${{ steps.locate.outputs.revisions }}
         lookup-only: true
     - if: ${{ inputs.save == 'true' && steps.saved.outputs.cache-hit != 'true' }}
       uses: actions/cache/save@v5
       with:
-        path: ${{ steps.locate.outputs.dir }}
-        key: ${{ steps.locate.outputs.key }}${{ steps.locate.outputs.revision }}
+        path: ${{ steps.locate.outputs.dirs }}
+        key: ${{ steps.locate.outputs.key }}${{ steps.locate.outputs.revisions }}

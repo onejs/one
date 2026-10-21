@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      NDK_PACKAGE: 'ndk;27.1.12297006'
+      ANDROID_SDK_PACKAGES: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 cmake;3.22.1'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-java@v6
@@ -54,15 +54,15 @@ jobs:
           java-version: '17'
       - uses: ./.github/actions/android-sdk-package-cache
         with:
-          package: ${{ env.NDK_PACKAGE }}
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
       - uses: android-actions/setup-android@v4
         with:
-          packages: "platform-tools platforms;android-37.0 build-tools;37.0.0 ${{ env.NDK_PACKAGE }} cmake;3.22.1"
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
       # pushes write the package cache, pull requests read it.
       - if: ${{ github.event_name != 'pull_request' }}
         uses: ./.github/actions/android-sdk-package-cache
         with:
-          package: ${{ env.NDK_PACKAGE }}
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
           save: 'true'
       # caches gradle dependencies and the wrapper; pushes write it, pull requests read it.
       - uses: gradle/actions/setup-gradle@v4
@@ -138,6 +138,7 @@ jobs:
             launch-screen-proof: '1'
     env:
       FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
+      ANDROID_SDK_PACKAGES: 'platform-tools emulator platforms;android-37.0 build-tools;37.0.0 system-images;android-37.0;google_apis;x86_64'
       FIXTURE_PACKAGE: dev.vxrn.nativefeatures.tests
       FIXTURE_SERIAL: emulator-5554
     steps:
@@ -154,14 +155,14 @@ jobs:
           java-version: '17'
       - uses: ./.github/actions/android-sdk-package-cache
         with:
-          package: ${{ env.FIXTURE_AVD_IMAGE }}
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
       - uses: android-actions/setup-android@v4
         with:
-          packages: "platform-tools emulator platforms;android-37.0 build-tools;37.0.0 ${{ env.FIXTURE_AVD_IMAGE }}"
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
       - if: ${{ github.event_name != 'pull_request' }}
         uses: ./.github/actions/android-sdk-package-cache
         with:
-          package: ${{ env.FIXTURE_AVD_IMAGE }}
+          packages: ${{ env.ANDROID_SDK_PACKAGES }}
           save: 'true'
       - uses: ./.github/actions/install
         with:
