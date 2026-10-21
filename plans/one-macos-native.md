@@ -220,14 +220,15 @@ JS bundle baselines, TESTED by the tooling worker on studio-64 with
 | `tests/native-features` Android release `android.js` | 7,115,711 | `a7c221a53bdb05b579bd90867dc9d81bff0a5e8200e24f6ed8f5f8695691d571` |
 | `examples/one-basic` web dist (sha256 of sorted per-file list) | 2,856,099 | `707a2e932f5dd0a09fe6671ee291881efc94fc9e8b0f35bce61c46b21614ee53` |
 
-Gate check at `1b9ecc2922` against `50d2bfbfdc`, TESTED on studio-64 with
-both sides fully built from source (`bun run build:js`) in fresh worktrees:
+Gate check at `8e2cc88e1c` (M1 head) against `50d2bfbfdc`, TESTED on
+studio-64 with both sides fully built from source (`bun run build:js`) in fresh
+worktrees:
 
 | output | base bytes | head bytes | result |
 | --- | --- | --- | --- |
-| iOS release bundle | 10,921,767 | 10,921,767 | same code; differs only in worktree path, path-derived worklet hashes and one bundler binding suffix (`import_react_native$385` vs `$386`) |
-| Android release bundle | 7,128,691 | 7,128,691 | identical after normalizing worktree path and worklet hashes |
-| `one-basic` web | 65 files, 2,856,134 | 65 files, 2,856,134 | per-file sizes identical |
+| iOS release bundle | 10,921,767 | 10,921,767 | identical after normalizing worktree path, path-derived worklet hashes and bundler binding suffixes |
+| Android release bundle | 7,128,691 | 7,128,691 | identical after the same normalization |
+| `one-basic` web | 65 files | 65 files | only `version.json`, `buildInfo.json` and the entry chunk differ, each by the digit count of the build's random `CACHE_KEY` (8 digits on base, 7 on head); INFERRED cache key only, disproved by any diff left after replacing the key |
 
 Builds must run `one`'s full build (`tamagui-build` then
 `codegen/staticSpecs.ts`); `tamagui-build` alone leaves raw spec exports that
@@ -262,9 +263,11 @@ is staffed.
 
 ## Status
 
-M0 done: plan, package skeleton, npm and bundle baselines. M1 native side
-proven against a stand-in bundle; M1 is met only when the real
-`/index.bundle?platform=macos` mounts and survives an HMR edit.
+M0 done: plan, package skeleton, npm and bundle baselines. M1 done
+(2026-10-21): the real `/index.bundle?platform=macos` from `one dev` mounts a One
+route with `View`, `Text` and `One.macOS.Toggle` on Hermes, the toggle round
+trips, and an HMR text edit applies with toggle state and pid kept. iOS and
+Android bundles are unchanged at the M1 head (gate above). M2 is next.
 
 Review of host commits `b3d70fb771`..`4d2805703d` (planner): accepted. Owed
 before M3: the toggle's controlled logic in `OneMacosToggleComponentView.mm`
