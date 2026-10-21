@@ -74,7 +74,6 @@ export function nativeHmrTrace(path: string | undefined): Plugin {
         record('pulse', { gapMs: now - lastPulse, ...process.memoryUsage() })
         lastPulse = now
       }, 1000)
-      pulse.unref()
       const restorers: Array<() => void> = [() => clearInterval(pulse)]
       for (const method of [
         'registerClient',
