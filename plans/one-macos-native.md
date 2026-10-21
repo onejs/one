@@ -190,10 +190,17 @@ Published 2.9.1 on npm (RAN `npm view`), unpacked bytes and files:
 | `@vxrn/vite-plugin-metro` | 2,059,124 | 329 |
 
 Compare against a canary of this branch with `npm pack --dry-run` on the
-built packages. JS bundle baselines (iOS and Android release bundles of
-`tests/native-features`, web build of `examples/one-basic`) are measured on
-this branch's base commit `50d2bfbfdc` by the tooling worker before its first
-change and recorded here.
+built packages.
+
+JS bundle baselines, TESTED by the tooling worker on studio-64 with
+`one`, `vxrn`, `utils` and `vite-plugin-metro` sources identical to
+`50d2bfbfdc`:
+
+| output | bytes | sha256 |
+| --- | --- | --- |
+| `tests/native-features` iOS release `ios.js` | 10,908,831 | `adf026f9a21e0547eedc3922170a66cdd819a973f638d95187cb7cce7ac113d1` |
+| `tests/native-features` Android release `android.js` | 7,115,711 | `a7c221a53bdb05b579bd90867dc9d81bff0a5e8200e24f6ed8f5f8695691d571` |
+| `examples/one-basic` web dist (sha256 of sorted per-file list) | 2,856,099 | `707a2e932f5dd0a09fe6671ee291881efc94fc9e8b0f35bce61c46b21614ee53` |
 
 ## Work slices
 
