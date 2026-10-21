@@ -102,9 +102,15 @@ release reopens the fork question.
 - App and library resolution order: `.macos.*`, `.native.*`, then the plain
   file. No `.ios.*` fallback for app code or third-party packages: a Mac is
   not an iPhone, and silent iOS fallback is how UIKit-only JS sneaks in.
-- Inside `react-native` itself only, `macos` resolves to the `.ios.js` files,
-  with a small owned override set (starting with `Platform` so `Platform.OS`
-  is `'macos'`). The override set lives in `one-macos`.
+- Inside `react-native` itself only, `macos` resolves to the `.ios.js` files
+  and RN's own modules keep `Platform.OS === 'ios'`: the host implements the
+  iOS-shaped native module contract, and RN's JS has about 40
+  `Platform.OS === 'ios'` branches (Alert, Settings, `ViewConfigIgnore`,
+  lists) that would otherwise take Android paths (RAN: grep of RN 0.88
+  `Libraries`). Every importer outside `react-native` gets the owned override
+  in `packages/one-macos/src`, where `Platform.OS` is `'macos'` and `select`
+  reads `macos`, `native`, then `default`. The resolver picks the Platform
+  module by importer path.
 - `One.platform` gains `'macos'`; `One.macOS` is the Mac component namespace.
 
 Falsifier: if RN 0.88's iOS JS calls a native module our host cannot
@@ -174,8 +180,9 @@ Both helpers build against this; change it only through the planner.
   port from the app's `Info.plist` key `OneDevServerURL`, default 8081.
 - Registered module name: `main` (same as iOS).
 - First control: Fabric component `OneMacToggle`, props `label: string`,
-  `isOn: boolean`, `revision: Int32`; event `onIsOnChange { isOn, revision }`,
-  driven by the existing controlled protocol.
+  `isOn: boolean`, `revision: Int32`, `acknowledgedEvent: Int32`; event
+  `onIsOnChange { isOn, eventCount, revision }` (`topIsOnChange`), driven by
+  the existing controlled protocol in `src/platform/controlled.ts`.
 - `PlatformConstants` reports `osVersion`, `interfaceIdiom: 'mac'`,
   `isTesting`, and `reactNativeVersion` of the installed RN.
 
@@ -231,7 +238,15 @@ is staffed.
 
 ## Status
 
-M0 done: plan, package skeleton, npm baselines. M1 staffed.
+M0 done: plan, package skeleton, npm and bundle baselines. M1 native side
+proven against a stand-in bundle; M1 is met only when the real
+`/index.bundle?platform=macos` mounts and survives an HMR edit.
+
+Review of host commits `b3d70fb771`..`4d2805703d` (planner): accepted. Owed
+before M3: the toggle's controlled logic in `OneMacosToggleComponentView.mm`
+duplicates `ios/OneNativeControlled.swift`; the generated Mac glue must share
+one native implementation of it. Keep one of `project.yml` and the committed
+`MacosBasic.xcodeproj`, not both, once `prebuild` emits the Mac project.
 
 ### M1 host result (host worker)
 
