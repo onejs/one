@@ -394,17 +394,20 @@ function macosPlatformSplitStubPlugin(): Plugin {
   }
 }
 
-// index.native.js imports ./one.native.js by its full name, so .macos
-// resolution never sees it. the build emits one.macos.native.js beside it;
-// macos loads that one, and it imports the shared one.native.js itself.
-function macosOneEntryPlugin(): Plugin {
+// built packages import siblings by their full name (./one.native.js), so
+// .macos resolution never sees them. when the build emitted a .macos.native.js
+// beside the target, macos loads that file instead. the variant itself still
+// imports the shared file.
+function macosDistVariantPlugin(): Plugin {
   return {
-    name: 'vxrn:macos-one-entry',
+    name: 'vxrn:macos-dist-variant',
     resolveId(source, importer) {
-      if (!importer || !source.endsWith('one.native.js')) return
-      if (!importer.includes(`${sep}one${sep}dist${sep}esm${sep}index.native.`)) return
-      const distFile = source.startsWith('.') ? resolve(dirname(importer), source) : source
-      return join(dirname(distFile), 'one.macos.native.js')
+      if (!importer || !source.startsWith('.') || !source.endsWith('.native.js')) return
+      if (source.endsWith('.macos.native.js')) return
+      const target = resolve(dirname(importer), source)
+      const variant = target.replace(/\.native\.js$/, '.macos.native.js')
+      if (variant === importer || !existsSync(variant)) return
+      return variant
     },
   }
 }
@@ -426,7 +429,7 @@ function getNativePlugins(
     ...(platform === 'macos'
       ? [
           macosReactNativeResolvePlugin(root),
-          macosOneEntryPlugin(),
+          macosDistVariantPlugin(),
           macosPlatformSplitStubPlugin(),
         ]
       : []),
