@@ -1,8 +1,13 @@
 #import <AppKit/AppKit.h>
 
+#include <chrono>
+
 #include <folly/json.h>
 #include <jsi/JSIDynamic.h>
 #include <react/featureflags/ReactNativeFeatureFlags.h>
+
+#include <CallInvokerDispatcher.hpp>
+#include <InstallNitro.hpp>
 
 #import "OneMacosModules.h"
 #import "OneMacosWebSocket.h"
@@ -23,6 +28,7 @@ class OneMacosModule : public TurboModule {
   OneMacosModule(const std::string &name, std::shared_ptr<CallInvoker> jsInvoker)
       : TurboModule(name, std::move(jsInvoker)) {}
 
+  bool wildcard = false; // TEMP survey
   void method(const std::string &name, size_t argCount, Method method)
   {
     hostMethods_[name] = {argCount, std::move(method)};
@@ -45,6 +51,10 @@ class OneMacosModule : public TurboModule {
   {
     auto it = hostMethods_.find(propName.utf8(runtime));
     if (it == hostMethods_.end()) {
+      if (wildcard) { // TEMP survey
+        if (name_ != "NativeReactNativeFeatureFlagsCxx") NSLog(@"[one-macos] survey %s.%s", name_.c_str(), propName.utf8(runtime).c_str());
+        return jsi::Function::createFromHostFunction(runtime, propName, 0, [](jsi::Runtime &, const jsi::Value &, const jsi::Value *, size_t) { return jsi::Value::undefined(); });
+      }
       return jsi::Value::undefined();
     }
     auto &entry = it->second;
@@ -264,13 +274,142 @@ std::shared_ptr<OneMacosModule> webSocket(std::shared_ptr<CallInvoker> invoker, 
   return module;
 }
 
+std::shared_ptr<TurboModule> performance(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("NativePerformanceCxx", std::move(jsInvoker));
+  module->method("now", 0, [](jsi::Runtime &, const jsi::Value *, size_t) {
+    auto elapsed = std::chrono::steady_clock::now().time_since_epoch();
+    return jsi::Value(std::chrono::duration<double, std::milli>(elapsed).count());
+  });
+  module->noop("reportMark");
+  module->noop("reportMeasure");
+  module->noop("clearMarks");
+  module->noop("clearMeasures");
+  return module;
+}
+
+std::shared_ptr<TurboModule> microtasks(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("NativeMicrotasksCxx", std::move(jsInvoker));
+  module->method("queueMicrotask", 1, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    if (count > 0 && args[0].isObject() && args[0].getObject(rt).isFunction(rt)) {
+      rt.queueMicrotask(args[0].getObject(rt).getFunction(rt));
+    }
+    return jsi::Value::undefined();
+  });
+  return module;
+}
+
+std::shared_ptr<TurboModule> settingsManager(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("SettingsManager", std::move(jsInvoker));
+  module->constants(folly::dynamic::object("settings", folly::dynamic::object()));
+  module->noop("setValues");
+  module->noop("deleteValues");
+  return module;
+}
+
+std::shared_ptr<TurboModule> networking(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("Networking", std::move(jsInvoker));
+  addEventEmitterStubs(*module);
+  module->noop("sendRequest");
+  module->noop("abortRequest");
+  module->noop("clearCookies");
+  return module;
+}
+
+std::shared_ptr<TurboModule> devLoadingView(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("DevLoadingView", std::move(jsInvoker));
+  module->noop("showMessage");
+  module->noop("hide");
+  return module;
+}
+
+std::shared_ptr<TurboModule> blobModule(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("BlobModule", std::move(jsInvoker));
+  module->constants(folly::dynamic::object("BLOB_URI_SCHEME", "blob")("BLOB_URI_HOST", nullptr));
+  module->noop("addNetworkingHandler");
+  module->noop("addWebSocketHandler");
+  module->noop("removeWebSocketHandler");
+  module->noop("sendOverSocket");
+  module->noop("createFromParts");
+  module->noop("release");
+  return module;
+}
+
+std::shared_ptr<TurboModule> devToolsRuntimeSettings(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("ReactDevToolsRuntimeSettingsModule", std::move(jsInvoker));
+  module->method("getReloadAndProfileConfig", 0, [](jsi::Runtime &rt, const jsi::Value *, size_t) {
+    return jsi::valueFromDynamic(
+        rt, folly::dynamic::object("shouldReloadAndProfile", false)("recordChangeDescriptions", false));
+  });
+  module->noop("setReloadAndProfileConfig");
+  return module;
+}
+
+// every accessor answers undefined, so the JS flag getters keep their defaults
+std::shared_ptr<TurboModule> featureFlags(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("NativeReactNativeFeatureFlagsCxx", std::move(jsInvoker));
+  module->wildcard = true;
+  return module;
+}
+
 } // namespace
+
+// installs global.NitroModulesProxy; no hybrid objects are registered here, so
+// services that One's native build provides fail at createHybridObject
+std::shared_ptr<TurboModule> nitro(std::shared_ptr<CallInvoker> jsInvoker)
+{
+  auto module = std::make_shared<OneMacosModule>("NitroModules", jsInvoker);
+  module->method("install", 0, [jsInvoker](jsi::Runtime &rt, const jsi::Value *, size_t) -> jsi::Value {
+    try {
+      margelo::nitro::install(rt, std::make_shared<margelo::nitro::CallInvokerDispatcher>(jsInvoker));
+    } catch (const std::exception &error) {
+      return jsi::String::createFromUtf8(rt, error.what());
+    }
+    return jsi::Value::null();
+  });
+  return module;
+}
 
 std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     const std::string &name,
     std::shared_ptr<CallInvoker> jsInvoker,
     const OneMacosModuleContext &context)
 {
+  NSLog(@"[one-macos] module requested: %s", name.c_str());
+  if (name == "NativePerformanceCxx") {
+    return performance(std::move(jsInvoker));
+  }
+  if (name == "NativeMicrotasksCxx") {
+    return microtasks(std::move(jsInvoker));
+  }
+  if (name == "SettingsManager") {
+    return settingsManager(std::move(jsInvoker));
+  }
+  if (name == "Networking") {
+    return networking(std::move(jsInvoker));
+  }
+  if (name == "DevLoadingView") {
+    return devLoadingView(std::move(jsInvoker));
+  }
+  if (name == "BlobModule") {
+    return blobModule(std::move(jsInvoker));
+  }
+  if (name == "ReactDevToolsRuntimeSettingsModule") {
+    return devToolsRuntimeSettings(std::move(jsInvoker));
+  }
+  if (name == "NativeReactNativeFeatureFlagsCxx") {
+    return featureFlags(std::move(jsInvoker));
+  }
+  if (name == "NitroModules") {
+    return nitro(std::move(jsInvoker));
+  }
   if (name == "PlatformConstants") {
     return platformConstants(std::move(jsInvoker));
   }
@@ -300,6 +439,11 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   }
   if (name == "WebSocketModule") {
     return webSocket(std::move(jsInvoker), context);
+  }
+  { // TEMP survey
+    auto m = std::make_shared<OneMacosModule>(name, std::move(jsInvoker));
+    m->wildcard = true;
+    return m;
   }
   return nullptr;
 }

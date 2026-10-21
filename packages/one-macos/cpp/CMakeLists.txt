@@ -6,14 +6,15 @@ project(OneMacosCore LANGUAGES C CXX OBJCXX)
 # TurboModules). Inputs:
 #   -DRN_ROOT=<path to node_modules/react-native>
 #   -DRN_DEPS_ROOT=<dir holding ReactNativeDependenciesHeaders.xcframework>
+#   -DNITRO_ROOT=<path to node_modules/react-native-nitro-modules>
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OBJCXX_STANDARD 20)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(NOT RN_ROOT OR NOT RN_DEPS_ROOT)
-  message(FATAL_ERROR "set RN_ROOT and RN_DEPS_ROOT")
+if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT)
+  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT and NITRO_ROOT")
 endif()
 
 set(RC ${RN_ROOT}/ReactCommon)
@@ -132,7 +133,18 @@ set(RN_APPLE_SOURCES
   ${RC}/react/utils/platform/ios/react/utils/LowPriorityExecutor.mm
 )
 
-add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${ONE_SOURCES})
+# Nitro's shared C++ core plus its Apple platform sources; the Swift and
+# ObjC glue stays out because the host installs Nitro from its own TurboModule
+file(GLOB_RECURSE NITRO_SOURCES CONFIGURE_DEPENDS ${NITRO_ROOT}/cpp/*.cpp)
+file(GLOB NITRO_APPLE_SOURCES CONFIGURE_DEPENDS
+  ${NITRO_ROOT}/ios/platform/*.cpp
+  ${NITRO_ROOT}/ios/threading/*.cpp
+)
+
+add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${NITRO_SOURCES} ${NITRO_APPLE_SOURCES} ${ONE_SOURCES})
+
+# the pod flattens headers, so every Nitro source directory is an include root
+file(GLOB NITRO_INCLUDE_DIRS LIST_DIRECTORIES true ${NITRO_ROOT}/cpp/* ${NITRO_ROOT}/ios/*)
 
 target_include_directories(OneMacosCore PUBLIC
   ${DEPS_HEADERS}
@@ -156,6 +168,7 @@ target_include_directories(OneMacosCore PUBLIC
   ${RC}/react/utils/platform/ios/react/utils
   ${RN_ROOT}/React/Fabric
   ${RN_ROOT}/React/Fabric/Utils
+  ${NITRO_INCLUDE_DIRS}
   ${ONE_CPP}/textlayoutmanager
   ${ONE_CPP}
   ${ONE_MACOS}
