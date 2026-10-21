@@ -21,6 +21,7 @@ targets:
         excludes:
           - OneApp-Bridging-Header.h
       - path: ../../../packages/one/macos/host/swift
+      - path: ../../../packages/one/ios/OneNativeControlled.swift
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.onestack.macos-basic

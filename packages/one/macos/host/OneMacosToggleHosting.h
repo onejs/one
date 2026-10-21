@@ -7,8 +7,9 @@ NS_ASSUME_NONNULL_BEGIN
 // library finds the class by name so the library itself carries no Swift.
 @protocol OneMacosToggleHosting <NSObject>
 @property (nonatomic, copy) NSString *label;
-@property (nonatomic, assign) BOOL isOn;
-@property (nonatomic, copy, nullable) void (^onChange)(BOOL isOn);
+// the controlled state lives in Swift (OneNativeControlled, shared with iOS)
+- (void)applyValue:(BOOL)isOn acknowledged:(NSInteger)acknowledged revision:(NSInteger)revision;
+@property (nonatomic, copy, nullable) void (^onChange)(BOOL isOn, NSInteger eventCount, NSInteger revision);
 @end
 
 NS_ASSUME_NONNULL_END

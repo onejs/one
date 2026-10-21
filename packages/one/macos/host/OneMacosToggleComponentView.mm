@@ -7,16 +7,10 @@
 
 using namespace facebook::react;
 
-// The controlled round trip: native applies a user toggle immediately and sends
-// an event numbered with `eventCount`. React answers by re-rendering with
-// `acknowledgedEvent`. Until the acknowledgement reaches the latest event, the
-// native value wins over props, so a slow round trip never flips the control
-// back. A new `revision` starts the count over.
+// The controlled round trip lives in Swift (OneNativeControlled, shared with
+// iOS); this view forwards props in and the native event out.
 @implementation OneMacosToggleComponentView {
   NSView<OneMacosToggleHosting> *_host;
-  int _revision;
-  int _eventCount;
-  BOOL _isOn;
 }
 
 - (instancetype)initWithFrame:(NSRect)frame
@@ -30,21 +24,19 @@ using namespace facebook::react;
     _host = [[hostClass alloc] initWithFrame:self.bounds];
     _host.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     __weak OneMacosToggleComponentView *weakSelf = self;
-    _host.onChange = ^(BOOL isOn) {
-      [weakSelf userDidChange:isOn];
+    _host.onChange = ^(BOOL isOn, NSInteger eventCount, NSInteger revision) {
+      [weakSelf userDidChange:isOn eventCount:eventCount revision:revision];
     };
     [self addSubview:_host];
   }
   return self;
 }
 
-- (void)userDidChange:(BOOL)isOn
+- (void)userDidChange:(BOOL)isOn eventCount:(NSInteger)eventCount revision:(NSInteger)revision
 {
-  _isOn = isOn;
-  _eventCount += 1;
   auto emitter = std::static_pointer_cast<const OneMacToggleEventEmitter>(self.eventEmitter);
   if (emitter) {
-    emitter->onIsOnChange({.isOn = (bool)isOn, .eventCount = _eventCount, .revision = _revision});
+    emitter->onIsOnChange({.isOn = (bool)isOn, .eventCount = (int)eventCount, .revision = (int)revision});
   }
 }
 
@@ -52,17 +44,8 @@ using namespace facebook::react;
 {
   [super updateProps:props oldProps:oldProps];
   const auto &toggleProps = static_cast<const OneMacToggleProps &>(*props);
-
-  if (!oldProps || toggleProps.revision != _revision) {
-    _revision = toggleProps.revision;
-    _eventCount = 0;
-    _isOn = toggleProps.isOn;
-  } else if (toggleProps.acknowledgedEvent >= _eventCount) {
-    _isOn = toggleProps.isOn;
-  }
-
   _host.label = [NSString stringWithUTF8String:toggleProps.label.c_str()];
-  _host.isOn = _isOn;
+  [_host applyValue:toggleProps.isOn acknowledged:toggleProps.acknowledgedEvent revision:toggleProps.revision];
 }
 
 - (void)updateLayoutMetrics:(const LayoutMetrics &)layoutMetrics oldLayoutMetrics:(const LayoutMetrics &)oldLayoutMetrics
