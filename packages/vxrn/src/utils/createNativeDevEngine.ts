@@ -366,9 +366,8 @@ export function normalizeNativeCommonJSInterop(code: string): string {
       `[vxrn] cannot normalize native CommonJS interop: the bundle does not parse (${errors[0].message})`
     )
   }
-  // delete each `, 1` from the end of the bundle backwards so earlier offsets
-  // stay valid. only the comma and the `1` go; the surrounding whitespace
-  // stays, so every line keeps the number the source map recorded for it.
+  // collect spans against the original bundle. copying the entire bundle for
+  // each interop call creates gigabytes of temporary strings during a reload.
   const deletions: Array<[start: number, end: number]> = []
   const stack: unknown[] = [program]
   while (stack.length) {
@@ -388,11 +387,16 @@ export function normalizeNativeCommonJSInterop(code: string): string {
       stack.push(node[key])
     }
   }
-  deletions.sort((a, b) => b[0] - a[0])
+  if (!deletions.length) return code
+  deletions.sort((a, b) => a[0] - b[0])
+  const parts: string[] = []
+  let copied = 0
   for (const [start, end] of deletions) {
-    code = code.slice(0, start) + code.slice(end)
+    parts.push(code.slice(copied, start))
+    copied = end
   }
-  return code
+  parts.push(code.slice(copied))
+  return parts.join('')
 }
 
 interface InteropSyntaxNode {
