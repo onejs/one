@@ -694,6 +694,7 @@
         "vxrn": "run.mjs",
       },
       "dependencies": {
+        "@expo/config-plugins": "~58.0.9",
         "@hono/node-server": "^1.19.14",
         "@jridgewell/remapping": "^2.3.0",
         "@jridgewell/trace-mapping": "^0.3.25",

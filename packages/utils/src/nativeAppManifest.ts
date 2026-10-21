@@ -190,6 +190,11 @@ export interface NativeAppManifest {
     url?: string
     runtimeVersion: string
   }
+  // expo config plugins that one prebuild runs on the generated projects,
+  // in app.json form: a package or a project-relative plugin file, alone or
+  // with its options. they run after one's own edits, and a plugin that
+  // cannot apply fails prebuild.
+  plugins?: Array<string | [string] | [string, unknown]>
   ios?: {
     bundleId: string
     buildNumber?: string
@@ -347,6 +352,21 @@ export function validateNativeApp(
       const name = font.split('/').pop() ?? font
       if (names.has(name)) fail(`fonts lists ${name} twice`)
       names.add(name)
+    }
+  }
+  if (manifest.plugins !== undefined) {
+    if (!Array.isArray(manifest.plugins)) fail('plugins must be an array')
+    for (const plugin of manifest.plugins) {
+      const name = Array.isArray(plugin) ? plugin[0] : plugin
+      if (
+        typeof name !== 'string' ||
+        !name.trim() ||
+        (Array.isArray(plugin) && (plugin.length < 1 || plugin.length > 2))
+      ) {
+        fail(
+          `plugins entry ${JSON.stringify(plugin)} must be a package or file name, or [name, options]`
+        )
+      }
     }
   }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {

@@ -338,9 +338,11 @@ alongside the app's other plugins:
 npx expo prebuild
 ```
 
-Expo modules and config plugins keep working on this path. The adapter links
-the generated host to One and takes the service options that `native.app`
-takes under `one prebuild`:
+Expo modules and config plugins keep working on this path, and it is the
+route for an app that combines Expo modules with React Native and Nitro
+modules; [Native Modules](/docs/native-modules) compares the two generators.
+The adapter links the generated host to One and takes the service options
+that `native.app` takes under `one prebuild`:
 
 ```json
 {

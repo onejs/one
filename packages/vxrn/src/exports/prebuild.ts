@@ -3,8 +3,10 @@ import FSExtra from 'fs-extra'
 import path from 'node:path'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
+import { applyConfigPlugins } from './prebuildConfigPlugins'
 import {
   applyAndroidDependencyPatches,
+  assertNativeModuleRuntimes,
   generateForPlatform,
   getNativeDependencyInventory,
   installNativeDependencies,
@@ -14,7 +16,8 @@ import {
 
 // single non-expo prebuild: the installed react native community template is
 // the only generator. installed packages' community configuration is the only
-// dependency discovery protocol; no config-plugin execution api exists.
+// dependency discovery protocol. native.app.plugins run expo config plugins on
+// the finished projects, before anything installs.
 export const prebuild = async ({
   root,
   platform,
@@ -75,14 +78,25 @@ export const prebuild = async ({
 
   // community config reads the generated projects, so discover after generation
   // and before installation. `--no-install` never fakes the linked package set.
+  const platforms = (['ios', 'android'] as const).filter(
+    (entry) => !platform || platform === entry
+  )
   const inventory = await getNativeDependencyInventory(root)
   console.info(
-    `[vxrn] native dependencies discovered through community autolinking: ${inventory.map((entry) => entry.name).join(', ') || '(none)'}`
+    `[vxrn] native dependencies discovered through community autolinking: ${
+      inventory
+        .filter((entry) => entry.platforms.length)
+        .map((entry) => entry.name)
+        .join(', ') || '(none)'
+    }`
   )
+  assertNativeModuleRuntimes({ root, inventory, platforms })
 
   if (platform == 'android' || !platform) {
     applyAndroidDependencyPatches({ root, app, inventory })
   }
+
+  await applyConfigPlugins({ root, app, platforms })
 
   if (!noInstall) {
     installNativeDependencies({ root, platform })

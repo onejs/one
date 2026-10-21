@@ -1491,13 +1491,13 @@ describe('community autolink inventory', () => {
     await generateForPlatform(root, 'android', app)
 
     const inventory = await getNativeDependencyInventory(root)
-    expect(inventory.map((entry) => entry.name)).toEqual([
-      'configured',
-      'react-native-safe-area-context',
-    ])
+    expect(
+      inventory.filter((entry) => entry.platforms.length).map((entry) => entry.name)
+    ).toEqual(['configured', 'react-native-safe-area-context'])
     expect(inventory.find((entry) => entry.name === 'configured')).toEqual({
       name: 'configured',
       version: '2.0.0',
+      root: configured,
       platforms: ['android', 'ios'],
     })
     expect(
@@ -1534,9 +1534,7 @@ describe('native dependency patches', () => {
     applyAndroidDependencyPatches({
       root,
       app,
-      inventory: [
-        { name: 'react-native-screens', version: '4.27.0', platforms: ['android'] },
-      ],
+      inventory: [{ name: 'react-native-screens', platforms: ['android'] }],
     })
     expect(readFileSync(activityPath, 'utf8')).toContain('RNScreensFragmentFactory')
   })

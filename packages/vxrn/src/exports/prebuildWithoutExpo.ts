@@ -3373,13 +3373,15 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
 export interface NativeDependencyInventory {
   name: string
   version: string
+  root: string
+  // the platforms autolinking links it on, empty when it links nowhere
   platforms: string[]
 }
 
 export function applyAndroidDependencyPatches(args: {
   root: string
   app: NativeAppManifest
-  inventory: readonly NativeDependencyInventory[]
+  inventory: readonly Pick<NativeDependencyInventory, 'name' | 'platforms'>[]
 }): void {
   const { root, app, inventory } = args
   if (
@@ -3444,9 +3446,69 @@ export async function getNativeDependencyInventory(
       .filter(([, platformConfig]) => platformConfig !== null)
       .map(([platform]) => platform)
       .sort()
-    if (platforms.length > 0) inventory.push({ name, version, platforms })
+    inventory.push({ name, version, root: depRoot, platforms })
   }
   return inventory
+}
+
+// prebuild links react native and nitro modules only. an expo module needs
+// the expo modules runtime, which this template does not include, so it
+// fails here instead of crashing at launch. a library that links on its own
+// and also ships an expo adapter keeps working without the adapter.
+export function assertNativeModuleRuntimes(args: {
+  root: string
+  inventory: readonly NativeDependencyInventory[]
+  platforms: readonly ('ios' | 'android')[]
+}): void {
+  const { root, inventory, platforms } = args
+  const inactiveAdapters: string[] = []
+  for (const dependency of inventory) {
+    const expoModulePath = path.join(dependency.root, 'expo-module.config.json')
+    if (!FSExtra.existsSync(expoModulePath)) continue
+    const expoPlatforms: string[] = FSExtra.readJsonSync(expoModulePath).platforms ?? [
+      'ios',
+      'android',
+    ]
+    const needed = platforms.filter((platform) =>
+      expoPlatforms.some((entry) =>
+        platform === 'ios' ? entry === 'ios' || entry === 'apple' : entry === platform
+      )
+    )
+    if (needed.some((platform) => !dependency.platforms.includes(platform))) {
+      throw new Error(
+        `[one] ${dependency.name} is an Expo module and needs the Expo Modules runtime, which one prebuild does not include. Generate this app with Expo prebuild and vxrn/expo-plugin, or remove ${dependency.name}.`
+      )
+    }
+    if (needed.length) inactiveAdapters.push(dependency.name)
+  }
+  if (inactiveAdapters.length) {
+    console.info(
+      `[one] Expo adapter inactive, linked as React Native modules: ${inactiveAdapters.join(', ')}`
+    )
+  }
+
+  // one links the nitro runtime from its own copy; an app copy of another
+  // version would pair its javascript with one's native half.
+  const nitro = inventory.find(
+    (dependency) => dependency.name === 'react-native-nitro-modules'
+  )
+  if (!nitro) return
+  let appNitroRoot: string
+  try {
+    appNitroRoot = path.dirname(
+      module
+        .createRequire(path.join(root, 'package.json'))
+        .resolve('react-native-nitro-modules/package.json')
+    )
+  } catch {
+    return
+  }
+  const appVersion = FSExtra.readJsonSync(path.join(appNitroRoot, 'package.json')).version
+  if (appVersion !== nitro.version) {
+    throw new Error(
+      `[one] react-native-nitro-modules resolves to ${appVersion} for the app, while One links ${nitro.version}. Remove the app's copy or pin ${nitro.version}.`
+    )
+  }
 }
 
 // installs through the selected tooling: cocoapods for ios (which also runs

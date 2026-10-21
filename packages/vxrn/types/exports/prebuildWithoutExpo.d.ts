@@ -23,14 +23,20 @@ export declare function generateKotlinSources({ root, dest }: {
 export interface NativeDependencyInventory {
     name: string;
     version: string;
+    root: string;
     platforms: string[];
 }
 export declare function applyAndroidDependencyPatches(args: {
     root: string;
     app: NativeAppManifest;
-    inventory: readonly NativeDependencyInventory[];
+    inventory: readonly Pick<NativeDependencyInventory, 'name' | 'platforms'>[];
 }): void;
 export declare function getNativeDependencyInventory(root: string): Promise<NativeDependencyInventory[]>;
+export declare function assertNativeModuleRuntimes(args: {
+    root: string;
+    inventory: readonly NativeDependencyInventory[];
+    platforms: readonly ('ios' | 'android')[];
+}): void;
 export declare function installNativeDependencies(args: {
     root: string;
     platform?: 'ios' | 'android' | string;

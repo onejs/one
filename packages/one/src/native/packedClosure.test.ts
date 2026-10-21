@@ -16,7 +16,11 @@ import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { auditUnpackedManifest, findForbiddenDependencies } from './closure'
+import {
+  auditUnpackedManifest,
+  findForbiddenDependencies,
+  PREBUILD_PLUGIN_LIBRARY_CLOSURE,
+} from './closure'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -29,6 +33,8 @@ const basicStarterDir = resolve(workspaceRoot, '../examples/one-basic')
 
 const KNOWN_ONE_BLOCKERS: string[] = []
 const KNOWN_VXRN_BLOCKERS: string[] = []
+// vxrn's only expo dependency is the plugin library one prebuild runs
+const VXRN_PREBUILD_TOOLS = ['@expo/config-plugins']
 const KNOWN_VITE_PLUGIN_METRO_BLOCKERS: string[] = []
 
 function packToDir(packageDir: string, outDir: string): string {
@@ -114,7 +120,7 @@ function getInstalledPackageNames(nodeModulesDir: string): string[] {
 }
 
 describe('packed-artifact closure oracle', () => {
-  it('keeps the packed framework manifests free of Expo dependencies', () => {
+  it('keeps the packed framework manifests free of Expo beyond the plugin library', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-closure-')))
     const onePkg = JSON.parse(
       readFileSync(
@@ -129,7 +135,13 @@ describe('packed-artifact closure oracle', () => {
     expect(onePkg.peerDependencies).not.toHaveProperty('react-native-safe-area-context')
     const vxrnExtracted = unpack(packToDir(vxrnDir, tmp), join(tmp, 'vxrn'))
     const vxrnPkg = JSON.parse(readFileSync(join(vxrnExtracted, 'package.json'), 'utf8'))
-    expect(auditUnpackedManifest(vxrnPkg)).toEqual(KNOWN_VXRN_BLOCKERS)
+    expect(auditUnpackedManifest(vxrnPkg)).toEqual([
+      ...KNOWN_VXRN_BLOCKERS,
+      ...VXRN_PREBUILD_TOOLS,
+    ])
+    expect(Object.keys(vxrnPkg.dependencies)).toEqual(
+      expect.arrayContaining(VXRN_PREBUILD_TOOLS)
+    )
     expect(vxrnPkg.exports['./expo-plugin']).toBe('./expo-plugin.cjs')
     expect(existsSync(join(vxrnExtracted, 'expo-plugin.cjs'))).toBe(true)
     expect(existsSync(join(vxrnExtracted, 'native-project-patches.cjs'))).toBe(true)
@@ -224,7 +236,7 @@ console.log('one/native ok ' + url);
     expect(out).not.toContain(workspaceRoot)
   })
 
-  it('keeps the default packed closure Expo-free and bundles Metro after its preset is installed', () => {
+  it('keeps the default packed closure free of Expo runtime code and bundles Metro after its preset is installed', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-metro-')))
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
@@ -315,7 +327,9 @@ export default function App() {
     })
 
     const installedNames = getInstalledPackageNames(join(appDir, 'node_modules'))
-    expect(findForbiddenDependencies(installedNames)).toEqual([])
+    expect(findForbiddenDependencies(installedNames)).toEqual([
+      ...PREBUILD_PLUGIN_LIBRARY_CLOSURE,
+    ])
     for (const [name, tarball] of Object.entries(packedClosure)) {
       const installedDir = realpathSync(join(appDir, 'node_modules', name))
       expect(installedDir.startsWith(`${appDir}/node_modules/`)).toBe(true)
@@ -465,6 +479,13 @@ build().catch(error => { console.error(error); process.exitCode = 1 })
       expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength)
         .toBeGreaterThan(1_000_000)
     }
+    // the plugin library stays a build tool: the dev bundle names every module
+    // it includes, and none comes from expo
+    const devBundle = readFileSync(join(appDir, 'bundle.true.js'), 'utf8')
+    expect(devBundle).toContain('node_modules/react-native/')
+    expect(devBundle.match(/node_modules\/(@expo\/|expo[^/]*\/)[^"'\s]*/g) ?? []).toEqual(
+      []
+    )
   })
 
   it('keeps the generated Basic starter on the zero-Expo One contract', async () => {

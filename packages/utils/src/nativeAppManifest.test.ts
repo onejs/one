@@ -39,6 +39,32 @@ describe('native.app manifest', () => {
     expect(() => validateNativeApp({ ...app, scheme: 'not a scheme' })).toThrow(/scheme/)
   })
 
+  test('accepts config plugins in app.json form and rejects other shapes', () => {
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        plugins: [
+          'some-plugin',
+          ['@scope/plugin', { channel: 'production' }],
+          ['./plugins/local.cjs'],
+        ],
+      })
+    ).not.toThrow()
+    expect(() => validateNativeApp({ ...app, plugins: 'some-plugin' } as any)).toThrow(
+      /plugins must be an array/
+    )
+    expect(() => validateNativeApp({ ...app, plugins: [''] })).toThrow(/plugins entry/)
+    expect(() => validateNativeApp({ ...app, plugins: [[]] } as any)).toThrow(
+      /plugins entry/
+    )
+    expect(() => validateNativeApp({ ...app, plugins: [['a', {}, {}]] } as any)).toThrow(
+      /plugins entry/
+    )
+    expect(() => validateNativeApp({ ...app, plugins: [() => {}] } as any)).toThrow(
+      /plugins entry/
+    )
+  })
+
   test('rejects bad versions, icons, and splashes', () => {
     expect(() => validateNativeApp({ ...app, version: 'latest' })).toThrow(/version/)
     expect(() =>

@@ -88,6 +88,79 @@ directly; dependency code and app startup need no separate polyfill setup.
 
 Apps that keep Expo prebuild follow [Coming from Expo](/native/migrating-to-one#keeping-expo-prebuild).
 
+## Config plugins
+
+Libraries that ship an Expo config plugin, such as Hot Updater, Stripe or
+Mapbox, list it in `native.app.plugins` in the form `app.json` uses: a
+package name or a path to a local plugin file, alone or with options.
+
+```ts
+native: {
+  app: {
+    name: 'MyApp',
+    ios: { bundleId: 'com.example.myapp' },
+    android: { applicationId: 'com.example.myapp' },
+    plugins: [
+      ['@hot-updater/expo', { channel: 'production' }],
+      '@react-native-firebase/app',
+      './plugins/with-firebase-configure.cjs',
+    ],
+  },
+},
+```
+
+`one prebuild` runs them with Expo's mod compiler after its own edits and
+before `pod install`. Plugins import `expo/config-plugins` or
+`@expo/config-plugins`; One provides both, so the app does not install
+`expo`. A plugin that needs anything else from `expo` belongs on
+[Expo prebuild](/native/migrating-to-one#keeping-expo-prebuild).
+
+One's generated files differ from Expo's template, so a plugin can miss the
+line it edits. Where Expo prints a warning and continues, `one prebuild`
+fails and names the plugin. It also fails when a plugin:
+
+- removes or rewrites code One generates
+- changes an Info.plist or entitlements value that `native.app` set, rather
+  than adding its own
+- requests a permission listed in `android.blockedPermissions`
+- sets the Release bundle URL while `native.app.updates` is set; keep one
+  update provider
+- writes `Podfile.properties.json` or `Expo.plist`, which only Expo's
+  template reads
+
+A local plugin is the app's own place for an edit a library's plugin cannot
+make. Firebase's plugin looks for the React Native start call in
+`AppDelegate.swift`, and One starts React Native from `SceneDelegate.swift`.
+Expo runs a later plugin's edit to the same file first, so this local plugin,
+listed after Firebase, adds the call and Firebase applies the rest:
+
+```js
+// plugins/with-firebase-configure.cjs
+const fs = require('node:fs')
+const { withDangerousMod, IOSConfig } = require('expo/config-plugins')
+
+module.exports = (config) =>
+  withDangerousMod(config, [
+    'ios',
+    async (config) => {
+      const { path } = IOSConfig.Paths.getAppDelegate(config.modRequest.projectRoot)
+      const source = fs.readFileSync(path, 'utf8')
+      fs.writeFileSync(
+        path,
+        source.replace(
+          'let delegate = ReactNativeDelegate()',
+          'FirebaseApp.configure()\n    let delegate = ReactNativeDelegate()'
+        )
+      )
+      return config
+    },
+  ])
+```
+
+Plugins run on every prebuild against freshly generated projects, so the
+output is the same each time. Values `native.app` models, such as the bundle
+id, version, Info.plist keys and permissions, stay in `native.app`.
+
 ## Run the app
 
 Start One's development server in one terminal:

@@ -1,4 +1,5 @@
 export declare const FORBIDDEN_EXPO_PATTERN_SOURCES: readonly ['^expo$', '^expo-.*', '^@expo/.*', '^expo-modules-core$', '^@expo/config-plugins$', '^babel-preset-expo$'];
+export declare const PREBUILD_PLUGIN_LIBRARY_CLOSURE: readonly ['@expo/config-plugins', '@expo/config-types', '@expo/json-file', '@expo/plist', '@expo/require-utils', '@expo/sdk-runtime-versions'];
 export declare function isForbiddenExpoSpecifier(specifier: string): boolean;
 export declare function findForbiddenDependencies(resolved: Record<string, string> | string[]): string[];
 export declare function auditUnpackedManifest(manifest: {
