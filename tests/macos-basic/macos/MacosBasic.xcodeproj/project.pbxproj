@@ -175,7 +175,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "src=\"$ONE_DEPS/ReactNativeDependencies.xcframework/macos-arm64_x86_64/ReactNativeDependencies.framework\"\ndst=\"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\nmkdir -p \"$dst\"\nrsync -a --delete \"$src\" \"$dst/\"\ncodesign --force --sign - \"$dst/ReactNativeDependencies.framework\"\n";
+			shellScript = "\"$ONE_MACOS/template/macos/scripts/embed-deps.sh\" \"$ONE_DEPS\" \"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\n";
 		};
 		2EDE01A754EFF2EE3010530E /* Build One macOS core */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -266,7 +266,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONE_DEPS = "$(OBJROOT)/OneMacosCore/deps/packages/react-native/third-party";
+				ONE_DEPS = "$(CORE_OUT)/deps/packages/react-native/third-party";
 				ONE_MACOS = "$(SRCROOT)/../../../packages/one-macos";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -405,7 +405,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				ONE_DEPS = "$(OBJROOT)/OneMacosCore/deps/packages/react-native/third-party";
+				ONE_DEPS = "$(CORE_OUT)/deps/packages/react-native/third-party";
 				ONE_MACOS = "$(SRCROOT)/../../../packages/one-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RN_ROOT = "$(SRCROOT)/../../../node_modules/react-native";

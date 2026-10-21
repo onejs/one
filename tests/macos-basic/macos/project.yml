@@ -10,7 +10,7 @@ settings:
     ONE_MACOS: $(SRCROOT)/../../../packages/one-macos
     RN_ROOT: $(SRCROOT)/../../../node_modules/react-native
     CORE_OUT: $(OBJROOT)/OneMacosCore
-    ONE_DEPS: $(OBJROOT)/OneMacosCore/deps/packages/react-native/third-party
+    ONE_DEPS: $(CORE_OUT)/deps/packages/react-native/third-party
 targets:
   MacosBasic:
     type: application
@@ -59,8 +59,4 @@ targets:
       - name: Embed ReactNativeDependencies
         basedOnDependencyAnalysis: false
         script: |
-          src="$ONE_DEPS/ReactNativeDependencies.xcframework/macos-arm64_x86_64/ReactNativeDependencies.framework"
-          dst="$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
-          mkdir -p "$dst"
-          rsync -a --delete "$src" "$dst/"
-          codesign --force --sign - "$dst/ReactNativeDependencies.framework"
+          "$ONE_MACOS/template/macos/scripts/embed-deps.sh" "$ONE_DEPS" "$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"

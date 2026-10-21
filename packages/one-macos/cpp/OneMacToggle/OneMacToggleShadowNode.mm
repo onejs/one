@@ -9,8 +9,8 @@ namespace facebook::react {
 const char OneMacToggleComponentName[] = "OneMacToggle";
 
 // switch track and the gap SwiftUI leaves between it and the label
-static constexpr CGFloat kSwitchWidth = 38;
-static constexpr CGFloat kLabelGap = 8;
+static constexpr CGFloat kSwitchWidth = 52;
+static constexpr CGFloat kLabelGap = 10;
 static constexpr CGFloat kRowHeight = 22;
 
 Size OneMacToggleShadowNode::measureContent(const LayoutContext &, const LayoutConstraints &layoutConstraints) const {

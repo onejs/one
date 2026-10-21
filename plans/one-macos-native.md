@@ -232,3 +232,29 @@ is staffed.
 ## Status
 
 M0 done: plan, package skeleton, npm baselines. M1 staffed.
+
+### M1 host result (host worker)
+
+Falsifier outcome: no RN source patches were needed. `OneMacosCore` compiles the
+installed react-native 0.88 `ReactCommon` plus four iOS pod files that are plain
+Foundation code (`PlatformRunLoopObserver.mm`, `AppleEventBeat.cpp`,
+`FollyConvert.mm`, `LowPriorityExecutor.mm`). Excluded for M1: the `nativemodule/*`
+dirs (cputime, defaults, dom, featureflags, idlecallbacks, intersectionobserver,
+microtasks, mutationobserver, resizeobserver, viewtransition, webperformance) and
+`renderer/animated*`, which need generated `FBReactNativeSpec` headers; JS falls
+back. `legacyviewmanagerinterop` is included because the component registry links
+against it. Only the deps `Headers` root may be on the include path (a
+`Headers/folly` entry shadows libc `math.h`).
+
+`ReactNativeDependencies.framework` in the macOS tarball has its symlinks
+flattened, which codesign rejects, so `embed-deps.sh` rebuilds the versioned
+layout before signing.
+
+Proof, run against a hand written stand-in bundle (the tooling worker's server
+had not landed): window mounts `RCTView`, `RCTText` and `OneMacToggle`; a click
+on the SwiftUI switch round trips to JS state and back (text reads `on`); an HMR
+push over the real `WebSocketModule` changes the title text with the toggle kept
+on and no relaunch. Debug builds accept `ONE_MACOS_DEBUG_DIR` (SIGUSR1 writes a
+window png, SIGUSR2 clicks the toggle) for hosts without screen capture grants.
+Launch with `-ApplePersistenceIgnoreState YES` if a previous run was killed, or
+SwiftUI restores no window.

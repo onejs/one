@@ -24,6 +24,7 @@
 #include <unordered_set>
 
 #import "AppleEventBeat.h"
+#import "OneMacosDebug.h"
 #import "OneMacosModules.h"
 #import "OneMacosMountingManager.h"
 #import "OneMacosRuntime.h"
@@ -207,9 +208,8 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
                                          const std::shared_ptr<const ContextContainer> &container) {
     return registry->createComponentDescriptorRegistry({.eventDispatcher = eventDispatcher, .contextContainer = container});
   };
-  toolbox.runtimeExecutor = [runtimeScheduler](std::function<void(jsi::Runtime & runtime)> &&callback) {
-    runtimeScheduler->scheduleWork(std::move(callback));
-  };
+  // buffered so surface start waits for the bundle that installs RN$AppRegistry
+  toolbox.runtimeExecutor = _instance->getBufferedRuntimeExecutor();
   toolbox.bridgelessBindingsExecutor = _instance->getUnbufferedRuntimeExecutor();
   toolbox.eventBeatFactory = [runtimeScheduler](std::shared_ptr<EventBeat::OwnerBox> ownerBox) -> std::unique_ptr<EventBeat> {
     auto observer = std::make_unique<const MainRunLoopObserver>(RunLoopObserver::Activity::BeforeWaiting, ownerBox->owner);
@@ -240,6 +240,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   facebook::react::Size size{static_cast<Float>(_size.width), static_cast<Float>(_size.height)};
   constraints.minimumSize = size;
   constraints.maximumSize = size;
+  constraints.layoutDirection = LayoutDirection::LeftToRight;
   context.pointScaleFactor = static_cast<Float>(_scale);
   context.fontSizeMultiplier = 1;
   context.viewportSize = size;
@@ -378,6 +379,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     _host = [[OneMacosHost alloc] initWithBundleURL:bundleURL moduleName:moduleName view:self];
     [_host updateLayoutWithSize:self.bounds.size scale:NSScreen.mainScreen.backingScaleFactor];
     [_host start];
+    OneMacosInstallDebugHooks(self);
   }
   return self;
 }

@@ -60,6 +60,7 @@ set(RN_DIRS
   react/renderer/componentregistry
   react/renderer/componentregistry/native
   react/renderer/components/image
+  react/renderer/components/legacyviewmanagerinterop
   react/renderer/components/root
   react/renderer/components/scrollview
   react/renderer/components/text
