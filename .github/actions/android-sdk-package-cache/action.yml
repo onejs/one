@@ -25,7 +25,7 @@ runs:
         echo "dir=$dir" >> "$GITHUB_OUTPUT"
         echo "key=$key" >> "$GITHUB_OUTPUT"
         if [ '${{ inputs.save }}' = true ]; then
-          echo "revision=$(sed -n 's/^Pkg.Revision=//p' "$dir/source.properties")" >> "$GITHUB_OUTPUT"
+          echo "revision=$(sed -n 's/^Pkg\.Revision *= *//p' "$dir/source.properties")" >> "$GITHUB_OUTPUT"
         fi
     - if: ${{ inputs.save != 'true' }}
       uses: actions/cache/restore@v5
