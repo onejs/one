@@ -74,7 +74,7 @@
     "@vxrn/utils": "workspace:*",
     "esbuild": "^0.25.12",
     "flow-parser": "^0.336.0",
-    "launch-editor": "^2.10.0",
+    "launch-editor": "^2.14.2",
     "magic-string": "^0.30.21",
     "micromatch": "^4.0.8",
     "oxc-parser": "^0.112.0",
