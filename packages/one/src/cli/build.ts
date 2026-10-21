@@ -40,6 +40,7 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { DeployConfig, DeployTarget, One, RouteInfo } from '../vite/types'
 import { buildPage, printBuildTimings } from './buildPage'
+import { dedupePreloadArtifacts } from './preloadArtifacts'
 import { checkNodeVersion } from './checkNodeVersion'
 import { getWorkerPool, terminateWorkerPool } from './workerPool'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
@@ -1089,6 +1090,14 @@ export async function build(args: {
   // terminate worker pool if used
   if (workerPool) {
     await terminateWorkerPool()
+  }
+
+  // static pages that share a module graph emit identical preload modules
+  // under route-specific filenames. point duplicates at one canonical module
+  // so the client build does not ship a copy per generated page.
+  const dedupedPreloads = await dedupePreloadArtifacts(clientDir, builtRoutes)
+  if (dedupedPreloads) {
+    console.info(`\n 🔗 deduped ${dedupedPreloads} identical preload modules\n`)
   }
 
   const staticTime = performance.now() - staticStartTime
