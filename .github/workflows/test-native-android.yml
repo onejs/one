@@ -165,8 +165,8 @@ jobs:
           adb -s "$FIXTURE_SERIAL" logcat -G 16M
           # a system app that stops responding on the busy emulator raises a
           # dialog over the fixture app, and the suites read only that window.
-          # android then ends the stalled app without a dialog; the fixture
-          # app's own crash still fails its checks and saves its logcat.
+          # android then ends the stalled app without a dialog; the suite loop
+          # fails a suite on the fixture app's own crash or hang.
           adb -s "$FIXTURE_SERIAL" shell settings put global hide_error_dialogs 1
           # a fresh image opens chrome on its first-run screen, which covers the
           # auth tab the browser suite drives; chrome reads these flags from
@@ -193,9 +193,16 @@ jobs:
           for suite in $FIXTURE_SUITES; do
             echo "::group::$suite"
             adb -s "$FIXTURE_SERIAL" logcat -b all -c
-            if bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
+            status=0
+            bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
               --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
-              --artifact-dir "$RUNNER_TEMP/fixtures/$suite"; then
+              --artifact-dir "$RUNNER_TEMP/fixtures/$suite" || status=$?
+            # error dialogs are hidden, so the fixture app's own crash or hang,
+            # even one after its last check passed, fails the suite from the event log.
+            if adb -s "$FIXTURE_SERIAL" logcat -d -b events -s am_crash am_anr | grep -F "$FIXTURE_PACKAGE"; then
+              status=1
+            fi
+            if [ "$status" = 0 ]; then
               echo "SUITE PASS $suite"
             else
               echo "SUITE FAIL $suite"
