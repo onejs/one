@@ -2,7 +2,7 @@
 # Builds libOneMacosCore.a (React Native's C++ core plus the One host) for the
 # installed react-native. Runs as an Xcode pre build phase and by hand.
 #   RN_ROOT      node_modules/react-native
-#   ONE_MACOS    packages/one-macos
+#   ONE_MACOS    packages/one/macos
 #   CORE_OUT     build directory, holds libOneMacosCore.a and the deps
 set -euo pipefail
 

@@ -217,6 +217,7 @@
     "android/portal",
     "android/src",
     "cpp",
+    "macos",
     "nitrogen",
     "One.podspec",
     "react-native.config.cjs",

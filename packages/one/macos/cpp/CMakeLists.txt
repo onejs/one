@@ -22,7 +22,7 @@ endif()
 
 set(RC ${RN_ROOT}/ReactCommon)
 set(ONE_CPP ${CMAKE_CURRENT_LIST_DIR})
-set(ONE_MACOS ${CMAKE_CURRENT_LIST_DIR}/../macos)
+set(ONE_HOST ${CMAKE_CURRENT_LIST_DIR}/../host)
 
 set(DEPS_HEADERS ${RN_DEPS_ROOT}/ReactNativeDependenciesHeaders.xcframework/macos-arm64_x86_64/Headers)
 
@@ -122,10 +122,10 @@ file(GLOB ONE_SOURCES CONFIGURE_DEPENDS
   ${ONE_CPP}/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/react/renderer/textlayoutmanager/*.mm
   ${ONE_CPP}/textlayoutmanager/*.cpp
-  ${ONE_MACOS}/*.mm
-  ${ONE_MACOS}/*.cpp
-  ${ONE_MACOS}/*/*.mm
-  ${ONE_MACOS}/*/*.cpp
+  ${ONE_HOST}/*.mm
+  ${ONE_HOST}/*.cpp
+  ${ONE_HOST}/*/*.mm
+  ${ONE_HOST}/*/*.cpp
 )
 
 # apple only helpers from the iOS pod layout; they are plain foundation code
@@ -202,7 +202,7 @@ target_include_directories(OneMacosCore PUBLIC
   ${WORKLETS_ROOT}/apple
   ${ONE_CPP}/textlayoutmanager
   ${ONE_CPP}
-  ${ONE_MACOS}
+  ${ONE_HOST}
 )
 
 target_compile_definitions(OneMacosCore PUBLIC

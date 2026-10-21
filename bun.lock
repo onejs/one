@@ -484,14 +484,6 @@
         "sharp",
       ],
     },
-    "packages/one-macos": {
-      "name": "one-macos",
-      "version": "2.9.0",
-      "peerDependencies": {
-        "one": "*",
-        "react-native": "^0.88.0",
-      },
-    },
     "packages/one-vscode": {
       "name": "one-vscode",
       "version": "2.9.0",
@@ -790,7 +782,6 @@
       "dependencies": {
         "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
-        "one-macos": "workspace:*",
         "react": "19.3.0",
         "react-dom": "19.3.0",
         "react-native": "0.88.0",
@@ -4548,8 +4539,6 @@
     "once": ["once@1.4.0", "", { "dependencies": { "wrappy": "1" } }, "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w=="],
 
     "one": ["one@workspace:packages/one"],
-
-    "one-macos": ["one-macos@workspace:packages/one-macos"],
 
     "one-tray": ["one-tray@workspace:apps/one-tray"],
 

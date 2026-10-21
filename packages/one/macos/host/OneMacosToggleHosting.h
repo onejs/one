@@ -2,7 +2,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// Implemented in Swift by OneMacToggleHostView (macos/swift), which hosts the
+// Implemented in Swift by OneMacToggleHostView (host/swift), which hosts the
 // SwiftUI Toggle in an NSHostingView. The Fabric component view in the core
 // library finds the class by name so the library itself carries no Swift.
 @protocol OneMacosToggleHosting <NSObject>

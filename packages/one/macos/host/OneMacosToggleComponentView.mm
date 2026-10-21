@@ -25,7 +25,7 @@ using namespace facebook::react;
     Class hostClass = NSClassFromString(@"OneMacToggleHostView");
     if (!hostClass) {
       [NSException raise:NSInternalInconsistencyException
-                  format:@"OneMacToggleHostView is missing; add macos/swift/OneMacToggle.swift to the app target"];
+                  format:@"OneMacToggleHostView is missing; add host/swift/OneMacToggle.swift to the app target"];
     }
     _host = [[hostClass alloc] initWithFrame:self.bounds];
     _host.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;

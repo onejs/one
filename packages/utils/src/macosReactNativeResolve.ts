@@ -10,7 +10,7 @@ const reactNativeRootCache = new Map<string, string | null>()
 export function findOneMacosPackageRoot(appRoot: string): string | null {
   try {
     const req = createRequire(join(appRoot, 'package.json'))
-    return dirname(req.resolve('one-macos/package.json'))
+    return dirname(req.resolve('one/package.json'))
   } catch {
     return null
   }
@@ -20,7 +20,7 @@ export function requireOneMacosPackageRoot(appRoot: string): string {
   const root = findOneMacosPackageRoot(appRoot)
   if (!root) {
     throw new Error(
-      `macos build cannot resolve one-macos from ${appRoot}. Add "one-macos" as a dependency.`
+      `macos build cannot resolve one from ${appRoot}. Add "one" as a dependency.`
     )
   }
   return root
@@ -81,14 +81,14 @@ function isPlatformTarget(rnRoot: string, target: string): boolean {
 }
 
 function platformOverrideFile(oneMacosRoot: string): string | null {
-  return fileIfPresent(join(oneMacosRoot, 'src/react-native', PLATFORM_MODULE + '.js'))
+  return fileIfPresent(join(oneMacosRoot, 'macos/react-native', PLATFORM_MODULE + '.js'))
 }
 
 /**
  * macOS loads react-native's iOS files, and only for importers inside that
  * package. React Native's own modules keep Platform.ios.js, so Platform.OS
  * stays ios there. The package entry and every importer outside react-native
- * get the one-macos Platform override, where OS is macos. Returns an absolute
+ * get the one Platform override, where OS is macos. Returns an absolute
  * file, or null to keep the normal resolver.
  */
 export function macosReactNativeFile(
@@ -131,7 +131,7 @@ export function macosReactNativeFile(
   // public Platform is the override, while library files keep the ios one.
   const internalPlatform = isPlatformTarget(rnRoot, target) && !isPackageEntry(importerFile, rnRoot)
   if (oneMacosRoot && !internalPlatform) {
-    const overrideBase = join(oneMacosRoot, 'src/react-native', relative(rnRoot, target))
+    const overrideBase = join(oneMacosRoot, 'macos/react-native', relative(rnRoot, target))
     for (const ext of OVERRIDE_EXTENSIONS) {
       const file = fileIfPresent(overrideBase + ext)
       if (file) return file

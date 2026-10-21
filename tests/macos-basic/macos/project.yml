@@ -7,7 +7,7 @@ settings:
   base:
     SWIFT_VERSION: "5.0"
     CLANG_CXX_LANGUAGE_STANDARD: gnu++20
-    ONE_MACOS: $(SRCROOT)/../../../packages/one-macos
+    ONE_MACOS: $(SRCROOT)/../../../packages/one/macos
     RN_ROOT: $(SRCROOT)/../../../node_modules/react-native
     CORE_OUT: $(OBJROOT)/OneMacosCore
     ONE_DEPS: $(CORE_OUT)/deps/packages/react-native/third-party
@@ -17,17 +17,17 @@ targets:
     type: application
     platform: macOS
     sources:
-      - path: ../../../packages/one-macos/template/macos/OneApp
+      - path: ../../../packages/one/macos/template/macos/OneApp
         excludes:
           - OneApp-Bridging-Header.h
-      - path: ../../../packages/one-macos/macos/swift
+      - path: ../../../packages/one/macos/host/swift
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.onestack.macos-basic
-        INFOPLIST_FILE: ../../../packages/one-macos/template/macos/OneApp/Info.plist
-        SWIFT_OBJC_BRIDGING_HEADER: ../../../packages/one-macos/template/macos/OneApp/OneApp-Bridging-Header.h
+        INFOPLIST_FILE: ../../../packages/one/macos/template/macos/OneApp/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ../../../packages/one/macos/template/macos/OneApp/OneApp-Bridging-Header.h
         HEADER_SEARCH_PATHS:
-          - $(ONE_MACOS)/macos
+          - $(ONE_MACOS)/host
         LIBRARY_SEARCH_PATHS:
           - $(CORE_OUT)/build
         FRAMEWORK_SEARCH_PATHS:

@@ -9,7 +9,6 @@
   "dependencies": {
     "@react-navigation/native": "8.0.0-alpha.51",
     "one": "workspace:*",
-    "one-macos": "workspace:*",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.0",
