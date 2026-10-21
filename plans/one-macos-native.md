@@ -306,6 +306,18 @@ duplicates `ios/OneNativeControlled.swift`; the generated Mac glue must share
 one native implementation of it. Keep one of `project.yml` and the committed
 `MacosBasic.xcodeproj`, not both, once `prebuild` emits the Mac project.
 
+M2 in progress. Review of host commits `7622915b0d`..`ae87bb7f25` (planner):
+accepted with fixes owed. The move to `packages/one/macos/` landed as one
+rename commit and dropped the committed `MacosBasic.xcodeproj`, which settles
+the `project.yml` item above. Pointer, hover, cursor, focus, Tab order, Space
+press and accessibility roles are in (`OneMacosPointerHandler`); hover runs on
+W3C pointer events through the `shouldPressibilityUseW3CPointerEventsForHover`
+flag. ScrollView is on `NSScrollView`, Image on an owned `ImageManager`. Owed
+in ScrollView: the Fabric state offset updates only on live scroll end, so a
+discrete mouse wheel and `scrollTo` leave it stale (wrong `measure` inside the
+list), and an initial `contentOffset` prop is ignored on mount. M2 still owes
+TextInput, dark mode and window resize updating dimensions.
+
 ### M1 host result (host worker)
 
 Falsifier outcome: no RN source patches were needed. `OneMacosCore` compiles the
