@@ -29,6 +29,7 @@ export function getNativeStackReplaceAction(
     // a new dynamic screen instance can own a nested navigator of its own.
     if (!currentRoute.state || !targetRoute.state || changesDynamicScreen) {
       if (
+        (currentRoute.name !== targetRoute.name || changesDynamicScreen) &&
         navigationState.type === 'stack' &&
         navigationState.routeNames.includes(targetRoute.name)
       ) {
