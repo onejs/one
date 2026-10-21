@@ -59,16 +59,60 @@ function fileIfPresent(path: string): string | null {
   }
 }
 
+const PLATFORM_MODULE = 'Libraries/Utilities/Platform'
+const BARE_PLATFORM = /^react-native\/Libraries\/Utilities\/Platform(?:\.(?:js|ts|tsx|jsx))?$/
+
+function slashRelative(from: string, to: string): string {
+  return relative(from, to).split('\\').join('/')
+}
+
+function isPackageEntry(importerFile: string, rnRoot: string): boolean {
+  try {
+    return slashRelative(rnRoot, realpathSync(importerFile)) === 'index.js'
+  } catch {
+    return false
+  }
+}
+
+function isPlatformTarget(rnRoot: string, target: string): boolean {
+  const rel = slashRelative(rnRoot, target).replace(/\.(tsx|ts|jsx|js)$/, '')
+  return rel === PLATFORM_MODULE
+}
+
+function platformOverrideFile(oneMacosRoot: string): string | null {
+  return fileIfPresent(join(oneMacosRoot, 'src/react-native', PLATFORM_MODULE + '.js'))
+}
+
 /**
- * macOS loads react-native's iOS implementation, except for files the
- * one-macos package overrides. App code and other packages do not get this
- * fallback. Returns an absolute file, or null to keep the normal resolver.
+ * macOS loads react-native's iOS files, and only for importers inside that
+ * package. React Native's own modules keep Platform.ios.js, so Platform.OS
+ * stays ios there. The package entry and every importer outside react-native
+ * get the one-macos Platform override, where OS is macos. Returns an absolute
+ * file, or null to keep the normal resolver.
  */
 export function macosReactNativeFile(
   importerFile: string | undefined,
   source: string,
   oneMacosRoot: string | null
 ): string | null {
+  if (BARE_PLATFORM.test(source)) {
+    if (!oneMacosRoot) return null
+    if (importerFile) {
+      const rnRoot = reactNativeRootOf(importerFile)
+      if (rnRoot && !isPackageEntry(importerFile, rnRoot)) {
+        let dir = dirname(importerFile)
+        try {
+          dir = realpathSync(dir)
+        } catch {
+          // keep the unresolved directory
+        }
+        const inside = slashRelative(rnRoot, dir)
+        if (!inside.startsWith('..')) return null
+      }
+    }
+    return platformOverrideFile(oneMacosRoot)
+  }
+
   if (!importerFile || !source.startsWith('.')) return null
   const rnRoot = reactNativeRootOf(importerFile)
   if (!rnRoot) return null
@@ -82,7 +126,10 @@ export function macosReactNativeFile(
   if (fromRoot.startsWith('..')) return null
 
   const target = resolve(dirname(importerFile), source)
-  if (oneMacosRoot) {
+  // the package entry re-exports Platform. its importer is index.js, so the
+  // public Platform is the override, while library files keep the ios one.
+  const internalPlatform = isPlatformTarget(rnRoot, target) && !isPackageEntry(importerFile, rnRoot)
+  if (oneMacosRoot && !internalPlatform) {
     const overrideBase = join(oneMacosRoot, 'src/react-native', relative(rnRoot, target))
     for (const ext of OVERRIDE_EXTENSIONS) {
       const file = fileIfPresent(overrideBase + ext)
