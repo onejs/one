@@ -475,9 +475,12 @@ export const containerComponents = [
     name: 'OneNativeContainerSlot',
     publicName: 'Slot',
     props: { height: 'Double', width: 'Double' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     enumProps: {},
     layout: { kind: 'container' },
+    // listRowInsets, listRowBackground and the other row modifiers reach the hosted row
+    // through swiftStyle.
+    swiftStyle: true,
     slots: [
       {
         name: 'content',
@@ -824,6 +827,7 @@ export interface GlassProps extends ViewProps {
 export interface SlotProps extends ViewProps {
   height: number
   width?: number
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface NavigationStackProps extends OneNativeViewProps {

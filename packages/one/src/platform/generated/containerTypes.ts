@@ -109,6 +109,7 @@ export interface GlassProps extends ViewProps {
 export interface SlotProps extends ViewProps {
   height: number
   width?: number
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface NavigationStackProps extends OneNativeViewProps {

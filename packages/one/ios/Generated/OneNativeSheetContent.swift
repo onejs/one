@@ -26,7 +26,10 @@ struct OneNativeSheetRoot: View {
     } else {
       Color.clear
         .sheet(isPresented: presented) {
+          // the presented content runs under the home indicator; SwiftUI scroll views keep
+          // their own content inset, so rows still clear it.
           content
+            .ignoresSafeArea(.container, edges: .bottom)
             .oneNativeSheetPresentation(model)
         }
     }
