@@ -1,7 +1,7 @@
 import type { NavigationState } from '@react-navigation/core'
 import { StackActions } from '@react-navigation/native'
 import type { OneRouter } from '../../interfaces/router'
-import { matchDynamicName } from '../matchers'
+import { matchDynamicName, matchGroupName } from '../matchers'
 import { getNavigateAction } from './getNavigateAction'
 
 export function getNativeStackReplaceAction(
@@ -12,6 +12,13 @@ export function getNativeStackReplaceAction(
     const currentRoute = navigationState.routes[navigationState.index]
     const targetRoute =
       actionState.routes[actionState.index ?? actionState.routes.length - 1]
+
+    if (
+      currentRoute.name !== targetRoute.name &&
+      (matchGroupName(currentRoute.name) || matchGroupName(targetRoute.name))
+    ) {
+      return null
+    }
 
     const dynamicMatch = matchDynamicName(targetRoute.name)
     const changesDynamicScreen =
@@ -35,11 +42,7 @@ export function getNativeStackReplaceAction(
       return null
     }
 
-    if (
-      currentRoute.name !== targetRoute.name ||
-      !currentRoute.state ||
-      !targetRoute.state
-    ) {
+    if (currentRoute.name !== targetRoute.name) {
       return null
     }
 
