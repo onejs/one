@@ -335,6 +335,15 @@ the host worker; a missing Mac variant failing the bundle with the package name
 goes to `one-macos-bare-import` (Sol). The RN version bump of the consumer is
 s63941's call.
 
+Review of `ab09a46ec2`, `5b6024620b`, `86324f60ce` (planner): accepted. The
+Mac toggle now runs on the shared `ios/OneNativeControlled.swift`, which settles
+the duplicated controlled logic owed before M3; `prebuild`'s Mac project must
+list that file too. Deps and Hermes caches are stamped with the RN version. A
+Mac import with no `.macos`, `.native` or plain file now fails the bundle with
+the package name (the runtime-throwing stubs are gone, and rolldown's
+`UNRESOLVED_IMPORT` is an error on macos), and static expo imports resolve
+normally on macos instead of going external.
+
 ### M1 host result (host worker)
 
 Falsifier outcome: no RN source patches were needed. `OneMacosCore` compiles the
