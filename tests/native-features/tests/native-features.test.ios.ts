@@ -1338,7 +1338,7 @@ describe('one native integration tests', () => {
 
     test('an opacity SwiftUI would reject throws instead of drawing', sharedTestOptions, async () => {
       await (await waitForElement(driver, 'one-native-canvas-invalid')).click()
-      await dismissExpectedRenderError(driver, 'opacity must be between 0 and 1')
+      await dismissExpectedRenderError(driver, 'Swift.GraphicsContext.opacity must be between 0 and 1')
       const error = await waitForElement(driver, 'one-native-canvas-opacity-error')
       expect(await error.getText()).toContain('between 0 and 1')
     })
