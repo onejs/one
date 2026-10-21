@@ -1,23 +1,5 @@
 import { useControlled } from '../controlled'
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-import type { ViewProps } from 'react-native'
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
-
-type ChangeEvent = Readonly<{
-  isOn: boolean
-  revision: Int32
-  eventCount: Int32
-}>
-
-interface NativeProps extends ViewProps {
-  label: string
-  isOn: boolean
-  revision: Int32
-  acknowledgedEvent: Int32
-  onIsOnChange?: DirectEventHandler<ChangeEvent>
-}
-
-const NativeToggle = codegenNativeComponent<NativeProps>('OneMacToggle')
+import NativeToggle, { type ChangeEvent } from './OneMacToggleNativeComponent'
 
 export function Toggle({
   label,
