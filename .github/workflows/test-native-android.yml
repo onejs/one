@@ -192,15 +192,30 @@ jobs:
           failed=()
           for suite in $FIXTURE_SUITES; do
             echo "::group::$suite"
-            adb -s "$FIXTURE_SERIAL" logcat -b all -c
+            evidence="$RUNNER_TEMP/fixtures/$suite"
+            mkdir -p "$evidence"
             status=0
+            adb -s "$FIXTURE_SERIAL" logcat -b all -c > "$evidence/logcat-clear.txt" 2>&1 || status=$?
             bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
               --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
               --artifact-dir "$RUNNER_TEMP/fixtures/$suite" || status=$?
             # error dialogs are hidden, so the fixture app's own crash or hang,
             # even one after its last check passed, fails the suite from the event log.
-            if adb -s "$FIXTURE_SERIAL" logcat -d -b events -s am_crash am_anr | grep -F "$FIXTURE_PACKAGE"; then
+            observer_status=0
+            adb -s "$FIXTURE_SERIAL" logcat -d -b events -s am_crash am_anr \
+              > "$evidence/events.txt" 2> "$evidence/events-error.txt" || observer_status=$?
+            if [ "$observer_status" != 0 ]; then
+              echo "event log read failed: $observer_status"
               status=1
+            else
+              match_status=0
+              # event fields begin with user id, pid, and the exact process name.
+              grep -E "\[[0-9]+,[0-9]+,${FIXTURE_PACKAGE//./\\.}(:[^,]+)?," \
+                "$evidence/events.txt" 2> "$evidence/events-match-error.txt" || match_status=$?
+              if [ "$match_status" != 1 ]; then
+                echo "fixture crash/ANR match status: $match_status"
+                status=1
+              fi
             fi
             if [ "$status" = 0 ]; then
               echo "SUITE PASS $suite"
@@ -209,8 +224,6 @@ jobs:
               failed+=("$suite")
               # what the device saw: launched intents, input and focus moves,
               # touch mode and the input method's target.
-              evidence="$RUNNER_TEMP/fixtures/$suite"
-              mkdir -p "$evidence"
               adb -s "$FIXTURE_SERIAL" logcat -d -v threadtime -b main,system,events,crash > "$evidence/logcat.txt" || true
               adb -s "$FIXTURE_SERIAL" shell dumpsys window > "$evidence/dumpsys-window.txt" || true
               adb -s "$FIXTURE_SERIAL" shell dumpsys input_method > "$evidence/dumpsys-input-method.txt" || true
