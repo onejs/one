@@ -7,6 +7,7 @@ on:
       - v2-beta
     paths:
       - '.github/actions/install/**'
+      - '.github/actions/android-sdk-package-cache/**'
       - '.github/workflows/test-native-android.yml'
       - 'bun.lock'
       - 'package.json'
@@ -19,6 +20,7 @@ on:
   pull_request:
     paths:
       - '.github/actions/install/**'
+      - '.github/actions/android-sdk-package-cache/**'
       - '.github/workflows/test-native-android.yml'
       - 'bun.lock'
       - 'package.json'
@@ -42,15 +44,26 @@ jobs:
     name: Compile One Native Android consumer
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      NDK_PACKAGE: 'ndk;27.1.12297006'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
+      - uses: ./.github/actions/android-sdk-package-cache
+        with:
+          package: ${{ env.NDK_PACKAGE }}
       - uses: android-actions/setup-android@v4
         with:
-          packages: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 cmake;3.22.1'
+          packages: "platform-tools platforms;android-37.0 build-tools;37.0.0 ${{ env.NDK_PACKAGE }} cmake;3.22.1"
+      # pushes write the package cache, pull requests read it.
+      - if: ${{ github.event_name != 'pull_request' }}
+        uses: ./.github/actions/android-sdk-package-cache
+        with:
+          package: ${{ env.NDK_PACKAGE }}
+          save: 'true'
       # caches gradle dependencies and the wrapper; pushes write it, pull requests read it.
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -139,9 +152,17 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: ./.github/actions/android-sdk-package-cache
+        with:
+          package: ${{ env.FIXTURE_AVD_IMAGE }}
       - uses: android-actions/setup-android@v4
         with:
           packages: "platform-tools emulator platforms;android-37.0 build-tools;37.0.0 ${{ env.FIXTURE_AVD_IMAGE }}"
+      - if: ${{ github.event_name != 'pull_request' }}
+        uses: ./.github/actions/android-sdk-package-cache
+        with:
+          package: ${{ env.FIXTURE_AVD_IMAGE }}
+          save: 'true'
       - uses: ./.github/actions/install
         with:
           install-playwright: 'false'
