@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Image, Pressable, ScrollView, Text, useColorScheme, useWindowDimensions, View } from 'react-native'
+import { useRef, useState } from 'react'
+import { Image, Pressable, ScrollView, Text, TextInput, useColorScheme, useWindowDimensions, View } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
 
@@ -42,6 +42,13 @@ export default function Index() {
   const { width, height } = useWindowDimensions()
   const [offset, setOffset] = useState(0)
   const [imageState, setImageState] = useState('loading')
+  const [name, setName] = useState('')
+  const [shout, setShout] = useState('')
+  const [notes, setNotes] = useState('')
+  const [inputEvents, setInputEvents] = useState('events')
+  const log = (event: string) => setInputEvents((events) => `${events} ${event}`.trim())
+  const rowRef = useRef<View>(null)
+  const [rowY, setRowY] = useState('row y -')
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <Text testID="macos-label">macOS</Text>
@@ -63,10 +70,25 @@ export default function Index() {
         testID="macos-scroll"
         style={{ height: 90, borderWidth: 1, borderColor: '#888' }}
         scrollEventThrottle={16}
-        onScroll={(event) => setOffset(event.nativeEvent.contentOffset.y)}
+        onScroll={(event) => {
+          setOffset(event.nativeEvent.contentOffset.y)
+          setTimeout(() => rowRef.current?.measureInWindow((_x, y) => setRowY(`row y ${Math.round(y)}`)), 400)
+        }}
       >
         {Array.from({ length: 30 }, (_, index) => (
-          <Text key={index} style={{ padding: 4 }}>{`row ${index}`}</Text>
+          <View key={index} ref={index === 0 ? rowRef : undefined}>
+            <Text style={{ padding: 4 }}>{`row ${index}`}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <Text testID="macos-row-y">{rowY}</Text>
+      <ScrollView
+        testID="macos-scroll-initial"
+        style={{ height: 50, borderWidth: 1, borderColor: '#888' }}
+        contentOffset={{ x: 0, y: 60 }}
+      >
+        {Array.from({ length: 12 }, (_, index) => (
+          <Text key={index} style={{ padding: 4 }}>{`initial row ${index}`}</Text>
         ))}
       </ScrollView>
       <Text testID="macos-image-state">{`image ${imageState}`}</Text>
@@ -83,6 +105,33 @@ export default function Index() {
         <Image source={{ uri: swatch }} style={{ width: 96, height: 48, backgroundColor: '#ddd' }} resizeMode="cover" />
         <Image source={{ uri: swatch }} style={{ width: 96, height: 48, tintColor: '#a020c0' }} resizeMode="stretch" />
       </View>
+      <Text testID="macos-input-events">{inputEvents}</Text>
+      <TextInput
+        testID="macos-input"
+        value={name}
+        placeholder="Your name"
+        onChangeText={setName}
+        onFocus={() => log('focus')}
+        onBlur={() => log('blur')}
+        onSubmitEditing={() => log(`submit:${name}`)}
+        style={{ borderWidth: 1, borderColor: '#888', borderRadius: 4, padding: 4, marginTop: 4, fontSize: 14 }}
+      />
+      <TextInput
+        testID="macos-input-upper"
+        value={shout}
+        placeholder="Uppercased"
+        onChangeText={(text) => setShout(text.toUpperCase())}
+        maxLength={8}
+        style={{ borderWidth: 1, borderColor: '#888', borderRadius: 4, padding: 4, marginTop: 4, fontSize: 14 }}
+      />
+      <TextInput
+        testID="macos-input-multiline"
+        multiline
+        value={notes}
+        placeholder="Notes"
+        onChangeText={setNotes}
+        style={{ borderWidth: 1, borderColor: '#888', borderRadius: 4, padding: 4, marginTop: 4, height: 54, fontSize: 14 }}
+      />
     </View>
   )
 }

@@ -68,6 +68,8 @@ set(RN_DIRS
   react/renderer/components/root
   react/renderer/components/scrollview
   react/renderer/components/text
+  react/renderer/components/textinput
+  react/renderer/components/textinput/platform/ios/react/renderer/components/iostextinput
   react/renderer/components/unimplementedview
   react/renderer/components/view
   react/renderer/components/view/platform/cxx/react/renderer/components/view
@@ -190,6 +192,7 @@ target_include_directories(OneMacosCore PUBLIC
   ${RC}/react/renderer/components/view/platform/cxx
   ${RC}/react/renderer/components/scrollview/platform/cxx
   ${RC}/react/renderer/components/text/platform/cxx
+  ${RC}/react/renderer/components/textinput/platform/ios
   ${RC}/react/renderer/imagemanager/platform/cxx
   ${RC}/react/utils/platform/ios
   ${RC}/react/utils/platform/ios/react/utils

@@ -1,6 +1,7 @@
 #import "OneMacosMountingManager.h"
 
 #include <react/renderer/components/image/ImageComponentDescriptor.h>
+#include <react/renderer/components/iostextinput/TextInputComponentDescriptor.h>
 #include <react/renderer/components/root/RootComponentDescriptor.h>
 #include <react/renderer/components/scrollview/ScrollViewComponentDescriptor.h>
 #include <react/renderer/components/text/ParagraphComponentDescriptor.h>
@@ -15,6 +16,7 @@
 #import "OneMacosImageComponentView.h"
 #import "OneMacosParagraphComponentView.h"
 #import "OneMacosScrollViewComponentView.h"
+#import "OneMacosTextInputComponentView.h"
 #import "OneMacosToggleComponentView.h"
 
 using namespace facebook::react;
@@ -34,6 +36,7 @@ std::vector<ComponentEntry> &componentEntries()
       {concreteComponentDescriptorProvider<RootComponentDescriptor>(), [OneMacosViewComponentView class]},
       {concreteComponentDescriptorProvider<ViewComponentDescriptor>(), [OneMacosViewComponentView class]},
       {concreteComponentDescriptorProvider<ImageComponentDescriptor>(), [OneMacosImageComponentView class]},
+      {concreteComponentDescriptorProvider<TextInputComponentDescriptor>(), [OneMacosTextInputComponentView class]},
       {concreteComponentDescriptorProvider<ScrollViewComponentDescriptor>(),
        [OneMacosScrollViewComponentView class]},
       {concreteComponentDescriptorProvider<ParagraphComponentDescriptor>(),
