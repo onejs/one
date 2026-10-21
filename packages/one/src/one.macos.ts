@@ -1,5 +1,5 @@
-import { One as NativeOne } from '../dist/esm/one.native.js'
-import { Toggle } from './platform/mac/Toggle'
+import { One as NativeOne } from './one'
+import { Toggle } from './platform/mac/Toggle.macos'
 
 const macOS = Object.freeze({ Toggle })
 

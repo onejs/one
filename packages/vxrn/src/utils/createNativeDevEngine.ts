@@ -394,11 +394,9 @@ function macosPlatformSplitStubPlugin(): Plugin {
   }
 }
 
-// index.native.js imports ./one.native.js, a fully specified path, so .macos
-// resolution never sees it. tamagui-build only treats web, native, ios and
-// android as platform suffixes, and one.macos.ts is not a package entry, so
-// the build does not emit dist/esm/one.macos.js. this redirect loads the
-// source for macos only.
+// index.native.js imports ./one.native.js by its full name, so .macos
+// resolution never sees it. the build emits one.macos.native.js beside it;
+// macos loads that one, and it imports the shared one.native.js itself.
 function macosOneEntryPlugin(): Plugin {
   return {
     name: 'vxrn:macos-one-entry',
@@ -406,8 +404,7 @@ function macosOneEntryPlugin(): Plugin {
       if (!importer || !source.endsWith('one.native.js')) return
       if (!importer.includes(`${sep}one${sep}dist${sep}esm${sep}index.native.`)) return
       const distFile = source.startsWith('.') ? resolve(dirname(importer), source) : source
-      const entry = join(dirname(distFile), '..', '..', 'src', 'one.macos.ts')
-      if (existsSync(entry)) return entry
+      return join(dirname(distFile), 'one.macos.native.js')
     },
   }
 }
