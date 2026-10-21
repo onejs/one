@@ -1,6 +1,7 @@
 #import "OneMacosRootView.h"
 
 #include <ReactCommon/RuntimeExecutor.h>
+#include <ReactCommon/TurboModuleBinding.h>
 #include <cxxreact/JSBigString.h>
 #include <jsc/JSCRuntime.h>
 #include <jsi/jsi.h>
@@ -236,7 +237,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   }
   LayoutConstraints constraints = _surface->getLayoutConstraints();
   LayoutContext context = _surface->getLayoutContext();
-  Size size{static_cast<Float>(_size.width), static_cast<Float>(_size.height)};
+  facebook::react::Size size{static_cast<Float>(_size.width), static_cast<Float>(_size.height)};
   constraints.minimumSize = size;
   constraints.maximumSize = size;
   context.pointScaleFactor = static_cast<Float>(_scale);

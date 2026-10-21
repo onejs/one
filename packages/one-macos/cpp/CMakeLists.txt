@@ -52,24 +52,8 @@ set(RN_DIRS
   react/networking
   react/utils
   react/nativemodule/core/ReactCommon
-  react/nativemodule/cputime
-  react/nativemodule/defaults
-  react/nativemodule/dom
-  react/nativemodule/featureflags
-  react/nativemodule/idlecallbacks
-  react/nativemodule/intersectionobserver
-  react/nativemodule/microtasks
-  react/nativemodule/mutationobserver
-  react/nativemodule/resizeobserver
-  react/nativemodule/viewtransition
-  react/nativemodule/webperformance
   react/performance/cdpmetrics
   react/performance/timeline
-  react/renderer/animated
-  react/renderer/animated/drivers
-  react/renderer/animated/event_drivers
-  react/renderer/animated/internal
-  react/renderer/animated/nodes
   react/renderer/animationbackend
   react/renderer/animations
   react/renderer/attributedstring
@@ -151,12 +135,6 @@ add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${ONE_SOURCES}
 
 target_include_directories(OneMacosCore PUBLIC
   ${DEPS_HEADERS}
-  ${DEPS_HEADERS}/boost
-  ${DEPS_HEADERS}/folly
-  ${DEPS_HEADERS}/glog
-  ${DEPS_HEADERS}/fmt
-  ${DEPS_HEADERS}/double-conversion
-  ${DEPS_HEADERS}/fast_float
   ${RC}
   ${RC}/jsi
   ${RC}/callinvoker
@@ -164,6 +142,8 @@ target_include_directories(OneMacosCore PUBLIC
   ${RC}/runtimeexecutor/platform/cxx
   ${RC}/yoga
   ${RC}/jsitooling
+  ${RC}/reactperflogger
+  ${RC}/react/renderer/imagemanager
   ${RC}/jsiexecutor
   ${RC}/react/nativemodule/core
   ${RC}/react/renderer/graphics/platform/cxx

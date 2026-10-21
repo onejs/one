@@ -33,7 +33,7 @@ static TextMeasurement measureString(
 
   TextMeasurement measurement;
   measurement.size = internal_roundTextMeasurementToPixelGrid(
-      Size{.width = used.size.width, .height = used.size.height}, layoutContext.pointScaleFactor);
+      Size{.width = static_cast<Float>(used.size.width), .height = static_cast<Float>(used.size.height)}, layoutContext.pointScaleFactor);
   return measurement;
 }
 

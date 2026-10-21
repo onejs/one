@@ -2,6 +2,8 @@
 
 #import <AppKit/AppKit.h>
 
+#include <react/renderer/core/LayoutConstraints.h>
+
 namespace facebook::react {
 
 const char OneMacToggleComponentName[] = "OneMacToggle";

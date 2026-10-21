@@ -1,5 +1,6 @@
 #import <AppKit/AppKit.h>
 
+#include <folly/json.h>
 #include <jsi/JSIDynamic.h>
 #include <react/featureflags/ReactNativeFeatureFlags.h>
 
