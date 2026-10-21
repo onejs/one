@@ -297,3 +297,37 @@ on and no relaunch. Debug builds accept `ONE_MACOS_DEBUG_DIR` (SIGUSR1 writes a
 window png, SIGUSR2 clicks the toggle) for hosts without screen capture grants.
 Launch with `-ApplePersistenceIgnoreState YES` if a previous run was killed, or
 SwiftUI restores no window.
+
+Real bundle (`tests/macos-basic/app/index.tsx` through `one dev`):
+
+TurboModules RN's JS requested at boot, in order: NativePerformanceCxx,
+NativeMicrotasksCxx, SettingsManager, ReactDevToolsRuntimeSettingsModule,
+NativeReactNativeFeatureFlagsCxx, PlatformConstants, DevSettings, Networking,
+DevLoadingView, SourceCode, LogBox, BlobModule, WebSocketModule, NitroModules,
+DeviceInfo, WorkletsModule, I18nManager, Appearance, OneNativeSafeAreaContext.
+All are hand written C++ TurboModules in `macos/OneMacosModules.mm`; unknown names
+return nullptr. The feature flags module answers undefined for every accessor so
+the JS getters keep their defaults.
+
+Nitro-on-mac pulled forward from M5: `OneMacosCore` compiles
+react-native-nitro-modules' `cpp/` and the host's `NitroModules` TurboModule calls
+`margelo::nitro::install`. No One hybrid objects are registered, so anything that
+calls `createHybridObject` for a One service throws.
+
+Hermes decision: the main runtime and worklet runtimes run on Hermes through RN's
+`HermesInstance`; the JSC adapter is deleted. Hermes is the Maven prebuilt
+`hermes-ios-260318099.0.4` macosx slice (`hermesvm.framework`), cached in
+`~/Library/Caches/ReactNative`, so no source build was needed. Prebuilt pull,
+build and integration took 2m29s. Debug `MacosBasic.debug.dylib` grew from
+27,732,192 B to 27,872,080 B (+139,888 B); `hermesvm.framework` adds a 14,884,496 B
+universal debug binary; JavaScriptCore is no longer linked.
+
+Worklets: react-native-worklets 0.13 core (`Common/cpp/worklets`) is compiled into
+`OneMacosCore` with its Foundation networking backend and logger; the host's own
+`WorkletsModule` TurboModule installs the proxy (a CADisplayLink serves
+`requestAnimationFrame`). Reanimated stays out of the mac bundle through `.macos`
+variants (bundle 9.18 MB to 7.66 MB).
+
+Open blocker (JS side): `one.macos` imports `platform/index.native`, whose
+`ArrangementView.native` imports `platform/adaptive/index.native`, which calls
+`createHybridObject('OneAdaptive')` at import.

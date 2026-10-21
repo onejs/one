@@ -11,6 +11,7 @@
 
 #import "OneMacosModules.h"
 #import "OneMacosWebSocket.h"
+#import "OneMacosWorklets.h"
 
 namespace facebook::react {
 
@@ -28,7 +29,9 @@ class OneMacosModule : public TurboModule {
   OneMacosModule(const std::string &name, std::shared_ptr<CallInvoker> jsInvoker)
       : TurboModule(name, std::move(jsInvoker)) {}
 
-  bool wildcard = false; // TEMP survey
+  // answers every unknown accessor with a no-op function, for modules whose JS
+  // side only ever calls into them
+  bool wildcard = false;
   void method(const std::string &name, size_t argCount, Method method)
   {
     hostMethods_[name] = {argCount, std::move(method)};
@@ -51,8 +54,7 @@ class OneMacosModule : public TurboModule {
   {
     auto it = hostMethods_.find(propName.utf8(runtime));
     if (it == hostMethods_.end()) {
-      if (wildcard) { // TEMP survey
-        if (name_ != "NativeReactNativeFeatureFlagsCxx") NSLog(@"[one-macos] survey %s.%s", name_.c_str(), propName.utf8(runtime).c_str());
+      if (wildcard) {
         return jsi::Function::createFromHostFunction(runtime, propName, 0, [](jsi::Runtime &, const jsi::Value &, const jsi::Value *, size_t) { return jsi::Value::undefined(); });
       }
       return jsi::Value::undefined();
@@ -133,6 +135,26 @@ std::shared_ptr<OneMacosModule> deviceInfo(
   auto module = std::make_shared<OneMacosModule>("DeviceInfo", std::move(invoker));
   module->method("getConstants", 0, [context](jsi::Runtime &rt, const jsi::Value *, size_t) {
     return jsi::valueFromDynamic(rt, folly::dynamic::object("Dimensions", dimensions(context.windowMetrics())));
+  });
+  return module;
+}
+
+// the window's content view is not covered by the title bar, so insets are zero
+std::shared_ptr<OneMacosModule> safeAreaContext(
+    std::shared_ptr<CallInvoker> invoker,
+    const OneMacosModuleContext &context)
+{
+  auto module = std::make_shared<OneMacosModule>("OneNativeSafeAreaContext", std::move(invoker));
+  module->method("getConstants", 0, [context](jsi::Runtime &rt, const jsi::Value *, size_t) {
+    auto metrics = context.windowMetrics();
+    return jsi::valueFromDynamic(
+        rt,
+        folly::dynamic::object(
+            "initialWindowMetrics",
+            folly::dynamic::object(
+                "insets", folly::dynamic::object("top", 0)("right", 0)("bottom", 0)("left", 0))(
+                "frame",
+                folly::dynamic::object("x", 0)("y", 0)("width", metrics.width)("height", metrics.height))));
   });
   return module;
 }
@@ -378,11 +400,11 @@ std::shared_ptr<TurboModule> nitro(std::shared_ptr<CallInvoker> jsInvoker)
 }
 
 std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
+    jsi::Runtime &runtime,
     const std::string &name,
     std::shared_ptr<CallInvoker> jsInvoker,
     const OneMacosModuleContext &context)
 {
-  NSLog(@"[one-macos] module requested: %s", name.c_str());
   if (name == "NativePerformanceCxx") {
     return performance(std::move(jsInvoker));
   }
@@ -409,6 +431,9 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   }
   if (name == "NitroModules") {
     return nitro(std::move(jsInvoker));
+  }
+  if (name == "WorkletsModule") {
+    return OneMacosCreateWorkletsModule(runtime, std::move(jsInvoker), context.isJavaScriptQueue);
   }
   if (name == "PlatformConstants") {
     return platformConstants(std::move(jsInvoker));
@@ -440,10 +465,8 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   if (name == "WebSocketModule") {
     return webSocket(std::move(jsInvoker), context);
   }
-  { // TEMP survey
-    auto m = std::make_shared<OneMacosModule>(name, std::move(jsInvoker));
-    m->wildcard = true;
-    return m;
+  if (name == "OneNativeSafeAreaContext") {
+    return safeAreaContext(std::move(jsInvoker), context);
   }
   return nullptr;
 }

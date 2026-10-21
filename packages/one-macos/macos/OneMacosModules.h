@@ -23,10 +23,12 @@ struct OneMacosModuleContext {
   // emits on RCTDeviceEventEmitter
   std::function<void(const std::string &eventName, folly::dynamic payload)> emitDeviceEvent;
   std::function<void()> reload;
+  std::function<bool()> isJavaScriptQueue;
 };
 
 // Returns nullptr for modules the host does not provide.
 std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
+    jsi::Runtime &runtime,
     const std::string &name,
     std::shared_ptr<CallInvoker> jsInvoker,
     const OneMacosModuleContext &context);

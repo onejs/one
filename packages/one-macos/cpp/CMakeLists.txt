@@ -7,6 +7,7 @@ project(OneMacosCore LANGUAGES C CXX OBJCXX)
 #   -DRN_ROOT=<path to node_modules/react-native>
 #   -DRN_DEPS_ROOT=<dir holding ReactNativeDependenciesHeaders.xcframework>
 #   -DNITRO_ROOT=<path to node_modules/react-native-nitro-modules>
+#   -DWORKLETS_ROOT=<path to node_modules/react-native-worklets>
 #   -DHERMES_ROOT=<extracted hermes-ios destroot, headers and hermesvm.framework>
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,8 +15,8 @@ set(CMAKE_OBJCXX_STANDARD 20)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT OR NOT HERMES_ROOT)
-  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT, NITRO_ROOT and HERMES_ROOT")
+if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT OR NOT WORKLETS_ROOT OR NOT HERMES_ROOT)
+  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT, NITRO_ROOT, WORKLETS_ROOT and HERMES_ROOT")
 endif()
 
 set(RC ${RN_ROOT}/ReactCommon)
@@ -141,7 +142,27 @@ file(GLOB NITRO_APPLE_SOURCES CONFIGURE_DEPENDS
   ${NITRO_ROOT}/ios/threading/*.cpp
 )
 
-add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${NITRO_SOURCES} ${NITRO_APPLE_SOURCES} ${ONE_SOURCES})
+# worklets' shared C++ core plus its Foundation networking backend; its React
+# module glue stays out because the host installs the proxy from its own TurboModule
+file(GLOB_RECURSE WORKLETS_SOURCES CONFIGURE_DEPENDS ${WORKLETS_ROOT}/Common/cpp/worklets/*.cpp)
+file(GLOB WORKLETS_APPLE_SOURCES CONFIGURE_DEPENDS
+  ${WORKLETS_ROOT}/apple/worklets/apple/Networking/*.mm
+  ${WORKLETS_ROOT}/apple/worklets/apple/PlatformLogger.mm)
+
+file(READ ${WORKLETS_ROOT}/package.json WORKLETS_PACKAGE)
+string(JSON WORKLETS_VERSION GET "${WORKLETS_PACKAGE}" version)
+file(READ ${WORKLETS_ROOT}/src/featureFlags/staticFlags.json WORKLETS_FLAGS_JSON)
+string(JSON WORKLETS_FLAG_COUNT LENGTH "${WORKLETS_FLAGS_JSON}")
+set(WORKLETS_FEATURE_FLAGS "")
+math(EXPR WORKLETS_FLAG_LAST "${WORKLETS_FLAG_COUNT} - 1")
+foreach(i RANGE ${WORKLETS_FLAG_LAST})
+  string(JSON flag_name MEMBER "${WORKLETS_FLAGS_JSON}" ${i})
+  string(JSON flag_value GET "${WORKLETS_FLAGS_JSON}" ${flag_name})
+  string(TOLOWER "${flag_value}" flag_value)
+  string(APPEND WORKLETS_FEATURE_FLAGS "[${flag_name}:${flag_value}]")
+endforeach()
+
+add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${NITRO_SOURCES} ${NITRO_APPLE_SOURCES} ${WORKLETS_SOURCES} ${WORKLETS_APPLE_SOURCES} ${ONE_SOURCES})
 
 # the pod flattens headers, so every Nitro source directory is an include root
 file(GLOB NITRO_INCLUDE_DIRS LIST_DIRECTORIES true ${NITRO_ROOT}/cpp/* ${NITRO_ROOT}/ios/*)
@@ -170,6 +191,8 @@ target_include_directories(OneMacosCore PUBLIC
   ${RN_ROOT}/React/Fabric
   ${RN_ROOT}/React/Fabric/Utils
   ${NITRO_INCLUDE_DIRS}
+  ${WORKLETS_ROOT}/Common/cpp
+  ${WORKLETS_ROOT}/apple
   ${ONE_CPP}/textlayoutmanager
   ${ONE_CPP}
   ${ONE_MACOS}
@@ -183,6 +206,8 @@ target_compile_definitions(OneMacosCore PUBLIC
   FOLLY_HAVE_CLOCK_GETTIME=1
   RCT_NEW_ARCH_ENABLED=1
   HERMES_V1_ENABLED=1
+  WORKLETS_VERSION=${WORKLETS_VERSION}
+  WORKLETS_FEATURE_FLAGS=${WORKLETS_FEATURE_FLAGS}
   $<$<CONFIG:Debug>:HERMES_ENABLE_DEBUGGER=1>
   REACT_NATIVE_DEBUGGER_ENABLED=1
   REACT_NATIVE_DEBUGGER_ENABLED_DEVONLY=1

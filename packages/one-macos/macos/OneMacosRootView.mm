@@ -152,6 +152,11 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
       instance->callFunctionOnModule("RCTDeviceEventEmitter", "emit", folly::dynamic::array(name, std::move(payload)));
     }
   };
+  std::weak_ptr<OneMacosMessageQueueThread> weakJsThread = _jsThread;
+  moduleContext.isJavaScriptQueue = [weakJsThread]() {
+    auto jsThread = weakJsThread.lock();
+    return jsThread && jsThread->isOnThread();
+  };
   moduleContext.reload = [weakSelf]() {
     dispatch_async(dispatch_get_main_queue(), ^{
       [weakSelf reload];
@@ -170,7 +175,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     TurboModuleBinding::install(
         runtime,
         [weakSelf, jsCallInvoker, moduleContext](
-            jsi::Runtime &, const std::string &name) -> std::shared_ptr<TurboModule> {
+            jsi::Runtime &moduleRuntime, const std::string &name) -> std::shared_ptr<TurboModule> {
           OneMacosHost *strongSelf = weakSelf;
           if (!strongSelf) {
             return nullptr;
@@ -180,7 +185,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
           if (found != modules.end()) {
             return found->second;
           }
-          auto module = OneMacosCreateTurboModule(name, jsCallInvoker, moduleContext);
+          auto module = OneMacosCreateTurboModule(moduleRuntime, name, jsCallInvoker, moduleContext);
           modules[name] = module;
           return module;
         });
