@@ -163,6 +163,11 @@ jobs:
           adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
           # a failing suite saves its logcat; the default ring drops a suite's start.
           adb -s "$FIXTURE_SERIAL" logcat -G 16M
+          # a system app that stops responding on the busy emulator raises a
+          # dialog over the fixture app, and the suites read only that window.
+          # android then ends the stalled app without a dialog; the fixture
+          # app's own crash still fails its checks and saves its logcat.
+          adb -s "$FIXTURE_SERIAL" shell settings put global hide_error_dialogs 1
           # a fresh image opens chrome on its first-run screen, which covers the
           # auth tab the browser suite drives; chrome reads these flags from
           # /data/local/tmp once it is the debug app.
