@@ -37,6 +37,9 @@ using namespace facebook::react;
   OneMacosScrollDocumentView *_documentView;
   ScrollViewShadowNode::ConcreteState::Shared _state;
   NSTimeInterval _lastScrollEventTime;
+  // the contentOffset prop waits here until the document and viewport have a size
+  BOOL _hasPendingOffset;
+  NSPoint _pendingOffset;
 }
 
 - (instancetype)initWithFrame:(NSRect)frame
@@ -88,10 +91,24 @@ using namespace facebook::react;
   _scrollView.contentInsets = NSEdgeInsetsMake(
       scrollProps.contentInset.top, scrollProps.contentInset.left, scrollProps.contentInset.bottom, scrollProps.contentInset.right);
 
-  const auto &oldScrollProps = oldProps ? static_cast<const ScrollViewProps &>(*oldProps) : scrollProps;
-  if (oldProps && oldScrollProps.contentOffset != scrollProps.contentOffset) {
-    [self scrollToX:scrollProps.contentOffset.x y:scrollProps.contentOffset.y animated:NO];
+  bool offsetChanged = oldProps ? static_cast<const ScrollViewProps &>(*oldProps).contentOffset != scrollProps.contentOffset
+                                : scrollProps.contentOffset != facebook::react::Point{};
+  if (offsetChanged) {
+    _pendingOffset = NSMakePoint(scrollProps.contentOffset.x, scrollProps.contentOffset.y);
+    _hasPendingOffset = YES;
+    [self applyPendingOffset];
   }
+}
+
+- (void)applyPendingOffset
+{
+  NSSize content = _documentView.frame.size;
+  NSSize visible = _scrollView.contentView.bounds.size;
+  if (!_hasPendingOffset || content.width <= 0 || content.height <= 0 || visible.width <= 0 || visible.height <= 0) {
+    return;
+  }
+  _hasPendingOffset = NO;
+  [self scrollToX:_pendingOffset.x y:_pendingOffset.y animated:NO];
 }
 
 - (void)updateState:(const State::Shared &)state oldState:(const State::Shared &)oldState
@@ -99,12 +116,14 @@ using namespace facebook::react;
   _state = std::static_pointer_cast<const ScrollViewShadowNode::ConcreteState>(state);
   auto contentSize = _state->getData().getContentSize();
   _documentView.frame = NSMakeRect(0, 0, contentSize.width, contentSize.height);
+  [self applyPendingOffset];
 }
 
 - (void)updateLayoutMetrics:(const LayoutMetrics &)layoutMetrics oldLayoutMetrics:(const LayoutMetrics &)oldLayoutMetrics
 {
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   _scrollView.frame = self.bounds;
+  [self applyPendingOffset];
 }
 
 #pragma mark - Scrolling
@@ -182,6 +201,24 @@ using namespace facebook::react;
     _lastScrollEventTime = now;
     emitter->onScroll([self scrollEvent]);
   }
+  // measure() reads the offset from state, so it follows every scroll once it
+  // settles, whether it came from a wheel, a drag or a scrollTo command
+  [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(commitOffsetToState) object:nil];
+  [self performSelector:@selector(commitOffsetToState) withObject:nil afterDelay:0.1 inModes:@[ NSRunLoopCommonModes ]];
+}
+
+- (void)commitOffsetToState
+{
+  if (!_state) {
+    return;
+  }
+  auto data = _state->getData();
+  NSPoint origin = _scrollView.contentView.bounds.origin;
+  facebook::react::Point offset{(Float)origin.x, (Float)origin.y};
+  if (data.contentOffset != offset) {
+    data.contentOffset = offset;
+    _state->updateState(std::move(data));
+  }
 }
 
 - (void)beganDrag:(NSNotification *)notification
@@ -197,12 +234,7 @@ using namespace facebook::react;
     emitter->onScrollEndDrag(ScrollEndDragEvent([self scrollEvent]));
     emitter->onMomentumScrollEnd([self scrollEvent]);
   }
-  if (_state) {
-    auto data = _state->getData();
-    NSPoint origin = _scrollView.contentView.bounds.origin;
-    data.contentOffset = {(Float)origin.x, (Float)origin.y};
-    _state->updateState(std::move(data));
-  }
+  [self commitOffsetToState];
 }
 
 @end
