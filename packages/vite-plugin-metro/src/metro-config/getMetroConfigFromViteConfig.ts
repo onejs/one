@@ -9,6 +9,10 @@ import { getDefaultConfig } from '@react-native/metro-config'
 import type { loadConfig as loadConfigT } from 'metro'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
+import {
+  findOneMacosPackageRoot,
+  macosReactNativeFile,
+} from '@vxrn/utils/macosReactNativeResolve'
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
@@ -80,14 +84,31 @@ function getReactNativeDefaultConfig(projectRoot: string): MetroInputConfig {
   }
 }
 
-function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
-  const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
-  return platform === 'android' ? 'android' : 'ios'
+function redirectMacosReactNative(
+  projectRoot: string,
+  origin: string | undefined,
+  moduleName: string,
+  platform: string | null | undefined
+) {
+  if (platform !== 'macos') return null
+  const file = macosReactNativeFile(
+    origin,
+    moduleName,
+    findOneMacosPackageRoot(projectRoot)
+  )
+  if (!file) return null
+  return { type: 'sourceFile' as const, filePath: file }
+}
+
+function getPlatformFromBundleUrl(url: string): 'ios' | 'android' | 'macos' {
+  const platform = url.match(/[?&]platform=(ios|android|macos)(?:&|$)/)?.[1]
+  if (platform === 'ios' || platform === 'android' || platform === 'macos') return platform
+  return 'ios'
 }
 
 function rewriteMainModuleBundleUrl(
   url: string,
-  resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string
+  resolveMainModuleName: (p: { platform: 'ios' | 'android' | 'macos' }) => string
 ) {
   const resolvedMainModulePath = resolveMainModuleName({
     platform: getPlatformFromBundleUrl(url),
@@ -327,6 +348,9 @@ export async function buildMetroConfigInputFromViteConfig(
       useWatchman,
       blockList,
       sourceExts: metroSourceExts,
+      platforms: [
+        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos']),
+      ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
@@ -352,6 +376,14 @@ export async function buildMetroConfigInputFromViteConfig(
           }
           return origResolveRequestFn(contextOverride, moduleName, platform)
         }
+
+        const macosRedirect = redirectMacosReactNative(
+          projectRoot,
+          context.originModulePath,
+          moduleName,
+          platform
+        )
+        if (macosRedirect) return macosRedirect
 
         return origResolveRequestFn(context, moduleName, platform)
       },
@@ -474,6 +506,9 @@ export async function getMetroConfigFromViteConfig(
       useWatchman,
       blockList,
       sourceExts: metroSourceExts,
+      platforms: [
+        ...new Set([...(_defaultConfig?.resolver?.platforms ?? []), 'macos']),
+      ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
@@ -507,6 +542,14 @@ export async function getMetroConfigFromViteConfig(
           }
           return origResolveRequestFn(contextOverride, moduleName, platform)
         }
+
+        const macosRedirect = redirectMacosReactNative(
+          projectRoot,
+          context.originModulePath,
+          moduleName,
+          platform
+        )
+        if (macosRedirect) return macosRedirect
 
         return origResolveRequestFn(context, moduleName, platform)
       },

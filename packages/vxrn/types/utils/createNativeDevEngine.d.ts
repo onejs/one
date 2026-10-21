@@ -11,14 +11,14 @@ import type { DevEngine } from 'rolldown/experimental';
 export declare function getHermesSWCIncludes(dev: boolean): string[];
 export interface NativePluginContext {
     root: string;
-    platform: 'ios' | 'android';
+    platform: 'ios' | 'android' | 'macos';
     dev: boolean;
 }
 interface NativeDevEngineOptions {
     root: string;
     port: number;
     host?: string;
-    platform: 'ios' | 'android';
+    platform: 'ios' | 'android' | 'macos';
     serverUrl?: string;
     plugins?: Plugin[];
     onHmrUpdate?: (update: NativeHmrUpdate) => void;
@@ -51,7 +51,7 @@ interface NativeDevEngineResult {
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }
-export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
+export declare function getNativeTransformConfig(platform: 'ios' | 'android' | 'macos', dev: boolean, root: string): {
     jsx: {
         runtime: 'classic';
     };
@@ -81,7 +81,7 @@ export declare function wrapNativeBundleModuleScope(code: string): string;
 export declare function createNativeDevEngine(options: NativeDevEngineOptions): Promise<NativeDevEngineResult>;
 interface NativeBuildOptions {
     root: string;
-    platform: 'ios' | 'android';
+    platform: 'ios' | 'android' | 'macos';
     dev?: boolean;
     serverUrl?: string;
     entryFile?: string;

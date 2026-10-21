@@ -80,9 +80,19 @@ import {
   ZoomTransitionSource,
   type ColorType,
 } from './platform'
+import type { ComponentType } from 'react'
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
-export type OnePlatform = 'web' | 'ios' | 'android'
+export type OnePlatform = 'web' | 'ios' | 'android' | 'macos'
+
+export type OneMacOS = {
+  readonly Toggle: ComponentType<{
+    label: string
+    isOn: boolean
+    revision?: number
+    onIsOnChange?: (event: { isOn: boolean; revision: number }) => void
+  }>
+}
 
 export type OneIOS = typeof Swift & {
   readonly MFMailComposeViewController: typeof MFMailComposeViewController
@@ -167,6 +177,8 @@ export type OneAPI = {
   readonly Contacts: typeof Contacts
   readonly Calendar: typeof Calendar
   readonly iOS: Readonly<OneIOS>
+  // present on the macos entry only, so ios, android and web bundles omit it
+  readonly macOS?: Readonly<OneMacOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
   readonly Notifications: Readonly<OneNotifications>

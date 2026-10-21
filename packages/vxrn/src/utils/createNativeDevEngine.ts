@@ -7,7 +7,7 @@
  */
 
 import { createHash } from 'node:crypto'
-import { basename, dirname, extname, join, relative, resolve } from 'node:path'
+import { basename, dirname, extname, join, relative, resolve, sep } from 'node:path'
 import {
   copyFileSync,
   existsSync,
@@ -28,7 +28,12 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import {
+  findOneMacosPackageRoot,
+  macosReactNativeFile,
+} from '@vxrn/utils/macosReactNativeResolve'
 import { nativeAppDefines } from '@vxrn/utils/nativeAppManifest'
+import type { NativePlatform } from '@vxrn/utils/platformEnv'
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -64,7 +69,7 @@ export function getHermesSWCIncludes(dev: boolean): string[] {
 
 export interface NativePluginContext {
   root: string
-  platform: 'ios' | 'android'
+  platform: NativePlatform
   dev: boolean
 }
 
@@ -72,7 +77,7 @@ interface NativeDevEngineOptions {
   root: string
   port: number
   host?: string
-  platform: 'ios' | 'android'
+  platform: NativePlatform
   serverUrl?: string
   plugins?: Plugin[]
   onHmrUpdate?: (update: NativeHmrUpdate) => void
@@ -109,19 +114,33 @@ interface NativeDevEngineResult {
   close: () => Promise<void>
 }
 
-// shared resolve extensions for native builds
-function getResolveExtensions(platform: 'ios' | 'android'): string[] {
-  const platformExts =
-    platform === 'ios'
-      ? ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js']
-      : ['.android.tsx', '.android.ts', '.android.jsx', '.android.js']
-  const nativeExts = ['.native.tsx', '.native.ts', '.native.jsx', '.native.js']
-  const defaultExts = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
-  return [...platformExts, ...nativeExts, ...defaultExts]
+const NATIVE_PLATFORM_EXTENSIONS: Record<NativePlatform, string[]> = {
+  ios: ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js'],
+  android: ['.android.tsx', '.android.ts', '.android.jsx', '.android.js'],
+  macos: ['.macos.tsx', '.macos.ts', '.macos.jsx', '.macos.js'],
+}
+
+const NATIVE_SHARED_EXTENSIONS = [
+  '.native.tsx',
+  '.native.ts',
+  '.native.jsx',
+  '.native.js',
+]
+
+const PLAIN_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
+
+// shared resolve extensions for native builds. macos does not list .ios:
+// that fallback is only for files inside the react-native package.
+function getResolveExtensions(platform: NativePlatform): string[] {
+  return [
+    ...NATIVE_PLATFORM_EXTENSIONS[platform],
+    ...NATIVE_SHARED_EXTENSIONS,
+    ...PLAIN_EXTENSIONS,
+  ]
 }
 
 // shared rolldown resolve config for native builds
-function getNativeResolveConfig(platform: 'ios' | 'android') {
+function getNativeResolveConfig(platform: NativePlatform) {
   return {
     extensions: getResolveExtensions(platform),
     // Rolldown supplies `import`, `require`, and `default` contextually. Adding
@@ -138,7 +157,7 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
 
 // shared rolldown transform config for native builds
 export function getNativeTransformConfig(
-  platform: 'ios' | 'android',
+  platform: NativePlatform,
   dev: boolean,
   root: string
 ) {
@@ -254,6 +273,113 @@ export function getNativeTransformConfig(
   }
 }
 
+function macosReactNativeResolvePlugin(root: string): Plugin {
+  const oneMacosRoot = findOneMacosPackageRoot(root)
+  return {
+    name: 'vxrn:macos-react-native-resolve',
+    resolveId(source, importer) {
+      if (!importer) return
+      const file = macosReactNativeFile(importer, source, oneMacosRoot)
+      if (file) return file
+    },
+  }
+}
+
+// third-party packages often ship a component as .ios and .android only.
+// macos does not load the ios source. the stub keeps that import linkable.
+const PLATFORM_VARIANT_EXTS = [
+  '.ios.tsx',
+  '.ios.ts',
+  '.ios.jsx',
+  '.ios.js',
+  '.android.tsx',
+  '.android.ts',
+  '.android.jsx',
+  '.android.js',
+]
+
+function macosNormalFile(target: string, source: string): boolean {
+  if (/\.(?:tsx|ts|jsx|js|mjs|cjs|json)$/.test(source)) return existsSync(target)
+  const extensions = getResolveExtensions('macos')
+  for (const ext of extensions) {
+    if (existsSync(target + ext)) return true
+    if (existsSync(join(target, 'index' + ext))) return true
+  }
+  return false
+}
+
+function macosVariantSource(target: string): string | null {
+  for (const ext of PLATFORM_VARIANT_EXTS) {
+    const file = target + ext
+    if (existsSync(file)) return file
+  }
+  return null
+}
+
+function macosStubCode(variantFile: string): string {
+  const code = readFileSync(variantFile, 'utf8')
+  const names = new Set<string>()
+  let hasDefault = /export\s+default\b/.test(code)
+  for (const match of code.matchAll(
+    /export\s+(?:async\s+)?(?:function\*?|const|let|var|class)\s+([A-Za-z_$][\w$]*)/g
+  )) {
+    names.add(match[1])
+  }
+  for (const match of code.matchAll(/export\s*\{([^}]+)\}/g)) {
+    for (const part of match[1].split(',')) {
+      const seg = part.trim().replace(/^type\s+/, '')
+      if (!seg) continue
+      const bits = seg.split(/\s+as\s+/)
+      const name = (bits[1] || bits[0]).trim()
+      if (!name) continue
+      if (name === 'default') hasDefault = true
+      else names.add(name)
+    }
+  }
+  const lines = ['const __noop = () => null']
+  if (hasDefault || names.size === 0) lines.push('export default __noop')
+  for (const name of names) lines.push(`export const ${name} = __noop`)
+  return lines.join('\n')
+}
+
+function macosPlatformSplitStubPlugin(): Plugin {
+  const stubs = new Map<string, string>()
+  return {
+    name: 'vxrn:macos-platform-split-stub',
+    resolveId(source, importer) {
+      if (!importer || !source.startsWith('.') || source.includes('\0')) return
+      if (source.includes('?') || source.includes('#')) return
+      const target = resolve(dirname(importer), source)
+      if (macosNormalFile(target, source)) return
+      const variant = macosVariantSource(target)
+      if (!variant) return
+      const id = `\0macos-platform-stub:${target}`
+      stubs.set(id, macosStubCode(variant))
+      return id
+    },
+    load(id) {
+      const code = stubs.get(id)
+      if (code == null) return
+      return { code, moduleType: 'js' as const }
+    },
+  }
+}
+
+// the published native entry is one.native.js. macOS loads one.macos.ts beside
+// it so One.platform and One.macOS stay out of the ios, android and web bundles.
+function macosOneEntryPlugin(): Plugin {
+  return {
+    name: 'vxrn:macos-one-entry',
+    resolveId(source, importer) {
+      if (!importer || !source.endsWith('one.native.js')) return
+      if (!importer.includes(`${sep}one${sep}dist${sep}esm${sep}index.native.`)) return
+      const distFile = source.startsWith('.') ? resolve(dirname(importer), source) : source
+      const entry = join(dirname(distFile), '..', '..', 'src', 'one.macos.ts')
+      if (existsSync(entry)) return entry
+    },
+  }
+}
+
 // shared plugins used by both dev and prod native builds
 function getNativePlugins(
   root: string,
@@ -268,6 +394,13 @@ function getNativePlugins(
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev }
   return [
+    ...(platform === 'macos'
+      ? [
+          macosReactNativeResolvePlugin(root),
+          macosOneEntryPlugin(),
+          macosPlatformSplitStubPlugin(),
+        ]
+      : []),
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
     ...(globalThis.__vxrnAddNativePlugins?.(platform) || []),
     // block .server.* and _middleware.* files from entering the native bundle
@@ -1092,7 +1225,7 @@ try {
 
 interface NativeBuildOptions {
   root: string
-  platform: 'ios' | 'android'
+  platform: NativePlatform
   dev?: boolean
   serverUrl?: string
   entryFile?: string
@@ -1217,7 +1350,7 @@ function nativeVirtualEntryPlugin(
   root: string,
   opts: {
     dev?: boolean
-    platform: 'ios' | 'android'
+    platform: NativePlatform
     dynamicRoutes?: boolean
   }
 ): { plugin: Plugin; routes: NativeRouteRegistry } {
@@ -1237,7 +1370,14 @@ function nativeVirtualEntryPlugin(
     const sf = entryConfig.setupFile
     if (!sf) return ''
     // resolve which file to use for ios (covers both formats)
-    const file = typeof sf === 'string' ? sf : 'native' in sf ? sf.native : sf.ios
+    const file =
+      typeof sf === 'string'
+        ? sf
+        : 'native' in sf
+          ? sf.native
+          : opts.platform === 'macos'
+            ? ((sf as { macos?: string }).macos ?? sf.ios)
+            : sf.ios
     if (!file) return ''
     // file:// URL is the canonical specifier; bare Windows absolute path is not
     const resolved = pathToFileURL(resolve(root, file)).href
@@ -1568,7 +1708,7 @@ export function hmrClientNoopPlugin(): Plugin {
   }
 }
 
-function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
+function nativeIdentityAliasPlugin(platform: NativePlatform): Plugin {
   const packages = new Map<
     string,
     { root: string; aliases: Record<string, unknown> } | null
@@ -1624,7 +1764,7 @@ function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
 // resolve it as metro does, without `browser`.
 function nativeExportsPrecedencePlugin(
   root: string,
-  platform: 'ios' | 'android'
+  platform: NativePlatform
 ): Plugin {
   const manifests = new Map<string, { name?: string; exports?: unknown } | null>()
   const readManifest = (directory: string) => {
@@ -1677,7 +1817,7 @@ function nativeExportsPrecedencePlugin(
   }
 }
 
-function nativeDeclarationAliasPlugin(root: string, platform: 'ios' | 'android'): Plugin {
+function nativeDeclarationAliasPlugin(root: string, platform: NativePlatform): Plugin {
   const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
   return {
     name: 'vxrn:declaration-alias',
@@ -1876,7 +2016,9 @@ export function vxrnCompilerPlugin(
         code,
         projectRoot,
         development: dev,
-        environment: platform as 'ios' | 'android',
+        // the compiler's native gate is ios or android. macos uses the ios
+        // transforms. module resolution stays .macos and does not follow .ios.
+        environment: platform === 'android' ? 'android' : 'ios',
         reactForRNVersion: '19' as const,
       }
 

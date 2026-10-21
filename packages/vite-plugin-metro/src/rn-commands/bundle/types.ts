@@ -9,7 +9,7 @@ export type BundleCommandArgs = {
   transformer?: string
   minify?: boolean
   config?: string
-  platform: 'ios' | 'android'
+  platform: 'ios' | 'android' | 'macos'
   dev: boolean
   bundleOutput: string
   bundleEncoding?: 'utf8' | 'utf16le' | 'ascii'

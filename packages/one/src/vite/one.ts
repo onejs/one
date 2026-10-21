@@ -319,7 +319,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // native bundler, which has no vite environment and so is told its platform
   const createAliasPlugin = (
     alias: NonNullable<One.PluginOptions['alias']>,
-    nativePlatform?: 'ios' | 'android'
+    nativePlatform?: 'ios' | 'android' | 'macos'
   ) => {
     const resolveMap = (map?: Record<string, string>) => {
       if (!map) return null
@@ -785,6 +785,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 }),
               },
             },
+            macos: {
+              define: {
+                ...getPlatformEnvDefine('macos'),
+                ...(nativeOptions?.suspendRoutes !== undefined && {
+                  'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
+                    nativeOptions.suspendRoutes ? '1' : '0'
+                  ),
+                }),
+              },
+            },
           },
 
           ssr: {
@@ -817,6 +827,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               },
             },
             android: {
+              define: {
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
+            macos: {
               define: {
                 'process.env.TAMAGUI_KEEP_THEMES': '"1"',
               },
@@ -923,7 +938,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ? undefined
         : (nativeOptions?.bundlerOptions as any)
 
-    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => {
+    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android' | 'macos') => {
       const listed: Plugin[] = [
         backgroundComputationPlugin('native'),
         workletImportsPlugin({}),
