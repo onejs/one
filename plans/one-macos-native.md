@@ -102,7 +102,9 @@ about the same. This replaces the separate optional package.
 - Gates, recorded at M0 and rechecked at every milestone:
   - iOS and Android release JS bundles of `tests/native-features` and the web
     build of `examples/one-basic`: 0 bytes changed, compared as in the M1
-    gate below.
+    gate below, except shared constants that must name `macos` so other
+    platforms skip Mac files. Each is listed here with its size: `'macos'` in
+    the router's platform set (`getRoutes.ts`, 8 bytes, `2070373526`).
   - iOS and Android native: `One.podspec` source list and Android CMake
     sources unchanged (no file under `macos/` matched), `tests/native-features`
     iOS and Android release binary size unchanged, and their clean native build
@@ -317,6 +319,21 @@ in ScrollView: the Fabric state offset updates only on live scroll end, so a
 discrete mouse wheel and `scrollTo` leave it stale (wrong `measure` inside the
 list), and an initial `contentOffset` prop is ignored on mount. M2 still owes
 TextInput, dark mode and window resize updating dimensions.
+
+Review of `b0761a2676`..`235d8d47a2` (planner): ScrollView state fix and dark
+mode accepted. TextInput is on a bare `NSTextView` and owes caret scrolling for
+long single-line text, overflow scrolling for multiline, `secureTextEntry`
+(single line on `NSTextField` and `NSSecureTextField`, multiline in an
+`NSScrollView`), and no `onKeyPress` for command shortcuts.
+
+First consumer, Team Machine's gui (s64797), batch 1 decisions: `.macos`
+routes fixed (`2070373526`); no per-app extension order, a `.macos` file
+overrides an iOS-shaped `.native` one; no host `globalThis.expo` shim yet,
+apps alias expo packages per platform until absorbed packages cover Mac in M4;
+Hermes and deps caches keyed on the RN version and public JS log lines go to
+the host worker; a missing Mac variant failing the bundle with the package name
+goes to `one-macos-bare-import` (Sol). The RN version bump of the consumer is
+s63941's call.
 
 ### M1 host result (host worker)
 
