@@ -10,6 +10,7 @@ import {
   readFileSync,
   realpathSync,
   renameSync,
+  rmSync,
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -26,6 +27,32 @@ const vitePluginMetroDir = resolve(here, '../../../vite-plugin-metro')
 const utilsDir = resolve(here, '../../../utils')
 const workspaceRoot = resolve(here, '../../..')
 const basicStarterDir = resolve(workspaceRoot, '../examples/one-basic')
+
+// scratch dirs carry the owner pid so a later run removes what a killed run
+// left behind; only dirs matching our prefixes whose owner pid is dead go
+const SCRATCH = /^one-packed-(?:closure|native|consumer|metro|files)-(\d+)-/
+for (const name of readdirSync(tmpdir())) {
+  const owner = SCRATCH.exec(name)?.[1]
+  if (owner === undefined) continue
+  try {
+    process.kill(Number(owner), 0)
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ESRCH')
+      rmSync(join(tmpdir(), name), { recursive: true, force: true })
+  }
+}
+const scratchDirs: string[] = []
+function makeScratch(name: string): string {
+  const dir = realpathSync(mkdtempSync(join(tmpdir(), `one-packed-${name}-${process.pid}-`)))
+  scratchDirs.push(dir)
+  return dir
+}
+const removeScratch = () => {
+  for (const dir of scratchDirs) rmSync(dir, { recursive: true, force: true })
+}
+process.on('exit', removeScratch)
+for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const)
+  process.on(signal, () => process.exit(128))
 
 const KNOWN_ONE_BLOCKERS: string[] = []
 const KNOWN_VXRN_BLOCKERS: string[] = []
@@ -115,7 +142,7 @@ function getInstalledPackageNames(nodeModulesDir: string): string[] {
 
 describe('packed-artifact closure oracle', () => {
   it('keeps the packed framework manifests free of Expo dependencies', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-closure-')))
+    const tmp = makeScratch('closure')
     const onePkg = JSON.parse(
       readFileSync(
         join(unpack(packToDir(oneDir, tmp), join(tmp, 'one')), 'package.json'),
@@ -148,7 +175,7 @@ describe('packed-artifact closure oracle', () => {
   })
 
   it('ships the one/native entrypoint with dist and types in the tarball', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-native-')))
+    const tmp = makeScratch('native')
     const extracted = unpack(packToDir(oneDir, tmp), join(tmp, 'one'))
     for (const target of [
       // one's own native code, autolinked as the `one` dependency
@@ -193,7 +220,7 @@ describe('packed-artifact closure oracle', () => {
   })
 
   it('imports one/native in a tarball-only consumer with no workspace path', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-consumer-')))
+    const tmp = makeScratch('consumer')
     const consumerModules = join(tmp, 'consumer', 'node_modules')
     mkdirSync(consumerModules, { recursive: true })
     const extracted = join(consumerModules, 'one')
@@ -225,7 +252,7 @@ console.log('one/native ok ' + url);
   })
 
   it('keeps the default packed closure Expo-free and bundles Metro after its preset is installed', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-metro-')))
+    const tmp = makeScratch('metro')
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
     const packedClosure = packWorkspaceClosure(
@@ -494,7 +521,7 @@ build().catch(error => { console.error(error); process.exitCode = 1 })
   })
 
   it('packs every files entry and non-dist export target of each published package', () => {
-    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-files-')))
+    const tmp = makeScratch('files')
     // workspaceRoot here is the packages directory (see packWorkspaceClosure).
     for (const entry of readdirSync(workspaceRoot, { withFileTypes: true })) {
       if (!entry.isDirectory()) continue
