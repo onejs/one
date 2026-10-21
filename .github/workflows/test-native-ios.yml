@@ -401,6 +401,7 @@ jobs:
         run: |
           if [ '${{ matrix.env }}' = dev ] && [ '${{ matrix.bundler }}' = rolldown ]; then
             export ONE_NATIVE_BUNDLE_TRACE="$RUNNER_TEMP/native-bundle-transport.jsonl"
+            export ONE_NATIVE_HMR_TRACE="$RUNNER_TEMP/native-hmr-delivery.jsonl"
             xcrun simctl spawn "$SIMULATOR_UDID" log stream \
               --style ndjson --level debug \
               --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CFNetwork"' \
@@ -419,6 +420,7 @@ jobs:
           path: |
             ${{ runner.temp }}/native-bundle-transport.jsonl
             ${{ runner.temp }}/native-bundle-network.jsonl
+            ${{ runner.temp }}/native-hmr-delivery.jsonl
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v7
