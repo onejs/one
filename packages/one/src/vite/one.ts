@@ -946,10 +946,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           ? [
               {
                 name: 'one:externalize-expo-for-native-app',
-                resolveId(source) {
+                resolveId(source, _importer, options) {
                   // native.app binaries have no expo runtime, even when the
                   // workspace hoists an expo package used by another app.
                   if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
+                    // macos must resolve static imports so unsupported packages fail
+                    // during bundling. optional require calls still use the runtime guard.
+                    if (platform === 'macos' && options.kind !== 'require-call') return
                     return { id: source, external: true }
                   }
                 },

@@ -286,8 +286,7 @@ function macosReactNativeResolvePlugin(root: string): Plugin {
 }
 
 // third-party packages often ship a component as .ios and .android only.
-// macos does not load the ios source. the stub keeps the import linkable and
-// throws when the export is called or rendered.
+// macos must fail at bundle time when no supported implementation exists.
 const PLATFORM_VARIANT_EXTS = [
   '.ios.tsx',
   '.ios.ts',
@@ -297,6 +296,10 @@ const PLATFORM_VARIANT_EXTS = [
   '.android.ts',
   '.android.jsx',
   '.android.js',
+  '.web.tsx',
+  '.web.ts',
+  '.web.jsx',
+  '.web.js',
 ]
 
 function macosNormalFile(target: string, source: string): boolean {
@@ -317,7 +320,7 @@ function macosVariantSource(target: string): string | null {
   return null
 }
 
-function macosStubLabel(variantFile: string): string {
+function macosPackageImportLabel(variantFile: string): string {
   let dir = dirname(variantFile)
   for (let i = 0; i < 8; i++) {
     const manifest = join(dir, 'package.json')
@@ -328,7 +331,7 @@ function macosStubLabel(variantFile: string): string {
           const rel = relative(dir, variantFile)
             .split('\\')
             .join('/')
-            .replace(/\.(?:ios|android)\.(?:tsx|ts|jsx|js)$/, '')
+            .replace(/\.(?:ios|android|web)\.(?:tsx|ts|jsx|js)$/, '')
           return `${name}/${rel}`
         }
       } catch {
@@ -342,39 +345,19 @@ function macosStubLabel(variantFile: string): string {
   return variantFile
 }
 
-function macosStubCode(variantFile: string): string {
-  const code = readFileSync(variantFile, 'utf8')
-  const message = `${macosStubLabel(variantFile)} has no macOS implementation; add a .macos file`
-  const names = new Set<string>()
-  let hasDefault = /export\s+default\b/.test(code)
-  for (const match of code.matchAll(
-    /export\s+(?:async\s+)?(?:function\*?|const|let|var|class)\s+([A-Za-z_$][\w$]*)/g
-  )) {
-    names.add(match[1])
-  }
-  for (const match of code.matchAll(/export\s*\{([^}]+)\}/g)) {
-    for (const part of match[1].split(',')) {
-      const seg = part.trim().replace(/^type\s+/, '')
-      if (!seg) continue
-      const bits = seg.split(/\s+as\s+/)
-      const name = (bits[1] || bits[0]).trim()
-      if (!name) continue
-      if (name === 'default') hasDefault = true
-      else names.add(name)
-    }
-  }
-  const lines = [
-    `const __missing = () => { throw new Error(${JSON.stringify(message)}) }`,
-  ]
-  if (hasDefault || names.size === 0) lines.push('export default __missing')
-  for (const name of names) lines.push(`export const ${name} = __missing`)
-  return lines.join('\n')
-}
-
-function macosPlatformSplitStubPlugin(): Plugin {
-  const stubs = new Map<string, string>()
+function macosUnsupportedImportPlugin(): Plugin {
   return {
-    name: 'vxrn:macos-platform-split-stub',
+    name: 'vxrn:macos-unsupported-import',
+    onLog(_level, log) {
+      // rolldown otherwise warns and emits an external ESM import. native
+      // hosts evaluate scripts and cannot load that import at runtime.
+      if (log.code === 'UNRESOLVED_IMPORT') {
+        this.error({
+          ...log,
+          message: `[vxrn] macOS bundle cannot resolve an import: ${log.message}`,
+        })
+      }
+    },
     resolveId(source, importer) {
       if (!importer || !source.startsWith('.') || source.includes('\0')) return
       if (source.includes('?') || source.includes('#')) return
@@ -382,14 +365,9 @@ function macosPlatformSplitStubPlugin(): Plugin {
       if (macosNormalFile(target, source)) return
       const variant = macosVariantSource(target)
       if (!variant) return
-      const id = `\0macos-platform-stub:${target}`
-      stubs.set(id, macosStubCode(variant))
-      return id
-    },
-    load(id) {
-      const code = stubs.get(id)
-      if (code == null) return
-      return { code, moduleType: 'js' as const }
+      this.error(
+        `[vxrn] ${macosPackageImportLabel(variant)} has no macOS implementation: cannot resolve import "${source}" from "${importer}". Add a .macos, .native or plain file.`
+      )
     },
   }
 }
@@ -430,7 +408,7 @@ function getNativePlugins(
       ? [
           macosReactNativeResolvePlugin(root),
           macosDistVariantPlugin(),
-          macosPlatformSplitStubPlugin(),
+          macosUnsupportedImportPlugin(),
         ]
       : []),
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
@@ -620,13 +598,11 @@ function interopNodeModeSpan(
 function isInteropHelperCallee(callee: InteropSyntaxNode): boolean {
   if (callee.type === 'Identifier') {
     return (
-      typeof callee['name'] === 'string' &&
-      NATIVE_INTEROP_HELPER.test(callee['name'])
+      typeof callee['name'] === 'string' && NATIVE_INTEROP_HELPER.test(callee['name'])
     )
   }
   if (
-    (callee.type === 'MemberExpression' ||
-      callee.type === 'StaticMemberExpression') &&
+    (callee.type === 'MemberExpression' || callee.type === 'StaticMemberExpression') &&
     callee['computed'] !== true
   ) {
     const property = callee['property']
@@ -1795,10 +1771,7 @@ function nativeIdentityAliasPlugin(platform: NativePlatform): Plugin {
 // `react-native` would give native its web build. the browser fallback is for
 // packages without a native target: where a package's exports name both,
 // resolve it as metro does, without `browser`.
-function nativeExportsPrecedencePlugin(
-  root: string,
-  platform: NativePlatform
-): Plugin {
+function nativeExportsPrecedencePlugin(root: string, platform: NativePlatform): Plugin {
   const manifests = new Map<string, { name?: string; exports?: unknown } | null>()
   const readManifest = (directory: string) => {
     if (!manifests.has(directory)) {
