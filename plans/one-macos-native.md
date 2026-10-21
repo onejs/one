@@ -209,6 +209,19 @@ JS bundle baselines, TESTED by the tooling worker on studio-64 with
 | `tests/native-features` Android release `android.js` | 7,115,711 | `a7c221a53bdb05b579bd90867dc9d81bff0a5e8200e24f6ed8f5f8695691d571` |
 | `examples/one-basic` web dist (sha256 of sorted per-file list) | 2,856,099 | `707a2e932f5dd0a09fe6671ee291881efc94fc9e8b0f35bce61c46b21614ee53` |
 
+Gate check at `1b9ecc2922` against `50d2bfbfdc`, TESTED on studio-64 with
+both sides fully built from source (`bun run build:js`) in fresh worktrees:
+
+| output | base bytes | head bytes | result |
+| --- | --- | --- | --- |
+| iOS release bundle | 10,921,767 | 10,921,767 | same code; differs only in worktree path, path-derived worklet hashes and one bundler binding suffix (`import_react_native$385` vs `$386`) |
+| Android release bundle | 7,128,691 | 7,128,691 | identical after normalizing worktree path and worklet hashes |
+| `one-basic` web | 65 files, 2,856,134 | 65 files, 2,856,134 | per-file sizes identical |
+
+Builds must run `one`'s full build (`tamagui-build` then
+`codegen/staticSpecs.ts`); `tamagui-build` alone leaves raw spec exports that
+the codegen plugin rejects, and dists copied from another checkout can be stale.
+
 ## Work slices
 
 One hands-on worker per surface. Neither edits the other's paths; contract
