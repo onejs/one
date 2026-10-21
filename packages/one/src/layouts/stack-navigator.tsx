@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useIsFocused } from '@react-navigation/native'
 import type { ReactElement, ReactNode } from 'react'
-import { SharedTransitionScreen } from './SharedTransitionScreen'
+import { SharedTransitionBoundary } from 'react-native-reanimated'
 
 /**
  * Returns a Stack navigator factory. On native this is the stock
@@ -8,6 +9,16 @@ import { SharedTransitionScreen } from './SharedTransitionScreen'
  * `.web.ts` sibling with the headless navigator.
  */
 export const createStackNavigator = createNativeStackNavigator
+
+// reanimated matches sharedTransitionTag views only inside an active boundary,
+// so the focused screen's boundary is the one a push or pop morphs into
+function SharedTransitionScreen({ children }: { children: ReactNode }) {
+  return (
+    <SharedTransitionBoundary isActive={useIsFocused()}>
+      {children}
+    </SharedTransitionBoundary>
+  )
+}
 
 export function getStackNavigatorProps<Args extends { children: ReactElement }>(
   _children: ReactNode,
