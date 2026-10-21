@@ -71,23 +71,54 @@ editing RN source, record the unit and the patch. One or two small patches
 applied by our build are acceptable; a patch series that grows with each RN
 release reopens the fork question.
 
-### 2. Packaging: Mac lives in its own optional package
+### 2. Packaging: Mac ships inside the default `one` install
 
-- New npm package `packages/one-macos` (`@one/macos` name to confirm) holds
-  every Mac native byte: host runtime, text layout, mounting, TurboModules,
-  generated Mac controls, the podspecs and the app template. Only Mac apps
-  install it.
-- `One.podspec` stays iOS-only and `packages/one/ios/Generated` stays byte
-  identical. Android is untouched.
-- `one` and `vxrn` gain only JS: the `macos` platform name, resolution rules,
-  and `One.macOS` component specs in `.macos.ts` files, so iOS, Android and web
-  bundles never include them.
-- Measured gates, recorded at M0 and rechecked at every milestone:
-  `npm pack --dry-run` size of `one`, `vxrn` and `vite-plugin-metro`; the iOS
-  and Android release JS bundle of `tests/native-features`; the web build of
-  `examples/one-basic`. Native iOS and Android deltas must be 0 bytes; JS
-  bundle deltas must be 0 bytes; package deltas are reported, target under
-  20 KB unpacked for `one`.
+Owner decision 2026-10-21 (quoted in the Contrast spec): include Mac by
+default; it must not degrade people who do not use it, a few megabytes of
+package growth is fine, and build times, bundle sizes and complexity stay
+about the same. This replaces the separate optional package.
+
+- Every Mac byte lives under one directory, `packages/one/macos/`:
+  `macos/host/` (the AppKit host, today `packages/one-macos/macos/`),
+  `macos/cpp/` (text layout, Mac component shadow nodes), `macos/template/`
+  (the SwiftUI app template and build scripts) and `macos/react-native/` (the
+  JS override set, today `packages/one-macos/src/react-native/`, shipped as
+  plain JS outside `src` so `tamagui-build` and `dist` do not change). `one`'s
+  `files` gains `"macos"`. The `one-macos` workspace package is deleted; apps
+  depend on `one` only.
+- Why one directory inside `one` rather than a sibling package: one version,
+  one install, no dependency for Mac apps to add, and `macos/` sits outside
+  every iOS and Android glob. `One.podspec` compiles `ios/**` and `cpp/**`
+  only, so Mac sources must never go under `packages/one/ios` or
+  `packages/one/cpp`. Android's CMake lists files by name. Autolinking reads
+  only root podspecs, so any Mac podspec stays inside `macos/`.
+- Mac native code is compiled only by the Mac app's own build
+  (`macos/template/macos/scripts/build-core.sh`). Hermes, the
+  `ReactNativeDependencies` macOS slice and any later prebuilt host
+  xcframework (M6) download into the user cache on first Mac build; none of
+  them ship in the npm package.
+- `one` and `vxrn` JS stays behind `.macos.ts` files and the `macos` platform
+  checks, so iOS, Android and web bundles never include it.
+- Gates, recorded at M0 and rechecked at every milestone:
+  - iOS and Android release JS bundles of `tests/native-features` and the web
+    build of `examples/one-basic`: 0 bytes changed, compared as in the M1
+    gate below.
+  - iOS and Android native: `One.podspec` source list and Android CMake
+    sources unchanged (no file under `macos/` matched), `tests/native-features`
+    iOS and Android release binary size unchanged, and their clean native build
+    time within run-to-run noise.
+  - Package: `npm pack --dry-run` of `one`, `vxrn` and `vite-plugin-metro`,
+    deltas reported. `one` may grow a few MB (Mac sources are about 120 KB
+    today); a prebuilt binary in the package needs the lead.
+  - `bun install` of an iOS-only app pulls no new dependency.
+
+The host worker moves `packages/one-macos/{macos,cpp,template,src}` to
+`packages/one/macos/{host,cpp,template,react-native}` as one rename commit
+after its in-flight M2 slice is committed and before the next one, updating
+`project.yml`, the committed Xcode project, `build-core.sh`,
+`utils/src/macosReactNativeResolve.ts` (resolve `one/package.json`),
+`tests/macos-basic/package.json`, `bun.lock` and `one`'s `files`, then
+rebuilds and relaunches `tests/macos-basic` once to prove the move.
 
 ### 3. JS platform `macos` in vxrn and One
 
@@ -116,7 +147,7 @@ release reopens the fork question.
   `Platform.OS === 'ios'` branches (Alert, Settings, `ViewConfigIgnore`,
   lists) that would otherwise take Android paths (RAN: grep of RN 0.88
   `Libraries`). Every importer outside `react-native` gets the owned override
-  in `packages/one-macos/src`, where `Platform.OS` is `'macos'` and `select`
+  in `packages/one/macos/react-native`, where `Platform.OS` is `'macos'` and `select`
   reads `macos`, `native`, then `default`. The resolver picks the Platform
   module by importer path.
 - `One.platform` gains `'macos'`; `One.macOS` is the Mac component namespace.
@@ -133,7 +164,7 @@ reasonably supply, add it to the override set and record it here.
   `.ios.tsx` today, including in the file router.
 - Project generation: iOS copies the RN community template and patches it in
   `vxrn/src/exports/prebuildWithoutExpo.ts`. That template has no `macos/`,
-  so `one-macos` owns `template/macos/` (SwiftUI `App`, Podfile, Info.plist)
+  so `packages/one/macos/template/` owns the Mac project (SwiftUI `App`, Podfile, Info.plist)
   and `prebuild` dispatches `macos` to it.
 - App extensions: macOS widgets reuse `generateIosWidgets` and
   `patchIosPbxprojWidgets` with a macOS SDK, deployment target and output
@@ -147,7 +178,7 @@ reasonably supply, add it to the override set and record it here.
 `iphonesimulator`, target triple, minimum version, availability key,
 view base `NSView` or `UIView`, output directory). The SwiftUI view files are
 mostly shared; the Fabric glue is per platform. Catalog entries gain Mac
-availability from the macOS symbol graph. Mac output goes to `one-macos`.
+availability from the macOS symbol graph. Mac output goes to `packages/one/macos`.
 Falsifier for "no iOS change": regenerating iOS yields zero diff.
 
 ## Milestones
@@ -242,7 +273,7 @@ changes go through the planner.
 **Tooling worker (Grok, medium): the `macos` platform in JS.**
 `packages/utils/src/platformEnv.ts`, `packages/vxrn/src/**`,
 `packages/vite-plugin-metro/src/**`, `packages/one/src/**` (including new
-`*.macos.ts` files and `One.macOS`), `packages/one-macos/src/**` (the
+`*.macos.ts` files and `One.macOS`), `packages/one/macos/react-native/**` (the
 `react-native` override set, starting with `Platform`), and the JS side of
 `tests/macos-basic` (`app/`, `package.json`, `vite.config.ts`). Done when
 `/index.bundle?platform=macos` serves a bundle that resolves `.macos` before
@@ -252,8 +283,8 @@ changes go through the planner.
 baseline.
 
 **Host worker (Sonnet, high): the native Mac host.**
-`packages/one-macos/{cpp,macos,template}/**`, `packages/one-macos/*.podspec`,
-`packages/one-macos/package.json`, and `tests/macos-basic/macos/**`. Done when
+`packages/one/macos/{host,cpp,template}/**` (until the move,
+`packages/one-macos/{macos,cpp,template}/**`), and `tests/macos-basic/macos/**`. Done when
 the M1 window loads the dev bundle from the tooling worker's server, mounts
 `View`, `Text` and `OneMacToggle` with a working round trip, and survives an
 HMR edit, with a screenshot pair as proof.
