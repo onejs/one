@@ -97,7 +97,7 @@ static NSAttributedString *AttributedStringValue(const AttributedString &attribu
     dictionary[NSFontAttributeName] = FontForAttributes(attributes);
 
     NSColor *foreground = OneMacosColorFromSharedColor(attributes.foregroundColor);
-    dictionary[NSForegroundColorAttributeName] = foreground ?: [NSColor blackColor];
+    dictionary[NSForegroundColorAttributeName] = foreground ?: [NSColor textColor];
     if (attributes.opacity == attributes.opacity && foreground) {
       dictionary[NSForegroundColorAttributeName] = [foreground colorWithAlphaComponent:foreground.alphaComponent * attributes.opacity];
     }

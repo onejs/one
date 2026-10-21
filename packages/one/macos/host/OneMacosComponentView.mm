@@ -292,6 +292,13 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
 
 #pragma mark - Painting
 
+// colors resolved while drawing follow the appearance, so a change repaints
+- (void)viewDidChangeEffectiveAppearance
+{
+  [super viewDidChangeEffectiveAppearance];
+  [self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
   if (!_props) {

@@ -73,6 +73,7 @@ class OneMacosSchedulerDelegate final : public SchedulerDelegate {
 - (void)scheduleTransaction:(std::shared_ptr<const MountingCoordinator>)coordinator;
 - (void)mergeReactRevision:(SurfaceId)surfaceId;
 - (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args;
+- (void)appearanceDidChange:(NSAppearance *)appearance;
 @end
 
 void OneMacosSchedulerDelegate::schedulerDidDispatchCommand(
@@ -352,6 +353,17 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   }
 }
 
+- (void)appearanceDidChange:(NSAppearance *)appearance
+{
+  if (_instance) {
+    _instance->callFunctionOnModule(
+        "RCTDeviceEventEmitter",
+        "emit",
+        folly::dynamic::array(
+            "appearanceChanged", folly::dynamic::object("colorScheme", OneMacosColorSchemeName(appearance).UTF8String)));
+  }
+}
+
 - (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args
 {
   [_mountingManager dispatchCommandOnTag:tag name:name args:args];
@@ -449,6 +461,12 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   // tab order follows the layout, top left to bottom right
   self.window.autorecalculatesKeyViewLoop = YES;
   self.window.acceptsMouseMovedEvents = YES;
+}
+
+- (void)viewDidChangeEffectiveAppearance
+{
+  [super viewDidChangeEffectiveAppearance];
+  [_host appearanceDidChange:self.effectiveAppearance];
 }
 
 - (void)updateTrackingAreas

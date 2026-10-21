@@ -34,3 +34,10 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     const OneMacosModuleContext &context);
 
 } // namespace facebook::react
+
+#ifdef __OBJC__
+#import <AppKit/AppKit.h>
+
+// "light" or "dark", the value of the Appearance module's color scheme
+NSString *OneMacosColorSchemeName(NSAppearance *appearance);
+#endif

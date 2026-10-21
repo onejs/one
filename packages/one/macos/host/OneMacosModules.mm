@@ -105,9 +105,7 @@ NSString *colorSchemeName()
 {
   __block NSString *name = @"light";
   void (^read)(void) = ^{
-    NSAppearanceName match = [NSApp.effectiveAppearance
-        bestMatchFromAppearancesWithNames:@[ NSAppearanceNameAqua, NSAppearanceNameDarkAqua ]];
-    name = [match isEqualToString:NSAppearanceNameDarkAqua] ? @"dark" : @"light";
+    name = OneMacosColorSchemeName(NSApp.effectiveAppearance);
   };
   if ([NSThread isMainThread]) {
     read();
@@ -570,3 +568,9 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
 }
 
 } // namespace facebook::react
+
+NSString *OneMacosColorSchemeName(NSAppearance *appearance)
+{
+  NSAppearanceName match = [appearance bestMatchFromAppearancesWithNames:@[ NSAppearanceNameAqua, NSAppearanceNameDarkAqua ]];
+  return [match isEqualToString:NSAppearanceNameDarkAqua] ? @"dark" : @"light";
+}
