@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { Image, Pressable, ScrollView, Text, TextInput, useColorScheme, useWindowDimensions, View } from 'react-native'
+import { useEffect, useRef, useState } from 'react'
+import { Animated, Image, Pressable, ScrollView, Text, TextInput, useColorScheme, useWindowDimensions, View } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
 
@@ -36,6 +36,21 @@ function Button(props: { id: string; label: string; cursor?: 'pointer' | 'auto' 
   )
 }
 
+function AnimatedProbe() {
+  const opacity = useRef(new Animated.Value(0)).current
+  const [done, setDone] = useState('animating')
+  useEffect(() => {
+    Animated.timing(opacity, { toValue: 1, duration: 300, useNativeDriver: true }).start(({ finished }) =>
+      setDone(finished ? 'finished' : 'cancelled')
+    )
+  }, [opacity])
+  return (
+    <Animated.View testID="animated-probe" style={{ opacity }}>
+      <Text testID="animated-probe-text">{`native animated ${done}`}</Text>
+    </Animated.View>
+  )
+}
+
 export default function Index() {
   const [isOn, setIsOn] = useState(false)
   const scheme = useColorScheme()
@@ -53,6 +68,7 @@ export default function Index() {
     <View style={{ flex: 1, padding: 16 }}>
       <Text testID="macos-label">macOS</Text>
       <Text testID="macos-probe">{probe}</Text>
+      <AnimatedProbe />
       <Text testID="macos-env">{`scheme ${scheme} window ${Math.round(width)}x${Math.round(height)}`}</Text>
       <View style={{ marginTop: 12 }}>
         <Button id="first" label="First" />

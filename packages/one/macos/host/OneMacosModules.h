@@ -26,6 +26,9 @@ struct OneMacosModuleContext {
   std::function<bool()> isJavaScriptQueue;
 };
 
+// NativeAnimatedModule on RN's C++ animated renderer, frames from a display link
+std::shared_ptr<TurboModule> OneMacosCreateAnimatedModule(std::shared_ptr<CallInvoker> jsInvoker);
+
 // Returns nullptr for modules the host does not provide.
 std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
     jsi::Runtime &runtime,

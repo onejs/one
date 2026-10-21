@@ -446,12 +446,16 @@ std::shared_ptr<TurboModule> devToolsRuntimeSettings(std::shared_ptr<CallInvoker
 
 // accessors answer undefined, so the JS flag getters keep their defaults,
 // except the flags below: a mouse hovers through W3C pointer events here, since
-// Pressability only wires onMouseEnter for web
+// Pressability only wires onMouseEnter for web, and Animated runs on the C++
+// animated renderer because the host has no classic native animated module
 std::shared_ptr<TurboModule> featureFlags(std::shared_ptr<CallInvoker> jsInvoker)
 {
   auto module = std::make_shared<OneMacosModule>("NativeReactNativeFeatureFlagsCxx", std::move(jsInvoker));
   module->wildcard = true;
   module->method("shouldPressibilityUseW3CPointerEventsForHover", 0, [](jsi::Runtime &, const jsi::Value *, size_t) {
+    return jsi::Value(true);
+  });
+  module->method("cxxNativeAnimatedEnabled", 0, [](jsi::Runtime &, const jsi::Value *, size_t) {
     return jsi::Value(true);
   });
   return module;
@@ -504,6 +508,9 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   }
   if (name == "NativeReactNativeFeatureFlagsCxx") {
     return featureFlags(std::move(jsInvoker));
+  }
+  if (name == "NativeAnimatedModule") {
+    return OneMacosCreateAnimatedModule(std::move(jsInvoker));
   }
   if (name == "NativeDOMCxx") {
     return std::make_shared<NativeDOM>(std::move(jsInvoker));

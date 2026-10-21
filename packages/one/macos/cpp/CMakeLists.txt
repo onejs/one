@@ -58,6 +58,11 @@ set(RN_DIRS
   react/nativemodule/dom
   react/performance/cdpmetrics
   react/performance/timeline
+  react/renderer/animated
+  react/renderer/animated/drivers
+  react/renderer/animated/event_drivers
+  react/renderer/animated/internal
+  react/renderer/animated/nodes
   react/renderer/animationbackend
   react/renderer/animations
   react/renderer/attributedstring
