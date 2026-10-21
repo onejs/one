@@ -484,6 +484,14 @@
         "sharp",
       ],
     },
+    "packages/one-macos": {
+      "name": "one-macos",
+      "version": "2.9.0",
+      "peerDependencies": {
+        "one": "*",
+        "react-native": "^0.88.0",
+      },
+    },
     "packages/one-vscode": {
       "name": "one-vscode",
       "version": "2.9.0",
@@ -774,6 +782,28 @@
         "playwright": "^1.58.2",
         "vitest": "^4.1.0",
         "webdriverio": "^9.5.4",
+      },
+    },
+    "tests/macos-basic": {
+      "name": "test-macos-basic",
+      "version": "2.9.0",
+      "dependencies": {
+        "@react-navigation/native": "8.0.0-alpha.51",
+        "one": "workspace:*",
+        "one-macos": "workspace:*",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "react-native": "0.88.0",
+        "react-native-gesture-handler": "~3.4.0",
+        "react-native-reanimated": "~4.7.1",
+        "react-native-screens": "~4.30.0",
+        "react-native-web": "^0.21.2",
+        "react-native-worklets": "~0.13.0",
+      },
+      "devDependencies": {
+        "@types/react": "^19.3.0",
+        "typescript": "7.0.2",
+        "vite": "^8.2.2",
       },
     },
     "tests/native-features": {
@@ -4519,6 +4549,8 @@
 
     "one": ["one@workspace:packages/one"],
 
+    "one-macos": ["one-macos@workspace:packages/one-macos"],
+
     "one-tray": ["one-tray@workspace:apps/one-tray"],
 
     "one-vscode": ["one-vscode@workspace:packages/one-vscode"],
@@ -5176,6 +5208,8 @@
     "test-layout-render-modes": ["test-layout-render-modes@workspace:tests/test-layout-render-modes"],
 
     "test-loaders": ["test-loaders@workspace:tests/test-loaders"],
+
+    "test-macos-basic": ["test-macos-basic@workspace:tests/macos-basic"],
 
     "test-native-features": ["test-native-features@workspace:tests/native-features"],
 
