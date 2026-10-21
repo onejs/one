@@ -63,6 +63,7 @@ import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
 import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
+import { getNativeStackReplaceAction } from './utils/getNativeStackReplaceAction'
 import { setClientMatches } from '../useMatches'
 import type { RouteMatch } from '../useMatches'
 import {
@@ -1317,6 +1318,7 @@ export async function linkTo(
 
   // Run async route validation before navigation
   const matchingRouteNode = findRouteNodeFromState(state, routeNode)
+  let isColdRoute = false
   if (matchingRouteNode?.loadRoute) {
     setValidationState({ status: 'validating', lastValidatedHref: href })
 
@@ -1355,6 +1357,7 @@ export async function linkTo(
     } catch (error) {
       // Handle Suspense promises thrown by loadRoute in dev mode
       if (error && typeof (error as any).then === 'function') {
+        isColdRoute = true
         // native dev screens own module suspension. dispatch now so a cold
         // route does not hold navigation on the redirect screen while it loads.
         const routeLoading = (error as Promise<any>).catch(() => {})
@@ -1435,7 +1438,11 @@ export async function linkTo(
   // navigation. the action is built first, so a target it cannot reach
   // publishes nothing.
   const action =
-    event === 'REPLACE' ? null : getNavigateAction(state, freshRootState, event)
+    event === 'REPLACE'
+      ? process.env.TAMAGUI_TARGET === 'native' && !isColdRoute
+        ? getNativeStackReplaceAction(state, freshRootState)
+        : null
+      : getNavigateAction(state, freshRootState, event)
   startTransition(() => {
     updateState(optimisticState)
     pendingNavigationPathname = targetPathname
@@ -1457,7 +1464,7 @@ export async function linkTo(
       const currentFocusedRoute = freshRootState.routes[freshRootState.index]
       const currentFocusedName = currentFocusedRoute?.name
 
-      if (isRootTarget && isGroupTarget && hasFreshRootState) {
+      if (event !== 'REPLACE' && isRootTarget && isGroupTarget && hasFreshRootState) {
         const targetRoute = state.routes[state.index ?? state.routes.length - 1]
         const targetRootName = targetRoute.name
 
