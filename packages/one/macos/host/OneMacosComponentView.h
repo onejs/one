@@ -37,6 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// Sent up the responder chain by a focused view that was activated from the
+// keyboard or by accessibility; the root view turns it into a press.
+@protocol OneMacosPressTarget <NSObject>
+- (void)oneMacosPressView:(id)sender;
+@end
+
 // Base view: frame, background, uniform border and radius, opacity, clipping.
 // Subclasses override the update calls and call super.
 @interface OneMacosViewComponentView : NSView <OneMacosComponentView>

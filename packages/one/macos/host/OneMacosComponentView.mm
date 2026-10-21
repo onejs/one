@@ -1,6 +1,8 @@
 #import "OneMacosComponentView.h"
 
+#include <react/renderer/components/view/BaseViewEventEmitter.h>
 #include <react/renderer/components/view/ViewProps.h>
+#include <react/renderer/components/view/accessibilityPropsConversions.h>
 #include <react/renderer/components/view/conversions.h>
 
 #import "OneMacosText.h"
@@ -12,7 +14,8 @@ using namespace facebook::react;
   EventEmitter::Shared _eventEmitter;
   LayoutMetrics _layoutMetrics;
   BOOL _clipsToBounds;
-  BOOL _ignoresPointerEvents;
+  PointerEventsMode _pointerEvents;
+  BOOL _focusable;
 }
 
 @synthesize reactTag = _reactTag;
@@ -58,18 +61,169 @@ using namespace facebook::react;
   self.needsDisplay = YES;
 }
 
+// point is in the superview's coordinates. Children outside the bounds stay
+// hittable unless this view clips, like a native view with overflow visible.
 - (NSView *)hitTest:(NSPoint)point
 {
-  if (_ignoresPointerEvents) {
+  if (self.hidden || self.alphaValue < 0.01 || _pointerEvents == PointerEventsMode::None) {
+    return nil;
+  }
+  NSPoint local = self.superview ? [self convertPoint:point fromView:self.superview] : point;
+  BOOL inside = NSPointInRect(local, self.bounds);
+  if (!inside && _clipsToBounds) {
+    return nil;
+  }
+  if (_pointerEvents != PointerEventsMode::BoxOnly) {
     for (NSView *subview in [self.subviews reverseObjectEnumerator]) {
-      NSView *hit = [subview hitTest:[self convertPoint:point toView:subview]];
+      NSView *hit = [subview hitTest:local];
       if (hit) {
         return hit;
       }
     }
+  }
+  if (_pointerEvents == PointerEventsMode::BoxNone) {
     return nil;
   }
-  return [super hitTest:point];
+  return inside ? self : nil;
+}
+
+#pragma mark - Focus and keyboard
+
+// a view takes part in tab order when it handles presses, like a Pressable
+- (BOOL)acceptsFirstResponder
+{
+  return _focusable;
+}
+
+- (BOOL)becomeFirstResponder
+{
+  if (![super becomeFirstResponder]) {
+    return NO;
+  }
+  if (_eventEmitter) {
+    std::static_pointer_cast<const BaseViewEventEmitter>(_eventEmitter)->onFocus();
+  }
+  [self noteFocusRingMaskChanged];
+  return YES;
+}
+
+- (BOOL)resignFirstResponder
+{
+  if (![super resignFirstResponder]) {
+    return NO;
+  }
+  if (_eventEmitter) {
+    std::static_pointer_cast<const BaseViewEventEmitter>(_eventEmitter)->onBlur();
+  }
+  return YES;
+}
+
+- (void)keyDown:(NSEvent *)event
+{
+  NSString *characters = event.charactersIgnoringModifiers;
+  BOOL activates = [characters isEqualToString:@" "] || [characters isEqualToString:@"\r"];
+  if (_focusable && activates && !event.isARepeat) {
+    [self performPress];
+    return;
+  }
+  [super keyDown:event];
+}
+
+- (void)performPress
+{
+  [NSApp sendAction:@selector(oneMacosPressView:) to:nil from:self];
+}
+
+- (NSFocusRingType)focusRingType
+{
+  return NSFocusRingTypeExterior;
+}
+
+- (void)drawFocusRingMask
+{
+  [[NSBezierPath bezierPathWithRoundedRect:self.bounds xRadius:[self cornerRadius] yRadius:[self cornerRadius]] fill];
+}
+
+- (NSRect)focusRingMaskBounds
+{
+  return self.bounds;
+}
+
+- (CGFloat)cornerRadius
+{
+  if (!_props) {
+    return 0;
+  }
+  const auto &viewProps = static_cast<const ViewProps &>(*_props);
+  const auto border = viewProps.resolveBorderMetrics(_layoutMetrics);
+  return MIN((CGFloat)border.borderRadii.topLeft.horizontal, MIN(self.bounds.size.width, self.bounds.size.height) / 2);
+}
+
+#pragma mark - Accessibility
+
+static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
+{
+  static NSDictionary<NSString *, NSAccessibilityRole> *roles = @{
+    @"button" : NSAccessibilityButtonRole,
+    @"imagebutton" : NSAccessibilityButtonRole,
+    @"togglebutton" : NSAccessibilityButtonRole,
+    @"link" : NSAccessibilityLinkRole,
+    @"image" : NSAccessibilityImageRole,
+    @"img" : NSAccessibilityImageRole,
+    @"checkbox" : NSAccessibilityCheckBoxRole,
+    @"switch" : NSAccessibilityCheckBoxRole,
+    @"radio" : NSAccessibilityRadioButtonRole,
+    @"tab" : NSAccessibilityRadioButtonRole,
+    @"text" : NSAccessibilityStaticTextRole,
+    @"adjustable" : NSAccessibilitySliderRole,
+    @"slider" : NSAccessibilitySliderRole,
+    @"progressbar" : NSAccessibilityProgressIndicatorRole,
+    @"menu" : NSAccessibilityMenuRole,
+    @"menuitem" : NSAccessibilityMenuItemRole,
+    @"list" : NSAccessibilityListRole,
+    @"combobox" : NSAccessibilityComboBoxRole,
+    @"search" : NSAccessibilityTextFieldRole,
+  };
+  NSString *name = [NSString stringWithUTF8String:role.c_str()];
+  return roles[name] ?: NSAccessibilityGroupRole;
+}
+
+- (void)applyAccessibilityProps:(const ViewProps &)viewProps
+{
+  [self setAccessibilityElement:viewProps.accessible];
+  NSString *label = [NSString stringWithUTF8String:viewProps.accessibilityLabel.c_str()];
+  [self setAccessibilityLabel:label.length > 0 ? label : nil];
+  NSString *hint = [NSString stringWithUTF8String:viewProps.accessibilityHint.c_str()];
+  [self setAccessibilityHelp:hint.length > 0 ? hint : nil];
+  NSString *identifier = [NSString stringWithUTF8String:viewProps.testId.c_str()];
+  [self setAccessibilityIdentifier:identifier.length > 0 ? identifier : nil];
+
+  std::string role = viewProps.role != Role::None ? toString(viewProps.role) : viewProps.accessibilityRole;
+  [self setAccessibilityRole:AccessibilityRoleFor(role)];
+  if (role == "switch") {
+    [self setAccessibilitySubrole:NSAccessibilitySwitchSubrole];
+  }
+
+  bool disabled = viewProps.accessibilityState && viewProps.accessibilityState->disabled;
+  [self setAccessibilityEnabled:!disabled];
+  if (viewProps.accessibilityState) {
+    const auto &state = *viewProps.accessibilityState;
+    [self setAccessibilitySelected:state.selected];
+    if (state.checked == AccessibilityState::Checked) {
+      [self setAccessibilityValue:@YES];
+    } else if (state.checked == AccessibilityState::Unchecked) {
+      [self setAccessibilityValue:@NO];
+    }
+  }
+}
+
+- (BOOL)accessibilityPerformPress
+{
+  if (!_focusable) {
+    return NO;
+  }
+  [self performPress];
+  return YES;
 }
 
 #pragma mark - OneMacosComponentView
@@ -95,7 +249,10 @@ using namespace facebook::react;
 {
   _props = props;
   const auto &viewProps = static_cast<const ViewProps &>(*props);
-  _ignoresPointerEvents = viewProps.pointerEvents == PointerEventsMode::None;
+  _pointerEvents = viewProps.pointerEvents;
+  _focusable = viewProps.accessible && viewProps.events[ViewEvents::Offset::StartShouldSetResponder] &&
+      !(viewProps.accessibilityState && viewProps.accessibilityState->disabled);
+  [self applyAccessibilityProps:viewProps];
   _clipsToBounds = viewProps.getClipsContentToBounds();
   self.alphaValue = (CGFloat)viewProps.opacity;
   self.layer.masksToBounds = _clipsToBounds;

@@ -27,6 +27,7 @@
 #import "OneMacosDebug.h"
 #import "OneMacosModules.h"
 #import "OneMacosMountingManager.h"
+#import "OneMacosPointerHandler.h"
 #import "OneMacosRuntime.h"
 #import "PlatformRunLoopObserver.h"
 
@@ -377,8 +378,13 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 
 @end
 
+@interface OneMacosRootView () <OneMacosPressTarget>
+@end
+
 @implementation OneMacosRootView {
   OneMacosHost *_host;
+  OneMacosPointerHandler *_pointerHandler;
+  NSTrackingArea *_trackingArea;
 }
 
 + (NSURL *)defaultBundleURL
@@ -394,6 +400,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 - (instancetype)initWithBundleURL:(NSURL *)bundleURL moduleName:(NSString *)moduleName
 {
   if (self = [super initWithFrame:NSMakeRect(0, 0, 800, 600)]) {
+    _pointerHandler = [[OneMacosPointerHandler alloc] initWithRootView:self];
     _host = [[OneMacosHost alloc] initWithBundleURL:bundleURL moduleName:moduleName view:self];
     [_host updateLayoutWithSize:self.bounds.size scale:NSScreen.mainScreen.backingScaleFactor];
     [_host start];
@@ -410,6 +417,70 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
 - (BOOL)isFlipped
 {
   return YES;
+}
+
+// a click on empty space lands here and takes focus from any text input
+- (BOOL)acceptsFirstResponder
+{
+  return YES;
+}
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)event
+{
+  return YES;
+}
+
+- (void)viewDidMoveToWindow
+{
+  [super viewDidMoveToWindow];
+  // tab order follows the layout, top left to bottom right
+  self.window.autorecalculatesKeyViewLoop = YES;
+  self.window.acceptsMouseMovedEvents = YES;
+}
+
+- (void)updateTrackingAreas
+{
+  [super updateTrackingAreas];
+  if (_trackingArea) {
+    [self removeTrackingArea:_trackingArea];
+  }
+  _trackingArea = [[NSTrackingArea alloc]
+      initWithRect:NSZeroRect
+           options:NSTrackingMouseMoved | NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow |
+                   NSTrackingInVisibleRect
+             owner:self
+          userInfo:nil];
+  [self addTrackingArea:_trackingArea];
+}
+
+- (void)mouseDown:(NSEvent *)event
+{
+  [_pointerHandler mouseDown:event];
+}
+
+- (void)mouseDragged:(NSEvent *)event
+{
+  [_pointerHandler mouseDragged:event];
+}
+
+- (void)mouseUp:(NSEvent *)event
+{
+  [_pointerHandler mouseUp:event];
+}
+
+- (void)mouseMoved:(NSEvent *)event
+{
+  [_pointerHandler mouseMoved:event];
+}
+
+- (void)mouseExited:(NSEvent *)event
+{
+  [_pointerHandler mouseExited:event];
+}
+
+- (void)oneMacosPressView:(id)sender
+{
+  [_pointerHandler pressView:sender];
 }
 
 - (void)setFrameSize:(NSSize)newSize
