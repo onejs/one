@@ -2048,7 +2048,7 @@ export function vxrnCompilerPlugin(
         development: dev,
         // the compiler's native gate is ios or android. macos uses the ios
         // transforms. module resolution stays .macos and does not follow .ios.
-        environment: platform === 'android' ? 'android' : 'ios',
+        environment: (platform === 'android' ? 'android' : 'ios') as 'ios' | 'android',
         reactForRNVersion: '19' as const,
       }
 
