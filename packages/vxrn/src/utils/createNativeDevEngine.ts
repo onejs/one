@@ -29,8 +29,8 @@ import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import {
-  findOneMacosPackageRoot,
   macosReactNativeFile,
+  requireOneMacosPackageRoot,
 } from '@vxrn/utils/macosReactNativeResolve'
 import { nativeAppDefines } from '@vxrn/utils/nativeAppManifest'
 import type { NativePlatform } from '@vxrn/utils/platformEnv'
@@ -274,7 +274,7 @@ export function getNativeTransformConfig(
 }
 
 function macosReactNativeResolvePlugin(root: string): Plugin {
-  const oneMacosRoot = findOneMacosPackageRoot(root)
+  const oneMacosRoot = requireOneMacosPackageRoot(root)
   return {
     name: 'vxrn:macos-react-native-resolve',
     resolveId(source, importer) {
@@ -286,7 +286,8 @@ function macosReactNativeResolvePlugin(root: string): Plugin {
 }
 
 // third-party packages often ship a component as .ios and .android only.
-// macos does not load the ios source. the stub keeps that import linkable.
+// macos does not load the ios source. the stub keeps the import linkable and
+// throws when the export is called or rendered.
 const PLATFORM_VARIANT_EXTS = [
   '.ios.tsx',
   '.ios.ts',
@@ -316,8 +317,34 @@ function macosVariantSource(target: string): string | null {
   return null
 }
 
+function macosStubLabel(variantFile: string): string {
+  let dir = dirname(variantFile)
+  for (let i = 0; i < 8; i++) {
+    const manifest = join(dir, 'package.json')
+    if (existsSync(manifest)) {
+      try {
+        const name = JSON.parse(readFileSync(manifest, 'utf8')).name
+        if (typeof name === 'string' && name.length > 0) {
+          const rel = relative(dir, variantFile)
+            .split('\\')
+            .join('/')
+            .replace(/\.(?:ios|android)\.(?:tsx|ts|jsx|js)$/, '')
+          return `${name}/${rel}`
+        }
+      } catch {
+        // keep walking to a readable manifest
+      }
+    }
+    const parent = dirname(dir)
+    if (parent === dir) break
+    dir = parent
+  }
+  return variantFile
+}
+
 function macosStubCode(variantFile: string): string {
   const code = readFileSync(variantFile, 'utf8')
+  const message = `${macosStubLabel(variantFile)} has no macOS implementation; add a .macos file`
   const names = new Set<string>()
   let hasDefault = /export\s+default\b/.test(code)
   for (const match of code.matchAll(
@@ -336,9 +363,11 @@ function macosStubCode(variantFile: string): string {
       else names.add(name)
     }
   }
-  const lines = ['const __noop = () => null']
-  if (hasDefault || names.size === 0) lines.push('export default __noop')
-  for (const name of names) lines.push(`export const ${name} = __noop`)
+  const lines = [
+    `const __missing = () => { throw new Error(${JSON.stringify(message)}) }`,
+  ]
+  if (hasDefault || names.size === 0) lines.push('export default __missing')
+  for (const name of names) lines.push(`export const ${name} = __missing`)
   return lines.join('\n')
 }
 
@@ -365,8 +394,11 @@ function macosPlatformSplitStubPlugin(): Plugin {
   }
 }
 
-// the published native entry is one.native.js. macOS loads one.macos.ts beside
-// it so One.platform and One.macOS stay out of the ios, android and web bundles.
+// index.native.js imports ./one.native.js, a fully specified path, so .macos
+// resolution never sees it. tamagui-build only treats web, native, ios and
+// android as platform suffixes, and one.macos.ts is not a package entry, so
+// the build does not emit dist/esm/one.macos.js. this redirect loads the
+// source for macos only.
 function macosOneEntryPlugin(): Plugin {
   return {
     name: 'vxrn:macos-one-entry',
@@ -1369,14 +1401,15 @@ function nativeVirtualEntryPlugin(
   const setupFileImport = (() => {
     const sf = entryConfig.setupFile
     if (!sf) return ''
-    // resolve which file to use for ios (covers both formats)
+    // string and native apply to every native platform. macos does not borrow the ios file.
+    const perPlatform = sf as { ios?: string; android?: string; macos?: string }
     const file =
       typeof sf === 'string'
         ? sf
         : 'native' in sf
           ? sf.native
           : opts.platform === 'macos'
-            ? ((sf as { macos?: string }).macos ?? sf.ios)
+            ? perPlatform.macos
             : sf.ios
     if (!file) return ''
     // file:// URL is the canonical specifier; bare Windows absolute path is not

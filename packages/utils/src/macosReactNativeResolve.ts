@@ -12,17 +12,18 @@ export function findOneMacosPackageRoot(appRoot: string): string | null {
     const req = createRequire(join(appRoot, 'package.json'))
     return dirname(req.resolve('one-macos/package.json'))
   } catch {
-    // the package is not installed on this app. walk to a workspace checkout.
+    return null
   }
-  let dir = appRoot
-  for (let i = 0; i < 6; i++) {
-    const candidate = join(dir, 'packages/one-macos/package.json')
-    if (existsSync(candidate)) return dirname(candidate)
-    const parent = dirname(dir)
-    if (parent === dir) break
-    dir = parent
+}
+
+export function requireOneMacosPackageRoot(appRoot: string): string {
+  const root = findOneMacosPackageRoot(appRoot)
+  if (!root) {
+    throw new Error(
+      `macos build cannot resolve one-macos from ${appRoot}. Add "one-macos" as a dependency.`
+    )
   }
-  return null
+  return root
 }
 
 function reactNativeRootOf(importerFile: string): string | null {

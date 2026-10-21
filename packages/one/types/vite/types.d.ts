@@ -257,7 +257,8 @@ export declare namespace One {
          *   client: './setup.client.ts',
          *   server: './setup.server.ts',
          *   ios: './setup.ios.ts',
-         *   android: './setup.android.ts'
+         *   android: './setup.android.ts',
+         *   macos: './setup.macos.ts'
          * }
          */
         setupFile?: string | {
@@ -269,6 +270,7 @@ export declare namespace One {
             server?: string;
             ios?: string;
             android?: string;
+            macos?: string;
         };
         config?: {
             ensureTSConfig?: false;

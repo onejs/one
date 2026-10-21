@@ -10,8 +10,8 @@ import type { loadConfig as loadConfigT } from 'metro'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
 import {
-  findOneMacosPackageRoot,
   macosReactNativeFile,
+  requireOneMacosPackageRoot,
 } from '@vxrn/utils/macosReactNativeResolve'
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
@@ -84,6 +84,8 @@ function getReactNativeDefaultConfig(projectRoot: string): MetroInputConfig {
   }
 }
 
+const oneMacosRoots = new Map<string, string>()
+
 function redirectMacosReactNative(
   projectRoot: string,
   origin: string | undefined,
@@ -94,10 +96,19 @@ function redirectMacosReactNative(
   const file = macosReactNativeFile(
     origin,
     moduleName,
-    findOneMacosPackageRoot(projectRoot)
+    oneMacosRootFor(projectRoot)
   )
   if (!file) return null
   return { type: 'sourceFile' as const, filePath: file }
+}
+
+function oneMacosRootFor(projectRoot: string) {
+  let root = oneMacosRoots.get(projectRoot)
+  if (!root) {
+    root = requireOneMacosPackageRoot(projectRoot)
+    oneMacosRoots.set(projectRoot, root)
+  }
+  return root
 }
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' | 'macos' {
