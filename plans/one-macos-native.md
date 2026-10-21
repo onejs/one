@@ -344,6 +344,31 @@ the package name (the runtime-throwing stubs are gone, and rolldown's
 `UNRESOLVED_IMPORT` is an error on macos), and static expo imports resolve
 normally on macos instead of going external.
 
+### Planner handoff (macos-lead-2, 2026-10-21)
+
+Staffing change: the lane drops to one Sonnet, owned by s63941. State at
+handoff:
+
+- Packaging: Mac ships in the default `one` install under `packages/one/macos/`
+  (section 2); the move landed in `7622915b0d`. The owner quote is on Contrast
+  main in `specs/one-macos-native.md` (`c705b0a77f`, landed).
+- Reviewed and accepted: every host commit through `ab09a46ec2` and
+  `5b6024620b`, and the bare-import fix `86324f60ce`. Router `.macos` fix
+  `2070373526` (planner).
+- M2 open: the TextInput rewrite (NSTextField and NSSecureTextField for single
+  line, NSScrollView with NSTextView for multiline, no `onKeyPress` for command
+  keys) and public-format JS log lines sit uncommitted in the shared tree
+  (`OneMacosTextInputComponentView.mm`, `OneMacosModules.mm`,
+  `OneMacosRootView.mm`, `tests/macos-basic/app/index.tsx`), owned by
+  one-macos-host-m2, unreviewed. After them M2 closes on a review of those
+  commits.
+- Owed checks: no iOS, Android or web byte comparison was run after `7622915b0d`;
+  rerun the M1 gate before M3. Known deltas are listed in section 2.
+- Open consumer asks (s64797): the consumer's RN 0.88 bump is s63941's call;
+  expo coverage on Mac waits for absorbed packages in M4.
+- Owed before M3: `prebuild` emits the Mac project, including
+  `ios/OneNativeControlled.swift`.
+
 ### M1 host result (host worker)
 
 Falsifier outcome: no RN source patches were needed. `OneMacosCore` compiles the
