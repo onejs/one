@@ -2,6 +2,7 @@
 
 #import <AppKit/AppKit.h>
 
+#include <folly/dynamic.h>
 #include <react/renderer/core/EventEmitter.h>
 #include <react/renderer/core/LayoutMetrics.h>
 #include <react/renderer/core/Props.h>
@@ -35,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
            oldLayoutMetrics:(const facebook::react::LayoutMetrics &)oldLayoutMetrics;
 - (void)finalizeUpdates:(OneMacosUpdateMask)updateMask;
 
+@optional
+// native commands from JS refs: scrollTo, focus, setTextAndSelection...
+- (void)handleCommand:(const std::string &)commandName args:(const folly::dynamic &)args;
+
 @end
 
 // Sent up the responder chain by a focused view that was activated from the
@@ -53,6 +58,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 // subclasses call this when something they paint changed
 - (void)setNeedsRender;
+
+// where mounted react children go; a view with its own container (a scroll
+// view's document) overrides it
+- (NSView *)childContainerView;
 @end
 
 NS_ASSUME_NONNULL_END

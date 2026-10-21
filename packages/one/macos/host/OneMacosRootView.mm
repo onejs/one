@@ -46,7 +46,8 @@ class OneMacosSchedulerDelegate final : public SchedulerDelegate {
   void schedulerShouldRenderTransactions(const std::shared_ptr<const MountingCoordinator> &coordinator) override;
   void schedulerShouldMergeReactRevision(SurfaceId surfaceId) override;
   void schedulerDidRequestPreliminaryViewAllocation(const ShadowNode &) override {}
-  void schedulerDidDispatchCommand(const ShadowView &, const std::string &, const folly::dynamic &) override {}
+  void schedulerDidDispatchCommand(
+      const ShadowView &shadowView, const std::string &commandName, const folly::dynamic &args) override;
   void schedulerDidSendAccessibilityEvent(const ShadowView &, const std::string &) override {}
   void schedulerDidSetIsJSResponder(const ShadowView &, bool, bool) override {}
   void schedulerShouldSynchronouslyUpdateViewOnUIThread(Tag, const folly::dynamic &) override {}
@@ -71,7 +72,14 @@ class OneMacosSchedulerDelegate final : public SchedulerDelegate {
 - (void)updateLayoutWithSize:(CGSize)size scale:(CGFloat)scale;
 - (void)scheduleTransaction:(std::shared_ptr<const MountingCoordinator>)coordinator;
 - (void)mergeReactRevision:(SurfaceId)surfaceId;
+- (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args;
 @end
+
+void OneMacosSchedulerDelegate::schedulerDidDispatchCommand(
+    const ShadowView &shadowView, const std::string &commandName, const folly::dynamic &args)
+{
+  [host_ dispatchCommandOnTag:shadowView.tag name:commandName args:args];
+}
 
 void OneMacosSchedulerDelegate::schedulerShouldRenderTransactions(
     const std::shared_ptr<const MountingCoordinator> &coordinator)
@@ -342,6 +350,11 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
         folly::dynamic::array(
             "didUpdateDimensions", folly::dynamic::object("window", dims)("screen", dims)));
   }
+}
+
+- (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args
+{
+  [_mountingManager dispatchCommandOnTag:tag name:name args:args];
 }
 
 - (void)scheduleTransaction:(std::shared_ptr<const MountingCoordinator>)coordinator

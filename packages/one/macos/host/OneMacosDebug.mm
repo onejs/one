@@ -12,7 +12,7 @@
 //   SIGUSR1  writes snapshot-N.png
 //   SIGUSR2  runs the ops in $DIR/command.json, a list like
 //            [{"op": "click", "testId": "press-me", "wait": 0.3}, {"op": "snapshot", "name": "hover"}]
-// ops: snapshot, click, move, drag, scroll, key, type, tab, appearance, resize,
+// ops: snapshot, click, move, drag, scroll (deltaX/deltaY), key, type, tab, appearance, resize,
 // log. Points are `x`/`y` in the root view's top left space, or `testId` for the
 // center of a view.
 
@@ -168,13 +168,13 @@ static void OneMacosRunOp(NSView *root, NSString *dir, NSDictionary *op)
   } else if ([name isEqualToString:@"scroll"]) {
     if (OneMacosPoint(root, op, @"x", @"y", &point)) {
       CGEventRef cg = CGEventCreateScrollWheelEvent2(
-          NULL, kCGScrollEventUnitPixel, 2, (int32_t)[op[@"dy"] doubleValue], (int32_t)[op[@"dx"] doubleValue], 0);
+          NULL, kCGScrollEventUnitPixel, 2, (int32_t)[op[@"deltaY"] doubleValue], (int32_t)[op[@"deltaX"] doubleValue], 0);
       NSEvent *event = [NSEvent eventWithCGEvent:cg];
       CFRelease(cg);
       NSPoint inWindow = [root convertPoint:point toView:nil];
       // the factory events carry no window, so deliver to the view under the point
       NSView *hit = [window.contentView.superview hitTest:inWindow];
-      NSLog(@"[one-macos] scroll %@ over %@", op[@"dy"], hit.class);
+      NSLog(@"[one-macos] scroll %@ over %@", op[@"deltaY"], hit.class);
       [hit scrollWheel:event];
     }
   } else if ([name isEqualToString:@"key"]) {

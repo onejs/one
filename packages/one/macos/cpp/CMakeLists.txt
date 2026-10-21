@@ -79,7 +79,6 @@ set(RN_DIRS
   react/renderer/element
   react/renderer/graphics
   react/renderer/imagemanager
-  react/renderer/imagemanager/platform/cxx/react/renderer/imagemanager
   react/renderer/leakchecker
   react/renderer/mapbuffer
   react/renderer/mounting

@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 // safe from any thread; the work happens on the main thread
 - (void)scheduleTransaction:(std::shared_ptr<const facebook::react::MountingCoordinator>)mountingCoordinator;
 
+// native commands from JS refs, delivered to the view on the main thread
+- (void)dispatchCommandOnTag:(facebook::react::Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args;
+
 - (nullable NSView<OneMacosComponentView> *)findComponentViewWithTag:(facebook::react::Tag)tag;
 
 @end

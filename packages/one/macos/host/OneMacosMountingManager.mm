@@ -1,6 +1,8 @@
 #import "OneMacosMountingManager.h"
 
+#include <react/renderer/components/image/ImageComponentDescriptor.h>
 #include <react/renderer/components/root/RootComponentDescriptor.h>
+#include <react/renderer/components/scrollview/ScrollViewComponentDescriptor.h>
 #include <react/renderer/components/text/ParagraphComponentDescriptor.h>
 #include <react/renderer/components/text/RawTextComponentDescriptor.h>
 #include <react/renderer/components/text/TextComponentDescriptor.h>
@@ -10,7 +12,9 @@
 
 #include <OneMacToggle/OneMacToggleComponentDescriptor.h>
 
+#import "OneMacosImageComponentView.h"
 #import "OneMacosParagraphComponentView.h"
+#import "OneMacosScrollViewComponentView.h"
 #import "OneMacosToggleComponentView.h"
 
 using namespace facebook::react;
@@ -29,6 +33,9 @@ std::vector<ComponentEntry> &componentEntries()
   static std::vector<ComponentEntry> entries = {
       {concreteComponentDescriptorProvider<RootComponentDescriptor>(), [OneMacosViewComponentView class]},
       {concreteComponentDescriptorProvider<ViewComponentDescriptor>(), [OneMacosViewComponentView class]},
+      {concreteComponentDescriptorProvider<ImageComponentDescriptor>(), [OneMacosImageComponentView class]},
+      {concreteComponentDescriptorProvider<ScrollViewComponentDescriptor>(),
+       [OneMacosScrollViewComponentView class]},
       {concreteComponentDescriptorProvider<ParagraphComponentDescriptor>(),
        [OneMacosParagraphComponentView class]},
       {concreteComponentDescriptorProvider<TextComponentDescriptor>(), nil},
@@ -112,6 +119,19 @@ std::vector<ComponentEntry> &componentEntries()
   NSView *root = _views[@(surfaceId)];
   [root removeFromSuperview];
   [_views removeObjectForKey:@(surfaceId)];
+}
+
+- (void)dispatchCommandOnTag:(Tag)tag name:(const std::string &)name args:(const folly::dynamic &)args
+{
+  // the command outlives the call: copy what the block needs
+  std::string commandName = name;
+  folly::dynamic commandArgs = args;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSView<OneMacosComponentView> *view = self->_views[@(tag)];
+    if ([view respondsToSelector:@selector(handleCommand:args:)]) {
+      [view handleCommand:commandName args:commandArgs];
+    }
+  });
 }
 
 - (void)scheduleTransaction:(std::shared_ptr<const MountingCoordinator>)mountingCoordinator

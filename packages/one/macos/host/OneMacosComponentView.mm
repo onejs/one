@@ -228,15 +228,21 @@ static NSAccessibilityRole AccessibilityRoleFor(const std::string &role)
 
 #pragma mark - OneMacosComponentView
 
+- (NSView *)childContainerView
+{
+  return self;
+}
+
 - (void)mountChildComponentView:(NSView<OneMacosComponentView> *)childView index:(NSInteger)index
 {
-  NSArray<NSView *> *subviews = self.subviews;
+  NSView *container = [self childContainerView];
+  NSArray<NSView *> *subviews = container.subviews;
   if (index <= 0 && subviews.count > 0) {
-    [self addSubview:childView positioned:NSWindowBelow relativeTo:subviews.firstObject];
+    [container addSubview:childView positioned:NSWindowBelow relativeTo:subviews.firstObject];
   } else if (index > 0 && index < (NSInteger)subviews.count) {
-    [self addSubview:childView positioned:NSWindowAbove relativeTo:subviews[index - 1]];
+    [container addSubview:childView positioned:NSWindowAbove relativeTo:subviews[index - 1]];
   } else {
-    [self addSubview:childView];
+    [container addSubview:childView];
   }
 }
 

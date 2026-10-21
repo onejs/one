@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import { Pressable, Text, useColorScheme, useWindowDimensions, View } from 'react-native'
+import { Image, Pressable, ScrollView, Text, useColorScheme, useWindowDimensions, View } from 'react-native'
 import { One } from 'one'
 import { probe } from '../probe/resolution'
+
+const swatch = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAASUlEQVR4nO3QMQ0AMAgAMOTsRh1id8/GkEFCetRA42b+SafeqBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQL2BzRVihEezZkGnAAAAABJRU5ErkJggg=='
 
 function Button(props: { id: string; label: string; cursor?: 'pointer' | 'auto' }) {
   const [count, setCount] = useState(0)
@@ -38,6 +40,8 @@ export default function Index() {
   const [isOn, setIsOn] = useState(false)
   const scheme = useColorScheme()
   const { width, height } = useWindowDimensions()
+  const [offset, setOffset] = useState(0)
+  const [imageState, setImageState] = useState('loading')
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <Text testID="macos-label">macOS</Text>
@@ -54,6 +58,31 @@ export default function Index() {
         onIsOnChange={(event) => setIsOn(event.isOn)}
       />
       <Text testID="macos-toggle">{isOn ? 'on' : 'off'}</Text>
+      <Text testID="macos-scroll-offset">{`scroll ${Math.round(offset)}`}</Text>
+      <ScrollView
+        testID="macos-scroll"
+        style={{ height: 90, borderWidth: 1, borderColor: '#888' }}
+        scrollEventThrottle={16}
+        onScroll={(event) => setOffset(event.nativeEvent.contentOffset.y)}
+      >
+        {Array.from({ length: 30 }, (_, index) => (
+          <Text key={index} style={{ padding: 4 }}>{`row ${index}`}</Text>
+        ))}
+      </ScrollView>
+      <Text testID="macos-image-state">{`image ${imageState}`}</Text>
+      <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
+        <Image
+          testID="macos-image"
+          source={{ uri: swatch }}
+          style={{ width: 96, height: 48, borderRadius: 8 }}
+          resizeMode="stretch"
+          onLoad={(event) => setImageState(`loaded ${event.nativeEvent.source.width}x${event.nativeEvent.source.height}`)}
+          onError={() => setImageState('error')}
+        />
+        <Image source={{ uri: swatch }} style={{ width: 96, height: 48, backgroundColor: '#ddd' }} resizeMode="contain" />
+        <Image source={{ uri: swatch }} style={{ width: 96, height: 48, backgroundColor: '#ddd' }} resizeMode="cover" />
+        <Image source={{ uri: swatch }} style={{ width: 96, height: 48, tintColor: '#a020c0' }} resizeMode="stretch" />
+      </View>
     </View>
   )
 }
