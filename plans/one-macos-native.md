@@ -34,10 +34,18 @@ macOS and write the AppKit layer ourselves.
   TurboModules that RN's JS needs to boot (platform constants reporting
   `macos`, device info and window dimensions, appearance, app state, source
   code, dev settings, WebSocket for HMR, logging).
-- **JS engine:** the system JavaScriptCore through a JSI JSC adapter. It adds
-  no engine bytes to the app. Hermes comes later: the prebuilt
+- **JS engine:** Hermes, built from source for macOS. The prebuilt
   `hermesvm.xcframework` in RN 0.88 has no macOS slice (RAN: slices are ios,
-  catalyst, simulator, tvos, xros), so Hermes on Mac means a source build.
+  catalyst, simulator, tvos, xros). M1 first booted on system JavaScriptCore,
+  but react-native-worklets 0.13 creates every worklet runtime with
+  `makeHermesRuntime` and has no JSC path (RAN: `WorkletRuntime.cpp`), and
+  `useNativeState` and the `swiftStyle` sync store depend on worklets. One
+  engine for both runtimes; the JSC adapter is removed once Hermes boots.
+- **Nitro and worklets:** Nitro's core and worklets' core are built for macOS
+  with no One hybrid objects registered; One already creates hybrids lazily
+  and its fetch steps aside when `OneFetch` is absent. Reanimated stays out of
+  the Mac bundle (the stack's shared transition boundary has a `.macos`
+  variant).
 - **Third-party native dependencies:** `ReactNativeDependencies.xcframework`
   (folly, glog, fmt, boost) already ships a `macos-arm64_x86_64` slice (RAN).
   `React.xcframework` (React-Core-prebuilt) does not (RAN), which is why the
@@ -112,6 +120,9 @@ release reopens the fork question.
   reads `macos`, `native`, then `default`. The resolver picks the Platform
   module by importer path.
 - `One.platform` gains `'macos'`; `One.macOS` is the Mac component namespace.
+- Built packages import siblings by full name (`./one.native.js`), so vxrn's
+  `macosDistVariantPlugin` swaps in an emitted `X.macos.native.js` when one
+  exists. That is how `.macos` platform files work inside prebuilt packages.
 
 Falsifier: if RN 0.88's iOS JS calls a native module our host cannot
 reasonably supply, add it to the override set and record it here.
