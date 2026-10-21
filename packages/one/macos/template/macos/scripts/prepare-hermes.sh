@@ -10,9 +10,12 @@ version="$(sed -n 's/^HERMES_VERSION_NAME=//p' "$rn_root/sdks/hermes-engine/vers
 cache="$HOME/Library/Caches/ReactNative"
 tarball="$cache/hermes-ios-$version-$config.tar.gz"
 
-if [ -d "$out/destroot/Library/Frameworks/macosx/hermesvm.framework" ]; then
+# the extracted slice is only reusable for the Hermes build it came from
+stamp="$out/.hermes-version"
+if [ -d "$out/destroot/Library/Frameworks/macosx/hermesvm.framework" ] && [ "$(cat "$stamp" 2>/dev/null)" = "$version-$config" ]; then
   exit 0
 fi
+rm -rf "$out/destroot"
 
 if [ ! -f "$tarball" ]; then
   mkdir -p "$cache"
@@ -23,3 +26,4 @@ fi
 
 mkdir -p "$out"
 tar -xzf "$tarball" -C "$out"
+echo "$version-$config" > "$stamp"

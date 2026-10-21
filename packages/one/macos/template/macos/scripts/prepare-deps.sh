@@ -10,9 +10,12 @@ config="${2:-debug}"
 cache="$HOME/Library/Caches/ReactNative"
 tarball="$cache/reactnative-dependencies-$version-$config.tar.gz"
 
-if [ -d "$out/packages/react-native/third-party/ReactNativeDependencies.xcframework" ]; then
+# the extracted slice is only reusable for the react-native version it came from
+stamp="$out/.react-native-version"
+if [ -d "$out/packages/react-native/third-party/ReactNativeDependencies.xcframework" ] && [ "$(cat "$stamp" 2>/dev/null)" = "$version-$config" ]; then
   exit 0
 fi
+rm -rf "$out/packages"
 
 if [ ! -f "$tarball" ]; then
   mkdir -p "$cache"
@@ -23,3 +26,4 @@ fi
 
 mkdir -p "$out"
 tar -xzf "$tarball" -C "$out"
+echo "$version-$config" > "$stamp"
