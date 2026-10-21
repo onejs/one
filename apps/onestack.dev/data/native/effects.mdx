@@ -48,7 +48,9 @@ the edge. Without `mode`, it is `overlay` when any edge has a color and
   blur grows toward the outside following the curve. On iOS each is a
   `UIVisualEffectView` clipped to its edge strip, so the interior costs
   nothing; on Android each is a `RenderEffect` blur of a recording of the
-  children, on Android 12 and later.
+  children, on Android 12 and later. Each level clears one scale of detail,
+  so blur defaults to the `linear` curve, which spreads that clearing across
+  the band; a front-loaded curve like `smooth` leaves most of it fully blurred.
 
 Presets reach native code by name and use cached gradients there; a bezier
 or stop list is sampled in JavaScript and sent as alpha values. On web every
@@ -97,7 +99,7 @@ computed styles into an SVG image used as a CSS `mask-image`.
     { name: 'start', type: 'boolean | number | EdgeConfig', description: 'Leading edge for the current layout direction. Overrides its physical edge.' },
     { name: 'end', type: 'boolean | number | EdgeConfig', description: 'Trailing edge for the current layout direction. Overrides its physical edge.' },
     { name: 'size', type: 'number', default: '80', description: 'Default enabled-edge depth in dp.' },
-    { name: 'curve', type: 'EdgeFadeCurve', default: '"smooth"', description: 'Default alpha or blur-envelope curve.' },
+    { name: 'curve', type: 'EdgeFadeCurve', default: '"linear" (blur), "smooth" (mask/overlay)', description: 'Default alpha or blur-envelope curve; each edge can override it.' },
     { name: 'mode', type: 'EdgeFadeMode', description: 'mask fades alpha; overlay paints color; blur softens edge content. Defaults to overlay when any edge has a color, otherwise mask.' },
     { name: 'color', type: 'ColorValue', description: 'Overlay color, or an optional frost veil in blur mode. Ignored in mask mode.' },
     { name: 'blurRadius', type: 'number', default: '28', description: 'Maximum blur radius in dp for blur mode. Clamped to zero or greater.' },
