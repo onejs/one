@@ -1,13 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { One, type ScrollViewProxy } from 'one'
+
+type SheetKind = 'form' | 'list' | 'scroll'
+
+function ScrollToLast({ proxy }: { proxy: ScrollViewProxy }) {
+  // anchoring the last row at the top clamps the scroll to its maximum
+  useEffect(() => {
+    const timer = setTimeout(() => proxy.scrollTo('row-last', 'top'), 1500)
+    return () => clearTimeout(timer)
+  }, [proxy])
+  return null
+}
 
 export default function OneNativeFormSlotStyle({
   initialCustom = false,
   initialSheet = false,
-}: { initialCustom?: boolean; initialSheet?: boolean }) {
+  sheetKind = 'form',
+  resetAfterMs,
+}: {
+  initialCustom?: boolean
+  initialSheet?: boolean
+  sheetKind?: SheetKind
+  // flips the Form and Slot styles back to default after this many milliseconds
+  resetAfterMs?: number
+}) {
   const [custom, setCustom] = useState(initialCustom)
   const [sheet, setSheet] = useState(initialSheet)
+
+  useEffect(() => {
+    if (resetAfterMs === undefined) return
+    const timer = setTimeout(() => setCustom(false), resetAfterMs)
+    return () => clearTimeout(timer)
+  }, [resetAfterMs])
+
+  const rows = Array.from({ length: 40 }, (_, index) => (
+    <One.iOS.Text
+      key={index}
+      text={index === 39 ? 'Last row' : `Row ${index + 1}`}
+      swiftStyle={{ id: index === 39 ? 'row-last' : `row-${index}`, height: 44 }}
+    />
+  ))
 
   return (
     <View style={styles.screen} testID="one-native-form-slot-style-screen">
@@ -57,13 +90,26 @@ export default function OneNativeFormSlotStyle({
         presentationBackground="#FFE08A"
       >
         <View style={styles.sheet} testID="one-native-form-slot-style-sheet">
-          <One.iOS.Form style={styles.sheetForm}>
-            <One.iOS.Section title="Rows">
-              {Array.from({ length: 24 }, (_, index) => (
-                <One.iOS.Text key={index} text={`Row ${index + 1}`} />
-              ))}
-            </One.iOS.Section>
-          </One.iOS.Form>
+          <One.iOS.ScrollViewReader style={styles.sheetForm}>
+            {(proxy) => (
+              <>
+                <ScrollToLast proxy={proxy} />
+                {sheetKind === 'form' ? (
+                  <One.iOS.Form style={styles.sheetForm}>
+                    <One.iOS.Section title="Rows">{rows}</One.iOS.Section>
+                  </One.iOS.Form>
+                ) : sheetKind === 'list' ? (
+                  <One.iOS.List style={styles.sheetForm} listStyle="plain">
+                    {rows}
+                  </One.iOS.List>
+                ) : (
+                  <One.iOS.ScrollView style={styles.sheetForm}>
+                    <One.iOS.VStack spacing={0}>{rows}</One.iOS.VStack>
+                  </One.iOS.ScrollView>
+                )}
+              </>
+            )}
+          </One.iOS.ScrollViewReader>
           <View style={styles.sheetEdge} />
         </View>
       </One.iOS.Sheet>

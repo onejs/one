@@ -224,6 +224,23 @@ extension OneNativeStyle {
   }
 }
 
+// a standalone host ignores the screen's safe area, so a scroll container in a presented
+// sheet, whose content runs under the home indicator, gets that overlap as a bottom
+// content margin: its last row scrolls clear of the indicator while the box stays
+// edge to edge.
+final class OneNativeHostInsets: ObservableObject {
+  @Published var bottom: CGFloat = 0
+}
+
+private struct OneNativeHostRoot: View {
+  @ObservedObject var insets: OneNativeHostInsets
+  let content: AnyView
+
+  var body: some View {
+    content.contentMargins(.bottom, insets.bottom, for: .scrollContent)
+  }
+}
+
 // every container composes children the same way and differs only in the SwiftUI
 // container it wraps them in, which it supplies at init. a container is composable
 // itself, so containers nest.
@@ -239,6 +256,7 @@ extension OneNativeStyle {
   private var controller: OneNativeHostingController<AnyView>?
   private weak var compositionParent: OneNativeCompositionParent?
   private var active = false
+  private let hostInsets = OneNativeHostInsets()
 
   public var compositionActive: Bool { active }
 
@@ -373,12 +391,26 @@ extension OneNativeStyle {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
 
+  // how far the box reaches into the home indicator's safe area, for a host in a sheet.
+  @nonobjc private func presentedSheetBottomOverlap() -> CGFloat {
+    guard !hostingScreenInsets, let window else { return 0 }
+    var responder: UIResponder? = next
+    while responder != nil && !(responder is UIViewController) { responder = responder?.next }
+    guard (responder as? UIViewController)?.sheetPresentationController != nil else { return 0 }
+    let inset = window.safeAreaInsets.bottom
+    let reach = convert(bounds, to: window).maxY - (window.bounds.maxY - inset)
+    return min(inset, max(0, reach))
+  }
+
   @nonobjc func updateHost() {
     guard compositionParent == nil else { return }
     guard window != nil else { controller?.detach(); propagateActive(false); return }
+    let overlap = presentedSheetBottomOverlap()
+    if hostInsets.bottom != overlap { hostInsets.bottom = overlap }
     if controller == nil {
       controller = OneNativeHostingController(
-        rootView: wrap(published, true), screenInsets: hostingScreenInsets
+        rootView: AnyView(OneNativeHostRoot(insets: hostInsets, content: wrap(published, true))),
+        screenInsets: hostingScreenInsets
       )
     }
     let regions: SafeAreaRegions = hostingScreenInsets ? .all : []
