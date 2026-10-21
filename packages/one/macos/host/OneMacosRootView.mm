@@ -1,3 +1,4 @@
+#import <os/log.h>
 #import "OneMacosRootView.h"
 
 #include <ReactCommon/RuntimeExecutor.h>
@@ -141,7 +142,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
   timerRegistryPtr->setTimerManager(timerManager);
 
   auto onJsError = [](jsi::Runtime &, const JsErrorHandler::ProcessedError &error) {
-    NSLog(@"[one-macos] js error: %s", error.message.c_str());
+    os_log(OS_LOG_DEFAULT, "[one-macos] js error: %{public}s", error.message.c_str());
   };
 
   _instance = std::make_shared<ReactInstance>(
@@ -200,7 +201,7 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
           return module;
         });
     bindNativeLogger(runtime, [](const std::string &message, unsigned int logLevel) {
-      NSLog(@"[one-macos] js log(%u): %s", logLevel, message.c_str());
+      os_log(OS_LOG_DEFAULT, "[one-macos] js log(%u): %{public}s", logLevel, message.c_str());
     });
     // hermes has no console of its own, so route it through the native logger
     // before the bundle's own empty console stubs can claim the names

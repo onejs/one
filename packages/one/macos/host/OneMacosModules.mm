@@ -1,3 +1,4 @@
+#import <os/log.h>
 #import <AppKit/AppKit.h>
 
 #include <chrono>
@@ -282,12 +283,12 @@ std::shared_ptr<OneMacosModule> exceptionsManager(std::shared_ptr<CallInvoker> i
   module->method("reportException", 1, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
     if (count > 0 && args[0].isObject()) {
       folly::dynamic error = jsi::dynamicFromValue(rt, args[0]);
-      NSLog(@"[one-macos] js exception: %s", folly::toJson(error).c_str());
+      os_log(OS_LOG_DEFAULT, "[one-macos] js exception: %{public}s", folly::toJson(error).c_str());
     }
     return jsi::Value::undefined();
   });
   module->method("reportFatalException", 3, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
-    NSLog(@"[one-macos] js fatal: %s", stringArg(rt, args, count, 0).c_str());
+    os_log(OS_LOG_DEFAULT, "[one-macos] js fatal: %{public}s", stringArg(rt, args, count, 0).c_str());
     return jsi::Value::undefined();
   });
   module->noop("dismissRedbox");

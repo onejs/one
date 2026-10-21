@@ -125,6 +125,12 @@ export default function Index() {
         style={{ borderWidth: 1, borderColor: '#888', borderRadius: 4, padding: 4, marginTop: 4, fontSize: 14 }}
       />
       <TextInput
+        testID="macos-input-secure"
+        secureTextEntry
+        placeholder="Password"
+        style={{ borderWidth: 1, borderColor: '#888', borderRadius: 4, padding: 4, marginTop: 4, fontSize: 14 }}
+      />
+      <TextInput
         testID="macos-input-multiline"
         multiline
         value={notes}
