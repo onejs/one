@@ -192,6 +192,19 @@ void OneMacosSchedulerDelegate::schedulerShouldMergeReactRevision(SurfaceId surf
     bindNativeLogger(runtime, [](const std::string &message, unsigned int logLevel) {
       NSLog(@"[one-macos] js log(%u): %s", logLevel, message.c_str());
     });
+    // hermes has no console of its own, so route it through the native logger
+    // before the bundle's own empty console stubs can claim the names
+    runtime.evaluateJavaScript(
+        std::make_shared<jsi::StringBuffer>(
+            "globalThis.console = {};"
+            "['log', 'info', 'warn', 'error', 'debug', 'trace'].forEach(function (name, level) {"
+            "  console[name] = function () {"
+            "    nativeLoggingHook(Array.prototype.map.call(arguments, function (value) {"
+            "      return typeof value === 'string' ? value : (value && value.stack) || String(value);"
+            "    }).join(' '), level);"
+            "  };"
+            "});"),
+        "one-macos-console");
     bindHasComponentProvider(runtime, [](const std::string &name) {
       return [OneMacosMountingManager hasComponentNamed:name] == YES;
     });

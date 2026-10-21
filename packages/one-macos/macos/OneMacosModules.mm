@@ -5,11 +5,13 @@
 #include <folly/json.h>
 #include <jsi/JSIDynamic.h>
 #include <react/featureflags/ReactNativeFeatureFlags.h>
+#include <react/nativemodule/dom/NativeDOM.h>
 
 #include <CallInvokerDispatcher.hpp>
 #include <InstallNitro.hpp>
 
 #import "OneMacosModules.h"
+#import "OneMacosOpSqlite.h"
 #import "OneMacosWebSocket.h"
 #import "OneMacosWorklets.h"
 
@@ -156,6 +158,76 @@ std::shared_ptr<OneMacosModule> safeAreaContext(
                 "frame",
                 folly::dynamic::object("x", 0)("y", 0)("width", metrics.width)("height", metrics.height))));
   });
+  return module;
+}
+
+jsi::Value resolvedPromise(jsi::Runtime &rt, jsi::Value value)
+{
+  auto resolve = rt.global().getPropertyAsObject(rt, "Promise").getPropertyAsFunction(rt, "resolve");
+  return resolve.call(rt, value);
+}
+
+// urls open in the default app through NSWorkspace; the app has no initial url
+std::shared_ptr<OneMacosModule> linkingManager(std::shared_ptr<CallInvoker> invoker)
+{
+  auto module = std::make_shared<OneMacosModule>("LinkingManager", std::move(invoker));
+  module->method("getInitialURL", 0, [](jsi::Runtime &rt, const jsi::Value *, size_t) {
+    return resolvedPromise(rt, jsi::Value::null());
+  });
+  module->method("canOpenURL", 1, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    NSURL *url = [NSURL URLWithString:@(stringArg(rt, args, count, 0).c_str())];
+    return resolvedPromise(rt, jsi::Value(url != nil && [NSWorkspace.sharedWorkspace URLForApplicationToOpenURL:url] != nil));
+  });
+  module->method("openURL", 1, [](jsi::Runtime &rt, const jsi::Value *args, size_t count) {
+    NSURL *url = [NSURL URLWithString:@(stringArg(rt, args, count, 0).c_str())];
+    bool opened = url != nil && [NSWorkspace.sharedWorkspace openURL:url];
+    return resolvedPromise(rt, jsi::Value(opened));
+  });
+  module->method("openSettings", 0, [](jsi::Runtime &rt, const jsi::Value *, size_t) {
+    NSURL *url = [NSURL URLWithString:@"x-apple.systempreferences:"];
+    return resolvedPromise(rt, jsi::Value([NSWorkspace.sharedWorkspace openURL:url]));
+  });
+  module->noop("addListener");
+  module->noop("removeListeners");
+  return module;
+}
+
+std::shared_ptr<OneMacosModule> soundManager(std::shared_ptr<CallInvoker> invoker)
+{
+  auto module = std::make_shared<OneMacosModule>("SoundManager", std::move(invoker));
+  module->noop("playTouchSound");
+  return module;
+}
+
+std::shared_ptr<OneMacosModule> frameRateLogger(std::shared_ptr<CallInvoker> invoker)
+{
+  auto module = std::make_shared<OneMacosModule>("FrameRateLogger", std::move(invoker));
+  module->noop("setGlobalOptions");
+  module->noop("setContext");
+  module->noop("beginScroll");
+  module->noop("endScroll");
+  return module;
+}
+
+// no software keyboard on a Mac, so nothing is ever emitted
+std::shared_ptr<OneMacosModule> keyboardObserver(std::shared_ptr<CallInvoker> invoker)
+{
+  auto module = std::make_shared<OneMacosModule>("KeyboardObserver", std::move(invoker));
+  module->noop("addListener");
+  module->noop("removeListeners");
+  return module;
+}
+
+// image loading is not provided on macOS yet, so every request rejects
+std::shared_ptr<OneMacosModule> imageLoader(std::shared_ptr<CallInvoker> invoker)
+{
+  auto module = std::make_shared<OneMacosModule>("ImageLoader", std::move(invoker));
+  for (const char *name : {"getSize", "getSizeWithHeaders", "prefetchImage", "prefetchImageWithMetadata", "queryCache"}) {
+    module->method(name, 0, [name](jsi::Runtime &rt, const jsi::Value *, size_t) {
+      auto reject = rt.global().getPropertyAsObject(rt, "Promise").getPropertyAsFunction(rt, "reject");
+      return reject.call(rt, jsi::String::createFromUtf8(rt, std::string("ImageLoader.") + name + " is not available on macOS"));
+    });
+  }
   return module;
 }
 
@@ -429,6 +501,9 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   if (name == "NativeReactNativeFeatureFlagsCxx") {
     return featureFlags(std::move(jsInvoker));
   }
+  if (name == "NativeDOMCxx") {
+    return std::make_shared<NativeDOM>(std::move(jsInvoker));
+  }
   if (name == "NitroModules") {
     return nitro(std::move(jsInvoker));
   }
@@ -464,6 +539,24 @@ std::shared_ptr<TurboModule> OneMacosCreateTurboModule(
   }
   if (name == "WebSocketModule") {
     return webSocket(std::move(jsInvoker), context);
+  }
+  if (name == "OPSQLite") {
+    return OneMacosCreateOpSqliteModule(runtime, std::move(jsInvoker));
+  }
+  if (name == "LinkingManager") {
+    return linkingManager(std::move(jsInvoker));
+  }
+  if (name == "SoundManager") {
+    return soundManager(std::move(jsInvoker));
+  }
+  if (name == "FrameRateLogger") {
+    return frameRateLogger(std::move(jsInvoker));
+  }
+  if (name == "KeyboardObserver") {
+    return keyboardObserver(std::move(jsInvoker));
+  }
+  if (name == "ImageLoader") {
+    return imageLoader(std::move(jsInvoker));
   }
   if (name == "OneNativeSafeAreaContext") {
     return safeAreaContext(std::move(jsInvoker), context);

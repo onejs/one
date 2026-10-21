@@ -22,6 +22,7 @@ cmake -G Ninja -S "$ONE_MACOS/cpp" -B "$CORE_OUT/build" \
   -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \
   -DRN_ROOT="$RN_ROOT" \
   -DNITRO_ROOT="$nitro_root" \
+  -DOPSQLITE_ROOT="$(dirname "$RN_ROOT")/@op-engineering/op-sqlite" \
   -DWORKLETS_ROOT="$(dirname "$RN_ROOT")/react-native-worklets" \
   -DHERMES_ROOT="$CORE_OUT/hermes/destroot" \
   -DRN_DEPS_ROOT="$deps/packages/react-native/third-party" >/dev/null

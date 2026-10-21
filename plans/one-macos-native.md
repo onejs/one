@@ -278,7 +278,7 @@ Falsifier outcome: no RN source patches were needed. `OneMacosCore` compiles the
 installed react-native 0.88 `ReactCommon` plus four iOS pod files that are plain
 Foundation code (`PlatformRunLoopObserver.mm`, `AppleEventBeat.cpp`,
 `FollyConvert.mm`, `LowPriorityExecutor.mm`). Excluded for M1: the `nativemodule/*`
-dirs (cputime, defaults, dom, featureflags, idlecallbacks, intersectionobserver,
+dirs (cputime, defaults, featureflags, idlecallbacks, intersectionobserver,
 microtasks, mutationobserver, resizeobserver, viewtransition, webperformance) and
 `renderer/animated*`, which need generated `FBReactNativeSpec` headers; JS falls
 back. `legacyviewmanagerinterop` is included because the component registry links
@@ -328,6 +328,29 @@ Worklets: react-native-worklets 0.13 core (`Common/cpp/worklets`) is compiled in
 `requestAnimationFrame`). Reanimated stays out of the mac bundle through `.macos`
 variants (bundle 9.18 MB to 7.66 MB).
 
-Open blocker (JS side): `one.macos` imports `platform/index.native`, whose
-`ArrangementView.native` imports `platform/adaptive/index.native`, which calls
-`createHybridObject('OneAdaptive')` at import.
+Resolved blocker: the OneAdaptive import chain was fixed on the JS side
+(`adaptive/index.macos`, `Image.macos`); the host registers no One hybrid.
+
+op-sqlite 15 core (`cpp/*.cpp`) builds on the system sqlite
+(`OP_SQLITE_USE_PHONE_VERSION=1`, `-lsqlite3`, no sqlcipher, libsql or turso). The
+host's `OPSQLite` TurboModule returns Application Support and Library paths and
+calls `opsqlite::install`. Rule for later libraries: a podspec that declares
+`:osx` with a portable C++ core is built for Mac; UIKit-only code stops at the lead.
+
+More boot modules: `LinkingManager` (NSWorkspace for open and settings),
+`ImageLoader` (rejects every call; images go through RN's own `Image`),
+`SoundManager`, `FrameRateLogger` and `KeyboardObserver` (no-ops). `NativeDOMCxx` is
+now the real `NativeDOM` from `react/nativemodule/dom`; the header only needs the
+`FBReactNativeSpec` include root, so the earlier "needs generated spec headers"
+exclusion applied to `dom` alone no longer holds. Without it the root `Document`
+fails with `Cannot read property 'linkRootNode' of null`.
+
+Hermes has no `console`, and the bundle only stubs one, so the host installs a
+console that feeds `nativeLoggingHook` before the bundle runs. JS logs and
+exceptions now show up in the app log as `[one-macos] js log(level)`.
+
+Proof against the real bundle: the `index.tsx` route mounts View, Text and
+`One.macOS.Toggle` (label `macOS`, probe `macos-file`, `Enabled` switch, `off`).
+A click on the switch round trips to JS (`on`). Editing the route text through
+`one dev` HMR changes it to `macOS hot reloaded` in the same process with the
+toggle still on and no relaunch.

@@ -7,6 +7,7 @@ project(OneMacosCore LANGUAGES C CXX OBJCXX)
 #   -DRN_ROOT=<path to node_modules/react-native>
 #   -DRN_DEPS_ROOT=<dir holding ReactNativeDependenciesHeaders.xcframework>
 #   -DNITRO_ROOT=<path to node_modules/react-native-nitro-modules>
+#   -DOPSQLITE_ROOT=<path to node_modules/@op-engineering/op-sqlite>
 #   -DWORKLETS_ROOT=<path to node_modules/react-native-worklets>
 #   -DHERMES_ROOT=<extracted hermes-ios destroot, headers and hermesvm.framework>
 set(CMAKE_CXX_STANDARD 20)
@@ -15,8 +16,8 @@ set(CMAKE_OBJCXX_STANDARD 20)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT OR NOT WORKLETS_ROOT OR NOT HERMES_ROOT)
-  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT, NITRO_ROOT, WORKLETS_ROOT and HERMES_ROOT")
+if(NOT RN_ROOT OR NOT RN_DEPS_ROOT OR NOT NITRO_ROOT OR NOT WORKLETS_ROOT OR NOT OPSQLITE_ROOT OR NOT HERMES_ROOT)
+  message(FATAL_ERROR "set RN_ROOT, RN_DEPS_ROOT, NITRO_ROOT, WORKLETS_ROOT, OPSQLITE_ROOT and HERMES_ROOT")
 endif()
 
 set(RC ${RN_ROOT}/ReactCommon)
@@ -54,6 +55,7 @@ set(RN_DIRS
   react/networking
   react/utils
   react/nativemodule/core/ReactCommon
+  react/nativemodule/dom
   react/performance/cdpmetrics
   react/performance/timeline
   react/renderer/animationbackend
@@ -162,7 +164,11 @@ foreach(i RANGE ${WORKLETS_FLAG_LAST})
   string(APPEND WORKLETS_FEATURE_FLAGS "[${flag_name}:${flag_value}]")
 endforeach()
 
-add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${NITRO_SOURCES} ${NITRO_APPLE_SOURCES} ${WORKLETS_SOURCES} ${WORKLETS_APPLE_SOURCES} ${ONE_SOURCES})
+# op-sqlite's shared C++ core on the system sqlite (its "phone version" path):
+# no bundled sqlite3.c, and the libsql, sqlcipher and turso backends stay out
+file(GLOB OPSQLITE_SOURCES CONFIGURE_DEPENDS ${OPSQLITE_ROOT}/cpp/*.cpp)
+
+add_library(OneMacosCore STATIC ${RN_SOURCES} ${RN_APPLE_SOURCES} ${NITRO_SOURCES} ${NITRO_APPLE_SOURCES} ${WORKLETS_SOURCES} ${WORKLETS_APPLE_SOURCES} ${OPSQLITE_SOURCES} ${ONE_SOURCES})
 
 # the pod flattens headers, so every Nitro source directory is an include root
 file(GLOB NITRO_INCLUDE_DIRS LIST_DIRECTORIES true ${NITRO_ROOT}/cpp/* ${NITRO_ROOT}/ios/*)
@@ -190,6 +196,7 @@ target_include_directories(OneMacosCore PUBLIC
   ${RC}/react/utils/platform/ios/react/utils
   ${RN_ROOT}/React/Fabric
   ${RN_ROOT}/React/Fabric/Utils
+  ${RN_ROOT}/React/FBReactNativeSpec
   ${NITRO_INCLUDE_DIRS}
   ${WORKLETS_ROOT}/Common/cpp
   ${WORKLETS_ROOT}/apple
@@ -206,6 +213,7 @@ target_compile_definitions(OneMacosCore PUBLIC
   FOLLY_HAVE_CLOCK_GETTIME=1
   RCT_NEW_ARCH_ENABLED=1
   HERMES_V1_ENABLED=1
+  OP_SQLITE_USE_PHONE_VERSION=1
   WORKLETS_VERSION=${WORKLETS_VERSION}
   WORKLETS_FEATURE_FLAGS=${WORKLETS_FEATURE_FLAGS}
   $<$<CONFIG:Debug>:HERMES_ENABLE_DEBUGGER=1>
@@ -214,7 +222,9 @@ target_compile_definitions(OneMacosCore PUBLIC
   $<$<CONFIG:Debug>:DEBUG=1>
 )
 
+# op-sqlite's own headers are quote includes; <sqlite3.h> must stay the SDK's
 target_compile_options(OneMacosCore PRIVATE
+  -iquote ${OPSQLITE_ROOT}/cpp
   -Wno-comma -Wno-shorten-64-to-32 -Wno-documentation -Wno-deprecated-declarations
   $<$<COMPILE_LANGUAGE:OBJCXX>:-fobjc-arc>
 )

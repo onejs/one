@@ -36,6 +36,7 @@ targets:
         OTHER_LDFLAGS:
           - -lOneMacosCore
           - -lc++
+          - -lsqlite3
           - -framework
           - ReactNativeDependencies
           - -framework
