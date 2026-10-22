@@ -27,38 +27,38 @@ export class MTKMesh extends SDKHandle {
    * init(mesh: MDLMesh, device: any MTLDevice) throws
    * @availability iOS 9.0+
    */
-  static init(mesh: _ModelIO_MDLMesh, device: SDKHandle): MTKMesh { return callSDK<MTKMesh>("MetalKit_212edf3d13b127f5", 940281303528309, undefined, [mesh, device]); }
+  static init(mesh: _ModelIO_MDLMesh, device: SDKHandle): MTKMesh { return callSDK<MTKMesh>("MetalKit_5d69670f0307b385", 940281303528309, undefined, [mesh, device]); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("MetalKit_212edf3d13b127f5", 3108022690079546, this, []); }
-  set name(value: string) { callSDK<void>("MetalKit_212edf3d13b127f5", 3623360001200909, this, [value]); }
+  get name(): string { return callSDK<string>("MetalKit_5d69670f0307b385", 3108022690079546, this, []); }
+  set name(value: string) { callSDK<void>("MetalKit_5d69670f0307b385", 3623360001200909, this, [value]); }
   /**
    * var submeshes: [MTKSubmesh] { get }
    * @availability iOS 9.0+
    */
-  get submeshes(): Array<MTKSubmesh> { return callSDK<Array<MTKSubmesh>>("MetalKit_212edf3d13b127f5", 1980900800467330, this, []); }
+  get submeshes(): Array<MTKSubmesh> { return callSDK<Array<MTKSubmesh>>("MetalKit_5d69670f0307b385", 1980900800467330, this, []); }
   /**
    * var vertexBuffers: [MTKMeshBuffer] { get }
    * @availability iOS 9.0+
    */
-  get vertexBuffers(): Array<MTKMeshBuffer> { return callSDK<Array<MTKMeshBuffer>>("MetalKit_212edf3d13b127f5", 1159695953894700, this, []); }
+  get vertexBuffers(): Array<MTKMeshBuffer> { return callSDK<Array<MTKMeshBuffer>>("MetalKit_5d69670f0307b385", 1159695953894700, this, []); }
   /**
    * var vertexCount: Int { get }
    * @availability iOS 9.0+
    */
-  get vertexCount(): number { return callSDK<number>("MetalKit_212edf3d13b127f5", 2708530822951336, this, []); }
+  get vertexCount(): number { return callSDK<number>("MetalKit_5d69670f0307b385", 2708530822951336, this, []); }
   /**
    * var vertexDescriptor: MDLVertexDescriptor { get }
    * @availability iOS 9.0+
    */
-  get vertexDescriptor(): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("MetalKit_212edf3d13b127f5", 1895879198667006, this, []); }
+  get vertexDescriptor(): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("MetalKit_5d69670f0307b385", 1895879198667006, this, []); }
   /**
    * class func newMeshes(asset: MDLAsset, device: any MTLDevice) throws -> (modelIOMeshes: [MDLMesh], metalKitMeshes: [MTKMesh])
    * @availability iOS 9.0+
    */
-  static newMeshes(asset: _ModelIO_MDLAsset, device: SDKHandle): { "modelIOMeshes": Array<_ModelIO_MDLMesh>; "metalKitMeshes": Array<MTKMesh> } { return callSDK<{ "modelIOMeshes": Array<_ModelIO_MDLMesh>; "metalKitMeshes": Array<MTKMesh> }>("MetalKit_212edf3d13b127f5", 852008364199843, undefined, [asset, device]); }
+  static newMeshes(asset: _ModelIO_MDLAsset, device: SDKHandle): { "modelIOMeshes": Array<_ModelIO_MDLMesh>; "metalKitMeshes": Array<MTKMesh> } { return callSDK<{ "modelIOMeshes": Array<_ModelIO_MDLMesh>; "metalKitMeshes": Array<MTKMesh> }>("MetalKit_5d69670f0307b385", 852008364199843, undefined, [asset, device]); }
   declare readonly $type: { "c:objc(cs)MTKMesh": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "submeshes": true; "vertexBuffers": true; "vertexCount": true; "vertexDescriptor": true };
 }
@@ -72,32 +72,32 @@ export class MTKMeshBuffer extends SDKHandle {
    * func zone() -> (any MDLMeshBufferZone)?
    * @availability iOS 9.0+
    */
-  zone(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 2536841055351897, this, []); }
+  zone(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 2536841055351897, this, []); }
   /**
    * var allocator: MTKMeshBufferAllocator { get }
    * @availability iOS 9.0+
    */
-  get allocator(): MTKMeshBufferAllocator { return callSDK<MTKMeshBufferAllocator>("MetalKit_212edf3d13b127f5", 1359331583653773, this, []); }
+  get allocator(): MTKMeshBufferAllocator { return callSDK<MTKMeshBufferAllocator>("MetalKit_5d69670f0307b385", 1359331583653773, this, []); }
   /**
    * var buffer: any MTLBuffer { get }
    * @availability iOS 9.0+
    */
-  get buffer(): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 1051154453882420, this, []); }
+  get buffer(): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 1051154453882420, this, []); }
   /**
    * var length: Int { get }
    * @availability iOS 9.0+
    */
-  get length(): number { return callSDK<number>("MetalKit_212edf3d13b127f5", 722687491885430, this, []); }
+  get length(): number { return callSDK<number>("MetalKit_5d69670f0307b385", 722687491885430, this, []); }
   /**
    * var offset: Int { get }
    * @availability iOS 9.0+
    */
-  get offset(): number { return callSDK<number>("MetalKit_212edf3d13b127f5", 2862383533311655, this, []); }
+  get offset(): number { return callSDK<number>("MetalKit_5d69670f0307b385", 2862383533311655, this, []); }
   /**
    * var type: MDLMeshBufferType { get }
    * @availability iOS 9.0+
    */
-  get type(): _ModelIO_MDLMeshBufferType { return callSDK<_ModelIO_MDLMeshBufferType>("MetalKit_212edf3d13b127f5", 1526086281668275, this, []); }
+  get type(): _ModelIO_MDLMeshBufferType { return callSDK<_ModelIO_MDLMeshBufferType>("MetalKit_5d69670f0307b385", 1526086281668275, this, []); }
   declare readonly $type: { "c:objc(cs)MTKMeshBuffer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allocator": true; "buffer": true; "length": true; "offset": true; "type": true };
 }
@@ -111,12 +111,12 @@ export class MTKMeshBufferAllocator extends SDKHandle {
    * init(device: any MTLDevice)
    * @availability iOS 9.0+
    */
-  static init(device: SDKHandle): MTKMeshBufferAllocator { return callSDK<MTKMeshBufferAllocator>("MetalKit_212edf3d13b127f5", 2763734692468004, undefined, [device]); }
+  static init(device: SDKHandle): MTKMeshBufferAllocator { return callSDK<MTKMeshBufferAllocator>("MetalKit_5d69670f0307b385", 2763734692468004, undefined, [device]); }
   /**
    * var device: any MTLDevice { get }
    * @availability iOS 9.0+
    */
-  get device(): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 1861288610412429, this, []); }
+  get device(): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 1861288610412429, this, []); }
   declare readonly $type: { "c:objc(cs)MTKMeshBufferAllocator": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "device": true };
 }
@@ -129,14 +129,14 @@ export const MTKModelError = {
    * static let domain: MTKModelError
    * @availability iOS 9.0+
    */
-  get domain(): MTKModelError { return callSDK<MTKModelError>("MetalKit_212edf3d13b127f5", 334000503424033, undefined, []); },
+  get domain(): MTKModelError { return callSDK<MTKModelError>("MetalKit_5d69670f0307b385", 334000503424033, undefined, []); },
   /**
    * static let key: MTKModelError
    * @availability iOS 9.0+
    */
-  get key(): MTKModelError { return callSDK<MTKModelError>("MetalKit_212edf3d13b127f5", 4312356601310791, undefined, []); },
+  get key(): MTKModelError { return callSDK<MTKModelError>("MetalKit_5d69670f0307b385", 4312356601310791, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MTKModelError { return callSDK<MTKModelError>("MetalKit_212edf3d13b127f5", 3166034001757090, undefined, [rawValue]); }
+  init(rawValue: string): MTKModelError { return callSDK<MTKModelError>("MetalKit_5d69670f0307b385", 3166034001757090, undefined, [rawValue]); }
 };
 
 /**
@@ -148,33 +148,33 @@ export class MTKSubmesh extends SDKHandle {
    * var indexBuffer: MTKMeshBuffer { get }
    * @availability iOS 9.0+
    */
-  get indexBuffer(): MTKMeshBuffer { return callSDK<MTKMeshBuffer>("MetalKit_212edf3d13b127f5", 1699482223220101, this, []); }
+  get indexBuffer(): MTKMeshBuffer { return callSDK<MTKMeshBuffer>("MetalKit_5d69670f0307b385", 1699482223220101, this, []); }
   /**
    * var indexCount: Int { get }
    * @availability iOS 9.0+
    */
-  get indexCount(): number { return callSDK<number>("MetalKit_212edf3d13b127f5", 127908023077141, this, []); }
+  get indexCount(): number { return callSDK<number>("MetalKit_5d69670f0307b385", 127908023077141, this, []); }
   /**
    * var indexType: MTLIndexType { get }
    * @availability iOS 9.0+
    */
-  get indexType(): _Metal_MTLIndexType { return callSDK<_Metal_MTLIndexType>("MetalKit_212edf3d13b127f5", 2405038576618534, this, []); }
+  get indexType(): _Metal_MTLIndexType { return callSDK<_Metal_MTLIndexType>("MetalKit_5d69670f0307b385", 2405038576618534, this, []); }
   /**
    * weak var mesh: MTKMesh? { get }
    * @availability iOS 9.0+
    */
-  get mesh(): (MTKMesh) | null { return callSDK<(MTKMesh) | null>("MetalKit_212edf3d13b127f5", 2664123711697004, this, []); }
+  get mesh(): (MTKMesh) | null { return callSDK<(MTKMesh) | null>("MetalKit_5d69670f0307b385", 2664123711697004, this, []); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("MetalKit_212edf3d13b127f5", 656327984234080, this, []); }
-  set name(value: string) { callSDK<void>("MetalKit_212edf3d13b127f5", 3321077993891146, this, [value]); }
+  get name(): string { return callSDK<string>("MetalKit_5d69670f0307b385", 656327984234080, this, []); }
+  set name(value: string) { callSDK<void>("MetalKit_5d69670f0307b385", 3321077993891146, this, [value]); }
   /**
    * var primitiveType: MTLPrimitiveType { get }
    * @availability iOS 9.0+
    */
-  get primitiveType(): _Metal_MTLPrimitiveType { return callSDK<_Metal_MTLPrimitiveType>("MetalKit_212edf3d13b127f5", 2025408905937706, this, []); }
+  get primitiveType(): _Metal_MTLPrimitiveType { return callSDK<_Metal_MTLPrimitiveType>("MetalKit_5d69670f0307b385", 2025408905937706, this, []); }
   declare readonly $type: { "c:objc(cs)MTKSubmesh": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "indexBuffer": true; "indexCount": true; "indexType": true; "mesh": true; "name": true; "primitiveType": true };
 }
@@ -188,77 +188,77 @@ export class MTKTextureLoader extends SDKHandle {
    * init(device: any MTLDevice)
    * @availability iOS 9.0+
    */
-  static init(device: SDKHandle): MTKTextureLoader { return callSDK<MTKTextureLoader>("MetalKit_212edf3d13b127f5", 1579223529102222, undefined, [device]); }
+  static init(device: SDKHandle): MTKTextureLoader { return callSDK<MTKTextureLoader>("MetalKit_5d69670f0307b385", 1579223529102222, undefined, [device]); }
   /**
    * func newTexture(cgImage: CGImage, options: [MTKTextureLoader.Option : Any]? = nil) async throws -> any MTLTexture
    * @availability iOS 9.0+
    */
-  newTextureCgImageOptionsCompletionHandler(cgImage: _CoreGraphics_CGImage, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 1681287159451031, this, [cgImage, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  newTextureCgImageOptionsCompletionHandler(cgImage: _CoreGraphics_CGImage, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_5d69670f0307b385", 1681287159451031, this, [cgImage, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func newTexture(cgImage: CGImage, options: [MTKTextureLoader.Option : Any]? = nil) throws -> any MTLTexture
    * @availability iOS 9.0+
    */
-  newTextureCgImageOptions(cgImage: _CoreGraphics_CGImage, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 3441292335791187, this, [cgImage, options]); }
+  newTextureCgImageOptions(cgImage: _CoreGraphics_CGImage, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 3441292335791187, this, [cgImage, options]); }
   /**
    * func newTexture(URL: URL, options: [MTKTextureLoader.Option : Any]? = nil) async throws -> any MTLTexture
    * @availability iOS 9.0+
    */
-  newTextureURLOptionsCompletionHandler(URL: string, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 1190984693616518, this, [URL, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  newTextureURLOptionsCompletionHandler(URL: string, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_5d69670f0307b385", 1190984693616518, this, [URL, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func newTexture(URL: URL, options: [MTKTextureLoader.Option : Any]? = nil) throws -> any MTLTexture
    * @availability iOS 9.0+
    */
-  newTextureURLOptions(URL: string, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 312568731205881, this, [URL, options]); }
+  newTextureURLOptions(URL: string, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 312568731205881, this, [URL, options]); }
   /**
    * func newTexture(data: Data, options: [MTKTextureLoader.Option : Any]? = nil) async throws -> any MTLTexture
    * @availability iOS 9.0+
    */
-  newTextureDataOptionsCompletionHandler(data: ArrayBuffer, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 2083727178779138, this, [data, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  newTextureDataOptionsCompletionHandler(data: ArrayBuffer, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_5d69670f0307b385", 2083727178779138, this, [data, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func newTexture(data: Data, options: [MTKTextureLoader.Option : Any]? = nil) throws -> any MTLTexture
    * @availability iOS 9.0+
    */
-  newTextureDataOptions(data: ArrayBuffer, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 2661847046301121, this, [data, options]); }
+  newTextureDataOptions(data: ArrayBuffer, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 2661847046301121, this, [data, options]); }
   /**
    * func newTexture(texture: MDLTexture, options: [MTKTextureLoader.Option : Any]? = nil) async throws -> any MTLTexture
    * @availability iOS 10.0+
    */
-  newTextureTextureOptionsCompletionHandler(texture: _ModelIO_MDLTexture, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 267411549096799, this, [texture, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  newTextureTextureOptionsCompletionHandler(texture: _ModelIO_MDLTexture, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_5d69670f0307b385", 267411549096799, this, [texture, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func newTexture(texture: MDLTexture, options: [MTKTextureLoader.Option : Any]? = nil) throws -> any MTLTexture
    * @availability iOS 10.0+
    */
-  newTextureTextureOptions(texture: _ModelIO_MDLTexture, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 2643884350007701, this, [texture, options]); }
+  newTextureTextureOptions(texture: _ModelIO_MDLTexture, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 2643884350007701, this, [texture, options]); }
   /**
    * func newTexture(name: String, scaleFactor: CGFloat, bundle: Bundle?, options: [MTKTextureLoader.Option : Any]? = nil) async throws -> any MTLTexture
    * @availability iOS 10.0+
    */
-  newTextureNameScaleFactorBundleOptionsCompletionHandler(name: string, scaleFactor: number, bundle: $SDK3, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 4276603461271822, this, [name, scaleFactor, bundle, options, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  newTextureNameScaleFactorBundleOptionsCompletionHandler(name: string, scaleFactor: number, bundle: $SDK3, options: $SDK1, completionHandler: $SDK2): void { return callSDK<void>("MetalKit_5d69670f0307b385", 4276603461271822, this, [name, scaleFactor, bundle, options, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func newTexture(name: String, scaleFactor: CGFloat, bundle: Bundle?, options: [MTKTextureLoader.Option : Any]? = nil) throws -> any MTLTexture
    * @availability iOS 10.0+
    */
-  newTextureNameScaleFactorBundleOptions(name: string, scaleFactor: number, bundle?: $SDK3, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 1919537956367949, this, [name, scaleFactor, bundle, options]); }
+  newTextureNameScaleFactorBundleOptions(name: string, scaleFactor: number, bundle?: $SDK3, options?: $SDK1): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 1919537956367949, this, [name, scaleFactor, bundle, options]); }
   /**
    * func newTextures(URLs: [URL], options: [MTKTextureLoader.Option : Any]? = nil) async throws -> [any MTLTexture]
    * @availability iOS 10.0+
    */
-  newTexturesURLsOptionsCompletionHandler(URLs: Array<string>, options: $SDK1, completionHandler: $SDK4): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 4177804902778618, this, [URLs, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  newTexturesURLsOptionsCompletionHandler(URLs: Array<string>, options: $SDK1, completionHandler: $SDK4): void { return callSDK<void>("MetalKit_5d69670f0307b385", 4177804902778618, this, [URLs, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func newTextures(URLs: [URL], options: [MTKTextureLoader.Option : Any]? = nil, error: NSErrorPointer) -> [any MTLTexture]
    * @availability iOS 10.0+
    */
-  newTexturesURLsOptionsError(URLs: Array<string>, options?: $SDK1): { $ret: Array<SDKHandle>; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: Array<SDKHandle>; $out: { "error": (_Foundation_NSError) | null } }>("MetalKit_212edf3d13b127f5", 853167369426903, this, [URLs, options, null]); }
+  newTexturesURLsOptionsError(URLs: Array<string>, options?: $SDK1): { $ret: Array<SDKHandle>; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: Array<SDKHandle>; $out: { "error": (_Foundation_NSError) | null } }>("MetalKit_5d69670f0307b385", 853167369426903, this, [URLs, options, null]); }
   /**
    * func newTextures(names: [String], scaleFactor: CGFloat, bundle: Bundle?, options: [MTKTextureLoader.Option : Any]? = nil) async throws -> [any MTLTexture]
    * @availability iOS 10.0+
    */
-  newTexturesNamesScaleFactorBundleOptionsCompletionHandler(names: Array<string>, scaleFactor: number, bundle: $SDK3, options: $SDK1, completionHandler: $SDK4): void { return callSDK<void>("MetalKit_212edf3d13b127f5", 874587541125278, this, [names, scaleFactor, bundle, options, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  newTexturesNamesScaleFactorBundleOptionsCompletionHandler(names: Array<string>, scaleFactor: number, bundle: $SDK3, options: $SDK1, completionHandler: $SDK4): void { return callSDK<void>("MetalKit_5d69670f0307b385", 874587541125278, this, [names, scaleFactor, bundle, options, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var device: any MTLDevice { get }
    * @availability iOS 9.0+
    */
-  get device(): SDKHandle { return callSDK<SDKHandle>("MetalKit_212edf3d13b127f5", 1737554711480076, this, []); }
+  get device(): SDKHandle { return callSDK<SDKHandle>("MetalKit_5d69670f0307b385", 1737554711480076, this, []); }
   declare readonly $type: { "c:objc(cs)MTKTextureLoader": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "device": true };
 }
@@ -280,9 +280,9 @@ export const MTKTextureLoader_CubeLayout = {
    * static let vertical: MTKTextureLoader.CubeLayout
    * @availability iOS 10.0+
    */
-  get vertical(): MTKTextureLoader_CubeLayout { return callSDK<MTKTextureLoader_CubeLayout>("MetalKit_212edf3d13b127f5", 3039858455954775, undefined, []); },
+  get vertical(): MTKTextureLoader_CubeLayout { return callSDK<MTKTextureLoader_CubeLayout>("MetalKit_5d69670f0307b385", 3039858455954775, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MTKTextureLoader_CubeLayout { return callSDK<MTKTextureLoader_CubeLayout>("MetalKit_212edf3d13b127f5", 2582056391109970, undefined, [rawValue]); }
+  init(rawValue: string): MTKTextureLoader_CubeLayout { return callSDK<MTKTextureLoader_CubeLayout>("MetalKit_5d69670f0307b385", 2582056391109970, undefined, [rawValue]); }
 };
 
 /** struct Error */
@@ -293,14 +293,14 @@ export const MTKTextureLoader_Error = {
    * static let domain: MTKTextureLoader.Error
    * @availability iOS 9.0+
    */
-  get domain(): MTKTextureLoader_Error { return callSDK<MTKTextureLoader_Error>("MetalKit_212edf3d13b127f5", 2034285726470534, undefined, []); },
+  get domain(): MTKTextureLoader_Error { return callSDK<MTKTextureLoader_Error>("MetalKit_5d69670f0307b385", 2034285726470534, undefined, []); },
   /**
    * static let key: MTKTextureLoader.Error
    * @availability iOS 9.0+
    */
-  get key(): MTKTextureLoader_Error { return callSDK<MTKTextureLoader_Error>("MetalKit_212edf3d13b127f5", 2936839547734205, undefined, []); },
+  get key(): MTKTextureLoader_Error { return callSDK<MTKTextureLoader_Error>("MetalKit_5d69670f0307b385", 2936839547734205, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MTKTextureLoader_Error { return callSDK<MTKTextureLoader_Error>("MetalKit_212edf3d13b127f5", 3357016380726395, undefined, [rawValue]); }
+  init(rawValue: string): MTKTextureLoader_Error { return callSDK<MTKTextureLoader_Error>("MetalKit_5d69670f0307b385", 3357016380726395, undefined, [rawValue]); }
 };
 
 /** struct Option */
@@ -311,49 +311,49 @@ export const MTKTextureLoader_Option = {
    * static let allocateMipmaps: MTKTextureLoader.Option
    * @availability iOS 9.0+
    */
-  get allocateMipmaps(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 441560099648934, undefined, []); },
+  get allocateMipmaps(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 441560099648934, undefined, []); },
   /**
    * static let cubeLayout: MTKTextureLoader.Option
    * @availability iOS 10.0+
    */
-  get cubeLayout(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 578468586505581, undefined, []); },
+  get cubeLayout(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 578468586505581, undefined, []); },
   /**
    * static let generateMipmaps: MTKTextureLoader.Option
    * @availability iOS 10.0+
    */
-  get generateMipmaps(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 3880778991078604, undefined, []); },
+  get generateMipmaps(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 3880778991078604, undefined, []); },
   /**
    * static let loadAsArray: MTKTextureLoader.Option
    * @availability iOS 17.0+
    */
-  get loadAsArray(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 4448797017318308, undefined, []); },
+  get loadAsArray(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 4448797017318308, undefined, []); },
   /**
    * static let origin: MTKTextureLoader.Option
    * @availability iOS 10.0+
    */
-  get origin(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 3526597671621934, undefined, []); },
+  get origin(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 3526597671621934, undefined, []); },
   /**
    * static let SRGB: MTKTextureLoader.Option
    * @availability iOS 9.0+
    */
-  get SRGB(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 1288463779199960, undefined, []); },
+  get SRGB(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 1288463779199960, undefined, []); },
   /**
    * static let textureCPUCacheMode: MTKTextureLoader.Option
    * @availability iOS 9.0+
    */
-  get textureCPUCacheMode(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 165321999898477, undefined, []); },
+  get textureCPUCacheMode(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 165321999898477, undefined, []); },
   /**
    * static let textureStorageMode: MTKTextureLoader.Option
    * @availability iOS 10.0+
    */
-  get textureStorageMode(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 1580655808897826, undefined, []); },
+  get textureStorageMode(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 1580655808897826, undefined, []); },
   /**
    * static let textureUsage: MTKTextureLoader.Option
    * @availability iOS 9.0+
    */
-  get textureUsage(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 1401147972077399, undefined, []); },
+  get textureUsage(): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 1401147972077399, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_212edf3d13b127f5", 1379537486452523, undefined, [rawValue]); }
+  init(rawValue: string): MTKTextureLoader_Option { return callSDK<MTKTextureLoader_Option>("MetalKit_5d69670f0307b385", 1379537486452523, undefined, [rawValue]); }
 };
 
 /** struct Origin */
@@ -364,19 +364,19 @@ export const MTKTextureLoader_Origin = {
    * static let bottomLeft: MTKTextureLoader.Origin
    * @availability iOS 10.0+
    */
-  get bottomLeft(): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_212edf3d13b127f5", 105330518915429, undefined, []); },
+  get bottomLeft(): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_5d69670f0307b385", 105330518915429, undefined, []); },
   /**
    * static let flippedVertically: MTKTextureLoader.Origin
    * @availability iOS 10.0+
    */
-  get flippedVertically(): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_212edf3d13b127f5", 3574154424218505, undefined, []); },
+  get flippedVertically(): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_5d69670f0307b385", 3574154424218505, undefined, []); },
   /**
    * static let topLeft: MTKTextureLoader.Origin
    * @availability iOS 10.0+
    */
-  get topLeft(): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_212edf3d13b127f5", 430841893356097, undefined, []); },
+  get topLeft(): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_5d69670f0307b385", 430841893356097, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_212edf3d13b127f5", 94487841816783, undefined, [rawValue]); }
+  init(rawValue: string): MTKTextureLoader_Origin { return callSDK<MTKTextureLoader_Origin>("MetalKit_5d69670f0307b385", 94487841816783, undefined, [rawValue]); }
 };
 
 /**
@@ -388,165 +388,165 @@ export class MTKView extends SDKHandle {
    * func draw()
    * @availability iOS 9.0+
    */
-  draw(): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 1879328035675281, this, []); }
+  draw(): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 1879328035675281, this, []); }
   /**
    * init(coder: NSCoder)
    * @availability iOS 9.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<MTKView> { return callSDKAsync<MTKView>("MetalKit_212edf3d13b127f5", 2000281399207092, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<MTKView> { return callSDKAsync<MTKView>("MetalKit_5d69670f0307b385", 2000281399207092, undefined, [coder]); }
   /**
    * init(frame frameRect: CGRect, device: (any MTLDevice)?)
    * @availability iOS 9.0+
    */
-  static initFrameDevice(frameRect: { x: number; y: number; width: number; height: number }, device?: (SDKHandle) | null): Promise<MTKView> { return callSDKAsync<MTKView>("MetalKit_212edf3d13b127f5", 1142038956532290, undefined, [frameRect, device]); }
+  static initFrameDevice(frameRect: { x: number; y: number; width: number; height: number }, device?: (SDKHandle) | null): Promise<MTKView> { return callSDKAsync<MTKView>("MetalKit_5d69670f0307b385", 1142038956532290, undefined, [frameRect, device]); }
   /**
    * func releaseDrawables()
    * @availability iOS 9.0+
    */
-  releaseDrawables(): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 4251692646437181, this, []); }
+  releaseDrawables(): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 4251692646437181, this, []); }
   /**
    * var autoResizeDrawable: Bool { get set }
    * @availability iOS 9.0+
    */
-  get autoResizeDrawable(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_212edf3d13b127f5", 3423315570052152, this, []); }
-  setAutoResizeDrawable(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 3829585500733501, this, [value]); }
+  get autoResizeDrawable(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_5d69670f0307b385", 3423315570052152, this, []); }
+  setAutoResizeDrawable(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 3829585500733501, this, [value]); }
   /**
    * var clearColor: MTLClearColor { get set }
    * @availability iOS 9.0+
    */
-  get clearColor(): Promise<_Metal_MTLClearColor> { return callSDKAsync<_Metal_MTLClearColor>("MetalKit_212edf3d13b127f5", 2989447512354626, this, []); }
-  setClearColor(value: _Metal_MTLClearColor): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 1619170514039631, this, [value]); }
+  get clearColor(): Promise<_Metal_MTLClearColor> { return callSDKAsync<_Metal_MTLClearColor>("MetalKit_5d69670f0307b385", 2989447512354626, this, []); }
+  setClearColor(value: _Metal_MTLClearColor): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 1619170514039631, this, [value]); }
   /**
    * var clearDepth: Double { get set }
    * @availability iOS 9.0+
    */
-  get clearDepth(): Promise<number> { return callSDKAsync<number>("MetalKit_212edf3d13b127f5", 3107356170163274, this, []); }
-  setClearDepth(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 1324915556694061, this, [value]); }
+  get clearDepth(): Promise<number> { return callSDKAsync<number>("MetalKit_5d69670f0307b385", 3107356170163274, this, []); }
+  setClearDepth(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 1324915556694061, this, [value]); }
   /**
    * var clearStencil: UInt32 { get set }
    * @availability iOS 9.0+
    */
-  get clearStencil(): Promise<number> { return callSDKAsync<number>("MetalKit_212edf3d13b127f5", 3735867271611728, this, []); }
-  setClearStencil(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 4043686482253485, this, [value]); }
+  get clearStencil(): Promise<number> { return callSDKAsync<number>("MetalKit_5d69670f0307b385", 3735867271611728, this, []); }
+  setClearStencil(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 4043686482253485, this, [value]); }
   /**
    * var colorPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 9.0+
    */
-  get colorPixelFormat(): Promise<_Metal_MTLPixelFormat> { return callSDKAsync<_Metal_MTLPixelFormat>("MetalKit_212edf3d13b127f5", 1795688753302369, this, []); }
-  setColorPixelFormat(value: _Metal_MTLPixelFormat): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 2293516669199944, this, [value]); }
+  get colorPixelFormat(): Promise<_Metal_MTLPixelFormat> { return callSDKAsync<_Metal_MTLPixelFormat>("MetalKit_5d69670f0307b385", 1795688753302369, this, []); }
+  setColorPixelFormat(value: _Metal_MTLPixelFormat): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 2293516669199944, this, [value]); }
   /**
    * var currentDrawable: (any CAMetalDrawable)? { get }
    * @availability iOS 9.0+
    */
-  get currentDrawable(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 1972615193070138, this, []); }
+  get currentDrawable(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 1972615193070138, this, []); }
   /**
    * var currentRenderPassDescriptor: MTLRenderPassDescriptor? { get }
    * @availability iOS 9.0+
    */
-  get currentRenderPassDescriptor(): Promise<(_Metal_MTLRenderPassDescriptor) | null> { return callSDKAsync<(_Metal_MTLRenderPassDescriptor) | null>("MetalKit_212edf3d13b127f5", 2634423079830743, this, []); }
+  get currentRenderPassDescriptor(): Promise<(_Metal_MTLRenderPassDescriptor) | null> { return callSDKAsync<(_Metal_MTLRenderPassDescriptor) | null>("MetalKit_5d69670f0307b385", 2634423079830743, this, []); }
   /**
    * weak var delegate: (any MTKViewDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 3029588212901705, this, []); }
-  setDelegate(value?: (Implements<MTKViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 3980251624749322, this, [value], [{"protocol":"c:objc(pl)MTKViewDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 3029588212901705, this, []); }
+  setDelegate(value?: (Implements<MTKViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 3980251624749322, this, [value], [{"protocol":"c:objc(pl)MTKViewDelegate"}]); }
   /**
    * var depthStencilAttachmentTextureUsage: MTLTextureUsage { get set }
    * @availability iOS 13.0+
    */
-  get depthStencilAttachmentTextureUsage(): Promise<_Metal_MTLTextureUsage> { return callSDKAsync<_Metal_MTLTextureUsage>("MetalKit_212edf3d13b127f5", 3792243938742958, this, []); }
-  setDepthStencilAttachmentTextureUsage(value: _Metal_MTLTextureUsage): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 2265578491937973, this, [value]); }
+  get depthStencilAttachmentTextureUsage(): Promise<_Metal_MTLTextureUsage> { return callSDKAsync<_Metal_MTLTextureUsage>("MetalKit_5d69670f0307b385", 3792243938742958, this, []); }
+  setDepthStencilAttachmentTextureUsage(value: _Metal_MTLTextureUsage): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 2265578491937973, this, [value]); }
   /**
    * var depthStencilPixelFormat: MTLPixelFormat { get set }
    * @availability iOS 9.0+
    */
-  get depthStencilPixelFormat(): Promise<_Metal_MTLPixelFormat> { return callSDKAsync<_Metal_MTLPixelFormat>("MetalKit_212edf3d13b127f5", 921404165701051, this, []); }
-  setDepthStencilPixelFormat(value: _Metal_MTLPixelFormat): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 3568448236879444, this, [value]); }
+  get depthStencilPixelFormat(): Promise<_Metal_MTLPixelFormat> { return callSDKAsync<_Metal_MTLPixelFormat>("MetalKit_5d69670f0307b385", 921404165701051, this, []); }
+  setDepthStencilPixelFormat(value: _Metal_MTLPixelFormat): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 3568448236879444, this, [value]); }
   /**
    * var depthStencilStorageMode: MTLStorageMode { get set }
    * @availability iOS 16.0+
    */
-  get depthStencilStorageMode(): Promise<_Metal_MTLStorageMode> { return callSDKAsync<_Metal_MTLStorageMode>("MetalKit_212edf3d13b127f5", 4187054288563960, this, []); }
-  setDepthStencilStorageMode(value: _Metal_MTLStorageMode): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 2319873399317251, this, [value]); }
+  get depthStencilStorageMode(): Promise<_Metal_MTLStorageMode> { return callSDKAsync<_Metal_MTLStorageMode>("MetalKit_5d69670f0307b385", 4187054288563960, this, []); }
+  setDepthStencilStorageMode(value: _Metal_MTLStorageMode): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 2319873399317251, this, [value]); }
   /**
    * var depthStencilTexture: (any MTLTexture)? { get }
    * @availability iOS 9.0+
    */
-  get depthStencilTexture(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 4498553178176902, this, []); }
+  get depthStencilTexture(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 4498553178176902, this, []); }
   /**
    * var device: (any MTLDevice)? { get set }
    * @availability iOS 9.0+
    */
-  get device(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 1207015162050152, this, []); }
-  setDevice(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 2560158988891675, this, [value]); }
+  get device(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 1207015162050152, this, []); }
+  setDevice(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 2560158988891675, this, [value]); }
   /**
    * var drawableSize: CGSize { get set }
    * @availability iOS 9.0+
    */
-  get drawableSize(): Promise<$SDK11> { return callSDKAsync<$SDK11>("MetalKit_212edf3d13b127f5", 3543283625776932, this, []); }
-  setDrawableSize(value: $SDK11): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 3182758780413802, this, [value]); }
+  get drawableSize(): Promise<$SDK11> { return callSDKAsync<$SDK11>("MetalKit_5d69670f0307b385", 3543283625776932, this, []); }
+  setDrawableSize(value: $SDK11): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 3182758780413802, this, [value]); }
   /**
    * var enableSetNeedsDisplay: Bool { get set }
    * @availability iOS 9.0+
    */
-  get enableSetNeedsDisplay(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_212edf3d13b127f5", 3501940438639110, this, []); }
-  setEnableSetNeedsDisplay(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 2926614137407705, this, [value]); }
+  get enableSetNeedsDisplay(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_5d69670f0307b385", 3501940438639110, this, []); }
+  setEnableSetNeedsDisplay(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 2926614137407705, this, [value]); }
   /**
    * var framebufferOnly: Bool { get set }
    * @availability iOS 9.0+
    */
-  get framebufferOnly(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_212edf3d13b127f5", 2767828145762885, this, []); }
-  setFramebufferOnly(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 3350425095051362, this, [value]); }
+  get framebufferOnly(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_5d69670f0307b385", 2767828145762885, this, []); }
+  setFramebufferOnly(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 3350425095051362, this, [value]); }
   /**
    * var multisampleColorAttachmentTextureUsage: MTLTextureUsage { get set }
    * @availability iOS 13.0+
    */
-  get multisampleColorAttachmentTextureUsage(): Promise<_Metal_MTLTextureUsage> { return callSDKAsync<_Metal_MTLTextureUsage>("MetalKit_212edf3d13b127f5", 2804399068773155, this, []); }
-  setMultisampleColorAttachmentTextureUsage(value: _Metal_MTLTextureUsage): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 159297587428070, this, [value]); }
+  get multisampleColorAttachmentTextureUsage(): Promise<_Metal_MTLTextureUsage> { return callSDKAsync<_Metal_MTLTextureUsage>("MetalKit_5d69670f0307b385", 2804399068773155, this, []); }
+  setMultisampleColorAttachmentTextureUsage(value: _Metal_MTLTextureUsage): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 159297587428070, this, [value]); }
   /**
    * var multisampleColorTexture: (any MTLTexture)? { get }
    * @availability iOS 9.0+
    */
-  get multisampleColorTexture(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 3213770248687857, this, []); }
+  get multisampleColorTexture(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 3213770248687857, this, []); }
   /**
    * var isPaused: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_212edf3d13b127f5", 3483786776965710, this, []); }
-  setIsPaused(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 2052586042392486, this, [value]); }
+  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_5d69670f0307b385", 3483786776965710, this, []); }
+  setIsPaused(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 2052586042392486, this, [value]); }
   /**
    * var preferredDevice: (any MTLDevice)? { get }
    * @availability iOS 13.0+
    */
-  get preferredDevice(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_212edf3d13b127f5", 2938349341805715, this, []); }
+  get preferredDevice(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MetalKit_5d69670f0307b385", 2938349341805715, this, []); }
   /**
    * var preferredDrawableSize: CGSize { get }
    * @availability iOS 9.0+
    */
-  get preferredDrawableSize(): Promise<$SDK11> { return callSDKAsync<$SDK11>("MetalKit_212edf3d13b127f5", 3097467141500788, this, []); }
+  get preferredDrawableSize(): Promise<$SDK11> { return callSDKAsync<$SDK11>("MetalKit_5d69670f0307b385", 3097467141500788, this, []); }
   /**
    * var preferredFramesPerSecond: Int { get set }
    * @availability iOS 9.0+
    */
-  get preferredFramesPerSecond(): Promise<number> { return callSDKAsync<number>("MetalKit_212edf3d13b127f5", 2155831376144421, this, []); }
-  setPreferredFramesPerSecond(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 4372069007439890, this, [value]); }
+  get preferredFramesPerSecond(): Promise<number> { return callSDKAsync<number>("MetalKit_5d69670f0307b385", 2155831376144421, this, []); }
+  setPreferredFramesPerSecond(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 4372069007439890, this, [value]); }
   /**
    * var presentsWithTransaction: Bool { get set }
    * @availability iOS 9.0+
    */
-  get presentsWithTransaction(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_212edf3d13b127f5", 4204797724817779, this, []); }
-  setPresentsWithTransaction(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 1746115838015291, this, [value]); }
+  get presentsWithTransaction(): Promise<boolean> { return callSDKAsync<boolean>("MetalKit_5d69670f0307b385", 4204797724817779, this, []); }
+  setPresentsWithTransaction(value: boolean): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 1746115838015291, this, [value]); }
   /**
    * var residencySet: any MTLResidencySet { get }
    * @availability iOS 26.4+
    */
-  get residencySet(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("MetalKit_212edf3d13b127f5", 3535388301818889, this, []); }
+  get residencySet(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("MetalKit_5d69670f0307b385", 3535388301818889, this, []); }
   /**
    * var sampleCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get sampleCount(): Promise<number> { return callSDKAsync<number>("MetalKit_212edf3d13b127f5", 2592865016034685, this, []); }
-  setSampleCount(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_212edf3d13b127f5", 3428572562433530, this, [value]); }
+  get sampleCount(): Promise<number> { return callSDKAsync<number>("MetalKit_5d69670f0307b385", 2592865016034685, this, []); }
+  setSampleCount(value: number): Promise<void> { return callSDKAsync<void>("MetalKit_5d69670f0307b385", 3428572562433530, this, [value]); }
   declare readonly $type: { "c:objc(cs)MTKView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "autoResizeDrawable": true; "clearColor": true; "clearDepth": true; "clearStencil": true; "colorPixelFormat": true; "currentDrawable": true; "currentRenderPassDescriptor": true; "delegate": true; "depthStencilAttachmentTextureUsage": true; "depthStencilPixelFormat": true; "depthStencilStorageMode": true; "depthStencilTexture": true; "device": true; "drawableSize": true; "enableSetNeedsDisplay": true; "framebufferOnly": true; "multisampleColorAttachmentTextureUsage": true; "multisampleColorTexture": true; "isPaused": true; "preferredDevice": true; "preferredDrawableSize": true; "preferredFramesPerSecond": true; "presentsWithTransaction": true; "residencySet": true; "sampleCount": true };
 }
@@ -572,42 +572,42 @@ export interface MTKViewDelegate {
  * func MTKMetalVertexDescriptorFromModelIO(_ modelIODescriptor: MDLVertexDescriptor) -> MTLVertexDescriptor?
  * @availability iOS 9.0+
  */
-export function MTKMetalVertexDescriptorFromModelIO(modelIODescriptor: _ModelIO_MDLVertexDescriptor): $SDK12 { return callSDK<$SDK12>("MetalKit_212edf3d13b127f5", 3959314669243465, undefined, [modelIODescriptor]); }
+export function MTKMetalVertexDescriptorFromModelIO(modelIODescriptor: _ModelIO_MDLVertexDescriptor): $SDK12 { return callSDK<$SDK12>("MetalKit_5d69670f0307b385", 3959314669243465, undefined, [modelIODescriptor]); }
 
 /**
  * func MTKMetalVertexFormatFromModelIO(_ vertexFormat: MDLVertexFormat) -> MTLVertexFormat
  * @availability iOS 9.0+
  */
-export function MTKMetalVertexFormatFromModelIO(vertexFormat: _ModelIO_MDLVertexFormat): _Metal_MTLVertexFormat { return callSDK<_Metal_MTLVertexFormat>("MetalKit_212edf3d13b127f5", 1673657483793035, undefined, [vertexFormat]); }
+export function MTKMetalVertexFormatFromModelIO(vertexFormat: _ModelIO_MDLVertexFormat): _Metal_MTLVertexFormat { return callSDK<_Metal_MTLVertexFormat>("MetalKit_5d69670f0307b385", 1673657483793035, undefined, [vertexFormat]); }
 
 /**
  * func MTKModelIOVertexDescriptorFromMetal(_ metalDescriptor: MTLVertexDescriptor) -> MDLVertexDescriptor
  * @availability iOS 9.0+
  */
-export function MTKModelIOVertexDescriptorFromMetal(metalDescriptor: _Metal_MTLVertexDescriptor): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("MetalKit_212edf3d13b127f5", 3526368650256247, undefined, [metalDescriptor]); }
+export function MTKModelIOVertexDescriptorFromMetal(metalDescriptor: _Metal_MTLVertexDescriptor): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("MetalKit_5d69670f0307b385", 3526368650256247, undefined, [metalDescriptor]); }
 
 /**
  * func MTKModelIOVertexFormatFromMetal(_ vertexFormat: MTLVertexFormat) -> MDLVertexFormat
  * @availability iOS 9.0+
  */
-export function MTKModelIOVertexFormatFromMetal(vertexFormat: _Metal_MTLVertexFormat): _ModelIO_MDLVertexFormat { return callSDK<_ModelIO_MDLVertexFormat>("MetalKit_212edf3d13b127f5", 542741134467481, undefined, [vertexFormat]); }
+export function MTKModelIOVertexFormatFromMetal(vertexFormat: _Metal_MTLVertexFormat): _ModelIO_MDLVertexFormat { return callSDK<_ModelIO_MDLVertexFormat>("MetalKit_5d69670f0307b385", 542741134467481, undefined, [vertexFormat]); }
 
 /**
  * func MTKModelIOVertexDescriptorFromMetalWithError(_ metalDescriptor: MTLVertexDescriptor) throws -> MDLVertexDescriptor
  * @availability iOS 10.0+
  */
-export function MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor: _Metal_MTLVertexDescriptor): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("MetalKit_212edf3d13b127f5", 864493285915495, undefined, [metalDescriptor]); }
+export function MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor: _Metal_MTLVertexDescriptor): _ModelIO_MDLVertexDescriptor { return callSDK<_ModelIO_MDLVertexDescriptor>("MetalKit_5d69670f0307b385", 864493285915495, undefined, [metalDescriptor]); }
 
 /**
  * func MTKMetalVertexDescriptorFromModelIOWithError(_ modelIODescriptor: MDLVertexDescriptor) throws -> MTLVertexDescriptor?
  * @availability iOS 10.0+
  */
-export function MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor: _ModelIO_MDLVertexDescriptor): $SDK12 { return callSDK<$SDK12>("MetalKit_212edf3d13b127f5", 3839993092284336, undefined, [modelIODescriptor]); }
+export function MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor: _ModelIO_MDLVertexDescriptor): $SDK12 { return callSDK<$SDK12>("MetalKit_5d69670f0307b385", 3839993092284336, undefined, [modelIODescriptor]); }
 
-registerSDKClass("MTKMesh", MTKMesh, { module: "MetalKit_212edf3d13b127f5", properties: {"name":3108022690079546,"submeshes":1980900800467330,"vertexBuffers":1159695953894700,"vertexCount":2708530822951336,"vertexDescriptor":1895879198667006} });
-registerSDKClass("MTKMeshBuffer", MTKMeshBuffer, { module: "MetalKit_212edf3d13b127f5", properties: {"allocator":1359331583653773,"buffer":1051154453882420,"length":722687491885430,"offset":2862383533311655,"type":1526086281668275}, methods: {"zone":{"id":2536841055351897}} });
-registerSDKClass("MTKMeshBufferAllocator", MTKMeshBufferAllocator, { module: "MetalKit_212edf3d13b127f5", properties: {"device":1861288610412429} });
-registerSDKClass("MTKSubmesh", MTKSubmesh, { module: "MetalKit_212edf3d13b127f5", properties: {"indexBuffer":1699482223220101,"indexCount":127908023077141,"indexType":2405038576618534,"mesh":2664123711697004,"name":656327984234080,"primitiveType":2025408905937706} });
-registerSDKClass("MTKTextureLoader", MTKTextureLoader, { module: "MetalKit_212edf3d13b127f5", properties: {"device":1737554711480076}, methods: {"newTextureCgImageOptionsCompletionHandler":{"id":1681287159451031,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureCgImageOptions":{"id":3441292335791187},"newTextureURLOptionsCompletionHandler":{"id":1190984693616518,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureURLOptions":{"id":312568731205881},"newTextureDataOptionsCompletionHandler":{"id":2083727178779138,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureDataOptions":{"id":2661847046301121},"newTextureTextureOptionsCompletionHandler":{"id":267411549096799,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureTextureOptions":{"id":2643884350007701},"newTextureNameScaleFactorBundleOptionsCompletionHandler":{"id":4276603461271822,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"newTextureNameScaleFactorBundleOptions":{"id":1919537956367949},"newTexturesURLsOptionsCompletionHandler":{"id":4177804902778618,"hints":[null,null,{"callback":{"out":[]}}]},"newTexturesURLsOptionsError":{"id":853167369426903,"args":[0,1,null]},"newTexturesNamesScaleFactorBundleOptionsCompletionHandler":{"id":874587541125278,"hints":[null,null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("MTKView", MTKView, { module: "MetalKit_212edf3d13b127f5", properties: {"autoResizeDrawable":3423315570052152,"clearColor":2989447512354626,"clearDepth":3107356170163274,"clearStencil":3735867271611728,"colorPixelFormat":1795688753302369,"currentDrawable":1972615193070138,"currentRenderPassDescriptor":2634423079830743,"delegate":3029588212901705,"depthStencilAttachmentTextureUsage":3792243938742958,"depthStencilPixelFormat":921404165701051,"depthStencilStorageMode":4187054288563960,"depthStencilTexture":4498553178176902,"device":1207015162050152,"drawableSize":3543283625776932,"enableSetNeedsDisplay":3501940438639110,"framebufferOnly":2767828145762885,"multisampleColorAttachmentTextureUsage":2804399068773155,"multisampleColorTexture":3213770248687857,"isPaused":3483786776965710,"preferredDevice":2938349341805715,"preferredDrawableSize":3097467141500788,"preferredFramesPerSecond":2155831376144421,"presentsWithTransaction":4204797724817779,"residencySet":3535388301818889,"sampleCount":2592865016034685}, methods: {"draw":{"id":1879328035675281},"releaseDrawables":{"id":4251692646437181}} });
+registerSDKClass("MTKMesh", MTKMesh, { module: "MetalKit_5d69670f0307b385", properties: {"name":3108022690079546,"submeshes":1980900800467330,"vertexBuffers":1159695953894700,"vertexCount":2708530822951336,"vertexDescriptor":1895879198667006} });
+registerSDKClass("MTKMeshBuffer", MTKMeshBuffer, { module: "MetalKit_5d69670f0307b385", properties: {"allocator":1359331583653773,"buffer":1051154453882420,"length":722687491885430,"offset":2862383533311655,"type":1526086281668275}, methods: {"zone":{"id":2536841055351897}} });
+registerSDKClass("MTKMeshBufferAllocator", MTKMeshBufferAllocator, { module: "MetalKit_5d69670f0307b385", properties: {"device":1861288610412429} });
+registerSDKClass("MTKSubmesh", MTKSubmesh, { module: "MetalKit_5d69670f0307b385", properties: {"indexBuffer":1699482223220101,"indexCount":127908023077141,"indexType":2405038576618534,"mesh":2664123711697004,"name":656327984234080,"primitiveType":2025408905937706} });
+registerSDKClass("MTKTextureLoader", MTKTextureLoader, { module: "MetalKit_5d69670f0307b385", properties: {"device":1737554711480076}, methods: {"newTextureCgImageOptionsCompletionHandler":{"id":1681287159451031,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureCgImageOptions":{"id":3441292335791187},"newTextureURLOptionsCompletionHandler":{"id":1190984693616518,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureURLOptions":{"id":312568731205881},"newTextureDataOptionsCompletionHandler":{"id":2083727178779138,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureDataOptions":{"id":2661847046301121},"newTextureTextureOptionsCompletionHandler":{"id":267411549096799,"hints":[null,null,{"callback":{"out":[]}}]},"newTextureTextureOptions":{"id":2643884350007701},"newTextureNameScaleFactorBundleOptionsCompletionHandler":{"id":4276603461271822,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"newTextureNameScaleFactorBundleOptions":{"id":1919537956367949},"newTexturesURLsOptionsCompletionHandler":{"id":4177804902778618,"hints":[null,null,{"callback":{"out":[]}}]},"newTexturesURLsOptionsError":{"id":853167369426903,"args":[0,1,null]},"newTexturesNamesScaleFactorBundleOptionsCompletionHandler":{"id":874587541125278,"hints":[null,null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("MTKView", MTKView, { module: "MetalKit_5d69670f0307b385", properties: {"autoResizeDrawable":3423315570052152,"clearColor":2989447512354626,"clearDepth":3107356170163274,"clearStencil":3735867271611728,"colorPixelFormat":1795688753302369,"currentDrawable":1972615193070138,"currentRenderPassDescriptor":2634423079830743,"delegate":3029588212901705,"depthStencilAttachmentTextureUsage":3792243938742958,"depthStencilPixelFormat":921404165701051,"depthStencilStorageMode":4187054288563960,"depthStencilTexture":4498553178176902,"device":1207015162050152,"drawableSize":3543283625776932,"enableSetNeedsDisplay":3501940438639110,"framebufferOnly":2767828145762885,"multisampleColorAttachmentTextureUsage":2804399068773155,"multisampleColorTexture":3213770248687857,"isPaused":3483786776965710,"preferredDevice":2938349341805715,"preferredDrawableSize":3097467141500788,"preferredFramesPerSecond":2155831376144421,"presentsWithTransaction":4204797724817779,"residencySet":3535388301818889,"sampleCount":2592865016034685}, methods: {"draw":{"id":1879328035675281},"releaseDrawables":{"id":4251692646437181}} });
 registerSDKProtocol("c:objc(pl)MTKViewDelegate", {"mtkViewDrawableSizeWillChange":"mtkView(_:drawableSizeWillChange:)","drawIn":"draw(in:)"});

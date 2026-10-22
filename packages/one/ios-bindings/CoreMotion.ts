@@ -22,12 +22,12 @@ type $SDK42 = (_Foundation_Measurement<_Foundation_UnitLength>) | null;
  */
 export class CMLogItem extends SDKHandle {
   /** init() */
-  static init(): CMLogItem { return callSDK<CMLogItem>("CoreMotion_212edf3d13b127f5", 175957975789026, undefined, []); }
+  static init(): CMLogItem { return callSDK<CMLogItem>("CoreMotion_5d69670f0307b385", 175957975789026, undefined, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 4.0+
    */
-  get timestamp(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2936731784239723, this, []); }
+  get timestamp(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2936731784239723, this, []); }
   declare readonly $type: { "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true };
 }
@@ -38,22 +38,22 @@ export class CMLogItem extends SDKHandle {
  */
 export class CMAbsoluteAltitudeData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMAbsoluteAltitudeData { return callSDK<CMAbsoluteAltitudeData>("CoreMotion_212edf3d13b127f5", 391038652760542, undefined, []); }
+  static init(): CMAbsoluteAltitudeData { return callSDK<CMAbsoluteAltitudeData>("CoreMotion_5d69670f0307b385", 391038652760542, undefined, []); }
   /**
    * var accuracy: Double { get }
    * @availability iOS 15.0+
    */
-  get accuracy(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3828284977127872, this, []); }
+  get accuracy(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3828284977127872, this, []); }
   /**
    * var altitude: Double { get }
    * @availability iOS 15.0+
    */
-  get altitude(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2130259750089964, this, []); }
+  get altitude(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2130259750089964, this, []); }
   /**
    * var precision: Double { get }
    * @availability iOS 15.0+
    */
-  get precision(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 4123529416762725, this, []); }
+  get precision(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 4123529416762725, this, []); }
   declare readonly $type: { "c:objc(cs)CMAbsoluteAltitudeData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "accuracy": true; "altitude": true; "precision": true };
 }
@@ -67,18 +67,18 @@ export type CMAbsoluteAltitudeHandler = ((arg0: (CMAbsoluteAltitudeData) | null,
 /** struct CMAcceleration */
 export class CMAcceleration extends SDKHandle {
   /** var x: Double */
-  get x(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3364337531782164, this, []); }
-  set x(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 2482829828493322, this, [value]); }
+  get x(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3364337531782164, this, []); }
+  set x(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 2482829828493322, this, [value]); }
   /** var y: Double */
-  get y(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 723300162042955, this, []); }
-  set y(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3577797224975061, this, [value]); }
+  get y(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 723300162042955, this, []); }
+  set y(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3577797224975061, this, [value]); }
   /** var z: Double */
-  get z(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 4241075222083397, this, []); }
-  set z(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 611115007125344, this, [value]); }
+  get z(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 4241075222083397, this, []); }
+  set z(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 611115007125344, this, [value]); }
   /** init(x: Double, y: Double, z: Double) */
-  static initXYZ(x: number, y: number, z: number): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_212edf3d13b127f5", 1139378861357321, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_5d69670f0307b385", 1139378861357321, undefined, [x, y, z]); }
   /** init() */
-  static init(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_212edf3d13b127f5", 2124933716686940, undefined, []); }
+  static init(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_5d69670f0307b385", 2124933716686940, undefined, []); }
   declare readonly $type: { "c:@SA@CMAcceleration": true };
 }
 
@@ -88,12 +88,12 @@ export class CMAcceleration extends SDKHandle {
  */
 export class CMAccelerometerData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMAccelerometerData { return callSDK<CMAccelerometerData>("CoreMotion_212edf3d13b127f5", 1039925944181094, undefined, []); }
+  static init(): CMAccelerometerData { return callSDK<CMAccelerometerData>("CoreMotion_5d69670f0307b385", 1039925944181094, undefined, []); }
   /**
    * var acceleration: CMAcceleration { get }
    * @availability iOS 4.0+
    */
-  get acceleration(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_212edf3d13b127f5", 1644648117461947, this, []); }
+  get acceleration(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_5d69670f0307b385", 1644648117461947, this, []); }
   declare readonly $type: { "c:objc(cs)CMAccelerometerData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "acceleration": true };
 }
@@ -110,39 +110,39 @@ export class CMAltimeter extends SDKHandle {
    * class func authorizationStatus() -> CMAuthorizationStatus
    * @availability iOS 11.0+
    */
-  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 1827169888290401, undefined, []); }
+  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 1827169888290401, undefined, []); }
   /**
    * class func isAbsoluteAltitudeAvailable() -> Bool
    * @availability iOS 15.0+
    */
-  static isAbsoluteAltitudeAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 3828204178081991, undefined, []); }
+  static isAbsoluteAltitudeAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 3828204178081991, undefined, []); }
   /**
    * class func isRelativeAltitudeAvailable() -> Bool
    * @availability iOS 8.0+
    */
-  static isRelativeAltitudeAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 3953042982267919, undefined, []); }
+  static isRelativeAltitudeAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 3953042982267919, undefined, []); }
   /** init() */
-  static init(): CMAltimeter { return callSDK<CMAltimeter>("CoreMotion_212edf3d13b127f5", 1869122662032218, undefined, []); }
+  static init(): CMAltimeter { return callSDK<CMAltimeter>("CoreMotion_5d69670f0307b385", 1869122662032218, undefined, []); }
   /**
    * func startAbsoluteAltitudeUpdates(to queue: OperationQueue, withHandler handler: @escaping CMAbsoluteAltitudeHandler)
    * @availability iOS 15.0+
    */
-  startAbsoluteAltitudeUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMAbsoluteAltitudeData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2321201872053657, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startAbsoluteAltitudeUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMAbsoluteAltitudeData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2321201872053657, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startRelativeAltitudeUpdates(to queue: OperationQueue, withHandler handler: @escaping CMAltitudeHandler)
    * @availability iOS 8.0+
    */
-  startRelativeAltitudeUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMAltitudeData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 491503247327630, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startRelativeAltitudeUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMAltitudeData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 491503247327630, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopAbsoluteAltitudeUpdates()
    * @availability iOS 15.0+
    */
-  stopAbsoluteAltitudeUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3626701243386917, this, []); }
+  stopAbsoluteAltitudeUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3626701243386917, this, []); }
   /**
    * func stopRelativeAltitudeUpdates()
    * @availability iOS 8.0+
    */
-  stopRelativeAltitudeUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1483815891801888, this, []); }
+  stopRelativeAltitudeUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1483815891801888, this, []); }
   declare readonly $type: { "c:objc(cs)CMAltimeter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -152,17 +152,17 @@ export class CMAltimeter extends SDKHandle {
  */
 export class CMAltitudeData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMAltitudeData { return callSDK<CMAltitudeData>("CoreMotion_212edf3d13b127f5", 4193972000262374, undefined, []); }
+  static init(): CMAltitudeData { return callSDK<CMAltitudeData>("CoreMotion_5d69670f0307b385", 4193972000262374, undefined, []); }
   /**
    * var pressure: NSNumber { get }
    * @availability iOS 8.0+
    */
-  get pressure(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMotion_212edf3d13b127f5", 3848980855491149, this, []); }
+  get pressure(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMotion_5d69670f0307b385", 3848980855491149, this, []); }
   /**
    * var relativeAltitude: NSNumber { get }
    * @availability iOS 8.0+
    */
-  get relativeAltitude(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMotion_212edf3d13b127f5", 2458957222161703, this, []); }
+  get relativeAltitude(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMotion_5d69670f0307b385", 2458957222161703, this, []); }
   declare readonly $type: { "c:objc(cs)CMAltitudeData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "pressure": true; "relativeAltitude": true };
 }
@@ -179,17 +179,17 @@ export type CMAltitudeHandler = ((arg0: (CMAltitudeData) | null, arg1: (NativeEr
  */
 export class CMAmbientPressureData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMAmbientPressureData { return callSDK<CMAmbientPressureData>("CoreMotion_212edf3d13b127f5", 3461720857369571, undefined, []); }
+  static init(): CMAmbientPressureData { return callSDK<CMAmbientPressureData>("CoreMotion_5d69670f0307b385", 3461720857369571, undefined, []); }
   /**
    * var pressure: Measurement<UnitPressure> { get }
    * @availability iOS 10.0+
    */
-  get pressure(): $SDK5 { return callSDK<$SDK5>("CoreMotion_212edf3d13b127f5", 1079922799695998, this, []); }
+  get pressure(): $SDK5 { return callSDK<$SDK5>("CoreMotion_5d69670f0307b385", 1079922799695998, this, []); }
   /**
    * var temperature: Measurement<UnitTemperature> { get }
    * @availability iOS 10.0+
    */
-  get temperature(): $SDK6 { return callSDK<$SDK6>("CoreMotion_212edf3d13b127f5", 3138740272189137, this, []); }
+  get temperature(): $SDK6 { return callSDK<$SDK6>("CoreMotion_5d69670f0307b385", 3138740272189137, this, []); }
   declare readonly $type: { "c:objc(cs)CMAmbientPressureData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "pressure": true; "temperature": true };
 }
@@ -200,37 +200,37 @@ export class CMAmbientPressureData extends (CMLogItem as unknown as Omit<typeof 
  */
 export class CMAttitude extends SDKHandle {
   /** init() */
-  static init(): CMAttitude { return callSDK<CMAttitude>("CoreMotion_212edf3d13b127f5", 498883959983188, undefined, []); }
+  static init(): CMAttitude { return callSDK<CMAttitude>("CoreMotion_5d69670f0307b385", 498883959983188, undefined, []); }
   /**
    * func multiply(byInverseOf attitude: CMAttitude)
    * @availability iOS 4.0+
    */
-  multiply(attitude: CMAttitude): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1687289407905380, this, [attitude]); }
+  multiply(attitude: CMAttitude): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1687289407905380, this, [attitude]); }
   /**
    * var pitch: Double { get }
    * @availability iOS 4.0+
    */
-  get pitch(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 4190073687064890, this, []); }
+  get pitch(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 4190073687064890, this, []); }
   /**
    * var quaternion: CMQuaternion { get }
    * @availability iOS 4.0+
    */
-  get quaternion(): CMQuaternion { return callSDK<CMQuaternion>("CoreMotion_212edf3d13b127f5", 2547371074275757, this, []); }
+  get quaternion(): CMQuaternion { return callSDK<CMQuaternion>("CoreMotion_5d69670f0307b385", 2547371074275757, this, []); }
   /**
    * var roll: Double { get }
    * @availability iOS 4.0+
    */
-  get roll(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1086546169723704, this, []); }
+  get roll(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1086546169723704, this, []); }
   /**
    * var rotationMatrix: CMRotationMatrix { get }
    * @availability iOS 4.0+
    */
-  get rotationMatrix(): CMRotationMatrix { return callSDK<CMRotationMatrix>("CoreMotion_212edf3d13b127f5", 138193108735798, this, []); }
+  get rotationMatrix(): CMRotationMatrix { return callSDK<CMRotationMatrix>("CoreMotion_5d69670f0307b385", 138193108735798, this, []); }
   /**
    * var yaw: Double { get }
    * @availability iOS 4.0+
    */
-  get yaw(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2134059351666677, this, []); }
+  get yaw(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2134059351666677, this, []); }
   declare readonly $type: { "c:objc(cs)CMAttitude": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pitch": true; "quaternion": true; "roll": true; "rotationMatrix": true; "yaw": true };
 }
@@ -240,15 +240,15 @@ export type CMAttitudeReferenceFrame = Array<"xArbitraryZVertical" | "xArbitrary
 
 export const CMAttitudeReferenceFrame = {
   /** static var xArbitraryCorrectedZVertical: CMAttitudeReferenceFrame { get } */
-  get xArbitraryCorrectedZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 582522630560306, undefined, []); },
+  get xArbitraryCorrectedZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 582522630560306, undefined, []); },
   /** static var xArbitraryZVertical: CMAttitudeReferenceFrame { get } */
-  get xArbitraryZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 1327809779502723, undefined, []); },
+  get xArbitraryZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 1327809779502723, undefined, []); },
   /** static var xMagneticNorthZVertical: CMAttitudeReferenceFrame { get } */
-  get xMagneticNorthZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 4121226422876667, undefined, []); },
+  get xMagneticNorthZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 4121226422876667, undefined, []); },
   /** static var xTrueNorthZVertical: CMAttitudeReferenceFrame { get } */
-  get xTrueNorthZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 3361937456796491, undefined, []); },
+  get xTrueNorthZVertical(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 3361937456796491, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 2909879689925797, undefined, [rawValue]); }
+  init(rawValue: number): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 2909879689925797, undefined, [rawValue]); }
 };
 
 /**
@@ -262,43 +262,43 @@ export const CMAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (CMAuthorizationStatus) | null { return callSDK<(CMAuthorizationStatus) | null>("CoreMotion_212edf3d13b127f5", 600906153398967, undefined, [rawValue]); }
+  init(rawValue: number): (CMAuthorizationStatus) | null { return callSDK<(CMAuthorizationStatus) | null>("CoreMotion_5d69670f0307b385", 600906153398967, undefined, [rawValue]); }
 };
 
 /** class CMBatchedSensorManager */
 export class CMBatchedSensorManager extends SDKHandle {
   /** class var isAccelerometerSupported: Bool { get } */
-  static get isAccelerometerSupported(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2816982478403181, undefined, []); }
+  static get isAccelerometerSupported(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2816982478403181, undefined, []); }
   /** class var authorizationStatus: CMAuthorizationStatus { get } */
-  static get authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 2169138276055056, undefined, []); }
+  static get authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 2169138276055056, undefined, []); }
   /** class var isDeviceMotionSupported: Bool { get } */
-  static get isDeviceMotionSupported(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 175224044518618, undefined, []); }
+  static get isDeviceMotionSupported(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 175224044518618, undefined, []); }
   /** init() */
-  static init(): CMBatchedSensorManager { return callSDK<CMBatchedSensorManager>("CoreMotion_212edf3d13b127f5", 1934587980215222, undefined, []); }
+  static init(): CMBatchedSensorManager { return callSDK<CMBatchedSensorManager>("CoreMotion_5d69670f0307b385", 1934587980215222, undefined, []); }
   /** func startAccelerometerUpdates() */
-  startAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3415788553660512, this, []); }
+  startAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3415788553660512, this, []); }
   /** func startAccelerometerUpdates(handler: @escaping ([CMAccelerometerData]?, (any Error)?) -> Void) */
-  startAccelerometerUpdatesHandler(handler: ((arg0: (Array<CMAccelerometerData>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 151555494011104, this, [handler], [{"callback":{"out":[]}}]); }
+  startAccelerometerUpdatesHandler(handler: ((arg0: (Array<CMAccelerometerData>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 151555494011104, this, [handler], [{"callback":{"out":[]}}]); }
   /** func startDeviceMotionUpdates() */
-  startDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 403306217257561, this, []); }
+  startDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 403306217257561, this, []); }
   /** func startDeviceMotionUpdates(handler: @escaping ([CMDeviceMotion]?, (any Error)?) -> Void) */
-  startDeviceMotionUpdatesHandler(handler: ((arg0: (Array<CMDeviceMotion>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3644124661053160, this, [handler], [{"callback":{"out":[]}}]); }
+  startDeviceMotionUpdatesHandler(handler: ((arg0: (Array<CMDeviceMotion>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3644124661053160, this, [handler], [{"callback":{"out":[]}}]); }
   /** func stopAccelerometerUpdates() */
-  stopAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3192009462921836, this, []); }
+  stopAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3192009462921836, this, []); }
   /** func stopDeviceMotionUpdates() */
-  stopDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3688777412581102, this, []); }
+  stopDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3688777412581102, this, []); }
   /** var isAccelerometerActive: Bool { get } */
-  get isAccelerometerActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2427666744145182, this, []); }
+  get isAccelerometerActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2427666744145182, this, []); }
   /** var accelerometerBatch: [CMAccelerometerData]? { get } */
-  get accelerometerBatch(): (Array<CMAccelerometerData>) | null { return callSDK<(Array<CMAccelerometerData>) | null>("CoreMotion_212edf3d13b127f5", 954142063205078, this, []); }
+  get accelerometerBatch(): (Array<CMAccelerometerData>) | null { return callSDK<(Array<CMAccelerometerData>) | null>("CoreMotion_5d69670f0307b385", 954142063205078, this, []); }
   /** var accelerometerDataFrequency: Int { get } */
-  get accelerometerDataFrequency(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2030319112348412, this, []); }
+  get accelerometerDataFrequency(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2030319112348412, this, []); }
   /** var isDeviceMotionActive: Bool { get } */
-  get isDeviceMotionActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1334067731908227, this, []); }
+  get isDeviceMotionActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1334067731908227, this, []); }
   /** var deviceMotionBatch: [CMDeviceMotion]? { get } */
-  get deviceMotionBatch(): (Array<CMDeviceMotion>) | null { return callSDK<(Array<CMDeviceMotion>) | null>("CoreMotion_212edf3d13b127f5", 1813708565154085, this, []); }
+  get deviceMotionBatch(): (Array<CMDeviceMotion>) | null { return callSDK<(Array<CMDeviceMotion>) | null>("CoreMotion_5d69670f0307b385", 1813708565154085, this, []); }
   /** var deviceMotionDataFrequency: Int { get } */
-  get deviceMotionDataFrequency(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3546652704366, this, []); }
+  get deviceMotionDataFrequency(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3546652704366, this, []); }
   declare readonly $type: { "c:objc(cs)CMBatchedSensorManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAccelerometerActive": true; "accelerometerBatch": true; "accelerometerDataFrequency": true; "isDeviceMotionActive": true; "deviceMotionBatch": true; "deviceMotionDataFrequency": true };
 }
@@ -314,15 +314,15 @@ export interface CMBodyIdentifiable {
 /** struct CMCalibratedMagneticField */
 export class CMCalibratedMagneticField extends SDKHandle {
   /** var accuracy: CMMagneticFieldCalibrationAccuracy */
-  get accuracy(): CMMagneticFieldCalibrationAccuracy { return callSDK<CMMagneticFieldCalibrationAccuracy>("CoreMotion_212edf3d13b127f5", 3268168289296609, this, []); }
-  set accuracy(value: CMMagneticFieldCalibrationAccuracy) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3846106745413765, this, [value]); }
+  get accuracy(): CMMagneticFieldCalibrationAccuracy { return callSDK<CMMagneticFieldCalibrationAccuracy>("CoreMotion_5d69670f0307b385", 3268168289296609, this, []); }
+  set accuracy(value: CMMagneticFieldCalibrationAccuracy) { callSDK<void>("CoreMotion_5d69670f0307b385", 3846106745413765, this, [value]); }
   /** var field: CMMagneticField */
-  get field(): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_212edf3d13b127f5", 1165186251545342, this, []); }
-  set field(value: CMMagneticField) { callSDK<void>("CoreMotion_212edf3d13b127f5", 821817125405732, this, [value]); }
+  get field(): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_5d69670f0307b385", 1165186251545342, this, []); }
+  set field(value: CMMagneticField) { callSDK<void>("CoreMotion_5d69670f0307b385", 821817125405732, this, [value]); }
   /** init(field: CMMagneticField, accuracy: CMMagneticFieldCalibrationAccuracy) */
-  static initFieldAccuracy(field: CMMagneticField, accuracy: CMMagneticFieldCalibrationAccuracy): CMCalibratedMagneticField { return callSDK<CMCalibratedMagneticField>("CoreMotion_212edf3d13b127f5", 2639851458990808, undefined, [field, accuracy]); }
+  static initFieldAccuracy(field: CMMagneticField, accuracy: CMMagneticFieldCalibrationAccuracy): CMCalibratedMagneticField { return callSDK<CMCalibratedMagneticField>("CoreMotion_5d69670f0307b385", 2639851458990808, undefined, [field, accuracy]); }
   /** init() */
-  static init(): CMCalibratedMagneticField { return callSDK<CMCalibratedMagneticField>("CoreMotion_212edf3d13b127f5", 3995157898986659, undefined, []); }
+  static init(): CMCalibratedMagneticField { return callSDK<CMCalibratedMagneticField>("CoreMotion_5d69670f0307b385", 3995157898986659, undefined, []); }
   declare readonly $type: { "c:@SA@CMCalibratedMagneticField": true };
 }
 
@@ -332,47 +332,47 @@ export class CMCalibratedMagneticField extends SDKHandle {
  */
 export class CMDeviceMotion extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMDeviceMotion { return callSDK<CMDeviceMotion>("CoreMotion_212edf3d13b127f5", 3629064732809775, undefined, []); }
+  static init(): CMDeviceMotion { return callSDK<CMDeviceMotion>("CoreMotion_5d69670f0307b385", 3629064732809775, undefined, []); }
   /**
    * var attitude: CMAttitude { get }
    * @availability iOS 4.0+
    */
-  get attitude(): CMAttitude { return callSDK<CMAttitude>("CoreMotion_212edf3d13b127f5", 2512854295302607, this, []); }
+  get attitude(): CMAttitude { return callSDK<CMAttitude>("CoreMotion_5d69670f0307b385", 2512854295302607, this, []); }
   /**
    * var gravity: CMAcceleration { get }
    * @availability iOS 4.0+
    */
-  get gravity(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_212edf3d13b127f5", 2503488282097556, this, []); }
+  get gravity(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_5d69670f0307b385", 2503488282097556, this, []); }
   /**
    * var heading: Double { get }
    * @availability iOS 11.0+
    */
-  get heading(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 554016892561299, this, []); }
+  get heading(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 554016892561299, this, []); }
   /**
    * var headingAccuracy: Double { get }
    * @availability iOS 27.0+
    */
-  get headingAccuracy(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 846780863701239, this, []); }
+  get headingAccuracy(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 846780863701239, this, []); }
   /**
    * var magneticField: CMCalibratedMagneticField { get }
    * @availability iOS 5.0+
    */
-  get magneticField(): CMCalibratedMagneticField { return callSDK<CMCalibratedMagneticField>("CoreMotion_212edf3d13b127f5", 932193205939754, this, []); }
+  get magneticField(): CMCalibratedMagneticField { return callSDK<CMCalibratedMagneticField>("CoreMotion_5d69670f0307b385", 932193205939754, this, []); }
   /**
    * var rotationRate: CMRotationRate { get }
    * @availability iOS 4.0+
    */
-  get rotationRate(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_212edf3d13b127f5", 2427598989258503, this, []); }
+  get rotationRate(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_5d69670f0307b385", 2427598989258503, this, []); }
   /**
    * var sensorLocation: CMDeviceMotion.SensorLocation { get }
    * @availability iOS 14.0+
    */
-  get sensorLocation(): CMDeviceMotion_SensorLocation { return callSDK<CMDeviceMotion_SensorLocation>("CoreMotion_212edf3d13b127f5", 1986725885581312, this, []); }
+  get sensorLocation(): CMDeviceMotion_SensorLocation { return callSDK<CMDeviceMotion_SensorLocation>("CoreMotion_5d69670f0307b385", 1986725885581312, this, []); }
   /**
    * var userAcceleration: CMAcceleration { get }
    * @availability iOS 4.0+
    */
-  get userAcceleration(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_212edf3d13b127f5", 126795645589213, this, []); }
+  get userAcceleration(): CMAcceleration { return callSDK<CMAcceleration>("CoreMotion_5d69670f0307b385", 126795645589213, this, []); }
   declare readonly $type: { "c:objc(cs)CMDeviceMotion": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "attitude": true; "gravity": true; "heading": true; "headingAccuracy": true; "magneticField": true; "rotationRate": true; "sensorLocation": true; "userAcceleration": true };
 }
@@ -382,7 +382,7 @@ export type CMDeviceMotion_SensorLocation = "default" | "headphoneLeft" | "headp
 
 export const CMDeviceMotion_SensorLocation = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CMDeviceMotion_SensorLocation) | null { return callSDK<(CMDeviceMotion_SensorLocation) | null>("CoreMotion_212edf3d13b127f5", 1716015660376339, undefined, [rawValue]); }
+  init(rawValue: number): (CMDeviceMotion_SensorLocation) | null { return callSDK<(CMDeviceMotion_SensorLocation) | null>("CoreMotion_5d69670f0307b385", 1716015660376339, undefined, [rawValue]); }
 };
 
 /** typealias CMDeviceMotionHandler = (CMDeviceMotion?, (any Error)?) -> Void */
@@ -394,27 +394,27 @@ export type CMDeviceMotionHandler = $SDK11;
  */
 export class CMDyskineticSymptomResult extends SDKHandle {
   /** init() */
-  static init(): CMDyskineticSymptomResult { return callSDK<CMDyskineticSymptomResult>("CoreMotion_212edf3d13b127f5", 3861398932459549, undefined, []); }
+  static init(): CMDyskineticSymptomResult { return callSDK<CMDyskineticSymptomResult>("CoreMotion_5d69670f0307b385", 3861398932459549, undefined, []); }
   /**
    * var endDate: Date { get }
    * @availability iOS 12.0+
    */
-  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 3638186106007672, this, []); }
+  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 3638186106007672, this, []); }
   /**
    * var percentLikely: Float { get }
    * @availability iOS 12.0+
    */
-  get percentLikely(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 4075691830253237, this, []); }
+  get percentLikely(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 4075691830253237, this, []); }
   /**
    * var percentUnlikely: Float { get }
    * @availability iOS 12.0+
    */
-  get percentUnlikely(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2356535219989244, this, []); }
+  get percentUnlikely(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2356535219989244, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 12.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 540438613400512, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 540438613400512, this, []); }
   declare readonly $type: { "c:objc(cs)CMDyskineticSymptomResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endDate": true; "percentLikely": true; "percentUnlikely": true; "startDate": true };
 }
@@ -424,12 +424,12 @@ export type CMError = (number & {});
 
 export const CMError = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): CMError { return callSDK<CMError>("CoreMotion_212edf3d13b127f5", 1112950900031812, undefined, [rawValue]); },
+  initRawValue(rawValue: number): CMError { return callSDK<CMError>("CoreMotion_5d69670f0307b385", 1112950900031812, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: CMError): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 4069675740459968, $self, []); },
-  setRawValue($self: CMError, value: number): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3704755581249950, $self, [value]); },
+  getRawValue($self: CMError): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 4069675740459968, $self, []); },
+  setRawValue($self: CMError, value: number): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3704755581249950, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): CMError { return callSDK<CMError>("CoreMotion_212edf3d13b127f5", 2595061895404466, undefined, [rawValue]); }
+  init(rawValue: number): CMError { return callSDK<CMError>("CoreMotion_5d69670f0307b385", 2595061895404466, undefined, [rawValue]); }
 };
 
 /**
@@ -438,12 +438,12 @@ export const CMError = {
  */
 export class CMGyroData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMGyroData { return callSDK<CMGyroData>("CoreMotion_212edf3d13b127f5", 2451363624502651, undefined, []); }
+  static init(): CMGyroData { return callSDK<CMGyroData>("CoreMotion_5d69670f0307b385", 2451363624502651, undefined, []); }
   /**
    * var rotationRate: CMRotationRate { get }
    * @availability iOS 4.0+
    */
-  get rotationRate(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_212edf3d13b127f5", 879760304130032, this, []); }
+  get rotationRate(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_5d69670f0307b385", 879760304130032, this, []); }
   declare readonly $type: { "c:objc(cs)CMGyroData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "rotationRate": true };
 }
@@ -460,49 +460,49 @@ export class CMHeadphoneActivityManager extends SDKHandle {
    * class func authorizationStatus() -> CMAuthorizationStatus
    * @availability iOS 18.0+
    */
-  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 2181071608580587, undefined, []); }
+  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 2181071608580587, undefined, []); }
   /** init() */
-  static init(): CMHeadphoneActivityManager { return callSDK<CMHeadphoneActivityManager>("CoreMotion_212edf3d13b127f5", 3385554947015397, undefined, []); }
+  static init(): CMHeadphoneActivityManager { return callSDK<CMHeadphoneActivityManager>("CoreMotion_5d69670f0307b385", 3385554947015397, undefined, []); }
   /**
    * func startActivityUpdates(to queue: OperationQueue, withHandler handler: @escaping CMHeadphoneActivityManager.ActivityHandler)
    * @availability iOS 18.0+
    */
-  startActivityUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMMotionActivity) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1683783898495935, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startActivityUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMMotionActivity) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1683783898495935, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startStatusUpdates(to queue: OperationQueue, withHandler handler: @escaping CMHeadphoneActivityManager.StatusHandler)
    * @availability iOS 18.0+
    */
-  startStatusUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: CMHeadphoneActivityManager_Status, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 4219587103581855, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startStatusUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: CMHeadphoneActivityManager_Status, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 4219587103581855, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopActivityUpdates()
    * @availability iOS 18.0+
    */
-  stopActivityUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1682501026998794, this, []); }
+  stopActivityUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1682501026998794, this, []); }
   /**
    * func stopStatusUpdates()
    * @availability iOS 18.0+
    */
-  stopStatusUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3872774428600689, this, []); }
+  stopStatusUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3872774428600689, this, []); }
   /**
    * var isActivityActive: Bool { get }
    * @availability iOS 18.0+
    */
-  get isActivityActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 445647762143389, this, []); }
+  get isActivityActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 445647762143389, this, []); }
   /**
    * var isActivityAvailable: Bool { get }
    * @availability iOS 18.0+
    */
-  get isActivityAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2517684999288698, this, []); }
+  get isActivityAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2517684999288698, this, []); }
   /**
    * var isStatusActive: Bool { get }
    * @availability iOS 18.0+
    */
-  get isStatusActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2286325978444880, this, []); }
+  get isStatusActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2286325978444880, this, []); }
   /**
    * var isStatusAvailable: Bool { get }
    * @availability iOS 18.0+
    */
-  get isStatusAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 3622719419607197, this, []); }
+  get isStatusAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 3622719419607197, this, []); }
   declare readonly $type: { "c:objc(cs)CMHeadphoneActivityManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActivityActive": true; "isActivityAvailable": true; "isStatusActive": true; "isStatusAvailable": true };
 }
@@ -515,7 +515,7 @@ export type CMHeadphoneActivityManager_Status = "disconnected" | "connected";
 
 export const CMHeadphoneActivityManager_Status = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CMHeadphoneActivityManager_Status) | null { return callSDK<(CMHeadphoneActivityManager_Status) | null>("CoreMotion_212edf3d13b127f5", 3163727134060579, undefined, [rawValue]); }
+  init(rawValue: number): (CMHeadphoneActivityManager_Status) | null { return callSDK<(CMHeadphoneActivityManager_Status) | null>("CoreMotion_5d69670f0307b385", 3163727134060579, undefined, [rawValue]); }
 };
 
 /** typealias StatusHandler = (CMHeadphoneActivityManager.Status, (any Error)?) -> Void */
@@ -530,60 +530,60 @@ export class CMHeadphoneMotionManager extends SDKHandle {
    * class func authorizationStatus() -> CMAuthorizationStatus
    * @availability iOS 14.0+
    */
-  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 936643744752776, undefined, []); }
+  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 936643744752776, undefined, []); }
   /** init() */
-  static init(): CMHeadphoneMotionManager { return callSDK<CMHeadphoneMotionManager>("CoreMotion_212edf3d13b127f5", 4146698180936406, undefined, []); }
+  static init(): CMHeadphoneMotionManager { return callSDK<CMHeadphoneMotionManager>("CoreMotion_5d69670f0307b385", 4146698180936406, undefined, []); }
   /**
    * func startConnectionStatusUpdates()
    * @availability iOS 14.0+
    */
-  startConnectionStatusUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3326855835125975, this, []); }
+  startConnectionStatusUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3326855835125975, this, []); }
   /**
    * func startDeviceMotionUpdates()
    * @availability iOS 14.0+
    */
-  startDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2157065264978860, this, []); }
+  startDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2157065264978860, this, []); }
   /**
    * func startDeviceMotionUpdates(to queue: OperationQueue, withHandler handler: @escaping CMHeadphoneMotionManager.DeviceMotionHandler)
    * @availability iOS 14.0+
    */
-  startDeviceMotionUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: $SDK17): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3012493065443377, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startDeviceMotionUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: $SDK17): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3012493065443377, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopConnectionStatusUpdates()
    * @availability iOS 14.0+
    */
-  stopConnectionStatusUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2789524836690551, this, []); }
+  stopConnectionStatusUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2789524836690551, this, []); }
   /**
    * func stopDeviceMotionUpdates()
    * @availability iOS 14.0+
    */
-  stopDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2714949021063475, this, []); }
+  stopDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2714949021063475, this, []); }
   /**
    * var isConnectionStatusActive: Bool { get }
    * @availability iOS 14.0+
    */
-  get isConnectionStatusActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 4268444685913682, this, []); }
+  get isConnectionStatusActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 4268444685913682, this, []); }
   /**
    * weak var delegate: (any CMHeadphoneMotionManagerDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMotion_212edf3d13b127f5", 873586620808897, this, []); }
-  set delegate(value: (Implements<CMHeadphoneMotionManagerDelegate> | SDKHandle) | null) { callSDK<void>("CoreMotion_212edf3d13b127f5", 1809844135171051, this, [value], [{"protocol":"c:objc(pl)CMHeadphoneMotionManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMotion_5d69670f0307b385", 873586620808897, this, []); }
+  set delegate(value: (Implements<CMHeadphoneMotionManagerDelegate> | SDKHandle) | null) { callSDK<void>("CoreMotion_5d69670f0307b385", 1809844135171051, this, [value], [{"protocol":"c:objc(pl)CMHeadphoneMotionManagerDelegate"}]); }
   /**
    * var deviceMotion: CMDeviceMotion? { get }
    * @availability iOS 14.0+
    */
-  get deviceMotion(): (CMDeviceMotion) | null { return callSDK<(CMDeviceMotion) | null>("CoreMotion_212edf3d13b127f5", 2832706075040928, this, []); }
+  get deviceMotion(): (CMDeviceMotion) | null { return callSDK<(CMDeviceMotion) | null>("CoreMotion_5d69670f0307b385", 2832706075040928, this, []); }
   /**
    * var isDeviceMotionActive: Bool { get }
    * @availability iOS 14.0+
    */
-  get isDeviceMotionActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1497177457933277, this, []); }
+  get isDeviceMotionActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1497177457933277, this, []); }
   /**
    * var isDeviceMotionAvailable: Bool { get }
    * @availability iOS 14.0+
    */
-  get isDeviceMotionAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1969795189826243, this, []); }
+  get isDeviceMotionAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1969795189826243, this, []); }
   declare readonly $type: { "c:objc(cs)CMHeadphoneMotionManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isConnectionStatusActive": true; "delegate": true; "deviceMotion": true; "isDeviceMotionActive": true; "isDeviceMotionAvailable": true };
 }
@@ -614,22 +614,22 @@ export interface CMHeadphoneMotionManagerDelegate {
  */
 export class CMHighFrequencyHeartRateData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMHighFrequencyHeartRateData { return callSDK<CMHighFrequencyHeartRateData>("CoreMotion_212edf3d13b127f5", 207818267275916, undefined, []); }
+  static init(): CMHighFrequencyHeartRateData { return callSDK<CMHighFrequencyHeartRateData>("CoreMotion_5d69670f0307b385", 207818267275916, undefined, []); }
   /**
    * var confidence: CMHighFrequencyHeartRateDataConfidence { get }
    * @availability iOS 17.0+
    */
-  get confidence(): CMHighFrequencyHeartRateDataConfidence { return callSDK<CMHighFrequencyHeartRateDataConfidence>("CoreMotion_212edf3d13b127f5", 4487670092424639, this, []); }
+  get confidence(): CMHighFrequencyHeartRateDataConfidence { return callSDK<CMHighFrequencyHeartRateDataConfidence>("CoreMotion_5d69670f0307b385", 4487670092424639, this, []); }
   /**
    * var date: Date? { get }
    * @availability iOS 17.0+
    */
-  get date(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("CoreMotion_212edf3d13b127f5", 1643758088682686, this, []); }
+  get date(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("CoreMotion_5d69670f0307b385", 1643758088682686, this, []); }
   /**
    * var heartRate: Double { get }
    * @availability iOS 17.0+
    */
-  get heartRate(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3998455186906575, this, []); }
+  get heartRate(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3998455186906575, this, []); }
   declare readonly $type: { "c:objc(cs)CMHighFrequencyHeartRateData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "confidence": true; "date": true; "heartRate": true };
 }
@@ -645,24 +645,24 @@ export const CMHighFrequencyHeartRateDataConfidence = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (CMHighFrequencyHeartRateDataConfidence) | null { return callSDK<(CMHighFrequencyHeartRateDataConfidence) | null>("CoreMotion_212edf3d13b127f5", 2978854746136209, undefined, [rawValue]); }
+  init(rawValue: number): (CMHighFrequencyHeartRateDataConfidence) | null { return callSDK<(CMHighFrequencyHeartRateDataConfidence) | null>("CoreMotion_5d69670f0307b385", 2978854746136209, undefined, [rawValue]); }
 };
 
 /** struct CMMagneticField */
 export class CMMagneticField extends SDKHandle {
   /** var x: Double */
-  get x(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 996968377248255, this, []); }
-  set x(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 4384545153590105, this, [value]); }
+  get x(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 996968377248255, this, []); }
+  set x(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 4384545153590105, this, [value]); }
   /** var y: Double */
-  get y(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 689989045754556, this, []); }
-  set y(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 2562961397158588, this, [value]); }
+  get y(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 689989045754556, this, []); }
+  set y(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 2562961397158588, this, [value]); }
   /** var z: Double */
-  get z(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2441102982350845, this, []); }
-  set z(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 2030876630676205, this, [value]); }
+  get z(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2441102982350845, this, []); }
+  set z(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 2030876630676205, this, [value]); }
   /** init(x: Double, y: Double, z: Double) */
-  static initXYZ(x: number, y: number, z: number): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_212edf3d13b127f5", 2222605445343684, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_5d69670f0307b385", 2222605445343684, undefined, [x, y, z]); }
   /** init() */
-  static init(): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_212edf3d13b127f5", 3551405962742515, undefined, []); }
+  static init(): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_5d69670f0307b385", 3551405962742515, undefined, []); }
   declare readonly $type: { "c:@SA@CMMagneticField": true };
 }
 
@@ -671,7 +671,7 @@ export type CMMagneticFieldCalibrationAccuracy = "uncalibrated" | "low" | "mediu
 
 export const CMMagneticFieldCalibrationAccuracy = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CMMagneticFieldCalibrationAccuracy) | null { return callSDK<(CMMagneticFieldCalibrationAccuracy) | null>("CoreMotion_212edf3d13b127f5", 961606846405610, undefined, [rawValue]); }
+  init(rawValue: number): (CMMagneticFieldCalibrationAccuracy) | null { return callSDK<(CMMagneticFieldCalibrationAccuracy) | null>("CoreMotion_5d69670f0307b385", 961606846405610, undefined, [rawValue]); }
 };
 
 /**
@@ -680,12 +680,12 @@ export const CMMagneticFieldCalibrationAccuracy = {
  */
 export class CMMagnetometerData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMMagnetometerData { return callSDK<CMMagnetometerData>("CoreMotion_212edf3d13b127f5", 1202589799697628, undefined, []); }
+  static init(): CMMagnetometerData { return callSDK<CMMagnetometerData>("CoreMotion_5d69670f0307b385", 1202589799697628, undefined, []); }
   /**
    * var magneticField: CMMagneticField { get }
    * @availability iOS 5.0+
    */
-  get magneticField(): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_212edf3d13b127f5", 3724681647761449, this, []); }
+  get magneticField(): CMMagneticField { return callSDK<CMMagneticField>("CoreMotion_5d69670f0307b385", 3724681647761449, this, []); }
   declare readonly $type: { "c:objc(cs)CMMagnetometerData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "magneticField": true };
 }
@@ -702,47 +702,47 @@ export type CMMagnetometerHandler = ((arg0: (CMMagnetometerData) | null, arg1: (
  */
 export class CMMotionActivity extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMMotionActivity { return callSDK<CMMotionActivity>("CoreMotion_212edf3d13b127f5", 3469899896358836, undefined, []); }
+  static init(): CMMotionActivity { return callSDK<CMMotionActivity>("CoreMotion_5d69670f0307b385", 3469899896358836, undefined, []); }
   /**
    * var automotive: Bool { get }
    * @availability iOS 7.0+
    */
-  get automotive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 961661136002669, this, []); }
+  get automotive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 961661136002669, this, []); }
   /**
    * var confidence: CMMotionActivityConfidence { get }
    * @availability iOS 7.0+
    */
-  get confidence(): CMMotionActivityConfidence { return callSDK<CMMotionActivityConfidence>("CoreMotion_212edf3d13b127f5", 3907363955121699, this, []); }
+  get confidence(): CMMotionActivityConfidence { return callSDK<CMMotionActivityConfidence>("CoreMotion_5d69670f0307b385", 3907363955121699, this, []); }
   /**
    * var cycling: Bool { get }
    * @availability iOS 8.0+
    */
-  get cycling(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2034295234870355, this, []); }
+  get cycling(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2034295234870355, this, []); }
   /**
    * var running: Bool { get }
    * @availability iOS 7.0+
    */
-  get running(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 586829544301878, this, []); }
+  get running(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 586829544301878, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 7.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 1349490245675867, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 1349490245675867, this, []); }
   /**
    * var stationary: Bool { get }
    * @availability iOS 7.0+
    */
-  get stationary(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 774230889959775, this, []); }
+  get stationary(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 774230889959775, this, []); }
   /**
    * var unknown: Bool { get }
    * @availability iOS 7.0+
    */
-  get unknown(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2204227407792534, this, []); }
+  get unknown(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2204227407792534, this, []); }
   /**
    * var walking: Bool { get }
    * @availability iOS 7.0+
    */
-  get walking(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 725970490562873, this, []); }
+  get walking(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 725970490562873, this, []); }
   declare readonly $type: { "c:objc(cs)CMMotionActivity": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "automotive": true; "confidence": true; "cycling": true; "running": true; "startDate": true; "stationary": true; "unknown": true; "walking": true };
 }
@@ -752,7 +752,7 @@ export type CMMotionActivityConfidence = "low" | "medium" | "high";
 
 export const CMMotionActivityConfidence = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CMMotionActivityConfidence) | null { return callSDK<(CMMotionActivityConfidence) | null>("CoreMotion_212edf3d13b127f5", 1409058004419354, undefined, [rawValue]); }
+  init(rawValue: number): (CMMotionActivityConfidence) | null { return callSDK<(CMMotionActivityConfidence) | null>("CoreMotion_5d69670f0307b385", 1409058004419354, undefined, [rawValue]); }
 };
 
 /**
@@ -770,29 +770,29 @@ export class CMMotionActivityManager extends SDKHandle {
    * class func authorizationStatus() -> CMAuthorizationStatus
    * @availability iOS 11.0+
    */
-  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 210887167645580, undefined, []); }
+  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 210887167645580, undefined, []); }
   /**
    * class func isActivityAvailable() -> Bool
    * @availability iOS 7.0+
    */
-  static isActivityAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2064750841698413, undefined, []); }
+  static isActivityAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2064750841698413, undefined, []); }
   /** init() */
-  static init(): CMMotionActivityManager { return callSDK<CMMotionActivityManager>("CoreMotion_212edf3d13b127f5", 626856279254602, undefined, []); }
+  static init(): CMMotionActivityManager { return callSDK<CMMotionActivityManager>("CoreMotion_5d69670f0307b385", 626856279254602, undefined, []); }
   /**
    * func queryActivityStarting(from start: Date, to end: Date, to queue: OperationQueue, withHandler handler: @escaping CMMotionActivityQueryHandler)
    * @availability iOS 7.0+
    */
-  queryActivityStarting(start: globalThis.Date, end: globalThis.Date, queue: _Foundation_OperationQueue, handler: ((arg0: (Array<CMMotionActivity>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1445637964792797, this, [start, end, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  queryActivityStarting(start: globalThis.Date, end: globalThis.Date, queue: _Foundation_OperationQueue, handler: ((arg0: (Array<CMMotionActivity>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1445637964792797, this, [start, end, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func startActivityUpdates(to queue: OperationQueue, withHandler handler: @escaping CMMotionActivityHandler)
    * @availability iOS 7.0+
    */
-  startActivityUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMMotionActivity) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 476482011345628, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startActivityUpdates(queue: _Foundation_OperationQueue, handler: ((arg0: (CMMotionActivity) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 476482011345628, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopActivityUpdates()
    * @availability iOS 7.0+
    */
-  stopActivityUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3972867590449226, this, []); }
+  stopActivityUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3972867590449226, this, []); }
   declare readonly $type: { "c:objc(cs)CMMotionActivityManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -811,180 +811,180 @@ export class CMMotionManager extends SDKHandle {
    * class func availableAttitudeReferenceFrames() -> CMAttitudeReferenceFrame
    * @availability iOS 5.0+
    */
-  static availableAttitudeReferenceFrames(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 3436012883462019, undefined, []); }
+  static availableAttitudeReferenceFrames(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 3436012883462019, undefined, []); }
   /** init() */
-  static init(): CMMotionManager { return callSDK<CMMotionManager>("CoreMotion_212edf3d13b127f5", 4092442990139470, undefined, []); }
+  static init(): CMMotionManager { return callSDK<CMMotionManager>("CoreMotion_5d69670f0307b385", 4092442990139470, undefined, []); }
   /**
    * func startAccelerometerUpdates()
    * @availability iOS 4.0+
    */
-  startAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3701857335482817, this, []); }
+  startAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3701857335482817, this, []); }
   /**
    * func startAccelerometerUpdates(to queue: OperationQueue, withHandler handler: @escaping CMAccelerometerHandler)
    * @availability iOS 4.0+
    */
-  startAccelerometerUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: ((arg0: (CMAccelerometerData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1224432270385645, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startAccelerometerUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: ((arg0: (CMAccelerometerData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1224432270385645, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startDeviceMotionUpdates()
    * @availability iOS 4.0+
    */
-  startDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 386618067236031, this, []); }
+  startDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 386618067236031, this, []); }
   /**
    * func startDeviceMotionUpdates(to queue: OperationQueue, withHandler handler: @escaping CMDeviceMotionHandler)
    * @availability iOS 4.0+
    */
-  startDeviceMotionUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: $SDK17): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3871707076211728, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startDeviceMotionUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: $SDK17): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3871707076211728, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startDeviceMotionUpdates(using referenceFrame: CMAttitudeReferenceFrame)
    * @availability iOS 5.0+
    */
-  startDeviceMotionUpdatesUsing(referenceFrame: CMAttitudeReferenceFrame): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2613568508479724, this, [referenceFrame]); }
+  startDeviceMotionUpdatesUsing(referenceFrame: CMAttitudeReferenceFrame): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2613568508479724, this, [referenceFrame]); }
   /**
    * func startDeviceMotionUpdates(using referenceFrame: CMAttitudeReferenceFrame, to queue: OperationQueue, withHandler handler: @escaping CMDeviceMotionHandler)
    * @availability iOS 5.0+
    */
-  startDeviceMotionUpdatesUsingToWithHandler(referenceFrame: CMAttitudeReferenceFrame, queue: _Foundation_OperationQueue, handler: $SDK17): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 814276269713048, this, [referenceFrame, queue, handler], [null,null,{"callback":{"out":[]}}]); }
+  startDeviceMotionUpdatesUsingToWithHandler(referenceFrame: CMAttitudeReferenceFrame, queue: _Foundation_OperationQueue, handler: $SDK17): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 814276269713048, this, [referenceFrame, queue, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func startGyroUpdates()
    * @availability iOS 4.0+
    */
-  startGyroUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3356493450880907, this, []); }
+  startGyroUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3356493450880907, this, []); }
   /**
    * func startGyroUpdates(to queue: OperationQueue, withHandler handler: @escaping CMGyroHandler)
    * @availability iOS 4.0+
    */
-  startGyroUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: ((arg0: (CMGyroData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 823696223877744, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startGyroUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: ((arg0: (CMGyroData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 823696223877744, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func startMagnetometerUpdates()
    * @availability iOS 5.0+
    */
-  startMagnetometerUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2678900456570648, this, []); }
+  startMagnetometerUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2678900456570648, this, []); }
   /**
    * func startMagnetometerUpdates(to queue: OperationQueue, withHandler handler: @escaping CMMagnetometerHandler)
    * @availability iOS 5.0+
    */
-  startMagnetometerUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: ((arg0: (CMMagnetometerData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2373987556148552, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  startMagnetometerUpdatesToWithHandler(queue: _Foundation_OperationQueue, handler: ((arg0: (CMMagnetometerData) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2373987556148552, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopAccelerometerUpdates()
    * @availability iOS 4.0+
    */
-  stopAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2323631960655540, this, []); }
+  stopAccelerometerUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2323631960655540, this, []); }
   /**
    * func stopDeviceMotionUpdates()
    * @availability iOS 4.0+
    */
-  stopDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3088849860459260, this, []); }
+  stopDeviceMotionUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3088849860459260, this, []); }
   /**
    * func stopGyroUpdates()
    * @availability iOS 4.0+
    */
-  stopGyroUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 912822095705145, this, []); }
+  stopGyroUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 912822095705145, this, []); }
   /**
    * func stopMagnetometerUpdates()
    * @availability iOS 5.0+
    */
-  stopMagnetometerUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2424085081362722, this, []); }
+  stopMagnetometerUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2424085081362722, this, []); }
   /**
    * var isAccelerometerActive: Bool { get }
    * @availability iOS 4.0+
    */
-  get isAccelerometerActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 3321696214026824, this, []); }
+  get isAccelerometerActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 3321696214026824, this, []); }
   /**
    * var isAccelerometerAvailable: Bool { get }
    * @availability iOS 4.0+
    */
-  get isAccelerometerAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1045574826398016, this, []); }
+  get isAccelerometerAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1045574826398016, this, []); }
   /**
    * var accelerometerData: CMAccelerometerData? { get }
    * @availability iOS 4.0+
    */
-  get accelerometerData(): (CMAccelerometerData) | null { return callSDK<(CMAccelerometerData) | null>("CoreMotion_212edf3d13b127f5", 299219310647844, this, []); }
+  get accelerometerData(): (CMAccelerometerData) | null { return callSDK<(CMAccelerometerData) | null>("CoreMotion_5d69670f0307b385", 299219310647844, this, []); }
   /**
    * var accelerometerUpdateInterval: TimeInterval { get set }
    * @availability iOS 4.0+
    */
-  get accelerometerUpdateInterval(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1677765416972140, this, []); }
-  set accelerometerUpdateInterval(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3294766660211936, this, [value]); }
+  get accelerometerUpdateInterval(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1677765416972140, this, []); }
+  set accelerometerUpdateInterval(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3294766660211936, this, [value]); }
   /**
    * var attitudeReferenceFrame: CMAttitudeReferenceFrame { get }
    * @availability iOS 5.0+
    */
-  get attitudeReferenceFrame(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_212edf3d13b127f5", 862952345142676, this, []); }
+  get attitudeReferenceFrame(): CMAttitudeReferenceFrame { return callSDK<CMAttitudeReferenceFrame>("CoreMotion_5d69670f0307b385", 862952345142676, this, []); }
   /**
    * var deviceMotion: CMDeviceMotion? { get }
    * @availability iOS 4.0+
    */
-  get deviceMotion(): (CMDeviceMotion) | null { return callSDK<(CMDeviceMotion) | null>("CoreMotion_212edf3d13b127f5", 949925126769595, this, []); }
+  get deviceMotion(): (CMDeviceMotion) | null { return callSDK<(CMDeviceMotion) | null>("CoreMotion_5d69670f0307b385", 949925126769595, this, []); }
   /**
    * var isDeviceMotionActive: Bool { get }
    * @availability iOS 4.0+
    */
-  get isDeviceMotionActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1306249196865816, this, []); }
+  get isDeviceMotionActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1306249196865816, this, []); }
   /**
    * var isDeviceMotionAvailable: Bool { get }
    * @availability iOS 4.0+
    */
-  get isDeviceMotionAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 373593466835930, this, []); }
+  get isDeviceMotionAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 373593466835930, this, []); }
   /**
    * var deviceMotionBody: (any CMBodyIdentifiable)? { get set }
    * @availability iOS 27.0+
    */
-  get deviceMotionBody(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMotion_212edf3d13b127f5", 3380425540751262, this, []); }
-  set deviceMotionBody(value: (Implements<CMBodyIdentifiable> | SDKHandle) | null) { callSDK<void>("CoreMotion_212edf3d13b127f5", 1137824443750680, this, [value], [{"protocol":"c:objc(pl)CMBodyIdentifiable"}]); }
+  get deviceMotionBody(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMotion_5d69670f0307b385", 3380425540751262, this, []); }
+  set deviceMotionBody(value: (Implements<CMBodyIdentifiable> | SDKHandle) | null) { callSDK<void>("CoreMotion_5d69670f0307b385", 1137824443750680, this, [value], [{"protocol":"c:objc(pl)CMBodyIdentifiable"}]); }
   /**
    * var deviceMotionUpdateInterval: TimeInterval { get set }
    * @availability iOS 4.0+
    */
-  get deviceMotionUpdateInterval(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3824981240800522, this, []); }
-  set deviceMotionUpdateInterval(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 1667464879403541, this, [value]); }
+  get deviceMotionUpdateInterval(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3824981240800522, this, []); }
+  set deviceMotionUpdateInterval(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 1667464879403541, this, [value]); }
   /**
    * var isGyroActive: Bool { get }
    * @availability iOS 4.0+
    */
-  get isGyroActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 414710561151094, this, []); }
+  get isGyroActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 414710561151094, this, []); }
   /**
    * var isGyroAvailable: Bool { get }
    * @availability iOS 4.0+
    */
-  get isGyroAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 723466216076740, this, []); }
+  get isGyroAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 723466216076740, this, []); }
   /**
    * var gyroData: CMGyroData? { get }
    * @availability iOS 4.0+
    */
-  get gyroData(): (CMGyroData) | null { return callSDK<(CMGyroData) | null>("CoreMotion_212edf3d13b127f5", 666783777540388, this, []); }
+  get gyroData(): (CMGyroData) | null { return callSDK<(CMGyroData) | null>("CoreMotion_5d69670f0307b385", 666783777540388, this, []); }
   /**
    * var gyroUpdateInterval: TimeInterval { get set }
    * @availability iOS 4.0+
    */
-  get gyroUpdateInterval(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1582383240267243, this, []); }
-  set gyroUpdateInterval(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 2927485045372141, this, [value]); }
+  get gyroUpdateInterval(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1582383240267243, this, []); }
+  set gyroUpdateInterval(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 2927485045372141, this, [value]); }
   /**
    * var isMagnetometerActive: Bool { get }
    * @availability iOS 5.0+
    */
-  get isMagnetometerActive(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 563909427810216, this, []); }
+  get isMagnetometerActive(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 563909427810216, this, []); }
   /**
    * var isMagnetometerAvailable: Bool { get }
    * @availability iOS 5.0+
    */
-  get isMagnetometerAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 647535225827564, this, []); }
+  get isMagnetometerAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 647535225827564, this, []); }
   /**
    * var magnetometerData: CMMagnetometerData? { get }
    * @availability iOS 5.0+
    */
-  get magnetometerData(): (CMMagnetometerData) | null { return callSDK<(CMMagnetometerData) | null>("CoreMotion_212edf3d13b127f5", 2528035738917788, this, []); }
+  get magnetometerData(): (CMMagnetometerData) | null { return callSDK<(CMMagnetometerData) | null>("CoreMotion_5d69670f0307b385", 2528035738917788, this, []); }
   /**
    * var magnetometerUpdateInterval: TimeInterval { get set }
    * @availability iOS 5.0+
    */
-  get magnetometerUpdateInterval(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1993630196618653, this, []); }
-  set magnetometerUpdateInterval(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3746316765157636, this, [value]); }
+  get magnetometerUpdateInterval(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1993630196618653, this, []); }
+  set magnetometerUpdateInterval(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3746316765157636, this, [value]); }
   /**
    * var showsDeviceMovementDisplay: Bool { get set }
    * @availability iOS 5.0+
    */
-  get showsDeviceMovementDisplay(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1815289760381034, this, []); }
-  set showsDeviceMovementDisplay(value: boolean) { callSDK<void>("CoreMotion_212edf3d13b127f5", 531361732645491, this, [value]); }
+  get showsDeviceMovementDisplay(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1815289760381034, this, []); }
+  set showsDeviceMovementDisplay(value: boolean) { callSDK<void>("CoreMotion_5d69670f0307b385", 531361732645491, this, [value]); }
   declare readonly $type: { "c:objc(cs)CMMotionManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAccelerometerActive": true; "isAccelerometerAvailable": true; "accelerometerData": true; "accelerometerUpdateInterval": true; "attitudeReferenceFrame": true; "deviceMotion": true; "isDeviceMotionActive": true; "isDeviceMotionAvailable": true; "deviceMotionBody": true; "deviceMotionUpdateInterval": true; "isGyroActive": true; "isGyroAvailable": true; "gyroData": true; "gyroUpdateInterval": true; "isMagnetometerActive": true; "isMagnetometerAvailable": true; "magnetometerData": true; "magnetometerUpdateInterval": true; "showsDeviceMovementDisplay": true };
 }
@@ -995,67 +995,67 @@ export class CMMotionManager extends SDKHandle {
  */
 export class CMOdometerData extends SDKHandle {
   /** init() */
-  static init(): CMOdometerData { return callSDK<CMOdometerData>("CoreMotion_212edf3d13b127f5", 2501789786215489, undefined, []); }
+  static init(): CMOdometerData { return callSDK<CMOdometerData>("CoreMotion_5d69670f0307b385", 2501789786215489, undefined, []); }
   /**
    * var deltaAltitude: CLLocationDistance { get }
    * @availability iOS 17.0+
    */
-  get deltaAltitude(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 947637434426471, this, []); }
+  get deltaAltitude(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 947637434426471, this, []); }
   /**
    * var deltaDistance: CLLocationDistance { get }
    * @availability iOS 17.0+
    */
-  get deltaDistance(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2740076664416433, this, []); }
+  get deltaDistance(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2740076664416433, this, []); }
   /**
    * var deltaDistanceAccuracy: CLLocationAccuracy { get }
    * @availability iOS 17.0+
    */
-  get deltaDistanceAccuracy(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1894354170330136, this, []); }
+  get deltaDistanceAccuracy(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1894354170330136, this, []); }
   /**
    * var endDate: Date { get }
    * @availability iOS 8.0+
    */
-  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 2388981513726982, this, []); }
+  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 2388981513726982, this, []); }
   /**
    * var gpsDate: Date { get }
    * @availability iOS 17.0+
    */
-  get gpsDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 3935524499688354, this, []); }
+  get gpsDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 3935524499688354, this, []); }
   /**
    * var originDevice: CMOdometerOriginDevice { get }
    * @availability iOS 15.4+
    */
-  get originDevice(): CMOdometerOriginDevice { return callSDK<CMOdometerOriginDevice>("CoreMotion_212edf3d13b127f5", 4220721890329111, this, []); }
+  get originDevice(): CMOdometerOriginDevice { return callSDK<CMOdometerOriginDevice>("CoreMotion_5d69670f0307b385", 4220721890329111, this, []); }
   /**
    * var speed: CLLocationSpeed { get }
    * @availability iOS 17.0+
    */
-  get speed(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1153493475730821, this, []); }
+  get speed(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1153493475730821, this, []); }
   /**
    * var speedAccuracy: CLLocationSpeedAccuracy { get }
    * @availability iOS 17.0+
    */
-  get speedAccuracy(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3427328927930620, this, []); }
+  get speedAccuracy(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3427328927930620, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 8.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 1702056266500872, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 1702056266500872, this, []); }
   /**
    * var verticalAccuracy: CLLocationAccuracy { get }
    * @availability iOS 17.0+
    */
-  get verticalAccuracy(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2029776278610192, this, []); }
+  get verticalAccuracy(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2029776278610192, this, []); }
   /**
    * var maxAbsSlope: Double? { get }
    * @availability iOS 17.0+
    */
-  get maxAbsSlope(): (number) | null { return callSDK<(number) | null>("CoreMotion_212edf3d13b127f5", 3125135397755685, this, []); }
+  get maxAbsSlope(): (number) | null { return callSDK<(number) | null>("CoreMotion_5d69670f0307b385", 3125135397755685, this, []); }
   /**
    * var slope: Double? { get }
    * @availability iOS 17.0+
    */
-  get slope(): (number) | null { return callSDK<(number) | null>("CoreMotion_212edf3d13b127f5", 2499150110601001, this, []); }
+  get slope(): (number) | null { return callSDK<(number) | null>("CoreMotion_5d69670f0307b385", 2499150110601001, this, []); }
   declare readonly $type: { "c:objc(cs)CMOdometerData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deltaAltitude": true; "deltaDistance": true; "deltaDistanceAccuracy": true; "endDate": true; "gpsDate": true; "originDevice": true; "speed": true; "speedAccuracy": true; "startDate": true; "verticalAccuracy": true };
 }
@@ -1071,7 +1071,7 @@ export const CMOdometerOriginDevice = {
    * init?(rawValue: Int)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): (CMOdometerOriginDevice) | null { return callSDK<(CMOdometerOriginDevice) | null>("CoreMotion_212edf3d13b127f5", 540601517094773, undefined, [rawValue]); }
+  init(rawValue: number): (CMOdometerOriginDevice) | null { return callSDK<(CMOdometerOriginDevice) | null>("CoreMotion_5d69670f0307b385", 540601517094773, undefined, [rawValue]); }
 };
 
 /**
@@ -1083,64 +1083,64 @@ export class CMPedometer extends SDKHandle {
    * class func authorizationStatus() -> CMAuthorizationStatus
    * @availability iOS 11.0+
    */
-  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 3575172572939473, undefined, []); }
+  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 3575172572939473, undefined, []); }
   /**
    * class func isCadenceAvailable() -> Bool
    * @availability iOS 9.0+
    */
-  static isCadenceAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 3929195285596822, undefined, []); }
+  static isCadenceAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 3929195285596822, undefined, []); }
   /**
    * class func isDistanceAvailable() -> Bool
    * @availability iOS 8.0+
    */
-  static isDistanceAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2145210686163118, undefined, []); }
+  static isDistanceAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2145210686163118, undefined, []); }
   /**
    * class func isFloorCountingAvailable() -> Bool
    * @availability iOS 8.0+
    */
-  static isFloorCountingAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1985702777066140, undefined, []); }
+  static isFloorCountingAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1985702777066140, undefined, []); }
   /**
    * class func isPaceAvailable() -> Bool
    * @availability iOS 9.0+
    */
-  static isPaceAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2471851754569694, undefined, []); }
+  static isPaceAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2471851754569694, undefined, []); }
   /**
    * class func isPedometerEventTrackingAvailable() -> Bool
    * @availability iOS 10.0+
    */
-  static isPedometerEventTrackingAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2211612816307858, undefined, []); }
+  static isPedometerEventTrackingAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2211612816307858, undefined, []); }
   /**
    * class func isStepCountingAvailable() -> Bool
    * @availability iOS 8.0+
    */
-  static isStepCountingAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1334652266681763, undefined, []); }
+  static isStepCountingAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1334652266681763, undefined, []); }
   /** init() */
-  static init(): CMPedometer { return callSDK<CMPedometer>("CoreMotion_212edf3d13b127f5", 2445660482428432, undefined, []); }
+  static init(): CMPedometer { return callSDK<CMPedometer>("CoreMotion_5d69670f0307b385", 2445660482428432, undefined, []); }
   /**
    * func queryPedometerData(from start: Date, to end: Date, withHandler handler: @escaping CMPedometerHandler)
    * @availability iOS 8.0+
    */
-  queryPedometerData(start: globalThis.Date, end: globalThis.Date, handler: $SDK31): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1268319159398010, this, [start, end, handler], [null,null,{"callback":{"out":[]}}]); }
+  queryPedometerData(start: globalThis.Date, end: globalThis.Date, handler: $SDK31): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1268319159398010, this, [start, end, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func startEventUpdates(handler: @escaping CMPedometerEventHandler)
    * @availability iOS 10.0+
    */
-  startEventUpdates(handler: ((arg0: (CMPedometerEvent) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 458929476926324, this, [handler], [{"callback":{"out":[]}}]); }
+  startEventUpdates(handler: ((arg0: (CMPedometerEvent) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 458929476926324, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func startUpdates(from start: Date, withHandler handler: @escaping CMPedometerHandler)
    * @availability iOS 8.0+
    */
-  startUpdates(start: globalThis.Date, handler: $SDK31): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 60832778394599, this, [start, handler], [null,{"callback":{"out":[]}}]); }
+  startUpdates(start: globalThis.Date, handler: $SDK31): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 60832778394599, this, [start, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopEventUpdates()
    * @availability iOS 10.0+
    */
-  stopEventUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 254874782039069, this, []); }
+  stopEventUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 254874782039069, this, []); }
   /**
    * func stopUpdates()
    * @availability iOS 8.0+
    */
-  stopUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2051161342922571, this, []); }
+  stopUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2051161342922571, this, []); }
   declare readonly $type: { "c:objc(cs)CMPedometer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1150,52 +1150,52 @@ export class CMPedometer extends SDKHandle {
  */
 export class CMPedometerData extends SDKHandle {
   /** init() */
-  static init(): CMPedometerData { return callSDK<CMPedometerData>("CoreMotion_212edf3d13b127f5", 1164677387853196, undefined, []); }
+  static init(): CMPedometerData { return callSDK<CMPedometerData>("CoreMotion_5d69670f0307b385", 1164677387853196, undefined, []); }
   /**
    * var averageActivePace: NSNumber? { get }
    * @availability iOS 10.0+
    */
-  get averageActivePace(): $SDK33 { return callSDK<$SDK33>("CoreMotion_212edf3d13b127f5", 2921244716513278, this, []); }
+  get averageActivePace(): $SDK33 { return callSDK<$SDK33>("CoreMotion_5d69670f0307b385", 2921244716513278, this, []); }
   /**
    * var currentCadence: NSNumber? { get }
    * @availability iOS 9.0+
    */
-  get currentCadence(): $SDK33 { return callSDK<$SDK33>("CoreMotion_212edf3d13b127f5", 1986324585580765, this, []); }
+  get currentCadence(): $SDK33 { return callSDK<$SDK33>("CoreMotion_5d69670f0307b385", 1986324585580765, this, []); }
   /**
    * var currentPace: NSNumber? { get }
    * @availability iOS 9.0+
    */
-  get currentPace(): $SDK33 { return callSDK<$SDK33>("CoreMotion_212edf3d13b127f5", 491726934074257, this, []); }
+  get currentPace(): $SDK33 { return callSDK<$SDK33>("CoreMotion_5d69670f0307b385", 491726934074257, this, []); }
   /**
    * var distance: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get distance(): $SDK33 { return callSDK<$SDK33>("CoreMotion_212edf3d13b127f5", 3749367713932290, this, []); }
+  get distance(): $SDK33 { return callSDK<$SDK33>("CoreMotion_5d69670f0307b385", 3749367713932290, this, []); }
   /**
    * var endDate: Date { get }
    * @availability iOS 8.0+
    */
-  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 935912645052934, this, []); }
+  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 935912645052934, this, []); }
   /**
    * var floorsAscended: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get floorsAscended(): $SDK33 { return callSDK<$SDK33>("CoreMotion_212edf3d13b127f5", 4146366873125910, this, []); }
+  get floorsAscended(): $SDK33 { return callSDK<$SDK33>("CoreMotion_5d69670f0307b385", 4146366873125910, this, []); }
   /**
    * var floorsDescended: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get floorsDescended(): $SDK33 { return callSDK<$SDK33>("CoreMotion_212edf3d13b127f5", 494746601786235, this, []); }
+  get floorsDescended(): $SDK33 { return callSDK<$SDK33>("CoreMotion_5d69670f0307b385", 494746601786235, this, []); }
   /**
    * var numberOfSteps: NSNumber { get }
    * @availability iOS 8.0+
    */
-  get numberOfSteps(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMotion_212edf3d13b127f5", 3915378860690818, this, []); }
+  get numberOfSteps(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreMotion_5d69670f0307b385", 3915378860690818, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 8.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 2686048833214753, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 2686048833214753, this, []); }
   declare readonly $type: { "c:objc(cs)CMPedometerData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "averageActivePace": true; "currentCadence": true; "currentPace": true; "distance": true; "endDate": true; "floorsAscended": true; "floorsDescended": true; "numberOfSteps": true; "startDate": true };
 }
@@ -1206,17 +1206,17 @@ export class CMPedometerData extends SDKHandle {
  */
 export class CMPedometerEvent extends SDKHandle {
   /** init() */
-  static init(): CMPedometerEvent { return callSDK<CMPedometerEvent>("CoreMotion_212edf3d13b127f5", 1439478772463801, undefined, []); }
+  static init(): CMPedometerEvent { return callSDK<CMPedometerEvent>("CoreMotion_5d69670f0307b385", 1439478772463801, undefined, []); }
   /**
    * var date: Date { get }
    * @availability iOS 10.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 4399212954030522, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 4399212954030522, this, []); }
   /**
    * var type: CMPedometerEventType { get }
    * @availability iOS 10.0+
    */
-  get type(): CMPedometerEventType { return callSDK<CMPedometerEventType>("CoreMotion_212edf3d13b127f5", 4006819009159718, this, []); }
+  get type(): CMPedometerEventType { return callSDK<CMPedometerEventType>("CoreMotion_5d69670f0307b385", 4006819009159718, this, []); }
   declare readonly $type: { "c:objc(cs)CMPedometerEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "type": true };
 }
@@ -1238,7 +1238,7 @@ export const CMPedometerEventType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CMPedometerEventType) | null { return callSDK<(CMPedometerEventType) | null>("CoreMotion_212edf3d13b127f5", 2230959456986390, undefined, [rawValue]); }
+  init(rawValue: number): (CMPedometerEventType) | null { return callSDK<(CMPedometerEventType) | null>("CoreMotion_5d69670f0307b385", 2230959456986390, undefined, [rawValue]); }
 };
 
 /** typealias CMPedometerHandler = (CMPedometerData?, (any Error)?) -> Void */
@@ -1247,21 +1247,21 @@ export type CMPedometerHandler = ((arg0: (CMPedometerData) | null, arg1: (Native
 /** struct CMQuaternion */
 export class CMQuaternion extends SDKHandle {
   /** var w: Double */
-  get w(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2944689287213188, this, []); }
-  set w(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3140706573468026, this, [value]); }
+  get w(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2944689287213188, this, []); }
+  set w(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3140706573468026, this, [value]); }
   /** var x: Double */
-  get x(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2396335821046420, this, []); }
-  set x(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 4113155509911384, this, [value]); }
+  get x(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2396335821046420, this, []); }
+  set x(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 4113155509911384, this, [value]); }
   /** var y: Double */
-  get y(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3233106708402547, this, []); }
-  set y(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 728944040081271, this, [value]); }
+  get y(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3233106708402547, this, []); }
+  set y(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 728944040081271, this, [value]); }
   /** var z: Double */
-  get z(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 4139178077447263, this, []); }
-  set z(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 2727727791150362, this, [value]); }
+  get z(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 4139178077447263, this, []); }
+  set z(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 2727727791150362, this, [value]); }
   /** init(x: Double, y: Double, z: Double, w: Double) */
-  static initXYZW(x: number, y: number, z: number, w: number): CMQuaternion { return callSDK<CMQuaternion>("CoreMotion_212edf3d13b127f5", 2341045934725540, undefined, [x, y, z, w]); }
+  static initXYZW(x: number, y: number, z: number, w: number): CMQuaternion { return callSDK<CMQuaternion>("CoreMotion_5d69670f0307b385", 2341045934725540, undefined, [x, y, z, w]); }
   /** init() */
-  static init(): CMQuaternion { return callSDK<CMQuaternion>("CoreMotion_212edf3d13b127f5", 2816526178447973, undefined, []); }
+  static init(): CMQuaternion { return callSDK<CMQuaternion>("CoreMotion_5d69670f0307b385", 2816526178447973, undefined, []); }
   declare readonly $type: { "c:@SA@CMQuaternion": true };
 }
 
@@ -1271,17 +1271,17 @@ export class CMQuaternion extends SDKHandle {
  */
 export class CMRecordedAccelerometerData extends (CMAccelerometerData as unknown as Omit<typeof CMAccelerometerData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMAccelerometerData)) {
   /** init() */
-  static init(): CMRecordedAccelerometerData { return callSDK<CMRecordedAccelerometerData>("CoreMotion_212edf3d13b127f5", 761658403609915, undefined, []); }
+  static init(): CMRecordedAccelerometerData { return callSDK<CMRecordedAccelerometerData>("CoreMotion_5d69670f0307b385", 761658403609915, undefined, []); }
   /**
    * var identifier: UInt64 { get }
    * @availability iOS 9.0+
    */
-  get identifier(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3332358556836834, this, []); }
+  get identifier(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3332358556836834, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 9.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 3064253722508105, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 3064253722508105, this, []); }
   declare readonly $type: { "c:objc(cs)CMRecordedAccelerometerData": true; "c:objc(cs)CMAccelerometerData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "acceleration": true; "identifier": true; "startDate": true };
 }
@@ -1292,17 +1292,17 @@ export class CMRecordedAccelerometerData extends (CMAccelerometerData as unknown
  */
 export class CMRecordedDeviceMotion extends (CMDeviceMotion as unknown as Omit<typeof CMDeviceMotion, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMDeviceMotion)) {
   /** init() */
-  static init(): CMRecordedDeviceMotion { return callSDK<CMRecordedDeviceMotion>("CoreMotion_212edf3d13b127f5", 1011958310903447, undefined, []); }
+  static init(): CMRecordedDeviceMotion { return callSDK<CMRecordedDeviceMotion>("CoreMotion_5d69670f0307b385", 1011958310903447, undefined, []); }
   /**
    * var identifier: UInt64 { get }
    * @availability iOS 27.0+
    */
-  get identifier(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2772263602251076, this, []); }
+  get identifier(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2772263602251076, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 27.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 2314174902867674, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 2314174902867674, this, []); }
   declare readonly $type: { "c:objc(cs)CMRecordedDeviceMotion": true; "c:objc(cs)CMDeviceMotion": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "attitude": true; "gravity": true; "heading": true; "headingAccuracy": true; "magneticField": true; "rotationRate": true; "sensorLocation": true; "userAcceleration": true; "identifier": true; "startDate": true };
 }
@@ -1313,17 +1313,17 @@ export class CMRecordedDeviceMotion extends (CMDeviceMotion as unknown as Omit<t
  */
 export class CMRecordedPressureData extends (CMAmbientPressureData as unknown as Omit<typeof CMAmbientPressureData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMAmbientPressureData)) {
   /** init() */
-  static init(): CMRecordedPressureData { return callSDK<CMRecordedPressureData>("CoreMotion_212edf3d13b127f5", 1541129586466409, undefined, []); }
+  static init(): CMRecordedPressureData { return callSDK<CMRecordedPressureData>("CoreMotion_5d69670f0307b385", 1541129586466409, undefined, []); }
   /**
    * var identifier: UInt64 { get }
    * @availability iOS 12.0+
    */
-  get identifier(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1901172736092706, this, []); }
+  get identifier(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1901172736092706, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 12.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 3202947888600528, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 3202947888600528, this, []); }
   declare readonly $type: { "c:objc(cs)CMRecordedPressureData": true; "c:objc(cs)CMAmbientPressureData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "pressure": true; "temperature": true; "identifier": true; "startDate": true };
 }
@@ -1334,12 +1334,12 @@ export class CMRecordedPressureData extends (CMAmbientPressureData as unknown as
  */
 export class CMRotationRateData extends (CMLogItem as unknown as Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem)) {
   /** init() */
-  static init(): CMRotationRateData { return callSDK<CMRotationRateData>("CoreMotion_212edf3d13b127f5", 44644363236676, undefined, []); }
+  static init(): CMRotationRateData { return callSDK<CMRotationRateData>("CoreMotion_5d69670f0307b385", 44644363236676, undefined, []); }
   /**
    * var rotationRate: CMRotationRate { get }
    * @availability iOS 14.0+
    */
-  get rotationRate(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_212edf3d13b127f5", 2397002822733183, this, []); }
+  get rotationRate(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_5d69670f0307b385", 2397002822733183, this, []); }
   declare readonly $type: { "c:objc(cs)CMRotationRateData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "rotationRate": true };
 }
@@ -1350,12 +1350,12 @@ export class CMRotationRateData extends (CMLogItem as unknown as Omit<typeof CML
  */
 export class CMRecordedRotationRateData extends (CMRotationRateData as unknown as Omit<typeof CMRotationRateData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMRotationRateData)) {
   /** init() */
-  static init(): CMRecordedRotationRateData { return callSDK<CMRecordedRotationRateData>("CoreMotion_212edf3d13b127f5", 3451580196329042, undefined, []); }
+  static init(): CMRecordedRotationRateData { return callSDK<CMRecordedRotationRateData>("CoreMotion_5d69670f0307b385", 3451580196329042, undefined, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 14.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 1100913665266124, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 1100913665266124, this, []); }
   declare readonly $type: { "c:objc(cs)CMRecordedRotationRateData": true; "c:objc(cs)CMRotationRateData": true; "c:objc(cs)CMLogItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timestamp": true; "rotationRate": true; "startDate": true };
 }
@@ -1363,54 +1363,54 @@ export class CMRecordedRotationRateData extends (CMRotationRateData as unknown a
 /** struct CMRotationMatrix */
 export class CMRotationMatrix extends SDKHandle {
   /** var m11: Double */
-  get m11(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 760302195541864, this, []); }
-  set m11(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 414823534087807, this, [value]); }
+  get m11(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 760302195541864, this, []); }
+  set m11(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 414823534087807, this, [value]); }
   /** var m12: Double */
-  get m12(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 688972264706891, this, []); }
-  set m12(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 1753176671362375, this, [value]); }
+  get m12(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 688972264706891, this, []); }
+  set m12(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 1753176671362375, this, [value]); }
   /** var m13: Double */
-  get m13(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1640252719598242, this, []); }
-  set m13(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 1393189926431521, this, [value]); }
+  get m13(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1640252719598242, this, []); }
+  set m13(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 1393189926431521, this, [value]); }
   /** var m21: Double */
-  get m21(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 663712638006735, this, []); }
-  set m21(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 4319096188802521, this, [value]); }
+  get m21(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 663712638006735, this, []); }
+  set m21(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 4319096188802521, this, [value]); }
   /** var m22: Double */
-  get m22(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3936730948842971, this, []); }
-  set m22(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 411797289980369, this, [value]); }
+  get m22(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3936730948842971, this, []); }
+  set m22(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 411797289980369, this, [value]); }
   /** var m23: Double */
-  get m23(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3330573902054875, this, []); }
-  set m23(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 4143694287629707, this, [value]); }
+  get m23(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3330573902054875, this, []); }
+  set m23(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 4143694287629707, this, [value]); }
   /** var m31: Double */
-  get m31(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1888128294076390, this, []); }
-  set m31(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 199917107562214, this, [value]); }
+  get m31(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1888128294076390, this, []); }
+  set m31(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 199917107562214, this, [value]); }
   /** var m32: Double */
-  get m32(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 2630646363801961, this, []); }
-  set m32(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3896355458556822, this, [value]); }
+  get m32(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 2630646363801961, this, []); }
+  set m32(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3896355458556822, this, [value]); }
   /** var m33: Double */
-  get m33(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1041987431185498, this, []); }
-  set m33(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3986391594136368, this, [value]); }
+  get m33(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1041987431185498, this, []); }
+  set m33(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3986391594136368, this, [value]); }
   /** init(m11: Double, m12: Double, m13: Double, m21: Double, m22: Double, m23: Double, m31: Double, m32: Double, m33: Double) */
-  static initM11M12M13M21M22M23M31M32M33(m11: number, m12: number, m13: number, m21: number, m22: number, m23: number, m31: number, m32: number, m33: number): CMRotationMatrix { return callSDK<CMRotationMatrix>("CoreMotion_212edf3d13b127f5", 2444975535580178, undefined, [m11, m12, m13, m21, m22, m23, m31, m32, m33]); }
+  static initM11M12M13M21M22M23M31M32M33(m11: number, m12: number, m13: number, m21: number, m22: number, m23: number, m31: number, m32: number, m33: number): CMRotationMatrix { return callSDK<CMRotationMatrix>("CoreMotion_5d69670f0307b385", 2444975535580178, undefined, [m11, m12, m13, m21, m22, m23, m31, m32, m33]); }
   /** init() */
-  static init(): CMRotationMatrix { return callSDK<CMRotationMatrix>("CoreMotion_212edf3d13b127f5", 2635443961683929, undefined, []); }
+  static init(): CMRotationMatrix { return callSDK<CMRotationMatrix>("CoreMotion_5d69670f0307b385", 2635443961683929, undefined, []); }
   declare readonly $type: { "c:@SA@CMRotationMatrix": true };
 }
 
 /** struct CMRotationRate */
 export class CMRotationRate extends SDKHandle {
   /** var x: Double */
-  get x(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1394890361564504, this, []); }
-  set x(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3946819806807945, this, [value]); }
+  get x(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1394890361564504, this, []); }
+  set x(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 3946819806807945, this, [value]); }
   /** var y: Double */
-  get y(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 760650699864636, this, []); }
-  set y(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 4294376936787921, this, [value]); }
+  get y(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 760650699864636, this, []); }
+  set y(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 4294376936787921, this, [value]); }
   /** var z: Double */
-  get z(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1032264041898038, this, []); }
-  set z(value: number) { callSDK<void>("CoreMotion_212edf3d13b127f5", 2963110919944174, this, [value]); }
+  get z(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1032264041898038, this, []); }
+  set z(value: number) { callSDK<void>("CoreMotion_5d69670f0307b385", 2963110919944174, this, [value]); }
   /** init(x: Double, y: Double, z: Double) */
-  static initXYZ(x: number, y: number, z: number): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_212edf3d13b127f5", 1579979051348955, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_5d69670f0307b385", 1579979051348955, undefined, [x, y, z]); }
   /** init() */
-  static init(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_212edf3d13b127f5", 1061509286927591, undefined, []); }
+  static init(): CMRotationRate { return callSDK<CMRotationRate>("CoreMotion_5d69670f0307b385", 1061509286927591, undefined, []); }
   declare readonly $type: { "c:@SA@CMRotationRate": true };
 }
 
@@ -1420,7 +1420,7 @@ export class CMRotationRate extends SDKHandle {
  */
 export class CMSensorDataList extends SDKHandle {
   /** init() */
-  static init(): CMSensorDataList { return callSDK<CMSensorDataList>("CoreMotion_212edf3d13b127f5", 976883854712012, undefined, []); }
+  static init(): CMSensorDataList { return callSDK<CMSensorDataList>("CoreMotion_5d69670f0307b385", 976883854712012, undefined, []); }
   declare readonly $type: { "c:objc(cs)CMSensorDataList": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1433,30 +1433,30 @@ export class CMSensorRecorder extends SDKHandle {
    * class func authorizationStatus() -> CMAuthorizationStatus
    * @availability iOS 11.0+
    */
-  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 387289359020875, undefined, []); }
+  static authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 387289359020875, undefined, []); }
   /**
    * class func isAccelerometerRecordingAvailable() -> Bool
    * @availability iOS 9.0+
    */
-  static isAccelerometerRecordingAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 3334280678054990, undefined, []); }
+  static isAccelerometerRecordingAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 3334280678054990, undefined, []); }
   /**
    * class func isAuthorizedForRecording() -> Bool
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static isAuthorizedForRecording(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 2650861066909520, undefined, []); }
+  static isAuthorizedForRecording(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 2650861066909520, undefined, []); }
   /**
    * func accelerometerData(from fromDate: Date, to toDate: Date) -> CMSensorDataList?
    * @availability iOS 9.0+
    */
-  accelerometerData(fromDate: globalThis.Date, toDate: globalThis.Date): (CMSensorDataList) | null { return callSDK<(CMSensorDataList) | null>("CoreMotion_212edf3d13b127f5", 3621408787442150, this, [fromDate, toDate]); }
+  accelerometerData(fromDate: globalThis.Date, toDate: globalThis.Date): (CMSensorDataList) | null { return callSDK<(CMSensorDataList) | null>("CoreMotion_5d69670f0307b385", 3621408787442150, this, [fromDate, toDate]); }
   /** init() */
-  static init(): CMSensorRecorder { return callSDK<CMSensorRecorder>("CoreMotion_212edf3d13b127f5", 1796071011576060, undefined, []); }
+  static init(): CMSensorRecorder { return callSDK<CMSensorRecorder>("CoreMotion_5d69670f0307b385", 1796071011576060, undefined, []); }
   /**
    * func recordAccelerometer(forDuration duration: TimeInterval)
    * @availability iOS 9.0+
    */
-  recordAccelerometer(duration: number): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 2216757840885145, this, [duration]); }
+  recordAccelerometer(duration: number): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 2216757840885145, this, [duration]); }
   declare readonly $type: { "c:objc(cs)CMSensorRecorder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1471,27 +1471,27 @@ export class CMStepCounter extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  static isStepCountingAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1472151820798228, undefined, []); }
+  static isStepCountingAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1472151820798228, undefined, []); }
   /** init() */
-  static init(): CMStepCounter { return callSDK<CMStepCounter>("CoreMotion_212edf3d13b127f5", 2694886746120881, undefined, []); }
+  static init(): CMStepCounter { return callSDK<CMStepCounter>("CoreMotion_5d69670f0307b385", 2694886746120881, undefined, []); }
   /**
    * func queryStepCountStarting(from start: Date, to end: Date, to queue: OperationQueue, withHandler handler: @escaping CMStepQueryHandler)
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  queryStepCountStarting(start: globalThis.Date, end: globalThis.Date, queue: _Foundation_OperationQueue, handler: ((arg0: number, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 268788466454485, this, [start, end, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  queryStepCountStarting(start: globalThis.Date, end: globalThis.Date, queue: _Foundation_OperationQueue, handler: ((arg0: number, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 268788466454485, this, [start, end, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func startStepCountingUpdates(to queue: OperationQueue, updateOn stepCounts: Int, withHandler handler: @escaping CMStepUpdateHandler)
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  startStepCountingUpdates(queue: _Foundation_OperationQueue, stepCounts: number, handler: ((arg0: number, arg1: globalThis.Date, arg2: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 3514070008652885, this, [queue, stepCounts, handler], [null,null,{"callback":{"out":[]}}]); }
+  startStepCountingUpdates(queue: _Foundation_OperationQueue, stepCounts: number, handler: ((arg0: number, arg1: globalThis.Date, arg2: (NativeError) | null) => void)): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 3514070008652885, this, [queue, stepCounts, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func stopStepCountingUpdates()
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  stopStepCountingUpdates(): void { return callSDK<void>("CoreMotion_212edf3d13b127f5", 1856221080331494, this, []); }
+  stopStepCountingUpdates(): void { return callSDK<void>("CoreMotion_5d69670f0307b385", 1856221080331494, this, []); }
   declare readonly $type: { "c:objc(cs)CMStepCounter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1507,47 +1507,47 @@ export type CMStepUpdateHandler = ((arg0: number, arg1: globalThis.Date, arg2: (
  */
 export class CMTremorResult extends SDKHandle {
   /** init() */
-  static init(): CMTremorResult { return callSDK<CMTremorResult>("CoreMotion_212edf3d13b127f5", 4121401766937085, undefined, []); }
+  static init(): CMTremorResult { return callSDK<CMTremorResult>("CoreMotion_5d69670f0307b385", 4121401766937085, undefined, []); }
   /**
    * var endDate: Date { get }
    * @availability iOS 12.0+
    */
-  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 1995459511087759, this, []); }
+  get endDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 1995459511087759, this, []); }
   /**
    * var percentMild: Float { get }
    * @availability iOS 12.0+
    */
-  get percentMild(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 3606525069861524, this, []); }
+  get percentMild(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 3606525069861524, this, []); }
   /**
    * var percentModerate: Float { get }
    * @availability iOS 12.0+
    */
-  get percentModerate(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 608574781930710, this, []); }
+  get percentModerate(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 608574781930710, this, []); }
   /**
    * var percentNone: Float { get }
    * @availability iOS 12.0+
    */
-  get percentNone(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 382249187811453, this, []); }
+  get percentNone(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 382249187811453, this, []); }
   /**
    * var percentSlight: Float { get }
    * @availability iOS 12.0+
    */
-  get percentSlight(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1907304310137511, this, []); }
+  get percentSlight(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1907304310137511, this, []); }
   /**
    * var percentStrong: Float { get }
    * @availability iOS 12.0+
    */
-  get percentStrong(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1501742232663373, this, []); }
+  get percentStrong(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1501742232663373, this, []); }
   /**
    * var percentUnknown: Float { get }
    * @availability iOS 12.0+
    */
-  get percentUnknown(): number { return callSDK<number>("CoreMotion_212edf3d13b127f5", 1134680072944893, this, []); }
+  get percentUnknown(): number { return callSDK<number>("CoreMotion_5d69670f0307b385", 1134680072944893, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 12.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 2202475188423397, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 2202475188423397, this, []); }
   declare readonly $type: { "c:objc(cs)CMTremorResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endDate": true; "percentMild": true; "percentModerate": true; "percentNone": true; "percentSlight": true; "percentStrong": true; "percentUnknown": true; "startDate": true };
 }
@@ -1558,17 +1558,17 @@ export class CMTremorResult extends SDKHandle {
  */
 export class CMWaterSubmersionEvent extends SDKHandle {
   /** init() */
-  static init(): CMWaterSubmersionEvent { return callSDK<CMWaterSubmersionEvent>("CoreMotion_212edf3d13b127f5", 2807620418664557, undefined, []); }
+  static init(): CMWaterSubmersionEvent { return callSDK<CMWaterSubmersionEvent>("CoreMotion_5d69670f0307b385", 2807620418664557, undefined, []); }
   /**
    * var date: Date { get }
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 1086581955087038, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 1086581955087038, this, []); }
   /**
    * var state: CMWaterSubmersionEvent.State { get }
    * @availability iOS 16.0+
    */
-  get state(): CMWaterSubmersionEvent_State { return callSDK<CMWaterSubmersionEvent_State>("CoreMotion_212edf3d13b127f5", 1035607226575332, this, []); }
+  get state(): CMWaterSubmersionEvent_State { return callSDK<CMWaterSubmersionEvent_State>("CoreMotion_5d69670f0307b385", 1035607226575332, this, []); }
   declare readonly $type: { "c:objc(cs)CMWaterSubmersionEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "state": true };
 }
@@ -1578,7 +1578,7 @@ export type CMWaterSubmersionEvent_State = "unknown" | "notSubmerged" | "submerg
 
 export const CMWaterSubmersionEvent_State = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CMWaterSubmersionEvent_State) | null { return callSDK<(CMWaterSubmersionEvent_State) | null>("CoreMotion_212edf3d13b127f5", 1154634875804529, undefined, [rawValue]); }
+  init(rawValue: number): (CMWaterSubmersionEvent_State) | null { return callSDK<(CMWaterSubmersionEvent_State) | null>("CoreMotion_5d69670f0307b385", 1154634875804529, undefined, [rawValue]); }
 };
 
 /**
@@ -1590,25 +1590,25 @@ export class CMWaterSubmersionManager extends SDKHandle {
    * class var authorizationStatus: CMAuthorizationStatus { get }
    * @availability iOS 16.0+
    */
-  static get authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_212edf3d13b127f5", 1102466735497039, undefined, []); }
+  static get authorizationStatus(): CMAuthorizationStatus { return callSDK<CMAuthorizationStatus>("CoreMotion_5d69670f0307b385", 1102466735497039, undefined, []); }
   /**
    * class var waterSubmersionAvailable: Bool { get }
    * @availability iOS 16.0+
    */
-  static get waterSubmersionAvailable(): boolean { return callSDK<boolean>("CoreMotion_212edf3d13b127f5", 1899622467848278, undefined, []); }
+  static get waterSubmersionAvailable(): boolean { return callSDK<boolean>("CoreMotion_5d69670f0307b385", 1899622467848278, undefined, []); }
   /** init() */
-  static init(): CMWaterSubmersionManager { return callSDK<CMWaterSubmersionManager>("CoreMotion_212edf3d13b127f5", 3031364571137413, undefined, []); }
+  static init(): CMWaterSubmersionManager { return callSDK<CMWaterSubmersionManager>("CoreMotion_5d69670f0307b385", 3031364571137413, undefined, []); }
   /**
    * weak var delegate: (any CMWaterSubmersionManagerDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMotion_212edf3d13b127f5", 2184722275718985, this, []); }
-  set delegate(value: (Implements<CMWaterSubmersionManagerDelegate> | SDKHandle) | null) { callSDK<void>("CoreMotion_212edf3d13b127f5", 3326566176126539, this, [value], [{"protocol":"c:objc(pl)CMWaterSubmersionManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreMotion_5d69670f0307b385", 2184722275718985, this, []); }
+  set delegate(value: (Implements<CMWaterSubmersionManagerDelegate> | SDKHandle) | null) { callSDK<void>("CoreMotion_5d69670f0307b385", 3326566176126539, this, [value], [{"protocol":"c:objc(pl)CMWaterSubmersionManagerDelegate"}]); }
   /**
    * var maximumDepth: Measurement<UnitLength>? { get }
    * @availability iOS 16.0+
    */
-  get maximumDepth(): $SDK42 { return callSDK<$SDK42>("CoreMotion_212edf3d13b127f5", 803502750737683, this, []); }
+  get maximumDepth(): $SDK42 { return callSDK<$SDK42>("CoreMotion_5d69670f0307b385", 803502750737683, this, []); }
   declare readonly $type: { "c:objc(cs)CMWaterSubmersionManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "maximumDepth": true };
 }
@@ -1636,32 +1636,32 @@ export interface CMWaterSubmersionManagerDelegate {
  */
 export class CMWaterSubmersionMeasurement extends SDKHandle {
   /** init() */
-  static init(): CMWaterSubmersionMeasurement { return callSDK<CMWaterSubmersionMeasurement>("CoreMotion_212edf3d13b127f5", 645192879589009, undefined, []); }
+  static init(): CMWaterSubmersionMeasurement { return callSDK<CMWaterSubmersionMeasurement>("CoreMotion_5d69670f0307b385", 645192879589009, undefined, []); }
   /**
    * var date: Date { get }
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 1175269884777514, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 1175269884777514, this, []); }
   /**
    * var depth: Measurement<UnitLength>? { get }
    * @availability iOS 16.0+
    */
-  get depth(): $SDK42 { return callSDK<$SDK42>("CoreMotion_212edf3d13b127f5", 3021342252573484, this, []); }
+  get depth(): $SDK42 { return callSDK<$SDK42>("CoreMotion_5d69670f0307b385", 3021342252573484, this, []); }
   /**
    * var pressure: Measurement<UnitPressure>? { get }
    * @availability iOS 16.0+
    */
-  get pressure(): (_Foundation_Measurement<_Foundation_UnitPressure>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitPressure>) | null>("CoreMotion_212edf3d13b127f5", 453075853400478, this, []); }
+  get pressure(): (_Foundation_Measurement<_Foundation_UnitPressure>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitPressure>) | null>("CoreMotion_5d69670f0307b385", 453075853400478, this, []); }
   /**
    * var submersionState: CMWaterSubmersionMeasurement.DepthState { get }
    * @availability iOS 16.0+
    */
-  get submersionState(): CMWaterSubmersionMeasurement_DepthState { return callSDK<CMWaterSubmersionMeasurement_DepthState>("CoreMotion_212edf3d13b127f5", 3865171568329163, this, []); }
+  get submersionState(): CMWaterSubmersionMeasurement_DepthState { return callSDK<CMWaterSubmersionMeasurement_DepthState>("CoreMotion_5d69670f0307b385", 3865171568329163, this, []); }
   /**
    * var surfacePressure: Measurement<UnitPressure> { get }
    * @availability iOS 16.0+
    */
-  get surfacePressure(): $SDK5 { return callSDK<$SDK5>("CoreMotion_212edf3d13b127f5", 1308152610470709, this, []); }
+  get surfacePressure(): $SDK5 { return callSDK<$SDK5>("CoreMotion_5d69670f0307b385", 1308152610470709, this, []); }
   declare readonly $type: { "c:objc(cs)CMWaterSubmersionMeasurement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "depth": true; "pressure": true; "submersionState": true; "surfacePressure": true };
 }
@@ -1671,7 +1671,7 @@ export type CMWaterSubmersionMeasurement_DepthState = "unknown" | "notSubmerged"
 
 export const CMWaterSubmersionMeasurement_DepthState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CMWaterSubmersionMeasurement_DepthState) | null { return callSDK<(CMWaterSubmersionMeasurement_DepthState) | null>("CoreMotion_212edf3d13b127f5", 793319252102707, undefined, [rawValue]); }
+  init(rawValue: number): (CMWaterSubmersionMeasurement_DepthState) | null { return callSDK<(CMWaterSubmersionMeasurement_DepthState) | null>("CoreMotion_5d69670f0307b385", 793319252102707, undefined, [rawValue]); }
 };
 
 /**
@@ -1680,22 +1680,22 @@ export const CMWaterSubmersionMeasurement_DepthState = {
  */
 export class CMWaterTemperature extends SDKHandle {
   /** init() */
-  static init(): CMWaterTemperature { return callSDK<CMWaterTemperature>("CoreMotion_212edf3d13b127f5", 277519097530228, undefined, []); }
+  static init(): CMWaterTemperature { return callSDK<CMWaterTemperature>("CoreMotion_5d69670f0307b385", 277519097530228, undefined, []); }
   /**
    * var date: Date { get }
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_212edf3d13b127f5", 330314724795563, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("CoreMotion_5d69670f0307b385", 330314724795563, this, []); }
   /**
    * var temperature: Measurement<UnitTemperature> { get }
    * @availability iOS 16.0+
    */
-  get temperature(): $SDK6 { return callSDK<$SDK6>("CoreMotion_212edf3d13b127f5", 4149757037346572, this, []); }
+  get temperature(): $SDK6 { return callSDK<$SDK6>("CoreMotion_5d69670f0307b385", 4149757037346572, this, []); }
   /**
    * var temperatureUncertainty: Measurement<UnitTemperature> { get }
    * @availability iOS 16.0+
    */
-  get temperatureUncertainty(): $SDK6 { return callSDK<$SDK6>("CoreMotion_212edf3d13b127f5", 350730238374716, this, []); }
+  get temperatureUncertainty(): $SDK6 { return callSDK<$SDK6>("CoreMotion_5d69670f0307b385", 350730238374716, this, []); }
   declare readonly $type: { "c:objc(cs)CMWaterTemperature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "temperature": true; "temperatureUncertainty": true };
 }
@@ -1704,91 +1704,91 @@ export class CMWaterTemperature extends SDKHandle {
  * let CMErrorDomain: String
  * @availability iOS 4.0+
  */
-export const CMErrorDomain: string = callSDK<string>("CoreMotion_212edf3d13b127f5", 3405635205768224, undefined, []);
+export const CMErrorDomain: string = callSDK<string>("CoreMotion_5d69670f0307b385", 3405635205768224, undefined, []);
 
 /** var CMErrorDeviceRequiresMovement: CMError { get } */
-export const CMErrorDeviceRequiresMovement: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 1392388925478299, undefined, []);
+export const CMErrorDeviceRequiresMovement: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 1392388925478299, undefined, []);
 
 /** var CMErrorInvalidAction: CMError { get } */
-export const CMErrorInvalidAction: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 3835239469603480, undefined, []);
+export const CMErrorInvalidAction: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 3835239469603480, undefined, []);
 
 /** var CMErrorInvalidParameter: CMError { get } */
-export const CMErrorInvalidParameter: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 2791541172465368, undefined, []);
+export const CMErrorInvalidParameter: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 2791541172465368, undefined, []);
 
 /** var CMErrorMotionActivityNotAuthorized: CMError { get } */
-export const CMErrorMotionActivityNotAuthorized: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 1875248610608919, undefined, []);
+export const CMErrorMotionActivityNotAuthorized: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 1875248610608919, undefined, []);
 
 /** var CMErrorMotionActivityNotAvailable: CMError { get } */
-export const CMErrorMotionActivityNotAvailable: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 2888248485958148, undefined, []);
+export const CMErrorMotionActivityNotAvailable: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 2888248485958148, undefined, []);
 
 /** var CMErrorMotionActivityNotEntitled: CMError { get } */
-export const CMErrorMotionActivityNotEntitled: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 2294796280452407, undefined, []);
+export const CMErrorMotionActivityNotEntitled: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 2294796280452407, undefined, []);
 
 /** var CMErrorNULL: CMError { get } */
-export const CMErrorNULL: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 358821773769437, undefined, []);
+export const CMErrorNULL: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 358821773769437, undefined, []);
 
 /** var CMErrorNilData: CMError { get } */
-export const CMErrorNilData: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 205509805531303, undefined, []);
+export const CMErrorNilData: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 205509805531303, undefined, []);
 
 /** var CMErrorNotAuthorized: CMError { get } */
-export const CMErrorNotAuthorized: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 78437452405085, undefined, []);
+export const CMErrorNotAuthorized: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 78437452405085, undefined, []);
 
 /** var CMErrorNotAvailable: CMError { get } */
-export const CMErrorNotAvailable: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 4309953032181581, undefined, []);
+export const CMErrorNotAvailable: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 4309953032181581, undefined, []);
 
 /** var CMErrorNotEntitled: CMError { get } */
-export const CMErrorNotEntitled: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 1028631059971937, undefined, []);
+export const CMErrorNotEntitled: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 1028631059971937, undefined, []);
 
 /** var CMErrorSize: CMError { get } */
-export const CMErrorSize: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 262755741485230, undefined, []);
+export const CMErrorSize: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 262755741485230, undefined, []);
 
 /** var CMErrorTrueNorthNotAvailable: CMError { get } */
-export const CMErrorTrueNorthNotAvailable: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 3363570039942376, undefined, []);
+export const CMErrorTrueNorthNotAvailable: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 3363570039942376, undefined, []);
 
 /** var CMErrorUnknown: CMError { get } */
-export const CMErrorUnknown: CMError = callSDK<CMError>("CoreMotion_212edf3d13b127f5", 3729875192366675, undefined, []);
+export const CMErrorUnknown: CMError = callSDK<CMError>("CoreMotion_5d69670f0307b385", 3729875192366675, undefined, []);
 
-registerSDKClass("CMLogItem", CMLogItem, { module: "CoreMotion_212edf3d13b127f5", properties: {"timestamp":2936731784239723} });
-registerSDKClass("CMAbsoluteAltitudeData", CMAbsoluteAltitudeData, { module: "CoreMotion_212edf3d13b127f5", properties: {"accuracy":3828284977127872,"altitude":2130259750089964,"precision":4123529416762725} });
-registerSDKClass("CoreMotion.CMAcceleration", CMAcceleration, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CMAccelerometerData", CMAccelerometerData, { module: "CoreMotion_212edf3d13b127f5", properties: {"acceleration":1644648117461947} });
-registerSDKClass("CMAltimeter", CMAltimeter, { module: "CoreMotion_212edf3d13b127f5", properties: {}, methods: {"startAbsoluteAltitudeUpdates":{"id":2321201872053657,"hints":[null,{"callback":{"out":[]}}]},"startRelativeAltitudeUpdates":{"id":491503247327630,"hints":[null,{"callback":{"out":[]}}]},"stopAbsoluteAltitudeUpdates":{"id":3626701243386917},"stopRelativeAltitudeUpdates":{"id":1483815891801888}} });
-registerSDKClass("CMAltitudeData", CMAltitudeData, { module: "CoreMotion_212edf3d13b127f5", properties: {"pressure":3848980855491149,"relativeAltitude":2458957222161703} });
-registerSDKClass("CMAmbientPressureData", CMAmbientPressureData, { module: "CoreMotion_212edf3d13b127f5", properties: {"pressure":1079922799695998,"temperature":3138740272189137} });
-registerSDKClass("CMAttitude", CMAttitude, { module: "CoreMotion_212edf3d13b127f5", properties: {"pitch":4190073687064890,"quaternion":2547371074275757,"roll":1086546169723704,"rotationMatrix":138193108735798,"yaw":2134059351666677}, methods: {"multiply":{"id":1687289407905380}} });
-registerSDKClass("CMBatchedSensorManager", CMBatchedSensorManager, { module: "CoreMotion_212edf3d13b127f5", properties: {"isAccelerometerActive":2427666744145182,"accelerometerBatch":954142063205078,"accelerometerDataFrequency":2030319112348412,"isDeviceMotionActive":1334067731908227,"deviceMotionBatch":1813708565154085,"deviceMotionDataFrequency":3546652704366}, methods: {"startAccelerometerUpdates":{"id":3415788553660512},"startAccelerometerUpdatesHandler":{"id":151555494011104,"hints":[{"callback":{"out":[]}}]},"startDeviceMotionUpdates":{"id":403306217257561},"startDeviceMotionUpdatesHandler":{"id":3644124661053160,"hints":[{"callback":{"out":[]}}]},"stopAccelerometerUpdates":{"id":3192009462921836},"stopDeviceMotionUpdates":{"id":3688777412581102}} });
+registerSDKClass("CMLogItem", CMLogItem, { module: "CoreMotion_5d69670f0307b385", properties: {"timestamp":2936731784239723} });
+registerSDKClass("CMAbsoluteAltitudeData", CMAbsoluteAltitudeData, { module: "CoreMotion_5d69670f0307b385", properties: {"accuracy":3828284977127872,"altitude":2130259750089964,"precision":4123529416762725} });
+registerSDKClass("CoreMotion.CMAcceleration", CMAcceleration, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CMAccelerometerData", CMAccelerometerData, { module: "CoreMotion_5d69670f0307b385", properties: {"acceleration":1644648117461947} });
+registerSDKClass("CMAltimeter", CMAltimeter, { module: "CoreMotion_5d69670f0307b385", properties: {}, methods: {"startAbsoluteAltitudeUpdates":{"id":2321201872053657,"hints":[null,{"callback":{"out":[]}}]},"startRelativeAltitudeUpdates":{"id":491503247327630,"hints":[null,{"callback":{"out":[]}}]},"stopAbsoluteAltitudeUpdates":{"id":3626701243386917},"stopRelativeAltitudeUpdates":{"id":1483815891801888}} });
+registerSDKClass("CMAltitudeData", CMAltitudeData, { module: "CoreMotion_5d69670f0307b385", properties: {"pressure":3848980855491149,"relativeAltitude":2458957222161703} });
+registerSDKClass("CMAmbientPressureData", CMAmbientPressureData, { module: "CoreMotion_5d69670f0307b385", properties: {"pressure":1079922799695998,"temperature":3138740272189137} });
+registerSDKClass("CMAttitude", CMAttitude, { module: "CoreMotion_5d69670f0307b385", properties: {"pitch":4190073687064890,"quaternion":2547371074275757,"roll":1086546169723704,"rotationMatrix":138193108735798,"yaw":2134059351666677}, methods: {"multiply":{"id":1687289407905380}} });
+registerSDKClass("CMBatchedSensorManager", CMBatchedSensorManager, { module: "CoreMotion_5d69670f0307b385", properties: {"isAccelerometerActive":2427666744145182,"accelerometerBatch":954142063205078,"accelerometerDataFrequency":2030319112348412,"isDeviceMotionActive":1334067731908227,"deviceMotionBatch":1813708565154085,"deviceMotionDataFrequency":3546652704366}, methods: {"startAccelerometerUpdates":{"id":3415788553660512},"startAccelerometerUpdatesHandler":{"id":151555494011104,"hints":[{"callback":{"out":[]}}]},"startDeviceMotionUpdates":{"id":403306217257561},"startDeviceMotionUpdatesHandler":{"id":3644124661053160,"hints":[{"callback":{"out":[]}}]},"stopAccelerometerUpdates":{"id":3192009462921836},"stopDeviceMotionUpdates":{"id":3688777412581102}} });
 registerSDKProtocol("c:objc(pl)CMBodyIdentifiable", {});
-registerSDKClass("CoreMotion.CMCalibratedMagneticField", CMCalibratedMagneticField, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CMDeviceMotion", CMDeviceMotion, { module: "CoreMotion_212edf3d13b127f5", properties: {"attitude":2512854295302607,"gravity":2503488282097556,"heading":554016892561299,"headingAccuracy":846780863701239,"magneticField":932193205939754,"rotationRate":2427598989258503,"sensorLocation":1986725885581312,"userAcceleration":126795645589213} });
-registerSDKClass("CMDyskineticSymptomResult", CMDyskineticSymptomResult, { module: "CoreMotion_212edf3d13b127f5", properties: {"endDate":3638186106007672,"percentLikely":4075691830253237,"percentUnlikely":2356535219989244,"startDate":540438613400512} });
-registerSDKClass("CMGyroData", CMGyroData, { module: "CoreMotion_212edf3d13b127f5", properties: {"rotationRate":879760304130032} });
-registerSDKClass("CMHeadphoneActivityManager", CMHeadphoneActivityManager, { module: "CoreMotion_212edf3d13b127f5", properties: {"isActivityActive":445647762143389,"isActivityAvailable":2517684999288698,"isStatusActive":2286325978444880,"isStatusAvailable":3622719419607197}, methods: {"startActivityUpdates":{"id":1683783898495935,"hints":[null,{"callback":{"out":[]}}]},"startStatusUpdates":{"id":4219587103581855,"hints":[null,{"callback":{"out":[]}}]},"stopActivityUpdates":{"id":1682501026998794},"stopStatusUpdates":{"id":3872774428600689}} });
-registerSDKClass("CMHeadphoneMotionManager", CMHeadphoneMotionManager, { module: "CoreMotion_212edf3d13b127f5", properties: {"isConnectionStatusActive":4268444685913682,"delegate":873586620808897,"deviceMotion":2832706075040928,"isDeviceMotionActive":1497177457933277,"isDeviceMotionAvailable":1969795189826243}, methods: {"startConnectionStatusUpdates":{"id":3326855835125975},"startDeviceMotionUpdates":{"id":2157065264978860},"startDeviceMotionUpdatesToWithHandler":{"id":3012493065443377,"hints":[null,{"callback":{"out":[]}}]},"stopConnectionStatusUpdates":{"id":2789524836690551},"stopDeviceMotionUpdates":{"id":2714949021063475}} });
+registerSDKClass("CoreMotion.CMCalibratedMagneticField", CMCalibratedMagneticField, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CMDeviceMotion", CMDeviceMotion, { module: "CoreMotion_5d69670f0307b385", properties: {"attitude":2512854295302607,"gravity":2503488282097556,"heading":554016892561299,"headingAccuracy":846780863701239,"magneticField":932193205939754,"rotationRate":2427598989258503,"sensorLocation":1986725885581312,"userAcceleration":126795645589213} });
+registerSDKClass("CMDyskineticSymptomResult", CMDyskineticSymptomResult, { module: "CoreMotion_5d69670f0307b385", properties: {"endDate":3638186106007672,"percentLikely":4075691830253237,"percentUnlikely":2356535219989244,"startDate":540438613400512} });
+registerSDKClass("CMGyroData", CMGyroData, { module: "CoreMotion_5d69670f0307b385", properties: {"rotationRate":879760304130032} });
+registerSDKClass("CMHeadphoneActivityManager", CMHeadphoneActivityManager, { module: "CoreMotion_5d69670f0307b385", properties: {"isActivityActive":445647762143389,"isActivityAvailable":2517684999288698,"isStatusActive":2286325978444880,"isStatusAvailable":3622719419607197}, methods: {"startActivityUpdates":{"id":1683783898495935,"hints":[null,{"callback":{"out":[]}}]},"startStatusUpdates":{"id":4219587103581855,"hints":[null,{"callback":{"out":[]}}]},"stopActivityUpdates":{"id":1682501026998794},"stopStatusUpdates":{"id":3872774428600689}} });
+registerSDKClass("CMHeadphoneMotionManager", CMHeadphoneMotionManager, { module: "CoreMotion_5d69670f0307b385", properties: {"isConnectionStatusActive":4268444685913682,"delegate":873586620808897,"deviceMotion":2832706075040928,"isDeviceMotionActive":1497177457933277,"isDeviceMotionAvailable":1969795189826243}, methods: {"startConnectionStatusUpdates":{"id":3326855835125975},"startDeviceMotionUpdates":{"id":2157065264978860},"startDeviceMotionUpdatesToWithHandler":{"id":3012493065443377,"hints":[null,{"callback":{"out":[]}}]},"stopConnectionStatusUpdates":{"id":2789524836690551},"stopDeviceMotionUpdates":{"id":2714949021063475}} });
 registerSDKProtocol("c:objc(pl)CMHeadphoneMotionManagerDelegate", {"headphoneMotionManagerDidConnect":"headphoneMotionManagerDidConnect(_:)","headphoneMotionManagerDidDisconnect":"headphoneMotionManagerDidDisconnect(_:)"});
-registerSDKClass("CMHighFrequencyHeartRateData", CMHighFrequencyHeartRateData, { module: "CoreMotion_212edf3d13b127f5", properties: {"confidence":4487670092424639,"date":1643758088682686,"heartRate":3998455186906575} });
-registerSDKClass("CoreMotion.CMMagneticField", CMMagneticField, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CMMagnetometerData", CMMagnetometerData, { module: "CoreMotion_212edf3d13b127f5", properties: {"magneticField":3724681647761449} });
-registerSDKClass("CMMotionActivity", CMMotionActivity, { module: "CoreMotion_212edf3d13b127f5", properties: {"automotive":961661136002669,"confidence":3907363955121699,"cycling":2034295234870355,"running":586829544301878,"startDate":1349490245675867,"stationary":774230889959775,"unknown":2204227407792534,"walking":725970490562873} });
-registerSDKClass("CMMotionActivityManager", CMMotionActivityManager, { module: "CoreMotion_212edf3d13b127f5", properties: {}, methods: {"queryActivityStarting":{"id":1445637964792797,"hints":[null,null,null,{"callback":{"out":[]}}]},"startActivityUpdates":{"id":476482011345628,"hints":[null,{"callback":{"out":[]}}]},"stopActivityUpdates":{"id":3972867590449226}} });
-registerSDKClass("CMMotionManager", CMMotionManager, { module: "CoreMotion_212edf3d13b127f5", properties: {"isAccelerometerActive":3321696214026824,"isAccelerometerAvailable":1045574826398016,"accelerometerData":299219310647844,"accelerometerUpdateInterval":1677765416972140,"attitudeReferenceFrame":862952345142676,"deviceMotion":949925126769595,"isDeviceMotionActive":1306249196865816,"isDeviceMotionAvailable":373593466835930,"deviceMotionBody":3380425540751262,"deviceMotionUpdateInterval":3824981240800522,"isGyroActive":414710561151094,"isGyroAvailable":723466216076740,"gyroData":666783777540388,"gyroUpdateInterval":1582383240267243,"isMagnetometerActive":563909427810216,"isMagnetometerAvailable":647535225827564,"magnetometerData":2528035738917788,"magnetometerUpdateInterval":1993630196618653,"showsDeviceMovementDisplay":1815289760381034}, methods: {"startAccelerometerUpdates":{"id":3701857335482817},"startAccelerometerUpdatesToWithHandler":{"id":1224432270385645,"hints":[null,{"callback":{"out":[]}}]},"startDeviceMotionUpdates":{"id":386618067236031},"startDeviceMotionUpdatesToWithHandler":{"id":3871707076211728,"hints":[null,{"callback":{"out":[]}}]},"startDeviceMotionUpdatesUsing":{"id":2613568508479724},"startDeviceMotionUpdatesUsingToWithHandler":{"id":814276269713048,"hints":[null,null,{"callback":{"out":[]}}]},"startGyroUpdates":{"id":3356493450880907},"startGyroUpdatesToWithHandler":{"id":823696223877744,"hints":[null,{"callback":{"out":[]}}]},"startMagnetometerUpdates":{"id":2678900456570648},"startMagnetometerUpdatesToWithHandler":{"id":2373987556148552,"hints":[null,{"callback":{"out":[]}}]},"stopAccelerometerUpdates":{"id":2323631960655540},"stopDeviceMotionUpdates":{"id":3088849860459260},"stopGyroUpdates":{"id":912822095705145},"stopMagnetometerUpdates":{"id":2424085081362722}} });
-registerSDKClass("CMOdometerData", CMOdometerData, { module: "CoreMotion_212edf3d13b127f5", properties: {"deltaAltitude":947637434426471,"deltaDistance":2740076664416433,"deltaDistanceAccuracy":1894354170330136,"endDate":2388981513726982,"gpsDate":3935524499688354,"originDevice":4220721890329111,"speed":1153493475730821,"speedAccuracy":3427328927930620,"startDate":1702056266500872,"verticalAccuracy":2029776278610192} });
-registerSDKClass("CMPedometer", CMPedometer, { module: "CoreMotion_212edf3d13b127f5", properties: {}, methods: {"queryPedometerData":{"id":1268319159398010,"hints":[null,null,{"callback":{"out":[]}}]},"startEventUpdates":{"id":458929476926324,"hints":[{"callback":{"out":[]}}]},"startUpdates":{"id":60832778394599,"hints":[null,{"callback":{"out":[]}}]},"stopEventUpdates":{"id":254874782039069},"stopUpdates":{"id":2051161342922571}} });
-registerSDKClass("CMPedometerData", CMPedometerData, { module: "CoreMotion_212edf3d13b127f5", properties: {"averageActivePace":2921244716513278,"currentCadence":1986324585580765,"currentPace":491726934074257,"distance":3749367713932290,"endDate":935912645052934,"floorsAscended":4146366873125910,"floorsDescended":494746601786235,"numberOfSteps":3915378860690818,"startDate":2686048833214753} });
-registerSDKClass("CMPedometerEvent", CMPedometerEvent, { module: "CoreMotion_212edf3d13b127f5", properties: {"date":4399212954030522,"type":4006819009159718} });
-registerSDKClass("CoreMotion.CMQuaternion", CMQuaternion, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CMRecordedAccelerometerData", CMRecordedAccelerometerData, { module: "CoreMotion_212edf3d13b127f5", properties: {"identifier":3332358556836834,"startDate":3064253722508105} });
-registerSDKClass("CMRecordedDeviceMotion", CMRecordedDeviceMotion, { module: "CoreMotion_212edf3d13b127f5", properties: {"identifier":2772263602251076,"startDate":2314174902867674} });
-registerSDKClass("CMRecordedPressureData", CMRecordedPressureData, { module: "CoreMotion_212edf3d13b127f5", properties: {"identifier":1901172736092706,"startDate":3202947888600528} });
-registerSDKClass("CMRotationRateData", CMRotationRateData, { module: "CoreMotion_212edf3d13b127f5", properties: {"rotationRate":2397002822733183} });
-registerSDKClass("CMRecordedRotationRateData", CMRecordedRotationRateData, { module: "CoreMotion_212edf3d13b127f5", properties: {"startDate":1100913665266124} });
-registerSDKClass("CoreMotion.CMRotationMatrix", CMRotationMatrix, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreMotion.CMRotationRate", CMRotationRate, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CMSensorDataList", CMSensorDataList, { module: "CoreMotion_212edf3d13b127f5", properties: {} });
-registerSDKClass("CMSensorRecorder", CMSensorRecorder, { module: "CoreMotion_212edf3d13b127f5", properties: {}, methods: {"accelerometerData":{"id":3621408787442150},"recordAccelerometer":{"id":2216757840885145}} });
-registerSDKClass("CMStepCounter", CMStepCounter, { module: "CoreMotion_212edf3d13b127f5", properties: {}, methods: {"queryStepCountStarting":{"id":268788466454485,"hints":[null,null,null,{"callback":{"out":[]}}]},"startStepCountingUpdates":{"id":3514070008652885,"hints":[null,null,{"callback":{"out":[]}}]},"stopStepCountingUpdates":{"id":1856221080331494}} });
-registerSDKClass("CMTremorResult", CMTremorResult, { module: "CoreMotion_212edf3d13b127f5", properties: {"endDate":1995459511087759,"percentMild":3606525069861524,"percentModerate":608574781930710,"percentNone":382249187811453,"percentSlight":1907304310137511,"percentStrong":1501742232663373,"percentUnknown":1134680072944893,"startDate":2202475188423397} });
-registerSDKClass("CMWaterSubmersionEvent", CMWaterSubmersionEvent, { module: "CoreMotion_212edf3d13b127f5", properties: {"date":1086581955087038,"state":1035607226575332} });
-registerSDKClass("CMWaterSubmersionManager", CMWaterSubmersionManager, { module: "CoreMotion_212edf3d13b127f5", properties: {"delegate":2184722275718985,"maximumDepth":803502750737683} });
+registerSDKClass("CMHighFrequencyHeartRateData", CMHighFrequencyHeartRateData, { module: "CoreMotion_5d69670f0307b385", properties: {"confidence":4487670092424639,"date":1643758088682686,"heartRate":3998455186906575} });
+registerSDKClass("CoreMotion.CMMagneticField", CMMagneticField, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CMMagnetometerData", CMMagnetometerData, { module: "CoreMotion_5d69670f0307b385", properties: {"magneticField":3724681647761449} });
+registerSDKClass("CMMotionActivity", CMMotionActivity, { module: "CoreMotion_5d69670f0307b385", properties: {"automotive":961661136002669,"confidence":3907363955121699,"cycling":2034295234870355,"running":586829544301878,"startDate":1349490245675867,"stationary":774230889959775,"unknown":2204227407792534,"walking":725970490562873} });
+registerSDKClass("CMMotionActivityManager", CMMotionActivityManager, { module: "CoreMotion_5d69670f0307b385", properties: {}, methods: {"queryActivityStarting":{"id":1445637964792797,"hints":[null,null,null,{"callback":{"out":[]}}]},"startActivityUpdates":{"id":476482011345628,"hints":[null,{"callback":{"out":[]}}]},"stopActivityUpdates":{"id":3972867590449226}} });
+registerSDKClass("CMMotionManager", CMMotionManager, { module: "CoreMotion_5d69670f0307b385", properties: {"isAccelerometerActive":3321696214026824,"isAccelerometerAvailable":1045574826398016,"accelerometerData":299219310647844,"accelerometerUpdateInterval":1677765416972140,"attitudeReferenceFrame":862952345142676,"deviceMotion":949925126769595,"isDeviceMotionActive":1306249196865816,"isDeviceMotionAvailable":373593466835930,"deviceMotionBody":3380425540751262,"deviceMotionUpdateInterval":3824981240800522,"isGyroActive":414710561151094,"isGyroAvailable":723466216076740,"gyroData":666783777540388,"gyroUpdateInterval":1582383240267243,"isMagnetometerActive":563909427810216,"isMagnetometerAvailable":647535225827564,"magnetometerData":2528035738917788,"magnetometerUpdateInterval":1993630196618653,"showsDeviceMovementDisplay":1815289760381034}, methods: {"startAccelerometerUpdates":{"id":3701857335482817},"startAccelerometerUpdatesToWithHandler":{"id":1224432270385645,"hints":[null,{"callback":{"out":[]}}]},"startDeviceMotionUpdates":{"id":386618067236031},"startDeviceMotionUpdatesToWithHandler":{"id":3871707076211728,"hints":[null,{"callback":{"out":[]}}]},"startDeviceMotionUpdatesUsing":{"id":2613568508479724},"startDeviceMotionUpdatesUsingToWithHandler":{"id":814276269713048,"hints":[null,null,{"callback":{"out":[]}}]},"startGyroUpdates":{"id":3356493450880907},"startGyroUpdatesToWithHandler":{"id":823696223877744,"hints":[null,{"callback":{"out":[]}}]},"startMagnetometerUpdates":{"id":2678900456570648},"startMagnetometerUpdatesToWithHandler":{"id":2373987556148552,"hints":[null,{"callback":{"out":[]}}]},"stopAccelerometerUpdates":{"id":2323631960655540},"stopDeviceMotionUpdates":{"id":3088849860459260},"stopGyroUpdates":{"id":912822095705145},"stopMagnetometerUpdates":{"id":2424085081362722}} });
+registerSDKClass("CMOdometerData", CMOdometerData, { module: "CoreMotion_5d69670f0307b385", properties: {"deltaAltitude":947637434426471,"deltaDistance":2740076664416433,"deltaDistanceAccuracy":1894354170330136,"endDate":2388981513726982,"gpsDate":3935524499688354,"originDevice":4220721890329111,"speed":1153493475730821,"speedAccuracy":3427328927930620,"startDate":1702056266500872,"verticalAccuracy":2029776278610192} });
+registerSDKClass("CMPedometer", CMPedometer, { module: "CoreMotion_5d69670f0307b385", properties: {}, methods: {"queryPedometerData":{"id":1268319159398010,"hints":[null,null,{"callback":{"out":[]}}]},"startEventUpdates":{"id":458929476926324,"hints":[{"callback":{"out":[]}}]},"startUpdates":{"id":60832778394599,"hints":[null,{"callback":{"out":[]}}]},"stopEventUpdates":{"id":254874782039069},"stopUpdates":{"id":2051161342922571}} });
+registerSDKClass("CMPedometerData", CMPedometerData, { module: "CoreMotion_5d69670f0307b385", properties: {"averageActivePace":2921244716513278,"currentCadence":1986324585580765,"currentPace":491726934074257,"distance":3749367713932290,"endDate":935912645052934,"floorsAscended":4146366873125910,"floorsDescended":494746601786235,"numberOfSteps":3915378860690818,"startDate":2686048833214753} });
+registerSDKClass("CMPedometerEvent", CMPedometerEvent, { module: "CoreMotion_5d69670f0307b385", properties: {"date":4399212954030522,"type":4006819009159718} });
+registerSDKClass("CoreMotion.CMQuaternion", CMQuaternion, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CMRecordedAccelerometerData", CMRecordedAccelerometerData, { module: "CoreMotion_5d69670f0307b385", properties: {"identifier":3332358556836834,"startDate":3064253722508105} });
+registerSDKClass("CMRecordedDeviceMotion", CMRecordedDeviceMotion, { module: "CoreMotion_5d69670f0307b385", properties: {"identifier":2772263602251076,"startDate":2314174902867674} });
+registerSDKClass("CMRecordedPressureData", CMRecordedPressureData, { module: "CoreMotion_5d69670f0307b385", properties: {"identifier":1901172736092706,"startDate":3202947888600528} });
+registerSDKClass("CMRotationRateData", CMRotationRateData, { module: "CoreMotion_5d69670f0307b385", properties: {"rotationRate":2397002822733183} });
+registerSDKClass("CMRecordedRotationRateData", CMRecordedRotationRateData, { module: "CoreMotion_5d69670f0307b385", properties: {"startDate":1100913665266124} });
+registerSDKClass("CoreMotion.CMRotationMatrix", CMRotationMatrix, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreMotion.CMRotationRate", CMRotationRate, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CMSensorDataList", CMSensorDataList, { module: "CoreMotion_5d69670f0307b385", properties: {} });
+registerSDKClass("CMSensorRecorder", CMSensorRecorder, { module: "CoreMotion_5d69670f0307b385", properties: {}, methods: {"accelerometerData":{"id":3621408787442150},"recordAccelerometer":{"id":2216757840885145}} });
+registerSDKClass("CMStepCounter", CMStepCounter, { module: "CoreMotion_5d69670f0307b385", properties: {}, methods: {"queryStepCountStarting":{"id":268788466454485,"hints":[null,null,null,{"callback":{"out":[]}}]},"startStepCountingUpdates":{"id":3514070008652885,"hints":[null,null,{"callback":{"out":[]}}]},"stopStepCountingUpdates":{"id":1856221080331494}} });
+registerSDKClass("CMTremorResult", CMTremorResult, { module: "CoreMotion_5d69670f0307b385", properties: {"endDate":1995459511087759,"percentMild":3606525069861524,"percentModerate":608574781930710,"percentNone":382249187811453,"percentSlight":1907304310137511,"percentStrong":1501742232663373,"percentUnknown":1134680072944893,"startDate":2202475188423397} });
+registerSDKClass("CMWaterSubmersionEvent", CMWaterSubmersionEvent, { module: "CoreMotion_5d69670f0307b385", properties: {"date":1086581955087038,"state":1035607226575332} });
+registerSDKClass("CMWaterSubmersionManager", CMWaterSubmersionManager, { module: "CoreMotion_5d69670f0307b385", properties: {"delegate":2184722275718985,"maximumDepth":803502750737683} });
 registerSDKProtocol("c:objc(pl)CMWaterSubmersionManagerDelegate", {"managerDidUpdate":"manager(_:didUpdate:)","managerErrorOccurred":"manager(_:errorOccurred:)"});
-registerSDKClass("CMWaterSubmersionMeasurement", CMWaterSubmersionMeasurement, { module: "CoreMotion_212edf3d13b127f5", properties: {"date":1175269884777514,"depth":3021342252573484,"pressure":453075853400478,"submersionState":3865171568329163,"surfacePressure":1308152610470709} });
-registerSDKClass("CMWaterTemperature", CMWaterTemperature, { module: "CoreMotion_212edf3d13b127f5", properties: {"date":330314724795563,"temperature":4149757037346572,"temperatureUncertainty":350730238374716} });
+registerSDKClass("CMWaterSubmersionMeasurement", CMWaterSubmersionMeasurement, { module: "CoreMotion_5d69670f0307b385", properties: {"date":1175269884777514,"depth":3021342252573484,"pressure":453075853400478,"submersionState":3865171568329163,"surfacePressure":1308152610470709} });
+registerSDKClass("CMWaterTemperature", CMWaterTemperature, { module: "CoreMotion_5d69670f0307b385", properties: {"date":330314724795563,"temperature":4149757037346572,"temperatureUncertainty":350730238374716} });

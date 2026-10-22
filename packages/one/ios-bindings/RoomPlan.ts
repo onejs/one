@@ -36,62 +36,62 @@ export class CapturedRoom extends SDKHandle {
    * var identifier: UUID { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 3207478805165627, this, []); }
+  get identifier(): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 3207478805165627, this, []); }
   /**
    * var doors: [CapturedRoom.Surface] { get }
    * @availability iOS 16.0+
    */
-  get doors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 3831966415016506, this, []); }
+  get doors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 3831966415016506, this, []); }
   /**
    * var story: Int { get }
    * @availability iOS 17.0+
    */
-  get story(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 2295549114342188, this, []); }
+  get story(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 2295549114342188, this, []); }
   /**
    * var walls: [CapturedRoom.Surface] { get }
    * @availability iOS 16.0+
    */
-  get walls(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 297973004872189, this, []); }
+  get walls(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 297973004872189, this, []); }
   /**
    * func export(to url: URL, exportOptions: CapturedRoom.USDExportOptions = .mesh) throws
    * @availability iOS 16.0+
    */
-  exportToExportOptions(url: string, exportOptions?: CapturedRoom_USDExportOptions): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 2909902945385167, this, [url, exportOptions]); }
+  exportToExportOptions(url: string, exportOptions?: CapturedRoom_USDExportOptions): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 2909902945385167, this, [url, exportOptions]); }
   /**
    * func export(to url: URL, metadataURL: URL? = nil, modelProvider: CapturedRoom.ModelProvider? = nil, exportOptions: CapturedRoom.USDExportOptions = .mesh) throws
    * @availability iOS 17.0+
    */
-  exportToMetadataURLModelProviderExportOptions(url: string, metadataURL?: (string) | null, modelProvider?: $SDK1, exportOptions?: CapturedRoom_USDExportOptions): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 4285369638548332, this, [url, metadataURL, modelProvider, exportOptions]); }
+  exportToMetadataURLModelProviderExportOptions(url: string, metadataURL?: (string) | null, modelProvider?: $SDK1, exportOptions?: CapturedRoom_USDExportOptions): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 4285369638548332, this, [url, metadataURL, modelProvider, exportOptions]); }
   /**
    * var floors: [CapturedRoom.Surface] { get }
    * @availability iOS 17.0+
    */
-  get floors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 4244612932963075, this, []); }
+  get floors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 4244612932963075, this, []); }
   /**
    * var objects: [CapturedRoom.Object] { get }
    * @availability iOS 16.0+
    */
-  get objects(): Array<CapturedRoom_Object> { return callSDK<Array<CapturedRoom_Object>>("RoomPlan_212edf3d13b127f5", 3717849550249942, this, []); }
+  get objects(): Array<CapturedRoom_Object> { return callSDK<Array<CapturedRoom_Object>>("RoomPlan_5d69670f0307b385", 3717849550249942, this, []); }
   /**
    * var version: Int { get }
    * @availability iOS 17.0+
    */
-  get version(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 475080179276407, this, []); }
+  get version(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 475080179276407, this, []); }
   /**
    * var windows: [CapturedRoom.Surface] { get }
    * @availability iOS 16.0+
    */
-  get windows(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 760315870095238, this, []); }
+  get windows(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 760315870095238, this, []); }
   /**
    * var openings: [CapturedRoom.Surface] { get }
    * @availability iOS 16.0+
    */
-  get openings(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 590712647593179, this, []); }
+  get openings(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 590712647593179, this, []); }
   /**
    * var sections: [CapturedRoom.Section] { get }
    * @availability iOS 17.0+
    */
-  get sections(): $SDK3 { return callSDK<$SDK3>("RoomPlan_212edf3d13b127f5", 2275619183408633, this, []); }
+  get sections(): $SDK3 { return callSDK<$SDK3>("RoomPlan_5d69670f0307b385", 2275619183408633, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V": true };
 }
 
@@ -104,12 +104,12 @@ export class CapturedRoom_AttributesCodableRepresentation extends SDKHandle {
    * init(attributes: [any CapturedRoomAttribute])
    * @availability iOS 17.0+
    */
-  static init(attributes: Array<SDKHandle>): CapturedRoom_AttributesCodableRepresentation { return callSDK<CapturedRoom_AttributesCodableRepresentation>("RoomPlan_212edf3d13b127f5", 3541689794877705, undefined, [attributes]); }
+  static init(attributes: Array<SDKHandle>): CapturedRoom_AttributesCodableRepresentation { return callSDK<CapturedRoom_AttributesCodableRepresentation>("RoomPlan_5d69670f0307b385", 3541689794877705, undefined, [attributes]); }
   /**
    * let attributes: [any CapturedRoomAttribute]
    * @availability iOS 17.0+
    */
-  get attributes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("RoomPlan_212edf3d13b127f5", 1979062830251694, this, []); }
+  get attributes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("RoomPlan_5d69670f0307b385", 1979062830251694, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V31AttributesCodableRepresentationV": true };
 }
 
@@ -130,7 +130,7 @@ export const CapturedRoom_Error = {
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  getErrorDescription($self: CapturedRoom_Error): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 337194412128602, $self, []); }
+  getErrorDescription($self: CapturedRoom_Error): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 337194412128602, $self, []); }
 };
 
 /**
@@ -142,37 +142,37 @@ export class CapturedRoom_ModelProvider extends SDKHandle {
    * mutating func setModelFileURL(_ url: URL?, for category: CapturedRoom.Object.Category) throws
    * @availability iOS 17.0+
    */
-  setModelFileURLFor(url: (string) | null, category: CapturedRoom_Object_Category): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 3231284920763758, this, [url, category]); }
+  setModelFileURLFor(url: (string) | null, category: CapturedRoom_Object_Category): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 3231284920763758, this, [url, category]); }
   /**
    * mutating func setModelFileURL(_ url: URL?, for attributes: [any CapturedRoomAttribute]) throws
    * @availability iOS 17.0+
    */
-  setModelFileURLFor64378(url: (string) | null, attributes: Array<SDKHandle>): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 313910912440494, this, [url, attributes]); }
+  setModelFileURLFor64378(url: (string) | null, attributes: Array<SDKHandle>): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 313910912440494, this, [url, attributes]); }
   /**
    * func modelFileURL(for category: CapturedRoom.Object.Category) throws -> URL?
    * @availability iOS 17.0+
    */
-  modelFileURLFor(category: CapturedRoom_Object_Category): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 955404394433435, this, [category]); }
+  modelFileURLFor(category: CapturedRoom_Object_Category): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 955404394433435, this, [category]); }
   /**
    * func modelFileURL(for object: CapturedRoom.Object) throws -> URL?
    * @availability iOS 17.0+
    */
-  modelFileURLFor12765(object: CapturedRoom_Object): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 1858734869078270, this, [object]); }
+  modelFileURLFor12765(object: CapturedRoom_Object): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 1858734869078270, this, [object]); }
   /**
    * func modelFileURL(for attributes: [any CapturedRoomAttribute]) throws -> URL?
    * @availability iOS 17.0+
    */
-  modelFileURLFor298(attributes: Array<SDKHandle>): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 4268619861697684, this, [attributes]); }
+  modelFileURLFor298(attributes: Array<SDKHandle>): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 4268619861697684, this, [attributes]); }
   /**
    * var modelFileURLs: [URL] { get }
    * @availability iOS 17.0+
    */
-  get modelFileURLs(): Array<string> { return callSDK<Array<string>>("RoomPlan_212edf3d13b127f5", 920298147466891, this, []); }
+  get modelFileURLs(): Array<string> { return callSDK<Array<string>>("RoomPlan_5d69670f0307b385", 920298147466891, this, []); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): CapturedRoom_ModelProvider { return callSDK<CapturedRoom_ModelProvider>("RoomPlan_212edf3d13b127f5", 2383570558143987, undefined, []); }
+  static init(): CapturedRoom_ModelProvider { return callSDK<CapturedRoom_ModelProvider>("RoomPlan_5d69670f0307b385", 2383570558143987, undefined, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V13ModelProviderV": true };
 }
 
@@ -185,7 +185,7 @@ export class CapturedRoom_ModelProvider_Error extends SDKHandle {
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 4096811615506625, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 4096811615506625, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V13ModelProviderV5ErrorO": true };
 }
 
@@ -198,42 +198,42 @@ export class CapturedRoom_Object extends SDKHandle {
    * var attributes: [any CapturedRoomAttribute] { get }
    * @availability iOS 17.0+
    */
-  get attributes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("RoomPlan_212edf3d13b127f5", 2417707301736660, this, []); }
+  get attributes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("RoomPlan_5d69670f0307b385", 2417707301736660, this, []); }
   /**
    * var confidence: CapturedRoom.Confidence { get }
    * @availability iOS 16.0+
    */
-  get confidence(): CapturedRoom_Confidence { return callSDK<CapturedRoom_Confidence>("RoomPlan_212edf3d13b127f5", 3425645222572304, this, []); }
+  get confidence(): CapturedRoom_Confidence { return callSDK<CapturedRoom_Confidence>("RoomPlan_5d69670f0307b385", 3425645222572304, this, []); }
   /**
    * var dimensions: simd_float3 { get }
    * @availability iOS 16.0+
    */
-  get dimensions(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_212edf3d13b127f5", 465501777288001, this, []); }
+  get dimensions(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_5d69670f0307b385", 465501777288001, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 2649420269455331, this, []); }
+  get identifier(): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 2649420269455331, this, []); }
   /**
    * var parentIdentifier: UUID? { get }
    * @availability iOS 17.0+
    */
-  get parentIdentifier(): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 1073450260992142, this, []); }
+  get parentIdentifier(): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 1073450260992142, this, []); }
   /**
    * var story: Int { get }
    * @availability iOS 17.0+
    */
-  get story(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 3650090819325845, this, []); }
+  get story(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 3650090819325845, this, []); }
   /**
    * var category: CapturedRoom.Object.Category { get }
    * @availability iOS 16.0+
    */
-  get category(): CapturedRoom_Object_Category { return callSDK<CapturedRoom_Object_Category>("RoomPlan_212edf3d13b127f5", 2243682009501494, this, []); }
+  get category(): CapturedRoom_Object_Category { return callSDK<CapturedRoom_Object_Category>("RoomPlan_5d69670f0307b385", 2243682009501494, this, []); }
   /**
    * var transform: simd_float4x4 { get }
    * @availability iOS 16.0+
    */
-  get transform(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_212edf3d13b127f5", 1631551906930153, this, []); }
+  get transform(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_5d69670f0307b385", 1631551906930153, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V6ObjectV": true };
 }
 
@@ -248,17 +248,17 @@ export const CapturedRoom_Object_Category = {
    * func supportsCombination(_ attributes: [any CapturedRoomAttribute]) -> Bool
    * @availability iOS 17.0+
    */
-  supportsCombination($self: CapturedRoom_Object_Category, attributes: Array<SDKHandle>): boolean { return callSDK<boolean>("RoomPlan_212edf3d13b127f5", 3088968923759892, $self, [attributes]); },
+  supportsCombination($self: CapturedRoom_Object_Category, attributes: Array<SDKHandle>): boolean { return callSDK<boolean>("RoomPlan_5d69670f0307b385", 3088968923759892, $self, [attributes]); },
   /**
    * var supportedCombinations: [[any CapturedRoomAttribute]] { get }
    * @availability iOS 17.0+
    */
-  getSupportedCombinations($self: CapturedRoom_Object_Category): Array<Array<SDKHandle>> { return callSDK<Array<Array<SDKHandle>>>("RoomPlan_212edf3d13b127f5", 3568342861177134, $self, []); },
+  getSupportedCombinations($self: CapturedRoom_Object_Category): Array<Array<SDKHandle>> { return callSDK<Array<Array<SDKHandle>>>("RoomPlan_5d69670f0307b385", 3568342861177134, $self, []); },
   /**
    * nonisolated static var allCases: [CapturedRoom.Object.Category] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): $SDK4 { return callSDK<$SDK4>("RoomPlan_212edf3d13b127f5", 2301463101890830, undefined, []); }
+  get allCases(): $SDK4 { return callSDK<$SDK4>("RoomPlan_5d69670f0307b385", 2301463101890830, undefined, []); }
 };
 
 /**
@@ -276,17 +276,17 @@ export class CapturedRoom_Section extends SDKHandle {
    * var label: CapturedRoom.Section.Label { get }
    * @availability iOS 17.0+
    */
-  get label(): CapturedRoom_Section_Label { return callSDK<CapturedRoom_Section_Label>("RoomPlan_212edf3d13b127f5", 1914319127717224, this, []); }
+  get label(): CapturedRoom_Section_Label { return callSDK<CapturedRoom_Section_Label>("RoomPlan_5d69670f0307b385", 1914319127717224, this, []); }
   /**
    * var story: Int { get }
    * @availability iOS 17.0+
    */
-  get story(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 2205028840864602, this, []); }
+  get story(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 2205028840864602, this, []); }
   /**
    * var center: simd_float3 { get }
    * @availability iOS 17.0+
    */
-  get center(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_212edf3d13b127f5", 2265256328555515, this, []); }
+  get center(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_5d69670f0307b385", 2265256328555515, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V7SectionV": true };
 }
 
@@ -301,12 +301,12 @@ export const CapturedRoom_Section_Label = {
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (CapturedRoom_Section_Label) | null { return callSDK<(CapturedRoom_Section_Label) | null>("RoomPlan_212edf3d13b127f5", 4021702775061895, undefined, [rawValue]); },
+  init(rawValue: string): (CapturedRoom_Section_Label) | null { return callSDK<(CapturedRoom_Section_Label) | null>("RoomPlan_5d69670f0307b385", 4021702775061895, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: CapturedRoom_Section_Label): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 282889650494785, $self, []); }
+  getRawValue($self: CapturedRoom_Section_Label): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 282889650494785, $self, []); }
 };
 
 /**
@@ -324,52 +324,52 @@ export class CapturedRoom_Surface extends SDKHandle {
    * var confidence: CapturedRoom.Confidence { get }
    * @availability iOS 16.0+
    */
-  get confidence(): CapturedRoom_Confidence { return callSDK<CapturedRoom_Confidence>("RoomPlan_212edf3d13b127f5", 665712454868543, this, []); }
+  get confidence(): CapturedRoom_Confidence { return callSDK<CapturedRoom_Confidence>("RoomPlan_5d69670f0307b385", 665712454868543, this, []); }
   /**
    * var dimensions: simd_float3 { get }
    * @availability iOS 16.0+
    */
-  get dimensions(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_212edf3d13b127f5", 4223547603686537, this, []); }
+  get dimensions(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_5d69670f0307b385", 4223547603686537, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 1943648280658937, this, []); }
+  get identifier(): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 1943648280658937, this, []); }
   /**
    * var completedEdges: Set<CapturedRoom.Surface.Edge> { get }
    * @availability iOS 16.0+
    */
-  get completedEdges(): $SDK5 { return callSDK<$SDK5>("RoomPlan_212edf3d13b127f5", 720234814467488, this, []); }
+  get completedEdges(): $SDK5 { return callSDK<$SDK5>("RoomPlan_5d69670f0307b385", 720234814467488, this, []); }
   /**
    * var polygonCorners: [simd_float3] { get }
    * @availability iOS 17.0+
    */
-  get polygonCorners(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("RoomPlan_212edf3d13b127f5", 2383312594818851, this, []); }
+  get polygonCorners(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("RoomPlan_5d69670f0307b385", 2383312594818851, this, []); }
   /**
    * var parentIdentifier: UUID? { get }
    * @availability iOS 17.0+
    */
-  get parentIdentifier(): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 4486050930108097, this, []); }
+  get parentIdentifier(): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 4486050930108097, this, []); }
   /**
    * var curve: CapturedRoom.Surface.Curve? { get }
    * @availability iOS 16.0+
    */
-  get curve(): (CapturedRoom_Surface_Curve) | null { return callSDK<(CapturedRoom_Surface_Curve) | null>("RoomPlan_212edf3d13b127f5", 268337282470298, this, []); }
+  get curve(): (CapturedRoom_Surface_Curve) | null { return callSDK<(CapturedRoom_Surface_Curve) | null>("RoomPlan_5d69670f0307b385", 268337282470298, this, []); }
   /**
    * var story: Int { get }
    * @availability iOS 17.0+
    */
-  get story(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 1954480846578759, this, []); }
+  get story(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 1954480846578759, this, []); }
   /**
    * var category: CapturedRoom.Surface.Category { get }
    * @availability iOS 16.0+
    */
-  get category(): CapturedRoom_Surface_Category { return callSDK<CapturedRoom_Surface_Category>("RoomPlan_212edf3d13b127f5", 1312303374727216, this, []); }
+  get category(): CapturedRoom_Surface_Category { return callSDK<CapturedRoom_Surface_Category>("RoomPlan_5d69670f0307b385", 1312303374727216, this, []); }
   /**
    * var transform: simd_float4x4 { get }
    * @availability iOS 16.0+
    */
-  get transform(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_212edf3d13b127f5", 3896318628851653, this, []); }
+  get transform(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_5d69670f0307b385", 3896318628851653, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V7SurfaceV": true };
 }
 
@@ -390,22 +390,22 @@ export class CapturedRoom_Surface_Curve extends SDKHandle {
    * var startAngle: Measurement<UnitAngle> { get }
    * @availability iOS 16.0+
    */
-  get startAngle(): $SDK7 { return callSDK<$SDK7>("RoomPlan_212edf3d13b127f5", 3153949456555750, this, []); }
+  get startAngle(): $SDK7 { return callSDK<$SDK7>("RoomPlan_5d69670f0307b385", 3153949456555750, this, []); }
   /**
    * var center: simd_float2 { get }
    * @availability iOS 17.0+
    */
-  get center(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_212edf3d13b127f5", 3638139574123098, this, []); }
+  get center(): SDKHandle { return callSDK<SDKHandle>("RoomPlan_5d69670f0307b385", 3638139574123098, this, []); }
   /**
    * var radius: Float { get }
    * @availability iOS 16.0+
    */
-  get radius(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 3240727925751051, this, []); }
+  get radius(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 3240727925751051, this, []); }
   /**
    * var endAngle: Measurement<UnitAngle> { get }
    * @availability iOS 16.0+
    */
-  get endAngle(): $SDK7 { return callSDK<$SDK7>("RoomPlan_212edf3d13b127f5", 2510878820466382, this, []); }
+  get endAngle(): $SDK7 { return callSDK<$SDK7>("RoomPlan_5d69670f0307b385", 2510878820466382, this, []); }
   declare readonly $type: { "s:8RoomPlan08CapturedA0V7SurfaceV5CurveV": true };
 }
 
@@ -420,7 +420,7 @@ export const CapturedRoom_Surface_Edge = {
    * nonisolated static var allCases: [CapturedRoom.Surface.Edge] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): $SDK5 { return callSDK<$SDK5>("RoomPlan_212edf3d13b127f5", 807011147074213, undefined, []); }
+  get allCases(): $SDK5 { return callSDK<$SDK5>("RoomPlan_5d69670f0307b385", 807011147074213, undefined, []); }
 };
 
 /**
@@ -440,27 +440,27 @@ export const CapturedRoom_USDExportOptions = {
    * static let parametric: CapturedRoom.USDExportOptions
    * @availability iOS 16.0+
    */
-  get parametric(): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_212edf3d13b127f5", 2439689590154, undefined, []); },
+  get parametric(): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_5d69670f0307b385", 2439689590154, undefined, []); },
   /**
    * static let mesh: CapturedRoom.USDExportOptions
    * @availability iOS 16.0+
    */
-  get mesh(): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_212edf3d13b127f5", 3831667767763453, undefined, []); },
+  get mesh(): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_5d69670f0307b385", 3831667767763453, undefined, []); },
   /**
    * static let model: CapturedRoom.USDExportOptions
    * @availability iOS 16.0+
    */
-  get model(): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_212edf3d13b127f5", 1068168198517553, undefined, []); },
+  get model(): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_5d69670f0307b385", 1068168198517553, undefined, []); },
   /**
    * init(rawValue: Int32)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_212edf3d13b127f5", 2648984708243546, undefined, [rawValue]); },
+  init(rawValue: number): CapturedRoom_USDExportOptions { return callSDK<CapturedRoom_USDExportOptions>("RoomPlan_5d69670f0307b385", 2648984708243546, undefined, [rawValue]); },
   /**
    * let rawValue: Int32
    * @availability iOS 16.0+
    */
-  getRawValue($self: CapturedRoom_USDExportOptions): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 793978136300013, $self, []); }
+  getRawValue($self: CapturedRoom_USDExportOptions): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 793978136300013, $self, []); }
 };
 
 /**
@@ -506,57 +506,57 @@ export class CapturedStructure extends SDKHandle {
    * var identifier: UUID { get }
    * @availability iOS 17.0+
    */
-  get identifier(): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 936206182140280, this, []); }
+  get identifier(): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 936206182140280, this, []); }
   /**
    * var doors: [CapturedStructure.Surface] { get }
    * @availability iOS 17.0+
    */
-  get doors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 1858003368104421, this, []); }
+  get doors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 1858003368104421, this, []); }
   /**
    * var rooms: [CapturedRoom] { get }
    * @availability iOS 17.0+
    */
-  get rooms(): Array<CapturedRoom> { return callSDK<Array<CapturedRoom>>("RoomPlan_212edf3d13b127f5", 2372439040861887, this, []); }
+  get rooms(): Array<CapturedRoom> { return callSDK<Array<CapturedRoom>>("RoomPlan_5d69670f0307b385", 2372439040861887, this, []); }
   /**
    * var walls: [CapturedStructure.Surface] { get }
    * @availability iOS 17.0+
    */
-  get walls(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 221839247895458, this, []); }
+  get walls(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 221839247895458, this, []); }
   /**
    * func export(to url: URL, metadataURL: URL? = nil, modelProvider: CapturedStructure.ModelProvider? = nil, exportOptions: CapturedStructure.USDExportOptions = .mesh) throws
    * @availability iOS 17.0+
    */
-  export(url: string, metadataURL?: (string) | null, modelProvider?: $SDK1, exportOptions?: CapturedRoom_USDExportOptions): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 1693790865222376, this, [url, metadataURL, modelProvider, exportOptions]); }
+  export(url: string, metadataURL?: (string) | null, modelProvider?: $SDK1, exportOptions?: CapturedRoom_USDExportOptions): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 1693790865222376, this, [url, metadataURL, modelProvider, exportOptions]); }
   /**
    * var floors: [CapturedStructure.Surface] { get }
    * @availability iOS 17.0+
    */
-  get floors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 3340366495938726, this, []); }
+  get floors(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 3340366495938726, this, []); }
   /**
    * var objects: [CapturedStructure.Object] { get }
    * @availability iOS 17.0+
    */
-  get objects(): Array<CapturedRoom_Object> { return callSDK<Array<CapturedRoom_Object>>("RoomPlan_212edf3d13b127f5", 3934909362631278, this, []); }
+  get objects(): Array<CapturedRoom_Object> { return callSDK<Array<CapturedRoom_Object>>("RoomPlan_5d69670f0307b385", 3934909362631278, this, []); }
   /**
    * var version: Int { get }
    * @availability iOS 17.0+
    */
-  get version(): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 1345221040904894, this, []); }
+  get version(): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 1345221040904894, this, []); }
   /**
    * var windows: [CapturedStructure.Surface] { get }
    * @availability iOS 17.0+
    */
-  get windows(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 3744004882298662, this, []); }
+  get windows(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 3744004882298662, this, []); }
   /**
    * var openings: [CapturedStructure.Surface] { get }
    * @availability iOS 17.0+
    */
-  get openings(): $SDK0 { return callSDK<$SDK0>("RoomPlan_212edf3d13b127f5", 970227529960452, this, []); }
+  get openings(): $SDK0 { return callSDK<$SDK0>("RoomPlan_5d69670f0307b385", 970227529960452, this, []); }
   /**
    * var sections: [CapturedStructure.Section] { get }
    * @availability iOS 17.0+
    */
-  get sections(): $SDK3 { return callSDK<$SDK3>("RoomPlan_212edf3d13b127f5", 3685666474637348, this, []); }
+  get sections(): $SDK3 { return callSDK<$SDK3>("RoomPlan_5d69670f0307b385", 3685666474637348, this, []); }
   declare readonly $type: { "s:8RoomPlan17CapturedStructureV": true };
 }
 
@@ -607,27 +607,27 @@ export const ChairArmType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 1458327793418241, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 1458327793418241, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: ChairArmType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 1368701671457348, $self, []); },
+  getShortIdentifier($self: ChairArmType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 1368701671457348, $self, []); },
   /**
    * nonisolated static var allCases: [ChairArmType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<ChairArmType> { return callSDK<Array<ChairArmType>>("RoomPlan_212edf3d13b127f5", 2715621943749012, undefined, []); },
+  get allCases(): Array<ChairArmType> { return callSDK<Array<ChairArmType>>("RoomPlan_5d69670f0307b385", 2715621943749012, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (ChairArmType) | null { return callSDK<(ChairArmType) | null>("RoomPlan_212edf3d13b127f5", 3922265287915780, undefined, [rawValue]); },
+  init(rawValue: string): (ChairArmType) | null { return callSDK<(ChairArmType) | null>("RoomPlan_5d69670f0307b385", 3922265287915780, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ChairArmType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 3394982502658070, $self, []); }
+  getRawValue($self: ChairArmType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 3394982502658070, $self, []); }
 };
 
 /**
@@ -653,27 +653,27 @@ export const ChairBackType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 3481016704272984, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 3481016704272984, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: ChairBackType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 2048186011530393, $self, []); },
+  getShortIdentifier($self: ChairBackType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 2048186011530393, $self, []); },
   /**
    * nonisolated static var allCases: [ChairBackType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<ChairBackType> { return callSDK<Array<ChairBackType>>("RoomPlan_212edf3d13b127f5", 2511255134937192, undefined, []); },
+  get allCases(): Array<ChairBackType> { return callSDK<Array<ChairBackType>>("RoomPlan_5d69670f0307b385", 2511255134937192, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (ChairBackType) | null { return callSDK<(ChairBackType) | null>("RoomPlan_212edf3d13b127f5", 3386183347297612, undefined, [rawValue]); },
+  init(rawValue: string): (ChairBackType) | null { return callSDK<(ChairBackType) | null>("RoomPlan_5d69670f0307b385", 3386183347297612, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ChairBackType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 423307081710692, $self, []); }
+  getRawValue($self: ChairBackType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 423307081710692, $self, []); }
 };
 
 /**
@@ -699,27 +699,27 @@ export const ChairLegType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 273854804593110, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 273854804593110, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: ChairLegType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 3884942992659917, $self, []); },
+  getShortIdentifier($self: ChairLegType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 3884942992659917, $self, []); },
   /**
    * nonisolated static var allCases: [ChairLegType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<ChairLegType> { return callSDK<Array<ChairLegType>>("RoomPlan_212edf3d13b127f5", 2554104784599784, undefined, []); },
+  get allCases(): Array<ChairLegType> { return callSDK<Array<ChairLegType>>("RoomPlan_5d69670f0307b385", 2554104784599784, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (ChairLegType) | null { return callSDK<(ChairLegType) | null>("RoomPlan_212edf3d13b127f5", 1213754157675406, undefined, [rawValue]); },
+  init(rawValue: string): (ChairLegType) | null { return callSDK<(ChairLegType) | null>("RoomPlan_5d69670f0307b385", 1213754157675406, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ChairLegType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 4365313944249195, $self, []); }
+  getRawValue($self: ChairLegType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 4365313944249195, $self, []); }
 };
 
 /**
@@ -745,27 +745,27 @@ export const ChairType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 3289553815555811, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 3289553815555811, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: ChairType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 617212279525518, $self, []); },
+  getShortIdentifier($self: ChairType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 617212279525518, $self, []); },
   /**
    * nonisolated static var allCases: [ChairType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<ChairType> { return callSDK<Array<ChairType>>("RoomPlan_212edf3d13b127f5", 2174559848282141, undefined, []); },
+  get allCases(): Array<ChairType> { return callSDK<Array<ChairType>>("RoomPlan_5d69670f0307b385", 2174559848282141, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (ChairType) | null { return callSDK<(ChairType) | null>("RoomPlan_212edf3d13b127f5", 2458259646149269, undefined, [rawValue]); },
+  init(rawValue: string): (ChairType) | null { return callSDK<(ChairType) | null>("RoomPlan_5d69670f0307b385", 2458259646149269, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ChairType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 3240533826371330, $self, []); }
+  getRawValue($self: ChairType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 3240533826371330, $self, []); }
 };
 
 /**
@@ -789,12 +789,12 @@ export class RoomBuilder extends SDKHandle {
    * func capturedRoom(from capturedRoomData: CapturedRoomData) async throws -> CapturedRoom
    * @availability iOS 16.0+
    */
-  capturedRoom(capturedRoomData: CapturedRoomData): Promise<CapturedRoom> { return callSDKAsync<CapturedRoom>("RoomPlan_212edf3d13b127f5", 644929696583928, this, [capturedRoomData]); }
+  capturedRoom(capturedRoomData: CapturedRoomData): Promise<CapturedRoom> { return callSDKAsync<CapturedRoom>("RoomPlan_5d69670f0307b385", 644929696583928, this, [capturedRoomData]); }
   /**
    * init(options: RoomBuilder.ConfigurationOptions)
    * @availability iOS 16.0+
    */
-  static init(options: RoomBuilder_ConfigurationOptions): RoomBuilder { return callSDK<RoomBuilder>("RoomPlan_212edf3d13b127f5", 227442079620090, undefined, [options]); }
+  static init(options: RoomBuilder_ConfigurationOptions): RoomBuilder { return callSDK<RoomBuilder>("RoomPlan_5d69670f0307b385", 227442079620090, undefined, [options]); }
   declare readonly $type: { "s:8RoomPlan0A7BuilderC": true };
 }
 
@@ -809,7 +809,7 @@ export const RoomBuilder_BuildError = {
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  getErrorDescription($self: RoomBuilder_BuildError): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 2462050077638962, $self, []); }
+  getErrorDescription($self: RoomBuilder_BuildError): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 2462050077638962, $self, []); }
 };
 
 /**
@@ -823,17 +823,17 @@ export const RoomBuilder_ConfigurationOptions = {
    * static let beautifyObjects: RoomBuilder.ConfigurationOptions
    * @availability iOS 16.0+
    */
-  get beautifyObjects(): RoomBuilder_ConfigurationOptions { return callSDK<RoomBuilder_ConfigurationOptions>("RoomPlan_212edf3d13b127f5", 3047983200565632, undefined, []); },
+  get beautifyObjects(): RoomBuilder_ConfigurationOptions { return callSDK<RoomBuilder_ConfigurationOptions>("RoomPlan_5d69670f0307b385", 3047983200565632, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): RoomBuilder_ConfigurationOptions { return callSDK<RoomBuilder_ConfigurationOptions>("RoomPlan_212edf3d13b127f5", 3756811970976259, undefined, [rawValue]); },
+  init(rawValue: number): RoomBuilder_ConfigurationOptions { return callSDK<RoomBuilder_ConfigurationOptions>("RoomPlan_5d69670f0307b385", 3756811970976259, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: RoomBuilder_ConfigurationOptions): number { return callSDK<number>("RoomPlan_212edf3d13b127f5", 3536842780419025, $self, []); }
+  getRawValue($self: RoomBuilder_ConfigurationOptions): number { return callSDK<number>("RoomPlan_5d69670f0307b385", 3536842780419025, $self, []); }
 };
 
 /**
@@ -863,44 +863,44 @@ export class RoomCaptureSession extends SDKHandle {
    * init(arSession: ARSession? = nil)
    * @availability iOS 17.0+
    */
-  static initArSession(arSession?: (_ARKit_ARSession) | null): RoomCaptureSession { return callSDK<RoomCaptureSession>("RoomPlan_212edf3d13b127f5", 3198289009800607, undefined, [arSession]); }
+  static initArSession(arSession?: (_ARKit_ARSession) | null): RoomCaptureSession { return callSDK<RoomCaptureSession>("RoomPlan_5d69670f0307b385", 3198289009800607, undefined, [arSession]); }
   /**
    * var arSession: ARSession
    * @availability iOS 16.0+
    */
-  get arSession(): _ARKit_ARSession { return callSDK<_ARKit_ARSession>("RoomPlan_212edf3d13b127f5", 2517811098088442, this, []); }
-  set arSession(value: _ARKit_ARSession) { callSDK<void>("RoomPlan_212edf3d13b127f5", 4466844304050656, this, [value]); }
+  get arSession(): _ARKit_ARSession { return callSDK<_ARKit_ARSession>("RoomPlan_5d69670f0307b385", 2517811098088442, this, []); }
+  set arSession(value: _ARKit_ARSession) { callSDK<void>("RoomPlan_5d69670f0307b385", 4466844304050656, this, [value]); }
   /**
    * static var isSupported: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("RoomPlan_212edf3d13b127f5", 4360401641540121, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("RoomPlan_5d69670f0307b385", 4360401641540121, undefined, []); }
   /**
    * func run(configuration: RoomCaptureSession.Configuration)
    * @availability iOS 16.0+
    */
-  run(configuration: RoomCaptureSession_Configuration): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 2461884698900654, this, [configuration]); }
+  run(configuration: RoomCaptureSession_Configuration): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 2461884698900654, this, [configuration]); }
   /**
    * func stop(pauseARSession: Bool = true)
    * @availability iOS 17.0+
    */
-  stopPauseARSession(pauseARSession?: boolean): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 398984544548287, this, [pauseARSession]); }
+  stopPauseARSession(pauseARSession?: boolean): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 398984544548287, this, [pauseARSession]); }
   /**
    * func stop()
    * @availability iOS 16.0+
    */
-  stop(): void { return callSDK<void>("RoomPlan_212edf3d13b127f5", 3954380241637381, this, []); }
+  stop(): void { return callSDK<void>("RoomPlan_5d69670f0307b385", 3954380241637381, this, []); }
   /**
    * weak var delegate: (any RoomCaptureSessionDelegate)?
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("RoomPlan_212edf3d13b127f5", 1662453937093246, this, []); }
-  set delegate(value: (Implements<RoomCaptureSessionDelegate> | SDKHandle) | null) { callSDK<void>("RoomPlan_212edf3d13b127f5", 1258745033843466, this, [value], [{"protocol":"s:8RoomPlan0A22CaptureSessionDelegateP"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("RoomPlan_5d69670f0307b385", 1662453937093246, this, []); }
+  set delegate(value: (Implements<RoomCaptureSessionDelegate> | SDKHandle) | null) { callSDK<void>("RoomPlan_5d69670f0307b385", 1258745033843466, this, [value], [{"protocol":"s:8RoomPlan0A22CaptureSessionDelegateP"}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): RoomCaptureSession { return callSDK<RoomCaptureSession>("RoomPlan_212edf3d13b127f5", 709469185803805, undefined, []); }
+  static init(): RoomCaptureSession { return callSDK<RoomCaptureSession>("RoomPlan_5d69670f0307b385", 709469185803805, undefined, []); }
   declare readonly $type: { "s:8RoomPlan0A14CaptureSessionC": true };
 }
 
@@ -915,7 +915,7 @@ export const RoomCaptureSession_CaptureError = {
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  getErrorDescription($self: RoomCaptureSession_CaptureError): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 2600852144168249, $self, []); }
+  getErrorDescription($self: RoomCaptureSession_CaptureError): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 2600852144168249, $self, []); }
 };
 
 /**
@@ -927,13 +927,13 @@ export class RoomCaptureSession_Configuration extends SDKHandle {
    * var isCoachingEnabled: Bool
    * @availability iOS 16.0+
    */
-  get isCoachingEnabled(): boolean { return callSDK<boolean>("RoomPlan_212edf3d13b127f5", 4395143163436822, this, []); }
-  set isCoachingEnabled(value: boolean) { callSDK<void>("RoomPlan_212edf3d13b127f5", 1073866524034099, this, [value]); }
+  get isCoachingEnabled(): boolean { return callSDK<boolean>("RoomPlan_5d69670f0307b385", 4395143163436822, this, []); }
+  set isCoachingEnabled(value: boolean) { callSDK<void>("RoomPlan_5d69670f0307b385", 1073866524034099, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): RoomCaptureSession_Configuration { return callSDK<RoomCaptureSession_Configuration>("RoomPlan_212edf3d13b127f5", 1852776245452578, undefined, []); }
+  static init(): RoomCaptureSession_Configuration { return callSDK<RoomCaptureSession_Configuration>("RoomPlan_5d69670f0307b385", 1852776245452578, undefined, []); }
   declare readonly $type: { "s:8RoomPlan0A14CaptureSessionC13ConfigurationV": true };
 }
 
@@ -994,34 +994,34 @@ export class RoomCaptureView extends SDKHandle {
    * @MainActor @preconcurrency required dynamic init?(coder: NSCoder)
    * @availability iOS 16.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(RoomCaptureView) | null> { return callSDKAsync<(RoomCaptureView) | null>("RoomPlan_212edf3d13b127f5", 1942246145638093, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(RoomCaptureView) | null> { return callSDKAsync<(RoomCaptureView) | null>("RoomPlan_5d69670f0307b385", 1942246145638093, undefined, [coder]); }
   /**
    * @MainActor @preconcurrency override dynamic init(frame: CGRect)
    * @availability iOS 16.0+
    */
-  static initFrame(frame: $SDK11): Promise<RoomCaptureView> { return callSDKAsync<RoomCaptureView>("RoomPlan_212edf3d13b127f5", 1689647468214933, undefined, [frame]); }
+  static initFrame(frame: $SDK11): Promise<RoomCaptureView> { return callSDKAsync<RoomCaptureView>("RoomPlan_5d69670f0307b385", 1689647468214933, undefined, [frame]); }
   /**
    * @MainActor @preconcurrency var captureSession: RoomCaptureSession! { get }
    * @availability iOS 16.0+
    */
-  get captureSession(): Promise<(RoomCaptureSession) | null> { return callSDKAsync<(RoomCaptureSession) | null>("RoomPlan_212edf3d13b127f5", 1011798412705874, this, []); }
+  get captureSession(): Promise<(RoomCaptureSession) | null> { return callSDKAsync<(RoomCaptureSession) | null>("RoomPlan_5d69670f0307b385", 1011798412705874, this, []); }
   /**
    * @MainActor @preconcurrency var isModelEnabled: Bool
    * @availability iOS 16.0+
    */
-  get isModelEnabled(): Promise<boolean> { return callSDKAsync<boolean>("RoomPlan_212edf3d13b127f5", 4017486085881176, this, []); }
-  setIsModelEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("RoomPlan_212edf3d13b127f5", 2333174878190844, this, [value]); }
+  get isModelEnabled(): Promise<boolean> { return callSDKAsync<boolean>("RoomPlan_5d69670f0307b385", 4017486085881176, this, []); }
+  setIsModelEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("RoomPlan_5d69670f0307b385", 2333174878190844, this, [value]); }
   /**
    * @MainActor @preconcurrency init(frame: CGRect, arSession: ARSession)
    * @availability iOS 17.0+
    */
-  static initFrameArSession(frame: $SDK11, arSession: _ARKit_ARSession): Promise<RoomCaptureView> { return callSDKAsync<RoomCaptureView>("RoomPlan_212edf3d13b127f5", 2084070886510487, undefined, [frame, arSession]); }
+  static initFrameArSession(frame: $SDK11, arSession: _ARKit_ARSession): Promise<RoomCaptureView> { return callSDKAsync<RoomCaptureView>("RoomPlan_5d69670f0307b385", 2084070886510487, undefined, [frame, arSession]); }
   /**
    * @MainActor @preconcurrency weak var delegate: (any RoomCaptureViewDelegate)?
    * @availability iOS 16.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RoomPlan_212edf3d13b127f5", 722580395042919, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("RoomPlan_212edf3d13b127f5", 160321701462642, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RoomPlan_5d69670f0307b385", 722580395042919, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("RoomPlan_5d69670f0307b385", 160321701462642, this, [value]); }
   declare readonly $type: { "c:@M@RoomPlan@objc(cs)RoomCaptureView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1055,27 +1055,27 @@ export const SofaType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 2527192904530407, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 2527192904530407, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: SofaType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 4500814911792613, $self, []); },
+  getShortIdentifier($self: SofaType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 4500814911792613, $self, []); },
   /**
    * nonisolated static var allCases: [SofaType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<SofaType> { return callSDK<Array<SofaType>>("RoomPlan_212edf3d13b127f5", 3792370104351464, undefined, []); },
+  get allCases(): Array<SofaType> { return callSDK<Array<SofaType>>("RoomPlan_5d69670f0307b385", 3792370104351464, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (SofaType) | null { return callSDK<(SofaType) | null>("RoomPlan_212edf3d13b127f5", 3112397616053989, undefined, [rawValue]); },
+  init(rawValue: string): (SofaType) | null { return callSDK<(SofaType) | null>("RoomPlan_5d69670f0307b385", 3112397616053989, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: SofaType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 4340406010762463, $self, []); }
+  getRawValue($self: SofaType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 4340406010762463, $self, []); }
 };
 
 /**
@@ -1101,27 +1101,27 @@ export const StorageType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 3116807036093043, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 3116807036093043, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: StorageType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 3200571071641109, $self, []); },
+  getShortIdentifier($self: StorageType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 3200571071641109, $self, []); },
   /**
    * nonisolated static var allCases: [StorageType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<StorageType> { return callSDK<Array<StorageType>>("RoomPlan_212edf3d13b127f5", 4239826821373800, undefined, []); },
+  get allCases(): Array<StorageType> { return callSDK<Array<StorageType>>("RoomPlan_5d69670f0307b385", 4239826821373800, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (StorageType) | null { return callSDK<(StorageType) | null>("RoomPlan_212edf3d13b127f5", 4234410508109348, undefined, [rawValue]); },
+  init(rawValue: string): (StorageType) | null { return callSDK<(StorageType) | null>("RoomPlan_5d69670f0307b385", 4234410508109348, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: StorageType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 479620900972453, $self, []); }
+  getRawValue($self: StorageType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 479620900972453, $self, []); }
 };
 
 /**
@@ -1145,12 +1145,12 @@ export class StructureBuilder extends SDKHandle {
    * func capturedStructure(from rooms: [CapturedRoom]) async throws -> CapturedStructure
    * @availability iOS 17.0+
    */
-  capturedStructure(rooms: Array<CapturedRoom>): Promise<CapturedStructure> { return callSDKAsync<CapturedStructure>("RoomPlan_212edf3d13b127f5", 2822564839344898, this, [rooms]); }
+  capturedStructure(rooms: Array<CapturedRoom>): Promise<CapturedStructure> { return callSDKAsync<CapturedStructure>("RoomPlan_5d69670f0307b385", 2822564839344898, this, [rooms]); }
   /**
    * init(options: StructureBuilder.ConfigurationOptions)
    * @availability iOS 17.0+
    */
-  static init(options: RoomBuilder_ConfigurationOptions): StructureBuilder { return callSDK<StructureBuilder>("RoomPlan_212edf3d13b127f5", 4043892702066329, undefined, [options]); }
+  static init(options: RoomBuilder_ConfigurationOptions): StructureBuilder { return callSDK<StructureBuilder>("RoomPlan_5d69670f0307b385", 4043892702066329, undefined, [options]); }
   declare readonly $type: { "s:8RoomPlan16StructureBuilderC": true };
 }
 
@@ -1165,7 +1165,7 @@ export const StructureBuilder_BuildError = {
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  getErrorDescription($self: StructureBuilder_BuildError): (string) | null { return callSDK<(string) | null>("RoomPlan_212edf3d13b127f5", 678524381279708, $self, []); }
+  getErrorDescription($self: StructureBuilder_BuildError): (string) | null { return callSDK<(string) | null>("RoomPlan_5d69670f0307b385", 678524381279708, $self, []); }
 };
 
 /**
@@ -1185,27 +1185,27 @@ export const TableShapeType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 1429426339913525, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 1429426339913525, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: TableShapeType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 1695679280186440, $self, []); },
+  getShortIdentifier($self: TableShapeType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 1695679280186440, $self, []); },
   /**
    * nonisolated static var allCases: [TableShapeType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<TableShapeType> { return callSDK<Array<TableShapeType>>("RoomPlan_212edf3d13b127f5", 2888369876093890, undefined, []); },
+  get allCases(): Array<TableShapeType> { return callSDK<Array<TableShapeType>>("RoomPlan_5d69670f0307b385", 2888369876093890, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (TableShapeType) | null { return callSDK<(TableShapeType) | null>("RoomPlan_212edf3d13b127f5", 541997488077729, undefined, [rawValue]); },
+  init(rawValue: string): (TableShapeType) | null { return callSDK<(TableShapeType) | null>("RoomPlan_5d69670f0307b385", 541997488077729, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: TableShapeType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 3177394871765589, $self, []); }
+  getRawValue($self: TableShapeType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 3177394871765589, $self, []); }
 };
 
 /**
@@ -1231,27 +1231,27 @@ export const TableType = {
    * static var parentCategory: CapturedElementCategory? { get }
    * @availability iOS 17.0+
    */
-  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_212edf3d13b127f5", 949888473905013, undefined, []); },
+  get parentCategory(): $SDK8 { return callSDK<$SDK8>("RoomPlan_5d69670f0307b385", 949888473905013, undefined, []); },
   /**
    * var shortIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  getShortIdentifier($self: TableType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 1829940958962266, $self, []); },
+  getShortIdentifier($self: TableType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 1829940958962266, $self, []); },
   /**
    * nonisolated static var allCases: [TableType] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): Array<TableType> { return callSDK<Array<TableType>>("RoomPlan_212edf3d13b127f5", 2726850975321932, undefined, []); },
+  get allCases(): Array<TableType> { return callSDK<Array<TableType>>("RoomPlan_5d69670f0307b385", 2726850975321932, undefined, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (TableType) | null { return callSDK<(TableType) | null>("RoomPlan_212edf3d13b127f5", 2601433360766732, undefined, [rawValue]); },
+  init(rawValue: string): (TableType) | null { return callSDK<(TableType) | null>("RoomPlan_5d69670f0307b385", 2601433360766732, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: TableType): string { return callSDK<string>("RoomPlan_212edf3d13b127f5", 385515299451030, $self, []); }
+  getRawValue($self: TableType): string { return callSDK<string>("RoomPlan_5d69670f0307b385", 385515299451030, $self, []); }
 };
 
 /**
@@ -1266,23 +1266,23 @@ export type TableType_AllCases = Array<TableType>;
  */
 export type TableType_RawValue = string;
 
-registerSDKClass("RoomPlan.CapturedElementCategory", CapturedElementCategory, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom", CapturedRoom, { module: "RoomPlan_212edf3d13b127f5", properties: {}, methods: {"exportToExportOptions":{"id":2909902945385167},"exportToMetadataURLModelProviderExportOptions":{"id":4285369638548332}} });
-registerSDKClass("RoomPlan.CapturedRoom.AttributesCodableRepresentation", CapturedRoom_AttributesCodableRepresentation, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom.ModelProvider", CapturedRoom_ModelProvider, { module: "RoomPlan_212edf3d13b127f5", properties: {}, methods: {"setModelFileURLFor":{"id":3231284920763758},"setModelFileURLFor64378":{"id":313910912440494},"modelFileURLFor":{"id":955404394433435},"modelFileURLFor12765":{"id":1858734869078270},"modelFileURLFor298":{"id":4268619861697684}} });
-registerSDKClass("RoomPlan.CapturedRoom.ModelProvider.Error", CapturedRoom_ModelProvider_Error, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom.Object", CapturedRoom_Object, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom.Section", CapturedRoom_Section, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom.Surface", CapturedRoom_Surface, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom.Surface.Category", CapturedRoom_Surface_Category, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedRoom.Surface.Curve", CapturedRoom_Surface_Curve, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
+registerSDKClass("RoomPlan.CapturedElementCategory", CapturedElementCategory, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom", CapturedRoom, { module: "RoomPlan_5d69670f0307b385", properties: {}, methods: {"exportToExportOptions":{"id":2909902945385167},"exportToMetadataURLModelProviderExportOptions":{"id":4285369638548332}} });
+registerSDKClass("RoomPlan.CapturedRoom.AttributesCodableRepresentation", CapturedRoom_AttributesCodableRepresentation, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom.ModelProvider", CapturedRoom_ModelProvider, { module: "RoomPlan_5d69670f0307b385", properties: {}, methods: {"setModelFileURLFor":{"id":3231284920763758},"setModelFileURLFor64378":{"id":313910912440494},"modelFileURLFor":{"id":955404394433435},"modelFileURLFor12765":{"id":1858734869078270},"modelFileURLFor298":{"id":4268619861697684}} });
+registerSDKClass("RoomPlan.CapturedRoom.ModelProvider.Error", CapturedRoom_ModelProvider_Error, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom.Object", CapturedRoom_Object, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom.Section", CapturedRoom_Section, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom.Surface", CapturedRoom_Surface, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom.Surface.Category", CapturedRoom_Surface_Category, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoom.Surface.Curve", CapturedRoom_Surface_Curve, { module: "RoomPlan_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:8RoomPlan08CapturedA9AttributeP", {});
-registerSDKClass("RoomPlan.CapturedRoomData", CapturedRoomData, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
-registerSDKClass("RoomPlan.CapturedStructure", CapturedStructure, { module: "RoomPlan_212edf3d13b127f5", properties: {}, methods: {"export":{"id":1693790865222376}} });
-registerSDKClass("RoomPlan.RoomBuilder", RoomBuilder, { module: "RoomPlan_212edf3d13b127f5", properties: {}, methods: {"capturedRoom":{"id":644929696583928}} });
-registerSDKClass("RoomPlan.RoomCaptureSession", RoomCaptureSession, { module: "RoomPlan_212edf3d13b127f5", properties: {}, methods: {"run":{"id":2461884698900654},"stopPauseARSession":{"id":398984544548287},"stop":{"id":3954380241637381}} });
-registerSDKClass("RoomPlan.RoomCaptureSession.Configuration", RoomCaptureSession_Configuration, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
+registerSDKClass("RoomPlan.CapturedRoomData", CapturedRoomData, { module: "RoomPlan_5d69670f0307b385", properties: {} });
+registerSDKClass("RoomPlan.CapturedStructure", CapturedStructure, { module: "RoomPlan_5d69670f0307b385", properties: {}, methods: {"export":{"id":1693790865222376}} });
+registerSDKClass("RoomPlan.RoomBuilder", RoomBuilder, { module: "RoomPlan_5d69670f0307b385", properties: {}, methods: {"capturedRoom":{"id":644929696583928}} });
+registerSDKClass("RoomPlan.RoomCaptureSession", RoomCaptureSession, { module: "RoomPlan_5d69670f0307b385", properties: {}, methods: {"run":{"id":2461884698900654},"stopPauseARSession":{"id":398984544548287},"stop":{"id":3954380241637381}} });
+registerSDKClass("RoomPlan.RoomCaptureSession.Configuration", RoomCaptureSession_Configuration, { module: "RoomPlan_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:8RoomPlan0A22CaptureSessionDelegateP", {"captureSessionDidUpdate":"captureSession(_:didUpdate:)","captureSessionDidAdd":"captureSession(_:didAdd:)","captureSessionDidChange":"captureSession(_:didChange:)","captureSessionDidRemove":"captureSession(_:didRemove:)","captureSessionDidProvide":"captureSession(_:didProvide:)","captureSessionDidStartWith":"captureSession(_:didStartWith:)","captureSessionDidEndWithError":"captureSession(_:didEndWith:error:)"});
-registerSDKClass("RoomPlan.RoomCaptureView", RoomCaptureView, { module: "RoomPlan_212edf3d13b127f5", properties: {} });
+registerSDKClass("RoomPlan.RoomCaptureView", RoomCaptureView, { module: "RoomPlan_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:8RoomPlan0A19CaptureViewDelegateP", {"encodeWith":"encode(with:)","initCoder":"init(coder:)","captureViewShouldPresentError":"captureView(shouldPresent:error:)","captureViewDidPresentError":"captureView(didPresent:error:)"});
-registerSDKClass("RoomPlan.StructureBuilder", StructureBuilder, { module: "RoomPlan_212edf3d13b127f5", properties: {}, methods: {"capturedStructure":{"id":2822564839344898}} });
+registerSDKClass("RoomPlan.StructureBuilder", StructureBuilder, { module: "RoomPlan_5d69670f0307b385", properties: {}, methods: {"capturedStructure":{"id":2822564839344898}} });

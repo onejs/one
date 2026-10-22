@@ -18,12 +18,12 @@ export class CellularService extends SDKHandle {
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 2521994862765345, this, []); }
+  get id(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 2521994862765345, this, []); }
   /**
    * let label: String
    * @availability iOS 26.0+
    */
-  get label(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 4242835145929400, this, []); }
+  get label(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 4242835145929400, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit15CellularServiceV": true };
 }
 
@@ -42,22 +42,22 @@ export class Conversation extends SDKHandle {
    * final var localMember: Handle? { get }
    * @availability iOS 17.4+
    */
-  get localMember(): (Handle) | null { return callSDK<(Handle) | null>("LiveCommunicationKit_212edf3d13b127f5", 4272704894290337, this, []); }
+  get localMember(): (Handle) | null { return callSDK<(Handle) | null>("LiveCommunicationKit_5d69670f0307b385", 4272704894290337, this, []); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 17.4+
    */
-  get debugDescription(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 304033140368208, this, []); }
+  get debugDescription(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 304033140368208, this, []); }
   /**
    * final let uuid: UUID
    * @availability iOS 17.4+
    */
-  get uuid(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 4340636720846503, this, []); }
+  get uuid(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 4340636720846503, this, []); }
   /**
    * final var state: Conversation.State { get }
    * @availability iOS 17.4+
    */
-  get state(): Conversation_State { return callSDK<Conversation_State>("LiveCommunicationKit_212edf3d13b127f5", 3190371657045589, this, []); }
+  get state(): Conversation_State { return callSDK<Conversation_State>("LiveCommunicationKit_5d69670f0307b385", 3190371657045589, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit12ConversationC": true };
   declare readonly $observable: { "localMember": true; "debugDescription": true; "uuid": true; "state": true };
 }
@@ -73,38 +73,38 @@ export const Conversation_Capabilities = {
    * static let playingTones: Conversation.Capabilities
    * @availability iOS 17.4+
    */
-  get playingTones(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_212edf3d13b127f5", 739744528114559, undefined, []); },
+  get playingTones(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_5d69670f0307b385", 739744528114559, undefined, []); },
   /**
    * static let video: Conversation.Capabilities
    * @availability iOS 17.4+
    */
-  get video(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_212edf3d13b127f5", 3684804000304657, undefined, []); },
+  get video(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_5d69670f0307b385", 3684804000304657, undefined, []); },
   /**
    * static let merging: Conversation.Capabilities
    * @availability iOS 17.4+
    */
-  get merging(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_212edf3d13b127f5", 4154787148443111, undefined, []); },
+  get merging(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_5d69670f0307b385", 4154787148443111, undefined, []); },
   /**
    * static let pausing: Conversation.Capabilities
    * @availability iOS 17.4+
    */
-  get pausing(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_212edf3d13b127f5", 22956314170168, undefined, []); },
+  get pausing(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_5d69670f0307b385", 22956314170168, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_212edf3d13b127f5", 4351551516805143, undefined, [rawValue]); },
+  init(rawValue: number): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_5d69670f0307b385", 4351551516805143, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 17.4+
    */
-  getRawValue($self: Conversation_Capabilities): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 1203885748468197, $self, []); },
-  setRawValue($self: Conversation_Capabilities, value: number): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 59212940245900, $self, [value]); },
+  getRawValue($self: Conversation_Capabilities): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 1203885748468197, $self, []); },
+  setRawValue($self: Conversation_Capabilities, value: number): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 59212940245900, $self, [value]); },
   /**
    * static let unmerging: Conversation.Capabilities
    * @availability iOS 17.4+
    */
-  get unmerging(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_212edf3d13b127f5", 972955036373651, undefined, []); }
+  get unmerging(): Conversation_Capabilities { return callSDK<Conversation_Capabilities>("LiveCommunicationKit_5d69670f0307b385", 972955036373651, undefined, []); }
 };
 
 /**
@@ -136,12 +136,12 @@ export const Conversation_EndedReason = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (Conversation_EndedReason) | null { return callSDK<(Conversation_EndedReason) | null>("LiveCommunicationKit_212edf3d13b127f5", 3831724859769309, undefined, [rawValue]); },
+  init(rawValue: number): (Conversation_EndedReason) | null { return callSDK<(Conversation_EndedReason) | null>("LiveCommunicationKit_5d69670f0307b385", 3831724859769309, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: Conversation_EndedReason): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 4246319086368958, $self, []); }
+  getRawValue($self: Conversation_EndedReason): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 4246319086368958, $self, []); }
 };
 
 /**
@@ -169,12 +169,12 @@ export const Conversation_State = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (Conversation_State) | null { return callSDK<(Conversation_State) | null>("LiveCommunicationKit_212edf3d13b127f5", 2227748475315306, undefined, [rawValue]); },
+  init(rawValue: number): (Conversation_State) | null { return callSDK<(Conversation_State) | null>("LiveCommunicationKit_5d69670f0307b385", 2227748475315306, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: Conversation_State): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 645604402504192, $self, []); }
+  getRawValue($self: Conversation_State): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 645604402504192, $self, []); }
 };
 
 /**
@@ -192,31 +192,31 @@ export class Conversation_Update extends SDKHandle {
    * init(localMember: Handle? = nil, members: Set<Handle>? = nil, activeRemoteMembers: Set<Handle>? = nil, capabilities: Conversation.Capabilities? = nil)
    * @availability iOS 17.4+
    */
-  static init(localMember?: (Handle) | null, members?: (Array<Handle>) | null, activeRemoteMembers?: (Array<Handle>) | null, capabilities?: $SDK0): Conversation_Update { return callSDK<Conversation_Update>("LiveCommunicationKit_212edf3d13b127f5", 2156219527525483, undefined, [localMember, members, activeRemoteMembers, capabilities]); }
+  static init(localMember?: (Handle) | null, members?: (Array<Handle>) | null, activeRemoteMembers?: (Array<Handle>) | null, capabilities?: $SDK0): Conversation_Update { return callSDK<Conversation_Update>("LiveCommunicationKit_5d69670f0307b385", 2156219527525483, undefined, [localMember, members, activeRemoteMembers, capabilities]); }
   /**
    * var localMember: Handle? { get set }
    * @availability iOS 17.4+
    */
-  get localMember(): (Handle) | null { return callSDK<(Handle) | null>("LiveCommunicationKit_212edf3d13b127f5", 503876909170713, this, []); }
-  set localMember(value: (Handle) | null) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 3724379463659044, this, [value]); }
+  get localMember(): (Handle) | null { return callSDK<(Handle) | null>("LiveCommunicationKit_5d69670f0307b385", 503876909170713, this, []); }
+  set localMember(value: (Handle) | null) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 3724379463659044, this, [value]); }
   /**
    * var capabilities: Conversation.Capabilities?
    * @availability iOS 17.4+
    */
-  get capabilities(): $SDK0 { return callSDK<$SDK0>("LiveCommunicationKit_212edf3d13b127f5", 3518108068120721, this, []); }
-  set capabilities(value: $SDK0) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 3774242127482704, this, [value]); }
+  get capabilities(): $SDK0 { return callSDK<$SDK0>("LiveCommunicationKit_5d69670f0307b385", 3518108068120721, this, []); }
+  set capabilities(value: $SDK0) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 3774242127482704, this, [value]); }
   /**
    * var activeRemoteMembers: Set<Handle>? { get set }
    * @availability iOS 17.4+
    */
-  get activeRemoteMembers(): (Array<Handle>) | null { return callSDK<(Array<Handle>) | null>("LiveCommunicationKit_212edf3d13b127f5", 3443553331658675, this, []); }
-  set activeRemoteMembers(value: (Array<Handle>) | null) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1412079906000565, this, [value]); }
+  get activeRemoteMembers(): (Array<Handle>) | null { return callSDK<(Array<Handle>) | null>("LiveCommunicationKit_5d69670f0307b385", 3443553331658675, this, []); }
+  set activeRemoteMembers(value: (Array<Handle>) | null) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1412079906000565, this, [value]); }
   /**
    * var members: Set<Handle>? { get set }
    * @availability iOS 17.4+
    */
-  get members(): (Array<Handle>) | null { return callSDK<(Array<Handle>) | null>("LiveCommunicationKit_212edf3d13b127f5", 1849335284054806, this, []); }
-  set members(value: (Array<Handle>) | null) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 4010488376127679, this, [value]); }
+  get members(): (Array<Handle>) | null { return callSDK<(Array<Handle>) | null>("LiveCommunicationKit_5d69670f0307b385", 1849335284054806, this, []); }
+  set members(value: (Array<Handle>) | null) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 4010488376127679, this, [value]); }
   declare readonly $type: { "s:20LiveCommunicationKit12ConversationC6UpdateV": true };
 }
 
@@ -229,37 +229,37 @@ export class ConversationAction extends SDKHandle {
    * final var timeoutDate: Date { get }
    * @availability iOS 17.4+
    */
-  get timeoutDate(): globalThis.Date { return callSDK<globalThis.Date>("LiveCommunicationKit_212edf3d13b127f5", 2839677665963401, this, []); }
+  get timeoutDate(): globalThis.Date { return callSDK<globalThis.Date>("LiveCommunicationKit_5d69670f0307b385", 2839677665963401, this, []); }
   /**
    * final var conversationUUID: UUID { get }
    * @availability iOS 17.4+
    */
-  get conversationUUID(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 4291887649817405, this, []); }
+  get conversationUUID(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 4291887649817405, this, []); }
   /**
    * convenience init(conversationUUID: UUID, timeoutDate: Date = Date(timeIntervalSinceNow: 30))
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string, timeoutDate?: globalThis.Date): ConversationAction { return callSDK<ConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 3839067860961604, undefined, [conversationUUID, timeoutDate]); }
+  static init(conversationUUID: string, timeoutDate?: globalThis.Date): ConversationAction { return callSDK<ConversationAction>("LiveCommunicationKit_5d69670f0307b385", 3839067860961604, undefined, [conversationUUID, timeoutDate]); }
   /**
    * final func fail()
    * @availability iOS 17.4+
    */
-  fail(): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 354348386761248, this, []); }
+  fail(): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 354348386761248, this, []); }
   /**
    * final var uuid: UUID { get }
    * @availability iOS 17.4+
    */
-  get uuid(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 3815163264397944, this, []); }
+  get uuid(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 3815163264397944, this, []); }
   /**
    * final var state: ConversationAction.State { get }
    * @availability iOS 17.4+
    */
-  get state(): ConversationAction_State { return callSDK<ConversationAction_State>("LiveCommunicationKit_212edf3d13b127f5", 4042795808861171, this, []); }
+  get state(): ConversationAction_State { return callSDK<ConversationAction_State>("LiveCommunicationKit_5d69670f0307b385", 4042795808861171, this, []); }
   /**
    * final func fulfill()
    * @availability iOS 17.4+
    */
-  fulfill(): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1141743431982373, this, []); }
+  fulfill(): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1141743431982373, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -280,22 +280,22 @@ export class ConversationHistoryManager extends SDKHandle {
    * final func markConversationAsRead(_ recentConversation: ConversationHistoryManager.RecentConversation) async throws
    * @availability iOS 26.0+
    */
-  markConversationAsRead(recentConversation: ConversationHistoryManager_RecentConversation): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_212edf3d13b127f5", 3433030751819418, this, [recentConversation]); }
+  markConversationAsRead(recentConversation: ConversationHistoryManager_RecentConversation): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_5d69670f0307b385", 3433030751819418, this, [recentConversation]); }
   /**
    * static let sharedInstance: ConversationHistoryManager
    * @availability iOS 26.0+
    */
-  static get sharedInstance(): ConversationHistoryManager { return callSDK<ConversationHistoryManager>("LiveCommunicationKit_212edf3d13b127f5", 1747921357655813, undefined, []); }
+  static get sharedInstance(): ConversationHistoryManager { return callSDK<ConversationHistoryManager>("LiveCommunicationKit_5d69670f0307b385", 1747921357655813, undefined, []); }
   /**
    * final func recentConversations(matching request: Predicate<ConversationHistoryManager.RecentConversation>) async throws -> [ConversationHistoryManager.RecentConversation]
    * @availability iOS 26.0+
    */
-  recentConversations(request: _Foundation_Predicate<ConversationHistoryManager_RecentConversation>): Promise<$SDK1> { return callSDKAsync<$SDK1>("LiveCommunicationKit_212edf3d13b127f5", 1449199464348192, this, [request]); }
+  recentConversations(request: _Foundation_Predicate<ConversationHistoryManager_RecentConversation>): Promise<$SDK1> { return callSDKAsync<$SDK1>("LiveCommunicationKit_5d69670f0307b385", 1449199464348192, this, [request]); }
   /**
    * final func markConversationsAsRead(_ recentConversations: [ConversationHistoryManager.RecentConversation]) async throws
    * @availability iOS 26.0+
    */
-  markConversationsAsRead(recentConversations: $SDK1): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_212edf3d13b127f5", 4495853558901166, this, [recentConversations]); }
+  markConversationsAsRead(recentConversations: $SDK1): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_5d69670f0307b385", 4495853558901166, this, [recentConversations]); }
   declare readonly $type: { "s:20LiveCommunicationKit26ConversationHistoryManagerC": true };
 }
 
@@ -308,17 +308,17 @@ export class ConversationHistoryManager_ConversationHistoryDidUpdate extends SDK
    * static func makeMessage(_ notification: Notification) -> ConversationHistoryManager.ConversationHistoryDidUpdate?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (ConversationHistoryManager_ConversationHistoryDidUpdate) | null { return callSDK<(ConversationHistoryManager_ConversationHistoryDidUpdate) | null>("LiveCommunicationKit_212edf3d13b127f5", 1344678998388623, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (ConversationHistoryManager_ConversationHistoryDidUpdate) | null { return callSDK<(ConversationHistoryManager_ConversationHistoryDidUpdate) | null>("LiveCommunicationKit_5d69670f0307b385", 1344678998388623, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("LiveCommunicationKit_212edf3d13b127f5", 2487180896147262, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("LiveCommunicationKit_5d69670f0307b385", 2487180896147262, undefined, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): ConversationHistoryManager_ConversationHistoryDidUpdate { return callSDK<ConversationHistoryManager_ConversationHistoryDidUpdate>("LiveCommunicationKit_212edf3d13b127f5", 63927431874915, undefined, []); }
+  static init(): ConversationHistoryManager_ConversationHistoryDidUpdate { return callSDK<ConversationHistoryManager_ConversationHistoryDidUpdate>("LiveCommunicationKit_5d69670f0307b385", 63927431874915, undefined, []); }
   declare readonly $type: { "s:20LiveCommunicationKit26ConversationHistoryManagerC0dE9DidUpdateV": true };
 }
 
@@ -337,37 +337,37 @@ export class ConversationHistoryManager_RecentConversation extends SDKHandle {
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 2921415097014345, this, []); }
+  get id(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 2921415097014345, this, []); }
   /**
    * let date: Date
    * @availability iOS 26.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("LiveCommunicationKit_212edf3d13b127f5", 4024514266082082, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("LiveCommunicationKit_5d69670f0307b385", 4024514266082082, this, []); }
   /**
    * let isRead: Bool
    * @availability iOS 26.0+
    */
-  get isRead(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 3324766849880735, this, []); }
+  get isRead(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 3324766849880735, this, []); }
   /**
    * let status: ConversationHistoryManager.RecentConversation.Status
    * @availability iOS 26.0+
    */
-  get status(): ConversationHistoryManager_RecentConversation_Status { return callSDK<ConversationHistoryManager_RecentConversation_Status>("LiveCommunicationKit_212edf3d13b127f5", 1481634811832295, this, []); }
+  get status(): ConversationHistoryManager_RecentConversation_Status { return callSDK<ConversationHistoryManager_RecentConversation_Status>("LiveCommunicationKit_5d69670f0307b385", 1481634811832295, this, []); }
   /**
    * let handles: [Handle]
    * @availability iOS 26.0+
    */
-  get handles(): Array<Handle> { return callSDK<Array<Handle>>("LiveCommunicationKit_212edf3d13b127f5", 2442386043502855, this, []); }
+  get handles(): Array<Handle> { return callSDK<Array<Handle>>("LiveCommunicationKit_5d69670f0307b385", 2442386043502855, this, []); }
   /**
    * let duration: TimeInterval
    * @availability iOS 26.0+
    */
-  get duration(): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 4461580748384139, this, []); }
+  get duration(): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 4461580748384139, this, []); }
   /**
    * let direction: ConversationHistoryManager.RecentConversation.Direction
    * @availability iOS 26.0+
    */
-  get direction(): ConversationHistoryManager_RecentConversation_Direction { return callSDK<ConversationHistoryManager_RecentConversation_Direction>("LiveCommunicationKit_212edf3d13b127f5", 3264401182583500, this, []); }
+  get direction(): ConversationHistoryManager_RecentConversation_Direction { return callSDK<ConversationHistoryManager_RecentConversation_Direction>("LiveCommunicationKit_5d69670f0307b385", 3264401182583500, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit26ConversationHistoryManagerC06RecentD0V": true };
 }
 
@@ -398,58 +398,58 @@ export class ConversationManager extends SDKHandle {
    * final func reportNewIncomingConversation(uuid: UUID, update: Conversation.Update) async throws
    * @availability iOS 17.4+
    */
-  reportNewIncomingConversation(uuid: string, update: Conversation_Update): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_212edf3d13b127f5", 370058668804044, this, [uuid, update]); }
+  reportNewIncomingConversation(uuid: string, update: Conversation_Update): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_5d69670f0307b385", 370058668804044, this, [uuid, update]); }
   /**
    * final func reportConversationEvent(_ event: Conversation.Event, for conversation: Conversation)
    * @availability iOS 17.4+
    */
-  reportConversationEvent(event: Conversation_Event, conversation: Conversation): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 2601508224754961, this, [event, conversation]); }
+  reportConversationEvent(event: Conversation_Event, conversation: Conversation): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 2601508224754961, this, [event, conversation]); }
   /**
    * final func pendingConversationActions(of conversationActionClass: ConversationAction.Type, for conversation: Conversation) -> [ConversationAction]
    * @availability iOS 17.4+
    */
-  pendingConversationActions(conversationActionClass: string, conversation: Conversation): $SDK4 { return callSDK<$SDK4>("LiveCommunicationKit_212edf3d13b127f5", 1827887760033628, this, [conversationActionClass, conversation]); }
+  pendingConversationActions(conversationActionClass: string, conversation: Conversation): $SDK4 { return callSDK<$SDK4>("LiveCommunicationKit_5d69670f0307b385", 1827887760033628, this, [conversationActionClass, conversation]); }
   /**
    * final func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1797008795162096, this, []); }
+  invalidate(): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1797008795162096, this, []); }
   /**
    * convenience init(configuration: ConversationManager.Configuration)
    * @availability iOS 17.4+
    */
-  static init(configuration: ConversationManager_Configuration): ConversationManager { return callSDK<ConversationManager>("LiveCommunicationKit_212edf3d13b127f5", 760079342621662, undefined, [configuration]); }
+  static init(configuration: ConversationManager_Configuration): ConversationManager { return callSDK<ConversationManager>("LiveCommunicationKit_5d69670f0307b385", 760079342621662, undefined, [configuration]); }
   /**
    * final let configuration: ConversationManager.Configuration
    * @availability iOS 17.4+
    */
-  get configuration(): ConversationManager_Configuration { return callSDK<ConversationManager_Configuration>("LiveCommunicationKit_212edf3d13b127f5", 3314712707826823, this, []); }
+  get configuration(): ConversationManager_Configuration { return callSDK<ConversationManager_Configuration>("LiveCommunicationKit_5d69670f0307b385", 3314712707826823, this, []); }
   /**
    * final var conversations: [Conversation] { get }
    * @availability iOS 17.4+
    */
-  get conversations(): Array<Conversation> { return callSDK<Array<Conversation>>("LiveCommunicationKit_212edf3d13b127f5", 657363561290008, this, []); }
+  get conversations(): Array<Conversation> { return callSDK<Array<Conversation>>("LiveCommunicationKit_5d69670f0307b385", 657363561290008, this, []); }
   /**
    * final var pendingActions: [ConversationAction] { get }
    * @availability iOS 17.4+
    */
-  get pendingActions(): $SDK4 { return callSDK<$SDK4>("LiveCommunicationKit_212edf3d13b127f5", 11676836603152, this, []); }
+  get pendingActions(): $SDK4 { return callSDK<$SDK4>("LiveCommunicationKit_5d69670f0307b385", 11676836603152, this, []); }
   /**
    * final class func reportNewIncomingVoIPPushPayload(_ payload: [AnyHashable : Any]) async throws
    * @availability iOS 17.4+
    */
-  static reportNewIncomingVoIPPushPayload(payload: NativeMap<unknown, unknown>): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_212edf3d13b127f5", 3686820699996041, undefined, [payload]); }
+  static reportNewIncomingVoIPPushPayload(payload: NativeMap<unknown, unknown>): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_5d69670f0307b385", 3686820699996041, undefined, [payload]); }
   /**
    * final func perform(_ actions: [ConversationAction]) async throws
    * @availability iOS 17.4+
    */
-  perform(actions: $SDK4): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_212edf3d13b127f5", 4021556682782641, this, [actions]); }
+  perform(actions: $SDK4): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_5d69670f0307b385", 4021556682782641, this, [actions]); }
   /**
    * weak final var delegate: (any ConversationManagerDelegate)?
    * @availability iOS 17.4+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("LiveCommunicationKit_212edf3d13b127f5", 3080972789260448, this, []); }
-  set delegate(value: (Implements<ConversationManagerDelegate> | SDKHandle) | null) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 3170233886963469, this, [value], [{"protocol":"s:20LiveCommunicationKit27ConversationManagerDelegateP"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("LiveCommunicationKit_5d69670f0307b385", 3080972789260448, this, []); }
+  set delegate(value: (Implements<ConversationManagerDelegate> | SDKHandle) | null) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 3170233886963469, this, [value], [{"protocol":"s:20LiveCommunicationKit27ConversationManagerDelegateP"}]); }
   declare readonly $type: { "s:20LiveCommunicationKit19ConversationManagerC": true };
   declare readonly $observable: { "configuration": true; "conversations": true; "pendingActions": true; "delegate": true };
 }
@@ -463,60 +463,60 @@ export class ConversationManager_Configuration extends SDKHandle {
    * var maximumConversationsPerConversationGroup: Int
    * @availability iOS 17.4+
    */
-  get maximumConversationsPerConversationGroup(): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 149649187616002, this, []); }
-  set maximumConversationsPerConversationGroup(value: number) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1820883939169447, this, [value]); }
+  get maximumConversationsPerConversationGroup(): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 149649187616002, this, []); }
+  set maximumConversationsPerConversationGroup(value: number) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1820883939169447, this, [value]); }
   /**
    * var maximumConversationGroups: Int
    * @availability iOS 17.4+
    */
-  get maximumConversationGroups(): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 1289187786172894, this, []); }
-  set maximumConversationGroups(value: number) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 111220775680727, this, [value]); }
+  get maximumConversationGroups(): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 1289187786172894, this, []); }
+  set maximumConversationGroups(value: number) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 111220775680727, this, [value]); }
   /**
    * var includesConversationInRecents: Bool
    * @availability iOS 17.4+
    */
-  get includesConversationInRecents(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 3247573925927001, this, []); }
-  set includesConversationInRecents(value: boolean) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 2988250904938306, this, [value]); }
+  get includesConversationInRecents(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 3247573925927001, this, []); }
+  set includesConversationInRecents(value: boolean) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 2988250904938306, this, [value]); }
   /**
    * init(ringtoneName: String?, iconTemplateImageData: Data?, maximumConversationGroups: Int, maximumConversationsPerConversationGroup: Int, includesConversationInRecents: Bool, supportsVideo: Bool, supportedHandleTypes: Set<Handle.Kind>, supportsAudioTranslation: Bool)
    * @availability iOS 17.4+
    */
-  static initRingtoneNameIconTemplateImageDataMaximumConversationGroupsMaximumConversationsPerConversationGroupIncludesConversationInRecentsSupportsVideoSupportedHandleTypesSupportsAudioTranslation(ringtoneName: (string) | null, iconTemplateImageData: (ArrayBuffer) | null, maximumConversationGroups: number, maximumConversationsPerConversationGroup: number, includesConversationInRecents: boolean, supportsVideo: boolean, supportedHandleTypes: Array<Handle_Kind>, supportsAudioTranslation: boolean): ConversationManager_Configuration { return callSDK<ConversationManager_Configuration>("LiveCommunicationKit_212edf3d13b127f5", 1654003051961564, undefined, [ringtoneName, iconTemplateImageData, maximumConversationGroups, maximumConversationsPerConversationGroup, includesConversationInRecents, supportsVideo, supportedHandleTypes, supportsAudioTranslation]); }
+  static initRingtoneNameIconTemplateImageDataMaximumConversationGroupsMaximumConversationsPerConversationGroupIncludesConversationInRecentsSupportsVideoSupportedHandleTypesSupportsAudioTranslation(ringtoneName: (string) | null, iconTemplateImageData: (ArrayBuffer) | null, maximumConversationGroups: number, maximumConversationsPerConversationGroup: number, includesConversationInRecents: boolean, supportsVideo: boolean, supportedHandleTypes: Array<Handle_Kind>, supportsAudioTranslation: boolean): ConversationManager_Configuration { return callSDK<ConversationManager_Configuration>("LiveCommunicationKit_5d69670f0307b385", 1654003051961564, undefined, [ringtoneName, iconTemplateImageData, maximumConversationGroups, maximumConversationsPerConversationGroup, includesConversationInRecents, supportsVideo, supportedHandleTypes, supportsAudioTranslation]); }
   /**
    * init(ringtoneName: String?, iconTemplateImageData: Data?, maximumConversationGroups: Int, maximumConversationsPerConversationGroup: Int, includesConversationInRecents: Bool, supportsVideo: Bool, supportedHandleTypes: Set<Handle.Kind>)
    * @availability iOS 17.4+
    */
-  static initRingtoneNameIconTemplateImageDataMaximumConversationGroupsMaximumConversationsPerConversationGroupIncludesConversationInRecentsSupportsVideoSupportedHandleTypes(ringtoneName: (string) | null, iconTemplateImageData: (ArrayBuffer) | null, maximumConversationGroups: number, maximumConversationsPerConversationGroup: number, includesConversationInRecents: boolean, supportsVideo: boolean, supportedHandleTypes: Array<Handle_Kind>): ConversationManager_Configuration { return callSDK<ConversationManager_Configuration>("LiveCommunicationKit_212edf3d13b127f5", 4389977762501676, undefined, [ringtoneName, iconTemplateImageData, maximumConversationGroups, maximumConversationsPerConversationGroup, includesConversationInRecents, supportsVideo, supportedHandleTypes]); }
+  static initRingtoneNameIconTemplateImageDataMaximumConversationGroupsMaximumConversationsPerConversationGroupIncludesConversationInRecentsSupportsVideoSupportedHandleTypes(ringtoneName: (string) | null, iconTemplateImageData: (ArrayBuffer) | null, maximumConversationGroups: number, maximumConversationsPerConversationGroup: number, includesConversationInRecents: boolean, supportsVideo: boolean, supportedHandleTypes: Array<Handle_Kind>): ConversationManager_Configuration { return callSDK<ConversationManager_Configuration>("LiveCommunicationKit_5d69670f0307b385", 4389977762501676, undefined, [ringtoneName, iconTemplateImageData, maximumConversationGroups, maximumConversationsPerConversationGroup, includesConversationInRecents, supportsVideo, supportedHandleTypes]); }
   /**
    * var ringtoneName: String?
    * @availability iOS 17.4+
    */
-  get ringtoneName(): (string) | null { return callSDK<(string) | null>("LiveCommunicationKit_212edf3d13b127f5", 1771679195275988, this, []); }
-  set ringtoneName(value: (string) | null) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 650892691743583, this, [value]); }
+  get ringtoneName(): (string) | null { return callSDK<(string) | null>("LiveCommunicationKit_5d69670f0307b385", 1771679195275988, this, []); }
+  set ringtoneName(value: (string) | null) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 650892691743583, this, [value]); }
   /**
    * var supportsVideo: Bool
    * @availability iOS 17.4+
    */
-  get supportsVideo(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 3675062112974913, this, []); }
-  set supportsVideo(value: boolean) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 2073788022848530, this, [value]); }
+  get supportsVideo(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 3675062112974913, this, []); }
+  set supportsVideo(value: boolean) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 2073788022848530, this, [value]); }
   /**
    * var supportedHandleTypes: Set<Handle.Kind>
    * @availability iOS 17.4+
    */
-  get supportedHandleTypes(): Array<Handle_Kind> { return callSDK<Array<Handle_Kind>>("LiveCommunicationKit_212edf3d13b127f5", 3033883673220727, this, []); }
-  set supportedHandleTypes(value: Array<Handle_Kind>) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 695262689727705, this, [value]); }
+  get supportedHandleTypes(): Array<Handle_Kind> { return callSDK<Array<Handle_Kind>>("LiveCommunicationKit_5d69670f0307b385", 3033883673220727, this, []); }
+  set supportedHandleTypes(value: Array<Handle_Kind>) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 695262689727705, this, [value]); }
   /**
    * var iconTemplateImageData: Data?
    * @availability iOS 17.4+
    */
-  get iconTemplateImageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LiveCommunicationKit_212edf3d13b127f5", 284611690648920, this, []); }
-  set iconTemplateImageData(value: (ArrayBuffer) | null) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 3745170603625497, this, [value]); }
+  get iconTemplateImageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LiveCommunicationKit_5d69670f0307b385", 284611690648920, this, []); }
+  set iconTemplateImageData(value: (ArrayBuffer) | null) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 3745170603625497, this, [value]); }
   /**
    * var supportsAudioTranslation: Bool
    * @availability iOS 26.0+
    */
-  get supportsAudioTranslation(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 1359774433323063, this, []); }
-  set supportsAudioTranslation(value: boolean) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1192092446818415, this, [value]); }
+  get supportsAudioTranslation(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 1359774433323063, this, []); }
+  set supportsAudioTranslation(value: boolean) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1192092446818415, this, [value]); }
   declare readonly $type: { "s:20LiveCommunicationKit19ConversationManagerC13ConfigurationV": true };
 }
 
@@ -571,12 +571,12 @@ export class EndConversationAction extends (ConversationAction as unknown as Omi
    * init(conversationUUID: UUID)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string): EndConversationAction { return callSDK<EndConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 2208969131941603, undefined, [conversationUUID]); }
+  static init(conversationUUID: string): EndConversationAction { return callSDK<EndConversationAction>("LiveCommunicationKit_5d69670f0307b385", 2208969131941603, undefined, [conversationUUID]); }
   /**
    * final func fulfill(dateEnded: Date)
    * @availability iOS 17.4+
    */
-  fulfill(dateEnded: globalThis.Date): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1543768275048581, this, [dateEnded]); }
+  fulfill(dateEnded: globalThis.Date): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1543768275048581, this, [dateEnded]); }
   declare readonly $type: { "s:20LiveCommunicationKit21EndConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -589,25 +589,25 @@ export class Handle extends SDKHandle {
    * var displayName: String
    * @availability iOS 17.4+
    */
-  get displayName(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 726175664139879, this, []); }
-  set displayName(value: string) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1610151903298909, this, [value]); }
+  get displayName(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 726175664139879, this, []); }
+  set displayName(value: string) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1610151903298909, this, [value]); }
   /**
    * init(type: Handle.Kind, value: String, displayName: String? = nil)
    * @availability iOS 17.4+
    */
-  static init(type: Handle_Kind, value: string, displayName?: (string) | null): Handle { return callSDK<Handle>("LiveCommunicationKit_212edf3d13b127f5", 1921613477286678, undefined, [type, value, displayName]); }
+  static init(type: Handle_Kind, value: string, displayName?: (string) | null): Handle { return callSDK<Handle>("LiveCommunicationKit_5d69670f0307b385", 1921613477286678, undefined, [type, value, displayName]); }
   /**
    * var type: Handle.Kind
    * @availability iOS 17.4+
    */
-  get type(): Handle_Kind { return callSDK<Handle_Kind>("LiveCommunicationKit_212edf3d13b127f5", 2548989850307048, this, []); }
-  set type(value: Handle_Kind) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 3283238067302584, this, [value]); }
+  get type(): Handle_Kind { return callSDK<Handle_Kind>("LiveCommunicationKit_5d69670f0307b385", 2548989850307048, this, []); }
+  set type(value: Handle_Kind) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 3283238067302584, this, [value]); }
   /**
    * var value: String
    * @availability iOS 17.4+
    */
-  get value(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 1138922840775056, this, []); }
-  set value(value: string) { callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1053445521102055, this, [value]); }
+  get value(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 1138922840775056, this, []); }
+  set value(value: string) { callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1053445521102055, this, [value]); }
   declare readonly $type: { "s:20LiveCommunicationKit6HandleV": true };
 }
 
@@ -622,12 +622,12 @@ export const Handle_Kind = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (Handle_Kind) | null { return callSDK<(Handle_Kind) | null>("LiveCommunicationKit_212edf3d13b127f5", 3185856128841450, undefined, [rawValue]); },
+  init(rawValue: number): (Handle_Kind) | null { return callSDK<(Handle_Kind) | null>("LiveCommunicationKit_5d69670f0307b385", 3185856128841450, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: Handle_Kind): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 3524821689161361, $self, []); }
+  getRawValue($self: Handle_Kind): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 3524821689161361, $self, []); }
 };
 
 /**
@@ -645,12 +645,12 @@ export class JoinConversationAction extends (ConversationAction as unknown as Om
    * init(conversationUUID: UUID)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string): JoinConversationAction { return callSDK<JoinConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 2775960793393241, undefined, [conversationUUID]); }
+  static init(conversationUUID: string): JoinConversationAction { return callSDK<JoinConversationAction>("LiveCommunicationKit_5d69670f0307b385", 2775960793393241, undefined, [conversationUUID]); }
   /**
    * final func fulfill(dateConnected: Date)
    * @availability iOS 17.4+
    */
-  fulfill(dateConnected: globalThis.Date): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 490358256585200, this, [dateConnected]); }
+  fulfill(dateConnected: globalThis.Date): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 490358256585200, this, [dateConnected]); }
   declare readonly $type: { "s:20LiveCommunicationKit22JoinConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -663,12 +663,12 @@ export class MergeConversationAction extends (ConversationAction as unknown as O
    * final let conversationUUIDToMergeWith: UUID
    * @availability iOS 17.4+
    */
-  get conversationUUIDToMergeWith(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 34426625728458, this, []); }
+  get conversationUUIDToMergeWith(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 34426625728458, this, []); }
   /**
    * init(conversationUUID: UUID, conversationUUIDToMergeWith: UUID)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string, conversationUUIDToMergeWith: string): MergeConversationAction { return callSDK<MergeConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 3654661497121273, undefined, [conversationUUID, conversationUUIDToMergeWith]); }
+  static init(conversationUUID: string, conversationUUIDToMergeWith: string): MergeConversationAction { return callSDK<MergeConversationAction>("LiveCommunicationKit_5d69670f0307b385", 3654661497121273, undefined, [conversationUUID, conversationUUIDToMergeWith]); }
   declare readonly $type: { "s:20LiveCommunicationKit23MergeConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -681,12 +681,12 @@ export class MuteConversationAction extends (ConversationAction as unknown as Om
    * init(conversationUUID: UUID, isMuted: Bool)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string, isMuted: boolean): MuteConversationAction { return callSDK<MuteConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 425044186364399, undefined, [conversationUUID, isMuted]); }
+  static init(conversationUUID: string, isMuted: boolean): MuteConversationAction { return callSDK<MuteConversationAction>("LiveCommunicationKit_5d69670f0307b385", 425044186364399, undefined, [conversationUUID, isMuted]); }
   /**
    * final let isMuted: Bool
    * @availability iOS 17.4+
    */
-  get isMuted(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 3783555618081372, this, []); }
+  get isMuted(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 3783555618081372, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit22MuteConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -699,12 +699,12 @@ export class PauseConversationAction extends (ConversationAction as unknown as O
    * init(conversationUUID: UUID, isPaused: Bool)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string, isPaused: boolean): PauseConversationAction { return callSDK<PauseConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 2722037583866035, undefined, [conversationUUID, isPaused]); }
+  static init(conversationUUID: string, isPaused: boolean): PauseConversationAction { return callSDK<PauseConversationAction>("LiveCommunicationKit_5d69670f0307b385", 2722037583866035, undefined, [conversationUUID, isPaused]); }
   /**
    * final let isPaused: Bool
    * @availability iOS 17.4+
    */
-  get isPaused(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 1323709957066289, this, []); }
+  get isPaused(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 1323709957066289, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit23PauseConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -717,17 +717,17 @@ export class PlayToneAction extends (ConversationAction as unknown as Omit<typeo
    * init(conversationUUID: UUID, digits: String, tone: PlayToneAction.Tone)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string, digits: string, tone: PlayToneAction_Tone): PlayToneAction { return callSDK<PlayToneAction>("LiveCommunicationKit_212edf3d13b127f5", 767361325205538, undefined, [conversationUUID, digits, tone]); }
+  static init(conversationUUID: string, digits: string, tone: PlayToneAction_Tone): PlayToneAction { return callSDK<PlayToneAction>("LiveCommunicationKit_5d69670f0307b385", 767361325205538, undefined, [conversationUUID, digits, tone]); }
   /**
    * final let tone: PlayToneAction.Tone
    * @availability iOS 17.4+
    */
-  get tone(): PlayToneAction_Tone { return callSDK<PlayToneAction_Tone>("LiveCommunicationKit_212edf3d13b127f5", 2629467381392021, this, []); }
+  get tone(): PlayToneAction_Tone { return callSDK<PlayToneAction_Tone>("LiveCommunicationKit_5d69670f0307b385", 2629467381392021, this, []); }
   /**
    * final let digits: String
    * @availability iOS 17.4+
    */
-  get digits(): string { return callSDK<string>("LiveCommunicationKit_212edf3d13b127f5", 3403437040731315, this, []); }
+  get digits(): string { return callSDK<string>("LiveCommunicationKit_5d69670f0307b385", 3403437040731315, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit14PlayToneActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -742,12 +742,12 @@ export const PlayToneAction_Tone = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (PlayToneAction_Tone) | null { return callSDK<(PlayToneAction_Tone) | null>("LiveCommunicationKit_212edf3d13b127f5", 1805792032207982, undefined, [rawValue]); },
+  init(rawValue: number): (PlayToneAction_Tone) | null { return callSDK<(PlayToneAction_Tone) | null>("LiveCommunicationKit_5d69670f0307b385", 1805792032207982, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: PlayToneAction_Tone): number { return callSDK<number>("LiveCommunicationKit_212edf3d13b127f5", 2770019590427124, $self, []); }
+  getRawValue($self: PlayToneAction_Tone): number { return callSDK<number>("LiveCommunicationKit_5d69670f0307b385", 2770019590427124, $self, []); }
 };
 
 /**
@@ -765,27 +765,27 @@ export class SetTranslatingAction extends (ConversationAction as unknown as Omit
    * final let isTranslating: Bool
    * @availability iOS 26.0+
    */
-  get isTranslating(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 1127622751355314, this, []); }
+  get isTranslating(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 1127622751355314, this, []); }
   /**
    * final let localLanguage: Locale.Language
    * @availability iOS 26.0+
    */
-  get localLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("LiveCommunicationKit_212edf3d13b127f5", 1633060203266078, this, []); }
+  get localLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("LiveCommunicationKit_5d69670f0307b385", 1633060203266078, this, []); }
   /**
    * init(conversationID: UUID, isTranslating: Bool, localLanguage: Locale.Language, remoteLanguage: Locale.Language)
    * @availability iOS 26.0+
    */
-  static init(conversationID: string, isTranslating: boolean, localLanguage: _Foundation_Locale_Language, remoteLanguage: _Foundation_Locale_Language): SetTranslatingAction { return callSDK<SetTranslatingAction>("LiveCommunicationKit_212edf3d13b127f5", 4290163658255701, undefined, [conversationID, isTranslating, localLanguage, remoteLanguage]); }
+  static init(conversationID: string, isTranslating: boolean, localLanguage: _Foundation_Locale_Language, remoteLanguage: _Foundation_Locale_Language): SetTranslatingAction { return callSDK<SetTranslatingAction>("LiveCommunicationKit_5d69670f0307b385", 4290163658255701, undefined, [conversationID, isTranslating, localLanguage, remoteLanguage]); }
   /**
    * final let remoteLanguage: Locale.Language
    * @availability iOS 26.0+
    */
-  get remoteLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("LiveCommunicationKit_212edf3d13b127f5", 1071141269943138, this, []); }
+  get remoteLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("LiveCommunicationKit_5d69670f0307b385", 1071141269943138, this, []); }
   /**
    * final func fulfill(using translationEngine: SetTranslatingAction.TranslationEngine)
    * @availability iOS 26.0+
    */
-  fulfill(translationEngine: SetTranslatingAction_TranslationEngine): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 483851349863096, this, [translationEngine]); }
+  fulfill(translationEngine: SetTranslatingAction_TranslationEngine): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 483851349863096, this, [translationEngine]); }
   declare readonly $type: { "s:20LiveCommunicationKit20SetTranslatingActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -804,12 +804,12 @@ export class StartCellularConversationAction extends SDKHandle {
    * init(_ handle: Handle, cellularService: CellularService? = nil)
    * @availability iOS 26.0+
    */
-  static initCellularService(handle: Handle, cellularService?: (CellularService) | null): StartCellularConversationAction { return callSDK<StartCellularConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 4088534757782327, undefined, [handle, cellularService]); }
+  static initCellularService(handle: Handle, cellularService?: (CellularService) | null): StartCellularConversationAction { return callSDK<StartCellularConversationAction>("LiveCommunicationKit_5d69670f0307b385", 4088534757782327, undefined, [handle, cellularService]); }
   /**
    * init(_ recentConversation: ConversationHistoryManager.RecentConversation)
    * @availability iOS 26.0+
    */
-  static init(recentConversation: ConversationHistoryManager_RecentConversation): StartCellularConversationAction { return callSDK<StartCellularConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 4388055982044763, undefined, [recentConversation]); }
+  static init(recentConversation: ConversationHistoryManager_RecentConversation): StartCellularConversationAction { return callSDK<StartCellularConversationAction>("LiveCommunicationKit_5d69670f0307b385", 4388055982044763, undefined, [recentConversation]); }
   declare readonly $type: { "s:20LiveCommunicationKit31StartCellularConversationActionV": true };
 }
 
@@ -822,22 +822,22 @@ export class StartConversationAction extends (ConversationAction as unknown as O
    * init(conversationUUID: UUID, handles: [Handle], isVideo: Bool)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string, handles: Array<Handle>, isVideo: boolean): StartConversationAction { return callSDK<StartConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 1497959973284195, undefined, [conversationUUID, handles, isVideo]); }
+  static init(conversationUUID: string, handles: Array<Handle>, isVideo: boolean): StartConversationAction { return callSDK<StartConversationAction>("LiveCommunicationKit_5d69670f0307b385", 1497959973284195, undefined, [conversationUUID, handles, isVideo]); }
   /**
    * final func fulfill(dateStarted: Date)
    * @availability iOS 17.4+
    */
-  fulfill(dateStarted: globalThis.Date): void { return callSDK<void>("LiveCommunicationKit_212edf3d13b127f5", 1388230757005951, this, [dateStarted]); }
+  fulfill(dateStarted: globalThis.Date): void { return callSDK<void>("LiveCommunicationKit_5d69670f0307b385", 1388230757005951, this, [dateStarted]); }
   /**
    * final let handles: [Handle]
    * @availability iOS 17.4+
    */
-  get handles(): Array<Handle> { return callSDK<Array<Handle>>("LiveCommunicationKit_212edf3d13b127f5", 4495661719271310, this, []); }
+  get handles(): Array<Handle> { return callSDK<Array<Handle>>("LiveCommunicationKit_5d69670f0307b385", 4495661719271310, this, []); }
   /**
    * final let isVideo: Bool
    * @availability iOS 17.4+
    */
-  get isVideo(): boolean { return callSDK<boolean>("LiveCommunicationKit_212edf3d13b127f5", 3163724285250755, this, []); }
+  get isVideo(): boolean { return callSDK<boolean>("LiveCommunicationKit_5d69670f0307b385", 3163724285250755, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit23StartConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
@@ -850,17 +850,17 @@ export class TelephonyConversationManager extends SDKHandle {
    * final func startCellularConversation(_ action: StartCellularConversationAction) async throws
    * @availability iOS 26.0+
    */
-  startCellularConversation(action: StartCellularConversationAction): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_212edf3d13b127f5", 2616442484747391, this, [action]); }
+  startCellularConversation(action: StartCellularConversationAction): Promise<void> { return callSDKAsync<void>("LiveCommunicationKit_5d69670f0307b385", 2616442484747391, this, [action]); }
   /**
    * static let sharedInstance: TelephonyConversationManager
    * @availability iOS 26.0+
    */
-  static get sharedInstance(): TelephonyConversationManager { return callSDK<TelephonyConversationManager>("LiveCommunicationKit_212edf3d13b127f5", 339331869016836, undefined, []); }
+  static get sharedInstance(): TelephonyConversationManager { return callSDK<TelephonyConversationManager>("LiveCommunicationKit_5d69670f0307b385", 339331869016836, undefined, []); }
   /**
    * final var cellularServices: [CellularService] { get }
    * @availability iOS 26.0+
    */
-  get cellularServices(): Array<CellularService> { return callSDK<Array<CellularService>>("LiveCommunicationKit_212edf3d13b127f5", 2316007875751427, this, []); }
+  get cellularServices(): Array<CellularService> { return callSDK<Array<CellularService>>("LiveCommunicationKit_5d69670f0307b385", 2316007875751427, this, []); }
   declare readonly $type: { "s:20LiveCommunicationKit28TelephonyConversationManagerC": true };
 }
 
@@ -873,31 +873,31 @@ export class UnmergeConversationAction extends (ConversationAction as unknown as
    * init(conversationUUID: UUID)
    * @availability iOS 17.4+
    */
-  static init(conversationUUID: string): UnmergeConversationAction { return callSDK<UnmergeConversationAction>("LiveCommunicationKit_212edf3d13b127f5", 1357599235345936, undefined, [conversationUUID]); }
+  static init(conversationUUID: string): UnmergeConversationAction { return callSDK<UnmergeConversationAction>("LiveCommunicationKit_5d69670f0307b385", 1357599235345936, undefined, [conversationUUID]); }
   declare readonly $type: { "s:20LiveCommunicationKit25UnmergeConversationActionC": true; "s:20LiveCommunicationKit18ConversationActionC": true };
 }
 
-registerSDKClass("LiveCommunicationKit.CellularService", CellularService, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.Conversation", Conversation, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {"localMember":4272704894290337,"debugDescription":304033140368208,"uuid":4340636720846503,"state":3190371657045589} });
-registerSDKClass("LiveCommunicationKit.Conversation.Event", Conversation_Event, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.Conversation.Update", Conversation_Update, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.ConversationAction", ConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"fail":{"id":354348386761248},"fulfill":{"id":1141743431982373}} });
-registerSDKClass("LiveCommunicationKit.ConversationAction.State", ConversationAction_State, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.ConversationHistoryManager", ConversationHistoryManager, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"markConversationAsRead":{"id":3433030751819418},"recentConversations":{"id":1449199464348192},"markConversationsAsRead":{"id":4495853558901166}} });
-registerSDKClass("LiveCommunicationKit.ConversationHistoryManager.ConversationHistoryDidUpdate", ConversationHistoryManager_ConversationHistoryDidUpdate, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.ConversationHistoryManager.RecentConversation", ConversationHistoryManager_RecentConversation, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.ConversationManager", ConversationManager, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {"configuration":3314712707826823,"conversations":657363561290008,"pendingActions":11676836603152,"delegate":3080972789260448}, methods: {"reportNewIncomingConversation":{"id":370058668804044},"reportConversationEvent":{"id":2601508224754961},"pendingConversationActions":{"id":1827887760033628},"invalidate":{"id":1797008795162096},"perform":{"id":4021556682782641}} });
-registerSDKClass("LiveCommunicationKit.ConversationManager.Configuration", ConversationManager_Configuration, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("LiveCommunicationKit.CellularService", CellularService, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.Conversation", Conversation, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {"localMember":4272704894290337,"debugDescription":304033140368208,"uuid":4340636720846503,"state":3190371657045589} });
+registerSDKClass("LiveCommunicationKit.Conversation.Event", Conversation_Event, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.Conversation.Update", Conversation_Update, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.ConversationAction", ConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"fail":{"id":354348386761248},"fulfill":{"id":1141743431982373}} });
+registerSDKClass("LiveCommunicationKit.ConversationAction.State", ConversationAction_State, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.ConversationHistoryManager", ConversationHistoryManager, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"markConversationAsRead":{"id":3433030751819418},"recentConversations":{"id":1449199464348192},"markConversationsAsRead":{"id":4495853558901166}} });
+registerSDKClass("LiveCommunicationKit.ConversationHistoryManager.ConversationHistoryDidUpdate", ConversationHistoryManager_ConversationHistoryDidUpdate, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.ConversationHistoryManager.RecentConversation", ConversationHistoryManager_RecentConversation, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.ConversationManager", ConversationManager, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {"configuration":3314712707826823,"conversations":657363561290008,"pendingActions":11676836603152,"delegate":3080972789260448}, methods: {"reportNewIncomingConversation":{"id":370058668804044},"reportConversationEvent":{"id":2601508224754961},"pendingConversationActions":{"id":1827887760033628},"invalidate":{"id":1797008795162096},"perform":{"id":4021556682782641}} });
+registerSDKClass("LiveCommunicationKit.ConversationManager.Configuration", ConversationManager_Configuration, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:20LiveCommunicationKit27ConversationManagerDelegateP", {"conversationManagerConversationChanged":"conversationManager(_:conversationChanged:)","conversationManagerDidBegin":"conversationManagerDidBegin(_:)","conversationManagerDidReset":"conversationManagerDidReset(_:)","conversationManagerPerform":"conversationManager(_:perform:)","conversationManagerTimedOutPerforming":"conversationManager(_:timedOutPerforming:)","conversationManagerDidActivate":"conversationManager(_:didActivate:)","conversationManagerDidDeactivate":"conversationManager(_:didDeactivate:)"});
-registerSDKClass("LiveCommunicationKit.EndConversationAction", EndConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"fulfill":{"id":1543768275048581}} });
-registerSDKClass("LiveCommunicationKit.Handle", Handle, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.JoinConversationAction", JoinConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"fulfill":{"id":490358256585200}} });
-registerSDKClass("LiveCommunicationKit.MergeConversationAction", MergeConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.MuteConversationAction", MuteConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.PauseConversationAction", PauseConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.PlayToneAction", PlayToneAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.SetTranslatingAction", SetTranslatingAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"fulfill":{"id":483851349863096}} });
-registerSDKClass("LiveCommunicationKit.StartCellularConversationAction", StartCellularConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("LiveCommunicationKit.StartConversationAction", StartConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"fulfill":{"id":1388230757005951}} });
-registerSDKClass("LiveCommunicationKit.TelephonyConversationManager", TelephonyConversationManager, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {}, methods: {"startCellularConversation":{"id":2616442484747391}} });
-registerSDKClass("LiveCommunicationKit.UnmergeConversationAction", UnmergeConversationAction, { module: "LiveCommunicationKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("LiveCommunicationKit.EndConversationAction", EndConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"fulfill":{"id":1543768275048581}} });
+registerSDKClass("LiveCommunicationKit.Handle", Handle, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.JoinConversationAction", JoinConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"fulfill":{"id":490358256585200}} });
+registerSDKClass("LiveCommunicationKit.MergeConversationAction", MergeConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.MuteConversationAction", MuteConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.PauseConversationAction", PauseConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.PlayToneAction", PlayToneAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.SetTranslatingAction", SetTranslatingAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"fulfill":{"id":483851349863096}} });
+registerSDKClass("LiveCommunicationKit.StartCellularConversationAction", StartCellularConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("LiveCommunicationKit.StartConversationAction", StartConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"fulfill":{"id":1388230757005951}} });
+registerSDKClass("LiveCommunicationKit.TelephonyConversationManager", TelephonyConversationManager, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {}, methods: {"startCellularConversation":{"id":2616442484747391}} });
+registerSDKClass("LiveCommunicationKit.UnmergeConversationAction", UnmergeConversationAction, { module: "LiveCommunicationKit_5d69670f0307b385", properties: {} });

@@ -64,22 +64,22 @@ export class DispatchObject extends SDKHandle {
    * func activate()
    * @availability iOS 10.0+
    */
-  activate(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3442066042100786, this, []); }
+  activate(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3442066042100786, this, []); }
   /**
    * func resume()
    * @availability iOS 4.0+
    */
-  resume(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 397151588878836, this, []); }
+  resume(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 397151588878836, this, []); }
   /**
    * func setTarget(queue: dispatch_queue_t?)
    * @availability iOS 4.0+
    */
-  setTarget(queue?: (DispatchQueue) | null): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 907260521044404, this, [queue]); }
+  setTarget(queue?: (DispatchQueue) | null): void { return callSDK<void>("Dispatch_5d69670f0307b385", 907260521044404, this, [queue]); }
   /**
    * func suspend()
    * @availability iOS 4.0+
    */
-  suspend(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3323648287205303, this, []); }
+  suspend(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3323648287205303, this, []); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -89,141 +89,141 @@ export class DispatchQueue extends DispatchObject {
    * func asyncAndWait(execute block: () -> Void)
    * @availability iOS 12.0+
    */
-  asyncAndWaitExecute(block: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3580469094057237, this, [block], [{"callback":{"out":[]}}]); }
+  asyncAndWaitExecute(block: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3580469094057237, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func sync(execute block: () -> Void)
    * @availability iOS 4.0+
    */
-  syncExecute(block: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3297932510285843, this, [block], [{"callback":{"out":[]}}]); }
+  syncExecute(block: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3297932510285843, this, [block], [{"callback":{"out":[]}}]); }
   /** @preconcurrency func asyncAfter(wallDeadline: DispatchWallTime, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping @Sendable () -> Void) */
-  asyncAfterWallDeadlineQosFlagsExecute(wallDeadline: DispatchWallTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4175089128218885, this, [wallDeadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
+  asyncAfterWallDeadlineQosFlagsExecute(wallDeadline: DispatchWallTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4175089128218885, this, [wallDeadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func asyncAfter(wallDeadline: DispatchWallTime, execute: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  asyncAfterWallDeadlineExecute(wallDeadline: DispatchWallTime, execute: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 914612258799818, this, [wallDeadline, execute]); }
+  asyncAfterWallDeadlineExecute(wallDeadline: DispatchWallTime, execute: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 914612258799818, this, [wallDeadline, execute]); }
   /** @preconcurrency func asyncAfter(deadline: DispatchTime, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping @Sendable () -> Void) */
-  asyncAfterDeadlineQosFlagsExecute(deadline: DispatchTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1247962536261973, this, [deadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
+  asyncAfterDeadlineQosFlagsExecute(deadline: DispatchTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1247962536261973, this, [deadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func asyncAfter(deadline: DispatchTime, execute: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  asyncAfterDeadlineExecute(deadline: DispatchTime, execute: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3032275190146637, this, [deadline, execute]); }
+  asyncAfterDeadlineExecute(deadline: DispatchTime, execute: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3032275190146637, this, [deadline, execute]); }
   /**
    * func asyncUnsafe(group: DispatchGroup? = nil, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping () -> Void)
    * @availability iOS 17.0+
    */
-  asyncUnsafe(group: (DispatchGroup) | null, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4145376067387732, this, [group, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
+  asyncUnsafe(group: (DispatchGroup) | null, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4145376067387732, this, [group, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
   /** @preconcurrency func getSpecific<T>(key: DispatchSpecificKey<T>) -> T? where T : Sendable */
-  getSpecificKey(key: $SDK0): (number) | null { return callSDK<(number) | null>("Dispatch_212edf3d13b127f5", 1184506704409174, this, [key]); }
+  getSpecificKey(key: $SDK0): (number) | null { return callSDK<(number) | null>("Dispatch_5d69670f0307b385", 1184506704409174, this, [key]); }
   /** @preconcurrency class func getSpecific<T>(key: DispatchSpecificKey<T>) -> T? where T : Sendable */
-  static getSpecificKey25069(key: $SDK0): (number) | null { return callSDK<(number) | null>("Dispatch_212edf3d13b127f5", 1137278397544216, undefined, [key]); }
+  static getSpecificKey25069(key: $SDK0): (number) | null { return callSDK<(number) | null>("Dispatch_5d69670f0307b385", 1137278397544216, undefined, [key]); }
   /** @preconcurrency func setSpecific<T>(key: DispatchSpecificKey<T>, value: T?) where T : Sendable */
-  setSpecific(key: $SDK0, value?: (number) | null): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4480592304219548, this, [key, value]); }
+  setSpecific(key: $SDK0, value?: (number) | null): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4480592304219548, this, [key, value]); }
   /**
    * func asyncAndWait<T>(flags: DispatchWorkItemFlags, execute work: () throws -> T) rethrows -> T
    * @availability iOS 12.0+
    */
-  asyncAndWaitFlagsExecute(flags: DispatchWorkItemFlags, work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_212edf3d13b127f5", 1640990286526685, this, [flags, work], [null,{"callback":{"out":[]}}], true); }
+  asyncAndWaitFlagsExecute(flags: DispatchWorkItemFlags, work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_5d69670f0307b385", 1640990286526685, this, [flags, work], [null,{"callback":{"out":[]}}], true); }
   /**
    * func asyncAndWait<T>(execute work: () throws -> T) rethrows -> T
    * @availability iOS 12.0+
    */
-  asyncAndWaitExecute14709(work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_212edf3d13b127f5", 2434894576884538, this, [work], [{"callback":{"out":[]}}], true); }
+  asyncAndWaitExecute14709(work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_5d69670f0307b385", 2434894576884538, this, [work], [{"callback":{"out":[]}}], true); }
   /**
    * func asyncAndWait(execute workItem: DispatchWorkItem)
    * @availability iOS 12.0+
    */
-  asyncAndWaitExecute62953(workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4424962686307247, this, [workItem]); }
+  asyncAndWaitExecute62953(workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4424962686307247, this, [workItem]); }
   /**
    * func asyncAfterUnsafe(wallDeadline: DispatchWallTime, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping () -> Void)
    * @availability iOS 17.0+
    */
-  asyncAfterUnsafeWallDeadlineQosFlagsExecute(wallDeadline: DispatchWallTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1504283887629769, this, [wallDeadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
+  asyncAfterUnsafeWallDeadlineQosFlagsExecute(wallDeadline: DispatchWallTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1504283887629769, this, [wallDeadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func asyncAfterUnsafe(deadline: DispatchTime, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping () -> Void)
    * @availability iOS 17.0+
    */
-  asyncAfterUnsafeDeadlineQosFlagsExecute(deadline: DispatchTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4463167976234166, this, [deadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
+  asyncAfterUnsafeDeadlineQosFlagsExecute(deadline: DispatchTime, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4463167976234166, this, [deadline, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var minimumTolerance: DispatchQueue.SchedulerTimeType.Stride { get }
    * @availability iOS 13.0+
    */
-  get minimumTolerance(): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 3069784898706250, this, []); }
+  get minimumTolerance(): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 3069784898706250, this, []); }
   /** @preconcurrency class func concurrentPerform(iterations: Int, execute work: @Sendable (Int) -> Void) */
-  static concurrentPerform(iterations: number, work: $SDK1): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3259943939946507, undefined, [iterations, work], [null,{"callback":{"out":[]}}]); }
+  static concurrentPerform(iterations: number, work: $SDK1): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3259943939946507, undefined, [iterations, work], [null,{"callback":{"out":[]}}]); }
   /**
    * func asUnownedTaskExecutor() -> UnownedTaskExecutor
    * @availability iOS 18.4+
    */
-  asUnownedTaskExecutor(): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2039313177821123, this, []); }
+  asUnownedTaskExecutor(): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2039313177821123, this, []); }
   /**
    * var now: DispatchQueue.SchedulerTimeType { get }
    * @availability iOS 13.0+
    */
-  get now(): DispatchQueue_SchedulerTimeType { return callSDK<DispatchQueue_SchedulerTimeType>("Dispatch_212edf3d13b127f5", 2628384531811602, this, []); }
+  get now(): DispatchQueue_SchedulerTimeType { return callSDK<DispatchQueue_SchedulerTimeType>("Dispatch_5d69670f0307b385", 2628384531811602, this, []); }
   /**
    * var qos: DispatchQoS { get }
    * @availability iOS 8.0+
    */
-  get qos(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 1339146484892809, this, []); }
+  get qos(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 1339146484892809, this, []); }
   /** class var main: DispatchQueue { get } */
-  static get main(): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_212edf3d13b127f5", 2540849732305417, undefined, []); }
+  static get main(): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_5d69670f0307b385", 2540849732305417, undefined, []); }
   /** func sync<T>(flags: DispatchWorkItemFlags, execute work: () throws -> T) rethrows -> T */
-  syncFlagsExecute(flags: DispatchWorkItemFlags, work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_212edf3d13b127f5", 4209896039653975, this, [flags, work], [null,{"callback":{"out":[]}}], true); }
+  syncFlagsExecute(flags: DispatchWorkItemFlags, work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_5d69670f0307b385", 4209896039653975, this, [flags, work], [null,{"callback":{"out":[]}}], true); }
   /** func sync<T>(execute work: () throws -> T) rethrows -> T */
-  syncExecute85623(work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_212edf3d13b127f5", 2278929604987322, this, [work], [{"callback":{"out":[]}}], true); }
+  syncExecute85623(work: (() => unknown)): unknown { return callSDK<unknown>("Dispatch_5d69670f0307b385", 2278929604987322, this, [work], [{"callback":{"out":[]}}], true); }
   /**
    * func sync(execute workItem: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  syncExecute33183(workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3826790561464583, this, [workItem]); }
+  syncExecute33183(workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3826790561464583, this, [workItem]); }
   /** @preconcurrency func async(group: DispatchGroup? = nil, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping @Sendable () -> Void) */
-  asyncGroupQosFlagsExecute(group: (DispatchGroup) | null, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4091165717754605, this, [group, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
+  asyncGroupQosFlagsExecute(group: (DispatchGroup) | null, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4091165717754605, this, [group, qos, flags, work], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func async(group: DispatchGroup, execute workItem: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  asyncGroupExecute(group: DispatchGroup, workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 2332385277280985, this, [group, workItem]); }
+  asyncGroupExecute(group: DispatchGroup, workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 2332385277280985, this, [group, workItem]); }
   /**
    * func async(execute workItem: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  asyncExecute(workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1822793360458450, this, [workItem]); }
+  asyncExecute(workItem: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1822793360458450, this, [workItem]); }
   /** convenience init(label: String, qos: DispatchQoS = .unspecified, attributes: DispatchQueue.Attributes = [], autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency = .inherit, target: DispatchQueue? = nil) */
-  static init(label: string, qos?: DispatchQoS, attributes?: DispatchQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_212edf3d13b127f5", 2310389419993477, undefined, [label, qos, attributes, autoreleaseFrequency, target]); }
+  static init(label: string, qos?: DispatchQoS, attributes?: DispatchQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_5d69670f0307b385", 2310389419993477, undefined, [label, qos, attributes, autoreleaseFrequency, target]); }
   /** var label: String { get } */
-  get label(): string { return callSDK<string>("Dispatch_212edf3d13b127f5", 2295477890336258, this, []); }
+  get label(): string { return callSDK<string>("Dispatch_5d69670f0307b385", 2295477890336258, this, []); }
   /**
    * class func global(qos: DispatchQoS.QoSClass = .default) -> DispatchQueue
    * @availability iOS 8.0+
    */
-  static globalQos(qos?: DispatchQoS_QoSClass): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_212edf3d13b127f5", 1062298339557216, undefined, [qos]); }
+  static globalQos(qos?: DispatchQoS_QoSClass): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_5d69670f0307b385", 1062298339557216, undefined, [qos]); }
   /**
    * class func global(priority: DispatchQueue.GlobalQueuePriority) -> DispatchQueue
    * @deprecated iOS 8.0
    */
-  static globalPriority(priority: DispatchQueue_GlobalQueuePriority): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_212edf3d13b127f5", 474274432962276, undefined, [priority]); }
+  static globalPriority(priority: DispatchQueue_GlobalQueuePriority): DispatchQueue { return callSDK<DispatchQueue>("Dispatch_5d69670f0307b385", 474274432962276, undefined, [priority]); }
   /**
    * func enqueue(_ job: UnownedJob)
    * @availability iOS 18.4+
    */
-  enqueue(job: SDKHandle): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3412448589562141, this, [job]); }
+  enqueue(job: SDKHandle): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3412448589562141, this, [job]); }
   /**
    * func schedule(after date: DispatchQueue.SchedulerTimeType, interval: DispatchQueue.SchedulerTimeType.Stride, tolerance: DispatchQueue.SchedulerTimeType.Stride, options: DispatchQueue.SchedulerOptions?, _ action: @escaping () -> Void) -> any Cancellable
    * @availability iOS 13.0+
    */
-  scheduleAfterIntervalToleranceOptions(date: DispatchQueue_SchedulerTimeType, interval: DispatchQueue_SchedulerTimeType_Stride, tolerance: DispatchQueue_SchedulerTimeType_Stride, options: $SDK2, action: (() => void)): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2863121810522423, this, [date, interval, tolerance, options, action], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleAfterIntervalToleranceOptions(date: DispatchQueue_SchedulerTimeType, interval: DispatchQueue_SchedulerTimeType_Stride, tolerance: DispatchQueue_SchedulerTimeType_Stride, options: $SDK2, action: (() => void)): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2863121810522423, this, [date, interval, tolerance, options, action], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func schedule(after date: DispatchQueue.SchedulerTimeType, tolerance: DispatchQueue.SchedulerTimeType.Stride, options: DispatchQueue.SchedulerOptions?, _ action: @escaping () -> Void)
    * @availability iOS 13.0+
    */
-  scheduleAfterToleranceOptions(date: DispatchQueue_SchedulerTimeType, tolerance: DispatchQueue_SchedulerTimeType_Stride, options: $SDK2, action: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1260685123300018, this, [date, tolerance, options, action], [null,null,null,{"callback":{"out":[]}}]); }
+  scheduleAfterToleranceOptions(date: DispatchQueue_SchedulerTimeType, tolerance: DispatchQueue_SchedulerTimeType_Stride, options: $SDK2, action: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1260685123300018, this, [date, tolerance, options, action], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func schedule(options: DispatchQueue.SchedulerOptions?, _ action: @escaping () -> Void)
    * @availability iOS 13.0+
    */
-  scheduleOptions(options: $SDK2, action: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 812940087907354, this, [options, action], [null,{"callback":{"out":[]}}]); }
+  scheduleOptions(options: $SDK2, action: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 812940087907354, this, [options, action], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_queue": true; "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -236,7 +236,7 @@ export class DispatchConcurrentQueue extends (DispatchQueue as unknown as Omit<t
    * convenience init(label: String, qos: DispatchQoS = .unspecified, attributes: DispatchConcurrentQueue.Attributes = [], autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency = .workItem, target: DispatchQueue? = nil)
    * @availability iOS 17.0+
    */
-  static init(label: string, qos?: DispatchQoS, attributes?: DispatchConcurrentQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchConcurrentQueue { return callSDK<DispatchConcurrentQueue>("Dispatch_212edf3d13b127f5", 2172485161470381, undefined, [label, qos, attributes, autoreleaseFrequency, target]); }
+  static init(label: string, qos?: DispatchQoS, attributes?: DispatchConcurrentQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchConcurrentQueue { return callSDK<DispatchConcurrentQueue>("Dispatch_5d69670f0307b385", 2172485161470381, undefined, [label, qos, attributes, autoreleaseFrequency, target]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_queue_concurrent": true; "c:objc(cs)OS_dispatch_queue": true; "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -251,17 +251,17 @@ export const DispatchConcurrentQueue_Attributes = {
    * static let initiallyInactive: DispatchConcurrentQueue.Attributes
    * @availability iOS 17.0+
    */
-  get initiallyInactive(): DispatchConcurrentQueue_Attributes { return callSDK<DispatchConcurrentQueue_Attributes>("Dispatch_212edf3d13b127f5", 2814129623302612, undefined, []); },
+  get initiallyInactive(): DispatchConcurrentQueue_Attributes { return callSDK<DispatchConcurrentQueue_Attributes>("Dispatch_5d69670f0307b385", 2814129623302612, undefined, []); },
   /**
    * init(rawValue: UInt64)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): DispatchConcurrentQueue_Attributes { return callSDK<DispatchConcurrentQueue_Attributes>("Dispatch_212edf3d13b127f5", 275607992079442, undefined, [rawValue]); },
+  init(rawValue: number): DispatchConcurrentQueue_Attributes { return callSDK<DispatchConcurrentQueue_Attributes>("Dispatch_5d69670f0307b385", 275607992079442, undefined, [rawValue]); },
   /**
    * let rawValue: UInt64
    * @availability iOS 17.0+
    */
-  getRawValue($self: DispatchConcurrentQueue_Attributes): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1864739449131373, $self, []); }
+  getRawValue($self: DispatchConcurrentQueue_Attributes): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1864739449131373, $self, []); }
 };
 
 /**
@@ -285,57 +285,57 @@ export type DispatchConcurrentQueue_Attributes_RawValue = number;
 /** struct DispatchData */
 export class DispatchData extends SDKHandle {
   /** var startIndex: DispatchData.Index { get } */
-  get startIndex(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2725264920927679, this, []); }
+  get startIndex(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2725264920927679, this, []); }
   /** init(bytesNoCopy bytes: UnsafeBufferPointer<UInt8>, deallocator: DispatchData.Deallocator = .free) */
-  static initBytesNoCopyDeallocator(bytes: Uint8Array, deallocator?: DispatchData_Deallocator): DispatchData { return callSDK<DispatchData>("Dispatch_212edf3d13b127f5", 4287084261253408, undefined, [bytes, deallocator]); }
+  static initBytesNoCopyDeallocator(bytes: Uint8Array, deallocator?: DispatchData_Deallocator): DispatchData { return callSDK<DispatchData>("Dispatch_5d69670f0307b385", 4287084261253408, undefined, [bytes, deallocator]); }
   /** init(bytesNoCopy bytes: UnsafeRawBufferPointer, deallocator: DispatchData.Deallocator = .free) */
-  static initBytesNoCopyDeallocator16434(bytes: ArrayBuffer, deallocator?: DispatchData_Deallocator): DispatchData { return callSDK<DispatchData>("Dispatch_212edf3d13b127f5", 1426556196061913, undefined, [bytes, deallocator]); }
+  static initBytesNoCopyDeallocator16434(bytes: ArrayBuffer, deallocator?: DispatchData_Deallocator): DispatchData { return callSDK<DispatchData>("Dispatch_5d69670f0307b385", 1426556196061913, undefined, [bytes, deallocator]); }
   /** func makeIterator() -> DispatchData.Iterator */
-  makeIterator(): DispatchDataIterator { return callSDK<DispatchDataIterator>("Dispatch_212edf3d13b127f5", 1999360694432859, this, []); }
+  makeIterator(): DispatchDataIterator { return callSDK<DispatchDataIterator>("Dispatch_5d69670f0307b385", 1999360694432859, this, []); }
   /** func enumerateBytes(_ block: (UnsafeBufferPointer<UInt8>, Int, inout Bool) -> Void) */
-  enumerateBytes(block: ((arg0: Uint8Array, arg1: number, arg2: boolean) => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 136725150377460, this, [block], [{"callback":{"out":[]}}]); }
+  enumerateBytes(block: ((arg0: Uint8Array, arg1: number, arg2: boolean) => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 136725150377460, this, [block], [{"callback":{"out":[]}}]); }
   /** func withUnsafeBytes<Result, ContentType>(body: (UnsafePointer<ContentType>) throws -> Result) rethrows -> Result */
-  withUnsafeBytes(body: ((arg0: SDKHandle) => unknown)): unknown { return callSDK<unknown>("Dispatch_212edf3d13b127f5", 590971881306085, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: ((arg0: SDKHandle) => unknown)): unknown { return callSDK<unknown>("Dispatch_5d69670f0307b385", 590971881306085, this, [body], [{"callback":{"out":[]}}], true); }
   /** init(bytes buffer: UnsafeBufferPointer<UInt8>) */
-  static initBytes(buffer: Uint8Array): DispatchData { return callSDK<DispatchData>("Dispatch_212edf3d13b127f5", 4009599211936106, undefined, [buffer]); }
+  static initBytes(buffer: Uint8Array): DispatchData { return callSDK<DispatchData>("Dispatch_5d69670f0307b385", 4009599211936106, undefined, [buffer]); }
   /** init(bytes buffer: UnsafeRawBufferPointer) */
-  static initBytes9142(buffer: ArrayBuffer): DispatchData { return callSDK<DispatchData>("Dispatch_212edf3d13b127f5", 4474173821143365, undefined, [buffer]); }
+  static initBytes9142(buffer: ArrayBuffer): DispatchData { return callSDK<DispatchData>("Dispatch_5d69670f0307b385", 4474173821143365, undefined, [buffer]); }
   /** var count: Int { get } */
-  get count(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 3393339889255925, this, []); }
+  get count(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 3393339889255925, this, []); }
   /** static let empty: DispatchData */
-  static get empty(): DispatchData { return callSDK<DispatchData>("Dispatch_212edf3d13b127f5", 3517805337499095, undefined, []); }
+  static get empty(): DispatchData { return callSDK<DispatchData>("Dispatch_5d69670f0307b385", 3517805337499095, undefined, []); }
   /** func index(after i: DispatchData.Index) -> DispatchData.Index */
-  indexAfter(i: number): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 4092917303696836, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("Dispatch_5d69670f0307b385", 4092917303696836, this, [i]); }
   /** func index(before i: DispatchData.Index) -> DispatchData.Index */
-  indexBefore(i: number): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 3238431084500795, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("Dispatch_5d69670f0307b385", 3238431084500795, this, [i]); }
   /** mutating func append(_ bytes: UnsafePointer<UInt8>, count: Int) */
-  appendCount(bytes: SDKHandle, count: number): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3994759212400591, this, [bytes, count]); }
+  appendCount(bytes: SDKHandle, count: number): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3994759212400591, this, [bytes, count]); }
   /** mutating func append(_ other: DispatchData) */
-  append(other: DispatchData): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1841254128667531, this, [other]); }
+  append(other: DispatchData): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1841254128667531, this, [other]); }
   /** mutating func append<SourceType>(_ buffer: UnsafeBufferPointer<SourceType>) */
-  append35900(buffer: unknown[]): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3462761620316846, this, [buffer]); }
+  append35900(buffer: unknown[]): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3462761620316846, this, [buffer]); }
   /** mutating func append(_ bytes: UnsafeRawBufferPointer) */
-  append90667(bytes: ArrayBuffer): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1452928321589701, this, [bytes]); }
+  append90667(bytes: ArrayBuffer): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1452928321589701, this, [bytes]); }
   /** func region(location: Int) -> (data: DispatchData, offset: Int) */
-  region(location: number): { "data": DispatchData; "offset": number } { return callSDK<{ "data": DispatchData; "offset": number }>("Dispatch_212edf3d13b127f5", 1627528703326952, this, [location]); }
+  region(location: number): { "data": DispatchData; "offset": number } { return callSDK<{ "data": DispatchData; "offset": number }>("Dispatch_5d69670f0307b385", 1627528703326952, this, [location]); }
   /** func subdata(in range: Range<DispatchData.Index>) -> DispatchData */
-  subdata(range: SDKHandle): DispatchData { return callSDK<DispatchData>("Dispatch_212edf3d13b127f5", 4234833499668435, this, [range]); }
+  subdata(range: SDKHandle): DispatchData { return callSDK<DispatchData>("Dispatch_5d69670f0307b385", 4234833499668435, this, [range]); }
   /** var endIndex: DispatchData.Index { get } */
-  get endIndex(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2730181564222407, this, []); }
+  get endIndex(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2730181564222407, this, []); }
   /** func copyBytes<DestinationType>(to buffer: UnsafeMutableBufferPointer<DestinationType>, from range: Range<DispatchData.Index>? = nil) -> Int */
-  copyBytesToFrom(buffer: unknown[], range?: (SDKHandle) | null): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1349331103198108, this, [buffer, range]); }
+  copyBytesToFrom(buffer: unknown[], range?: (SDKHandle) | null): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1349331103198108, this, [buffer, range]); }
   /** func copyBytes(to pointer: UnsafeMutablePointer<UInt8>, from range: Range<DispatchData.Index>) */
-  copyBytesToFrom39331(pointer: SDKHandle, range: SDKHandle): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4097951693446164, this, [pointer, range]); }
+  copyBytesToFrom39331(pointer: SDKHandle, range: SDKHandle): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4097951693446164, this, [pointer, range]); }
   /** func copyBytes(to pointer: UnsafeMutableRawBufferPointer, from range: Range<DispatchData.Index>) */
-  copyBytesToFrom82678(pointer: ArrayBuffer, range: SDKHandle): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 152640231436651, this, [pointer, range]); }
+  copyBytesToFrom82678(pointer: ArrayBuffer, range: SDKHandle): void { return callSDK<void>("Dispatch_5d69670f0307b385", 152640231436651, this, [pointer, range]); }
   /** func copyBytes(to pointer: UnsafeMutablePointer<UInt8>, count: Int) */
-  copyBytesToCount(pointer: SDKHandle, count: number): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 2660699948692026, this, [pointer, count]); }
+  copyBytesToCount(pointer: SDKHandle, count: number): void { return callSDK<void>("Dispatch_5d69670f0307b385", 2660699948692026, this, [pointer, count]); }
   /** func copyBytes(to pointer: UnsafeMutableRawBufferPointer, count: Int) */
-  copyBytesToCount15035(pointer: ArrayBuffer, count: number): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1535562099571124, this, [pointer, count]); }
+  copyBytesToCount15035(pointer: ArrayBuffer, count: number): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1535562099571124, this, [pointer, count]); }
   /** subscript(bounds: Range<Int>) -> Slice<DispatchData> { get } */
-  subscript(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2431332866402452, this, [bounds]); }
+  subscript(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2431332866402452, this, [bounds]); }
   /** subscript(index: DispatchData.Index) -> UInt8 { get } */
-  subscript22988(index: number): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1967968290807221, this, [index]); }
+  subscript22988(index: number): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1967968290807221, this, [index]); }
   declare readonly $type: { "s:8Dispatch0A4DataV": true };
 }
 
@@ -362,7 +362,7 @@ export type DispatchData_SubSequence = SDKHandle;
 /** struct DispatchDataIterator */
 export class DispatchDataIterator extends SDKHandle {
   /** mutating func next() -> DispatchData.Element? */
-  next(): (number) | null { return callSDK<(number) | null>("Dispatch_212edf3d13b127f5", 92019226500631, this, []); }
+  next(): (number) | null { return callSDK<(number) | null>("Dispatch_5d69670f0307b385", 92019226500631, this, []); }
   declare readonly $type: { "s:8Dispatch0A12DataIteratorV": true };
 }
 
@@ -378,30 +378,30 @@ export class DispatchGroup extends DispatchObject {
    * init()
    * @availability iOS 4.0+
    */
-  static init(): DispatchGroup { return callSDK<DispatchGroup>("Dispatch_212edf3d13b127f5", 4476918476392833, undefined, []); }
+  static init(): DispatchGroup { return callSDK<DispatchGroup>("Dispatch_5d69670f0307b385", 4476918476392833, undefined, []); }
   /**
    * func enter()
    * @availability iOS 4.0+
    */
-  enter(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3787157965353820, this, []); }
+  enter(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3787157965353820, this, []); }
   /**
    * func leave()
    * @availability iOS 4.0+
    */
-  leave(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 2992778324777917, this, []); }
+  leave(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 2992778324777917, this, []); }
   /** func wait(wallTimeout timeout: DispatchWallTime) -> DispatchTimeoutResult */
-  waitWallTimeout(timeout: DispatchWallTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_212edf3d13b127f5", 3008682636034430, this, [timeout]); }
+  waitWallTimeout(timeout: DispatchWallTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_5d69670f0307b385", 3008682636034430, this, [timeout]); }
   /** func wait(timeout: DispatchTime) -> DispatchTimeoutResult */
-  waitTimeout(timeout: DispatchTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_212edf3d13b127f5", 3699330379220494, this, [timeout]); }
+  waitTimeout(timeout: DispatchTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_5d69670f0307b385", 3699330379220494, this, [timeout]); }
   /** func wait() */
-  wait(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3187268622271460, this, []); }
+  wait(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3187268622271460, this, []); }
   /** func notify(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], queue: DispatchQueue, execute work: @escaping () -> Void) */
-  notifyQosFlagsQueueExecute(qos: DispatchQoS, flags: DispatchWorkItemFlags, queue: DispatchQueue, work: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3319798837167587, this, [qos, flags, queue, work], [null,null,null,{"callback":{"out":[]}}]); }
+  notifyQosFlagsQueueExecute(qos: DispatchQoS, flags: DispatchWorkItemFlags, queue: DispatchQueue, work: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3319798837167587, this, [qos, flags, queue, work], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func notify(queue: DispatchQueue, work: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  notifyQueueWork(queue: DispatchQueue, work: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4320784543015760, this, [queue, work]); }
+  notifyQueueWork(queue: DispatchQueue, work: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4320784543015760, this, [queue, work]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_group": true; "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -411,42 +411,42 @@ export class DispatchIO extends DispatchObject {
    * func barrier(execute barrier: @escaping () -> Void)
    * @availability iOS 5.0+
    */
-  barrier(barrier: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4392276318903764, this, [barrier], [{"callback":{"out":[]}}]); }
+  barrier(barrier: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4392276318903764, this, [barrier], [{"callback":{"out":[]}}]); }
   /**
    * var fileDescriptor: Int32 { get }
    * @availability iOS 5.0+
    */
-  get fileDescriptor(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1307374077828511, this, []); }
+  get fileDescriptor(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1307374077828511, this, []); }
   /**
    * func setLimit(highWater high_water: Int)
    * @availability iOS 5.0+
    */
-  setLimitHighWater(high_water: number): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 2678752191621091, this, [high_water]); }
+  setLimitHighWater(high_water: number): void { return callSDK<void>("Dispatch_5d69670f0307b385", 2678752191621091, this, [high_water]); }
   /**
    * func setLimit(lowWater low_water: Int)
    * @availability iOS 5.0+
    */
-  setLimitLowWater(low_water: number): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 2224158161877122, this, [low_water]); }
+  setLimitLowWater(low_water: number): void { return callSDK<void>("Dispatch_5d69670f0307b385", 2224158161877122, this, [low_water]); }
   /** func setInterval(interval: DispatchTimeInterval, flags: DispatchIO.IntervalFlags = []) */
-  setInterval(interval: DispatchTimeInterval, flags?: DispatchIO_IntervalFlags): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3726130212784988, this, [interval, flags]); }
+  setInterval(interval: DispatchTimeInterval, flags?: DispatchIO_IntervalFlags): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3726130212784988, this, [interval, flags]); }
   /** class func read(fromFileDescriptor: Int32, maxLength: Int, runningHandlerOn queue: DispatchQueue, handler: @escaping (DispatchData, Int32) -> Void) */
-  static readFromFileDescriptorMaxLengthRunningHandlerOnHandler(fromFileDescriptor: number, maxLength: number, queue: DispatchQueue, handler: ((arg0: DispatchData, arg1: number) => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1851824045363610, undefined, [fromFileDescriptor, maxLength, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  static readFromFileDescriptorMaxLengthRunningHandlerOnHandler(fromFileDescriptor: number, maxLength: number, queue: DispatchQueue, handler: ((arg0: DispatchData, arg1: number) => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1851824045363610, undefined, [fromFileDescriptor, maxLength, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /** func read(offset: off_t, length: Int, queue: DispatchQueue, ioHandler: @escaping (Bool, DispatchData?, Int32) -> Void) */
-  readOffsetLengthQueueIoHandler(offset: SDKHandle, length: number, queue: DispatchQueue, ioHandler: $SDK7): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 816570398565472, this, [offset, length, queue, ioHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  readOffsetLengthQueueIoHandler(offset: SDKHandle, length: number, queue: DispatchQueue, ioHandler: $SDK7): void { return callSDK<void>("Dispatch_5d69670f0307b385", 816570398565472, this, [offset, length, queue, ioHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** convenience init(type: DispatchIO.StreamType, io: DispatchIO, queue: DispatchQueue, cleanupHandler: @escaping (Int32) -> Void) */
-  static initTypeIoQueueCleanupHandler(type: DispatchIO_StreamType, io: DispatchIO, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO { return callSDK<DispatchIO>("Dispatch_212edf3d13b127f5", 254894391910683, undefined, [type, io, queue, cleanupHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTypeIoQueueCleanupHandler(type: DispatchIO_StreamType, io: DispatchIO, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO { return callSDK<DispatchIO>("Dispatch_5d69670f0307b385", 254894391910683, undefined, [type, io, queue, cleanupHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** convenience init(type: DispatchIO.StreamType, fileDescriptor: Int32, queue: DispatchQueue, cleanupHandler: @escaping (Int32) -> Void) */
-  static initTypeFileDescriptorQueueCleanupHandler(type: DispatchIO_StreamType, fileDescriptor: number, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO { return callSDK<DispatchIO>("Dispatch_212edf3d13b127f5", 4179593719555944, undefined, [type, fileDescriptor, queue, cleanupHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTypeFileDescriptorQueueCleanupHandler(type: DispatchIO_StreamType, fileDescriptor: number, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO { return callSDK<DispatchIO>("Dispatch_5d69670f0307b385", 4179593719555944, undefined, [type, fileDescriptor, queue, cleanupHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** convenience init(type: DispatchIO.StreamType, path: UnsafePointer<Int8>, oflag: Int32, mode: mode_t, queue: DispatchQueue, cleanupHandler: @escaping (Int32) -> Void) */
-  static initTypePathOflagModeQueueCleanupHandler(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO { return callSDK<DispatchIO>("Dispatch_212edf3d13b127f5", 3289660022908452, undefined, [type, path, oflag, mode, queue, cleanupHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  static initTypePathOflagModeQueueCleanupHandler(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO { return callSDK<DispatchIO>("Dispatch_5d69670f0307b385", 3289660022908452, undefined, [type, path, oflag, mode, queue, cleanupHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /** convenience init?(type: DispatchIO.StreamType, path: UnsafePointer<Int8>, oflag: Int32, mode: mode_t, queue: DispatchQueue, cleanupHandler: @escaping (Int32) -> Void) */
-  static initTypePathOflagModeQueueCleanupHandler9271(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): (DispatchIO) | null { return callSDK<(DispatchIO) | null>("Dispatch_212edf3d13b127f5", 689088484491307, undefined, [type, path, oflag, mode, queue, cleanupHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  static initTypePathOflagModeQueueCleanupHandler9271(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): (DispatchIO) | null { return callSDK<(DispatchIO) | null>("Dispatch_5d69670f0307b385", 689088484491307, undefined, [type, path, oflag, mode, queue, cleanupHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /** func close(flags: DispatchIO.CloseFlags = []) */
-  close(flags?: DispatchIO_CloseFlags): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4123075351209644, this, [flags]); }
+  close(flags?: DispatchIO_CloseFlags): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4123075351209644, this, [flags]); }
   /** class func write(toFileDescriptor: Int32, data: DispatchData, runningHandlerOn queue: DispatchQueue, handler: @escaping (DispatchData?, Int32) -> Void) */
-  static writeToFileDescriptorDataRunningHandlerOnHandler(toFileDescriptor: number, data: DispatchData, queue: DispatchQueue, handler: ((arg0: (DispatchData) | null, arg1: number) => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1821322290031330, undefined, [toFileDescriptor, data, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  static writeToFileDescriptorDataRunningHandlerOnHandler(toFileDescriptor: number, data: DispatchData, queue: DispatchQueue, handler: ((arg0: (DispatchData) | null, arg1: number) => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1821322290031330, undefined, [toFileDescriptor, data, queue, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /** func write(offset: off_t, data: DispatchData, queue: DispatchQueue, ioHandler: @escaping (Bool, DispatchData?, Int32) -> Void) */
-  writeOffsetDataQueueIoHandler(offset: SDKHandle, data: DispatchData, queue: DispatchQueue, ioHandler: $SDK7): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 525983422423252, this, [offset, data, queue, ioHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  writeOffsetDataQueueIoHandler(offset: SDKHandle, data: DispatchData, queue: DispatchQueue, ioHandler: $SDK7): void { return callSDK<void>("Dispatch_5d69670f0307b385", 525983422423252, this, [offset, data, queue, ioHandler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_io": true; "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -455,11 +455,11 @@ export type DispatchIO_CloseFlags = Array<"stop">;
 
 export const DispatchIO_CloseFlags = {
   /** static let stop: DispatchIO.CloseFlags */
-  get stop(): DispatchIO_CloseFlags { return callSDK<DispatchIO_CloseFlags>("Dispatch_212edf3d13b127f5", 1944803703151374, undefined, []); },
+  get stop(): DispatchIO_CloseFlags { return callSDK<DispatchIO_CloseFlags>("Dispatch_5d69670f0307b385", 1944803703151374, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchIO_CloseFlags { return callSDK<DispatchIO_CloseFlags>("Dispatch_212edf3d13b127f5", 3773735179226364, undefined, [rawValue]); },
+  init(rawValue: number): DispatchIO_CloseFlags { return callSDK<DispatchIO_CloseFlags>("Dispatch_5d69670f0307b385", 3773735179226364, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchIO_CloseFlags): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 430652262950892, $self, []); }
+  getRawValue($self: DispatchIO_CloseFlags): number { return callSDK<number>("Dispatch_5d69670f0307b385", 430652262950892, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchIO.CloseFlags */
@@ -476,13 +476,13 @@ export type DispatchIO_IntervalFlags = Array<"strictInterval">;
 
 export const DispatchIO_IntervalFlags = {
   /** static let strictInterval: DispatchIO.IntervalFlags */
-  get strictInterval(): DispatchIO_IntervalFlags { return callSDK<DispatchIO_IntervalFlags>("Dispatch_212edf3d13b127f5", 4498033267591089, undefined, []); },
+  get strictInterval(): DispatchIO_IntervalFlags { return callSDK<DispatchIO_IntervalFlags>("Dispatch_5d69670f0307b385", 4498033267591089, undefined, []); },
   /** init(nilLiteral: ()) */
-  initNilLiteral(nilLiteral: void): DispatchIO_IntervalFlags { return callSDK<DispatchIO_IntervalFlags>("Dispatch_212edf3d13b127f5", 1164042363017202, undefined, [nilLiteral]); },
+  initNilLiteral(nilLiteral: void): DispatchIO_IntervalFlags { return callSDK<DispatchIO_IntervalFlags>("Dispatch_5d69670f0307b385", 1164042363017202, undefined, [nilLiteral]); },
   /** init(rawValue: UInt) */
-  initRawValue(rawValue: number): DispatchIO_IntervalFlags { return callSDK<DispatchIO_IntervalFlags>("Dispatch_212edf3d13b127f5", 4423140605073105, undefined, [rawValue]); },
+  initRawValue(rawValue: number): DispatchIO_IntervalFlags { return callSDK<DispatchIO_IntervalFlags>("Dispatch_5d69670f0307b385", 4423140605073105, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchIO_IntervalFlags): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1071019175544872, $self, []); }
+  getRawValue($self: DispatchIO_IntervalFlags): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1071019175544872, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchIO.IntervalFlags */
@@ -499,9 +499,9 @@ export type DispatchIO_StreamType = "stream" | "random";
 
 export const DispatchIO_StreamType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (DispatchIO_StreamType) | null { return callSDK<(DispatchIO_StreamType) | null>("Dispatch_212edf3d13b127f5", 3501238327767762, undefined, [rawValue]); },
+  init(rawValue: number): (DispatchIO_StreamType) | null { return callSDK<(DispatchIO_StreamType) | null>("Dispatch_5d69670f0307b385", 3501238327767762, undefined, [rawValue]); },
   /** var rawValue: UInt { get } */
-  getRawValue($self: DispatchIO_StreamType): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1927313796717772, $self, []); }
+  getRawValue($self: DispatchIO_StreamType): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1927313796717772, $self, []); }
 };
 
 /** typealias RawValue = UInt */
@@ -521,35 +521,35 @@ export class DispatchQoS extends SDKHandle {
    * static let background: DispatchQoS
    * @availability iOS 8.0+
    */
-  static get background(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 248966200926097, undefined, []); }
+  static get background(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 248966200926097, undefined, []); }
   /** static let unspecified: DispatchQoS */
-  static get unspecified(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 2697203390407223, undefined, []); }
+  static get unspecified(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 2697203390407223, undefined, []); }
   /**
    * static let userInitiated: DispatchQoS
    * @availability iOS 8.0+
    */
-  static get userInitiated(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 3770315184042432, undefined, []); }
+  static get userInitiated(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 3770315184042432, undefined, []); }
   /**
    * static let userInteractive: DispatchQoS
    * @availability iOS 8.0+
    */
-  static get userInteractive(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 3759641994947481, undefined, []); }
+  static get userInteractive(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 3759641994947481, undefined, []); }
   /** let relativePriority: Int */
-  get relativePriority(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2420992739214082, this, []); }
+  get relativePriority(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2420992739214082, this, []); }
   /**
    * static let `default`: DispatchQoS
    * @availability iOS 8.0+
    */
-  static get default(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 651322695352031, undefined, []); }
+  static get default(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 651322695352031, undefined, []); }
   /**
    * static let utility: DispatchQoS
    * @availability iOS 8.0+
    */
-  static get utility(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 642991550858289, undefined, []); }
+  static get utility(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 642991550858289, undefined, []); }
   /** init(qosClass: DispatchQoS.QoSClass, relativePriority: Int) */
-  static init(qosClass: DispatchQoS_QoSClass, relativePriority: number): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 3456030103392545, undefined, [qosClass, relativePriority]); }
+  static init(qosClass: DispatchQoS_QoSClass, relativePriority: number): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 3456030103392545, undefined, [qosClass, relativePriority]); }
   /** let qosClass: DispatchQoS.QoSClass */
-  get qosClass(): DispatchQoS_QoSClass { return callSDK<DispatchQoS_QoSClass>("Dispatch_212edf3d13b127f5", 1136743881717006, this, []); }
+  get qosClass(): DispatchQoS_QoSClass { return callSDK<DispatchQoS_QoSClass>("Dispatch_5d69670f0307b385", 1136743881717006, this, []); }
   declare readonly $type: { "s:8Dispatch0A3QoSV": true };
 }
 
@@ -561,12 +561,12 @@ export const DispatchQoS_QoSClass = {
    * init?(rawValue: qos_class_t)
    * @availability iOS 8.0+
    */
-  init(rawValue: SDKHandle): (DispatchQoS_QoSClass) | null { return callSDK<(DispatchQoS_QoSClass) | null>("Dispatch_212edf3d13b127f5", 2091336994177000, undefined, [rawValue]); },
+  init(rawValue: SDKHandle): (DispatchQoS_QoSClass) | null { return callSDK<(DispatchQoS_QoSClass) | null>("Dispatch_5d69670f0307b385", 2091336994177000, undefined, [rawValue]); },
   /**
    * var rawValue: qos_class_t { get }
    * @availability iOS 8.0+
    */
-  getRawValue($self: DispatchQoS_QoSClass): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 3712419072451101, $self, []); }
+  getRawValue($self: DispatchQoS_QoSClass): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 3712419072451101, $self, []); }
 };
 
 /** struct Attributes */
@@ -574,16 +574,16 @@ export type DispatchQueue_Attributes = Array<"concurrent" | "initiallyInactive">
 
 export const DispatchQueue_Attributes = {
   /** static let concurrent: DispatchQueue.Attributes */
-  get concurrent(): DispatchQueue_Attributes { return callSDK<DispatchQueue_Attributes>("Dispatch_212edf3d13b127f5", 643871979550509, undefined, []); },
+  get concurrent(): DispatchQueue_Attributes { return callSDK<DispatchQueue_Attributes>("Dispatch_5d69670f0307b385", 643871979550509, undefined, []); },
   /**
    * static let initiallyInactive: DispatchQueue.Attributes
    * @availability iOS 10.0+
    */
-  get initiallyInactive(): DispatchQueue_Attributes { return callSDK<DispatchQueue_Attributes>("Dispatch_212edf3d13b127f5", 3393254254437051, undefined, []); },
+  get initiallyInactive(): DispatchQueue_Attributes { return callSDK<DispatchQueue_Attributes>("Dispatch_5d69670f0307b385", 3393254254437051, undefined, []); },
   /** init(rawValue: UInt64) */
-  init(rawValue: number): DispatchQueue_Attributes { return callSDK<DispatchQueue_Attributes>("Dispatch_212edf3d13b127f5", 3141387587378979, undefined, [rawValue]); },
+  init(rawValue: number): DispatchQueue_Attributes { return callSDK<DispatchQueue_Attributes>("Dispatch_5d69670f0307b385", 3141387587378979, undefined, [rawValue]); },
   /** let rawValue: UInt64 */
-  getRawValue($self: DispatchQueue_Attributes): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2622732098305680, $self, []); }
+  getRawValue($self: DispatchQueue_Attributes): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2622732098305680, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchQueue.Attributes */
@@ -610,25 +610,25 @@ export class DispatchQueue_SchedulerOptions extends SDKHandle {
    * init(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], group: DispatchGroup? = nil)
    * @availability iOS 13.0+
    */
-  static init(qos?: DispatchQoS, flags?: DispatchWorkItemFlags, group?: (DispatchGroup) | null): DispatchQueue_SchedulerOptions { return callSDK<DispatchQueue_SchedulerOptions>("Dispatch_212edf3d13b127f5", 1400213510104486, undefined, [qos, flags, group]); }
+  static init(qos?: DispatchQoS, flags?: DispatchWorkItemFlags, group?: (DispatchGroup) | null): DispatchQueue_SchedulerOptions { return callSDK<DispatchQueue_SchedulerOptions>("Dispatch_5d69670f0307b385", 1400213510104486, undefined, [qos, flags, group]); }
   /**
    * var qos: DispatchQoS
    * @availability iOS 13.0+
    */
-  get qos(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_212edf3d13b127f5", 1416448211200790, this, []); }
-  set qos(value: DispatchQoS) { callSDK<void>("Dispatch_212edf3d13b127f5", 3388252184943290, this, [value]); }
+  get qos(): DispatchQoS { return callSDK<DispatchQoS>("Dispatch_5d69670f0307b385", 1416448211200790, this, []); }
+  set qos(value: DispatchQoS) { callSDK<void>("Dispatch_5d69670f0307b385", 3388252184943290, this, [value]); }
   /**
    * var flags: DispatchWorkItemFlags
    * @availability iOS 13.0+
    */
-  get flags(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 3857588397324986, this, []); }
-  set flags(value: DispatchWorkItemFlags) { callSDK<void>("Dispatch_212edf3d13b127f5", 79872104802948, this, [value]); }
+  get flags(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 3857588397324986, this, []); }
+  set flags(value: DispatchWorkItemFlags) { callSDK<void>("Dispatch_5d69670f0307b385", 79872104802948, this, [value]); }
   /**
    * var group: DispatchGroup?
    * @availability iOS 13.0+
    */
-  get group(): (DispatchGroup) | null { return callSDK<(DispatchGroup) | null>("Dispatch_212edf3d13b127f5", 3399109412220792, this, []); }
-  set group(value: (DispatchGroup) | null) { callSDK<void>("Dispatch_212edf3d13b127f5", 1126128755211165, this, [value]); }
+  get group(): (DispatchGroup) | null { return callSDK<(DispatchGroup) | null>("Dispatch_5d69670f0307b385", 3399109412220792, this, []); }
+  set group(value: (DispatchGroup) | null) { callSDK<void>("Dispatch_5d69670f0307b385", 1126128755211165, this, [value]); }
   declare readonly $type: { "s:So17OS_dispatch_queueC8DispatchE16SchedulerOptionsV": true };
 }
 
@@ -641,23 +641,23 @@ export class DispatchQueue_SchedulerTimeType extends SDKHandle {
    * var dispatchTime: DispatchTime
    * @availability iOS 13.0+
    */
-  get dispatchTime(): DispatchTime { return callSDK<DispatchTime>("Dispatch_212edf3d13b127f5", 976757414935165, this, []); }
-  set dispatchTime(value: DispatchTime) { callSDK<void>("Dispatch_212edf3d13b127f5", 1346069001911686, this, [value]); }
+  get dispatchTime(): DispatchTime { return callSDK<DispatchTime>("Dispatch_5d69670f0307b385", 976757414935165, this, []); }
+  set dispatchTime(value: DispatchTime) { callSDK<void>("Dispatch_5d69670f0307b385", 1346069001911686, this, [value]); }
   /**
    * func advanced(by n: DispatchQueue.SchedulerTimeType.Stride) -> DispatchQueue.SchedulerTimeType
    * @availability iOS 13.0+
    */
-  advanced(n: DispatchQueue_SchedulerTimeType_Stride): DispatchQueue_SchedulerTimeType { return callSDK<DispatchQueue_SchedulerTimeType>("Dispatch_212edf3d13b127f5", 4317601443991211, this, [n]); }
+  advanced(n: DispatchQueue_SchedulerTimeType_Stride): DispatchQueue_SchedulerTimeType { return callSDK<DispatchQueue_SchedulerTimeType>("Dispatch_5d69670f0307b385", 4317601443991211, this, [n]); }
   /**
    * func distance(to other: DispatchQueue.SchedulerTimeType) -> DispatchQueue.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  distance(other: DispatchQueue_SchedulerTimeType): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 3856050084070438, this, [other]); }
+  distance(other: DispatchQueue_SchedulerTimeType): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 3856050084070438, this, [other]); }
   /**
    * init(_ time: DispatchTime)
    * @availability iOS 13.0+
    */
-  static init(time: DispatchTime): DispatchQueue_SchedulerTimeType { return callSDK<DispatchQueue_SchedulerTimeType>("Dispatch_212edf3d13b127f5", 4309447821329532, undefined, [time]); }
+  static init(time: DispatchTime): DispatchQueue_SchedulerTimeType { return callSDK<DispatchQueue_SchedulerTimeType>("Dispatch_5d69670f0307b385", 4309447821329532, undefined, [time]); }
   declare readonly $type: { "s:So17OS_dispatch_queueC8DispatchE17SchedulerTimeTypeV": true };
 }
 
@@ -670,58 +670,58 @@ export class DispatchQueue_SchedulerTimeType_Stride extends SDKHandle {
    * static func nanoseconds(_ ns: Int) -> DispatchQueue.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static nanoseconds(ns: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 459523225613237, undefined, [ns]); }
+  static nanoseconds(ns: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 459523225613237, undefined, [ns]); }
   /**
    * init(floatLiteral value: Double)
    * @availability iOS 13.0+
    */
-  static initFloatLiteral(value: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 688726612443071, undefined, [value]); }
+  static initFloatLiteral(value: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 688726612443071, undefined, [value]); }
   /**
    * static func microseconds(_ us: Int) -> DispatchQueue.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static microseconds(us: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 42003543291313, undefined, [us]); }
+  static microseconds(us: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 42003543291313, undefined, [us]); }
   /**
    * static func milliseconds(_ ms: Int) -> DispatchQueue.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static milliseconds(ms: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 2107113007662046, undefined, [ms]); }
+  static milliseconds(ms: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 2107113007662046, undefined, [ms]); }
   /**
    * var timeInterval: DispatchTimeInterval { get }
    * @availability iOS 13.0+
    */
-  get timeInterval(): DispatchTimeInterval { return callSDK<DispatchTimeInterval>("Dispatch_212edf3d13b127f5", 1564685897091963, this, []); }
+  get timeInterval(): DispatchTimeInterval { return callSDK<DispatchTimeInterval>("Dispatch_5d69670f0307b385", 1564685897091963, this, []); }
   /**
    * init(integerLiteral value: Int)
    * @availability iOS 13.0+
    */
-  static initIntegerLiteral(value: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 4296213207257794, undefined, [value]); }
+  static initIntegerLiteral(value: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 4296213207257794, undefined, [value]); }
   /**
    * init?<T>(exactly source: T) where T : BinaryInteger
    * @availability iOS 13.0+
    */
-  static initExactly(source: number): (DispatchQueue_SchedulerTimeType_Stride) | null { return callSDK<(DispatchQueue_SchedulerTimeType_Stride) | null>("Dispatch_212edf3d13b127f5", 1009500938997967, undefined, [source]); }
+  static initExactly(source: number): (DispatchQueue_SchedulerTimeType_Stride) | null { return callSDK<(DispatchQueue_SchedulerTimeType_Stride) | null>("Dispatch_5d69670f0307b385", 1009500938997967, undefined, [source]); }
   /**
    * static func seconds(_ s: Double) -> DispatchQueue.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static seconds(s: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 2576695011687680, undefined, [s]); }
+  static seconds(s: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 2576695011687680, undefined, [s]); }
   /**
    * static func seconds(_ s: Int) -> DispatchQueue.SchedulerTimeType.Stride
    * @availability iOS 13.0+
    */
-  static seconds17141(s: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 4468973376500881, undefined, [s]); }
+  static seconds17141(s: number): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 4468973376500881, undefined, [s]); }
   /**
    * var magnitude: Int { get set }
    * @availability iOS 13.0+
    */
-  get magnitude(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 3093217219148567, this, []); }
-  set magnitude(value: number) { callSDK<void>("Dispatch_212edf3d13b127f5", 484013059838516, this, [value]); }
+  get magnitude(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 3093217219148567, this, []); }
+  set magnitude(value: number) { callSDK<void>("Dispatch_5d69670f0307b385", 484013059838516, this, [value]); }
   /**
    * init(_ timeInterval: DispatchTimeInterval)
    * @availability iOS 13.0+
    */
-  static init(timeInterval: DispatchTimeInterval): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_212edf3d13b127f5", 3290939142691782, undefined, [timeInterval]); }
+  static init(timeInterval: DispatchTimeInterval): DispatchQueue_SchedulerTimeType_Stride { return callSDK<DispatchQueue_SchedulerTimeType_Stride>("Dispatch_5d69670f0307b385", 3290939142691782, undefined, [timeInterval]); }
   declare readonly $type: { "s:So17OS_dispatch_queueC8DispatchE17SchedulerTimeTypeV6StrideV": true };
 }
 
@@ -749,15 +749,15 @@ export class DispatchSemaphore extends DispatchObject {
    * init(value: Int)
    * @availability iOS 4.0+
    */
-  static init(value: number): DispatchSemaphore { return callSDK<DispatchSemaphore>("Dispatch_212edf3d13b127f5", 1874084954589704, undefined, [value]); }
+  static init(value: number): DispatchSemaphore { return callSDK<DispatchSemaphore>("Dispatch_5d69670f0307b385", 1874084954589704, undefined, [value]); }
   /** func wait(wallTimeout: DispatchWallTime) -> DispatchTimeoutResult */
-  waitWallTimeout(wallTimeout: DispatchWallTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_212edf3d13b127f5", 4378548750663238, this, [wallTimeout]); }
+  waitWallTimeout(wallTimeout: DispatchWallTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_5d69670f0307b385", 4378548750663238, this, [wallTimeout]); }
   /** func wait(timeout: DispatchTime) -> DispatchTimeoutResult */
-  waitTimeout(timeout: DispatchTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_212edf3d13b127f5", 3237009112060188, this, [timeout]); }
+  waitTimeout(timeout: DispatchTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_5d69670f0307b385", 3237009112060188, this, [timeout]); }
   /** func wait() */
-  wait(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 2936593432756803, this, []); }
+  wait(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 2936593432756803, this, []); }
   /** @discardableResult func signal() -> Int */
-  signal(): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1759719265994742, this, []); }
+  signal(): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1759719265994742, this, []); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_semaphore": true; "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -770,7 +770,7 @@ export class DispatchSerialQueue extends SDKHandle {
    * convenience init(label: String, qos: DispatchQoS = .unspecified, attributes: DispatchSerialQueue.Attributes = [], autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency = .workItem, target: DispatchQueue? = nil)
    * @availability iOS 17.0+
    */
-  static init(label: string, qos?: DispatchQoS, attributes?: DispatchSerialQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchSerialQueue { return callSDK<DispatchSerialQueue>("Dispatch_212edf3d13b127f5", 1261848062510978, undefined, [label, qos, attributes, autoreleaseFrequency, target]); }
+  static init(label: string, qos?: DispatchQoS, attributes?: DispatchSerialQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchSerialQueue { return callSDK<DispatchSerialQueue>("Dispatch_5d69670f0307b385", 1261848062510978, undefined, [label, qos, attributes, autoreleaseFrequency, target]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_queue_serial": true };
 }
 
@@ -785,17 +785,17 @@ export const DispatchSerialQueue_Attributes = {
    * static let initiallyInactive: DispatchSerialQueue.Attributes
    * @availability iOS 17.0+
    */
-  get initiallyInactive(): DispatchSerialQueue_Attributes { return callSDK<DispatchSerialQueue_Attributes>("Dispatch_212edf3d13b127f5", 2285443991913073, undefined, []); },
+  get initiallyInactive(): DispatchSerialQueue_Attributes { return callSDK<DispatchSerialQueue_Attributes>("Dispatch_5d69670f0307b385", 2285443991913073, undefined, []); },
   /**
    * init(rawValue: UInt64)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): DispatchSerialQueue_Attributes { return callSDK<DispatchSerialQueue_Attributes>("Dispatch_212edf3d13b127f5", 291770158128660, undefined, [rawValue]); },
+  init(rawValue: number): DispatchSerialQueue_Attributes { return callSDK<DispatchSerialQueue_Attributes>("Dispatch_5d69670f0307b385", 291770158128660, undefined, [rawValue]); },
   /**
    * let rawValue: UInt64
    * @availability iOS 17.0+
    */
-  getRawValue($self: DispatchSerialQueue_Attributes): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 3398420035748378, $self, []); }
+  getRawValue($self: DispatchSerialQueue_Attributes): number { return callSDK<number>("Dispatch_5d69670f0307b385", 3398420035748378, $self, []); }
 };
 
 /**
@@ -819,29 +819,29 @@ export type DispatchSerialQueue_Attributes_RawValue = number;
 /** class DispatchSource */
 export class DispatchSource extends DispatchObject {
   /** class func makeReadSource(fileDescriptor: Int32, queue: DispatchQueue? = nil) -> any DispatchSourceRead */
-  static makeReadSource(fileDescriptor: number, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 3998137694280466, undefined, [fileDescriptor, queue]); }
+  static makeReadSource(fileDescriptor: number, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 3998137694280466, undefined, [fileDescriptor, queue]); }
   /** class func makeTimerSource(flags: DispatchSource.TimerFlags = [], queue: DispatchQueue? = nil) -> any DispatchSourceTimer */
-  static makeTimerSource(flags?: DispatchSource_TimerFlags, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2506484483052122, undefined, [flags, queue]); }
+  static makeTimerSource(flags?: DispatchSource_TimerFlags, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2506484483052122, undefined, [flags, queue]); }
   /** class func makeWriteSource(fileDescriptor: Int32, queue: DispatchQueue? = nil) -> any DispatchSourceWrite */
-  static makeWriteSource(fileDescriptor: number, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 1622531168756412, undefined, [fileDescriptor, queue]); }
+  static makeWriteSource(fileDescriptor: number, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 1622531168756412, undefined, [fileDescriptor, queue]); }
   /** class func makeSignalSource(signal: Int32, queue: DispatchQueue? = nil) -> any DispatchSourceSignal */
-  static makeSignalSource(signal: number, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2939616430409688, undefined, [signal, queue]); }
+  static makeSignalSource(signal: number, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2939616430409688, undefined, [signal, queue]); }
   /** class func makeProcessSource(identifier: pid_t, eventMask: DispatchSource.ProcessEvent, queue: DispatchQueue? = nil) -> any DispatchSourceProcess */
-  static makeProcessSource(identifier: SDKHandle, eventMask: DispatchSource_ProcessEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2845371599735589, undefined, [identifier, eventMask, queue]); }
+  static makeProcessSource(identifier: SDKHandle, eventMask: DispatchSource_ProcessEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2845371599735589, undefined, [identifier, eventMask, queue]); }
   /** class func makeMachSendSource(port: mach_port_t, eventMask: DispatchSource.MachSendEvent, queue: DispatchQueue? = nil) -> any DispatchSourceMachSend */
-  static makeMachSendSource(port: SDKHandle, eventMask: DispatchSource_MachSendEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 148286857647760, undefined, [port, eventMask, queue]); }
+  static makeMachSendSource(port: SDKHandle, eventMask: DispatchSource_MachSendEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 148286857647760, undefined, [port, eventMask, queue]); }
   /** class func makeUserDataOrSource(queue: DispatchQueue? = nil) -> any DispatchSourceUserDataOr */
-  static makeUserDataOrSource(queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 1143289075855171, undefined, [queue]); }
+  static makeUserDataOrSource(queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 1143289075855171, undefined, [queue]); }
   /** class func makeMachReceiveSource(port: mach_port_t, queue: DispatchQueue? = nil) -> any DispatchSourceMachReceive */
-  static makeMachReceiveSource(port: SDKHandle, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 791703142802755, undefined, [port, queue]); }
+  static makeMachReceiveSource(port: SDKHandle, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 791703142802755, undefined, [port, queue]); }
   /** class func makeUserDataAddSource(queue: DispatchQueue? = nil) -> any DispatchSourceUserDataAdd */
-  static makeUserDataAddSource(queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 4069903225952062, undefined, [queue]); }
+  static makeUserDataAddSource(queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 4069903225952062, undefined, [queue]); }
   /** class func makeMemoryPressureSource(eventMask: DispatchSource.MemoryPressureEvent, queue: DispatchQueue? = nil) -> any DispatchSourceMemoryPressure */
-  static makeMemoryPressureSource(eventMask: DispatchSource_MemoryPressureEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 2054244695309645, undefined, [eventMask, queue]); }
+  static makeMemoryPressureSource(eventMask: DispatchSource_MemoryPressureEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 2054244695309645, undefined, [eventMask, queue]); }
   /** class func makeUserDataReplaceSource(queue: DispatchQueue? = nil) -> any DispatchSourceUserDataReplace */
-  static makeUserDataReplaceSource(queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 4497963095375596, undefined, [queue]); }
+  static makeUserDataReplaceSource(queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 4497963095375596, undefined, [queue]); }
   /** class func makeFileSystemObjectSource(fileDescriptor: Int32, eventMask: DispatchSource.FileSystemEvent, queue: DispatchQueue? = nil) -> any DispatchSourceFileSystemObject */
-  static makeFileSystemObjectSource(fileDescriptor: number, eventMask: DispatchSource_FileSystemEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_212edf3d13b127f5", 838400050363173, undefined, [fileDescriptor, eventMask, queue]); }
+  static makeFileSystemObjectSource(fileDescriptor: number, eventMask: DispatchSource_FileSystemEvent, queue?: (DispatchQueue) | null): SDKHandle { return callSDK<SDKHandle>("Dispatch_5d69670f0307b385", 838400050363173, undefined, [fileDescriptor, eventMask, queue]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_source": true; "c:objc(cs)OS_dispatch_object": true; "c:objc(cs)OS_object": true };
 }
 
@@ -853,27 +853,27 @@ export type DispatchSource_FileSystemEvent = Array<"delete" | "write" | "extend"
 
 export const DispatchSource_FileSystemEvent = {
   /** static let all: DispatchSource.FileSystemEvent */
-  get all(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 669905561536655, undefined, []); },
+  get all(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 669905561536655, undefined, []); },
   /** static let link: DispatchSource.FileSystemEvent */
-  get link(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 1233481563432611, undefined, []); },
+  get link(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 1233481563432611, undefined, []); },
   /** static let write: DispatchSource.FileSystemEvent */
-  get write(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 3832201797761, undefined, []); },
+  get write(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 3832201797761, undefined, []); },
   /** static let attrib: DispatchSource.FileSystemEvent */
-  get attrib(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 2264936124806690, undefined, []); },
+  get attrib(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 2264936124806690, undefined, []); },
   /** static let delete: DispatchSource.FileSystemEvent */
-  get delete(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 1859444957736994, undefined, []); },
+  get delete(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 1859444957736994, undefined, []); },
   /** static let extend: DispatchSource.FileSystemEvent */
-  get extend(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 969413985434792, undefined, []); },
+  get extend(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 969413985434792, undefined, []); },
   /** static let rename: DispatchSource.FileSystemEvent */
-  get rename(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 1395988751342845, undefined, []); },
+  get rename(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 1395988751342845, undefined, []); },
   /** static let revoke: DispatchSource.FileSystemEvent */
-  get revoke(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 3769661017602036, undefined, []); },
+  get revoke(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 3769661017602036, undefined, []); },
   /** static let funlock: DispatchSource.FileSystemEvent */
-  get funlock(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 3393711847149054, undefined, []); },
+  get funlock(): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 3393711847149054, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_212edf3d13b127f5", 3274382994714174, undefined, [rawValue]); },
+  init(rawValue: number): DispatchSource_FileSystemEvent { return callSDK<DispatchSource_FileSystemEvent>("Dispatch_5d69670f0307b385", 3274382994714174, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchSource_FileSystemEvent): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 624836482012354, $self, []); }
+  getRawValue($self: DispatchSource_FileSystemEvent): number { return callSDK<number>("Dispatch_5d69670f0307b385", 624836482012354, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchSource.FileSystemEvent */
@@ -890,11 +890,11 @@ export type DispatchSource_MachSendEvent = Array<"dead">;
 
 export const DispatchSource_MachSendEvent = {
   /** static let dead: DispatchSource.MachSendEvent */
-  get dead(): DispatchSource_MachSendEvent { return callSDK<DispatchSource_MachSendEvent>("Dispatch_212edf3d13b127f5", 1122958714339910, undefined, []); },
+  get dead(): DispatchSource_MachSendEvent { return callSDK<DispatchSource_MachSendEvent>("Dispatch_5d69670f0307b385", 1122958714339910, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchSource_MachSendEvent { return callSDK<DispatchSource_MachSendEvent>("Dispatch_212edf3d13b127f5", 4126234761430435, undefined, [rawValue]); },
+  init(rawValue: number): DispatchSource_MachSendEvent { return callSDK<DispatchSource_MachSendEvent>("Dispatch_5d69670f0307b385", 4126234761430435, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchSource_MachSendEvent): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 1116733139739043, $self, []); }
+  getRawValue($self: DispatchSource_MachSendEvent): number { return callSDK<number>("Dispatch_5d69670f0307b385", 1116733139739043, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchSource.MachSendEvent */
@@ -914,19 +914,19 @@ export const DispatchSource_MemoryPressureEvent = {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  getDescription($self: DispatchSource_MemoryPressureEvent): string { return callSDK<string>("Dispatch_212edf3d13b127f5", 3310226821431785, $self, []); },
+  getDescription($self: DispatchSource_MemoryPressureEvent): string { return callSDK<string>("Dispatch_5d69670f0307b385", 3310226821431785, $self, []); },
   /** static let all: DispatchSource.MemoryPressureEvent */
-  get all(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_212edf3d13b127f5", 5362682765841, undefined, []); },
+  get all(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_5d69670f0307b385", 5362682765841, undefined, []); },
   /** static let normal: DispatchSource.MemoryPressureEvent */
-  get normal(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_212edf3d13b127f5", 2738770762620404, undefined, []); },
+  get normal(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_5d69670f0307b385", 2738770762620404, undefined, []); },
   /** static let warning: DispatchSource.MemoryPressureEvent */
-  get warning(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_212edf3d13b127f5", 12850365208527, undefined, []); },
+  get warning(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_5d69670f0307b385", 12850365208527, undefined, []); },
   /** static let critical: DispatchSource.MemoryPressureEvent */
-  get critical(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_212edf3d13b127f5", 2672290809708372, undefined, []); },
+  get critical(): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_5d69670f0307b385", 2672290809708372, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_212edf3d13b127f5", 809359364253128, undefined, [rawValue]); },
+  init(rawValue: number): DispatchSource_MemoryPressureEvent { return callSDK<DispatchSource_MemoryPressureEvent>("Dispatch_5d69670f0307b385", 809359364253128, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchSource_MemoryPressureEvent): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2197830909635288, $self, []); }
+  getRawValue($self: DispatchSource_MemoryPressureEvent): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2197830909635288, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchSource.MemoryPressureEvent */
@@ -943,19 +943,19 @@ export type DispatchSource_ProcessEvent = Array<"exit" | "fork" | "exec" | "sign
 
 export const DispatchSource_ProcessEvent = {
   /** static let all: DispatchSource.ProcessEvent */
-  get all(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_212edf3d13b127f5", 2417921093291099, undefined, []); },
+  get all(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_5d69670f0307b385", 2417921093291099, undefined, []); },
   /** static let exec: DispatchSource.ProcessEvent */
-  get exec(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_212edf3d13b127f5", 350375199294741, undefined, []); },
+  get exec(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_5d69670f0307b385", 350375199294741, undefined, []); },
   /** static let exit: DispatchSource.ProcessEvent */
-  get exit(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_212edf3d13b127f5", 3471663146781756, undefined, []); },
+  get exit(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_5d69670f0307b385", 3471663146781756, undefined, []); },
   /** static let fork: DispatchSource.ProcessEvent */
-  get fork(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_212edf3d13b127f5", 2169617580256530, undefined, []); },
+  get fork(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_5d69670f0307b385", 2169617580256530, undefined, []); },
   /** static let signal: DispatchSource.ProcessEvent */
-  get signal(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_212edf3d13b127f5", 1732611224503568, undefined, []); },
+  get signal(): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_5d69670f0307b385", 1732611224503568, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_212edf3d13b127f5", 1776115819164668, undefined, [rawValue]); },
+  init(rawValue: number): DispatchSource_ProcessEvent { return callSDK<DispatchSource_ProcessEvent>("Dispatch_5d69670f0307b385", 1776115819164668, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchSource_ProcessEvent): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2859304196942492, $self, []); }
+  getRawValue($self: DispatchSource_ProcessEvent): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2859304196942492, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchSource.ProcessEvent */
@@ -972,11 +972,11 @@ export type DispatchSource_TimerFlags = Array<"strict">;
 
 export const DispatchSource_TimerFlags = {
   /** static let strict: DispatchSource.TimerFlags */
-  get strict(): DispatchSource_TimerFlags { return callSDK<DispatchSource_TimerFlags>("Dispatch_212edf3d13b127f5", 3359379630314270, undefined, []); },
+  get strict(): DispatchSource_TimerFlags { return callSDK<DispatchSource_TimerFlags>("Dispatch_5d69670f0307b385", 3359379630314270, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchSource_TimerFlags { return callSDK<DispatchSource_TimerFlags>("Dispatch_212edf3d13b127f5", 1665443349499769, undefined, [rawValue]); },
+  init(rawValue: number): DispatchSource_TimerFlags { return callSDK<DispatchSource_TimerFlags>("Dispatch_5d69670f0307b385", 1665443349499769, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchSource_TimerFlags): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2552552958185427, $self, []); }
+  getRawValue($self: DispatchSource_TimerFlags): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2552552958185427, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchSource.TimerFlags */
@@ -1059,7 +1059,7 @@ export interface DispatchSourceWrite {
 /** final class DispatchSpecificKey<T> */
 export class DispatchSpecificKey<T = unknown> extends SDKHandle {
   /** init() */
-  static init(): DispatchSpecificKey<unknown> { return callSDK<DispatchSpecificKey<unknown>>("Dispatch_212edf3d13b127f5", 246094992957402, undefined, []); }
+  static init(): DispatchSpecificKey<unknown> { return callSDK<DispatchSpecificKey<unknown>>("Dispatch_5d69670f0307b385", 246094992957402, undefined, []); }
   declare readonly $type: { "s:8Dispatch0A11SpecificKeyC": true };
 }
 
@@ -1068,25 +1068,25 @@ export type DispatchTime = "distantFuture" | (number & {});
 
 export const DispatchTime = {
   /** static let distantFuture: DispatchTime */
-  get distantFuture(): DispatchTime { return callSDK<DispatchTime>("Dispatch_212edf3d13b127f5", 3519440978910964, undefined, []); },
+  get distantFuture(): DispatchTime { return callSDK<DispatchTime>("Dispatch_5d69670f0307b385", 3519440978910964, undefined, []); },
   /** init(uptimeNanoseconds: UInt64) */
-  init(uptimeNanoseconds: number): DispatchTime { return callSDK<DispatchTime>("Dispatch_212edf3d13b127f5", 3056722038399557, undefined, [uptimeNanoseconds]); },
+  init(uptimeNanoseconds: number): DispatchTime { return callSDK<DispatchTime>("Dispatch_5d69670f0307b385", 3056722038399557, undefined, [uptimeNanoseconds]); },
   /** var uptimeNanoseconds: UInt64 { get } */
-  getUptimeNanoseconds($self: DispatchTime): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 3330911863070223, $self, []); },
+  getUptimeNanoseconds($self: DispatchTime): number { return callSDK<number>("Dispatch_5d69670f0307b385", 3330911863070223, $self, []); },
   /** static func now() -> DispatchTime */
-  now(): DispatchTime { return callSDK<DispatchTime>("Dispatch_212edf3d13b127f5", 4266319799595466, undefined, []); },
+  now(): DispatchTime { return callSDK<DispatchTime>("Dispatch_5d69670f0307b385", 4266319799595466, undefined, []); },
   /**
    * func advanced(by n: DispatchTimeInterval) -> DispatchTime
    * @availability iOS 13.0+
    */
-  advanced($self: DispatchTime, n: DispatchTimeInterval): DispatchTime { return callSDK<DispatchTime>("Dispatch_212edf3d13b127f5", 3477265844302424, $self, [n]); },
+  advanced($self: DispatchTime, n: DispatchTimeInterval): DispatchTime { return callSDK<DispatchTime>("Dispatch_5d69670f0307b385", 3477265844302424, $self, [n]); },
   /**
    * func distance(to other: DispatchTime) -> DispatchTimeInterval
    * @availability iOS 13.0+
    */
-  distance($self: DispatchTime, other: DispatchTime): DispatchTimeInterval { return callSDK<DispatchTimeInterval>("Dispatch_212edf3d13b127f5", 1559675111872427, $self, [other]); },
+  distance($self: DispatchTime, other: DispatchTime): DispatchTimeInterval { return callSDK<DispatchTimeInterval>("Dispatch_5d69670f0307b385", 1559675111872427, $self, [other]); },
   /** let rawValue: dispatch_time_t */
-  getRawValue($self: DispatchTime): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2448890981868787, $self, []); }
+  getRawValue($self: DispatchTime): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2448890981868787, $self, []); }
 };
 
 /** enum DispatchTimeInterval */
@@ -1102,13 +1102,13 @@ export type DispatchWallTime = "distantFuture" | (number & {});
 
 export const DispatchWallTime = {
   /** static let distantFuture: DispatchWallTime */
-  get distantFuture(): DispatchWallTime { return callSDK<DispatchWallTime>("Dispatch_212edf3d13b127f5", 698553215760282, undefined, []); },
+  get distantFuture(): DispatchWallTime { return callSDK<DispatchWallTime>("Dispatch_5d69670f0307b385", 698553215760282, undefined, []); },
   /** static func now() -> DispatchWallTime */
-  now(): DispatchWallTime { return callSDK<DispatchWallTime>("Dispatch_212edf3d13b127f5", 3033220722453710, undefined, []); },
+  now(): DispatchWallTime { return callSDK<DispatchWallTime>("Dispatch_5d69670f0307b385", 3033220722453710, undefined, []); },
   /** let rawValue: dispatch_time_t */
-  getRawValue($self: DispatchWallTime): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 878082090783771, $self, []); },
+  getRawValue($self: DispatchWallTime): number { return callSDK<number>("Dispatch_5d69670f0307b385", 878082090783771, $self, []); },
   /** init(timespec: timespec) */
-  init(timespec: SDKHandle): DispatchWallTime { return callSDK<DispatchWallTime>("Dispatch_212edf3d13b127f5", 3380462216714497, undefined, [timespec]); }
+  init(timespec: SDKHandle): DispatchWallTime { return callSDK<DispatchWallTime>("Dispatch_5d69670f0307b385", 3380462216714497, undefined, [timespec]); }
 };
 
 /**
@@ -1120,52 +1120,52 @@ export class DispatchWorkItem extends SDKHandle {
    * var isCancelled: Bool { get }
    * @availability iOS 8.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("Dispatch_212edf3d13b127f5", 2923148496250988, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("Dispatch_5d69670f0307b385", 2923148496250988, this, []); }
   /**
    * init(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], block: @escaping () -> Void)
    * @availability iOS 8.0+
    */
-  static initQosFlagsBlock(qos: DispatchQoS, flags: DispatchWorkItemFlags, block: (() => void)): DispatchWorkItem { return callSDK<DispatchWorkItem>("Dispatch_212edf3d13b127f5", 638937059057119, undefined, [qos, flags, block], [null,null,{"callback":{"out":[]}}]); }
+  static initQosFlagsBlock(qos: DispatchQoS, flags: DispatchWorkItemFlags, block: (() => void)): DispatchWorkItem { return callSDK<DispatchWorkItem>("Dispatch_5d69670f0307b385", 638937059057119, undefined, [qos, flags, block], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func wait(wallTimeout: DispatchWallTime) -> DispatchTimeoutResult
    * @availability iOS 8.0+
    */
-  waitWallTimeout(wallTimeout: DispatchWallTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_212edf3d13b127f5", 2332823981349951, this, [wallTimeout]); }
+  waitWallTimeout(wallTimeout: DispatchWallTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_5d69670f0307b385", 2332823981349951, this, [wallTimeout]); }
   /**
    * func wait(timeout: DispatchTime) -> DispatchTimeoutResult
    * @availability iOS 8.0+
    */
-  waitTimeout(timeout: DispatchTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_212edf3d13b127f5", 306942522578166, this, [timeout]); }
+  waitTimeout(timeout: DispatchTime): DispatchTimeoutResult { return callSDK<DispatchTimeoutResult>("Dispatch_5d69670f0307b385", 306942522578166, this, [timeout]); }
   /**
    * func wait()
    * @availability iOS 8.0+
    */
-  wait(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 592542777662064, this, []); }
+  wait(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 592542777662064, this, []); }
   /**
    * init(flags: DispatchWorkItemFlags = [], block: @escaping () -> Void)
    * @availability iOS 14.5+
    */
-  static initFlagsBlock(flags: DispatchWorkItemFlags, block: (() => void)): DispatchWorkItem { return callSDK<DispatchWorkItem>("Dispatch_212edf3d13b127f5", 476578910788969, undefined, [flags, block], [null,{"callback":{"out":[]}}]); }
+  static initFlagsBlock(flags: DispatchWorkItemFlags, block: (() => void)): DispatchWorkItem { return callSDK<DispatchWorkItem>("Dispatch_5d69670f0307b385", 476578910788969, undefined, [flags, block], [null,{"callback":{"out":[]}}]); }
   /**
    * func cancel()
    * @availability iOS 8.0+
    */
-  cancel(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 202390145175378, this, []); }
+  cancel(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 202390145175378, this, []); }
   /**
    * func notify(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], queue: DispatchQueue, execute: @escaping () -> Void)
    * @availability iOS 8.0+
    */
-  notifyQosFlagsQueueExecute(qos: DispatchQoS, flags: DispatchWorkItemFlags, queue: DispatchQueue, execute: (() => void)): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 1081705358591773, this, [qos, flags, queue, execute], [null,null,null,{"callback":{"out":[]}}]); }
+  notifyQosFlagsQueueExecute(qos: DispatchQoS, flags: DispatchWorkItemFlags, queue: DispatchQueue, execute: (() => void)): void { return callSDK<void>("Dispatch_5d69670f0307b385", 1081705358591773, this, [qos, flags, queue, execute], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func notify(queue: DispatchQueue, execute: DispatchWorkItem)
    * @availability iOS 8.0+
    */
-  notifyQueueExecute(queue: DispatchQueue, execute: DispatchWorkItem): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 3621352280435125, this, [queue, execute]); }
+  notifyQueueExecute(queue: DispatchQueue, execute: DispatchWorkItem): void { return callSDK<void>("Dispatch_5d69670f0307b385", 3621352280435125, this, [queue, execute]); }
   /**
    * func perform()
    * @availability iOS 8.0+
    */
-  perform(): void { return callSDK<void>("Dispatch_212edf3d13b127f5", 4283843145578375, this, []); }
+  perform(): void { return callSDK<void>("Dispatch_5d69670f0307b385", 4283843145578375, this, []); }
   declare readonly $type: { "s:8Dispatch0A8WorkItemC": true };
 }
 
@@ -1177,33 +1177,33 @@ export const DispatchWorkItemFlags = {
    * static let enforceQoS: DispatchWorkItemFlags
    * @availability iOS 8.0+
    */
-  get enforceQoS(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 1687083572345957, undefined, []); },
+  get enforceQoS(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 1687083572345957, undefined, []); },
   /**
    * static let inheritQoS: DispatchWorkItemFlags
    * @availability iOS 8.0+
    */
-  get inheritQoS(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 881058483667602, undefined, []); },
+  get inheritQoS(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 881058483667602, undefined, []); },
   /**
    * static let assignCurrentContext: DispatchWorkItemFlags
    * @availability iOS 8.0+
    */
-  get assignCurrentContext(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 2897685064310165, undefined, []); },
+  get assignCurrentContext(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 2897685064310165, undefined, []); },
   /**
    * static let noQoS: DispatchWorkItemFlags
    * @availability iOS 8.0+
    */
-  get noQoS(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 1780298579261345, undefined, []); },
+  get noQoS(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 1780298579261345, undefined, []); },
   /** static let barrier: DispatchWorkItemFlags */
-  get barrier(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 2192665669146909, undefined, []); },
+  get barrier(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 2192665669146909, undefined, []); },
   /**
    * static let detached: DispatchWorkItemFlags
    * @availability iOS 8.0+
    */
-  get detached(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 1079593631583181, undefined, []); },
+  get detached(): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 1079593631583181, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_212edf3d13b127f5", 2061760530644750, undefined, [rawValue]); },
+  init(rawValue: number): DispatchWorkItemFlags { return callSDK<DispatchWorkItemFlags>("Dispatch_5d69670f0307b385", 2061760530644750, undefined, [rawValue]); },
   /** let rawValue: UInt */
-  getRawValue($self: DispatchWorkItemFlags): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 979964989089008, $self, []); }
+  getRawValue($self: DispatchWorkItemFlags): number { return callSDK<number>("Dispatch_5d69670f0307b385", 979964989089008, $self, []); }
 };
 
 /** typealias ArrayLiteralElement = DispatchWorkItemFlags */
@@ -1224,7 +1224,7 @@ export class DispatchWorkloop extends SDKHandle {
    * convenience init(label: String, attributes: DispatchWorkloop.Attributes = [], autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency = .workItem, osWorkgroup: WorkGroup? = nil)
    * @availability iOS 17.0+
    */
-  static init(label: string, attributes?: DispatchWorkloop_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, osWorkgroup?: (SDKHandle) | null): DispatchWorkloop { return callSDK<DispatchWorkloop>("Dispatch_212edf3d13b127f5", 2716071000192014, undefined, [label, attributes, autoreleaseFrequency, osWorkgroup]); }
+  static init(label: string, attributes?: DispatchWorkloop_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, osWorkgroup?: (SDKHandle) | null): DispatchWorkloop { return callSDK<DispatchWorkloop>("Dispatch_5d69670f0307b385", 2716071000192014, undefined, [label, attributes, autoreleaseFrequency, osWorkgroup]); }
   declare readonly $type: { "c:objc(cs)OS_dispatch_workloop": true };
 }
 
@@ -1239,12 +1239,12 @@ export const DispatchWorkloop_Attributes = {
    * init(rawValue: UInt64)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): DispatchWorkloop_Attributes { return callSDK<DispatchWorkloop_Attributes>("Dispatch_212edf3d13b127f5", 1070886673080164, undefined, [rawValue]); },
+  init(rawValue: number): DispatchWorkloop_Attributes { return callSDK<DispatchWorkloop_Attributes>("Dispatch_5d69670f0307b385", 1070886673080164, undefined, [rawValue]); },
   /**
    * let rawValue: UInt64
    * @availability iOS 17.0+
    */
-  getRawValue($self: DispatchWorkloop_Attributes): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 3256053562625012, $self, []); }
+  getRawValue($self: DispatchWorkloop_Attributes): number { return callSDK<number>("Dispatch_5d69670f0307b385", 3256053562625012, $self, []); }
 };
 
 /**
@@ -1279,63 +1279,63 @@ export class OS_dispatch_queue_main extends DispatchSerialQueue {
  * func dispatch_allow_send_signals(_ preserve_signum: Int32) -> Int32
  * @availability iOS 17.4+
  */
-export function dispatch_allow_send_signals(preserve_signum: number): number { return callSDK<number>("Dispatch_212edf3d13b127f5", 2432134389344883, undefined, [preserve_signum]); }
+export function dispatch_allow_send_signals(preserve_signum: number): number { return callSDK<number>("Dispatch_5d69670f0307b385", 2432134389344883, undefined, [preserve_signum]); }
 
 /**
  * func dispatchMain() -> Never
  * @availability iOS 4.0+
  */
-export function dispatchMain(): never { return callSDK<never>("Dispatch_212edf3d13b127f5", 4395798759980748, undefined, []); }
+export function dispatchMain(): never { return callSDK<never>("Dispatch_5d69670f0307b385", 4395798759980748, undefined, []); }
 
 /**
  * var DISPATCH_WALLTIME_NOW: UInt { get }
  * @availability iOS 12.0+
  */
-export const DISPATCH_WALLTIME_NOW: number = callSDK<number>("Dispatch_212edf3d13b127f5", 1778805778907580, undefined, []);
+export const DISPATCH_WALLTIME_NOW: number = callSDK<number>("Dispatch_5d69670f0307b385", 1778805778907580, undefined, []);
 
 /** var DISPATCH_API_VERSION: Int32 { get } */
-export const DISPATCH_API_VERSION: number = callSDK<number>("Dispatch_212edf3d13b127f5", 3082966170179053, undefined, []);
+export const DISPATCH_API_VERSION: number = callSDK<number>("Dispatch_5d69670f0307b385", 3082966170179053, undefined, []);
 
 /** var DISPATCH_APPLY_AUTO_AVAILABLE: Int32 { get } */
-export const DISPATCH_APPLY_AUTO_AVAILABLE: number = callSDK<number>("Dispatch_212edf3d13b127f5", 3318951982130272, undefined, []);
+export const DISPATCH_APPLY_AUTO_AVAILABLE: number = callSDK<number>("Dispatch_5d69670f0307b385", 3318951982130272, undefined, []);
 
 /** var DISPATCH_ONCE_INLINE_FASTPATH: Int32 { get } */
-export const DISPATCH_ONCE_INLINE_FASTPATH: number = callSDK<number>("Dispatch_212edf3d13b127f5", 1336128184804847, undefined, []);
+export const DISPATCH_ONCE_INLINE_FASTPATH: number = callSDK<number>("Dispatch_5d69670f0307b385", 1336128184804847, undefined, []);
 
 /** var DISPATCH_SWIFT3_OVERLAY: Int32 { get } */
-export const DISPATCH_SWIFT3_OVERLAY: number = callSDK<number>("Dispatch_212edf3d13b127f5", 1097762402896885, undefined, []);
+export const DISPATCH_SWIFT3_OVERLAY: number = callSDK<number>("Dispatch_5d69670f0307b385", 1097762402896885, undefined, []);
 
 /** var MSEC_PER_SEC: UInt64 { get } */
-export const MSEC_PER_SEC: number = callSDK<number>("Dispatch_212edf3d13b127f5", 4273351429799566, undefined, []);
+export const MSEC_PER_SEC: number = callSDK<number>("Dispatch_5d69670f0307b385", 4273351429799566, undefined, []);
 
 /** var NSEC_PER_MSEC: UInt64 { get } */
-export const NSEC_PER_MSEC: number = callSDK<number>("Dispatch_212edf3d13b127f5", 1989288638805359, undefined, []);
+export const NSEC_PER_MSEC: number = callSDK<number>("Dispatch_5d69670f0307b385", 1989288638805359, undefined, []);
 
 /** var NSEC_PER_SEC: UInt64 { get } */
-export const NSEC_PER_SEC: number = callSDK<number>("Dispatch_212edf3d13b127f5", 3974873528706572, undefined, []);
+export const NSEC_PER_SEC: number = callSDK<number>("Dispatch_5d69670f0307b385", 3974873528706572, undefined, []);
 
 /** var NSEC_PER_USEC: UInt64 { get } */
-export const NSEC_PER_USEC: number = callSDK<number>("Dispatch_212edf3d13b127f5", 3746672191936503, undefined, []);
+export const NSEC_PER_USEC: number = callSDK<number>("Dispatch_5d69670f0307b385", 3746672191936503, undefined, []);
 
 /** var USEC_PER_SEC: UInt64 { get } */
-export const USEC_PER_SEC: number = callSDK<number>("Dispatch_212edf3d13b127f5", 3065648876238306, undefined, []);
+export const USEC_PER_SEC: number = callSDK<number>("Dispatch_5d69670f0307b385", 3065648876238306, undefined, []);
 
-registerSDKClass("OS_dispatch_object", DispatchObject, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"activate":{"id":3442066042100786},"resume":{"id":397151588878836},"setTarget":{"id":907260521044404},"suspend":{"id":3323648287205303}} });
-registerSDKClass("OS_dispatch_queue", DispatchQueue, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"asyncAndWaitExecute":{"id":3580469094057237,"hints":[{"callback":{"out":[]}}]},"syncExecute":{"id":3297932510285843,"hints":[{"callback":{"out":[]}}]},"asyncAfterWallDeadlineQosFlagsExecute":{"id":4175089128218885,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncAfterWallDeadlineExecute":{"id":914612258799818},"asyncAfterDeadlineQosFlagsExecute":{"id":1247962536261973,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncAfterDeadlineExecute":{"id":3032275190146637},"asyncUnsafe":{"id":4145376067387732,"hints":[null,null,null,{"callback":{"out":[]}}]},"getSpecificKey":{"id":1184506704409174},"setSpecific":{"id":4480592304219548},"asyncAndWaitExecute62953":{"id":4424962686307247},"asyncAfterUnsafeWallDeadlineQosFlagsExecute":{"id":1504283887629769,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncAfterUnsafeDeadlineQosFlagsExecute":{"id":4463167976234166,"hints":[null,null,null,{"callback":{"out":[]}}]},"asUnownedTaskExecutor":{"id":2039313177821123},"syncExecute33183":{"id":3826790561464583},"asyncGroupQosFlagsExecute":{"id":4091165717754605,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncGroupExecute":{"id":2332385277280985},"asyncExecute":{"id":1822793360458450},"enqueue":{"id":3412448589562141},"scheduleAfterIntervalToleranceOptions":{"id":2863121810522423,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleAfterToleranceOptions":{"id":1260685123300018,"hints":[null,null,null,{"callback":{"out":[]}}]},"scheduleOptions":{"id":812940087907354,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("OS_dispatch_queue_concurrent", DispatchConcurrentQueue, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchData", DispatchData, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"makeIterator":{"id":1999360694432859},"enumerateBytes":{"id":136725150377460,"hints":[{"callback":{"out":[]}}]},"indexAfter":{"id":4092917303696836},"indexBefore":{"id":3238431084500795},"appendCount":{"id":3994759212400591},"append":{"id":1841254128667531},"append35900":{"id":3462761620316846},"append90667":{"id":1452928321589701},"region":{"id":1627528703326952},"subdata":{"id":4234833499668435},"copyBytesToFrom":{"id":1349331103198108},"copyBytesToFrom39331":{"id":4097951693446164},"copyBytesToFrom82678":{"id":152640231436651},"copyBytesToCount":{"id":2660699948692026},"copyBytesToCount15035":{"id":1535562099571124},"subscript":{"id":2431332866402452},"subscript22988":{"id":1967968290807221}} });
-registerSDKClass("Dispatch.DispatchData.Deallocator", DispatchData_Deallocator, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchDataIterator", DispatchDataIterator, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"next":{"id":92019226500631}} });
-registerSDKClass("OS_dispatch_group", DispatchGroup, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"enter":{"id":3787157965353820},"leave":{"id":2992778324777917},"waitWallTimeout":{"id":3008682636034430},"waitTimeout":{"id":3699330379220494},"wait":{"id":3187268622271460},"notifyQosFlagsQueueExecute":{"id":3319798837167587,"hints":[null,null,null,{"callback":{"out":[]}}]},"notifyQueueWork":{"id":4320784543015760}} });
-registerSDKClass("OS_dispatch_io", DispatchIO, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"barrier":{"id":4392276318903764,"hints":[{"callback":{"out":[]}}]},"setLimitHighWater":{"id":2678752191621091},"setLimitLowWater":{"id":2224158161877122},"setInterval":{"id":3726130212784988},"readOffsetLengthQueueIoHandler":{"id":816570398565472,"hints":[null,null,null,{"callback":{"out":[]}}]},"close":{"id":4123075351209644},"writeOffsetDataQueueIoHandler":{"id":525983422423252,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("Dispatch.DispatchPredicate", DispatchPredicate, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchQoS", DispatchQoS, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchQueue.SchedulerOptions", DispatchQueue_SchedulerOptions, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchQueue.SchedulerTimeType", DispatchQueue_SchedulerTimeType, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"advanced":{"id":4317601443991211},"distance":{"id":3856050084070438}} });
-registerSDKClass("Dispatch.DispatchQueue.SchedulerTimeType.Stride", DispatchQueue_SchedulerTimeType_Stride, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("OS_dispatch_semaphore", DispatchSemaphore, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"waitWallTimeout":{"id":4378548750663238},"waitTimeout":{"id":3237009112060188},"wait":{"id":2936593432756803},"signal":{"id":1759719265994742}} });
-registerSDKClass("OS_dispatch_queue_serial", DispatchSerialQueue, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("OS_dispatch_source", DispatchSource, { module: "Dispatch_212edf3d13b127f5", properties: {} });
+registerSDKClass("OS_dispatch_object", DispatchObject, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"activate":{"id":3442066042100786},"resume":{"id":397151588878836},"setTarget":{"id":907260521044404},"suspend":{"id":3323648287205303}} });
+registerSDKClass("OS_dispatch_queue", DispatchQueue, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"asyncAndWaitExecute":{"id":3580469094057237,"hints":[{"callback":{"out":[]}}]},"syncExecute":{"id":3297932510285843,"hints":[{"callback":{"out":[]}}]},"asyncAfterWallDeadlineQosFlagsExecute":{"id":4175089128218885,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncAfterWallDeadlineExecute":{"id":914612258799818},"asyncAfterDeadlineQosFlagsExecute":{"id":1247962536261973,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncAfterDeadlineExecute":{"id":3032275190146637},"asyncUnsafe":{"id":4145376067387732,"hints":[null,null,null,{"callback":{"out":[]}}]},"getSpecificKey":{"id":1184506704409174},"setSpecific":{"id":4480592304219548},"asyncAndWaitExecute62953":{"id":4424962686307247},"asyncAfterUnsafeWallDeadlineQosFlagsExecute":{"id":1504283887629769,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncAfterUnsafeDeadlineQosFlagsExecute":{"id":4463167976234166,"hints":[null,null,null,{"callback":{"out":[]}}]},"asUnownedTaskExecutor":{"id":2039313177821123},"syncExecute33183":{"id":3826790561464583},"asyncGroupQosFlagsExecute":{"id":4091165717754605,"hints":[null,null,null,{"callback":{"out":[]}}]},"asyncGroupExecute":{"id":2332385277280985},"asyncExecute":{"id":1822793360458450},"enqueue":{"id":3412448589562141},"scheduleAfterIntervalToleranceOptions":{"id":2863121810522423,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleAfterToleranceOptions":{"id":1260685123300018,"hints":[null,null,null,{"callback":{"out":[]}}]},"scheduleOptions":{"id":812940087907354,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("OS_dispatch_queue_concurrent", DispatchConcurrentQueue, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchData", DispatchData, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"makeIterator":{"id":1999360694432859},"enumerateBytes":{"id":136725150377460,"hints":[{"callback":{"out":[]}}]},"indexAfter":{"id":4092917303696836},"indexBefore":{"id":3238431084500795},"appendCount":{"id":3994759212400591},"append":{"id":1841254128667531},"append35900":{"id":3462761620316846},"append90667":{"id":1452928321589701},"region":{"id":1627528703326952},"subdata":{"id":4234833499668435},"copyBytesToFrom":{"id":1349331103198108},"copyBytesToFrom39331":{"id":4097951693446164},"copyBytesToFrom82678":{"id":152640231436651},"copyBytesToCount":{"id":2660699948692026},"copyBytesToCount15035":{"id":1535562099571124},"subscript":{"id":2431332866402452},"subscript22988":{"id":1967968290807221}} });
+registerSDKClass("Dispatch.DispatchData.Deallocator", DispatchData_Deallocator, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchDataIterator", DispatchDataIterator, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"next":{"id":92019226500631}} });
+registerSDKClass("OS_dispatch_group", DispatchGroup, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"enter":{"id":3787157965353820},"leave":{"id":2992778324777917},"waitWallTimeout":{"id":3008682636034430},"waitTimeout":{"id":3699330379220494},"wait":{"id":3187268622271460},"notifyQosFlagsQueueExecute":{"id":3319798837167587,"hints":[null,null,null,{"callback":{"out":[]}}]},"notifyQueueWork":{"id":4320784543015760}} });
+registerSDKClass("OS_dispatch_io", DispatchIO, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"barrier":{"id":4392276318903764,"hints":[{"callback":{"out":[]}}]},"setLimitHighWater":{"id":2678752191621091},"setLimitLowWater":{"id":2224158161877122},"setInterval":{"id":3726130212784988},"readOffsetLengthQueueIoHandler":{"id":816570398565472,"hints":[null,null,null,{"callback":{"out":[]}}]},"close":{"id":4123075351209644},"writeOffsetDataQueueIoHandler":{"id":525983422423252,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("Dispatch.DispatchPredicate", DispatchPredicate, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchQoS", DispatchQoS, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchQueue.SchedulerOptions", DispatchQueue_SchedulerOptions, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchQueue.SchedulerTimeType", DispatchQueue_SchedulerTimeType, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"advanced":{"id":4317601443991211},"distance":{"id":3856050084070438}} });
+registerSDKClass("Dispatch.DispatchQueue.SchedulerTimeType.Stride", DispatchQueue_SchedulerTimeType_Stride, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("OS_dispatch_semaphore", DispatchSemaphore, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"waitWallTimeout":{"id":4378548750663238},"waitTimeout":{"id":3237009112060188},"wait":{"id":2936593432756803},"signal":{"id":1759719265994742}} });
+registerSDKClass("OS_dispatch_queue_serial", DispatchSerialQueue, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("OS_dispatch_source", DispatchSource, { module: "Dispatch_5d69670f0307b385", properties: {} });
 registerSDKProtocol("c:objc(pl)OS_dispatch_source_vnode", {});
 registerSDKProtocol("c:objc(pl)OS_dispatch_source_mach_recv", {});
 registerSDKProtocol("c:objc(pl)OS_dispatch_source_mach_send", {});
@@ -1349,9 +1349,9 @@ registerSDKProtocol("c:objc(pl)OS_dispatch_source_data_add", {});
 registerSDKProtocol("c:objc(pl)OS_dispatch_source_data_or", {});
 registerSDKProtocol("c:objc(pl)OS_dispatch_source_data_replace", {});
 registerSDKProtocol("c:objc(pl)OS_dispatch_source_write", {});
-registerSDKClass("Dispatch.DispatchSpecificKey", DispatchSpecificKey, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchTimeInterval", DispatchTimeInterval, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("Dispatch.DispatchWorkItem", DispatchWorkItem, { module: "Dispatch_212edf3d13b127f5", properties: {}, methods: {"waitWallTimeout":{"id":2332823981349951},"waitTimeout":{"id":306942522578166},"wait":{"id":592542777662064},"cancel":{"id":202390145175378},"notifyQosFlagsQueueExecute":{"id":1081705358591773,"hints":[null,null,null,{"callback":{"out":[]}}]},"notifyQueueExecute":{"id":3621352280435125},"perform":{"id":4283843145578375}} });
-registerSDKClass("OS_dispatch_workloop", DispatchWorkloop, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("OS_dispatch_queue_global", OS_dispatch_queue_global, { module: "Dispatch_212edf3d13b127f5", properties: {} });
-registerSDKClass("OS_dispatch_queue_main", OS_dispatch_queue_main, { module: "Dispatch_212edf3d13b127f5", properties: {} });
+registerSDKClass("Dispatch.DispatchSpecificKey", DispatchSpecificKey, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchTimeInterval", DispatchTimeInterval, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("Dispatch.DispatchWorkItem", DispatchWorkItem, { module: "Dispatch_5d69670f0307b385", properties: {}, methods: {"waitWallTimeout":{"id":2332823981349951},"waitTimeout":{"id":306942522578166},"wait":{"id":592542777662064},"cancel":{"id":202390145175378},"notifyQosFlagsQueueExecute":{"id":1081705358591773,"hints":[null,null,null,{"callback":{"out":[]}}]},"notifyQueueExecute":{"id":3621352280435125},"perform":{"id":4283843145578375}} });
+registerSDKClass("OS_dispatch_workloop", DispatchWorkloop, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("OS_dispatch_queue_global", OS_dispatch_queue_global, { module: "Dispatch_5d69670f0307b385", properties: {} });
+registerSDKClass("OS_dispatch_queue_main", OS_dispatch_queue_main, { module: "Dispatch_5d69670f0307b385", properties: {} });

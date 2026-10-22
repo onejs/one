@@ -25,22 +25,22 @@ export class AppMigrationTester extends SDKHandle {
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 26.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("AppMigrationKit_212edf3d13b127f5", 2662282778849683, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("AppMigrationKit_5d69670f0307b385", 2662282778849683, this, []); }
   /**
    * var exportController: AppMigrationTester.AppExportController { get async throws }
    * @availability iOS 26.0+
    */
-  get exportController(): Promise<AppMigrationTester_AppExportController> { return callSDKAsync<AppMigrationTester_AppExportController>("AppMigrationKit_212edf3d13b127f5", 528652008904359, this, []); }
+  get exportController(): Promise<AppMigrationTester_AppExportController> { return callSDKAsync<AppMigrationTester_AppExportController>("AppMigrationKit_5d69670f0307b385", 528652008904359, this, []); }
   /**
    * var importController: AppMigrationTester.AppImportController { get async throws }
    * @availability iOS 26.0+
    */
-  get importController(): Promise<AppMigrationTester_AppImportController> { return callSDKAsync<AppMigrationTester_AppImportController>("AppMigrationKit_212edf3d13b127f5", 1669150187576418, this, []); }
+  get importController(): Promise<AppMigrationTester_AppImportController> { return callSDKAsync<AppMigrationTester_AppImportController>("AppMigrationKit_5d69670f0307b385", 1669150187576418, this, []); }
   /**
    * init(platform: MigrationPlatform) async throws
    * @availability iOS 26.0+
    */
-  static init(platform: MigrationPlatform): Promise<AppMigrationTester> { return callSDKAsync<AppMigrationTester>("AppMigrationKit_212edf3d13b127f5", 1351655297488512, undefined, [platform]); }
+  static init(platform: MigrationPlatform): Promise<AppMigrationTester> { return callSDKAsync<AppMigrationTester>("AppMigrationKit_5d69670f0307b385", 1351655297488512, undefined, [platform]); }
   declare readonly $type: { "s:15AppMigrationKit0aB6TesterC": true };
 }
 
@@ -53,7 +53,7 @@ export class AppMigrationTester_AppExportController extends SDKHandle {
    * final func exportResources(request: MigrationRequest? = nil, progress: Progress? = nil) async throws -> AppMigrationTester.ResourcesExportResult
    * @availability iOS 26.0+
    */
-  exportResources(request?: (MigrationRequestWithOptions<MigrationDefaultSupportedOptions>) | null, progress?: $SDK1): Promise<AppMigrationTester_ResourcesExportResult> { return callSDKAsync<AppMigrationTester_ResourcesExportResult>("AppMigrationKit_212edf3d13b127f5", 3757103283656089, this, [request, progress]); }
+  exportResources(request?: (MigrationRequestWithOptions<MigrationDefaultSupportedOptions>) | null, progress?: $SDK1): Promise<AppMigrationTester_ResourcesExportResult> { return callSDKAsync<AppMigrationTester_ResourcesExportResult>("AppMigrationKit_5d69670f0307b385", 3757103283656089, this, [request, progress]); }
   declare readonly $type: { "s:15AppMigrationKit0aB6TesterC0A16ExportControllerC": true };
 }
 
@@ -66,12 +66,12 @@ export class AppMigrationTester_AppImportController extends SDKHandle {
    * final func registerImportCompletion(with status: MigrationStatus) async throws
    * @availability iOS 26.0+
    */
-  registerImportCompletion(status: MigrationStatus): Promise<void> { return callSDKAsync<void>("AppMigrationKit_212edf3d13b127f5", 2488207296781313, this, [status]); }
+  registerImportCompletion(status: MigrationStatus): Promise<void> { return callSDKAsync<void>("AppMigrationKit_5d69670f0307b385", 2488207296781313, this, [status]); }
   /**
    * final func importResources(from extractedResourceURL: URL, importRequest: ResourcesImportRequest? = nil, progress: Progress? = nil) async throws
    * @availability iOS 26.0+
    */
-  importResources(extractedResourceURL: string, importRequest?: (ResourcesImportRequest) | null, progress?: $SDK1): Promise<void> { return callSDKAsync<void>("AppMigrationKit_212edf3d13b127f5", 157090917264167, this, [extractedResourceURL, importRequest, progress]); }
+  importResources(extractedResourceURL: string, importRequest?: (ResourcesImportRequest) | null, progress?: $SDK1): Promise<void> { return callSDKAsync<void>("AppMigrationKit_5d69670f0307b385", 157090917264167, this, [extractedResourceURL, importRequest, progress]); }
   declare readonly $type: { "s:15AppMigrationKit0aB6TesterC0A16ImportControllerC": true };
 }
 
@@ -84,22 +84,22 @@ export class AppMigrationTester_DeviceToDeviceExportProperties extends SDKHandle
    * let sizeEstimate: Int
    * @availability iOS 26.0+
    */
-  get sizeEstimate(): number { return callSDK<number>("AppMigrationKit_212edf3d13b127f5", 3442662080100093, this, []); }
+  get sizeEstimate(): number { return callSDK<number>("AppMigrationKit_5d69670f0307b385", 3442662080100093, this, []); }
   /**
    * let compressedBytes: Int?
    * @availability iOS 26.0+
    */
-  get compressedBytes(): (number) | null { return callSDK<(number) | null>("AppMigrationKit_212edf3d13b127f5", 2830962956232201, this, []); }
+  get compressedBytes(): (number) | null { return callSDK<(number) | null>("AppMigrationKit_5d69670f0307b385", 2830962956232201, this, []); }
   /**
    * let uncompressedBytes: Int
    * @availability iOS 26.0+
    */
-  get uncompressedBytes(): number { return callSDK<number>("AppMigrationKit_212edf3d13b127f5", 486141431642508, this, []); }
+  get uncompressedBytes(): number { return callSDK<number>("AppMigrationKit_5d69670f0307b385", 486141431642508, this, []); }
   /**
    * let version: String
    * @availability iOS 26.0+
    */
-  get version(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 4354809210960429, this, []); }
+  get version(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 4354809210960429, this, []); }
   declare readonly $type: { "s:15AppMigrationKit0aB6TesterC08DeviceToE16ExportPropertiesV": true };
 }
 
@@ -112,12 +112,12 @@ export class AppMigrationTester_ResourcesExportResult extends SDKHandle {
    * let extractedResourcesURL: URL
    * @availability iOS 26.0+
    */
-  get extractedResourcesURL(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 3680337308454464, this, []); }
+  get extractedResourcesURL(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 3680337308454464, this, []); }
   /**
    * let exportProperties: AppMigrationTester.DeviceToDeviceExportProperties
    * @availability iOS 26.0+
    */
-  get exportProperties(): AppMigrationTester_DeviceToDeviceExportProperties { return callSDK<AppMigrationTester_DeviceToDeviceExportProperties>("AppMigrationKit_212edf3d13b127f5", 4233733509344221, this, []); }
+  get exportProperties(): AppMigrationTester_DeviceToDeviceExportProperties { return callSDK<AppMigrationTester_DeviceToDeviceExportProperties>("AppMigrationKit_5d69670f0307b385", 4233733509344221, this, []); }
   declare readonly $type: { "s:15AppMigrationKit0aB6TesterC21ResourcesExportResultV": true };
 }
 
@@ -130,22 +130,22 @@ export class MigrationAppIdentifier extends SDKHandle {
    * init(storeIdentifier: MigrationAppIdentifier.StoreIdentifier, bundleIdentifier: String, platform: MigrationPlatform)
    * @availability iOS 26.0+
    */
-  static init(storeIdentifier: MigrationAppIdentifier_StoreIdentifier, bundleIdentifier: string, platform: MigrationPlatform): MigrationAppIdentifier { return callSDK<MigrationAppIdentifier>("AppMigrationKit_212edf3d13b127f5", 1235727623267986, undefined, [storeIdentifier, bundleIdentifier, platform]); }
+  static init(storeIdentifier: MigrationAppIdentifier_StoreIdentifier, bundleIdentifier: string, platform: MigrationPlatform): MigrationAppIdentifier { return callSDK<MigrationAppIdentifier>("AppMigrationKit_5d69670f0307b385", 1235727623267986, undefined, [storeIdentifier, bundleIdentifier, platform]); }
   /**
    * let storeIdentifier: MigrationAppIdentifier.StoreIdentifier
    * @availability iOS 26.0+
    */
-  get storeIdentifier(): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_212edf3d13b127f5", 3064404875402601, this, []); }
+  get storeIdentifier(): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_5d69670f0307b385", 3064404875402601, this, []); }
   /**
    * let bundleIdentifier: String
    * @availability iOS 26.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 247269216734263, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 247269216734263, this, []); }
   /**
    * let platform: MigrationPlatform
    * @availability iOS 26.0+
    */
-  get platform(): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_212edf3d13b127f5", 2444218711495618, this, []); }
+  get platform(): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_5d69670f0307b385", 2444218711495618, this, []); }
   declare readonly $type: { "s:15AppMigrationKit0bA10IdentifierV": true };
 }
 
@@ -160,22 +160,22 @@ export const MigrationAppIdentifier_StoreIdentifier = {
    * static let googlePlay: MigrationAppIdentifier.StoreIdentifier
    * @availability iOS 26.0+
    */
-  get googlePlay(): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_212edf3d13b127f5", 4008608584380813, undefined, []); },
+  get googlePlay(): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_5d69670f0307b385", 4008608584380813, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  initRawValue(rawValue: string): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_212edf3d13b127f5", 3347441109143126, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_5d69670f0307b385", 3347441109143126, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: MigrationAppIdentifier_StoreIdentifier): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 3217826059115241, $self, []); },
+  getRawValue($self: MigrationAppIdentifier_StoreIdentifier): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 3217826059115241, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_212edf3d13b127f5", 2113824907401596, undefined, [rawValue]); }
+  init(rawValue: string): MigrationAppIdentifier_StoreIdentifier { return callSDK<MigrationAppIdentifier_StoreIdentifier>("AppMigrationKit_5d69670f0307b385", 2113824907401596, undefined, [rawValue]); }
 };
 
 /**
@@ -193,24 +193,24 @@ export class MigrationDataContainer extends SDKHandle {
    * let bundleIdentifier: String
    * @availability iOS 26.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 3442807137409540, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 3442807137409540, this, []); }
   /**
    * var documentsDirectory: URL
    * @availability iOS 26.0+
    */
-  get documentsDirectory(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 251537828213037, this, []); }
-  set documentsDirectory(value: string) { callSDK<void>("AppMigrationKit_212edf3d13b127f5", 3045860700961922, this, [value]); }
+  get documentsDirectory(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 251537828213037, this, []); }
+  set documentsDirectory(value: string) { callSDK<void>("AppMigrationKit_5d69670f0307b385", 3045860700961922, this, [value]); }
   /**
    * let containerRootDirectory: URL
    * @availability iOS 26.0+
    */
-  get containerRootDirectory(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 4162444692860150, this, []); }
+  get containerRootDirectory(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 4162444692860150, this, []); }
   /**
    * var applicationSupportDirectory: URL
    * @availability iOS 26.0+
    */
-  get applicationSupportDirectory(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 3018239011404035, this, []); }
-  set applicationSupportDirectory(value: string) { callSDK<void>("AppMigrationKit_212edf3d13b127f5", 552770803782188, this, [value]); }
+  get applicationSupportDirectory(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 3018239011404035, this, []); }
+  set applicationSupportDirectory(value: string) { callSDK<void>("AppMigrationKit_5d69670f0307b385", 552770803782188, this, [value]); }
   declare readonly $type: { "s:15AppMigrationKit0B13DataContainerV": true };
 }
 
@@ -223,17 +223,17 @@ export class MigrationDefaultSupportedOptions extends SDKHandle {
    * static let allCases: [MigrationDefaultSupportedOptions]
    * @availability iOS 26.0+
    */
-  static get allCases(): $SDK3 { return callSDK<$SDK3>("AppMigrationKit_212edf3d13b127f5", 4145211307911770, undefined, []); }
+  static get allCases(): $SDK3 { return callSDK<$SDK3>("AppMigrationKit_5d69670f0307b385", 4145211307911770, undefined, []); }
   /**
    * init?(rawValue: String)
    * @availability iOS 26.0+
    */
-  static init(rawValue: string): (MigrationDefaultSupportedOptions) | null { return callSDK<(MigrationDefaultSupportedOptions) | null>("AppMigrationKit_212edf3d13b127f5", 2708617027591865, undefined, [rawValue]); }
+  static init(rawValue: string): (MigrationDefaultSupportedOptions) | null { return callSDK<(MigrationDefaultSupportedOptions) | null>("AppMigrationKit_5d69670f0307b385", 2708617027591865, undefined, [rawValue]); }
   /**
    * var rawValue: String { get }
    * @availability iOS 26.0+
    */
-  get rawValue(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 80845562856483, this, []); }
+  get rawValue(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 80845562856483, this, []); }
   declare readonly $type: { "s:15AppMigrationKit0B23DefaultSupportedOptionsO": true };
 }
 
@@ -260,22 +260,22 @@ export const MigrationPlatform = {
    * static let android: MigrationPlatform
    * @availability iOS 26.0+
    */
-  get android(): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_212edf3d13b127f5", 2485106051067270, undefined, []); },
+  get android(): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_5d69670f0307b385", 2485106051067270, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  initRawValue(rawValue: string): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_212edf3d13b127f5", 4023293227392618, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_5d69670f0307b385", 4023293227392618, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: MigrationPlatform): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 4334045447490557, $self, []); },
+  getRawValue($self: MigrationPlatform): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 4334045447490557, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_212edf3d13b127f5", 1980327473664922, undefined, [rawValue]); }
+  init(rawValue: string): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_5d69670f0307b385", 1980327473664922, undefined, [rawValue]); }
 };
 
 /**
@@ -299,7 +299,7 @@ export class MigrationRequestWithOptions<OptionsType = unknown> extends SDKHandl
    * let destinationPlatform: MigrationPlatform
    * @availability iOS 26.0+
    */
-  get destinationPlatform(): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_212edf3d13b127f5", 3882260960417556, this, []); }
+  get destinationPlatform(): MigrationPlatform { return callSDK<MigrationPlatform>("AppMigrationKit_5d69670f0307b385", 3882260960417556, this, []); }
   declare readonly $type: { "s:15AppMigrationKit0B18RequestWithOptionsV": true };
 }
 
@@ -312,12 +312,12 @@ export class MigrationStatus extends SDKHandle {
    * static func clearImportStatus()
    * @availability iOS 26.0+
    */
-  static clearImportStatus(): void { return callSDK<void>("AppMigrationKit_212edf3d13b127f5", 1121871942077098, undefined, []); }
+  static clearImportStatus(): void { return callSDK<void>("AppMigrationKit_5d69670f0307b385", 1121871942077098, undefined, []); }
   /**
    * static var importStatus: MigrationStatus? { get }
    * @availability iOS 26.0+
    */
-  static get importStatus(): (MigrationStatus) | null { return callSDK<(MigrationStatus) | null>("AppMigrationKit_212edf3d13b127f5", 4313000005790665, undefined, []); }
+  static get importStatus(): (MigrationStatus) | null { return callSDK<(MigrationStatus) | null>("AppMigrationKit_5d69670f0307b385", 4313000005790665, undefined, []); }
   declare readonly $type: { "s:15AppMigrationKit0B6StatusO": true };
 }
 
@@ -330,7 +330,7 @@ export class ResourcesArchiver extends SDKHandle {
    * final func appendItem(at url: URL, pathInArchive: String? = nil) async throws
    * @availability iOS 26.0+
    */
-  appendItem(url: string, pathInArchive?: (string) | null): Promise<void> { return callSDKAsync<void>("AppMigrationKit_212edf3d13b127f5", 4331110016190128, this, [url, pathInArchive]); }
+  appendItem(url: string, pathInArchive?: (string) | null): Promise<void> { return callSDKAsync<void>("AppMigrationKit_5d69670f0307b385", 4331110016190128, this, [url, pathInArchive]); }
   declare readonly $type: { "s:15AppMigrationKit17ResourcesArchiverC": true };
 }
 
@@ -382,33 +382,33 @@ export class ResourcesImportRequest extends SDKHandle {
    * init(sourceAppIdentifier: MigrationAppIdentifier, sourceVersion: String)
    * @availability iOS 26.0+
    */
-  static init(sourceAppIdentifier: MigrationAppIdentifier, sourceVersion: string): ResourcesImportRequest { return callSDK<ResourcesImportRequest>("AppMigrationKit_212edf3d13b127f5", 3647199415024939, undefined, [sourceAppIdentifier, sourceVersion]); }
+  static init(sourceAppIdentifier: MigrationAppIdentifier, sourceVersion: string): ResourcesImportRequest { return callSDK<ResourcesImportRequest>("AppMigrationKit_5d69670f0307b385", 3647199415024939, undefined, [sourceAppIdentifier, sourceVersion]); }
   /**
    * let sourceAppIdentifier: MigrationAppIdentifier
    * @availability iOS 26.0+
    */
-  get sourceAppIdentifier(): MigrationAppIdentifier { return callSDK<MigrationAppIdentifier>("AppMigrationKit_212edf3d13b127f5", 2211592427547510, this, []); }
+  get sourceAppIdentifier(): MigrationAppIdentifier { return callSDK<MigrationAppIdentifier>("AppMigrationKit_5d69670f0307b385", 2211592427547510, this, []); }
   /**
    * let sourceVersion: String
    * @availability iOS 26.0+
    */
-  get sourceVersion(): string { return callSDK<string>("AppMigrationKit_212edf3d13b127f5", 4069550803601590, this, []); }
+  get sourceVersion(): string { return callSDK<string>("AppMigrationKit_5d69670f0307b385", 4069550803601590, this, []); }
   declare readonly $type: { "s:15AppMigrationKit22ResourcesImportRequestV": true };
 }
 
 registerSDKProtocol("s:15AppMigrationKit0aB9ExtensionP", {"init":"init()"});
-registerSDKClass("AppMigrationKit.AppMigrationTester", AppMigrationTester, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.AppMigrationTester.AppExportController", AppMigrationTester_AppExportController, { module: "AppMigrationKit_212edf3d13b127f5", properties: {}, methods: {"exportResources":{"id":3757103283656089}} });
-registerSDKClass("AppMigrationKit.AppMigrationTester.AppImportController", AppMigrationTester_AppImportController, { module: "AppMigrationKit_212edf3d13b127f5", properties: {}, methods: {"registerImportCompletion":{"id":2488207296781313},"importResources":{"id":157090917264167}} });
-registerSDKClass("AppMigrationKit.AppMigrationTester.DeviceToDeviceExportProperties", AppMigrationTester_DeviceToDeviceExportProperties, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.AppMigrationTester.ResourcesExportResult", AppMigrationTester_ResourcesExportResult, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.MigrationAppIdentifier", MigrationAppIdentifier, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.MigrationDataContainer", MigrationDataContainer, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.MigrationDefaultSupportedOptions", MigrationDefaultSupportedOptions, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.MigrationRequestWithOptions", MigrationRequestWithOptions, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.MigrationStatus", MigrationStatus, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("AppMigrationKit.ResourcesArchiver", ResourcesArchiver, { module: "AppMigrationKit_212edf3d13b127f5", properties: {}, methods: {"appendItem":{"id":4331110016190128}} });
+registerSDKClass("AppMigrationKit.AppMigrationTester", AppMigrationTester, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.AppMigrationTester.AppExportController", AppMigrationTester_AppExportController, { module: "AppMigrationKit_5d69670f0307b385", properties: {}, methods: {"exportResources":{"id":3757103283656089}} });
+registerSDKClass("AppMigrationKit.AppMigrationTester.AppImportController", AppMigrationTester_AppImportController, { module: "AppMigrationKit_5d69670f0307b385", properties: {}, methods: {"registerImportCompletion":{"id":2488207296781313},"importResources":{"id":157090917264167}} });
+registerSDKClass("AppMigrationKit.AppMigrationTester.DeviceToDeviceExportProperties", AppMigrationTester_DeviceToDeviceExportProperties, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.AppMigrationTester.ResourcesExportResult", AppMigrationTester_ResourcesExportResult, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.MigrationAppIdentifier", MigrationAppIdentifier, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.MigrationDataContainer", MigrationDataContainer, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.MigrationDefaultSupportedOptions", MigrationDefaultSupportedOptions, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.MigrationRequestWithOptions", MigrationRequestWithOptions, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.MigrationStatus", MigrationStatus, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });
+registerSDKClass("AppMigrationKit.ResourcesArchiver", ResourcesArchiver, { module: "AppMigrationKit_5d69670f0307b385", properties: {}, methods: {"appendItem":{"id":4331110016190128}} });
 registerSDKProtocol("s:15AppMigrationKit18ResourcesExportingP", {"init":"init()","exportResourcesToRequest":"exportResources(to:request:)"});
 registerSDKProtocol("s:15AppMigrationKit29ResourcesExportingWithOptionsP", {"init":"init()","exportResourcesToRequest":"exportResources(to:request:)"});
 registerSDKProtocol("s:15AppMigrationKit18ResourcesImportingP", {"init":"init()","importResourcesAtRequest":"importResources(at:request:)"});
-registerSDKClass("AppMigrationKit.ResourcesImportRequest", ResourcesImportRequest, { module: "AppMigrationKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("AppMigrationKit.ResourcesImportRequest", ResourcesImportRequest, { module: "AppMigrationKit_5d69670f0307b385", properties: {} });

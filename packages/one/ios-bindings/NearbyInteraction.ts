@@ -14,7 +14,7 @@ export class NIAlgorithmConvergence extends SDKHandle {
    * var status: NIAlgorithmConvergenceStatus { get }
    * @availability iOS 16.0+
    */
-  get status(): NIAlgorithmConvergenceStatus { return callSDK<NIAlgorithmConvergenceStatus>("NearbyInteraction_212edf3d13b127f5", 4368953028362718, this, []); }
+  get status(): NIAlgorithmConvergenceStatus { return callSDK<NIAlgorithmConvergenceStatus>("NearbyInteraction_5d69670f0307b385", 4368953028362718, this, []); }
   declare readonly $type: { "c:objc(cs)NIAlgorithmConvergence": true; "c:objc(cs)NSObject": true };
 }
 
@@ -37,43 +37,43 @@ export const NIAlgorithmConvergenceStatus_Reason = {
    * static let insufficientLighting: NIAlgorithmConvergenceStatus.Reason
    * @availability iOS 16.0+
    */
-  get insufficientLighting(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_212edf3d13b127f5", 3941449988634799, undefined, []); },
+  get insufficientLighting(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_5d69670f0307b385", 3941449988634799, undefined, []); },
   /**
    * static let insufficientMovement: NIAlgorithmConvergenceStatus.Reason
    * @availability iOS 16.0+
    */
-  get insufficientMovement(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_212edf3d13b127f5", 2050623741998878, undefined, []); },
+  get insufficientMovement(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_5d69670f0307b385", 2050623741998878, undefined, []); },
   /**
    * var localizedDescription: String? { get }
    * @availability iOS 16.0+
    */
-  getLocalizedDescription($self: NIAlgorithmConvergenceStatus_Reason): (string) | null { return callSDK<(string) | null>("NearbyInteraction_212edf3d13b127f5", 440998918766239, $self, []); },
+  getLocalizedDescription($self: NIAlgorithmConvergenceStatus_Reason): (string) | null { return callSDK<(string) | null>("NearbyInteraction_5d69670f0307b385", 440998918766239, $self, []); },
   /**
    * static let insufficientVerticalSweep: NIAlgorithmConvergenceStatus.Reason
    * @availability iOS 16.0+
    */
-  get insufficientVerticalSweep(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_212edf3d13b127f5", 2300560057325242, undefined, []); },
+  get insufficientVerticalSweep(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_5d69670f0307b385", 2300560057325242, undefined, []); },
   /**
    * static let insufficientSignalStrength: NIAlgorithmConvergenceStatus.Reason
    * @availability iOS 16.0+
    */
-  get insufficientSignalStrength(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_212edf3d13b127f5", 3310333430306034, undefined, []); },
+  get insufficientSignalStrength(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_5d69670f0307b385", 3310333430306034, undefined, []); },
   /**
    * static let insufficientHorizontalSweep: NIAlgorithmConvergenceStatus.Reason
    * @availability iOS 16.0+
    */
-  get insufficientHorizontalSweep(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_212edf3d13b127f5", 2771276221638949, undefined, []); },
+  get insufficientHorizontalSweep(): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_5d69670f0307b385", 2771276221638949, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_212edf3d13b127f5", 3039817893959163, undefined, [rawValue]); },
+  init(rawValue: string): NIAlgorithmConvergenceStatus_Reason { return callSDK<NIAlgorithmConvergenceStatus_Reason>("NearbyInteraction_5d69670f0307b385", 3039817893959163, undefined, [rawValue]); },
   /**
    * var rawValue: String
    * @availability iOS 16.0+
    */
-  getRawValue($self: NIAlgorithmConvergenceStatus_Reason): string { return callSDK<string>("NearbyInteraction_212edf3d13b127f5", 3278252103851839, $self, []); },
-  setRawValue($self: NIAlgorithmConvergenceStatus_Reason, value: string): void { return callSDK<void>("NearbyInteraction_212edf3d13b127f5", 4135380659667519, $self, [value]); }
+  getRawValue($self: NIAlgorithmConvergenceStatus_Reason): string { return callSDK<string>("NearbyInteraction_5d69670f0307b385", 3278252103851839, $self, []); },
+  setRawValue($self: NIAlgorithmConvergenceStatus_Reason, value: string): void { return callSDK<void>("NearbyInteraction_5d69670f0307b385", 4135380659667519, $self, [value]); }
 };
 
 /**
@@ -107,7 +107,7 @@ export class NIDiscoveryToken extends SDKHandle {
    * @NSCopying var deviceCapabilities: any NIDeviceCapability { get }
    * @availability iOS 17.0+
    */
-  get deviceCapabilities(): SDKHandle { return callSDK<SDKHandle>("NearbyInteraction_212edf3d13b127f5", 4373983497666578, this, []); }
+  get deviceCapabilities(): SDKHandle { return callSDK<SDKHandle>("NearbyInteraction_5d69670f0307b385", 4373983497666578, this, []); }
   declare readonly $type: { "c:objc(cs)NIDiscoveryToken": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceCapabilities": true };
 }
@@ -121,24 +121,24 @@ export class NIDLTDOAConfiguration extends NIConfiguration {
    * init(networkIdentifier: Int)
    * @availability iOS 26.0+
    */
-  static initNetworkIdentifier(networkIdentifier: number): NIDLTDOAConfiguration { return callSDK<NIDLTDOAConfiguration>("NearbyInteraction_212edf3d13b127f5", 1249696405209197, undefined, [networkIdentifier]); }
+  static initNetworkIdentifier(networkIdentifier: number): NIDLTDOAConfiguration { return callSDK<NIDLTDOAConfiguration>("NearbyInteraction_5d69670f0307b385", 1249696405209197, undefined, [networkIdentifier]); }
   /**
    * init(networkIdentifier: Int, discoveryMethod: NIDLTDOAConfiguration.DiscoveryMethod)
    * @availability iOS 27.0+
    */
-  static initNetworkIdentifierDiscoveryMethod(networkIdentifier: number, discoveryMethod: NIDLTDOAConfiguration_DiscoveryMethod): NIDLTDOAConfiguration { return callSDK<NIDLTDOAConfiguration>("NearbyInteraction_212edf3d13b127f5", 1168841195142697, undefined, [networkIdentifier, discoveryMethod]); }
+  static initNetworkIdentifierDiscoveryMethod(networkIdentifier: number, discoveryMethod: NIDLTDOAConfiguration_DiscoveryMethod): NIDLTDOAConfiguration { return callSDK<NIDLTDOAConfiguration>("NearbyInteraction_5d69670f0307b385", 1168841195142697, undefined, [networkIdentifier, discoveryMethod]); }
   /**
    * var discoveryMethod: NIDLTDOAConfiguration.DiscoveryMethod { get set }
    * @availability iOS 27.0+
    */
-  get discoveryMethod(): NIDLTDOAConfiguration_DiscoveryMethod { return callSDK<NIDLTDOAConfiguration_DiscoveryMethod>("NearbyInteraction_212edf3d13b127f5", 135458543749938, this, []); }
-  set discoveryMethod(value: NIDLTDOAConfiguration_DiscoveryMethod) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 408778756171994, this, [value]); }
+  get discoveryMethod(): NIDLTDOAConfiguration_DiscoveryMethod { return callSDK<NIDLTDOAConfiguration_DiscoveryMethod>("NearbyInteraction_5d69670f0307b385", 135458543749938, this, []); }
+  set discoveryMethod(value: NIDLTDOAConfiguration_DiscoveryMethod) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 408778756171994, this, [value]); }
   /**
    * var networkIdentifier: Int { get set }
    * @availability iOS 26.0+
    */
-  get networkIdentifier(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 2023755951078658, this, []); }
-  set networkIdentifier(value: number) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 1391242594448024, this, [value]); }
+  get networkIdentifier(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 2023755951078658, this, []); }
+  set networkIdentifier(value: number) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 1391242594448024, this, [value]); }
   declare readonly $type: { "c:objc(cs)NIDLTDOAConfiguration": true; "c:objc(cs)NIConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "discoveryMethod": true; "networkIdentifier": true };
 }
@@ -154,7 +154,7 @@ export const NIDLTDOAConfiguration_DiscoveryMethod = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (NIDLTDOAConfiguration_DiscoveryMethod) | null { return callSDK<(NIDLTDOAConfiguration_DiscoveryMethod) | null>("NearbyInteraction_212edf3d13b127f5", 4246350549047935, undefined, [rawValue]); }
+  init(rawValue: number): (NIDLTDOAConfiguration_DiscoveryMethod) | null { return callSDK<(NIDLTDOAConfiguration_DiscoveryMethod) | null>("NearbyInteraction_5d69670f0307b385", 4246350549047935, undefined, [rawValue]); }
 };
 
 /**
@@ -168,7 +168,7 @@ export const NIDLTDOACoordinatesType = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (NIDLTDOACoordinatesType) | null { return callSDK<(NIDLTDOACoordinatesType) | null>("NearbyInteraction_212edf3d13b127f5", 389173068787654, undefined, [rawValue]); }
+  init(rawValue: number): (NIDLTDOACoordinatesType) | null { return callSDK<(NIDLTDOACoordinatesType) | null>("NearbyInteraction_5d69670f0307b385", 389173068787654, undefined, [rawValue]); }
 };
 
 /**
@@ -180,67 +180,67 @@ export class NIDLTDOAMeasurement extends SDKHandle {
    * var address: Int { get }
    * @availability iOS 26.0+
    */
-  get address(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 1241244567345464, this, []); }
+  get address(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 1241244567345464, this, []); }
   /**
    * var carrierFrequencyOffset: Double { get }
    * @availability iOS 26.0+
    */
-  get carrierFrequencyOffset(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 3601207557367789, this, []); }
+  get carrierFrequencyOffset(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 3601207557367789, this, []); }
   /**
    * var clusterInitiatorAddress: Int { get }
    * @availability iOS 27.0+
    */
-  get clusterInitiatorAddress(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 2061149608101334, this, []); }
+  get clusterInitiatorAddress(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 2061149608101334, this, []); }
   /**
    * var coordinates: simd_double3 { get }
    * @availability iOS 26.0+
    */
-  get coordinates(): SDKHandle { return callSDK<SDKHandle>("NearbyInteraction_212edf3d13b127f5", 1832296920121035, this, []); }
+  get coordinates(): SDKHandle { return callSDK<SDKHandle>("NearbyInteraction_5d69670f0307b385", 1832296920121035, this, []); }
   /**
    * var coordinatesType: NIDLTDOACoordinatesType { get }
    * @availability iOS 26.0+
    */
-  get coordinatesType(): NIDLTDOACoordinatesType { return callSDK<NIDLTDOACoordinatesType>("NearbyInteraction_212edf3d13b127f5", 1052898943197406, this, []); }
+  get coordinatesType(): NIDLTDOACoordinatesType { return callSDK<NIDLTDOACoordinatesType>("NearbyInteraction_5d69670f0307b385", 1052898943197406, this, []); }
   /**
    * @NSCopying var floorElevation: NIDLTDOAMeasurement.FloorElevation? { get }
    * @availability iOS 27.0+
    */
-  get floorElevation(): (NIDLTDOAMeasurement_FloorElevation) | null { return callSDK<(NIDLTDOAMeasurement_FloorElevation) | null>("NearbyInteraction_212edf3d13b127f5", 900933751634853, this, []); }
+  get floorElevation(): (NIDLTDOAMeasurement_FloorElevation) | null { return callSDK<(NIDLTDOAMeasurement_FloorElevation) | null>("NearbyInteraction_5d69670f0307b385", 900933751634853, this, []); }
   /**
    * var measurementType: NIDLTDOAMeasurementType { get }
    * @availability iOS 26.0+
    */
-  get measurementType(): NIDLTDOAMeasurementType { return callSDK<NIDLTDOAMeasurementType>("NearbyInteraction_212edf3d13b127f5", 1461674506214867, this, []); }
+  get measurementType(): NIDLTDOAMeasurementType { return callSDK<NIDLTDOAMeasurementType>("NearbyInteraction_5d69670f0307b385", 1461674506214867, this, []); }
   /**
    * var rawReceiveTime: UInt64 { get }
    * @availability iOS 27.0+
    */
-  get rawReceiveTime(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 1667092306295680, this, []); }
+  get rawReceiveTime(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 1667092306295680, this, []); }
   /**
    * var rawTransmitTime: UInt64 { get }
    * @availability iOS 27.0+
    */
-  get rawTransmitTime(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 3667469656332048, this, []); }
+  get rawTransmitTime(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 3667469656332048, this, []); }
   /**
    * var receiveTime: Double { get }
    * @availability iOS 26.0+
    */
-  get receiveTime(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 1394954752055761, this, []); }
+  get receiveTime(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 1394954752055761, this, []); }
   /**
    * var signalStrength: Double { get }
    * @availability iOS 26.0+
    */
-  get signalStrength(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 2290355636592309, this, []); }
+  get signalStrength(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 2290355636592309, this, []); }
   /**
    * var transmitTime: Double { get }
    * @availability iOS 26.0+
    */
-  get transmitTime(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 276895162756672, this, []); }
+  get transmitTime(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 276895162756672, this, []); }
   /**
    * var responderClockFrequencyOffset: Double? { get }
    * @availability iOS 27.0+
    */
-  get responderClockFrequencyOffset(): (number) | null { return callSDK<(number) | null>("NearbyInteraction_212edf3d13b127f5", 2647268446969205, this, []); }
+  get responderClockFrequencyOffset(): (number) | null { return callSDK<(number) | null>("NearbyInteraction_5d69670f0307b385", 2647268446969205, this, []); }
   declare readonly $type: { "c:objc(cs)NIDLTDOAMeasurement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "address": true; "carrierFrequencyOffset": true; "clusterInitiatorAddress": true; "coordinates": true; "coordinatesType": true; "floorElevation": true; "measurementType": true; "rawReceiveTime": true; "rawTransmitTime": true; "receiveTime": true; "signalStrength": true; "transmitTime": true };
 }
@@ -254,12 +254,12 @@ export class NIDLTDOAMeasurement_FloorElevation extends SDKHandle {
    * var floorNumber: Int { get }
    * @availability iOS 27.0+
    */
-  get floorNumber(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 4415834245773952, this, []); }
+  get floorNumber(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 4415834245773952, this, []); }
   /**
    * var height: Double { get }
    * @availability iOS 27.0+
    */
-  get height(): number { return callSDK<number>("NearbyInteraction_212edf3d13b127f5", 3521277026771627, this, []); }
+  get height(): number { return callSDK<number>("NearbyInteraction_5d69670f0307b385", 3521277026771627, this, []); }
   declare readonly $type: { "c:objc(cs)NIDLTDOAMeasurementFloorElevation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "floorNumber": true; "height": true };
 }
@@ -275,7 +275,7 @@ export const NIDLTDOAMeasurementType = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (NIDLTDOAMeasurementType) | null { return callSDK<(NIDLTDOAMeasurementType) | null>("NearbyInteraction_212edf3d13b127f5", 1731506652163048, undefined, [rawValue]); }
+  init(rawValue: number): (NIDLTDOAMeasurementType) | null { return callSDK<(NIDLTDOAMeasurementType) | null>("NearbyInteraction_5d69670f0307b385", 1731506652163048, undefined, [rawValue]); }
 };
 
 /**
@@ -287,57 +287,57 @@ export class NIError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 14.0+
    */
-  static get errorDomain(): string { return callSDK<string>("NearbyInteraction_212edf3d13b127f5", 1025651390466001, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("NearbyInteraction_5d69670f0307b385", 1025651390466001, undefined, []); }
   /**
    * static var sessionFailed: NIError.Code { get }
    * @availability iOS 14.0+
    */
-  static get sessionFailed(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 850422093681167, undefined, []); }
+  static get sessionFailed(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 850422093681167, undefined, []); }
   /**
    * static var userDidNotAllow: NIError.Code { get }
    * @availability iOS 14.0+
    */
-  static get userDidNotAllow(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 1819012102141561, undefined, []); }
+  static get userDidNotAllow(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 1819012102141561, undefined, []); }
   /**
    * static var unsupportedPlatform: NIError.Code { get }
    * @availability iOS 14.0+
    */
-  static get unsupportedPlatform(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 3470490744774986, undefined, []); }
+  static get unsupportedPlatform(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 3470490744774986, undefined, []); }
   /**
    * static var invalidConfiguration: NIError.Code { get }
    * @availability iOS 14.0+
    */
-  static get invalidConfiguration(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 3674123539748074, undefined, []); }
+  static get invalidConfiguration(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 3674123539748074, undefined, []); }
   /**
    * static var resourceUsageTimeout: NIError.Code { get }
    * @availability iOS 14.0+
    */
-  static get resourceUsageTimeout(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 2405051173685160, undefined, []); }
+  static get resourceUsageTimeout(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 2405051173685160, undefined, []); }
   /**
    * static var incompatiblePeerDevice: NIError.Code { get }
    * @availability iOS 17.0+
    */
-  static get incompatiblePeerDevice(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 3901822660542283, undefined, []); }
+  static get incompatiblePeerDevice(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 3901822660542283, undefined, []); }
   /**
    * static var invalidARConfiguration: NIError.Code { get }
    * @availability iOS 16.0+
    */
-  static get invalidARConfiguration(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 1269630753450399, undefined, []); }
+  static get invalidARConfiguration(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 1269630753450399, undefined, []); }
   /**
    * static var activeSessionsLimitExceeded: NIError.Code { get }
    * @availability iOS 14.0+
    */
-  static get activeSessionsLimitExceeded(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 2058529443790804, undefined, []); }
+  static get activeSessionsLimitExceeded(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 2058529443790804, undefined, []); }
   /**
    * static var accessoryPeerDeviceUnavailable: NIError.Code { get }
    * @availability iOS 16.0+
    */
-  static get accessoryPeerDeviceUnavailable(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 3766166851817237, undefined, []); }
+  static get accessoryPeerDeviceUnavailable(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 3766166851817237, undefined, []); }
   /**
    * static var activeExtendedDistanceSessionsLimitExceeded: NIError.Code { get }
    * @availability iOS 17.0+
    */
-  static get activeExtendedDistanceSessionsLimitExceeded(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_212edf3d13b127f5", 836463736252046, undefined, []); }
+  static get activeExtendedDistanceSessionsLimitExceeded(): NIError_Code { return callSDK<NIError_Code>("NearbyInteraction_5d69670f0307b385", 836463736252046, undefined, []); }
   declare readonly $type: { "s:SC11NIErrorCodeLeV": true };
 }
 
@@ -352,7 +352,7 @@ export const NIError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (NIError_Code) | null { return callSDK<(NIError_Code) | null>("NearbyInteraction_212edf3d13b127f5", 887218509022743, undefined, [rawValue]); }
+  init(rawValue: number): (NIError_Code) | null { return callSDK<(NIError_Code) | null>("NearbyInteraction_5d69670f0307b385", 887218509022743, undefined, [rawValue]); }
 };
 
 /**
@@ -366,7 +366,7 @@ export const NIMotionActivityState = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (NIMotionActivityState) | null { return callSDK<(NIMotionActivityState) | null>("NearbyInteraction_212edf3d13b127f5", 4259441261561422, undefined, [rawValue]); }
+  init(rawValue: number): (NIMotionActivityState) | null { return callSDK<(NIMotionActivityState) | null>("NearbyInteraction_5d69670f0307b385", 4259441261561422, undefined, [rawValue]); }
 };
 
 /**
@@ -378,28 +378,28 @@ export class NINearbyAccessoryConfiguration extends NIConfiguration {
    * init(accessoryData: Data, bluetoothPeerIdentifier identifier: UUID) throws
    * @availability iOS 16.0+
    */
-  static initAccessoryDataBluetoothPeerIdentifier(accessoryData: ArrayBuffer, identifier: string): NINearbyAccessoryConfiguration { return callSDK<NINearbyAccessoryConfiguration>("NearbyInteraction_212edf3d13b127f5", 653160613098918, undefined, [accessoryData, identifier]); }
+  static initAccessoryDataBluetoothPeerIdentifier(accessoryData: ArrayBuffer, identifier: string): NINearbyAccessoryConfiguration { return callSDK<NINearbyAccessoryConfiguration>("NearbyInteraction_5d69670f0307b385", 653160613098918, undefined, [accessoryData, identifier]); }
   /**
    * init(bluetoothChannelSoundingIdentifier bluetoothIdentifier: UUID, previousBluetoothIdentifier: UUID?)
    * @availability iOS 27.0+
    */
-  static initBluetoothChannelSoundingIdentifierPreviousBluetoothIdentifier(bluetoothIdentifier: string, previousBluetoothIdentifier?: (string) | null): NINearbyAccessoryConfiguration { return callSDK<NINearbyAccessoryConfiguration>("NearbyInteraction_212edf3d13b127f5", 2540726403689660, undefined, [bluetoothIdentifier, previousBluetoothIdentifier]); }
+  static initBluetoothChannelSoundingIdentifierPreviousBluetoothIdentifier(bluetoothIdentifier: string, previousBluetoothIdentifier?: (string) | null): NINearbyAccessoryConfiguration { return callSDK<NINearbyAccessoryConfiguration>("NearbyInteraction_5d69670f0307b385", 2540726403689660, undefined, [bluetoothIdentifier, previousBluetoothIdentifier]); }
   /**
    * init(data: Data) throws
    * @availability iOS 15.0+
    */
-  static initData(data: ArrayBuffer): NINearbyAccessoryConfiguration { return callSDK<NINearbyAccessoryConfiguration>("NearbyInteraction_212edf3d13b127f5", 3270335935428515, undefined, [data]); }
+  static initData(data: ArrayBuffer): NINearbyAccessoryConfiguration { return callSDK<NINearbyAccessoryConfiguration>("NearbyInteraction_5d69670f0307b385", 3270335935428515, undefined, [data]); }
   /**
    * @NSCopying var accessoryDiscoveryToken: NIDiscoveryToken { get }
    * @availability iOS 15.0+
    */
-  get accessoryDiscoveryToken(): NIDiscoveryToken { return callSDK<NIDiscoveryToken>("NearbyInteraction_212edf3d13b127f5", 1648266463095599, this, []); }
+  get accessoryDiscoveryToken(): NIDiscoveryToken { return callSDK<NIDiscoveryToken>("NearbyInteraction_5d69670f0307b385", 1648266463095599, this, []); }
   /**
    * var isCameraAssistanceEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isCameraAssistanceEnabled(): boolean { return callSDK<boolean>("NearbyInteraction_212edf3d13b127f5", 659469946688943, this, []); }
-  set isCameraAssistanceEnabled(value: boolean) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 3434631154874302, this, [value]); }
+  get isCameraAssistanceEnabled(): boolean { return callSDK<boolean>("NearbyInteraction_5d69670f0307b385", 659469946688943, this, []); }
+  set isCameraAssistanceEnabled(value: boolean) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 3434631154874302, this, [value]); }
   declare readonly $type: { "c:objc(cs)NINearbyAccessoryConfiguration": true; "c:objc(cs)NIConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryDiscoveryToken": true; "isCameraAssistanceEnabled": true };
 }
@@ -413,27 +413,27 @@ export class NINearbyObject extends SDKHandle {
    * @NSCopying var discoveryToken: NIDiscoveryToken { get }
    * @availability iOS 14.0+
    */
-  get discoveryToken(): NIDiscoveryToken { return callSDK<NIDiscoveryToken>("NearbyInteraction_212edf3d13b127f5", 4246639017069203, this, []); }
+  get discoveryToken(): NIDiscoveryToken { return callSDK<NIDiscoveryToken>("NearbyInteraction_5d69670f0307b385", 4246639017069203, this, []); }
   /**
    * var verticalDirectionEstimate: NINearbyObject.VerticalDirectionEstimate { get }
    * @availability iOS 16.0+
    */
-  get verticalDirectionEstimate(): NINearbyObject_VerticalDirectionEstimate { return callSDK<NINearbyObject_VerticalDirectionEstimate>("NearbyInteraction_212edf3d13b127f5", 3267510062880268, this, []); }
+  get verticalDirectionEstimate(): NINearbyObject_VerticalDirectionEstimate { return callSDK<NINearbyObject_VerticalDirectionEstimate>("NearbyInteraction_5d69670f0307b385", 3267510062880268, this, []); }
   /**
    * var horizontalAngle: Float? { get }
    * @availability iOS 16.0+
    */
-  get horizontalAngle(): (number) | null { return callSDK<(number) | null>("NearbyInteraction_212edf3d13b127f5", 1460874264205935, this, []); }
+  get horizontalAngle(): (number) | null { return callSDK<(number) | null>("NearbyInteraction_5d69670f0307b385", 1460874264205935, this, []); }
   /**
    * var distance: Float? { get }
    * @availability iOS 14.0+
    */
-  get distance(): (number) | null { return callSDK<(number) | null>("NearbyInteraction_212edf3d13b127f5", 436340628848498, this, []); }
+  get distance(): (number) | null { return callSDK<(number) | null>("NearbyInteraction_5d69670f0307b385", 436340628848498, this, []); }
   /**
    * var direction: simd_float3? { get }
    * @availability iOS 14.0+
    */
-  get direction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("NearbyInteraction_212edf3d13b127f5", 1209252844030681, this, []); }
+  get direction(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("NearbyInteraction_5d69670f0307b385", 1209252844030681, this, []); }
   declare readonly $type: { "c:objc(cs)NINearbyObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "discoveryToken": true; "verticalDirectionEstimate": true };
 }
@@ -449,7 +449,7 @@ export const NINearbyObject_RemovalReason = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (NINearbyObject_RemovalReason) | null { return callSDK<(NINearbyObject_RemovalReason) | null>("NearbyInteraction_212edf3d13b127f5", 3909865413903691, undefined, [rawValue]); }
+  init(rawValue: number): (NINearbyObject_RemovalReason) | null { return callSDK<(NINearbyObject_RemovalReason) | null>("NearbyInteraction_5d69670f0307b385", 3909865413903691, undefined, [rawValue]); }
 };
 
 /**
@@ -463,7 +463,7 @@ export const NINearbyObject_VerticalDirectionEstimate = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (NINearbyObject_VerticalDirectionEstimate) | null { return callSDK<(NINearbyObject_VerticalDirectionEstimate) | null>("NearbyInteraction_212edf3d13b127f5", 3991160647061655, undefined, [rawValue]); }
+  init(rawValue: number): (NINearbyObject_VerticalDirectionEstimate) | null { return callSDK<(NINearbyObject_VerticalDirectionEstimate) | null>("NearbyInteraction_5d69670f0307b385", 3991160647061655, undefined, [rawValue]); }
 };
 
 /**
@@ -475,24 +475,24 @@ export class NINearbyPeerConfiguration extends NIConfiguration {
    * init(peerToken: NIDiscoveryToken)
    * @availability iOS 14.0+
    */
-  static init(peerToken: NIDiscoveryToken): NINearbyPeerConfiguration { return callSDK<NINearbyPeerConfiguration>("NearbyInteraction_212edf3d13b127f5", 1917191218715937, undefined, [peerToken]); }
+  static init(peerToken: NIDiscoveryToken): NINearbyPeerConfiguration { return callSDK<NINearbyPeerConfiguration>("NearbyInteraction_5d69670f0307b385", 1917191218715937, undefined, [peerToken]); }
   /**
    * var isCameraAssistanceEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isCameraAssistanceEnabled(): boolean { return callSDK<boolean>("NearbyInteraction_212edf3d13b127f5", 2856173927750471, this, []); }
-  set isCameraAssistanceEnabled(value: boolean) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 480246387322728, this, [value]); }
+  get isCameraAssistanceEnabled(): boolean { return callSDK<boolean>("NearbyInteraction_5d69670f0307b385", 2856173927750471, this, []); }
+  set isCameraAssistanceEnabled(value: boolean) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 480246387322728, this, [value]); }
   /**
    * var isExtendedDistanceMeasurementEnabled: Bool { get set }
    * @availability iOS 17.0+
    */
-  get isExtendedDistanceMeasurementEnabled(): boolean { return callSDK<boolean>("NearbyInteraction_212edf3d13b127f5", 870500213046015, this, []); }
-  set isExtendedDistanceMeasurementEnabled(value: boolean) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 4405931514218380, this, [value]); }
+  get isExtendedDistanceMeasurementEnabled(): boolean { return callSDK<boolean>("NearbyInteraction_5d69670f0307b385", 870500213046015, this, []); }
+  set isExtendedDistanceMeasurementEnabled(value: boolean) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 4405931514218380, this, [value]); }
   /**
    * @NSCopying var peerDiscoveryToken: NIDiscoveryToken { get }
    * @availability iOS 14.0+
    */
-  get peerDiscoveryToken(): NIDiscoveryToken { return callSDK<NIDiscoveryToken>("NearbyInteraction_212edf3d13b127f5", 1088322637767070, this, []); }
+  get peerDiscoveryToken(): NIDiscoveryToken { return callSDK<NIDiscoveryToken>("NearbyInteraction_5d69670f0307b385", 1088322637767070, this, []); }
   declare readonly $type: { "c:objc(cs)NINearbyPeerConfiguration": true; "c:objc(cs)NIConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCameraAssistanceEnabled": true; "isExtendedDistanceMeasurementEnabled": true; "peerDiscoveryToken": true };
 }
@@ -506,67 +506,67 @@ export class NISession extends SDKHandle {
    * class var deviceCapabilities: any NIDeviceCapability { get }
    * @availability iOS 16.0+
    */
-  static get deviceCapabilities(): SDKHandle { return callSDK<SDKHandle>("NearbyInteraction_212edf3d13b127f5", 1977186332541044, undefined, []); }
+  static get deviceCapabilities(): SDKHandle { return callSDK<SDKHandle>("NearbyInteraction_5d69670f0307b385", 1977186332541044, undefined, []); }
   /**
    * class var isSupported: Bool { get }
    * @availability iOS 14.0+
    * @deprecated iOS 16.0
    */
-  static get isSupported(): boolean { return callSDK<boolean>("NearbyInteraction_212edf3d13b127f5", 2603676409571509, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("NearbyInteraction_5d69670f0307b385", 2603676409571509, undefined, []); }
   /** init() */
-  static init(): NISession { return callSDK<NISession>("NearbyInteraction_212edf3d13b127f5", 1925732194904812, undefined, []); }
+  static init(): NISession { return callSDK<NISession>("NearbyInteraction_5d69670f0307b385", 1925732194904812, undefined, []); }
   /**
    * func invalidate()
    * @availability iOS 14.0+
    */
-  invalidate(): void { return callSDK<void>("NearbyInteraction_212edf3d13b127f5", 446720616086941, this, []); }
+  invalidate(): void { return callSDK<void>("NearbyInteraction_5d69670f0307b385", 446720616086941, this, []); }
   /**
    * func pause()
    * @availability iOS 14.0+
    */
-  pause(): void { return callSDK<void>("NearbyInteraction_212edf3d13b127f5", 579915777076911, this, []); }
+  pause(): void { return callSDK<void>("NearbyInteraction_5d69670f0307b385", 579915777076911, this, []); }
   /**
    * func run(_ configuration: NIConfiguration)
    * @availability iOS 14.0+
    */
-  run(configuration: NIConfiguration): void { return callSDK<void>("NearbyInteraction_212edf3d13b127f5", 3271730044460335, this, [configuration]); }
+  run(configuration: NIConfiguration): void { return callSDK<void>("NearbyInteraction_5d69670f0307b385", 3271730044460335, this, [configuration]); }
   /**
    * func setARSession(_ session: ARSession)
    * @availability iOS 16.0+
    */
-  setARSession(session: _ARKit_ARSession): void { return callSDK<void>("NearbyInteraction_212edf3d13b127f5", 2865242219468114, this, [session]); }
+  setARSession(session: _ARKit_ARSession): void { return callSDK<void>("NearbyInteraction_5d69670f0307b385", 2865242219468114, this, [session]); }
   /**
    * func updateMotionState(_ motionState: NIMotionActivityState, forObjectWithToken token: NIDiscoveryToken)
    * @availability iOS 27.0+
    */
-  updateMotionState(motionState: NIMotionActivityState, token: NIDiscoveryToken): void { return callSDK<void>("NearbyInteraction_212edf3d13b127f5", 2970302810668308, this, [motionState, token]); }
+  updateMotionState(motionState: NIMotionActivityState, token: NIDiscoveryToken): void { return callSDK<void>("NearbyInteraction_5d69670f0307b385", 2970302810668308, this, [motionState, token]); }
   /**
    * @NSCopying var configuration: NIConfiguration? { get }
    * @availability iOS 14.0+
    */
-  get configuration(): (NIConfiguration) | null { return callSDK<(NIConfiguration) | null>("NearbyInteraction_212edf3d13b127f5", 819066773586521, this, []); }
+  get configuration(): (NIConfiguration) | null { return callSDK<(NIConfiguration) | null>("NearbyInteraction_5d69670f0307b385", 819066773586521, this, []); }
   /**
    * weak var delegate: (any NISessionDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("NearbyInteraction_212edf3d13b127f5", 2180269749468684, this, []); }
-  set delegate(value: (Implements<NISessionDelegate> | SDKHandle) | null) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 1139334008974902, this, [value], [{"protocol":"c:objc(pl)NISessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("NearbyInteraction_5d69670f0307b385", 2180269749468684, this, []); }
+  set delegate(value: (Implements<NISessionDelegate> | SDKHandle) | null) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 1139334008974902, this, [value], [{"protocol":"c:objc(pl)NISessionDelegate"}]); }
   /**
    * var delegateQueue: dispatch_queue_t? { get set }
    * @availability iOS 14.0+
    */
-  get delegateQueue(): $SDK3 { return callSDK<$SDK3>("NearbyInteraction_212edf3d13b127f5", 3117736254365360, this, []); }
-  set delegateQueue(value: $SDK3) { callSDK<void>("NearbyInteraction_212edf3d13b127f5", 4020645296615397, this, [value]); }
+  get delegateQueue(): $SDK3 { return callSDK<$SDK3>("NearbyInteraction_5d69670f0307b385", 3117736254365360, this, []); }
+  set delegateQueue(value: $SDK3) { callSDK<void>("NearbyInteraction_5d69670f0307b385", 4020645296615397, this, [value]); }
   /**
    * @NSCopying var discoveryToken: NIDiscoveryToken? { get }
    * @availability iOS 14.0+
    */
-  get discoveryToken(): (NIDiscoveryToken) | null { return callSDK<(NIDiscoveryToken) | null>("NearbyInteraction_212edf3d13b127f5", 1196022052765255, this, []); }
+  get discoveryToken(): (NIDiscoveryToken) | null { return callSDK<(NIDiscoveryToken) | null>("NearbyInteraction_5d69670f0307b385", 1196022052765255, this, []); }
   /**
    * func worldTransform(for object: NINearbyObject) -> simd_float4x4?
    * @availability iOS 16.0+
    */
-  worldTransform(object: NINearbyObject): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("NearbyInteraction_212edf3d13b127f5", 1451790172856706, this, [object]); }
+  worldTransform(object: NINearbyObject): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("NearbyInteraction_5d69670f0307b385", 1451790172856706, this, [object]); }
   declare readonly $type: { "c:objc(cs)NISession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "delegate": true; "delegateQueue": true; "discoveryToken": true };
 }
@@ -627,19 +627,19 @@ export interface NISessionDelegate {
  * let NIErrorDomain: String
  * @availability iOS 14.0+
  */
-export const NIErrorDomain: string = callSDK<string>("NearbyInteraction_212edf3d13b127f5", 885876058355687, undefined, []);
+export const NIErrorDomain: string = callSDK<string>("NearbyInteraction_5d69670f0307b385", 885876058355687, undefined, []);
 
-registerSDKClass("NIAlgorithmConvergence", NIAlgorithmConvergence, { module: "NearbyInteraction_212edf3d13b127f5", properties: {} });
-registerSDKClass("NearbyInteraction.NIAlgorithmConvergenceStatus", NIAlgorithmConvergenceStatus, { module: "NearbyInteraction_212edf3d13b127f5", properties: {} });
-registerSDKClass("NIConfiguration", NIConfiguration, { module: "NearbyInteraction_212edf3d13b127f5", properties: {} });
+registerSDKClass("NIAlgorithmConvergence", NIAlgorithmConvergence, { module: "NearbyInteraction_5d69670f0307b385", properties: {} });
+registerSDKClass("NearbyInteraction.NIAlgorithmConvergenceStatus", NIAlgorithmConvergenceStatus, { module: "NearbyInteraction_5d69670f0307b385", properties: {} });
+registerSDKClass("NIConfiguration", NIConfiguration, { module: "NearbyInteraction_5d69670f0307b385", properties: {} });
 registerSDKProtocol("c:objc(pl)NIDeviceCapability", {});
-registerSDKClass("NIDiscoveryToken", NIDiscoveryToken, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"deviceCapabilities":4373983497666578} });
-registerSDKClass("NIDLTDOAConfiguration", NIDLTDOAConfiguration, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"discoveryMethod":135458543749938,"networkIdentifier":2023755951078658} });
-registerSDKClass("NIDLTDOAMeasurement", NIDLTDOAMeasurement, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"address":1241244567345464,"carrierFrequencyOffset":3601207557367789,"clusterInitiatorAddress":2061149608101334,"coordinates":1832296920121035,"coordinatesType":1052898943197406,"floorElevation":900933751634853,"measurementType":1461674506214867,"rawReceiveTime":1667092306295680,"rawTransmitTime":3667469656332048,"receiveTime":1394954752055761,"signalStrength":2290355636592309,"transmitTime":276895162756672} });
-registerSDKClass("NIDLTDOAMeasurementFloorElevation", NIDLTDOAMeasurement_FloorElevation, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"floorNumber":4415834245773952,"height":3521277026771627} });
-registerSDKClass("NearbyInteraction.NIError", NIError, { module: "NearbyInteraction_212edf3d13b127f5", properties: {} });
-registerSDKClass("NINearbyAccessoryConfiguration", NINearbyAccessoryConfiguration, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"accessoryDiscoveryToken":1648266463095599,"isCameraAssistanceEnabled":659469946688943} });
-registerSDKClass("NINearbyObject", NINearbyObject, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"discoveryToken":4246639017069203,"verticalDirectionEstimate":3267510062880268} });
-registerSDKClass("NINearbyPeerConfiguration", NINearbyPeerConfiguration, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"isCameraAssistanceEnabled":2856173927750471,"isExtendedDistanceMeasurementEnabled":870500213046015,"peerDiscoveryToken":1088322637767070} });
-registerSDKClass("NISession", NISession, { module: "NearbyInteraction_212edf3d13b127f5", properties: {"configuration":819066773586521,"delegate":2180269749468684,"delegateQueue":3117736254365360,"discoveryToken":1196022052765255}, methods: {"invalidate":{"id":446720616086941},"pause":{"id":579915777076911},"run":{"id":3271730044460335},"setARSession":{"id":2865242219468114},"updateMotionState":{"id":2970302810668308},"worldTransform":{"id":1451790172856706}} });
+registerSDKClass("NIDiscoveryToken", NIDiscoveryToken, { module: "NearbyInteraction_5d69670f0307b385", properties: {"deviceCapabilities":4373983497666578} });
+registerSDKClass("NIDLTDOAConfiguration", NIDLTDOAConfiguration, { module: "NearbyInteraction_5d69670f0307b385", properties: {"discoveryMethod":135458543749938,"networkIdentifier":2023755951078658} });
+registerSDKClass("NIDLTDOAMeasurement", NIDLTDOAMeasurement, { module: "NearbyInteraction_5d69670f0307b385", properties: {"address":1241244567345464,"carrierFrequencyOffset":3601207557367789,"clusterInitiatorAddress":2061149608101334,"coordinates":1832296920121035,"coordinatesType":1052898943197406,"floorElevation":900933751634853,"measurementType":1461674506214867,"rawReceiveTime":1667092306295680,"rawTransmitTime":3667469656332048,"receiveTime":1394954752055761,"signalStrength":2290355636592309,"transmitTime":276895162756672} });
+registerSDKClass("NIDLTDOAMeasurementFloorElevation", NIDLTDOAMeasurement_FloorElevation, { module: "NearbyInteraction_5d69670f0307b385", properties: {"floorNumber":4415834245773952,"height":3521277026771627} });
+registerSDKClass("NearbyInteraction.NIError", NIError, { module: "NearbyInteraction_5d69670f0307b385", properties: {} });
+registerSDKClass("NINearbyAccessoryConfiguration", NINearbyAccessoryConfiguration, { module: "NearbyInteraction_5d69670f0307b385", properties: {"accessoryDiscoveryToken":1648266463095599,"isCameraAssistanceEnabled":659469946688943} });
+registerSDKClass("NINearbyObject", NINearbyObject, { module: "NearbyInteraction_5d69670f0307b385", properties: {"discoveryToken":4246639017069203,"verticalDirectionEstimate":3267510062880268} });
+registerSDKClass("NINearbyPeerConfiguration", NINearbyPeerConfiguration, { module: "NearbyInteraction_5d69670f0307b385", properties: {"isCameraAssistanceEnabled":2856173927750471,"isExtendedDistanceMeasurementEnabled":870500213046015,"peerDiscoveryToken":1088322637767070} });
+registerSDKClass("NISession", NISession, { module: "NearbyInteraction_5d69670f0307b385", properties: {"configuration":819066773586521,"delegate":2180269749468684,"delegateQueue":3117736254365360,"discoveryToken":1196022052765255}, methods: {"invalidate":{"id":446720616086941},"pause":{"id":579915777076911},"run":{"id":3271730044460335},"setARSession":{"id":2865242219468114},"updateMotionState":{"id":2970302810668308},"worldTransform":{"id":1451790172856706}} });
 registerSDKProtocol("c:objc(pl)NISessionDelegate", {"sessionDidUpdate":"session(_:didUpdate:)","sessionDidRemoveReason":"session(_:didRemove:reason:)","sessionWasSuspended":"sessionWasSuspended(_:)","sessionSuspensionEnded":"sessionSuspensionEnded(_:)","sessionDidInvalidateWith":"session(_:didInvalidateWith:)","sessionDidGenerateShareableConfigurationDataFor":"session(_:didGenerateShareableConfigurationData:for:)","sessionDidUpdateAlgorithmConvergenceFor":"session(_:didUpdateAlgorithmConvergence:for:)","sessionDidUpdateDLTDOA":"session(_:didUpdateDLTDOA:)","sessionDidStartRunning":"sessionDidStartRunning(_:)"});

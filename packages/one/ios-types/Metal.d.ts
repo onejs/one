@@ -15,20 +15,20 @@ type $SDK12 = (MTLStencilDescriptor) | null;
 type $SDK15 = [SDKHandle, (MTLRenderPipelineReflection) | null];
 type $SDK16 = [SDKHandle, (MTLComputePipelineReflection) | null];
 type $SDK18 = [number, number, number];
-type $SDK20 = (MTLFunctionConstantValues) | null;
-type $SDK21 = Array<MTLFunctionStitchingFunctionNode>;
-type $SDK22 = (MTLFunctionStitchingFunctionNode) | null;
-type $SDK23 = Array<Implements<MTLFunctionStitchingAttribute> | SDKHandle>;
-type $SDK27 = (Record<string, Array<SDKHandle>>) | null;
-type $SDK29 = ((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => Promise<void>);
-type $SDK33 = (Array<MTLAccelerationStructureGeometryDescriptor>) | null;
-type $SDK34 = [number, number, number, number];
-type $SDK35 = (MTLRasterizationRateLayerDescriptor) | null;
-type $SDK38 = (MTLRenderPassDepthAttachmentDescriptor) | null;
-type $SDK39 = (MTLRenderPassStencilAttachmentDescriptor) | null;
-type $SDK44 = (Array<MTLArgument>) | null;
-type $SDK46 = ((arg0: SDKHandle, arg1: number) => Promise<void>);
-type $SDK47 = Array<MTLFunctionStitchingGraph>;
+type $SDK19 = (MTLFunctionConstantValues) | null;
+type $SDK20 = Array<MTLFunctionStitchingFunctionNode>;
+type $SDK21 = (MTLFunctionStitchingFunctionNode) | null;
+type $SDK22 = Array<Implements<MTLFunctionStitchingAttribute> | SDKHandle>;
+type $SDK25 = (Record<string, Array<SDKHandle>>) | null;
+type $SDK27 = ((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => Promise<void>);
+type $SDK31 = (Array<MTLAccelerationStructureGeometryDescriptor>) | null;
+type $SDK32 = [number, number, number, number];
+type $SDK33 = (MTLRasterizationRateLayerDescriptor) | null;
+type $SDK36 = (MTLRenderPassDepthAttachmentDescriptor) | null;
+type $SDK37 = (MTLRenderPassStencilAttachmentDescriptor) | null;
+type $SDK42 = (Array<MTLArgument>) | null;
+type $SDK44 = ((arg0: SDKHandle, arg1: number) => Promise<void>);
+type $SDK45 = Array<MTLFunctionStitchingGraph>;
 /** struct MTL4BufferRange */
 export declare class MTL4BufferRange extends SDKHandle {
     /** var bufferAddress: MTLGPUAddress */
@@ -4372,7 +4372,7 @@ export interface MTLDrawable {
     "presentAt"?: (arg0: number) => void;
 }
 /** typealias MTLDrawablePresentedHandler = @Sendable (any MTLDrawable) -> Void */
-export type MTLDrawablePresentedHandler = ((arg0: Implements<MTLDrawable> | SDKHandle) => Promise<void>);
+export type MTLDrawablePresentedHandler = $SDK6;
 /** struct MTLDrawIndexedPrimitivesIndirectArguments */
 export declare class MTLDrawIndexedPrimitivesIndirectArguments extends SDKHandle {
     /** var baseInstance: UInt32 */
@@ -4657,8 +4657,8 @@ export declare class MTLFunctionDescriptor extends SDKHandle {
      * @NSCopying var constantValues: MTLFunctionConstantValues? { get set }
      * @availability iOS 14.0+
      */
-    get constantValues(): $SDK20;
-    set constantValues(value: $SDK20);
+    get constantValues(): $SDK19;
+    set constantValues(value: $SDK19);
     /**
      * var name: String? { get set }
      * @availability iOS 14.0+
@@ -4784,7 +4784,7 @@ export declare class MTLFunctionStitchingFunctionNode extends SDKHandle {
      * init(name: String, arguments: [any MTLFunctionStitchingNode], controlDependencies: [MTLFunctionStitchingFunctionNode])
      * @availability iOS 15.0+
      */
-    static init(name: string, arguments_: Array<SDKHandle>, controlDependencies: $SDK21): MTLFunctionStitchingFunctionNode;
+    static init(name: string, arguments_: Array<SDKHandle>, controlDependencies: $SDK20): MTLFunctionStitchingFunctionNode;
     /**
      * var arguments: [any MTLFunctionStitchingNode] { get set }
      * @availability iOS 15.0+
@@ -4795,8 +4795,8 @@ export declare class MTLFunctionStitchingFunctionNode extends SDKHandle {
      * var controlDependencies: [MTLFunctionStitchingFunctionNode] { get set }
      * @availability iOS 15.0+
      */
-    get controlDependencies(): $SDK21;
-    set controlDependencies(value: $SDK21);
+    get controlDependencies(): $SDK20;
+    set controlDependencies(value: $SDK20);
     /**
      * var name: String { get set }
      * @availability iOS 15.0+
@@ -4822,13 +4822,13 @@ export declare class MTLFunctionStitchingGraph extends SDKHandle {
      * init(functionName: String, nodes: [MTLFunctionStitchingFunctionNode], outputNode: MTLFunctionStitchingFunctionNode?, attributes: [any MTLFunctionStitchingAttribute])
      * @availability iOS 15.0+
      */
-    static init(functionName: string, nodes: $SDK21, outputNode: $SDK22, attributes: $SDK23): MTLFunctionStitchingGraph;
+    static init(functionName: string, nodes: $SDK20, outputNode: $SDK21, attributes: $SDK22): MTLFunctionStitchingGraph;
     /**
      * var attributes: [any MTLFunctionStitchingAttribute] { get set }
      * @availability iOS 15.0+
      */
     get attributes(): Array<SDKHandle>;
-    set attributes(value: $SDK23);
+    set attributes(value: $SDK22);
     /**
      * var functionName: String { get set }
      * @availability iOS 15.0+
@@ -4839,14 +4839,14 @@ export declare class MTLFunctionStitchingGraph extends SDKHandle {
      * var nodes: [MTLFunctionStitchingFunctionNode] { get set }
      * @availability iOS 15.0+
      */
-    get nodes(): $SDK21;
-    set nodes(value: $SDK21);
+    get nodes(): $SDK20;
+    set nodes(value: $SDK20);
     /**
      * var outputNode: MTLFunctionStitchingFunctionNode? { get set }
      * @availability iOS 15.0+
      */
-    get outputNode(): $SDK22;
-    set outputNode(value: $SDK22);
+    get outputNode(): $SDK21;
+    set outputNode(value: $SDK21);
     readonly $type: {
         "c:objc(cs)MTLFunctionStitchingGraph": true;
         "c:objc(cs)NSObject": true;
@@ -5234,7 +5234,7 @@ export interface MTLIndirectCommandBuffer {
      * func indirectRenderCommandAt(_ commandIndex: Int) -> any MTLIndirectRenderCommand
      * @availability iOS 12.0+
      */
-    "indirectRenderCommandAt"?: (arg0: number) => Implements<MTLIndirectRenderCommand> | SDKHandle;
+    "indirectRenderCommandAt"?: (arg0: number) => SDKHandle;
     /**
      * func indirectComputeCommandAt(_ commandIndex: Int) -> any MTLIndirectComputeCommand
      * @availability iOS 13.0+
@@ -6112,8 +6112,8 @@ export declare class MTLLinkedFunctions extends SDKHandle {
      * var groups: [String : [any MTLFunction]]? { get set }
      * @availability iOS 14.0+
      */
-    get groups(): $SDK27;
-    set groups(value: $SDK27);
+    get groups(): $SDK25;
+    set groups(value: $SDK25);
     /**
      * var privateFunctions: [any MTLFunction]? { get set }
      * @availability iOS 15.0+
@@ -6583,15 +6583,15 @@ export declare const MTLMutability: {
     init(rawValue: number): (MTLMutability) | null;
 };
 /** typealias MTLNewComputePipelineStateCompletionHandler = ((any MTLComputePipelineState)?, (any Error)?) -> Void */
-export type MTLNewComputePipelineStateCompletionHandler = $SDK29;
+export type MTLNewComputePipelineStateCompletionHandler = $SDK27;
 /** typealias MTLNewComputePipelineStateWithReflectionCompletionHandler = ((any MTLComputePipelineState)?, MTLComputePipelineReflection?, (any Error)?) -> Void */
 export type MTLNewComputePipelineStateWithReflectionCompletionHandler = ((arg0: (SDKHandle) | null, arg1: (MTLComputePipelineReflection) | null, arg2: (NativeError) | null) => Promise<void>);
 /** typealias MTLNewDynamicLibraryCompletionHandler = ((any MTLDynamicLibrary)?, (any Error)?) -> Void */
-export type MTLNewDynamicLibraryCompletionHandler = $SDK29;
+export type MTLNewDynamicLibraryCompletionHandler = $SDK27;
 /** typealias MTLNewLibraryCompletionHandler = ((any MTLLibrary)?, (any Error)?) -> Void */
-export type MTLNewLibraryCompletionHandler = $SDK29;
+export type MTLNewLibraryCompletionHandler = $SDK27;
 /** typealias MTLNewRenderPipelineStateCompletionHandler = ((any MTLRenderPipelineState)?, (any Error)?) -> Void */
-export type MTLNewRenderPipelineStateCompletionHandler = $SDK29;
+export type MTLNewRenderPipelineStateCompletionHandler = $SDK27;
 /** typealias MTLNewRenderPipelineStateWithReflectionCompletionHandler = ((any MTLRenderPipelineState)?, MTLRenderPipelineReflection?, (any Error)?) -> Void */
 export type MTLNewRenderPipelineStateWithReflectionCompletionHandler = ((arg0: (SDKHandle) | null, arg1: (MTLRenderPipelineReflection) | null, arg2: (NativeError) | null) => Promise<void>);
 /**
@@ -6890,8 +6890,8 @@ export declare class MTLPrimitiveAccelerationStructureDescriptor extends MTLPrim
      * var geometryDescriptors: [MTLAccelerationStructureGeometryDescriptor]? { get set }
      * @availability iOS 14.0+
      */
-    get geometryDescriptors(): $SDK33;
-    set geometryDescriptors(value: $SDK33);
+    get geometryDescriptors(): $SDK31;
+    set geometryDescriptors(value: $SDK31);
     /**
      * var motionEndBorderMode: MTLMotionBorderMode { get set }
      * @availability iOS 15.0+
@@ -6976,13 +6976,13 @@ export declare const MTLPurgeableState: {
 /** struct MTLQuadTessellationFactorsHalf */
 export declare class MTLQuadTessellationFactorsHalf extends SDKHandle {
     /** var edgeTessellationFactor: (UInt16, UInt16, UInt16, UInt16) */
-    get edgeTessellationFactor(): $SDK34;
-    set edgeTessellationFactor(value: $SDK34);
+    get edgeTessellationFactor(): $SDK32;
+    set edgeTessellationFactor(value: $SDK32);
     /** var insideTessellationFactor: (UInt16, UInt16) */
     get insideTessellationFactor(): [number, number];
     set insideTessellationFactor(value: [number, number]);
     /** init(edgeTessellationFactor: (UInt16, UInt16, UInt16, UInt16), insideTessellationFactor: (UInt16, UInt16)) */
-    static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK34, insideTessellationFactor: [number, number]): MTLQuadTessellationFactorsHalf;
+    static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK32, insideTessellationFactor: [number, number]): MTLQuadTessellationFactorsHalf;
     /** init() */
     static init(): MTLQuadTessellationFactorsHalf;
     readonly $type: {
@@ -7000,7 +7000,7 @@ export declare class MTLRasterizationRateLayerArray extends SDKHandle {
      * subscript(layerIndex: Int) -> MTLRasterizationRateLayerDescriptor? { get set }
      * @availability iOS 13.0+
      */
-    subscript(layerIndex: number): $SDK35;
+    subscript(layerIndex: number): $SDK33;
     readonly $type: {
         "c:objc(cs)MTLRasterizationRateLayerArray": true;
         "c:objc(cs)NSObject": true;
@@ -7088,12 +7088,12 @@ export declare class MTLRasterizationRateMapDescriptor extends SDKHandle {
      * func layer(at layerIndex: Int) -> MTLRasterizationRateLayerDescriptor?
      * @availability iOS 13.0+
      */
-    layer(layerIndex: number): $SDK35;
+    layer(layerIndex: number): $SDK33;
     /**
      * func setLayer(_ layer: MTLRasterizationRateLayerDescriptor?, at layerIndex: Int)
      * @availability iOS 13.0+
      */
-    setLayer(layer: $SDK35, layerIndex: number): void;
+    setLayer(layer: $SDK33, layerIndex: number): void;
     /**
      * var label: String? { get set }
      * @availability iOS 13.0+
@@ -7879,8 +7879,8 @@ export declare class MTLRenderPassDescriptor extends SDKHandle {
      * @NSCopying var depthAttachment: MTLRenderPassDepthAttachmentDescriptor! { get set }
      * @availability iOS 8.0+
      */
-    get depthAttachment(): $SDK38;
-    set depthAttachment(value: $SDK38);
+    get depthAttachment(): $SDK36;
+    set depthAttachment(value: $SDK36);
     /**
      * var imageblockSampleLength: Int { get set }
      * @availability iOS 11.0+
@@ -7920,8 +7920,8 @@ export declare class MTLRenderPassDescriptor extends SDKHandle {
      * @NSCopying var stencilAttachment: MTLRenderPassStencilAttachmentDescriptor! { get set }
      * @availability iOS 8.0+
      */
-    get stencilAttachment(): $SDK39;
-    set stencilAttachment(value: $SDK39);
+    get stencilAttachment(): $SDK37;
+    set stencilAttachment(value: $SDK37);
     /**
      * var threadgroupMemoryLength: Int { get set }
      * @availability iOS 11.0+
@@ -8480,7 +8480,7 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 16.0
      */
-    get fragmentArguments(): $SDK44;
+    get fragmentArguments(): $SDK42;
     /**
      * var fragmentBindings: [any MTLBinding] { get }
      * @availability iOS 16.0+
@@ -8501,7 +8501,7 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 16.0
      */
-    get tileArguments(): $SDK44;
+    get tileArguments(): $SDK42;
     /**
      * var tileBindings: [any MTLBinding] { get }
      * @availability iOS 16.0+
@@ -8512,7 +8512,7 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 16.0
      */
-    get vertexArguments(): $SDK44;
+    get vertexArguments(): $SDK42;
     /**
      * var vertexBindings: [any MTLBinding] { get }
      * @availability iOS 16.0+
@@ -8701,12 +8701,6 @@ export interface MTLResource {
  * @availability iOS 16.0+
  */
 export declare class MTLResourceID extends SDKHandle {
-    /**
-     * var textureID: UInt64 { get set }
-     * @availability iOS 16.0+
-     */
-    get textureID(): number;
-    set textureID(value: number);
     /**
      * init()
      * @availability iOS 16.0+
@@ -9183,7 +9177,7 @@ export interface MTLSharedEvent {
      * func notify(_ listener: MTLSharedEventListener, atValue value: UInt64, block: @escaping MTLSharedEventNotificationBlock)
      * @availability iOS 12.0+
      */
-    "notifyAtValueBlock"?: (arg0: MTLSharedEventListener, arg1: number, arg2: $SDK46) => void;
+    "notifyAtValueBlock"?: (arg0: MTLSharedEventListener, arg1: number, arg2: $SDK44) => void;
     /**
      * func makeSharedEventHandle() -> MTLSharedEventHandle
      * @availability iOS 12.0+
@@ -9249,7 +9243,7 @@ export declare class MTLSharedEventListener extends SDKHandle {
     };
 }
 /** typealias MTLSharedEventNotificationBlock = @Sendable (any MTLSharedEvent, UInt64) -> Void */
-export type MTLSharedEventNotificationBlock = $SDK46;
+export type MTLSharedEventNotificationBlock = $SDK44;
 /** struct MTLSize */
 export declare class MTLSize extends SDKHandle {
     /** var depth: Int */
@@ -9561,8 +9555,8 @@ export declare class MTLStitchedLibraryDescriptor extends SDKHandle {
      * var functionGraphs: [MTLFunctionStitchingGraph] { get set }
      * @availability iOS 15.0+
      */
-    get functionGraphs(): $SDK47;
-    set functionGraphs(value: $SDK47);
+    get functionGraphs(): $SDK45;
+    set functionGraphs(value: $SDK45);
     /**
      * var functions: [any MTLFunction] { get set }
      * @availability iOS 15.0+
@@ -10691,7 +10685,7 @@ export declare const NSDeviceCertification: {
      */
     init(rawValue: number): NSDeviceCertification;
 };
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaLibraryDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let NSProcessInfoPerformanceProfileDidChange: NSNotification.Name

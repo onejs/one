@@ -100,27 +100,27 @@ export type CFAllocatorAllocateCallBack = ((arg0: number, arg1: number, arg2: (S
 /** struct CFAllocatorContext */
 export class CFAllocatorContext extends SDKHandle {
   /** var allocate: CFAllocatorAllocateCallBack! */
-  get allocate(): (((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreFoundation_212edf3d13b127f5", 1396023289506099, this, []); }
+  get allocate(): (((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreFoundation_5d69670f0307b385", 1396023289506099, this, []); }
   /** var copyDescription: CFAllocatorCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 736321702717631, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 736321702717631, this, []); }
   /** var deallocate: CFAllocatorDeallocateCallBack! */
-  get deallocate(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("CoreFoundation_212edf3d13b127f5", 1389376966242453, this, []); }
+  get deallocate(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("CoreFoundation_5d69670f0307b385", 1389376966242453, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1147448873854783, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3608369048801002, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1147448873854783, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3608369048801002, this, [value]); }
   /** var preferredSize: CFAllocatorPreferredSizeCallBack! */
-  get preferredSize(): (((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<number>)) | null { return callSDK<(((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<number>)) | null>("CoreFoundation_212edf3d13b127f5", 2512501185079846, this, []); }
+  get preferredSize(): (((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<number>)) | null { return callSDK<(((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<number>)) | null>("CoreFoundation_5d69670f0307b385", 2512501185079846, this, []); }
   /** var reallocate: CFAllocatorReallocateCallBack! */
-  get reallocate(): (((arg0: (SDKHandle) | null, arg1: number, arg2: number, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: number, arg2: number, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreFoundation_212edf3d13b127f5", 69631508987187, this, []); }
+  get reallocate(): (((arg0: (SDKHandle) | null, arg1: number, arg2: number, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: number, arg2: number, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreFoundation_5d69670f0307b385", 69631508987187, this, []); }
   /** var release: CFAllocatorReleaseCallBack! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 3790053183971251, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 3790053183971251, this, []); }
   /** var retain: CFAllocatorRetainCallBack! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 3014408045153649, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 3014408045153649, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1666352863965386, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3552288822789943, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1666352863965386, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3552288822789943, this, [value]); }
   /** init() */
-  static init(): CFAllocatorContext { return callSDK<CFAllocatorContext>("CoreFoundation_212edf3d13b127f5", 3219068156632634, undefined, []); }
+  static init(): CFAllocatorContext { return callSDK<CFAllocatorContext>("CoreFoundation_5d69670f0307b385", 3219068156632634, undefined, []); }
   declare readonly $type: { "c:@SA@CFAllocatorContext": true };
 }
 
@@ -156,18 +156,18 @@ export type CFArrayApplierFunction = $SDK8;
 /** struct CFArrayCallBacks */
 export class CFArrayCallBacks extends SDKHandle {
   /** var copyDescription: CFArrayCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 4405193752439100, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 4405193752439100, this, []); }
   /** var equal: CFArrayEqualCallBack! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 3484798505019383, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 3484798505019383, this, []); }
   /** var release: CFArrayReleaseCallBack! */
-  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_212edf3d13b127f5", 2906467863105779, this, []); }
+  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_5d69670f0307b385", 2906467863105779, this, []); }
   /** var retain: CFArrayRetainCallBack! */
-  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_212edf3d13b127f5", 1323614353583407, this, []); }
+  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_5d69670f0307b385", 1323614353583407, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4046354883931903, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3669349658654386, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4046354883931903, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3669349658654386, this, [value]); }
   /** init() */
-  static init(): CFArrayCallBacks { return callSDK<CFArrayCallBacks>("CoreFoundation_212edf3d13b127f5", 206389831768081, undefined, []); }
+  static init(): CFArrayCallBacks { return callSDK<CFArrayCallBacks>("CoreFoundation_5d69670f0307b385", 206389831768081, undefined, []); }
   declare readonly $type: { "c:@SA@CFArrayCallBacks": true };
 }
 
@@ -199,20 +199,20 @@ export type CFBagApplierFunction = $SDK8;
 /** struct CFBagCallBacks */
 export class CFBagCallBacks extends SDKHandle {
   /** var copyDescription: CFBagCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1801089940382689, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1801089940382689, this, []); }
   /** var equal: CFBagEqualCallBack! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 1421407112620687, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 1421407112620687, this, []); }
   /** var hash: CFBagHashCallBack! */
-  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_212edf3d13b127f5", 1344696987825924, this, []); }
+  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_5d69670f0307b385", 1344696987825924, this, []); }
   /** var release: CFBagReleaseCallBack! */
-  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_212edf3d13b127f5", 4259166372461574, this, []); }
+  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_5d69670f0307b385", 4259166372461574, this, []); }
   /** var retain: CFBagRetainCallBack! */
-  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_212edf3d13b127f5", 235757326997633, this, []); }
+  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_5d69670f0307b385", 235757326997633, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3359903453179464, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1615866932996281, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3359903453179464, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1615866932996281, this, [value]); }
   /** init() */
-  static init(): CFBagCallBacks { return callSDK<CFBagCallBacks>("CoreFoundation_212edf3d13b127f5", 4083777295167848, undefined, []); }
+  static init(): CFBagCallBacks { return callSDK<CFBagCallBacks>("CoreFoundation_5d69670f0307b385", 4083777295167848, undefined, []); }
   declare readonly $type: { "c:@SA@CFBagCallBacks": true };
 }
 
@@ -242,37 +242,37 @@ export type CFBinaryHeapApplierFunction = $SDK8;
 /** struct CFBinaryHeapCallBacks */
 export class CFBinaryHeapCallBacks extends SDKHandle {
   /** var compare: ((UnsafeRawPointer?, UnsafeRawPointer?, UnsafeMutableRawPointer?) -> CFComparisonResult)! */
-  get compare(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<CFComparisonResult>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<CFComparisonResult>)) | null>("CoreFoundation_212edf3d13b127f5", 1937447697586381, this, []); }
+  get compare(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<CFComparisonResult>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<CFComparisonResult>)) | null>("CoreFoundation_5d69670f0307b385", 1937447697586381, this, []); }
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1819340608755995, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1819340608755995, this, []); }
   /** var release: ((CFAllocator?, UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_212edf3d13b127f5", 1704415188676793, this, []); }
+  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_5d69670f0307b385", 1704415188676793, this, []); }
   /** var retain: ((CFAllocator?, UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_212edf3d13b127f5", 2336415488095994, this, []); }
+  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_5d69670f0307b385", 2336415488095994, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 660925415647877, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3790818227959125, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 660925415647877, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3790818227959125, this, [value]); }
   /** init() */
-  static init(): CFBinaryHeapCallBacks { return callSDK<CFBinaryHeapCallBacks>("CoreFoundation_212edf3d13b127f5", 3482746970829896, undefined, []); }
+  static init(): CFBinaryHeapCallBacks { return callSDK<CFBinaryHeapCallBacks>("CoreFoundation_5d69670f0307b385", 3482746970829896, undefined, []); }
   declare readonly $type: { "c:@SA@CFBinaryHeapCallBacks": true };
 }
 
 /** struct CFBinaryHeapCompareContext */
 export class CFBinaryHeapCompareContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 749514638539270, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 749514638539270, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3066882706343949, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1491765915311092, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3066882706343949, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1491765915311092, this, [value]); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 3176936840046521, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 3176936840046521, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1663235077832908, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1663235077832908, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4304327699221908, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 558114719497051, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4304327699221908, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 558114719497051, this, [value]); }
   /** init() */
-  static init(): CFBinaryHeapCompareContext { return callSDK<CFBinaryHeapCompareContext>("CoreFoundation_212edf3d13b127f5", 1171210443147280, undefined, []); }
+  static init(): CFBinaryHeapCompareContext { return callSDK<CFBinaryHeapCompareContext>("CoreFoundation_5d69670f0307b385", 1171210443147280, undefined, []); }
   declare readonly $type: { "c:@SA@CFBinaryHeapCompareContext": true };
 }
 
@@ -313,103 +313,103 @@ export const CFCalendarIdentifier = {
    * static let banglaCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get banglaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3810847840893687, undefined, []); },
+  get banglaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3810847840893687, undefined, []); },
   /** static let buddhistCalendar: CFCalendarIdentifier! */
-  get buddhistCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 209291743147833, undefined, []); },
+  get buddhistCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 209291743147833, undefined, []); },
   /** static let chineseCalendar: CFCalendarIdentifier! */
-  get chineseCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 4017607559309959, undefined, []); },
+  get chineseCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 4017607559309959, undefined, []); },
   /**
    * static let dangiCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get dangiCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3405083915219328, undefined, []); },
+  get dangiCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3405083915219328, undefined, []); },
   /** static let gregorianCalendar: CFCalendarIdentifier! */
-  get gregorianCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3215719113192453, undefined, []); },
+  get gregorianCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3215719113192453, undefined, []); },
   /**
    * static let gujaratiCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get gujaratiCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 2176060070707345, undefined, []); },
+  get gujaratiCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 2176060070707345, undefined, []); },
   /** static let hebrewCalendar: CFCalendarIdentifier! */
-  get hebrewCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 1350116488974670, undefined, []); },
+  get hebrewCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 1350116488974670, undefined, []); },
   /**
    * static let cfiso8601Calendar: CFCalendarIdentifier!
    * @availability iOS 4.0+
    */
-  get cfiso8601Calendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3216493063489439, undefined, []); },
+  get cfiso8601Calendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3216493063489439, undefined, []); },
   /**
    * static let indianCalendar: CFCalendarIdentifier!
    * @availability iOS 4.0+
    */
-  get indianCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 2634144845427073, undefined, []); },
+  get indianCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 2634144845427073, undefined, []); },
   /** static let islamicCalendar: CFCalendarIdentifier! */
-  get islamicCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 1802679655611997, undefined, []); },
+  get islamicCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 1802679655611997, undefined, []); },
   /** static let islamicCivilCalendar: CFCalendarIdentifier! */
-  get islamicCivilCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 1837659024441567, undefined, []); },
+  get islamicCivilCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 1837659024441567, undefined, []); },
   /**
    * static let islamicTabularCalendar: CFCalendarIdentifier!
    * @availability iOS 8.0+
    */
-  get islamicTabularCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3466557345076427, undefined, []); },
+  get islamicTabularCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3466557345076427, undefined, []); },
   /**
    * static let islamicUmmAlQuraCalendar: CFCalendarIdentifier!
    * @availability iOS 8.0+
    */
-  get islamicUmmAlQuraCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3645476837471767, undefined, []); },
+  get islamicUmmAlQuraCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3645476837471767, undefined, []); },
   /** static let japaneseCalendar: CFCalendarIdentifier! */
-  get japaneseCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 4417714352909031, undefined, []); },
+  get japaneseCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 4417714352909031, undefined, []); },
   /**
    * static let kannadaCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get kannadaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 1822373792362397, undefined, []); },
+  get kannadaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 1822373792362397, undefined, []); },
   /**
    * static let malayalamCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get malayalamCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 2131883345466144, undefined, []); },
+  get malayalamCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 2131883345466144, undefined, []); },
   /**
    * static let marathiCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get marathiCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 4443686090923881, undefined, []); },
+  get marathiCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 4443686090923881, undefined, []); },
   /**
    * static let odiaCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get odiaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 1213099660329990, undefined, []); },
+  get odiaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 1213099660329990, undefined, []); },
   /**
    * static let persianCalendar: CFCalendarIdentifier!
    * @availability iOS 4.0+
    */
-  get persianCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 2905274311335920, undefined, []); },
+  get persianCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 2905274311335920, undefined, []); },
   /**
    * static let republicOfChinaCalendar: CFCalendarIdentifier!
    * @availability iOS 4.0+
    */
-  get republicOfChinaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3417145230659873, undefined, []); },
+  get republicOfChinaCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3417145230659873, undefined, []); },
   /**
    * static let tamilCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get tamilCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 2318166100484329, undefined, []); },
+  get tamilCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 2318166100484329, undefined, []); },
   /**
    * static let teluguCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get teluguCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 4224959894567171, undefined, []); },
+  get teluguCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 4224959894567171, undefined, []); },
   /**
    * static let vietnameseCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get vietnameseCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 71686529869679, undefined, []); },
+  get vietnameseCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 71686529869679, undefined, []); },
   /**
    * static let vikramCalendar: CFCalendarIdentifier!
    * @availability iOS 26.0+
    */
-  get vikramCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 2830562902434416, undefined, []); },
+  get vikramCalendar(): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 2830562902434416, undefined, []); },
   /** init(rawValue: CFString) */
-  init(rawValue: CFString): CFCalendarIdentifier { return callSDK<CFCalendarIdentifier>("CoreFoundation_212edf3d13b127f5", 701423101311495, undefined, [rawValue]); }
+  init(rawValue: CFString): CFCalendarIdentifier { return callSDK<CFCalendarIdentifier>("CoreFoundation_5d69670f0307b385", 701423101311495, undefined, [rawValue]); }
 };
 
 /** struct CFCalendarUnit */
@@ -417,56 +417,56 @@ export type CFCalendarUnit = Array<"era" | "year" | "month" | "day" | "hour" | "
 
 export const CFCalendarUnit = {
   /** static var day: CFCalendarUnit { get } */
-  get day(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 4201875339606866, undefined, []); },
+  get day(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 4201875339606866, undefined, []); },
   /**
    * static var dayOfYear: CFCalendarUnit { get }
    * @availability iOS 18.0+
    */
-  get dayOfYear(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 1057268564055772, undefined, []); },
+  get dayOfYear(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 1057268564055772, undefined, []); },
   /** static var era: CFCalendarUnit { get } */
-  get era(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 3878745285170741, undefined, []); },
+  get era(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 3878745285170741, undefined, []); },
   /** static var hour: CFCalendarUnit { get } */
-  get hour(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 3285108624680848, undefined, []); },
+  get hour(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 3285108624680848, undefined, []); },
   /** static var minute: CFCalendarUnit { get } */
-  get minute(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 1285286142597271, undefined, []); },
+  get minute(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 1285286142597271, undefined, []); },
   /** static var month: CFCalendarUnit { get } */
-  get month(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 4247492879541554, undefined, []); },
+  get month(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 4247492879541554, undefined, []); },
   /**
    * static var quarter: CFCalendarUnit { get }
    * @availability iOS 4.0+
    */
-  get quarter(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 830256283485537, undefined, []); },
+  get quarter(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 830256283485537, undefined, []); },
   /** static var second: CFCalendarUnit { get } */
-  get second(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 4450930295574839, undefined, []); },
+  get second(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 4450930295574839, undefined, []); },
   /**
    * static var week: CFCalendarUnit { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get week(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 1864591542812819, undefined, []); },
+  get week(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 1864591542812819, undefined, []); },
   /**
    * static var weekOfMonth: CFCalendarUnit { get }
    * @availability iOS 5.0+
    */
-  get weekOfMonth(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 2135622174365784, undefined, []); },
+  get weekOfMonth(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 2135622174365784, undefined, []); },
   /**
    * static var weekOfYear: CFCalendarUnit { get }
    * @availability iOS 5.0+
    */
-  get weekOfYear(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 39767564887104, undefined, []); },
+  get weekOfYear(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 39767564887104, undefined, []); },
   /** static var weekday: CFCalendarUnit { get } */
-  get weekday(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 1376202594598226, undefined, []); },
+  get weekday(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 1376202594598226, undefined, []); },
   /** static var weekdayOrdinal: CFCalendarUnit { get } */
-  get weekdayOrdinal(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 3592159295438717, undefined, []); },
+  get weekdayOrdinal(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 3592159295438717, undefined, []); },
   /** static var year: CFCalendarUnit { get } */
-  get year(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 3297174079346420, undefined, []); },
+  get year(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 3297174079346420, undefined, []); },
   /**
    * static var yearForWeekOfYear: CFCalendarUnit { get }
    * @availability iOS 5.0+
    */
-  get yearForWeekOfYear(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 4002307812034730, undefined, []); },
+  get yearForWeekOfYear(): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 4002307812034730, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_212edf3d13b127f5", 2512614795871307, undefined, [rawValue]); }
+  init(rawValue: number): CFCalendarUnit { return callSDK<CFCalendarUnit>("CoreFoundation_5d69670f0307b385", 2512614795871307, undefined, [rawValue]); }
 };
 
 /** class CFCharacterSet */
@@ -479,7 +479,7 @@ export type CFCharacterSetPredefinedSet = "control" | "whitespace" | "whitespace
 
 export const CFCharacterSetPredefinedSet = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFCharacterSetPredefinedSet) | null { return callSDK<(CFCharacterSetPredefinedSet) | null>("CoreFoundation_212edf3d13b127f5", 1629817435788481, undefined, [rawValue]); }
+  init(rawValue: number): (CFCharacterSetPredefinedSet) | null { return callSDK<(CFCharacterSetPredefinedSet) | null>("CoreFoundation_5d69670f0307b385", 1629817435788481, undefined, [rawValue]); }
 };
 
 /** typealias CFComparatorFunction = (UnsafeRawPointer?, UnsafeRawPointer?, UnsafeMutableRawPointer?) -> CFComparisonResult */
@@ -490,7 +490,7 @@ export type CFComparisonResult = "compareLessThan" | "compareEqualTo" | "compare
 
 export const CFComparisonResult = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFComparisonResult) | null { return callSDK<(CFComparisonResult) | null>("CoreFoundation_212edf3d13b127f5", 2044723470711818, undefined, [rawValue]); }
+  init(rawValue: number): (CFComparisonResult) | null { return callSDK<(CFComparisonResult) | null>("CoreFoundation_5d69670f0307b385", 2044723470711818, undefined, [rawValue]); }
 };
 
 /** class CFData */
@@ -509,17 +509,17 @@ export const CFDataSearchFlags = {
    * static var anchored: CFDataSearchFlags { get }
    * @availability iOS 4.0+
    */
-  get anchored(): CFDataSearchFlags { return callSDK<CFDataSearchFlags>("CoreFoundation_212edf3d13b127f5", 3200663601221659, undefined, []); },
+  get anchored(): CFDataSearchFlags { return callSDK<CFDataSearchFlags>("CoreFoundation_5d69670f0307b385", 3200663601221659, undefined, []); },
   /**
    * static var backwards: CFDataSearchFlags { get }
    * @availability iOS 4.0+
    */
-  get backwards(): CFDataSearchFlags { return callSDK<CFDataSearchFlags>("CoreFoundation_212edf3d13b127f5", 452277627435003, undefined, []); },
+  get backwards(): CFDataSearchFlags { return callSDK<CFDataSearchFlags>("CoreFoundation_5d69670f0307b385", 452277627435003, undefined, []); },
   /**
    * init(rawValue: CFOptionFlags)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): CFDataSearchFlags { return callSDK<CFDataSearchFlags>("CoreFoundation_212edf3d13b127f5", 2085521806273834, undefined, [rawValue]); }
+  init(rawValue: number): CFDataSearchFlags { return callSDK<CFDataSearchFlags>("CoreFoundation_5d69670f0307b385", 2085521806273834, undefined, [rawValue]); }
 };
 
 /** class CFDate */
@@ -537,110 +537,110 @@ export type CFDateFormatterKey = "isLenient" | "timeZone" | "calendarName" | "de
 
 export const CFDateFormatterKey = {
   /** static let amSymbol: CFDateFormatterKey! */
-  get amSymbol(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 2262987869181317, undefined, []); },
+  get amSymbol(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 2262987869181317, undefined, []); },
   /** static let calendar: CFDateFormatterKey! */
-  get calendar(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 1627717419586017, undefined, []); },
+  get calendar(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 1627717419586017, undefined, []); },
   /** static let calendarName: CFDateFormatterKey! */
-  get calendarName(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3587684283784750, undefined, []); },
+  get calendarName(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3587684283784750, undefined, []); },
   /** static let defaultDate: CFDateFormatterKey! */
-  get defaultDate(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 2592073968513904, undefined, []); },
+  get defaultDate(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 2592073968513904, undefined, []); },
   /** static let defaultFormat: CFDateFormatterKey! */
-  get defaultFormat(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 315982045099827, undefined, []); },
+  get defaultFormat(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 315982045099827, undefined, []); },
   /**
    * static let doesRelativeDateFormattingKey: CFDateFormatterKey!
    * @availability iOS 4.0+
    */
-  get doesRelativeDateFormattingKey(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 2204703938191501, undefined, []); },
+  get doesRelativeDateFormattingKey(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 2204703938191501, undefined, []); },
   /** static let eraSymbols: CFDateFormatterKey! */
-  get eraSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 71412426396892, undefined, []); },
+  get eraSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 71412426396892, undefined, []); },
   /**
    * static let gregorianStartDate: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get gregorianStartDate(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 179266190632663, undefined, []); },
+  get gregorianStartDate(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 179266190632663, undefined, []); },
   /** static let isLenient: CFDateFormatterKey! */
-  get isLenient(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 628919291423012, undefined, []); },
+  get isLenient(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 628919291423012, undefined, []); },
   /**
    * static let longEraSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get longEraSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3091273463796990, undefined, []); },
+  get longEraSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3091273463796990, undefined, []); },
   /** static let monthSymbols: CFDateFormatterKey! */
-  get monthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 2699668091055011, undefined, []); },
+  get monthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 2699668091055011, undefined, []); },
   /** static let pmSymbol: CFDateFormatterKey! */
-  get pmSymbol(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 169264490733875, undefined, []); },
+  get pmSymbol(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 169264490733875, undefined, []); },
   /**
    * static let quarterSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get quarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3701841524016124, undefined, []); },
+  get quarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3701841524016124, undefined, []); },
   /** static let shortMonthSymbols: CFDateFormatterKey! */
-  get shortMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 4118192886449210, undefined, []); },
+  get shortMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 4118192886449210, undefined, []); },
   /**
    * static let shortQuarterSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get shortQuarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 1818008369260499, undefined, []); },
+  get shortQuarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 1818008369260499, undefined, []); },
   /**
    * static let shortStandaloneMonthSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get shortStandaloneMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3986716498655776, undefined, []); },
+  get shortStandaloneMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3986716498655776, undefined, []); },
   /**
    * static let shortStandaloneQuarterSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get shortStandaloneQuarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 125339244844705, undefined, []); },
+  get shortStandaloneQuarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 125339244844705, undefined, []); },
   /**
    * static let shortStandaloneWeekdaySymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get shortStandaloneWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 4452637800550061, undefined, []); },
+  get shortStandaloneWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 4452637800550061, undefined, []); },
   /** static let shortWeekdaySymbols: CFDateFormatterKey! */
-  get shortWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 1852420560463366, undefined, []); },
+  get shortWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 1852420560463366, undefined, []); },
   /**
    * static let standaloneMonthSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get standaloneMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 453878721988633, undefined, []); },
+  get standaloneMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 453878721988633, undefined, []); },
   /**
    * static let standaloneQuarterSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get standaloneQuarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 2005121127899129, undefined, []); },
+  get standaloneQuarterSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 2005121127899129, undefined, []); },
   /**
    * static let standaloneWeekdaySymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get standaloneWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3637856084252669, undefined, []); },
+  get standaloneWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3637856084252669, undefined, []); },
   /** static let timeZone: CFDateFormatterKey! */
-  get timeZone(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3531978025666330, undefined, []); },
+  get timeZone(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3531978025666330, undefined, []); },
   /** static let twoDigitStartDate: CFDateFormatterKey! */
-  get twoDigitStartDate(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3016548757006866, undefined, []); },
+  get twoDigitStartDate(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3016548757006866, undefined, []); },
   /**
    * static let veryShortMonthSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get veryShortMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 2373533583331058, undefined, []); },
+  get veryShortMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 2373533583331058, undefined, []); },
   /**
    * static let veryShortStandaloneMonthSymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get veryShortStandaloneMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 3551896482005487, undefined, []); },
+  get veryShortStandaloneMonthSymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 3551896482005487, undefined, []); },
   /**
    * static let veryShortStandaloneWeekdaySymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get veryShortStandaloneWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 427250132343512, undefined, []); },
+  get veryShortStandaloneWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 427250132343512, undefined, []); },
   /**
    * static let veryShortWeekdaySymbols: CFDateFormatterKey!
    * @availability iOS 2.0+
    */
-  get veryShortWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 1517089432417273, undefined, []); },
+  get veryShortWeekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 1517089432417273, undefined, []); },
   /** static let weekdaySymbols: CFDateFormatterKey! */
-  get weekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_212edf3d13b127f5", 373664695273515, undefined, []); },
+  get weekdaySymbols(): $SDK23 { return callSDK<$SDK23>("CoreFoundation_5d69670f0307b385", 373664695273515, undefined, []); },
   /** init(rawValue: CFString) */
-  init(rawValue: CFString): CFDateFormatterKey { return callSDK<CFDateFormatterKey>("CoreFoundation_212edf3d13b127f5", 2560232061107421, undefined, [rawValue]); }
+  init(rawValue: CFString): CFDateFormatterKey { return callSDK<CFDateFormatterKey>("CoreFoundation_5d69670f0307b385", 2560232061107421, undefined, [rawValue]); }
 };
 
 /** enum CFDateFormatterStyle */
@@ -648,7 +648,7 @@ export type CFDateFormatterStyle = "noStyle" | "shortStyle" | "mediumStyle" | "l
 
 export const CFDateFormatterStyle = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFDateFormatterStyle) | null { return callSDK<(CFDateFormatterStyle) | null>("CoreFoundation_212edf3d13b127f5", 1464012035949244, undefined, [rawValue]); }
+  init(rawValue: number): (CFDateFormatterStyle) | null { return callSDK<(CFDateFormatterStyle) | null>("CoreFoundation_5d69670f0307b385", 1464012035949244, undefined, [rawValue]); }
 };
 
 /** class CFDictionary */
@@ -671,20 +671,20 @@ export type CFDictionaryHashCallBack = $SDK19;
 /** struct CFDictionaryKeyCallBacks */
 export class CFDictionaryKeyCallBacks extends SDKHandle {
   /** var copyDescription: CFDictionaryCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 271802132899691, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 271802132899691, this, []); }
   /** var equal: CFDictionaryEqualCallBack! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 3166259670296332, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 3166259670296332, this, []); }
   /** var hash: CFDictionaryHashCallBack! */
-  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_212edf3d13b127f5", 3561333524399848, this, []); }
+  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_5d69670f0307b385", 3561333524399848, this, []); }
   /** var release: CFDictionaryReleaseCallBack! */
-  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_212edf3d13b127f5", 2549610324793312, this, []); }
+  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_5d69670f0307b385", 2549610324793312, this, []); }
   /** var retain: CFDictionaryRetainCallBack! */
-  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_212edf3d13b127f5", 1124999794115935, this, []); }
+  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_5d69670f0307b385", 1124999794115935, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3324960018525502, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 965197986147393, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3324960018525502, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 965197986147393, this, [value]); }
   /** init() */
-  static init(): CFDictionaryKeyCallBacks { return callSDK<CFDictionaryKeyCallBacks>("CoreFoundation_212edf3d13b127f5", 917962341775339, undefined, []); }
+  static init(): CFDictionaryKeyCallBacks { return callSDK<CFDictionaryKeyCallBacks>("CoreFoundation_5d69670f0307b385", 917962341775339, undefined, []); }
   declare readonly $type: { "c:@SA@CFDictionaryKeyCallBacks": true };
 }
 
@@ -697,18 +697,18 @@ export type CFDictionaryRetainCallBack = $SDK17;
 /** struct CFDictionaryValueCallBacks */
 export class CFDictionaryValueCallBacks extends SDKHandle {
   /** var copyDescription: CFDictionaryCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1535433329952362, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1535433329952362, this, []); }
   /** var equal: CFDictionaryEqualCallBack! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 3597397027411557, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 3597397027411557, this, []); }
   /** var release: CFDictionaryReleaseCallBack! */
-  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_212edf3d13b127f5", 261894114330309, this, []); }
+  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_5d69670f0307b385", 261894114330309, this, []); }
   /** var retain: CFDictionaryRetainCallBack! */
-  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_212edf3d13b127f5", 2457340405325861, this, []); }
+  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_5d69670f0307b385", 2457340405325861, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4262371884063526, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3114821592330288, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4262371884063526, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3114821592330288, this, [value]); }
   /** init() */
-  static init(): CFDictionaryValueCallBacks { return callSDK<CFDictionaryValueCallBacks>("CoreFoundation_212edf3d13b127f5", 3546385281222957, undefined, []); }
+  static init(): CFDictionaryValueCallBacks { return callSDK<CFDictionaryValueCallBacks>("CoreFoundation_5d69670f0307b385", 3546385281222957, undefined, []); }
   declare readonly $type: { "c:@SA@CFDictionaryValueCallBacks": true };
 }
 
@@ -731,19 +731,19 @@ export type CFFileDescriptorCallBack = ((arg0: (CFFileDescriptor) | null, arg1: 
 /** struct CFFileDescriptorContext */
 export class CFFileDescriptorContext extends SDKHandle {
   /** var copyDescription: ((UnsafeMutableRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 889208168930828, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 889208168930828, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1540880746654977, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 948844110111381, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1540880746654977, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 948844110111381, this, [value]); }
   /** var release: ((UnsafeMutableRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 2574679179032392, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 2574679179032392, this, []); }
   /** var retain: ((UnsafeMutableRawPointer?) -> UnsafeMutableRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1383318341088725, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1383318341088725, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 81837857385461, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 806298347719510, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 81837857385461, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 806298347719510, this, [value]); }
   /** init() */
-  static init(): CFFileDescriptorContext { return callSDK<CFFileDescriptorContext>("CoreFoundation_212edf3d13b127f5", 3433891396768024, undefined, []); }
+  static init(): CFFileDescriptorContext { return callSDK<CFFileDescriptorContext>("CoreFoundation_5d69670f0307b385", 3433891396768024, undefined, []); }
   declare readonly $type: { "c:@SA@CFFileDescriptorContext": true };
 }
 
@@ -766,37 +766,37 @@ export const CFFileSecurityClearOptions = {
    * static var accessControlList: CFFileSecurityClearOptions { get }
    * @availability iOS 6.0+
    */
-  get accessControlList(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 3786695392696354, undefined, []); },
+  get accessControlList(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 3786695392696354, undefined, []); },
   /**
    * static var group: CFFileSecurityClearOptions { get }
    * @availability iOS 6.0+
    */
-  get group(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 448290750266436, undefined, []); },
+  get group(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 448290750266436, undefined, []); },
   /**
    * static var groupUUID: CFFileSecurityClearOptions { get }
    * @availability iOS 6.0+
    */
-  get groupUUID(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 1708944808575541, undefined, []); },
+  get groupUUID(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 1708944808575541, undefined, []); },
   /**
    * static var mode: CFFileSecurityClearOptions { get }
    * @availability iOS 6.0+
    */
-  get mode(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 29749553638749, undefined, []); },
+  get mode(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 29749553638749, undefined, []); },
   /**
    * static var owner: CFFileSecurityClearOptions { get }
    * @availability iOS 6.0+
    */
-  get owner(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 4354729148305766, undefined, []); },
+  get owner(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 4354729148305766, undefined, []); },
   /**
    * static var ownerUUID: CFFileSecurityClearOptions { get }
    * @availability iOS 6.0+
    */
-  get ownerUUID(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 3430137092450551, undefined, []); },
+  get ownerUUID(): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 3430137092450551, undefined, []); },
   /**
    * init(rawValue: CFOptionFlags)
    * @availability iOS 6.0+
    */
-  init(rawValue: number): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_212edf3d13b127f5", 1510681990343263, undefined, [rawValue]); }
+  init(rawValue: number): CFFileSecurityClearOptions { return callSDK<CFFileSecurityClearOptions>("CoreFoundation_5d69670f0307b385", 1510681990343263, undefined, [rawValue]); }
 };
 
 /**
@@ -810,55 +810,55 @@ export class CFGregorianDate extends SDKHandle {
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get day(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1919547561317080, this, []); }
-  set day(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 5065894675826, this, [value]); }
+  get day(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1919547561317080, this, []); }
+  set day(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 5065894675826, this, [value]); }
   /**
    * var hour: Int8
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get hour(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2766041487770985, this, []); }
-  set hour(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2121001873483871, this, [value]); }
+  get hour(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2766041487770985, this, []); }
+  set hour(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2121001873483871, this, [value]); }
   /**
    * var minute: Int8
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get minute(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 844369552861602, this, []); }
-  set minute(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2307228147546195, this, [value]); }
+  get minute(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 844369552861602, this, []); }
+  set minute(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2307228147546195, this, [value]); }
   /**
    * var month: Int8
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get month(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2549378146902781, this, []); }
-  set month(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1094981650837459, this, [value]); }
+  get month(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2549378146902781, this, []); }
+  set month(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1094981650837459, this, [value]); }
   /**
    * var second: Double
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get second(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 862000693572740, this, []); }
-  set second(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3362083729204238, this, [value]); }
+  get second(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 862000693572740, this, []); }
+  set second(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3362083729204238, this, [value]); }
   /**
    * var year: Int32
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get year(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1332997851253041, this, []); }
-  set year(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 227507757021299, this, [value]); }
+  get year(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1332997851253041, this, []); }
+  set year(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 227507757021299, this, [value]); }
   /**
    * init(year: Int32, month: Int8, day: Int8, hour: Int8, minute: Int8, second: Double)
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  static initYearMonthDayHourMinuteSecond(year: number, month: number, day: number, hour: number, minute: number, second: number): CFGregorianDate { return callSDK<CFGregorianDate>("CoreFoundation_212edf3d13b127f5", 2093865294465320, undefined, [year, month, day, hour, minute, second]); }
+  static initYearMonthDayHourMinuteSecond(year: number, month: number, day: number, hour: number, minute: number, second: number): CFGregorianDate { return callSDK<CFGregorianDate>("CoreFoundation_5d69670f0307b385", 2093865294465320, undefined, [year, month, day, hour, minute, second]); }
   /**
    * init()
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  static init(): CFGregorianDate { return callSDK<CFGregorianDate>("CoreFoundation_212edf3d13b127f5", 4088035382680661, undefined, []); }
+  static init(): CFGregorianDate { return callSDK<CFGregorianDate>("CoreFoundation_5d69670f0307b385", 4088035382680661, undefined, []); }
   declare readonly $type: { "c:@SA@CFGregorianDate": true };
 }
 
@@ -871,45 +871,45 @@ export const CFGregorianUnitFlags = {
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get allUnits(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 1733542746292299, undefined, []); },
+  get allUnits(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 1733542746292299, undefined, []); },
   /**
    * static var unitsDays: CFGregorianUnitFlags { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get unitsDays(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 4097840421923535, undefined, []); },
+  get unitsDays(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 4097840421923535, undefined, []); },
   /**
    * static var unitsHours: CFGregorianUnitFlags { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get unitsHours(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 2754229466674790, undefined, []); },
+  get unitsHours(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 2754229466674790, undefined, []); },
   /**
    * static var unitsMinutes: CFGregorianUnitFlags { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get unitsMinutes(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 1300433857603217, undefined, []); },
+  get unitsMinutes(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 1300433857603217, undefined, []); },
   /**
    * static var unitsMonths: CFGregorianUnitFlags { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get unitsMonths(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 2265101888509130, undefined, []); },
+  get unitsMonths(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 2265101888509130, undefined, []); },
   /**
    * static var unitsSeconds: CFGregorianUnitFlags { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get unitsSeconds(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 2263135573844545, undefined, []); },
+  get unitsSeconds(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 2263135573844545, undefined, []); },
   /**
    * static var unitsYears: CFGregorianUnitFlags { get }
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get unitsYears(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 241621295744880, undefined, []); },
+  get unitsYears(): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 241621295744880, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_212edf3d13b127f5", 975528327776031, undefined, [rawValue]); }
+  init(rawValue: number): CFGregorianUnitFlags { return callSDK<CFGregorianUnitFlags>("CoreFoundation_5d69670f0307b385", 975528327776031, undefined, [rawValue]); }
 };
 
 /**
@@ -923,55 +923,55 @@ export class CFGregorianUnits extends SDKHandle {
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get days(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 908017277737956, this, []); }
-  set days(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1993946894990825, this, [value]); }
+  get days(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 908017277737956, this, []); }
+  set days(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1993946894990825, this, [value]); }
   /**
    * var hours: Int32
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get hours(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 685010679596406, this, []); }
-  set hours(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1200677019870956, this, [value]); }
+  get hours(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 685010679596406, this, []); }
+  set hours(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1200677019870956, this, [value]); }
   /**
    * var minutes: Int32
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get minutes(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 611601683872028, this, []); }
-  set minutes(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2038220596511232, this, [value]); }
+  get minutes(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 611601683872028, this, []); }
+  set minutes(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2038220596511232, this, [value]); }
   /**
    * var months: Int32
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get months(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 920616551395217, this, []); }
-  set months(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4038878132509808, this, [value]); }
+  get months(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 920616551395217, this, []); }
+  set months(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4038878132509808, this, [value]); }
   /**
    * var seconds: Double
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get seconds(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2495576125906956, this, []); }
-  set seconds(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1780775721062243, this, [value]); }
+  get seconds(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2495576125906956, this, []); }
+  set seconds(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1780775721062243, this, [value]); }
   /**
    * var years: Int32
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  get years(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3781606616344143, this, []); }
-  set years(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1223417598273894, this, [value]); }
+  get years(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3781606616344143, this, []); }
+  set years(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1223417598273894, this, [value]); }
   /**
    * init(years: Int32, months: Int32, days: Int32, hours: Int32, minutes: Int32, seconds: Double)
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  static initYearsMonthsDaysHoursMinutesSeconds(years: number, months: number, days: number, hours: number, minutes: number, seconds: number): CFGregorianUnits { return callSDK<CFGregorianUnits>("CoreFoundation_212edf3d13b127f5", 957071432017520, undefined, [years, months, days, hours, minutes, seconds]); }
+  static initYearsMonthsDaysHoursMinutesSeconds(years: number, months: number, days: number, hours: number, minutes: number, seconds: number): CFGregorianUnits { return callSDK<CFGregorianUnits>("CoreFoundation_5d69670f0307b385", 957071432017520, undefined, [years, months, days, hours, minutes, seconds]); }
   /**
    * init()
    * @availability iOS 2.0+
    * @deprecated iOS 8.0
    */
-  static init(): CFGregorianUnits { return callSDK<CFGregorianUnits>("CoreFoundation_212edf3d13b127f5", 1944786411832440, undefined, []); }
+  static init(): CFGregorianUnits { return callSDK<CFGregorianUnits>("CoreFoundation_5d69670f0307b385", 1944786411832440, undefined, []); }
   declare readonly $type: { "c:@SA@CFGregorianUnits": true };
 }
 
@@ -989,74 +989,74 @@ export const CFISO8601DateFormatOptions = {
    * static var withColonSeparatorInTime: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withColonSeparatorInTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 854318462198909, undefined, []); },
+  get withColonSeparatorInTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 854318462198909, undefined, []); },
   /**
    * static var withColonSeparatorInTimeZone: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withColonSeparatorInTimeZone(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 332670105778214, undefined, []); },
+  get withColonSeparatorInTimeZone(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 332670105778214, undefined, []); },
   /**
    * static var withDashSeparatorInDate: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withDashSeparatorInDate(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 1087872527762244, undefined, []); },
+  get withDashSeparatorInDate(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 1087872527762244, undefined, []); },
   /**
    * static var withDay: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withDay(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 106909896893758, undefined, []); },
+  get withDay(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 106909896893758, undefined, []); },
   /**
    * static var withFractionalSeconds: CFISO8601DateFormatOptions { get }
    * @availability iOS 11.0+
    */
-  get withFractionalSeconds(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 4344028293891215, undefined, []); },
+  get withFractionalSeconds(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 4344028293891215, undefined, []); },
   /**
    * static var withFullDate: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withFullDate(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 2629114494757570, undefined, []); },
+  get withFullDate(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 2629114494757570, undefined, []); },
   /**
    * static var withFullTime: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withFullTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 802775869372541, undefined, []); },
+  get withFullTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 802775869372541, undefined, []); },
   /**
    * static var withInternetDateTime: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withInternetDateTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 3489906879367728, undefined, []); },
+  get withInternetDateTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 3489906879367728, undefined, []); },
   /**
    * static var withMonth: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withMonth(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 3825105794088035, undefined, []); },
+  get withMonth(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 3825105794088035, undefined, []); },
   /**
    * static var withSpaceBetweenDateAndTime: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withSpaceBetweenDateAndTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 1317290877578590, undefined, []); },
+  get withSpaceBetweenDateAndTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 1317290877578590, undefined, []); },
   /**
    * static var withTime: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 3182149792198960, undefined, []); },
+  get withTime(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 3182149792198960, undefined, []); },
   /**
    * static var withTimeZone: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withTimeZone(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 1171535001445339, undefined, []); },
+  get withTimeZone(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 1171535001445339, undefined, []); },
   /**
    * static var withWeekOfYear: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withWeekOfYear(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 629401561080102, undefined, []); },
+  get withWeekOfYear(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 629401561080102, undefined, []); },
   /**
    * static var withYear: CFISO8601DateFormatOptions { get }
    * @availability iOS 10.0+
    */
-  get withYear(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 3977541018724372, undefined, []); },
+  get withYear(): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 3977541018724372, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_212edf3d13b127f5", 1784630095955125, undefined, [rawValue]); }
+  init(rawValue: number): CFISO8601DateFormatOptions { return callSDK<CFISO8601DateFormatOptions>("CoreFoundation_5d69670f0307b385", 1784630095955125, undefined, [rawValue]); }
 };
 
 /** class CFLocale */
@@ -1069,9 +1069,9 @@ export type CFLocaleIdentifier = (number & {});
 
 export const CFLocaleIdentifier = {
   /** init(rawValue: CFString) */
-  initRawValue(rawValue: CFString): CFLocaleIdentifier { return callSDK<CFLocaleIdentifier>("CoreFoundation_212edf3d13b127f5", 3350411268912059, undefined, [rawValue]); },
+  initRawValue(rawValue: CFString): CFLocaleIdentifier { return callSDK<CFLocaleIdentifier>("CoreFoundation_5d69670f0307b385", 3350411268912059, undefined, [rawValue]); },
   /** init(_ rawValue: CFString) */
-  init(rawValue: CFString): CFLocaleIdentifier { return callSDK<CFLocaleIdentifier>("CoreFoundation_212edf3d13b127f5", 1330803827995698, undefined, [rawValue]); }
+  init(rawValue: CFString): CFLocaleIdentifier { return callSDK<CFLocaleIdentifier>("CoreFoundation_5d69670f0307b385", 1330803827995698, undefined, [rawValue]); }
 };
 
 /** struct CFLocaleKey */
@@ -1082,59 +1082,59 @@ export const CFLocaleKey = {
    * static let alternateQuotationBeginDelimiterKey: CFLocaleKey!
    * @availability iOS 4.0+
    */
-  get alternateQuotationBeginDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 2686084499476566, undefined, []); },
+  get alternateQuotationBeginDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 2686084499476566, undefined, []); },
   /**
    * static let alternateQuotationEndDelimiterKey: CFLocaleKey!
    * @availability iOS 4.0+
    */
-  get alternateQuotationEndDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 1533026185847049, undefined, []); },
+  get alternateQuotationEndDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 1533026185847049, undefined, []); },
   /** static let calendar: CFLocaleKey! */
-  get calendar(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 2994992221001588, undefined, []); },
+  get calendar(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 2994992221001588, undefined, []); },
   /** static let calendarIdentifier: CFLocaleKey! */
-  get calendarIdentifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 3327046195013370, undefined, []); },
+  get calendarIdentifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 3327046195013370, undefined, []); },
   /** static let collationIdentifier: CFLocaleKey! */
-  get collationIdentifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 11935030694239, undefined, []); },
+  get collationIdentifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 11935030694239, undefined, []); },
   /**
    * static let collatorIdentifier: CFLocaleKey!
    * @availability iOS 4.0+
    */
-  get collatorIdentifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 602342224170228, undefined, []); },
+  get collatorIdentifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 602342224170228, undefined, []); },
   /** static let countryCode: CFLocaleKey! */
-  get countryCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 2990607865472918, undefined, []); },
+  get countryCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 2990607865472918, undefined, []); },
   /** static let currencyCode: CFLocaleKey! */
-  get currencyCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 232386361918715, undefined, []); },
+  get currencyCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 232386361918715, undefined, []); },
   /** static let currencySymbol: CFLocaleKey! */
-  get currencySymbol(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 2307657493481594, undefined, []); },
+  get currencySymbol(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 2307657493481594, undefined, []); },
   /** static let decimalSeparator: CFLocaleKey! */
-  get decimalSeparator(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 1039137442915248, undefined, []); },
+  get decimalSeparator(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 1039137442915248, undefined, []); },
   /** static let exemplarCharacterSet: CFLocaleKey! */
-  get exemplarCharacterSet(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 4206960010935553, undefined, []); },
+  get exemplarCharacterSet(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 4206960010935553, undefined, []); },
   /** static let groupingSeparator: CFLocaleKey! */
-  get groupingSeparator(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 2793461064231246, undefined, []); },
+  get groupingSeparator(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 2793461064231246, undefined, []); },
   /** static let identifier: CFLocaleKey! */
-  get identifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 4224137772361445, undefined, []); },
+  get identifier(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 4224137772361445, undefined, []); },
   /** static let languageCode: CFLocaleKey! */
-  get languageCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 157528201413959, undefined, []); },
+  get languageCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 157528201413959, undefined, []); },
   /** static let measurementSystem: CFLocaleKey! */
-  get measurementSystem(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 3942222817390625, undefined, []); },
+  get measurementSystem(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 3942222817390625, undefined, []); },
   /**
    * static let quotationBeginDelimiterKey: CFLocaleKey!
    * @availability iOS 4.0+
    */
-  get quotationBeginDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 4067835159624797, undefined, []); },
+  get quotationBeginDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 4067835159624797, undefined, []); },
   /**
    * static let quotationEndDelimiterKey: CFLocaleKey!
    * @availability iOS 4.0+
    */
-  get quotationEndDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 416520646767334, undefined, []); },
+  get quotationEndDelimiterKey(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 416520646767334, undefined, []); },
   /** static let scriptCode: CFLocaleKey! */
-  get scriptCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 952221360716841, undefined, []); },
+  get scriptCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 952221360716841, undefined, []); },
   /** static let usesMetricSystem: CFLocaleKey! */
-  get usesMetricSystem(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 2844498324536381, undefined, []); },
+  get usesMetricSystem(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 2844498324536381, undefined, []); },
   /** static let variantCode: CFLocaleKey! */
-  get variantCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_212edf3d13b127f5", 4481370502776066, undefined, []); },
+  get variantCode(): (CFLocaleKey) | null { return callSDK<(CFLocaleKey) | null>("CoreFoundation_5d69670f0307b385", 4481370502776066, undefined, []); },
   /** init(rawValue: CFString) */
-  init(rawValue: CFString): CFLocaleKey { return callSDK<CFLocaleKey>("CoreFoundation_212edf3d13b127f5", 2193528695771693, undefined, [rawValue]); }
+  init(rawValue: CFString): CFLocaleKey { return callSDK<CFLocaleKey>("CoreFoundation_5d69670f0307b385", 2193528695771693, undefined, [rawValue]); }
 };
 
 /** enum CFLocaleLanguageDirection */
@@ -1142,7 +1142,7 @@ export type CFLocaleLanguageDirection = "unknown" | "leftToRight" | "rightToLeft
 
 export const CFLocaleLanguageDirection = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFLocaleLanguageDirection) | null { return callSDK<(CFLocaleLanguageDirection) | null>("CoreFoundation_212edf3d13b127f5", 2170822975235446, undefined, [rawValue]); }
+  init(rawValue: number): (CFLocaleLanguageDirection) | null { return callSDK<(CFLocaleLanguageDirection) | null>("CoreFoundation_5d69670f0307b385", 2170822975235446, undefined, [rawValue]); }
 };
 
 /** class CFMachPort */
@@ -1156,19 +1156,19 @@ export type CFMachPortCallBack = ((arg0: (CFMachPort) | null, arg1: (SDKHandle) 
 /** struct CFMachPortContext */
 export class CFMachPortContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 3826942045378863, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 3826942045378863, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 867484679231972, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 648057843414205, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 867484679231972, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 648057843414205, this, [value]); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 2787319131823613, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 2787319131823613, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 222722060009168, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 222722060009168, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3328098797217762, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4098263461220324, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3328098797217762, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4098263461220324, this, [value]); }
   /** init() */
-  static init(): CFMachPortContext { return callSDK<CFMachPortContext>("CoreFoundation_212edf3d13b127f5", 711205133151264, undefined, []); }
+  static init(): CFMachPortContext { return callSDK<CFMachPortContext>("CoreFoundation_5d69670f0307b385", 711205133151264, undefined, []); }
   declare readonly $type: { "c:@SA@CFMachPortContext": true };
 }
 
@@ -1186,19 +1186,19 @@ export type CFMessagePortCallBack = ((arg0: (CFMessagePort) | null, arg1: number
 /** struct CFMessagePortContext */
 export class CFMessagePortContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 509408136787310, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 509408136787310, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1199162861617566, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4478427050608363, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1199162861617566, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4478427050608363, this, [value]); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 1519093703127682, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 1519093703127682, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1265752778005053, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1265752778005053, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 487063617436479, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3555622812142249, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 487063617436479, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3555622812142249, this, [value]); }
   /** init() */
-  static init(): CFMessagePortContext { return callSDK<CFMessagePortContext>("CoreFoundation_212edf3d13b127f5", 1171051098146176, undefined, []); }
+  static init(): CFMessagePortContext { return callSDK<CFMessagePortContext>("CoreFoundation_5d69670f0307b385", 1171051098146176, undefined, []); }
   declare readonly $type: { "c:@SA@CFMessagePortContext": true };
 }
 
@@ -1269,23 +1269,23 @@ export class CFNotificationCenter extends SDKHandle {
 }
 
 /** struct CFNotificationName */
-export type CFNotificationName = "cfTimeZoneSystemTimeZoneDidChange" | "cfLocaleCurrentLocaleDidChange" | (number & {});
+export type CFNotificationName = "cfLocaleCurrentLocaleDidChange" | "cfTimeZoneSystemTimeZoneDidChange" | (number & {});
 
 export const CFNotificationName = {
   /**
    * static let cfLocaleCurrentLocaleDidChange: CFNotificationName!
    * @availability iOS 2.0+
    */
-  get cfLocaleCurrentLocaleDidChange(): $SDK31 { return callSDK<$SDK31>("CoreFoundation_212edf3d13b127f5", 1726300983722339, undefined, []); },
+  get cfLocaleCurrentLocaleDidChange(): $SDK31 { return callSDK<$SDK31>("CoreFoundation_5d69670f0307b385", 1726300983722339, undefined, []); },
   /**
    * static let cfTimeZoneSystemTimeZoneDidChange: CFNotificationName!
    * @availability iOS 2.0+
    */
-  get cfTimeZoneSystemTimeZoneDidChange(): $SDK31 { return callSDK<$SDK31>("CoreFoundation_212edf3d13b127f5", 4249987559238129, undefined, []); },
+  get cfTimeZoneSystemTimeZoneDidChange(): $SDK31 { return callSDK<$SDK31>("CoreFoundation_5d69670f0307b385", 4249987559238129, undefined, []); },
   /** init(rawValue: CFString) */
-  initRawValue(rawValue: CFString): CFNotificationName { return callSDK<CFNotificationName>("CoreFoundation_212edf3d13b127f5", 893934030841809, undefined, [rawValue]); },
+  initRawValue(rawValue: CFString): CFNotificationName { return callSDK<CFNotificationName>("CoreFoundation_5d69670f0307b385", 893934030841809, undefined, [rawValue]); },
   /** init(_ rawValue: CFString) */
-  init(rawValue: CFString): CFNotificationName { return callSDK<CFNotificationName>("CoreFoundation_212edf3d13b127f5", 989607539941607, undefined, [rawValue]); }
+  init(rawValue: CFString): CFNotificationName { return callSDK<CFNotificationName>("CoreFoundation_5d69670f0307b385", 989607539941607, undefined, [rawValue]); }
 };
 
 /** enum CFNotificationSuspensionBehavior */
@@ -1293,7 +1293,7 @@ export type CFNotificationSuspensionBehavior = "drop" | "coalesce" | "hold" | "d
 
 export const CFNotificationSuspensionBehavior = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFNotificationSuspensionBehavior) | null { return callSDK<(CFNotificationSuspensionBehavior) | null>("CoreFoundation_212edf3d13b127f5", 1285488690634321, undefined, [rawValue]); }
+  init(rawValue: number): (CFNotificationSuspensionBehavior) | null { return callSDK<(CFNotificationSuspensionBehavior) | null>("CoreFoundation_5d69670f0307b385", 1285488690634321, undefined, [rawValue]); }
 };
 
 /** class CFNull */
@@ -1316,103 +1316,103 @@ export type CFNumberFormatterKey = "currencyCode" | "decimalSeparator" | "curren
 
 export const CFNumberFormatterKey = {
   /** static let alwaysShowDecimalSeparator: CFNumberFormatterKey! */
-  get alwaysShowDecimalSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1969993796806230, undefined, []); },
+  get alwaysShowDecimalSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1969993796806230, undefined, []); },
   /** static let currencyCode: CFNumberFormatterKey! */
-  get currencyCode(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1603516064590294, undefined, []); },
+  get currencyCode(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1603516064590294, undefined, []); },
   /** static let currencyDecimalSeparator: CFNumberFormatterKey! */
-  get currencyDecimalSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3383851653130839, undefined, []); },
+  get currencyDecimalSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3383851653130839, undefined, []); },
   /**
    * static let currencyGroupingSeparator: CFNumberFormatterKey!
    * @availability iOS 2.0+
    */
-  get currencyGroupingSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3973260484254787, undefined, []); },
+  get currencyGroupingSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3973260484254787, undefined, []); },
   /** static let currencySymbol: CFNumberFormatterKey! */
-  get currencySymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3300112290605336, undefined, []); },
+  get currencySymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3300112290605336, undefined, []); },
   /** static let decimalSeparator: CFNumberFormatterKey! */
-  get decimalSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 438080701051066, undefined, []); },
+  get decimalSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 438080701051066, undefined, []); },
   /** static let defaultFormat: CFNumberFormatterKey! */
-  get defaultFormat(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3652360872225633, undefined, []); },
+  get defaultFormat(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3652360872225633, undefined, []); },
   /** static let exponentSymbol: CFNumberFormatterKey! */
-  get exponentSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2178968113187553, undefined, []); },
+  get exponentSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2178968113187553, undefined, []); },
   /** static let formatWidth: CFNumberFormatterKey! */
-  get formatWidth(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2129411682045650, undefined, []); },
+  get formatWidth(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2129411682045650, undefined, []); },
   /** static let groupingSeparator: CFNumberFormatterKey! */
-  get groupingSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1936913924262508, undefined, []); },
+  get groupingSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1936913924262508, undefined, []); },
   /** static let groupingSize: CFNumberFormatterKey! */
-  get groupingSize(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2629319337002941, undefined, []); },
+  get groupingSize(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2629319337002941, undefined, []); },
   /** static let infinitySymbol: CFNumberFormatterKey! */
-  get infinitySymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 35966057283639, undefined, []); },
+  get infinitySymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 35966057283639, undefined, []); },
   /** static let internationalCurrencySymbol: CFNumberFormatterKey! */
-  get internationalCurrencySymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2437830049281452, undefined, []); },
+  get internationalCurrencySymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2437830049281452, undefined, []); },
   /**
    * static let isLenient: CFNumberFormatterKey!
    * @availability iOS 2.0+
    */
-  get isLenient(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1690717800813716, undefined, []); },
+  get isLenient(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1690717800813716, undefined, []); },
   /** static let maxFractionDigits: CFNumberFormatterKey! */
-  get maxFractionDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1301887689739028, undefined, []); },
+  get maxFractionDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1301887689739028, undefined, []); },
   /** static let maxIntegerDigits: CFNumberFormatterKey! */
-  get maxIntegerDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3202880914834189, undefined, []); },
+  get maxIntegerDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3202880914834189, undefined, []); },
   /**
    * static let maxSignificantDigits: CFNumberFormatterKey!
    * @availability iOS 2.0+
    */
-  get maxSignificantDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3631181154898923, undefined, []); },
+  get maxSignificantDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3631181154898923, undefined, []); },
   /** static let minFractionDigits: CFNumberFormatterKey! */
-  get minFractionDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 606865056994724, undefined, []); },
+  get minFractionDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 606865056994724, undefined, []); },
   /**
    * static let minGroupingDigits: CFNumberFormatterKey!
    * @availability iOS 18.0+
    */
-  get minGroupingDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 488440848218249, undefined, []); },
+  get minGroupingDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 488440848218249, undefined, []); },
   /** static let minIntegerDigits: CFNumberFormatterKey! */
-  get minIntegerDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2463033477483033, undefined, []); },
+  get minIntegerDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2463033477483033, undefined, []); },
   /**
    * static let minSignificantDigits: CFNumberFormatterKey!
    * @availability iOS 2.0+
    */
-  get minSignificantDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 771894483142341, undefined, []); },
+  get minSignificantDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 771894483142341, undefined, []); },
   /** static let minusSign: CFNumberFormatterKey! */
-  get minusSign(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1250349696130026, undefined, []); },
+  get minusSign(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1250349696130026, undefined, []); },
   /** static let multiplier: CFNumberFormatterKey! */
-  get multiplier(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1535717718925315, undefined, []); },
+  get multiplier(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1535717718925315, undefined, []); },
   /** static let naNSymbol: CFNumberFormatterKey! */
-  get naNSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2640330698245211, undefined, []); },
+  get naNSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2640330698245211, undefined, []); },
   /** static let negativePrefix: CFNumberFormatterKey! */
-  get negativePrefix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3615812423035921, undefined, []); },
+  get negativePrefix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3615812423035921, undefined, []); },
   /** static let negativeSuffix: CFNumberFormatterKey! */
-  get negativeSuffix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1069355686394068, undefined, []); },
+  get negativeSuffix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1069355686394068, undefined, []); },
   /** static let paddingCharacter: CFNumberFormatterKey! */
-  get paddingCharacter(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1738982823994141, undefined, []); },
+  get paddingCharacter(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1738982823994141, undefined, []); },
   /** static let paddingPosition: CFNumberFormatterKey! */
-  get paddingPosition(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2394432536862253, undefined, []); },
+  get paddingPosition(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2394432536862253, undefined, []); },
   /** static let perMillSymbol: CFNumberFormatterKey! */
-  get perMillSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 4451433959481944, undefined, []); },
+  get perMillSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 4451433959481944, undefined, []); },
   /** static let percentSymbol: CFNumberFormatterKey! */
-  get percentSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3707877790755329, undefined, []); },
+  get percentSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3707877790755329, undefined, []); },
   /** static let plusSign: CFNumberFormatterKey! */
-  get plusSign(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3305555973012008, undefined, []); },
+  get plusSign(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3305555973012008, undefined, []); },
   /** static let positivePrefix: CFNumberFormatterKey! */
-  get positivePrefix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 593584735285241, undefined, []); },
+  get positivePrefix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 593584735285241, undefined, []); },
   /** static let positiveSuffix: CFNumberFormatterKey! */
-  get positiveSuffix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 4071295881788027, undefined, []); },
+  get positiveSuffix(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 4071295881788027, undefined, []); },
   /** static let roundingIncrement: CFNumberFormatterKey! */
-  get roundingIncrement(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2960742327422596, undefined, []); },
+  get roundingIncrement(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2960742327422596, undefined, []); },
   /** static let roundingMode: CFNumberFormatterKey! */
-  get roundingMode(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 4368521423931528, undefined, []); },
+  get roundingMode(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 4368521423931528, undefined, []); },
   /** static let secondaryGroupingSize: CFNumberFormatterKey! */
-  get secondaryGroupingSize(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3469773925250564, undefined, []); },
+  get secondaryGroupingSize(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3469773925250564, undefined, []); },
   /** static let useGroupingSeparator: CFNumberFormatterKey! */
-  get useGroupingSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 3462106043436431, undefined, []); },
+  get useGroupingSeparator(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 3462106043436431, undefined, []); },
   /**
    * static let useSignificantDigits: CFNumberFormatterKey!
    * @availability iOS 2.0+
    */
-  get useSignificantDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 1935029363687532, undefined, []); },
+  get useSignificantDigits(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 1935029363687532, undefined, []); },
   /** static let zeroSymbol: CFNumberFormatterKey! */
-  get zeroSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_212edf3d13b127f5", 2628569693380892, undefined, []); },
+  get zeroSymbol(): $SDK32 { return callSDK<$SDK32>("CoreFoundation_5d69670f0307b385", 2628569693380892, undefined, []); },
   /** init(rawValue: CFString) */
-  init(rawValue: CFString): CFNumberFormatterKey { return callSDK<CFNumberFormatterKey>("CoreFoundation_212edf3d13b127f5", 4233940893667997, undefined, [rawValue]); }
+  init(rawValue: CFString): CFNumberFormatterKey { return callSDK<CFNumberFormatterKey>("CoreFoundation_5d69670f0307b385", 4233940893667997, undefined, [rawValue]); }
 };
 
 /** struct CFNumberFormatterOptionFlags */
@@ -1420,9 +1420,9 @@ export type CFNumberFormatterOptionFlags = Array<"parseIntegersOnly">;
 
 export const CFNumberFormatterOptionFlags = {
   /** static var parseIntegersOnly: CFNumberFormatterOptionFlags { get } */
-  get parseIntegersOnly(): CFNumberFormatterOptionFlags { return callSDK<CFNumberFormatterOptionFlags>("CoreFoundation_212edf3d13b127f5", 1211375203186728, undefined, []); },
+  get parseIntegersOnly(): CFNumberFormatterOptionFlags { return callSDK<CFNumberFormatterOptionFlags>("CoreFoundation_5d69670f0307b385", 1211375203186728, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFNumberFormatterOptionFlags { return callSDK<CFNumberFormatterOptionFlags>("CoreFoundation_212edf3d13b127f5", 1664741457234844, undefined, [rawValue]); }
+  init(rawValue: number): CFNumberFormatterOptionFlags { return callSDK<CFNumberFormatterOptionFlags>("CoreFoundation_5d69670f0307b385", 1664741457234844, undefined, [rawValue]); }
 };
 
 /** enum CFNumberFormatterPadPosition */
@@ -1430,7 +1430,7 @@ export type CFNumberFormatterPadPosition = "beforePrefix" | "afterPrefix" | "bef
 
 export const CFNumberFormatterPadPosition = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFNumberFormatterPadPosition) | null { return callSDK<(CFNumberFormatterPadPosition) | null>("CoreFoundation_212edf3d13b127f5", 4464842462204279, undefined, [rawValue]); }
+  init(rawValue: number): (CFNumberFormatterPadPosition) | null { return callSDK<(CFNumberFormatterPadPosition) | null>("CoreFoundation_5d69670f0307b385", 4464842462204279, undefined, [rawValue]); }
 };
 
 /** enum CFNumberFormatterRoundingMode */
@@ -1438,7 +1438,7 @@ export type CFNumberFormatterRoundingMode = "roundCeiling" | "roundFloor" | "rou
 
 export const CFNumberFormatterRoundingMode = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFNumberFormatterRoundingMode) | null { return callSDK<(CFNumberFormatterRoundingMode) | null>("CoreFoundation_212edf3d13b127f5", 3883987976331073, undefined, [rawValue]); }
+  init(rawValue: number): (CFNumberFormatterRoundingMode) | null { return callSDK<(CFNumberFormatterRoundingMode) | null>("CoreFoundation_5d69670f0307b385", 3883987976331073, undefined, [rawValue]); }
 };
 
 /** enum CFNumberFormatterStyle */
@@ -1446,7 +1446,7 @@ export type CFNumberFormatterStyle = "noStyle" | "decimalStyle" | "currencyStyle
 
 export const CFNumberFormatterStyle = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFNumberFormatterStyle) | null { return callSDK<(CFNumberFormatterStyle) | null>("CoreFoundation_212edf3d13b127f5", 4056263581459249, undefined, [rawValue]); }
+  init(rawValue: number): (CFNumberFormatterStyle) | null { return callSDK<(CFNumberFormatterStyle) | null>("CoreFoundation_5d69670f0307b385", 4056263581459249, undefined, [rawValue]); }
 };
 
 /** enum CFNumberType */
@@ -1454,9 +1454,9 @@ export type CFNumberType = "sInt8Type" | "sInt16Type" | "sInt32Type" | "sInt64Ty
 
 export const CFNumberType = {
   /** static var maxType: CFNumberType { get } */
-  get maxType(): CFNumberType { return callSDK<CFNumberType>("CoreFoundation_212edf3d13b127f5", 1722835463390853, undefined, []); },
+  get maxType(): CFNumberType { return callSDK<CFNumberType>("CoreFoundation_5d69670f0307b385", 1722835463390853, undefined, []); },
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFNumberType) | null { return callSDK<(CFNumberType) | null>("CoreFoundation_212edf3d13b127f5", 3632773116713993, undefined, [rawValue]); }
+  init(rawValue: number): (CFNumberType) | null { return callSDK<(CFNumberType) | null>("CoreFoundation_5d69670f0307b385", 3632773116713993, undefined, [rawValue]); }
 };
 
 /** typealias CFOptionFlags = UInt */
@@ -1495,7 +1495,7 @@ export type CFPropertyListFormat = "openStepFormat" | "xmlFormat_v1_0" | "binary
 
 export const CFPropertyListFormat = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFPropertyListFormat) | null { return callSDK<(CFPropertyListFormat) | null>("CoreFoundation_212edf3d13b127f5", 798467638618373, undefined, [rawValue]); }
+  init(rawValue: number): (CFPropertyListFormat) | null { return callSDK<(CFPropertyListFormat) | null>("CoreFoundation_5d69670f0307b385", 798467638618373, undefined, [rawValue]); }
 };
 
 /** struct CFPropertyListMutabilityOptions */
@@ -1503,25 +1503,25 @@ export type CFPropertyListMutabilityOptions = Array<"mutableContainers" | "mutab
 
 export const CFPropertyListMutabilityOptions = {
   /** static var mutableContainers: CFPropertyListMutabilityOptions { get } */
-  get mutableContainers(): CFPropertyListMutabilityOptions { return callSDK<CFPropertyListMutabilityOptions>("CoreFoundation_212edf3d13b127f5", 1000756925383038, undefined, []); },
+  get mutableContainers(): CFPropertyListMutabilityOptions { return callSDK<CFPropertyListMutabilityOptions>("CoreFoundation_5d69670f0307b385", 1000756925383038, undefined, []); },
   /** static var mutableContainersAndLeaves: CFPropertyListMutabilityOptions { get } */
-  get mutableContainersAndLeaves(): CFPropertyListMutabilityOptions { return callSDK<CFPropertyListMutabilityOptions>("CoreFoundation_212edf3d13b127f5", 3519435092294782, undefined, []); },
+  get mutableContainersAndLeaves(): CFPropertyListMutabilityOptions { return callSDK<CFPropertyListMutabilityOptions>("CoreFoundation_5d69670f0307b385", 3519435092294782, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFPropertyListMutabilityOptions { return callSDK<CFPropertyListMutabilityOptions>("CoreFoundation_212edf3d13b127f5", 1777696779608029, undefined, [rawValue]); }
+  init(rawValue: number): CFPropertyListMutabilityOptions { return callSDK<CFPropertyListMutabilityOptions>("CoreFoundation_5d69670f0307b385", 1777696779608029, undefined, [rawValue]); }
 };
 
 /** struct CFRange */
 export class CFRange extends SDKHandle {
   /** var length: CFIndex */
-  get length(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 837440922993509, this, []); }
-  set length(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1353047586107247, this, [value]); }
+  get length(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 837440922993509, this, []); }
+  set length(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1353047586107247, this, [value]); }
   /** var location: CFIndex */
-  get location(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2733159036324061, this, []); }
-  set location(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2805885044620275, this, [value]); }
+  get location(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2733159036324061, this, []); }
+  set location(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2805885044620275, this, [value]); }
   /** init(location: CFIndex, length: CFIndex) */
-  static initLocationLength(location: number, length: number): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 2672929122002236, undefined, [location, length]); }
+  static initLocationLength(location: number, length: number): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 2672929122002236, undefined, [location, length]); }
   /** init() */
-  static init(): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 1639709638400420, undefined, []); }
+  static init(): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 1639709638400420, undefined, []); }
   declare readonly $type: { "c:@SA@CFRange": true };
 }
 
@@ -1543,21 +1543,21 @@ export type CFRunLoopActivity = Array<"entry" | "beforeTimers" | "beforeSources"
 
 export const CFRunLoopActivity = {
   /** static var afterWaiting: CFRunLoopActivity { get } */
-  get afterWaiting(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 1883954468799501, undefined, []); },
+  get afterWaiting(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 1883954468799501, undefined, []); },
   /** static var allActivities: CFRunLoopActivity { get } */
-  get allActivities(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 708202128754272, undefined, []); },
+  get allActivities(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 708202128754272, undefined, []); },
   /** static var beforeSources: CFRunLoopActivity { get } */
-  get beforeSources(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 4387218656497052, undefined, []); },
+  get beforeSources(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 4387218656497052, undefined, []); },
   /** static var beforeTimers: CFRunLoopActivity { get } */
-  get beforeTimers(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 3760099756399366, undefined, []); },
+  get beforeTimers(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 3760099756399366, undefined, []); },
   /** static var beforeWaiting: CFRunLoopActivity { get } */
-  get beforeWaiting(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 865458106773472, undefined, []); },
+  get beforeWaiting(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 865458106773472, undefined, []); },
   /** static var entry: CFRunLoopActivity { get } */
-  get entry(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 4469407055629443, undefined, []); },
+  get entry(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 4469407055629443, undefined, []); },
   /** static var exit: CFRunLoopActivity { get } */
-  get exit(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 2837933908916206, undefined, []); },
+  get exit(): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 2837933908916206, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_212edf3d13b127f5", 2205512696687585, undefined, [rawValue]); }
+  init(rawValue: number): CFRunLoopActivity { return callSDK<CFRunLoopActivity>("CoreFoundation_5d69670f0307b385", 2205512696687585, undefined, [rawValue]); }
 };
 
 /** struct CFRunLoopMode */
@@ -1565,13 +1565,13 @@ export type CFRunLoopMode = "defaultMode" | "commonModes" | (number & {});
 
 export const CFRunLoopMode = {
   /** static let commonModes: CFRunLoopMode! */
-  get commonModes(): (CFRunLoopMode) | null { return callSDK<(CFRunLoopMode) | null>("CoreFoundation_212edf3d13b127f5", 3480916304896735, undefined, []); },
+  get commonModes(): (CFRunLoopMode) | null { return callSDK<(CFRunLoopMode) | null>("CoreFoundation_5d69670f0307b385", 3480916304896735, undefined, []); },
   /** static let defaultMode: CFRunLoopMode! */
-  get defaultMode(): (CFRunLoopMode) | null { return callSDK<(CFRunLoopMode) | null>("CoreFoundation_212edf3d13b127f5", 2584140202126364, undefined, []); },
+  get defaultMode(): (CFRunLoopMode) | null { return callSDK<(CFRunLoopMode) | null>("CoreFoundation_5d69670f0307b385", 2584140202126364, undefined, []); },
   /** init(rawValue: CFString) */
-  initRawValue(rawValue: CFString): CFRunLoopMode { return callSDK<CFRunLoopMode>("CoreFoundation_212edf3d13b127f5", 1993418431924123, undefined, [rawValue]); },
+  initRawValue(rawValue: CFString): CFRunLoopMode { return callSDK<CFRunLoopMode>("CoreFoundation_5d69670f0307b385", 1993418431924123, undefined, [rawValue]); },
   /** init(_ rawValue: CFString) */
-  init(rawValue: CFString): CFRunLoopMode { return callSDK<CFRunLoopMode>("CoreFoundation_212edf3d13b127f5", 2417821905481835, undefined, [rawValue]); }
+  init(rawValue: CFString): CFRunLoopMode { return callSDK<CFRunLoopMode>("CoreFoundation_5d69670f0307b385", 2417821905481835, undefined, [rawValue]); }
 };
 
 /** class CFRunLoopObserver */
@@ -1585,19 +1585,19 @@ export type CFRunLoopObserverCallBack = ((arg0: (CFRunLoopObserver) | null, arg1
 /** struct CFRunLoopObserverContext */
 export class CFRunLoopObserverContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 896841334033856, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 896841334033856, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3216098050828125, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2044017789112172, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3216098050828125, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2044017789112172, this, [value]); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 524671711888950, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 524671711888950, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 843814760989423, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 843814760989423, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 109970693423214, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1367563227596024, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 109970693423214, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1367563227596024, this, [value]); }
   /** init() */
-  static init(): CFRunLoopObserverContext { return callSDK<CFRunLoopObserverContext>("CoreFoundation_212edf3d13b127f5", 1900685754638346, undefined, []); }
+  static init(): CFRunLoopObserverContext { return callSDK<CFRunLoopObserverContext>("CoreFoundation_5d69670f0307b385", 1900685754638346, undefined, []); }
   declare readonly $type: { "c:@SA@CFRunLoopObserverContext": true };
 }
 
@@ -1606,7 +1606,7 @@ export type CFRunLoopRunResult = "finished" | "stopped" | "timedOut" | "handledS
 
 export const CFRunLoopRunResult = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFRunLoopRunResult) | null { return callSDK<(CFRunLoopRunResult) | null>("CoreFoundation_212edf3d13b127f5", 2785874258505270, undefined, [rawValue]); }
+  init(rawValue: number): (CFRunLoopRunResult) | null { return callSDK<(CFRunLoopRunResult) | null>("CoreFoundation_5d69670f0307b385", 2785874258505270, undefined, [rawValue]); }
 };
 
 /** class CFRunLoopSource */
@@ -1617,56 +1617,56 @@ export class CFRunLoopSource extends SDKHandle {
 /** struct CFRunLoopSourceContext */
 export class CFRunLoopSourceContext extends SDKHandle {
   /** var cancel: ((UnsafeMutableRawPointer?, CFRunLoop?, CFRunLoopMode?) -> Void)! */
-  get cancel(): $SDK38 { return callSDK<$SDK38>("CoreFoundation_212edf3d13b127f5", 1585972811389080, this, []); }
+  get cancel(): $SDK38 { return callSDK<$SDK38>("CoreFoundation_5d69670f0307b385", 1585972811389080, this, []); }
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 2291581779738961, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 2291581779738961, this, []); }
   /** var equal: ((UnsafeRawPointer?, UnsafeRawPointer?) -> DarwinBoolean)! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 2859489727307253, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 2859489727307253, this, []); }
   /** var hash: ((UnsafeRawPointer?) -> CFHashCode)! */
-  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_212edf3d13b127f5", 3266212991993523, this, []); }
+  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_5d69670f0307b385", 3266212991993523, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2739430015665612, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1661144724569124, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2739430015665612, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1661144724569124, this, [value]); }
   /** var perform: ((UnsafeMutableRawPointer?) -> Void)! */
-  get perform(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 2228849755357822, this, []); }
+  get perform(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 2228849755357822, this, []); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 3561927509496061, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 3561927509496061, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 399642368842746, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 399642368842746, this, []); }
   /** var schedule: ((UnsafeMutableRawPointer?, CFRunLoop?, CFRunLoopMode?) -> Void)! */
-  get schedule(): $SDK38 { return callSDK<$SDK38>("CoreFoundation_212edf3d13b127f5", 4007877962673029, this, []); }
+  get schedule(): $SDK38 { return callSDK<$SDK38>("CoreFoundation_5d69670f0307b385", 4007877962673029, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3955213964448703, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 995152619416238, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3955213964448703, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 995152619416238, this, [value]); }
   /** init() */
-  static init(): CFRunLoopSourceContext { return callSDK<CFRunLoopSourceContext>("CoreFoundation_212edf3d13b127f5", 1996608668150378, undefined, []); }
+  static init(): CFRunLoopSourceContext { return callSDK<CFRunLoopSourceContext>("CoreFoundation_5d69670f0307b385", 1996608668150378, undefined, []); }
   declare readonly $type: { "c:@SA@CFRunLoopSourceContext": true };
 }
 
 /** struct CFRunLoopSourceContext1 */
 export class CFRunLoopSourceContext1 extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 2302113836996051, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 2302113836996051, this, []); }
   /** var equal: ((UnsafeRawPointer?, UnsafeRawPointer?) -> DarwinBoolean)! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 4133761053845186, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 4133761053845186, this, []); }
   /** var getPort: ((UnsafeMutableRawPointer?) -> mach_port_t)! */
-  get getPort(): (((arg0: (SDKHandle) | null) => Promise<SDKHandle>)) | null { return callSDK<(((arg0: (SDKHandle) | null) => Promise<SDKHandle>)) | null>("CoreFoundation_212edf3d13b127f5", 3043210086110872, this, []); }
+  get getPort(): (((arg0: (SDKHandle) | null) => Promise<SDKHandle>)) | null { return callSDK<(((arg0: (SDKHandle) | null) => Promise<SDKHandle>)) | null>("CoreFoundation_5d69670f0307b385", 3043210086110872, this, []); }
   /** var hash: ((UnsafeRawPointer?) -> CFHashCode)! */
-  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_212edf3d13b127f5", 4382170588251284, this, []); }
+  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_5d69670f0307b385", 4382170588251284, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 579859562119484, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 269557250001396, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 579859562119484, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 269557250001396, this, [value]); }
   /** var perform: ((UnsafeMutableRawPointer?, CFIndex, CFAllocator?, UnsafeMutableRawPointer?) -> UnsafeMutableRawPointer?)! */
-  get perform(): (((arg0: (SDKHandle) | null, arg1: number, arg2: (CFAllocator) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: number, arg2: (CFAllocator) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreFoundation_212edf3d13b127f5", 1125143783643227, this, []); }
+  get perform(): (((arg0: (SDKHandle) | null, arg1: number, arg2: (CFAllocator) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: number, arg2: (CFAllocator) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreFoundation_5d69670f0307b385", 1125143783643227, this, []); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 2553862925668837, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 2553862925668837, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 59366685033348, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 59366685033348, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 591714453441204, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4130714155114564, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 591714453441204, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4130714155114564, this, [value]); }
   /** init() */
-  static init(): CFRunLoopSourceContext1 { return callSDK<CFRunLoopSourceContext1>("CoreFoundation_212edf3d13b127f5", 3901056765805262, undefined, []); }
+  static init(): CFRunLoopSourceContext1 { return callSDK<CFRunLoopSourceContext1>("CoreFoundation_5d69670f0307b385", 3901056765805262, undefined, []); }
   declare readonly $type: { "c:@SA@CFRunLoopSourceContext1": true };
 }
 
@@ -1681,19 +1681,19 @@ export type CFRunLoopTimerCallBack = ((arg0: (CFRunLoopTimer) | null, arg1: (SDK
 /** struct CFRunLoopTimerContext */
 export class CFRunLoopTimerContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 734978531429232, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 734978531429232, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1890350401128473, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2178007876040878, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1890350401128473, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2178007876040878, this, [value]); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 3959031610445927, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 3959031610445927, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 3734934593139101, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 3734934593139101, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3353317200963695, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1618020277958677, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3353317200963695, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1618020277958677, this, [value]); }
   /** init() */
-  static init(): CFRunLoopTimerContext { return callSDK<CFRunLoopTimerContext>("CoreFoundation_212edf3d13b127f5", 76860756606758, undefined, []); }
+  static init(): CFRunLoopTimerContext { return callSDK<CFRunLoopTimerContext>("CoreFoundation_5d69670f0307b385", 76860756606758, undefined, []); }
   declare readonly $type: { "c:@SA@CFRunLoopTimerContext": true };
 }
 
@@ -1703,20 +1703,20 @@ export type CFSetApplierFunction = $SDK8;
 /** struct CFSetCallBacks */
 export class CFSetCallBacks extends SDKHandle {
   /** var copyDescription: CFSetCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 2497859920613980, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 2497859920613980, this, []); }
   /** var equal: CFSetEqualCallBack! */
-  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_212edf3d13b127f5", 2426638885719509, this, []); }
+  get equal(): $SDK12 { return callSDK<$SDK12>("CoreFoundation_5d69670f0307b385", 2426638885719509, this, []); }
   /** var hash: CFSetHashCallBack! */
-  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_212edf3d13b127f5", 1972334957837500, this, []); }
+  get hash(): $SDK18 { return callSDK<$SDK18>("CoreFoundation_5d69670f0307b385", 1972334957837500, this, []); }
   /** var release: CFSetReleaseCallBack! */
-  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_212edf3d13b127f5", 1291030214686756, this, []); }
+  get release(): $SDK13 { return callSDK<$SDK13>("CoreFoundation_5d69670f0307b385", 1291030214686756, this, []); }
   /** var retain: CFSetRetainCallBack! */
-  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_212edf3d13b127f5", 1090652457919597, this, []); }
+  get retain(): $SDK14 { return callSDK<$SDK14>("CoreFoundation_5d69670f0307b385", 1090652457919597, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2694714725140969, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3886782584748812, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2694714725140969, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3886782584748812, this, [value]); }
   /** init() */
-  static init(): CFSetCallBacks { return callSDK<CFSetCallBacks>("CoreFoundation_212edf3d13b127f5", 2722204865728896, undefined, []); }
+  static init(): CFSetCallBacks { return callSDK<CFSetCallBacks>("CoreFoundation_5d69670f0307b385", 2722204865728896, undefined, []); }
   declare readonly $type: { "c:@SA@CFSetCallBacks": true };
 }
 
@@ -1748,35 +1748,35 @@ export type CFSocketCallBackType = Array<"readCallBack" | "acceptCallBack" | "da
 
 export const CFSocketCallBackType = {
   /** static var acceptCallBack: CFSocketCallBackType { get } */
-  get acceptCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_212edf3d13b127f5", 371819258307787, undefined, []); },
+  get acceptCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_5d69670f0307b385", 371819258307787, undefined, []); },
   /** static var connectCallBack: CFSocketCallBackType { get } */
-  get connectCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_212edf3d13b127f5", 75618334489486, undefined, []); },
+  get connectCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_5d69670f0307b385", 75618334489486, undefined, []); },
   /** static var dataCallBack: CFSocketCallBackType { get } */
-  get dataCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_212edf3d13b127f5", 4409299738158658, undefined, []); },
+  get dataCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_5d69670f0307b385", 4409299738158658, undefined, []); },
   /** static var readCallBack: CFSocketCallBackType { get } */
-  get readCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_212edf3d13b127f5", 3821990605594008, undefined, []); },
+  get readCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_5d69670f0307b385", 3821990605594008, undefined, []); },
   /** static var writeCallBack: CFSocketCallBackType { get } */
-  get writeCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_212edf3d13b127f5", 2982949982477274, undefined, []); },
+  get writeCallBack(): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_5d69670f0307b385", 2982949982477274, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_212edf3d13b127f5", 288021513996895, undefined, [rawValue]); }
+  init(rawValue: number): CFSocketCallBackType { return callSDK<CFSocketCallBackType>("CoreFoundation_5d69670f0307b385", 288021513996895, undefined, [rawValue]); }
 };
 
 /** struct CFSocketContext */
 export class CFSocketContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 3096518451518142, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 3096518451518142, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2002526525188298, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 754647209708631, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2002526525188298, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 754647209708631, this, [value]); }
   /** var release: ((UnsafeRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 4017602857229310, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 4017602857229310, this, []); }
   /** var retain: ((UnsafeRawPointer?) -> UnsafeRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 3526975711532079, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 3526975711532079, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2414517033906615, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3734189217641514, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2414517033906615, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3734189217641514, this, [value]); }
   /** init() */
-  static init(): CFSocketContext { return callSDK<CFSocketContext>("CoreFoundation_212edf3d13b127f5", 2400720332246283, undefined, []); }
+  static init(): CFSocketContext { return callSDK<CFSocketContext>("CoreFoundation_5d69670f0307b385", 2400720332246283, undefined, []); }
   declare readonly $type: { "c:@SA@CFSocketContext": true };
 }
 
@@ -1785,7 +1785,7 @@ export type CFSocketError = "success" | "error" | "timeout";
 
 export const CFSocketError = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFSocketError) | null { return callSDK<(CFSocketError) | null>("CoreFoundation_212edf3d13b127f5", 2406862300167663, undefined, [rawValue]); }
+  init(rawValue: number): (CFSocketError) | null { return callSDK<(CFSocketError) | null>("CoreFoundation_5d69670f0307b385", 2406862300167663, undefined, [rawValue]); }
 };
 
 /** typealias CFSocketNativeHandle = Int32 */
@@ -1794,55 +1794,55 @@ export type CFSocketNativeHandle = number;
 /** struct CFSocketSignature */
 export class CFSocketSignature extends SDKHandle {
   /** var address: Unmanaged<CFData>! */
-  get address(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 978994049208976, this, []); }
-  set address(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2972994468287264, this, [value]); }
+  get address(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 978994049208976, this, []); }
+  set address(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2972994468287264, this, [value]); }
   /** var `protocol`: Int32 */
-  get protocol(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4117304540417721, this, []); }
-  set protocol(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3234768505428080, this, [value]); }
+  get protocol(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4117304540417721, this, []); }
+  set protocol(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3234768505428080, this, [value]); }
   /** var protocolFamily: Int32 */
-  get protocolFamily(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2424808182284825, this, []); }
-  set protocolFamily(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1361348567028580, this, [value]); }
+  get protocolFamily(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2424808182284825, this, []); }
+  set protocolFamily(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1361348567028580, this, [value]); }
   /** var socketType: Int32 */
-  get socketType(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1120125668079434, this, []); }
-  set socketType(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2698091767544374, this, [value]); }
+  get socketType(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1120125668079434, this, []); }
+  set socketType(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2698091767544374, this, [value]); }
   /** init(protocolFamily: Int32, socketType: Int32, protocol: Int32, address: Unmanaged<CFData>!) */
-  static initProtocolFamilySocketTypeProtocolAddress(protocolFamily: number, socketType: number, protocol: number, address?: (SDKHandle) | null): CFSocketSignature { return callSDK<CFSocketSignature>("CoreFoundation_212edf3d13b127f5", 2102570404732502, undefined, [protocolFamily, socketType, protocol, address]); }
+  static initProtocolFamilySocketTypeProtocolAddress(protocolFamily: number, socketType: number, protocol: number, address?: (SDKHandle) | null): CFSocketSignature { return callSDK<CFSocketSignature>("CoreFoundation_5d69670f0307b385", 2102570404732502, undefined, [protocolFamily, socketType, protocol, address]); }
   /** init() */
-  static init(): CFSocketSignature { return callSDK<CFSocketSignature>("CoreFoundation_212edf3d13b127f5", 2514067719659644, undefined, []); }
+  static init(): CFSocketSignature { return callSDK<CFSocketSignature>("CoreFoundation_5d69670f0307b385", 2514067719659644, undefined, []); }
   declare readonly $type: { "c:@SA@CFSocketSignature": true };
 }
 
 /** struct CFStreamClientContext */
 export class CFStreamClientContext extends SDKHandle {
   /** var copyDescription: ((UnsafeMutableRawPointer?) -> Unmanaged<CFString>?)! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 2353517873181357, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 2353517873181357, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 450880359924362, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2825277045173134, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 450880359924362, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2825277045173134, this, [value]); }
   /** var release: ((UnsafeMutableRawPointer?) -> Void)! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 2165931096969912, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 2165931096969912, this, []); }
   /** var retain: ((UnsafeMutableRawPointer?) -> UnsafeMutableRawPointer?)! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 2923537460901933, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 2923537460901933, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1392549926654714, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 895591258636689, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1392549926654714, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 895591258636689, this, [value]); }
   /** init() */
-  static init(): CFStreamClientContext { return callSDK<CFStreamClientContext>("CoreFoundation_212edf3d13b127f5", 2889467016039200, undefined, []); }
+  static init(): CFStreamClientContext { return callSDK<CFStreamClientContext>("CoreFoundation_5d69670f0307b385", 2889467016039200, undefined, []); }
   declare readonly $type: { "c:@SA@CFStreamClientContext": true };
 }
 
 /** struct CFStreamError */
 export class CFStreamError extends SDKHandle {
   /** var domain: CFIndex */
-  get domain(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1125681100900295, this, []); }
-  set domain(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 80336722089888, this, [value]); }
+  get domain(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1125681100900295, this, []); }
+  set domain(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 80336722089888, this, [value]); }
   /** var error: Int32 */
-  get error(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3622690215220808, this, []); }
-  set error(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3363056170511432, this, [value]); }
+  get error(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3622690215220808, this, []); }
+  set error(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3363056170511432, this, [value]); }
   /** init(domain: CFIndex, error: Int32) */
-  static initDomainError(domain: number, error: number): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_212edf3d13b127f5", 3600144348764463, undefined, [domain, error]); }
+  static initDomainError(domain: number, error: number): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_5d69670f0307b385", 3600144348764463, undefined, [domain, error]); }
   /** init() */
-  static init(): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_212edf3d13b127f5", 3524610790877282, undefined, []); }
+  static init(): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_5d69670f0307b385", 3524610790877282, undefined, []); }
   declare readonly $type: { "c:@SA@CFStreamError": true };
 }
 
@@ -1851,7 +1851,7 @@ export type CFStreamErrorDomain = "custom" | "POSIX" | "macOSStatus";
 
 export const CFStreamErrorDomain = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFStreamErrorDomain) | null { return callSDK<(CFStreamErrorDomain) | null>("CoreFoundation_212edf3d13b127f5", 2079978612166210, undefined, [rawValue]); }
+  init(rawValue: number): (CFStreamErrorDomain) | null { return callSDK<(CFStreamErrorDomain) | null>("CoreFoundation_5d69670f0307b385", 2079978612166210, undefined, [rawValue]); }
 };
 
 /** struct CFStreamEventType */
@@ -1859,17 +1859,17 @@ export type CFStreamEventType = Array<"openCompleted" | "hasBytesAvailable" | "c
 
 export const CFStreamEventType = {
   /** static var canAcceptBytes: CFStreamEventType { get } */
-  get canAcceptBytes(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_212edf3d13b127f5", 255191661182264, undefined, []); },
+  get canAcceptBytes(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_5d69670f0307b385", 255191661182264, undefined, []); },
   /** static var endEncountered: CFStreamEventType { get } */
-  get endEncountered(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_212edf3d13b127f5", 3798832115407768, undefined, []); },
+  get endEncountered(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_5d69670f0307b385", 3798832115407768, undefined, []); },
   /** static var errorOccurred: CFStreamEventType { get } */
-  get errorOccurred(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_212edf3d13b127f5", 3173577653344813, undefined, []); },
+  get errorOccurred(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_5d69670f0307b385", 3173577653344813, undefined, []); },
   /** static var hasBytesAvailable: CFStreamEventType { get } */
-  get hasBytesAvailable(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_212edf3d13b127f5", 3707587596971735, undefined, []); },
+  get hasBytesAvailable(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_5d69670f0307b385", 3707587596971735, undefined, []); },
   /** static var openCompleted: CFStreamEventType { get } */
-  get openCompleted(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_212edf3d13b127f5", 1959928161136096, undefined, []); },
+  get openCompleted(): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_5d69670f0307b385", 1959928161136096, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_212edf3d13b127f5", 482577691841303, undefined, [rawValue]); }
+  init(rawValue: number): CFStreamEventType { return callSDK<CFStreamEventType>("CoreFoundation_5d69670f0307b385", 482577691841303, undefined, [rawValue]); }
 };
 
 /** struct CFStreamPropertyKey */
@@ -1877,21 +1877,21 @@ export type CFStreamPropertyKey = "dataWritten" | "appendToFile" | "fileCurrentO
 
 export const CFStreamPropertyKey = {
   /** static let appendToFile: CFStreamPropertyKey! */
-  get appendToFile(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_212edf3d13b127f5", 4234850766195030, undefined, []); },
+  get appendToFile(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_5d69670f0307b385", 4234850766195030, undefined, []); },
   /** static let dataWritten: CFStreamPropertyKey! */
-  get dataWritten(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_212edf3d13b127f5", 118623564617531, undefined, []); },
+  get dataWritten(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_5d69670f0307b385", 118623564617531, undefined, []); },
   /** static let fileCurrentOffset: CFStreamPropertyKey! */
-  get fileCurrentOffset(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_212edf3d13b127f5", 3069172755012119, undefined, []); },
+  get fileCurrentOffset(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_5d69670f0307b385", 3069172755012119, undefined, []); },
   /** static let socketNativeHandle: CFStreamPropertyKey! */
-  get socketNativeHandle(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_212edf3d13b127f5", 189079337133351, undefined, []); },
+  get socketNativeHandle(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_5d69670f0307b385", 189079337133351, undefined, []); },
   /** static let socketRemoteHostName: CFStreamPropertyKey! */
-  get socketRemoteHostName(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_212edf3d13b127f5", 3759663994482636, undefined, []); },
+  get socketRemoteHostName(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_5d69670f0307b385", 3759663994482636, undefined, []); },
   /** static let socketRemotePortNumber: CFStreamPropertyKey! */
-  get socketRemotePortNumber(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_212edf3d13b127f5", 482044524282969, undefined, []); },
+  get socketRemotePortNumber(): $SDK43 { return callSDK<$SDK43>("CoreFoundation_5d69670f0307b385", 482044524282969, undefined, []); },
   /** init(rawValue: CFString) */
-  initRawValue(rawValue: CFString): CFStreamPropertyKey { return callSDK<CFStreamPropertyKey>("CoreFoundation_212edf3d13b127f5", 3475743817095046, undefined, [rawValue]); },
+  initRawValue(rawValue: CFString): CFStreamPropertyKey { return callSDK<CFStreamPropertyKey>("CoreFoundation_5d69670f0307b385", 3475743817095046, undefined, [rawValue]); },
   /** init(_ rawValue: CFString) */
-  init(rawValue: CFString): CFStreamPropertyKey { return callSDK<CFStreamPropertyKey>("CoreFoundation_212edf3d13b127f5", 2123628655126598, undefined, [rawValue]); }
+  init(rawValue: CFString): CFStreamPropertyKey { return callSDK<CFStreamPropertyKey>("CoreFoundation_5d69670f0307b385", 2123628655126598, undefined, [rawValue]); }
 };
 
 /** enum CFStreamStatus */
@@ -1899,7 +1899,7 @@ export type CFStreamStatus = "notOpen" | "opening" | "open" | "reading" | "writi
 
 export const CFStreamStatus = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFStreamStatus) | null { return callSDK<(CFStreamStatus) | null>("CoreFoundation_212edf3d13b127f5", 1548241381402975, undefined, [rawValue]); }
+  init(rawValue: number): (CFStreamStatus) | null { return callSDK<(CFStreamStatus) | null>("CoreFoundation_5d69670f0307b385", 1548241381402975, undefined, [rawValue]); }
 };
 
 /** enum CFStringBuiltInEncodings */
@@ -1907,9 +1907,9 @@ export type CFStringBuiltInEncodings = "macRoman" | "windowsLatin1" | "isoLatin1
 
 export const CFStringBuiltInEncodings = {
   /** static var UTF16: CFStringBuiltInEncodings { get } */
-  get UTF16(): CFStringBuiltInEncodings { return callSDK<CFStringBuiltInEncodings>("CoreFoundation_212edf3d13b127f5", 3110849471038998, undefined, []); },
+  get UTF16(): CFStringBuiltInEncodings { return callSDK<CFStringBuiltInEncodings>("CoreFoundation_5d69670f0307b385", 3110849471038998, undefined, []); },
   /** init?(rawValue: CFStringEncoding) */
-  init(rawValue: number): (CFStringBuiltInEncodings) | null { return callSDK<(CFStringBuiltInEncodings) | null>("CoreFoundation_212edf3d13b127f5", 3648709274450917, undefined, [rawValue]); }
+  init(rawValue: number): (CFStringBuiltInEncodings) | null { return callSDK<(CFStringBuiltInEncodings) | null>("CoreFoundation_5d69670f0307b385", 3648709274450917, undefined, [rawValue]); }
 };
 
 /** struct CFStringCompareFlags */
@@ -1917,34 +1917,34 @@ export type CFStringCompareFlags = Array<"compareCaseInsensitive" | "compareBack
 
 export const CFStringCompareFlags = {
   /** static var compareAnchored: CFStringCompareFlags { get } */
-  get compareAnchored(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 3012716004587124, undefined, []); },
+  get compareAnchored(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 3012716004587124, undefined, []); },
   /** static var compareBackwards: CFStringCompareFlags { get } */
-  get compareBackwards(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 4385912300134196, undefined, []); },
+  get compareBackwards(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 4385912300134196, undefined, []); },
   /** static var compareCaseInsensitive: CFStringCompareFlags { get } */
-  get compareCaseInsensitive(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 2573862796942828, undefined, []); },
+  get compareCaseInsensitive(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 2573862796942828, undefined, []); },
   /**
    * static var compareDiacriticInsensitive: CFStringCompareFlags { get }
    * @availability iOS 2.0+
    */
-  get compareDiacriticInsensitive(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 359801193418482, undefined, []); },
+  get compareDiacriticInsensitive(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 359801193418482, undefined, []); },
   /**
    * static var compareForcedOrdering: CFStringCompareFlags { get }
    * @availability iOS 2.0+
    */
-  get compareForcedOrdering(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 293255401579253, undefined, []); },
+  get compareForcedOrdering(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 293255401579253, undefined, []); },
   /** static var compareLocalized: CFStringCompareFlags { get } */
-  get compareLocalized(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 2474891761136054, undefined, []); },
+  get compareLocalized(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 2474891761136054, undefined, []); },
   /** static var compareNonliteral: CFStringCompareFlags { get } */
-  get compareNonliteral(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 3919896376801241, undefined, []); },
+  get compareNonliteral(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 3919896376801241, undefined, []); },
   /** static var compareNumerically: CFStringCompareFlags { get } */
-  get compareNumerically(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 3962361272526767, undefined, []); },
+  get compareNumerically(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 3962361272526767, undefined, []); },
   /**
    * static var compareWidthInsensitive: CFStringCompareFlags { get }
    * @availability iOS 2.0+
    */
-  get compareWidthInsensitive(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 3476777181081301, undefined, []); },
+  get compareWidthInsensitive(): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 3476777181081301, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_212edf3d13b127f5", 4118368190755107, undefined, [rawValue]); }
+  init(rawValue: number): CFStringCompareFlags { return callSDK<CFStringCompareFlags>("CoreFoundation_5d69670f0307b385", 4118368190755107, undefined, [rawValue]); }
 };
 
 /** typealias CFStringEncoding = UInt32 */
@@ -1955,38 +1955,38 @@ export type CFStringEncodings = "macJapanese" | "macChineseTrad" | "macKorean" |
 
 export const CFStringEncodings = {
   /** static var shiftJIS_X0213_00: CFStringEncodings { get } */
-  get shiftJIS_X0213_00(): CFStringEncodings { return callSDK<CFStringEncodings>("CoreFoundation_212edf3d13b127f5", 1286878336686488, undefined, []); },
+  get shiftJIS_X0213_00(): CFStringEncodings { return callSDK<CFStringEncodings>("CoreFoundation_5d69670f0307b385", 1286878336686488, undefined, []); },
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFStringEncodings) | null { return callSDK<(CFStringEncodings) | null>("CoreFoundation_212edf3d13b127f5", 791382745128958, undefined, [rawValue]); }
+  init(rawValue: number): (CFStringEncodings) | null { return callSDK<(CFStringEncodings) | null>("CoreFoundation_5d69670f0307b385", 791382745128958, undefined, [rawValue]); }
 };
 
 /** struct CFStringInlineBuffer */
 export class CFStringInlineBuffer extends SDKHandle {
   /** var buffer: (UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar) */
-  get buffer(): $SDK44 { return callSDK<$SDK44>("CoreFoundation_212edf3d13b127f5", 2468067441209133, this, []); }
-  set buffer(value: $SDK44) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4068918644510553, this, [value]); }
+  get buffer(): $SDK44 { return callSDK<$SDK44>("CoreFoundation_5d69670f0307b385", 2468067441209133, this, []); }
+  set buffer(value: $SDK44) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4068918644510553, this, [value]); }
   /** var bufferedRangeEnd: CFIndex */
-  get bufferedRangeEnd(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1456146707154332, this, []); }
-  set bufferedRangeEnd(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1593040761359704, this, [value]); }
+  get bufferedRangeEnd(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1456146707154332, this, []); }
+  set bufferedRangeEnd(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1593040761359704, this, [value]); }
   /** var bufferedRangeStart: CFIndex */
-  get bufferedRangeStart(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 957476127285335, this, []); }
-  set bufferedRangeStart(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 109620787039523, this, [value]); }
+  get bufferedRangeStart(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 957476127285335, this, []); }
+  set bufferedRangeStart(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 109620787039523, this, [value]); }
   /** var directCStringBuffer: UnsafePointer<CChar>! */
-  get directCStringBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2271187323217352, this, []); }
-  set directCStringBuffer(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2719689240176630, this, [value]); }
+  get directCStringBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2271187323217352, this, []); }
+  set directCStringBuffer(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2719689240176630, this, [value]); }
   /** var directUniCharBuffer: UnsafePointer<UniChar>! */
-  get directUniCharBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3511699988316602, this, []); }
-  set directUniCharBuffer(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1766617753899435, this, [value]); }
+  get directUniCharBuffer(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3511699988316602, this, []); }
+  set directUniCharBuffer(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1766617753899435, this, [value]); }
   /** var rangeToBuffer: CFRange */
-  get rangeToBuffer(): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 3591889002330519, this, []); }
-  set rangeToBuffer(value: CFRange) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4233269973799505, this, [value]); }
+  get rangeToBuffer(): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 3591889002330519, this, []); }
+  set rangeToBuffer(value: CFRange) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4233269973799505, this, [value]); }
   /** var theString: Unmanaged<CFString>! */
-  get theString(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1612967114475259, this, []); }
-  set theString(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2037680269535704, this, [value]); }
+  get theString(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1612967114475259, this, []); }
+  set theString(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2037680269535704, this, [value]); }
   /** init(buffer: (UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar, UniChar), theString: Unmanaged<CFString>!, directUniCharBuffer: UnsafePointer<UniChar>!, directCStringBuffer: UnsafePointer<CChar>!, rangeToBuffer: CFRange, bufferedRangeStart: CFIndex, bufferedRangeEnd: CFIndex) */
-  static initBufferTheStringDirectUniCharBufferDirectCStringBufferRangeToBufferBufferedRangeStartBufferedRangeEnd(buffer: $SDK44, theString: (SDKHandle) | null, directUniCharBuffer: (SDKHandle) | null, directCStringBuffer: (SDKHandle) | null, rangeToBuffer: CFRange, bufferedRangeStart: number, bufferedRangeEnd: number): CFStringInlineBuffer { return callSDK<CFStringInlineBuffer>("CoreFoundation_212edf3d13b127f5", 295882051325524, undefined, [buffer, theString, directUniCharBuffer, directCStringBuffer, rangeToBuffer, bufferedRangeStart, bufferedRangeEnd]); }
+  static initBufferTheStringDirectUniCharBufferDirectCStringBufferRangeToBufferBufferedRangeStartBufferedRangeEnd(buffer: $SDK44, theString: (SDKHandle) | null, directUniCharBuffer: (SDKHandle) | null, directCStringBuffer: (SDKHandle) | null, rangeToBuffer: CFRange, bufferedRangeStart: number, bufferedRangeEnd: number): CFStringInlineBuffer { return callSDK<CFStringInlineBuffer>("CoreFoundation_5d69670f0307b385", 295882051325524, undefined, [buffer, theString, directUniCharBuffer, directCStringBuffer, rangeToBuffer, bufferedRangeStart, bufferedRangeEnd]); }
   /** init() */
-  static init(): CFStringInlineBuffer { return callSDK<CFStringInlineBuffer>("CoreFoundation_212edf3d13b127f5", 174308859712519, undefined, []); }
+  static init(): CFStringInlineBuffer { return callSDK<CFStringInlineBuffer>("CoreFoundation_5d69670f0307b385", 174308859712519, undefined, []); }
   declare readonly $type: { "c:@SA@CFStringInlineBuffer": true };
 }
 
@@ -1995,7 +1995,7 @@ export type CFStringNormalizationForm = "D" | "KD" | "C" | "KC";
 
 export const CFStringNormalizationForm = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFStringNormalizationForm) | null { return callSDK<(CFStringNormalizationForm) | null>("CoreFoundation_212edf3d13b127f5", 2321775814658085, undefined, [rawValue]); }
+  init(rawValue: number): (CFStringNormalizationForm) | null { return callSDK<(CFStringNormalizationForm) | null>("CoreFoundation_5d69670f0307b385", 2321775814658085, undefined, [rawValue]); }
 };
 
 /** class CFStringTokenizer */
@@ -2008,42 +2008,42 @@ export type CFStringTokenizerTokenType = Array<"normal" | "hasSubTokensMask" | "
 
 export const CFStringTokenizerTokenType = {
   /** static var hasDerivedSubTokensMask: CFStringTokenizerTokenType { get } */
-  get hasDerivedSubTokensMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 1253245257191561, undefined, []); },
+  get hasDerivedSubTokensMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 1253245257191561, undefined, []); },
   /** static var hasHasNumbersMask: CFStringTokenizerTokenType { get } */
-  get hasHasNumbersMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 1799371970178903, undefined, []); },
+  get hasHasNumbersMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 1799371970178903, undefined, []); },
   /** static var hasNonLettersMask: CFStringTokenizerTokenType { get } */
-  get hasNonLettersMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 245518438315743, undefined, []); },
+  get hasNonLettersMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 245518438315743, undefined, []); },
   /** static var hasSubTokensMask: CFStringTokenizerTokenType { get } */
-  get hasSubTokensMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 2155606125546495, undefined, []); },
+  get hasSubTokensMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 2155606125546495, undefined, []); },
   /** static var isCJWordMask: CFStringTokenizerTokenType { get } */
-  get isCJWordMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 4011404858723475, undefined, []); },
+  get isCJWordMask(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 4011404858723475, undefined, []); },
   /** static var normal: CFStringTokenizerTokenType { get } */
-  get normal(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 1716865989116997, undefined, []); },
+  get normal(): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 1716865989116997, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 2574534775351806, undefined, [rawValue]); }
+  init(rawValue: number): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 2574534775351806, undefined, [rawValue]); }
 };
 
 /** struct CFSwappedFloat32 */
 export class CFSwappedFloat32 extends SDKHandle {
   /** var v: UInt32 */
-  get v(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4404331551167718, this, []); }
-  set v(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1178027720091378, this, [value]); }
+  get v(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4404331551167718, this, []); }
+  set v(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1178027720091378, this, [value]); }
   /** init(v: UInt32) */
-  static initV(v: number): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_212edf3d13b127f5", 4401541991676575, undefined, [v]); }
+  static initV(v: number): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_5d69670f0307b385", 4401541991676575, undefined, [v]); }
   /** init() */
-  static init(): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_212edf3d13b127f5", 3521311466523084, undefined, []); }
+  static init(): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_5d69670f0307b385", 3521311466523084, undefined, []); }
   declare readonly $type: { "c:@SA@CFSwappedFloat32": true };
 }
 
 /** struct CFSwappedFloat64 */
 export class CFSwappedFloat64 extends SDKHandle {
   /** var v: UInt64 */
-  get v(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 141756275822014, this, []); }
-  set v(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3868970900633147, this, [value]); }
+  get v(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 141756275822014, this, []); }
+  set v(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3868970900633147, this, [value]); }
   /** init(v: UInt64) */
-  static initV(v: number): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_212edf3d13b127f5", 2194611923651932, undefined, [v]); }
+  static initV(v: number): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_5d69670f0307b385", 2194611923651932, undefined, [v]); }
   /** init() */
-  static init(): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_212edf3d13b127f5", 797132200592073, undefined, []); }
+  static init(): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_5d69670f0307b385", 797132200592073, undefined, []); }
   declare readonly $type: { "c:@SA@CFSwappedFloat64": true };
 }
 
@@ -2066,7 +2066,7 @@ export const CFTimeZoneNameStyle = {
    * init?(rawValue: CFIndex)
    * @availability iOS 2.0+
    */
-  init(rawValue: number): (CFTimeZoneNameStyle) | null { return callSDK<(CFTimeZoneNameStyle) | null>("CoreFoundation_212edf3d13b127f5", 1277060437850713, undefined, [rawValue]); }
+  init(rawValue: number): (CFTimeZoneNameStyle) | null { return callSDK<(CFTimeZoneNameStyle) | null>("CoreFoundation_5d69670f0307b385", 1277060437850713, undefined, [rawValue]); }
 };
 
 /** class CFTree */
@@ -2080,19 +2080,19 @@ export type CFTreeApplierFunction = $SDK8;
 /** struct CFTreeContext */
 export class CFTreeContext extends SDKHandle {
   /** var copyDescription: CFTreeCopyDescriptionCallBack! */
-  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 3092617266117677, this, []); }
+  get copyDescription(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 3092617266117677, this, []); }
   /** var info: UnsafeMutableRawPointer! */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 813070002548091, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3156198030728470, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 813070002548091, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3156198030728470, this, [value]); }
   /** var release: CFTreeReleaseCallBack! */
-  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_212edf3d13b127f5", 417388565987285, this, []); }
+  get release(): $SDK6 { return callSDK<$SDK6>("CoreFoundation_5d69670f0307b385", 417388565987285, this, []); }
   /** var retain: CFTreeRetainCallBack! */
-  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_212edf3d13b127f5", 1237245760761527, this, []); }
+  get retain(): $SDK2 { return callSDK<$SDK2>("CoreFoundation_5d69670f0307b385", 1237245760761527, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3355272097148064, this, []); }
-  set version(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3821966683008916, this, [value]); }
+  get version(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3355272097148064, this, []); }
+  set version(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3821966683008916, this, [value]); }
   /** init() */
-  static init(): CFTreeContext { return callSDK<CFTreeContext>("CoreFoundation_212edf3d13b127f5", 115729032163919, undefined, []); }
+  static init(): CFTreeContext { return callSDK<CFTreeContext>("CoreFoundation_5d69670f0307b385", 115729032163919, undefined, []); }
   declare readonly $type: { "c:@SA@CFTreeContext": true };
 }
 
@@ -2127,22 +2127,22 @@ export const CFURLBookmarkCreationOptions = {
    * static var minimalBookmarkMask: CFURLBookmarkCreationOptions { get }
    * @availability iOS 4.0+
    */
-  get minimalBookmarkMask(): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_212edf3d13b127f5", 4305974363343348, undefined, []); },
+  get minimalBookmarkMask(): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_5d69670f0307b385", 4305974363343348, undefined, []); },
   /**
    * static var suitableForBookmarkFile: CFURLBookmarkCreationOptions { get }
    * @availability iOS 4.0+
    */
-  get suitableForBookmarkFile(): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_212edf3d13b127f5", 2406113331239803, undefined, []); },
+  get suitableForBookmarkFile(): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_5d69670f0307b385", 2406113331239803, undefined, []); },
   /**
    * static var withoutImplicitSecurityScope: CFURLBookmarkCreationOptions { get }
    * @availability iOS 5.0+
    */
-  get withoutImplicitSecurityScope(): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_212edf3d13b127f5", 1239751214667065, undefined, []); },
+  get withoutImplicitSecurityScope(): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_5d69670f0307b385", 1239751214667065, undefined, []); },
   /**
    * init(rawValue: CFOptionFlags)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_212edf3d13b127f5", 2948632611266263, undefined, [rawValue]); }
+  init(rawValue: number): CFURLBookmarkCreationOptions { return callSDK<CFURLBookmarkCreationOptions>("CoreFoundation_5d69670f0307b385", 2948632611266263, undefined, [rawValue]); }
 };
 
 /** typealias CFURLBookmarkFileCreationOptions = CFOptionFlags */
@@ -2159,32 +2159,32 @@ export const CFURLBookmarkResolutionOptions = {
    * static var cfBookmarkResolutionWithoutMountingMask: CFURLBookmarkResolutionOptions { get }
    * @availability iOS 4.0+
    */
-  get cfBookmarkResolutionWithoutMountingMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_212edf3d13b127f5", 1097890660886228, undefined, []); },
+  get cfBookmarkResolutionWithoutMountingMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_5d69670f0307b385", 1097890660886228, undefined, []); },
   /**
    * static var cfBookmarkResolutionWithoutUIMask: CFURLBookmarkResolutionOptions { get }
    * @availability iOS 4.0+
    */
-  get cfBookmarkResolutionWithoutUIMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_212edf3d13b127f5", 2120070345451113, undefined, []); },
+  get cfBookmarkResolutionWithoutUIMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_5d69670f0307b385", 2120070345451113, undefined, []); },
   /**
    * static var cfurlBookmarkResolutionWithoutImplicitStartAccessing: CFURLBookmarkResolutionOptions { get }
    * @availability iOS 14.2+
    */
-  get cfurlBookmarkResolutionWithoutImplicitStartAccessing(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_212edf3d13b127f5", 3039974837074050, undefined, []); },
+  get cfurlBookmarkResolutionWithoutImplicitStartAccessing(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_5d69670f0307b385", 3039974837074050, undefined, []); },
   /**
    * static var cfurlBookmarkResolutionWithoutMountingMask: CFURLBookmarkResolutionOptions { get }
    * @availability iOS 4.0+
    */
-  get cfurlBookmarkResolutionWithoutMountingMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_212edf3d13b127f5", 2213310328631971, undefined, []); },
+  get cfurlBookmarkResolutionWithoutMountingMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_5d69670f0307b385", 2213310328631971, undefined, []); },
   /**
    * static var cfurlBookmarkResolutionWithoutUIMask: CFURLBookmarkResolutionOptions { get }
    * @availability iOS 4.0+
    */
-  get cfurlBookmarkResolutionWithoutUIMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_212edf3d13b127f5", 710959549805498, undefined, []); },
+  get cfurlBookmarkResolutionWithoutUIMask(): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_5d69670f0307b385", 710959549805498, undefined, []); },
   /**
    * init(rawValue: CFOptionFlags)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_212edf3d13b127f5", 1018658298566047, undefined, [rawValue]); }
+  init(rawValue: number): CFURLBookmarkResolutionOptions { return callSDK<CFURLBookmarkResolutionOptions>("CoreFoundation_5d69670f0307b385", 1018658298566047, undefined, [rawValue]); }
 };
 
 /** enum CFURLComponentType */
@@ -2192,7 +2192,7 @@ export type CFURLComponentType = "scheme" | "netLocation" | "path" | "resourceSp
 
 export const CFURLComponentType = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFURLComponentType) | null { return callSDK<(CFURLComponentType) | null>("CoreFoundation_212edf3d13b127f5", 3565587969516738, undefined, [rawValue]); }
+  init(rawValue: number): (CFURLComponentType) | null { return callSDK<(CFURLComponentType) | null>("CoreFoundation_5d69670f0307b385", 3565587969516738, undefined, [rawValue]); }
 };
 
 /** class CFURLEnumerator */
@@ -2205,24 +2205,24 @@ export type CFURLEnumeratorOptions = Array<"descendRecursively" | "skipInvisible
 
 export const CFURLEnumeratorOptions = {
   /** static var descendRecursively: CFURLEnumeratorOptions { get } */
-  get descendRecursively(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 3317692462229622, undefined, []); },
+  get descendRecursively(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 3317692462229622, undefined, []); },
   /** static var generateFileReferenceURLs: CFURLEnumeratorOptions { get } */
-  get generateFileReferenceURLs(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 251921669623734, undefined, []); },
+  get generateFileReferenceURLs(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 251921669623734, undefined, []); },
   /**
    * static var generateRelativePathURLs: CFURLEnumeratorOptions { get }
    * @availability iOS 13.0+
    */
-  get generateRelativePathURLs(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 2645915611538294, undefined, []); },
+  get generateRelativePathURLs(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 2645915611538294, undefined, []); },
   /** static var includeDirectoriesPostOrder: CFURLEnumeratorOptions { get } */
-  get includeDirectoriesPostOrder(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 2523400606122607, undefined, []); },
+  get includeDirectoriesPostOrder(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 2523400606122607, undefined, []); },
   /** static var includeDirectoriesPreOrder: CFURLEnumeratorOptions { get } */
-  get includeDirectoriesPreOrder(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 438515006572202, undefined, []); },
+  get includeDirectoriesPreOrder(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 438515006572202, undefined, []); },
   /** static var skipInvisibles: CFURLEnumeratorOptions { get } */
-  get skipInvisibles(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 1422173756125931, undefined, []); },
+  get skipInvisibles(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 1422173756125931, undefined, []); },
   /** static var skipPackageContents: CFURLEnumeratorOptions { get } */
-  get skipPackageContents(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 3818556538202081, undefined, []); },
+  get skipPackageContents(): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 3818556538202081, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_212edf3d13b127f5", 274849925777027, undefined, [rawValue]); }
+  init(rawValue: number): CFURLEnumeratorOptions { return callSDK<CFURLEnumeratorOptions>("CoreFoundation_5d69670f0307b385", 274849925777027, undefined, [rawValue]); }
 };
 
 /** enum CFURLEnumeratorResult */
@@ -2230,7 +2230,7 @@ export type CFURLEnumeratorResult = "success" | "end" | "error" | "directoryPost
 
 export const CFURLEnumeratorResult = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFURLEnumeratorResult) | null { return callSDK<(CFURLEnumeratorResult) | null>("CoreFoundation_212edf3d13b127f5", 953791961913808, undefined, [rawValue]); }
+  init(rawValue: number): (CFURLEnumeratorResult) | null { return callSDK<(CFURLEnumeratorResult) | null>("CoreFoundation_5d69670f0307b385", 953791961913808, undefined, [rawValue]); }
 };
 
 /** enum CFURLPathStyle */
@@ -2238,7 +2238,7 @@ export type CFURLPathStyle = "cfurlposixPathStyle" | "cfurlWindowsPathStyle";
 
 export const CFURLPathStyle = {
   /** init?(rawValue: CFIndex) */
-  init(rawValue: number): (CFURLPathStyle) | null { return callSDK<(CFURLPathStyle) | null>("CoreFoundation_212edf3d13b127f5", 4153110733052821, undefined, [rawValue]); }
+  init(rawValue: number): (CFURLPathStyle) | null { return callSDK<(CFURLPathStyle) | null>("CoreFoundation_5d69670f0307b385", 4153110733052821, undefined, [rawValue]); }
 };
 
 /** class CFUserNotification */
@@ -2257,57 +2257,57 @@ export class CFUUID extends SDKHandle {
 /** struct CFUUIDBytes */
 export class CFUUIDBytes extends SDKHandle {
   /** var byte0: UInt8 */
-  get byte0(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 270620780234478, this, []); }
-  set byte0(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 172873675614747, this, [value]); }
+  get byte0(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 270620780234478, this, []); }
+  set byte0(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 172873675614747, this, [value]); }
   /** var byte10: UInt8 */
-  get byte10(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1309979271753302, this, []); }
-  set byte10(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2440024918427409, this, [value]); }
+  get byte10(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1309979271753302, this, []); }
+  set byte10(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2440024918427409, this, [value]); }
   /** var byte11: UInt8 */
-  get byte11(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2088956007789852, this, []); }
-  set byte11(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4040082068974711, this, [value]); }
+  get byte11(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2088956007789852, this, []); }
+  set byte11(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4040082068974711, this, [value]); }
   /** var byte12: UInt8 */
-  get byte12(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1388214905712394, this, []); }
-  set byte12(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1166453012485208, this, [value]); }
+  get byte12(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1388214905712394, this, []); }
+  set byte12(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1166453012485208, this, [value]); }
   /** var byte13: UInt8 */
-  get byte13(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2594909099716684, this, []); }
-  set byte13(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3788876335272033, this, [value]); }
+  get byte13(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2594909099716684, this, []); }
+  set byte13(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3788876335272033, this, [value]); }
   /** var byte14: UInt8 */
-  get byte14(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3704895865392684, this, []); }
-  set byte14(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2779335073946986, this, [value]); }
+  get byte14(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3704895865392684, this, []); }
+  set byte14(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2779335073946986, this, [value]); }
   /** var byte15: UInt8 */
-  get byte15(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3360233213754845, this, []); }
-  set byte15(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4297267063047081, this, [value]); }
+  get byte15(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3360233213754845, this, []); }
+  set byte15(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4297267063047081, this, [value]); }
   /** var byte1: UInt8 */
-  get byte1(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1589037864163686, this, []); }
-  set byte1(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2569246975560805, this, [value]); }
+  get byte1(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1589037864163686, this, []); }
+  set byte1(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2569246975560805, this, [value]); }
   /** var byte2: UInt8 */
-  get byte2(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3814246249613207, this, []); }
-  set byte2(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 361004325728573, this, [value]); }
+  get byte2(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3814246249613207, this, []); }
+  set byte2(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 361004325728573, this, [value]); }
   /** var byte3: UInt8 */
-  get byte3(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 693867330595215, this, []); }
-  set byte3(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3089674221563283, this, [value]); }
+  get byte3(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 693867330595215, this, []); }
+  set byte3(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3089674221563283, this, [value]); }
   /** var byte4: UInt8 */
-  get byte4(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4461369249536096, this, []); }
-  set byte4(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3207042935655357, this, [value]); }
+  get byte4(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4461369249536096, this, []); }
+  set byte4(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3207042935655357, this, [value]); }
   /** var byte5: UInt8 */
-  get byte5(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3605983272303922, this, []); }
-  set byte5(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 35833845343266, this, [value]); }
+  get byte5(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3605983272303922, this, []); }
+  set byte5(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 35833845343266, this, [value]); }
   /** var byte6: UInt8 */
-  get byte6(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 637671881803428, this, []); }
-  set byte6(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4090011371053163, this, [value]); }
+  get byte6(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 637671881803428, this, []); }
+  set byte6(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4090011371053163, this, [value]); }
   /** var byte7: UInt8 */
-  get byte7(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 50784213238962, this, []); }
-  set byte7(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4127976897823377, this, [value]); }
+  get byte7(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 50784213238962, this, []); }
+  set byte7(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4127976897823377, this, [value]); }
   /** var byte8: UInt8 */
-  get byte8(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1458932216747398, this, []); }
-  set byte8(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 4496121813696824, this, [value]); }
+  get byte8(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1458932216747398, this, []); }
+  set byte8(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 4496121813696824, this, [value]); }
   /** var byte9: UInt8 */
-  get byte9(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1899097595519319, this, []); }
-  set byte9(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1565928889887821, this, [value]); }
+  get byte9(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1899097595519319, this, []); }
+  set byte9(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1565928889887821, this, [value]); }
   /** init(byte0: UInt8, byte1: UInt8, byte2: UInt8, byte3: UInt8, byte4: UInt8, byte5: UInt8, byte6: UInt8, byte7: UInt8, byte8: UInt8, byte9: UInt8, byte10: UInt8, byte11: UInt8, byte12: UInt8, byte13: UInt8, byte14: UInt8, byte15: UInt8) */
-  static initByte0Byte1Byte2Byte3Byte4Byte5Byte6Byte7Byte8Byte9Byte10Byte11Byte12Byte13Byte14Byte15(byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): CFUUIDBytes { return callSDK<CFUUIDBytes>("CoreFoundation_212edf3d13b127f5", 4488154414457448, undefined, [byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15]); }
+  static initByte0Byte1Byte2Byte3Byte4Byte5Byte6Byte7Byte8Byte9Byte10Byte11Byte12Byte13Byte14Byte15(byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): CFUUIDBytes { return callSDK<CFUUIDBytes>("CoreFoundation_5d69670f0307b385", 4488154414457448, undefined, [byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15]); }
   /** init() */
-  static init(): CFUUIDBytes { return callSDK<CFUUIDBytes>("CoreFoundation_212edf3d13b127f5", 1953524348256861, undefined, []); }
+  static init(): CFUUIDBytes { return callSDK<CFUUIDBytes>("CoreFoundation_5d69670f0307b385", 1953524348256861, undefined, []); }
   declare readonly $type: { "c:@SA@CFUUIDBytes": true };
 }
 
@@ -2322,48 +2322,48 @@ export type CFWriteStreamClientCallBack = ((arg0: (CFWriteStream) | null, arg1: 
 /** struct CGAffineTransform */
 export class CGAffineTransform extends SDKHandle {
   /** var a: Double */
-  get a(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 119736875793590, this, []); }
-  set a(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3857704696485623, this, [value]); }
+  get a(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 119736875793590, this, []); }
+  set a(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3857704696485623, this, [value]); }
   /** var b: Double */
-  get b(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3205291127382130, this, []); }
-  set b(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3251329245129256, this, [value]); }
+  get b(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3205291127382130, this, []); }
+  set b(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3251329245129256, this, [value]); }
   /** var c: Double */
-  get c(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3168695398902305, this, []); }
-  set c(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1206587512374223, this, [value]); }
+  get c(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3168695398902305, this, []); }
+  set c(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1206587512374223, this, [value]); }
   /** var d: Double */
-  get d(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1025825473686557, this, []); }
-  set d(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3822677444551508, this, [value]); }
+  get d(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1025825473686557, this, []); }
+  set d(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3822677444551508, this, [value]); }
   /** var tx: Double */
-  get tx(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2585920890945814, this, []); }
-  set tx(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1387034461592915, this, [value]); }
+  get tx(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2585920890945814, this, []); }
+  set tx(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1387034461592915, this, [value]); }
   /** var ty: Double */
-  get ty(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 220752953479363, this, []); }
-  set ty(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3224644519715492, this, [value]); }
+  get ty(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 220752953479363, this, []); }
+  set ty(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3224644519715492, this, [value]); }
   /** init(a: Double, b: Double, c: Double, d: Double, tx: Double, ty: Double) */
-  static initABCDTxTy(a: number, b: number, c: number, d: number, tx: number, ty: number): CGAffineTransform { return callSDK<CGAffineTransform>("CoreFoundation_212edf3d13b127f5", 4126546774250910, undefined, [a, b, c, d, tx, ty]); }
+  static initABCDTxTy(a: number, b: number, c: number, d: number, tx: number, ty: number): CGAffineTransform { return callSDK<CGAffineTransform>("CoreFoundation_5d69670f0307b385", 4126546774250910, undefined, [a, b, c, d, tx, ty]); }
   /** init() */
-  static init(): CGAffineTransform { return callSDK<CGAffineTransform>("CoreFoundation_212edf3d13b127f5", 2948914799583202, undefined, []); }
+  static init(): CGAffineTransform { return callSDK<CGAffineTransform>("CoreFoundation_5d69670f0307b385", 2948914799583202, undefined, []); }
   declare readonly $type: { "c:@S@CGAffineTransform": true };
 }
 
 /** struct CGAffineTransformComponents */
 export class CGAffineTransformComponents extends SDKHandle {
   /** var horizontalShear: Double */
-  get horizontalShear(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4365635768615207, this, []); }
-  set horizontalShear(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3685272139565499, this, [value]); }
+  get horizontalShear(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4365635768615207, this, []); }
+  set horizontalShear(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3685272139565499, this, [value]); }
   /** var rotation: Double */
-  get rotation(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1922046188864092, this, []); }
-  set rotation(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3921346705537353, this, [value]); }
+  get rotation(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1922046188864092, this, []); }
+  set rotation(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3921346705537353, this, [value]); }
   /** var scale: CGSize */
-  get scale(): $SDK47 { return callSDK<$SDK47>("CoreFoundation_212edf3d13b127f5", 3794649487552190, this, []); }
-  set scale(value: $SDK47) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2669016014426690, this, [value]); }
+  get scale(): $SDK47 { return callSDK<$SDK47>("CoreFoundation_5d69670f0307b385", 3794649487552190, this, []); }
+  set scale(value: $SDK47) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2669016014426690, this, [value]); }
   /** var translation: CGVector */
-  get translation(): $SDK48 { return callSDK<$SDK48>("CoreFoundation_212edf3d13b127f5", 2876748900459381, this, []); }
-  set translation(value: $SDK48) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1607994313789227, this, [value]); }
+  get translation(): $SDK48 { return callSDK<$SDK48>("CoreFoundation_5d69670f0307b385", 2876748900459381, this, []); }
+  set translation(value: $SDK48) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1607994313789227, this, [value]); }
   /** init(scale: CGSize, horizontalShear: Double, rotation: Double, translation: CGVector) */
-  static initScaleHorizontalShearRotationTranslation(scale: $SDK47, horizontalShear: number, rotation: number, translation: $SDK48): CGAffineTransformComponents { return callSDK<CGAffineTransformComponents>("CoreFoundation_212edf3d13b127f5", 2337031336319953, undefined, [scale, horizontalShear, rotation, translation]); }
+  static initScaleHorizontalShearRotationTranslation(scale: $SDK47, horizontalShear: number, rotation: number, translation: $SDK48): CGAffineTransformComponents { return callSDK<CGAffineTransformComponents>("CoreFoundation_5d69670f0307b385", 2337031336319953, undefined, [scale, horizontalShear, rotation, translation]); }
   /** init() */
-  static init(): CGAffineTransformComponents { return callSDK<CGAffineTransformComponents>("CoreFoundation_212edf3d13b127f5", 3053540052229502, undefined, []); }
+  static init(): CGAffineTransformComponents { return callSDK<CGAffineTransformComponents>("CoreFoundation_5d69670f0307b385", 3053540052229502, undefined, []); }
   declare readonly $type: { "c:@S@CGAffineTransformComponents": true };
 }
 
@@ -2376,278 +2376,278 @@ export class CGFloat extends SDKHandle {
    * mutating func addProduct(_ lhs: CGFloat, _ rhs: CGFloat)
    * @availability iOS 2.0+
    */
-  addProduct(lhs: number, rhs: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2193650748209403, this, [lhs, rhs]); }
+  addProduct(lhs: number, rhs: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2193650748209403, this, [lhs, rhs]); }
   /**
    * init(bitPattern: UInt)
    * @availability iOS 2.0+
    */
-  static initBitPattern(bitPattern: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1537866288979391, undefined, [bitPattern]); }
+  static initBitPattern(bitPattern: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1537866288979391, undefined, [bitPattern]); }
   /**
    * var bitPattern: UInt { get }
    * @availability iOS 2.0+
    */
-  get bitPattern(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2522347036137016, this, []); }
+  get bitPattern(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2522347036137016, this, []); }
   /**
    * var isInfinite: Bool { get }
    * @availability iOS 2.0+
    */
-  get isInfinite(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2447885374489123, this, []); }
+  get isInfinite(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2447885374489123, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 2.0+
    */
-  get description(): string { return callSDK<string>("CoreFoundation_212edf3d13b127f5", 2821721666349778, this, []); }
+  get description(): string { return callSDK<string>("CoreFoundation_5d69670f0307b385", 2821721666349778, this, []); }
   /**
    * var isCanonical: Bool { get }
    * @availability iOS 2.0+
    */
-  get isCanonical(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1438571890030268, this, []); }
+  get isCanonical(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1438571890030268, this, []); }
   /**
    * var isSubnormal: Bool { get }
    * @availability iOS 2.0+
    */
-  get isSubnormal(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2798684604416731, this, []); }
+  get isSubnormal(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2798684604416731, this, []); }
   /**
    * var significand: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get significand(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2416391538311080, this, []); }
+  get significand(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2416391538311080, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 2.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 1492446146631812, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 1492446146631812, this, []); }
   /**
    * init(floatLiteral value: CGFloat.NativeType)
    * @availability iOS 2.0+
    */
-  static initFloatLiteral(value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 467402958682170, undefined, [value]); }
+  static initFloatLiteral(value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 467402958682170, undefined, [value]); }
   /**
    * static var signalingNaN: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get signalingNaN(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1053814053983615, undefined, []); }
+  static get signalingNaN(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1053814053983615, undefined, []); }
   /**
    * mutating func formRemainder(dividingBy other: CGFloat)
    * @availability iOS 2.0+
    */
-  formRemainder(other: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2880804705254389, this, [other]); }
+  formRemainder(other: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2880804705254389, this, [other]); }
   /**
    * mutating func formSquareRoot()
    * @availability iOS 2.0+
    */
-  formSquareRoot(): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 468974488764870, this, []); }
+  formSquareRoot(): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 468974488764870, this, []); }
   /**
    * init(integerLiteral value: Int)
    * @availability iOS 2.0+
    */
-  static initIntegerLiteral(value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3100864508212374, undefined, [value]); }
+  static initIntegerLiteral(value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3100864508212374, undefined, [value]); }
   /**
    * var isSignalingNaN: Bool { get }
    * @availability iOS 2.0+
    */
-  get isSignalingNaN(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1010970371174976, this, []); }
+  get isSignalingNaN(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1010970371174976, this, []); }
   /**
    * static var exponentBitCount: Int { get }
    * @availability iOS 2.0+
    */
-  static get exponentBitCount(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3300008402449271, undefined, []); }
+  static get exponentBitCount(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3300008402449271, undefined, []); }
   /**
    * var significandWidth: Int { get }
    * @availability iOS 2.0+
    */
-  get significandWidth(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1236943485166993, this, []); }
+  get significandWidth(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1236943485166993, this, []); }
   /**
    * var exponentBitPattern: UInt { get }
    * @availability iOS 2.0+
    */
-  get exponentBitPattern(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2046058066492034, this, []); }
+  get exponentBitPattern(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2046058066492034, this, []); }
   /**
    * var floatingPointClass: FloatingPointClassification { get }
    * @availability iOS 2.0+
    */
-  get floatingPointClass(): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 1260462760718567, this, []); }
+  get floatingPointClass(): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 1260462760718567, this, []); }
   /**
    * func isLessThanOrEqualTo(_ other: CGFloat) -> Bool
    * @availability iOS 2.0+
    */
-  isLessThanOrEqualTo(other: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3573993170236465, this, [other]); }
+  isLessThanOrEqualTo(other: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3573993170236465, this, [other]); }
   /**
    * static var significandBitCount: Int { get }
    * @availability iOS 2.0+
    */
-  static get significandBitCount(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 474967215485460, undefined, []); }
+  static get significandBitCount(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 474967215485460, undefined, []); }
   /**
    * static var leastNormalMagnitude: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get leastNormalMagnitude(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4359994547341731, undefined, []); }
+  static get leastNormalMagnitude(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4359994547341731, undefined, []); }
   /**
    * static var leastNonzeroMagnitude: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get leastNonzeroMagnitude(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3384759408198105, undefined, []); }
+  static get leastNonzeroMagnitude(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3384759408198105, undefined, []); }
   /**
    * var significandBitPattern: UInt { get }
    * @availability iOS 2.0+
    */
-  get significandBitPattern(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1681880513584362, this, []); }
+  get significandBitPattern(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1681880513584362, this, []); }
   /**
    * mutating func formTruncatingRemainder(dividingBy other: CGFloat)
    * @availability iOS 2.0+
    */
-  formTruncatingRemainder(other: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 722183600441678, this, [other]); }
+  formTruncatingRemainder(other: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 722183600441678, this, [other]); }
   /**
    * static var greatestFiniteMagnitude: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get greatestFiniteMagnitude(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4474402046420682, undefined, []); }
+  static get greatestFiniteMagnitude(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4474402046420682, undefined, []); }
   /**
    * static var pi: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get pi(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4357643614581201, undefined, []); }
+  static get pi(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4357643614581201, undefined, []); }
   /**
    * init(nan payload: CGFloat.RawSignificand, signaling: Bool)
    * @availability iOS 2.0+
    */
-  static initNanSignaling(payload: number, signaling: boolean): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 654472554192080, undefined, [payload, signaling]); }
+  static initNanSignaling(payload: number, signaling: boolean): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 654472554192080, undefined, [payload, signaling]); }
   /**
    * static var nan: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get nan(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2261607911229528, undefined, []); }
+  static get nan(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2261607911229528, undefined, []); }
   /**
    * var ulp: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get ulp(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2560387142985085, this, []); }
+  get ulp(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2560387142985085, this, []); }
   /**
    * init(sign: FloatingPointSign, exponentBitPattern: UInt, significandBitPattern: UInt)
    * @availability iOS 2.0+
    */
-  static initSignExponentBitPatternSignificandBitPattern(sign: SDKHandle, exponentBitPattern: number, significandBitPattern: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2995701106539110, undefined, [sign, exponentBitPattern, significandBitPattern]); }
+  static initSignExponentBitPatternSignificandBitPattern(sign: SDKHandle, exponentBitPattern: number, significandBitPattern: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2995701106539110, undefined, [sign, exponentBitPattern, significandBitPattern]); }
   /**
    * init(sign: FloatingPointSign, exponent: Int, significand: CGFloat)
    * @availability iOS 2.0+
    */
-  static initSignExponentSignificand(sign: SDKHandle, exponent: number, significand: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1747523361923756, undefined, [sign, exponent, significand]); }
+  static initSignExponentSignificand(sign: SDKHandle, exponent: number, significand: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1747523361923756, undefined, [sign, exponent, significand]); }
   /**
    * var sign: FloatingPointSign { get }
    * @availability iOS 2.0+
    */
-  get sign(): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 1018973753026294, this, []); }
+  get sign(): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 1018973753026294, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 2.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 613984212114282, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 613984212114282, this, []); }
   /**
    * mutating func round(_ rule: FloatingPointRoundingRule)
    * @availability iOS 2.0+
    */
-  round(rule: SDKHandle): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3087969732690494, this, [rule]); }
+  round(rule: SDKHandle): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3087969732690494, this, [rule]); }
   /**
    * var binade: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get binade(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 379949174669497, this, []); }
+  get binade(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 379949174669497, this, []); }
   /**
    * func isLess(than other: CGFloat) -> Bool
    * @availability iOS 2.0+
    */
-  isLess(other: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2184121303286705, this, [other]); }
+  isLess(other: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2184121303286705, this, [other]); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 2.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3189657490689150, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3189657490689150, this, []); }
   /**
    * var native: CGFloat.NativeType
    * @availability iOS 2.0+
    */
-  get native(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 528385860113014, this, []); }
-  set native(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3721396878231261, this, [value]); }
+  get native(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 528385860113014, this, []); }
+  set native(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3721396878231261, this, [value]); }
   /**
    * mutating func negate()
    * @availability iOS 2.0+
    */
-  negate(): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4023512056566045, this, []); }
+  negate(): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4023512056566045, this, []); }
   /**
    * var nextUp: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get nextUp(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2856967719330172, this, []); }
+  get nextUp(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2856967719330172, this, []); }
   /**
    * init?<T>(exactly source: T) where T : BinaryInteger
    * @availability iOS 2.0+
    */
-  static initExactly(source: number): (number) | null { return callSDK<(number) | null>("CoreFoundation_212edf3d13b127f5", 784771594625961, undefined, [source]); }
+  static initExactly(source: number): (number) | null { return callSDK<(number) | null>("CoreFoundation_5d69670f0307b385", 784771594625961, undefined, [source]); }
   /**
    * func isEqual(to other: CGFloat) -> Bool
    * @availability iOS 2.0+
    */
-  isEqual(other: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2157958184957984, this, [other]); }
+  isEqual(other: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2157958184957984, this, [other]); }
   /**
    * func advanced(by amount: CGFloat) -> CGFloat
    * @availability iOS 2.0+
    */
-  advanced(amount: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1356517771949752, this, [amount]); }
+  advanced(amount: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1356517771949752, this, [amount]); }
   /**
    * func distance(to other: CGFloat) -> CGFloat
    * @availability iOS 2.0+
    */
-  distance(other: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1195061200070753, this, [other]); }
+  distance(other: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1195061200070753, this, [other]); }
   /**
    * var exponent: Int { get }
    * @availability iOS 2.0+
    */
-  get exponent(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1598710215197454, this, []); }
+  get exponent(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1598710215197454, this, []); }
   /**
    * static var infinity: CGFloat { get }
    * @availability iOS 2.0+
    */
-  static get infinity(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 817315613489999, undefined, []); }
+  static get infinity(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 817315613489999, undefined, []); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 2.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3938036771354807, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3938036771354807, this, []); }
   /**
    * var isNormal: Bool { get }
    * @availability iOS 2.0+
    */
-  get isNormal(): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1745519631789009, this, []); }
+  get isNormal(): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1745519631789009, this, []); }
   /**
    * var magnitude: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get magnitude(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 380827837732870, this, []); }
+  get magnitude(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 380827837732870, this, []); }
   /**
    * init()
    * @availability iOS 2.0+
    */
-  static init(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1368142379724553, undefined, []); }
+  static init(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1368142379724553, undefined, []); }
   /**
    * init(_ value: CGFloat)
    * @availability iOS 2.0+
    */
-  static init71315(value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1694512524393646, undefined, [value]); }
+  static init71315(value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1694512524393646, undefined, [value]); }
   /**
    * init(_ value: Double)
    * @availability iOS 2.0+
    */
-  static init93076(value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3204996696133131, undefined, [value]); }
+  static init93076(value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3204996696133131, undefined, [value]); }
   /**
    * init(_ value: Float)
    * @availability iOS 2.0+
    */
-  static init57126(value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2450624485224787, undefined, [value]); }
+  static init57126(value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2450624485224787, undefined, [value]); }
   /**
    * init<T>(_ source: T) where T : BinaryInteger
    * @availability iOS 2.0+
    */
-  static init91565(source: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2687225615994307, undefined, [source]); }
+  static init91565(source: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2687225615994307, undefined, [source]); }
   declare readonly $type: { "s:14CoreFoundation7CGFloatV": true };
 }
 
@@ -2702,30 +2702,30 @@ export type CGFloat_Stride = number;
 /** struct CGPoint */
 export class CGPoint extends SDKHandle {
   /** var x: Double */
-  get x(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 523403288757969, this, []); }
-  set x(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2497466123546035, this, [value]); }
+  get x(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 523403288757969, this, []); }
+  set x(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2497466123546035, this, [value]); }
   /** var y: Double */
-  get y(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3401495527123032, this, []); }
-  set y(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1135974499815831, this, [value]); }
+  get y(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3401495527123032, this, []); }
+  set y(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1135974499815831, this, [value]); }
   /** init(x: Double, y: Double) */
-  static initXY(x: number, y: number): $SDK49 { return callSDK<$SDK49>("CoreFoundation_212edf3d13b127f5", 778391637223642, undefined, [x, y]); }
+  static initXY(x: number, y: number): $SDK49 { return callSDK<$SDK49>("CoreFoundation_5d69670f0307b385", 778391637223642, undefined, [x, y]); }
   /** init() */
-  static init(): $SDK49 { return callSDK<$SDK49>("CoreFoundation_212edf3d13b127f5", 4464121596818886, undefined, []); }
+  static init(): $SDK49 { return callSDK<$SDK49>("CoreFoundation_5d69670f0307b385", 4464121596818886, undefined, []); }
   declare readonly $type: { "c:@S@CGPoint": true };
 }
 
 /** struct CGRect */
 export class CGRect extends SDKHandle {
   /** var origin: CGPoint */
-  get origin(): $SDK49 { return callSDK<$SDK49>("CoreFoundation_212edf3d13b127f5", 241171377542300, this, []); }
-  set origin(value: $SDK49) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3586773956845320, this, [value]); }
+  get origin(): $SDK49 { return callSDK<$SDK49>("CoreFoundation_5d69670f0307b385", 241171377542300, this, []); }
+  set origin(value: $SDK49) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3586773956845320, this, [value]); }
   /** var size: CGSize */
-  get size(): $SDK47 { return callSDK<$SDK47>("CoreFoundation_212edf3d13b127f5", 1386299034011236, this, []); }
-  set size(value: $SDK47) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 745835623665991, this, [value]); }
+  get size(): $SDK47 { return callSDK<$SDK47>("CoreFoundation_5d69670f0307b385", 1386299034011236, this, []); }
+  set size(value: $SDK47) { callSDK<void>("CoreFoundation_5d69670f0307b385", 745835623665991, this, [value]); }
   /** init(origin: CGPoint, size: CGSize) */
-  static initOriginSize(origin: $SDK49, size: $SDK47): $SDK50 { return callSDK<$SDK50>("CoreFoundation_212edf3d13b127f5", 3821852728087167, undefined, [origin, size]); }
+  static initOriginSize(origin: $SDK49, size: $SDK47): $SDK50 { return callSDK<$SDK50>("CoreFoundation_5d69670f0307b385", 3821852728087167, undefined, [origin, size]); }
   /** init() */
-  static init(): $SDK50 { return callSDK<$SDK50>("CoreFoundation_212edf3d13b127f5", 1786011410684825, undefined, []); }
+  static init(): $SDK50 { return callSDK<$SDK50>("CoreFoundation_5d69670f0307b385", 1786011410684825, undefined, []); }
   declare readonly $type: { "c:@S@CGRect": true };
 }
 
@@ -2734,36 +2734,36 @@ export type CGRectEdge = "minXEdge" | "minYEdge" | "maxXEdge" | "maxYEdge";
 
 export const CGRectEdge = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGRectEdge) | null { return callSDK<(CGRectEdge) | null>("CoreFoundation_212edf3d13b127f5", 4326332288211780, undefined, [rawValue]); }
+  init(rawValue: number): (CGRectEdge) | null { return callSDK<(CGRectEdge) | null>("CoreFoundation_5d69670f0307b385", 4326332288211780, undefined, [rawValue]); }
 };
 
 /** struct CGSize */
 export class CGSize extends SDKHandle {
   /** var height: Double */
-  get height(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2167181907863237, this, []); }
-  set height(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1573463621177800, this, [value]); }
+  get height(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2167181907863237, this, []); }
+  set height(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1573463621177800, this, [value]); }
   /** var width: Double */
-  get width(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3334139088094133, this, []); }
-  set width(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 1659839677034775, this, [value]); }
+  get width(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3334139088094133, this, []); }
+  set width(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 1659839677034775, this, [value]); }
   /** init(width: Double, height: Double) */
-  static initWidthHeight(width: number, height: number): $SDK47 { return callSDK<$SDK47>("CoreFoundation_212edf3d13b127f5", 4125054133473149, undefined, [width, height]); }
+  static initWidthHeight(width: number, height: number): $SDK47 { return callSDK<$SDK47>("CoreFoundation_5d69670f0307b385", 4125054133473149, undefined, [width, height]); }
   /** init() */
-  static init(): $SDK47 { return callSDK<$SDK47>("CoreFoundation_212edf3d13b127f5", 2317065045606131, undefined, []); }
+  static init(): $SDK47 { return callSDK<$SDK47>("CoreFoundation_5d69670f0307b385", 2317065045606131, undefined, []); }
   declare readonly $type: { "c:@S@CGSize": true };
 }
 
 /** struct CGVector */
 export class CGVector extends SDKHandle {
   /** var dx: Double */
-  get dx(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 165803121458630, this, []); }
-  set dx(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 3970133015189550, this, [value]); }
+  get dx(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 165803121458630, this, []); }
+  set dx(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 3970133015189550, this, [value]); }
   /** var dy: Double */
-  get dy(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3085904526603846, this, []); }
-  set dy(value: number) { callSDK<void>("CoreFoundation_212edf3d13b127f5", 2003795684325707, this, [value]); }
+  get dy(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3085904526603846, this, []); }
+  set dy(value: number) { callSDK<void>("CoreFoundation_5d69670f0307b385", 2003795684325707, this, [value]); }
   /** init(dx: Double, dy: Double) */
-  static initDxDy(dx: number, dy: number): $SDK48 { return callSDK<$SDK48>("CoreFoundation_212edf3d13b127f5", 3438106906372501, undefined, [dx, dy]); }
+  static initDxDy(dx: number, dy: number): $SDK48 { return callSDK<$SDK48>("CoreFoundation_5d69670f0307b385", 3438106906372501, undefined, [dx, dy]); }
   /** init() */
-  static init(): $SDK48 { return callSDK<$SDK48>("CoreFoundation_212edf3d13b127f5", 1592992994747276, undefined, []); }
+  static init(): $SDK48 { return callSDK<$SDK48>("CoreFoundation_5d69670f0307b385", 1592992994747276, undefined, []); }
   declare readonly $type: { "c:@S@CGVector": true };
 }
 
@@ -2772,4311 +2772,4311 @@ export class CGVector extends SDKHandle {
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFAbsoluteTimeAddGregorianUnits(at: number, tz: (CFTimeZone) | null, units: CFGregorianUnits): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3822335477156900, undefined, [at, tz, units]); }
+export function CFAbsoluteTimeAddGregorianUnits(at: number, tz: (CFTimeZone) | null, units: CFGregorianUnits): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3822335477156900, undefined, [at, tz, units]); }
 
 /** func CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime */
-export function CFAbsoluteTimeGetCurrent(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1931370018809038, undefined, []); }
+export function CFAbsoluteTimeGetCurrent(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1931370018809038, undefined, []); }
 
 /**
  * func CFAbsoluteTimeGetDayOfWeek(_ at: CFAbsoluteTime, _ tz: CFTimeZone!) -> Int32
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFAbsoluteTimeGetDayOfWeek(at: number, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4195052791714275, undefined, [at, tz]); }
+export function CFAbsoluteTimeGetDayOfWeek(at: number, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4195052791714275, undefined, [at, tz]); }
 
 /**
  * func CFAbsoluteTimeGetDayOfYear(_ at: CFAbsoluteTime, _ tz: CFTimeZone!) -> Int32
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFAbsoluteTimeGetDayOfYear(at: number, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3893565262633418, undefined, [at, tz]); }
+export function CFAbsoluteTimeGetDayOfYear(at: number, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3893565262633418, undefined, [at, tz]); }
 
 /**
  * func CFAbsoluteTimeGetDifferenceAsGregorianUnits(_ at1: CFAbsoluteTime, _ at2: CFAbsoluteTime, _ tz: CFTimeZone!, _ unitFlags: CFOptionFlags) -> CFGregorianUnits
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1: number, at2: number, tz: (CFTimeZone) | null, unitFlags: number): CFGregorianUnits { return callSDK<CFGregorianUnits>("CoreFoundation_212edf3d13b127f5", 871867061536727, undefined, [at1, at2, tz, unitFlags]); }
+export function CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1: number, at2: number, tz: (CFTimeZone) | null, unitFlags: number): CFGregorianUnits { return callSDK<CFGregorianUnits>("CoreFoundation_5d69670f0307b385", 871867061536727, undefined, [at1, at2, tz, unitFlags]); }
 
 /**
  * func CFAbsoluteTimeGetGregorianDate(_ at: CFAbsoluteTime, _ tz: CFTimeZone!) -> CFGregorianDate
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFAbsoluteTimeGetGregorianDate(at: number, tz?: (CFTimeZone) | null): CFGregorianDate { return callSDK<CFGregorianDate>("CoreFoundation_212edf3d13b127f5", 1301032330485473, undefined, [at, tz]); }
+export function CFAbsoluteTimeGetGregorianDate(at: number, tz?: (CFTimeZone) | null): CFGregorianDate { return callSDK<CFGregorianDate>("CoreFoundation_5d69670f0307b385", 1301032330485473, undefined, [at, tz]); }
 
 /**
  * func CFAbsoluteTimeGetWeekOfYear(_ at: CFAbsoluteTime, _ tz: CFTimeZone!) -> Int32
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFAbsoluteTimeGetWeekOfYear(at: number, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 668964129341563, undefined, [at, tz]); }
+export function CFAbsoluteTimeGetWeekOfYear(at: number, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 668964129341563, undefined, [at, tz]); }
 
 /** func CFAllocatorAllocate(_ allocator: CFAllocator!, _ size: CFIndex, _ hint: CFOptionFlags) -> UnsafeMutableRawPointer! */
-export function CFAllocatorAllocate(allocator: (CFAllocator) | null, size: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 50933916699388, undefined, [allocator, size, hint]); }
+export function CFAllocatorAllocate(allocator: (CFAllocator) | null, size: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 50933916699388, undefined, [allocator, size, hint]); }
 
 /**
  * func CFAllocatorAllocateBytes(_ allocator: CFAllocator!, _ size: CFIndex, _ hint: CFOptionFlags) -> UnsafeMutableRawPointer!
  * @availability iOS 18.0+
  */
-export function CFAllocatorAllocateBytes(allocator: (CFAllocator) | null, size: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 4135266287615000, undefined, [allocator, size, hint]); }
+export function CFAllocatorAllocateBytes(allocator: (CFAllocator) | null, size: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 4135266287615000, undefined, [allocator, size, hint]); }
 
 /**
  * func CFAllocatorAllocateTyped(_ allocator: CFAllocator!, _ size: CFIndex, _ descriptor: CFAllocatorTypeID, _ hint: CFOptionFlags) -> UnsafeMutableRawPointer!
  * @availability iOS 18.0+
  */
-export function CFAllocatorAllocateTyped(allocator: (CFAllocator) | null, size: number, descriptor: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2906992854305003, undefined, [allocator, size, descriptor, hint]); }
+export function CFAllocatorAllocateTyped(allocator: (CFAllocator) | null, size: number, descriptor: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2906992854305003, undefined, [allocator, size, descriptor, hint]); }
 
 /** func CFAllocatorCreate(_ allocator: CFAllocator!, _ context: UnsafeMutablePointer<CFAllocatorContext>!) -> Unmanaged<CFAllocator>! */
-export function CFAllocatorCreate(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): (CFAllocator) | null { return callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 449157371701947, undefined, [allocator, context]); }
+export function CFAllocatorCreate(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): (CFAllocator) | null { return callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 449157371701947, undefined, [allocator, context]); }
 
 /** func CFAllocatorDeallocate(_ allocator: CFAllocator!, _ ptr: UnsafeMutableRawPointer!) */
-export function CFAllocatorDeallocate(allocator?: (CFAllocator) | null, ptr?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3959430510434824, undefined, [allocator, ptr]); }
+export function CFAllocatorDeallocate(allocator?: (CFAllocator) | null, ptr?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3959430510434824, undefined, [allocator, ptr]); }
 
 /** func CFAllocatorGetContext(_ allocator: CFAllocator!, _ context: UnsafeMutablePointer<CFAllocatorContext>!) */
-export function CFAllocatorGetContext(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3086746706416023, undefined, [allocator, context]); }
+export function CFAllocatorGetContext(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3086746706416023, undefined, [allocator, context]); }
 
 /** func CFAllocatorGetDefault() -> Unmanaged<CFAllocator>! */
-export function CFAllocatorGetDefault(): (CFAllocator) | null { return callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 2979121195382265, undefined, []); }
+export function CFAllocatorGetDefault(): (CFAllocator) | null { return callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 2979121195382265, undefined, []); }
 
 /** func CFAllocatorGetPreferredSizeForSize(_ allocator: CFAllocator!, _ size: CFIndex, _ hint: CFOptionFlags) -> CFIndex */
-export function CFAllocatorGetPreferredSizeForSize(allocator: (CFAllocator) | null, size: number, hint: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2494280181702711, undefined, [allocator, size, hint]); }
+export function CFAllocatorGetPreferredSizeForSize(allocator: (CFAllocator) | null, size: number, hint: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2494280181702711, undefined, [allocator, size, hint]); }
 
 /** func CFAllocatorGetTypeID() -> CFTypeID */
-export function CFAllocatorGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2451512330914682, undefined, []); }
+export function CFAllocatorGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2451512330914682, undefined, []); }
 
 /** func CFAllocatorReallocate(_ allocator: CFAllocator!, _ ptr: UnsafeMutableRawPointer!, _ newsize: CFIndex, _ hint: CFOptionFlags) -> UnsafeMutableRawPointer! */
-export function CFAllocatorReallocate(allocator: (CFAllocator) | null, ptr: (SDKHandle) | null, newsize: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2348316072641056, undefined, [allocator, ptr, newsize, hint]); }
+export function CFAllocatorReallocate(allocator: (CFAllocator) | null, ptr: (SDKHandle) | null, newsize: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2348316072641056, undefined, [allocator, ptr, newsize, hint]); }
 
 /**
  * func CFAllocatorReallocateBytes(_ allocator: CFAllocator!, _ ptr: UnsafeMutableRawPointer!, _ newsize: CFIndex, _ hint: CFOptionFlags) -> UnsafeMutableRawPointer!
  * @availability iOS 18.0+
  */
-export function CFAllocatorReallocateBytes(allocator: (CFAllocator) | null, ptr: (SDKHandle) | null, newsize: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3532501916090420, undefined, [allocator, ptr, newsize, hint]); }
+export function CFAllocatorReallocateBytes(allocator: (CFAllocator) | null, ptr: (SDKHandle) | null, newsize: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3532501916090420, undefined, [allocator, ptr, newsize, hint]); }
 
 /**
  * func CFAllocatorReallocateTyped(_ allocator: CFAllocator!, _ ptr: UnsafeMutableRawPointer!, _ newsize: CFIndex, _ descriptor: CFAllocatorTypeID, _ hint: CFOptionFlags) -> UnsafeMutableRawPointer!
  * @availability iOS 18.0+
  */
-export function CFAllocatorReallocateTyped(allocator: (CFAllocator) | null, ptr: (SDKHandle) | null, newsize: number, descriptor: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1713030241533212, undefined, [allocator, ptr, newsize, descriptor, hint]); }
+export function CFAllocatorReallocateTyped(allocator: (CFAllocator) | null, ptr: (SDKHandle) | null, newsize: number, descriptor: number, hint: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1713030241533212, undefined, [allocator, ptr, newsize, descriptor, hint]); }
 
 /** func CFAllocatorSetDefault(_ allocator: CFAllocator!) */
-export function CFAllocatorSetDefault(allocator?: (CFAllocator) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 116903294095955, undefined, [allocator]); }
+export function CFAllocatorSetDefault(allocator?: (CFAllocator) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 116903294095955, undefined, [allocator]); }
 
 /** func CFArrayAppendArray(_ theArray: CFMutableArray!, _ otherArray: CFArray!, _ otherRange: CFRange) */
-export function CFArrayAppendArray(theArray: (CFMutableArray) | null, otherArray: (CFArray) | null, otherRange: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1280768164028212, undefined, [theArray, otherArray, otherRange]); }
+export function CFArrayAppendArray(theArray: (CFMutableArray) | null, otherArray: (CFArray) | null, otherRange: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1280768164028212, undefined, [theArray, otherArray, otherRange]); }
 
 /** func CFArrayAppendValue(_ theArray: CFMutableArray!, _ value: UnsafeRawPointer!) */
-export function CFArrayAppendValue(theArray?: (CFMutableArray) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3483987057721482, undefined, [theArray, value]); }
+export function CFArrayAppendValue(theArray?: (CFMutableArray) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3483987057721482, undefined, [theArray, value]); }
 
 /** func CFArrayContainsValue(_ theArray: CFArray!, _ range: CFRange, _ value: UnsafeRawPointer!) -> Bool */
-export function CFArrayContainsValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4494375399492962, undefined, [theArray, range, value]); }
+export function CFArrayContainsValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4494375399492962, undefined, [theArray, range, value]); }
 
 /** func CFArrayCreate(_ allocator: CFAllocator!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!, _ numValues: CFIndex, _ callBacks: UnsafePointer<CFArrayCallBacks>!) -> CFArray! */
-export function CFArrayCreate(allocator: (CFAllocator) | null, numValues: number, callBacks?: (SDKHandle) | null): { $ret: (CFArray) | null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFArray) | null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 523250348308838, undefined, [allocator, null, numValues, callBacks]); }
+export function CFArrayCreate(allocator: (CFAllocator) | null, numValues: number, callBacks?: (SDKHandle) | null): { $ret: (CFArray) | null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFArray) | null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 523250348308838, undefined, [allocator, null, numValues, callBacks]); }
 
 /** func CFArrayCreateCopy(_ allocator: CFAllocator!, _ theArray: CFArray!) -> CFArray! */
-export function CFArrayCreateCopy(allocator?: (CFAllocator) | null, theArray?: (CFArray) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 4043752823208037, undefined, [allocator, theArray]); }
+export function CFArrayCreateCopy(allocator?: (CFAllocator) | null, theArray?: (CFArray) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 4043752823208037, undefined, [allocator, theArray]); }
 
 /** func CFArrayCreateMutable(_ allocator: CFAllocator!, _ capacity: CFIndex, _ callBacks: UnsafePointer<CFArrayCallBacks>!) -> CFMutableArray! */
-export function CFArrayCreateMutable(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null): (CFMutableArray) | null { return callSDK<(CFMutableArray) | null>("CoreFoundation_212edf3d13b127f5", 3492456849040687, undefined, [allocator, capacity, callBacks]); }
+export function CFArrayCreateMutable(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null): (CFMutableArray) | null { return callSDK<(CFMutableArray) | null>("CoreFoundation_5d69670f0307b385", 3492456849040687, undefined, [allocator, capacity, callBacks]); }
 
 /** func CFArrayCreateMutableCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ theArray: CFArray!) -> CFMutableArray! */
-export function CFArrayCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theArray?: (CFArray) | null): (CFMutableArray) | null { return callSDK<(CFMutableArray) | null>("CoreFoundation_212edf3d13b127f5", 1854995241762685, undefined, [allocator, capacity, theArray]); }
+export function CFArrayCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theArray?: (CFArray) | null): (CFMutableArray) | null { return callSDK<(CFMutableArray) | null>("CoreFoundation_5d69670f0307b385", 1854995241762685, undefined, [allocator, capacity, theArray]); }
 
 /** func CFArrayExchangeValuesAtIndices(_ theArray: CFMutableArray!, _ idx1: CFIndex, _ idx2: CFIndex) */
-export function CFArrayExchangeValuesAtIndices(theArray: (CFMutableArray) | null, idx1: number, idx2: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 246160186165086, undefined, [theArray, idx1, idx2]); }
+export function CFArrayExchangeValuesAtIndices(theArray: (CFMutableArray) | null, idx1: number, idx2: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 246160186165086, undefined, [theArray, idx1, idx2]); }
 
 /** func CFArrayGetCount(_ theArray: CFArray!) -> CFIndex */
-export function CFArrayGetCount(theArray?: (CFArray) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3035263589062068, undefined, [theArray]); }
+export function CFArrayGetCount(theArray?: (CFArray) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3035263589062068, undefined, [theArray]); }
 
 /** func CFArrayGetCountOfValue(_ theArray: CFArray!, _ range: CFRange, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFArrayGetCountOfValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3169719896056549, undefined, [theArray, range, value]); }
+export function CFArrayGetCountOfValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3169719896056549, undefined, [theArray, range, value]); }
 
 /** func CFArrayGetFirstIndexOfValue(_ theArray: CFArray!, _ range: CFRange, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFArrayGetFirstIndexOfValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2404439577483088, undefined, [theArray, range, value]); }
+export function CFArrayGetFirstIndexOfValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2404439577483088, undefined, [theArray, range, value]); }
 
 /** func CFArrayGetLastIndexOfValue(_ theArray: CFArray!, _ range: CFRange, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFArrayGetLastIndexOfValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3897409900881748, undefined, [theArray, range, value]); }
+export function CFArrayGetLastIndexOfValue(theArray: (CFArray) | null, range: CFRange, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3897409900881748, undefined, [theArray, range, value]); }
 
 /** func CFArrayGetTypeID() -> CFTypeID */
-export function CFArrayGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3655587255306584, undefined, []); }
+export function CFArrayGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3655587255306584, undefined, []); }
 
 /** func CFArrayGetValueAtIndex(_ theArray: CFArray!, _ idx: CFIndex) -> UnsafeRawPointer! */
-export function CFArrayGetValueAtIndex(theArray: (CFArray) | null, idx: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1908413014110363, undefined, [theArray, idx]); }
+export function CFArrayGetValueAtIndex(theArray: (CFArray) | null, idx: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1908413014110363, undefined, [theArray, idx]); }
 
 /** func CFArrayGetValues(_ theArray: CFArray!, _ range: CFRange, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!) */
-export function CFArrayGetValues(theArray: (CFArray) | null, range: CFRange): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 2961049193185053, undefined, [theArray, range, null]); }
+export function CFArrayGetValues(theArray: (CFArray) | null, range: CFRange): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 2961049193185053, undefined, [theArray, range, null]); }
 
 /** func CFArrayInsertValueAtIndex(_ theArray: CFMutableArray!, _ idx: CFIndex, _ value: UnsafeRawPointer!) */
-export function CFArrayInsertValueAtIndex(theArray: (CFMutableArray) | null, idx: number, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 258763348443357, undefined, [theArray, idx, value]); }
+export function CFArrayInsertValueAtIndex(theArray: (CFMutableArray) | null, idx: number, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 258763348443357, undefined, [theArray, idx, value]); }
 
 /** func CFArrayRemoveAllValues(_ theArray: CFMutableArray!) */
-export function CFArrayRemoveAllValues(theArray?: (CFMutableArray) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1382615103890872, undefined, [theArray]); }
+export function CFArrayRemoveAllValues(theArray?: (CFMutableArray) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1382615103890872, undefined, [theArray]); }
 
 /** func CFArrayRemoveValueAtIndex(_ theArray: CFMutableArray!, _ idx: CFIndex) */
-export function CFArrayRemoveValueAtIndex(theArray: (CFMutableArray) | null, idx: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1211188461581653, undefined, [theArray, idx]); }
+export function CFArrayRemoveValueAtIndex(theArray: (CFMutableArray) | null, idx: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1211188461581653, undefined, [theArray, idx]); }
 
 /** func CFArrayReplaceValues(_ theArray: CFMutableArray!, _ range: CFRange, _ newValues: UnsafeMutablePointer<UnsafeRawPointer?>!, _ newCount: CFIndex) */
-export function CFArrayReplaceValues(theArray: (CFMutableArray) | null, range: CFRange, newCount: number): { $ret: null; $out: { "newValues": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "newValues": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1299606754200554, undefined, [theArray, range, null, newCount]); }
+export function CFArrayReplaceValues(theArray: (CFMutableArray) | null, range: CFRange, newCount: number): { $ret: null; $out: { "newValues": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "newValues": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1299606754200554, undefined, [theArray, range, null, newCount]); }
 
 /** func CFArraySetValueAtIndex(_ theArray: CFMutableArray!, _ idx: CFIndex, _ value: UnsafeRawPointer!) */
-export function CFArraySetValueAtIndex(theArray: (CFMutableArray) | null, idx: number, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1347045723891583, undefined, [theArray, idx, value]); }
+export function CFArraySetValueAtIndex(theArray: (CFMutableArray) | null, idx: number, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1347045723891583, undefined, [theArray, idx, value]); }
 
 /** func CFAttributedStringBeginEditing(_ aStr: CFMutableAttributedString!) */
-export function CFAttributedStringBeginEditing(aStr?: $SDK51): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1027051457966526, undefined, [aStr]); }
+export function CFAttributedStringBeginEditing(aStr?: $SDK51): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1027051457966526, undefined, [aStr]); }
 
 /** func CFAttributedStringCreate(_ alloc: CFAllocator!, _ str: CFString!, _ attributes: CFDictionary!) -> CFAttributedString! */
-export function CFAttributedStringCreate(alloc?: (CFAllocator) | null, str?: (CFString) | null, attributes?: (CFDictionary) | null): $SDK52 { return callSDK<$SDK52>("CoreFoundation_212edf3d13b127f5", 3200722462688778, undefined, [alloc, str, attributes]); }
+export function CFAttributedStringCreate(alloc?: (CFAllocator) | null, str?: (CFString) | null, attributes?: (CFDictionary) | null): $SDK52 { return callSDK<$SDK52>("CoreFoundation_5d69670f0307b385", 3200722462688778, undefined, [alloc, str, attributes]); }
 
 /** func CFAttributedStringCreateCopy(_ alloc: CFAllocator!, _ aStr: CFAttributedString!) -> CFAttributedString! */
-export function CFAttributedStringCreateCopy(alloc?: (CFAllocator) | null, aStr?: $SDK52): $SDK52 { return callSDK<$SDK52>("CoreFoundation_212edf3d13b127f5", 212398585327742, undefined, [alloc, aStr]); }
+export function CFAttributedStringCreateCopy(alloc?: (CFAllocator) | null, aStr?: $SDK52): $SDK52 { return callSDK<$SDK52>("CoreFoundation_5d69670f0307b385", 212398585327742, undefined, [alloc, aStr]); }
 
 /** func CFAttributedStringCreateMutable(_ alloc: CFAllocator!, _ maxLength: CFIndex) -> CFMutableAttributedString! */
-export function CFAttributedStringCreateMutable(alloc: (CFAllocator) | null, maxLength: number): $SDK51 { return callSDK<$SDK51>("CoreFoundation_212edf3d13b127f5", 926377480669059, undefined, [alloc, maxLength]); }
+export function CFAttributedStringCreateMutable(alloc: (CFAllocator) | null, maxLength: number): $SDK51 { return callSDK<$SDK51>("CoreFoundation_5d69670f0307b385", 926377480669059, undefined, [alloc, maxLength]); }
 
 /** func CFAttributedStringCreateMutableCopy(_ alloc: CFAllocator!, _ maxLength: CFIndex, _ aStr: CFAttributedString!) -> CFMutableAttributedString! */
-export function CFAttributedStringCreateMutableCopy(alloc: (CFAllocator) | null, maxLength: number, aStr?: $SDK52): $SDK51 { return callSDK<$SDK51>("CoreFoundation_212edf3d13b127f5", 1755309933233332, undefined, [alloc, maxLength, aStr]); }
+export function CFAttributedStringCreateMutableCopy(alloc: (CFAllocator) | null, maxLength: number, aStr?: $SDK52): $SDK51 { return callSDK<$SDK51>("CoreFoundation_5d69670f0307b385", 1755309933233332, undefined, [alloc, maxLength, aStr]); }
 
 /** func CFAttributedStringCreateWithSubstring(_ alloc: CFAllocator!, _ aStr: CFAttributedString!, _ range: CFRange) -> CFAttributedString! */
-export function CFAttributedStringCreateWithSubstring(alloc: (CFAllocator) | null, aStr: $SDK52, range: CFRange): $SDK52 { return callSDK<$SDK52>("CoreFoundation_212edf3d13b127f5", 1821660214016179, undefined, [alloc, aStr, range]); }
+export function CFAttributedStringCreateWithSubstring(alloc: (CFAllocator) | null, aStr: $SDK52, range: CFRange): $SDK52 { return callSDK<$SDK52>("CoreFoundation_5d69670f0307b385", 1821660214016179, undefined, [alloc, aStr, range]); }
 
 /** func CFAttributedStringEndEditing(_ aStr: CFMutableAttributedString!) */
-export function CFAttributedStringEndEditing(aStr?: $SDK51): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1060900912342121, undefined, [aStr]); }
+export function CFAttributedStringEndEditing(aStr?: $SDK51): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1060900912342121, undefined, [aStr]); }
 
 /** func CFAttributedStringGetAttribute(_ aStr: CFAttributedString!, _ loc: CFIndex, _ attrName: CFString!, _ effectiveRange: UnsafeMutablePointer<CFRange>!) -> CFTypeRef! */
-export function CFAttributedStringGetAttribute(aStr: $SDK52, loc: number, attrName?: (CFString) | null, effectiveRange?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 4131838241400276, undefined, [aStr, loc, attrName, effectiveRange]); }
+export function CFAttributedStringGetAttribute(aStr: $SDK52, loc: number, attrName?: (CFString) | null, effectiveRange?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 4131838241400276, undefined, [aStr, loc, attrName, effectiveRange]); }
 
 /** func CFAttributedStringGetAttributeAndLongestEffectiveRange(_ aStr: CFAttributedString!, _ loc: CFIndex, _ attrName: CFString!, _ inRange: CFRange, _ longestEffectiveRange: UnsafeMutablePointer<CFRange>!) -> CFTypeRef! */
-export function CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr: $SDK52, loc: number, attrName: (CFString) | null, inRange: CFRange, longestEffectiveRange?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 1968108160202138, undefined, [aStr, loc, attrName, inRange, longestEffectiveRange]); }
+export function CFAttributedStringGetAttributeAndLongestEffectiveRange(aStr: $SDK52, loc: number, attrName: (CFString) | null, inRange: CFRange, longestEffectiveRange?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 1968108160202138, undefined, [aStr, loc, attrName, inRange, longestEffectiveRange]); }
 
 /** func CFAttributedStringGetAttributes(_ aStr: CFAttributedString!, _ loc: CFIndex, _ effectiveRange: UnsafeMutablePointer<CFRange>!) -> CFDictionary! */
-export function CFAttributedStringGetAttributes(aStr: $SDK52, loc: number, effectiveRange?: (SDKHandle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 2324600449963798, undefined, [aStr, loc, effectiveRange]); }
+export function CFAttributedStringGetAttributes(aStr: $SDK52, loc: number, effectiveRange?: (SDKHandle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 2324600449963798, undefined, [aStr, loc, effectiveRange]); }
 
 /** func CFAttributedStringGetAttributesAndLongestEffectiveRange(_ aStr: CFAttributedString!, _ loc: CFIndex, _ inRange: CFRange, _ longestEffectiveRange: UnsafeMutablePointer<CFRange>!) -> CFDictionary! */
-export function CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr: $SDK52, loc: number, inRange: CFRange, longestEffectiveRange?: (SDKHandle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 3909035721104372, undefined, [aStr, loc, inRange, longestEffectiveRange]); }
+export function CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr: $SDK52, loc: number, inRange: CFRange, longestEffectiveRange?: (SDKHandle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 3909035721104372, undefined, [aStr, loc, inRange, longestEffectiveRange]); }
 
 /** func CFAttributedStringGetBidiLevelsAndResolvedDirections(_ attributedString: CFAttributedString!, _ range: CFRange, _ baseDirection: Int8, _ bidiLevels: UnsafeMutablePointer<UInt8>!, _ baseDirections: UnsafeMutablePointer<UInt8>!) -> Bool */
-export function CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString: $SDK52, range: CFRange, baseDirection: number, bidiLevels?: (SDKHandle) | null, baseDirections?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2176247072598229, undefined, [attributedString, range, baseDirection, bidiLevels, baseDirections]); }
+export function CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString: $SDK52, range: CFRange, baseDirection: number, bidiLevels?: (SDKHandle) | null, baseDirections?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2176247072598229, undefined, [attributedString, range, baseDirection, bidiLevels, baseDirections]); }
 
 /** func CFAttributedStringGetLength(_ aStr: CFAttributedString!) -> CFIndex */
-export function CFAttributedStringGetLength(aStr?: $SDK52): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1510005729744934, undefined, [aStr]); }
+export function CFAttributedStringGetLength(aStr?: $SDK52): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1510005729744934, undefined, [aStr]); }
 
 /** func CFAttributedStringGetMutableString(_ aStr: CFMutableAttributedString!) -> CFMutableString! */
-export function CFAttributedStringGetMutableString(aStr?: $SDK51): $SDK53 { return callSDK<$SDK53>("CoreFoundation_212edf3d13b127f5", 207887235966561, undefined, [aStr]); }
+export function CFAttributedStringGetMutableString(aStr?: $SDK51): $SDK53 { return callSDK<$SDK53>("CoreFoundation_5d69670f0307b385", 207887235966561, undefined, [aStr]); }
 
 /**
  * func CFAttributedStringGetStatisticalWritingDirections(_ attributedString: CFAttributedString!, _ range: CFRange, _ baseDirection: Int8, _ bidiLevels: UnsafeMutablePointer<UInt8>!, _ baseDirections: UnsafeMutablePointer<UInt8>!) -> Bool
  * @availability iOS 26.0+
  */
-export function CFAttributedStringGetStatisticalWritingDirections(attributedString: $SDK52, range: CFRange, baseDirection: number, bidiLevels?: (SDKHandle) | null, baseDirections?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3737910695370137, undefined, [attributedString, range, baseDirection, bidiLevels, baseDirections]); }
+export function CFAttributedStringGetStatisticalWritingDirections(attributedString: $SDK52, range: CFRange, baseDirection: number, bidiLevels?: (SDKHandle) | null, baseDirections?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3737910695370137, undefined, [attributedString, range, baseDirection, bidiLevels, baseDirections]); }
 
 /** func CFAttributedStringGetString(_ aStr: CFAttributedString!) -> CFString! */
-export function CFAttributedStringGetString(aStr?: $SDK52): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 637808949107114, undefined, [aStr]); }
+export function CFAttributedStringGetString(aStr?: $SDK52): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 637808949107114, undefined, [aStr]); }
 
 /** func CFAttributedStringGetTypeID() -> CFTypeID */
-export function CFAttributedStringGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3246839118466650, undefined, []); }
+export function CFAttributedStringGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3246839118466650, undefined, []); }
 
 /** func CFAttributedStringRemoveAttribute(_ aStr: CFMutableAttributedString!, _ range: CFRange, _ attrName: CFString!) */
-export function CFAttributedStringRemoveAttribute(aStr: $SDK51, range: CFRange, attrName?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 242584025969417, undefined, [aStr, range, attrName]); }
+export function CFAttributedStringRemoveAttribute(aStr: $SDK51, range: CFRange, attrName?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 242584025969417, undefined, [aStr, range, attrName]); }
 
 /** func CFAttributedStringReplaceAttributedString(_ aStr: CFMutableAttributedString!, _ range: CFRange, _ replacement: CFAttributedString!) */
-export function CFAttributedStringReplaceAttributedString(aStr: $SDK51, range: CFRange, replacement?: $SDK52): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 107198838927592, undefined, [aStr, range, replacement]); }
+export function CFAttributedStringReplaceAttributedString(aStr: $SDK51, range: CFRange, replacement?: $SDK52): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 107198838927592, undefined, [aStr, range, replacement]); }
 
 /** func CFAttributedStringReplaceString(_ aStr: CFMutableAttributedString!, _ range: CFRange, _ replacement: CFString!) */
-export function CFAttributedStringReplaceString(aStr: $SDK51, range: CFRange, replacement?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1147467680288285, undefined, [aStr, range, replacement]); }
+export function CFAttributedStringReplaceString(aStr: $SDK51, range: CFRange, replacement?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1147467680288285, undefined, [aStr, range, replacement]); }
 
 /** func CFAttributedStringSetAttribute(_ aStr: CFMutableAttributedString!, _ range: CFRange, _ attrName: CFString!, _ value: CFTypeRef!) */
-export function CFAttributedStringSetAttribute(aStr: $SDK51, range: CFRange, attrName?: (CFString) | null, value?: (unknown) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1949289758890634, undefined, [aStr, range, attrName, value]); }
+export function CFAttributedStringSetAttribute(aStr: $SDK51, range: CFRange, attrName?: (CFString) | null, value?: (unknown) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1949289758890634, undefined, [aStr, range, attrName, value]); }
 
 /** func CFAttributedStringSetAttributes(_ aStr: CFMutableAttributedString!, _ range: CFRange, _ replacement: CFDictionary!, _ clearOtherAttributes: Bool) */
-export function CFAttributedStringSetAttributes(aStr: $SDK51, range: CFRange, replacement: (CFDictionary) | null, clearOtherAttributes: boolean): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1623602321421149, undefined, [aStr, range, replacement, clearOtherAttributes]); }
+export function CFAttributedStringSetAttributes(aStr: $SDK51, range: CFRange, replacement: (CFDictionary) | null, clearOtherAttributes: boolean): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1623602321421149, undefined, [aStr, range, replacement, clearOtherAttributes]); }
 
 /** func CFBagAddValue(_ theBag: CFMutableBag!, _ value: UnsafeRawPointer!) */
-export function CFBagAddValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1630907690843809, undefined, [theBag, value]); }
+export function CFBagAddValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1630907690843809, undefined, [theBag, value]); }
 
 /** func CFBagContainsValue(_ theBag: CFBag!, _ value: UnsafeRawPointer!) -> Bool */
-export function CFBagContainsValue(theBag?: (CFBag) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4047317360457712, undefined, [theBag, value]); }
+export function CFBagContainsValue(theBag?: (CFBag) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4047317360457712, undefined, [theBag, value]); }
 
 /** func CFBagCreate(_ allocator: CFAllocator!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!, _ numValues: CFIndex, _ callBacks: UnsafePointer<CFBagCallBacks>!) -> CFBag! */
-export function CFBagCreate(allocator: (CFAllocator) | null, numValues: number, callBacks?: (SDKHandle) | null): { $ret: (CFBag) | null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFBag) | null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 3610862033948630, undefined, [allocator, null, numValues, callBacks]); }
+export function CFBagCreate(allocator: (CFAllocator) | null, numValues: number, callBacks?: (SDKHandle) | null): { $ret: (CFBag) | null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFBag) | null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 3610862033948630, undefined, [allocator, null, numValues, callBacks]); }
 
 /** func CFBagCreateCopy(_ allocator: CFAllocator!, _ theBag: CFBag!) -> CFBag! */
-export function CFBagCreateCopy(allocator?: (CFAllocator) | null, theBag?: (CFBag) | null): (CFBag) | null { return callSDK<(CFBag) | null>("CoreFoundation_212edf3d13b127f5", 1864568177748553, undefined, [allocator, theBag]); }
+export function CFBagCreateCopy(allocator?: (CFAllocator) | null, theBag?: (CFBag) | null): (CFBag) | null { return callSDK<(CFBag) | null>("CoreFoundation_5d69670f0307b385", 1864568177748553, undefined, [allocator, theBag]); }
 
 /** func CFBagCreateMutable(_ allocator: CFAllocator!, _ capacity: CFIndex, _ callBacks: UnsafePointer<CFBagCallBacks>!) -> CFMutableBag! */
-export function CFBagCreateMutable(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null): (CFMutableBag) | null { return callSDK<(CFMutableBag) | null>("CoreFoundation_212edf3d13b127f5", 3350902717033156, undefined, [allocator, capacity, callBacks]); }
+export function CFBagCreateMutable(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null): (CFMutableBag) | null { return callSDK<(CFMutableBag) | null>("CoreFoundation_5d69670f0307b385", 3350902717033156, undefined, [allocator, capacity, callBacks]); }
 
 /** func CFBagCreateMutableCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ theBag: CFBag!) -> CFMutableBag! */
-export function CFBagCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theBag?: (CFBag) | null): (CFMutableBag) | null { return callSDK<(CFMutableBag) | null>("CoreFoundation_212edf3d13b127f5", 3322149353481380, undefined, [allocator, capacity, theBag]); }
+export function CFBagCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theBag?: (CFBag) | null): (CFMutableBag) | null { return callSDK<(CFMutableBag) | null>("CoreFoundation_5d69670f0307b385", 3322149353481380, undefined, [allocator, capacity, theBag]); }
 
 /** func CFBagGetCount(_ theBag: CFBag!) -> CFIndex */
-export function CFBagGetCount(theBag?: (CFBag) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4259569540335251, undefined, [theBag]); }
+export function CFBagGetCount(theBag?: (CFBag) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4259569540335251, undefined, [theBag]); }
 
 /** func CFBagGetCountOfValue(_ theBag: CFBag!, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFBagGetCountOfValue(theBag?: (CFBag) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 161090006294423, undefined, [theBag, value]); }
+export function CFBagGetCountOfValue(theBag?: (CFBag) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 161090006294423, undefined, [theBag, value]); }
 
 /** func CFBagGetTypeID() -> CFTypeID */
-export function CFBagGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4417616427669548, undefined, []); }
+export function CFBagGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4417616427669548, undefined, []); }
 
 /** func CFBagGetValue(_ theBag: CFBag!, _ value: UnsafeRawPointer!) -> UnsafeRawPointer! */
-export function CFBagGetValue(theBag?: (CFBag) | null, value?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2574615996637309, undefined, [theBag, value]); }
+export function CFBagGetValue(theBag?: (CFBag) | null, value?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2574615996637309, undefined, [theBag, value]); }
 
 /** func CFBagGetValueIfPresent(_ theBag: CFBag!, _ candidate: UnsafeRawPointer!, _ value: UnsafeMutablePointer<UnsafeRawPointer?>!) -> Bool */
-export function CFBagGetValueIfPresent(theBag?: (CFBag) | null, candidate?: (SDKHandle) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 3989066276328635, undefined, [theBag, candidate, null]); }
+export function CFBagGetValueIfPresent(theBag?: (CFBag) | null, candidate?: (SDKHandle) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 3989066276328635, undefined, [theBag, candidate, null]); }
 
 /** func CFBagGetValues(_ theBag: CFBag!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!) */
-export function CFBagGetValues(theBag?: (CFBag) | null): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1847835523089094, undefined, [theBag, null]); }
+export function CFBagGetValues(theBag?: (CFBag) | null): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1847835523089094, undefined, [theBag, null]); }
 
 /** func CFBagRemoveAllValues(_ theBag: CFMutableBag!) */
-export function CFBagRemoveAllValues(theBag?: (CFMutableBag) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1907164402907387, undefined, [theBag]); }
+export function CFBagRemoveAllValues(theBag?: (CFMutableBag) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1907164402907387, undefined, [theBag]); }
 
 /** func CFBagRemoveValue(_ theBag: CFMutableBag!, _ value: UnsafeRawPointer!) */
-export function CFBagRemoveValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 782116368123712, undefined, [theBag, value]); }
+export function CFBagRemoveValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 782116368123712, undefined, [theBag, value]); }
 
 /** func CFBagReplaceValue(_ theBag: CFMutableBag!, _ value: UnsafeRawPointer!) */
-export function CFBagReplaceValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4376874926593368, undefined, [theBag, value]); }
+export function CFBagReplaceValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4376874926593368, undefined, [theBag, value]); }
 
 /** func CFBagSetValue(_ theBag: CFMutableBag!, _ value: UnsafeRawPointer!) */
-export function CFBagSetValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 142063881117351, undefined, [theBag, value]); }
+export function CFBagSetValue(theBag?: (CFMutableBag) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 142063881117351, undefined, [theBag, value]); }
 
 /** func CFBinaryHeapAddValue(_ heap: CFBinaryHeap!, _ value: UnsafeRawPointer!) */
-export function CFBinaryHeapAddValue(heap?: (CFBinaryHeap) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3456897836342345, undefined, [heap, value]); }
+export function CFBinaryHeapAddValue(heap?: (CFBinaryHeap) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3456897836342345, undefined, [heap, value]); }
 
 /** func CFBinaryHeapContainsValue(_ heap: CFBinaryHeap!, _ value: UnsafeRawPointer!) -> Bool */
-export function CFBinaryHeapContainsValue(heap?: (CFBinaryHeap) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1374032573867457, undefined, [heap, value]); }
+export function CFBinaryHeapContainsValue(heap?: (CFBinaryHeap) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1374032573867457, undefined, [heap, value]); }
 
 /** func CFBinaryHeapCreate(_ allocator: CFAllocator!, _ capacity: CFIndex, _ callBacks: UnsafePointer<CFBinaryHeapCallBacks>!, _ compareContext: UnsafePointer<CFBinaryHeapCompareContext>!) -> CFBinaryHeap! */
-export function CFBinaryHeapCreate(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null, compareContext?: (SDKHandle) | null): (CFBinaryHeap) | null { return callSDK<(CFBinaryHeap) | null>("CoreFoundation_212edf3d13b127f5", 2139028000159087, undefined, [allocator, capacity, callBacks, compareContext]); }
+export function CFBinaryHeapCreate(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null, compareContext?: (SDKHandle) | null): (CFBinaryHeap) | null { return callSDK<(CFBinaryHeap) | null>("CoreFoundation_5d69670f0307b385", 2139028000159087, undefined, [allocator, capacity, callBacks, compareContext]); }
 
 /** func CFBinaryHeapCreateCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ heap: CFBinaryHeap!) -> CFBinaryHeap! */
-export function CFBinaryHeapCreateCopy(allocator: (CFAllocator) | null, capacity: number, heap?: (CFBinaryHeap) | null): (CFBinaryHeap) | null { return callSDK<(CFBinaryHeap) | null>("CoreFoundation_212edf3d13b127f5", 3658683400249929, undefined, [allocator, capacity, heap]); }
+export function CFBinaryHeapCreateCopy(allocator: (CFAllocator) | null, capacity: number, heap?: (CFBinaryHeap) | null): (CFBinaryHeap) | null { return callSDK<(CFBinaryHeap) | null>("CoreFoundation_5d69670f0307b385", 3658683400249929, undefined, [allocator, capacity, heap]); }
 
 /** func CFBinaryHeapGetCount(_ heap: CFBinaryHeap!) -> CFIndex */
-export function CFBinaryHeapGetCount(heap?: (CFBinaryHeap) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2185883934993800, undefined, [heap]); }
+export function CFBinaryHeapGetCount(heap?: (CFBinaryHeap) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2185883934993800, undefined, [heap]); }
 
 /** func CFBinaryHeapGetCountOfValue(_ heap: CFBinaryHeap!, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFBinaryHeapGetCountOfValue(heap?: (CFBinaryHeap) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3211618295875763, undefined, [heap, value]); }
+export function CFBinaryHeapGetCountOfValue(heap?: (CFBinaryHeap) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3211618295875763, undefined, [heap, value]); }
 
 /** func CFBinaryHeapGetMinimum(_ heap: CFBinaryHeap!) -> UnsafeRawPointer! */
-export function CFBinaryHeapGetMinimum(heap?: (CFBinaryHeap) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3336725439135393, undefined, [heap]); }
+export function CFBinaryHeapGetMinimum(heap?: (CFBinaryHeap) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3336725439135393, undefined, [heap]); }
 
 /** func CFBinaryHeapGetMinimumIfPresent(_ heap: CFBinaryHeap!, _ value: UnsafeMutablePointer<UnsafeRawPointer?>!) -> Bool */
-export function CFBinaryHeapGetMinimumIfPresent(heap?: (CFBinaryHeap) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 2543857196386202, undefined, [heap, null]); }
+export function CFBinaryHeapGetMinimumIfPresent(heap?: (CFBinaryHeap) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 2543857196386202, undefined, [heap, null]); }
 
 /** func CFBinaryHeapGetTypeID() -> CFTypeID */
-export function CFBinaryHeapGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4241381660971789, undefined, []); }
+export function CFBinaryHeapGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4241381660971789, undefined, []); }
 
 /** func CFBinaryHeapGetValues(_ heap: CFBinaryHeap!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!) */
-export function CFBinaryHeapGetValues(heap?: (CFBinaryHeap) | null): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 4123463778838084, undefined, [heap, null]); }
+export function CFBinaryHeapGetValues(heap?: (CFBinaryHeap) | null): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 4123463778838084, undefined, [heap, null]); }
 
 /** func CFBinaryHeapRemoveAllValues(_ heap: CFBinaryHeap!) */
-export function CFBinaryHeapRemoveAllValues(heap?: (CFBinaryHeap) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 739470324834060, undefined, [heap]); }
+export function CFBinaryHeapRemoveAllValues(heap?: (CFBinaryHeap) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 739470324834060, undefined, [heap]); }
 
 /** func CFBinaryHeapRemoveMinimumValue(_ heap: CFBinaryHeap!) */
-export function CFBinaryHeapRemoveMinimumValue(heap?: (CFBinaryHeap) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 313564315547591, undefined, [heap]); }
+export function CFBinaryHeapRemoveMinimumValue(heap?: (CFBinaryHeap) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 313564315547591, undefined, [heap]); }
 
 /** func CFBitVectorContainsBit(_ bv: CFBitVector!, _ range: CFRange, _ value: CFBit) -> Bool */
-export function CFBitVectorContainsBit(bv: (CFBitVector) | null, range: CFRange, value: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3401163263519305, undefined, [bv, range, value]); }
+export function CFBitVectorContainsBit(bv: (CFBitVector) | null, range: CFRange, value: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3401163263519305, undefined, [bv, range, value]); }
 
 /** func CFBitVectorCreate(_ allocator: CFAllocator!, _ bytes: UnsafePointer<UInt8>!, _ numBits: CFIndex) -> CFBitVector! */
-export function CFBitVectorCreate(allocator: (CFAllocator) | null, bytes: (SDKHandle) | null, numBits: number): (CFBitVector) | null { return callSDK<(CFBitVector) | null>("CoreFoundation_212edf3d13b127f5", 3539459026780328, undefined, [allocator, bytes, numBits]); }
+export function CFBitVectorCreate(allocator: (CFAllocator) | null, bytes: (SDKHandle) | null, numBits: number): (CFBitVector) | null { return callSDK<(CFBitVector) | null>("CoreFoundation_5d69670f0307b385", 3539459026780328, undefined, [allocator, bytes, numBits]); }
 
 /** func CFBitVectorCreateCopy(_ allocator: CFAllocator!, _ bv: CFBitVector!) -> CFBitVector! */
-export function CFBitVectorCreateCopy(allocator?: (CFAllocator) | null, bv?: (CFBitVector) | null): (CFBitVector) | null { return callSDK<(CFBitVector) | null>("CoreFoundation_212edf3d13b127f5", 2601311668314432, undefined, [allocator, bv]); }
+export function CFBitVectorCreateCopy(allocator?: (CFAllocator) | null, bv?: (CFBitVector) | null): (CFBitVector) | null { return callSDK<(CFBitVector) | null>("CoreFoundation_5d69670f0307b385", 2601311668314432, undefined, [allocator, bv]); }
 
 /** func CFBitVectorCreateMutable(_ allocator: CFAllocator!, _ capacity: CFIndex) -> CFMutableBitVector! */
-export function CFBitVectorCreateMutable(allocator: (CFAllocator) | null, capacity: number): $SDK54 { return callSDK<$SDK54>("CoreFoundation_212edf3d13b127f5", 2570031485581928, undefined, [allocator, capacity]); }
+export function CFBitVectorCreateMutable(allocator: (CFAllocator) | null, capacity: number): $SDK54 { return callSDK<$SDK54>("CoreFoundation_5d69670f0307b385", 2570031485581928, undefined, [allocator, capacity]); }
 
 /** func CFBitVectorCreateMutableCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ bv: CFBitVector!) -> CFMutableBitVector! */
-export function CFBitVectorCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, bv?: (CFBitVector) | null): $SDK54 { return callSDK<$SDK54>("CoreFoundation_212edf3d13b127f5", 1685167764997745, undefined, [allocator, capacity, bv]); }
+export function CFBitVectorCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, bv?: (CFBitVector) | null): $SDK54 { return callSDK<$SDK54>("CoreFoundation_5d69670f0307b385", 1685167764997745, undefined, [allocator, capacity, bv]); }
 
 /** func CFBitVectorFlipBitAtIndex(_ bv: CFMutableBitVector!, _ idx: CFIndex) */
-export function CFBitVectorFlipBitAtIndex(bv: $SDK54, idx: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3275433103176216, undefined, [bv, idx]); }
+export function CFBitVectorFlipBitAtIndex(bv: $SDK54, idx: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3275433103176216, undefined, [bv, idx]); }
 
 /** func CFBitVectorFlipBits(_ bv: CFMutableBitVector!, _ range: CFRange) */
-export function CFBitVectorFlipBits(bv: $SDK54, range: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4482783166093411, undefined, [bv, range]); }
+export function CFBitVectorFlipBits(bv: $SDK54, range: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4482783166093411, undefined, [bv, range]); }
 
 /** func CFBitVectorGetBitAtIndex(_ bv: CFBitVector!, _ idx: CFIndex) -> CFBit */
-export function CFBitVectorGetBitAtIndex(bv: (CFBitVector) | null, idx: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4088515935799172, undefined, [bv, idx]); }
+export function CFBitVectorGetBitAtIndex(bv: (CFBitVector) | null, idx: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4088515935799172, undefined, [bv, idx]); }
 
 /** func CFBitVectorGetBits(_ bv: CFBitVector!, _ range: CFRange, _ bytes: UnsafeMutablePointer<UInt8>!) */
-export function CFBitVectorGetBits(bv: (CFBitVector) | null, range: CFRange, bytes?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 67697654253966, undefined, [bv, range, bytes]); }
+export function CFBitVectorGetBits(bv: (CFBitVector) | null, range: CFRange, bytes?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 67697654253966, undefined, [bv, range, bytes]); }
 
 /** func CFBitVectorGetCount(_ bv: CFBitVector!) -> CFIndex */
-export function CFBitVectorGetCount(bv?: (CFBitVector) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 330521203911280, undefined, [bv]); }
+export function CFBitVectorGetCount(bv?: (CFBitVector) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 330521203911280, undefined, [bv]); }
 
 /** func CFBitVectorGetCountOfBit(_ bv: CFBitVector!, _ range: CFRange, _ value: CFBit) -> CFIndex */
-export function CFBitVectorGetCountOfBit(bv: (CFBitVector) | null, range: CFRange, value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2213313223556374, undefined, [bv, range, value]); }
+export function CFBitVectorGetCountOfBit(bv: (CFBitVector) | null, range: CFRange, value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2213313223556374, undefined, [bv, range, value]); }
 
 /** func CFBitVectorGetFirstIndexOfBit(_ bv: CFBitVector!, _ range: CFRange, _ value: CFBit) -> CFIndex */
-export function CFBitVectorGetFirstIndexOfBit(bv: (CFBitVector) | null, range: CFRange, value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 69812022927461, undefined, [bv, range, value]); }
+export function CFBitVectorGetFirstIndexOfBit(bv: (CFBitVector) | null, range: CFRange, value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 69812022927461, undefined, [bv, range, value]); }
 
 /** func CFBitVectorGetLastIndexOfBit(_ bv: CFBitVector!, _ range: CFRange, _ value: CFBit) -> CFIndex */
-export function CFBitVectorGetLastIndexOfBit(bv: (CFBitVector) | null, range: CFRange, value: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 721577344770302, undefined, [bv, range, value]); }
+export function CFBitVectorGetLastIndexOfBit(bv: (CFBitVector) | null, range: CFRange, value: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 721577344770302, undefined, [bv, range, value]); }
 
 /** func CFBitVectorGetTypeID() -> CFTypeID */
-export function CFBitVectorGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 526577391080947, undefined, []); }
+export function CFBitVectorGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 526577391080947, undefined, []); }
 
 /** func CFBitVectorSetAllBits(_ bv: CFMutableBitVector!, _ value: CFBit) */
-export function CFBitVectorSetAllBits(bv: $SDK54, value: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3969450453554971, undefined, [bv, value]); }
+export function CFBitVectorSetAllBits(bv: $SDK54, value: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3969450453554971, undefined, [bv, value]); }
 
 /** func CFBitVectorSetBitAtIndex(_ bv: CFMutableBitVector!, _ idx: CFIndex, _ value: CFBit) */
-export function CFBitVectorSetBitAtIndex(bv: $SDK54, idx: number, value: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 474801995907299, undefined, [bv, idx, value]); }
+export function CFBitVectorSetBitAtIndex(bv: $SDK54, idx: number, value: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 474801995907299, undefined, [bv, idx, value]); }
 
 /** func CFBitVectorSetBits(_ bv: CFMutableBitVector!, _ range: CFRange, _ value: CFBit) */
-export function CFBitVectorSetBits(bv: $SDK54, range: CFRange, value: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4267030503457615, undefined, [bv, range, value]); }
+export function CFBitVectorSetBits(bv: $SDK54, range: CFRange, value: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4267030503457615, undefined, [bv, range, value]); }
 
 /** func CFBitVectorSetCount(_ bv: CFMutableBitVector!, _ count: CFIndex) */
-export function CFBitVectorSetCount(bv: $SDK54, count: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2944315981536098, undefined, [bv, count]); }
+export function CFBitVectorSetCount(bv: $SDK54, count: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2944315981536098, undefined, [bv, count]); }
 
 /** func CFBooleanGetTypeID() -> CFTypeID */
-export function CFBooleanGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 276987976781236, undefined, []); }
+export function CFBooleanGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 276987976781236, undefined, []); }
 
 /** func CFBooleanGetValue(_ boolean: CFBoolean!) -> Bool */
-export function CFBooleanGetValue(boolean?: (CFBoolean) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 190130349778092, undefined, [boolean]); }
+export function CFBooleanGetValue(boolean?: (CFBoolean) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 190130349778092, undefined, [boolean]); }
 
 /** func CFBundleCopyAuxiliaryExecutableURL(_ bundle: CFBundle!, _ executableName: CFString!) -> CFURL! */
-export function CFBundleCopyAuxiliaryExecutableURL(bundle?: (CFBundle) | null, executableName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1298822526768677, undefined, [bundle, executableName]); }
+export function CFBundleCopyAuxiliaryExecutableURL(bundle?: (CFBundle) | null, executableName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1298822526768677, undefined, [bundle, executableName]); }
 
 /** func CFBundleCopyBuiltInPlugInsURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopyBuiltInPlugInsURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1271431108982515, undefined, [bundle]); }
+export function CFBundleCopyBuiltInPlugInsURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1271431108982515, undefined, [bundle]); }
 
 /** func CFBundleCopyBundleLocalizations(_ bundle: CFBundle!) -> CFArray! */
-export function CFBundleCopyBundleLocalizations(bundle?: (CFBundle) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 1420074464152823, undefined, [bundle]); }
+export function CFBundleCopyBundleLocalizations(bundle?: (CFBundle) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 1420074464152823, undefined, [bundle]); }
 
 /** func CFBundleCopyBundleURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopyBundleURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1813564088813484, undefined, [bundle]); }
+export function CFBundleCopyBundleURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1813564088813484, undefined, [bundle]); }
 
 /**
  * func CFBundleCopyExecutableArchitectures(_ bundle: CFBundle!) -> CFArray!
  * @availability iOS 2.0+
  */
-export function CFBundleCopyExecutableArchitectures(bundle?: (CFBundle) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2417091533742313, undefined, [bundle]); }
+export function CFBundleCopyExecutableArchitectures(bundle?: (CFBundle) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2417091533742313, undefined, [bundle]); }
 
 /**
  * func CFBundleCopyExecutableArchitecturesForURL(_ url: CFURL!) -> CFArray!
  * @availability iOS 2.0+
  */
-export function CFBundleCopyExecutableArchitecturesForURL(url?: (CFURL) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 4456158920971058, undefined, [url]); }
+export function CFBundleCopyExecutableArchitecturesForURL(url?: (CFURL) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 4456158920971058, undefined, [url]); }
 
 /** func CFBundleCopyExecutableURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopyExecutableURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 723902517116430, undefined, [bundle]); }
+export function CFBundleCopyExecutableURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 723902517116430, undefined, [bundle]); }
 
 /** func CFBundleCopyInfoDictionaryForURL(_ url: CFURL!) -> CFDictionary! */
-export function CFBundleCopyInfoDictionaryForURL(url?: (CFURL) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 3140164746751871, undefined, [url]); }
+export function CFBundleCopyInfoDictionaryForURL(url?: (CFURL) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 3140164746751871, undefined, [url]); }
 
 /** func CFBundleCopyInfoDictionaryInDirectory(_ bundleURL: CFURL!) -> CFDictionary! */
-export function CFBundleCopyInfoDictionaryInDirectory(bundleURL?: (CFURL) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 3539977141145401, undefined, [bundleURL]); }
+export function CFBundleCopyInfoDictionaryInDirectory(bundleURL?: (CFURL) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 3539977141145401, undefined, [bundleURL]); }
 
 /** func CFBundleCopyLocalizationsForPreferences(_ locArray: CFArray!, _ prefArray: CFArray!) -> CFArray! */
-export function CFBundleCopyLocalizationsForPreferences(locArray?: (CFArray) | null, prefArray?: (CFArray) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2719404831371224, undefined, [locArray, prefArray]); }
+export function CFBundleCopyLocalizationsForPreferences(locArray?: (CFArray) | null, prefArray?: (CFArray) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2719404831371224, undefined, [locArray, prefArray]); }
 
 /** func CFBundleCopyLocalizationsForURL(_ url: CFURL!) -> CFArray! */
-export function CFBundleCopyLocalizationsForURL(url?: (CFURL) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 4333343618400499, undefined, [url]); }
+export function CFBundleCopyLocalizationsForURL(url?: (CFURL) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 4333343618400499, undefined, [url]); }
 
 /** func CFBundleCopyLocalizedString(_ bundle: CFBundle!, _ key: CFString!, _ value: CFString!, _ tableName: CFString!) -> CFString! */
-export function CFBundleCopyLocalizedString(bundle?: (CFBundle) | null, key?: (CFString) | null, value?: (CFString) | null, tableName?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3378542756015920, undefined, [bundle, key, value, tableName]); }
+export function CFBundleCopyLocalizedString(bundle?: (CFBundle) | null, key?: (CFString) | null, value?: (CFString) | null, tableName?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3378542756015920, undefined, [bundle, key, value, tableName]); }
 
 /**
  * func CFBundleCopyLocalizedStringForLocalizations(_ bundle: CFBundle!, _ key: CFString!, _ value: CFString!, _ tableName: CFString!, _ localizations: CFArray!) -> CFString!
  * @availability iOS 18.4+
  */
-export function CFBundleCopyLocalizedStringForLocalizations(bundle?: (CFBundle) | null, key?: (CFString) | null, value?: (CFString) | null, tableName?: (CFString) | null, localizations?: (CFArray) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1627852927987827, undefined, [bundle, key, value, tableName, localizations]); }
+export function CFBundleCopyLocalizedStringForLocalizations(bundle?: (CFBundle) | null, key?: (CFString) | null, value?: (CFString) | null, tableName?: (CFString) | null, localizations?: (CFArray) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1627852927987827, undefined, [bundle, key, value, tableName, localizations]); }
 
 /** func CFBundleCopyPreferredLocalizationsFromArray(_ locArray: CFArray!) -> CFArray! */
-export function CFBundleCopyPreferredLocalizationsFromArray(locArray?: (CFArray) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 1147104698000093, undefined, [locArray]); }
+export function CFBundleCopyPreferredLocalizationsFromArray(locArray?: (CFArray) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 1147104698000093, undefined, [locArray]); }
 
 /** func CFBundleCopyPrivateFrameworksURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopyPrivateFrameworksURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1109348175402445, undefined, [bundle]); }
+export function CFBundleCopyPrivateFrameworksURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1109348175402445, undefined, [bundle]); }
 
 /** func CFBundleCopyResourceURL(_ bundle: CFBundle!, _ resourceName: CFString!, _ resourceType: CFString!, _ subDirName: CFString!) -> CFURL! */
-export function CFBundleCopyResourceURL(bundle?: (CFBundle) | null, resourceName?: (CFString) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 2145983540455902, undefined, [bundle, resourceName, resourceType, subDirName]); }
+export function CFBundleCopyResourceURL(bundle?: (CFBundle) | null, resourceName?: (CFString) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 2145983540455902, undefined, [bundle, resourceName, resourceType, subDirName]); }
 
 /** func CFBundleCopyResourceURLForLocalization(_ bundle: CFBundle!, _ resourceName: CFString!, _ resourceType: CFString!, _ subDirName: CFString!, _ localizationName: CFString!) -> CFURL! */
-export function CFBundleCopyResourceURLForLocalization(bundle?: (CFBundle) | null, resourceName?: (CFString) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null, localizationName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 300535682546084, undefined, [bundle, resourceName, resourceType, subDirName, localizationName]); }
+export function CFBundleCopyResourceURLForLocalization(bundle?: (CFBundle) | null, resourceName?: (CFString) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null, localizationName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 300535682546084, undefined, [bundle, resourceName, resourceType, subDirName, localizationName]); }
 
 /** func CFBundleCopyResourceURLInDirectory(_ bundleURL: CFURL!, _ resourceName: CFString!, _ resourceType: CFString!, _ subDirName: CFString!) -> CFURL! */
-export function CFBundleCopyResourceURLInDirectory(bundleURL?: (CFURL) | null, resourceName?: (CFString) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 3312285469925990, undefined, [bundleURL, resourceName, resourceType, subDirName]); }
+export function CFBundleCopyResourceURLInDirectory(bundleURL?: (CFURL) | null, resourceName?: (CFString) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 3312285469925990, undefined, [bundleURL, resourceName, resourceType, subDirName]); }
 
 /** func CFBundleCopyResourceURLsOfType(_ bundle: CFBundle!, _ resourceType: CFString!, _ subDirName: CFString!) -> CFArray! */
-export function CFBundleCopyResourceURLsOfType(bundle?: (CFBundle) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2464306808366973, undefined, [bundle, resourceType, subDirName]); }
+export function CFBundleCopyResourceURLsOfType(bundle?: (CFBundle) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2464306808366973, undefined, [bundle, resourceType, subDirName]); }
 
 /** func CFBundleCopyResourceURLsOfTypeForLocalization(_ bundle: CFBundle!, _ resourceType: CFString!, _ subDirName: CFString!, _ localizationName: CFString!) -> CFArray! */
-export function CFBundleCopyResourceURLsOfTypeForLocalization(bundle?: (CFBundle) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null, localizationName?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 1750317792290727, undefined, [bundle, resourceType, subDirName, localizationName]); }
+export function CFBundleCopyResourceURLsOfTypeForLocalization(bundle?: (CFBundle) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null, localizationName?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 1750317792290727, undefined, [bundle, resourceType, subDirName, localizationName]); }
 
 /** func CFBundleCopyResourceURLsOfTypeInDirectory(_ bundleURL: CFURL!, _ resourceType: CFString!, _ subDirName: CFString!) -> CFArray! */
-export function CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL?: (CFURL) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 3322753630395749, undefined, [bundleURL, resourceType, subDirName]); }
+export function CFBundleCopyResourceURLsOfTypeInDirectory(bundleURL?: (CFURL) | null, resourceType?: (CFString) | null, subDirName?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 3322753630395749, undefined, [bundleURL, resourceType, subDirName]); }
 
 /** func CFBundleCopyResourcesDirectoryURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopyResourcesDirectoryURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 4448607558453886, undefined, [bundle]); }
+export function CFBundleCopyResourcesDirectoryURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 4448607558453886, undefined, [bundle]); }
 
 /** func CFBundleCopySharedFrameworksURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopySharedFrameworksURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 4370141450531702, undefined, [bundle]); }
+export function CFBundleCopySharedFrameworksURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 4370141450531702, undefined, [bundle]); }
 
 /** func CFBundleCopySharedSupportURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopySharedSupportURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 783229970554173, undefined, [bundle]); }
+export function CFBundleCopySharedSupportURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 783229970554173, undefined, [bundle]); }
 
 /** func CFBundleCopySupportFilesDirectoryURL(_ bundle: CFBundle!) -> CFURL! */
-export function CFBundleCopySupportFilesDirectoryURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1927097169205418, undefined, [bundle]); }
+export function CFBundleCopySupportFilesDirectoryURL(bundle?: (CFBundle) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1927097169205418, undefined, [bundle]); }
 
 /** func CFBundleCreate(_ allocator: CFAllocator!, _ bundleURL: CFURL!) -> CFBundle! */
-export function CFBundleCreate(allocator?: (CFAllocator) | null, bundleURL?: (CFURL) | null): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_212edf3d13b127f5", 238735252878369, undefined, [allocator, bundleURL]); }
+export function CFBundleCreate(allocator?: (CFAllocator) | null, bundleURL?: (CFURL) | null): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_5d69670f0307b385", 238735252878369, undefined, [allocator, bundleURL]); }
 
 /** func CFBundleCreateBundlesFromDirectory(_ allocator: CFAllocator!, _ directoryURL: CFURL!, _ bundleType: CFString!) -> CFArray! */
-export function CFBundleCreateBundlesFromDirectory(allocator?: (CFAllocator) | null, directoryURL?: (CFURL) | null, bundleType?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2583596306926405, undefined, [allocator, directoryURL, bundleType]); }
+export function CFBundleCreateBundlesFromDirectory(allocator?: (CFAllocator) | null, directoryURL?: (CFURL) | null, bundleType?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2583596306926405, undefined, [allocator, directoryURL, bundleType]); }
 
 /** func CFBundleGetAllBundles() -> CFArray! */
-export function CFBundleGetAllBundles(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2093458773548358, undefined, []); }
+export function CFBundleGetAllBundles(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2093458773548358, undefined, []); }
 
 /** func CFBundleGetBundleWithIdentifier(_ bundleID: CFString!) -> CFBundle! */
-export function CFBundleGetBundleWithIdentifier(bundleID?: (CFString) | null): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_212edf3d13b127f5", 4203095978265253, undefined, [bundleID]); }
+export function CFBundleGetBundleWithIdentifier(bundleID?: (CFString) | null): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_5d69670f0307b385", 4203095978265253, undefined, [bundleID]); }
 
 /** func CFBundleGetDataPointerForName(_ bundle: CFBundle!, _ symbolName: CFString!) -> UnsafeMutableRawPointer! */
-export function CFBundleGetDataPointerForName(bundle?: (CFBundle) | null, symbolName?: (CFString) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1420166231843489, undefined, [bundle, symbolName]); }
+export function CFBundleGetDataPointerForName(bundle?: (CFBundle) | null, symbolName?: (CFString) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1420166231843489, undefined, [bundle, symbolName]); }
 
 /** func CFBundleGetDataPointersForNames(_ bundle: CFBundle!, _ symbolNames: CFArray!, _ stbl: UnsafeMutablePointer<UnsafeMutableRawPointer?>!) */
-export function CFBundleGetDataPointersForNames(bundle?: (CFBundle) | null, symbolNames?: (CFArray) | null): { $ret: null; $out: { "stbl": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "stbl": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 2401947408953605, undefined, [bundle, symbolNames, null]); }
+export function CFBundleGetDataPointersForNames(bundle?: (CFBundle) | null, symbolNames?: (CFArray) | null): { $ret: null; $out: { "stbl": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "stbl": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 2401947408953605, undefined, [bundle, symbolNames, null]); }
 
 /** func CFBundleGetDevelopmentRegion(_ bundle: CFBundle!) -> CFString! */
-export function CFBundleGetDevelopmentRegion(bundle?: (CFBundle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1890006299547791, undefined, [bundle]); }
+export function CFBundleGetDevelopmentRegion(bundle?: (CFBundle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1890006299547791, undefined, [bundle]); }
 
 /** func CFBundleGetFunctionPointerForName(_ bundle: CFBundle!, _ functionName: CFString!) -> UnsafeMutableRawPointer! */
-export function CFBundleGetFunctionPointerForName(bundle?: (CFBundle) | null, functionName?: (CFString) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1477559892800570, undefined, [bundle, functionName]); }
+export function CFBundleGetFunctionPointerForName(bundle?: (CFBundle) | null, functionName?: (CFString) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1477559892800570, undefined, [bundle, functionName]); }
 
 /** func CFBundleGetFunctionPointersForNames(_ bundle: CFBundle!, _ functionNames: CFArray!, _ ftbl: UnsafeMutablePointer<UnsafeMutableRawPointer?>!) */
-export function CFBundleGetFunctionPointersForNames(bundle?: (CFBundle) | null, functionNames?: (CFArray) | null): { $ret: null; $out: { "ftbl": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "ftbl": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 3139096920713437, undefined, [bundle, functionNames, null]); }
+export function CFBundleGetFunctionPointersForNames(bundle?: (CFBundle) | null, functionNames?: (CFArray) | null): { $ret: null; $out: { "ftbl": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "ftbl": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 3139096920713437, undefined, [bundle, functionNames, null]); }
 
 /** func CFBundleGetIdentifier(_ bundle: CFBundle!) -> CFString! */
-export function CFBundleGetIdentifier(bundle?: (CFBundle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3381276297151171, undefined, [bundle]); }
+export function CFBundleGetIdentifier(bundle?: (CFBundle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3381276297151171, undefined, [bundle]); }
 
 /** func CFBundleGetInfoDictionary(_ bundle: CFBundle!) -> CFDictionary! */
-export function CFBundleGetInfoDictionary(bundle?: (CFBundle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 4158850915679585, undefined, [bundle]); }
+export function CFBundleGetInfoDictionary(bundle?: (CFBundle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 4158850915679585, undefined, [bundle]); }
 
 /** func CFBundleGetLocalInfoDictionary(_ bundle: CFBundle!) -> CFDictionary! */
-export function CFBundleGetLocalInfoDictionary(bundle?: (CFBundle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 2860092895000059, undefined, [bundle]); }
+export function CFBundleGetLocalInfoDictionary(bundle?: (CFBundle) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 2860092895000059, undefined, [bundle]); }
 
 /** func CFBundleGetMainBundle() -> CFBundle! */
-export function CFBundleGetMainBundle(): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_212edf3d13b127f5", 2503427723474085, undefined, []); }
+export function CFBundleGetMainBundle(): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_5d69670f0307b385", 2503427723474085, undefined, []); }
 
 /** func CFBundleGetPackageInfo(_ bundle: CFBundle!, _ packageType: UnsafeMutablePointer<UInt32>!, _ packageCreator: UnsafeMutablePointer<UInt32>!) */
-export function CFBundleGetPackageInfo(bundle?: (CFBundle) | null, packageType?: (SDKHandle) | null, packageCreator?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2401010162093766, undefined, [bundle, packageType, packageCreator]); }
+export function CFBundleGetPackageInfo(bundle?: (CFBundle) | null, packageType?: (SDKHandle) | null, packageCreator?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2401010162093766, undefined, [bundle, packageType, packageCreator]); }
 
 /** func CFBundleGetPackageInfoInDirectory(_ url: CFURL!, _ packageType: UnsafeMutablePointer<UInt32>!, _ packageCreator: UnsafeMutablePointer<UInt32>!) -> Bool */
-export function CFBundleGetPackageInfoInDirectory(url?: (CFURL) | null, packageType?: (SDKHandle) | null, packageCreator?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1807118027677143, undefined, [url, packageType, packageCreator]); }
+export function CFBundleGetPackageInfoInDirectory(url?: (CFURL) | null, packageType?: (SDKHandle) | null, packageCreator?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1807118027677143, undefined, [url, packageType, packageCreator]); }
 
 /** func CFBundleGetPlugIn(_ bundle: CFBundle!) -> CFPlugIn! */
-export function CFBundleGetPlugIn(bundle?: (CFBundle) | null): (CFPlugIn) | null { return callSDK<(CFPlugIn) | null>("CoreFoundation_212edf3d13b127f5", 655625675584113, undefined, [bundle]); }
+export function CFBundleGetPlugIn(bundle?: (CFBundle) | null): (CFPlugIn) | null { return callSDK<(CFPlugIn) | null>("CoreFoundation_5d69670f0307b385", 655625675584113, undefined, [bundle]); }
 
 /** func CFBundleGetTypeID() -> CFTypeID */
-export function CFBundleGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3841635598429486, undefined, []); }
+export function CFBundleGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3841635598429486, undefined, []); }
 
 /** func CFBundleGetValueForInfoDictionaryKey(_ bundle: CFBundle!, _ key: CFString!) -> CFTypeRef! */
-export function CFBundleGetValueForInfoDictionaryKey(bundle?: (CFBundle) | null, key?: (CFString) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 3896279138033702, undefined, [bundle, key]); }
+export function CFBundleGetValueForInfoDictionaryKey(bundle?: (CFBundle) | null, key?: (CFString) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 3896279138033702, undefined, [bundle, key]); }
 
 /** func CFBundleGetVersionNumber(_ bundle: CFBundle!) -> UInt32 */
-export function CFBundleGetVersionNumber(bundle?: (CFBundle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3568866885104956, undefined, [bundle]); }
+export function CFBundleGetVersionNumber(bundle?: (CFBundle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3568866885104956, undefined, [bundle]); }
 
 /** func CFBundleIsExecutableLoaded(_ bundle: CFBundle!) -> Bool */
-export function CFBundleIsExecutableLoaded(bundle?: (CFBundle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1599813217297868, undefined, [bundle]); }
+export function CFBundleIsExecutableLoaded(bundle?: (CFBundle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1599813217297868, undefined, [bundle]); }
 
 /** func CFBundleLoadExecutable(_ bundle: CFBundle!) -> Bool */
-export function CFBundleLoadExecutable(bundle?: (CFBundle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 384950246232919, undefined, [bundle]); }
+export function CFBundleLoadExecutable(bundle?: (CFBundle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 384950246232919, undefined, [bundle]); }
 
 /**
  * func CFBundleLoadExecutableAndReturnError(_ bundle: CFBundle!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  */
-export function CFBundleLoadExecutableAndReturnError(bundle?: (CFBundle) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 4279847348471662, undefined, [bundle, null]); }
+export function CFBundleLoadExecutableAndReturnError(bundle?: (CFBundle) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 4279847348471662, undefined, [bundle, null]); }
 
 /**
  * func CFBundlePreflightExecutable(_ bundle: CFBundle!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 2.0+
  */
-export function CFBundlePreflightExecutable(bundle?: (CFBundle) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 3989210665629246, undefined, [bundle, null]); }
+export function CFBundlePreflightExecutable(bundle?: (CFBundle) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 3989210665629246, undefined, [bundle, null]); }
 
 /** func CFBundleUnloadExecutable(_ bundle: CFBundle!) */
-export function CFBundleUnloadExecutable(bundle?: (CFBundle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4402588160998697, undefined, [bundle]); }
+export function CFBundleUnloadExecutable(bundle?: (CFBundle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4402588160998697, undefined, [bundle]); }
 
 /** func CFByteOrderGetCurrent() -> CFByteOrder */
-export function CFByteOrderGetCurrent(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2359613730363609, undefined, []); }
+export function CFByteOrderGetCurrent(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2359613730363609, undefined, []); }
 
 /** func CFCalendarCopyCurrent() -> CFCalendar! */
-export function CFCalendarCopyCurrent(): (CFCalendar) | null { return callSDK<(CFCalendar) | null>("CoreFoundation_212edf3d13b127f5", 3733001941096221, undefined, []); }
+export function CFCalendarCopyCurrent(): (CFCalendar) | null { return callSDK<(CFCalendar) | null>("CoreFoundation_5d69670f0307b385", 3733001941096221, undefined, []); }
 
 /** func CFCalendarCopyLocale(_ calendar: CFCalendar!) -> CFLocale! */
-export function CFCalendarCopyLocale(calendar?: (CFCalendar) | null): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 3738049161305385, undefined, [calendar]); }
+export function CFCalendarCopyLocale(calendar?: (CFCalendar) | null): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 3738049161305385, undefined, [calendar]); }
 
 /** func CFCalendarCopyTimeZone(_ calendar: CFCalendar!) -> CFTimeZone! */
-export function CFCalendarCopyTimeZone(calendar?: (CFCalendar) | null): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_212edf3d13b127f5", 2366707712729377, undefined, [calendar]); }
+export function CFCalendarCopyTimeZone(calendar?: (CFCalendar) | null): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_5d69670f0307b385", 2366707712729377, undefined, [calendar]); }
 
 /** func CFCalendarCreateWithIdentifier(_ allocator: CFAllocator!, _ identifier: CFCalendarIdentifier!) -> CFCalendar! */
-export function CFCalendarCreateWithIdentifier(allocator?: (CFAllocator) | null, identifier?: $SDK21): (CFCalendar) | null { return callSDK<(CFCalendar) | null>("CoreFoundation_212edf3d13b127f5", 302507303182213, undefined, [allocator, identifier]); }
+export function CFCalendarCreateWithIdentifier(allocator?: (CFAllocator) | null, identifier?: $SDK21): (CFCalendar) | null { return callSDK<(CFCalendar) | null>("CoreFoundation_5d69670f0307b385", 302507303182213, undefined, [allocator, identifier]); }
 
 /** func CFCalendarGetFirstWeekday(_ calendar: CFCalendar!) -> CFIndex */
-export function CFCalendarGetFirstWeekday(calendar?: (CFCalendar) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4330969023996500, undefined, [calendar]); }
+export function CFCalendarGetFirstWeekday(calendar?: (CFCalendar) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4330969023996500, undefined, [calendar]); }
 
 /** func CFCalendarGetIdentifier(_ calendar: CFCalendar!) -> CFCalendarIdentifier! */
-export function CFCalendarGetIdentifier(calendar?: (CFCalendar) | null): $SDK21 { return callSDK<$SDK21>("CoreFoundation_212edf3d13b127f5", 3887405330565583, undefined, [calendar]); }
+export function CFCalendarGetIdentifier(calendar?: (CFCalendar) | null): $SDK21 { return callSDK<$SDK21>("CoreFoundation_5d69670f0307b385", 3887405330565583, undefined, [calendar]); }
 
 /** func CFCalendarGetMaximumRangeOfUnit(_ calendar: CFCalendar!, _ unit: CFCalendarUnit) -> CFRange */
-export function CFCalendarGetMaximumRangeOfUnit(calendar: (CFCalendar) | null, unit: CFCalendarUnit): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 4347343732442736, undefined, [calendar, unit]); }
+export function CFCalendarGetMaximumRangeOfUnit(calendar: (CFCalendar) | null, unit: CFCalendarUnit): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 4347343732442736, undefined, [calendar, unit]); }
 
 /** func CFCalendarGetMinimumDaysInFirstWeek(_ calendar: CFCalendar!) -> CFIndex */
-export function CFCalendarGetMinimumDaysInFirstWeek(calendar?: (CFCalendar) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3409230898616603, undefined, [calendar]); }
+export function CFCalendarGetMinimumDaysInFirstWeek(calendar?: (CFCalendar) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3409230898616603, undefined, [calendar]); }
 
 /** func CFCalendarGetMinimumRangeOfUnit(_ calendar: CFCalendar!, _ unit: CFCalendarUnit) -> CFRange */
-export function CFCalendarGetMinimumRangeOfUnit(calendar: (CFCalendar) | null, unit: CFCalendarUnit): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 4095674600002692, undefined, [calendar, unit]); }
+export function CFCalendarGetMinimumRangeOfUnit(calendar: (CFCalendar) | null, unit: CFCalendarUnit): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 4095674600002692, undefined, [calendar, unit]); }
 
 /** func CFCalendarGetOrdinalityOfUnit(_ calendar: CFCalendar!, _ smallerUnit: CFCalendarUnit, _ biggerUnit: CFCalendarUnit, _ at: CFAbsoluteTime) -> CFIndex */
-export function CFCalendarGetOrdinalityOfUnit(calendar: (CFCalendar) | null, smallerUnit: CFCalendarUnit, biggerUnit: CFCalendarUnit, at: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3841684374688087, undefined, [calendar, smallerUnit, biggerUnit, at]); }
+export function CFCalendarGetOrdinalityOfUnit(calendar: (CFCalendar) | null, smallerUnit: CFCalendarUnit, biggerUnit: CFCalendarUnit, at: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3841684374688087, undefined, [calendar, smallerUnit, biggerUnit, at]); }
 
 /** func CFCalendarGetRangeOfUnit(_ calendar: CFCalendar!, _ smallerUnit: CFCalendarUnit, _ biggerUnit: CFCalendarUnit, _ at: CFAbsoluteTime) -> CFRange */
-export function CFCalendarGetRangeOfUnit(calendar: (CFCalendar) | null, smallerUnit: CFCalendarUnit, biggerUnit: CFCalendarUnit, at: number): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 4098659239870068, undefined, [calendar, smallerUnit, biggerUnit, at]); }
+export function CFCalendarGetRangeOfUnit(calendar: (CFCalendar) | null, smallerUnit: CFCalendarUnit, biggerUnit: CFCalendarUnit, at: number): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 4098659239870068, undefined, [calendar, smallerUnit, biggerUnit, at]); }
 
 /**
  * func CFCalendarGetTimeRangeOfUnit(_ calendar: CFCalendar!, _ unit: CFCalendarUnit, _ at: CFAbsoluteTime, _ startp: UnsafeMutablePointer<CFAbsoluteTime>!, _ tip: UnsafeMutablePointer<CFTimeInterval>!) -> Bool
  * @availability iOS 2.0+
  */
-export function CFCalendarGetTimeRangeOfUnit(calendar: (CFCalendar) | null, unit: CFCalendarUnit, at: number, startp?: (SDKHandle) | null, tip?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1180761806490768, undefined, [calendar, unit, at, startp, tip]); }
+export function CFCalendarGetTimeRangeOfUnit(calendar: (CFCalendar) | null, unit: CFCalendarUnit, at: number, startp?: (SDKHandle) | null, tip?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1180761806490768, undefined, [calendar, unit, at, startp, tip]); }
 
 /** func CFCalendarGetTypeID() -> CFTypeID */
-export function CFCalendarGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3887249443269433, undefined, []); }
+export function CFCalendarGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3887249443269433, undefined, []); }
 
 /** func CFCalendarSetFirstWeekday(_ calendar: CFCalendar!, _ wkdy: CFIndex) */
-export function CFCalendarSetFirstWeekday(calendar: (CFCalendar) | null, wkdy: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2182556010709005, undefined, [calendar, wkdy]); }
+export function CFCalendarSetFirstWeekday(calendar: (CFCalendar) | null, wkdy: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2182556010709005, undefined, [calendar, wkdy]); }
 
 /** func CFCalendarSetLocale(_ calendar: CFCalendar!, _ locale: CFLocale!) */
-export function CFCalendarSetLocale(calendar?: (CFCalendar) | null, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 559577639869859, undefined, [calendar, locale]); }
+export function CFCalendarSetLocale(calendar?: (CFCalendar) | null, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 559577639869859, undefined, [calendar, locale]); }
 
 /** func CFCalendarSetMinimumDaysInFirstWeek(_ calendar: CFCalendar!, _ mwd: CFIndex) */
-export function CFCalendarSetMinimumDaysInFirstWeek(calendar: (CFCalendar) | null, mwd: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 118307993798506, undefined, [calendar, mwd]); }
+export function CFCalendarSetMinimumDaysInFirstWeek(calendar: (CFCalendar) | null, mwd: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 118307993798506, undefined, [calendar, mwd]); }
 
 /** func CFCalendarSetTimeZone(_ calendar: CFCalendar!, _ tz: CFTimeZone!) */
-export function CFCalendarSetTimeZone(calendar?: (CFCalendar) | null, tz?: (CFTimeZone) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4289152238575700, undefined, [calendar, tz]); }
+export function CFCalendarSetTimeZone(calendar?: (CFCalendar) | null, tz?: (CFTimeZone) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4289152238575700, undefined, [calendar, tz]); }
 
 /** func CFCharacterSetAddCharactersInRange(_ theSet: CFMutableCharacterSet!, _ theRange: CFRange) */
-export function CFCharacterSetAddCharactersInRange(theSet: $SDK55, theRange: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3874464031297890, undefined, [theSet, theRange]); }
+export function CFCharacterSetAddCharactersInRange(theSet: $SDK55, theRange: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3874464031297890, undefined, [theSet, theRange]); }
 
 /** func CFCharacterSetAddCharactersInString(_ theSet: CFMutableCharacterSet!, _ theString: CFString!) */
-export function CFCharacterSetAddCharactersInString(theSet?: $SDK55, theString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 24270261494518, undefined, [theSet, theString]); }
+export function CFCharacterSetAddCharactersInString(theSet?: $SDK55, theString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 24270261494518, undefined, [theSet, theString]); }
 
 /** func CFCharacterSetCreateBitmapRepresentation(_ alloc: CFAllocator!, _ theSet: CFCharacterSet!) -> CFData! */
-export function CFCharacterSetCreateBitmapRepresentation(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 812980227075726, undefined, [alloc, theSet]); }
+export function CFCharacterSetCreateBitmapRepresentation(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 812980227075726, undefined, [alloc, theSet]); }
 
 /** func CFCharacterSetCreateCopy(_ alloc: CFAllocator!, _ theSet: CFCharacterSet!) -> CFCharacterSet! */
-export function CFCharacterSetCreateCopy(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_212edf3d13b127f5", 482446632855470, undefined, [alloc, theSet]); }
+export function CFCharacterSetCreateCopy(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_5d69670f0307b385", 482446632855470, undefined, [alloc, theSet]); }
 
 /** func CFCharacterSetCreateInvertedSet(_ alloc: CFAllocator!, _ theSet: CFCharacterSet!) -> CFCharacterSet! */
-export function CFCharacterSetCreateInvertedSet(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_212edf3d13b127f5", 1628993981547802, undefined, [alloc, theSet]); }
+export function CFCharacterSetCreateInvertedSet(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_5d69670f0307b385", 1628993981547802, undefined, [alloc, theSet]); }
 
 /** func CFCharacterSetCreateMutable(_ alloc: CFAllocator!) -> CFMutableCharacterSet! */
-export function CFCharacterSetCreateMutable(alloc?: (CFAllocator) | null): $SDK55 { return callSDK<$SDK55>("CoreFoundation_212edf3d13b127f5", 574467377257242, undefined, [alloc]); }
+export function CFCharacterSetCreateMutable(alloc?: (CFAllocator) | null): $SDK55 { return callSDK<$SDK55>("CoreFoundation_5d69670f0307b385", 574467377257242, undefined, [alloc]); }
 
 /** func CFCharacterSetCreateMutableCopy(_ alloc: CFAllocator!, _ theSet: CFCharacterSet!) -> CFMutableCharacterSet! */
-export function CFCharacterSetCreateMutableCopy(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): $SDK55 { return callSDK<$SDK55>("CoreFoundation_212edf3d13b127f5", 3576903471608450, undefined, [alloc, theSet]); }
+export function CFCharacterSetCreateMutableCopy(alloc?: (CFAllocator) | null, theSet?: (CFCharacterSet) | null): $SDK55 { return callSDK<$SDK55>("CoreFoundation_5d69670f0307b385", 3576903471608450, undefined, [alloc, theSet]); }
 
 /** func CFCharacterSetCreateWithBitmapRepresentation(_ alloc: CFAllocator!, _ theData: CFData!) -> CFCharacterSet! */
-export function CFCharacterSetCreateWithBitmapRepresentation(alloc?: (CFAllocator) | null, theData?: (CFData) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_212edf3d13b127f5", 2275340012803512, undefined, [alloc, theData]); }
+export function CFCharacterSetCreateWithBitmapRepresentation(alloc?: (CFAllocator) | null, theData?: (CFData) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_5d69670f0307b385", 2275340012803512, undefined, [alloc, theData]); }
 
 /** func CFCharacterSetCreateWithCharactersInRange(_ alloc: CFAllocator!, _ theRange: CFRange) -> CFCharacterSet! */
-export function CFCharacterSetCreateWithCharactersInRange(alloc: (CFAllocator) | null, theRange: CFRange): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_212edf3d13b127f5", 886867644428439, undefined, [alloc, theRange]); }
+export function CFCharacterSetCreateWithCharactersInRange(alloc: (CFAllocator) | null, theRange: CFRange): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_5d69670f0307b385", 886867644428439, undefined, [alloc, theRange]); }
 
 /** func CFCharacterSetCreateWithCharactersInString(_ alloc: CFAllocator!, _ theString: CFString!) -> CFCharacterSet! */
-export function CFCharacterSetCreateWithCharactersInString(alloc?: (CFAllocator) | null, theString?: (CFString) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_212edf3d13b127f5", 3563918441848452, undefined, [alloc, theString]); }
+export function CFCharacterSetCreateWithCharactersInString(alloc?: (CFAllocator) | null, theString?: (CFString) | null): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_5d69670f0307b385", 3563918441848452, undefined, [alloc, theString]); }
 
 /** func CFCharacterSetGetPredefined(_ theSetIdentifier: CFCharacterSetPredefinedSet) -> CFCharacterSet! */
-export function CFCharacterSetGetPredefined(theSetIdentifier: CFCharacterSetPredefinedSet): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_212edf3d13b127f5", 2031362585654000, undefined, [theSetIdentifier]); }
+export function CFCharacterSetGetPredefined(theSetIdentifier: CFCharacterSetPredefinedSet): (CFCharacterSet) | null { return callSDK<(CFCharacterSet) | null>("CoreFoundation_5d69670f0307b385", 2031362585654000, undefined, [theSetIdentifier]); }
 
 /** func CFCharacterSetGetTypeID() -> CFTypeID */
-export function CFCharacterSetGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3223561726956433, undefined, []); }
+export function CFCharacterSetGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3223561726956433, undefined, []); }
 
 /** func CFCharacterSetHasMemberInPlane(_ theSet: CFCharacterSet!, _ thePlane: CFIndex) -> Bool */
-export function CFCharacterSetHasMemberInPlane(theSet: (CFCharacterSet) | null, thePlane: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 14735128968473, undefined, [theSet, thePlane]); }
+export function CFCharacterSetHasMemberInPlane(theSet: (CFCharacterSet) | null, thePlane: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 14735128968473, undefined, [theSet, thePlane]); }
 
 /** func CFCharacterSetIntersect(_ theSet: CFMutableCharacterSet!, _ theOtherSet: CFCharacterSet!) */
-export function CFCharacterSetIntersect(theSet?: $SDK55, theOtherSet?: (CFCharacterSet) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 161908140701240, undefined, [theSet, theOtherSet]); }
+export function CFCharacterSetIntersect(theSet?: $SDK55, theOtherSet?: (CFCharacterSet) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 161908140701240, undefined, [theSet, theOtherSet]); }
 
 /** func CFCharacterSetInvert(_ theSet: CFMutableCharacterSet!) */
-export function CFCharacterSetInvert(theSet?: $SDK55): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 357142432724397, undefined, [theSet]); }
+export function CFCharacterSetInvert(theSet?: $SDK55): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 357142432724397, undefined, [theSet]); }
 
 /** func CFCharacterSetIsCharacterMember(_ theSet: CFCharacterSet!, _ theChar: UniChar) -> Bool */
-export function CFCharacterSetIsCharacterMember(theSet: (CFCharacterSet) | null, theChar: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 939675031088011, undefined, [theSet, theChar]); }
+export function CFCharacterSetIsCharacterMember(theSet: (CFCharacterSet) | null, theChar: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 939675031088011, undefined, [theSet, theChar]); }
 
 /** func CFCharacterSetIsLongCharacterMember(_ theSet: CFCharacterSet!, _ theChar: UTF32Char) -> Bool */
-export function CFCharacterSetIsLongCharacterMember(theSet: (CFCharacterSet) | null, theChar: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4247482758402856, undefined, [theSet, theChar]); }
+export function CFCharacterSetIsLongCharacterMember(theSet: (CFCharacterSet) | null, theChar: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4247482758402856, undefined, [theSet, theChar]); }
 
 /** func CFCharacterSetIsSupersetOfSet(_ theSet: CFCharacterSet!, _ theOtherset: CFCharacterSet!) -> Bool */
-export function CFCharacterSetIsSupersetOfSet(theSet?: (CFCharacterSet) | null, theOtherset?: (CFCharacterSet) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3629938362841728, undefined, [theSet, theOtherset]); }
+export function CFCharacterSetIsSupersetOfSet(theSet?: (CFCharacterSet) | null, theOtherset?: (CFCharacterSet) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3629938362841728, undefined, [theSet, theOtherset]); }
 
 /** func CFCharacterSetRemoveCharactersInRange(_ theSet: CFMutableCharacterSet!, _ theRange: CFRange) */
-export function CFCharacterSetRemoveCharactersInRange(theSet: $SDK55, theRange: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1910730236084196, undefined, [theSet, theRange]); }
+export function CFCharacterSetRemoveCharactersInRange(theSet: $SDK55, theRange: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1910730236084196, undefined, [theSet, theRange]); }
 
 /** func CFCharacterSetRemoveCharactersInString(_ theSet: CFMutableCharacterSet!, _ theString: CFString!) */
-export function CFCharacterSetRemoveCharactersInString(theSet?: $SDK55, theString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3178898337668810, undefined, [theSet, theString]); }
+export function CFCharacterSetRemoveCharactersInString(theSet?: $SDK55, theString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3178898337668810, undefined, [theSet, theString]); }
 
 /** func CFCharacterSetUnion(_ theSet: CFMutableCharacterSet!, _ theOtherSet: CFCharacterSet!) */
-export function CFCharacterSetUnion(theSet?: $SDK55, theOtherSet?: (CFCharacterSet) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 554999451703888, undefined, [theSet, theOtherSet]); }
+export function CFCharacterSetUnion(theSet?: $SDK55, theOtherSet?: (CFCharacterSet) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 554999451703888, undefined, [theSet, theOtherSet]); }
 
 /** func CFConvertDoubleHostToSwapped(_ arg: Double) -> CFSwappedFloat64 */
-export function CFConvertDoubleHostToSwapped(arg: number): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_212edf3d13b127f5", 1804014120719760, undefined, [arg]); }
+export function CFConvertDoubleHostToSwapped(arg: number): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_5d69670f0307b385", 1804014120719760, undefined, [arg]); }
 
 /** func CFConvertDoubleSwappedToHost(_ arg: CFSwappedFloat64) -> Double */
-export function CFConvertDoubleSwappedToHost(arg: CFSwappedFloat64): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 712876187518976, undefined, [arg]); }
+export function CFConvertDoubleSwappedToHost(arg: CFSwappedFloat64): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 712876187518976, undefined, [arg]); }
 
 /** func CFConvertFloat32HostToSwapped(_ arg: Float32) -> CFSwappedFloat32 */
-export function CFConvertFloat32HostToSwapped(arg: SDKHandle): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_212edf3d13b127f5", 1913303037145325, undefined, [arg]); }
+export function CFConvertFloat32HostToSwapped(arg: SDKHandle): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_5d69670f0307b385", 1913303037145325, undefined, [arg]); }
 
 /** func CFConvertFloat32SwappedToHost(_ arg: CFSwappedFloat32) -> Float32 */
-export function CFConvertFloat32SwappedToHost(arg: CFSwappedFloat32): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 1917995779085924, undefined, [arg]); }
+export function CFConvertFloat32SwappedToHost(arg: CFSwappedFloat32): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 1917995779085924, undefined, [arg]); }
 
 /** func CFConvertFloat64HostToSwapped(_ arg: Float64) -> CFSwappedFloat64 */
-export function CFConvertFloat64HostToSwapped(arg: SDKHandle): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_212edf3d13b127f5", 1939930523436958, undefined, [arg]); }
+export function CFConvertFloat64HostToSwapped(arg: SDKHandle): CFSwappedFloat64 { return callSDK<CFSwappedFloat64>("CoreFoundation_5d69670f0307b385", 1939930523436958, undefined, [arg]); }
 
 /** func CFConvertFloat64SwappedToHost(_ arg: CFSwappedFloat64) -> Float64 */
-export function CFConvertFloat64SwappedToHost(arg: CFSwappedFloat64): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 909399168696318, undefined, [arg]); }
+export function CFConvertFloat64SwappedToHost(arg: CFSwappedFloat64): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 909399168696318, undefined, [arg]); }
 
 /** func CFConvertFloatHostToSwapped(_ arg: Float) -> CFSwappedFloat32 */
-export function CFConvertFloatHostToSwapped(arg: number): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_212edf3d13b127f5", 3969926348698703, undefined, [arg]); }
+export function CFConvertFloatHostToSwapped(arg: number): CFSwappedFloat32 { return callSDK<CFSwappedFloat32>("CoreFoundation_5d69670f0307b385", 3969926348698703, undefined, [arg]); }
 
 /** func CFConvertFloatSwappedToHost(_ arg: CFSwappedFloat32) -> Float */
-export function CFConvertFloatSwappedToHost(arg: CFSwappedFloat32): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2107255677148981, undefined, [arg]); }
+export function CFConvertFloatSwappedToHost(arg: CFSwappedFloat32): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2107255677148981, undefined, [arg]); }
 
 /** func CFCopyDescription(_ cf: CFTypeRef!) -> CFString! */
-export function CFCopyDescription(cf?: (unknown) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1455670430377798, undefined, [cf]); }
+export function CFCopyDescription(cf?: (unknown) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1455670430377798, undefined, [cf]); }
 
 /**
  * func CFCopyHomeDirectoryURL() -> CFURL!
  * @availability iOS 5.0+
  */
-export function CFCopyHomeDirectoryURL(): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 41899870514591, undefined, []); }
+export function CFCopyHomeDirectoryURL(): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 41899870514591, undefined, []); }
 
 /** func CFCopyTypeIDDescription(_ type_id: CFTypeID) -> CFString! */
-export function CFCopyTypeIDDescription(type_id: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4239283924773488, undefined, [type_id]); }
+export function CFCopyTypeIDDescription(type_id: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4239283924773488, undefined, [type_id]); }
 
 /** func CFDataAppendBytes(_ theData: CFMutableData!, _ bytes: UnsafePointer<UInt8>!, _ length: CFIndex) */
-export function CFDataAppendBytes(theData: (CFMutableData) | null, bytes: (SDKHandle) | null, length: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4144524535501718, undefined, [theData, bytes, length]); }
+export function CFDataAppendBytes(theData: (CFMutableData) | null, bytes: (SDKHandle) | null, length: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4144524535501718, undefined, [theData, bytes, length]); }
 
 /** func CFDataCreate(_ allocator: CFAllocator!, _ bytes: UnsafePointer<UInt8>!, _ length: CFIndex) -> CFData! */
-export function CFDataCreate(allocator: (CFAllocator) | null, bytes: (SDKHandle) | null, length: number): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 3567762530912197, undefined, [allocator, bytes, length]); }
+export function CFDataCreate(allocator: (CFAllocator) | null, bytes: (SDKHandle) | null, length: number): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 3567762530912197, undefined, [allocator, bytes, length]); }
 
 /** func CFDataCreateCopy(_ allocator: CFAllocator!, _ theData: CFData!) -> CFData! */
-export function CFDataCreateCopy(allocator?: (CFAllocator) | null, theData?: (CFData) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 3394018040414404, undefined, [allocator, theData]); }
+export function CFDataCreateCopy(allocator?: (CFAllocator) | null, theData?: (CFData) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 3394018040414404, undefined, [allocator, theData]); }
 
 /** func CFDataCreateMutable(_ allocator: CFAllocator!, _ capacity: CFIndex) -> CFMutableData! */
-export function CFDataCreateMutable(allocator: (CFAllocator) | null, capacity: number): (CFMutableData) | null { return callSDK<(CFMutableData) | null>("CoreFoundation_212edf3d13b127f5", 902462065843655, undefined, [allocator, capacity]); }
+export function CFDataCreateMutable(allocator: (CFAllocator) | null, capacity: number): (CFMutableData) | null { return callSDK<(CFMutableData) | null>("CoreFoundation_5d69670f0307b385", 902462065843655, undefined, [allocator, capacity]); }
 
 /** func CFDataCreateMutableCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ theData: CFData!) -> CFMutableData! */
-export function CFDataCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theData?: (CFData) | null): (CFMutableData) | null { return callSDK<(CFMutableData) | null>("CoreFoundation_212edf3d13b127f5", 2919694149294106, undefined, [allocator, capacity, theData]); }
+export function CFDataCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theData?: (CFData) | null): (CFMutableData) | null { return callSDK<(CFMutableData) | null>("CoreFoundation_5d69670f0307b385", 2919694149294106, undefined, [allocator, capacity, theData]); }
 
 /** func CFDataCreateWithBytesNoCopy(_ allocator: CFAllocator!, _ bytes: UnsafePointer<UInt8>!, _ length: CFIndex, _ bytesDeallocator: CFAllocator!) -> CFData! */
-export function CFDataCreateWithBytesNoCopy(allocator: (CFAllocator) | null, bytes: (SDKHandle) | null, length: number, bytesDeallocator?: (CFAllocator) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 126573086004662, undefined, [allocator, bytes, length, bytesDeallocator]); }
+export function CFDataCreateWithBytesNoCopy(allocator: (CFAllocator) | null, bytes: (SDKHandle) | null, length: number, bytesDeallocator?: (CFAllocator) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 126573086004662, undefined, [allocator, bytes, length, bytesDeallocator]); }
 
 /** func CFDataDeleteBytes(_ theData: CFMutableData!, _ range: CFRange) */
-export function CFDataDeleteBytes(theData: (CFMutableData) | null, range: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 570599809404748, undefined, [theData, range]); }
+export function CFDataDeleteBytes(theData: (CFMutableData) | null, range: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 570599809404748, undefined, [theData, range]); }
 
 /**
  * func CFDataFind(_ theData: CFData!, _ dataToFind: CFData!, _ searchRange: CFRange, _ compareOptions: CFDataSearchFlags) -> CFRange
  * @availability iOS 4.0+
  */
-export function CFDataFind(theData: (CFData) | null, dataToFind: (CFData) | null, searchRange: CFRange, compareOptions: CFDataSearchFlags): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 1498918404743018, undefined, [theData, dataToFind, searchRange, compareOptions]); }
+export function CFDataFind(theData: (CFData) | null, dataToFind: (CFData) | null, searchRange: CFRange, compareOptions: CFDataSearchFlags): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 1498918404743018, undefined, [theData, dataToFind, searchRange, compareOptions]); }
 
 /** func CFDataGetBytePtr(_ theData: CFData!) -> UnsafePointer<UInt8>! */
-export function CFDataGetBytePtr(theData?: (CFData) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 4059292540499725, undefined, [theData]); }
+export function CFDataGetBytePtr(theData?: (CFData) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 4059292540499725, undefined, [theData]); }
 
 /** func CFDataGetBytes(_ theData: CFData!, _ range: CFRange, _ buffer: UnsafeMutablePointer<UInt8>!) */
-export function CFDataGetBytes(theData: (CFData) | null, range: CFRange, buffer?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1178227823109462, undefined, [theData, range, buffer]); }
+export function CFDataGetBytes(theData: (CFData) | null, range: CFRange, buffer?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1178227823109462, undefined, [theData, range, buffer]); }
 
 /** func CFDataGetLength(_ theData: CFData!) -> CFIndex */
-export function CFDataGetLength(theData?: (CFData) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4271593533526771, undefined, [theData]); }
+export function CFDataGetLength(theData?: (CFData) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4271593533526771, undefined, [theData]); }
 
 /** func CFDataGetMutableBytePtr(_ theData: CFMutableData!) -> UnsafeMutablePointer<UInt8>! */
-export function CFDataGetMutableBytePtr(theData?: (CFMutableData) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3766422980160554, undefined, [theData]); }
+export function CFDataGetMutableBytePtr(theData?: (CFMutableData) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3766422980160554, undefined, [theData]); }
 
 /** func CFDataGetTypeID() -> CFTypeID */
-export function CFDataGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 14783385974778, undefined, []); }
+export function CFDataGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 14783385974778, undefined, []); }
 
 /** func CFDataIncreaseLength(_ theData: CFMutableData!, _ extraLength: CFIndex) */
-export function CFDataIncreaseLength(theData: (CFMutableData) | null, extraLength: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1544095425346306, undefined, [theData, extraLength]); }
+export function CFDataIncreaseLength(theData: (CFMutableData) | null, extraLength: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1544095425346306, undefined, [theData, extraLength]); }
 
 /** func CFDataReplaceBytes(_ theData: CFMutableData!, _ range: CFRange, _ newBytes: UnsafePointer<UInt8>!, _ newLength: CFIndex) */
-export function CFDataReplaceBytes(theData: (CFMutableData) | null, range: CFRange, newBytes: (SDKHandle) | null, newLength: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3629776200331123, undefined, [theData, range, newBytes, newLength]); }
+export function CFDataReplaceBytes(theData: (CFMutableData) | null, range: CFRange, newBytes: (SDKHandle) | null, newLength: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3629776200331123, undefined, [theData, range, newBytes, newLength]); }
 
 /** func CFDataSetLength(_ theData: CFMutableData!, _ length: CFIndex) */
-export function CFDataSetLength(theData: (CFMutableData) | null, length: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 316796661918711, undefined, [theData, length]); }
+export function CFDataSetLength(theData: (CFMutableData) | null, length: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 316796661918711, undefined, [theData, length]); }
 
 /** func CFDateCompare(_ theDate: CFDate!, _ otherDate: CFDate!, _ context: UnsafeMutableRawPointer!) -> CFComparisonResult */
-export function CFDateCompare(theDate?: (CFDate) | null, otherDate?: (CFDate) | null, context?: (SDKHandle) | null): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_212edf3d13b127f5", 3604357437411875, undefined, [theDate, otherDate, context]); }
+export function CFDateCompare(theDate?: (CFDate) | null, otherDate?: (CFDate) | null, context?: (SDKHandle) | null): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_5d69670f0307b385", 3604357437411875, undefined, [theDate, otherDate, context]); }
 
 /** func CFDateCreate(_ allocator: CFAllocator!, _ at: CFAbsoluteTime) -> CFDate! */
-export function CFDateCreate(allocator: (CFAllocator) | null, at: number): (CFDate) | null { return callSDK<(CFDate) | null>("CoreFoundation_212edf3d13b127f5", 3274951847561911, undefined, [allocator, at]); }
+export function CFDateCreate(allocator: (CFAllocator) | null, at: number): (CFDate) | null { return callSDK<(CFDate) | null>("CoreFoundation_5d69670f0307b385", 3274951847561911, undefined, [allocator, at]); }
 
 /** func CFDateFormatterCopyProperty(_ formatter: CFDateFormatter!, _ key: CFDateFormatterKey!) -> CFTypeRef! */
-export function CFDateFormatterCopyProperty(formatter?: $SDK56, key?: $SDK23): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 4022572687230698, undefined, [formatter, key]); }
+export function CFDateFormatterCopyProperty(formatter?: $SDK56, key?: $SDK23): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 4022572687230698, undefined, [formatter, key]); }
 
 /** func CFDateFormatterCreate(_ allocator: CFAllocator!, _ locale: CFLocale!, _ dateStyle: CFDateFormatterStyle, _ timeStyle: CFDateFormatterStyle) -> CFDateFormatter! */
-export function CFDateFormatterCreate(allocator: (CFAllocator) | null, locale: (CFLocale) | null, dateStyle: CFDateFormatterStyle, timeStyle: CFDateFormatterStyle): $SDK56 { return callSDK<$SDK56>("CoreFoundation_212edf3d13b127f5", 938388597065343, undefined, [allocator, locale, dateStyle, timeStyle]); }
+export function CFDateFormatterCreate(allocator: (CFAllocator) | null, locale: (CFLocale) | null, dateStyle: CFDateFormatterStyle, timeStyle: CFDateFormatterStyle): $SDK56 { return callSDK<$SDK56>("CoreFoundation_5d69670f0307b385", 938388597065343, undefined, [allocator, locale, dateStyle, timeStyle]); }
 
 /**
  * func CFDateFormatterCreateDateFormatFromTemplate(_ allocator: CFAllocator!, _ tmplate: CFString!, _ options: CFOptionFlags, _ locale: CFLocale!) -> CFString!
  * @availability iOS 4.0+
  */
-export function CFDateFormatterCreateDateFormatFromTemplate(allocator: (CFAllocator) | null, tmplate: (CFString) | null, options: number, locale?: (CFLocale) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2265281778206110, undefined, [allocator, tmplate, options, locale]); }
+export function CFDateFormatterCreateDateFormatFromTemplate(allocator: (CFAllocator) | null, tmplate: (CFString) | null, options: number, locale?: (CFLocale) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2265281778206110, undefined, [allocator, tmplate, options, locale]); }
 
 /** func CFDateFormatterCreateDateFromString(_ allocator: CFAllocator!, _ formatter: CFDateFormatter!, _ string: CFString!, _ rangep: UnsafeMutablePointer<CFRange>!) -> CFDate! */
-export function CFDateFormatterCreateDateFromString(allocator?: (CFAllocator) | null, formatter?: $SDK56, string?: (CFString) | null, rangep?: (SDKHandle) | null): (CFDate) | null { return callSDK<(CFDate) | null>("CoreFoundation_212edf3d13b127f5", 1022688693402688, undefined, [allocator, formatter, string, rangep]); }
+export function CFDateFormatterCreateDateFromString(allocator?: (CFAllocator) | null, formatter?: $SDK56, string?: (CFString) | null, rangep?: (SDKHandle) | null): (CFDate) | null { return callSDK<(CFDate) | null>("CoreFoundation_5d69670f0307b385", 1022688693402688, undefined, [allocator, formatter, string, rangep]); }
 
 /**
  * func CFDateFormatterCreateISO8601Formatter(_ allocator: CFAllocator!, _ formatOptions: CFISO8601DateFormatOptions) -> CFDateFormatter!
  * @availability iOS 10.0+
  */
-export function CFDateFormatterCreateISO8601Formatter(allocator: (CFAllocator) | null, formatOptions: CFISO8601DateFormatOptions): $SDK56 { return callSDK<$SDK56>("CoreFoundation_212edf3d13b127f5", 4076527822906756, undefined, [allocator, formatOptions]); }
+export function CFDateFormatterCreateISO8601Formatter(allocator: (CFAllocator) | null, formatOptions: CFISO8601DateFormatOptions): $SDK56 { return callSDK<$SDK56>("CoreFoundation_5d69670f0307b385", 4076527822906756, undefined, [allocator, formatOptions]); }
 
 /** func CFDateFormatterCreateStringWithAbsoluteTime(_ allocator: CFAllocator!, _ formatter: CFDateFormatter!, _ at: CFAbsoluteTime) -> CFString! */
-export function CFDateFormatterCreateStringWithAbsoluteTime(allocator: (CFAllocator) | null, formatter: $SDK56, at: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 314522080353522, undefined, [allocator, formatter, at]); }
+export function CFDateFormatterCreateStringWithAbsoluteTime(allocator: (CFAllocator) | null, formatter: $SDK56, at: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 314522080353522, undefined, [allocator, formatter, at]); }
 
 /** func CFDateFormatterCreateStringWithDate(_ allocator: CFAllocator!, _ formatter: CFDateFormatter!, _ date: CFDate!) -> CFString! */
-export function CFDateFormatterCreateStringWithDate(allocator?: (CFAllocator) | null, formatter?: $SDK56, date?: (CFDate) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3847864285331546, undefined, [allocator, formatter, date]); }
+export function CFDateFormatterCreateStringWithDate(allocator?: (CFAllocator) | null, formatter?: $SDK56, date?: (CFDate) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3847864285331546, undefined, [allocator, formatter, date]); }
 
 /** func CFDateFormatterGetAbsoluteTimeFromString(_ formatter: CFDateFormatter!, _ string: CFString!, _ rangep: UnsafeMutablePointer<CFRange>!, _ atp: UnsafeMutablePointer<CFAbsoluteTime>!) -> Bool */
-export function CFDateFormatterGetAbsoluteTimeFromString(formatter?: $SDK56, string?: (CFString) | null, rangep?: (SDKHandle) | null, atp?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 245728132150986, undefined, [formatter, string, rangep, atp]); }
+export function CFDateFormatterGetAbsoluteTimeFromString(formatter?: $SDK56, string?: (CFString) | null, rangep?: (SDKHandle) | null, atp?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 245728132150986, undefined, [formatter, string, rangep, atp]); }
 
 /** func CFDateFormatterGetDateStyle(_ formatter: CFDateFormatter!) -> CFDateFormatterStyle */
-export function CFDateFormatterGetDateStyle(formatter?: $SDK56): CFDateFormatterStyle { return callSDK<CFDateFormatterStyle>("CoreFoundation_212edf3d13b127f5", 4406735039970449, undefined, [formatter]); }
+export function CFDateFormatterGetDateStyle(formatter?: $SDK56): CFDateFormatterStyle { return callSDK<CFDateFormatterStyle>("CoreFoundation_5d69670f0307b385", 4406735039970449, undefined, [formatter]); }
 
 /** func CFDateFormatterGetFormat(_ formatter: CFDateFormatter!) -> CFString! */
-export function CFDateFormatterGetFormat(formatter?: $SDK56): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2133370953588372, undefined, [formatter]); }
+export function CFDateFormatterGetFormat(formatter?: $SDK56): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2133370953588372, undefined, [formatter]); }
 
 /** func CFDateFormatterGetLocale(_ formatter: CFDateFormatter!) -> CFLocale! */
-export function CFDateFormatterGetLocale(formatter?: $SDK56): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 414406632378711, undefined, [formatter]); }
+export function CFDateFormatterGetLocale(formatter?: $SDK56): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 414406632378711, undefined, [formatter]); }
 
 /** func CFDateFormatterGetTimeStyle(_ formatter: CFDateFormatter!) -> CFDateFormatterStyle */
-export function CFDateFormatterGetTimeStyle(formatter?: $SDK56): CFDateFormatterStyle { return callSDK<CFDateFormatterStyle>("CoreFoundation_212edf3d13b127f5", 482308870500212, undefined, [formatter]); }
+export function CFDateFormatterGetTimeStyle(formatter?: $SDK56): CFDateFormatterStyle { return callSDK<CFDateFormatterStyle>("CoreFoundation_5d69670f0307b385", 482308870500212, undefined, [formatter]); }
 
 /** func CFDateFormatterGetTypeID() -> CFTypeID */
-export function CFDateFormatterGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2178273991654143, undefined, []); }
+export function CFDateFormatterGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2178273991654143, undefined, []); }
 
 /** func CFDateFormatterSetFormat(_ formatter: CFDateFormatter!, _ formatString: CFString!) */
-export function CFDateFormatterSetFormat(formatter?: $SDK56, formatString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 783673187771685, undefined, [formatter, formatString]); }
+export function CFDateFormatterSetFormat(formatter?: $SDK56, formatString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 783673187771685, undefined, [formatter, formatString]); }
 
 /** func CFDateFormatterSetProperty(_ formatter: CFDateFormatter!, _ key: CFString!, _ value: CFTypeRef!) */
-export function CFDateFormatterSetProperty(formatter?: $SDK56, key?: (CFString) | null, value?: (unknown) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4024947263625543, undefined, [formatter, key, value]); }
+export function CFDateFormatterSetProperty(formatter?: $SDK56, key?: (CFString) | null, value?: (unknown) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4024947263625543, undefined, [formatter, key, value]); }
 
 /** func CFDateGetAbsoluteTime(_ theDate: CFDate!) -> CFAbsoluteTime */
-export function CFDateGetAbsoluteTime(theDate?: (CFDate) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3673923281237816, undefined, [theDate]); }
+export function CFDateGetAbsoluteTime(theDate?: (CFDate) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3673923281237816, undefined, [theDate]); }
 
 /** func CFDateGetTimeIntervalSinceDate(_ theDate: CFDate!, _ otherDate: CFDate!) -> CFTimeInterval */
-export function CFDateGetTimeIntervalSinceDate(theDate?: (CFDate) | null, otherDate?: (CFDate) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 918529089217597, undefined, [theDate, otherDate]); }
+export function CFDateGetTimeIntervalSinceDate(theDate?: (CFDate) | null, otherDate?: (CFDate) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 918529089217597, undefined, [theDate, otherDate]); }
 
 /** func CFDateGetTypeID() -> CFTypeID */
-export function CFDateGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4462235832627860, undefined, []); }
+export function CFDateGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4462235832627860, undefined, []); }
 
 /** func CFDictionaryAddValue(_ theDict: CFMutableDictionary!, _ key: UnsafeRawPointer!, _ value: UnsafeRawPointer!) */
-export function CFDictionaryAddValue(theDict?: $SDK57, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1088019447132045, undefined, [theDict, key, value]); }
+export function CFDictionaryAddValue(theDict?: $SDK57, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1088019447132045, undefined, [theDict, key, value]); }
 
 /** func CFDictionaryContainsKey(_ theDict: CFDictionary!, _ key: UnsafeRawPointer!) -> Bool */
-export function CFDictionaryContainsKey(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1118002844917523, undefined, [theDict, key]); }
+export function CFDictionaryContainsKey(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1118002844917523, undefined, [theDict, key]); }
 
 /** func CFDictionaryContainsValue(_ theDict: CFDictionary!, _ value: UnsafeRawPointer!) -> Bool */
-export function CFDictionaryContainsValue(theDict?: (CFDictionary) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1293218656708386, undefined, [theDict, value]); }
+export function CFDictionaryContainsValue(theDict?: (CFDictionary) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1293218656708386, undefined, [theDict, value]); }
 
 /** func CFDictionaryCreate(_ allocator: CFAllocator!, _ keys: UnsafeMutablePointer<UnsafeRawPointer?>!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!, _ numValues: CFIndex, _ keyCallBacks: UnsafePointer<CFDictionaryKeyCallBacks>!, _ valueCallBacks: UnsafePointer<CFDictionaryValueCallBacks>!) -> CFDictionary! */
-export function CFDictionaryCreate(allocator: (CFAllocator) | null, numValues: number, keyCallBacks?: (SDKHandle) | null, valueCallBacks?: (SDKHandle) | null): { $ret: (CFDictionary) | null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFDictionary) | null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 2786875572633171, undefined, [allocator, null, null, numValues, keyCallBacks, valueCallBacks]); }
+export function CFDictionaryCreate(allocator: (CFAllocator) | null, numValues: number, keyCallBacks?: (SDKHandle) | null, valueCallBacks?: (SDKHandle) | null): { $ret: (CFDictionary) | null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFDictionary) | null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 2786875572633171, undefined, [allocator, null, null, numValues, keyCallBacks, valueCallBacks]); }
 
 /** func CFDictionaryCreateCopy(_ allocator: CFAllocator!, _ theDict: CFDictionary!) -> CFDictionary! */
-export function CFDictionaryCreateCopy(allocator?: (CFAllocator) | null, theDict?: (CFDictionary) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 3691243122112363, undefined, [allocator, theDict]); }
+export function CFDictionaryCreateCopy(allocator?: (CFAllocator) | null, theDict?: (CFDictionary) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 3691243122112363, undefined, [allocator, theDict]); }
 
 /** func CFDictionaryCreateMutable(_ allocator: CFAllocator!, _ capacity: CFIndex, _ keyCallBacks: UnsafePointer<CFDictionaryKeyCallBacks>!, _ valueCallBacks: UnsafePointer<CFDictionaryValueCallBacks>!) -> CFMutableDictionary! */
-export function CFDictionaryCreateMutable(allocator: (CFAllocator) | null, capacity: number, keyCallBacks?: (SDKHandle) | null, valueCallBacks?: (SDKHandle) | null): $SDK57 { return callSDK<$SDK57>("CoreFoundation_212edf3d13b127f5", 3659614254369630, undefined, [allocator, capacity, keyCallBacks, valueCallBacks]); }
+export function CFDictionaryCreateMutable(allocator: (CFAllocator) | null, capacity: number, keyCallBacks?: (SDKHandle) | null, valueCallBacks?: (SDKHandle) | null): $SDK57 { return callSDK<$SDK57>("CoreFoundation_5d69670f0307b385", 3659614254369630, undefined, [allocator, capacity, keyCallBacks, valueCallBacks]); }
 
 /** func CFDictionaryCreateMutableCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ theDict: CFDictionary!) -> CFMutableDictionary! */
-export function CFDictionaryCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theDict?: (CFDictionary) | null): $SDK57 { return callSDK<$SDK57>("CoreFoundation_212edf3d13b127f5", 1033486325792676, undefined, [allocator, capacity, theDict]); }
+export function CFDictionaryCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theDict?: (CFDictionary) | null): $SDK57 { return callSDK<$SDK57>("CoreFoundation_5d69670f0307b385", 1033486325792676, undefined, [allocator, capacity, theDict]); }
 
 /** func CFDictionaryGetCount(_ theDict: CFDictionary!) -> CFIndex */
-export function CFDictionaryGetCount(theDict?: (CFDictionary) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4030227973943550, undefined, [theDict]); }
+export function CFDictionaryGetCount(theDict?: (CFDictionary) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4030227973943550, undefined, [theDict]); }
 
 /** func CFDictionaryGetCountOfKey(_ theDict: CFDictionary!, _ key: UnsafeRawPointer!) -> CFIndex */
-export function CFDictionaryGetCountOfKey(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 201856400683023, undefined, [theDict, key]); }
+export function CFDictionaryGetCountOfKey(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 201856400683023, undefined, [theDict, key]); }
 
 /** func CFDictionaryGetCountOfValue(_ theDict: CFDictionary!, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFDictionaryGetCountOfValue(theDict?: (CFDictionary) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4025276191075470, undefined, [theDict, value]); }
+export function CFDictionaryGetCountOfValue(theDict?: (CFDictionary) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4025276191075470, undefined, [theDict, value]); }
 
 /** func CFDictionaryGetKeysAndValues(_ theDict: CFDictionary!, _ keys: UnsafeMutablePointer<UnsafeRawPointer?>!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!) */
-export function CFDictionaryGetKeysAndValues(theDict?: (CFDictionary) | null): { $ret: null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1163406379957380, undefined, [theDict, null, null]); }
+export function CFDictionaryGetKeysAndValues(theDict?: (CFDictionary) | null): { $ret: null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "keys": (SDKHandle) | null; "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1163406379957380, undefined, [theDict, null, null]); }
 
 /** func CFDictionaryGetTypeID() -> CFTypeID */
-export function CFDictionaryGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1340475849147018, undefined, []); }
+export function CFDictionaryGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1340475849147018, undefined, []); }
 
 /** func CFDictionaryGetValue(_ theDict: CFDictionary!, _ key: UnsafeRawPointer!) -> UnsafeRawPointer! */
-export function CFDictionaryGetValue(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 4216761267754685, undefined, [theDict, key]); }
+export function CFDictionaryGetValue(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 4216761267754685, undefined, [theDict, key]); }
 
 /** func CFDictionaryGetValueIfPresent(_ theDict: CFDictionary!, _ key: UnsafeRawPointer!, _ value: UnsafeMutablePointer<UnsafeRawPointer?>!) -> Bool */
-export function CFDictionaryGetValueIfPresent(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1428254882448720, undefined, [theDict, key, null]); }
+export function CFDictionaryGetValueIfPresent(theDict?: (CFDictionary) | null, key?: (SDKHandle) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1428254882448720, undefined, [theDict, key, null]); }
 
 /** func CFDictionaryRemoveAllValues(_ theDict: CFMutableDictionary!) */
-export function CFDictionaryRemoveAllValues(theDict?: $SDK57): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3202753366856617, undefined, [theDict]); }
+export function CFDictionaryRemoveAllValues(theDict?: $SDK57): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3202753366856617, undefined, [theDict]); }
 
 /** func CFDictionaryRemoveValue(_ theDict: CFMutableDictionary!, _ key: UnsafeRawPointer!) */
-export function CFDictionaryRemoveValue(theDict?: $SDK57, key?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1311797146045592, undefined, [theDict, key]); }
+export function CFDictionaryRemoveValue(theDict?: $SDK57, key?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1311797146045592, undefined, [theDict, key]); }
 
 /** func CFDictionaryReplaceValue(_ theDict: CFMutableDictionary!, _ key: UnsafeRawPointer!, _ value: UnsafeRawPointer!) */
-export function CFDictionaryReplaceValue(theDict?: $SDK57, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4308964116345721, undefined, [theDict, key, value]); }
+export function CFDictionaryReplaceValue(theDict?: $SDK57, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4308964116345721, undefined, [theDict, key, value]); }
 
 /** func CFDictionarySetValue(_ theDict: CFMutableDictionary!, _ key: UnsafeRawPointer!, _ value: UnsafeRawPointer!) */
-export function CFDictionarySetValue(theDict?: $SDK57, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1734680755206415, undefined, [theDict, key, value]); }
+export function CFDictionarySetValue(theDict?: $SDK57, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1734680755206415, undefined, [theDict, key, value]); }
 
 /** func CFEqual(_ cf1: CFTypeRef!, _ cf2: CFTypeRef!) -> Bool */
-export function CFEqual(cf1?: (unknown) | null, cf2?: (unknown) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3181331291882157, undefined, [cf1, cf2]); }
+export function CFEqual(cf1?: (unknown) | null, cf2?: (unknown) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3181331291882157, undefined, [cf1, cf2]); }
 
 /**
  * func CFErrorCopyDescription(_ err: CFError!) -> CFString!
  * @availability iOS 2.0+
  */
-export function CFErrorCopyDescription(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 155651076417956, undefined, [err]); }
+export function CFErrorCopyDescription(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 155651076417956, undefined, [err]); }
 
 /**
  * func CFErrorCopyFailureReason(_ err: CFError!) -> CFString!
  * @availability iOS 2.0+
  */
-export function CFErrorCopyFailureReason(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3762039459920929, undefined, [err]); }
+export function CFErrorCopyFailureReason(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3762039459920929, undefined, [err]); }
 
 /**
  * func CFErrorCopyRecoverySuggestion(_ err: CFError!) -> CFString!
  * @availability iOS 2.0+
  */
-export function CFErrorCopyRecoverySuggestion(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3511315610476103, undefined, [err]); }
+export function CFErrorCopyRecoverySuggestion(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3511315610476103, undefined, [err]); }
 
 /**
  * func CFErrorCopyUserInfo(_ err: CFError!) -> CFDictionary!
  * @availability iOS 2.0+
  */
-export function CFErrorCopyUserInfo(err?: (CFError) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 1760995457579363, undefined, [err]); }
+export function CFErrorCopyUserInfo(err?: (CFError) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 1760995457579363, undefined, [err]); }
 
 /**
  * func CFErrorCreate(_ allocator: CFAllocator!, _ domain: CFErrorDomain!, _ code: CFIndex, _ userInfo: CFDictionary!) -> CFError!
  * @availability iOS 2.0+
  */
-export function CFErrorCreate(allocator: (CFAllocator) | null, domain: (CFString) | null, code: number, userInfo?: (CFDictionary) | null): (CFError) | null { return callSDK<(CFError) | null>("CoreFoundation_212edf3d13b127f5", 890053852649347, undefined, [allocator, domain, code, userInfo]); }
+export function CFErrorCreate(allocator: (CFAllocator) | null, domain: (CFString) | null, code: number, userInfo?: (CFDictionary) | null): (CFError) | null { return callSDK<(CFError) | null>("CoreFoundation_5d69670f0307b385", 890053852649347, undefined, [allocator, domain, code, userInfo]); }
 
 /**
  * func CFErrorGetCode(_ err: CFError!) -> CFIndex
  * @availability iOS 2.0+
  */
-export function CFErrorGetCode(err?: (CFError) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 9899869211029, undefined, [err]); }
+export function CFErrorGetCode(err?: (CFError) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 9899869211029, undefined, [err]); }
 
 /**
  * func CFErrorGetDomain(_ err: CFError!) -> CFErrorDomain!
  * @availability iOS 2.0+
  */
-export function CFErrorGetDomain(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3263513793235428, undefined, [err]); }
+export function CFErrorGetDomain(err?: (CFError) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3263513793235428, undefined, [err]); }
 
 /**
  * func CFErrorGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function CFErrorGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3008446893684081, undefined, []); }
+export function CFErrorGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3008446893684081, undefined, []); }
 
 /**
  * func CFFileDescriptorCreateRunLoopSource(_ allocator: CFAllocator!, _ f: CFFileDescriptor!, _ order: CFIndex) -> CFRunLoopSource!
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorCreateRunLoopSource(allocator: (CFAllocator) | null, f: $SDK59, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_212edf3d13b127f5", 1774988540918821, undefined, [allocator, f, order]); }
+export function CFFileDescriptorCreateRunLoopSource(allocator: (CFAllocator) | null, f: $SDK59, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_5d69670f0307b385", 1774988540918821, undefined, [allocator, f, order]); }
 
 /**
  * func CFFileDescriptorDisableCallBacks(_ f: CFFileDescriptor!, _ callBackTypes: CFOptionFlags)
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorDisableCallBacks(f: $SDK59, callBackTypes: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3939594423125914, undefined, [f, callBackTypes]); }
+export function CFFileDescriptorDisableCallBacks(f: $SDK59, callBackTypes: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3939594423125914, undefined, [f, callBackTypes]); }
 
 /**
  * func CFFileDescriptorEnableCallBacks(_ f: CFFileDescriptor!, _ callBackTypes: CFOptionFlags)
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorEnableCallBacks(f: $SDK59, callBackTypes: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 799244261404102, undefined, [f, callBackTypes]); }
+export function CFFileDescriptorEnableCallBacks(f: $SDK59, callBackTypes: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 799244261404102, undefined, [f, callBackTypes]); }
 
 /**
  * func CFFileDescriptorGetContext(_ f: CFFileDescriptor!, _ context: UnsafeMutablePointer<CFFileDescriptorContext>!)
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorGetContext(f?: $SDK59, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 545903335933117, undefined, [f, context]); }
+export function CFFileDescriptorGetContext(f?: $SDK59, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 545903335933117, undefined, [f, context]); }
 
 /**
  * func CFFileDescriptorGetNativeDescriptor(_ f: CFFileDescriptor!) -> CFFileDescriptorNativeDescriptor
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorGetNativeDescriptor(f?: $SDK59): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3216893289693773, undefined, [f]); }
+export function CFFileDescriptorGetNativeDescriptor(f?: $SDK59): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3216893289693773, undefined, [f]); }
 
 /**
  * func CFFileDescriptorGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2304872972306402, undefined, []); }
+export function CFFileDescriptorGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2304872972306402, undefined, []); }
 
 /**
  * func CFFileDescriptorInvalidate(_ f: CFFileDescriptor!)
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorInvalidate(f?: $SDK59): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1115769893208509, undefined, [f]); }
+export function CFFileDescriptorInvalidate(f?: $SDK59): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1115769893208509, undefined, [f]); }
 
 /**
  * func CFFileDescriptorIsValid(_ f: CFFileDescriptor!) -> Bool
  * @availability iOS 2.0+
  */
-export function CFFileDescriptorIsValid(f?: $SDK59): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2814428654644687, undefined, [f]); }
+export function CFFileDescriptorIsValid(f?: $SDK59): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2814428654644687, undefined, [f]); }
 
 /**
  * func CFFileSecurityClearProperties(_ fileSec: CFFileSecurity!, _ clearPropertyMask: CFFileSecurityClearOptions) -> Bool
  * @availability iOS 6.0+
  */
-export function CFFileSecurityClearProperties(fileSec: (CFFileSecurity) | null, clearPropertyMask: CFFileSecurityClearOptions): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 648029532072915, undefined, [fileSec, clearPropertyMask]); }
+export function CFFileSecurityClearProperties(fileSec: (CFFileSecurity) | null, clearPropertyMask: CFFileSecurityClearOptions): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 648029532072915, undefined, [fileSec, clearPropertyMask]); }
 
 /**
  * func CFFileSecurityCopyAccessControlList(_ fileSec: CFFileSecurity!, _ accessControlList: UnsafeMutablePointer<acl_t?>!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecurityCopyAccessControlList(fileSec?: (CFFileSecurity) | null): { $ret: boolean; $out: { "accessControlList": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "accessControlList": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1271788884964298, undefined, [fileSec, null]); }
+export function CFFileSecurityCopyAccessControlList(fileSec?: (CFFileSecurity) | null): { $ret: boolean; $out: { "accessControlList": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "accessControlList": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1271788884964298, undefined, [fileSec, null]); }
 
 /**
  * func CFFileSecurityCreate(_ allocator: CFAllocator!) -> CFFileSecurity!
  * @availability iOS 5.0+
  */
-export function CFFileSecurityCreate(allocator?: (CFAllocator) | null): (CFFileSecurity) | null { return callSDK<(CFFileSecurity) | null>("CoreFoundation_212edf3d13b127f5", 2996926553219600, undefined, [allocator]); }
+export function CFFileSecurityCreate(allocator?: (CFAllocator) | null): (CFFileSecurity) | null { return callSDK<(CFFileSecurity) | null>("CoreFoundation_5d69670f0307b385", 2996926553219600, undefined, [allocator]); }
 
 /**
  * func CFFileSecurityCreateCopy(_ allocator: CFAllocator!, _ fileSec: CFFileSecurity!) -> CFFileSecurity!
  * @availability iOS 5.0+
  */
-export function CFFileSecurityCreateCopy(allocator?: (CFAllocator) | null, fileSec?: (CFFileSecurity) | null): (CFFileSecurity) | null { return callSDK<(CFFileSecurity) | null>("CoreFoundation_212edf3d13b127f5", 1550024534330158, undefined, [allocator, fileSec]); }
+export function CFFileSecurityCreateCopy(allocator?: (CFAllocator) | null, fileSec?: (CFFileSecurity) | null): (CFFileSecurity) | null { return callSDK<(CFFileSecurity) | null>("CoreFoundation_5d69670f0307b385", 1550024534330158, undefined, [allocator, fileSec]); }
 
 /**
  * func CFFileSecurityGetGroup(_ fileSec: CFFileSecurity!, _ group: UnsafeMutablePointer<gid_t>!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecurityGetGroup(fileSec?: (CFFileSecurity) | null, group?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3973269079594391, undefined, [fileSec, group]); }
+export function CFFileSecurityGetGroup(fileSec?: (CFFileSecurity) | null, group?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3973269079594391, undefined, [fileSec, group]); }
 
 /**
  * func CFFileSecurityGetMode(_ fileSec: CFFileSecurity!, _ mode: UnsafeMutablePointer<mode_t>!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecurityGetMode(fileSec?: (CFFileSecurity) | null, mode?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2982342291672279, undefined, [fileSec, mode]); }
+export function CFFileSecurityGetMode(fileSec?: (CFFileSecurity) | null, mode?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2982342291672279, undefined, [fileSec, mode]); }
 
 /**
  * func CFFileSecurityGetOwner(_ fileSec: CFFileSecurity!, _ owner: UnsafeMutablePointer<uid_t>!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecurityGetOwner(fileSec?: (CFFileSecurity) | null, owner?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3946817012017350, undefined, [fileSec, owner]); }
+export function CFFileSecurityGetOwner(fileSec?: (CFFileSecurity) | null, owner?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3946817012017350, undefined, [fileSec, owner]); }
 
 /**
  * func CFFileSecurityGetTypeID() -> CFTypeID
  * @availability iOS 5.0+
  */
-export function CFFileSecurityGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 963242384575329, undefined, []); }
+export function CFFileSecurityGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 963242384575329, undefined, []); }
 
 /**
  * func CFFileSecuritySetAccessControlList(_ fileSec: CFFileSecurity!, _ accessControlList: acl_t!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecuritySetAccessControlList(fileSec?: (CFFileSecurity) | null, accessControlList?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1198361453154387, undefined, [fileSec, accessControlList]); }
+export function CFFileSecuritySetAccessControlList(fileSec?: (CFFileSecurity) | null, accessControlList?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1198361453154387, undefined, [fileSec, accessControlList]); }
 
 /**
  * func CFFileSecuritySetGroup(_ fileSec: CFFileSecurity!, _ group: gid_t) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecuritySetGroup(fileSec: (CFFileSecurity) | null, group: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 843702098480469, undefined, [fileSec, group]); }
+export function CFFileSecuritySetGroup(fileSec: (CFFileSecurity) | null, group: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 843702098480469, undefined, [fileSec, group]); }
 
 /**
  * func CFFileSecuritySetGroupUUID(_ fileSec: CFFileSecurity!, _ groupUUID: CFUUID!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecuritySetGroupUUID(fileSec?: (CFFileSecurity) | null, groupUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2015300985097577, undefined, [fileSec, groupUUID]); }
+export function CFFileSecuritySetGroupUUID(fileSec?: (CFFileSecurity) | null, groupUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2015300985097577, undefined, [fileSec, groupUUID]); }
 
 /**
  * func CFFileSecuritySetMode(_ fileSec: CFFileSecurity!, _ mode: mode_t) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecuritySetMode(fileSec: (CFFileSecurity) | null, mode: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4328711547150761, undefined, [fileSec, mode]); }
+export function CFFileSecuritySetMode(fileSec: (CFFileSecurity) | null, mode: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4328711547150761, undefined, [fileSec, mode]); }
 
 /**
  * func CFFileSecuritySetOwner(_ fileSec: CFFileSecurity!, _ owner: uid_t) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecuritySetOwner(fileSec: (CFFileSecurity) | null, owner: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1743804276131754, undefined, [fileSec, owner]); }
+export function CFFileSecuritySetOwner(fileSec: (CFFileSecurity) | null, owner: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1743804276131754, undefined, [fileSec, owner]); }
 
 /**
  * func CFFileSecuritySetOwnerUUID(_ fileSec: CFFileSecurity!, _ ownerUUID: CFUUID!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFFileSecuritySetOwnerUUID(fileSec?: (CFFileSecurity) | null, ownerUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3583037683513020, undefined, [fileSec, ownerUUID]); }
+export function CFFileSecuritySetOwnerUUID(fileSec?: (CFFileSecurity) | null, ownerUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3583037683513020, undefined, [fileSec, ownerUUID]); }
 
 /** func CFGetAllocator(_ cf: CFTypeRef!) -> CFAllocator! */
-export function CFGetAllocator(cf?: (unknown) | null): (CFAllocator) | null { return callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 3313505895079803, undefined, [cf]); }
+export function CFGetAllocator(cf?: (unknown) | null): (CFAllocator) | null { return callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 3313505895079803, undefined, [cf]); }
 
 /** func CFGetRetainCount(_ cf: CFTypeRef!) -> CFIndex */
-export function CFGetRetainCount(cf?: (unknown) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2463085734932385, undefined, [cf]); }
+export function CFGetRetainCount(cf?: (unknown) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2463085734932385, undefined, [cf]); }
 
 /** func CFGetTypeID(_ cf: CFTypeRef!) -> CFTypeID */
-export function CFGetTypeID(cf?: (unknown) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3036124384131754, undefined, [cf]); }
+export function CFGetTypeID(cf?: (unknown) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3036124384131754, undefined, [cf]); }
 
 /**
  * func CFGregorianDateGetAbsoluteTime(_ gdate: CFGregorianDate, _ tz: CFTimeZone!) -> CFAbsoluteTime
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFGregorianDateGetAbsoluteTime(gdate: CFGregorianDate, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1075242350138686, undefined, [gdate, tz]); }
+export function CFGregorianDateGetAbsoluteTime(gdate: CFGregorianDate, tz?: (CFTimeZone) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1075242350138686, undefined, [gdate, tz]); }
 
 /**
  * func CFGregorianDateIsValid(_ gdate: CFGregorianDate, _ unitFlags: CFOptionFlags) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFGregorianDateIsValid(gdate: CFGregorianDate, unitFlags: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1138650246402378, undefined, [gdate, unitFlags]); }
+export function CFGregorianDateIsValid(gdate: CFGregorianDate, unitFlags: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1138650246402378, undefined, [gdate, unitFlags]); }
 
 /** func CFHash(_ cf: CFTypeRef!) -> CFHashCode */
-export function CFHash(cf?: (unknown) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2649490782687341, undefined, [cf]); }
+export function CFHash(cf?: (unknown) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2649490782687341, undefined, [cf]); }
 
 /** func CFLocaleCopyAvailableLocaleIdentifiers() -> CFArray! */
-export function CFLocaleCopyAvailableLocaleIdentifiers(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 526759785979005, undefined, []); }
+export function CFLocaleCopyAvailableLocaleIdentifiers(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 526759785979005, undefined, []); }
 
 /**
  * func CFLocaleCopyCommonISOCurrencyCodes() -> CFArray!
  * @availability iOS 2.0+
  */
-export function CFLocaleCopyCommonISOCurrencyCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 4428351181778952, undefined, []); }
+export function CFLocaleCopyCommonISOCurrencyCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 4428351181778952, undefined, []); }
 
 /** func CFLocaleCopyCurrent() -> CFLocale! */
-export function CFLocaleCopyCurrent(): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 1956740058018125, undefined, []); }
+export function CFLocaleCopyCurrent(): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 1956740058018125, undefined, []); }
 
 /** func CFLocaleCopyDisplayNameForPropertyValue(_ displayLocale: CFLocale!, _ key: CFLocaleKey!, _ value: CFString!) -> CFString! */
-export function CFLocaleCopyDisplayNameForPropertyValue(displayLocale?: (CFLocale) | null, key?: (CFLocaleKey) | null, value?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1266122822511483, undefined, [displayLocale, key, value]); }
+export function CFLocaleCopyDisplayNameForPropertyValue(displayLocale?: (CFLocale) | null, key?: (CFLocaleKey) | null, value?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1266122822511483, undefined, [displayLocale, key, value]); }
 
 /** func CFLocaleCopyISOCountryCodes() -> CFArray! */
-export function CFLocaleCopyISOCountryCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 35692843474875, undefined, []); }
+export function CFLocaleCopyISOCountryCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 35692843474875, undefined, []); }
 
 /** func CFLocaleCopyISOCurrencyCodes() -> CFArray! */
-export function CFLocaleCopyISOCurrencyCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 1108666347379803, undefined, []); }
+export function CFLocaleCopyISOCurrencyCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 1108666347379803, undefined, []); }
 
 /** func CFLocaleCopyISOLanguageCodes() -> CFArray! */
-export function CFLocaleCopyISOLanguageCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 509122400325973, undefined, []); }
+export function CFLocaleCopyISOLanguageCodes(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 509122400325973, undefined, []); }
 
 /**
  * func CFLocaleCopyPreferredLanguages() -> CFArray!
  * @availability iOS 2.0+
  */
-export function CFLocaleCopyPreferredLanguages(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2885906588240243, undefined, []); }
+export function CFLocaleCopyPreferredLanguages(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2885906588240243, undefined, []); }
 
 /** func CFLocaleCreate(_ allocator: CFAllocator!, _ localeIdentifier: CFLocaleIdentifier!) -> CFLocale! */
-export function CFLocaleCreate(allocator?: (CFAllocator) | null, localeIdentifier?: $SDK60): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 1417242138227831, undefined, [allocator, localeIdentifier]); }
+export function CFLocaleCreate(allocator?: (CFAllocator) | null, localeIdentifier?: $SDK60): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 1417242138227831, undefined, [allocator, localeIdentifier]); }
 
 /** func CFLocaleCreateCanonicalLanguageIdentifierFromString(_ allocator: CFAllocator!, _ localeIdentifier: CFString!) -> CFLocaleIdentifier! */
-export function CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator?: (CFAllocator) | null, localeIdentifier?: (CFString) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_212edf3d13b127f5", 2073638086306918, undefined, [allocator, localeIdentifier]); }
+export function CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator?: (CFAllocator) | null, localeIdentifier?: (CFString) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_5d69670f0307b385", 2073638086306918, undefined, [allocator, localeIdentifier]); }
 
 /** func CFLocaleCreateCanonicalLocaleIdentifierFromString(_ allocator: CFAllocator!, _ localeIdentifier: CFString!) -> CFLocaleIdentifier! */
-export function CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator?: (CFAllocator) | null, localeIdentifier?: (CFString) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_212edf3d13b127f5", 683840658758343, undefined, [allocator, localeIdentifier]); }
+export function CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator?: (CFAllocator) | null, localeIdentifier?: (CFString) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_5d69670f0307b385", 683840658758343, undefined, [allocator, localeIdentifier]); }
 
 /** func CFLocaleCreateComponentsFromLocaleIdentifier(_ allocator: CFAllocator!, _ localeID: CFLocaleIdentifier!) -> CFDictionary! */
-export function CFLocaleCreateComponentsFromLocaleIdentifier(allocator?: (CFAllocator) | null, localeID?: $SDK60): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 3222481795421158, undefined, [allocator, localeID]); }
+export function CFLocaleCreateComponentsFromLocaleIdentifier(allocator?: (CFAllocator) | null, localeID?: $SDK60): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 3222481795421158, undefined, [allocator, localeID]); }
 
 /** func CFLocaleCreateCopy(_ allocator: CFAllocator!, _ locale: CFLocale!) -> CFLocale! */
-export function CFLocaleCreateCopy(allocator?: (CFAllocator) | null, locale?: (CFLocale) | null): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 4355966611650918, undefined, [allocator, locale]); }
+export function CFLocaleCreateCopy(allocator?: (CFAllocator) | null, locale?: (CFLocale) | null): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 4355966611650918, undefined, [allocator, locale]); }
 
 /** func CFLocaleCreateLocaleIdentifierFromComponents(_ allocator: CFAllocator!, _ dictionary: CFDictionary!) -> CFLocaleIdentifier! */
-export function CFLocaleCreateLocaleIdentifierFromComponents(allocator?: (CFAllocator) | null, dictionary?: (CFDictionary) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_212edf3d13b127f5", 2998500650213354, undefined, [allocator, dictionary]); }
+export function CFLocaleCreateLocaleIdentifierFromComponents(allocator?: (CFAllocator) | null, dictionary?: (CFDictionary) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_5d69670f0307b385", 2998500650213354, undefined, [allocator, dictionary]); }
 
 /**
  * func CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(_ allocator: CFAllocator!, _ lcid: UInt32) -> CFLocaleIdentifier!
  * @availability iOS 4.0+
  */
-export function CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator: (CFAllocator) | null, lcid: number): $SDK60 { return callSDK<$SDK60>("CoreFoundation_212edf3d13b127f5", 705277373164447, undefined, [allocator, lcid]); }
+export function CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator: (CFAllocator) | null, lcid: number): $SDK60 { return callSDK<$SDK60>("CoreFoundation_5d69670f0307b385", 705277373164447, undefined, [allocator, lcid]); }
 
 /** func CFLocaleGetIdentifier(_ locale: CFLocale!) -> CFLocaleIdentifier! */
-export function CFLocaleGetIdentifier(locale?: (CFLocale) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_212edf3d13b127f5", 1874116799145775, undefined, [locale]); }
+export function CFLocaleGetIdentifier(locale?: (CFLocale) | null): $SDK60 { return callSDK<$SDK60>("CoreFoundation_5d69670f0307b385", 1874116799145775, undefined, [locale]); }
 
 /**
  * func CFLocaleGetLanguageCharacterDirection(_ isoLangCode: CFString!) -> CFLocaleLanguageDirection
  * @availability iOS 4.0+
  */
-export function CFLocaleGetLanguageCharacterDirection(isoLangCode?: (CFString) | null): CFLocaleLanguageDirection { return callSDK<CFLocaleLanguageDirection>("CoreFoundation_212edf3d13b127f5", 1101265126315712, undefined, [isoLangCode]); }
+export function CFLocaleGetLanguageCharacterDirection(isoLangCode?: (CFString) | null): CFLocaleLanguageDirection { return callSDK<CFLocaleLanguageDirection>("CoreFoundation_5d69670f0307b385", 1101265126315712, undefined, [isoLangCode]); }
 
 /**
  * func CFLocaleGetLanguageLineDirection(_ isoLangCode: CFString!) -> CFLocaleLanguageDirection
  * @availability iOS 4.0+
  */
-export function CFLocaleGetLanguageLineDirection(isoLangCode?: (CFString) | null): CFLocaleLanguageDirection { return callSDK<CFLocaleLanguageDirection>("CoreFoundation_212edf3d13b127f5", 2394035728955052, undefined, [isoLangCode]); }
+export function CFLocaleGetLanguageLineDirection(isoLangCode?: (CFString) | null): CFLocaleLanguageDirection { return callSDK<CFLocaleLanguageDirection>("CoreFoundation_5d69670f0307b385", 2394035728955052, undefined, [isoLangCode]); }
 
 /** func CFLocaleGetSystem() -> CFLocale! */
-export function CFLocaleGetSystem(): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 124817308743335, undefined, []); }
+export function CFLocaleGetSystem(): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 124817308743335, undefined, []); }
 
 /** func CFLocaleGetTypeID() -> CFTypeID */
-export function CFLocaleGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2262755157570598, undefined, []); }
+export function CFLocaleGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2262755157570598, undefined, []); }
 
 /** func CFLocaleGetValue(_ locale: CFLocale!, _ key: CFLocaleKey!) -> CFTypeRef! */
-export function CFLocaleGetValue(locale?: (CFLocale) | null, key?: (CFLocaleKey) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 2003394952232434, undefined, [locale, key]); }
+export function CFLocaleGetValue(locale?: (CFLocale) | null, key?: (CFLocaleKey) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 2003394952232434, undefined, [locale, key]); }
 
 /**
  * func CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(_ localeIdentifier: CFLocaleIdentifier!) -> UInt32
  * @availability iOS 4.0+
  */
-export function CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier?: $SDK60): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1847117566773785, undefined, [localeIdentifier]); }
+export function CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier(localeIdentifier?: $SDK60): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1847117566773785, undefined, [localeIdentifier]); }
 
 /** func CFMachPortCreateRunLoopSource(_ allocator: CFAllocator!, _ port: CFMachPort!, _ order: CFIndex) -> CFRunLoopSource! */
-export function CFMachPortCreateRunLoopSource(allocator: (CFAllocator) | null, port: (CFMachPort) | null, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_212edf3d13b127f5", 3893559499280297, undefined, [allocator, port, order]); }
+export function CFMachPortCreateRunLoopSource(allocator: (CFAllocator) | null, port: (CFMachPort) | null, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_5d69670f0307b385", 3893559499280297, undefined, [allocator, port, order]); }
 
 /** func CFMachPortGetContext(_ port: CFMachPort!, _ context: UnsafeMutablePointer<CFMachPortContext>!) */
-export function CFMachPortGetContext(port?: (CFMachPort) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2631650223325912, undefined, [port, context]); }
+export function CFMachPortGetContext(port?: (CFMachPort) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2631650223325912, undefined, [port, context]); }
 
 /** func CFMachPortGetInvalidationCallBack(_ port: CFMachPort!) -> CFMachPortInvalidationCallBack! */
-export function CFMachPortGetInvalidationCallBack(port?: (CFMachPort) | null): (((arg0: (CFMachPort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CFMachPort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("CoreFoundation_212edf3d13b127f5", 2594473344554353, undefined, [port]); }
+export function CFMachPortGetInvalidationCallBack(port?: (CFMachPort) | null): (((arg0: (CFMachPort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CFMachPort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("CoreFoundation_5d69670f0307b385", 2594473344554353, undefined, [port]); }
 
 /** func CFMachPortGetPort(_ port: CFMachPort!) -> mach_port_t */
-export function CFMachPortGetPort(port?: (CFMachPort) | null): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 3978889959515703, undefined, [port]); }
+export function CFMachPortGetPort(port?: (CFMachPort) | null): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 3978889959515703, undefined, [port]); }
 
 /** func CFMachPortGetTypeID() -> CFTypeID */
-export function CFMachPortGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 367510062196110, undefined, []); }
+export function CFMachPortGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 367510062196110, undefined, []); }
 
 /** func CFMachPortInvalidate(_ port: CFMachPort!) */
-export function CFMachPortInvalidate(port?: (CFMachPort) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2411446720063359, undefined, [port]); }
+export function CFMachPortInvalidate(port?: (CFMachPort) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2411446720063359, undefined, [port]); }
 
 /** func CFMachPortIsValid(_ port: CFMachPort!) -> Bool */
-export function CFMachPortIsValid(port?: (CFMachPort) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3339996585418234, undefined, [port]); }
+export function CFMachPortIsValid(port?: (CFMachPort) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3339996585418234, undefined, [port]); }
 
 /** func CFMessagePortCreateRemote(_ allocator: CFAllocator!, _ name: CFString!) -> CFMessagePort! */
-export function CFMessagePortCreateRemote(allocator?: (CFAllocator) | null, name?: (CFString) | null): (CFMessagePort) | null { return callSDK<(CFMessagePort) | null>("CoreFoundation_212edf3d13b127f5", 2873722715150060, undefined, [allocator, name]); }
+export function CFMessagePortCreateRemote(allocator?: (CFAllocator) | null, name?: (CFString) | null): (CFMessagePort) | null { return callSDK<(CFMessagePort) | null>("CoreFoundation_5d69670f0307b385", 2873722715150060, undefined, [allocator, name]); }
 
 /** func CFMessagePortCreateRunLoopSource(_ allocator: CFAllocator!, _ local: CFMessagePort!, _ order: CFIndex) -> CFRunLoopSource! */
-export function CFMessagePortCreateRunLoopSource(allocator: (CFAllocator) | null, local: (CFMessagePort) | null, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_212edf3d13b127f5", 2635569461189412, undefined, [allocator, local, order]); }
+export function CFMessagePortCreateRunLoopSource(allocator: (CFAllocator) | null, local: (CFMessagePort) | null, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_5d69670f0307b385", 2635569461189412, undefined, [allocator, local, order]); }
 
 /** func CFMessagePortGetContext(_ ms: CFMessagePort!, _ context: UnsafeMutablePointer<CFMessagePortContext>!) */
-export function CFMessagePortGetContext(ms?: (CFMessagePort) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3213284439806946, undefined, [ms, context]); }
+export function CFMessagePortGetContext(ms?: (CFMessagePort) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3213284439806946, undefined, [ms, context]); }
 
 /** func CFMessagePortGetInvalidationCallBack(_ ms: CFMessagePort!) -> CFMessagePortInvalidationCallBack! */
-export function CFMessagePortGetInvalidationCallBack(ms?: (CFMessagePort) | null): (((arg0: (CFMessagePort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CFMessagePort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("CoreFoundation_212edf3d13b127f5", 1443751920340063, undefined, [ms]); }
+export function CFMessagePortGetInvalidationCallBack(ms?: (CFMessagePort) | null): (((arg0: (CFMessagePort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null { return callSDK<(((arg0: (CFMessagePort) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null>("CoreFoundation_5d69670f0307b385", 1443751920340063, undefined, [ms]); }
 
 /** func CFMessagePortGetName(_ ms: CFMessagePort!) -> CFString! */
-export function CFMessagePortGetName(ms?: (CFMessagePort) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3741979859097070, undefined, [ms]); }
+export function CFMessagePortGetName(ms?: (CFMessagePort) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3741979859097070, undefined, [ms]); }
 
 /** func CFMessagePortGetTypeID() -> CFTypeID */
-export function CFMessagePortGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4154697729240292, undefined, []); }
+export function CFMessagePortGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4154697729240292, undefined, []); }
 
 /** func CFMessagePortInvalidate(_ ms: CFMessagePort!) */
-export function CFMessagePortInvalidate(ms?: (CFMessagePort) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3815425645734586, undefined, [ms]); }
+export function CFMessagePortInvalidate(ms?: (CFMessagePort) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3815425645734586, undefined, [ms]); }
 
 /** func CFMessagePortIsRemote(_ ms: CFMessagePort!) -> Bool */
-export function CFMessagePortIsRemote(ms?: (CFMessagePort) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4265666646669381, undefined, [ms]); }
+export function CFMessagePortIsRemote(ms?: (CFMessagePort) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4265666646669381, undefined, [ms]); }
 
 /** func CFMessagePortIsValid(_ ms: CFMessagePort!) -> Bool */
-export function CFMessagePortIsValid(ms?: (CFMessagePort) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3225172051043702, undefined, [ms]); }
+export function CFMessagePortIsValid(ms?: (CFMessagePort) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3225172051043702, undefined, [ms]); }
 
 /**
  * func CFMessagePortSetDispatchQueue(_ ms: CFMessagePort!, _ queue: dispatch_queue_t!)
  * @availability iOS 4.0+
  */
-export function CFMessagePortSetDispatchQueue(ms?: (CFMessagePort) | null, queue?: $SDK63): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1618160771411673, undefined, [ms, queue]); }
+export function CFMessagePortSetDispatchQueue(ms?: (CFMessagePort) | null, queue?: $SDK63): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1618160771411673, undefined, [ms, queue]); }
 
 /** func CFMessagePortSetName(_ ms: CFMessagePort!, _ newName: CFString!) -> Bool */
-export function CFMessagePortSetName(ms?: (CFMessagePort) | null, newName?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 900241750665641, undefined, [ms, newName]); }
+export function CFMessagePortSetName(ms?: (CFMessagePort) | null, newName?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 900241750665641, undefined, [ms, newName]); }
 
 /** func CFNotificationCenterGetDarwinNotifyCenter() -> CFNotificationCenter! */
-export function CFNotificationCenterGetDarwinNotifyCenter(): $SDK64 { return callSDK<$SDK64>("CoreFoundation_212edf3d13b127f5", 1031080997462853, undefined, []); }
+export function CFNotificationCenterGetDarwinNotifyCenter(): $SDK64 { return callSDK<$SDK64>("CoreFoundation_5d69670f0307b385", 1031080997462853, undefined, []); }
 
 /** func CFNotificationCenterGetLocalCenter() -> CFNotificationCenter! */
-export function CFNotificationCenterGetLocalCenter(): $SDK64 { return callSDK<$SDK64>("CoreFoundation_212edf3d13b127f5", 2072429405692874, undefined, []); }
+export function CFNotificationCenterGetLocalCenter(): $SDK64 { return callSDK<$SDK64>("CoreFoundation_5d69670f0307b385", 2072429405692874, undefined, []); }
 
 /** func CFNotificationCenterGetTypeID() -> CFTypeID */
-export function CFNotificationCenterGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2449676354347754, undefined, []); }
+export function CFNotificationCenterGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2449676354347754, undefined, []); }
 
 /** func CFNotificationCenterPostNotification(_ center: CFNotificationCenter!, _ name: CFNotificationName!, _ object: UnsafeRawPointer!, _ userInfo: CFDictionary!, _ deliverImmediately: Bool) */
-export function CFNotificationCenterPostNotification(center: $SDK64, name: $SDK31, object: (SDKHandle) | null, userInfo: (CFDictionary) | null, deliverImmediately: boolean): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 741421616355313, undefined, [center, name, object, userInfo, deliverImmediately]); }
+export function CFNotificationCenterPostNotification(center: $SDK64, name: $SDK31, object: (SDKHandle) | null, userInfo: (CFDictionary) | null, deliverImmediately: boolean): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 741421616355313, undefined, [center, name, object, userInfo, deliverImmediately]); }
 
 /** func CFNotificationCenterPostNotificationWithOptions(_ center: CFNotificationCenter!, _ name: CFNotificationName!, _ object: UnsafeRawPointer!, _ userInfo: CFDictionary!, _ options: CFOptionFlags) */
-export function CFNotificationCenterPostNotificationWithOptions(center: $SDK64, name: $SDK31, object: (SDKHandle) | null, userInfo: (CFDictionary) | null, options: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 68656039935330, undefined, [center, name, object, userInfo, options]); }
+export function CFNotificationCenterPostNotificationWithOptions(center: $SDK64, name: $SDK31, object: (SDKHandle) | null, userInfo: (CFDictionary) | null, options: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 68656039935330, undefined, [center, name, object, userInfo, options]); }
 
 /** func CFNotificationCenterRemoveEveryObserver(_ center: CFNotificationCenter!, _ observer: UnsafeRawPointer!) */
-export function CFNotificationCenterRemoveEveryObserver(center?: $SDK64, observer?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 107383958649070, undefined, [center, observer]); }
+export function CFNotificationCenterRemoveEveryObserver(center?: $SDK64, observer?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 107383958649070, undefined, [center, observer]); }
 
 /** func CFNotificationCenterRemoveObserver(_ center: CFNotificationCenter!, _ observer: UnsafeRawPointer!, _ name: CFNotificationName!, _ object: UnsafeRawPointer!) */
-export function CFNotificationCenterRemoveObserver(center?: $SDK64, observer?: (SDKHandle) | null, name?: $SDK31, object?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1974250437588539, undefined, [center, observer, name, object]); }
+export function CFNotificationCenterRemoveObserver(center?: $SDK64, observer?: (SDKHandle) | null, name?: $SDK31, object?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1974250437588539, undefined, [center, observer, name, object]); }
 
 /** func CFNullGetTypeID() -> CFTypeID */
-export function CFNullGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2363488554696678, undefined, []); }
+export function CFNullGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2363488554696678, undefined, []); }
 
 /** func CFNumberCompare(_ number: CFNumber!, _ otherNumber: CFNumber!, _ context: UnsafeMutableRawPointer!) -> CFComparisonResult */
-export function CFNumberCompare(number?: (CFNumber) | null, otherNumber?: (CFNumber) | null, context?: (SDKHandle) | null): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_212edf3d13b127f5", 170473740249193, undefined, [number, otherNumber, context]); }
+export function CFNumberCompare(number?: (CFNumber) | null, otherNumber?: (CFNumber) | null, context?: (SDKHandle) | null): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_5d69670f0307b385", 170473740249193, undefined, [number, otherNumber, context]); }
 
 /** func CFNumberCreate(_ allocator: CFAllocator!, _ theType: CFNumberType, _ valuePtr: UnsafeRawPointer!) -> CFNumber! */
-export function CFNumberCreate(allocator: (CFAllocator) | null, theType: CFNumberType, valuePtr?: (SDKHandle) | null): (CFNumber) | null { return callSDK<(CFNumber) | null>("CoreFoundation_212edf3d13b127f5", 3072792131026879, undefined, [allocator, theType, valuePtr]); }
+export function CFNumberCreate(allocator: (CFAllocator) | null, theType: CFNumberType, valuePtr?: (SDKHandle) | null): (CFNumber) | null { return callSDK<(CFNumber) | null>("CoreFoundation_5d69670f0307b385", 3072792131026879, undefined, [allocator, theType, valuePtr]); }
 
 /** func CFNumberFormatterCopyProperty(_ formatter: CFNumberFormatter!, _ key: CFNumberFormatterKey!) -> CFTypeRef! */
-export function CFNumberFormatterCopyProperty(formatter?: $SDK65, key?: $SDK32): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 1870938569094140, undefined, [formatter, key]); }
+export function CFNumberFormatterCopyProperty(formatter?: $SDK65, key?: $SDK32): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 1870938569094140, undefined, [formatter, key]); }
 
 /** func CFNumberFormatterCreate(_ allocator: CFAllocator!, _ locale: CFLocale!, _ style: CFNumberFormatterStyle) -> CFNumberFormatter! */
-export function CFNumberFormatterCreate(allocator: (CFAllocator) | null, locale: (CFLocale) | null, style: CFNumberFormatterStyle): $SDK65 { return callSDK<$SDK65>("CoreFoundation_212edf3d13b127f5", 818027372311698, undefined, [allocator, locale, style]); }
+export function CFNumberFormatterCreate(allocator: (CFAllocator) | null, locale: (CFLocale) | null, style: CFNumberFormatterStyle): $SDK65 { return callSDK<$SDK65>("CoreFoundation_5d69670f0307b385", 818027372311698, undefined, [allocator, locale, style]); }
 
 /** func CFNumberFormatterCreateNumberFromString(_ allocator: CFAllocator!, _ formatter: CFNumberFormatter!, _ string: CFString!, _ rangep: UnsafeMutablePointer<CFRange>!, _ options: CFOptionFlags) -> CFNumber! */
-export function CFNumberFormatterCreateNumberFromString(allocator: (CFAllocator) | null, formatter: $SDK65, string: (CFString) | null, rangep: (SDKHandle) | null, options: number): (CFNumber) | null { return callSDK<(CFNumber) | null>("CoreFoundation_212edf3d13b127f5", 4074052535760097, undefined, [allocator, formatter, string, rangep, options]); }
+export function CFNumberFormatterCreateNumberFromString(allocator: (CFAllocator) | null, formatter: $SDK65, string: (CFString) | null, rangep: (SDKHandle) | null, options: number): (CFNumber) | null { return callSDK<(CFNumber) | null>("CoreFoundation_5d69670f0307b385", 4074052535760097, undefined, [allocator, formatter, string, rangep, options]); }
 
 /** func CFNumberFormatterCreateStringWithNumber(_ allocator: CFAllocator!, _ formatter: CFNumberFormatter!, _ number: CFNumber!) -> CFString! */
-export function CFNumberFormatterCreateStringWithNumber(allocator?: (CFAllocator) | null, formatter?: $SDK65, number?: (CFNumber) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1907979280769177, undefined, [allocator, formatter, number]); }
+export function CFNumberFormatterCreateStringWithNumber(allocator?: (CFAllocator) | null, formatter?: $SDK65, number?: (CFNumber) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1907979280769177, undefined, [allocator, formatter, number]); }
 
 /** func CFNumberFormatterCreateStringWithValue(_ allocator: CFAllocator!, _ formatter: CFNumberFormatter!, _ numberType: CFNumberType, _ valuePtr: UnsafeRawPointer!) -> CFString! */
-export function CFNumberFormatterCreateStringWithValue(allocator: (CFAllocator) | null, formatter: $SDK65, numberType: CFNumberType, valuePtr?: (SDKHandle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2052753180641620, undefined, [allocator, formatter, numberType, valuePtr]); }
+export function CFNumberFormatterCreateStringWithValue(allocator: (CFAllocator) | null, formatter: $SDK65, numberType: CFNumberType, valuePtr?: (SDKHandle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2052753180641620, undefined, [allocator, formatter, numberType, valuePtr]); }
 
 /** func CFNumberFormatterGetDecimalInfoForCurrencyCode(_ currencyCode: CFString!, _ defaultFractionDigits: UnsafeMutablePointer<Int32>!, _ roundingIncrement: UnsafeMutablePointer<Double>!) -> Bool */
-export function CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode?: (CFString) | null, defaultFractionDigits?: (SDKHandle) | null, roundingIncrement?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 101843271420759, undefined, [currencyCode, defaultFractionDigits, roundingIncrement]); }
+export function CFNumberFormatterGetDecimalInfoForCurrencyCode(currencyCode?: (CFString) | null, defaultFractionDigits?: (SDKHandle) | null, roundingIncrement?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 101843271420759, undefined, [currencyCode, defaultFractionDigits, roundingIncrement]); }
 
 /** func CFNumberFormatterGetFormat(_ formatter: CFNumberFormatter!) -> CFString! */
-export function CFNumberFormatterGetFormat(formatter?: $SDK65): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3993019549977731, undefined, [formatter]); }
+export function CFNumberFormatterGetFormat(formatter?: $SDK65): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3993019549977731, undefined, [formatter]); }
 
 /** func CFNumberFormatterGetLocale(_ formatter: CFNumberFormatter!) -> CFLocale! */
-export function CFNumberFormatterGetLocale(formatter?: $SDK65): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_212edf3d13b127f5", 4289106970057814, undefined, [formatter]); }
+export function CFNumberFormatterGetLocale(formatter?: $SDK65): (CFLocale) | null { return callSDK<(CFLocale) | null>("CoreFoundation_5d69670f0307b385", 4289106970057814, undefined, [formatter]); }
 
 /** func CFNumberFormatterGetStyle(_ formatter: CFNumberFormatter!) -> CFNumberFormatterStyle */
-export function CFNumberFormatterGetStyle(formatter?: $SDK65): CFNumberFormatterStyle { return callSDK<CFNumberFormatterStyle>("CoreFoundation_212edf3d13b127f5", 16572992151866, undefined, [formatter]); }
+export function CFNumberFormatterGetStyle(formatter?: $SDK65): CFNumberFormatterStyle { return callSDK<CFNumberFormatterStyle>("CoreFoundation_5d69670f0307b385", 16572992151866, undefined, [formatter]); }
 
 /** func CFNumberFormatterGetTypeID() -> CFTypeID */
-export function CFNumberFormatterGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 704382567365303, undefined, []); }
+export function CFNumberFormatterGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 704382567365303, undefined, []); }
 
 /** func CFNumberFormatterGetValueFromString(_ formatter: CFNumberFormatter!, _ string: CFString!, _ rangep: UnsafeMutablePointer<CFRange>!, _ numberType: CFNumberType, _ valuePtr: UnsafeMutableRawPointer!) -> Bool */
-export function CFNumberFormatterGetValueFromString(formatter: $SDK65, string: (CFString) | null, rangep: (SDKHandle) | null, numberType: CFNumberType, valuePtr?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 887406867037159, undefined, [formatter, string, rangep, numberType, valuePtr]); }
+export function CFNumberFormatterGetValueFromString(formatter: $SDK65, string: (CFString) | null, rangep: (SDKHandle) | null, numberType: CFNumberType, valuePtr?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 887406867037159, undefined, [formatter, string, rangep, numberType, valuePtr]); }
 
 /** func CFNumberFormatterSetFormat(_ formatter: CFNumberFormatter!, _ formatString: CFString!) */
-export function CFNumberFormatterSetFormat(formatter?: $SDK65, formatString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3832747543113182, undefined, [formatter, formatString]); }
+export function CFNumberFormatterSetFormat(formatter?: $SDK65, formatString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3832747543113182, undefined, [formatter, formatString]); }
 
 /** func CFNumberFormatterSetProperty(_ formatter: CFNumberFormatter!, _ key: CFNumberFormatterKey!, _ value: CFTypeRef!) */
-export function CFNumberFormatterSetProperty(formatter?: $SDK65, key?: $SDK32, value?: (unknown) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 239259381791258, undefined, [formatter, key, value]); }
+export function CFNumberFormatterSetProperty(formatter?: $SDK65, key?: $SDK32, value?: (unknown) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 239259381791258, undefined, [formatter, key, value]); }
 
 /** func CFNumberGetByteSize(_ number: CFNumber!) -> CFIndex */
-export function CFNumberGetByteSize(number?: (CFNumber) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 97882974681062, undefined, [number]); }
+export function CFNumberGetByteSize(number?: (CFNumber) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 97882974681062, undefined, [number]); }
 
 /** func CFNumberGetType(_ number: CFNumber!) -> CFNumberType */
-export function CFNumberGetType(number?: (CFNumber) | null): CFNumberType { return callSDK<CFNumberType>("CoreFoundation_212edf3d13b127f5", 1619605984292070, undefined, [number]); }
+export function CFNumberGetType(number?: (CFNumber) | null): CFNumberType { return callSDK<CFNumberType>("CoreFoundation_5d69670f0307b385", 1619605984292070, undefined, [number]); }
 
 /** func CFNumberGetTypeID() -> CFTypeID */
-export function CFNumberGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 235134206180119, undefined, []); }
+export function CFNumberGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 235134206180119, undefined, []); }
 
 /** func CFNumberGetValue(_ number: CFNumber!, _ theType: CFNumberType, _ valuePtr: UnsafeMutableRawPointer!) -> Bool */
-export function CFNumberGetValue(number: (CFNumber) | null, theType: CFNumberType, valuePtr?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4322104632082998, undefined, [number, theType, valuePtr]); }
+export function CFNumberGetValue(number: (CFNumber) | null, theType: CFNumberType, valuePtr?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4322104632082998, undefined, [number, theType, valuePtr]); }
 
 /** func CFNumberIsFloatType(_ number: CFNumber!) -> Bool */
-export function CFNumberIsFloatType(number?: (CFNumber) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1962704739040440, undefined, [number]); }
+export function CFNumberIsFloatType(number?: (CFNumber) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1962704739040440, undefined, [number]); }
 
 /** func CFPlugInAddInstanceForFactory(_ factoryID: CFUUID!) */
-export function CFPlugInAddInstanceForFactory(factoryID?: (CFUUID) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2826927765599801, undefined, [factoryID]); }
+export function CFPlugInAddInstanceForFactory(factoryID?: (CFUUID) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2826927765599801, undefined, [factoryID]); }
 
 /** func CFPlugInCreate(_ allocator: CFAllocator!, _ plugInURL: CFURL!) -> CFPlugIn! */
-export function CFPlugInCreate(allocator?: (CFAllocator) | null, plugInURL?: (CFURL) | null): (CFPlugIn) | null { return callSDK<(CFPlugIn) | null>("CoreFoundation_212edf3d13b127f5", 1685697157006211, undefined, [allocator, plugInURL]); }
+export function CFPlugInCreate(allocator?: (CFAllocator) | null, plugInURL?: (CFURL) | null): (CFPlugIn) | null { return callSDK<(CFPlugIn) | null>("CoreFoundation_5d69670f0307b385", 1685697157006211, undefined, [allocator, plugInURL]); }
 
 /** func CFPlugInFindFactoriesForPlugInType(_ typeUUID: CFUUID!) -> CFArray! */
-export function CFPlugInFindFactoriesForPlugInType(typeUUID?: (CFUUID) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 1303608453912653, undefined, [typeUUID]); }
+export function CFPlugInFindFactoriesForPlugInType(typeUUID?: (CFUUID) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 1303608453912653, undefined, [typeUUID]); }
 
 /** func CFPlugInFindFactoriesForPlugInTypeInPlugIn(_ typeUUID: CFUUID!, _ plugIn: CFPlugIn!) -> CFArray! */
-export function CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID?: (CFUUID) | null, plugIn?: (CFPlugIn) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 283380158054395, undefined, [typeUUID, plugIn]); }
+export function CFPlugInFindFactoriesForPlugInTypeInPlugIn(typeUUID?: (CFUUID) | null, plugIn?: (CFPlugIn) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 283380158054395, undefined, [typeUUID, plugIn]); }
 
 /** func CFPlugInGetBundle(_ plugIn: CFPlugIn!) -> CFBundle! */
-export function CFPlugInGetBundle(plugIn?: (CFPlugIn) | null): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_212edf3d13b127f5", 3226470009332522, undefined, [plugIn]); }
+export function CFPlugInGetBundle(plugIn?: (CFPlugIn) | null): (CFBundle) | null { return callSDK<(CFBundle) | null>("CoreFoundation_5d69670f0307b385", 3226470009332522, undefined, [plugIn]); }
 
 /** func CFPlugInGetTypeID() -> CFTypeID */
-export function CFPlugInGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2704036727711928, undefined, []); }
+export function CFPlugInGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2704036727711928, undefined, []); }
 
 /** func CFPlugInInstanceCreate(_ allocator: CFAllocator!, _ factoryUUID: CFUUID!, _ typeUUID: CFUUID!) -> UnsafeMutableRawPointer! */
-export function CFPlugInInstanceCreate(allocator?: (CFAllocator) | null, factoryUUID?: (CFUUID) | null, typeUUID?: (CFUUID) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 3202522660062323, undefined, [allocator, factoryUUID, typeUUID]); }
+export function CFPlugInInstanceCreate(allocator?: (CFAllocator) | null, factoryUUID?: (CFUUID) | null, typeUUID?: (CFUUID) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 3202522660062323, undefined, [allocator, factoryUUID, typeUUID]); }
 
 /**
  * func CFPlugInInstanceGetFactoryName(_ instance: CFPlugInInstance!) -> CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 27.0
  */
-export function CFPlugInInstanceGetFactoryName(instance?: $SDK66): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 867069659080492, undefined, [instance]); }
+export function CFPlugInInstanceGetFactoryName(instance?: $SDK66): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 867069659080492, undefined, [instance]); }
 
 /**
  * func CFPlugInInstanceGetInstanceData(_ instance: CFPlugInInstance!) -> UnsafeMutableRawPointer!
  * @availability iOS 2.0+
  * @deprecated iOS 27.0
  */
-export function CFPlugInInstanceGetInstanceData(instance?: $SDK66): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 4252265210808556, undefined, [instance]); }
+export function CFPlugInInstanceGetInstanceData(instance?: $SDK66): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 4252265210808556, undefined, [instance]); }
 
 /**
  * func CFPlugInInstanceGetInterfaceFunctionTable(_ instance: CFPlugInInstance!, _ interfaceName: CFString!, _ ftbl: UnsafeMutablePointer<UnsafeMutableRawPointer?>!) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 27.0
  */
-export function CFPlugInInstanceGetInterfaceFunctionTable(instance?: $SDK66, interfaceName?: (CFString) | null): { $ret: boolean; $out: { "ftbl": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "ftbl": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 2224113987633579, undefined, [instance, interfaceName, null]); }
+export function CFPlugInInstanceGetInterfaceFunctionTable(instance?: $SDK66, interfaceName?: (CFString) | null): { $ret: boolean; $out: { "ftbl": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "ftbl": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 2224113987633579, undefined, [instance, interfaceName, null]); }
 
 /**
  * func CFPlugInInstanceGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 27.0
  */
-export function CFPlugInInstanceGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3948724276217457, undefined, []); }
+export function CFPlugInInstanceGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3948724276217457, undefined, []); }
 
 /** func CFPlugInIsLoadOnDemand(_ plugIn: CFPlugIn!) -> Bool */
-export function CFPlugInIsLoadOnDemand(plugIn?: (CFPlugIn) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1739565020447917, undefined, [plugIn]); }
+export function CFPlugInIsLoadOnDemand(plugIn?: (CFPlugIn) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1739565020447917, undefined, [plugIn]); }
 
 /** func CFPlugInRegisterFactoryFunctionByName(_ factoryUUID: CFUUID!, _ plugIn: CFPlugIn!, _ functionName: CFString!) -> Bool */
-export function CFPlugInRegisterFactoryFunctionByName(factoryUUID?: (CFUUID) | null, plugIn?: (CFPlugIn) | null, functionName?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 947871902669994, undefined, [factoryUUID, plugIn, functionName]); }
+export function CFPlugInRegisterFactoryFunctionByName(factoryUUID?: (CFUUID) | null, plugIn?: (CFPlugIn) | null, functionName?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 947871902669994, undefined, [factoryUUID, plugIn, functionName]); }
 
 /** func CFPlugInRegisterPlugInType(_ factoryUUID: CFUUID!, _ typeUUID: CFUUID!) -> Bool */
-export function CFPlugInRegisterPlugInType(factoryUUID?: (CFUUID) | null, typeUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3117540767091840, undefined, [factoryUUID, typeUUID]); }
+export function CFPlugInRegisterPlugInType(factoryUUID?: (CFUUID) | null, typeUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3117540767091840, undefined, [factoryUUID, typeUUID]); }
 
 /** func CFPlugInRemoveInstanceForFactory(_ factoryID: CFUUID!) */
-export function CFPlugInRemoveInstanceForFactory(factoryID?: (CFUUID) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 74538156299133, undefined, [factoryID]); }
+export function CFPlugInRemoveInstanceForFactory(factoryID?: (CFUUID) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 74538156299133, undefined, [factoryID]); }
 
 /** func CFPlugInSetLoadOnDemand(_ plugIn: CFPlugIn!, _ flag: Bool) */
-export function CFPlugInSetLoadOnDemand(plugIn: (CFPlugIn) | null, flag: boolean): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3477790734494385, undefined, [plugIn, flag]); }
+export function CFPlugInSetLoadOnDemand(plugIn: (CFPlugIn) | null, flag: boolean): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3477790734494385, undefined, [plugIn, flag]); }
 
 /** func CFPlugInUnregisterFactory(_ factoryUUID: CFUUID!) -> Bool */
-export function CFPlugInUnregisterFactory(factoryUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 921224103715371, undefined, [factoryUUID]); }
+export function CFPlugInUnregisterFactory(factoryUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 921224103715371, undefined, [factoryUUID]); }
 
 /** func CFPlugInUnregisterPlugInType(_ factoryUUID: CFUUID!, _ typeUUID: CFUUID!) -> Bool */
-export function CFPlugInUnregisterPlugInType(factoryUUID?: (CFUUID) | null, typeUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3057714198239989, undefined, [factoryUUID, typeUUID]); }
+export function CFPlugInUnregisterPlugInType(factoryUUID?: (CFUUID) | null, typeUUID?: (CFUUID) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3057714198239989, undefined, [factoryUUID, typeUUID]); }
 
 /** func CFPreferencesAddSuitePreferencesToApp(_ applicationID: CFString, _ suiteID: CFString) */
-export function CFPreferencesAddSuitePreferencesToApp(applicationID: CFString, suiteID: CFString): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2219477226743760, undefined, [applicationID, suiteID]); }
+export function CFPreferencesAddSuitePreferencesToApp(applicationID: CFString, suiteID: CFString): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2219477226743760, undefined, [applicationID, suiteID]); }
 
 /** func CFPreferencesAppSynchronize(_ applicationID: CFString) -> Bool */
-export function CFPreferencesAppSynchronize(applicationID: CFString): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4282929656582637, undefined, [applicationID]); }
+export function CFPreferencesAppSynchronize(applicationID: CFString): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4282929656582637, undefined, [applicationID]); }
 
 /** func CFPreferencesAppValueIsForced(_ key: CFString, _ applicationID: CFString) -> Bool */
-export function CFPreferencesAppValueIsForced(key: CFString, applicationID: CFString): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3119635327746660, undefined, [key, applicationID]); }
+export function CFPreferencesAppValueIsForced(key: CFString, applicationID: CFString): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3119635327746660, undefined, [key, applicationID]); }
 
 /** func CFPreferencesCopyAppValue(_ key: CFString, _ applicationID: CFString) -> CFPropertyList? */
-export function CFPreferencesCopyAppValue(key: CFString, applicationID: CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 233080438608911, undefined, [key, applicationID]); }
+export function CFPreferencesCopyAppValue(key: CFString, applicationID: CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 233080438608911, undefined, [key, applicationID]); }
 
 /** func CFPreferencesCopyKeyList(_ applicationID: CFString, _ userName: CFString, _ hostName: CFString) -> CFArray? */
-export function CFPreferencesCopyKeyList(applicationID: CFString, userName: CFString, hostName: CFString): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 2330472372371680, undefined, [applicationID, userName, hostName]); }
+export function CFPreferencesCopyKeyList(applicationID: CFString, userName: CFString, hostName: CFString): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 2330472372371680, undefined, [applicationID, userName, hostName]); }
 
 /** func CFPreferencesCopyMultiple(_ keysToFetch: CFArray?, _ applicationID: CFString, _ userName: CFString, _ hostName: CFString) -> CFDictionary */
-export function CFPreferencesCopyMultiple(keysToFetch: (CFArray) | null, applicationID: CFString, userName: CFString, hostName: CFString): CFDictionary { return callSDK<CFDictionary>("CoreFoundation_212edf3d13b127f5", 545296348993559, undefined, [keysToFetch, applicationID, userName, hostName]); }
+export function CFPreferencesCopyMultiple(keysToFetch: (CFArray) | null, applicationID: CFString, userName: CFString, hostName: CFString): CFDictionary { return callSDK<CFDictionary>("CoreFoundation_5d69670f0307b385", 545296348993559, undefined, [keysToFetch, applicationID, userName, hostName]); }
 
 /** func CFPreferencesCopyValue(_ key: CFString, _ applicationID: CFString, _ userName: CFString, _ hostName: CFString) -> CFPropertyList? */
-export function CFPreferencesCopyValue(key: CFString, applicationID: CFString, userName: CFString, hostName: CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 1778539694154745, undefined, [key, applicationID, userName, hostName]); }
+export function CFPreferencesCopyValue(key: CFString, applicationID: CFString, userName: CFString, hostName: CFString): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 1778539694154745, undefined, [key, applicationID, userName, hostName]); }
 
 /** func CFPreferencesGetAppBooleanValue(_ key: CFString, _ applicationID: CFString, _ keyExistsAndHasValidFormat: UnsafeMutablePointer<DarwinBoolean>?) -> Bool */
-export function CFPreferencesGetAppBooleanValue(key: CFString, applicationID: CFString): { $ret: boolean; $out: { "keyExistsAndHasValidFormat": boolean } } { return callSDK<{ $ret: boolean; $out: { "keyExistsAndHasValidFormat": boolean } }>("CoreFoundation_212edf3d13b127f5", 2555199411781156, undefined, [key, applicationID, null]); }
+export function CFPreferencesGetAppBooleanValue(key: CFString, applicationID: CFString): { $ret: boolean; $out: { "keyExistsAndHasValidFormat": boolean } } { return callSDK<{ $ret: boolean; $out: { "keyExistsAndHasValidFormat": boolean } }>("CoreFoundation_5d69670f0307b385", 2555199411781156, undefined, [key, applicationID, null]); }
 
 /** func CFPreferencesGetAppIntegerValue(_ key: CFString, _ applicationID: CFString, _ keyExistsAndHasValidFormat: UnsafeMutablePointer<DarwinBoolean>?) -> CFIndex */
-export function CFPreferencesGetAppIntegerValue(key: CFString, applicationID: CFString): { $ret: number; $out: { "keyExistsAndHasValidFormat": boolean } } { return callSDK<{ $ret: number; $out: { "keyExistsAndHasValidFormat": boolean } }>("CoreFoundation_212edf3d13b127f5", 2782483174802099, undefined, [key, applicationID, null]); }
+export function CFPreferencesGetAppIntegerValue(key: CFString, applicationID: CFString): { $ret: number; $out: { "keyExistsAndHasValidFormat": boolean } } { return callSDK<{ $ret: number; $out: { "keyExistsAndHasValidFormat": boolean } }>("CoreFoundation_5d69670f0307b385", 2782483174802099, undefined, [key, applicationID, null]); }
 
 /** func CFPreferencesRemoveSuitePreferencesFromApp(_ applicationID: CFString, _ suiteID: CFString) */
-export function CFPreferencesRemoveSuitePreferencesFromApp(applicationID: CFString, suiteID: CFString): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1056560702780520, undefined, [applicationID, suiteID]); }
+export function CFPreferencesRemoveSuitePreferencesFromApp(applicationID: CFString, suiteID: CFString): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1056560702780520, undefined, [applicationID, suiteID]); }
 
 /** func CFPreferencesSetAppValue(_ key: CFString, _ value: CFPropertyList?, _ applicationID: CFString) */
-export function CFPreferencesSetAppValue(key: CFString, value: (unknown) | null, applicationID: CFString): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4229973201354346, undefined, [key, value, applicationID]); }
+export function CFPreferencesSetAppValue(key: CFString, value: (unknown) | null, applicationID: CFString): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4229973201354346, undefined, [key, value, applicationID]); }
 
 /** func CFPreferencesSetMultiple(_ keysToSet: CFDictionary?, _ keysToRemove: CFArray?, _ applicationID: CFString, _ userName: CFString, _ hostName: CFString) */
-export function CFPreferencesSetMultiple(keysToSet: (CFDictionary) | null, keysToRemove: (CFArray) | null, applicationID: CFString, userName: CFString, hostName: CFString): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1465691037157213, undefined, [keysToSet, keysToRemove, applicationID, userName, hostName]); }
+export function CFPreferencesSetMultiple(keysToSet: (CFDictionary) | null, keysToRemove: (CFArray) | null, applicationID: CFString, userName: CFString, hostName: CFString): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1465691037157213, undefined, [keysToSet, keysToRemove, applicationID, userName, hostName]); }
 
 /** func CFPreferencesSetValue(_ key: CFString, _ value: CFPropertyList?, _ applicationID: CFString, _ userName: CFString, _ hostName: CFString) */
-export function CFPreferencesSetValue(key: CFString, value: (unknown) | null, applicationID: CFString, userName: CFString, hostName: CFString): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2472070203693194, undefined, [key, value, applicationID, userName, hostName]); }
+export function CFPreferencesSetValue(key: CFString, value: (unknown) | null, applicationID: CFString, userName: CFString, hostName: CFString): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2472070203693194, undefined, [key, value, applicationID, userName, hostName]); }
 
 /** func CFPreferencesSynchronize(_ applicationID: CFString, _ userName: CFString, _ hostName: CFString) -> Bool */
-export function CFPreferencesSynchronize(applicationID: CFString, userName: CFString, hostName: CFString): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 111121663878894, undefined, [applicationID, userName, hostName]); }
+export function CFPreferencesSynchronize(applicationID: CFString, userName: CFString, hostName: CFString): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 111121663878894, undefined, [applicationID, userName, hostName]); }
 
 /**
  * func CFPropertyListCreateData(_ allocator: CFAllocator!, _ propertyList: CFPropertyList!, _ format: CFPropertyListFormat, _ options: CFOptionFlags, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!
  * @availability iOS 4.0+
  */
-export function CFPropertyListCreateData(allocator: (CFAllocator) | null, propertyList: (unknown) | null, format: CFPropertyListFormat, options: number): { $ret: (CFData) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFData) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 2893087661578194, undefined, [allocator, propertyList, format, options, null]); }
+export function CFPropertyListCreateData(allocator: (CFAllocator) | null, propertyList: (unknown) | null, format: CFPropertyListFormat, options: number): { $ret: (CFData) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFData) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 2893087661578194, undefined, [allocator, propertyList, format, options, null]); }
 
 /** func CFPropertyListCreateDeepCopy(_ allocator: CFAllocator!, _ propertyList: CFPropertyList!, _ mutabilityOption: CFOptionFlags) -> CFPropertyList! */
-export function CFPropertyListCreateDeepCopy(allocator: (CFAllocator) | null, propertyList: (unknown) | null, mutabilityOption: number): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 2085730560091915, undefined, [allocator, propertyList, mutabilityOption]); }
+export function CFPropertyListCreateDeepCopy(allocator: (CFAllocator) | null, propertyList: (unknown) | null, mutabilityOption: number): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 2085730560091915, undefined, [allocator, propertyList, mutabilityOption]); }
 
 /**
  * func CFPropertyListCreateWithData(_ allocator: CFAllocator!, _ data: CFData!, _ options: CFOptionFlags, _ format: UnsafeMutablePointer<CFPropertyListFormat>!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFPropertyList>!
  * @availability iOS 4.0+
  */
-export function CFPropertyListCreateWithData(allocator: (CFAllocator) | null, data: (CFData) | null, options: number, format?: (SDKHandle) | null): { $ret: (unknown) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 2247528899044081, undefined, [allocator, data, options, format, null]); }
+export function CFPropertyListCreateWithData(allocator: (CFAllocator) | null, data: (CFData) | null, options: number, format?: (SDKHandle) | null): { $ret: (unknown) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 2247528899044081, undefined, [allocator, data, options, format, null]); }
 
 /**
  * func CFPropertyListCreateWithStream(_ allocator: CFAllocator!, _ stream: CFReadStream!, _ streamLength: CFIndex, _ options: CFOptionFlags, _ format: UnsafeMutablePointer<CFPropertyListFormat>!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFPropertyList>!
  * @availability iOS 4.0+
  */
-export function CFPropertyListCreateWithStream(allocator: (CFAllocator) | null, stream: (CFReadStream) | null, streamLength: number, options: number, format?: (SDKHandle) | null): { $ret: (unknown) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 3734220800056560, undefined, [allocator, stream, streamLength, options, format, null]); }
+export function CFPropertyListCreateWithStream(allocator: (CFAllocator) | null, stream: (CFReadStream) | null, streamLength: number, options: number, format?: (SDKHandle) | null): { $ret: (unknown) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 3734220800056560, undefined, [allocator, stream, streamLength, options, format, null]); }
 
 /**
  * func CFPropertyListCreateXMLData(_ allocator: CFAllocator!, _ propertyList: CFPropertyList!) -> Unmanaged<CFData>!
  * @availability iOS 2.0+
  * @deprecated iOS 8.0
  */
-export function CFPropertyListCreateXMLData(allocator?: (CFAllocator) | null, propertyList?: (unknown) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 165112616595140, undefined, [allocator, propertyList]); }
+export function CFPropertyListCreateXMLData(allocator?: (CFAllocator) | null, propertyList?: (unknown) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 165112616595140, undefined, [allocator, propertyList]); }
 
 /** func CFPropertyListIsValid(_ plist: CFPropertyList!, _ format: CFPropertyListFormat) -> Bool */
-export function CFPropertyListIsValid(plist: (unknown) | null, format: CFPropertyListFormat): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1555817288771613, undefined, [plist, format]); }
+export function CFPropertyListIsValid(plist: (unknown) | null, format: CFPropertyListFormat): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1555817288771613, undefined, [plist, format]); }
 
 /**
  * func CFPropertyListWrite(_ propertyList: CFPropertyList!, _ stream: CFWriteStream!, _ format: CFPropertyListFormat, _ options: CFOptionFlags, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> CFIndex
  * @availability iOS 4.0+
  */
-export function CFPropertyListWrite(propertyList: (unknown) | null, stream: (CFWriteStream) | null, format: CFPropertyListFormat, options: number): { $ret: number; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: number; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 233198538295143, undefined, [propertyList, stream, format, options, null]); }
+export function CFPropertyListWrite(propertyList: (unknown) | null, stream: (CFWriteStream) | null, format: CFPropertyListFormat, options: number): { $ret: number; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: number; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 233198538295143, undefined, [propertyList, stream, format, options, null]); }
 
 /** func CFRangeMake(_ loc: CFIndex, _ len: CFIndex) -> CFRange */
-export function CFRangeMake(loc: number, len: number): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 232870118615536, undefined, [loc, len]); }
+export function CFRangeMake(loc: number, len: number): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 232870118615536, undefined, [loc, len]); }
 
 /** func CFReadStreamClose(_ stream: CFReadStream!) */
-export function CFReadStreamClose(stream?: (CFReadStream) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1460725464696258, undefined, [stream]); }
+export function CFReadStreamClose(stream?: (CFReadStream) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1460725464696258, undefined, [stream]); }
 
 /**
  * func CFReadStreamCopyDispatchQueue(_ stream: CFReadStream!) -> dispatch_queue_t!
  * @availability iOS 7.0+
  */
-export function CFReadStreamCopyDispatchQueue(stream?: (CFReadStream) | null): $SDK63 { return callSDK<$SDK63>("CoreFoundation_212edf3d13b127f5", 4281730871946751, undefined, [stream]); }
+export function CFReadStreamCopyDispatchQueue(stream?: (CFReadStream) | null): $SDK63 { return callSDK<$SDK63>("CoreFoundation_5d69670f0307b385", 4281730871946751, undefined, [stream]); }
 
 /**
  * func CFReadStreamCopyError(_ stream: CFReadStream!) -> CFError!
  * @availability iOS 2.0+
  */
-export function CFReadStreamCopyError(stream?: (CFReadStream) | null): (CFError) | null { return callSDK<(CFError) | null>("CoreFoundation_212edf3d13b127f5", 953461408130625, undefined, [stream]); }
+export function CFReadStreamCopyError(stream?: (CFReadStream) | null): (CFError) | null { return callSDK<(CFError) | null>("CoreFoundation_5d69670f0307b385", 953461408130625, undefined, [stream]); }
 
 /** func CFReadStreamCopyProperty(_ stream: CFReadStream!, _ propertyName: CFStreamPropertyKey!) -> CFTypeRef! */
-export function CFReadStreamCopyProperty(stream?: (CFReadStream) | null, propertyName?: $SDK43): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 480605244554616, undefined, [stream, propertyName]); }
+export function CFReadStreamCopyProperty(stream?: (CFReadStream) | null, propertyName?: $SDK43): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 480605244554616, undefined, [stream, propertyName]); }
 
 /** func CFReadStreamCreateWithBytesNoCopy(_ alloc: CFAllocator!, _ bytes: UnsafePointer<UInt8>!, _ length: CFIndex, _ bytesDeallocator: CFAllocator!) -> CFReadStream! */
-export function CFReadStreamCreateWithBytesNoCopy(alloc: (CFAllocator) | null, bytes: (SDKHandle) | null, length: number, bytesDeallocator?: (CFAllocator) | null): (CFReadStream) | null { return callSDK<(CFReadStream) | null>("CoreFoundation_212edf3d13b127f5", 1591060014668586, undefined, [alloc, bytes, length, bytesDeallocator]); }
+export function CFReadStreamCreateWithBytesNoCopy(alloc: (CFAllocator) | null, bytes: (SDKHandle) | null, length: number, bytesDeallocator?: (CFAllocator) | null): (CFReadStream) | null { return callSDK<(CFReadStream) | null>("CoreFoundation_5d69670f0307b385", 1591060014668586, undefined, [alloc, bytes, length, bytesDeallocator]); }
 
 /** func CFReadStreamCreateWithFile(_ alloc: CFAllocator!, _ fileURL: CFURL!) -> CFReadStream! */
-export function CFReadStreamCreateWithFile(alloc?: (CFAllocator) | null, fileURL?: (CFURL) | null): (CFReadStream) | null { return callSDK<(CFReadStream) | null>("CoreFoundation_212edf3d13b127f5", 1998401850308894, undefined, [alloc, fileURL]); }
+export function CFReadStreamCreateWithFile(alloc?: (CFAllocator) | null, fileURL?: (CFURL) | null): (CFReadStream) | null { return callSDK<(CFReadStream) | null>("CoreFoundation_5d69670f0307b385", 1998401850308894, undefined, [alloc, fileURL]); }
 
 /** func CFReadStreamGetBuffer(_ stream: CFReadStream!, _ maxBytesToRead: CFIndex, _ numBytesRead: UnsafeMutablePointer<CFIndex>!) -> UnsafePointer<UInt8>! */
-export function CFReadStreamGetBuffer(stream: (CFReadStream) | null, maxBytesToRead: number, numBytesRead?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2466839157495528, undefined, [stream, maxBytesToRead, numBytesRead]); }
+export function CFReadStreamGetBuffer(stream: (CFReadStream) | null, maxBytesToRead: number, numBytesRead?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2466839157495528, undefined, [stream, maxBytesToRead, numBytesRead]); }
 
 /** func CFReadStreamGetError(_ stream: CFReadStream!) -> CFStreamError */
-export function CFReadStreamGetError(stream?: (CFReadStream) | null): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_212edf3d13b127f5", 3244747111426221, undefined, [stream]); }
+export function CFReadStreamGetError(stream?: (CFReadStream) | null): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_5d69670f0307b385", 3244747111426221, undefined, [stream]); }
 
 /** func CFReadStreamGetStatus(_ stream: CFReadStream!) -> CFStreamStatus */
-export function CFReadStreamGetStatus(stream?: (CFReadStream) | null): CFStreamStatus { return callSDK<CFStreamStatus>("CoreFoundation_212edf3d13b127f5", 3646369156438931, undefined, [stream]); }
+export function CFReadStreamGetStatus(stream?: (CFReadStream) | null): CFStreamStatus { return callSDK<CFStreamStatus>("CoreFoundation_5d69670f0307b385", 3646369156438931, undefined, [stream]); }
 
 /** func CFReadStreamGetTypeID() -> CFTypeID */
-export function CFReadStreamGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3455340586615970, undefined, []); }
+export function CFReadStreamGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3455340586615970, undefined, []); }
 
 /** func CFReadStreamHasBytesAvailable(_ stream: CFReadStream!) -> Bool */
-export function CFReadStreamHasBytesAvailable(stream?: (CFReadStream) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2711515518644642, undefined, [stream]); }
+export function CFReadStreamHasBytesAvailable(stream?: (CFReadStream) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2711515518644642, undefined, [stream]); }
 
 /** func CFReadStreamOpen(_ stream: CFReadStream!) -> Bool */
-export function CFReadStreamOpen(stream?: (CFReadStream) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 346083870956021, undefined, [stream]); }
+export function CFReadStreamOpen(stream?: (CFReadStream) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 346083870956021, undefined, [stream]); }
 
 /** func CFReadStreamRead(_ stream: CFReadStream!, _ buffer: UnsafeMutablePointer<UInt8>!, _ bufferLength: CFIndex) -> CFIndex */
-export function CFReadStreamRead(stream: (CFReadStream) | null, buffer: (SDKHandle) | null, bufferLength: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1237946504094928, undefined, [stream, buffer, bufferLength]); }
+export function CFReadStreamRead(stream: (CFReadStream) | null, buffer: (SDKHandle) | null, bufferLength: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1237946504094928, undefined, [stream, buffer, bufferLength]); }
 
 /** func CFReadStreamScheduleWithRunLoop(_ stream: CFReadStream!, _ runLoop: CFRunLoop!, _ runLoopMode: CFRunLoopMode!) */
-export function CFReadStreamScheduleWithRunLoop(stream?: (CFReadStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3247844276471063, undefined, [stream, runLoop, runLoopMode]); }
+export function CFReadStreamScheduleWithRunLoop(stream?: (CFReadStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3247844276471063, undefined, [stream, runLoop, runLoopMode]); }
 
 /**
  * func CFReadStreamSetDispatchQueue(_ stream: CFReadStream!, _ q: dispatch_queue_t!)
  * @availability iOS 7.0+
  */
-export function CFReadStreamSetDispatchQueue(stream?: (CFReadStream) | null, q?: $SDK63): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4216608578591176, undefined, [stream, q]); }
+export function CFReadStreamSetDispatchQueue(stream?: (CFReadStream) | null, q?: $SDK63): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4216608578591176, undefined, [stream, q]); }
 
 /** func CFReadStreamSetProperty(_ stream: CFReadStream!, _ propertyName: CFStreamPropertyKey!, _ propertyValue: CFTypeRef!) -> Bool */
-export function CFReadStreamSetProperty(stream?: (CFReadStream) | null, propertyName?: $SDK43, propertyValue?: (unknown) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3454349002243297, undefined, [stream, propertyName, propertyValue]); }
+export function CFReadStreamSetProperty(stream?: (CFReadStream) | null, propertyName?: $SDK43, propertyValue?: (unknown) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3454349002243297, undefined, [stream, propertyName, propertyValue]); }
 
 /** func CFReadStreamUnscheduleFromRunLoop(_ stream: CFReadStream!, _ runLoop: CFRunLoop!, _ runLoopMode: CFRunLoopMode!) */
-export function CFReadStreamUnscheduleFromRunLoop(stream?: (CFReadStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4482577707881042, undefined, [stream, runLoop, runLoopMode]); }
+export function CFReadStreamUnscheduleFromRunLoop(stream?: (CFReadStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4482577707881042, undefined, [stream, runLoop, runLoopMode]); }
 
 /** func CFRunLoopAddCommonMode(_ rl: CFRunLoop!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopAddCommonMode(rl?: (CFRunLoop) | null, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3616385996512949, undefined, [rl, mode]); }
+export function CFRunLoopAddCommonMode(rl?: (CFRunLoop) | null, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3616385996512949, undefined, [rl, mode]); }
 
 /** func CFRunLoopAddObserver(_ rl: CFRunLoop!, _ observer: CFRunLoopObserver!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopAddObserver(rl?: (CFRunLoop) | null, observer?: $SDK67, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3200380955860193, undefined, [rl, observer, mode]); }
+export function CFRunLoopAddObserver(rl?: (CFRunLoop) | null, observer?: $SDK67, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3200380955860193, undefined, [rl, observer, mode]); }
 
 /** func CFRunLoopAddSource(_ rl: CFRunLoop!, _ source: CFRunLoopSource!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopAddSource(rl?: (CFRunLoop) | null, source?: $SDK58, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 764543036898763, undefined, [rl, source, mode]); }
+export function CFRunLoopAddSource(rl?: (CFRunLoop) | null, source?: $SDK58, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 764543036898763, undefined, [rl, source, mode]); }
 
 /** func CFRunLoopAddTimer(_ rl: CFRunLoop!, _ timer: CFRunLoopTimer!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopAddTimer(rl?: (CFRunLoop) | null, timer?: (CFRunLoopTimer) | null, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2521246806818937, undefined, [rl, timer, mode]); }
+export function CFRunLoopAddTimer(rl?: (CFRunLoop) | null, timer?: (CFRunLoopTimer) | null, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2521246806818937, undefined, [rl, timer, mode]); }
 
 /** func CFRunLoopContainsObserver(_ rl: CFRunLoop!, _ observer: CFRunLoopObserver!, _ mode: CFRunLoopMode!) -> Bool */
-export function CFRunLoopContainsObserver(rl?: (CFRunLoop) | null, observer?: $SDK67, mode?: (CFRunLoopMode) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3492328694398431, undefined, [rl, observer, mode]); }
+export function CFRunLoopContainsObserver(rl?: (CFRunLoop) | null, observer?: $SDK67, mode?: (CFRunLoopMode) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3492328694398431, undefined, [rl, observer, mode]); }
 
 /** func CFRunLoopContainsSource(_ rl: CFRunLoop!, _ source: CFRunLoopSource!, _ mode: CFRunLoopMode!) -> Bool */
-export function CFRunLoopContainsSource(rl?: (CFRunLoop) | null, source?: $SDK58, mode?: (CFRunLoopMode) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4119004349195174, undefined, [rl, source, mode]); }
+export function CFRunLoopContainsSource(rl?: (CFRunLoop) | null, source?: $SDK58, mode?: (CFRunLoopMode) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4119004349195174, undefined, [rl, source, mode]); }
 
 /** func CFRunLoopContainsTimer(_ rl: CFRunLoop!, _ timer: CFRunLoopTimer!, _ mode: CFRunLoopMode!) -> Bool */
-export function CFRunLoopContainsTimer(rl?: (CFRunLoop) | null, timer?: (CFRunLoopTimer) | null, mode?: (CFRunLoopMode) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2746281741939396, undefined, [rl, timer, mode]); }
+export function CFRunLoopContainsTimer(rl?: (CFRunLoop) | null, timer?: (CFRunLoopTimer) | null, mode?: (CFRunLoopMode) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2746281741939396, undefined, [rl, timer, mode]); }
 
 /** func CFRunLoopCopyAllModes(_ rl: CFRunLoop!) -> CFArray! */
-export function CFRunLoopCopyAllModes(rl?: (CFRunLoop) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 717004470128304, undefined, [rl]); }
+export function CFRunLoopCopyAllModes(rl?: (CFRunLoop) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 717004470128304, undefined, [rl]); }
 
 /** func CFRunLoopCopyCurrentMode(_ rl: CFRunLoop!) -> CFRunLoopMode! */
-export function CFRunLoopCopyCurrentMode(rl?: (CFRunLoop) | null): (CFRunLoopMode) | null { return callSDK<(CFRunLoopMode) | null>("CoreFoundation_212edf3d13b127f5", 4028655246298040, undefined, [rl]); }
+export function CFRunLoopCopyCurrentMode(rl?: (CFRunLoop) | null): (CFRunLoopMode) | null { return callSDK<(CFRunLoopMode) | null>("CoreFoundation_5d69670f0307b385", 4028655246298040, undefined, [rl]); }
 
 /** func CFRunLoopGetCurrent() -> CFRunLoop! */
-export function CFRunLoopGetCurrent(): (CFRunLoop) | null { return callSDK<(CFRunLoop) | null>("CoreFoundation_212edf3d13b127f5", 3042514043486456, undefined, []); }
+export function CFRunLoopGetCurrent(): (CFRunLoop) | null { return callSDK<(CFRunLoop) | null>("CoreFoundation_5d69670f0307b385", 3042514043486456, undefined, []); }
 
 /** func CFRunLoopGetMain() -> CFRunLoop! */
-export function CFRunLoopGetMain(): (CFRunLoop) | null { return callSDK<(CFRunLoop) | null>("CoreFoundation_212edf3d13b127f5", 1214467396803551, undefined, []); }
+export function CFRunLoopGetMain(): (CFRunLoop) | null { return callSDK<(CFRunLoop) | null>("CoreFoundation_5d69670f0307b385", 1214467396803551, undefined, []); }
 
 /** func CFRunLoopGetNextTimerFireDate(_ rl: CFRunLoop!, _ mode: CFRunLoopMode!) -> CFAbsoluteTime */
-export function CFRunLoopGetNextTimerFireDate(rl?: (CFRunLoop) | null, mode?: (CFRunLoopMode) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1563867383185583, undefined, [rl, mode]); }
+export function CFRunLoopGetNextTimerFireDate(rl?: (CFRunLoop) | null, mode?: (CFRunLoopMode) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1563867383185583, undefined, [rl, mode]); }
 
 /** func CFRunLoopGetTypeID() -> CFTypeID */
-export function CFRunLoopGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3428364206335293, undefined, []); }
+export function CFRunLoopGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3428364206335293, undefined, []); }
 
 /** func CFRunLoopIsWaiting(_ rl: CFRunLoop!) -> Bool */
-export function CFRunLoopIsWaiting(rl?: (CFRunLoop) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3917615695706342, undefined, [rl]); }
+export function CFRunLoopIsWaiting(rl?: (CFRunLoop) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3917615695706342, undefined, [rl]); }
 
 /** func CFRunLoopObserverDoesRepeat(_ observer: CFRunLoopObserver!) -> Bool */
-export function CFRunLoopObserverDoesRepeat(observer?: $SDK67): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2184541462594581, undefined, [observer]); }
+export function CFRunLoopObserverDoesRepeat(observer?: $SDK67): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2184541462594581, undefined, [observer]); }
 
 /** func CFRunLoopObserverGetActivities(_ observer: CFRunLoopObserver!) -> CFOptionFlags */
-export function CFRunLoopObserverGetActivities(observer?: $SDK67): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3249447322733885, undefined, [observer]); }
+export function CFRunLoopObserverGetActivities(observer?: $SDK67): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3249447322733885, undefined, [observer]); }
 
 /** func CFRunLoopObserverGetContext(_ observer: CFRunLoopObserver!, _ context: UnsafeMutablePointer<CFRunLoopObserverContext>!) */
-export function CFRunLoopObserverGetContext(observer?: $SDK67, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 373330766000726, undefined, [observer, context]); }
+export function CFRunLoopObserverGetContext(observer?: $SDK67, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 373330766000726, undefined, [observer, context]); }
 
 /** func CFRunLoopObserverGetOrder(_ observer: CFRunLoopObserver!) -> CFIndex */
-export function CFRunLoopObserverGetOrder(observer?: $SDK67): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4320624506402713, undefined, [observer]); }
+export function CFRunLoopObserverGetOrder(observer?: $SDK67): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4320624506402713, undefined, [observer]); }
 
 /** func CFRunLoopObserverGetTypeID() -> CFTypeID */
-export function CFRunLoopObserverGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2734631805623070, undefined, []); }
+export function CFRunLoopObserverGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2734631805623070, undefined, []); }
 
 /** func CFRunLoopObserverInvalidate(_ observer: CFRunLoopObserver!) */
-export function CFRunLoopObserverInvalidate(observer?: $SDK67): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1352212783557648, undefined, [observer]); }
+export function CFRunLoopObserverInvalidate(observer?: $SDK67): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1352212783557648, undefined, [observer]); }
 
 /** func CFRunLoopObserverIsValid(_ observer: CFRunLoopObserver!) -> Bool */
-export function CFRunLoopObserverIsValid(observer?: $SDK67): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3160815667736138, undefined, [observer]); }
+export function CFRunLoopObserverIsValid(observer?: $SDK67): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3160815667736138, undefined, [observer]); }
 
 /**
  * func CFRunLoopPerformBlock(_ rl: CFRunLoop!, _ mode: CFTypeRef!, _ block: (() -> Void)!)
  * @availability iOS 4.0+
  */
-export function CFRunLoopPerformBlock(rl?: (CFRunLoop) | null, mode?: (unknown) | null, block?: ((() => void)) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2039637370623494, undefined, [rl, mode, block], [null,null,{"callback":{"out":[]}}]); }
+export function CFRunLoopPerformBlock(rl?: (CFRunLoop) | null, mode?: (unknown) | null, block?: ((() => void)) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2039637370623494, undefined, [rl, mode, block], [null,null,{"callback":{"out":[]}}]); }
 
 /** func CFRunLoopRemoveObserver(_ rl: CFRunLoop!, _ observer: CFRunLoopObserver!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopRemoveObserver(rl?: (CFRunLoop) | null, observer?: $SDK67, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 180157478393781, undefined, [rl, observer, mode]); }
+export function CFRunLoopRemoveObserver(rl?: (CFRunLoop) | null, observer?: $SDK67, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 180157478393781, undefined, [rl, observer, mode]); }
 
 /** func CFRunLoopRemoveSource(_ rl: CFRunLoop!, _ source: CFRunLoopSource!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopRemoveSource(rl?: (CFRunLoop) | null, source?: $SDK58, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1540528239957, undefined, [rl, source, mode]); }
+export function CFRunLoopRemoveSource(rl?: (CFRunLoop) | null, source?: $SDK58, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1540528239957, undefined, [rl, source, mode]); }
 
 /** func CFRunLoopRemoveTimer(_ rl: CFRunLoop!, _ timer: CFRunLoopTimer!, _ mode: CFRunLoopMode!) */
-export function CFRunLoopRemoveTimer(rl?: (CFRunLoop) | null, timer?: (CFRunLoopTimer) | null, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 682162898980890, undefined, [rl, timer, mode]); }
+export function CFRunLoopRemoveTimer(rl?: (CFRunLoop) | null, timer?: (CFRunLoopTimer) | null, mode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 682162898980890, undefined, [rl, timer, mode]); }
 
 /** func CFRunLoopRun() */
-export function CFRunLoopRun(): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2724164236073409, undefined, []); }
+export function CFRunLoopRun(): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2724164236073409, undefined, []); }
 
 /** func CFRunLoopRunInMode(_ mode: CFRunLoopMode!, _ seconds: CFTimeInterval, _ returnAfterSourceHandled: Bool) -> CFRunLoopRunResult */
-export function CFRunLoopRunInMode(mode: (CFRunLoopMode) | null, seconds: number, returnAfterSourceHandled: boolean): CFRunLoopRunResult { return callSDK<CFRunLoopRunResult>("CoreFoundation_212edf3d13b127f5", 644275195382668, undefined, [mode, seconds, returnAfterSourceHandled]); }
+export function CFRunLoopRunInMode(mode: (CFRunLoopMode) | null, seconds: number, returnAfterSourceHandled: boolean): CFRunLoopRunResult { return callSDK<CFRunLoopRunResult>("CoreFoundation_5d69670f0307b385", 644275195382668, undefined, [mode, seconds, returnAfterSourceHandled]); }
 
 /** func CFRunLoopSourceCreate(_ allocator: CFAllocator!, _ order: CFIndex, _ context: UnsafeMutablePointer<CFRunLoopSourceContext>!) -> CFRunLoopSource! */
-export function CFRunLoopSourceCreate(allocator: (CFAllocator) | null, order: number, context?: (SDKHandle) | null): $SDK58 { return callSDK<$SDK58>("CoreFoundation_212edf3d13b127f5", 2319315687435876, undefined, [allocator, order, context]); }
+export function CFRunLoopSourceCreate(allocator: (CFAllocator) | null, order: number, context?: (SDKHandle) | null): $SDK58 { return callSDK<$SDK58>("CoreFoundation_5d69670f0307b385", 2319315687435876, undefined, [allocator, order, context]); }
 
 /** func CFRunLoopSourceGetContext(_ source: CFRunLoopSource!, _ context: UnsafeMutablePointer<CFRunLoopSourceContext>!) */
-export function CFRunLoopSourceGetContext(source?: $SDK58, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3946049237907085, undefined, [source, context]); }
+export function CFRunLoopSourceGetContext(source?: $SDK58, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3946049237907085, undefined, [source, context]); }
 
 /** func CFRunLoopSourceGetOrder(_ source: CFRunLoopSource!) -> CFIndex */
-export function CFRunLoopSourceGetOrder(source?: $SDK58): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 194812600614361, undefined, [source]); }
+export function CFRunLoopSourceGetOrder(source?: $SDK58): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 194812600614361, undefined, [source]); }
 
 /** func CFRunLoopSourceGetTypeID() -> CFTypeID */
-export function CFRunLoopSourceGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 355921955404022, undefined, []); }
+export function CFRunLoopSourceGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 355921955404022, undefined, []); }
 
 /** func CFRunLoopSourceInvalidate(_ source: CFRunLoopSource!) */
-export function CFRunLoopSourceInvalidate(source?: $SDK58): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4253413024169256, undefined, [source]); }
+export function CFRunLoopSourceInvalidate(source?: $SDK58): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4253413024169256, undefined, [source]); }
 
 /** func CFRunLoopSourceIsValid(_ source: CFRunLoopSource!) -> Bool */
-export function CFRunLoopSourceIsValid(source?: $SDK58): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1575754888349792, undefined, [source]); }
+export function CFRunLoopSourceIsValid(source?: $SDK58): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1575754888349792, undefined, [source]); }
 
 /** func CFRunLoopSourceSignal(_ source: CFRunLoopSource!) */
-export function CFRunLoopSourceSignal(source?: $SDK58): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2679525160035107, undefined, [source]); }
+export function CFRunLoopSourceSignal(source?: $SDK58): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2679525160035107, undefined, [source]); }
 
 /** func CFRunLoopStop(_ rl: CFRunLoop!) */
-export function CFRunLoopStop(rl?: (CFRunLoop) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3215737250136910, undefined, [rl]); }
+export function CFRunLoopStop(rl?: (CFRunLoop) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3215737250136910, undefined, [rl]); }
 
 /**
  * func CFRunLoopTimerCreateWithHandler(_ allocator: CFAllocator!, _ fireDate: CFAbsoluteTime, _ interval: CFTimeInterval, _ flags: CFOptionFlags, _ order: CFIndex, _ block: ((CFRunLoopTimer?) -> Void)!) -> CFRunLoopTimer!
  * @availability iOS 5.0+
  */
-export function CFRunLoopTimerCreateWithHandler(allocator: (CFAllocator) | null, fireDate: number, interval: number, flags: number, order: number, block?: (((arg0: (CFRunLoopTimer) | null) => void)) | null): (CFRunLoopTimer) | null { return callSDK<(CFRunLoopTimer) | null>("CoreFoundation_212edf3d13b127f5", 3917860118376773, undefined, [allocator, fireDate, interval, flags, order, block], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+export function CFRunLoopTimerCreateWithHandler(allocator: (CFAllocator) | null, fireDate: number, interval: number, flags: number, order: number, block?: (((arg0: (CFRunLoopTimer) | null) => void)) | null): (CFRunLoopTimer) | null { return callSDK<(CFRunLoopTimer) | null>("CoreFoundation_5d69670f0307b385", 3917860118376773, undefined, [allocator, fireDate, interval, flags, order, block], [null,null,null,null,null,{"callback":{"out":[]}}]); }
 
 /** func CFRunLoopTimerDoesRepeat(_ timer: CFRunLoopTimer!) -> Bool */
-export function CFRunLoopTimerDoesRepeat(timer?: (CFRunLoopTimer) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2929193390523879, undefined, [timer]); }
+export function CFRunLoopTimerDoesRepeat(timer?: (CFRunLoopTimer) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2929193390523879, undefined, [timer]); }
 
 /** func CFRunLoopTimerGetContext(_ timer: CFRunLoopTimer!, _ context: UnsafeMutablePointer<CFRunLoopTimerContext>!) */
-export function CFRunLoopTimerGetContext(timer?: (CFRunLoopTimer) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 543854540811965, undefined, [timer, context]); }
+export function CFRunLoopTimerGetContext(timer?: (CFRunLoopTimer) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 543854540811965, undefined, [timer, context]); }
 
 /** func CFRunLoopTimerGetInterval(_ timer: CFRunLoopTimer!) -> CFTimeInterval */
-export function CFRunLoopTimerGetInterval(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4346007913198563, undefined, [timer]); }
+export function CFRunLoopTimerGetInterval(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4346007913198563, undefined, [timer]); }
 
 /** func CFRunLoopTimerGetNextFireDate(_ timer: CFRunLoopTimer!) -> CFAbsoluteTime */
-export function CFRunLoopTimerGetNextFireDate(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 610088080434047, undefined, [timer]); }
+export function CFRunLoopTimerGetNextFireDate(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 610088080434047, undefined, [timer]); }
 
 /** func CFRunLoopTimerGetOrder(_ timer: CFRunLoopTimer!) -> CFIndex */
-export function CFRunLoopTimerGetOrder(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1130108271019511, undefined, [timer]); }
+export function CFRunLoopTimerGetOrder(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1130108271019511, undefined, [timer]); }
 
 /**
  * func CFRunLoopTimerGetTolerance(_ timer: CFRunLoopTimer!) -> CFTimeInterval
  * @availability iOS 7.0+
  */
-export function CFRunLoopTimerGetTolerance(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4411646888490728, undefined, [timer]); }
+export function CFRunLoopTimerGetTolerance(timer?: (CFRunLoopTimer) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4411646888490728, undefined, [timer]); }
 
 /** func CFRunLoopTimerGetTypeID() -> CFTypeID */
-export function CFRunLoopTimerGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 430398701292854, undefined, []); }
+export function CFRunLoopTimerGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 430398701292854, undefined, []); }
 
 /** func CFRunLoopTimerInvalidate(_ timer: CFRunLoopTimer!) */
-export function CFRunLoopTimerInvalidate(timer?: (CFRunLoopTimer) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2747596355891168, undefined, [timer]); }
+export function CFRunLoopTimerInvalidate(timer?: (CFRunLoopTimer) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2747596355891168, undefined, [timer]); }
 
 /** func CFRunLoopTimerIsValid(_ timer: CFRunLoopTimer!) -> Bool */
-export function CFRunLoopTimerIsValid(timer?: (CFRunLoopTimer) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1442530543011279, undefined, [timer]); }
+export function CFRunLoopTimerIsValid(timer?: (CFRunLoopTimer) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1442530543011279, undefined, [timer]); }
 
 /** func CFRunLoopTimerSetNextFireDate(_ timer: CFRunLoopTimer!, _ fireDate: CFAbsoluteTime) */
-export function CFRunLoopTimerSetNextFireDate(timer: (CFRunLoopTimer) | null, fireDate: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2941915982926645, undefined, [timer, fireDate]); }
+export function CFRunLoopTimerSetNextFireDate(timer: (CFRunLoopTimer) | null, fireDate: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2941915982926645, undefined, [timer, fireDate]); }
 
 /**
  * func CFRunLoopTimerSetTolerance(_ timer: CFRunLoopTimer!, _ tolerance: CFTimeInterval)
  * @availability iOS 7.0+
  */
-export function CFRunLoopTimerSetTolerance(timer: (CFRunLoopTimer) | null, tolerance: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 148652096120136, undefined, [timer, tolerance]); }
+export function CFRunLoopTimerSetTolerance(timer: (CFRunLoopTimer) | null, tolerance: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 148652096120136, undefined, [timer, tolerance]); }
 
 /** func CFRunLoopWakeUp(_ rl: CFRunLoop!) */
-export function CFRunLoopWakeUp(rl?: (CFRunLoop) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1071926861298924, undefined, [rl]); }
+export function CFRunLoopWakeUp(rl?: (CFRunLoop) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1071926861298924, undefined, [rl]); }
 
 /** func CFSetAddValue(_ theSet: CFMutableSet!, _ value: UnsafeRawPointer!) */
-export function CFSetAddValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1260475593767850, undefined, [theSet, value]); }
+export function CFSetAddValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1260475593767850, undefined, [theSet, value]); }
 
 /** func CFSetContainsValue(_ theSet: CFSet!, _ value: UnsafeRawPointer!) -> Bool */
-export function CFSetContainsValue(theSet?: (CFSet) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 732552610168981, undefined, [theSet, value]); }
+export function CFSetContainsValue(theSet?: (CFSet) | null, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 732552610168981, undefined, [theSet, value]); }
 
 /** func CFSetCreate(_ allocator: CFAllocator!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!, _ numValues: CFIndex, _ callBacks: UnsafePointer<CFSetCallBacks>!) -> CFSet! */
-export function CFSetCreate(allocator: (CFAllocator) | null, numValues: number, callBacks?: (SDKHandle) | null): { $ret: (CFSet) | null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFSet) | null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 54892714176732, undefined, [allocator, null, numValues, callBacks]); }
+export function CFSetCreate(allocator: (CFAllocator) | null, numValues: number, callBacks?: (SDKHandle) | null): { $ret: (CFSet) | null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: (CFSet) | null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 54892714176732, undefined, [allocator, null, numValues, callBacks]); }
 
 /** func CFSetCreateCopy(_ allocator: CFAllocator!, _ theSet: CFSet!) -> CFSet! */
-export function CFSetCreateCopy(allocator?: (CFAllocator) | null, theSet?: (CFSet) | null): (CFSet) | null { return callSDK<(CFSet) | null>("CoreFoundation_212edf3d13b127f5", 2336976975958636, undefined, [allocator, theSet]); }
+export function CFSetCreateCopy(allocator?: (CFAllocator) | null, theSet?: (CFSet) | null): (CFSet) | null { return callSDK<(CFSet) | null>("CoreFoundation_5d69670f0307b385", 2336976975958636, undefined, [allocator, theSet]); }
 
 /** func CFSetCreateMutable(_ allocator: CFAllocator!, _ capacity: CFIndex, _ callBacks: UnsafePointer<CFSetCallBacks>!) -> CFMutableSet! */
-export function CFSetCreateMutable(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null): (CFMutableSet) | null { return callSDK<(CFMutableSet) | null>("CoreFoundation_212edf3d13b127f5", 1949896573104400, undefined, [allocator, capacity, callBacks]); }
+export function CFSetCreateMutable(allocator: (CFAllocator) | null, capacity: number, callBacks?: (SDKHandle) | null): (CFMutableSet) | null { return callSDK<(CFMutableSet) | null>("CoreFoundation_5d69670f0307b385", 1949896573104400, undefined, [allocator, capacity, callBacks]); }
 
 /** func CFSetCreateMutableCopy(_ allocator: CFAllocator!, _ capacity: CFIndex, _ theSet: CFSet!) -> CFMutableSet! */
-export function CFSetCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theSet?: (CFSet) | null): (CFMutableSet) | null { return callSDK<(CFMutableSet) | null>("CoreFoundation_212edf3d13b127f5", 2524637247213745, undefined, [allocator, capacity, theSet]); }
+export function CFSetCreateMutableCopy(allocator: (CFAllocator) | null, capacity: number, theSet?: (CFSet) | null): (CFMutableSet) | null { return callSDK<(CFMutableSet) | null>("CoreFoundation_5d69670f0307b385", 2524637247213745, undefined, [allocator, capacity, theSet]); }
 
 /** func CFSetGetCount(_ theSet: CFSet!) -> CFIndex */
-export function CFSetGetCount(theSet?: (CFSet) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1212067511111146, undefined, [theSet]); }
+export function CFSetGetCount(theSet?: (CFSet) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1212067511111146, undefined, [theSet]); }
 
 /** func CFSetGetCountOfValue(_ theSet: CFSet!, _ value: UnsafeRawPointer!) -> CFIndex */
-export function CFSetGetCountOfValue(theSet?: (CFSet) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3371794404879370, undefined, [theSet, value]); }
+export function CFSetGetCountOfValue(theSet?: (CFSet) | null, value?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3371794404879370, undefined, [theSet, value]); }
 
 /** func CFSetGetTypeID() -> CFTypeID */
-export function CFSetGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3525397068651032, undefined, []); }
+export function CFSetGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3525397068651032, undefined, []); }
 
 /** func CFSetGetValue(_ theSet: CFSet!, _ value: UnsafeRawPointer!) -> UnsafeRawPointer! */
-export function CFSetGetValue(theSet?: (CFSet) | null, value?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 961205018596658, undefined, [theSet, value]); }
+export function CFSetGetValue(theSet?: (CFSet) | null, value?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 961205018596658, undefined, [theSet, value]); }
 
 /** func CFSetGetValueIfPresent(_ theSet: CFSet!, _ candidate: UnsafeRawPointer!, _ value: UnsafeMutablePointer<UnsafeRawPointer?>!) -> Bool */
-export function CFSetGetValueIfPresent(theSet?: (CFSet) | null, candidate?: (SDKHandle) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1021814655461977, undefined, [theSet, candidate, null]); }
+export function CFSetGetValueIfPresent(theSet?: (CFSet) | null, candidate?: (SDKHandle) | null): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1021814655461977, undefined, [theSet, candidate, null]); }
 
 /** func CFSetGetValues(_ theSet: CFSet!, _ values: UnsafeMutablePointer<UnsafeRawPointer?>!) */
-export function CFSetGetValues(theSet?: (CFSet) | null): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_212edf3d13b127f5", 1243201152039212, undefined, [theSet, null]); }
+export function CFSetGetValues(theSet?: (CFSet) | null): { $ret: null; $out: { "values": (SDKHandle) | null } } { return callSDK<{ $ret: null; $out: { "values": (SDKHandle) | null } }>("CoreFoundation_5d69670f0307b385", 1243201152039212, undefined, [theSet, null]); }
 
 /** func CFSetRemoveAllValues(_ theSet: CFMutableSet!) */
-export function CFSetRemoveAllValues(theSet?: (CFMutableSet) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 582198096735400, undefined, [theSet]); }
+export function CFSetRemoveAllValues(theSet?: (CFMutableSet) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 582198096735400, undefined, [theSet]); }
 
 /** func CFSetRemoveValue(_ theSet: CFMutableSet!, _ value: UnsafeRawPointer!) */
-export function CFSetRemoveValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1128411270190994, undefined, [theSet, value]); }
+export function CFSetRemoveValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1128411270190994, undefined, [theSet, value]); }
 
 /** func CFSetReplaceValue(_ theSet: CFMutableSet!, _ value: UnsafeRawPointer!) */
-export function CFSetReplaceValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4035761314715433, undefined, [theSet, value]); }
+export function CFSetReplaceValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4035761314715433, undefined, [theSet, value]); }
 
 /** func CFSetSetValue(_ theSet: CFMutableSet!, _ value: UnsafeRawPointer!) */
-export function CFSetSetValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3376152546565288, undefined, [theSet, value]); }
+export function CFSetSetValue(theSet?: (CFMutableSet) | null, value?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3376152546565288, undefined, [theSet, value]); }
 
 /** func CFShow(_ obj: CFTypeRef!) */
-export function CFShow(obj?: (unknown) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2200639233683907, undefined, [obj]); }
+export function CFShow(obj?: (unknown) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2200639233683907, undefined, [obj]); }
 
 /** func CFShowStr(_ str: CFString!) */
-export function CFShowStr(str?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2913366866995627, undefined, [str]); }
+export function CFShowStr(str?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2913366866995627, undefined, [str]); }
 
 /** func CFSocketConnectToAddress(_ s: CFSocket!, _ address: CFData!, _ timeout: CFTimeInterval) -> CFSocketError */
-export function CFSocketConnectToAddress(s: (CFSocket) | null, address: (CFData) | null, timeout: number): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_212edf3d13b127f5", 3607785317291730, undefined, [s, address, timeout]); }
+export function CFSocketConnectToAddress(s: (CFSocket) | null, address: (CFData) | null, timeout: number): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_5d69670f0307b385", 3607785317291730, undefined, [s, address, timeout]); }
 
 /** func CFSocketCopyAddress(_ s: CFSocket!) -> CFData! */
-export function CFSocketCopyAddress(s?: (CFSocket) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 2340834183270150, undefined, [s]); }
+export function CFSocketCopyAddress(s?: (CFSocket) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 2340834183270150, undefined, [s]); }
 
 /** func CFSocketCopyPeerAddress(_ s: CFSocket!) -> CFData! */
-export function CFSocketCopyPeerAddress(s?: (CFSocket) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 3248937934976955, undefined, [s]); }
+export function CFSocketCopyPeerAddress(s?: (CFSocket) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 3248937934976955, undefined, [s]); }
 
 /** func CFSocketCreateRunLoopSource(_ allocator: CFAllocator!, _ s: CFSocket!, _ order: CFIndex) -> CFRunLoopSource! */
-export function CFSocketCreateRunLoopSource(allocator: (CFAllocator) | null, s: (CFSocket) | null, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_212edf3d13b127f5", 2871046018583945, undefined, [allocator, s, order]); }
+export function CFSocketCreateRunLoopSource(allocator: (CFAllocator) | null, s: (CFSocket) | null, order: number): $SDK58 { return callSDK<$SDK58>("CoreFoundation_5d69670f0307b385", 2871046018583945, undefined, [allocator, s, order]); }
 
 /** func CFSocketDisableCallBacks(_ s: CFSocket!, _ callBackTypes: CFOptionFlags) */
-export function CFSocketDisableCallBacks(s: (CFSocket) | null, callBackTypes: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2546110572457215, undefined, [s, callBackTypes]); }
+export function CFSocketDisableCallBacks(s: (CFSocket) | null, callBackTypes: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2546110572457215, undefined, [s, callBackTypes]); }
 
 /** func CFSocketEnableCallBacks(_ s: CFSocket!, _ callBackTypes: CFOptionFlags) */
-export function CFSocketEnableCallBacks(s: (CFSocket) | null, callBackTypes: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1861667032333298, undefined, [s, callBackTypes]); }
+export function CFSocketEnableCallBacks(s: (CFSocket) | null, callBackTypes: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1861667032333298, undefined, [s, callBackTypes]); }
 
 /** func CFSocketGetContext(_ s: CFSocket!, _ context: UnsafeMutablePointer<CFSocketContext>!) */
-export function CFSocketGetContext(s?: (CFSocket) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1248421691889356, undefined, [s, context]); }
+export function CFSocketGetContext(s?: (CFSocket) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1248421691889356, undefined, [s, context]); }
 
 /** func CFSocketGetDefaultNameRegistryPortNumber() -> UInt16 */
-export function CFSocketGetDefaultNameRegistryPortNumber(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1870083971107081, undefined, []); }
+export function CFSocketGetDefaultNameRegistryPortNumber(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1870083971107081, undefined, []); }
 
 /** func CFSocketGetNative(_ s: CFSocket!) -> CFSocketNativeHandle */
-export function CFSocketGetNative(s?: (CFSocket) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4355075083449593, undefined, [s]); }
+export function CFSocketGetNative(s?: (CFSocket) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4355075083449593, undefined, [s]); }
 
 /** func CFSocketGetSocketFlags(_ s: CFSocket!) -> CFOptionFlags */
-export function CFSocketGetSocketFlags(s?: (CFSocket) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2055631568823345, undefined, [s]); }
+export function CFSocketGetSocketFlags(s?: (CFSocket) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2055631568823345, undefined, [s]); }
 
 /** func CFSocketGetTypeID() -> CFTypeID */
-export function CFSocketGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4306668115592569, undefined, []); }
+export function CFSocketGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4306668115592569, undefined, []); }
 
 /** func CFSocketInvalidate(_ s: CFSocket!) */
-export function CFSocketInvalidate(s?: (CFSocket) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2301939389457879, undefined, [s]); }
+export function CFSocketInvalidate(s?: (CFSocket) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2301939389457879, undefined, [s]); }
 
 /** func CFSocketIsValid(_ s: CFSocket!) -> Bool */
-export function CFSocketIsValid(s?: (CFSocket) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2618079850147669, undefined, [s]); }
+export function CFSocketIsValid(s?: (CFSocket) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2618079850147669, undefined, [s]); }
 
 /** func CFSocketRegisterSocketSignature(_ nameServerSignature: UnsafePointer<CFSocketSignature>!, _ timeout: CFTimeInterval, _ name: CFString!, _ signature: UnsafePointer<CFSocketSignature>!) -> CFSocketError */
-export function CFSocketRegisterSocketSignature(nameServerSignature: (SDKHandle) | null, timeout: number, name?: (CFString) | null, signature?: (SDKHandle) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_212edf3d13b127f5", 4377092772123964, undefined, [nameServerSignature, timeout, name, signature]); }
+export function CFSocketRegisterSocketSignature(nameServerSignature: (SDKHandle) | null, timeout: number, name?: (CFString) | null, signature?: (SDKHandle) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_5d69670f0307b385", 4377092772123964, undefined, [nameServerSignature, timeout, name, signature]); }
 
 /** func CFSocketRegisterValue(_ nameServerSignature: UnsafePointer<CFSocketSignature>!, _ timeout: CFTimeInterval, _ name: CFString!, _ value: CFPropertyList!) -> CFSocketError */
-export function CFSocketRegisterValue(nameServerSignature: (SDKHandle) | null, timeout: number, name?: (CFString) | null, value?: (unknown) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_212edf3d13b127f5", 3380779418606571, undefined, [nameServerSignature, timeout, name, value]); }
+export function CFSocketRegisterValue(nameServerSignature: (SDKHandle) | null, timeout: number, name?: (CFString) | null, value?: (unknown) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_5d69670f0307b385", 3380779418606571, undefined, [nameServerSignature, timeout, name, value]); }
 
 /** func CFSocketSendData(_ s: CFSocket!, _ address: CFData!, _ data: CFData!, _ timeout: CFTimeInterval) -> CFSocketError */
-export function CFSocketSendData(s: (CFSocket) | null, address: (CFData) | null, data: (CFData) | null, timeout: number): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_212edf3d13b127f5", 143608408048470, undefined, [s, address, data, timeout]); }
+export function CFSocketSendData(s: (CFSocket) | null, address: (CFData) | null, data: (CFData) | null, timeout: number): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_5d69670f0307b385", 143608408048470, undefined, [s, address, data, timeout]); }
 
 /** func CFSocketSetAddress(_ s: CFSocket!, _ address: CFData!) -> CFSocketError */
-export function CFSocketSetAddress(s?: (CFSocket) | null, address?: (CFData) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_212edf3d13b127f5", 4194887487249402, undefined, [s, address]); }
+export function CFSocketSetAddress(s?: (CFSocket) | null, address?: (CFData) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_5d69670f0307b385", 4194887487249402, undefined, [s, address]); }
 
 /** func CFSocketSetDefaultNameRegistryPortNumber(_ port: UInt16) */
-export function CFSocketSetDefaultNameRegistryPortNumber(port: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2570997128215847, undefined, [port]); }
+export function CFSocketSetDefaultNameRegistryPortNumber(port: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2570997128215847, undefined, [port]); }
 
 /** func CFSocketSetSocketFlags(_ s: CFSocket!, _ flags: CFOptionFlags) */
-export function CFSocketSetSocketFlags(s: (CFSocket) | null, flags: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2018727950272653, undefined, [s, flags]); }
+export function CFSocketSetSocketFlags(s: (CFSocket) | null, flags: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2018727950272653, undefined, [s, flags]); }
 
 /** func CFSocketUnregister(_ nameServerSignature: UnsafePointer<CFSocketSignature>!, _ timeout: CFTimeInterval, _ name: CFString!) -> CFSocketError */
-export function CFSocketUnregister(nameServerSignature: (SDKHandle) | null, timeout: number, name?: (CFString) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_212edf3d13b127f5", 636237161857917, undefined, [nameServerSignature, timeout, name]); }
+export function CFSocketUnregister(nameServerSignature: (SDKHandle) | null, timeout: number, name?: (CFString) | null): CFSocketError { return callSDK<CFSocketError>("CoreFoundation_5d69670f0307b385", 636237161857917, undefined, [nameServerSignature, timeout, name]); }
 
 /** func CFStringAppend(_ theString: CFMutableString!, _ appendedString: CFString!) */
-export function CFStringAppend(theString?: $SDK53, appendedString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1542799186453269, undefined, [theString, appendedString]); }
+export function CFStringAppend(theString?: $SDK53, appendedString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1542799186453269, undefined, [theString, appendedString]); }
 
 /** func CFStringAppendCString(_ theString: CFMutableString!, _ cStr: UnsafePointer<CChar>!, _ encoding: CFStringEncoding) */
-export function CFStringAppendCString(theString: $SDK53, cStr: (SDKHandle) | null, encoding: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1266738445452316, undefined, [theString, cStr, encoding]); }
+export function CFStringAppendCString(theString: $SDK53, cStr: (SDKHandle) | null, encoding: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1266738445452316, undefined, [theString, cStr, encoding]); }
 
 /** func CFStringAppendCharacters(_ theString: CFMutableString!, _ chars: UnsafePointer<UniChar>!, _ numChars: CFIndex) */
-export function CFStringAppendCharacters(theString: $SDK53, chars: (SDKHandle) | null, numChars: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2693065629397633, undefined, [theString, chars, numChars]); }
+export function CFStringAppendCharacters(theString: $SDK53, chars: (SDKHandle) | null, numChars: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2693065629397633, undefined, [theString, chars, numChars]); }
 
 /** func CFStringCapitalize(_ theString: CFMutableString!, _ locale: CFLocale!) */
-export function CFStringCapitalize(theString?: $SDK53, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4179802089204740, undefined, [theString, locale]); }
+export function CFStringCapitalize(theString?: $SDK53, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4179802089204740, undefined, [theString, locale]); }
 
 /** func CFStringCompare(_ theString1: CFString!, _ theString2: CFString!, _ compareOptions: CFStringCompareFlags) -> CFComparisonResult */
-export function CFStringCompare(theString1: (CFString) | null, theString2: (CFString) | null, compareOptions: CFStringCompareFlags): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_212edf3d13b127f5", 2827683355124516, undefined, [theString1, theString2, compareOptions]); }
+export function CFStringCompare(theString1: (CFString) | null, theString2: (CFString) | null, compareOptions: CFStringCompareFlags): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_5d69670f0307b385", 2827683355124516, undefined, [theString1, theString2, compareOptions]); }
 
 /** func CFStringCompareWithOptions(_ theString1: CFString!, _ theString2: CFString!, _ rangeToCompare: CFRange, _ compareOptions: CFStringCompareFlags) -> CFComparisonResult */
-export function CFStringCompareWithOptions(theString1: (CFString) | null, theString2: (CFString) | null, rangeToCompare: CFRange, compareOptions: CFStringCompareFlags): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_212edf3d13b127f5", 1146166730447586, undefined, [theString1, theString2, rangeToCompare, compareOptions]); }
+export function CFStringCompareWithOptions(theString1: (CFString) | null, theString2: (CFString) | null, rangeToCompare: CFRange, compareOptions: CFStringCompareFlags): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_5d69670f0307b385", 1146166730447586, undefined, [theString1, theString2, rangeToCompare, compareOptions]); }
 
 /**
  * func CFStringCompareWithOptionsAndLocale(_ theString1: CFString!, _ theString2: CFString!, _ rangeToCompare: CFRange, _ compareOptions: CFStringCompareFlags, _ locale: CFLocale!) -> CFComparisonResult
  * @availability iOS 2.0+
  */
-export function CFStringCompareWithOptionsAndLocale(theString1: (CFString) | null, theString2: (CFString) | null, rangeToCompare: CFRange, compareOptions: CFStringCompareFlags, locale?: (CFLocale) | null): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_212edf3d13b127f5", 962547832892448, undefined, [theString1, theString2, rangeToCompare, compareOptions, locale]); }
+export function CFStringCompareWithOptionsAndLocale(theString1: (CFString) | null, theString2: (CFString) | null, rangeToCompare: CFRange, compareOptions: CFStringCompareFlags, locale?: (CFLocale) | null): CFComparisonResult { return callSDK<CFComparisonResult>("CoreFoundation_5d69670f0307b385", 962547832892448, undefined, [theString1, theString2, rangeToCompare, compareOptions, locale]); }
 
 /** func CFStringConvertEncodingToIANACharSetName(_ encoding: CFStringEncoding) -> CFString! */
-export function CFStringConvertEncodingToIANACharSetName(encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1907291767319075, undefined, [encoding]); }
+export function CFStringConvertEncodingToIANACharSetName(encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1907291767319075, undefined, [encoding]); }
 
 /** func CFStringConvertEncodingToNSStringEncoding(_ encoding: CFStringEncoding) -> UInt */
-export function CFStringConvertEncodingToNSStringEncoding(encoding: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2419451523835585, undefined, [encoding]); }
+export function CFStringConvertEncodingToNSStringEncoding(encoding: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2419451523835585, undefined, [encoding]); }
 
 /** func CFStringConvertEncodingToWindowsCodepage(_ encoding: CFStringEncoding) -> UInt32 */
-export function CFStringConvertEncodingToWindowsCodepage(encoding: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 323455469498444, undefined, [encoding]); }
+export function CFStringConvertEncodingToWindowsCodepage(encoding: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 323455469498444, undefined, [encoding]); }
 
 /** func CFStringConvertIANACharSetNameToEncoding(_ theString: CFString!) -> CFStringEncoding */
-export function CFStringConvertIANACharSetNameToEncoding(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4065694031451069, undefined, [theString]); }
+export function CFStringConvertIANACharSetNameToEncoding(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4065694031451069, undefined, [theString]); }
 
 /** func CFStringConvertNSStringEncodingToEncoding(_ encoding: UInt) -> CFStringEncoding */
-export function CFStringConvertNSStringEncodingToEncoding(encoding: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 68580158626639, undefined, [encoding]); }
+export function CFStringConvertNSStringEncodingToEncoding(encoding: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 68580158626639, undefined, [encoding]); }
 
 /** func CFStringConvertWindowsCodepageToEncoding(_ codepage: UInt32) -> CFStringEncoding */
-export function CFStringConvertWindowsCodepageToEncoding(codepage: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 681864766427901, undefined, [codepage]); }
+export function CFStringConvertWindowsCodepageToEncoding(codepage: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 681864766427901, undefined, [codepage]); }
 
 /** func CFStringCreateArrayBySeparatingStrings(_ alloc: CFAllocator!, _ theString: CFString!, _ separatorString: CFString!) -> CFArray! */
-export function CFStringCreateArrayBySeparatingStrings(alloc?: (CFAllocator) | null, theString?: (CFString) | null, separatorString?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 1022851672195730, undefined, [alloc, theString, separatorString]); }
+export function CFStringCreateArrayBySeparatingStrings(alloc?: (CFAllocator) | null, theString?: (CFString) | null, separatorString?: (CFString) | null): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 1022851672195730, undefined, [alloc, theString, separatorString]); }
 
 /** func CFStringCreateArrayWithFindResults(_ alloc: CFAllocator!, _ theString: CFString!, _ stringToFind: CFString!, _ rangeToSearch: CFRange, _ compareOptions: CFStringCompareFlags) -> CFArray! */
-export function CFStringCreateArrayWithFindResults(alloc: (CFAllocator) | null, theString: (CFString) | null, stringToFind: (CFString) | null, rangeToSearch: CFRange, compareOptions: CFStringCompareFlags): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 3896566713744107, undefined, [alloc, theString, stringToFind, rangeToSearch, compareOptions]); }
+export function CFStringCreateArrayWithFindResults(alloc: (CFAllocator) | null, theString: (CFString) | null, stringToFind: (CFString) | null, rangeToSearch: CFRange, compareOptions: CFStringCompareFlags): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 3896566713744107, undefined, [alloc, theString, stringToFind, rangeToSearch, compareOptions]); }
 
 /** func CFStringCreateByCombiningStrings(_ alloc: CFAllocator!, _ theArray: CFArray!, _ separatorString: CFString!) -> CFString! */
-export function CFStringCreateByCombiningStrings(alloc?: (CFAllocator) | null, theArray?: (CFArray) | null, separatorString?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 206613064877709, undefined, [alloc, theArray, separatorString]); }
+export function CFStringCreateByCombiningStrings(alloc?: (CFAllocator) | null, theArray?: (CFArray) | null, separatorString?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 206613064877709, undefined, [alloc, theArray, separatorString]); }
 
 /** func CFStringCreateCopy(_ alloc: CFAllocator!, _ theString: CFString!) -> CFString! */
-export function CFStringCreateCopy(alloc?: (CFAllocator) | null, theString?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2240805453108524, undefined, [alloc, theString]); }
+export function CFStringCreateCopy(alloc?: (CFAllocator) | null, theString?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2240805453108524, undefined, [alloc, theString]); }
 
 /** func CFStringCreateExternalRepresentation(_ alloc: CFAllocator!, _ theString: CFString!, _ encoding: CFStringEncoding, _ lossByte: UInt8) -> CFData! */
-export function CFStringCreateExternalRepresentation(alloc: (CFAllocator) | null, theString: (CFString) | null, encoding: number, lossByte: number): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 3612578351829198, undefined, [alloc, theString, encoding, lossByte]); }
+export function CFStringCreateExternalRepresentation(alloc: (CFAllocator) | null, theString: (CFString) | null, encoding: number, lossByte: number): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 3612578351829198, undefined, [alloc, theString, encoding, lossByte]); }
 
 /** func CFStringCreateFromExternalRepresentation(_ alloc: CFAllocator!, _ data: CFData!, _ encoding: CFStringEncoding) -> CFString! */
-export function CFStringCreateFromExternalRepresentation(alloc: (CFAllocator) | null, data: (CFData) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4107692074542945, undefined, [alloc, data, encoding]); }
+export function CFStringCreateFromExternalRepresentation(alloc: (CFAllocator) | null, data: (CFData) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4107692074542945, undefined, [alloc, data, encoding]); }
 
 /** func CFStringCreateMutable(_ alloc: CFAllocator!, _ maxLength: CFIndex) -> CFMutableString! */
-export function CFStringCreateMutable(alloc: (CFAllocator) | null, maxLength: number): $SDK53 { return callSDK<$SDK53>("CoreFoundation_212edf3d13b127f5", 1230923186709545, undefined, [alloc, maxLength]); }
+export function CFStringCreateMutable(alloc: (CFAllocator) | null, maxLength: number): $SDK53 { return callSDK<$SDK53>("CoreFoundation_5d69670f0307b385", 1230923186709545, undefined, [alloc, maxLength]); }
 
 /** func CFStringCreateMutableCopy(_ alloc: CFAllocator!, _ maxLength: CFIndex, _ theString: CFString!) -> CFMutableString! */
-export function CFStringCreateMutableCopy(alloc: (CFAllocator) | null, maxLength: number, theString?: (CFString) | null): $SDK53 { return callSDK<$SDK53>("CoreFoundation_212edf3d13b127f5", 1659865096339316, undefined, [alloc, maxLength, theString]); }
+export function CFStringCreateMutableCopy(alloc: (CFAllocator) | null, maxLength: number, theString?: (CFString) | null): $SDK53 { return callSDK<$SDK53>("CoreFoundation_5d69670f0307b385", 1659865096339316, undefined, [alloc, maxLength, theString]); }
 
 /** func CFStringCreateMutableWithExternalCharactersNoCopy(_ alloc: CFAllocator!, _ chars: UnsafeMutablePointer<UniChar>!, _ numChars: CFIndex, _ capacity: CFIndex, _ externalCharactersAllocator: CFAllocator!) -> CFMutableString! */
-export function CFStringCreateMutableWithExternalCharactersNoCopy(alloc: (CFAllocator) | null, chars: (SDKHandle) | null, numChars: number, capacity: number, externalCharactersAllocator?: (CFAllocator) | null): $SDK53 { return callSDK<$SDK53>("CoreFoundation_212edf3d13b127f5", 3685219403392457, undefined, [alloc, chars, numChars, capacity, externalCharactersAllocator]); }
+export function CFStringCreateMutableWithExternalCharactersNoCopy(alloc: (CFAllocator) | null, chars: (SDKHandle) | null, numChars: number, capacity: number, externalCharactersAllocator?: (CFAllocator) | null): $SDK53 { return callSDK<$SDK53>("CoreFoundation_5d69670f0307b385", 3685219403392457, undefined, [alloc, chars, numChars, capacity, externalCharactersAllocator]); }
 
 /** func CFStringCreateWithBytes(_ alloc: CFAllocator!, _ bytes: UnsafePointer<UInt8>!, _ numBytes: CFIndex, _ encoding: CFStringEncoding, _ isExternalRepresentation: Bool) -> CFString! */
-export function CFStringCreateWithBytes(alloc: (CFAllocator) | null, bytes: (SDKHandle) | null, numBytes: number, encoding: number, isExternalRepresentation: boolean): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 12016696809228, undefined, [alloc, bytes, numBytes, encoding, isExternalRepresentation]); }
+export function CFStringCreateWithBytes(alloc: (CFAllocator) | null, bytes: (SDKHandle) | null, numBytes: number, encoding: number, isExternalRepresentation: boolean): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 12016696809228, undefined, [alloc, bytes, numBytes, encoding, isExternalRepresentation]); }
 
 /** func CFStringCreateWithBytesNoCopy(_ alloc: CFAllocator!, _ bytes: UnsafePointer<UInt8>!, _ numBytes: CFIndex, _ encoding: CFStringEncoding, _ isExternalRepresentation: Bool, _ contentsDeallocator: CFAllocator!) -> CFString! */
-export function CFStringCreateWithBytesNoCopy(alloc: (CFAllocator) | null, bytes: (SDKHandle) | null, numBytes: number, encoding: number, isExternalRepresentation: boolean, contentsDeallocator?: (CFAllocator) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3644949215338343, undefined, [alloc, bytes, numBytes, encoding, isExternalRepresentation, contentsDeallocator]); }
+export function CFStringCreateWithBytesNoCopy(alloc: (CFAllocator) | null, bytes: (SDKHandle) | null, numBytes: number, encoding: number, isExternalRepresentation: boolean, contentsDeallocator?: (CFAllocator) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3644949215338343, undefined, [alloc, bytes, numBytes, encoding, isExternalRepresentation, contentsDeallocator]); }
 
 /** func CFStringCreateWithCString(_ alloc: CFAllocator!, _ cStr: UnsafePointer<CChar>!, _ encoding: CFStringEncoding) -> CFString! */
-export function CFStringCreateWithCString(alloc: (CFAllocator) | null, cStr: (SDKHandle) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1636433364285528, undefined, [alloc, cStr, encoding]); }
+export function CFStringCreateWithCString(alloc: (CFAllocator) | null, cStr: (SDKHandle) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1636433364285528, undefined, [alloc, cStr, encoding]); }
 
 /** func CFStringCreateWithCStringNoCopy(_ alloc: CFAllocator!, _ cStr: UnsafePointer<CChar>!, _ encoding: CFStringEncoding, _ contentsDeallocator: CFAllocator!) -> CFString! */
-export function CFStringCreateWithCStringNoCopy(alloc: (CFAllocator) | null, cStr: (SDKHandle) | null, encoding: number, contentsDeallocator?: (CFAllocator) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2303765918890006, undefined, [alloc, cStr, encoding, contentsDeallocator]); }
+export function CFStringCreateWithCStringNoCopy(alloc: (CFAllocator) | null, cStr: (SDKHandle) | null, encoding: number, contentsDeallocator?: (CFAllocator) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2303765918890006, undefined, [alloc, cStr, encoding, contentsDeallocator]); }
 
 /** func CFStringCreateWithCharacters(_ alloc: CFAllocator!, _ chars: UnsafePointer<UniChar>!, _ numChars: CFIndex) -> CFString! */
-export function CFStringCreateWithCharacters(alloc: (CFAllocator) | null, chars: (SDKHandle) | null, numChars: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 599208329123607, undefined, [alloc, chars, numChars]); }
+export function CFStringCreateWithCharacters(alloc: (CFAllocator) | null, chars: (SDKHandle) | null, numChars: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 599208329123607, undefined, [alloc, chars, numChars]); }
 
 /** func CFStringCreateWithCharactersNoCopy(_ alloc: CFAllocator!, _ chars: UnsafePointer<UniChar>!, _ numChars: CFIndex, _ contentsDeallocator: CFAllocator!) -> CFString! */
-export function CFStringCreateWithCharactersNoCopy(alloc: (CFAllocator) | null, chars: (SDKHandle) | null, numChars: number, contentsDeallocator?: (CFAllocator) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1481534779935176, undefined, [alloc, chars, numChars, contentsDeallocator]); }
+export function CFStringCreateWithCharactersNoCopy(alloc: (CFAllocator) | null, chars: (SDKHandle) | null, numChars: number, contentsDeallocator?: (CFAllocator) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1481534779935176, undefined, [alloc, chars, numChars, contentsDeallocator]); }
 
 /** func CFStringCreateWithFileSystemRepresentation(_ alloc: CFAllocator!, _ buffer: UnsafePointer<CChar>!) -> CFString! */
-export function CFStringCreateWithFileSystemRepresentation(alloc?: (CFAllocator) | null, buffer?: (SDKHandle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4270666049951513, undefined, [alloc, buffer]); }
+export function CFStringCreateWithFileSystemRepresentation(alloc?: (CFAllocator) | null, buffer?: (SDKHandle) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4270666049951513, undefined, [alloc, buffer]); }
 
 /** func CFStringCreateWithSubstring(_ alloc: CFAllocator!, _ str: CFString!, _ range: CFRange) -> CFString! */
-export function CFStringCreateWithSubstring(alloc: (CFAllocator) | null, str: (CFString) | null, range: CFRange): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2591135335119661, undefined, [alloc, str, range]); }
+export function CFStringCreateWithSubstring(alloc: (CFAllocator) | null, str: (CFString) | null, range: CFRange): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2591135335119661, undefined, [alloc, str, range]); }
 
 /** func CFStringDelete(_ theString: CFMutableString!, _ range: CFRange) */
-export function CFStringDelete(theString: $SDK53, range: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 198116616846693, undefined, [theString, range]); }
+export function CFStringDelete(theString: $SDK53, range: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 198116616846693, undefined, [theString, range]); }
 
 /** func CFStringFind(_ theString: CFString!, _ stringToFind: CFString!, _ compareOptions: CFStringCompareFlags) -> CFRange */
-export function CFStringFind(theString: (CFString) | null, stringToFind: (CFString) | null, compareOptions: CFStringCompareFlags): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 2783726277101798, undefined, [theString, stringToFind, compareOptions]); }
+export function CFStringFind(theString: (CFString) | null, stringToFind: (CFString) | null, compareOptions: CFStringCompareFlags): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 2783726277101798, undefined, [theString, stringToFind, compareOptions]); }
 
 /** func CFStringFindAndReplace(_ theString: CFMutableString!, _ stringToFind: CFString!, _ replacementString: CFString!, _ rangeToSearch: CFRange, _ compareOptions: CFStringCompareFlags) -> CFIndex */
-export function CFStringFindAndReplace(theString: $SDK53, stringToFind: (CFString) | null, replacementString: (CFString) | null, rangeToSearch: CFRange, compareOptions: CFStringCompareFlags): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3892270709593962, undefined, [theString, stringToFind, replacementString, rangeToSearch, compareOptions]); }
+export function CFStringFindAndReplace(theString: $SDK53, stringToFind: (CFString) | null, replacementString: (CFString) | null, rangeToSearch: CFRange, compareOptions: CFStringCompareFlags): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3892270709593962, undefined, [theString, stringToFind, replacementString, rangeToSearch, compareOptions]); }
 
 /** func CFStringFindCharacterFromSet(_ theString: CFString!, _ theSet: CFCharacterSet!, _ rangeToSearch: CFRange, _ searchOptions: CFStringCompareFlags, _ result: UnsafeMutablePointer<CFRange>!) -> Bool */
-export function CFStringFindCharacterFromSet(theString: (CFString) | null, theSet: (CFCharacterSet) | null, rangeToSearch: CFRange, searchOptions: CFStringCompareFlags, result?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 472455214464053, undefined, [theString, theSet, rangeToSearch, searchOptions, result]); }
+export function CFStringFindCharacterFromSet(theString: (CFString) | null, theSet: (CFCharacterSet) | null, rangeToSearch: CFRange, searchOptions: CFStringCompareFlags, result?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 472455214464053, undefined, [theString, theSet, rangeToSearch, searchOptions, result]); }
 
 /** func CFStringFindWithOptions(_ theString: CFString!, _ stringToFind: CFString!, _ rangeToSearch: CFRange, _ searchOptions: CFStringCompareFlags, _ result: UnsafeMutablePointer<CFRange>!) -> Bool */
-export function CFStringFindWithOptions(theString: (CFString) | null, stringToFind: (CFString) | null, rangeToSearch: CFRange, searchOptions: CFStringCompareFlags, result?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4002673356672454, undefined, [theString, stringToFind, rangeToSearch, searchOptions, result]); }
+export function CFStringFindWithOptions(theString: (CFString) | null, stringToFind: (CFString) | null, rangeToSearch: CFRange, searchOptions: CFStringCompareFlags, result?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4002673356672454, undefined, [theString, stringToFind, rangeToSearch, searchOptions, result]); }
 
 /**
  * func CFStringFindWithOptionsAndLocale(_ theString: CFString!, _ stringToFind: CFString!, _ rangeToSearch: CFRange, _ searchOptions: CFStringCompareFlags, _ locale: CFLocale!, _ result: UnsafeMutablePointer<CFRange>!) -> Bool
  * @availability iOS 2.0+
  */
-export function CFStringFindWithOptionsAndLocale(theString: (CFString) | null, stringToFind: (CFString) | null, rangeToSearch: CFRange, searchOptions: CFStringCompareFlags, locale?: (CFLocale) | null, result?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3401272582696104, undefined, [theString, stringToFind, rangeToSearch, searchOptions, locale, result]); }
+export function CFStringFindWithOptionsAndLocale(theString: (CFString) | null, stringToFind: (CFString) | null, rangeToSearch: CFRange, searchOptions: CFStringCompareFlags, locale?: (CFLocale) | null, result?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3401272582696104, undefined, [theString, stringToFind, rangeToSearch, searchOptions, locale, result]); }
 
 /**
  * func CFStringFold(_ theString: CFMutableString!, _ theFlags: CFStringCompareFlags, _ theLocale: CFLocale!)
  * @availability iOS 2.0+
  */
-export function CFStringFold(theString: $SDK53, theFlags: CFStringCompareFlags, theLocale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 405202484489728, undefined, [theString, theFlags, theLocale]); }
+export function CFStringFold(theString: $SDK53, theFlags: CFStringCompareFlags, theLocale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 405202484489728, undefined, [theString, theFlags, theLocale]); }
 
 /** func CFStringGetBytes(_ theString: CFString!, _ range: CFRange, _ encoding: CFStringEncoding, _ lossByte: UInt8, _ isExternalRepresentation: Bool, _ buffer: UnsafeMutablePointer<UInt8>!, _ maxBufLen: CFIndex, _ usedBufLen: UnsafeMutablePointer<CFIndex>!) -> CFIndex */
-export function CFStringGetBytes(theString: (CFString) | null, range: CFRange, encoding: number, lossByte: number, isExternalRepresentation: boolean, buffer: (SDKHandle) | null, maxBufLen: number, usedBufLen?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 804090801810092, undefined, [theString, range, encoding, lossByte, isExternalRepresentation, buffer, maxBufLen, usedBufLen]); }
+export function CFStringGetBytes(theString: (CFString) | null, range: CFRange, encoding: number, lossByte: number, isExternalRepresentation: boolean, buffer: (SDKHandle) | null, maxBufLen: number, usedBufLen?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 804090801810092, undefined, [theString, range, encoding, lossByte, isExternalRepresentation, buffer, maxBufLen, usedBufLen]); }
 
 /** func CFStringGetCString(_ theString: CFString!, _ buffer: UnsafeMutablePointer<CChar>!, _ bufferSize: CFIndex, _ encoding: CFStringEncoding) -> Bool */
-export function CFStringGetCString(theString: (CFString) | null, buffer: (SDKHandle) | null, bufferSize: number, encoding: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 550202040727737, undefined, [theString, buffer, bufferSize, encoding]); }
+export function CFStringGetCString(theString: (CFString) | null, buffer: (SDKHandle) | null, bufferSize: number, encoding: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 550202040727737, undefined, [theString, buffer, bufferSize, encoding]); }
 
 /** func CFStringGetCStringPtr(_ theString: CFString!, _ encoding: CFStringEncoding) -> UnsafePointer<CChar>! */
-export function CFStringGetCStringPtr(theString: (CFString) | null, encoding: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 1278031124433006, undefined, [theString, encoding]); }
+export function CFStringGetCStringPtr(theString: (CFString) | null, encoding: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 1278031124433006, undefined, [theString, encoding]); }
 
 /** func CFStringGetCharacterAtIndex(_ theString: CFString!, _ idx: CFIndex) -> UniChar */
-export function CFStringGetCharacterAtIndex(theString: (CFString) | null, idx: number): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 506418911110140, undefined, [theString, idx]); }
+export function CFStringGetCharacterAtIndex(theString: (CFString) | null, idx: number): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 506418911110140, undefined, [theString, idx]); }
 
 /** func CFStringGetCharacterFromInlineBuffer(_ buf: UnsafeMutablePointer<CFStringInlineBuffer>!, _ idx: CFIndex) -> UniChar */
-export function CFStringGetCharacterFromInlineBuffer(buf: (SDKHandle) | null, idx: number): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 3452949546680905, undefined, [buf, idx]); }
+export function CFStringGetCharacterFromInlineBuffer(buf: (SDKHandle) | null, idx: number): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 3452949546680905, undefined, [buf, idx]); }
 
 /** func CFStringGetCharacters(_ theString: CFString!, _ range: CFRange, _ buffer: UnsafeMutablePointer<UniChar>!) */
-export function CFStringGetCharacters(theString: (CFString) | null, range: CFRange, buffer?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2811637635998544, undefined, [theString, range, buffer]); }
+export function CFStringGetCharacters(theString: (CFString) | null, range: CFRange, buffer?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2811637635998544, undefined, [theString, range, buffer]); }
 
 /** func CFStringGetCharactersPtr(_ theString: CFString!) -> UnsafePointer<UniChar>! */
-export function CFStringGetCharactersPtr(theString?: (CFString) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2224468130050231, undefined, [theString]); }
+export function CFStringGetCharactersPtr(theString?: (CFString) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2224468130050231, undefined, [theString]); }
 
 /** func CFStringGetDoubleValue(_ str: CFString!) -> Double */
-export function CFStringGetDoubleValue(str?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3002415928066943, undefined, [str]); }
+export function CFStringGetDoubleValue(str?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3002415928066943, undefined, [str]); }
 
 /** func CFStringGetFastestEncoding(_ theString: CFString!) -> CFStringEncoding */
-export function CFStringGetFastestEncoding(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1527059881999611, undefined, [theString]); }
+export function CFStringGetFastestEncoding(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1527059881999611, undefined, [theString]); }
 
 /** func CFStringGetFileSystemRepresentation(_ string: CFString!, _ buffer: UnsafeMutablePointer<CChar>!, _ maxBufLen: CFIndex) -> Bool */
-export function CFStringGetFileSystemRepresentation(string: (CFString) | null, buffer: (SDKHandle) | null, maxBufLen: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1015216195957886, undefined, [string, buffer, maxBufLen]); }
+export function CFStringGetFileSystemRepresentation(string: (CFString) | null, buffer: (SDKHandle) | null, maxBufLen: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1015216195957886, undefined, [string, buffer, maxBufLen]); }
 
 /**
  * func CFStringGetHyphenationLocationBeforeIndex(_ string: CFString!, _ location: CFIndex, _ limitRange: CFRange, _ options: CFOptionFlags, _ locale: CFLocale!, _ character: UnsafeMutablePointer<UTF32Char>!) -> CFIndex
  * @availability iOS 4.2+
  */
-export function CFStringGetHyphenationLocationBeforeIndex(string: (CFString) | null, location: number, limitRange: CFRange, options: number, locale?: (CFLocale) | null, character?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2410923451471549, undefined, [string, location, limitRange, options, locale, character]); }
+export function CFStringGetHyphenationLocationBeforeIndex(string: (CFString) | null, location: number, limitRange: CFRange, options: number, locale?: (CFLocale) | null, character?: (SDKHandle) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2410923451471549, undefined, [string, location, limitRange, options, locale, character]); }
 
 /** func CFStringGetIntValue(_ str: CFString!) -> Int32 */
-export function CFStringGetIntValue(str?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3619224687281743, undefined, [str]); }
+export function CFStringGetIntValue(str?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3619224687281743, undefined, [str]); }
 
 /** func CFStringGetLength(_ theString: CFString!) -> CFIndex */
-export function CFStringGetLength(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2648690025317839, undefined, [theString]); }
+export function CFStringGetLength(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2648690025317839, undefined, [theString]); }
 
 /** func CFStringGetLineBounds(_ theString: CFString!, _ range: CFRange, _ lineBeginIndex: UnsafeMutablePointer<CFIndex>!, _ lineEndIndex: UnsafeMutablePointer<CFIndex>!, _ contentsEndIndex: UnsafeMutablePointer<CFIndex>!) */
-export function CFStringGetLineBounds(theString: (CFString) | null, range: CFRange, lineBeginIndex?: (SDKHandle) | null, lineEndIndex?: (SDKHandle) | null, contentsEndIndex?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2830544908633788, undefined, [theString, range, lineBeginIndex, lineEndIndex, contentsEndIndex]); }
+export function CFStringGetLineBounds(theString: (CFString) | null, range: CFRange, lineBeginIndex?: (SDKHandle) | null, lineEndIndex?: (SDKHandle) | null, contentsEndIndex?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2830544908633788, undefined, [theString, range, lineBeginIndex, lineEndIndex, contentsEndIndex]); }
 
 /** func CFStringGetListOfAvailableEncodings() -> UnsafePointer<CFStringEncoding>! */
-export function CFStringGetListOfAvailableEncodings(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2655367996103736, undefined, []); }
+export function CFStringGetListOfAvailableEncodings(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2655367996103736, undefined, []); }
 
 /** func CFStringGetLongCharacterForSurrogatePair(_ surrogateHigh: UniChar, _ surrogateLow: UniChar) -> UTF32Char */
-export function CFStringGetLongCharacterForSurrogatePair(surrogateHigh: SDKHandle, surrogateLow: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 2428482335889879, undefined, [surrogateHigh, surrogateLow]); }
+export function CFStringGetLongCharacterForSurrogatePair(surrogateHigh: SDKHandle, surrogateLow: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 2428482335889879, undefined, [surrogateHigh, surrogateLow]); }
 
 /** func CFStringGetMaximumSizeForEncoding(_ length: CFIndex, _ encoding: CFStringEncoding) -> CFIndex */
-export function CFStringGetMaximumSizeForEncoding(length: number, encoding: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2129596736749089, undefined, [length, encoding]); }
+export function CFStringGetMaximumSizeForEncoding(length: number, encoding: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2129596736749089, undefined, [length, encoding]); }
 
 /** func CFStringGetMaximumSizeOfFileSystemRepresentation(_ string: CFString!) -> CFIndex */
-export function CFStringGetMaximumSizeOfFileSystemRepresentation(string?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4042530610819472, undefined, [string]); }
+export function CFStringGetMaximumSizeOfFileSystemRepresentation(string?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4042530610819472, undefined, [string]); }
 
 /** func CFStringGetMostCompatibleMacStringEncoding(_ encoding: CFStringEncoding) -> CFStringEncoding */
-export function CFStringGetMostCompatibleMacStringEncoding(encoding: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 96918801224542, undefined, [encoding]); }
+export function CFStringGetMostCompatibleMacStringEncoding(encoding: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 96918801224542, undefined, [encoding]); }
 
 /** func CFStringGetNameOfEncoding(_ encoding: CFStringEncoding) -> CFString! */
-export function CFStringGetNameOfEncoding(encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 480978347832043, undefined, [encoding]); }
+export function CFStringGetNameOfEncoding(encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 480978347832043, undefined, [encoding]); }
 
 /**
  * func CFStringGetParagraphBounds(_ string: CFString!, _ range: CFRange, _ parBeginIndex: UnsafeMutablePointer<CFIndex>!, _ parEndIndex: UnsafeMutablePointer<CFIndex>!, _ contentsEndIndex: UnsafeMutablePointer<CFIndex>!)
  * @availability iOS 2.0+
  */
-export function CFStringGetParagraphBounds(string: (CFString) | null, range: CFRange, parBeginIndex?: (SDKHandle) | null, parEndIndex?: (SDKHandle) | null, contentsEndIndex?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 551359674854075, undefined, [string, range, parBeginIndex, parEndIndex, contentsEndIndex]); }
+export function CFStringGetParagraphBounds(string: (CFString) | null, range: CFRange, parBeginIndex?: (SDKHandle) | null, parEndIndex?: (SDKHandle) | null, contentsEndIndex?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 551359674854075, undefined, [string, range, parBeginIndex, parEndIndex, contentsEndIndex]); }
 
 /** func CFStringGetPascalStringPtr(_ theString: CFString!, _ encoding: CFStringEncoding) -> ConstStringPtr! */
-export function CFStringGetPascalStringPtr(theString: (CFString) | null, encoding: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_212edf3d13b127f5", 2553334111242000, undefined, [theString, encoding]); }
+export function CFStringGetPascalStringPtr(theString: (CFString) | null, encoding: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreFoundation_5d69670f0307b385", 2553334111242000, undefined, [theString, encoding]); }
 
 /** func CFStringGetRangeOfComposedCharactersAtIndex(_ theString: CFString!, _ theIndex: CFIndex) -> CFRange */
-export function CFStringGetRangeOfComposedCharactersAtIndex(theString: (CFString) | null, theIndex: number): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 498160394330679, undefined, [theString, theIndex]); }
+export function CFStringGetRangeOfComposedCharactersAtIndex(theString: (CFString) | null, theIndex: number): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 498160394330679, undefined, [theString, theIndex]); }
 
 /** func CFStringGetSmallestEncoding(_ theString: CFString!) -> CFStringEncoding */
-export function CFStringGetSmallestEncoding(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1660718747715297, undefined, [theString]); }
+export function CFStringGetSmallestEncoding(theString?: (CFString) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1660718747715297, undefined, [theString]); }
 
 /** func CFStringGetSurrogatePairForLongCharacter(_ character: UTF32Char, _ surrogates: UnsafeMutablePointer<UniChar>!) -> Bool */
-export function CFStringGetSurrogatePairForLongCharacter(character: SDKHandle, surrogates?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4318747885980190, undefined, [character, surrogates]); }
+export function CFStringGetSurrogatePairForLongCharacter(character: SDKHandle, surrogates?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4318747885980190, undefined, [character, surrogates]); }
 
 /** func CFStringGetSystemEncoding() -> CFStringEncoding */
-export function CFStringGetSystemEncoding(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1444977781891500, undefined, []); }
+export function CFStringGetSystemEncoding(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1444977781891500, undefined, []); }
 
 /** func CFStringGetTypeID() -> CFTypeID */
-export function CFStringGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2505647051194545, undefined, []); }
+export function CFStringGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2505647051194545, undefined, []); }
 
 /** func CFStringHasPrefix(_ theString: CFString!, _ prefix: CFString!) -> Bool */
-export function CFStringHasPrefix(theString?: (CFString) | null, prefix?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3012796191717209, undefined, [theString, prefix]); }
+export function CFStringHasPrefix(theString?: (CFString) | null, prefix?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3012796191717209, undefined, [theString, prefix]); }
 
 /** func CFStringHasSuffix(_ theString: CFString!, _ suffix: CFString!) -> Bool */
-export function CFStringHasSuffix(theString?: (CFString) | null, suffix?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1562878819339589, undefined, [theString, suffix]); }
+export function CFStringHasSuffix(theString?: (CFString) | null, suffix?: (CFString) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1562878819339589, undefined, [theString, suffix]); }
 
 /** func CFStringInitInlineBuffer(_ str: CFString!, _ buf: UnsafeMutablePointer<CFStringInlineBuffer>!, _ range: CFRange) */
-export function CFStringInitInlineBuffer(str: (CFString) | null, buf: (SDKHandle) | null, range: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3590786446446239, undefined, [str, buf, range]); }
+export function CFStringInitInlineBuffer(str: (CFString) | null, buf: (SDKHandle) | null, range: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3590786446446239, undefined, [str, buf, range]); }
 
 /** func CFStringInsert(_ str: CFMutableString!, _ idx: CFIndex, _ insertedStr: CFString!) */
-export function CFStringInsert(str: $SDK53, idx: number, insertedStr?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 351974865882166, undefined, [str, idx, insertedStr]); }
+export function CFStringInsert(str: $SDK53, idx: number, insertedStr?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 351974865882166, undefined, [str, idx, insertedStr]); }
 
 /** func CFStringIsEncodingAvailable(_ encoding: CFStringEncoding) -> Bool */
-export function CFStringIsEncodingAvailable(encoding: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 810271352172156, undefined, [encoding]); }
+export function CFStringIsEncodingAvailable(encoding: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 810271352172156, undefined, [encoding]); }
 
 /**
  * func CFStringIsHyphenationAvailableForLocale(_ locale: CFLocale!) -> Bool
  * @availability iOS 4.3+
  */
-export function CFStringIsHyphenationAvailableForLocale(locale?: (CFLocale) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 638417577305535, undefined, [locale]); }
+export function CFStringIsHyphenationAvailableForLocale(locale?: (CFLocale) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 638417577305535, undefined, [locale]); }
 
 /** func CFStringIsSurrogateHighCharacter(_ character: UniChar) -> Bool */
-export function CFStringIsSurrogateHighCharacter(character: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 537255404691207, undefined, [character]); }
+export function CFStringIsSurrogateHighCharacter(character: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 537255404691207, undefined, [character]); }
 
 /** func CFStringIsSurrogateLowCharacter(_ character: UniChar) -> Bool */
-export function CFStringIsSurrogateLowCharacter(character: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2742890764792486, undefined, [character]); }
+export function CFStringIsSurrogateLowCharacter(character: SDKHandle): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2742890764792486, undefined, [character]); }
 
 /** func CFStringLowercase(_ theString: CFMutableString!, _ locale: CFLocale!) */
-export function CFStringLowercase(theString?: $SDK53, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2596804606915582, undefined, [theString, locale]); }
+export function CFStringLowercase(theString?: $SDK53, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2596804606915582, undefined, [theString, locale]); }
 
 /** func CFStringNormalize(_ theString: CFMutableString!, _ theForm: CFStringNormalizationForm) */
-export function CFStringNormalize(theString: $SDK53, theForm: CFStringNormalizationForm): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 762416424234212, undefined, [theString, theForm]); }
+export function CFStringNormalize(theString: $SDK53, theForm: CFStringNormalizationForm): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 762416424234212, undefined, [theString, theForm]); }
 
 /** func CFStringPad(_ theString: CFMutableString!, _ padString: CFString!, _ length: CFIndex, _ indexIntoPad: CFIndex) */
-export function CFStringPad(theString: $SDK53, padString: (CFString) | null, length: number, indexIntoPad: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 854083807304394, undefined, [theString, padString, length, indexIntoPad]); }
+export function CFStringPad(theString: $SDK53, padString: (CFString) | null, length: number, indexIntoPad: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 854083807304394, undefined, [theString, padString, length, indexIntoPad]); }
 
 /** func CFStringReplace(_ theString: CFMutableString!, _ range: CFRange, _ replacement: CFString!) */
-export function CFStringReplace(theString: $SDK53, range: CFRange, replacement?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4468098561848939, undefined, [theString, range, replacement]); }
+export function CFStringReplace(theString: $SDK53, range: CFRange, replacement?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4468098561848939, undefined, [theString, range, replacement]); }
 
 /** func CFStringReplaceAll(_ theString: CFMutableString!, _ replacement: CFString!) */
-export function CFStringReplaceAll(theString?: $SDK53, replacement?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3543319657151508, undefined, [theString, replacement]); }
+export function CFStringReplaceAll(theString?: $SDK53, replacement?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3543319657151508, undefined, [theString, replacement]); }
 
 /** func CFStringSetExternalCharactersNoCopy(_ theString: CFMutableString!, _ chars: UnsafeMutablePointer<UniChar>!, _ length: CFIndex, _ capacity: CFIndex) */
-export function CFStringSetExternalCharactersNoCopy(theString: $SDK53, chars: (SDKHandle) | null, length: number, capacity: number): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2456018797211328, undefined, [theString, chars, length, capacity]); }
+export function CFStringSetExternalCharactersNoCopy(theString: $SDK53, chars: (SDKHandle) | null, length: number, capacity: number): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2456018797211328, undefined, [theString, chars, length, capacity]); }
 
 /**
  * func CFStringTokenizerAdvanceToNextToken(_ tokenizer: CFStringTokenizer!) -> CFStringTokenizerTokenType
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerAdvanceToNextToken(tokenizer?: $SDK69): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 503639181770822, undefined, [tokenizer]); }
+export function CFStringTokenizerAdvanceToNextToken(tokenizer?: $SDK69): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 503639181770822, undefined, [tokenizer]); }
 
 /**
  * func CFStringTokenizerCopyBestStringLanguage(_ string: CFString!, _ range: CFRange) -> CFString!
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerCopyBestStringLanguage(string: (CFString) | null, range: CFRange): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3369123956219385, undefined, [string, range]); }
+export function CFStringTokenizerCopyBestStringLanguage(string: (CFString) | null, range: CFRange): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3369123956219385, undefined, [string, range]); }
 
 /**
  * func CFStringTokenizerCopyCurrentTokenAttribute(_ tokenizer: CFStringTokenizer!, _ attribute: CFOptionFlags) -> CFTypeRef!
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerCopyCurrentTokenAttribute(tokenizer: $SDK69, attribute: number): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 170742391192604, undefined, [tokenizer, attribute]); }
+export function CFStringTokenizerCopyCurrentTokenAttribute(tokenizer: $SDK69, attribute: number): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 170742391192604, undefined, [tokenizer, attribute]); }
 
 /**
  * func CFStringTokenizerCreate(_ alloc: CFAllocator!, _ string: CFString!, _ range: CFRange, _ options: CFOptionFlags, _ locale: CFLocale!) -> CFStringTokenizer!
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerCreate(alloc: (CFAllocator) | null, string: (CFString) | null, range: CFRange, options: number, locale?: (CFLocale) | null): $SDK69 { return callSDK<$SDK69>("CoreFoundation_212edf3d13b127f5", 2567067291201625, undefined, [alloc, string, range, options, locale]); }
+export function CFStringTokenizerCreate(alloc: (CFAllocator) | null, string: (CFString) | null, range: CFRange, options: number, locale?: (CFLocale) | null): $SDK69 { return callSDK<$SDK69>("CoreFoundation_5d69670f0307b385", 2567067291201625, undefined, [alloc, string, range, options, locale]); }
 
 /**
  * func CFStringTokenizerGetCurrentSubTokens(_ tokenizer: CFStringTokenizer!, _ ranges: UnsafeMutablePointer<CFRange>!, _ maxRangeLength: CFIndex, _ derivedSubTokens: CFMutableArray!) -> CFIndex
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerGetCurrentSubTokens(tokenizer: $SDK69, ranges: (SDKHandle) | null, maxRangeLength: number, derivedSubTokens?: (CFMutableArray) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2800189086600760, undefined, [tokenizer, ranges, maxRangeLength, derivedSubTokens]); }
+export function CFStringTokenizerGetCurrentSubTokens(tokenizer: $SDK69, ranges: (SDKHandle) | null, maxRangeLength: number, derivedSubTokens?: (CFMutableArray) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2800189086600760, undefined, [tokenizer, ranges, maxRangeLength, derivedSubTokens]); }
 
 /**
  * func CFStringTokenizerGetCurrentTokenRange(_ tokenizer: CFStringTokenizer!) -> CFRange
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerGetCurrentTokenRange(tokenizer?: $SDK69): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 1585858336482135, undefined, [tokenizer]); }
+export function CFStringTokenizerGetCurrentTokenRange(tokenizer?: $SDK69): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 1585858336482135, undefined, [tokenizer]); }
 
 /**
  * func CFStringTokenizerGetTypeID() -> CFTypeID
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 390951032876257, undefined, []); }
+export function CFStringTokenizerGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 390951032876257, undefined, []); }
 
 /**
  * func CFStringTokenizerGoToTokenAtIndex(_ tokenizer: CFStringTokenizer!, _ index: CFIndex) -> CFStringTokenizerTokenType
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerGoToTokenAtIndex(tokenizer: $SDK69, index: number): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_212edf3d13b127f5", 1928930719662130, undefined, [tokenizer, index]); }
+export function CFStringTokenizerGoToTokenAtIndex(tokenizer: $SDK69, index: number): CFStringTokenizerTokenType { return callSDK<CFStringTokenizerTokenType>("CoreFoundation_5d69670f0307b385", 1928930719662130, undefined, [tokenizer, index]); }
 
 /**
  * func CFStringTokenizerSetString(_ tokenizer: CFStringTokenizer!, _ string: CFString!, _ range: CFRange)
  * @availability iOS 3.0+
  */
-export function CFStringTokenizerSetString(tokenizer: $SDK69, string: (CFString) | null, range: CFRange): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1656418894059289, undefined, [tokenizer, string, range]); }
+export function CFStringTokenizerSetString(tokenizer: $SDK69, string: (CFString) | null, range: CFRange): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1656418894059289, undefined, [tokenizer, string, range]); }
 
 /** func CFStringTransform(_ string: CFMutableString!, _ range: UnsafeMutablePointer<CFRange>!, _ transform: CFString!, _ reverse: Bool) -> Bool */
-export function CFStringTransform(string: $SDK53, range: (SDKHandle) | null, transform: (CFString) | null, reverse: boolean): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4045538681835348, undefined, [string, range, transform, reverse]); }
+export function CFStringTransform(string: $SDK53, range: (SDKHandle) | null, transform: (CFString) | null, reverse: boolean): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4045538681835348, undefined, [string, range, transform, reverse]); }
 
 /** func CFStringTrim(_ theString: CFMutableString!, _ trimString: CFString!) */
-export function CFStringTrim(theString?: $SDK53, trimString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1658375678448432, undefined, [theString, trimString]); }
+export function CFStringTrim(theString?: $SDK53, trimString?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1658375678448432, undefined, [theString, trimString]); }
 
 /** func CFStringTrimWhitespace(_ theString: CFMutableString!) */
-export function CFStringTrimWhitespace(theString?: $SDK53): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3221197485868524, undefined, [theString]); }
+export function CFStringTrimWhitespace(theString?: $SDK53): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3221197485868524, undefined, [theString]); }
 
 /** func CFStringUppercase(_ theString: CFMutableString!, _ locale: CFLocale!) */
-export function CFStringUppercase(theString?: $SDK53, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1549579214157345, undefined, [theString, locale]); }
+export function CFStringUppercase(theString?: $SDK53, locale?: (CFLocale) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1549579214157345, undefined, [theString, locale]); }
 
 /** func CFSwapInt16(_ arg: UInt16) -> UInt16 */
-export function CFSwapInt16(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1329401805671531, undefined, [arg]); }
+export function CFSwapInt16(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1329401805671531, undefined, [arg]); }
 
 /** func CFSwapInt16BigToHost(_ arg: UInt16) -> UInt16 */
-export function CFSwapInt16BigToHost(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1008370437383723, undefined, [arg]); }
+export function CFSwapInt16BigToHost(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1008370437383723, undefined, [arg]); }
 
 /** func CFSwapInt16HostToBig(_ arg: UInt16) -> UInt16 */
-export function CFSwapInt16HostToBig(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 160987024166632, undefined, [arg]); }
+export function CFSwapInt16HostToBig(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 160987024166632, undefined, [arg]); }
 
 /** func CFSwapInt16HostToLittle(_ arg: UInt16) -> UInt16 */
-export function CFSwapInt16HostToLittle(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 938697361629437, undefined, [arg]); }
+export function CFSwapInt16HostToLittle(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 938697361629437, undefined, [arg]); }
 
 /** func CFSwapInt16LittleToHost(_ arg: UInt16) -> UInt16 */
-export function CFSwapInt16LittleToHost(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1180153714434844, undefined, [arg]); }
+export function CFSwapInt16LittleToHost(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1180153714434844, undefined, [arg]); }
 
 /** func CFSwapInt32(_ arg: UInt32) -> UInt32 */
-export function CFSwapInt32(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3472928021210831, undefined, [arg]); }
+export function CFSwapInt32(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3472928021210831, undefined, [arg]); }
 
 /** func CFSwapInt32BigToHost(_ arg: UInt32) -> UInt32 */
-export function CFSwapInt32BigToHost(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4401926645496218, undefined, [arg]); }
+export function CFSwapInt32BigToHost(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4401926645496218, undefined, [arg]); }
 
 /** func CFSwapInt32HostToBig(_ arg: UInt32) -> UInt32 */
-export function CFSwapInt32HostToBig(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1547204605698930, undefined, [arg]); }
+export function CFSwapInt32HostToBig(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1547204605698930, undefined, [arg]); }
 
 /** func CFSwapInt32HostToLittle(_ arg: UInt32) -> UInt32 */
-export function CFSwapInt32HostToLittle(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2245502194754390, undefined, [arg]); }
+export function CFSwapInt32HostToLittle(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2245502194754390, undefined, [arg]); }
 
 /** func CFSwapInt32LittleToHost(_ arg: UInt32) -> UInt32 */
-export function CFSwapInt32LittleToHost(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2575019223100534, undefined, [arg]); }
+export function CFSwapInt32LittleToHost(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2575019223100534, undefined, [arg]); }
 
 /** func CFSwapInt64(_ arg: UInt64) -> UInt64 */
-export function CFSwapInt64(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2812044832492340, undefined, [arg]); }
+export function CFSwapInt64(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2812044832492340, undefined, [arg]); }
 
 /** func CFSwapInt64BigToHost(_ arg: UInt64) -> UInt64 */
-export function CFSwapInt64BigToHost(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1815143276469736, undefined, [arg]); }
+export function CFSwapInt64BigToHost(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1815143276469736, undefined, [arg]); }
 
 /** func CFSwapInt64HostToBig(_ arg: UInt64) -> UInt64 */
-export function CFSwapInt64HostToBig(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1580663691874221, undefined, [arg]); }
+export function CFSwapInt64HostToBig(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1580663691874221, undefined, [arg]); }
 
 /** func CFSwapInt64HostToLittle(_ arg: UInt64) -> UInt64 */
-export function CFSwapInt64HostToLittle(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 646888692685736, undefined, [arg]); }
+export function CFSwapInt64HostToLittle(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 646888692685736, undefined, [arg]); }
 
 /** func CFSwapInt64LittleToHost(_ arg: UInt64) -> UInt64 */
-export function CFSwapInt64LittleToHost(arg: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2495648385455685, undefined, [arg]); }
+export function CFSwapInt64LittleToHost(arg: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2495648385455685, undefined, [arg]); }
 
 /** func CFTimeZoneCopyAbbreviation(_ tz: CFTimeZone!, _ at: CFAbsoluteTime) -> CFString! */
-export function CFTimeZoneCopyAbbreviation(tz: (CFTimeZone) | null, at: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1645106491766342, undefined, [tz, at]); }
+export function CFTimeZoneCopyAbbreviation(tz: (CFTimeZone) | null, at: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1645106491766342, undefined, [tz, at]); }
 
 /** func CFTimeZoneCopyAbbreviationDictionary() -> CFDictionary! */
-export function CFTimeZoneCopyAbbreviationDictionary(): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 3077964731125687, undefined, []); }
+export function CFTimeZoneCopyAbbreviationDictionary(): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 3077964731125687, undefined, []); }
 
 /** func CFTimeZoneCopyDefault() -> CFTimeZone! */
-export function CFTimeZoneCopyDefault(): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_212edf3d13b127f5", 3431965773617704, undefined, []); }
+export function CFTimeZoneCopyDefault(): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_5d69670f0307b385", 3431965773617704, undefined, []); }
 
 /** func CFTimeZoneCopyKnownNames() -> CFArray! */
-export function CFTimeZoneCopyKnownNames(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_212edf3d13b127f5", 3925450714860547, undefined, []); }
+export function CFTimeZoneCopyKnownNames(): (CFArray) | null { return callSDK<(CFArray) | null>("CoreFoundation_5d69670f0307b385", 3925450714860547, undefined, []); }
 
 /**
  * func CFTimeZoneCopyLocalizedName(_ tz: CFTimeZone!, _ style: CFTimeZoneNameStyle, _ locale: CFLocale!) -> CFString!
  * @availability iOS 2.0+
  */
-export function CFTimeZoneCopyLocalizedName(tz: (CFTimeZone) | null, style: CFTimeZoneNameStyle, locale?: (CFLocale) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3168951021397994, undefined, [tz, style, locale]); }
+export function CFTimeZoneCopyLocalizedName(tz: (CFTimeZone) | null, style: CFTimeZoneNameStyle, locale?: (CFLocale) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3168951021397994, undefined, [tz, style, locale]); }
 
 /** func CFTimeZoneCopySystem() -> CFTimeZone! */
-export function CFTimeZoneCopySystem(): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_212edf3d13b127f5", 770786787082532, undefined, []); }
+export function CFTimeZoneCopySystem(): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_5d69670f0307b385", 770786787082532, undefined, []); }
 
 /** func CFTimeZoneCreate(_ allocator: CFAllocator!, _ name: CFString!, _ data: CFData!) -> CFTimeZone! */
-export function CFTimeZoneCreate(allocator?: (CFAllocator) | null, name?: (CFString) | null, data?: (CFData) | null): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_212edf3d13b127f5", 4192213173166362, undefined, [allocator, name, data]); }
+export function CFTimeZoneCreate(allocator?: (CFAllocator) | null, name?: (CFString) | null, data?: (CFData) | null): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_5d69670f0307b385", 4192213173166362, undefined, [allocator, name, data]); }
 
 /** func CFTimeZoneCreateWithName(_ allocator: CFAllocator!, _ name: CFString!, _ tryAbbrev: Bool) -> CFTimeZone! */
-export function CFTimeZoneCreateWithName(allocator: (CFAllocator) | null, name: (CFString) | null, tryAbbrev: boolean): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_212edf3d13b127f5", 1493531959264909, undefined, [allocator, name, tryAbbrev]); }
+export function CFTimeZoneCreateWithName(allocator: (CFAllocator) | null, name: (CFString) | null, tryAbbrev: boolean): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_5d69670f0307b385", 1493531959264909, undefined, [allocator, name, tryAbbrev]); }
 
 /** func CFTimeZoneCreateWithTimeIntervalFromGMT(_ allocator: CFAllocator!, _ ti: CFTimeInterval) -> CFTimeZone! */
-export function CFTimeZoneCreateWithTimeIntervalFromGMT(allocator: (CFAllocator) | null, ti: number): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_212edf3d13b127f5", 4199424734827729, undefined, [allocator, ti]); }
+export function CFTimeZoneCreateWithTimeIntervalFromGMT(allocator: (CFAllocator) | null, ti: number): (CFTimeZone) | null { return callSDK<(CFTimeZone) | null>("CoreFoundation_5d69670f0307b385", 4199424734827729, undefined, [allocator, ti]); }
 
 /** func CFTimeZoneGetData(_ tz: CFTimeZone!) -> CFData! */
-export function CFTimeZoneGetData(tz?: (CFTimeZone) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 1192365355816577, undefined, [tz]); }
+export function CFTimeZoneGetData(tz?: (CFTimeZone) | null): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 1192365355816577, undefined, [tz]); }
 
 /**
  * func CFTimeZoneGetDaylightSavingTimeOffset(_ tz: CFTimeZone!, _ at: CFAbsoluteTime) -> CFTimeInterval
  * @availability iOS 2.0+
  */
-export function CFTimeZoneGetDaylightSavingTimeOffset(tz: (CFTimeZone) | null, at: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2099377015651111, undefined, [tz, at]); }
+export function CFTimeZoneGetDaylightSavingTimeOffset(tz: (CFTimeZone) | null, at: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2099377015651111, undefined, [tz, at]); }
 
 /** func CFTimeZoneGetName(_ tz: CFTimeZone!) -> CFString! */
-export function CFTimeZoneGetName(tz?: (CFTimeZone) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4272127921567450, undefined, [tz]); }
+export function CFTimeZoneGetName(tz?: (CFTimeZone) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4272127921567450, undefined, [tz]); }
 
 /**
  * func CFTimeZoneGetNextDaylightSavingTimeTransition(_ tz: CFTimeZone!, _ at: CFAbsoluteTime) -> CFAbsoluteTime
  * @availability iOS 2.0+
  */
-export function CFTimeZoneGetNextDaylightSavingTimeTransition(tz: (CFTimeZone) | null, at: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1228983374391713, undefined, [tz, at]); }
+export function CFTimeZoneGetNextDaylightSavingTimeTransition(tz: (CFTimeZone) | null, at: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1228983374391713, undefined, [tz, at]); }
 
 /** func CFTimeZoneGetSecondsFromGMT(_ tz: CFTimeZone!, _ at: CFAbsoluteTime) -> CFTimeInterval */
-export function CFTimeZoneGetSecondsFromGMT(tz: (CFTimeZone) | null, at: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3369105449410815, undefined, [tz, at]); }
+export function CFTimeZoneGetSecondsFromGMT(tz: (CFTimeZone) | null, at: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3369105449410815, undefined, [tz, at]); }
 
 /** func CFTimeZoneGetTypeID() -> CFTypeID */
-export function CFTimeZoneGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4493268760890791, undefined, []); }
+export function CFTimeZoneGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4493268760890791, undefined, []); }
 
 /** func CFTimeZoneIsDaylightSavingTime(_ tz: CFTimeZone!, _ at: CFAbsoluteTime) -> Bool */
-export function CFTimeZoneIsDaylightSavingTime(tz: (CFTimeZone) | null, at: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 477629288417505, undefined, [tz, at]); }
+export function CFTimeZoneIsDaylightSavingTime(tz: (CFTimeZone) | null, at: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 477629288417505, undefined, [tz, at]); }
 
 /** func CFTimeZoneResetSystem() */
-export function CFTimeZoneResetSystem(): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1899407259889383, undefined, []); }
+export function CFTimeZoneResetSystem(): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1899407259889383, undefined, []); }
 
 /** func CFTimeZoneSetAbbreviationDictionary(_ dict: CFDictionary!) */
-export function CFTimeZoneSetAbbreviationDictionary(dict?: (CFDictionary) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1901425449053195, undefined, [dict]); }
+export function CFTimeZoneSetAbbreviationDictionary(dict?: (CFDictionary) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1901425449053195, undefined, [dict]); }
 
 /** func CFTimeZoneSetDefault(_ tz: CFTimeZone!) */
-export function CFTimeZoneSetDefault(tz?: (CFTimeZone) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 41049004673581, undefined, [tz]); }
+export function CFTimeZoneSetDefault(tz?: (CFTimeZone) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 41049004673581, undefined, [tz]); }
 
 /** func CFTreeAppendChild(_ tree: CFTree!, _ newChild: CFTree!) */
-export function CFTreeAppendChild(tree?: (CFTree) | null, newChild?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3541146891638534, undefined, [tree, newChild]); }
+export function CFTreeAppendChild(tree?: (CFTree) | null, newChild?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3541146891638534, undefined, [tree, newChild]); }
 
 /** func CFTreeCreate(_ allocator: CFAllocator!, _ context: UnsafePointer<CFTreeContext>!) -> CFTree! */
-export function CFTreeCreate(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_212edf3d13b127f5", 1173008964156541, undefined, [allocator, context]); }
+export function CFTreeCreate(allocator?: (CFAllocator) | null, context?: (SDKHandle) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_5d69670f0307b385", 1173008964156541, undefined, [allocator, context]); }
 
 /** func CFTreeFindRoot(_ tree: CFTree!) -> CFTree! */
-export function CFTreeFindRoot(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_212edf3d13b127f5", 1528129240362761, undefined, [tree]); }
+export function CFTreeFindRoot(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_5d69670f0307b385", 1528129240362761, undefined, [tree]); }
 
 /** func CFTreeGetChildAtIndex(_ tree: CFTree!, _ idx: CFIndex) -> CFTree! */
-export function CFTreeGetChildAtIndex(tree: (CFTree) | null, idx: number): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_212edf3d13b127f5", 112612644515754, undefined, [tree, idx]); }
+export function CFTreeGetChildAtIndex(tree: (CFTree) | null, idx: number): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_5d69670f0307b385", 112612644515754, undefined, [tree, idx]); }
 
 /** func CFTreeGetChildCount(_ tree: CFTree!) -> CFIndex */
-export function CFTreeGetChildCount(tree?: (CFTree) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3861011687449789, undefined, [tree]); }
+export function CFTreeGetChildCount(tree?: (CFTree) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3861011687449789, undefined, [tree]); }
 
 /** func CFTreeGetContext(_ tree: CFTree!, _ context: UnsafeMutablePointer<CFTreeContext>!) */
-export function CFTreeGetContext(tree?: (CFTree) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 831384802750757, undefined, [tree, context]); }
+export function CFTreeGetContext(tree?: (CFTree) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 831384802750757, undefined, [tree, context]); }
 
 /** func CFTreeGetFirstChild(_ tree: CFTree!) -> CFTree! */
-export function CFTreeGetFirstChild(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_212edf3d13b127f5", 3179685915779593, undefined, [tree]); }
+export function CFTreeGetFirstChild(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_5d69670f0307b385", 3179685915779593, undefined, [tree]); }
 
 /** func CFTreeGetNextSibling(_ tree: CFTree!) -> CFTree! */
-export function CFTreeGetNextSibling(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_212edf3d13b127f5", 3510765280781787, undefined, [tree]); }
+export function CFTreeGetNextSibling(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_5d69670f0307b385", 3510765280781787, undefined, [tree]); }
 
 /** func CFTreeGetParent(_ tree: CFTree!) -> CFTree! */
-export function CFTreeGetParent(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_212edf3d13b127f5", 2505598078670346, undefined, [tree]); }
+export function CFTreeGetParent(tree?: (CFTree) | null): (CFTree) | null { return callSDK<(CFTree) | null>("CoreFoundation_5d69670f0307b385", 2505598078670346, undefined, [tree]); }
 
 /** func CFTreeGetTypeID() -> CFTypeID */
-export function CFTreeGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4444880975464557, undefined, []); }
+export function CFTreeGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4444880975464557, undefined, []); }
 
 /** func CFTreeInsertSibling(_ tree: CFTree!, _ newSibling: CFTree!) */
-export function CFTreeInsertSibling(tree?: (CFTree) | null, newSibling?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2086346499355536, undefined, [tree, newSibling]); }
+export function CFTreeInsertSibling(tree?: (CFTree) | null, newSibling?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2086346499355536, undefined, [tree, newSibling]); }
 
 /** func CFTreePrependChild(_ tree: CFTree!, _ newChild: CFTree!) */
-export function CFTreePrependChild(tree?: (CFTree) | null, newChild?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2353630427809134, undefined, [tree, newChild]); }
+export function CFTreePrependChild(tree?: (CFTree) | null, newChild?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2353630427809134, undefined, [tree, newChild]); }
 
 /** func CFTreeRemove(_ tree: CFTree!) */
-export function CFTreeRemove(tree?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4137702853669485, undefined, [tree]); }
+export function CFTreeRemove(tree?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4137702853669485, undefined, [tree]); }
 
 /** func CFTreeRemoveAllChildren(_ tree: CFTree!) */
-export function CFTreeRemoveAllChildren(tree?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2273330861149342, undefined, [tree]); }
+export function CFTreeRemoveAllChildren(tree?: (CFTree) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2273330861149342, undefined, [tree]); }
 
 /** func CFTreeSetContext(_ tree: CFTree!, _ context: UnsafePointer<CFTreeContext>!) */
-export function CFTreeSetContext(tree?: (CFTree) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1411241497713406, undefined, [tree, context]); }
+export function CFTreeSetContext(tree?: (CFTree) | null, context?: (SDKHandle) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1411241497713406, undefined, [tree, context]); }
 
 /** func CFURLCanBeDecomposed(_ anURL: CFURL!) -> Bool */
-export function CFURLCanBeDecomposed(anURL?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3939024632550972, undefined, [anURL]); }
+export function CFURLCanBeDecomposed(anURL?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3939024632550972, undefined, [anURL]); }
 
 /**
  * func CFURLClearResourcePropertyCache(_ url: CFURL!)
  * @availability iOS 4.0+
  */
-export function CFURLClearResourcePropertyCache(url?: (CFURL) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1800935400203723, undefined, [url]); }
+export function CFURLClearResourcePropertyCache(url?: (CFURL) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1800935400203723, undefined, [url]); }
 
 /**
  * func CFURLClearResourcePropertyCacheForKey(_ url: CFURL!, _ key: CFString!)
  * @availability iOS 4.0+
  */
-export function CFURLClearResourcePropertyCacheForKey(url?: (CFURL) | null, key?: (CFString) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 4005765069787790, undefined, [url, key]); }
+export function CFURLClearResourcePropertyCacheForKey(url?: (CFURL) | null, key?: (CFString) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 4005765069787790, undefined, [url, key]); }
 
 /** func CFURLCopyAbsoluteURL(_ relativeURL: CFURL!) -> CFURL! */
-export function CFURLCopyAbsoluteURL(relativeURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 3073989290390693, undefined, [relativeURL]); }
+export function CFURLCopyAbsoluteURL(relativeURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 3073989290390693, undefined, [relativeURL]); }
 
 /** func CFURLCopyFileSystemPath(_ anURL: CFURL!, _ pathStyle: CFURLPathStyle) -> CFString! */
-export function CFURLCopyFileSystemPath(anURL: (CFURL) | null, pathStyle: CFURLPathStyle): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 379342186818427, undefined, [anURL, pathStyle]); }
+export function CFURLCopyFileSystemPath(anURL: (CFURL) | null, pathStyle: CFURLPathStyle): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 379342186818427, undefined, [anURL, pathStyle]); }
 
 /** func CFURLCopyFragment(_ anURL: CFURL!, _ charactersToLeaveEscaped: CFString!) -> CFString! */
-export function CFURLCopyFragment(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4057542955360232, undefined, [anURL, charactersToLeaveEscaped]); }
+export function CFURLCopyFragment(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4057542955360232, undefined, [anURL, charactersToLeaveEscaped]); }
 
 /** func CFURLCopyHostName(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyHostName(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3154166559778434, undefined, [anURL]); }
+export function CFURLCopyHostName(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3154166559778434, undefined, [anURL]); }
 
 /** func CFURLCopyLastPathComponent(_ url: CFURL!) -> CFString! */
-export function CFURLCopyLastPathComponent(url?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3293198074293355, undefined, [url]); }
+export function CFURLCopyLastPathComponent(url?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3293198074293355, undefined, [url]); }
 
 /** func CFURLCopyNetLocation(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyNetLocation(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1686884807633903, undefined, [anURL]); }
+export function CFURLCopyNetLocation(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1686884807633903, undefined, [anURL]); }
 
 /**
  * func CFURLCopyParameterString(_ anURL: CFURL!, _ charactersToLeaveEscaped: CFString!) -> CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function CFURLCopyParameterString(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2065718459127471, undefined, [anURL, charactersToLeaveEscaped]); }
+export function CFURLCopyParameterString(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2065718459127471, undefined, [anURL, charactersToLeaveEscaped]); }
 
 /** func CFURLCopyPassword(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyPassword(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4149265733184772, undefined, [anURL]); }
+export function CFURLCopyPassword(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4149265733184772, undefined, [anURL]); }
 
 /** func CFURLCopyPath(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyPath(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 50438927469459, undefined, [anURL]); }
+export function CFURLCopyPath(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 50438927469459, undefined, [anURL]); }
 
 /** func CFURLCopyPathExtension(_ url: CFURL!) -> CFString! */
-export function CFURLCopyPathExtension(url?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4030707010815033, undefined, [url]); }
+export function CFURLCopyPathExtension(url?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4030707010815033, undefined, [url]); }
 
 /** func CFURLCopyQueryString(_ anURL: CFURL!, _ charactersToLeaveEscaped: CFString!) -> CFString! */
-export function CFURLCopyQueryString(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3670995392581029, undefined, [anURL, charactersToLeaveEscaped]); }
+export function CFURLCopyQueryString(anURL?: (CFURL) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3670995392581029, undefined, [anURL, charactersToLeaveEscaped]); }
 
 /**
  * func CFURLCopyResourcePropertiesForKeys(_ url: CFURL!, _ keys: CFArray!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFDictionary>!
  * @availability iOS 4.0+
  */
-export function CFURLCopyResourcePropertiesForKeys(url?: (CFURL) | null, keys?: (CFArray) | null): { $ret: (CFDictionary) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFDictionary) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 3152651395847276, undefined, [url, keys, null]); }
+export function CFURLCopyResourcePropertiesForKeys(url?: (CFURL) | null, keys?: (CFArray) | null): { $ret: (CFDictionary) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFDictionary) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 3152651395847276, undefined, [url, keys, null]); }
 
 /**
  * func CFURLCopyResourcePropertyForKey(_ url: CFURL!, _ key: CFString!, _ propertyValueTypeRefPtr: UnsafeMutableRawPointer!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 4.0+
  */
-export function CFURLCopyResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValueTypeRefPtr?: (SDKHandle) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 3027031688588289, undefined, [url, key, propertyValueTypeRefPtr, null]); }
+export function CFURLCopyResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValueTypeRefPtr?: (SDKHandle) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 3027031688588289, undefined, [url, key, propertyValueTypeRefPtr, null]); }
 
 /** func CFURLCopyResourceSpecifier(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyResourceSpecifier(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3301453743130625, undefined, [anURL]); }
+export function CFURLCopyResourceSpecifier(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3301453743130625, undefined, [anURL]); }
 
 /** func CFURLCopyScheme(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyScheme(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3852969155339287, undefined, [anURL]); }
+export function CFURLCopyScheme(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3852969155339287, undefined, [anURL]); }
 
 /** func CFURLCopyStrictPath(_ anURL: CFURL!, _ isAbsolute: UnsafeMutablePointer<DarwinBoolean>!) -> CFString! */
-export function CFURLCopyStrictPath(anURL?: (CFURL) | null): { $ret: (CFString) | null; $out: { "isAbsolute": boolean } } { return callSDK<{ $ret: (CFString) | null; $out: { "isAbsolute": boolean } }>("CoreFoundation_212edf3d13b127f5", 2593648290228337, undefined, [anURL, null]); }
+export function CFURLCopyStrictPath(anURL?: (CFURL) | null): { $ret: (CFString) | null; $out: { "isAbsolute": boolean } } { return callSDK<{ $ret: (CFString) | null; $out: { "isAbsolute": boolean } }>("CoreFoundation_5d69670f0307b385", 2593648290228337, undefined, [anURL, null]); }
 
 /** func CFURLCopyUserName(_ anURL: CFURL!) -> CFString! */
-export function CFURLCopyUserName(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 557235801449089, undefined, [anURL]); }
+export function CFURLCopyUserName(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 557235801449089, undefined, [anURL]); }
 
 /** func CFURLCreateAbsoluteURLWithBytes(_ alloc: CFAllocator!, _ relativeURLBytes: UnsafePointer<UInt8>!, _ length: CFIndex, _ encoding: CFStringEncoding, _ baseURL: CFURL!, _ useCompatibilityMode: Bool) -> CFURL! */
-export function CFURLCreateAbsoluteURLWithBytes(alloc: (CFAllocator) | null, relativeURLBytes: (SDKHandle) | null, length: number, encoding: number, baseURL: (CFURL) | null, useCompatibilityMode: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 2202024433000329, undefined, [alloc, relativeURLBytes, length, encoding, baseURL, useCompatibilityMode]); }
+export function CFURLCreateAbsoluteURLWithBytes(alloc: (CFAllocator) | null, relativeURLBytes: (SDKHandle) | null, length: number, encoding: number, baseURL: (CFURL) | null, useCompatibilityMode: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 2202024433000329, undefined, [alloc, relativeURLBytes, length, encoding, baseURL, useCompatibilityMode]); }
 
 /**
  * func CFURLCreateBookmarkData(_ allocator: CFAllocator!, _ url: CFURL!, _ options: CFURLBookmarkCreationOptions, _ resourcePropertiesToInclude: CFArray!, _ relativeToURL: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!
  * @availability iOS 4.0+
  */
-export function CFURLCreateBookmarkData(allocator: (CFAllocator) | null, url: (CFURL) | null, options: CFURLBookmarkCreationOptions, resourcePropertiesToInclude?: (CFArray) | null, relativeToURL?: (CFURL) | null): { $ret: (CFData) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFData) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 910138594890901, undefined, [allocator, url, options, resourcePropertiesToInclude, relativeToURL, null]); }
+export function CFURLCreateBookmarkData(allocator: (CFAllocator) | null, url: (CFURL) | null, options: CFURLBookmarkCreationOptions, resourcePropertiesToInclude?: (CFArray) | null, relativeToURL?: (CFURL) | null): { $ret: (CFData) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFData) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 910138594890901, undefined, [allocator, url, options, resourcePropertiesToInclude, relativeToURL, null]); }
 
 /**
  * func CFURLCreateBookmarkDataFromFile(_ allocator: CFAllocator!, _ fileURL: CFURL!, _ errorRef: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!
  * @availability iOS 5.0+
  */
-export function CFURLCreateBookmarkDataFromFile(allocator?: (CFAllocator) | null, fileURL?: (CFURL) | null): { $ret: (CFData) | null; $out: { "errorRef": (CFError) | null } } { return callSDK<{ $ret: (CFData) | null; $out: { "errorRef": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 1721806445962111, undefined, [allocator, fileURL, null]); }
+export function CFURLCreateBookmarkDataFromFile(allocator?: (CFAllocator) | null, fileURL?: (CFURL) | null): { $ret: (CFData) | null; $out: { "errorRef": (CFError) | null } } { return callSDK<{ $ret: (CFData) | null; $out: { "errorRef": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 1721806445962111, undefined, [allocator, fileURL, null]); }
 
 /**
  * func CFURLCreateByResolvingBookmarkData(_ allocator: CFAllocator!, _ bookmark: CFData!, _ options: CFURLBookmarkResolutionOptions, _ relativeToURL: CFURL!, _ resourcePropertiesToInclude: CFArray!, _ isStale: UnsafeMutablePointer<DarwinBoolean>!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!
  * @availability iOS 4.0+
  */
-export function CFURLCreateByResolvingBookmarkData(allocator: (CFAllocator) | null, bookmark: (CFData) | null, options: CFURLBookmarkResolutionOptions, relativeToURL?: (CFURL) | null, resourcePropertiesToInclude?: (CFArray) | null): { $ret: (CFURL) | null; $out: { "isStale": boolean; "error": (CFError) | null } } { return callSDK<{ $ret: (CFURL) | null; $out: { "isStale": boolean; "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 4426635654387922, undefined, [allocator, bookmark, options, relativeToURL, resourcePropertiesToInclude, null, null]); }
+export function CFURLCreateByResolvingBookmarkData(allocator: (CFAllocator) | null, bookmark: (CFData) | null, options: CFURLBookmarkResolutionOptions, relativeToURL?: (CFURL) | null, resourcePropertiesToInclude?: (CFArray) | null): { $ret: (CFURL) | null; $out: { "isStale": boolean; "error": (CFError) | null } } { return callSDK<{ $ret: (CFURL) | null; $out: { "isStale": boolean; "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 4426635654387922, undefined, [allocator, bookmark, options, relativeToURL, resourcePropertiesToInclude, null, null]); }
 
 /** func CFURLCreateCopyAppendingPathComponent(_ allocator: CFAllocator!, _ url: CFURL!, _ pathComponent: CFString!, _ isDirectory: Bool) -> CFURL! */
-export function CFURLCreateCopyAppendingPathComponent(allocator: (CFAllocator) | null, url: (CFURL) | null, pathComponent: (CFString) | null, isDirectory: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 643340806706062, undefined, [allocator, url, pathComponent, isDirectory]); }
+export function CFURLCreateCopyAppendingPathComponent(allocator: (CFAllocator) | null, url: (CFURL) | null, pathComponent: (CFString) | null, isDirectory: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 643340806706062, undefined, [allocator, url, pathComponent, isDirectory]); }
 
 /** func CFURLCreateCopyAppendingPathExtension(_ allocator: CFAllocator!, _ url: CFURL!, _ extension: CFString!) -> CFURL! */
-export function CFURLCreateCopyAppendingPathExtension(allocator?: (CFAllocator) | null, url?: (CFURL) | null, extension?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 3189951818446295, undefined, [allocator, url, extension]); }
+export function CFURLCreateCopyAppendingPathExtension(allocator?: (CFAllocator) | null, url?: (CFURL) | null, extension?: (CFString) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 3189951818446295, undefined, [allocator, url, extension]); }
 
 /** func CFURLCreateCopyDeletingLastPathComponent(_ allocator: CFAllocator!, _ url: CFURL!) -> CFURL! */
-export function CFURLCreateCopyDeletingLastPathComponent(allocator?: (CFAllocator) | null, url?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 4097247797732779, undefined, [allocator, url]); }
+export function CFURLCreateCopyDeletingLastPathComponent(allocator?: (CFAllocator) | null, url?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 4097247797732779, undefined, [allocator, url]); }
 
 /** func CFURLCreateCopyDeletingPathExtension(_ allocator: CFAllocator!, _ url: CFURL!) -> CFURL! */
-export function CFURLCreateCopyDeletingPathExtension(allocator?: (CFAllocator) | null, url?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1267044448483918, undefined, [allocator, url]); }
+export function CFURLCreateCopyDeletingPathExtension(allocator?: (CFAllocator) | null, url?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1267044448483918, undefined, [allocator, url]); }
 
 /** func CFURLCreateData(_ allocator: CFAllocator!, _ url: CFURL!, _ encoding: CFStringEncoding, _ escapeWhitespace: Bool) -> CFData! */
-export function CFURLCreateData(allocator: (CFAllocator) | null, url: (CFURL) | null, encoding: number, escapeWhitespace: boolean): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_212edf3d13b127f5", 285860137961970, undefined, [allocator, url, encoding, escapeWhitespace]); }
+export function CFURLCreateData(allocator: (CFAllocator) | null, url: (CFURL) | null, encoding: number, escapeWhitespace: boolean): (CFData) | null { return callSDK<(CFData) | null>("CoreFoundation_5d69670f0307b385", 285860137961970, undefined, [allocator, url, encoding, escapeWhitespace]); }
 
 /**
  * func CFURLCreateFilePathURL(_ allocator: CFAllocator!, _ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!
  * @availability iOS 4.0+
  */
-export function CFURLCreateFilePathURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): { $ret: (CFURL) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFURL) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 1842034765287305, undefined, [allocator, url, null]); }
+export function CFURLCreateFilePathURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): { $ret: (CFURL) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFURL) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 1842034765287305, undefined, [allocator, url, null]); }
 
 /**
  * func CFURLCreateFileReferenceURL(_ allocator: CFAllocator!, _ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!
  * @availability iOS 4.0+
  */
-export function CFURLCreateFileReferenceURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): { $ret: (CFURL) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFURL) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 471280910759921, undefined, [allocator, url, null]); }
+export function CFURLCreateFileReferenceURL(allocator?: (CFAllocator) | null, url?: (CFURL) | null): { $ret: (CFURL) | null; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: (CFURL) | null; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 471280910759921, undefined, [allocator, url, null]); }
 
 /** func CFURLCreateFromFileSystemRepresentation(_ allocator: CFAllocator!, _ buffer: UnsafePointer<UInt8>!, _ bufLen: CFIndex, _ isDirectory: Bool) -> CFURL! */
-export function CFURLCreateFromFileSystemRepresentation(allocator: (CFAllocator) | null, buffer: (SDKHandle) | null, bufLen: number, isDirectory: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 698741201388304, undefined, [allocator, buffer, bufLen, isDirectory]); }
+export function CFURLCreateFromFileSystemRepresentation(allocator: (CFAllocator) | null, buffer: (SDKHandle) | null, bufLen: number, isDirectory: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 698741201388304, undefined, [allocator, buffer, bufLen, isDirectory]); }
 
 /** func CFURLCreateFromFileSystemRepresentationRelativeToBase(_ allocator: CFAllocator!, _ buffer: UnsafePointer<UInt8>!, _ bufLen: CFIndex, _ isDirectory: Bool, _ baseURL: CFURL!) -> CFURL! */
-export function CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator: (CFAllocator) | null, buffer: (SDKHandle) | null, bufLen: number, isDirectory: boolean, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 350829456427846, undefined, [allocator, buffer, bufLen, isDirectory, baseURL]); }
+export function CFURLCreateFromFileSystemRepresentationRelativeToBase(allocator: (CFAllocator) | null, buffer: (SDKHandle) | null, bufLen: number, isDirectory: boolean, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 350829456427846, undefined, [allocator, buffer, bufLen, isDirectory, baseURL]); }
 
 /**
  * func CFURLCreateResourcePropertiesForKeysFromBookmarkData(_ allocator: CFAllocator!, _ resourcePropertiesToReturn: CFArray!, _ bookmark: CFData!) -> Unmanaged<CFDictionary>!
  * @availability iOS 4.0+
  */
-export function CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertiesToReturn?: (CFArray) | null, bookmark?: (CFData) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_212edf3d13b127f5", 2017897037546451, undefined, [allocator, resourcePropertiesToReturn, bookmark]); }
+export function CFURLCreateResourcePropertiesForKeysFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertiesToReturn?: (CFArray) | null, bookmark?: (CFData) | null): (CFDictionary) | null { return callSDK<(CFDictionary) | null>("CoreFoundation_5d69670f0307b385", 2017897037546451, undefined, [allocator, resourcePropertiesToReturn, bookmark]); }
 
 /**
  * func CFURLCreateResourcePropertyForKeyFromBookmarkData(_ allocator: CFAllocator!, _ resourcePropertyKey: CFString!, _ bookmark: CFData!) -> Unmanaged<CFTypeRef>!
  * @availability iOS 4.0+
  */
-export function CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertyKey?: (CFString) | null, bookmark?: (CFData) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 4064736811815708, undefined, [allocator, resourcePropertyKey, bookmark]); }
+export function CFURLCreateResourcePropertyForKeyFromBookmarkData(allocator?: (CFAllocator) | null, resourcePropertyKey?: (CFString) | null, bookmark?: (CFData) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 4064736811815708, undefined, [allocator, resourcePropertyKey, bookmark]); }
 
 /**
  * func CFURLCreateStringByAddingPercentEscapes(_ allocator: CFAllocator!, _ originalString: CFString!, _ charactersToLeaveUnescaped: CFString!, _ legalURLCharactersToBeEscaped: CFString!, _ encoding: CFStringEncoding) -> CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function CFURLCreateStringByAddingPercentEscapes(allocator: (CFAllocator) | null, originalString: (CFString) | null, charactersToLeaveUnescaped: (CFString) | null, legalURLCharactersToBeEscaped: (CFString) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2396391964426027, undefined, [allocator, originalString, charactersToLeaveUnescaped, legalURLCharactersToBeEscaped, encoding]); }
+export function CFURLCreateStringByAddingPercentEscapes(allocator: (CFAllocator) | null, originalString: (CFString) | null, charactersToLeaveUnescaped: (CFString) | null, legalURLCharactersToBeEscaped: (CFString) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2396391964426027, undefined, [allocator, originalString, charactersToLeaveUnescaped, legalURLCharactersToBeEscaped, encoding]); }
 
 /** func CFURLCreateStringByReplacingPercentEscapes(_ allocator: CFAllocator!, _ originalString: CFString!, _ charactersToLeaveEscaped: CFString!) -> CFString! */
-export function CFURLCreateStringByReplacingPercentEscapes(allocator?: (CFAllocator) | null, originalString?: (CFString) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 727382610040990, undefined, [allocator, originalString, charactersToLeaveEscaped]); }
+export function CFURLCreateStringByReplacingPercentEscapes(allocator?: (CFAllocator) | null, originalString?: (CFString) | null, charactersToLeaveEscaped?: (CFString) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 727382610040990, undefined, [allocator, originalString, charactersToLeaveEscaped]); }
 
 /**
  * func CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_ allocator: CFAllocator!, _ origString: CFString!, _ charsToLeaveEscaped: CFString!, _ encoding: CFStringEncoding) -> CFString!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator: (CFAllocator) | null, origString: (CFString) | null, charsToLeaveEscaped: (CFString) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2619053383508255, undefined, [allocator, origString, charsToLeaveEscaped, encoding]); }
+export function CFURLCreateStringByReplacingPercentEscapesUsingEncoding(allocator: (CFAllocator) | null, origString: (CFString) | null, charsToLeaveEscaped: (CFString) | null, encoding: number): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2619053383508255, undefined, [allocator, origString, charsToLeaveEscaped, encoding]); }
 
 /** func CFURLCreateWithBytes(_ allocator: CFAllocator!, _ URLBytes: UnsafePointer<UInt8>!, _ length: CFIndex, _ encoding: CFStringEncoding, _ baseURL: CFURL!) -> CFURL! */
-export function CFURLCreateWithBytes(allocator: (CFAllocator) | null, URLBytes: (SDKHandle) | null, length: number, encoding: number, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 562526003715684, undefined, [allocator, URLBytes, length, encoding, baseURL]); }
+export function CFURLCreateWithBytes(allocator: (CFAllocator) | null, URLBytes: (SDKHandle) | null, length: number, encoding: number, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 562526003715684, undefined, [allocator, URLBytes, length, encoding, baseURL]); }
 
 /** func CFURLCreateWithFileSystemPath(_ allocator: CFAllocator!, _ filePath: CFString!, _ pathStyle: CFURLPathStyle, _ isDirectory: Bool) -> CFURL! */
-export function CFURLCreateWithFileSystemPath(allocator: (CFAllocator) | null, filePath: (CFString) | null, pathStyle: CFURLPathStyle, isDirectory: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1914126100056590, undefined, [allocator, filePath, pathStyle, isDirectory]); }
+export function CFURLCreateWithFileSystemPath(allocator: (CFAllocator) | null, filePath: (CFString) | null, pathStyle: CFURLPathStyle, isDirectory: boolean): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1914126100056590, undefined, [allocator, filePath, pathStyle, isDirectory]); }
 
 /** func CFURLCreateWithFileSystemPathRelativeToBase(_ allocator: CFAllocator!, _ filePath: CFString!, _ pathStyle: CFURLPathStyle, _ isDirectory: Bool, _ baseURL: CFURL!) -> CFURL! */
-export function CFURLCreateWithFileSystemPathRelativeToBase(allocator: (CFAllocator) | null, filePath: (CFString) | null, pathStyle: CFURLPathStyle, isDirectory: boolean, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 300303293147748, undefined, [allocator, filePath, pathStyle, isDirectory, baseURL]); }
+export function CFURLCreateWithFileSystemPathRelativeToBase(allocator: (CFAllocator) | null, filePath: (CFString) | null, pathStyle: CFURLPathStyle, isDirectory: boolean, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 300303293147748, undefined, [allocator, filePath, pathStyle, isDirectory, baseURL]); }
 
 /** func CFURLCreateWithString(_ allocator: CFAllocator!, _ URLString: CFString!, _ baseURL: CFURL!) -> CFURL! */
-export function CFURLCreateWithString(allocator?: (CFAllocator) | null, URLString?: (CFString) | null, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 3077105590533309, undefined, [allocator, URLString, baseURL]); }
+export function CFURLCreateWithString(allocator?: (CFAllocator) | null, URLString?: (CFString) | null, baseURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 3077105590533309, undefined, [allocator, URLString, baseURL]); }
 
 /**
  * func CFURLEnumeratorCreateForDirectoryURL(_ alloc: CFAllocator!, _ directoryURL: CFURL!, _ option: CFURLEnumeratorOptions, _ propertyKeys: CFArray!) -> CFURLEnumerator!
  * @availability iOS 4.0+
  */
-export function CFURLEnumeratorCreateForDirectoryURL(alloc: (CFAllocator) | null, directoryURL: (CFURL) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK70 { return callSDK<$SDK70>("CoreFoundation_212edf3d13b127f5", 235464585974652, undefined, [alloc, directoryURL, option, propertyKeys]); }
+export function CFURLEnumeratorCreateForDirectoryURL(alloc: (CFAllocator) | null, directoryURL: (CFURL) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK70 { return callSDK<$SDK70>("CoreFoundation_5d69670f0307b385", 235464585974652, undefined, [alloc, directoryURL, option, propertyKeys]); }
 
 /**
  * func CFURLEnumeratorCreateForMountedVolumes(_ alloc: CFAllocator!, _ option: CFURLEnumeratorOptions, _ propertyKeys: CFArray!) -> CFURLEnumerator!
  * @availability iOS 4.0+
  */
-export function CFURLEnumeratorCreateForMountedVolumes(alloc: (CFAllocator) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK70 { return callSDK<$SDK70>("CoreFoundation_212edf3d13b127f5", 1321317496834593, undefined, [alloc, option, propertyKeys]); }
+export function CFURLEnumeratorCreateForMountedVolumes(alloc: (CFAllocator) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK70 { return callSDK<$SDK70>("CoreFoundation_5d69670f0307b385", 1321317496834593, undefined, [alloc, option, propertyKeys]); }
 
 /**
  * func CFURLEnumeratorGetDescendentLevel(_ enumerator: CFURLEnumerator!) -> CFIndex
  * @availability iOS 4.0+
  */
-export function CFURLEnumeratorGetDescendentLevel(enumerator?: $SDK70): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 2476224480816767, undefined, [enumerator]); }
+export function CFURLEnumeratorGetDescendentLevel(enumerator?: $SDK70): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 2476224480816767, undefined, [enumerator]); }
 
 /**
  * func CFURLEnumeratorGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
  */
-export function CFURLEnumeratorGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4070581689984983, undefined, []); }
+export function CFURLEnumeratorGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4070581689984983, undefined, []); }
 
 /**
  * func CFURLEnumeratorSkipDescendents(_ enumerator: CFURLEnumerator!)
  * @availability iOS 4.0+
  */
-export function CFURLEnumeratorSkipDescendents(enumerator?: $SDK70): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3379595117179597, undefined, [enumerator]); }
+export function CFURLEnumeratorSkipDescendents(enumerator?: $SDK70): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3379595117179597, undefined, [enumerator]); }
 
 /** func CFURLGetBaseURL(_ anURL: CFURL!) -> CFURL! */
-export function CFURLGetBaseURL(anURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_212edf3d13b127f5", 1542823843588643, undefined, [anURL]); }
+export function CFURLGetBaseURL(anURL?: (CFURL) | null): (CFURL) | null { return callSDK<(CFURL) | null>("CoreFoundation_5d69670f0307b385", 1542823843588643, undefined, [anURL]); }
 
 /** func CFURLGetByteRangeForComponent(_ url: CFURL!, _ component: CFURLComponentType, _ rangeIncludingSeparators: UnsafeMutablePointer<CFRange>!) -> CFRange */
-export function CFURLGetByteRangeForComponent(url: (CFURL) | null, component: CFURLComponentType, rangeIncludingSeparators?: (SDKHandle) | null): CFRange { return callSDK<CFRange>("CoreFoundation_212edf3d13b127f5", 547993259276772, undefined, [url, component, rangeIncludingSeparators]); }
+export function CFURLGetByteRangeForComponent(url: (CFURL) | null, component: CFURLComponentType, rangeIncludingSeparators?: (SDKHandle) | null): CFRange { return callSDK<CFRange>("CoreFoundation_5d69670f0307b385", 547993259276772, undefined, [url, component, rangeIncludingSeparators]); }
 
 /** func CFURLGetBytes(_ url: CFURL!, _ buffer: UnsafeMutablePointer<UInt8>!, _ bufferLength: CFIndex) -> CFIndex */
-export function CFURLGetBytes(url: (CFURL) | null, buffer: (SDKHandle) | null, bufferLength: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4369023420392816, undefined, [url, buffer, bufferLength]); }
+export function CFURLGetBytes(url: (CFURL) | null, buffer: (SDKHandle) | null, bufferLength: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4369023420392816, undefined, [url, buffer, bufferLength]); }
 
 /** func CFURLGetFileSystemRepresentation(_ url: CFURL!, _ resolveAgainstBase: Bool, _ buffer: UnsafeMutablePointer<UInt8>!, _ maxBufLen: CFIndex) -> Bool */
-export function CFURLGetFileSystemRepresentation(url: (CFURL) | null, resolveAgainstBase: boolean, buffer: (SDKHandle) | null, maxBufLen: number): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4080547509953466, undefined, [url, resolveAgainstBase, buffer, maxBufLen]); }
+export function CFURLGetFileSystemRepresentation(url: (CFURL) | null, resolveAgainstBase: boolean, buffer: (SDKHandle) | null, maxBufLen: number): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4080547509953466, undefined, [url, resolveAgainstBase, buffer, maxBufLen]); }
 
 /** func CFURLGetPortNumber(_ anURL: CFURL!) -> Int32 */
-export function CFURLGetPortNumber(anURL?: (CFURL) | null): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4281243616034725, undefined, [anURL]); }
+export function CFURLGetPortNumber(anURL?: (CFURL) | null): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4281243616034725, undefined, [anURL]); }
 
 /** func CFURLGetString(_ anURL: CFURL!) -> CFString! */
-export function CFURLGetString(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3058776286549780, undefined, [anURL]); }
+export function CFURLGetString(anURL?: (CFURL) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3058776286549780, undefined, [anURL]); }
 
 /** func CFURLGetTypeID() -> CFTypeID */
-export function CFURLGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 4044372112565366, undefined, []); }
+export function CFURLGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 4044372112565366, undefined, []); }
 
 /** func CFURLHasDirectoryPath(_ anURL: CFURL!) -> Bool */
-export function CFURLHasDirectoryPath(anURL?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3695930296757037, undefined, [anURL]); }
+export function CFURLHasDirectoryPath(anURL?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3695930296757037, undefined, [anURL]); }
 
 /**
  * func CFURLIsFileReferenceURL(_ url: CFURL!) -> Bool
  * @availability iOS 7.0+
  */
-export function CFURLIsFileReferenceURL(url?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 4192593097708814, undefined, [url]); }
+export function CFURLIsFileReferenceURL(url?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 4192593097708814, undefined, [url]); }
 
 /**
  * func CFURLResourceIsReachable(_ url: CFURL!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 4.0+
  */
-export function CFURLResourceIsReachable(url?: (CFURL) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 3609144602638346, undefined, [url, null]); }
+export function CFURLResourceIsReachable(url?: (CFURL) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 3609144602638346, undefined, [url, null]); }
 
 /**
  * func CFURLSetResourcePropertiesForKeys(_ url: CFURL!, _ keyedPropertyValues: CFDictionary!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 4.0+
  */
-export function CFURLSetResourcePropertiesForKeys(url?: (CFURL) | null, keyedPropertyValues?: (CFDictionary) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 17384084999363, undefined, [url, keyedPropertyValues, null]); }
+export function CFURLSetResourcePropertiesForKeys(url?: (CFURL) | null, keyedPropertyValues?: (CFDictionary) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 17384084999363, undefined, [url, keyedPropertyValues, null]); }
 
 /**
  * func CFURLSetResourcePropertyForKey(_ url: CFURL!, _ key: CFString!, _ propertyValue: CFTypeRef!, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 4.0+
  */
-export function CFURLSetResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValue?: (unknown) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 4206471396214756, undefined, [url, key, propertyValue, null]); }
+export function CFURLSetResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValue?: (unknown) | null): { $ret: boolean; $out: { "error": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 4206471396214756, undefined, [url, key, propertyValue, null]); }
 
 /**
  * func CFURLSetTemporaryResourcePropertyForKey(_ url: CFURL!, _ key: CFString!, _ propertyValue: CFTypeRef!)
  * @availability iOS 4.0+
  */
-export function CFURLSetTemporaryResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValue?: (unknown) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3617563443849585, undefined, [url, key, propertyValue]); }
+export function CFURLSetTemporaryResourcePropertyForKey(url?: (CFURL) | null, key?: (CFString) | null, propertyValue?: (unknown) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3617563443849585, undefined, [url, key, propertyValue]); }
 
 /**
  * func CFURLStartAccessingSecurityScopedResource(_ url: CFURL!) -> Bool
  * @availability iOS 8.0+
  */
-export function CFURLStartAccessingSecurityScopedResource(url?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 1209275743234832, undefined, [url]); }
+export function CFURLStartAccessingSecurityScopedResource(url?: (CFURL) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 1209275743234832, undefined, [url]); }
 
 /**
  * func CFURLStopAccessingSecurityScopedResource(_ url: CFURL!)
  * @availability iOS 8.0+
  */
-export function CFURLStopAccessingSecurityScopedResource(url?: (CFURL) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 2581473246026712, undefined, [url]); }
+export function CFURLStopAccessingSecurityScopedResource(url?: (CFURL) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 2581473246026712, undefined, [url]); }
 
 /**
  * func CFURLWriteBookmarkDataToFile(_ bookmarkRef: CFData!, _ fileURL: CFURL!, _ options: CFURLBookmarkFileCreationOptions, _ errorRef: UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool
  * @availability iOS 5.0+
  */
-export function CFURLWriteBookmarkDataToFile(bookmarkRef: (CFData) | null, fileURL: (CFURL) | null, options: number): { $ret: boolean; $out: { "errorRef": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "errorRef": (CFError) | null } }>("CoreFoundation_212edf3d13b127f5", 722227991660779, undefined, [bookmarkRef, fileURL, options, null]); }
+export function CFURLWriteBookmarkDataToFile(bookmarkRef: (CFData) | null, fileURL: (CFURL) | null, options: number): { $ret: boolean; $out: { "errorRef": (CFError) | null } } { return callSDK<{ $ret: boolean; $out: { "errorRef": (CFError) | null } }>("CoreFoundation_5d69670f0307b385", 722227991660779, undefined, [bookmarkRef, fileURL, options, null]); }
 
 /** func CFUUIDCreate(_ alloc: CFAllocator!) -> CFUUID! */
-export function CFUUIDCreate(alloc?: (CFAllocator) | null): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_212edf3d13b127f5", 3573281047833630, undefined, [alloc]); }
+export function CFUUIDCreate(alloc?: (CFAllocator) | null): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_5d69670f0307b385", 3573281047833630, undefined, [alloc]); }
 
 /** func CFUUIDCreateFromString(_ alloc: CFAllocator!, _ uuidStr: CFString!) -> CFUUID! */
-export function CFUUIDCreateFromString(alloc?: (CFAllocator) | null, uuidStr?: (CFString) | null): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_212edf3d13b127f5", 2159125256410205, undefined, [alloc, uuidStr]); }
+export function CFUUIDCreateFromString(alloc?: (CFAllocator) | null, uuidStr?: (CFString) | null): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_5d69670f0307b385", 2159125256410205, undefined, [alloc, uuidStr]); }
 
 /** func CFUUIDCreateFromUUIDBytes(_ alloc: CFAllocator!, _ bytes: CFUUIDBytes) -> CFUUID! */
-export function CFUUIDCreateFromUUIDBytes(alloc: (CFAllocator) | null, bytes: CFUUIDBytes): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_212edf3d13b127f5", 2104541914048122, undefined, [alloc, bytes]); }
+export function CFUUIDCreateFromUUIDBytes(alloc: (CFAllocator) | null, bytes: CFUUIDBytes): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_5d69670f0307b385", 2104541914048122, undefined, [alloc, bytes]); }
 
 /** func CFUUIDCreateString(_ alloc: CFAllocator!, _ uuid: CFUUID!) -> CFString! */
-export function CFUUIDCreateString(alloc?: (CFAllocator) | null, uuid?: (CFUUID) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2828962517072174, undefined, [alloc, uuid]); }
+export function CFUUIDCreateString(alloc?: (CFAllocator) | null, uuid?: (CFUUID) | null): (CFString) | null { return callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2828962517072174, undefined, [alloc, uuid]); }
 
 /** func CFUUIDCreateWithBytes(_ alloc: CFAllocator!, _ byte0: UInt8, _ byte1: UInt8, _ byte2: UInt8, _ byte3: UInt8, _ byte4: UInt8, _ byte5: UInt8, _ byte6: UInt8, _ byte7: UInt8, _ byte8: UInt8, _ byte9: UInt8, _ byte10: UInt8, _ byte11: UInt8, _ byte12: UInt8, _ byte13: UInt8, _ byte14: UInt8, _ byte15: UInt8) -> CFUUID! */
-export function CFUUIDCreateWithBytes(alloc: (CFAllocator) | null, byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_212edf3d13b127f5", 2714758230876032, undefined, [alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15]); }
+export function CFUUIDCreateWithBytes(alloc: (CFAllocator) | null, byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_5d69670f0307b385", 2714758230876032, undefined, [alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15]); }
 
 /** func CFUUIDGetConstantUUIDWithBytes(_ alloc: CFAllocator!, _ byte0: UInt8, _ byte1: UInt8, _ byte2: UInt8, _ byte3: UInt8, _ byte4: UInt8, _ byte5: UInt8, _ byte6: UInt8, _ byte7: UInt8, _ byte8: UInt8, _ byte9: UInt8, _ byte10: UInt8, _ byte11: UInt8, _ byte12: UInt8, _ byte13: UInt8, _ byte14: UInt8, _ byte15: UInt8) -> CFUUID! */
-export function CFUUIDGetConstantUUIDWithBytes(alloc: (CFAllocator) | null, byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_212edf3d13b127f5", 2608997629346153, undefined, [alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15]); }
+export function CFUUIDGetConstantUUIDWithBytes(alloc: (CFAllocator) | null, byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): (CFUUID) | null { return callSDK<(CFUUID) | null>("CoreFoundation_5d69670f0307b385", 2608997629346153, undefined, [alloc, byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, byte9, byte10, byte11, byte12, byte13, byte14, byte15]); }
 
 /** func CFUUIDGetTypeID() -> CFTypeID */
-export function CFUUIDGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1107665967126371, undefined, []); }
+export function CFUUIDGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1107665967126371, undefined, []); }
 
 /** func CFUUIDGetUUIDBytes(_ uuid: CFUUID!) -> CFUUIDBytes */
-export function CFUUIDGetUUIDBytes(uuid?: (CFUUID) | null): CFUUIDBytes { return callSDK<CFUUIDBytes>("CoreFoundation_212edf3d13b127f5", 4417496828351042, undefined, [uuid]); }
+export function CFUUIDGetUUIDBytes(uuid?: (CFUUID) | null): CFUUIDBytes { return callSDK<CFUUIDBytes>("CoreFoundation_5d69670f0307b385", 4417496828351042, undefined, [uuid]); }
 
 /** func CFWriteStreamCanAcceptBytes(_ stream: CFWriteStream!) -> Bool */
-export function CFWriteStreamCanAcceptBytes(stream?: (CFWriteStream) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 2856237961179339, undefined, [stream]); }
+export function CFWriteStreamCanAcceptBytes(stream?: (CFWriteStream) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 2856237961179339, undefined, [stream]); }
 
 /** func CFWriteStreamClose(_ stream: CFWriteStream!) */
-export function CFWriteStreamClose(stream?: (CFWriteStream) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3918635611091033, undefined, [stream]); }
+export function CFWriteStreamClose(stream?: (CFWriteStream) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3918635611091033, undefined, [stream]); }
 
 /**
  * func CFWriteStreamCopyDispatchQueue(_ stream: CFWriteStream!) -> dispatch_queue_t!
  * @availability iOS 7.0+
  */
-export function CFWriteStreamCopyDispatchQueue(stream?: (CFWriteStream) | null): $SDK63 { return callSDK<$SDK63>("CoreFoundation_212edf3d13b127f5", 4407493083203782, undefined, [stream]); }
+export function CFWriteStreamCopyDispatchQueue(stream?: (CFWriteStream) | null): $SDK63 { return callSDK<$SDK63>("CoreFoundation_5d69670f0307b385", 4407493083203782, undefined, [stream]); }
 
 /**
  * func CFWriteStreamCopyError(_ stream: CFWriteStream!) -> CFError!
  * @availability iOS 2.0+
  */
-export function CFWriteStreamCopyError(stream?: (CFWriteStream) | null): (CFError) | null { return callSDK<(CFError) | null>("CoreFoundation_212edf3d13b127f5", 3856876202729947, undefined, [stream]); }
+export function CFWriteStreamCopyError(stream?: (CFWriteStream) | null): (CFError) | null { return callSDK<(CFError) | null>("CoreFoundation_5d69670f0307b385", 3856876202729947, undefined, [stream]); }
 
 /** func CFWriteStreamCopyProperty(_ stream: CFWriteStream!, _ propertyName: CFStreamPropertyKey!) -> CFTypeRef! */
-export function CFWriteStreamCopyProperty(stream?: (CFWriteStream) | null, propertyName?: $SDK43): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_212edf3d13b127f5", 3940490875823038, undefined, [stream, propertyName]); }
+export function CFWriteStreamCopyProperty(stream?: (CFWriteStream) | null, propertyName?: $SDK43): (unknown) | null { return callSDK<(unknown) | null>("CoreFoundation_5d69670f0307b385", 3940490875823038, undefined, [stream, propertyName]); }
 
 /** func CFWriteStreamCreateWithAllocatedBuffers(_ alloc: CFAllocator!, _ bufferAllocator: CFAllocator!) -> CFWriteStream! */
-export function CFWriteStreamCreateWithAllocatedBuffers(alloc?: (CFAllocator) | null, bufferAllocator?: (CFAllocator) | null): (CFWriteStream) | null { return callSDK<(CFWriteStream) | null>("CoreFoundation_212edf3d13b127f5", 4308587848344801, undefined, [alloc, bufferAllocator]); }
+export function CFWriteStreamCreateWithAllocatedBuffers(alloc?: (CFAllocator) | null, bufferAllocator?: (CFAllocator) | null): (CFWriteStream) | null { return callSDK<(CFWriteStream) | null>("CoreFoundation_5d69670f0307b385", 4308587848344801, undefined, [alloc, bufferAllocator]); }
 
 /** func CFWriteStreamCreateWithBuffer(_ alloc: CFAllocator!, _ buffer: UnsafeMutablePointer<UInt8>!, _ bufferCapacity: CFIndex) -> CFWriteStream! */
-export function CFWriteStreamCreateWithBuffer(alloc: (CFAllocator) | null, buffer: (SDKHandle) | null, bufferCapacity: number): (CFWriteStream) | null { return callSDK<(CFWriteStream) | null>("CoreFoundation_212edf3d13b127f5", 2029406578150875, undefined, [alloc, buffer, bufferCapacity]); }
+export function CFWriteStreamCreateWithBuffer(alloc: (CFAllocator) | null, buffer: (SDKHandle) | null, bufferCapacity: number): (CFWriteStream) | null { return callSDK<(CFWriteStream) | null>("CoreFoundation_5d69670f0307b385", 2029406578150875, undefined, [alloc, buffer, bufferCapacity]); }
 
 /** func CFWriteStreamCreateWithFile(_ alloc: CFAllocator!, _ fileURL: CFURL!) -> CFWriteStream! */
-export function CFWriteStreamCreateWithFile(alloc?: (CFAllocator) | null, fileURL?: (CFURL) | null): (CFWriteStream) | null { return callSDK<(CFWriteStream) | null>("CoreFoundation_212edf3d13b127f5", 3569128982125042, undefined, [alloc, fileURL]); }
+export function CFWriteStreamCreateWithFile(alloc?: (CFAllocator) | null, fileURL?: (CFURL) | null): (CFWriteStream) | null { return callSDK<(CFWriteStream) | null>("CoreFoundation_5d69670f0307b385", 3569128982125042, undefined, [alloc, fileURL]); }
 
 /** func CFWriteStreamGetError(_ stream: CFWriteStream!) -> CFStreamError */
-export function CFWriteStreamGetError(stream?: (CFWriteStream) | null): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_212edf3d13b127f5", 3311590590502864, undefined, [stream]); }
+export function CFWriteStreamGetError(stream?: (CFWriteStream) | null): CFStreamError { return callSDK<CFStreamError>("CoreFoundation_5d69670f0307b385", 3311590590502864, undefined, [stream]); }
 
 /** func CFWriteStreamGetStatus(_ stream: CFWriteStream!) -> CFStreamStatus */
-export function CFWriteStreamGetStatus(stream?: (CFWriteStream) | null): CFStreamStatus { return callSDK<CFStreamStatus>("CoreFoundation_212edf3d13b127f5", 2004972390400365, undefined, [stream]); }
+export function CFWriteStreamGetStatus(stream?: (CFWriteStream) | null): CFStreamStatus { return callSDK<CFStreamStatus>("CoreFoundation_5d69670f0307b385", 2004972390400365, undefined, [stream]); }
 
 /** func CFWriteStreamGetTypeID() -> CFTypeID */
-export function CFWriteStreamGetTypeID(): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 3629330906810232, undefined, []); }
+export function CFWriteStreamGetTypeID(): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 3629330906810232, undefined, []); }
 
 /** func CFWriteStreamOpen(_ stream: CFWriteStream!) -> Bool */
-export function CFWriteStreamOpen(stream?: (CFWriteStream) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 244105303510160, undefined, [stream]); }
+export function CFWriteStreamOpen(stream?: (CFWriteStream) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 244105303510160, undefined, [stream]); }
 
 /** func CFWriteStreamScheduleWithRunLoop(_ stream: CFWriteStream!, _ runLoop: CFRunLoop!, _ runLoopMode: CFRunLoopMode!) */
-export function CFWriteStreamScheduleWithRunLoop(stream?: (CFWriteStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 1826961721487787, undefined, [stream, runLoop, runLoopMode]); }
+export function CFWriteStreamScheduleWithRunLoop(stream?: (CFWriteStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 1826961721487787, undefined, [stream, runLoop, runLoopMode]); }
 
 /**
  * func CFWriteStreamSetDispatchQueue(_ stream: CFWriteStream!, _ q: dispatch_queue_t!)
  * @availability iOS 7.0+
  */
-export function CFWriteStreamSetDispatchQueue(stream?: (CFWriteStream) | null, q?: $SDK63): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3898807700695072, undefined, [stream, q]); }
+export function CFWriteStreamSetDispatchQueue(stream?: (CFWriteStream) | null, q?: $SDK63): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3898807700695072, undefined, [stream, q]); }
 
 /** func CFWriteStreamSetProperty(_ stream: CFWriteStream!, _ propertyName: CFStreamPropertyKey!, _ propertyValue: CFTypeRef!) -> Bool */
-export function CFWriteStreamSetProperty(stream?: (CFWriteStream) | null, propertyName?: $SDK43, propertyValue?: (unknown) | null): boolean { return callSDK<boolean>("CoreFoundation_212edf3d13b127f5", 3922379554601298, undefined, [stream, propertyName, propertyValue]); }
+export function CFWriteStreamSetProperty(stream?: (CFWriteStream) | null, propertyName?: $SDK43, propertyValue?: (unknown) | null): boolean { return callSDK<boolean>("CoreFoundation_5d69670f0307b385", 3922379554601298, undefined, [stream, propertyName, propertyValue]); }
 
 /** func CFWriteStreamUnscheduleFromRunLoop(_ stream: CFWriteStream!, _ runLoop: CFRunLoop!, _ runLoopMode: CFRunLoopMode!) */
-export function CFWriteStreamUnscheduleFromRunLoop(stream?: (CFWriteStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_212edf3d13b127f5", 3852265206306065, undefined, [stream, runLoop, runLoopMode]); }
+export function CFWriteStreamUnscheduleFromRunLoop(stream?: (CFWriteStream) | null, runLoop?: (CFRunLoop) | null, runLoopMode?: (CFRunLoopMode) | null): void { return callSDK<void>("CoreFoundation_5d69670f0307b385", 3852265206306065, undefined, [stream, runLoop, runLoopMode]); }
 
 /** func CFWriteStreamWrite(_ stream: CFWriteStream!, _ buffer: UnsafePointer<UInt8>!, _ bufferLength: CFIndex) -> CFIndex */
-export function CFWriteStreamWrite(stream: (CFWriteStream) | null, buffer: (SDKHandle) | null, bufferLength: number): number { return callSDK<number>("CoreFoundation_212edf3d13b127f5", 1203825722895980, undefined, [stream, buffer, bufferLength]); }
+export function CFWriteStreamWrite(stream: (CFWriteStream) | null, buffer: (SDKHandle) | null, bufferLength: number): number { return callSDK<number>("CoreFoundation_5d69670f0307b385", 1203825722895980, undefined, [stream, buffer, bufferLength]); }
 
 /** var CFByteOrderBigEndian: __CFByteOrder { get } */
-export const CFByteOrderBigEndian: SDKHandle = callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 2596959400236520, undefined, []);
+export const CFByteOrderBigEndian: SDKHandle = callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 2596959400236520, undefined, []);
 
 /** var CFByteOrderLittleEndian: __CFByteOrder { get } */
-export const CFByteOrderLittleEndian: SDKHandle = callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 1223789683980245, undefined, []);
+export const CFByteOrderLittleEndian: SDKHandle = callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 1223789683980245, undefined, []);
 
 /** var CFByteOrderUnknown: __CFByteOrder { get } */
-export const CFByteOrderUnknown: SDKHandle = callSDK<SDKHandle>("CoreFoundation_212edf3d13b127f5", 551589210204814, undefined, []);
+export const CFByteOrderUnknown: SDKHandle = callSDK<SDKHandle>("CoreFoundation_5d69670f0307b385", 551589210204814, undefined, []);
 
 /**
  * var kCFBundleExecutableArchitectureARM64: Int { get }
  * @availability iOS 14.0+
  */
-export const kCFBundleExecutableArchitectureARM64: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1684231712882798, undefined, []);
+export const kCFBundleExecutableArchitectureARM64: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1684231712882798, undefined, []);
 
 /** var kCFBundleExecutableArchitectureI386: Int { get } */
-export const kCFBundleExecutableArchitectureI386: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2561620145606573, undefined, []);
+export const kCFBundleExecutableArchitectureI386: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2561620145606573, undefined, []);
 
 /** var kCFBundleExecutableArchitecturePPC64: Int { get } */
-export const kCFBundleExecutableArchitecturePPC64: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 159011964587665, undefined, []);
+export const kCFBundleExecutableArchitecturePPC64: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 159011964587665, undefined, []);
 
 /** var kCFBundleExecutableArchitecturePPC: Int { get } */
-export const kCFBundleExecutableArchitecturePPC: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4132941906809577, undefined, []);
+export const kCFBundleExecutableArchitecturePPC: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4132941906809577, undefined, []);
 
 /** var kCFBundleExecutableArchitectureX86_64: Int { get } */
-export const kCFBundleExecutableArchitectureX86_64: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3043556459137565, undefined, []);
+export const kCFBundleExecutableArchitectureX86_64: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3043556459137565, undefined, []);
 
 /** var kCFCalendarComponentsWrap: CFOptionFlags { get } */
-export const kCFCalendarComponentsWrap: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4254161737064497, undefined, []);
+export const kCFCalendarComponentsWrap: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4254161737064497, undefined, []);
 
 /** var kCFFileDescriptorReadCallBack: CFOptionFlags { get } */
-export const kCFFileDescriptorReadCallBack: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2550660075745133, undefined, []);
+export const kCFFileDescriptorReadCallBack: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2550660075745133, undefined, []);
 
 /** var kCFFileDescriptorWriteCallBack: CFOptionFlags { get } */
-export const kCFFileDescriptorWriteCallBack: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 560482868573236, undefined, []);
+export const kCFFileDescriptorWriteCallBack: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 560482868573236, undefined, []);
 
 /** var kCFMessagePortBecameInvalidError: Int32 { get } */
-export const kCFMessagePortBecameInvalidError: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 22430355454185, undefined, []);
+export const kCFMessagePortBecameInvalidError: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 22430355454185, undefined, []);
 
 /** var kCFMessagePortIsInvalid: Int32 { get } */
-export const kCFMessagePortIsInvalid: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3453070051559482, undefined, []);
+export const kCFMessagePortIsInvalid: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3453070051559482, undefined, []);
 
 /** var kCFMessagePortReceiveTimeout: Int32 { get } */
-export const kCFMessagePortReceiveTimeout: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1927222463110942, undefined, []);
+export const kCFMessagePortReceiveTimeout: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1927222463110942, undefined, []);
 
 /** var kCFMessagePortSendTimeout: Int32 { get } */
-export const kCFMessagePortSendTimeout: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 908245431236220, undefined, []);
+export const kCFMessagePortSendTimeout: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 908245431236220, undefined, []);
 
 /** var kCFMessagePortSuccess: Int32 { get } */
-export const kCFMessagePortSuccess: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 989708723739853, undefined, []);
+export const kCFMessagePortSuccess: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 989708723739853, undefined, []);
 
 /** var kCFMessagePortTransportError: Int32 { get } */
-export const kCFMessagePortTransportError: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2605449094290780, undefined, []);
+export const kCFMessagePortTransportError: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2605449094290780, undefined, []);
 
 /** var kCFNotificationDeliverImmediately: CFOptionFlags { get } */
-export const kCFNotificationDeliverImmediately: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1498132679288961, undefined, []);
+export const kCFNotificationDeliverImmediately: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1498132679288961, undefined, []);
 
 /** var kCFNotificationPostToAllSessions: CFOptionFlags { get } */
-export const kCFNotificationPostToAllSessions: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4065356191626090, undefined, []);
+export const kCFNotificationPostToAllSessions: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4065356191626090, undefined, []);
 
 /** var kCFPropertyListReadCorruptError: CFIndex { get } */
-export const kCFPropertyListReadCorruptError: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2561334607910818, undefined, []);
+export const kCFPropertyListReadCorruptError: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2561334607910818, undefined, []);
 
 /** var kCFPropertyListReadStreamError: CFIndex { get } */
-export const kCFPropertyListReadStreamError: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2160579052036700, undefined, []);
+export const kCFPropertyListReadStreamError: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2160579052036700, undefined, []);
 
 /** var kCFPropertyListReadUnknownVersionError: CFIndex { get } */
-export const kCFPropertyListReadUnknownVersionError: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 310151540889878, undefined, []);
+export const kCFPropertyListReadUnknownVersionError: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 310151540889878, undefined, []);
 
 /** var kCFPropertyListWriteStreamError: CFIndex { get } */
-export const kCFPropertyListWriteStreamError: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2413714939523096, undefined, []);
+export const kCFPropertyListWriteStreamError: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2413714939523096, undefined, []);
 
 /** var kCFSocketAutomaticallyReenableAcceptCallBack: CFOptionFlags { get } */
-export const kCFSocketAutomaticallyReenableAcceptCallBack: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4088439128879777, undefined, []);
+export const kCFSocketAutomaticallyReenableAcceptCallBack: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4088439128879777, undefined, []);
 
 /** var kCFSocketAutomaticallyReenableDataCallBack: CFOptionFlags { get } */
-export const kCFSocketAutomaticallyReenableDataCallBack: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2055502110575493, undefined, []);
+export const kCFSocketAutomaticallyReenableDataCallBack: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2055502110575493, undefined, []);
 
 /** var kCFSocketAutomaticallyReenableReadCallBack: CFOptionFlags { get } */
-export const kCFSocketAutomaticallyReenableReadCallBack: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 523813159602619, undefined, []);
+export const kCFSocketAutomaticallyReenableReadCallBack: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 523813159602619, undefined, []);
 
 /** var kCFSocketAutomaticallyReenableWriteCallBack: CFOptionFlags { get } */
-export const kCFSocketAutomaticallyReenableWriteCallBack: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1606577725253779, undefined, []);
+export const kCFSocketAutomaticallyReenableWriteCallBack: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1606577725253779, undefined, []);
 
 /** var kCFSocketCloseOnInvalidate: CFOptionFlags { get } */
-export const kCFSocketCloseOnInvalidate: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1902626752668319, undefined, []);
+export const kCFSocketCloseOnInvalidate: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1902626752668319, undefined, []);
 
 /**
  * var kCFSocketLeaveErrors: CFOptionFlags { get }
  * @availability iOS 2.0+
  */
-export const kCFSocketLeaveErrors: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3382214006655224, undefined, []);
+export const kCFSocketLeaveErrors: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3382214006655224, undefined, []);
 
 /** var kCFStringTokenizerAttributeLanguage: CFOptionFlags { get } */
-export const kCFStringTokenizerAttributeLanguage: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4167854742584091, undefined, []);
+export const kCFStringTokenizerAttributeLanguage: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4167854742584091, undefined, []);
 
 /** var kCFStringTokenizerAttributeLatinTranscription: CFOptionFlags { get } */
-export const kCFStringTokenizerAttributeLatinTranscription: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2251495427386634, undefined, []);
+export const kCFStringTokenizerAttributeLatinTranscription: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2251495427386634, undefined, []);
 
 /** var kCFStringTokenizerUnitLineBreak: CFOptionFlags { get } */
-export const kCFStringTokenizerUnitLineBreak: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2349074541980118, undefined, []);
+export const kCFStringTokenizerUnitLineBreak: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2349074541980118, undefined, []);
 
 /** var kCFStringTokenizerUnitParagraph: CFOptionFlags { get } */
-export const kCFStringTokenizerUnitParagraph: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2935113857249538, undefined, []);
+export const kCFStringTokenizerUnitParagraph: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2935113857249538, undefined, []);
 
 /** var kCFStringTokenizerUnitSentence: CFOptionFlags { get } */
-export const kCFStringTokenizerUnitSentence: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2488100750226542, undefined, []);
+export const kCFStringTokenizerUnitSentence: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2488100750226542, undefined, []);
 
 /** var kCFStringTokenizerUnitWord: CFOptionFlags { get } */
-export const kCFStringTokenizerUnitWord: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3644220444303183, undefined, []);
+export const kCFStringTokenizerUnitWord: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3644220444303183, undefined, []);
 
 /** var kCFStringTokenizerUnitWordBoundary: CFOptionFlags { get } */
-export const kCFStringTokenizerUnitWordBoundary: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1581901695970854, undefined, []);
+export const kCFStringTokenizerUnitWordBoundary: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1581901695970854, undefined, []);
 
 /** let kCFAbsoluteTimeIntervalSince1904: CFTimeInterval */
-export const kCFAbsoluteTimeIntervalSince1904: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2611750700849285, undefined, []);
+export const kCFAbsoluteTimeIntervalSince1904: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2611750700849285, undefined, []);
 
 /** let kCFAbsoluteTimeIntervalSince1970: CFTimeInterval */
-export const kCFAbsoluteTimeIntervalSince1970: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3480487796784442, undefined, []);
+export const kCFAbsoluteTimeIntervalSince1970: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3480487796784442, undefined, []);
 
 /** let kCFAllocatorDefault: CFAllocator! */
-export const kCFAllocatorDefault: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 1567014972392618, undefined, []);
+export const kCFAllocatorDefault: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 1567014972392618, undefined, []);
 
 /** let kCFAllocatorMalloc: CFAllocator! */
-export const kCFAllocatorMalloc: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 497537852600637, undefined, []);
+export const kCFAllocatorMalloc: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 497537852600637, undefined, []);
 
 /** let kCFAllocatorMallocZone: CFAllocator! */
-export const kCFAllocatorMallocZone: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 4057749329362272, undefined, []);
+export const kCFAllocatorMallocZone: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 4057749329362272, undefined, []);
 
 /** let kCFAllocatorNull: CFAllocator! */
-export const kCFAllocatorNull: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 1271616329214648, undefined, []);
+export const kCFAllocatorNull: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 1271616329214648, undefined, []);
 
 /** let kCFAllocatorSystemDefault: CFAllocator! */
-export const kCFAllocatorSystemDefault: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_212edf3d13b127f5", 843349453820737, undefined, []);
+export const kCFAllocatorSystemDefault: (CFAllocator) | null = callSDK<(CFAllocator) | null>("CoreFoundation_5d69670f0307b385", 843349453820737, undefined, []);
 
 /** let kCFBooleanFalse: CFBoolean! */
-export const kCFBooleanFalse: (CFBoolean) | null = callSDK<(CFBoolean) | null>("CoreFoundation_212edf3d13b127f5", 1170591364749223, undefined, []);
+export const kCFBooleanFalse: (CFBoolean) | null = callSDK<(CFBoolean) | null>("CoreFoundation_5d69670f0307b385", 1170591364749223, undefined, []);
 
 /** let kCFBooleanTrue: CFBoolean! */
-export const kCFBooleanTrue: (CFBoolean) | null = callSDK<(CFBoolean) | null>("CoreFoundation_212edf3d13b127f5", 4152334638623561, undefined, []);
+export const kCFBooleanTrue: (CFBoolean) | null = callSDK<(CFBoolean) | null>("CoreFoundation_5d69670f0307b385", 4152334638623561, undefined, []);
 
 /** let kCFBundleDevelopmentRegionKey: CFString! */
-export const kCFBundleDevelopmentRegionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2341835333548416, undefined, []);
+export const kCFBundleDevelopmentRegionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2341835333548416, undefined, []);
 
 /** let kCFBundleExecutableKey: CFString! */
-export const kCFBundleExecutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1560920448597858, undefined, []);
+export const kCFBundleExecutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1560920448597858, undefined, []);
 
 /** let kCFBundleIdentifierKey: CFString! */
-export const kCFBundleIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1840242759558498, undefined, []);
+export const kCFBundleIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1840242759558498, undefined, []);
 
 /** let kCFBundleInfoDictionaryVersionKey: CFString! */
-export const kCFBundleInfoDictionaryVersionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2304628568732978, undefined, []);
+export const kCFBundleInfoDictionaryVersionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2304628568732978, undefined, []);
 
 /** let kCFBundleLocalizationsKey: CFString! */
-export const kCFBundleLocalizationsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1978169071377813, undefined, []);
+export const kCFBundleLocalizationsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1978169071377813, undefined, []);
 
 /** let kCFBundleNameKey: CFString! */
-export const kCFBundleNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3902141799804961, undefined, []);
+export const kCFBundleNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3902141799804961, undefined, []);
 
 /** let kCFBundleVersionKey: CFString! */
-export const kCFBundleVersionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3887108862842870, undefined, []);
+export const kCFBundleVersionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3887108862842870, undefined, []);
 
 /** let kCFCopyStringBagCallBacks: CFBagCallBacks */
-export const kCFCopyStringBagCallBacks: CFBagCallBacks = callSDK<CFBagCallBacks>("CoreFoundation_212edf3d13b127f5", 2918932857549563, undefined, []);
+export const kCFCopyStringBagCallBacks: CFBagCallBacks = callSDK<CFBagCallBacks>("CoreFoundation_5d69670f0307b385", 2918932857549563, undefined, []);
 
 /** let kCFCopyStringDictionaryKeyCallBacks: CFDictionaryKeyCallBacks */
-export const kCFCopyStringDictionaryKeyCallBacks: CFDictionaryKeyCallBacks = callSDK<CFDictionaryKeyCallBacks>("CoreFoundation_212edf3d13b127f5", 2527151196127852, undefined, []);
+export const kCFCopyStringDictionaryKeyCallBacks: CFDictionaryKeyCallBacks = callSDK<CFDictionaryKeyCallBacks>("CoreFoundation_5d69670f0307b385", 2527151196127852, undefined, []);
 
 /** let kCFCopyStringSetCallBacks: CFSetCallBacks */
-export const kCFCopyStringSetCallBacks: CFSetCallBacks = callSDK<CFSetCallBacks>("CoreFoundation_212edf3d13b127f5", 2537673491232874, undefined, []);
+export const kCFCopyStringSetCallBacks: CFSetCallBacks = callSDK<CFSetCallBacks>("CoreFoundation_5d69670f0307b385", 2537673491232874, undefined, []);
 
 /** let kCFCoreFoundationVersionNumber: Double */
-export const kCFCoreFoundationVersionNumber: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3730994577394581, undefined, []);
+export const kCFCoreFoundationVersionNumber: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3730994577394581, undefined, []);
 
 /**
  * let kCFErrorDescriptionKey: CFString!
  * @availability iOS 2.0+
  */
-export const kCFErrorDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3452191996694333, undefined, []);
+export const kCFErrorDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3452191996694333, undefined, []);
 
 /**
  * let kCFErrorDomainCocoa: CFErrorDomain!
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainCocoa: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2767688686156137, undefined, []);
+export const kCFErrorDomainCocoa: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2767688686156137, undefined, []);
 
 /**
  * let kCFErrorDomainMach: CFErrorDomain!
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainMach: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2785016603396603, undefined, []);
+export const kCFErrorDomainMach: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2785016603396603, undefined, []);
 
 /**
  * let kCFErrorDomainOSStatus: CFErrorDomain!
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainOSStatus: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1585463588071771, undefined, []);
+export const kCFErrorDomainOSStatus: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1585463588071771, undefined, []);
 
 /**
  * let kCFErrorDomainPOSIX: CFErrorDomain!
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainPOSIX: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4459378448824742, undefined, []);
+export const kCFErrorDomainPOSIX: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4459378448824742, undefined, []);
 
 /**
  * let kCFErrorFilePathKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFErrorFilePathKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3518977711333902, undefined, []);
+export const kCFErrorFilePathKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3518977711333902, undefined, []);
 
 /**
  * let kCFErrorLocalizedDescriptionKey: CFString!
  * @availability iOS 2.0+
  */
-export const kCFErrorLocalizedDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 150125724044156, undefined, []);
+export const kCFErrorLocalizedDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 150125724044156, undefined, []);
 
 /**
  * let kCFErrorLocalizedFailureKey: CFString!
  * @availability iOS 11.0+
  */
-export const kCFErrorLocalizedFailureKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2625195589243327, undefined, []);
+export const kCFErrorLocalizedFailureKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2625195589243327, undefined, []);
 
 /**
  * let kCFErrorLocalizedFailureReasonKey: CFString!
  * @availability iOS 2.0+
  */
-export const kCFErrorLocalizedFailureReasonKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1423311963037651, undefined, []);
+export const kCFErrorLocalizedFailureReasonKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1423311963037651, undefined, []);
 
 /**
  * let kCFErrorLocalizedRecoverySuggestionKey: CFString!
  * @availability iOS 2.0+
  */
-export const kCFErrorLocalizedRecoverySuggestionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4085394347014174, undefined, []);
+export const kCFErrorLocalizedRecoverySuggestionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4085394347014174, undefined, []);
 
 /**
  * let kCFErrorURLKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFErrorURLKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 609519641618368, undefined, []);
+export const kCFErrorURLKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 609519641618368, undefined, []);
 
 /**
  * let kCFErrorUnderlyingErrorKey: CFString!
  * @availability iOS 2.0+
  */
-export const kCFErrorUnderlyingErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1128666606827671, undefined, []);
+export const kCFErrorUnderlyingErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1128666606827671, undefined, []);
 
 /** var kCFNotFound: CFIndex { get } */
-export const kCFNotFound: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1283632333182758, undefined, []);
+export const kCFNotFound: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1283632333182758, undefined, []);
 
 /** let kCFNull: CFNull! */
-export const kCFNull: (CFNull) | null = callSDK<(CFNull) | null>("CoreFoundation_212edf3d13b127f5", 1691967193959886, undefined, []);
+export const kCFNull: (CFNull) | null = callSDK<(CFNull) | null>("CoreFoundation_5d69670f0307b385", 1691967193959886, undefined, []);
 
 /** let kCFNumberNaN: CFNumber! */
-export const kCFNumberNaN: (CFNumber) | null = callSDK<(CFNumber) | null>("CoreFoundation_212edf3d13b127f5", 916661094223457, undefined, []);
+export const kCFNumberNaN: (CFNumber) | null = callSDK<(CFNumber) | null>("CoreFoundation_5d69670f0307b385", 916661094223457, undefined, []);
 
 /** let kCFNumberNegativeInfinity: CFNumber! */
-export const kCFNumberNegativeInfinity: (CFNumber) | null = callSDK<(CFNumber) | null>("CoreFoundation_212edf3d13b127f5", 2434139176976028, undefined, []);
+export const kCFNumberNegativeInfinity: (CFNumber) | null = callSDK<(CFNumber) | null>("CoreFoundation_5d69670f0307b385", 2434139176976028, undefined, []);
 
 /** let kCFNumberPositiveInfinity: CFNumber! */
-export const kCFNumberPositiveInfinity: (CFNumber) | null = callSDK<(CFNumber) | null>("CoreFoundation_212edf3d13b127f5", 887431431664754, undefined, []);
+export const kCFNumberPositiveInfinity: (CFNumber) | null = callSDK<(CFNumber) | null>("CoreFoundation_5d69670f0307b385", 887431431664754, undefined, []);
 
 /** let kCFPlugInDynamicRegisterFunctionKey: CFString! */
-export const kCFPlugInDynamicRegisterFunctionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4434572347388010, undefined, []);
+export const kCFPlugInDynamicRegisterFunctionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4434572347388010, undefined, []);
 
 /** let kCFPlugInDynamicRegistrationKey: CFString! */
-export const kCFPlugInDynamicRegistrationKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3817022254762432, undefined, []);
+export const kCFPlugInDynamicRegistrationKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3817022254762432, undefined, []);
 
 /** let kCFPlugInFactoriesKey: CFString! */
-export const kCFPlugInFactoriesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2248034207302516, undefined, []);
+export const kCFPlugInFactoriesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2248034207302516, undefined, []);
 
 /** let kCFPlugInTypesKey: CFString! */
-export const kCFPlugInTypesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2866357818506204, undefined, []);
+export const kCFPlugInTypesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2866357818506204, undefined, []);
 
 /** let kCFPlugInUnloadFunctionKey: CFString! */
-export const kCFPlugInUnloadFunctionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 664870734756004, undefined, []);
+export const kCFPlugInUnloadFunctionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 664870734756004, undefined, []);
 
 /** let kCFPreferencesAnyApplication: CFString */
-export const kCFPreferencesAnyApplication: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 2594364304995857, undefined, []);
+export const kCFPreferencesAnyApplication: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 2594364304995857, undefined, []);
 
 /** let kCFPreferencesAnyHost: CFString */
-export const kCFPreferencesAnyHost: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 1287892976490351, undefined, []);
+export const kCFPreferencesAnyHost: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 1287892976490351, undefined, []);
 
 /** let kCFPreferencesAnyUser: CFString */
-export const kCFPreferencesAnyUser: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 908234476211765, undefined, []);
+export const kCFPreferencesAnyUser: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 908234476211765, undefined, []);
 
 /** let kCFPreferencesCurrentApplication: CFString */
-export const kCFPreferencesCurrentApplication: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 3823772597793417, undefined, []);
+export const kCFPreferencesCurrentApplication: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 3823772597793417, undefined, []);
 
 /** let kCFPreferencesCurrentHost: CFString */
-export const kCFPreferencesCurrentHost: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 1330398538402119, undefined, []);
+export const kCFPreferencesCurrentHost: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 1330398538402119, undefined, []);
 
 /** let kCFPreferencesCurrentUser: CFString */
-export const kCFPreferencesCurrentUser: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 3241356540979936, undefined, []);
+export const kCFPreferencesCurrentUser: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 3241356540979936, undefined, []);
 
 /** let kCFSocketCommandKey: CFString! */
-export const kCFSocketCommandKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3464187316435919, undefined, []);
+export const kCFSocketCommandKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3464187316435919, undefined, []);
 
 /** let kCFSocketErrorKey: CFString! */
-export const kCFSocketErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3781322893674573, undefined, []);
+export const kCFSocketErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3781322893674573, undefined, []);
 
 /** let kCFSocketNameKey: CFString! */
-export const kCFSocketNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3569181715910120, undefined, []);
+export const kCFSocketNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3569181715910120, undefined, []);
 
 /** let kCFSocketRegisterCommand: CFString! */
-export const kCFSocketRegisterCommand: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3472505031342006, undefined, []);
+export const kCFSocketRegisterCommand: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3472505031342006, undefined, []);
 
 /** let kCFSocketResultKey: CFString! */
-export const kCFSocketResultKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2528730012294344, undefined, []);
+export const kCFSocketResultKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2528730012294344, undefined, []);
 
 /** let kCFSocketRetrieveCommand: CFString! */
-export const kCFSocketRetrieveCommand: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3542528226732149, undefined, []);
+export const kCFSocketRetrieveCommand: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3542528226732149, undefined, []);
 
 /** let kCFSocketValueKey: CFString! */
-export const kCFSocketValueKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2765690301001302, undefined, []);
+export const kCFSocketValueKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2765690301001302, undefined, []);
 
 /**
  * let kCFStreamErrorDomainSOCKS: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainSOCKS: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 164053922095610, undefined, []);
+export const kCFStreamErrorDomainSOCKS: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 164053922095610, undefined, []);
 
 /**
  * let kCFStreamErrorDomainSSL: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainSSL: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 189377195063441, undefined, []);
+export const kCFStreamErrorDomainSSL: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 189377195063441, undefined, []);
 
 /**
  * let kCFStreamPropertySOCKSPassword: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySOCKSPassword: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 3041813496207956, undefined, []);
+export const kCFStreamPropertySOCKSPassword: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 3041813496207956, undefined, []);
 
 /**
  * let kCFStreamPropertySOCKSProxy: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySOCKSProxy: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 4377741994504755, undefined, []);
+export const kCFStreamPropertySOCKSProxy: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 4377741994504755, undefined, []);
 
 /**
  * let kCFStreamPropertySOCKSProxyHost: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySOCKSProxyHost: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 1932863574524131, undefined, []);
+export const kCFStreamPropertySOCKSProxyHost: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 1932863574524131, undefined, []);
 
 /**
  * let kCFStreamPropertySOCKSProxyPort: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySOCKSProxyPort: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 584161524161281, undefined, []);
+export const kCFStreamPropertySOCKSProxyPort: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 584161524161281, undefined, []);
 
 /**
  * let kCFStreamPropertySOCKSUser: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySOCKSUser: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 373832041124744, undefined, []);
+export const kCFStreamPropertySOCKSUser: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 373832041124744, undefined, []);
 
 /**
  * let kCFStreamPropertySOCKSVersion: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySOCKSVersion: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 685474348384296, undefined, []);
+export const kCFStreamPropertySOCKSVersion: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 685474348384296, undefined, []);
 
 /**
  * let kCFStreamPropertyShouldCloseNativeSocket: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertyShouldCloseNativeSocket: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 262310905180010, undefined, []);
+export const kCFStreamPropertyShouldCloseNativeSocket: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 262310905180010, undefined, []);
 
 /**
  * let kCFStreamPropertySocketSecurityLevel: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySocketSecurityLevel: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 3441892184570953, undefined, []);
+export const kCFStreamPropertySocketSecurityLevel: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 3441892184570953, undefined, []);
 
 /**
  * let kCFStreamSocketSOCKSVersion4: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSocketSOCKSVersion4: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 3567977770408521, undefined, []);
+export const kCFStreamSocketSOCKSVersion4: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 3567977770408521, undefined, []);
 
 /**
  * let kCFStreamSocketSOCKSVersion5: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSocketSOCKSVersion5: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 4106697701227142, undefined, []);
+export const kCFStreamSocketSOCKSVersion5: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 4106697701227142, undefined, []);
 
 /**
  * let kCFStreamSocketSecurityLevelNegotiatedSSL: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSocketSecurityLevelNegotiatedSSL: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 4678757306038, undefined, []);
+export const kCFStreamSocketSecurityLevelNegotiatedSSL: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 4678757306038, undefined, []);
 
 /**
  * let kCFStreamSocketSecurityLevelNone: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSocketSecurityLevelNone: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 2148626973785408, undefined, []);
+export const kCFStreamSocketSecurityLevelNone: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 2148626973785408, undefined, []);
 
 /**
  * let kCFStreamSocketSecurityLevelSSLv2: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 10.0
  */
-export const kCFStreamSocketSecurityLevelSSLv2: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 2344415468961895, undefined, []);
+export const kCFStreamSocketSecurityLevelSSLv2: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 2344415468961895, undefined, []);
 
 /**
  * let kCFStreamSocketSecurityLevelSSLv3: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 10.0
  */
-export const kCFStreamSocketSecurityLevelSSLv3: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 2394952271483858, undefined, []);
+export const kCFStreamSocketSecurityLevelSSLv3: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 2394952271483858, undefined, []);
 
 /**
  * let kCFStreamSocketSecurityLevelTLSv1: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSocketSecurityLevelTLSv1: CFString = callSDK<CFString>("CoreFoundation_212edf3d13b127f5", 2116459818301377, undefined, []);
+export const kCFStreamSocketSecurityLevelTLSv1: CFString = callSDK<CFString>("CoreFoundation_5d69670f0307b385", 2116459818301377, undefined, []);
 
 /** let kCFStringBinaryHeapCallBacks: CFBinaryHeapCallBacks */
-export const kCFStringBinaryHeapCallBacks: CFBinaryHeapCallBacks = callSDK<CFBinaryHeapCallBacks>("CoreFoundation_212edf3d13b127f5", 683425385988754, undefined, []);
+export const kCFStringBinaryHeapCallBacks: CFBinaryHeapCallBacks = callSDK<CFBinaryHeapCallBacks>("CoreFoundation_5d69670f0307b385", 683425385988754, undefined, []);
 
 /** let kCFStringTransformFullwidthHalfwidth: CFString! */
-export const kCFStringTransformFullwidthHalfwidth: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3825014493862599, undefined, []);
+export const kCFStringTransformFullwidthHalfwidth: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3825014493862599, undefined, []);
 
 /** let kCFStringTransformHiraganaKatakana: CFString! */
-export const kCFStringTransformHiraganaKatakana: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3101268999085285, undefined, []);
+export const kCFStringTransformHiraganaKatakana: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3101268999085285, undefined, []);
 
 /** let kCFStringTransformLatinArabic: CFString! */
-export const kCFStringTransformLatinArabic: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4003862322725179, undefined, []);
+export const kCFStringTransformLatinArabic: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4003862322725179, undefined, []);
 
 /** let kCFStringTransformLatinCyrillic: CFString! */
-export const kCFStringTransformLatinCyrillic: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2281381710367003, undefined, []);
+export const kCFStringTransformLatinCyrillic: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2281381710367003, undefined, []);
 
 /** let kCFStringTransformLatinGreek: CFString! */
-export const kCFStringTransformLatinGreek: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1501027053682380, undefined, []);
+export const kCFStringTransformLatinGreek: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1501027053682380, undefined, []);
 
 /** let kCFStringTransformLatinHangul: CFString! */
-export const kCFStringTransformLatinHangul: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1664344233108420, undefined, []);
+export const kCFStringTransformLatinHangul: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1664344233108420, undefined, []);
 
 /** let kCFStringTransformLatinHebrew: CFString! */
-export const kCFStringTransformLatinHebrew: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2803135884936618, undefined, []);
+export const kCFStringTransformLatinHebrew: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2803135884936618, undefined, []);
 
 /** let kCFStringTransformLatinHiragana: CFString! */
-export const kCFStringTransformLatinHiragana: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2106150433872611, undefined, []);
+export const kCFStringTransformLatinHiragana: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2106150433872611, undefined, []);
 
 /** let kCFStringTransformLatinKatakana: CFString! */
-export const kCFStringTransformLatinKatakana: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4056322064323826, undefined, []);
+export const kCFStringTransformLatinKatakana: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4056322064323826, undefined, []);
 
 /** let kCFStringTransformLatinThai: CFString! */
-export const kCFStringTransformLatinThai: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2969156736283699, undefined, []);
+export const kCFStringTransformLatinThai: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2969156736283699, undefined, []);
 
 /** let kCFStringTransformMandarinLatin: CFString! */
-export const kCFStringTransformMandarinLatin: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1912815400250197, undefined, []);
+export const kCFStringTransformMandarinLatin: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1912815400250197, undefined, []);
 
 /** let kCFStringTransformStripCombiningMarks: CFString! */
-export const kCFStringTransformStripCombiningMarks: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2080818593137210, undefined, []);
+export const kCFStringTransformStripCombiningMarks: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2080818593137210, undefined, []);
 
 /**
  * let kCFStringTransformStripDiacritics: CFString!
  * @availability iOS 2.0+
  */
-export const kCFStringTransformStripDiacritics: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4434639780926340, undefined, []);
+export const kCFStringTransformStripDiacritics: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4434639780926340, undefined, []);
 
 /** let kCFStringTransformToLatin: CFString! */
-export const kCFStringTransformToLatin: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2233249219856271, undefined, []);
+export const kCFStringTransformToLatin: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2233249219856271, undefined, []);
 
 /** let kCFStringTransformToUnicodeName: CFString! */
-export const kCFStringTransformToUnicodeName: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3367811468223341, undefined, []);
+export const kCFStringTransformToUnicodeName: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3367811468223341, undefined, []);
 
 /** let kCFStringTransformToXMLHex: CFString! */
-export const kCFStringTransformToXMLHex: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 337736020474186, undefined, []);
+export const kCFStringTransformToXMLHex: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 337736020474186, undefined, []);
 
 /** let kCFTypeArrayCallBacks: CFArrayCallBacks */
-export const kCFTypeArrayCallBacks: CFArrayCallBacks = callSDK<CFArrayCallBacks>("CoreFoundation_212edf3d13b127f5", 2908012933970829, undefined, []);
+export const kCFTypeArrayCallBacks: CFArrayCallBacks = callSDK<CFArrayCallBacks>("CoreFoundation_5d69670f0307b385", 2908012933970829, undefined, []);
 
 /** let kCFTypeBagCallBacks: CFBagCallBacks */
-export const kCFTypeBagCallBacks: CFBagCallBacks = callSDK<CFBagCallBacks>("CoreFoundation_212edf3d13b127f5", 2484241116175609, undefined, []);
+export const kCFTypeBagCallBacks: CFBagCallBacks = callSDK<CFBagCallBacks>("CoreFoundation_5d69670f0307b385", 2484241116175609, undefined, []);
 
 /** let kCFTypeDictionaryKeyCallBacks: CFDictionaryKeyCallBacks */
-export const kCFTypeDictionaryKeyCallBacks: CFDictionaryKeyCallBacks = callSDK<CFDictionaryKeyCallBacks>("CoreFoundation_212edf3d13b127f5", 1185794856201217, undefined, []);
+export const kCFTypeDictionaryKeyCallBacks: CFDictionaryKeyCallBacks = callSDK<CFDictionaryKeyCallBacks>("CoreFoundation_5d69670f0307b385", 1185794856201217, undefined, []);
 
 /** let kCFTypeDictionaryValueCallBacks: CFDictionaryValueCallBacks */
-export const kCFTypeDictionaryValueCallBacks: CFDictionaryValueCallBacks = callSDK<CFDictionaryValueCallBacks>("CoreFoundation_212edf3d13b127f5", 811653049431203, undefined, []);
+export const kCFTypeDictionaryValueCallBacks: CFDictionaryValueCallBacks = callSDK<CFDictionaryValueCallBacks>("CoreFoundation_5d69670f0307b385", 811653049431203, undefined, []);
 
 /** let kCFTypeSetCallBacks: CFSetCallBacks */
-export const kCFTypeSetCallBacks: CFSetCallBacks = callSDK<CFSetCallBacks>("CoreFoundation_212edf3d13b127f5", 1801922247902404, undefined, []);
+export const kCFTypeSetCallBacks: CFSetCallBacks = callSDK<CFSetCallBacks>("CoreFoundation_5d69670f0307b385", 1801922247902404, undefined, []);
 
 /**
  * let kCFURLAddedToDirectoryDateKey: CFString!
  * @availability iOS 8.0+
  */
-export const kCFURLAddedToDirectoryDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2325890308237420, undefined, []);
+export const kCFURLAddedToDirectoryDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2325890308237420, undefined, []);
 
 /**
  * let kCFURLAttributeModificationDateKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLAttributeModificationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3976541443726482, undefined, []);
+export const kCFURLAttributeModificationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3976541443726482, undefined, []);
 
 /**
  * let kCFURLCanonicalPathKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLCanonicalPathKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3436145490966579, undefined, []);
+export const kCFURLCanonicalPathKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3436145490966579, undefined, []);
 
 /**
  * let kCFURLContentAccessDateKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLContentAccessDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1959910836176886, undefined, []);
+export const kCFURLContentAccessDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1959910836176886, undefined, []);
 
 /**
  * let kCFURLContentModificationDateKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLContentModificationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1948328981470367, undefined, []);
+export const kCFURLContentModificationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1948328981470367, undefined, []);
 
 /**
  * let kCFURLCreationDateKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLCreationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1074033053762027, undefined, []);
+export const kCFURLCreationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1074033053762027, undefined, []);
 
 /**
  * let kCFURLCustomIconKey: CFString!
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const kCFURLCustomIconKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3344736096189174, undefined, []);
+export const kCFURLCustomIconKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3344736096189174, undefined, []);
 
 /**
  * let kCFURLDirectoryEntryCountKey: CFString!
  * @availability iOS 17.0+
  */
-export const kCFURLDirectoryEntryCountKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2645697105138253, undefined, []);
+export const kCFURLDirectoryEntryCountKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2645697105138253, undefined, []);
 
 /**
  * let kCFURLDocumentIdentifierKey: CFString!
  * @availability iOS 8.0+
  */
-export const kCFURLDocumentIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2918588426744955, undefined, []);
+export const kCFURLDocumentIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2918588426744955, undefined, []);
 
 /**
  * let kCFURLEffectiveIconKey: CFString!
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const kCFURLEffectiveIconKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1531250417231743, undefined, []);
+export const kCFURLEffectiveIconKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1531250417231743, undefined, []);
 
 /**
  * let kCFURLFileAllocatedSizeKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLFileAllocatedSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3922940870584564, undefined, []);
+export const kCFURLFileAllocatedSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3922940870584564, undefined, []);
 
 /**
  * let kCFURLFileContentIdentifierKey: CFString!
  * @availability iOS 14.0+
  */
-export const kCFURLFileContentIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2511294529924597, undefined, []);
+export const kCFURLFileContentIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2511294529924597, undefined, []);
 
 /**
  * let kCFURLFileIdentifierKey: CFString!
  * @availability iOS 16.4+
  */
-export const kCFURLFileIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2280068850728871, undefined, []);
+export const kCFURLFileIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2280068850728871, undefined, []);
 
 /**
  * let kCFURLFileProtectionComplete: CFString!
  * @availability iOS 9.0+
  */
-export const kCFURLFileProtectionComplete: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3287323009408598, undefined, []);
+export const kCFURLFileProtectionComplete: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3287323009408598, undefined, []);
 
 /**
  * let kCFURLFileProtectionCompleteUnlessOpen: CFString!
  * @availability iOS 9.0+
  */
-export const kCFURLFileProtectionCompleteUnlessOpen: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2280227492149368, undefined, []);
+export const kCFURLFileProtectionCompleteUnlessOpen: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2280227492149368, undefined, []);
 
 /**
  * let kCFURLFileProtectionCompleteUntilFirstUserAuthentication: CFString!
  * @availability iOS 9.0+
  */
-export const kCFURLFileProtectionCompleteUntilFirstUserAuthentication: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4429971552127326, undefined, []);
+export const kCFURLFileProtectionCompleteUntilFirstUserAuthentication: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4429971552127326, undefined, []);
 
 /**
  * let kCFURLFileProtectionCompleteWhenUserInactive: CFString!
  * @availability iOS 17.0+
  */
-export const kCFURLFileProtectionCompleteWhenUserInactive: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2452347888272787, undefined, []);
+export const kCFURLFileProtectionCompleteWhenUserInactive: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2452347888272787, undefined, []);
 
 /**
  * let kCFURLFileProtectionKey: CFString!
  * @availability iOS 9.0+
  */
-export const kCFURLFileProtectionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2679673804877388, undefined, []);
+export const kCFURLFileProtectionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2679673804877388, undefined, []);
 
 /**
  * let kCFURLFileProtectionNone: CFString!
  * @availability iOS 9.0+
  */
-export const kCFURLFileProtectionNone: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 738049315804002, undefined, []);
+export const kCFURLFileProtectionNone: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 738049315804002, undefined, []);
 
 /**
  * let kCFURLFileResourceIdentifierKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2230997991518688, undefined, []);
+export const kCFURLFileResourceIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2230997991518688, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeBlockSpecial: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeBlockSpecial: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1040245370941043, undefined, []);
+export const kCFURLFileResourceTypeBlockSpecial: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1040245370941043, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeCharacterSpecial: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeCharacterSpecial: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3536827440929177, undefined, []);
+export const kCFURLFileResourceTypeCharacterSpecial: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3536827440929177, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeDirectory: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeDirectory: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2900561583378799, undefined, []);
+export const kCFURLFileResourceTypeDirectory: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2900561583378799, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 681870798094572, undefined, []);
+export const kCFURLFileResourceTypeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 681870798094572, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeNamedPipe: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeNamedPipe: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3174891079452643, undefined, []);
+export const kCFURLFileResourceTypeNamedPipe: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3174891079452643, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeRegular: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeRegular: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2396117165750432, undefined, []);
+export const kCFURLFileResourceTypeRegular: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2396117165750432, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeSocket: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeSocket: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1469480227159678, undefined, []);
+export const kCFURLFileResourceTypeSocket: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1469480227159678, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeSymbolicLink: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeSymbolicLink: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3158055700238315, undefined, []);
+export const kCFURLFileResourceTypeSymbolicLink: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3158055700238315, undefined, []);
 
 /**
  * let kCFURLFileResourceTypeUnknown: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileResourceTypeUnknown: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4052273125044871, undefined, []);
+export const kCFURLFileResourceTypeUnknown: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4052273125044871, undefined, []);
 
 /**
  * let kCFURLFileSecurityKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLFileSecurityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3788936719096274, undefined, []);
+export const kCFURLFileSecurityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3788936719096274, undefined, []);
 
 /**
  * let kCFURLFileSizeKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLFileSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3242025411642281, undefined, []);
+export const kCFURLFileSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3242025411642281, undefined, []);
 
 /**
  * let kCFURLGenerationIdentifierKey: CFString!
  * @availability iOS 8.0+
  */
-export const kCFURLGenerationIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 222110339524834, undefined, []);
+export const kCFURLGenerationIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 222110339524834, undefined, []);
 
 /**
  * let kCFURLHasHiddenExtensionKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLHasHiddenExtensionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3247419771070994, undefined, []);
+export const kCFURLHasHiddenExtensionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3247419771070994, undefined, []);
 
 /**
  * let kCFURLIsAliasFileKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsAliasFileKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2272655453113368, undefined, []);
+export const kCFURLIsAliasFileKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2272655453113368, undefined, []);
 
 /**
  * let kCFURLIsApplicationKey: CFString!
  * @availability iOS 9.0+
  */
-export const kCFURLIsApplicationKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 227526470115696, undefined, []);
+export const kCFURLIsApplicationKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 227526470115696, undefined, []);
 
 /**
  * let kCFURLIsDirectoryKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsDirectoryKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 837805398276403, undefined, []);
+export const kCFURLIsDirectoryKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 837805398276403, undefined, []);
 
 /**
  * let kCFURLIsExcludedFromBackupKey: CFString!
  * @availability iOS 5.1+
  */
-export const kCFURLIsExcludedFromBackupKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3525677642893507, undefined, []);
+export const kCFURLIsExcludedFromBackupKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3525677642893507, undefined, []);
 
 /**
  * let kCFURLIsExecutableKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLIsExecutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 652409794206959, undefined, []);
+export const kCFURLIsExecutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 652409794206959, undefined, []);
 
 /**
  * let kCFURLIsHiddenKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsHiddenKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1240941400846704, undefined, []);
+export const kCFURLIsHiddenKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1240941400846704, undefined, []);
 
 /**
  * let kCFURLIsMountTriggerKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsMountTriggerKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2623840317485049, undefined, []);
+export const kCFURLIsMountTriggerKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2623840317485049, undefined, []);
 
 /**
  * let kCFURLIsPackageKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsPackageKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1425998954410611, undefined, []);
+export const kCFURLIsPackageKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1425998954410611, undefined, []);
 
 /**
  * let kCFURLIsPurgeableKey: CFString!
  * @availability iOS 14.0+
  */
-export const kCFURLIsPurgeableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 813577957487445, undefined, []);
+export const kCFURLIsPurgeableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 813577957487445, undefined, []);
 
 /**
  * let kCFURLIsReadableKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLIsReadableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1038689566524791, undefined, []);
+export const kCFURLIsReadableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1038689566524791, undefined, []);
 
 /**
  * let kCFURLIsRegularFileKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsRegularFileKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 237335470884520, undefined, []);
+export const kCFURLIsRegularFileKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 237335470884520, undefined, []);
 
 /**
  * let kCFURLIsSparseKey: CFString!
  * @availability iOS 14.0+
  */
-export const kCFURLIsSparseKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3424115207014342, undefined, []);
+export const kCFURLIsSparseKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3424115207014342, undefined, []);
 
 /**
  * let kCFURLIsSymbolicLinkKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsSymbolicLinkKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3343734769532345, undefined, []);
+export const kCFURLIsSymbolicLinkKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3343734769532345, undefined, []);
 
 /**
  * let kCFURLIsSystemImmutableKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsSystemImmutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2330213063513714, undefined, []);
+export const kCFURLIsSystemImmutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2330213063513714, undefined, []);
 
 /**
  * let kCFURLIsUbiquitousItemKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLIsUbiquitousItemKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2120206173561012, undefined, []);
+export const kCFURLIsUbiquitousItemKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2120206173561012, undefined, []);
 
 /**
  * let kCFURLIsUserImmutableKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsUserImmutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4373182296247515, undefined, []);
+export const kCFURLIsUserImmutableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4373182296247515, undefined, []);
 
 /**
  * let kCFURLIsVolumeKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLIsVolumeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2300124513309691, undefined, []);
+export const kCFURLIsVolumeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2300124513309691, undefined, []);
 
 /**
  * let kCFURLIsWritableKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLIsWritableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1071613801816211, undefined, []);
+export const kCFURLIsWritableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1071613801816211, undefined, []);
 
 /**
  * let kCFURLKeysOfUnsetValuesKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLKeysOfUnsetValuesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 995602961046690, undefined, []);
+export const kCFURLKeysOfUnsetValuesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 995602961046690, undefined, []);
 
 /**
  * let kCFURLLabelColorKey: CFString!
  * @availability iOS 4.0+
  * @deprecated iOS 10.0
  */
-export const kCFURLLabelColorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3709557733017389, undefined, []);
+export const kCFURLLabelColorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3709557733017389, undefined, []);
 
 /**
  * let kCFURLLabelNumberKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLLabelNumberKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1607307158675985, undefined, []);
+export const kCFURLLabelNumberKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1607307158675985, undefined, []);
 
 /**
  * let kCFURLLinkCountKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLLinkCountKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3988162157712596, undefined, []);
+export const kCFURLLinkCountKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3988162157712596, undefined, []);
 
 /**
  * let kCFURLLocalizedLabelKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLLocalizedLabelKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3211118530602777, undefined, []);
+export const kCFURLLocalizedLabelKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3211118530602777, undefined, []);
 
 /**
  * let kCFURLLocalizedNameKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLLocalizedNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2214931248343755, undefined, []);
+export const kCFURLLocalizedNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2214931248343755, undefined, []);
 
 /**
  * let kCFURLLocalizedTypeDescriptionKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLLocalizedTypeDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2593211071105204, undefined, []);
+export const kCFURLLocalizedTypeDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2593211071105204, undefined, []);
 
 /**
  * let kCFURLMayHaveExtendedAttributesKey: CFString!
  * @availability iOS 14.0+
  */
-export const kCFURLMayHaveExtendedAttributesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1212416913357684, undefined, []);
+export const kCFURLMayHaveExtendedAttributesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1212416913357684, undefined, []);
 
 /**
  * let kCFURLMayShareFileContentKey: CFString!
  * @availability iOS 14.0+
  */
-export const kCFURLMayShareFileContentKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4152355082049016, undefined, []);
+export const kCFURLMayShareFileContentKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4152355082049016, undefined, []);
 
 /**
  * let kCFURLNameKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1468565425725600, undefined, []);
+export const kCFURLNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1468565425725600, undefined, []);
 
 /**
  * let kCFURLParentDirectoryURLKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLParentDirectoryURLKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3575949130723730, undefined, []);
+export const kCFURLParentDirectoryURLKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3575949130723730, undefined, []);
 
 /**
  * let kCFURLPathKey: CFString!
  * @availability iOS 6.0+
  */
-export const kCFURLPathKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1740773351525557, undefined, []);
+export const kCFURLPathKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1740773351525557, undefined, []);
 
 /**
  * let kCFURLPreferredIOBlockSizeKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLPreferredIOBlockSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3974767718697873, undefined, []);
+export const kCFURLPreferredIOBlockSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3974767718697873, undefined, []);
 
 /**
  * let kCFURLTotalFileAllocatedSizeKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLTotalFileAllocatedSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4062646229094636, undefined, []);
+export const kCFURLTotalFileAllocatedSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4062646229094636, undefined, []);
 
 /**
  * let kCFURLTotalFileSizeKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLTotalFileSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3428168774672125, undefined, []);
+export const kCFURLTotalFileSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3428168774672125, undefined, []);
 
 /**
  * let kCFURLTypeIdentifierKey: CFString!
  * @availability iOS 4.0+
  * @deprecated iOS 100000.0
  */
-export const kCFURLTypeIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 331317528897893, undefined, []);
+export const kCFURLTypeIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 331317528897893, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemDownloadingErrorKey: CFString!
  * @availability iOS 7.0+
  */
-export const kCFURLUbiquitousItemDownloadingErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3308443658208799, undefined, []);
+export const kCFURLUbiquitousItemDownloadingErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3308443658208799, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemDownloadingStatusCurrent: CFString!
  * @availability iOS 7.0+
  */
-export const kCFURLUbiquitousItemDownloadingStatusCurrent: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1503509189221859, undefined, []);
+export const kCFURLUbiquitousItemDownloadingStatusCurrent: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1503509189221859, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemDownloadingStatusDownloaded: CFString!
  * @availability iOS 7.0+
  */
-export const kCFURLUbiquitousItemDownloadingStatusDownloaded: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1590705658683308, undefined, []);
+export const kCFURLUbiquitousItemDownloadingStatusDownloaded: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1590705658683308, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemDownloadingStatusKey: CFString!
  * @availability iOS 7.0+
  */
-export const kCFURLUbiquitousItemDownloadingStatusKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3905306042968552, undefined, []);
+export const kCFURLUbiquitousItemDownloadingStatusKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3905306042968552, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemDownloadingStatusNotDownloaded: CFString!
  * @availability iOS 7.0+
  */
-export const kCFURLUbiquitousItemDownloadingStatusNotDownloaded: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 248553527096283, undefined, []);
+export const kCFURLUbiquitousItemDownloadingStatusNotDownloaded: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 248553527096283, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemHasUnresolvedConflictsKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLUbiquitousItemHasUnresolvedConflictsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2059525692348517, undefined, []);
+export const kCFURLUbiquitousItemHasUnresolvedConflictsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2059525692348517, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemIsDownloadingKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLUbiquitousItemIsDownloadingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2155045923363113, undefined, []);
+export const kCFURLUbiquitousItemIsDownloadingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2155045923363113, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemIsExcludedFromSyncKey: CFString!
  * @availability iOS 14.5+
  */
-export const kCFURLUbiquitousItemIsExcludedFromSyncKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2658055733936961, undefined, []);
+export const kCFURLUbiquitousItemIsExcludedFromSyncKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2658055733936961, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemIsSyncPausedKey: CFString!
  * @availability iOS 26.0+
  */
-export const kCFURLUbiquitousItemIsSyncPausedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2182956694304258, undefined, []);
+export const kCFURLUbiquitousItemIsSyncPausedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2182956694304258, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemIsUploadedKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLUbiquitousItemIsUploadedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3876022539263207, undefined, []);
+export const kCFURLUbiquitousItemIsUploadedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3876022539263207, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemIsUploadingKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLUbiquitousItemIsUploadingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 780311428227141, undefined, []);
+export const kCFURLUbiquitousItemIsUploadingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 780311428227141, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemSupportedSyncControlsKey: CFString!
  * @availability iOS 26.0+
  */
-export const kCFURLUbiquitousItemSupportedSyncControlsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3871031862112968, undefined, []);
+export const kCFURLUbiquitousItemSupportedSyncControlsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3871031862112968, undefined, []);
 
 /**
  * let kCFURLUbiquitousItemUploadingErrorKey: CFString!
  * @availability iOS 7.0+
  */
-export const kCFURLUbiquitousItemUploadingErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2845784312093047, undefined, []);
+export const kCFURLUbiquitousItemUploadingErrorKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2845784312093047, undefined, []);
 
 /**
  * let kCFURLVolumeAvailableCapacityForImportantUsageKey: CFString!
  * @availability iOS 11.0+
  */
-export const kCFURLVolumeAvailableCapacityForImportantUsageKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 949465798128816, undefined, []);
+export const kCFURLVolumeAvailableCapacityForImportantUsageKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 949465798128816, undefined, []);
 
 /**
  * let kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: CFString!
  * @availability iOS 11.0+
  */
-export const kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1741050202453253, undefined, []);
+export const kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1741050202453253, undefined, []);
 
 /**
  * let kCFURLVolumeAvailableCapacityKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeAvailableCapacityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2234423717680400, undefined, []);
+export const kCFURLVolumeAvailableCapacityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2234423717680400, undefined, []);
 
 /**
  * let kCFURLVolumeCreationDateKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeCreationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3480041342166858, undefined, []);
+export const kCFURLVolumeCreationDateKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3480041342166858, undefined, []);
 
 /**
  * let kCFURLVolumeIdentifierKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 71871373435191, undefined, []);
+export const kCFURLVolumeIdentifierKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 71871373435191, undefined, []);
 
 /**
  * let kCFURLVolumeIsAutomountedKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsAutomountedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 465504176616244, undefined, []);
+export const kCFURLVolumeIsAutomountedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 465504176616244, undefined, []);
 
 /**
  * let kCFURLVolumeIsBrowsableKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsBrowsableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1770549499563278, undefined, []);
+export const kCFURLVolumeIsBrowsableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1770549499563278, undefined, []);
 
 /**
  * let kCFURLVolumeIsEjectableKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsEjectableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4353585221557759, undefined, []);
+export const kCFURLVolumeIsEjectableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4353585221557759, undefined, []);
 
 /**
  * let kCFURLVolumeIsEncryptedKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLVolumeIsEncryptedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3860271661816828, undefined, []);
+export const kCFURLVolumeIsEncryptedKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3860271661816828, undefined, []);
 
 /**
  * let kCFURLVolumeIsInternalKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsInternalKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4018735647794582, undefined, []);
+export const kCFURLVolumeIsInternalKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4018735647794582, undefined, []);
 
 /**
  * let kCFURLVolumeIsJournalingKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeIsJournalingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 386084063535580, undefined, []);
+export const kCFURLVolumeIsJournalingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 386084063535580, undefined, []);
 
 /**
  * let kCFURLVolumeIsLocalKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsLocalKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2127040761554105, undefined, []);
+export const kCFURLVolumeIsLocalKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2127040761554105, undefined, []);
 
 /**
  * let kCFURLVolumeIsReadOnlyKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsReadOnlyKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4472601763105590, undefined, []);
+export const kCFURLVolumeIsReadOnlyKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4472601763105590, undefined, []);
 
 /**
  * let kCFURLVolumeIsRemovableKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeIsRemovableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2514319030325784, undefined, []);
+export const kCFURLVolumeIsRemovableKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2514319030325784, undefined, []);
 
 /**
  * let kCFURLVolumeIsRootFileSystemKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLVolumeIsRootFileSystemKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2329424537410907, undefined, []);
+export const kCFURLVolumeIsRootFileSystemKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2329424537410907, undefined, []);
 
 /**
  * let kCFURLVolumeLocalizedFormatDescriptionKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeLocalizedFormatDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2603004319043032, undefined, []);
+export const kCFURLVolumeLocalizedFormatDescriptionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2603004319043032, undefined, []);
 
 /**
  * let kCFURLVolumeLocalizedNameKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeLocalizedNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1762089272075237, undefined, []);
+export const kCFURLVolumeLocalizedNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1762089272075237, undefined, []);
 
 /**
  * let kCFURLVolumeMaximumFileSizeKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeMaximumFileSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4399666579528321, undefined, []);
+export const kCFURLVolumeMaximumFileSizeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4399666579528321, undefined, []);
 
 /**
  * let kCFURLVolumeMountFromLocationKey: CFString!
  * @availability iOS 16.4+
  */
-export const kCFURLVolumeMountFromLocationKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2934662047637699, undefined, []);
+export const kCFURLVolumeMountFromLocationKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2934662047637699, undefined, []);
 
 /**
  * let kCFURLVolumeNameKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1498541596012896, undefined, []);
+export const kCFURLVolumeNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1498541596012896, undefined, []);
 
 /**
  * let kCFURLVolumeResourceCountKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeResourceCountKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3521232126338491, undefined, []);
+export const kCFURLVolumeResourceCountKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3521232126338491, undefined, []);
 
 /**
  * let kCFURLVolumeSubtypeKey: CFString!
  * @availability iOS 16.4+
  */
-export const kCFURLVolumeSubtypeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 4226449135182287, undefined, []);
+export const kCFURLVolumeSubtypeKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 4226449135182287, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsAccessPermissionsKey: CFString!
  * @availability iOS 11.0+
  */
-export const kCFURLVolumeSupportsAccessPermissionsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1918556587786502, undefined, []);
+export const kCFURLVolumeSupportsAccessPermissionsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1918556587786502, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsAdvisoryFileLockingKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeSupportsAdvisoryFileLockingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1713162780992103, undefined, []);
+export const kCFURLVolumeSupportsAdvisoryFileLockingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1713162780992103, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsCasePreservedNamesKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsCasePreservedNamesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2013345668878201, undefined, []);
+export const kCFURLVolumeSupportsCasePreservedNamesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2013345668878201, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsCaseSensitiveNamesKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsCaseSensitiveNamesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3144337146832621, undefined, []);
+export const kCFURLVolumeSupportsCaseSensitiveNamesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3144337146832621, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsCompressionKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLVolumeSupportsCompressionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2841480210208391, undefined, []);
+export const kCFURLVolumeSupportsCompressionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2841480210208391, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsExclusiveRenamingKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLVolumeSupportsExclusiveRenamingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 65105053573391, undefined, []);
+export const kCFURLVolumeSupportsExclusiveRenamingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 65105053573391, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsExtendedSecurityKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeSupportsExtendedSecurityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3823625747024856, undefined, []);
+export const kCFURLVolumeSupportsExtendedSecurityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3823625747024856, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsFileCloningKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLVolumeSupportsFileCloningKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3344133117323292, undefined, []);
+export const kCFURLVolumeSupportsFileCloningKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3344133117323292, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsFileProtectionKey: CFString!
  * @availability iOS 14.0+
  */
-export const kCFURLVolumeSupportsFileProtectionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2672206997198548, undefined, []);
+export const kCFURLVolumeSupportsFileProtectionKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2672206997198548, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsHardLinksKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsHardLinksKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2863746767733244, undefined, []);
+export const kCFURLVolumeSupportsHardLinksKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2863746767733244, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsImmutableFilesKey: CFString!
  * @availability iOS 11.0+
  */
-export const kCFURLVolumeSupportsImmutableFilesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 56853693233078, undefined, []);
+export const kCFURLVolumeSupportsImmutableFilesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 56853693233078, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsJournalingKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsJournalingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2105560632740234, undefined, []);
+export const kCFURLVolumeSupportsJournalingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2105560632740234, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsPersistentIDsKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsPersistentIDsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3645474602998447, undefined, []);
+export const kCFURLVolumeSupportsPersistentIDsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3645474602998447, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsRenamingKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeSupportsRenamingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 2661113945333997, undefined, []);
+export const kCFURLVolumeSupportsRenamingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 2661113945333997, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsRootDirectoryDatesKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeSupportsRootDirectoryDatesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1614909713882947, undefined, []);
+export const kCFURLVolumeSupportsRootDirectoryDatesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1614909713882947, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsSparseFilesKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsSparseFilesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 783494538671217, undefined, []);
+export const kCFURLVolumeSupportsSparseFilesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 783494538671217, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsSwapRenamingKey: CFString!
  * @availability iOS 10.0+
  */
-export const kCFURLVolumeSupportsSwapRenamingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1502706832383936, undefined, []);
+export const kCFURLVolumeSupportsSwapRenamingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1502706832383936, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsSymbolicLinksKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsSymbolicLinksKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3375316304741004, undefined, []);
+export const kCFURLVolumeSupportsSymbolicLinksKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3375316304741004, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsVolumeSizesKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeSupportsVolumeSizesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3407019585896572, undefined, []);
+export const kCFURLVolumeSupportsVolumeSizesKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3407019585896572, undefined, []);
 
 /**
  * let kCFURLVolumeSupportsZeroRunsKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeSupportsZeroRunsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 347749648174685, undefined, []);
+export const kCFURLVolumeSupportsZeroRunsKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 347749648174685, undefined, []);
 
 /**
  * let kCFURLVolumeTotalCapacityKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeTotalCapacityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3977302299111186, undefined, []);
+export const kCFURLVolumeTotalCapacityKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3977302299111186, undefined, []);
 
 /**
  * let kCFURLVolumeTypeNameKey: CFString!
  * @availability iOS 16.4+
  */
-export const kCFURLVolumeTypeNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3078813257623002, undefined, []);
+export const kCFURLVolumeTypeNameKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3078813257623002, undefined, []);
 
 /**
  * let kCFURLVolumeURLForRemountingKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeURLForRemountingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 1562022929472361, undefined, []);
+export const kCFURLVolumeURLForRemountingKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 1562022929472361, undefined, []);
 
 /**
  * let kCFURLVolumeURLKey: CFString!
  * @availability iOS 4.0+
  */
-export const kCFURLVolumeURLKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 3656520012743528, undefined, []);
+export const kCFURLVolumeURLKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 3656520012743528, undefined, []);
 
 /**
  * let kCFURLVolumeUUIDStringKey: CFString!
  * @availability iOS 5.0+
  */
-export const kCFURLVolumeUUIDStringKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_212edf3d13b127f5", 787541128395851, undefined, []);
+export const kCFURLVolumeUUIDStringKey: (CFString) | null = callSDK<(CFString) | null>("CoreFoundation_5d69670f0307b385", 787541128395851, undefined, []);
 
 /** var CF_HAS_TYPED_ALLOCATOR: Int32 { get } */
-export const CF_HAS_TYPED_ALLOCATOR: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2700981875722442, undefined, []);
+export const CF_HAS_TYPED_ALLOCATOR: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2700981875722442, undefined, []);
 
 /** var CGFLOAT_DEFINED: Int32 { get } */
-export const CGFLOAT_DEFINED: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3466031341246913, undefined, []);
+export const CGFLOAT_DEFINED: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3466031341246913, undefined, []);
 
 /** var CGFLOAT_EPSILON: Double { get } */
-export const CGFLOAT_EPSILON: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2563423026459807, undefined, []);
+export const CGFLOAT_EPSILON: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2563423026459807, undefined, []);
 
 /** var CGFLOAT_IS_DOUBLE: Int32 { get } */
-export const CGFLOAT_IS_DOUBLE: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4137610589404929, undefined, []);
+export const CGFLOAT_IS_DOUBLE: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4137610589404929, undefined, []);
 
 /** var CGFLOAT_MAX: Double { get } */
-export const CGFLOAT_MAX: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 546822151786905, undefined, []);
+export const CGFLOAT_MAX: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 546822151786905, undefined, []);
 
 /** var CGFLOAT_MIN: Double { get } */
-export const CGFLOAT_MIN: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2517087512280103, undefined, []);
+export const CGFLOAT_MIN: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2517087512280103, undefined, []);
 
 /** var COREFOUNDATION_CFPLUGINCOM_SEPARATE: Int32 { get } */
-export const COREFOUNDATION_CFPLUGINCOM_SEPARATE: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3031972903873946, undefined, []);
+export const COREFOUNDATION_CFPLUGINCOM_SEPARATE: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3031972903873946, undefined, []);
 
 /** var ISA_PTRAUTH_DISCRIMINATOR: Int32 { get } */
-export const ISA_PTRAUTH_DISCRIMINATOR: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3853258108344004, undefined, []);
+export const ISA_PTRAUTH_DISCRIMINATOR: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3853258108344004, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_0: Double { get } */
-export const kCFCoreFoundationVersionNumber10_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1602512665233342, undefined, []);
+export const kCFCoreFoundationVersionNumber10_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1602512665233342, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_0_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_0_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1367970793389083, undefined, []);
+export const kCFCoreFoundationVersionNumber10_0_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1367970793389083, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10: Double { get } */
-export const kCFCoreFoundationVersionNumber10_10: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 494800665839347, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 494800665839347, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_10_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1253677297868124, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1253677297868124, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10_2: Int32 { get } */
-export const kCFCoreFoundationVersionNumber10_10_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3725350829453785, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3725350829453785, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_10_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 486151954034205, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 486151954034205, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_10_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2282038585489626, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2282038585489626, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_10_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1932919954569834, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1932919954569834, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_10_Max: Int32 { get } */
-export const kCFCoreFoundationVersionNumber10_10_Max: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3540950018265947, undefined, []);
+export const kCFCoreFoundationVersionNumber10_10_Max: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3540950018265947, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_11: Int32 { get } */
-export const kCFCoreFoundationVersionNumber10_11: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2785608176517070, undefined, []);
+export const kCFCoreFoundationVersionNumber10_11: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2785608176517070, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_11_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_11_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 764941047999561, undefined, []);
+export const kCFCoreFoundationVersionNumber10_11_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 764941047999561, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_11_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_11_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 987450602790742, undefined, []);
+export const kCFCoreFoundationVersionNumber10_11_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 987450602790742, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_11_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_11_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1882866982256260, undefined, []);
+export const kCFCoreFoundationVersionNumber10_11_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1882866982256260, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_11_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_11_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 322617220278509, undefined, []);
+export const kCFCoreFoundationVersionNumber10_11_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 322617220278509, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_11_Max: Int32 { get } */
-export const kCFCoreFoundationVersionNumber10_11_Max: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2866210889587848, undefined, []);
+export const kCFCoreFoundationVersionNumber10_11_Max: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2866210889587848, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4149642108656663, undefined, []);
+export const kCFCoreFoundationVersionNumber10_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4149642108656663, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_1_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_1_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3239342884393632, undefined, []);
+export const kCFCoreFoundationVersionNumber10_1_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3239342884393632, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_1_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_1_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1073397780815482, undefined, []);
+export const kCFCoreFoundationVersionNumber10_1_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1073397780815482, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_1_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_1_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2656515415178935, undefined, []);
+export const kCFCoreFoundationVersionNumber10_1_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2656515415178935, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_1_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_1_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3781346508580911, undefined, []);
+export const kCFCoreFoundationVersionNumber10_1_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3781346508580911, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1706098054372963, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1706098054372963, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3701276404460374, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3701276404460374, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4094966079336472, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4094966079336472, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1962406522356436, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1962406522356436, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3322755944411651, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3322755944411651, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3222683463109751, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3222683463109751, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_6: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_6: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4186008767995236, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_6: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4186008767995236, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_7: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_7: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 741343239389905, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_7: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 741343239389905, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_2_8: Double { get } */
-export const kCFCoreFoundationVersionNumber10_2_8: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3069255032713728, undefined, []);
+export const kCFCoreFoundationVersionNumber10_2_8: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3069255032713728, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2337758290621321, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2337758290621321, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1421436688305076, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1421436688305076, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1247581916418669, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1247581916418669, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2819438003511270, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2819438003511270, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 21065519892302, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 21065519892302, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3066705214056307, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3066705214056307, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_6: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_6: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3933804650665420, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_6: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3933804650665420, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_7: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_7: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 857686868693760, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_7: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 857686868693760, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_8: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_8: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1751315039476244, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_8: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1751315039476244, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_3_9: Double { get } */
-export const kCFCoreFoundationVersionNumber10_3_9: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2910378773158826, undefined, []);
+export const kCFCoreFoundationVersionNumber10_3_9: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2910378773158826, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2987349606080838, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2987349606080838, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_10: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_10: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3277128643237404, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_10: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3277128643237404, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_11: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_11: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3314984205721534, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_11: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3314984205721534, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 189361985802352, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 189361985802352, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3469013467553629, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3469013467553629, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1811448285761043, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1811448285761043, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_4_Intel: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_4_Intel: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3471588638494313, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_4_Intel: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3471588638494313, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_4_PowerPC: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_4_PowerPC: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2045348484686728, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_4_PowerPC: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2045348484686728, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_5_Intel: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_5_Intel: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 505319699193798, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_5_Intel: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 505319699193798, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_5_PowerPC: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_5_PowerPC: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3344650689954792, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_5_PowerPC: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3344650689954792, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_6_Intel: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_6_Intel: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1681118147373572, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_6_Intel: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1681118147373572, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_6_PowerPC: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_6_PowerPC: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3163703616528381, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_6_PowerPC: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3163703616528381, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_7: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_7: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1710575985442635, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_7: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1710575985442635, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_8: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_8: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3478586796910363, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_8: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3478586796910363, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_4_9: Double { get } */
-export const kCFCoreFoundationVersionNumber10_4_9: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 637247558288568, undefined, []);
+export const kCFCoreFoundationVersionNumber10_4_9: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 637247558288568, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2462446957587281, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2462446957587281, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2436179866460538, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2436179866460538, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2564728862222828, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2564728862222828, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3101957334435613, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3101957334435613, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 290334148554709, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 290334148554709, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 633467258425400, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 633467258425400, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_6: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_6: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2280009269304315, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_6: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2280009269304315, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_7: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_7: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2839890688111969, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_7: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2839890688111969, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_5_8: Double { get } */
-export const kCFCoreFoundationVersionNumber10_5_8: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1056219703161641, undefined, []);
+export const kCFCoreFoundationVersionNumber10_5_8: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1056219703161641, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1142236437929185, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1142236437929185, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3484897310278892, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3484897310278892, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 599243135708818, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 599243135708818, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2843231450046447, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2843231450046447, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3675652137515567, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3675652137515567, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 960373470858481, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 960373470858481, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_6: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_6: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1355124094714918, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_6: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1355124094714918, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_7: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_7: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1453962675340637, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_7: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1453962675340637, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_6_8: Double { get } */
-export const kCFCoreFoundationVersionNumber10_6_8: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1400441925906792, undefined, []);
+export const kCFCoreFoundationVersionNumber10_6_8: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1400441925906792, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_7: Double { get } */
-export const kCFCoreFoundationVersionNumber10_7: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3204647621597413, undefined, []);
+export const kCFCoreFoundationVersionNumber10_7: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3204647621597413, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_7_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_7_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3837727221181002, undefined, []);
+export const kCFCoreFoundationVersionNumber10_7_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3837727221181002, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_7_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_7_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2064214381811553, undefined, []);
+export const kCFCoreFoundationVersionNumber10_7_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2064214381811553, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_7_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_7_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2732940850986808, undefined, []);
+export const kCFCoreFoundationVersionNumber10_7_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2732940850986808, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_7_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_7_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 432373852191875, undefined, []);
+export const kCFCoreFoundationVersionNumber10_7_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 432373852191875, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_7_5: Double { get } */
-export const kCFCoreFoundationVersionNumber10_7_5: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 421460603964613, undefined, []);
+export const kCFCoreFoundationVersionNumber10_7_5: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 421460603964613, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_8: Double { get } */
-export const kCFCoreFoundationVersionNumber10_8: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3241585949970699, undefined, []);
+export const kCFCoreFoundationVersionNumber10_8: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3241585949970699, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_8_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_8_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 28190295804094, undefined, []);
+export const kCFCoreFoundationVersionNumber10_8_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 28190295804094, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_8_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_8_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4360319074244684, undefined, []);
+export const kCFCoreFoundationVersionNumber10_8_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4360319074244684, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_8_3: Double { get } */
-export const kCFCoreFoundationVersionNumber10_8_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1187812555401024, undefined, []);
+export const kCFCoreFoundationVersionNumber10_8_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1187812555401024, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_8_4: Double { get } */
-export const kCFCoreFoundationVersionNumber10_8_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1692323570009374, undefined, []);
+export const kCFCoreFoundationVersionNumber10_8_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1692323570009374, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_9: Double { get } */
-export const kCFCoreFoundationVersionNumber10_9: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3997001334542269, undefined, []);
+export const kCFCoreFoundationVersionNumber10_9: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3997001334542269, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_9_1: Double { get } */
-export const kCFCoreFoundationVersionNumber10_9_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3509745767760986, undefined, []);
+export const kCFCoreFoundationVersionNumber10_9_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3509745767760986, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber10_9_2: Double { get } */
-export const kCFCoreFoundationVersionNumber10_9_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1935610064060223, undefined, []);
+export const kCFCoreFoundationVersionNumber10_9_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1935610064060223, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_4_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_4_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 215930094769807, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_4_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 215930094769807, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_4_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_4_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2371601997225092, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_4_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2371601997225092, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_4_2: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_4_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3519223027782732, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_4_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3519223027782732, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_4_3: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_4_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4287925993711550, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_4_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4287925993711550, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_5_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_5_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1911141121314031, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_5_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1911141121314031, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_5_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_5_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3161804515161190, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_5_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3161804515161190, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_6_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_6_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 58722888928554, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_6_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 58722888928554, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_6_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_6_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2857225164782681, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_6_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2857225164782681, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_7_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_7_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2116356794926418, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_7_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2116356794926418, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_7_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_7_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1291023667899942, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_7_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1291023667899942, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_8_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_8_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4068154506248942, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_8_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4068154506248942, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_8_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_8_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2554354606851610, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_8_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2554354606851610, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_8_2: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_8_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 725882659312210, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_8_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 725882659312210, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_8_3: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_8_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 868853624201169, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_8_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 868853624201169, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_8_4: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_8_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1890923929002289, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_8_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1890923929002289, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_8_x_Max: Int32 { get } */
-export const kCFCoreFoundationVersionNumber_iOS_8_x_Max: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1748118708603672, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_8_x_Max: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1748118708603672, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_9_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_9_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1041224221790499, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_9_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1041224221790499, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_9_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_9_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2788782785431865, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_9_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2788782785431865, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_9_2: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_9_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1969604904270280, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_9_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1969604904270280, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_9_3: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_9_3: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 385469031080186, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_9_3: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 385469031080186, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_9_4: Double { get } */
-export const kCFCoreFoundationVersionNumber_iOS_9_4: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 491142330688529, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_9_4: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 491142330688529, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iOS_9_x_Max: Int32 { get } */
-export const kCFCoreFoundationVersionNumber_iOS_9_x_Max: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1237243174077683, undefined, []);
+export const kCFCoreFoundationVersionNumber_iOS_9_x_Max: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1237243174077683, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iPhoneOS_2_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iPhoneOS_2_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2864967963552249, undefined, []);
+export const kCFCoreFoundationVersionNumber_iPhoneOS_2_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2864967963552249, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iPhoneOS_2_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iPhoneOS_2_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4156659111537906, undefined, []);
+export const kCFCoreFoundationVersionNumber_iPhoneOS_2_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4156659111537906, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iPhoneOS_2_2: Double { get } */
-export const kCFCoreFoundationVersionNumber_iPhoneOS_2_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2512768441974488, undefined, []);
+export const kCFCoreFoundationVersionNumber_iPhoneOS_2_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2512768441974488, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iPhoneOS_3_0: Double { get } */
-export const kCFCoreFoundationVersionNumber_iPhoneOS_3_0: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 2865731456066373, undefined, []);
+export const kCFCoreFoundationVersionNumber_iPhoneOS_3_0: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 2865731456066373, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iPhoneOS_3_1: Double { get } */
-export const kCFCoreFoundationVersionNumber_iPhoneOS_3_1: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 1748599037427437, undefined, []);
+export const kCFCoreFoundationVersionNumber_iPhoneOS_3_1: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 1748599037427437, undefined, []);
 
 /** var kCFCoreFoundationVersionNumber_iPhoneOS_3_2: Double { get } */
-export const kCFCoreFoundationVersionNumber_iPhoneOS_3_2: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 4200009303661291, undefined, []);
+export const kCFCoreFoundationVersionNumber_iPhoneOS_3_2: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 4200009303661291, undefined, []);
 
 /** var kCFStringEncodingInvalidId: UInt32 { get } */
-export const kCFStringEncodingInvalidId: number = callSDK<number>("CoreFoundation_212edf3d13b127f5", 3360358604757206, undefined, []);
+export const kCFStringEncodingInvalidId: number = callSDK<number>("CoreFoundation_5d69670f0307b385", 3360358604757206, undefined, []);
 
-registerSDKClass("CoreFoundation.CFAllocator", CFAllocator, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFAllocatorContext", CFAllocatorContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFArray", CFArray, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFArrayCallBacks", CFArrayCallBacks, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFAttributedString", CFAttributedString, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBag", CFBag, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBagCallBacks", CFBagCallBacks, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBinaryHeap", CFBinaryHeap, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBinaryHeapCallBacks", CFBinaryHeapCallBacks, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBinaryHeapCompareContext", CFBinaryHeapCompareContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBitVector", CFBitVector, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBoolean", CFBoolean, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFBundle", CFBundle, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFCalendar", CFCalendar, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFCharacterSet", CFCharacterSet, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFData", CFData, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFDate", CFDate, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFDateFormatter", CFDateFormatter, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFDictionary", CFDictionary, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFDictionaryKeyCallBacks", CFDictionaryKeyCallBacks, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFDictionaryValueCallBacks", CFDictionaryValueCallBacks, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFError", CFError, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFFileDescriptor", CFFileDescriptor, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFFileDescriptorContext", CFFileDescriptorContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFFileSecurity", CFFileSecurity, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFGregorianDate", CFGregorianDate, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFGregorianUnits", CFGregorianUnits, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFLocale", CFLocale, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMachPort", CFMachPort, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMachPortContext", CFMachPortContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMessagePort", CFMessagePort, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMessagePortContext", CFMessagePortContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableArray", CFMutableArray, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableAttributedString", CFMutableAttributedString, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableBag", CFMutableBag, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableBitVector", CFMutableBitVector, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableCharacterSet", CFMutableCharacterSet, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableData", CFMutableData, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableDictionary", CFMutableDictionary, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSet", CFSet, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableSet", CFMutableSet, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFString", CFString, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFMutableString", CFMutableString, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFNotificationCenter", CFNotificationCenter, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFNull", CFNull, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFNumber", CFNumber, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFNumberFormatter", CFNumberFormatter, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFPlugIn", CFPlugIn, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFPlugInInstance", CFPlugInInstance, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRange", CFRange, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFReadStream", CFReadStream, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoop", CFRunLoop, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopObserver", CFRunLoopObserver, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopObserverContext", CFRunLoopObserverContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopSource", CFRunLoopSource, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopSourceContext", CFRunLoopSourceContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopSourceContext1", CFRunLoopSourceContext1, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopTimer", CFRunLoopTimer, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFRunLoopTimerContext", CFRunLoopTimerContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSetCallBacks", CFSetCallBacks, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSocket", CFSocket, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSocketContext", CFSocketContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSocketSignature", CFSocketSignature, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFStreamClientContext", CFStreamClientContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFStreamError", CFStreamError, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFStringInlineBuffer", CFStringInlineBuffer, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFStringTokenizer", CFStringTokenizer, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSwappedFloat32", CFSwappedFloat32, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFSwappedFloat64", CFSwappedFloat64, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFTimeZone", CFTimeZone, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFTree", CFTree, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFTreeContext", CFTreeContext, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFURL", CFURL, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFURLEnumerator", CFURLEnumerator, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFUserNotification", CFUserNotification, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFUUID", CFUUID, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFUUIDBytes", CFUUIDBytes, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CFWriteStream", CFWriteStream, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CGAffineTransform", CGAffineTransform, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CGAffineTransformComponents", CGAffineTransformComponents, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CGFloat", CGFloat, { module: "CoreFoundation_212edf3d13b127f5", properties: {}, methods: {"addProduct":{"id":2193650748209403},"formRemainder":{"id":2880804705254389},"formSquareRoot":{"id":468974488764870},"isLessThanOrEqualTo":{"id":3573993170236465},"formTruncatingRemainder":{"id":722183600441678},"round":{"id":3087969732690494},"isLess":{"id":2184121303286705},"negate":{"id":4023512056566045},"isEqual":{"id":2157958184957984},"advanced":{"id":1356517771949752},"distance":{"id":1195061200070753}} });
-registerSDKClass("CoreFoundation.CGPoint", CGPoint, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("CoreFoundation.CGVector", CGVector, { module: "CoreFoundation_212edf3d13b127f5", properties: {} });
+registerSDKClass("CoreFoundation.CFAllocator", CFAllocator, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFAllocatorContext", CFAllocatorContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFArray", CFArray, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFArrayCallBacks", CFArrayCallBacks, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFAttributedString", CFAttributedString, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBag", CFBag, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBagCallBacks", CFBagCallBacks, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBinaryHeap", CFBinaryHeap, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBinaryHeapCallBacks", CFBinaryHeapCallBacks, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBinaryHeapCompareContext", CFBinaryHeapCompareContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBitVector", CFBitVector, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBoolean", CFBoolean, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFBundle", CFBundle, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFCalendar", CFCalendar, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFCharacterSet", CFCharacterSet, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFData", CFData, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFDate", CFDate, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFDateFormatter", CFDateFormatter, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFDictionary", CFDictionary, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFDictionaryKeyCallBacks", CFDictionaryKeyCallBacks, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFDictionaryValueCallBacks", CFDictionaryValueCallBacks, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFError", CFError, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFFileDescriptor", CFFileDescriptor, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFFileDescriptorContext", CFFileDescriptorContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFFileSecurity", CFFileSecurity, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFGregorianDate", CFGregorianDate, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFGregorianUnits", CFGregorianUnits, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFLocale", CFLocale, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMachPort", CFMachPort, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMachPortContext", CFMachPortContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMessagePort", CFMessagePort, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMessagePortContext", CFMessagePortContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableArray", CFMutableArray, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableAttributedString", CFMutableAttributedString, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableBag", CFMutableBag, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableBitVector", CFMutableBitVector, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableCharacterSet", CFMutableCharacterSet, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableData", CFMutableData, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableDictionary", CFMutableDictionary, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSet", CFSet, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableSet", CFMutableSet, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFString", CFString, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFMutableString", CFMutableString, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFNotificationCenter", CFNotificationCenter, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFNull", CFNull, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFNumber", CFNumber, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFNumberFormatter", CFNumberFormatter, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFPlugIn", CFPlugIn, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFPlugInInstance", CFPlugInInstance, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRange", CFRange, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFReadStream", CFReadStream, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoop", CFRunLoop, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopObserver", CFRunLoopObserver, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopObserverContext", CFRunLoopObserverContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopSource", CFRunLoopSource, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopSourceContext", CFRunLoopSourceContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopSourceContext1", CFRunLoopSourceContext1, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopTimer", CFRunLoopTimer, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFRunLoopTimerContext", CFRunLoopTimerContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSetCallBacks", CFSetCallBacks, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSocket", CFSocket, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSocketContext", CFSocketContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSocketSignature", CFSocketSignature, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFStreamClientContext", CFStreamClientContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFStreamError", CFStreamError, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFStringInlineBuffer", CFStringInlineBuffer, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFStringTokenizer", CFStringTokenizer, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSwappedFloat32", CFSwappedFloat32, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFSwappedFloat64", CFSwappedFloat64, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFTimeZone", CFTimeZone, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFTree", CFTree, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFTreeContext", CFTreeContext, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFURL", CFURL, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFURLEnumerator", CFURLEnumerator, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFUserNotification", CFUserNotification, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFUUID", CFUUID, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFUUIDBytes", CFUUIDBytes, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CFWriteStream", CFWriteStream, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CGAffineTransform", CGAffineTransform, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CGAffineTransformComponents", CGAffineTransformComponents, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CGFloat", CGFloat, { module: "CoreFoundation_5d69670f0307b385", properties: {}, methods: {"addProduct":{"id":2193650748209403},"formRemainder":{"id":2880804705254389},"formSquareRoot":{"id":468974488764870},"isLessThanOrEqualTo":{"id":3573993170236465},"formTruncatingRemainder":{"id":722183600441678},"round":{"id":3087969732690494},"isLess":{"id":2184121303286705},"negate":{"id":4023512056566045},"isEqual":{"id":2157958184957984},"advanced":{"id":1356517771949752},"distance":{"id":1195061200070753}} });
+registerSDKClass("CoreFoundation.CGPoint", CGPoint, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "CoreFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("CoreFoundation.CGVector", CGVector, { module: "CoreFoundation_5d69670f0307b385", properties: {} });

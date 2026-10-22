@@ -11,9 +11,9 @@ export class AAAttribution extends SDKHandle {
    * class func attributionToken() throws -> String
    * @availability iOS 14.3+
    */
-  static attributionToken(): string { return callSDK<string>("AdServices_212edf3d13b127f5", 3979837600110997, undefined, []); }
+  static attributionToken(): string { return callSDK<string>("AdServices_5d69670f0307b385", 3979837600110997, undefined, []); }
   /** init() */
-  static init(): AAAttribution { return callSDK<AAAttribution>("AdServices_212edf3d13b127f5", 1827511131805940, undefined, []); }
+  static init(): AAAttribution { return callSDK<AAAttribution>("AdServices_5d69670f0307b385", 1827511131805940, undefined, []); }
   declare readonly $type: { "c:objc(cs)AAAttribution": true; "c:objc(cs)NSObject": true };
 }
 
@@ -26,22 +26,22 @@ export class AAAttributionError extends SDKHandle {
    * static var networkError: AAAttributionError.Code { get }
    * @availability iOS 14.3+
    */
-  static get networkError(): AAAttributionError_Code { return callSDK<AAAttributionError_Code>("AdServices_212edf3d13b127f5", 2543681685007382, undefined, []); }
+  static get networkError(): AAAttributionError_Code { return callSDK<AAAttributionError_Code>("AdServices_5d69670f0307b385", 2543681685007382, undefined, []); }
   /**
    * static var internalError: AAAttributionError.Code { get }
    * @availability iOS 14.3+
    */
-  static get internalError(): AAAttributionError_Code { return callSDK<AAAttributionError_Code>("AdServices_212edf3d13b127f5", 2412998627655057, undefined, []); }
+  static get internalError(): AAAttributionError_Code { return callSDK<AAAttributionError_Code>("AdServices_5d69670f0307b385", 2412998627655057, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 14.3+
    */
-  static get errorDomain(): string { return callSDK<string>("AdServices_212edf3d13b127f5", 1935143132889863, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AdServices_5d69670f0307b385", 1935143132889863, undefined, []); }
   /**
    * static var platformNotSupported: AAAttributionError.Code { get }
    * @availability iOS 14.3+
    */
-  static get platformNotSupported(): AAAttributionError_Code { return callSDK<AAAttributionError_Code>("AdServices_212edf3d13b127f5", 1232176416703897, undefined, []); }
+  static get platformNotSupported(): AAAttributionError_Code { return callSDK<AAAttributionError_Code>("AdServices_5d69670f0307b385", 1232176416703897, undefined, []); }
   declare readonly $type: { "s:SC22AAAttributionErrorCodeLeV": true };
 }
 
@@ -56,14 +56,14 @@ export const AAAttributionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 14.3+
    */
-  init(rawValue: number): (AAAttributionError_Code) | null { return callSDK<(AAAttributionError_Code) | null>("AdServices_212edf3d13b127f5", 1121276734621700, undefined, [rawValue]); }
+  init(rawValue: number): (AAAttributionError_Code) | null { return callSDK<(AAAttributionError_Code) | null>("AdServices_5d69670f0307b385", 1121276734621700, undefined, [rawValue]); }
 };
 
 /**
  * let AAAttributionErrorDomain: String
  * @availability iOS 14.3+
  */
-export const AAAttributionErrorDomain: string = callSDK<string>("AdServices_212edf3d13b127f5", 2872665668102338, undefined, []);
+export const AAAttributionErrorDomain: string = callSDK<string>("AdServices_5d69670f0307b385", 2872665668102338, undefined, []);
 
-registerSDKClass("AAAttribution", AAAttribution, { module: "AdServices_212edf3d13b127f5", properties: {} });
-registerSDKClass("AdServices.AAAttributionError", AAAttributionError, { module: "AdServices_212edf3d13b127f5", properties: {} });
+registerSDKClass("AAAttribution", AAAttribution, { module: "AdServices_5d69670f0307b385", properties: {} });
+registerSDKClass("AdServices.AAAttributionError", AAAttributionError, { module: "AdServices_5d69670f0307b385", properties: {} });

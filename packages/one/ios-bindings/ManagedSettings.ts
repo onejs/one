@@ -38,13 +38,13 @@ export class AccountSettings extends SDKHandle {
    * static let lockAccounts: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get lockAccounts(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 3844951560252123, undefined, []); }
+  static get lockAccounts(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 3844951560252123, undefined, []); }
   /**
    * var lockAccounts: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get lockAccounts30315(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 3723339214923267, this, []); }
-  set lockAccounts30315(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2247970105863530, this, [value]); }
+  get lockAccounts30315(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 3723339214923267, this, []); }
+  set lockAccounts30315(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2247970105863530, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings07AccountB0V": true };
 }
 
@@ -57,17 +57,17 @@ export class ActivityCategory extends SDKHandle {
    * let localizedDisplayName: String?
    * @availability iOS 15.0+
    */
-  get localizedDisplayName(): (string) | null { return callSDK<(string) | null>("ManagedSettings_212edf3d13b127f5", 2059747758074571, this, []); }
+  get localizedDisplayName(): (string) | null { return callSDK<(string) | null>("ManagedSettings_5d69670f0307b385", 2059747758074571, this, []); }
   /**
    * let token: ActivityCategoryToken?
    * @availability iOS 15.0+
    */
-  get token(): (Token<ActivityCategory>) | null { return callSDK<(Token<ActivityCategory>) | null>("ManagedSettings_212edf3d13b127f5", 2984786685714723, this, []); }
+  get token(): (Token<ActivityCategory>) | null { return callSDK<(Token<ActivityCategory>) | null>("ManagedSettings_5d69670f0307b385", 2984786685714723, this, []); }
   /**
    * init(token: ActivityCategoryToken)
    * @availability iOS 15.0+
    */
-  static init(token: Token<ActivityCategory>): ActivityCategory { return callSDK<ActivityCategory>("ManagedSettings_212edf3d13b127f5", 731286447786815, undefined, [token]); }
+  static init(token: Token<ActivityCategory>): ActivityCategory { return callSDK<ActivityCategory>("ManagedSettings_5d69670f0307b385", 731286447786815, undefined, [token]); }
   declare readonly $type: { "s:15ManagedSettings16ActivityCategoryV": true };
 }
 
@@ -86,27 +86,27 @@ export class Application extends SDKHandle {
    * init(bundleIdentifier: String)
    * @availability iOS 15.0+
    */
-  static initBundleIdentifier(bundleIdentifier: string): Application { return callSDK<Application>("ManagedSettings_212edf3d13b127f5", 2592867246877307, undefined, [bundleIdentifier]); }
+  static initBundleIdentifier(bundleIdentifier: string): Application { return callSDK<Application>("ManagedSettings_5d69670f0307b385", 2592867246877307, undefined, [bundleIdentifier]); }
   /**
    * let bundleIdentifier: String?
    * @availability iOS 15.0+
    */
-  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("ManagedSettings_212edf3d13b127f5", 1572500974860303, this, []); }
+  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("ManagedSettings_5d69670f0307b385", 1572500974860303, this, []); }
   /**
    * let localizedDisplayName: String?
    * @availability iOS 15.0+
    */
-  get localizedDisplayName(): (string) | null { return callSDK<(string) | null>("ManagedSettings_212edf3d13b127f5", 2888730341621738, this, []); }
+  get localizedDisplayName(): (string) | null { return callSDK<(string) | null>("ManagedSettings_5d69670f0307b385", 2888730341621738, this, []); }
   /**
    * let token: ApplicationToken?
    * @availability iOS 15.0+
    */
-  get token(): (Token<Application>) | null { return callSDK<(Token<Application>) | null>("ManagedSettings_212edf3d13b127f5", 3212694457014800, this, []); }
+  get token(): (Token<Application>) | null { return callSDK<(Token<Application>) | null>("ManagedSettings_5d69670f0307b385", 3212694457014800, this, []); }
   /**
    * init(token: ApplicationToken)
    * @availability iOS 15.0+
    */
-  static initToken(token: Token<Application>): Application { return callSDK<Application>("ManagedSettings_212edf3d13b127f5", 3005090236322654, undefined, [token]); }
+  static initToken(token: Token<Application>): Application { return callSDK<Application>("ManagedSettings_5d69670f0307b385", 3005090236322654, undefined, [token]); }
   declare readonly $type: { "s:15ManagedSettings11ApplicationV": true };
 }
 
@@ -119,35 +119,35 @@ export class ApplicationSettings extends SDKHandle {
    * static let denyAppRemoval: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyAppRemoval(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 2423998528949734, undefined, []); }
+  static get denyAppRemoval(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 2423998528949734, undefined, []); }
   /**
    * var denyAppRemoval: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyAppRemoval91849(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 3376047855489631, this, []); }
-  set denyAppRemoval91849(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3282022078543822, this, [value]); }
+  get denyAppRemoval91849(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 3376047855489631, this, []); }
+  set denyAppRemoval91849(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3282022078543822, this, [value]); }
   /**
    * static let blockedApplications: SettingMetadata<Set<Application>>
    * @availability iOS 15.0+
    */
-  static get blockedApplications(): SettingMetadata<Array<Application>> { return callSDK<SettingMetadata<Array<Application>>>("ManagedSettings_212edf3d13b127f5", 3986462878781019, undefined, []); }
+  static get blockedApplications(): SettingMetadata<Array<Application>> { return callSDK<SettingMetadata<Array<Application>>>("ManagedSettings_5d69670f0307b385", 3986462878781019, undefined, []); }
   /**
    * var blockedApplications: Set<Application>? { get set }
    * @availability iOS 15.0+
    */
-  get blockedApplications79767(): $SDK4 { return callSDK<$SDK4>("ManagedSettings_212edf3d13b127f5", 785491494881056, this, []); }
-  set blockedApplications79767(value: $SDK4) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1097962099719645, this, [value]); }
+  get blockedApplications79767(): $SDK4 { return callSDK<$SDK4>("ManagedSettings_5d69670f0307b385", 785491494881056, this, []); }
+  set blockedApplications79767(value: $SDK4) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1097962099719645, this, [value]); }
   /**
    * static let denyAppInstallation: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyAppInstallation(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 963285078319547, undefined, []); }
+  static get denyAppInstallation(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 963285078319547, undefined, []); }
   /**
    * var denyAppInstallation: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyAppInstallation56640(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 2231747790917375, this, []); }
-  set denyAppInstallation56640(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 333515096445217, this, [value]); }
+  get denyAppInstallation56640(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 2231747790917375, this, []); }
+  set denyAppInstallation56640(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 333515096445217, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings011ApplicationB0V": true };
 }
 
@@ -166,35 +166,35 @@ export class AppStoreSettings extends SDKHandle {
    * static let denyInAppPurchases: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyInAppPurchases(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 926118839072716, undefined, []); }
+  static get denyInAppPurchases(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 926118839072716, undefined, []); }
   /**
    * var denyInAppPurchases: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyInAppPurchases8418(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 1710026153259241, this, []); }
-  set denyInAppPurchases8418(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3652167555105080, this, [value]); }
+  get denyInAppPurchases8418(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 1710026153259241, this, []); }
+  set denyInAppPurchases8418(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3652167555105080, this, [value]); }
   /**
    * static let maximumRating: BoundedSettingMetadata<Int>
    * @availability iOS 15.0+
    */
-  static get maximumRating(): $SDK5 { return callSDK<$SDK5>("ManagedSettings_212edf3d13b127f5", 1243960540963027, undefined, []); }
+  static get maximumRating(): $SDK5 { return callSDK<$SDK5>("ManagedSettings_5d69670f0307b385", 1243960540963027, undefined, []); }
   /**
    * var maximumRating: Int? { get set }
    * @availability iOS 15.0+
    */
-  get maximumRating3053(): (number) | null { return callSDK<(number) | null>("ManagedSettings_212edf3d13b127f5", 2554065072367415, this, []); }
-  set maximumRating3053(value: (number) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1467447652864515, this, [value]); }
+  get maximumRating3053(): (number) | null { return callSDK<(number) | null>("ManagedSettings_5d69670f0307b385", 2554065072367415, this, []); }
+  set maximumRating3053(value: (number) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1467447652864515, this, [value]); }
   /**
    * static let requirePasswordForPurchases: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get requirePasswordForPurchases(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 2028799334244742, undefined, []); }
+  static get requirePasswordForPurchases(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 2028799334244742, undefined, []); }
   /**
    * var requirePasswordForPurchases: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get requirePasswordForPurchases85277(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 3184350570266363, this, []); }
-  set requirePasswordForPurchases85277(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2226742546260830, this, [value]); }
+  get requirePasswordForPurchases85277(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 3184350570266363, this, []); }
+  set requirePasswordForPurchases85277(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2226742546260830, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings08AppStoreB0V": true };
 }
 
@@ -207,7 +207,7 @@ export class BoundedSettingMetadata<Value = unknown> extends SDKHandle {
    * let bounds: ClosedRange<Value>
    * @availability iOS 15.0+
    */
-  get bounds(): SDKHandle { return callSDK<SDKHandle>("ManagedSettings_212edf3d13b127f5", 1770935583045182, this, []); }
+  get bounds(): SDKHandle { return callSDK<SDKHandle>("ManagedSettings_5d69670f0307b385", 1770935583045182, this, []); }
   declare readonly $type: { "s:15ManagedSettings22BoundedSettingMetadataV": true };
 }
 
@@ -220,35 +220,35 @@ export class CellularSettings extends SDKHandle {
    * static let lockCellularPlan: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get lockCellularPlan(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 1048721944303515, undefined, []); }
+  static get lockCellularPlan(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 1048721944303515, undefined, []); }
   /**
    * var lockCellularPlan: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get lockCellularPlan80410(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 4097474759285118, this, []); }
-  set lockCellularPlan80410(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3346821556894302, this, [value]); }
+  get lockCellularPlan80410(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 4097474759285118, this, []); }
+  set lockCellularPlan80410(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3346821556894302, this, [value]); }
   /**
    * static let lockAppCellularData: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get lockAppCellularData(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 3116451826230962, undefined, []); }
+  static get lockAppCellularData(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 3116451826230962, undefined, []); }
   /**
    * var lockAppCellularData: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get lockAppCellularData15263(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 2287669558390249, this, []); }
-  set lockAppCellularData15263(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3151237277929157, this, [value]); }
+  get lockAppCellularData15263(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 2287669558390249, this, []); }
+  set lockAppCellularData15263(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3151237277929157, this, [value]); }
   /**
    * static let lockESIM: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get lockESIM(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 4461542667480187, undefined, []); }
+  static get lockESIM(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 4461542667480187, undefined, []); }
   /**
    * var lockESIM: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get lockESIM78860(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 482446125577739, this, []); }
-  set lockESIM78860(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 94848865255267, this, [value]); }
+  get lockESIM78860(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 482446125577739, this, []); }
+  set lockESIM78860(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 94848865255267, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings08CellularB0V": true };
 }
 
@@ -261,13 +261,13 @@ export class DateAndTimeSettings extends SDKHandle {
    * static let requireAutomaticDateAndTime: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get requireAutomaticDateAndTime(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 2787650109791293, undefined, []); }
+  static get requireAutomaticDateAndTime(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 2787650109791293, undefined, []); }
   /**
    * var requireAutomaticDateAndTime: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get requireAutomaticDateAndTime66734(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 1259583219665995, this, []); }
-  set requireAutomaticDateAndTime66734(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2826714878572774, this, [value]); }
+  get requireAutomaticDateAndTime66734(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 1259583219665995, this, []); }
+  set requireAutomaticDateAndTime66734(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2826714878572774, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings011DateAndTimeB0V": true };
 }
 
@@ -280,24 +280,24 @@ export class GameCenterSettings extends SDKHandle {
    * static let denyAddingFriends: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyAddingFriends(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 345166115574612, undefined, []); }
+  static get denyAddingFriends(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 345166115574612, undefined, []); }
   /**
    * var denyAddingFriends: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyAddingFriends10201(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 4100844037694565, this, []); }
-  set denyAddingFriends10201(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1925732157189975, this, [value]); }
+  get denyAddingFriends10201(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 4100844037694565, this, []); }
+  set denyAddingFriends10201(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1925732157189975, this, [value]); }
   /**
    * static let denyMultiplayerGaming: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyMultiplayerGaming(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 316315054198402, undefined, []); }
+  static get denyMultiplayerGaming(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 316315054198402, undefined, []); }
   /**
    * var denyMultiplayerGaming: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyMultiplayerGaming29045(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 3300342886899666, this, []); }
-  set denyMultiplayerGaming29045(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3278877701252281, this, [value]); }
+  get denyMultiplayerGaming29045(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 3300342886899666, this, []); }
+  set denyMultiplayerGaming29045(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3278877701252281, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings010GameCenterB0V": true };
 }
 
@@ -318,155 +318,155 @@ export class ManagedSettingsStore extends SDKHandle {
    * var appStore: AppStoreSettings
    * @availability iOS 15.0+
    */
-  get appStore(): AppStoreSettings { return callSDK<AppStoreSettings>("ManagedSettings_212edf3d13b127f5", 214482630017111, this, []); }
-  set appStore(value: AppStoreSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3397322451693899, this, [value]); }
+  get appStore(): AppStoreSettings { return callSDK<AppStoreSettings>("ManagedSettings_5d69670f0307b385", 214482630017111, this, []); }
+  set appStore(value: AppStoreSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3397322451693899, this, [value]); }
   /**
    * func deleteStore()
    * @availability iOS 26.5+
    */
-  deleteStore(): void { return callSDK<void>("ManagedSettings_212edf3d13b127f5", 3836573633424587, this, []); }
+  deleteStore(): void { return callSDK<void>("ManagedSettings_5d69670f0307b385", 3836573633424587, this, []); }
   /**
    * func clearAllSettings()
    * @availability iOS 16.0+
    */
-  clearAllSettings(): void { return callSDK<void>("ManagedSettings_212edf3d13b127f5", 1357210805924867, this, []); }
+  clearAllSettings(): void { return callSDK<void>("ManagedSettings_5d69670f0307b385", 1357210805924867, this, []); }
   /**
    * var gameCenter: GameCenterSettings
    * @availability iOS 15.0+
    */
-  get gameCenter(): GameCenterSettings { return callSDK<GameCenterSettings>("ManagedSettings_212edf3d13b127f5", 3634135778206999, this, []); }
-  set gameCenter(value: GameCenterSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 4211943786244953, this, [value]); }
+  get gameCenter(): GameCenterSettings { return callSDK<GameCenterSettings>("ManagedSettings_5d69670f0307b385", 3634135778206999, this, []); }
+  set gameCenter(value: GameCenterSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 4211943786244953, this, [value]); }
   /**
    * var webContent: WebContentSettings
    * @availability iOS 15.0+
    */
-  get webContent(): WebContentSettings { return callSDK<WebContentSettings>("ManagedSettings_212edf3d13b127f5", 2090742816737416, this, []); }
-  set webContent(value: WebContentSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 718361442359353, this, [value]); }
+  get webContent(): WebContentSettings { return callSDK<WebContentSettings>("ManagedSettings_5d69670f0307b385", 2090742816737416, this, []); }
+  set webContent(value: WebContentSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 718361442359353, this, [value]); }
   /**
    * var application: ApplicationSettings
    * @availability iOS 15.0+
    */
-  get application(): ApplicationSettings { return callSDK<ApplicationSettings>("ManagedSettings_212edf3d13b127f5", 3106704228596815, this, []); }
-  set application(value: ApplicationSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1195672136247395, this, [value]); }
+  get application(): ApplicationSettings { return callSDK<ApplicationSettings>("ManagedSettings_5d69670f0307b385", 3106704228596815, this, []); }
+  set application(value: ApplicationSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1195672136247395, this, [value]); }
   /**
    * var dateAndTime: DateAndTimeSettings
    * @availability iOS 15.0+
    */
-  get dateAndTime(): DateAndTimeSettings { return callSDK<DateAndTimeSettings>("ManagedSettings_212edf3d13b127f5", 2815486983661953, this, []); }
-  set dateAndTime(value: DateAndTimeSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3459820580148539, this, [value]); }
+  get dateAndTime(): DateAndTimeSettings { return callSDK<DateAndTimeSettings>("ManagedSettings_5d69670f0307b385", 2815486983661953, this, []); }
+  set dateAndTime(value: DateAndTimeSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3459820580148539, this, [value]); }
   /**
    * static func deleteStores(_ storeNames: Set<ManagedSettingsStore.Name>)
    * @availability iOS 26.5+
    */
-  static deleteStores(storeNames: $SDK6): void { return callSDK<void>("ManagedSettings_212edf3d13b127f5", 885911635584882, undefined, [storeNames]); }
+  static deleteStores(storeNames: $SDK6): void { return callSDK<void>("ManagedSettings_5d69670f0307b385", 885911635584882, undefined, [storeNames]); }
   /**
    * @Published<Int> var effectiveMaximumMovieRating: Int { get }
    * @availability iOS 15.0+
    */
-  get effectiveMaximumMovieRating(): number { return callSDK<number>("ManagedSettings_212edf3d13b127f5", 2900057114659684, this, []); }
+  get effectiveMaximumMovieRating(): number { return callSDK<number>("ManagedSettings_5d69670f0307b385", 2900057114659684, this, []); }
   /**
    * var $effectiveMaximumMovieRating: Published<Int>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $effectiveMaximumMovieRating(): $SDK7 { return callSDK<$SDK7>("ManagedSettings_212edf3d13b127f5", 1737062733218835, this, []); }
+  get $effectiveMaximumMovieRating(): $SDK7 { return callSDK<$SDK7>("ManagedSettings_5d69670f0307b385", 1737062733218835, this, []); }
   /**
    * @Published<Bool> var effectiveDenyExplicitContent: Bool { get }
    * @availability iOS 26.0+
    */
-  get effectiveDenyExplicitContent(): boolean { return callSDK<boolean>("ManagedSettings_212edf3d13b127f5", 936803218857456, this, []); }
+  get effectiveDenyExplicitContent(): boolean { return callSDK<boolean>("ManagedSettings_5d69670f0307b385", 936803218857456, this, []); }
   /**
    * @Published<Int> var effectiveMaximumTVShowRating: Int { get }
    * @availability iOS 15.0+
    */
-  get effectiveMaximumTVShowRating(): number { return callSDK<number>("ManagedSettings_212edf3d13b127f5", 2975700813025901, this, []); }
+  get effectiveMaximumTVShowRating(): number { return callSDK<number>("ManagedSettings_5d69670f0307b385", 2975700813025901, this, []); }
   /**
    * var $effectiveDenyExplicitContent: Published<Bool>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $effectiveDenyExplicitContent(): _Combine_Published_Publisher<boolean> { return callSDK<_Combine_Published_Publisher<boolean>>("ManagedSettings_212edf3d13b127f5", 3992604385573075, this, []); }
+  get $effectiveDenyExplicitContent(): _Combine_Published_Publisher<boolean> { return callSDK<_Combine_Published_Publisher<boolean>>("ManagedSettings_5d69670f0307b385", 3992604385573075, this, []); }
   /**
    * var $effectiveMaximumTVShowRating: Published<Int>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $effectiveMaximumTVShowRating(): $SDK7 { return callSDK<$SDK7>("ManagedSettings_212edf3d13b127f5", 1003651040710926, this, []); }
+  get $effectiveMaximumTVShowRating(): $SDK7 { return callSDK<$SDK7>("ManagedSettings_5d69670f0307b385", 1003651040710926, this, []); }
   /**
    * var siri: SiriSettings
    * @availability iOS 15.0+
    */
-  get siri(): SiriSettings { return callSDK<SiriSettings>("ManagedSettings_212edf3d13b127f5", 516030622406423, this, []); }
-  set siri(value: SiriSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1568627590162821, this, [value]); }
+  get siri(): SiriSettings { return callSDK<SiriSettings>("ManagedSettings_5d69670f0307b385", 516030622406423, this, []); }
+  set siri(value: SiriSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1568627590162821, this, [value]); }
   /**
    * var media: MediaSettings
    * @availability iOS 15.0+
    */
-  get media(): MediaSettings { return callSDK<MediaSettings>("ManagedSettings_212edf3d13b127f5", 3322355993195513, this, []); }
-  set media(value: MediaSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2448203336037316, this, [value]); }
+  get media(): MediaSettings { return callSDK<MediaSettings>("ManagedSettings_5d69670f0307b385", 3322355993195513, this, []); }
+  set media(value: MediaSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2448203336037316, this, [value]); }
   /**
    * convenience init(named name: ManagedSettingsStore.Name)
    * @availability iOS 16.0+
    */
-  static initNamed(name: ManagedSettingsStore_Name): ManagedSettingsStore { return callSDK<ManagedSettingsStore>("ManagedSettings_212edf3d13b127f5", 4278431188751575, undefined, [name]); }
+  static initNamed(name: ManagedSettingsStore_Name): ManagedSettingsStore { return callSDK<ManagedSettingsStore>("ManagedSettings_5d69670f0307b385", 4278431188751575, undefined, [name]); }
   /**
    * var safari: SafariSettings
    * @availability iOS 15.0+
    */
-  get safari(): SafariSettings { return callSDK<SafariSettings>("ManagedSettings_212edf3d13b127f5", 406841999494197, this, []); }
-  set safari(value: SafariSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 803884759969789, this, [value]); }
+  get safari(): SafariSettings { return callSDK<SafariSettings>("ManagedSettings_5d69670f0307b385", 406841999494197, this, []); }
+  set safari(value: SafariSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 803884759969789, this, [value]); }
   /**
    * var shield: ShieldSettings
    * @availability iOS 15.0+
    */
-  get shield(): ShieldSettings { return callSDK<ShieldSettings>("ManagedSettings_212edf3d13b127f5", 2863682479193807, this, []); }
-  set shield(value: ShieldSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 4280048226534878, this, [value]); }
+  get shield(): ShieldSettings { return callSDK<ShieldSettings>("ManagedSettings_5d69670f0307b385", 2863682479193807, this, []); }
+  set shield(value: ShieldSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 4280048226534878, this, [value]); }
   /**
    * static var stores: Set<ManagedSettingsStore.Name> { get }
    * @availability iOS 26.5+
    */
-  static get stores(): $SDK6 { return callSDK<$SDK6>("ManagedSettings_212edf3d13b127f5", 243801392755605, undefined, []); }
+  static get stores(): $SDK6 { return callSDK<$SDK6>("ManagedSettings_5d69670f0307b385", 243801392755605, undefined, []); }
   /**
    * var account: AccountSettings
    * @availability iOS 15.0+
    */
-  get account(): AccountSettings { return callSDK<AccountSettings>("ManagedSettings_212edf3d13b127f5", 3163828320288537, this, []); }
-  set account(value: AccountSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3758077118116984, this, [value]); }
+  get account(): AccountSettings { return callSDK<AccountSettings>("ManagedSettings_5d69670f0307b385", 3163828320288537, this, []); }
+  set account(value: AccountSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3758077118116984, this, [value]); }
   /**
    * static func refresh(_ tokens: inout [ApplicationToken]) throws
    * @availability iOS 26.5+
    */
-  static refresh(tokens: Array<Token<Application>>): { $ret: null; $out: { "tokens": Array<Token<Application>> } } { return callSDK<{ $ret: null; $out: { "tokens": Array<Token<Application>> } }>("ManagedSettings_212edf3d13b127f5", 406554834355554, undefined, [tokens]); }
+  static refresh(tokens: Array<Token<Application>>): { $ret: null; $out: { "tokens": Array<Token<Application>> } } { return callSDK<{ $ret: null; $out: { "tokens": Array<Token<Application>> } }>("ManagedSettings_5d69670f0307b385", 406554834355554, undefined, [tokens]); }
   /**
    * static func refresh(_ tokens: inout [ActivityCategoryToken]) throws
    * @availability iOS 26.5+
    */
-  static refresh97087(tokens: $SDK10): { $ret: null; $out: { "tokens": $SDK10 } } { return callSDK<{ $ret: null; $out: { "tokens": $SDK10 } }>("ManagedSettings_212edf3d13b127f5", 4169749549563117, undefined, [tokens]); }
+  static refresh97087(tokens: $SDK10): { $ret: null; $out: { "tokens": $SDK10 } } { return callSDK<{ $ret: null; $out: { "tokens": $SDK10 } }>("ManagedSettings_5d69670f0307b385", 4169749549563117, undefined, [tokens]); }
   /**
    * static func refresh(_ tokens: inout [WebDomainToken]) throws
    * @availability iOS 26.5+
    */
-  static refresh85832(tokens: Array<Token<WebDomain>>): { $ret: null; $out: { "tokens": Array<Token<WebDomain>> } } { return callSDK<{ $ret: null; $out: { "tokens": Array<Token<WebDomain>> } }>("ManagedSettings_212edf3d13b127f5", 390322791590690, undefined, [tokens]); }
+  static refresh85832(tokens: Array<Token<WebDomain>>): { $ret: null; $out: { "tokens": Array<Token<WebDomain>> } } { return callSDK<{ $ret: null; $out: { "tokens": Array<Token<WebDomain>> } }>("ManagedSettings_5d69670f0307b385", 390322791590690, undefined, [tokens]); }
   /**
    * var cellular: CellularSettings
    * @availability iOS 15.0+
    */
-  get cellular(): CellularSettings { return callSDK<CellularSettings>("ManagedSettings_212edf3d13b127f5", 3524036489694759, this, []); }
-  set cellular(value: CellularSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2214104655211909, this, [value]); }
+  get cellular(): CellularSettings { return callSDK<CellularSettings>("ManagedSettings_5d69670f0307b385", 3524036489694759, this, []); }
+  set cellular(value: CellularSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2214104655211909, this, [value]); }
   /**
    * var isActive: Bool { get set }
    * @availability iOS 26.5+
    */
-  get isActive(): boolean { return callSDK<boolean>("ManagedSettings_212edf3d13b127f5", 1712651038146370, this, []); }
-  set isActive(value: boolean) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1694887231727822, this, [value]); }
+  get isActive(): boolean { return callSDK<boolean>("ManagedSettings_5d69670f0307b385", 1712651038146370, this, []); }
+  set isActive(value: boolean) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1694887231727822, this, [value]); }
   /**
    * var passcode: PasscodeSettings
    * @availability iOS 15.0+
    */
-  get passcode(): PasscodeSettings { return callSDK<PasscodeSettings>("ManagedSettings_212edf3d13b127f5", 990321028085873, this, []); }
-  set passcode(value: PasscodeSettings) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2687172042042019, this, [value]); }
+  get passcode(): PasscodeSettings { return callSDK<PasscodeSettings>("ManagedSettings_5d69670f0307b385", 990321028085873, this, []); }
+  set passcode(value: PasscodeSettings) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2687172042042019, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): ManagedSettingsStore { return callSDK<ManagedSettingsStore>("ManagedSettings_212edf3d13b127f5", 2960385486221476, undefined, []); }
+  static init(): ManagedSettingsStore { return callSDK<ManagedSettingsStore>("ManagedSettings_5d69670f0307b385", 2960385486221476, undefined, []); }
   declare readonly $type: { "s:15ManagedSettings0aB5StoreC": true };
 }
 
@@ -481,22 +481,22 @@ export const ManagedSettingsStore_Name = {
    * static let `default`: ManagedSettingsStore.Name
    * @availability iOS 16.0+
    */
-  get default(): ManagedSettingsStore_Name { return callSDK<ManagedSettingsStore_Name>("ManagedSettings_212edf3d13b127f5", 345253332492965, undefined, []); },
+  get default(): ManagedSettingsStore_Name { return callSDK<ManagedSettingsStore_Name>("ManagedSettings_5d69670f0307b385", 345253332492965, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  initRawValue(rawValue: string): ManagedSettingsStore_Name { return callSDK<ManagedSettingsStore_Name>("ManagedSettings_212edf3d13b127f5", 478546852680691, undefined, [rawValue]); },
+  initRawValue(rawValue: string): ManagedSettingsStore_Name { return callSDK<ManagedSettingsStore_Name>("ManagedSettings_5d69670f0307b385", 478546852680691, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 16.0+
    */
-  getRawValue($self: ManagedSettingsStore_Name): string { return callSDK<string>("ManagedSettings_212edf3d13b127f5", 142234821828806, $self, []); },
+  getRawValue($self: ManagedSettingsStore_Name): string { return callSDK<string>("ManagedSettings_5d69670f0307b385", 142234821828806, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): ManagedSettingsStore_Name { return callSDK<ManagedSettingsStore_Name>("ManagedSettings_212edf3d13b127f5", 1169884994932976, undefined, [rawValue]); }
+  init(rawValue: string): ManagedSettingsStore_Name { return callSDK<ManagedSettingsStore_Name>("ManagedSettings_5d69670f0307b385", 1169884994932976, undefined, [rawValue]); }
 };
 
 /**
@@ -520,8 +520,8 @@ export class ManagedSettingsStore_TokenExpiryMessage extends SDKHandle {
    * static var name: Notification.Name
    * @availability iOS 26.5+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ManagedSettings_212edf3d13b127f5", 3332757085576684, undefined, []); }
-  static set nameValue(value: _Foundation_NSNotification_Name) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3323941945487893, undefined, [value]); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ManagedSettings_5d69670f0307b385", 3332757085576684, undefined, []); }
+  static set nameValue(value: _Foundation_NSNotification_Name) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3323941945487893, undefined, [value]); }
   declare readonly $type: { "s:15ManagedSettings0aB5StoreC18TokenExpiryMessageV": true };
 }
 
@@ -540,57 +540,57 @@ export class MediaSettings extends SDKHandle {
    * static let denyMusicService: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyMusicService(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 1834592214950731, undefined, []); }
+  static get denyMusicService(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 1834592214950731, undefined, []); }
   /**
    * var denyMusicService: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyMusicService25823(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 3948537181216530, this, []); }
-  set denyMusicService25823(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 360247834511732, this, [value]); }
+  get denyMusicService25823(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 3948537181216530, this, []); }
+  set denyMusicService25823(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 360247834511732, this, [value]); }
   /**
    * static let maximumMovieRating: BoundedSettingMetadata<Int>
    * @availability iOS 15.0+
    */
-  static get maximumMovieRating(): $SDK5 { return callSDK<$SDK5>("ManagedSettings_212edf3d13b127f5", 2186822834187683, undefined, []); }
+  static get maximumMovieRating(): $SDK5 { return callSDK<$SDK5>("ManagedSettings_5d69670f0307b385", 2186822834187683, undefined, []); }
   /**
    * var maximumMovieRating: Int? { get set }
    * @availability iOS 15.0+
    */
-  get maximumMovieRating36895(): (number) | null { return callSDK<(number) | null>("ManagedSettings_212edf3d13b127f5", 2490564664881194, this, []); }
-  set maximumMovieRating36895(value: (number) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 950381776920170, this, [value]); }
+  get maximumMovieRating36895(): (number) | null { return callSDK<(number) | null>("ManagedSettings_5d69670f0307b385", 2490564664881194, this, []); }
+  set maximumMovieRating36895(value: (number) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 950381776920170, this, [value]); }
   /**
    * static let denyExplicitContent: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyExplicitContent(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 4165145855442826, undefined, []); }
+  static get denyExplicitContent(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 4165145855442826, undefined, []); }
   /**
    * var denyExplicitContent: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyExplicitContent37435(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 3951543860738374, this, []); }
-  set denyExplicitContent37435(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1983328388740954, this, [value]); }
+  get denyExplicitContent37435(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 3951543860738374, this, []); }
+  set denyExplicitContent37435(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1983328388740954, this, [value]); }
   /**
    * static let maximumTVShowRating: BoundedSettingMetadata<Int>
    * @availability iOS 15.0+
    */
-  static get maximumTVShowRating(): $SDK5 { return callSDK<$SDK5>("ManagedSettings_212edf3d13b127f5", 412760350983047, undefined, []); }
+  static get maximumTVShowRating(): $SDK5 { return callSDK<$SDK5>("ManagedSettings_5d69670f0307b385", 412760350983047, undefined, []); }
   /**
    * var maximumTVShowRating: Int? { get set }
    * @availability iOS 15.0+
    */
-  get maximumTVShowRating67261(): (number) | null { return callSDK<(number) | null>("ManagedSettings_212edf3d13b127f5", 1716460215723502, this, []); }
-  set maximumTVShowRating67261(value: (number) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3346713916650440, this, [value]); }
+  get maximumTVShowRating67261(): (number) | null { return callSDK<(number) | null>("ManagedSettings_5d69670f0307b385", 1716460215723502, this, []); }
+  set maximumTVShowRating67261(value: (number) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3346713916650440, this, [value]); }
   /**
    * static let denyBookstoreErotica: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyBookstoreErotica(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 3374358648734894, undefined, []); }
+  static get denyBookstoreErotica(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 3374358648734894, undefined, []); }
   /**
    * var denyBookstoreErotica: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyBookstoreErotica265(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 1607947478357769, this, []); }
-  set denyBookstoreErotica265(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1539784830563400, this, [value]); }
+  get denyBookstoreErotica265(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 1607947478357769, this, []); }
+  set denyBookstoreErotica265(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1539784830563400, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings05MediaB0V": true };
 }
 
@@ -603,13 +603,13 @@ export class PasscodeSettings extends SDKHandle {
    * static let lockPasscode: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get lockPasscode(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 2771317999231740, undefined, []); }
+  static get lockPasscode(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 2771317999231740, undefined, []); }
   /**
    * var lockPasscode: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get lockPasscode90707(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 4404295865730021, this, []); }
-  set lockPasscode90707(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2348178762030292, this, [value]); }
+  get lockPasscode90707(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 4404295865730021, this, []); }
+  set lockPasscode90707(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2348178762030292, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings08PasscodeB0V": true };
 }
 
@@ -622,24 +622,24 @@ export class SafariSettings extends SDKHandle {
    * static let cookiePolicy: SettingMetadata<SafariSettings.CookiePolicy>
    * @availability iOS 15.0+
    */
-  static get cookiePolicy(): SettingMetadata<SafariSettings_CookiePolicy> { return callSDK<SettingMetadata<SafariSettings_CookiePolicy>>("ManagedSettings_212edf3d13b127f5", 539943433845104, undefined, []); }
+  static get cookiePolicy(): SettingMetadata<SafariSettings_CookiePolicy> { return callSDK<SettingMetadata<SafariSettings_CookiePolicy>>("ManagedSettings_5d69670f0307b385", 539943433845104, undefined, []); }
   /**
    * var cookiePolicy: SafariSettings.CookiePolicy? { get set }
    * @availability iOS 15.0+
    */
-  get cookiePolicy41587(): $SDK12 { return callSDK<$SDK12>("ManagedSettings_212edf3d13b127f5", 3866711824197329, this, []); }
-  set cookiePolicy41587(value: $SDK12) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 675921554757526, this, [value]); }
+  get cookiePolicy41587(): $SDK12 { return callSDK<$SDK12>("ManagedSettings_5d69670f0307b385", 3866711824197329, this, []); }
+  set cookiePolicy41587(value: $SDK12) { callSDK<void>("ManagedSettings_5d69670f0307b385", 675921554757526, this, [value]); }
   /**
    * static let denyAutoFill: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denyAutoFill(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 1613803385583971, undefined, []); }
+  static get denyAutoFill(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 1613803385583971, undefined, []); }
   /**
    * var denyAutoFill: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denyAutoFill87254(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 159225769855116, this, []); }
-  set denyAutoFill87254(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 1498666705937591, this, [value]); }
+  get denyAutoFill87254(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 159225769855116, this, []); }
+  set denyAutoFill87254(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 1498666705937591, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings06SafariB0V": true };
 }
 
@@ -654,17 +654,17 @@ export const SafariSettings_CookiePolicy = {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  getDescription($self: SafariSettings_CookiePolicy): string { return callSDK<string>("ManagedSettings_212edf3d13b127f5", 73943789361338, $self, []); },
+  getDescription($self: SafariSettings_CookiePolicy): string { return callSDK<string>("ManagedSettings_5d69670f0307b385", 73943789361338, $self, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): (SafariSettings_CookiePolicy) | null { return callSDK<(SafariSettings_CookiePolicy) | null>("ManagedSettings_212edf3d13b127f5", 938869507932211, undefined, [rawValue]); },
+  init(rawValue: string): (SafariSettings_CookiePolicy) | null { return callSDK<(SafariSettings_CookiePolicy) | null>("ManagedSettings_5d69670f0307b385", 938869507932211, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: SafariSettings_CookiePolicy): string { return callSDK<string>("ManagedSettings_212edf3d13b127f5", 489434673316951, $self, []); }
+  getRawValue($self: SafariSettings_CookiePolicy): string { return callSDK<string>("ManagedSettings_5d69670f0307b385", 489434673316951, $self, []); }
 };
 
 /**
@@ -682,7 +682,7 @@ export class SettingMetadata<Value = unknown> extends SDKHandle {
    * let defaultValue: Value
    * @availability iOS 15.0+
    */
-  get defaultValue(): unknown { return callSDK<unknown>("ManagedSettings_212edf3d13b127f5", 2999014944129616, this, []); }
+  get defaultValue(): unknown { return callSDK<unknown>("ManagedSettings_5d69670f0307b385", 2999014944129616, this, []); }
   declare readonly $type: { "s:15ManagedSettings15SettingMetadataV": true };
 }
 
@@ -697,12 +697,12 @@ export const ShieldAction = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (ShieldAction) | null { return callSDK<(ShieldAction) | null>("ManagedSettings_212edf3d13b127f5", 2841303397074831, undefined, [rawValue]); },
+  init(rawValue: number): (ShieldAction) | null { return callSDK<(ShieldAction) | null>("ManagedSettings_5d69670f0307b385", 2841303397074831, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: ShieldAction): number { return callSDK<number>("ManagedSettings_212edf3d13b127f5", 1097201476121476, $self, []); }
+  getRawValue($self: ShieldAction): number { return callSDK<number>("ManagedSettings_5d69670f0307b385", 1097201476121476, $self, []); }
 };
 
 /**
@@ -720,22 +720,22 @@ export class ShieldActionDelegate extends SDKHandle {
    * override dynamic init()
    * @availability iOS 15.0+
    */
-  static init(): ShieldActionDelegate { return callSDK<ShieldActionDelegate>("ManagedSettings_212edf3d13b127f5", 1652565048210904, undefined, []); }
+  static init(): ShieldActionDelegate { return callSDK<ShieldActionDelegate>("ManagedSettings_5d69670f0307b385", 1652565048210904, undefined, []); }
   /**
    * func handle(action: ShieldAction, for application: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void)
    * @availability iOS 15.0+
    */
-  handleActionForCompletionHandler(action: ShieldAction, application: Token<Application>, completionHandler: $SDK13): void { return callSDK<void>("ManagedSettings_212edf3d13b127f5", 1653974830651495, this, [action, application, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  handleActionForCompletionHandler(action: ShieldAction, application: Token<Application>, completionHandler: $SDK13): void { return callSDK<void>("ManagedSettings_5d69670f0307b385", 1653974830651495, this, [action, application, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func handle(action: ShieldAction, for category: ActivityCategoryToken, completionHandler: @escaping (ShieldActionResponse) -> Void)
    * @availability iOS 15.0+
    */
-  handleActionForCompletionHandler10232(action: ShieldAction, category: Token<ActivityCategory>, completionHandler: $SDK13): void { return callSDK<void>("ManagedSettings_212edf3d13b127f5", 1513805167946845, this, [action, category, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  handleActionForCompletionHandler10232(action: ShieldAction, category: Token<ActivityCategory>, completionHandler: $SDK13): void { return callSDK<void>("ManagedSettings_5d69670f0307b385", 1513805167946845, this, [action, category, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func handle(action: ShieldAction, for webDomain: WebDomainToken, completionHandler: @escaping (ShieldActionResponse) -> Void)
    * @availability iOS 15.0+
    */
-  handleActionForCompletionHandler21179(action: ShieldAction, webDomain: Token<WebDomain>, completionHandler: $SDK13): void { return callSDK<void>("ManagedSettings_212edf3d13b127f5", 405786308508489, this, [action, webDomain, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  handleActionForCompletionHandler21179(action: ShieldAction, webDomain: Token<WebDomain>, completionHandler: $SDK13): void { return callSDK<void>("ManagedSettings_5d69670f0307b385", 405786308508489, this, [action, webDomain, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:@M@ManagedSettings@objc(cs)ShieldActionDelegate": true; "c:objc(cs)NSObject": true };
 }
 
@@ -750,12 +750,12 @@ export const ShieldActionResponse = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (ShieldActionResponse) | null { return callSDK<(ShieldActionResponse) | null>("ManagedSettings_212edf3d13b127f5", 801443529820687, undefined, [rawValue]); },
+  init(rawValue: number): (ShieldActionResponse) | null { return callSDK<(ShieldActionResponse) | null>("ManagedSettings_5d69670f0307b385", 801443529820687, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: ShieldActionResponse): number { return callSDK<number>("ManagedSettings_212edf3d13b127f5", 538954037657979, $self, []); }
+  getRawValue($self: ShieldActionResponse): number { return callSDK<number>("ManagedSettings_5d69670f0307b385", 538954037657979, $self, []); }
 };
 
 /**
@@ -773,46 +773,46 @@ export class ShieldSettings extends SDKHandle {
    * static let webDomains: SettingMetadata<Set<WebDomainToken>>
    * @availability iOS 15.0+
    */
-  static get webDomains(): SettingMetadata<Array<Token<WebDomain>>> { return callSDK<SettingMetadata<Array<Token<WebDomain>>>>("ManagedSettings_212edf3d13b127f5", 902126519943902, undefined, []); }
+  static get webDomains(): SettingMetadata<Array<Token<WebDomain>>> { return callSDK<SettingMetadata<Array<Token<WebDomain>>>>("ManagedSettings_5d69670f0307b385", 902126519943902, undefined, []); }
   /**
    * var webDomains: Set<WebDomainToken>? { get set }
    * @availability iOS 15.0+
    */
-  get webDomains92061(): $SDK15 { return callSDK<$SDK15>("ManagedSettings_212edf3d13b127f5", 2060689638874355, this, []); }
-  set webDomains92061(value: $SDK15) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2152435370121370, this, [value]); }
+  get webDomains92061(): $SDK15 { return callSDK<$SDK15>("ManagedSettings_5d69670f0307b385", 2060689638874355, this, []); }
+  set webDomains92061(value: $SDK15) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2152435370121370, this, [value]); }
   /**
    * static let applications: SettingMetadata<Set<ApplicationToken>>
    * @availability iOS 15.0+
    */
-  static get applications(): SettingMetadata<Array<Token<Application>>> { return callSDK<SettingMetadata<Array<Token<Application>>>>("ManagedSettings_212edf3d13b127f5", 97122667297699, undefined, []); }
+  static get applications(): SettingMetadata<Array<Token<Application>>> { return callSDK<SettingMetadata<Array<Token<Application>>>>("ManagedSettings_5d69670f0307b385", 97122667297699, undefined, []); }
   /**
    * var applications: Set<ApplicationToken>? { get set }
    * @availability iOS 15.0+
    */
-  get applications26206(): $SDK17 { return callSDK<$SDK17>("ManagedSettings_212edf3d13b127f5", 3525501659029537, this, []); }
-  set applications26206(value: $SDK17) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 2688895094850870, this, [value]); }
+  get applications26206(): $SDK17 { return callSDK<$SDK17>("ManagedSettings_5d69670f0307b385", 3525501659029537, this, []); }
+  set applications26206(value: $SDK17) { callSDK<void>("ManagedSettings_5d69670f0307b385", 2688895094850870, this, [value]); }
   /**
    * static let webDomainCategories: SettingMetadata<ShieldSettings.ActivityCategoryPolicy<WebDomain>>
    * @availability iOS 15.0+
    */
-  static get webDomainCategories(): SettingMetadata<ShieldSettings_ActivityCategoryPolicy<WebDomain>> { return callSDK<SettingMetadata<ShieldSettings_ActivityCategoryPolicy<WebDomain>>>("ManagedSettings_212edf3d13b127f5", 401222871656635, undefined, []); }
+  static get webDomainCategories(): SettingMetadata<ShieldSettings_ActivityCategoryPolicy<WebDomain>> { return callSDK<SettingMetadata<ShieldSettings_ActivityCategoryPolicy<WebDomain>>>("ManagedSettings_5d69670f0307b385", 401222871656635, undefined, []); }
   /**
    * var webDomainCategories: ShieldSettings.ActivityCategoryPolicy<WebDomain>? { get set }
    * @availability iOS 15.0+
    */
-  get webDomainCategories59764(): $SDK19 { return callSDK<$SDK19>("ManagedSettings_212edf3d13b127f5", 2205938389147748, this, []); }
-  set webDomainCategories59764(value: $SDK19) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 544958197442318, this, [value]); }
+  get webDomainCategories59764(): $SDK19 { return callSDK<$SDK19>("ManagedSettings_5d69670f0307b385", 2205938389147748, this, []); }
+  set webDomainCategories59764(value: $SDK19) { callSDK<void>("ManagedSettings_5d69670f0307b385", 544958197442318, this, [value]); }
   /**
    * static let applicationCategories: SettingMetadata<ShieldSettings.ActivityCategoryPolicy<Application>>
    * @availability iOS 15.0+
    */
-  static get applicationCategories(): SettingMetadata<ShieldSettings_ActivityCategoryPolicy<Application>> { return callSDK<SettingMetadata<ShieldSettings_ActivityCategoryPolicy<Application>>>("ManagedSettings_212edf3d13b127f5", 3354053913883971, undefined, []); }
+  static get applicationCategories(): SettingMetadata<ShieldSettings_ActivityCategoryPolicy<Application>> { return callSDK<SettingMetadata<ShieldSettings_ActivityCategoryPolicy<Application>>>("ManagedSettings_5d69670f0307b385", 3354053913883971, undefined, []); }
   /**
    * var applicationCategories: ShieldSettings.ActivityCategoryPolicy<Application>? { get set }
    * @availability iOS 15.0+
    */
-  get applicationCategories61189(): $SDK21 { return callSDK<$SDK21>("ManagedSettings_212edf3d13b127f5", 2253993860062619, this, []); }
-  set applicationCategories61189(value: $SDK21) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 3071678859294710, this, [value]); }
+  get applicationCategories61189(): $SDK21 { return callSDK<$SDK21>("ManagedSettings_5d69670f0307b385", 2253993860062619, this, []); }
+  set applicationCategories61189(value: $SDK21) { callSDK<void>("ManagedSettings_5d69670f0307b385", 3071678859294710, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings06ShieldB0V": true };
 }
 
@@ -833,13 +833,13 @@ export class SiriSettings extends SDKHandle {
    * static let denySiri: SettingMetadata<Bool>
    * @availability iOS 15.0+
    */
-  static get denySiri(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_212edf3d13b127f5", 98463294799270, undefined, []); }
+  static get denySiri(): $SDK0 { return callSDK<$SDK0>("ManagedSettings_5d69670f0307b385", 98463294799270, undefined, []); }
   /**
    * var denySiri: Bool? { get set }
    * @availability iOS 15.0+
    */
-  get denySiri19645(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_212edf3d13b127f5", 2572195056482192, this, []); }
-  set denySiri19645(value: (boolean) | null) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 4130624888313837, this, [value]); }
+  get denySiri19645(): (boolean) | null { return callSDK<(boolean) | null>("ManagedSettings_5d69670f0307b385", 2572195056482192, this, []); }
+  set denySiri19645(value: (boolean) | null) { callSDK<void>("ManagedSettings_5d69670f0307b385", 4130624888313837, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings04SiriB0V": true };
 }
 
@@ -860,13 +860,13 @@ export class WebContentSettings extends SDKHandle {
    * static let blockedByFilter: SettingMetadata<WebContentSettings.FilterPolicy>
    * @availability iOS 15.0+
    */
-  static get blockedByFilter(): SettingMetadata<WebContentSettings_FilterPolicy> { return callSDK<SettingMetadata<WebContentSettings_FilterPolicy>>("ManagedSettings_212edf3d13b127f5", 2090587000138475, undefined, []); }
+  static get blockedByFilter(): SettingMetadata<WebContentSettings_FilterPolicy> { return callSDK<SettingMetadata<WebContentSettings_FilterPolicy>>("ManagedSettings_5d69670f0307b385", 2090587000138475, undefined, []); }
   /**
    * var blockedByFilter: WebContentSettings.FilterPolicy? { get set }
    * @availability iOS 15.0+
    */
-  get blockedByFilter31965(): $SDK23 { return callSDK<$SDK23>("ManagedSettings_212edf3d13b127f5", 4278905859841279, this, []); }
-  set blockedByFilter31965(value: $SDK23) { callSDK<void>("ManagedSettings_212edf3d13b127f5", 59333558584769, this, [value]); }
+  get blockedByFilter31965(): $SDK23 { return callSDK<$SDK23>("ManagedSettings_5d69670f0307b385", 4278905859841279, this, []); }
+  set blockedByFilter31965(value: $SDK23) { callSDK<void>("ManagedSettings_5d69670f0307b385", 59333558584769, this, [value]); }
   declare readonly $type: { "s:15ManagedSettings010WebContentB0V": true };
 }
 
@@ -887,22 +887,22 @@ export class WebDomain extends SDKHandle {
    * let token: WebDomainToken?
    * @availability iOS 15.0+
    */
-  get token(): (Token<WebDomain>) | null { return callSDK<(Token<WebDomain>) | null>("ManagedSettings_212edf3d13b127f5", 3541001175561471, this, []); }
+  get token(): (Token<WebDomain>) | null { return callSDK<(Token<WebDomain>) | null>("ManagedSettings_5d69670f0307b385", 3541001175561471, this, []); }
   /**
    * init(token: WebDomainToken)
    * @availability iOS 15.0+
    */
-  static initToken(token: Token<WebDomain>): WebDomain { return callSDK<WebDomain>("ManagedSettings_212edf3d13b127f5", 3744187032369708, undefined, [token]); }
+  static initToken(token: Token<WebDomain>): WebDomain { return callSDK<WebDomain>("ManagedSettings_5d69670f0307b385", 3744187032369708, undefined, [token]); }
   /**
    * init(domain: String)
    * @availability iOS 15.0+
    */
-  static initDomain(domain: string): WebDomain { return callSDK<WebDomain>("ManagedSettings_212edf3d13b127f5", 542116489288369, undefined, [domain]); }
+  static initDomain(domain: string): WebDomain { return callSDK<WebDomain>("ManagedSettings_5d69670f0307b385", 542116489288369, undefined, [domain]); }
   /**
    * let domain: String?
    * @availability iOS 15.0+
    */
-  get domain(): (string) | null { return callSDK<(string) | null>("ManagedSettings_212edf3d13b127f5", 4376543194365010, this, []); }
+  get domain(): (string) | null { return callSDK<(string) | null>("ManagedSettings_5d69670f0307b385", 4376543194365010, this, []); }
   declare readonly $type: { "s:15ManagedSettings9WebDomainV": true };
 }
 
@@ -912,27 +912,27 @@ export class WebDomain extends SDKHandle {
  */
 export type WebDomainToken = Token<WebDomain>;
 
-registerSDKClass("ManagedSettings.AccountSettings", AccountSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.ActivityCategory", ActivityCategory, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.Application", Application, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.ApplicationSettings", ApplicationSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.AppStoreSettings", AppStoreSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.BoundedSettingMetadata", BoundedSettingMetadata, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.CellularSettings", CellularSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.DateAndTimeSettings", DateAndTimeSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.GameCenterSettings", GameCenterSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
+registerSDKClass("ManagedSettings.AccountSettings", AccountSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.ActivityCategory", ActivityCategory, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.Application", Application, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.ApplicationSettings", ApplicationSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.AppStoreSettings", AppStoreSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.BoundedSettingMetadata", BoundedSettingMetadata, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.CellularSettings", CellularSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.DateAndTimeSettings", DateAndTimeSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.GameCenterSettings", GameCenterSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:15ManagedSettings0aB5GroupP", {});
-registerSDKClass("ManagedSettings.ManagedSettingsStore", ManagedSettingsStore, { module: "ManagedSettings_212edf3d13b127f5", properties: {}, methods: {"deleteStore":{"id":3836573633424587},"clearAllSettings":{"id":1357210805924867}} });
-registerSDKClass("ManagedSettings.ManagedSettingsStore.TokenExpiryMessage", ManagedSettingsStore_TokenExpiryMessage, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.MediaSettings", MediaSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.PasscodeSettings", PasscodeSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.SafariSettings", SafariSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.SettingMetadata", SettingMetadata, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.ShieldActionDelegate", ShieldActionDelegate, { module: "ManagedSettings_212edf3d13b127f5", properties: {}, methods: {"handleActionForCompletionHandler":{"id":1653974830651495,"hints":[null,null,{"callback":{"out":[]}}]},"handleActionForCompletionHandler10232":{"id":1513805167946845,"hints":[null,null,{"callback":{"out":[]}}]},"handleActionForCompletionHandler21179":{"id":405786308508489,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ManagedSettings.ShieldSettings", ShieldSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.ShieldSettings.ActivityCategoryPolicy", ShieldSettings_ActivityCategoryPolicy, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.SiriSettings", SiriSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.Token", Token, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.WebContentSettings", WebContentSettings, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.WebContentSettings.FilterPolicy", WebContentSettings_FilterPolicy, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
-registerSDKClass("ManagedSettings.WebDomain", WebDomain, { module: "ManagedSettings_212edf3d13b127f5", properties: {} });
+registerSDKClass("ManagedSettings.ManagedSettingsStore", ManagedSettingsStore, { module: "ManagedSettings_5d69670f0307b385", properties: {}, methods: {"deleteStore":{"id":3836573633424587},"clearAllSettings":{"id":1357210805924867}} });
+registerSDKClass("ManagedSettings.ManagedSettingsStore.TokenExpiryMessage", ManagedSettingsStore_TokenExpiryMessage, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.MediaSettings", MediaSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.PasscodeSettings", PasscodeSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.SafariSettings", SafariSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.SettingMetadata", SettingMetadata, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.ShieldActionDelegate", ShieldActionDelegate, { module: "ManagedSettings_5d69670f0307b385", properties: {}, methods: {"handleActionForCompletionHandler":{"id":1653974830651495,"hints":[null,null,{"callback":{"out":[]}}]},"handleActionForCompletionHandler10232":{"id":1513805167946845,"hints":[null,null,{"callback":{"out":[]}}]},"handleActionForCompletionHandler21179":{"id":405786308508489,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ManagedSettings.ShieldSettings", ShieldSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.ShieldSettings.ActivityCategoryPolicy", ShieldSettings_ActivityCategoryPolicy, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.SiriSettings", SiriSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.Token", Token, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.WebContentSettings", WebContentSettings, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.WebContentSettings.FilterPolicy", WebContentSettings_FilterPolicy, { module: "ManagedSettings_5d69670f0307b385", properties: {} });
+registerSDKClass("ManagedSettings.WebDomain", WebDomain, { module: "ManagedSettings_5d69670f0307b385", properties: {} });

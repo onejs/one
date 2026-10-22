@@ -35,22 +35,22 @@ export class ElectricalLoadDevice extends SDKHandle {
    * init(id: String, name: String, type: ElectricalLoadDevice.DeviceType)
    * @availability iOS 27.0+
    */
-  static init(id: string, name: string, type: ElectricalLoadDevice_DeviceType): ElectricalLoadDevice { return callSDK<ElectricalLoadDevice>("EnergyKit_212edf3d13b127f5", 1704033648918023, undefined, [id, name, type]); }
+  static init(id: string, name: string, type: ElectricalLoadDevice_DeviceType): ElectricalLoadDevice { return callSDK<ElectricalLoadDevice>("EnergyKit_5d69670f0307b385", 1704033648918023, undefined, [id, name, type]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 210669649127661, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 210669649127661, this, []); }
   /**
    * let name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 1909489167243502, this, []); }
+  get name(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 1909489167243502, this, []); }
   /**
    * let type: ElectricalLoadDevice.DeviceType
    * @availability iOS 27.0+
    */
-  get type(): ElectricalLoadDevice_DeviceType { return callSDK<ElectricalLoadDevice_DeviceType>("EnergyKit_212edf3d13b127f5", 1640866691774688, this, []); }
+  get type(): ElectricalLoadDevice_DeviceType { return callSDK<ElectricalLoadDevice_DeviceType>("EnergyKit_5d69670f0307b385", 1640866691774688, this, []); }
   declare readonly $type: { "s:9EnergyKit20ElectricalLoadDeviceV": true };
 }
 
@@ -65,12 +65,12 @@ export const ElectricalLoadDevice_DeviceType = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (ElectricalLoadDevice_DeviceType) | null { return callSDK<(ElectricalLoadDevice_DeviceType) | null>("EnergyKit_212edf3d13b127f5", 4327046527461675, undefined, [rawValue]); },
+  init(rawValue: string): (ElectricalLoadDevice_DeviceType) | null { return callSDK<(ElectricalLoadDevice_DeviceType) | null>("EnergyKit_5d69670f0307b385", 4327046527461675, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: ElectricalLoadDevice_DeviceType): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 3185305877270144, $self, []); }
+  getRawValue($self: ElectricalLoadDevice_DeviceType): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 3185305877270144, $self, []); }
 };
 
 /**
@@ -96,43 +96,43 @@ export class ElectricHVACLoadEvent extends SDKHandle {
    * var deviceName: String { get }
    * @availability iOS 27.0+
    */
-  get deviceName(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 4071928597762843, this, []); }
+  get deviceName(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 4071928597762843, this, []); }
   /**
    * let measurement: ElectricHVACLoadEvent.ElectricalMeasurement
    * @availability iOS 26.0+
    */
-  get measurement(): ElectricHVACLoadEvent_ElectricalMeasurement { return callSDK<ElectricHVACLoadEvent_ElectricalMeasurement>("EnergyKit_212edf3d13b127f5", 2771587801390107, this, []); }
+  get measurement(): ElectricHVACLoadEvent_ElectricalMeasurement { return callSDK<ElectricHVACLoadEvent_ElectricalMeasurement>("EnergyKit_5d69670f0307b385", 2771587801390107, this, []); }
   /**
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 4072121115272744, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 4072121115272744, this, []); }
   /**
    * let session: ElectricHVACLoadEvent.Session
    * @availability iOS 26.0+
    */
-  get session(): ElectricHVACLoadEvent_Session { return callSDK<ElectricHVACLoadEvent_Session>("EnergyKit_212edf3d13b127f5", 2732319818921973, this, []); }
+  get session(): ElectricHVACLoadEvent_Session { return callSDK<ElectricHVACLoadEvent_Session>("EnergyKit_5d69670f0307b385", 2732319818921973, this, []); }
   /**
    * let deviceID: String
    * @availability iOS 26.0+
    */
-  get deviceID(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 69264184424193, this, []); }
+  get deviceID(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 69264184424193, this, []); }
   /**
    * let timestamp: Date
    * @availability iOS 26.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_212edf3d13b127f5", 559754066806249, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_5d69670f0307b385", 559754066806249, this, []); }
   /**
    * init(timestamp: Date, measurement: ElectricHVACLoadEvent.ElectricalMeasurement, session: ElectricHVACLoadEvent.Session, device: ElectricalLoadDevice)
    * @availability iOS 27.0+
    */
-  static initTimestampMeasurementSessionDevice(timestamp: globalThis.Date, measurement: ElectricHVACLoadEvent_ElectricalMeasurement, session: ElectricHVACLoadEvent_Session, device: ElectricalLoadDevice): ElectricHVACLoadEvent { return callSDK<ElectricHVACLoadEvent>("EnergyKit_212edf3d13b127f5", 2431669077786620, undefined, [timestamp, measurement, session, device]); }
+  static initTimestampMeasurementSessionDevice(timestamp: globalThis.Date, measurement: ElectricHVACLoadEvent_ElectricalMeasurement, session: ElectricHVACLoadEvent_Session, device: ElectricalLoadDevice): ElectricHVACLoadEvent { return callSDK<ElectricHVACLoadEvent>("EnergyKit_5d69670f0307b385", 2431669077786620, undefined, [timestamp, measurement, session, device]); }
   /**
    * init(timestamp: Date, measurement: ElectricHVACLoadEvent.ElectricalMeasurement, session: ElectricHVACLoadEvent.Session, deviceID: String)
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  static initTimestampMeasurementSessionDeviceID(timestamp: globalThis.Date, measurement: ElectricHVACLoadEvent_ElectricalMeasurement, session: ElectricHVACLoadEvent_Session, deviceID: string): ElectricHVACLoadEvent { return callSDK<ElectricHVACLoadEvent>("EnergyKit_212edf3d13b127f5", 3985662072944882, undefined, [timestamp, measurement, session, deviceID]); }
+  static initTimestampMeasurementSessionDeviceID(timestamp: globalThis.Date, measurement: ElectricHVACLoadEvent_ElectricalMeasurement, session: ElectricHVACLoadEvent_Session, deviceID: string): ElectricHVACLoadEvent { return callSDK<ElectricHVACLoadEvent>("EnergyKit_5d69670f0307b385", 3985662072944882, undefined, [timestamp, measurement, session, deviceID]); }
   declare readonly $type: { "s:9EnergyKit21ElectricHVACLoadEventV": true };
 }
 
@@ -145,12 +145,12 @@ export class ElectricHVACLoadEvent_ElectricalMeasurement extends SDKHandle {
    * init(stage: Int)
    * @availability iOS 26.0+
    */
-  static init(stage: number): ElectricHVACLoadEvent_ElectricalMeasurement { return callSDK<ElectricHVACLoadEvent_ElectricalMeasurement>("EnergyKit_212edf3d13b127f5", 1207780652509264, undefined, [stage]); }
+  static init(stage: number): ElectricHVACLoadEvent_ElectricalMeasurement { return callSDK<ElectricHVACLoadEvent_ElectricalMeasurement>("EnergyKit_5d69670f0307b385", 1207780652509264, undefined, [stage]); }
   /**
    * let stage: Int
    * @availability iOS 26.0+
    */
-  get stage(): number { return callSDK<number>("EnergyKit_212edf3d13b127f5", 2907220843916781, this, []); }
+  get stage(): number { return callSDK<number>("EnergyKit_5d69670f0307b385", 2907220843916781, this, []); }
   declare readonly $type: { "s:9EnergyKit21ElectricHVACLoadEventV21ElectricalMeasurementV": true };
 }
 
@@ -169,22 +169,22 @@ export class ElectricHVACLoadEvent_Session extends SDKHandle {
    * let guidanceState: ElectricHVACLoadEvent.Session.GuidanceState
    * @availability iOS 26.0+
    */
-  get guidanceState(): ElectricHVACLoadEvent_Session_GuidanceState { return callSDK<ElectricHVACLoadEvent_Session_GuidanceState>("EnergyKit_212edf3d13b127f5", 2511652529759534, this, []); }
+  get guidanceState(): ElectricHVACLoadEvent_Session_GuidanceState { return callSDK<ElectricHVACLoadEvent_Session_GuidanceState>("EnergyKit_5d69670f0307b385", 2511652529759534, this, []); }
   /**
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 3490589607062388, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 3490589607062388, this, []); }
   /**
    * init(id: UUID, state: ElectricHVACLoadEvent.Session.State, guidanceState: ElectricHVACLoadEvent.Session.GuidanceState)
    * @availability iOS 26.0+
    */
-  static init(id: string, state: ElectricHVACLoadEvent_Session_State, guidanceState: ElectricHVACLoadEvent_Session_GuidanceState): ElectricHVACLoadEvent_Session { return callSDK<ElectricHVACLoadEvent_Session>("EnergyKit_212edf3d13b127f5", 259514884590042, undefined, [id, state, guidanceState]); }
+  static init(id: string, state: ElectricHVACLoadEvent_Session_State, guidanceState: ElectricHVACLoadEvent_Session_GuidanceState): ElectricHVACLoadEvent_Session { return callSDK<ElectricHVACLoadEvent_Session>("EnergyKit_5d69670f0307b385", 259514884590042, undefined, [id, state, guidanceState]); }
   /**
    * let state: ElectricHVACLoadEvent.Session.State
    * @availability iOS 26.0+
    */
-  get state(): ElectricHVACLoadEvent_Session_State { return callSDK<ElectricHVACLoadEvent_Session_State>("EnergyKit_212edf3d13b127f5", 610679755241864, this, []); }
+  get state(): ElectricHVACLoadEvent_Session_State { return callSDK<ElectricHVACLoadEvent_Session_State>("EnergyKit_5d69670f0307b385", 610679755241864, this, []); }
   declare readonly $type: { "s:9EnergyKit21ElectricHVACLoadEventV7SessionV": true };
 }
 
@@ -197,18 +197,18 @@ export class ElectricHVACLoadEvent_Session_GuidanceState extends SDKHandle {
    * init(wasFollowingGuidance: Bool, guidanceToken: UUID)
    * @availability iOS 26.0+
    */
-  static init(wasFollowingGuidance: boolean, guidanceToken: string): ElectricHVACLoadEvent_Session_GuidanceState { return callSDK<ElectricHVACLoadEvent_Session_GuidanceState>("EnergyKit_212edf3d13b127f5", 3217201117335211, undefined, [wasFollowingGuidance, guidanceToken]); }
+  static init(wasFollowingGuidance: boolean, guidanceToken: string): ElectricHVACLoadEvent_Session_GuidanceState { return callSDK<ElectricHVACLoadEvent_Session_GuidanceState>("EnergyKit_5d69670f0307b385", 3217201117335211, undefined, [wasFollowingGuidance, guidanceToken]); }
   /**
    * let wasFollowingGuidance: Bool
    * @availability iOS 26.0+
    */
-  get wasFollowingGuidance(): boolean { return callSDK<boolean>("EnergyKit_212edf3d13b127f5", 2562710173261243, this, []); }
+  get wasFollowingGuidance(): boolean { return callSDK<boolean>("EnergyKit_5d69670f0307b385", 2562710173261243, this, []); }
   /**
    * var guidanceToken: UUID
    * @availability iOS 26.0+
    */
-  get guidanceToken(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 1557786355351572, this, []); }
-  set guidanceToken(value: string) { callSDK<void>("EnergyKit_212edf3d13b127f5", 3435987103533756, this, [value]); }
+  get guidanceToken(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 1557786355351572, this, []); }
+  set guidanceToken(value: string) { callSDK<void>("EnergyKit_5d69670f0307b385", 3435987103533756, this, [value]); }
   declare readonly $type: { "s:9EnergyKit21ElectricHVACLoadEventV7SessionV13GuidanceStateV": true };
 }
 
@@ -233,37 +233,37 @@ export class ElectricityGuidance extends SDKHandle {
    * let energyVenueID: UUID
    * @availability iOS 26.0+
    */
-  get energyVenueID(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 1522321347666330, this, []); }
+  get energyVenueID(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 1522321347666330, this, []); }
   /**
    * let guidanceToken: UUID
    * @availability iOS 26.0+
    */
-  get guidanceToken(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 343070872117782, this, []); }
+  get guidanceToken(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 343070872117782, this, []); }
   /**
    * static let sharedService: ElectricityGuidance.Service
    * @availability iOS 26.0+
    */
-  static get sharedService(): ElectricityGuidance_Service { return callSDK<ElectricityGuidance_Service>("EnergyKit_212edf3d13b127f5", 2874110687488232, undefined, []); }
+  static get sharedService(): ElectricityGuidance_Service { return callSDK<ElectricityGuidance_Service>("EnergyKit_5d69670f0307b385", 2874110687488232, undefined, []); }
   /**
    * let suggestedAction: ElectricityGuidance.SuggestedAction
    * @availability iOS 26.0+
    */
-  get suggestedAction(): ElectricityGuidance_SuggestedAction { return callSDK<ElectricityGuidance_SuggestedAction>("EnergyKit_212edf3d13b127f5", 4083834010588263, this, []); }
+  get suggestedAction(): ElectricityGuidance_SuggestedAction { return callSDK<ElectricityGuidance_SuggestedAction>("EnergyKit_5d69670f0307b385", 4083834010588263, this, []); }
   /**
    * let values: [ElectricityGuidance.Value]
    * @availability iOS 26.0+
    */
-  get values(): Array<ElectricityGuidance_Value> { return callSDK<Array<ElectricityGuidance_Value>>("EnergyKit_212edf3d13b127f5", 2827320397128335, this, []); }
+  get values(): Array<ElectricityGuidance_Value> { return callSDK<Array<ElectricityGuidance_Value>>("EnergyKit_5d69670f0307b385", 2827320397128335, this, []); }
   /**
    * let options: Set<ElectricityGuidance.Options>
    * @availability iOS 26.0+
    */
-  get options(): $SDK1 { return callSDK<$SDK1>("EnergyKit_212edf3d13b127f5", 3362175970695731, this, []); }
+  get options(): $SDK1 { return callSDK<$SDK1>("EnergyKit_5d69670f0307b385", 3362175970695731, this, []); }
   /**
    * let interval: DateInterval
    * @availability iOS 26.0+
    */
-  get interval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_212edf3d13b127f5", 3589183966773009, this, []); }
+  get interval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_5d69670f0307b385", 3589183966773009, this, []); }
   declare readonly $type: { "s:9EnergyKit19ElectricityGuidanceV": true };
 }
 
@@ -278,7 +278,7 @@ export const ElectricityGuidance_Options = {
    * nonisolated static var allCases: [ElectricityGuidance.Options] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK1 { return callSDK<$SDK1>("EnergyKit_212edf3d13b127f5", 591495173774902, undefined, []); }
+  get allCases(): $SDK1 { return callSDK<$SDK1>("EnergyKit_5d69670f0307b385", 591495173774902, undefined, []); }
 };
 
 /**
@@ -296,7 +296,7 @@ export class ElectricityGuidance_Query extends SDKHandle {
    * init(suggestedAction: ElectricityGuidance.SuggestedAction)
    * @availability iOS 26.0+
    */
-  static init(suggestedAction: ElectricityGuidance_SuggestedAction): ElectricityGuidance_Query { return callSDK<ElectricityGuidance_Query>("EnergyKit_212edf3d13b127f5", 2147657348304461, undefined, [suggestedAction]); }
+  static init(suggestedAction: ElectricityGuidance_SuggestedAction): ElectricityGuidance_Query { return callSDK<ElectricityGuidance_Query>("EnergyKit_5d69670f0307b385", 2147657348304461, undefined, [suggestedAction]); }
   declare readonly $type: { "s:9EnergyKit19ElectricityGuidanceV5QueryV": true };
 }
 
@@ -310,7 +310,7 @@ export class ElectricityGuidance_Service extends SDKHandle {
   
    * @availability iOS 26.0+
    */
-  guidance(query: ElectricityGuidance_Query, energyVenueID: string): SDKHandle { return callSDK<SDKHandle>("EnergyKit_212edf3d13b127f5", 1026715638375297, this, [query, energyVenueID]); }
+  guidance(query: ElectricityGuidance_Query, energyVenueID: string): SDKHandle { return callSDK<SDKHandle>("EnergyKit_5d69670f0307b385", 1026715638375297, this, [query, energyVenueID]); }
   declare readonly $type: { "s:9EnergyKit19ElectricityGuidanceV7ServiceC": true };
 }
 
@@ -329,17 +329,17 @@ export class ElectricityGuidance_Value extends SDKHandle {
    * let rating: Double
    * @availability iOS 26.0+
    */
-  get rating(): number { return callSDK<number>("EnergyKit_212edf3d13b127f5", 264365886708377, this, []); }
+  get rating(): number { return callSDK<number>("EnergyKit_5d69670f0307b385", 264365886708377, this, []); }
   /**
    * let interval: DateInterval
    * @availability iOS 26.0+
    */
-  get interval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_212edf3d13b127f5", 2221743316155713, this, []); }
+  get interval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_5d69670f0307b385", 2221743316155713, this, []); }
   /**
    * init(interval: DateInterval, rating: Double)
    * @availability iOS 26.0+
    */
-  static init(interval: _Foundation_DateInterval, rating: number): ElectricityGuidance_Value { return callSDK<ElectricityGuidance_Value>("EnergyKit_212edf3d13b127f5", 3576114457427971, undefined, [interval, rating]); }
+  static init(interval: _Foundation_DateInterval, rating: number): ElectricityGuidance_Value { return callSDK<ElectricityGuidance_Value>("EnergyKit_5d69670f0307b385", 3576114457427971, undefined, [interval, rating]); }
   declare readonly $type: { "s:9EnergyKit19ElectricityGuidanceV5ValueV": true };
 }
 
@@ -360,27 +360,27 @@ export class ElectricityInsightQuery extends SDKHandle {
    * let granularity: ElectricityInsightQuery.Granularity
    * @availability iOS 26.0+
    */
-  get granularity(): ElectricityInsightQuery_Granularity { return callSDK<ElectricityInsightQuery_Granularity>("EnergyKit_212edf3d13b127f5", 3416852195999691, this, []); }
+  get granularity(): ElectricityInsightQuery_Granularity { return callSDK<ElectricityInsightQuery_Granularity>("EnergyKit_5d69670f0307b385", 3416852195999691, this, []); }
   /**
    * let flowDirection: ElectricityFlowDirection
    * @availability iOS 26.0+
    */
-  get flowDirection(): ElectricityFlowDirection { return callSDK<ElectricityFlowDirection>("EnergyKit_212edf3d13b127f5", 3764651365565629, this, []); }
+  get flowDirection(): ElectricityFlowDirection { return callSDK<ElectricityFlowDirection>("EnergyKit_5d69670f0307b385", 3764651365565629, this, []); }
   /**
    * let range: DateInterval
    * @availability iOS 26.0+
    */
-  get range(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_212edf3d13b127f5", 4395902286189757, this, []); }
+  get range(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_5d69670f0307b385", 4395902286189757, this, []); }
   /**
    * init(options: ElectricityInsightQuery.Options, range: DateInterval, granularity: ElectricityInsightQuery.Granularity, flowDirection: ElectricityFlowDirection)
    * @availability iOS 26.0+
    */
-  static init(options: ElectricityInsightQuery_Options, range: _Foundation_DateInterval, granularity: ElectricityInsightQuery_Granularity, flowDirection: ElectricityFlowDirection): ElectricityInsightQuery { return callSDK<ElectricityInsightQuery>("EnergyKit_212edf3d13b127f5", 157916189201060, undefined, [options, range, granularity, flowDirection]); }
+  static init(options: ElectricityInsightQuery_Options, range: _Foundation_DateInterval, granularity: ElectricityInsightQuery_Granularity, flowDirection: ElectricityFlowDirection): ElectricityInsightQuery { return callSDK<ElectricityInsightQuery>("EnergyKit_5d69670f0307b385", 157916189201060, undefined, [options, range, granularity, flowDirection]); }
   /**
    * let options: ElectricityInsightQuery.Options
    * @availability iOS 26.0+
    */
-  get options(): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_212edf3d13b127f5", 2508412239845173, this, []); }
+  get options(): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_5d69670f0307b385", 2508412239845173, this, []); }
   declare readonly $type: { "s:9EnergyKit23ElectricityInsightQueryV": true };
 }
 
@@ -401,22 +401,22 @@ export const ElectricityInsightQuery_Options = {
    * static let cleanliness: ElectricityInsightQuery.Options
    * @availability iOS 26.0+
    */
-  get cleanliness(): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_212edf3d13b127f5", 1033251534929289, undefined, []); },
+  get cleanliness(): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_5d69670f0307b385", 1033251534929289, undefined, []); },
   /**
    * static let tariff: ElectricityInsightQuery.Options
    * @availability iOS 26.0+
    */
-  get tariff(): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_212edf3d13b127f5", 4269437992211607, undefined, []); },
+  get tariff(): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_5d69670f0307b385", 4269437992211607, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_212edf3d13b127f5", 368971874550128, undefined, [rawValue]); },
+  init(rawValue: number): ElectricityInsightQuery_Options { return callSDK<ElectricityInsightQuery_Options>("EnergyKit_5d69670f0307b385", 368971874550128, undefined, [rawValue]); },
   /**
    * let rawValue: UInt
    * @availability iOS 26.0+
    */
-  getRawValue($self: ElectricityInsightQuery_Options): number { return callSDK<number>("EnergyKit_212edf3d13b127f5", 893263751002498, $self, []); }
+  getRawValue($self: ElectricityInsightQuery_Options): number { return callSDK<number>("EnergyKit_5d69670f0307b385", 893263751002498, $self, []); }
 };
 
 /**
@@ -446,31 +446,31 @@ export class ElectricityInsightRecord<Measure = unknown> extends SDKHandle {
    * var totalEnergy: Measurement<UnitEnergy>?
    * @availability iOS 26.0+
    */
-  get totalEnergy(): $SDK2 { return callSDK<$SDK2>("EnergyKit_212edf3d13b127f5", 2549733596716137, this, []); }
-  set totalEnergy(value: $SDK2) { callSDK<void>("EnergyKit_212edf3d13b127f5", 2202967877888372, this, [value]); }
+  get totalEnergy(): $SDK2 { return callSDK<$SDK2>("EnergyKit_5d69670f0307b385", 2549733596716137, this, []); }
+  set totalEnergy(value: $SDK2) { callSDK<void>("EnergyKit_5d69670f0307b385", 2202967877888372, this, [value]); }
   /**
    * var totalRuntime: Duration?
    * @availability iOS 26.0+
    */
-  get totalRuntime(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EnergyKit_212edf3d13b127f5", 377078785216552, this, []); }
-  set totalRuntime(value: (SDKHandle) | null) { callSDK<void>("EnergyKit_212edf3d13b127f5", 3261862475976837, this, [value]); }
+  get totalRuntime(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EnergyKit_5d69670f0307b385", 377078785216552, this, []); }
+  set totalRuntime(value: (SDKHandle) | null) { callSDK<void>("EnergyKit_5d69670f0307b385", 3261862475976837, this, [value]); }
   /**
    * var dataByTariffPeak: ElectricityInsightRecord<Measure>.TariffPeak?
    * @availability iOS 26.0+
    */
-  get dataByTariffPeak(): $SDK3 { return callSDK<$SDK3>("EnergyKit_212edf3d13b127f5", 4095584676777179, this, []); }
-  set dataByTariffPeak(value: $SDK3) { callSDK<void>("EnergyKit_212edf3d13b127f5", 1597451822978448, this, [value]); }
+  get dataByTariffPeak(): $SDK3 { return callSDK<$SDK3>("EnergyKit_5d69670f0307b385", 4095584676777179, this, []); }
+  set dataByTariffPeak(value: $SDK3) { callSDK<void>("EnergyKit_5d69670f0307b385", 1597451822978448, this, [value]); }
   /**
    * var dataByGridCleanliness: ElectricityInsightRecord<Measure>.GridCleanliness?
    * @availability iOS 26.1+
    */
-  get dataByGridCleanliness(): $SDK4 { return callSDK<$SDK4>("EnergyKit_212edf3d13b127f5", 2159003798759565, this, []); }
-  set dataByGridCleanliness(value: $SDK4) { callSDK<void>("EnergyKit_212edf3d13b127f5", 4308968616179745, this, [value]); }
+  get dataByGridCleanliness(): $SDK4 { return callSDK<$SDK4>("EnergyKit_5d69670f0307b385", 2159003798759565, this, []); }
+  set dataByGridCleanliness(value: $SDK4) { callSDK<void>("EnergyKit_5d69670f0307b385", 4308968616179745, this, [value]); }
   /**
    * let range: DateInterval
    * @availability iOS 26.0+
    */
-  get range(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_212edf3d13b127f5", 2311876791049455, this, []); }
+  get range(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("EnergyKit_5d69670f0307b385", 2311876791049455, this, []); }
   declare readonly $type: { "s:9EnergyKit24ElectricityInsightRecordV": true };
 }
 
@@ -499,22 +499,22 @@ export class ElectricityInsightService extends SDKHandle {
    * final func energyInsights(forDeviceID deviceID: String, using query: ElectricityInsightQuery, atVenue energyVenueID: UUID) async throws -> AsyncStream<ElectricityInsightRecord<Measurement<UnitEnergy>>>
    * @availability iOS 26.0+
    */
-  energyInsights(deviceID: string, query: ElectricityInsightQuery, energyVenueID: string): Promise<SDKSequence<ElectricityInsightRecord<_Foundation_Measurement<_Foundation_UnitEnergy>>>> { return callSDKAsync<SDKSequence<ElectricityInsightRecord<_Foundation_Measurement<_Foundation_UnitEnergy>>>>("EnergyKit_212edf3d13b127f5", 3482568125662875, this, [deviceID, query, energyVenueID]); }
+  energyInsights(deviceID: string, query: ElectricityInsightQuery, energyVenueID: string): Promise<SDKSequence<ElectricityInsightRecord<_Foundation_Measurement<_Foundation_UnitEnergy>>>> { return callSDKAsync<SDKSequence<ElectricityInsightRecord<_Foundation_Measurement<_Foundation_UnitEnergy>>>>("EnergyKit_5d69670f0307b385", 3482568125662875, this, [deviceID, query, energyVenueID]); }
   /**
    * final func runtimeInsights(forDeviceID deviceID: String, using query: ElectricityInsightQuery, atVenue energyVenueID: UUID) async throws -> AsyncStream<ElectricityInsightRecord<Duration>>
    * @availability iOS 26.0+
    */
-  runtimeInsights(deviceID: string, query: ElectricityInsightQuery, energyVenueID: string): Promise<SDKSequence<ElectricityInsightRecord<SDKHandle>>> { return callSDKAsync<SDKSequence<ElectricityInsightRecord<SDKHandle>>>("EnergyKit_212edf3d13b127f5", 1390137826491007, this, [deviceID, query, energyVenueID]); }
+  runtimeInsights(deviceID: string, query: ElectricityInsightQuery, energyVenueID: string): Promise<SDKSequence<ElectricityInsightRecord<SDKHandle>>> { return callSDKAsync<SDKSequence<ElectricityInsightRecord<SDKHandle>>>("EnergyKit_5d69670f0307b385", 1390137826491007, this, [deviceID, query, energyVenueID]); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 26.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("EnergyKit_212edf3d13b127f5", 1126065699376673, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("EnergyKit_5d69670f0307b385", 1126065699376673, this, []); }
   /**
    * static let shared: ElectricityInsightService
    * @availability iOS 26.0+
    */
-  static get shared(): ElectricityInsightService { return callSDK<ElectricityInsightService>("EnergyKit_212edf3d13b127f5", 2492159692029947, undefined, []); }
+  static get shared(): ElectricityInsightService { return callSDK<ElectricityInsightService>("EnergyKit_5d69670f0307b385", 2492159692029947, undefined, []); }
   declare readonly $type: { "s:9EnergyKit25ElectricityInsightServiceC": true };
 }
 
@@ -537,7 +537,7 @@ export const ElectricVehicleChargingReason_ActiveReason = {
    * nonisolated static var allCases: [ElectricVehicleChargingReason.ActiveReason] { get }
    * @availability iOS 27.0+
    */
-  get allCases(): $SDK7 { return callSDK<$SDK7>("EnergyKit_212edf3d13b127f5", 3074500687982881, undefined, []); }
+  get allCases(): $SDK7 { return callSDK<$SDK7>("EnergyKit_5d69670f0307b385", 3074500687982881, undefined, []); }
 };
 
 /**
@@ -557,7 +557,7 @@ export const ElectricVehicleChargingReason_IdleReason = {
    * nonisolated static var allCases: [ElectricVehicleChargingReason.IdleReason] { get }
    * @availability iOS 27.0+
    */
-  get allCases(): $SDK8 { return callSDK<$SDK8>("EnergyKit_212edf3d13b127f5", 2157914784122064, undefined, []); }
+  get allCases(): $SDK8 { return callSDK<$SDK8>("EnergyKit_5d69670f0307b385", 2157914784122064, undefined, []); }
 };
 
 /**
@@ -575,43 +575,43 @@ export class ElectricVehicleLoadEvent extends SDKHandle {
    * var deviceName: String { get }
    * @availability iOS 27.0+
    */
-  get deviceName(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 2823090933351299, this, []); }
+  get deviceName(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 2823090933351299, this, []); }
   /**
    * let measurement: ElectricVehicleLoadEvent.ElectricalMeasurement
    * @availability iOS 26.0+
    */
-  get measurement(): ElectricVehicleLoadEvent_ElectricalMeasurement { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement>("EnergyKit_212edf3d13b127f5", 1724888482142306, this, []); }
+  get measurement(): ElectricVehicleLoadEvent_ElectricalMeasurement { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement>("EnergyKit_5d69670f0307b385", 1724888482142306, this, []); }
   /**
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 2643165797269256, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 2643165797269256, this, []); }
   /**
    * let session: ElectricVehicleLoadEvent.Session
    * @availability iOS 26.0+
    */
-  get session(): ElectricVehicleLoadEvent_Session { return callSDK<ElectricVehicleLoadEvent_Session>("EnergyKit_212edf3d13b127f5", 1715413498785551, this, []); }
+  get session(): ElectricVehicleLoadEvent_Session { return callSDK<ElectricVehicleLoadEvent_Session>("EnergyKit_5d69670f0307b385", 1715413498785551, this, []); }
   /**
    * let deviceID: String
    * @availability iOS 26.0+
    */
-  get deviceID(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 442371148162741, this, []); }
+  get deviceID(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 442371148162741, this, []); }
   /**
    * let timestamp: Date
    * @availability iOS 26.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_212edf3d13b127f5", 2468401044764428, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_5d69670f0307b385", 2468401044764428, this, []); }
   /**
    * init(timestamp: Date, measurement: ElectricVehicleLoadEvent.ElectricalMeasurement, session: ElectricVehicleLoadEvent.Session, device: ElectricalLoadDevice)
    * @availability iOS 27.0+
    */
-  static initTimestampMeasurementSessionDevice(timestamp: globalThis.Date, measurement: ElectricVehicleLoadEvent_ElectricalMeasurement, session: ElectricVehicleLoadEvent_Session, device: ElectricalLoadDevice): ElectricVehicleLoadEvent { return callSDK<ElectricVehicleLoadEvent>("EnergyKit_212edf3d13b127f5", 4077857914965046, undefined, [timestamp, measurement, session, device]); }
+  static initTimestampMeasurementSessionDevice(timestamp: globalThis.Date, measurement: ElectricVehicleLoadEvent_ElectricalMeasurement, session: ElectricVehicleLoadEvent_Session, device: ElectricalLoadDevice): ElectricVehicleLoadEvent { return callSDK<ElectricVehicleLoadEvent>("EnergyKit_5d69670f0307b385", 4077857914965046, undefined, [timestamp, measurement, session, device]); }
   /**
    * init(timestamp: Date, measurement: ElectricVehicleLoadEvent.ElectricalMeasurement, session: ElectricVehicleLoadEvent.Session, deviceID: String)
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  static initTimestampMeasurementSessionDeviceID(timestamp: globalThis.Date, measurement: ElectricVehicleLoadEvent_ElectricalMeasurement, session: ElectricVehicleLoadEvent_Session, deviceID: string): ElectricVehicleLoadEvent { return callSDK<ElectricVehicleLoadEvent>("EnergyKit_212edf3d13b127f5", 3120480597198950, undefined, [timestamp, measurement, session, deviceID]); }
+  static initTimestampMeasurementSessionDeviceID(timestamp: globalThis.Date, measurement: ElectricVehicleLoadEvent_ElectricalMeasurement, session: ElectricVehicleLoadEvent_Session, deviceID: string): ElectricVehicleLoadEvent { return callSDK<ElectricVehicleLoadEvent>("EnergyKit_5d69670f0307b385", 3120480597198950, undefined, [timestamp, measurement, session, deviceID]); }
   declare readonly $type: { "s:9EnergyKit24ElectricVehicleLoadEventV": true };
 }
 
@@ -624,38 +624,38 @@ export class ElectricVehicleLoadEvent_ElectricalMeasurement extends SDKHandle {
    * init(stateOfCharge: Int, direction: ElectricityFlowDirection, power: Measurement<UnitPower>, energy: Measurement<UnitEnergy>, performanceMetrics: ElectricVehicleLoadEvent.ElectricalMeasurement.PerformanceMetrics?)
    * @availability iOS 27.0+
    */
-  static initStateOfChargeDirectionPowerEnergyPerformanceMetrics(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK9, energy: $SDK10, performanceMetrics?: $SDK11): ElectricVehicleLoadEvent_ElectricalMeasurement { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement>("EnergyKit_212edf3d13b127f5", 2148015600994879, undefined, [stateOfCharge, direction, power, energy, performanceMetrics]); }
+  static initStateOfChargeDirectionPowerEnergyPerformanceMetrics(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK9, energy: $SDK10, performanceMetrics?: $SDK11): ElectricVehicleLoadEvent_ElectricalMeasurement { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement>("EnergyKit_5d69670f0307b385", 2148015600994879, undefined, [stateOfCharge, direction, power, energy, performanceMetrics]); }
   /**
    * init(stateOfCharge: Int, direction: ElectricityFlowDirection, power: Measurement<UnitPower>, energy: Measurement<UnitEnergy>)
    * @availability iOS 26.0+
    * @deprecated iOS 27.0
    */
-  static initStateOfChargeDirectionPowerEnergy(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK9, energy: $SDK10): ElectricVehicleLoadEvent_ElectricalMeasurement { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement>("EnergyKit_212edf3d13b127f5", 3167678424101745, undefined, [stateOfCharge, direction, power, energy]); }
+  static initStateOfChargeDirectionPowerEnergy(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK9, energy: $SDK10): ElectricVehicleLoadEvent_ElectricalMeasurement { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement>("EnergyKit_5d69670f0307b385", 3167678424101745, undefined, [stateOfCharge, direction, power, energy]); }
   /**
    * let stateOfCharge: Int
    * @availability iOS 26.0+
    */
-  get stateOfCharge(): number { return callSDK<number>("EnergyKit_212edf3d13b127f5", 445640806856130, this, []); }
+  get stateOfCharge(): number { return callSDK<number>("EnergyKit_5d69670f0307b385", 445640806856130, this, []); }
   /**
    * var performanceMetrics: ElectricVehicleLoadEvent.ElectricalMeasurement.PerformanceMetrics? { get }
    * @availability iOS 27.0+
    */
-  get performanceMetrics(): $SDK11 { return callSDK<$SDK11>("EnergyKit_212edf3d13b127f5", 525085951324946, this, []); }
+  get performanceMetrics(): $SDK11 { return callSDK<$SDK11>("EnergyKit_5d69670f0307b385", 525085951324946, this, []); }
   /**
    * let power: Measurement<UnitPower>
    * @availability iOS 26.0+
    */
-  get power(): $SDK9 { return callSDK<$SDK9>("EnergyKit_212edf3d13b127f5", 2714112969843751, this, []); }
+  get power(): $SDK9 { return callSDK<$SDK9>("EnergyKit_5d69670f0307b385", 2714112969843751, this, []); }
   /**
    * let energy: Measurement<UnitEnergy>
    * @availability iOS 26.0+
    */
-  get energy(): $SDK10 { return callSDK<$SDK10>("EnergyKit_212edf3d13b127f5", 2388300303277503, this, []); }
+  get energy(): $SDK10 { return callSDK<$SDK10>("EnergyKit_5d69670f0307b385", 2388300303277503, this, []); }
   /**
    * let direction: ElectricityFlowDirection
    * @availability iOS 26.0+
    */
-  get direction(): ElectricityFlowDirection { return callSDK<ElectricityFlowDirection>("EnergyKit_212edf3d13b127f5", 2680937300091993, this, []); }
+  get direction(): ElectricityFlowDirection { return callSDK<ElectricityFlowDirection>("EnergyKit_5d69670f0307b385", 2680937300091993, this, []); }
   declare readonly $type: { "s:9EnergyKit24ElectricVehicleLoadEventV21ElectricalMeasurementV": true };
 }
 
@@ -668,17 +668,17 @@ export class ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics e
    * let estimatedRange: Measurement<UnitLength>?
    * @availability iOS 27.0+
    */
-  get estimatedRange(): $SDK12 { return callSDK<$SDK12>("EnergyKit_212edf3d13b127f5", 103425140443840, this, []); }
+  get estimatedRange(): $SDK12 { return callSDK<$SDK12>("EnergyKit_5d69670f0307b385", 103425140443840, this, []); }
   /**
    * init(estimatedRange: Measurement<UnitLength>? = nil, batteryTemperature: Measurement<UnitTemperature>? = nil)
    * @availability iOS 27.0+
    */
-  static init(estimatedRange?: $SDK12, batteryTemperature?: $SDK13): ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics>("EnergyKit_212edf3d13b127f5", 2679391167753013, undefined, [estimatedRange, batteryTemperature]); }
+  static init(estimatedRange?: $SDK12, batteryTemperature?: $SDK13): ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics { return callSDK<ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics>("EnergyKit_5d69670f0307b385", 2679391167753013, undefined, [estimatedRange, batteryTemperature]); }
   /**
    * let batteryTemperature: Measurement<UnitTemperature>?
    * @availability iOS 27.0+
    */
-  get batteryTemperature(): $SDK13 { return callSDK<$SDK13>("EnergyKit_212edf3d13b127f5", 2512705198625269, this, []); }
+  get batteryTemperature(): $SDK13 { return callSDK<$SDK13>("EnergyKit_5d69670f0307b385", 2512705198625269, this, []); }
   declare readonly $type: { "s:9EnergyKit24ElectricVehicleLoadEventV21ElectricalMeasurementV18PerformanceMetricsV": true };
 }
 
@@ -697,22 +697,22 @@ export class ElectricVehicleLoadEvent_Session extends SDKHandle {
    * let guidanceState: ElectricVehicleLoadEvent.Session.GuidanceState
    * @availability iOS 26.0+
    */
-  get guidanceState(): ElectricVehicleLoadEvent_Session_GuidanceState { return callSDK<ElectricVehicleLoadEvent_Session_GuidanceState>("EnergyKit_212edf3d13b127f5", 528022632971861, this, []); }
+  get guidanceState(): ElectricVehicleLoadEvent_Session_GuidanceState { return callSDK<ElectricVehicleLoadEvent_Session_GuidanceState>("EnergyKit_5d69670f0307b385", 528022632971861, this, []); }
   /**
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 1176905194658323, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 1176905194658323, this, []); }
   /**
    * init(id: UUID, state: ElectricVehicleLoadEvent.Session.State, guidanceState: ElectricVehicleLoadEvent.Session.GuidanceState)
    * @availability iOS 26.0+
    */
-  static init(id: string, state: ElectricVehicleLoadEvent_Session_State, guidanceState: ElectricVehicleLoadEvent_Session_GuidanceState): ElectricVehicleLoadEvent_Session { return callSDK<ElectricVehicleLoadEvent_Session>("EnergyKit_212edf3d13b127f5", 3961140989647078, undefined, [id, state, guidanceState]); }
+  static init(id: string, state: ElectricVehicleLoadEvent_Session_State, guidanceState: ElectricVehicleLoadEvent_Session_GuidanceState): ElectricVehicleLoadEvent_Session { return callSDK<ElectricVehicleLoadEvent_Session>("EnergyKit_5d69670f0307b385", 3961140989647078, undefined, [id, state, guidanceState]); }
   /**
    * let state: ElectricVehicleLoadEvent.Session.State
    * @availability iOS 26.0+
    */
-  get state(): ElectricVehicleLoadEvent_Session_State { return callSDK<ElectricVehicleLoadEvent_Session_State>("EnergyKit_212edf3d13b127f5", 291947701649631, this, []); }
+  get state(): ElectricVehicleLoadEvent_Session_State { return callSDK<ElectricVehicleLoadEvent_Session_State>("EnergyKit_5d69670f0307b385", 291947701649631, this, []); }
   declare readonly $type: { "s:9EnergyKit24ElectricVehicleLoadEventV7SessionV": true };
 }
 
@@ -725,18 +725,18 @@ export class ElectricVehicleLoadEvent_Session_GuidanceState extends SDKHandle {
    * init(wasFollowingGuidance: Bool, guidanceToken: UUID)
    * @availability iOS 26.0+
    */
-  static init(wasFollowingGuidance: boolean, guidanceToken: string): ElectricVehicleLoadEvent_Session_GuidanceState { return callSDK<ElectricVehicleLoadEvent_Session_GuidanceState>("EnergyKit_212edf3d13b127f5", 327720202177437, undefined, [wasFollowingGuidance, guidanceToken]); }
+  static init(wasFollowingGuidance: boolean, guidanceToken: string): ElectricVehicleLoadEvent_Session_GuidanceState { return callSDK<ElectricVehicleLoadEvent_Session_GuidanceState>("EnergyKit_5d69670f0307b385", 327720202177437, undefined, [wasFollowingGuidance, guidanceToken]); }
   /**
    * let wasFollowingGuidance: Bool
    * @availability iOS 26.0+
    */
-  get wasFollowingGuidance(): boolean { return callSDK<boolean>("EnergyKit_212edf3d13b127f5", 2648291907766977, this, []); }
+  get wasFollowingGuidance(): boolean { return callSDK<boolean>("EnergyKit_5d69670f0307b385", 2648291907766977, this, []); }
   /**
    * var guidanceToken: UUID
    * @availability iOS 26.0+
    */
-  get guidanceToken(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 297263970469508, this, []); }
-  set guidanceToken(value: string) { callSDK<void>("EnergyKit_212edf3d13b127f5", 3044576072482618, this, [value]); }
+  get guidanceToken(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 297263970469508, this, []); }
+  set guidanceToken(value: string) { callSDK<void>("EnergyKit_5d69670f0307b385", 3044576072482618, this, [value]); }
   declare readonly $type: { "s:9EnergyKit24ElectricVehicleLoadEventV7SessionV13GuidanceStateV": true };
 }
 
@@ -755,62 +755,62 @@ export class ElectricVehicleStatusEvent extends SDKHandle {
    * let deviceName: String
    * @availability iOS 27.0+
    */
-  get deviceName(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 2195452450019343, this, []); }
+  get deviceName(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 2195452450019343, this, []); }
   /**
    * let stateOfCharge: Int
    * @availability iOS 27.0+
    */
-  get stateOfCharge(): number { return callSDK<number>("EnergyKit_212edf3d13b127f5", 4360771506683931, this, []); }
+  get stateOfCharge(): number { return callSDK<number>("EnergyKit_5d69670f0307b385", 4360771506683931, this, []); }
   /**
    * let chargingTarget: ElectricVehicleStatusEvent.ChargingTarget?
    * @availability iOS 27.0+
    */
-  get chargingTarget(): $SDK14 { return callSDK<$SDK14>("EnergyKit_212edf3d13b127f5", 4220636636815814, this, []); }
+  get chargingTarget(): $SDK14 { return callSDK<$SDK14>("EnergyKit_5d69670f0307b385", 4220636636815814, this, []); }
   /**
    * let estimatedRange: Measurement<UnitLength>?
    * @availability iOS 27.0+
    */
-  get estimatedRange(): $SDK12 { return callSDK<$SDK12>("EnergyKit_212edf3d13b127f5", 1757078110293199, this, []); }
+  get estimatedRange(): $SDK12 { return callSDK<$SDK12>("EnergyKit_5d69670f0307b385", 1757078110293199, this, []); }
   /**
    * let sessionIdentifier: UUID?
    * @availability iOS 27.0+
    */
-  get sessionIdentifier(): (string) | null { return callSDK<(string) | null>("EnergyKit_212edf3d13b127f5", 2954196748088204, this, []); }
+  get sessionIdentifier(): (string) | null { return callSDK<(string) | null>("EnergyKit_5d69670f0307b385", 2954196748088204, this, []); }
   /**
    * let id: UUID
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 2028831976246914, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 2028831976246914, this, []); }
   /**
    * let energy: Measurement<UnitEnergy>
    * @availability iOS 27.0+
    */
-  get energy(): $SDK10 { return callSDK<$SDK10>("EnergyKit_212edf3d13b127f5", 1722090553689704, this, []); }
+  get energy(): $SDK10 { return callSDK<$SDK10>("EnergyKit_5d69670f0307b385", 1722090553689704, this, []); }
   /**
    * let status: ElectricVehicleStatusEvent.Status
    * @availability iOS 27.0+
    */
-  get status(): ElectricVehicleStatusEvent_Status { return callSDK<ElectricVehicleStatusEvent_Status>("EnergyKit_212edf3d13b127f5", 4115229477263345, this, []); }
+  get status(): ElectricVehicleStatusEvent_Status { return callSDK<ElectricVehicleStatusEvent_Status>("EnergyKit_5d69670f0307b385", 4115229477263345, this, []); }
   /**
    * let venueID: UUID
    * @availability iOS 27.0+
    */
-  get venueID(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 774511701011093, this, []); }
+  get venueID(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 774511701011093, this, []); }
   /**
    * let deviceID: String
    * @availability iOS 27.0+
    */
-  get deviceID(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 826966661701093, this, []); }
+  get deviceID(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 826966661701093, this, []); }
   /**
    * let timestamp: Date
    * @availability iOS 27.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_212edf3d13b127f5", 2581534660998664, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_5d69670f0307b385", 2581534660998664, this, []); }
   /**
    * init(timestamp: Date, device: ElectricalLoadDevice, venueID: UUID, status: ElectricVehicleStatusEvent.Status, stateOfCharge: Int, energy: Measurement<UnitEnergy>, estimatedRange: Measurement<UnitLength>? = nil, chargingTarget: ElectricVehicleStatusEvent.ChargingTarget? = nil, sessionIdentifier: UUID? = nil)
    * @availability iOS 27.0+
    */
-  static init(timestamp: globalThis.Date, device: ElectricalLoadDevice, venueID: string, status: ElectricVehicleStatusEvent_Status, stateOfCharge: number, energy: $SDK10, estimatedRange?: $SDK12, chargingTarget?: $SDK14, sessionIdentifier?: (string) | null): ElectricVehicleStatusEvent { return callSDK<ElectricVehicleStatusEvent>("EnergyKit_212edf3d13b127f5", 3515797450805296, undefined, [timestamp, device, venueID, status, stateOfCharge, energy, estimatedRange, chargingTarget, sessionIdentifier]); }
+  static init(timestamp: globalThis.Date, device: ElectricalLoadDevice, venueID: string, status: ElectricVehicleStatusEvent_Status, stateOfCharge: number, energy: $SDK10, estimatedRange?: $SDK12, chargingTarget?: $SDK14, sessionIdentifier?: (string) | null): ElectricVehicleStatusEvent { return callSDK<ElectricVehicleStatusEvent>("EnergyKit_5d69670f0307b385", 3515797450805296, undefined, [timestamp, device, venueID, status, stateOfCharge, energy, estimatedRange, chargingTarget, sessionIdentifier]); }
   declare readonly $type: { "s:9EnergyKit26ElectricVehicleStatusEventV": true };
 }
 
@@ -823,27 +823,27 @@ export class ElectricVehicleStatusEvent_ChargingTarget extends SDKHandle {
    * let estimatedRangeAtTarget: Measurement<UnitLength>?
    * @availability iOS 27.0+
    */
-  get estimatedRangeAtTarget(): $SDK12 { return callSDK<$SDK12>("EnergyKit_212edf3d13b127f5", 4476372510189904, this, []); }
+  get estimatedRangeAtTarget(): $SDK12 { return callSDK<$SDK12>("EnergyKit_5d69670f0307b385", 4476372510189904, this, []); }
   /**
    * init(stateOfCharge: Int, estimatedCompletionTime: Date, scheduledStartTime: Date, estimatedRangeAtTarget: Measurement<UnitLength>? = nil)
    * @availability iOS 27.0+
    */
-  static init(stateOfCharge: number, estimatedCompletionTime: globalThis.Date, scheduledStartTime: globalThis.Date, estimatedRangeAtTarget?: $SDK12): ElectricVehicleStatusEvent_ChargingTarget { return callSDK<ElectricVehicleStatusEvent_ChargingTarget>("EnergyKit_212edf3d13b127f5", 1503678938641265, undefined, [stateOfCharge, estimatedCompletionTime, scheduledStartTime, estimatedRangeAtTarget]); }
+  static init(stateOfCharge: number, estimatedCompletionTime: globalThis.Date, scheduledStartTime: globalThis.Date, estimatedRangeAtTarget?: $SDK12): ElectricVehicleStatusEvent_ChargingTarget { return callSDK<ElectricVehicleStatusEvent_ChargingTarget>("EnergyKit_5d69670f0307b385", 1503678938641265, undefined, [stateOfCharge, estimatedCompletionTime, scheduledStartTime, estimatedRangeAtTarget]); }
   /**
    * let stateOfCharge: Int
    * @availability iOS 27.0+
    */
-  get stateOfCharge(): number { return callSDK<number>("EnergyKit_212edf3d13b127f5", 1005010762067693, this, []); }
+  get stateOfCharge(): number { return callSDK<number>("EnergyKit_5d69670f0307b385", 1005010762067693, this, []); }
   /**
    * let scheduledStartTime: Date
    * @availability iOS 27.0+
    */
-  get scheduledStartTime(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_212edf3d13b127f5", 3402382499754512, this, []); }
+  get scheduledStartTime(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_5d69670f0307b385", 3402382499754512, this, []); }
   /**
    * let estimatedCompletionTime: Date
    * @availability iOS 27.0+
    */
-  get estimatedCompletionTime(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_212edf3d13b127f5", 3484582721017560, this, []); }
+  get estimatedCompletionTime(): globalThis.Date { return callSDK<globalThis.Date>("EnergyKit_5d69670f0307b385", 3484582721017560, this, []); }
   declare readonly $type: { "s:9EnergyKit26ElectricVehicleStatusEventV14ChargingTargetV": true };
 }
 
@@ -872,22 +872,22 @@ export const EnergyKitError = {
    * var helpAnchor: String? { get }
    * @availability iOS 26.0+
    */
-  getHelpAnchor($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_212edf3d13b127f5", 2849051567911681, $self, []); },
+  getHelpAnchor($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_5d69670f0307b385", 2849051567911681, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 26.0+
    */
-  getFailureReason($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_212edf3d13b127f5", 3882094016919724, $self, []); },
+  getFailureReason($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_5d69670f0307b385", 3882094016919724, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 26.0+
    */
-  getErrorDescription($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_212edf3d13b127f5", 3025334736395697, $self, []); },
+  getErrorDescription($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_5d69670f0307b385", 3025334736395697, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 26.0+
    */
-  getRecoverySuggestion($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_212edf3d13b127f5", 808044952980504, $self, []); }
+  getRecoverySuggestion($self: EnergyKitError): (string) | null { return callSDK<(string) | null>("EnergyKit_5d69670f0307b385", 808044952980504, $self, []); }
 };
 
 /**
@@ -899,27 +899,27 @@ export class EnergyVenue extends SDKHandle {
    * let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 4209586546959790, this, []); }
+  get id(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 4209586546959790, this, []); }
   /**
    * let name: String
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("EnergyKit_212edf3d13b127f5", 3980450651624965, this, []); }
+  get name(): string { return callSDK<string>("EnergyKit_5d69670f0307b385", 3980450651624965, this, []); }
   /**
    * static func venue(matchingHomeUniqueIdentifier: UUID) async throws -> EnergyVenue
    * @availability iOS 26.1+
    */
-  static venueMatchingHomeUniqueIdentifier(matchingHomeUniqueIdentifier: string): Promise<EnergyVenue> { return callSDKAsync<EnergyVenue>("EnergyKit_212edf3d13b127f5", 2599285505809586, undefined, [matchingHomeUniqueIdentifier]); }
+  static venueMatchingHomeUniqueIdentifier(matchingHomeUniqueIdentifier: string): Promise<EnergyVenue> { return callSDKAsync<EnergyVenue>("EnergyKit_5d69670f0307b385", 2599285505809586, undefined, [matchingHomeUniqueIdentifier]); }
   /**
    * static func venue(for id: UUID) async throws -> EnergyVenue
    * @availability iOS 26.1+
    */
-  static venueFor(id: string): Promise<EnergyVenue> { return callSDKAsync<EnergyVenue>("EnergyKit_212edf3d13b127f5", 2198412879383921, undefined, [id]); }
+  static venueFor(id: string): Promise<EnergyVenue> { return callSDKAsync<EnergyVenue>("EnergyKit_5d69670f0307b385", 2198412879383921, undefined, [id]); }
   /**
    * static func venues() async throws -> [EnergyVenue]
    * @availability iOS 26.1+
    */
-  static venues(): Promise<Array<EnergyVenue>> { return callSDKAsync<Array<EnergyVenue>>("EnergyKit_212edf3d13b127f5", 184241232962081, undefined, []); }
+  static venues(): Promise<Array<EnergyVenue>> { return callSDKAsync<Array<EnergyVenue>>("EnergyKit_5d69670f0307b385", 184241232962081, undefined, []); }
   declare readonly $type: { "s:9EnergyKit0A5VenueV": true };
 }
 
@@ -937,30 +937,30 @@ export class UnitEnergy_EnergyKit extends SDKHandle {
   declare readonly $type: { "s:So12NSUnitEnergyC0B3KitEACC": true; "c:objc(cs)NSUnit": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("EnergyKit.ElectricalLoadDevice", ElectricalLoadDevice, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("EnergyKit.ElectricalLoadDevice", ElectricalLoadDevice, { module: "EnergyKit_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:9EnergyKit27ElectricalLoadEventProtocolP", {});
-registerSDKClass("EnergyKit.ElectricHVACLoadEvent", ElectricHVACLoadEvent, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricHVACLoadEvent.ElectricalMeasurement", ElectricHVACLoadEvent_ElectricalMeasurement, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricHVACLoadEvent.Session", ElectricHVACLoadEvent_Session, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricHVACLoadEvent.Session.GuidanceState", ElectricHVACLoadEvent_Session_GuidanceState, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityGuidance", ElectricityGuidance, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityGuidance.Query", ElectricityGuidance_Query, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityGuidance.Service", ElectricityGuidance_Service, { module: "EnergyKit_212edf3d13b127f5", properties: {}, methods: {"guidance":{"id":1026715638375297}} });
-registerSDKClass("EnergyKit.ElectricityGuidance.Value", ElectricityGuidance_Value, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("EnergyKit.ElectricHVACLoadEvent", ElectricHVACLoadEvent, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricHVACLoadEvent.ElectricalMeasurement", ElectricHVACLoadEvent_ElectricalMeasurement, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricHVACLoadEvent.Session", ElectricHVACLoadEvent_Session, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricHVACLoadEvent.Session.GuidanceState", ElectricHVACLoadEvent_Session_GuidanceState, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityGuidance", ElectricityGuidance, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityGuidance.Query", ElectricityGuidance_Query, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityGuidance.Service", ElectricityGuidance_Service, { module: "EnergyKit_5d69670f0307b385", properties: {}, methods: {"guidance":{"id":1026715638375297}} });
+registerSDKClass("EnergyKit.ElectricityGuidance.Value", ElectricityGuidance_Value, { module: "EnergyKit_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:9EnergyKit25ElectricityInsightMeasureP", {});
-registerSDKClass("EnergyKit.ElectricityInsightQuery", ElectricityInsightQuery, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityInsightRecord", ElectricityInsightRecord, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityInsightRecord.GridCleanliness", ElectricityInsightRecord_GridCleanliness, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityInsightRecord.TariffPeak", ElectricityInsightRecord_TariffPeak, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricityInsightService", ElectricityInsightService, { module: "EnergyKit_212edf3d13b127f5", properties: {}, methods: {"energyInsights":{"id":3482568125662875},"runtimeInsights":{"id":1390137826491007}} });
-registerSDKClass("EnergyKit.ElectricVehicleChargingReason", ElectricVehicleChargingReason, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleLoadEvent", ElectricVehicleLoadEvent, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.ElectricalMeasurement", ElectricVehicleLoadEvent_ElectricalMeasurement, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.ElectricalMeasurement.PerformanceMetrics", ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.Session", ElectricVehicleLoadEvent_Session, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.Session.GuidanceState", ElectricVehicleLoadEvent_Session_GuidanceState, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleStatusEvent", ElectricVehicleStatusEvent, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleStatusEvent.ChargingTarget", ElectricVehicleStatusEvent_ChargingTarget, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.ElectricVehicleStatusEvent.Status", ElectricVehicleStatusEvent_Status, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.EnergyVenue", EnergyVenue, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("EnergyKit.UnitEnergy.EnergyKit", UnitEnergy_EnergyKit, { module: "EnergyKit_212edf3d13b127f5", properties: {} });
+registerSDKClass("EnergyKit.ElectricityInsightQuery", ElectricityInsightQuery, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityInsightRecord", ElectricityInsightRecord, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityInsightRecord.GridCleanliness", ElectricityInsightRecord_GridCleanliness, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityInsightRecord.TariffPeak", ElectricityInsightRecord_TariffPeak, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricityInsightService", ElectricityInsightService, { module: "EnergyKit_5d69670f0307b385", properties: {}, methods: {"energyInsights":{"id":3482568125662875},"runtimeInsights":{"id":1390137826491007}} });
+registerSDKClass("EnergyKit.ElectricVehicleChargingReason", ElectricVehicleChargingReason, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleLoadEvent", ElectricVehicleLoadEvent, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.ElectricalMeasurement", ElectricVehicleLoadEvent_ElectricalMeasurement, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.ElectricalMeasurement.PerformanceMetrics", ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.Session", ElectricVehicleLoadEvent_Session, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleLoadEvent.Session.GuidanceState", ElectricVehicleLoadEvent_Session_GuidanceState, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleStatusEvent", ElectricVehicleStatusEvent, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleStatusEvent.ChargingTarget", ElectricVehicleStatusEvent_ChargingTarget, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.ElectricVehicleStatusEvent.Status", ElectricVehicleStatusEvent_Status, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.EnergyVenue", EnergyVenue, { module: "EnergyKit_5d69670f0307b385", properties: {} });
+registerSDKClass("EnergyKit.UnitEnergy.EnergyKit", UnitEnergy_EnergyKit, { module: "EnergyKit_5d69670f0307b385", properties: {} });

@@ -1832,7 +1832,7 @@ export declare const CIImageAutoAdjustmentOption: {
     init(rawValue: string): CIImageAutoAdjustmentOption;
 };
 /** struct CIImageOption */
-export type CIImageOption = "providerTileSize" | "providerUserInfo" | "colorSpace" | "applyCleanAperture" | "toneMapHDRtoSDR" | "expandToHDR" | "contentHeadroom" | "contentAverageLightLevel" | "nearestSampling" | "cacheImmediately" | "properties" | "applyOrientationProperty" | "subsampleFactor" | "typeIdentifierHint" | "useHardwareAcceleration" | "auxiliaryDepth" | "auxiliaryDisparity" | "auxiliaryPortraitEffectsMatte" | "auxiliarySemanticSegmentationSkinMatte" | "auxiliarySemanticSegmentationHairMatte" | "auxiliarySemanticSegmentationTeethMatte" | "auxiliarySemanticSegmentationGlassesMatte" | "auxiliarySemanticSegmentationSkyMatte" | "auxiliaryHDRGainMap" | (string & {});
+export type CIImageOption = "colorSpace" | "applyCleanAperture" | "toneMapHDRtoSDR" | "expandToHDR" | "contentHeadroom" | "contentAverageLightLevel" | "nearestSampling" | "cacheImmediately" | "properties" | "applyOrientationProperty" | "subsampleFactor" | "typeIdentifierHint" | "useHardwareAcceleration" | "auxiliaryDepth" | "auxiliaryDisparity" | "auxiliaryPortraitEffectsMatte" | "auxiliarySemanticSegmentationSkinMatte" | "auxiliarySemanticSegmentationHairMatte" | "auxiliarySemanticSegmentationTeethMatte" | "auxiliarySemanticSegmentationGlassesMatte" | "auxiliarySemanticSegmentationSkyMatte" | "auxiliaryHDRGainMap" | "providerTileSize" | "providerUserInfo" | (string & {});
 export declare const CIImageOption: {
     /**
      * static let applyCleanAperture: CIImageOption
