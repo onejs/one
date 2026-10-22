@@ -42,8 +42,8 @@ export type Relationship = { kind: string; source: string; target: string; targe
 
 export type Graph = { module: string; symbols: Symbol[]; relationships: Relationship[] }
 
-export const sdkPath = () =>
-  execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'], { encoding: 'utf8' }).trim()
+export const sdkPath = (sdk = 'iphonesimulator') =>
+  execFileSync('xcrun', ['--sdk', sdk, '--show-sdk-path'], { encoding: 'utf8' }).trim()
 
 export const sdkVersion = () =>
   execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'], { encoding: 'utf8' }).trim()

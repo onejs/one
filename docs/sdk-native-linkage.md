@@ -14,8 +14,8 @@ same source compiled as Objective-C++20 fails with 19 C++ mangled references.
 The SDK headers lack C linkage guards and their framework stubs export C names.
 Direct Swift references reproduce that failure under C++20 interop and WMO.
 
-The correction supplies portable Clang modulemaps marked `extern_c`. Their
-headers import the original SDK umbrella headers, and their link directives
+The correction supplies Clang framework modulemaps marked `extern_c`. Their
+umbrella paths name the original SDK headers, and their link directives
 retain the original frameworks. There are no substitute declarations,
 implementations, symbol aliases or SDK mutations. One writes these maps into
 the generated pod, the generator's compiler work directory, or a caller's
@@ -55,6 +55,41 @@ WMO and explicit modules on both targets. This is bounded source qualification,
 not a complete fresh SDK generation or combined constants capture. Its exact
 controls and results are in the `overlay` subdirectory of the evidence record.
 
+## Cross-framework header ownership correction
+
+The subsequent fresh generation passed compilation but omitted the legitimate
+AVKit initializer `init(view:deviceTypes:changeHandler:)` on
+`AVCaptureDeviceDirectionCoordinator`, ID 4149603380729748. Asset author s65792
+found this additional removal in the complete metadata comparison before
+committing generated files. Its unchanged `[AVCaptureDevice.DeviceType]`
+parameter resolved to `AVKit.AVCaptureDevice`, which has no nested `DeviceType`.
+
+TESTED: the exact typed initializer passes with original SDK imports and fails
+with the wrapper modulemap plus restored API notes on both targets. Explicit
+AVFoundation qualification avoids the lookup failure. More directly, naming
+the SDK's original umbrella header in a framework modulemap restores the
+unchanged expression on both targets. The AVKit header imports
+`AVFoundation/AVCaptureDevice.h` directly. A wrapper umbrella did not preserve
+that header's owning module, allowing AVKit to redeclare its classes.
+
+The writer now names the actual target SDK's umbrella header and retains
+`extern_c`, original exports, framework links and API notes. Generator checks
+and external consumers use their selected SDK root. Generated pods write one
+map for each target SDK and select it through `$(PLATFORM_NAME)`; their API
+notes paths still use `$(SDKROOT)`. Support is generated on the build host and
+must be regenerated when switching SDK roots. No emitter spelling changes,
+substitute types, aliases or API exclusions are needed.
+
+TESTED: the original retained full AVKit table, including the initializer, and
+the retained full AVFoundation table pass the dual-target generator SIL check
+without changing either input file. The initializer, AVFoundation overlay and
+all 19 C helpers also pass SIL and native linking together under C++20, WMO
+and explicit modules on both targets. The bounded controls are retained in
+the `avkit` evidence subdirectory. In-memory AVKit emission restores all 192
+entries with no added, removed or changed metadata relative to the retained
+baseline, including the same initializer ID. Complete SDK regeneration and metadata
+qualification remain with the asset author.
+
 ## Native availability
 
 TESTED: Objective-C rejects `kColorSyncPreferredCMM` as unavailable on iOS.
@@ -82,8 +117,8 @@ subject to the capture owner's actual regenerated input count.
 The SDK bundle exports `writeSdkNativeSupport(buildSupportDir, sdkRoot)`, returning
 `{ generation, swiftFlags }`. Consumers compare its generation with the cached
 tables and append its flags unchanged. The helper writes `module.modulemap`
-and header imports below the supplied directory. Its paths refer to that
-directory. API notes search paths refer to the original selected SDK. If omitted,
+below the supplied directory. Its umbrella and API notes search paths refer to
+the original selected SDK. If omitted,
 the SDK root defaults to the selected iPhone simulator SDK. Generated pods use
 the build's `$(SDKROOT)`; generator checks use each target's explicit SDK root.
 The generator
