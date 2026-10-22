@@ -36,7 +36,6 @@ jobs:
       - name: Capture posted notifications across home transitions
         run: |
           mkdir -p "$RUNNER_TEMP/shade"
-          adb shell cmd notification help > "$RUNNER_TEMP/shade/notification-help.txt"
           capture() {
             adb shell uiautomator dump /sdcard/shade.xml
             adb pull /sdcard/shade.xml "$RUNNER_TEMP/shade/$1.xml"
