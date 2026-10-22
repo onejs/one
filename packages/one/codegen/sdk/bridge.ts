@@ -987,6 +987,12 @@ export function pickOf(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined
 }
 
 export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined): Verdict {
+  // ColorSyncBase.h erases CS_UNAVAILABLE_EMBEDDED for __swift__, so the
+  // swift graph admits this macos-only global even though neither ios sdk
+  // exports it. honor the native declaration before emitting either accessor.
+  if (symbol.identifier.precise === 'c:@kColorSyncPreferredCMM') {
+    return { covered: false, reason: 'unavailable on iOS: ColorSyncTransform.h declares kColorSyncPreferredCMM CS_UNAVAILABLE_EMBEDDED' }
+  }
   // CFBase.h defines this as a special CFAllocatorCreate argument, not an
   // allocator object. its sentinel address (0x3ab) cannot enter an ARC-owned
   // handle. keep the unsupported symbol visible in coverage, never a getter

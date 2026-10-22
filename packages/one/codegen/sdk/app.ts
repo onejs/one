@@ -16,8 +16,19 @@ import { CXX_INTEROP, generateModule, prepare } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
 import { generatorFingerprint } from './fingerprint'
 import { minimumVersion } from '../../schema.json'
+import { writeCLinkageModules } from './c-linkage'
 
 export const SDK_POD = 'OneSDKBindings'
+
+// native consumers compiling cached tables need the same import policy as
+// the pod. write support into their build directory, never into the sdk cache.
+export function writeSdkNativeSupport(dir: string) {
+  const moduleMap = writeCLinkageModules(dir)
+  return {
+    generation: generatorFingerprint().slice(0, 16),
+    swiftFlags: ['-Xcc', `-fmodule-map-file=${moduleMap}`],
+  }
+}
 
 const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'])
 const SOURCE = /\.(?:[cm]?[jt]sx?)$/
@@ -170,6 +181,7 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   rmSync(podDir, { recursive: true, force: true })
   mkdirSync(join(podDir, 'Sources'), { recursive: true })
   for (const [name, from] of files) copyFileSync(from, join(podDir, 'Sources', name))
+  writeCLinkageModules(join(podDir, 'CLinkage'))
   writeFileSync(join(podDir, `${SDK_POD}.podspec`), `Pod::Spec.new do |s|
   s.name = '${SDK_POD}'
   s.version = '0.0.0'
@@ -181,12 +193,13 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   s.platform = :ios, '${minimumVersion}.0'
   s.swift_version = '5.0'
   s.source_files = 'Sources/*.swift'
+  s.preserve_paths = 'CLinkage/**/*'
   s.dependency 'One'
   # the tables import One with c++ interop, which reaches react's headers, so
   # they need One's module policy
   s.pod_target_xcconfig = {
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} -Xcc -Wno-non-modular-include-in-framework-module',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} -Xcc -fmodule-map-file="$(PODS_TARGET_SRCROOT)/CLinkage/module.modulemap" -Xcc -Wno-non-modular-include-in-framework-module',
   }
 end
 `)

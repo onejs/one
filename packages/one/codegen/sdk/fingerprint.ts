@@ -18,6 +18,7 @@ const defaultRoot = join(dirname(fileURLToPath(import.meta.url)), '../..')
 const EMITTER_SOURCES = [
   'codegen/sdk/app.ts',
   'codegen/sdk/bridge.ts',
+  'codegen/sdk/c-linkage.ts',
   'codegen/sdk/emit-protocols.ts',
   'codegen/sdk/emit-ts.ts',
   'codegen/sdk/emit.ts',
