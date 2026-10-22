@@ -159,24 +159,24 @@ export class AnnotatedBatch<Scalar = unknown> extends SDKHandle {
    * var annotations: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get annotations(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 1018348130557291, this, []); }
-  set annotations(value: $SDK0) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1064825809907115, this, [value]); }
+  get annotations(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1018348130557291, this, []); }
+  set annotations(value: $SDK0) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1064825809907115, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 18.0+
    */
-  get count(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4041985784649958, this, []); }
+  get count(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4041985784649958, this, []); }
   /**
    * init(features: MLShapedArray<Scalar>, annotations: MLShapedArray<Scalar>)
    * @availability iOS 18.0+
    */
-  static init(features: $SDK0, annotations: $SDK0): AnnotatedBatch<number> { return callSDK<AnnotatedBatch<number>>("CreateMLComponents_c1f28409f8601238", 2419889437186069, undefined, [features, annotations]); }
+  static init(features: $SDK0, annotations: $SDK0): AnnotatedBatch<number> { return callSDK<AnnotatedBatch<number>>("CreateMLComponents_e11dfd5beee01da3", 2419889437186069, undefined, [features, annotations]); }
   /**
    * var features: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get features(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 1006278676871378, this, []); }
-  set features(value: $SDK0) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3066731904256974, this, [value]); }
+  get features(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1006278676871378, this, []); }
+  set features(value: $SDK0) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3066731904256974, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents14AnnotatedBatchV": true };
 }
 
@@ -189,19 +189,19 @@ export class AnnotatedFeature<Feature = unknown, Annotation = unknown> extends S
    * var annotation: Annotation
    * @availability iOS 16.0+
    */
-  get annotation(): unknown { return callSDK<unknown>("CreateMLComponents_c1f28409f8601238", 4095364386709951, this, []); }
-  set annotation(value: unknown) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4013616747921260, this, [value]); }
+  get annotation(): unknown { return callSDK<unknown>("CreateMLComponents_e11dfd5beee01da3", 4095364386709951, this, []); }
+  set annotation(value: unknown) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4013616747921260, this, [value]); }
   /**
    * init(feature: Feature, annotation: Annotation)
    * @availability iOS 16.0+
    */
-  static init(feature: unknown, annotation: unknown): AnnotatedFeature<unknown, unknown> { return callSDK<AnnotatedFeature<unknown, unknown>>("CreateMLComponents_c1f28409f8601238", 3869872994604303, undefined, [feature, annotation]); }
+  static init(feature: unknown, annotation: unknown): AnnotatedFeature<unknown, unknown> { return callSDK<AnnotatedFeature<unknown, unknown>>("CreateMLComponents_e11dfd5beee01da3", 3869872994604303, undefined, [feature, annotation]); }
   /**
    * var feature: Feature
    * @availability iOS 16.0+
    */
-  get feature(): unknown { return callSDK<unknown>("CreateMLComponents_c1f28409f8601238", 3539173932071462, this, []); }
-  set feature(value: unknown) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1941306198545986, this, [value]); }
+  get feature(): unknown { return callSDK<unknown>("CreateMLComponents_e11dfd5beee01da3", 3539173932071462, this, []); }
+  set feature(value: unknown) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1941306198545986, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents16AnnotatedFeatureV": true };
 }
 
@@ -214,30 +214,30 @@ export class AnnotatedFeatureProvider<Base = unknown, UnwrappedInput = unknown> 
    * var resultsColumnName: String
    * @availability iOS 16.0+
    */
-  get resultsColumnName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1551037849398495, this, []); }
-  set resultsColumnName(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 589984851670932, this, [value]); }
+  get resultsColumnName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1551037849398495, this, []); }
+  set resultsColumnName(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 589984851670932, this, [value]); }
   /**
    * var annotationColumnID: ColumnID<AnnotatedFeatureProvider<Base, UnwrappedInput>.Annotation>
    * @availability iOS 16.0+
    */
-  get annotationColumnID(): $SDK2 { return callSDK<$SDK2>("CreateMLComponents_c1f28409f8601238", 988081367090914, this, []); }
-  set annotationColumnID(value: $SDK2) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3841549109054429, this, [value]); }
+  get annotationColumnID(): $SDK2 { return callSDK<$SDK2>("CreateMLComponents_e11dfd5beee01da3", 988081367090914, this, []); }
+  set annotationColumnID(value: $SDK2) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3841549109054429, this, [value]); }
   /**
    * var featuresColumnName: String
    * @availability iOS 16.0+
    */
-  get featuresColumnName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3434494841631304, this, []); }
-  set featuresColumnName(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 184257352815710, this, [value]); }
+  get featuresColumnName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3434494841631304, this, []); }
+  set featuresColumnName(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 184257352815710, this, [value]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> AnnotatedFeatureProvider<Base, UnwrappedInput>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK3; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK3; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 210513156282843, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK3; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK3; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 210513156282843, this, [decoder]); }
   /**
    * func encode(_ transformer: AnnotatedFeatureProvider<Base, UnwrappedInput>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK3, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 974723938948823, this, [transformer, encoder]); }
+  encode(transformer: $SDK3, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 974723938948823, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents24AnnotatedFeatureProviderV": true };
 }
 
@@ -262,32 +262,32 @@ export class AnnotatedFiles extends SDKHandle {
    * var startIndex: AnnotatedFiles.Index { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 3541867444046581, this, []); }
+  get startIndex(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 3541867444046581, this, []); }
   /**
    * init(labeledByNamesAt url: URL, separator: Character = ".", index: Int = 0, type: UTType, continueOnFailure: Bool = false) throws
    * @availability iOS 16.0+
    */
-  static initLabeledByNamesAtSeparatorIndexTypeContinueOnFailure(url: string, separator: string, index: number, type: _UniformTypeIdentifiers_UTType, continueOnFailure?: boolean): AnnotatedFiles { return callSDK<AnnotatedFiles>("CreateMLComponents_c1f28409f8601238", 578894331174802, undefined, [url, separator, index, type, continueOnFailure]); }
+  static initLabeledByNamesAtSeparatorIndexTypeContinueOnFailure(url: string, separator: string, index: number, type: _UniformTypeIdentifiers_UTType, continueOnFailure?: boolean): AnnotatedFiles { return callSDK<AnnotatedFiles>("CreateMLComponents_e11dfd5beee01da3", 578894331174802, undefined, [url, separator, index, type, continueOnFailure]); }
   /**
    * init(labeledBySubdirectoryNamesAt url: URL, type: UTType, continueOnFailure: Bool = false) throws
    * @availability iOS 16.0+
    */
-  static initLabeledBySubdirectoryNamesAtTypeContinueOnFailure(url: string, type: _UniformTypeIdentifiers_UTType, continueOnFailure?: boolean): AnnotatedFiles { return callSDK<AnnotatedFiles>("CreateMLComponents_c1f28409f8601238", 1992272453661479, undefined, [url, type, continueOnFailure]); }
+  static initLabeledBySubdirectoryNamesAtTypeContinueOnFailure(url: string, type: _UniformTypeIdentifiers_UTType, continueOnFailure?: boolean): AnnotatedFiles { return callSDK<AnnotatedFiles>("CreateMLComponents_e11dfd5beee01da3", 1992272453661479, undefined, [url, type, continueOnFailure]); }
   /**
    * func index(after i: AnnotatedFiles.Index) -> AnnotatedFiles.Index
    * @availability iOS 16.0+
    */
-  index(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 121472529508669, this, [i]); }
+  index(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 121472529508669, this, [i]); }
   /**
    * var endIndex: AnnotatedFiles.Index { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 1761236236969077, this, []); }
+  get endIndex(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 1761236236969077, this, []); }
   /**
    * subscript(index: AnnotatedFiles.Index) -> IndexingIterator<AnnotatedFiles>.Element { get }
    * @availability iOS 16.0+
    */
-  subscript(index: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 930691126756152, this, [index]); }
+  subscript(index: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 930691126756152, this, [index]); }
   declare readonly $type: { "s:18CreateMLComponents14AnnotatedFilesV": true };
 }
 
@@ -330,19 +330,19 @@ export class AnnotatedPrediction<Prediction = unknown, Annotation = unknown> ext
    * var annotation: Annotation
    * @availability iOS 17.0+
    */
-  get annotation(): unknown { return callSDK<unknown>("CreateMLComponents_c1f28409f8601238", 2324176594451335, this, []); }
-  set annotation(value: unknown) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3090903058942030, this, [value]); }
+  get annotation(): unknown { return callSDK<unknown>("CreateMLComponents_e11dfd5beee01da3", 2324176594451335, this, []); }
+  set annotation(value: unknown) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3090903058942030, this, [value]); }
   /**
    * init(prediction: Prediction, annotation: Annotation)
    * @availability iOS 17.0+
    */
-  static init(prediction: unknown, annotation: unknown): AnnotatedPrediction<unknown, unknown> { return callSDK<AnnotatedPrediction<unknown, unknown>>("CreateMLComponents_c1f28409f8601238", 705351508914224, undefined, [prediction, annotation]); }
+  static init(prediction: unknown, annotation: unknown): AnnotatedPrediction<unknown, unknown> { return callSDK<AnnotatedPrediction<unknown, unknown>>("CreateMLComponents_e11dfd5beee01da3", 705351508914224, undefined, [prediction, annotation]); }
   /**
    * var prediction: Prediction
    * @availability iOS 17.0+
    */
-  get prediction(): unknown { return callSDK<unknown>("CreateMLComponents_c1f28409f8601238", 3993539116201148, this, []); }
-  set prediction(value: unknown) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3576036469430585, this, [value]); }
+  get prediction(): unknown { return callSDK<unknown>("CreateMLComponents_e11dfd5beee01da3", 3993539116201148, this, []); }
+  set prediction(value: unknown) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3576036469430585, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents19AnnotatedPredictionV": true };
 }
 
@@ -355,7 +355,7 @@ export class AnyTemporalIterator<Element = unknown> extends SDKHandle {
    * func next() async throws -> Element?
    * @availability iOS 16.0+
    */
-  next(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CreateMLComponents_c1f28409f8601238", 2392986857451541, this, []); }
+  next(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CreateMLComponents_e11dfd5beee01da3", 2392986857451541, this, []); }
   declare readonly $type: { "s:18CreateMLComponents19AnyTemporalIteratorV": true };
 }
 
@@ -368,12 +368,12 @@ export class AnyTemporalSequence<Feature = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> AnyTemporalIterator<AnyTemporalSequence<Feature>.Element>
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): $SDK6 { return callSDK<$SDK6>("CreateMLComponents_c1f28409f8601238", 2497650718691981, this, []); }
+  makeAsyncIterator(): $SDK6 { return callSDK<$SDK6>("CreateMLComponents_e11dfd5beee01da3", 2497650718691981, this, []); }
   /**
    * let count: Int?
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1855168541416078, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1855168541416078, this, []); }
   declare readonly $type: { "s:18CreateMLComponents19AnyTemporalSequenceV": true };
   declare readonly $element: AnyTemporalSequence_Element<unknown>;
 }
@@ -399,7 +399,7 @@ export class ApplyEachRandomly<Element = unknown> extends SDKHandle {
    * let probability: Double
    * @availability iOS 17.0+
    */
-  get probability(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4347304820769371, this, []); }
+  get probability(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4347304820769371, this, []); }
   declare readonly $type: { "s:18CreateMLComponents17ApplyEachRandomlyV": true };
 }
 
@@ -424,7 +424,7 @@ export class ApplyRandomly<RandomTransformer = unknown> extends SDKHandle {
    * let probability: Double
    * @availability iOS 17.0+
    */
-  get probability(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4278382287589411, this, []); }
+  get probability(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4278382287589411, this, []); }
   declare readonly $type: { "s:18CreateMLComponents13ApplyRandomlyV": true };
 }
 
@@ -449,22 +449,22 @@ export class AudioConvertingTransformer extends SDKHandle {
    * init(targetFormat: AVAudioFormat)
    * @availability iOS 16.0+
    */
-  static init(targetFormat: _AVFAudio_AVAudioFormat): AudioConvertingTransformer { return callSDK<AudioConvertingTransformer>("CreateMLComponents_c1f28409f8601238", 3292101134862509, undefined, [targetFormat]); }
+  static init(targetFormat: _AVFAudio_AVAudioFormat): AudioConvertingTransformer { return callSDK<AudioConvertingTransformer>("CreateMLComponents_e11dfd5beee01da3", 3292101134862509, undefined, [targetFormat]); }
   /**
    * let targetFormat: AVAudioFormat
    * @availability iOS 16.0+
    */
-  get targetFormat(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("CreateMLComponents_c1f28409f8601238", 3584098525863302, this, []); }
+  get targetFormat(): _AVFAudio_AVAudioFormat { return callSDK<_AVFAudio_AVAudioFormat>("CreateMLComponents_e11dfd5beee01da3", 3584098525863302, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 660685487498391, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 660685487498391, this, []); }
   /**
    * func applied(to input: AVAudioPCMBuffer, eventHandler: EventHandler? = nil) throws -> AVAudioPCMBuffer
    * @availability iOS 16.0+
    */
-  applied(input: _AVFAudio_AVAudioPCMBuffer, eventHandler?: $SDK9): _AVFAudio_AVAudioPCMBuffer { return callSDK<_AVFAudio_AVAudioPCMBuffer>("CreateMLComponents_c1f28409f8601238", 1990172876316061, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _AVFAudio_AVAudioPCMBuffer, eventHandler?: $SDK9): _AVFAudio_AVAudioPCMBuffer { return callSDK<_AVFAudio_AVAudioPCMBuffer>("CreateMLComponents_e11dfd5beee01da3", 1990172876316061, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents26AudioConvertingTransformerV": true };
 }
 
@@ -489,22 +489,22 @@ export class AudioFeaturePrint extends SDKHandle {
    * let overlapFactor: Double
    * @availability iOS 16.0+
    */
-  get overlapFactor(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1739660083484113, this, []); }
+  get overlapFactor(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1739660083484113, this, []); }
   /**
    * init(windowDuration: TimeInterval, overlapFactor: Double)
    * @availability iOS 16.0+
    */
-  static init(windowDuration: number, overlapFactor: number): AudioFeaturePrint { return callSDK<AudioFeaturePrint>("CreateMLComponents_c1f28409f8601238", 1752112653995345, undefined, [windowDuration, overlapFactor]); }
+  static init(windowDuration: number, overlapFactor: number): AudioFeaturePrint { return callSDK<AudioFeaturePrint>("CreateMLComponents_e11dfd5beee01da3", 1752112653995345, undefined, [windowDuration, overlapFactor]); }
   /**
    * let windowDuration: TimeInterval
    * @availability iOS 16.0+
    */
-  get windowDuration(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2025949826576863, this, []); }
+  get windowDuration(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2025949826576863, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 788994827356518, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 788994827356518, this, []); }
   declare readonly $type: { "s:18CreateMLComponents17AudioFeaturePrintV": true };
 }
 
@@ -517,12 +517,12 @@ export class AudioFeaturePrint_FeatureSequence extends SDKHandle {
    * func makeAsyncIterator() -> AudioFeaturePrint.FeatureSequence.AsyncIterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): AudioFeaturePrint_FeatureSequence_Iterator { return callSDK<AudioFeaturePrint_FeatureSequence_Iterator>("CreateMLComponents_c1f28409f8601238", 946794158560378, this, []); }
+  makeAsyncIterator(): AudioFeaturePrint_FeatureSequence_Iterator { return callSDK<AudioFeaturePrint_FeatureSequence_Iterator>("CreateMLComponents_e11dfd5beee01da3", 946794158560378, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 4020759048353883, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 4020759048353883, this, []); }
   declare readonly $type: { "s:18CreateMLComponents17AudioFeaturePrintV0D8SequenceV": true };
   declare readonly $element: $SDK10;
 }
@@ -554,7 +554,7 @@ export class AudioFeaturePrint_FeatureSequence_Iterator extends SDKHandle {
    * mutating func next() async throws -> TemporalFeature<MLShapedArray<Float>>?
    * @availability iOS 16.0+
    */
-  next(): Promise<(TemporalFeature<_CoreML_MLShapedArray<number>>) | null> { return callSDKAsync<(TemporalFeature<_CoreML_MLShapedArray<number>>) | null>("CreateMLComponents_c1f28409f8601238", 3727789812583197, this, []); }
+  next(): Promise<(TemporalFeature<_CoreML_MLShapedArray<number>>) | null> { return callSDKAsync<(TemporalFeature<_CoreML_MLShapedArray<number>>) | null>("CreateMLComponents_e11dfd5beee01da3", 3727789812583197, this, []); }
   declare readonly $type: { "s:18CreateMLComponents17AudioFeaturePrintV0D8SequenceV8IteratorV": true };
 }
 
@@ -591,12 +591,12 @@ export class AudioPreprocessingError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3854758772769888, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3854758772769888, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 3159663209676937, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 3159663209676937, this, []); }
   declare readonly $type: { "s:18CreateMLComponents23AudioPreprocessingErrorO": true };
 }
 
@@ -609,33 +609,33 @@ export class AudioReader extends SDKHandle {
    * init(configuration: AudioReader.Configuration = .init())
    * @availability iOS 16.0+
    */
-  static init(configuration?: AudioReader_Configuration): AudioReader { return callSDK<AudioReader>("CreateMLComponents_c1f28409f8601238", 3527516874527418, undefined, [configuration]); }
+  static init(configuration?: AudioReader_Configuration): AudioReader { return callSDK<AudioReader>("CreateMLComponents_e11dfd5beee01da3", 3527516874527418, undefined, [configuration]); }
   /**
    * var configuration: AudioReader.Configuration
    * @availability iOS 16.0+
    */
-  get configuration(): AudioReader_Configuration { return callSDK<AudioReader_Configuration>("CreateMLComponents_c1f28409f8601238", 1466058252744958, this, []); }
-  set configuration(value: AudioReader_Configuration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 262649932535792, this, [value]); }
+  get configuration(): AudioReader_Configuration { return callSDK<AudioReader_Configuration>("CreateMLComponents_e11dfd5beee01da3", 1466058252744958, this, []); }
+  set configuration(value: AudioReader_Configuration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 262649932535792, this, [value]); }
   /**
    * static func readMicrophone(configuration: AudioReader.Configuration = .init()) async throws -> AudioReader.MicrophoneAsyncBuffers
    * @availability iOS 16.0+
    */
-  static readMicrophone(configuration?: AudioReader_Configuration): Promise<AudioReader_MicrophoneAsyncBuffers> { return callSDKAsync<AudioReader_MicrophoneAsyncBuffers>("CreateMLComponents_c1f28409f8601238", 3755495840978498, undefined, [configuration]); }
+  static readMicrophone(configuration?: AudioReader_Configuration): Promise<AudioReader_MicrophoneAsyncBuffers> { return callSDKAsync<AudioReader_MicrophoneAsyncBuffers>("CreateMLComponents_e11dfd5beee01da3", 3755495840978498, undefined, [configuration]); }
   /**
    * static func read(contentsOf url: URL, configuration: AudioReader.Configuration = .init()) throws -> AudioReader.AsyncBuffers
    * @availability iOS 16.0+
    */
-  static readContentsOfConfiguration(url: string, configuration?: AudioReader_Configuration): AudioReader_AsyncBuffers { return callSDK<AudioReader_AsyncBuffers>("CreateMLComponents_c1f28409f8601238", 3315142466463682, undefined, [url, configuration]); }
+  static readContentsOfConfiguration(url: string, configuration?: AudioReader_Configuration): AudioReader_AsyncBuffers { return callSDK<AudioReader_AsyncBuffers>("CreateMLComponents_e11dfd5beee01da3", 3315142466463682, undefined, [url, configuration]); }
   /**
    * static func read<S>(_ files: S, configuration: AudioReader.Configuration = .init()) throws -> [AudioReader.AsyncBuffers] where S : Sequence, S.Element == URL
    * @availability iOS 16.0+
    */
-  static readConfiguration(files: Array<string>, configuration?: AudioReader_Configuration): Array<AudioReader_AsyncBuffers> { return callSDK<Array<AudioReader_AsyncBuffers>>("CreateMLComponents_c1f28409f8601238", 656532598125492, undefined, [files, configuration]); }
+  static readConfiguration(files: Array<string>, configuration?: AudioReader_Configuration): Array<AudioReader_AsyncBuffers> { return callSDK<Array<AudioReader_AsyncBuffers>>("CreateMLComponents_e11dfd5beee01da3", 656532598125492, undefined, [files, configuration]); }
   /**
    * func applied(to url: URL, eventHandler: EventHandler? = nil) throws -> AudioReader.AsyncBuffers
    * @availability iOS 16.0+
    */
-  applied(url: string, eventHandler?: $SDK9): AudioReader_AsyncBuffers { return callSDK<AudioReader_AsyncBuffers>("CreateMLComponents_c1f28409f8601238", 2566399144098139, this, [url, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(url: string, eventHandler?: $SDK9): AudioReader_AsyncBuffers { return callSDK<AudioReader_AsyncBuffers>("CreateMLComponents_e11dfd5beee01da3", 2566399144098139, this, [url, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents11AudioReaderV": true };
 }
 
@@ -648,17 +648,17 @@ export class AudioReader_AsyncBuffers extends SDKHandle {
    * func makeAsyncIterator() -> AudioReader.AsyncBuffers.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): AudioReader_AsyncBuffers_Iterator { return callSDK<AudioReader_AsyncBuffers_Iterator>("CreateMLComponents_c1f28409f8601238", 3736173601487871, this, []); }
+  makeAsyncIterator(): AudioReader_AsyncBuffers_Iterator { return callSDK<AudioReader_AsyncBuffers_Iterator>("CreateMLComponents_e11dfd5beee01da3", 3736173601487871, this, []); }
   /**
    * let url: URL
    * @availability iOS 16.0+
    */
-  get url(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4168281563827533, this, []); }
+  get url(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4168281563827533, this, []); }
   /**
    * let count: Int?
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 53050380881700, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 53050380881700, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11AudioReaderV12AsyncBuffersV": true };
   declare readonly $element: $SDK13;
 }
@@ -690,7 +690,7 @@ export class AudioReader_AsyncBuffers_Iterator extends SDKHandle {
    * mutating func next() async throws -> TemporalFeature<AVAudioPCMBuffer>?
    * @availability iOS 16.0+
    */
-  next(): Promise<$SDK14> { return callSDKAsync<$SDK14>("CreateMLComponents_c1f28409f8601238", 239544392549008, this, []); }
+  next(): Promise<$SDK14> { return callSDKAsync<$SDK14>("CreateMLComponents_e11dfd5beee01da3", 239544392549008, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11AudioReaderV12AsyncBuffersV8IteratorV": true };
 }
 
@@ -709,18 +709,18 @@ export class AudioReader_Configuration extends SDKHandle {
    * init(frameCount: Int)
    * @availability iOS 16.0+
    */
-  static initFrameCount(frameCount: number): AudioReader_Configuration { return callSDK<AudioReader_Configuration>("CreateMLComponents_c1f28409f8601238", 3500492651448629, undefined, [frameCount]); }
+  static initFrameCount(frameCount: number): AudioReader_Configuration { return callSDK<AudioReader_Configuration>("CreateMLComponents_e11dfd5beee01da3", 3500492651448629, undefined, [frameCount]); }
   /**
    * var frameCount: Int
    * @availability iOS 16.0+
    */
-  get frameCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4280112504233153, this, []); }
-  set frameCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1063267252633511, this, [value]); }
+  get frameCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4280112504233153, this, []); }
+  set frameCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1063267252633511, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): AudioReader_Configuration { return callSDK<AudioReader_Configuration>("CreateMLComponents_c1f28409f8601238", 3830706544662725, undefined, []); }
+  static init(): AudioReader_Configuration { return callSDK<AudioReader_Configuration>("CreateMLComponents_e11dfd5beee01da3", 3830706544662725, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents11AudioReaderV13ConfigurationV": true };
 }
 
@@ -739,12 +739,12 @@ export class AudioReader_MicrophoneAsyncBuffers extends SDKHandle {
    * func makeAsyncIterator() -> AudioReader.MicrophoneAsyncBuffers.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): AudioReader_MicrophoneAsyncBuffers_Iterator { return callSDK<AudioReader_MicrophoneAsyncBuffers_Iterator>("CreateMLComponents_c1f28409f8601238", 4492551497049683, this, []); }
+  makeAsyncIterator(): AudioReader_MicrophoneAsyncBuffers_Iterator { return callSDK<AudioReader_MicrophoneAsyncBuffers_Iterator>("CreateMLComponents_e11dfd5beee01da3", 4492551497049683, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1876683887094245, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1876683887094245, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11AudioReaderV22MicrophoneAsyncBuffersV": true };
   declare readonly $element: $SDK13;
 }
@@ -776,7 +776,7 @@ export class AudioReader_MicrophoneAsyncBuffers_Iterator extends SDKHandle {
    * final func next() async throws -> TemporalFeature<AudioReader.MicrophoneAsyncBuffers.Feature>?
    * @availability iOS 16.0+
    */
-  next(): Promise<$SDK14> { return callSDKAsync<$SDK14>("CreateMLComponents_c1f28409f8601238", 996724916474074, this, []); }
+  next(): Promise<$SDK14> { return callSDKAsync<$SDK14>("CreateMLComponents_e11dfd5beee01da3", 996724916474074, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11AudioReaderV22MicrophoneAsyncBuffersV8IteratorC": true };
 }
 
@@ -803,12 +803,12 @@ export const AudioReaderError = {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  getDebugDescription($self: AudioReaderError): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 100444609219661, $self, []); },
+  getDebugDescription($self: AudioReaderError): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 100444609219661, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  getErrorDescription($self: AudioReaderError): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 4463217895898704, $self, []); }
+  getErrorDescription($self: AudioReaderError): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 4463217895898704, $self, []); }
 };
 
 /**
@@ -828,8 +828,8 @@ export class AugmentationSequence<Base = unknown, RandomTransformer = unknown, R
    * var transformer: RandomTransformer
    * @availability iOS 17.0+
    */
-  get transformer(): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_c1f28409f8601238", 3318152387281777, this, []); }
-  set transformer(value: RandomImageCropper) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4492855467559311, this, [value]); }
+  get transformer(): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_e11dfd5beee01da3", 3318152387281777, this, []); }
+  set transformer(value: RandomImageCropper) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4492855467559311, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents20AugmentationSequenceV": true };
   declare readonly $element: AugmentationSequence_Element<unknown, unknown, unknown, unknown>;
 }
@@ -900,55 +900,55 @@ export class BoostedTreeClassifier<Label = unknown> extends SDKHandle {
    * var configuration: BoostedTreeConfiguration { get set }
    * @availability iOS 16.0+
    */
-  get configuration(): BoostedTreeConfiguration { return callSDK<BoostedTreeConfiguration>("CreateMLComponents_c1f28409f8601238", 414651955516665, this, []); }
-  set configuration(value: BoostedTreeConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4052015968528782, this, [value]); }
+  get configuration(): BoostedTreeConfiguration { return callSDK<BoostedTreeConfiguration>("CreateMLComponents_e11dfd5beee01da3", 414651955516665, this, []); }
+  set configuration(value: BoostedTreeConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4052015968528782, this, [value]); }
   /**
    * func makeTransformer() -> TreeClassifierModel<Label>
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK18 { return callSDK<$SDK18>("CreateMLComponents_c1f28409f8601238", 1926037736978406, this, []); }
+  makeTransformer(): $SDK18 { return callSDK<$SDK18>("CreateMLComponents_e11dfd5beee01da3", 1926037736978406, this, []); }
   /**
    * var annotationColumnID: ColumnID<Label>
    * @availability iOS 16.0+
    */
-  get annotationColumnID(): $SDK2 { return callSDK<$SDK2>("CreateMLComponents_c1f28409f8601238", 2897346062673124, this, []); }
-  set annotationColumnID(value: $SDK2) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 636462911083382, this, [value]); }
+  get annotationColumnID(): $SDK2 { return callSDK<$SDK2>("CreateMLComponents_e11dfd5beee01da3", 2897346062673124, this, []); }
+  set annotationColumnID(value: $SDK2) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 636462911083382, this, [value]); }
   /**
    * var featureColumnNames: [String]
    * @availability iOS 16.0+
    */
-  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_c1f28409f8601238", 505262942207661, this, []); }
-  set featureColumnNames(value: Array<string>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3041090748916508, this, [value]); }
+  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_e11dfd5beee01da3", 505262942207661, this, []); }
+  set featureColumnNames(value: Array<string>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3041090748916508, this, [value]); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> TreeClassifierModel<Label>
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK18; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK18; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1326635671483412, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK18; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK18; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1326635671483412, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: TreeClassifierModel<Label>, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK18, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3557729178968165, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK18, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3557729178968165, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> TreeClassifierModel<Label>
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK18; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK18; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 170695391553508, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK18; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK18; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 170695391553508, this, [decoder]); }
   /**
    * func encode(_ transformer: TreeClassifierModel<Label>, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK18, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1630064846278672, this, [transformer, encoder]); }
+  encode(transformer: $SDK18, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1630064846278672, this, [transformer, encoder]); }
   /**
    * func fitted(to input: DataFrame, validateOn validation: DataFrame? = nil, eventHandler: EventHandler? = nil) async throws -> TreeClassifierModel<Label>
    * @availability iOS 16.0+
    */
-  fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK18> { return callSDKAsync<$SDK18>("CreateMLComponents_c1f28409f8601238", 349387187901618, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK18> { return callSDKAsync<$SDK18>("CreateMLComponents_e11dfd5beee01da3", 349387187901618, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout TreeClassifierModel<Label>, with input: DataFrame, eventHandler: EventHandler?) async throws
    * @availability iOS 17.0+
    */
-  update(transformer: $SDK18, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK18 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK18 } }>("CreateMLComponents_c1f28409f8601238", 3426232364171601, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  update(transformer: $SDK18, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK18 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK18 } }>("CreateMLComponents_e11dfd5beee01da3", 3426232364171601, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents21BoostedTreeClassifierV": true };
 }
 
@@ -973,74 +973,74 @@ export class BoostedTreeConfiguration extends SDKHandle {
    * var parallelTreeCount: Int
    * @availability iOS 17.0+
    */
-  get parallelTreeCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4427885987678197, this, []); }
-  set parallelTreeCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2787567736012628, this, [value]); }
+  get parallelTreeCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4427885987678197, this, []); }
+  set parallelTreeCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2787567736012628, this, [value]); }
   /**
    * var randomSeed: Int
    * @availability iOS 16.0+
    */
-  get randomSeed(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3219524946043334, this, []); }
-  set randomSeed(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1898354541166895, this, [value]); }
+  get randomSeed(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3219524946043334, this, []); }
+  set randomSeed(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1898354541166895, this, [value]); }
   /**
    * var learningRate: Double { get set }
    * @availability iOS 17.0+
    */
-  get learningRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4106956568052609, this, []); }
-  set learningRate(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 141210780401934, this, [value]); }
+  get learningRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4106956568052609, this, []); }
+  set learningRate(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 141210780401934, this, [value]); }
   /**
    * var maximumDepth: Int
    * @availability iOS 16.0+
    */
-  get maximumDepth(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1488558179859188, this, []); }
-  set maximumDepth(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1888404089349397, this, [value]); }
+  get maximumDepth(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1488558179859188, this, []); }
+  set maximumDepth(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1888404089349397, this, [value]); }
   /**
    * var rowSubsample: Double
    * @availability iOS 16.0+
    */
-  get rowSubsample(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2331808184583396, this, []); }
-  set rowSubsample(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1653138857336572, this, [value]); }
+  get rowSubsample(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2331808184583396, this, []); }
+  set rowSubsample(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1653138857336572, this, [value]); }
   /**
    * var columnSubsample: Double
    * @availability iOS 16.0+
    */
-  get columnSubsample(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3204125465417401, this, []); }
-  set columnSubsample(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1935304884120359, this, [value]); }
+  get columnSubsample(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3204125465417401, this, []); }
+  set columnSubsample(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1935304884120359, this, [value]); }
   /**
    * var maximumIterations: Int
    * @availability iOS 16.0+
    */
-  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3755314799004189, this, []); }
-  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2982594831396689, this, [value]); }
+  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3755314799004189, this, []); }
+  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2982594831396689, this, [value]); }
   /**
    * var minimumChildWeight: Double
    * @availability iOS 16.0+
    */
-  get minimumChildWeight(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1966514700898890, this, []); }
-  set minimumChildWeight(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 712161114212875, this, [value]); }
+  get minimumChildWeight(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1966514700898890, this, []); }
+  set minimumChildWeight(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 712161114212875, this, [value]); }
   /**
    * var minimumLossReduction: Double
    * @availability iOS 16.0+
    */
-  get minimumLossReduction(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1046031110043195, this, []); }
-  set minimumLossReduction(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2818923600663613, this, [value]); }
+  get minimumLossReduction(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1046031110043195, this, []); }
+  set minimumLossReduction(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2818923600663613, this, [value]); }
   /**
    * var earlyStoppingIterationCount: Int?
    * @availability iOS 16.0+
    */
-  get earlyStoppingIterationCount(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1905688595750382, this, []); }
-  set earlyStoppingIterationCount(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3984865367668210, this, [value]); }
+  get earlyStoppingIterationCount(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1905688595750382, this, []); }
+  set earlyStoppingIterationCount(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3984865367668210, this, [value]); }
   /**
    * var stepSize: Double { get set }
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  get stepSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3598900043452615, this, []); }
-  set stepSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4386628762177586, this, [value]); }
+  get stepSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3598900043452615, this, []); }
+  set stepSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4386628762177586, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): BoostedTreeConfiguration { return callSDK<BoostedTreeConfiguration>("CreateMLComponents_c1f28409f8601238", 1707109389983710, undefined, []); }
+  static init(): BoostedTreeConfiguration { return callSDK<BoostedTreeConfiguration>("CreateMLComponents_e11dfd5beee01da3", 1707109389983710, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents24BoostedTreeConfigurationV": true };
 }
 
@@ -1053,60 +1053,60 @@ export class BoostedTreeRegressor<Annotation = unknown> extends SDKHandle {
    * var configuration: BoostedTreeConfiguration { get set }
    * @availability iOS 16.0+
    */
-  get configuration(): BoostedTreeConfiguration { return callSDK<BoostedTreeConfiguration>("CreateMLComponents_c1f28409f8601238", 2444275092344370, this, []); }
-  set configuration(value: BoostedTreeConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3782457187814592, this, [value]); }
+  get configuration(): BoostedTreeConfiguration { return callSDK<BoostedTreeConfiguration>("CreateMLComponents_e11dfd5beee01da3", 2444275092344370, this, []); }
+  set configuration(value: BoostedTreeConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3782457187814592, this, [value]); }
   /**
    * func makeTransformer() -> TreeRegressorModel
    * @availability iOS 17.0+
    */
-  makeTransformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 1800620452094984, this, []); }
+  makeTransformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 1800620452094984, this, []); }
   /**
    * var annotationColumnID: ColumnID<Annotation>
    * @availability iOS 16.0+
    */
-  get annotationColumnID(): $SDK21 { return callSDK<$SDK21>("CreateMLComponents_c1f28409f8601238", 1229943993930331, this, []); }
-  set annotationColumnID(value: $SDK21) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3993471454861814, this, [value]); }
+  get annotationColumnID(): $SDK21 { return callSDK<$SDK21>("CreateMLComponents_e11dfd5beee01da3", 1229943993930331, this, []); }
+  set annotationColumnID(value: $SDK21) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3993471454861814, this, [value]); }
   /**
    * var featureColumnNames: [String]
    * @availability iOS 16.0+
    */
-  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_c1f28409f8601238", 2071855828707835, this, []); }
-  set featureColumnNames(value: Array<string>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2133132074183327, this, [value]); }
+  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_e11dfd5beee01da3", 2071855828707835, this, []); }
+  set featureColumnNames(value: Array<string>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2133132074183327, this, [value]); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> TreeRegressorModel
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4281475734447958, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4281475734447958, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: TreeRegressorModel, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4456127984240954, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4456127984240954, this, [transformer, encoder]); }
   /**
    * init(annotationColumnName: String, featureColumnNames: [String], configuration: BoostedTreeConfiguration = BoostedTreeConfiguration())
    * @availability iOS 16.0+
    */
-  static init(annotationColumnName: string, featureColumnNames: Array<string>, configuration?: BoostedTreeConfiguration): BoostedTreeRegressor<unknown> { return callSDK<BoostedTreeRegressor<unknown>>("CreateMLComponents_c1f28409f8601238", 724096528806877, undefined, [annotationColumnName, featureColumnNames, configuration]); }
+  static init(annotationColumnName: string, featureColumnNames: Array<string>, configuration?: BoostedTreeConfiguration): BoostedTreeRegressor<unknown> { return callSDK<BoostedTreeRegressor<unknown>>("CreateMLComponents_e11dfd5beee01da3", 724096528806877, undefined, [annotationColumnName, featureColumnNames, configuration]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> TreeRegressorModel
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1254070615454154, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1254070615454154, this, [decoder]); }
   /**
    * func encode(_ transformer: TreeRegressorModel, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4467586139166819, this, [transformer, encoder]); }
+  encode(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4467586139166819, this, [transformer, encoder]); }
   /**
    * func fitted(to input: DataFrame, validateOn validation: DataFrame? = nil, eventHandler: EventHandler? = nil) async throws -> TreeRegressorModel
    * @availability iOS 16.0+
    */
-  fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<TreeRegressorModel> { return callSDKAsync<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 186849008635725, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<TreeRegressorModel> { return callSDKAsync<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 186849008635725, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout TreeRegressorModel, with input: DataFrame, eventHandler: EventHandler?) async throws
    * @availability iOS 17.0+
    */
-  update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": TreeRegressorModel } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": TreeRegressorModel } }>("CreateMLComponents_c1f28409f8601238", 1987740330677991, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": TreeRegressorModel } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": TreeRegressorModel } }>("CreateMLComponents_e11dfd5beee01da3", 1987740330677991, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents20BoostedTreeRegressorV": true };
 }
 
@@ -1125,23 +1125,23 @@ export class CategoricalImputer<Element = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1454858544799691, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1454858544799691, this, []); }
   /**
    * init(constant: Element)
    * @availability iOS 16.0+
    */
-  static initConstant(constant: number): CategoricalImputer<number> { return callSDK<CategoricalImputer<number>>("CreateMLComponents_c1f28409f8601238", 548620280870931, undefined, [constant]); }
+  static initConstant(constant: number): CategoricalImputer<number> { return callSDK<CategoricalImputer<number>>("CreateMLComponents_e11dfd5beee01da3", 548620280870931, undefined, [constant]); }
   /**
    * var strategy: CategoricalImputer<Element>.Strategy
    * @availability iOS 16.0+
    */
-  get strategy(): $SDK24 { return callSDK<$SDK24>("CreateMLComponents_c1f28409f8601238", 2486189727543601, this, []); }
-  set strategy(value: $SDK24) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 395454928682080, this, [value]); }
+  get strategy(): $SDK24 { return callSDK<$SDK24>("CreateMLComponents_e11dfd5beee01da3", 2486189727543601, this, []); }
+  set strategy(value: $SDK24) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 395454928682080, this, [value]); }
   /**
    * init(_ strategy: CategoricalImputer<Element>.Strategy)
    * @availability iOS 16.0+
    */
-  static init(strategy: $SDK24): CategoricalImputer<number> { return callSDK<CategoricalImputer<number>>("CreateMLComponents_c1f28409f8601238", 4170867028428964, undefined, [strategy]); }
+  static init(strategy: $SDK24): CategoricalImputer<number> { return callSDK<CategoricalImputer<number>>("CreateMLComponents_e11dfd5beee01da3", 4170867028428964, undefined, [strategy]); }
   declare readonly $type: { "s:18CreateMLComponents18CategoricalImputerV": true };
 }
 
@@ -1188,19 +1188,19 @@ export class Classification<Label = unknown> extends SDKHandle {
    * var probability: Float
    * @availability iOS 16.0+
    */
-  get probability(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3048862774998718, this, []); }
-  set probability(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4126566212452374, this, [value]); }
+  get probability(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3048862774998718, this, []); }
+  set probability(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4126566212452374, this, [value]); }
   /**
    * init(label: Label, probability: Float)
    * @availability iOS 16.0+
    */
-  static init(label: number, probability: number): Classification<number> { return callSDK<Classification<number>>("CreateMLComponents_c1f28409f8601238", 443790508698464, undefined, [label, probability]); }
+  static init(label: number, probability: number): Classification<number> { return callSDK<Classification<number>>("CreateMLComponents_e11dfd5beee01da3", 443790508698464, undefined, [label, probability]); }
   /**
    * var label: Label
    * @availability iOS 16.0+
    */
-  get label(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1397873342204973, this, []); }
-  set label(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3559350669693764, this, [value]); }
+  get label(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1397873342204973, this, []); }
+  set label(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3559350669693764, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents14ClassificationV": true };
 }
 
@@ -1213,62 +1213,62 @@ export class ClassificationDistribution<Label = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2620901778736006, this, []); }
+  get startIndex(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2620901778736006, this, []); }
   /**
    * var mostLikelyLabel: Label? { get }
    * @availability iOS 16.0+
    */
-  get mostLikelyLabel(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 3959160727278155, this, []); }
+  get mostLikelyLabel(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 3959160727278155, this, []); }
   /**
    * var labelsSortedByProbability: [Label] { get }
    * @availability iOS 16.0+
    */
-  get labelsSortedByProbability(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 1990279194758716, this, []); }
+  get labelsSortedByProbability(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 1990279194758716, this, []); }
   /**
    * func map<T>(_ transform: (Classification<Label>) throws -> Classification<T>) rethrows -> ClassificationDistribution<T> where T : Hashable
    * @availability iOS 16.0+
    */
-  map(transform: ((arg0: Classification<number>) => Classification<number>)): $SDK26 { return callSDK<$SDK26>("CreateMLComponents_c1f28409f8601238", 3705836671799569, this, [transform], [{"callback":{"out":[]}}], true); }
+  map(transform: ((arg0: Classification<number>) => Classification<number>)): $SDK26 { return callSDK<$SDK26>("CreateMLComponents_e11dfd5beee01da3", 3705836671799569, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 16.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1064214259890444, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1064214259890444, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 16.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3594539657036982, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3594539657036982, this, [i]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 575713848435794, this, []); }
+  get endIndex(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 575713848435794, this, []); }
   /**
    * func topLabels(_ amount: Int) -> [Label]
    * @availability iOS 16.0+
    */
-  topLabels(amount: number): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 3037179312745369, this, [amount]); }
+  topLabels(amount: number): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 3037179312745369, this, [amount]); }
   /**
    * subscript(index: Int) -> Classification<Label> { get }
    * @availability iOS 16.0+
    */
-  subscript(index: number): Classification<number> { return callSDK<Classification<number>>("CreateMLComponents_c1f28409f8601238", 1661082753425642, this, [index]); }
+  subscript(index: number): Classification<number> { return callSDK<Classification<number>>("CreateMLComponents_e11dfd5beee01da3", 1661082753425642, this, [index]); }
   /**
    * init<C>(_ classifications: C) where C : Collection, C.Element == Classification<Label>
    * @availability iOS 16.0+
    */
-  static init(classifications: Array<Classification<number>>): $SDK26 { return callSDK<$SDK26>("CreateMLComponents_c1f28409f8601238", 1576489284071764, undefined, [classifications]); }
+  static init(classifications: Array<Classification<number>>): $SDK26 { return callSDK<$SDK26>("CreateMLComponents_e11dfd5beee01da3", 1576489284071764, undefined, [classifications]); }
   /**
    * subscript(label: Label) -> Float? { get }
    * @availability iOS 16.0+
    */
-  subscript33028(label: number): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 2901360548635636, this, [label]); }
+  subscript33028(label: number): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 2901360548635636, this, [label]); }
   /**
    * subscript(bounds: Range<Int>) -> Slice<ClassificationDistribution<Label>> { get }
    * @availability iOS 16.0+
    */
-  subscript19732(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 1932768059720680, this, [bounds]); }
+  subscript19732(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 1932768059720680, this, [bounds]); }
   declare readonly $type: { "s:18CreateMLComponents26ClassificationDistributionV": true };
 }
 
@@ -1311,95 +1311,95 @@ export class ClassificationMetrics<Label = unknown> extends SDKHandle {
    * func recallScore(label: Label) -> Double
    * @availability iOS 16.0+
    */
-  recallScore(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 459508772643536, this, [label]); }
+  recallScore(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 459508772643536, this, [label]); }
   /**
    * var exampleCount: Int { get }
    * @availability iOS 17.0+
    */
-  get exampleCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3299054232809820, this, []); }
+  get exampleCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3299054232809820, this, []); }
   /**
    * func precisionScore(label: Label) -> Double
    * @availability iOS 16.0+
    */
-  precisionScore(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 532143977757945, this, [label]); }
+  precisionScore(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 532143977757945, this, [label]); }
   /**
    * func trueNegativeCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  trueNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 246211048455132, this, [label]); }
+  trueNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 246211048455132, this, [label]); }
   /**
    * func truePositiveCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  truePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4351384771396369, this, [label]); }
+  truePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4351384771396369, this, [label]); }
   /**
    * func falseNegativeCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  falseNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3556365857799217, this, [label]); }
+  falseNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3556365857799217, this, [label]); }
   /**
    * func falsePositiveCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  falsePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2171838633605355, this, [label]); }
+  falsePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2171838633605355, this, [label]); }
   /**
    * var restrictToKnownLabels: Bool
    * @availability iOS 17.0+
    */
-  get restrictToKnownLabels(): boolean { return callSDK<boolean>("CreateMLComponents_c1f28409f8601238", 1262151033967451, this, []); }
-  set restrictToKnownLabels(value: boolean) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3647470506387519, this, [value]); }
+  get restrictToKnownLabels(): boolean { return callSDK<boolean>("CreateMLComponents_e11dfd5beee01da3", 1262151033967451, this, []); }
+  set restrictToKnownLabels(value: boolean) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3647470506387519, this, [value]); }
   /**
    * func count(label: Label) -> Int
    * @availability iOS 17.0+
    */
-  countLabel(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1712873314905698, this, [label]); }
+  countLabel(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1712873314905698, this, [label]); }
   /**
    * func count(predicted: Label, label: Label) -> Int
    * @availability iOS 17.0+
    */
-  countPredictedLabel(predicted: number, label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2954868088905626, this, [predicted, label]); }
+  countPredictedLabel(predicted: number, label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2954868088905626, this, [predicted, label]); }
   /**
    * func count(predicted: Label) -> Int
    * @availability iOS 17.0+
    */
-  countPredicted(predicted: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3470446223666078, this, [predicted]); }
+  countPredicted(predicted: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3470446223666078, this, [predicted]); }
   /**
    * var labels: Set<Label>
    * @availability iOS 17.0+
    */
-  get labels(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 2156626853822555, this, []); }
-  set labels(value: Array<number>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4010048253430947, this, [value]); }
+  get labels(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 2156626853822555, this, []); }
+  set labels(value: Array<number>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4010048253430947, this, [value]); }
   /**
    * func f1Score(label: Label) -> Double
    * @availability iOS 17.0+
    */
-  f1Score(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1953573423800455, this, [label]); }
+  f1Score(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1953573423800455, this, [label]); }
   /**
    * var accuracy: Double { get set }
    * @availability iOS 16.0+
    */
-  get accuracy(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4281908563623591, this, []); }
-  set accuracy(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3750933433431012, this, [value]); }
+  get accuracy(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4281908563623591, this, []); }
+  set accuracy(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3750933433431012, this, [value]); }
   /**
    * func mapLabels<T>(_ transform: (Label) throws -> T) rethrows -> ClassificationMetrics<T> where T : Hashable
    * @availability iOS 17.0+
    */
-  mapLabels(transform: ((arg0: number) => number)): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_c1f28409f8601238", 1821218549837573, this, [transform], [{"callback":{"out":[]}}], true); }
+  mapLabels(transform: ((arg0: number) => number)): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_e11dfd5beee01da3", 1821218549837573, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * init<Predicted, Correct>(predicted: Predicted, groundTruth: Correct, labels: Set<Label>) where Label == Predicted.Element, Predicted : Sequence, Correct : Sequence, Predicted.Element == Correct.Element
    * @availability iOS 17.0+
    */
-  static initPredictedGroundTruthLabels(predicted: Array<number>, groundTruth: Array<number>, labels: Array<number>): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_c1f28409f8601238", 3926978177582786, undefined, [predicted, groundTruth, labels]); }
+  static initPredictedGroundTruthLabels(predicted: Array<number>, groundTruth: Array<number>, labels: Array<number>): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_e11dfd5beee01da3", 3926978177582786, undefined, [predicted, groundTruth, labels]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_c1f28409f8601238", 2419775007785148, undefined, []); }
+  static init(): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_e11dfd5beee01da3", 2419775007785148, undefined, []); }
   /**
    * init<Predicted, Correct>(_ predicted: Predicted, _ groundTruth: Correct) where Label == Predicted.Element, Predicted : Collection, Correct : Collection, Predicted.Element == Correct.Element
    * @availability iOS 16.0+
    */
-  static init94512(predicted: Array<number>, groundTruth: Array<number>): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_c1f28409f8601238", 696618150592474, undefined, [predicted, groundTruth]); }
+  static init94512(predicted: Array<number>, groundTruth: Array<number>): $SDK29 { return callSDK<$SDK29>("CreateMLComponents_e11dfd5beee01da3", 696618150592474, undefined, [predicted, groundTruth]); }
   declare readonly $type: { "s:18CreateMLComponents21ClassificationMetricsV": true };
 }
 
@@ -1424,29 +1424,29 @@ export class ColumnConcatenator<Scalar = unknown> extends SDKHandle {
    * var concatenatedColumnName: String
    * @availability iOS 16.0+
    */
-  get concatenatedColumnName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1983467078799653, this, []); }
-  set concatenatedColumnName(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2156402012332898, this, [value]); }
+  get concatenatedColumnName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1983467078799653, this, []); }
+  set concatenatedColumnName(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2156402012332898, this, [value]); }
   /**
    * init(columnSelection: ColumnSelection = .all, concatenatedColumnName: String = "features")
    * @availability iOS 16.0+
    */
-  static init(columnSelection?: ColumnSelection, concatenatedColumnName?: string): ColumnConcatenator<number> { return callSDK<ColumnConcatenator<number>>("CreateMLComponents_c1f28409f8601238", 3390746972353703, undefined, [columnSelection, concatenatedColumnName]); }
+  static init(columnSelection?: ColumnSelection, concatenatedColumnName?: string): ColumnConcatenator<number> { return callSDK<ColumnConcatenator<number>>("CreateMLComponents_e11dfd5beee01da3", 3390746972353703, undefined, [columnSelection, concatenatedColumnName]); }
   /**
    * var columnSelection: ColumnSelection
    * @availability iOS 16.0+
    */
-  get columnSelection(): ColumnSelection { return callSDK<ColumnSelection>("CreateMLComponents_c1f28409f8601238", 3406464785648430, this, []); }
-  set columnSelection(value: ColumnSelection) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 425996232070398, this, [value]); }
+  get columnSelection(): ColumnSelection { return callSDK<ColumnSelection>("CreateMLComponents_e11dfd5beee01da3", 3406464785648430, this, []); }
+  set columnSelection(value: ColumnSelection) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 425996232070398, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3902302583961180, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3902302583961180, this, []); }
   /**
    * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) throws -> DataFrame
    * @availability iOS 16.0+
    */
-  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): _TabularData_DataFrame { return callSDK<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 2628697921549255, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): _TabularData_DataFrame { return callSDK<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 2628697921549255, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents18ColumnConcatenatorV": true };
 }
 
@@ -1479,23 +1479,23 @@ export class ColumnSelector<Estimator = unknown, UnwrappedInput = unknown> exten
    * var columnSelection: ColumnSelection
    * @availability iOS 16.0+
    */
-  get columnSelection(): ColumnSelection { return callSDK<ColumnSelection>("CreateMLComponents_c1f28409f8601238", 3378099266189612, this, []); }
-  set columnSelection(value: ColumnSelection) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3847225289172560, this, [value]); }
+  get columnSelection(): ColumnSelection { return callSDK<ColumnSelection>("CreateMLComponents_e11dfd5beee01da3", 3378099266189612, this, []); }
+  set columnSelection(value: ColumnSelection) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3847225289172560, this, [value]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> ColumnSelector<Estimator, UnwrappedInput>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK33; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK33; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2189532975178669, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK33; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK33; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2189532975178669, this, [decoder]); }
   /**
    * func encode(_ transformer: ColumnSelector<Estimator, UnwrappedInput>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK33, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3833481844252549, this, [transformer, encoder]); }
+  encode(transformer: $SDK33, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3833481844252549, this, [transformer, encoder]); }
   /**
    * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> ColumnSelector<Estimator, UnwrappedInput>.Transformer
    * @availability iOS 16.0+
    */
-  fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK33> { return callSDKAsync<$SDK33>("CreateMLComponents_c1f28409f8601238", 4057261089577910, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK33> { return callSDKAsync<$SDK33>("CreateMLComponents_e11dfd5beee01da3", 4057261089577910, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents14ColumnSelectorV": true };
 }
 
@@ -1526,18 +1526,18 @@ export class ColumnSelectorTransformer<Base = unknown, UnwrappedInput = unknown>
    * var columnMapping: [String : String]
    * @availability iOS 16.0+
    */
-  get columnMapping(): Record<string, string> { return callSDK<Record<string, string>>("CreateMLComponents_c1f28409f8601238", 3915523884072398, this, []); }
-  set columnMapping(value: Record<string, string>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2243963734795071, this, [value]); }
+  get columnMapping(): Record<string, string> { return callSDK<Record<string, string>>("CreateMLComponents_e11dfd5beee01da3", 3915523884072398, this, []); }
+  set columnMapping(value: Record<string, string>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2243963734795071, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4453371662273636, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4453371662273636, this, []); }
   /**
    * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 16.0+
    */
-  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 2717660904946823, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 2717660904946823, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents25ColumnSelectorTransformerV": true };
 }
 
@@ -1562,12 +1562,12 @@ export class CompatibilityError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3558490753871470, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3558490753871470, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 4310908566660584, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 4310908566660584, this, []); }
   declare readonly $type: { "s:18CreateMLComponents18CompatibilityErrorO": true };
 }
 
@@ -1580,29 +1580,29 @@ export class ComposedTabularTransformer<Inner = unknown, Outer = unknown> extend
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1794615672128345, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1794615672128345, this, []); }
   /**
    * var inner: Inner
    * @availability iOS 16.0+
    */
-  get inner(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 3111078239649616, this, []); }
-  set inner(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4278394883722923, this, [value]); }
+  get inner(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 3111078239649616, this, []); }
+  set inner(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4278394883722923, this, [value]); }
   /**
    * var outer: Outer
    * @availability iOS 16.0+
    */
-  get outer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 3929665250463460, this, []); }
-  set outer(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4372266096831872, this, [value]); }
+  get outer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 3929665250463460, this, []); }
+  set outer(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4372266096831872, this, [value]); }
   /**
    * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 16.0+
    */
-  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 3694974518718630, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 3694974518718630, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(_ inner: Inner, _ outer: Outer)
    * @availability iOS 16.0+
    */
-  static init(inner: TreeRegressorModel, outer: TreeRegressorModel): ComposedTabularTransformer<TreeRegressorModel, TreeRegressorModel> { return callSDK<ComposedTabularTransformer<TreeRegressorModel, TreeRegressorModel>>("CreateMLComponents_c1f28409f8601238", 2678803038474842, undefined, [inner, outer]); }
+  static init(inner: TreeRegressorModel, outer: TreeRegressorModel): ComposedTabularTransformer<TreeRegressorModel, TreeRegressorModel> { return callSDK<ComposedTabularTransformer<TreeRegressorModel, TreeRegressorModel>>("CreateMLComponents_e11dfd5beee01da3", 2678803038474842, undefined, [inner, outer]); }
   declare readonly $type: { "s:18CreateMLComponents26ComposedTabularTransformerV": true };
 }
 
@@ -1627,7 +1627,7 @@ export class ComposedTemporalTransformer<Inner = unknown, Outer = unknown> exten
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4161213704857716, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4161213704857716, this, []); }
   declare readonly $type: { "s:18CreateMLComponents27ComposedTemporalTransformerV": true };
 }
 
@@ -1664,12 +1664,12 @@ export class ComposedTransformer<Inner = unknown, Outer = unknown> extends SDKHa
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3037606698053154, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3037606698053154, this, []); }
   /**
    * func applied(to input: ComposedTransformer<Inner, Outer>.Input, eventHandler: EventHandler? = nil) async throws -> ComposedTransformer<Inner, Outer>.Output
    * @availability iOS 16.0+
    */
-  applied(input: SDKHandle, eventHandler?: $SDK9): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("CreateMLComponents_c1f28409f8601238", 4187754663975933, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: SDKHandle, eventHandler?: $SDK9): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 4187754663975933, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents19ComposedTransformerV": true };
 }
 
@@ -1700,12 +1700,12 @@ export class ConcatenationError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 425829880544893, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 425829880544893, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 3067428739426139, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 3067428739426139, this, []); }
   declare readonly $type: { "s:18CreateMLComponents18ConcatenationErrorO": true };
 }
 
@@ -1714,12 +1714,12 @@ export class DataFrame extends SDKHandle {
    * func loadRangedAnnotations<Annotation>(parameters: DataFrameTemporalAnnotationParameters<Annotation> = .init(), continueOnFailure: Bool = false) throws -> [AnnotatedFeature<TemporalFileSegment, Annotation>] where Annotation : Equatable, Annotation : Sendable
    * @availability iOS 16.0+
    */
-  loadRangedAnnotations(parameters?: $SDK36, continueOnFailure?: boolean): Array<AnnotatedFeature<TemporalFileSegment, number>> { return callSDK<Array<AnnotatedFeature<TemporalFileSegment, number>>>("CreateMLComponents_c1f28409f8601238", 3124324846618793, this, [parameters, continueOnFailure]); }
+  loadRangedAnnotations(parameters?: $SDK36, continueOnFailure?: boolean): Array<AnnotatedFeature<TemporalFileSegment, number>> { return callSDK<Array<AnnotatedFeature<TemporalFileSegment, number>>>("CreateMLComponents_e11dfd5beee01da3", 3124324846618793, this, [parameters, continueOnFailure]); }
   /**
    * func selecting(_ selection: ColumnSelection) -> DataFrame
    * @availability iOS 16.0+
    */
-  selecting(selection: ColumnSelection): _TabularData_DataFrame { return callSDK<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 1876778730800625, this, [selection]); }
+  selecting(selection: ColumnSelection): _TabularData_DataFrame { return callSDK<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 1876778730800625, this, [selection]); }
   declare readonly $type: { "s:11TabularData0B5FrameV": true };
 }
 
@@ -1732,37 +1732,37 @@ export class DataFrameTemporalAnnotationParameters<Annotation = unknown> extends
    * var filePathType: DataFrameTemporalAnnotationParameters<Annotation>.FilePathType
    * @availability iOS 16.0+
    */
-  get filePathType(): $SDK37 { return callSDK<$SDK37>("CreateMLComponents_c1f28409f8601238", 3792169287039800, this, []); }
-  set filePathType(value: $SDK37) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3453369004865665, this, [value]); }
+  get filePathType(): $SDK37 { return callSDK<$SDK37>("CreateMLComponents_e11dfd5beee01da3", 3792169287039800, this, []); }
+  set filePathType(value: $SDK37) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3453369004865665, this, [value]); }
   /**
    * var endTimeColumnID: ColumnID<Double>?
    * @availability iOS 16.0+
    */
-  get endTimeColumnID(): $SDK38 { return callSDK<$SDK38>("CreateMLComponents_c1f28409f8601238", 1891242959647190, this, []); }
-  set endTimeColumnID(value: $SDK38) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 992912822980318, this, [value]); }
+  get endTimeColumnID(): $SDK38 { return callSDK<$SDK38>("CreateMLComponents_e11dfd5beee01da3", 1891242959647190, this, []); }
+  set endTimeColumnID(value: $SDK38) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 992912822980318, this, [value]); }
   /**
    * var filePathColumnID: ColumnID<String>
    * @availability iOS 16.0+
    */
-  get filePathColumnID(): _TabularData_ColumnID<string> { return callSDK<_TabularData_ColumnID<string>>("CreateMLComponents_c1f28409f8601238", 1867573820016967, this, []); }
-  set filePathColumnID(value: _TabularData_ColumnID<string>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2514068229413579, this, [value]); }
+  get filePathColumnID(): _TabularData_ColumnID<string> { return callSDK<_TabularData_ColumnID<string>>("CreateMLComponents_e11dfd5beee01da3", 1867573820016967, this, []); }
+  set filePathColumnID(value: _TabularData_ColumnID<string>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2514068229413579, this, [value]); }
   /**
    * var startTimeColumnID: ColumnID<Double>?
    * @availability iOS 16.0+
    */
-  get startTimeColumnID(): $SDK38 { return callSDK<$SDK38>("CreateMLComponents_c1f28409f8601238", 1684620804966456, this, []); }
-  set startTimeColumnID(value: $SDK38) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2698405233858800, this, [value]); }
+  get startTimeColumnID(): $SDK38 { return callSDK<$SDK38>("CreateMLComponents_e11dfd5beee01da3", 1684620804966456, this, []); }
+  set startTimeColumnID(value: $SDK38) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2698405233858800, this, [value]); }
   /**
    * var annotationColumnID: ColumnID<Annotation>
    * @availability iOS 16.0+
    */
-  get annotationColumnID(): $SDK40 { return callSDK<$SDK40>("CreateMLComponents_c1f28409f8601238", 3399471469728644, this, []); }
-  set annotationColumnID(value: $SDK40) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 390065317391162, this, [value]); }
+  get annotationColumnID(): $SDK40 { return callSDK<$SDK40>("CreateMLComponents_e11dfd5beee01da3", 3399471469728644, this, []); }
+  set annotationColumnID(value: $SDK40) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 390065317391162, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): $SDK36 { return callSDK<$SDK36>("CreateMLComponents_c1f28409f8601238", 3309664295735721, undefined, []); }
+  static init(): $SDK36 { return callSDK<$SDK36>("CreateMLComponents_e11dfd5beee01da3", 3309664295735721, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents37DataFrameTemporalAnnotationParametersV": true };
 }
 
@@ -1775,7 +1775,7 @@ export class DataFrameTemporalAnnotationParameters_FilePathType<Annotation = unk
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2664768910711959, this, []); }
+  get description(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2664768910711959, this, []); }
   declare readonly $type: { "s:18CreateMLComponents37DataFrameTemporalAnnotationParametersV12FilePathTypeO": true };
 }
 
@@ -1788,12 +1788,12 @@ export class DatasetError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3059407230453171, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3059407230453171, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 2789957517824699, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 2789957517824699, this, []); }
   declare readonly $type: { "s:18CreateMLComponents12DatasetErrorO": true };
 }
 
@@ -1806,22 +1806,22 @@ export class DateFeatureExtractor<Scalar = unknown> extends SDKHandle {
    * func applied(to date: Date, eventHandler: EventHandler? = nil) -> [Scalar]
    * @availability iOS 18.0+
    */
-  applied(date: globalThis.Date, eventHandler?: $SDK9): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 2489384920823894, this, [date, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(date: globalThis.Date, eventHandler?: $SDK9): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 2489384920823894, this, [date, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * let calendar: Calendar
    * @availability iOS 18.0+
    */
-  get calendar(): _Foundation_Calendar { return callSDK<_Foundation_Calendar>("CreateMLComponents_c1f28409f8601238", 3336047926894090, this, []); }
+  get calendar(): _Foundation_Calendar { return callSDK<_Foundation_Calendar>("CreateMLComponents_e11dfd5beee01da3", 3336047926894090, this, []); }
   /**
    * init(features: DateFeatures, calendar: Calendar = Calendar.current)
    * @availability iOS 18.0+
    */
-  static init(features: DateFeatures, calendar?: _Foundation_Calendar): DateFeatureExtractor<number> { return callSDK<DateFeatureExtractor<number>>("CreateMLComponents_c1f28409f8601238", 3123570672317067, undefined, [features, calendar]); }
+  static init(features: DateFeatures, calendar?: _Foundation_Calendar): DateFeatureExtractor<number> { return callSDK<DateFeatureExtractor<number>>("CreateMLComponents_e11dfd5beee01da3", 3123570672317067, undefined, [features, calendar]); }
   /**
    * let features: DateFeatures
    * @availability iOS 18.0+
    */
-  get features(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 694800873603640, this, []); }
+  get features(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 694800873603640, this, []); }
   declare readonly $type: { "s:18CreateMLComponents20DateFeatureExtractorV": true };
 }
 
@@ -1848,58 +1848,58 @@ export const DateFeatures = {
    * static let weekOfYear: DateFeatures
    * @availability iOS 18.0+
    */
-  get weekOfYear(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 1560852359641096, undefined, []); },
+  get weekOfYear(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 1560852359641096, undefined, []); },
   /**
    * static let weekOfMonth: DateFeatures
    * @availability iOS 18.0+
    */
-  get weekOfMonth(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 436233837789890, undefined, []); },
+  get weekOfMonth(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 436233837789890, undefined, []); },
   /**
    * static let day: DateFeatures
    * @availability iOS 18.0+
    */
-  get day(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 313618966322713, undefined, []); },
+  get day(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 313618966322713, undefined, []); },
   /**
    * static let hour: DateFeatures
    * @availability iOS 18.0+
    */
-  get hour(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 380480595917156, undefined, []); },
+  get hour(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 380480595917156, undefined, []); },
   /**
    * static let month: DateFeatures
    * @availability iOS 18.0+
    */
-  get month(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 2437065964427209, undefined, []); },
+  get month(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 2437065964427209, undefined, []); },
   /**
    * static let minute: DateFeatures
    * @availability iOS 18.0+
    */
-  get minute(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 860965695389140, undefined, []); },
+  get minute(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 860965695389140, undefined, []); },
   /**
    * static let second: DateFeatures
    * @availability iOS 18.0+
    */
-  get second(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 3626328079379790, undefined, []); },
+  get second(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 3626328079379790, undefined, []); },
   /**
    * static let weekday: DateFeatures
    * @availability iOS 18.0+
    */
-  get weekday(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 1491330906105047, undefined, []); },
+  get weekday(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 1491330906105047, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 4305373292068806, undefined, [rawValue]); },
+  init(rawValue: number): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 4305373292068806, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 18.0+
    */
-  getRawValue($self: DateFeatures): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3574830805948218, $self, []); },
-  setRawValue($self: DateFeatures, value: number): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 47141566715490, $self, [value]); },
+  getRawValue($self: DateFeatures): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3574830805948218, $self, []); },
+  setRawValue($self: DateFeatures, value: number): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 47141566715490, $self, [value]); },
   /**
    * static let dayOfYear: DateFeatures
    * @availability iOS 18.0+
    */
-  get dayOfYear(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_c1f28409f8601238", 177091264312725, undefined, []); }
+  get dayOfYear(): DateFeatures { return callSDK<DateFeatures>("CreateMLComponents_e11dfd5beee01da3", 177091264312725, undefined, []); }
 };
 
 /**
@@ -1929,14 +1929,14 @@ export class DetectedObject<Label = unknown> extends SDKHandle {
    * var confidence: Float
    * @availability iOS 17.0+
    */
-  get confidence(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4028516487946545, this, []); }
-  set confidence(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 299987467762240, this, [value]); }
+  get confidence(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4028516487946545, this, []); }
+  set confidence(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 299987467762240, this, [value]); }
   /**
    * var boundingBox: CGRect
    * @availability iOS 17.0+
    */
-  get boundingBox(): $SDK42 { return callSDK<$SDK42>("CreateMLComponents_c1f28409f8601238", 3778581903953635, this, []); }
-  set boundingBox(value: $SDK42) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 219491650236144, this, [value]); }
+  get boundingBox(): $SDK42 { return callSDK<$SDK42>("CreateMLComponents_e11dfd5beee01da3", 3778581903953635, this, []); }
+  set boundingBox(value: $SDK42) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 219491650236144, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents14DetectedObjectV": true };
 }
 
@@ -1949,12 +1949,12 @@ export class Downsampler<Input = unknown> extends SDKHandle {
    * init(factor: Int)
    * @availability iOS 16.0+
    */
-  static init(factor: number): Downsampler<number> { return callSDK<Downsampler<number>>("CreateMLComponents_c1f28409f8601238", 192039681178320, undefined, [factor]); }
+  static init(factor: number): Downsampler<number> { return callSDK<Downsampler<number>>("CreateMLComponents_e11dfd5beee01da3", 192039681178320, undefined, [factor]); }
   /**
    * let factor: Int
    * @availability iOS 16.0+
    */
-  get factor(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3889153679789893, this, []); }
+  get factor(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3889153679789893, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11DownsamplerV": true };
 }
 
@@ -1967,12 +1967,12 @@ export class Downsampler_DownStreamSequence<Input = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> Downsampler<Input>.DownStreamSequence.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): Downsampler_DownStreamSequence_Iterator<number> { return callSDK<Downsampler_DownStreamSequence_Iterator<number>>("CreateMLComponents_c1f28409f8601238", 1358150815607684, this, []); }
+  makeAsyncIterator(): Downsampler_DownStreamSequence_Iterator<number> { return callSDK<Downsampler_DownStreamSequence_Iterator<number>>("CreateMLComponents_e11dfd5beee01da3", 1358150815607684, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1342316720123664, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1342316720123664, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11DownsamplerV18DownStreamSequenceV": true };
   declare readonly $element: Downsampler_DownStreamSequence_Element<unknown>;
 }
@@ -2004,7 +2004,7 @@ export class Downsampler_DownStreamSequence_Iterator<Input = unknown> extends SD
    * mutating func next() async throws -> TemporalFeature<Downsampler<Input>.Output>?
    * @availability iOS 16.0+
    */
-  next(): Promise<$SDK46> { return callSDKAsync<$SDK46>("CreateMLComponents_c1f28409f8601238", 1319688262497928, this, []); }
+  next(): Promise<$SDK46> { return callSDKAsync<$SDK46>("CreateMLComponents_e11dfd5beee01da3", 1319688262497928, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11DownsamplerV18DownStreamSequenceV8IteratorV": true };
 }
 
@@ -2097,12 +2097,12 @@ export class EstimatorEncodingError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2480750759413441, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2480750759413441, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 2220721208255500, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 2220721208255500, this, []); }
   declare readonly $type: { "s:18CreateMLComponents22EstimatorEncodingErrorO": true };
 }
 
@@ -2115,12 +2115,12 @@ export class EstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unkn
    * func decode(from decoder: inout any EstimatorDecoder) throws -> EstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3775178530371978, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3775178530371978, this, [decoder]); }
   /**
    * func encode(_ transformer: EstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3253892302169625, this, [transformer, encoder]); }
+  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3253892302169625, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents28EstimatorToSupervisedAdaptorV": true };
 }
 
@@ -2141,13 +2141,13 @@ export class EstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3709490548840691, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3709490548840691, this, [decoder]); }
   /**
    * func encode(_ transformer: EstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1588678981231365, this, [transformer, encoder]); }
+  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1588678981231365, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents26EstimatorToTemporalAdaptorV": true };
 }
 
@@ -2181,36 +2181,36 @@ export class Event extends SDKHandle {
    * var totalItemCount: Int?
    * @availability iOS 16.0+
    */
-  get totalItemCount(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1949463871055283, this, []); }
-  set totalItemCount(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 173232135328546, this, [value]); }
+  get totalItemCount(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1949463871055283, this, []); }
+  set totalItemCount(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 173232135328546, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1083566020842387, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1083566020842387, this, []); }
   /**
    * init(origin: String, itemCount: Int, totalItemCount: Int? = nil, metrics: [MetricsKey : any Sendable])
    * @availability iOS 16.0+
    */
-  static init(origin: string, itemCount: number, totalItemCount: (number) | null, metrics: $SDK49): Event { return callSDK<Event>("CreateMLComponents_c1f28409f8601238", 2971239975640135, undefined, [origin, itemCount, totalItemCount, metrics]); }
+  static init(origin: string, itemCount: number, totalItemCount: (number) | null, metrics: $SDK49): Event { return callSDK<Event>("CreateMLComponents_e11dfd5beee01da3", 2971239975640135, undefined, [origin, itemCount, totalItemCount, metrics]); }
   /**
    * var origin: String
    * @availability iOS 16.0+
    */
-  get origin(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 286452718383977, this, []); }
-  set origin(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2413331705770147, this, [value]); }
+  get origin(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 286452718383977, this, []); }
+  set origin(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2413331705770147, this, [value]); }
   /**
    * var metrics: [MetricsKey : any Sendable]
    * @availability iOS 16.0+
    */
-  get metrics(): $SDK49 { return callSDK<$SDK49>("CreateMLComponents_c1f28409f8601238", 2646293458087115, this, []); }
-  set metrics(value: $SDK49) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4022889737996757, this, [value]); }
+  get metrics(): $SDK49 { return callSDK<$SDK49>("CreateMLComponents_e11dfd5beee01da3", 2646293458087115, this, []); }
+  set metrics(value: $SDK49) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4022889737996757, this, [value]); }
   /**
    * var itemCount: Int
    * @availability iOS 16.0+
    */
-  get itemCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1582155759690644, this, []); }
-  set itemCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 841332615918002, this, [value]); }
+  get itemCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1582155759690644, this, []); }
+  set itemCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 841332615918002, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents5EventV": true };
 }
 
@@ -2229,28 +2229,28 @@ export class FullyConnectedNetworkClassifier<Scalar = unknown, Label = unknown> 
    * var configuration: FullyConnectedNetworkConfiguration
    * @availability iOS 16.0+
    */
-  get configuration(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_c1f28409f8601238", 1443969566937999, this, []); }
-  set configuration(value: FullyConnectedNetworkConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2688669715614616, this, [value]); }
+  get configuration(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_e11dfd5beee01da3", 1443969566937999, this, []); }
+  set configuration(value: FullyConnectedNetworkConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2688669715614616, this, [value]); }
   /**
    * func makeTransformer() -> FullyConnectedNetworkClassifierModel<Scalar, Label>
    * @availability iOS 16.0+
    */
-  makeTransformer(): $SDK51 { return callSDK<$SDK51>("CreateMLComponents_c1f28409f8601238", 4495712940772, this, []); }
+  makeTransformer(): $SDK51 { return callSDK<$SDK51>("CreateMLComponents_e11dfd5beee01da3", 4495712940772, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkClassifier<Scalar, Label>.Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK51; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK51; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2064977209047138, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK51; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK51; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2064977209047138, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: FullyConnectedNetworkClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: $SDK51, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1810001264887546, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK51, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1810001264887546, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkClassifierModel<Scalar, Label>
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK51; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK51; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2473443258325856, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK51; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK51; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2473443258325856, this, [decoder]); }
   declare readonly $type: { "s:18CreateMLComponents31FullyConnectedNetworkClassifierV": true };
 }
 
@@ -2275,12 +2275,12 @@ export class FullyConnectedNetworkClassifierModel<Scalar = unknown, Label = unkn
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4186208639852633, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4186208639852633, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<Label>
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53> { return callSDKAsync<$SDK53>("CreateMLComponents_c1f28409f8601238", 983324564733587, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53> { return callSDKAsync<$SDK53>("CreateMLComponents_e11dfd5beee01da3", 983324564733587, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents36FullyConnectedNetworkClassifierModelV": true };
 }
 
@@ -2305,55 +2305,55 @@ export class FullyConnectedNetworkConfiguration extends SDKHandle {
    * var randomSeed: Int
    * @availability iOS 16.0+
    */
-  get randomSeed(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3411110066717413, this, []); }
-  set randomSeed(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2331536344228480, this, [value]); }
+  get randomSeed(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3411110066717413, this, []); }
+  set randomSeed(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2331536344228480, this, [value]); }
   /**
    * var learningRate: Float
    * @availability iOS 17.0+
    */
-  get learningRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2710060055954899, this, []); }
-  set learningRate(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2822884603067761, this, [value]); }
+  get learningRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2710060055954899, this, []); }
+  set learningRate(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2822884603067761, this, [value]); }
   /**
    * var hiddenUnitCounts: [Int]
    * @availability iOS 16.0+
    */
-  get hiddenUnitCounts(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 1968112524497334, this, []); }
-  set hiddenUnitCounts(value: Array<number>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1801275662349202, this, [value]); }
+  get hiddenUnitCounts(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 1968112524497334, this, []); }
+  set hiddenUnitCounts(value: Array<number>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1801275662349202, this, [value]); }
   /**
    * var maximumIterations: Int
    * @availability iOS 16.0+
    */
-  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2990837202504859, this, []); }
-  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1820139579692601, this, [value]); }
+  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2990837202504859, this, []); }
+  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1820139579692601, this, [value]); }
   /**
    * var dropoutProbability: Float
    * @availability iOS 17.0+
    */
-  get dropoutProbability(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3366104769789865, this, []); }
-  set dropoutProbability(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 317422022752916, this, [value]); }
+  get dropoutProbability(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3366104769789865, this, []); }
+  set dropoutProbability(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 317422022752916, this, [value]); }
   /**
    * var earlyStoppingTolerance: Double
    * @availability iOS 16.0+
    */
-  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1254067497333124, this, []); }
-  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3266719313985754, this, [value]); }
+  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1254067497333124, this, []); }
+  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3266719313985754, this, [value]); }
   /**
    * var earlyStopIterationCount: Int
    * @availability iOS 17.0+
    */
-  get earlyStopIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2604250241122918, this, []); }
-  set earlyStopIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 418232794330045, this, [value]); }
+  get earlyStopIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2604250241122918, this, []); }
+  set earlyStopIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 418232794330045, this, [value]); }
   /**
    * var batchSize: Int
    * @availability iOS 16.0+
    */
-  get batchSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2368844118185989, this, []); }
-  set batchSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 192185068734645, this, [value]); }
+  get batchSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2368844118185989, this, []); }
+  set batchSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 192185068734645, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_c1f28409f8601238", 3485382491516702, undefined, []); }
+  static init(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_e11dfd5beee01da3", 3485382491516702, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents34FullyConnectedNetworkConfigurationV": true };
 }
 
@@ -2366,28 +2366,28 @@ export class FullyConnectedNetworkMultiLabelClassifier<Scalar = unknown, Label =
    * var configuration: FullyConnectedNetworkConfiguration
    * @availability iOS 17.0+
    */
-  get configuration(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_c1f28409f8601238", 832324014914140, this, []); }
-  set configuration(value: FullyConnectedNetworkConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 49508419268745, this, [value]); }
+  get configuration(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_e11dfd5beee01da3", 832324014914140, this, []); }
+  set configuration(value: FullyConnectedNetworkConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 49508419268745, this, [value]); }
   /**
    * func makeTransformer() -> FullyConnectedNetworkMultiLabelClassifierModel<Scalar, Label>
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK56 { return callSDK<$SDK56>("CreateMLComponents_c1f28409f8601238", 959754497791420, this, []); }
+  makeTransformer(): $SDK56 { return callSDK<$SDK56>("CreateMLComponents_e11dfd5beee01da3", 959754497791420, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkMultiLabelClassifier<Scalar, Label>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK56; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK56; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 797476206834519, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK56; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK56; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 797476206834519, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: FullyConnectedNetworkMultiLabelClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK56, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 335200477233020, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK56, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 335200477233020, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkMultiLabelClassifierModel<Scalar, Label>
    * @availability iOS 17.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK56; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK56; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 707129444758486, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK56; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK56; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 707129444758486, this, [decoder]); }
   declare readonly $type: { "s:18CreateMLComponents41FullyConnectedNetworkMultiLabelClassifierV": true };
 }
 
@@ -2412,12 +2412,12 @@ export class FullyConnectedNetworkMultiLabelClassifierModel<Scalar = unknown, La
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4294933788822850, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4294933788822850, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) throws -> ClassificationDistribution<Label>
    * @availability iOS 17.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): $SDK53 { return callSDK<$SDK53>("CreateMLComponents_c1f28409f8601238", 1063214701115151, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): $SDK53 { return callSDK<$SDK53>("CreateMLComponents_e11dfd5beee01da3", 1063214701115151, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents46FullyConnectedNetworkMultiLabelClassifierModelV": true };
 }
 
@@ -2442,48 +2442,48 @@ export class FullyConnectedNetworkRegressor<Scalar = unknown> extends SDKHandle 
    * var configuration: FullyConnectedNetworkConfiguration
    * @availability iOS 16.0+
    */
-  get configuration(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_c1f28409f8601238", 172337529087606, this, []); }
-  set configuration(value: FullyConnectedNetworkConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 257453178926861, this, [value]); }
+  get configuration(): FullyConnectedNetworkConfiguration { return callSDK<FullyConnectedNetworkConfiguration>("CreateMLComponents_e11dfd5beee01da3", 172337529087606, this, []); }
+  set configuration(value: FullyConnectedNetworkConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 257453178926861, this, [value]); }
   /**
    * init(configuration: FullyConnectedNetworkConfiguration = .init())
    * @availability iOS 16.0+
    */
-  static init(configuration?: FullyConnectedNetworkConfiguration): FullyConnectedNetworkRegressor<number> { return callSDK<FullyConnectedNetworkRegressor<number>>("CreateMLComponents_c1f28409f8601238", 2679498716745015, undefined, [configuration]); }
+  static init(configuration?: FullyConnectedNetworkConfiguration): FullyConnectedNetworkRegressor<number> { return callSDK<FullyConnectedNetworkRegressor<number>>("CreateMLComponents_e11dfd5beee01da3", 2679498716745015, undefined, [configuration]); }
   /**
    * func makeTransformer() -> FullyConnectedNetworkRegressorModel<Scalar>
    * @availability iOS 16.0+
    */
-  makeTransformer(): $SDK59 { return callSDK<$SDK59>("CreateMLComponents_c1f28409f8601238", 2572859478584297, this, []); }
+  makeTransformer(): $SDK59 { return callSDK<$SDK59>("CreateMLComponents_e11dfd5beee01da3", 2572859478584297, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkRegressor<Scalar>.Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK59; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK59; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4481820984272564, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK59; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK59; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4481820984272564, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: FullyConnectedNetworkRegressor<Scalar>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: $SDK59, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1250284999713184, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK59, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1250284999713184, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkRegressorModel<Scalar>
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK59; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK59; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 906393242144445, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK59; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK59; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 906393242144445, this, [decoder]); }
   /**
    * func fitted<Input, Validation>(to input: Input, validateOn validation: Validation, eventHandler: EventHandler? = nil) async throws -> FullyConnectedNetworkRegressorModel<Scalar> where Input : Sequence, Validation : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>, Validation.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>
    * @availability iOS 16.0+
    */
-  fittedToValidateOnEventHandler(input: $SDK60, validation: $SDK60, eventHandler?: $SDK9): Promise<$SDK59> { return callSDKAsync<$SDK59>("CreateMLComponents_c1f28409f8601238", 519500515740894, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fittedToValidateOnEventHandler(input: $SDK60, validation: $SDK60, eventHandler?: $SDK9): Promise<$SDK59> { return callSDKAsync<$SDK59>("CreateMLComponents_e11dfd5beee01da3", 519500515740894, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func fitted<Input>(to input: Input, eventHandler: EventHandler? = nil) async throws -> FullyConnectedNetworkRegressor<Scalar>.Transformer where Input : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>
    * @availability iOS 16.0+
    */
-  fittedToEventHandler(input: $SDK60, eventHandler?: $SDK9): Promise<$SDK59> { return callSDKAsync<$SDK59>("CreateMLComponents_c1f28409f8601238", 1206477403867995, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fittedToEventHandler(input: $SDK60, eventHandler?: $SDK9): Promise<$SDK59> { return callSDKAsync<$SDK59>("CreateMLComponents_e11dfd5beee01da3", 1206477403867995, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func update<InputSequence>(_ transformer: inout FullyConnectedNetworkRegressorModel<Scalar>, with input: InputSequence, eventHandler: EventHandler? = nil) async throws where InputSequence : Sequence, InputSequence.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>
    * @availability iOS 16.0+
    */
-  update(transformer: $SDK59, input: $SDK60, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK59 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK59 } }>("CreateMLComponents_c1f28409f8601238", 1107826397388693, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  update(transformer: $SDK59, input: $SDK60, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK59 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK59 } }>("CreateMLComponents_e11dfd5beee01da3", 1107826397388693, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents30FullyConnectedNetworkRegressorV": true };
 }
 
@@ -2508,12 +2508,12 @@ export class FullyConnectedNetworkRegressorModel<Scalar = unknown> extends SDKHa
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3122383371284856, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3122383371284856, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> FullyConnectedNetworkRegressorModel<Scalar>.Target
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<number> { return callSDKAsync<number>("CreateMLComponents_c1f28409f8601238", 2670056504142048, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<number> { return callSDKAsync<number>("CreateMLComponents_e11dfd5beee01da3", 2670056504142048, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents35FullyConnectedNetworkRegressorModelV": true };
 }
 
@@ -2544,7 +2544,7 @@ export class HumanBodyActionCounter extends SDKHandle {
    * init()
    * @availability iOS 16.0+
    */
-  static init(): HumanBodyActionCounter { return callSDK<HumanBodyActionCounter>("CreateMLComponents_c1f28409f8601238", 3685806212263528, undefined, []); }
+  static init(): HumanBodyActionCounter { return callSDK<HumanBodyActionCounter>("CreateMLComponents_e11dfd5beee01da3", 3685806212263528, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents22HumanBodyActionCounterV": true };
 }
 
@@ -2557,12 +2557,12 @@ export class HumanBodyActionCounter_CumulativeSumSequence extends SDKHandle {
    * func makeAsyncIterator() -> HumanBodyActionCounter.CumulativeSumSequence.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): HumanBodyActionCounter_CumulativeSumSequence_Iterator { return callSDK<HumanBodyActionCounter_CumulativeSumSequence_Iterator>("CreateMLComponents_c1f28409f8601238", 4052922786194873, this, []); }
+  makeAsyncIterator(): HumanBodyActionCounter_CumulativeSumSequence_Iterator { return callSDK<HumanBodyActionCounter_CumulativeSumSequence_Iterator>("CreateMLComponents_e11dfd5beee01da3", 4052922786194873, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 4390032329161742, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 4390032329161742, this, []); }
   declare readonly $type: { "s:18CreateMLComponents22HumanBodyActionCounterV21CumulativeSumSequenceV": true };
   declare readonly $element: TemporalFeature<number>;
 }
@@ -2594,7 +2594,7 @@ export class HumanBodyActionCounter_CumulativeSumSequence_Iterator extends SDKHa
    * mutating func next() async throws -> TemporalFeature<Float>?
    * @availability iOS 16.0+
    */
-  next(): Promise<$SDK46> { return callSDKAsync<$SDK46>("CreateMLComponents_c1f28409f8601238", 3019391602787706, this, []); }
+  next(): Promise<$SDK46> { return callSDKAsync<$SDK46>("CreateMLComponents_e11dfd5beee01da3", 3019391602787706, this, []); }
   declare readonly $type: { "s:18CreateMLComponents22HumanBodyActionCounterV21CumulativeSumSequenceV8IteratorV": true };
 }
 
@@ -2631,12 +2631,12 @@ export class HumanBodyActionPeriodPredictor extends SDKHandle {
    * func applied(to input: [Pose], eventHandler: EventHandler? = nil) async throws -> [HumanBodyActionPeriodPredictor.Prediction]
    * @availability iOS 16.0+
    */
-  applied(input: Array<Pose>, eventHandler?: $SDK9): Promise<$SDK62> { return callSDKAsync<$SDK62>("CreateMLComponents_c1f28409f8601238", 4478929706115760, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: Array<Pose>, eventHandler?: $SDK9): Promise<$SDK62> { return callSDKAsync<$SDK62>("CreateMLComponents_e11dfd5beee01da3", 4478929706115760, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): HumanBodyActionPeriodPredictor { return callSDK<HumanBodyActionPeriodPredictor>("CreateMLComponents_c1f28409f8601238", 3585747090136460, undefined, []); }
+  static init(): HumanBodyActionPeriodPredictor { return callSDK<HumanBodyActionPeriodPredictor>("CreateMLComponents_e11dfd5beee01da3", 3585747090136460, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents30HumanBodyActionPeriodPredictorV": true };
 }
 
@@ -2661,19 +2661,19 @@ export class HumanBodyActionPeriodPredictor_Prediction extends SDKHandle {
    * var periodicity: Float
    * @availability iOS 16.0+
    */
-  get periodicity(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2544623452666378, this, []); }
-  set periodicity(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4047688073524919, this, [value]); }
+  get periodicity(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2544623452666378, this, []); }
+  set periodicity(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4047688073524919, this, [value]); }
   /**
    * init(period: Float, periodicity: Float)
    * @availability iOS 16.0+
    */
-  static init(period: number, periodicity: number): HumanBodyActionPeriodPredictor_Prediction { return callSDK<HumanBodyActionPeriodPredictor_Prediction>("CreateMLComponents_c1f28409f8601238", 3191072669433956, undefined, [period, periodicity]); }
+  static init(period: number, periodicity: number): HumanBodyActionPeriodPredictor_Prediction { return callSDK<HumanBodyActionPeriodPredictor_Prediction>("CreateMLComponents_e11dfd5beee01da3", 3191072669433956, undefined, [period, periodicity]); }
   /**
    * var period: Float
    * @availability iOS 16.0+
    */
-  get period(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 400629225073657, this, []); }
-  set period(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3559306600430081, this, [value]); }
+  get period(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 400629225073657, this, []); }
+  set period(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3559306600430081, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents30HumanBodyActionPeriodPredictorV10PredictionV": true };
 }
 
@@ -2686,17 +2686,17 @@ export class HumanBodyPoseExtractor extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3526046304247217, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3526046304247217, this, []); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) async throws -> [Pose]
    * @availability iOS 16.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<Array<Pose>> { return callSDKAsync<Array<Pose>>("CreateMLComponents_c1f28409f8601238", 525198306739010, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<Array<Pose>> { return callSDKAsync<Array<Pose>>("CreateMLComponents_e11dfd5beee01da3", 525198306739010, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): HumanBodyPoseExtractor { return callSDK<HumanBodyPoseExtractor>("CreateMLComponents_c1f28409f8601238", 3494177116515292, undefined, []); }
+  static init(): HumanBodyPoseExtractor { return callSDK<HumanBodyPoseExtractor>("CreateMLComponents_e11dfd5beee01da3", 3494177116515292, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents22HumanBodyPoseExtractorV": true };
 }
 
@@ -2721,17 +2721,17 @@ export class HumanHandPoseExtractor extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1745020279341079, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1745020279341079, this, []); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) async throws -> [Pose]
    * @availability iOS 16.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<Array<Pose>> { return callSDKAsync<Array<Pose>>("CreateMLComponents_c1f28409f8601238", 2556028602597959, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<Array<Pose>> { return callSDKAsync<Array<Pose>>("CreateMLComponents_e11dfd5beee01da3", 2556028602597959, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): HumanHandPoseExtractor { return callSDK<HumanHandPoseExtractor>("CreateMLComponents_c1f28409f8601238", 1065615314699964, undefined, []); }
+  static init(): HumanHandPoseExtractor { return callSDK<HumanHandPoseExtractor>("CreateMLComponents_e11dfd5beee01da3", 1065615314699964, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents22HumanHandPoseExtractorV": true };
 }
 
@@ -2756,18 +2756,18 @@ export class ImageBlur extends SDKHandle {
    * init(radius: Double)
    * @availability iOS 17.0+
    */
-  static init(radius: number): ImageBlur { return callSDK<ImageBlur>("CreateMLComponents_c1f28409f8601238", 2331644805496402, undefined, [radius]); }
+  static init(radius: number): ImageBlur { return callSDK<ImageBlur>("CreateMLComponents_e11dfd5beee01da3", 2331644805496402, undefined, [radius]); }
   /**
    * var radius: Double
    * @availability iOS 17.0+
    */
-  get radius(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2157385793814698, this, []); }
-  set radius(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2530351396761476, this, [value]); }
+  get radius(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2157385793814698, this, []); }
+  set radius(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2530351396761476, this, [value]); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
    * @availability iOS 17.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 2328307103185177, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 2328307103185177, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents9ImageBlurV": true };
 }
 
@@ -2792,36 +2792,36 @@ export class ImageColorTransformer extends SDKHandle {
    * init(brightness: Float? = nil, contrast: Float? = nil, hue: Float? = nil, saturation: Float? = nil)
    * @availability iOS 17.0+
    */
-  static init(brightness?: (number) | null, contrast?: (number) | null, hue?: (number) | null, saturation?: (number) | null): ImageColorTransformer { return callSDK<ImageColorTransformer>("CreateMLComponents_c1f28409f8601238", 1352728036554890, undefined, [brightness, contrast, hue, saturation]); }
+  static init(brightness?: (number) | null, contrast?: (number) | null, hue?: (number) | null, saturation?: (number) | null): ImageColorTransformer { return callSDK<ImageColorTransformer>("CreateMLComponents_e11dfd5beee01da3", 1352728036554890, undefined, [brightness, contrast, hue, saturation]); }
   /**
    * var brightness: Float?
    * @availability iOS 17.0+
    */
-  get brightness(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1491218383000922, this, []); }
-  set brightness(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3532694340397778, this, [value]); }
+  get brightness(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1491218383000922, this, []); }
+  set brightness(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3532694340397778, this, [value]); }
   /**
    * var saturation: Float?
    * @availability iOS 17.0+
    */
-  get saturation(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 3652148595493721, this, []); }
-  set saturation(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3093641571846759, this, [value]); }
+  get saturation(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 3652148595493721, this, []); }
+  set saturation(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3093641571846759, this, [value]); }
   /**
    * var hue: Float?
    * @availability iOS 17.0+
    */
-  get hue(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 2199306605178828, this, []); }
-  set hue(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4281212130728763, this, [value]); }
+  get hue(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 2199306605178828, this, []); }
+  set hue(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4281212130728763, this, [value]); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
    * @availability iOS 17.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 2445272928723757, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 2445272928723757, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var contrast: Float?
    * @availability iOS 17.0+
    */
-  get contrast(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1235189711523796, this, []); }
-  set contrast(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1610793731535340, this, [value]); }
+  get contrast(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1235189711523796, this, []); }
+  set contrast(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1610793731535340, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents21ImageColorTransformerV": true };
 }
 
@@ -2846,23 +2846,23 @@ export class ImageCropper extends SDKHandle {
    * init(cropRectangle: CGRect)
    * @availability iOS 16.0+
    */
-  static init(cropRectangle: $SDK42): ImageCropper { return callSDK<ImageCropper>("CreateMLComponents_c1f28409f8601238", 1725021987633572, undefined, [cropRectangle]); }
+  static init(cropRectangle: $SDK42): ImageCropper { return callSDK<ImageCropper>("CreateMLComponents_e11dfd5beee01da3", 1725021987633572, undefined, [cropRectangle]); }
   /**
    * var cropRectangle: CGRect
    * @availability iOS 16.0+
    */
-  get cropRectangle(): $SDK42 { return callSDK<$SDK42>("CreateMLComponents_c1f28409f8601238", 3243075320493182, this, []); }
-  set cropRectangle(value: $SDK42) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 747442354820151, this, [value]); }
+  get cropRectangle(): $SDK42 { return callSDK<$SDK42>("CreateMLComponents_e11dfd5beee01da3", 3243075320493182, this, []); }
+  set cropRectangle(value: $SDK42) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 747442354820151, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3414147615479582, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3414147615479582, this, []); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) throws -> CIImage
    * @availability iOS 16.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 361974633849885, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 361974633849885, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12ImageCropperV": true };
 }
 
@@ -2887,18 +2887,18 @@ export class ImageExposureAdjuster extends SDKHandle {
    * init(amount: Double)
    * @availability iOS 17.0+
    */
-  static init(amount: number): ImageExposureAdjuster { return callSDK<ImageExposureAdjuster>("CreateMLComponents_c1f28409f8601238", 1281594849838181, undefined, [amount]); }
+  static init(amount: number): ImageExposureAdjuster { return callSDK<ImageExposureAdjuster>("CreateMLComponents_e11dfd5beee01da3", 1281594849838181, undefined, [amount]); }
   /**
    * var amount: Double
    * @availability iOS 17.0+
    */
-  get amount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4185576187828817, this, []); }
-  set amount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 486521121275694, this, [value]); }
+  get amount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4185576187828817, this, []); }
+  set amount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 486521121275694, this, [value]); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
    * @availability iOS 17.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 695939771543396, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 695939771543396, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents21ImageExposureAdjusterV": true };
 }
 
@@ -2935,38 +2935,38 @@ export class ImageFeaturePrint extends SDKHandle {
    * init(cropAndScale: VNImageCropAndScaleOption = .centerCrop, context: CIContext = CIContext())
    * @availability iOS 16.0+
    */
-  static initCropAndScaleContext(cropAndScale?: _Vision_VNImageCropAndScaleOption, context?: _CoreImage_CIContext): ImageFeaturePrint { return callSDK<ImageFeaturePrint>("CreateMLComponents_c1f28409f8601238", 2332753432110607, undefined, [cropAndScale, context]); }
+  static initCropAndScaleContext(cropAndScale?: _Vision_VNImageCropAndScaleOption, context?: _CoreImage_CIContext): ImageFeaturePrint { return callSDK<ImageFeaturePrint>("CreateMLComponents_e11dfd5beee01da3", 2332753432110607, undefined, [cropAndScale, context]); }
   /**
    * let cropAndScale: VNImageCropAndScaleOption
    * @availability iOS 16.0+
    */
-  get cropAndScale(): _Vision_VNImageCropAndScaleOption { return callSDK<_Vision_VNImageCropAndScaleOption>("CreateMLComponents_c1f28409f8601238", 1993099470934243, this, []); }
+  get cropAndScale(): _Vision_VNImageCropAndScaleOption { return callSDK<_Vision_VNImageCropAndScaleOption>("CreateMLComponents_e11dfd5beee01da3", 1993099470934243, this, []); }
   /**
    * static let latestRevision: Int
    * @availability iOS 17.0+
    */
-  static get latestRevision(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3563861818695372, undefined, []); }
+  static get latestRevision(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3563861818695372, undefined, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3500671653380162, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3500671653380162, this, []); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Float>
    * @availability iOS 16.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_c1f28409f8601238", 1685718205521975, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1685718205521975, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(revision: Int, cropAndScale: VNImageCropAndScaleOption = .centerCrop, context: CIContext = CIContext())
    * @availability iOS 17.0+
    */
-  static initRevisionCropAndScaleContext(revision: number, cropAndScale?: _Vision_VNImageCropAndScaleOption, context?: _CoreImage_CIContext): ImageFeaturePrint { return callSDK<ImageFeaturePrint>("CreateMLComponents_c1f28409f8601238", 3434219083950597, undefined, [revision, cropAndScale, context]); }
+  static initRevisionCropAndScaleContext(revision: number, cropAndScale?: _Vision_VNImageCropAndScaleOption, context?: _CoreImage_CIContext): ImageFeaturePrint { return callSDK<ImageFeaturePrint>("CreateMLComponents_e11dfd5beee01da3", 3434219083950597, undefined, [revision, cropAndScale, context]); }
   /**
    * var revision: Int { get set }
    * @availability iOS 17.0+
    */
-  get revision(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3373711167332456, this, []); }
-  set revision(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 631760857491916, this, [value]); }
+  get revision(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3373711167332456, this, []); }
+  set revision(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 631760857491916, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents17ImageFeaturePrintV": true };
 }
 
@@ -2991,18 +2991,18 @@ export class ImageFlipper extends SDKHandle {
    * init(orientation: ImageFlipper.Orientation)
    * @availability iOS 17.0+
    */
-  static init(orientation: ImageFlipper_Orientation): ImageFlipper { return callSDK<ImageFlipper>("CreateMLComponents_c1f28409f8601238", 3627527273751489, undefined, [orientation]); }
+  static init(orientation: ImageFlipper_Orientation): ImageFlipper { return callSDK<ImageFlipper>("CreateMLComponents_e11dfd5beee01da3", 3627527273751489, undefined, [orientation]); }
   /**
    * var orientation: ImageFlipper.Orientation
    * @availability iOS 17.0+
    */
-  get orientation(): ImageFlipper_Orientation { return callSDK<ImageFlipper_Orientation>("CreateMLComponents_c1f28409f8601238", 2842217899657191, this, []); }
-  set orientation(value: ImageFlipper_Orientation) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3936808939318176, this, [value]); }
+  get orientation(): ImageFlipper_Orientation { return callSDK<ImageFlipper_Orientation>("CreateMLComponents_e11dfd5beee01da3", 2842217899657191, this, []); }
+  set orientation(value: ImageFlipper_Orientation) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3936808939318176, this, [value]); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
    * @availability iOS 17.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 3075605186662405, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 3075605186662405, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12ImageFlipperV": true };
 }
 
@@ -3033,22 +3033,22 @@ export class ImageReader extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1817397587755720, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1817397587755720, this, []); }
   /**
    * static func read(url: URL) throws -> CIImage
    * @availability iOS 16.0+
    */
-  static read(url: string): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 2158995101003001, undefined, [url]); }
+  static read(url: string): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 2158995101003001, undefined, [url]); }
   /**
    * func applied(to url: URL, eventHandler: EventHandler? = nil) throws -> CIImage
    * @availability iOS 16.0+
    */
-  applied(url: string, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 885122353801687, this, [url, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(url: string, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 885122353801687, this, [url, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): ImageReader { return callSDK<ImageReader>("CreateMLComponents_c1f28409f8601238", 3172544317435403, undefined, []); }
+  static init(): ImageReader { return callSDK<ImageReader>("CreateMLComponents_e11dfd5beee01da3", 3172544317435403, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents11ImageReaderV": true };
 }
 
@@ -3073,18 +3073,18 @@ export class ImageRotator extends SDKHandle {
    * init(angle: Double)
    * @availability iOS 17.0+
    */
-  static init(angle: number): ImageRotator { return callSDK<ImageRotator>("CreateMLComponents_c1f28409f8601238", 515322305209867, undefined, [angle]); }
+  static init(angle: number): ImageRotator { return callSDK<ImageRotator>("CreateMLComponents_e11dfd5beee01da3", 515322305209867, undefined, [angle]); }
   /**
    * var angle: Double
    * @availability iOS 17.0+
    */
-  get angle(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 918601545745436, this, []); }
-  set angle(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2841479991590330, this, [value]); }
+  get angle(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 918601545745436, this, []); }
+  set angle(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2841479991590330, this, [value]); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
    * @availability iOS 17.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 4370568672719853, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 4370568672719853, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12ImageRotatorV": true };
 }
 
@@ -3109,33 +3109,33 @@ export class ImageScaler extends SDKHandle {
    * init(targetSize: CGSize)
    * @availability iOS 16.0+
    */
-  static initTargetSize(targetSize: $SDK63): ImageScaler { return callSDK<ImageScaler>("CreateMLComponents_c1f28409f8601238", 2757441346192661, undefined, [targetSize]); }
+  static initTargetSize(targetSize: $SDK63): ImageScaler { return callSDK<ImageScaler>("CreateMLComponents_e11dfd5beee01da3", 2757441346192661, undefined, [targetSize]); }
   /**
    * var targetSize: CGSize { get set }
    * @availability iOS 16.0+
    */
-  get targetSize(): $SDK63 { return callSDK<$SDK63>("CreateMLComponents_c1f28409f8601238", 4385836363575632, this, []); }
-  set targetSize(value: $SDK63) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3065301880226609, this, [value]); }
+  get targetSize(): $SDK63 { return callSDK<$SDK63>("CreateMLComponents_e11dfd5beee01da3", 4385836363575632, this, []); }
+  set targetSize(value: $SDK63) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3065301880226609, this, [value]); }
   /**
    * init(targetWidth: Double)
    * @availability iOS 17.0+
    */
-  static initTargetWidth(targetWidth: number): ImageScaler { return callSDK<ImageScaler>("CreateMLComponents_c1f28409f8601238", 373035295924274, undefined, [targetWidth]); }
+  static initTargetWidth(targetWidth: number): ImageScaler { return callSDK<ImageScaler>("CreateMLComponents_e11dfd5beee01da3", 373035295924274, undefined, [targetWidth]); }
   /**
    * init(targetHeight: Double)
    * @availability iOS 17.0+
    */
-  static initTargetHeight(targetHeight: number): ImageScaler { return callSDK<ImageScaler>("CreateMLComponents_c1f28409f8601238", 3232737093566316, undefined, [targetHeight]); }
+  static initTargetHeight(targetHeight: number): ImageScaler { return callSDK<ImageScaler>("CreateMLComponents_e11dfd5beee01da3", 3232737093566316, undefined, [targetHeight]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3892053685225858, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3892053685225858, this, []); }
   /**
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) throws -> CIImage
    * @availability iOS 16.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 4232778464053546, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 4232778464053546, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents11ImageScalerV": true };
 }
 
@@ -3160,23 +3160,23 @@ export class ImputeTransformer<Element = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3301434607792059, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3301434607792059, this, []); }
   /**
    * init(value: Element)
    * @availability iOS 16.0+
    */
-  static init(value: number): $SDK64 { return callSDK<$SDK64>("CreateMLComponents_c1f28409f8601238", 593099049628488, undefined, [value]); }
+  static init(value: number): $SDK64 { return callSDK<$SDK64>("CreateMLComponents_e11dfd5beee01da3", 593099049628488, undefined, [value]); }
   /**
    * var value: Element
    * @availability iOS 16.0+
    */
-  get value(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1422368035150650, this, []); }
-  set value(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1895994170542066, this, [value]); }
+  get value(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1422368035150650, this, []); }
+  set value(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1895994170542066, this, [value]); }
   /**
    * func applied(to input: Element?, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  applied(input?: (number) | null, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3893860916611437, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input?: (number) | null, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3893860916611437, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents17ImputeTransformerV": true };
 }
 
@@ -3203,218 +3203,218 @@ export const JointKey = {
    * static let rightAnkle: JointKey
    * @availability iOS 16.0+
    */
-  get rightAnkle(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1232041407401709, undefined, []); },
+  get rightAnkle(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1232041407401709, undefined, []); },
   /**
    * static let rightElbow: JointKey
    * @availability iOS 16.0+
    */
-  get rightElbow(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1138276605975651, undefined, []); },
+  get rightElbow(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1138276605975651, undefined, []); },
   /**
    * static let rightWrist: JointKey
    * @availability iOS 16.0+
    */
-  get rightWrist(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4041061337638315, undefined, []); },
+  get rightWrist(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4041061337638315, undefined, []); },
   /**
    * static let leftShoulder: JointKey
    * @availability iOS 16.0+
    */
-  get leftShoulder(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 520463485801380, undefined, []); },
+  get leftShoulder(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 520463485801380, undefined, []); },
   /**
    * static let rightShoulder: JointKey
    * @availability iOS 16.0+
    */
-  get rightShoulder(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4434475782468680, undefined, []); },
+  get rightShoulder(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4434475782468680, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  getDebugDescription($self: JointKey): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3003664218202653, $self, []); },
+  getDebugDescription($self: JointKey): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3003664218202653, $self, []); },
   /**
    * static let neck: JointKey
    * @availability iOS 16.0+
    */
-  get neck(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 3227397503415658, undefined, []); },
+  get neck(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 3227397503415658, undefined, []); },
   /**
    * static let nose: JointKey
    * @availability iOS 16.0+
    */
-  get nose(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4196172324702940, undefined, []); },
+  get nose(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4196172324702940, undefined, []); },
   /**
    * static let root: JointKey
    * @availability iOS 16.0+
    */
-  get root(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 376946258768010, undefined, []); },
+  get root(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 376946258768010, undefined, []); },
   /**
    * static let wrist: JointKey
    * @availability iOS 16.0+
    */
-  get wrist(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 123734043707453, undefined, []); },
+  get wrist(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 123734043707453, undefined, []); },
   /**
    * static let leftEar: JointKey
    * @availability iOS 16.0+
    */
-  get leftEar(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 3392062849230373, undefined, []); },
+  get leftEar(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 3392062849230373, undefined, []); },
   /**
    * static let leftEye: JointKey
    * @availability iOS 16.0+
    */
-  get leftEye(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 391973806938772, undefined, []); },
+  get leftEye(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 391973806938772, undefined, []); },
   /**
    * static let leftHip: JointKey
    * @availability iOS 16.0+
    */
-  get leftHip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4273113520950473, undefined, []); },
+  get leftHip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4273113520950473, undefined, []); },
   /**
    * static let ringDIP: JointKey
    * @availability iOS 16.0+
    */
-  get ringDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4248158938239981, undefined, []); },
+  get ringDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4248158938239981, undefined, []); },
   /**
    * static let ringMCP: JointKey
    * @availability iOS 16.0+
    */
-  get ringMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1922437924231230, undefined, []); },
+  get ringMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1922437924231230, undefined, []); },
   /**
    * static let ringPIP: JointKey
    * @availability iOS 16.0+
    */
-  get ringPIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4275499287597925, undefined, []); },
+  get ringPIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4275499287597925, undefined, []); },
   /**
    * static let ringTip: JointKey
    * @availability iOS 16.0+
    */
-  get ringTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2331454454377016, undefined, []); },
+  get ringTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2331454454377016, undefined, []); },
   /**
    * static let thumbIP: JointKey
    * @availability iOS 16.0+
    */
-  get thumbIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 3172685512190304, undefined, []); },
+  get thumbIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 3172685512190304, undefined, []); },
   /**
    * static let thumbMP: JointKey
    * @availability iOS 16.0+
    */
-  get thumbMP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 3618626422719546, undefined, []); },
+  get thumbMP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 3618626422719546, undefined, []); },
   /**
    * static let indexDIP: JointKey
    * @availability iOS 16.0+
    */
-  get indexDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2178117304338529, undefined, []); },
+  get indexDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2178117304338529, undefined, []); },
   /**
    * static let indexMCP: JointKey
    * @availability iOS 16.0+
    */
-  get indexMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2145893218632149, undefined, []); },
+  get indexMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2145893218632149, undefined, []); },
   /**
    * static let indexPIP: JointKey
    * @availability iOS 16.0+
    */
-  get indexPIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1745772446243485, undefined, []); },
+  get indexPIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1745772446243485, undefined, []); },
   /**
    * static let indexTip: JointKey
    * @availability iOS 16.0+
    */
-  get indexTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2226572668889323, undefined, []); },
+  get indexTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2226572668889323, undefined, []); },
   /**
    * static let leftKnee: JointKey
    * @availability iOS 16.0+
    */
-  get leftKnee(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2097037248037750, undefined, []); },
+  get leftKnee(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2097037248037750, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1400416695241261, undefined, [rawValue]); },
+  init(rawValue: string): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1400416695241261, undefined, [rawValue]); },
   /**
    * var rawValue: String
    * @availability iOS 16.0+
    */
-  getRawValue($self: JointKey): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2008218853811818, $self, []); },
-  setRawValue($self: JointKey, value: string): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 2934236293046938, $self, [value]); },
+  getRawValue($self: JointKey): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2008218853811818, $self, []); },
+  setRawValue($self: JointKey, value: string): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2934236293046938, $self, [value]); },
   /**
    * static let rightEar: JointKey
    * @availability iOS 16.0+
    */
-  get rightEar(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2263580753146007, undefined, []); },
+  get rightEar(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2263580753146007, undefined, []); },
   /**
    * static let rightEye: JointKey
    * @availability iOS 16.0+
    */
-  get rightEye(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 838290168822387, undefined, []); },
+  get rightEye(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 838290168822387, undefined, []); },
   /**
    * static let rightHip: JointKey
    * @availability iOS 16.0+
    */
-  get rightHip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 3618145454394281, undefined, []); },
+  get rightHip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 3618145454394281, undefined, []); },
   /**
    * static let thumbCMC: JointKey
    * @availability iOS 16.0+
    */
-  get thumbCMC(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2152328794612915, undefined, []); },
+  get thumbCMC(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2152328794612915, undefined, []); },
   /**
    * static let thumbTip: JointKey
    * @availability iOS 16.0+
    */
-  get thumbTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 3042451244265558, undefined, []); },
+  get thumbTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 3042451244265558, undefined, []); },
   /**
    * static let leftAnkle: JointKey
    * @availability iOS 16.0+
    */
-  get leftAnkle(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 4141423350849383, undefined, []); },
+  get leftAnkle(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 4141423350849383, undefined, []); },
   /**
    * static let leftElbow: JointKey
    * @availability iOS 16.0+
    */
-  get leftElbow(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1492497969808460, undefined, []); },
+  get leftElbow(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1492497969808460, undefined, []); },
   /**
    * static let leftWrist: JointKey
    * @availability iOS 16.0+
    */
-  get leftWrist(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1684809150731724, undefined, []); },
+  get leftWrist(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1684809150731724, undefined, []); },
   /**
    * static let littleDIP: JointKey
    * @availability iOS 16.0+
    */
-  get littleDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2979071160331351, undefined, []); },
+  get littleDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2979071160331351, undefined, []); },
   /**
    * static let littleMCP: JointKey
    * @availability iOS 16.0+
    */
-  get littleMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2747950603756544, undefined, []); },
+  get littleMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2747950603756544, undefined, []); },
   /**
    * static let littlePIP: JointKey
    * @availability iOS 16.0+
    */
-  get littlePIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2252130115485960, undefined, []); },
+  get littlePIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2252130115485960, undefined, []); },
   /**
    * static let littleTip: JointKey
    * @availability iOS 16.0+
    */
-  get littleTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1400098240872506, undefined, []); },
+  get littleTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1400098240872506, undefined, []); },
   /**
    * static let middleDIP: JointKey
    * @availability iOS 16.0+
    */
-  get middleDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1400726216031053, undefined, []); },
+  get middleDIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1400726216031053, undefined, []); },
   /**
    * static let middleMCP: JointKey
    * @availability iOS 16.0+
    */
-  get middleMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1144930289179442, undefined, []); },
+  get middleMCP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1144930289179442, undefined, []); },
   /**
    * static let middlePIP: JointKey
    * @availability iOS 16.0+
    */
-  get middlePIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1691946384664179, undefined, []); },
+  get middlePIP(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1691946384664179, undefined, []); },
   /**
    * static let middleTip: JointKey
    * @availability iOS 16.0+
    */
-  get middleTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 1941288533437741, undefined, []); },
+  get middleTip(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 1941288533437741, undefined, []); },
   /**
    * static let rightKnee: JointKey
    * @availability iOS 16.0+
    */
-  get rightKnee(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 2842251100856516, undefined, []); }
+  get rightKnee(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 2842251100856516, undefined, []); }
 };
 
 /**
@@ -3432,24 +3432,24 @@ export class JointPoint extends SDKHandle {
    * var confidence: Float
    * @availability iOS 16.0+
    */
-  get confidence(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1699704412576449, this, []); }
-  set confidence(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 315466295527986, this, [value]); }
+  get confidence(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1699704412576449, this, []); }
+  set confidence(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 315466295527986, this, [value]); }
   /**
    * let key: JointKey
    * @availability iOS 16.0+
    */
-  get key(): JointKey { return callSDK<JointKey>("CreateMLComponents_c1f28409f8601238", 554889778284037, this, []); }
+  get key(): JointKey { return callSDK<JointKey>("CreateMLComponents_e11dfd5beee01da3", 554889778284037, this, []); }
   /**
    * var location: CGPoint
    * @availability iOS 16.0+
    */
-  get location(): $SDK65 { return callSDK<$SDK65>("CreateMLComponents_c1f28409f8601238", 829629178287428, this, []); }
-  set location(value: $SDK65) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 35801093548825, this, [value]); }
+  get location(): $SDK65 { return callSDK<$SDK65>("CreateMLComponents_e11dfd5beee01da3", 829629178287428, this, []); }
+  set location(value: $SDK65) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 35801093548825, this, [value]); }
   /**
    * init(_ key: JointKey, location: CGPoint, confidence: Float)
    * @availability iOS 16.0+
    */
-  static init(key: JointKey, location: $SDK65, confidence: number): JointPoint { return callSDK<JointPoint>("CreateMLComponents_c1f28409f8601238", 1494806249468373, undefined, [key, location, confidence]); }
+  static init(key: JointKey, location: $SDK65, confidence: number): JointPoint { return callSDK<JointPoint>("CreateMLComponents_e11dfd5beee01da3", 1494806249468373, undefined, [key, location, confidence]); }
   declare readonly $type: { "s:18CreateMLComponents10JointPointV": true };
 }
 
@@ -3462,34 +3462,34 @@ export class JointsSelector extends SDKHandle {
    * init(ignoredJoints: [JointKey])
    * @availability iOS 16.0+
    */
-  static initIgnoredJoints(ignoredJoints: Array<JointKey>): JointsSelector { return callSDK<JointsSelector>("CreateMLComponents_c1f28409f8601238", 4486015917815656, undefined, [ignoredJoints]); }
+  static initIgnoredJoints(ignoredJoints: Array<JointKey>): JointsSelector { return callSDK<JointsSelector>("CreateMLComponents_e11dfd5beee01da3", 4486015917815656, undefined, [ignoredJoints]); }
   /**
    * var ignoredJoints: [JointKey]?
    * @availability iOS 16.0+
    */
-  get ignoredJoints(): $SDK66 { return callSDK<$SDK66>("CreateMLComponents_c1f28409f8601238", 1785984609419075, this, []); }
-  set ignoredJoints(value: $SDK66) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1052210431873884, this, [value]); }
+  get ignoredJoints(): $SDK66 { return callSDK<$SDK66>("CreateMLComponents_e11dfd5beee01da3", 1785984609419075, this, []); }
+  set ignoredJoints(value: $SDK66) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1052210431873884, this, [value]); }
   /**
    * init(selectedJoints: [JointKey])
    * @availability iOS 16.0+
    */
-  static initSelectedJoints(selectedJoints: Array<JointKey>): JointsSelector { return callSDK<JointsSelector>("CreateMLComponents_c1f28409f8601238", 1421308746984968, undefined, [selectedJoints]); }
+  static initSelectedJoints(selectedJoints: Array<JointKey>): JointsSelector { return callSDK<JointsSelector>("CreateMLComponents_e11dfd5beee01da3", 1421308746984968, undefined, [selectedJoints]); }
   /**
    * var selectedJoints: [JointKey]?
    * @availability iOS 16.0+
    */
-  get selectedJoints(): $SDK66 { return callSDK<$SDK66>("CreateMLComponents_c1f28409f8601238", 2681974922829086, this, []); }
-  set selectedJoints(value: $SDK66) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3765519288174361, this, [value]); }
+  get selectedJoints(): $SDK66 { return callSDK<$SDK66>("CreateMLComponents_e11dfd5beee01da3", 2681974922829086, this, []); }
+  set selectedJoints(value: $SDK66) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3765519288174361, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1272982070820263, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1272982070820263, this, []); }
   /**
    * func applied(to input: Pose, eventHandler: EventHandler? = nil) -> Pose
    * @availability iOS 16.0+
    */
-  applied(input: Pose, eventHandler?: $SDK9): Pose { return callSDK<Pose>("CreateMLComponents_c1f28409f8601238", 2766178973213808, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: Pose, eventHandler?: $SDK9): Pose { return callSDK<Pose>("CreateMLComponents_e11dfd5beee01da3", 2766178973213808, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents14JointsSelectorV": true };
 }
 
@@ -3514,53 +3514,53 @@ export class LinearRegressor<Scalar = unknown> extends SDKHandle {
    * var configuration: LinearRegressor<Scalar>.Configuration { get set }
    * @availability iOS 16.0+
    */
-  get configuration(): $SDK67 { return callSDK<$SDK67>("CreateMLComponents_c1f28409f8601238", 3593833981566161, this, []); }
-  set configuration(value: $SDK67) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 407349881780591, this, [value]); }
+  get configuration(): $SDK67 { return callSDK<$SDK67>("CreateMLComponents_e11dfd5beee01da3", 3593833981566161, this, []); }
+  set configuration(value: $SDK67) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 407349881780591, this, [value]); }
   /**
    * init(configuration: LinearRegressor<Scalar>.Configuration = Configuration())
    * @availability iOS 16.0+
    */
-  static init(configuration?: $SDK67): LinearRegressor<number> { return callSDK<LinearRegressor<number>>("CreateMLComponents_c1f28409f8601238", 4371205403400336, undefined, [configuration]); }
+  static init(configuration?: $SDK67): LinearRegressor<number> { return callSDK<LinearRegressor<number>>("CreateMLComponents_e11dfd5beee01da3", 4371205403400336, undefined, [configuration]); }
   /**
    * func makeTransformer() -> LinearRegressorModel<Scalar>
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK68 { return callSDK<$SDK68>("CreateMLComponents_c1f28409f8601238", 3411707026953376, this, []); }
+  makeTransformer(): $SDK68 { return callSDK<$SDK68>("CreateMLComponents_e11dfd5beee01da3", 3411707026953376, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> LinearRegressorModel<Scalar>
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK68; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK68; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1496499757482521, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK68; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK68; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1496499757482521, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: LinearRegressorModel<Scalar>, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK68, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 409697771078130, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK68, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 409697771078130, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> LinearRegressorModel<Scalar>
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK68; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK68; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2927641715352536, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK68; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK68; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2927641715352536, this, [decoder]); }
   /**
    * func encode(_ transformer: LinearRegressorModel<Scalar>, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK68, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2056104907907178, this, [transformer, encoder]); }
+  encode(transformer: $SDK68, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2056104907907178, this, [transformer, encoder]); }
   /**
    * func fitted<Input, Validation>(to input: Input, validateOn validation: Validation, eventHandler: EventHandler? = nil) async throws -> LinearRegressorModel<Scalar> where Input : Sequence, Validation : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>, Validation.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>
    * @availability iOS 16.0+
    */
-  fittedToValidateOnEventHandler(input: $SDK60, validation: $SDK60, eventHandler?: $SDK9): Promise<$SDK68> { return callSDKAsync<$SDK68>("CreateMLComponents_c1f28409f8601238", 3521567500928450, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fittedToValidateOnEventHandler(input: $SDK60, validation: $SDK60, eventHandler?: $SDK9): Promise<$SDK68> { return callSDKAsync<$SDK68>("CreateMLComponents_e11dfd5beee01da3", 3521567500928450, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func fitted<Input>(to input: Input, eventHandler: EventHandler? = nil) async throws -> LinearRegressorModel<Scalar> where Input : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>
    * @availability iOS 16.0+
    */
-  fittedToEventHandler(input: $SDK60, eventHandler?: $SDK9): Promise<$SDK68> { return callSDKAsync<$SDK68>("CreateMLComponents_c1f28409f8601238", 2686020114773871, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fittedToEventHandler(input: $SDK60, eventHandler?: $SDK9): Promise<$SDK68> { return callSDKAsync<$SDK68>("CreateMLComponents_e11dfd5beee01da3", 2686020114773871, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func update<InputSequence>(_ transformer: inout LinearRegressor<Scalar>.Transformer, with input: InputSequence, eventHandler: EventHandler?) async throws where InputSequence : Sequence, InputSequence.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>
    * @availability iOS 17.0+
    */
-  update(transformer: $SDK68, input: $SDK60, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK68 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK68 } }>("CreateMLComponents_c1f28409f8601238", 1918245929010866, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  update(transformer: $SDK68, input: $SDK60, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK68 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK68 } }>("CreateMLComponents_e11dfd5beee01da3", 1918245929010866, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents15LinearRegressorV": true };
 }
 
@@ -3579,55 +3579,55 @@ export class LinearRegressor_Configuration<Scalar = unknown> extends SDKHandle {
    * var scaleFeatures: Bool
    * @availability iOS 17.0+
    */
-  get scaleFeatures(): boolean { return callSDK<boolean>("CreateMLComponents_c1f28409f8601238", 3257286098193917, this, []); }
-  set scaleFeatures(value: boolean) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2911574578003829, this, [value]); }
+  get scaleFeatures(): boolean { return callSDK<boolean>("CreateMLComponents_e11dfd5beee01da3", 3257286098193917, this, []); }
+  set scaleFeatures(value: boolean) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2911574578003829, this, [value]); }
   /**
    * var maximumIterations: Int
    * @availability iOS 16.0+
    */
-  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2265258771240193, this, []); }
-  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2776798242958069, this, [value]); }
+  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2265258771240193, this, []); }
+  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2776798242958069, this, [value]); }
   /**
    * var convergenceThreshold: Double
    * @availability iOS 16.0+
    */
-  get convergenceThreshold(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 142634117729489, this, []); }
-  set convergenceThreshold(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 708405302620785, this, [value]); }
+  get convergenceThreshold(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 142634117729489, this, []); }
+  set convergenceThreshold(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 708405302620785, this, [value]); }
   /**
    * var optimizationStrategy: OptimizationStrategy { get set }
    * @availability iOS 17.0+
    */
-  get optimizationStrategy(): OptimizationStrategy { return callSDK<OptimizationStrategy>("CreateMLComponents_c1f28409f8601238", 4275958752351788, this, []); }
-  set optimizationStrategy(value: OptimizationStrategy) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 831018350490659, this, [value]); }
+  get optimizationStrategy(): OptimizationStrategy { return callSDK<OptimizationStrategy>("CreateMLComponents_e11dfd5beee01da3", 4275958752351788, this, []); }
+  set optimizationStrategy(value: OptimizationStrategy) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 831018350490659, this, [value]); }
   /**
    * var earlyStopIterationCount: Int
    * @availability iOS 17.0+
    */
-  get earlyStopIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2071193755160219, this, []); }
-  set earlyStopIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2645082228516217, this, [value]); }
+  get earlyStopIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2071193755160219, this, []); }
+  set earlyStopIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2645082228516217, this, [value]); }
   /**
    * var stepSize: Double
    * @availability iOS 16.0+
    */
-  get stepSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 835620176807214, this, []); }
-  set stepSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1988357207605559, this, [value]); }
+  get stepSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 835620176807214, this, []); }
+  set stepSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1988357207605559, this, [value]); }
   /**
    * var l1Penalty: Double
    * @availability iOS 16.0+
    */
-  get l1Penalty(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1579396384657967, this, []); }
-  set l1Penalty(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2734851395808769, this, [value]); }
+  get l1Penalty(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1579396384657967, this, []); }
+  set l1Penalty(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2734851395808769, this, [value]); }
   /**
    * var l2Penalty: Double
    * @availability iOS 16.0+
    */
-  get l2Penalty(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3909891184692899, this, []); }
-  set l2Penalty(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1424629836567886, this, [value]); }
+  get l2Penalty(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3909891184692899, this, []); }
+  set l2Penalty(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1424629836567886, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): $SDK67 { return callSDK<$SDK67>("CreateMLComponents_c1f28409f8601238", 249262484990685, undefined, []); }
+  static init(): $SDK67 { return callSDK<$SDK67>("CreateMLComponents_e11dfd5beee01da3", 249262484990685, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents15LinearRegressorV13ConfigurationV": true };
 }
 
@@ -3646,17 +3646,17 @@ export class LinearRegressorModel<Scalar = unknown> extends SDKHandle {
    * var coefficients: [Scalar] { get }
    * @availability iOS 17.0+
    */
-  get coefficients(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 571572792264873, this, []); }
+  get coefficients(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 571572792264873, this, []); }
   /**
    * var featureCount: Int { get }
    * @availability iOS 17.0+
    */
-  get featureCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2155408013727011, this, []); }
+  get featureCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2155408013727011, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> Scalar
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<number> { return callSDKAsync<number>("CreateMLComponents_c1f28409f8601238", 985909749828928, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<number> { return callSDKAsync<number>("CreateMLComponents_e11dfd5beee01da3", 985909749828928, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents20LinearRegressorModelV": true };
 }
 
@@ -3681,52 +3681,52 @@ export class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHandle {
    * let configuration: LinearTimeSeriesForecaster<Scalar>.Configuration
    * @availability iOS 18.0+
    */
-  get configuration(): LinearTimeSeriesForecasterConfiguration { return callSDK<LinearTimeSeriesForecasterConfiguration>("CreateMLComponents_c1f28409f8601238", 2626599703514708, this, []); }
+  get configuration(): LinearTimeSeriesForecasterConfiguration { return callSDK<LinearTimeSeriesForecasterConfiguration>("CreateMLComponents_e11dfd5beee01da3", 2626599703514708, this, []); }
   /**
    * init(configuration: LinearTimeSeriesForecaster<Scalar>.Configuration)
    * @availability iOS 18.0+
    */
-  static init(configuration: LinearTimeSeriesForecasterConfiguration): LinearTimeSeriesForecaster<number> { return callSDK<LinearTimeSeriesForecaster<number>>("CreateMLComponents_c1f28409f8601238", 586966089961299, undefined, [configuration]); }
+  static init(configuration: LinearTimeSeriesForecasterConfiguration): LinearTimeSeriesForecaster<number> { return callSDK<LinearTimeSeriesForecaster<number>>("CreateMLComponents_e11dfd5beee01da3", 586966089961299, undefined, [configuration]); }
   /**
    * var inputWindowSize: Int { get }
    * @availability iOS 18.0+
    */
-  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2245026088033515, this, []); }
+  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2245026088033515, this, []); }
   /**
    * func makeTransformer() -> LinearTimeSeriesForecaster<Scalar>.Model
    * @availability iOS 18.0+
    */
-  makeTransformer(): $SDK71 { return callSDK<$SDK71>("CreateMLComponents_c1f28409f8601238", 4155822906604143, this, []); }
+  makeTransformer(): $SDK71 { return callSDK<$SDK71>("CreateMLComponents_e11dfd5beee01da3", 4155822906604143, this, []); }
   /**
    * var forecastWindowSize: Int { get }
    * @availability iOS 18.0+
    */
-  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2695662187769290, this, []); }
+  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2695662187769290, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> LinearTimeSeriesForecaster<Scalar>.Transformer
    * @availability iOS 18.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK71; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK71; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 574262557151437, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK71; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK71; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 574262557151437, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ model: LinearTimeSeriesForecaster<Scalar>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 18.0+
    */
-  encodeWithOptimizer(model: $SDK71, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2769534496167796, this, [model, encoder]); }
+  encodeWithOptimizer(model: $SDK71, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2769534496167796, this, [model, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> LinearTimeSeriesForecaster<Scalar>.Transformer
    * @availability iOS 18.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK71; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK71; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3981783473697294, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK71; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK71; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3981783473697294, this, [decoder]); }
   /**
    * func encode(_ model: LinearTimeSeriesForecaster<Scalar>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 18.0+
    */
-  encode(model: $SDK71, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3880936170092703, this, [model, encoder]); }
+  encode(model: $SDK71, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3880936170092703, this, [model, encoder]); }
   /**
    * func update(_ model: inout LinearTimeSeriesForecaster<Scalar>.Transformer, with input: AnnotatedBatch<Scalar>) async throws -> Scalar
    * @availability iOS 18.0+
    */
-  update(model: $SDK71, input: AnnotatedBatch<number>): Promise<{ $ret: number; $out: { "model": $SDK71 } }> { return callSDKAsync<{ $ret: number; $out: { "model": $SDK71 } }>("CreateMLComponents_c1f28409f8601238", 1595083974534169, this, [model, input]); }
+  update(model: $SDK71, input: AnnotatedBatch<number>): Promise<{ $ret: number; $out: { "model": $SDK71 } }> { return callSDKAsync<{ $ret: number; $out: { "model": $SDK71 } }>("CreateMLComponents_e11dfd5beee01da3", 1595083974534169, this, [model, input]); }
   declare readonly $type: { "s:18CreateMLComponents26LinearTimeSeriesForecasterV": true };
 }
 
@@ -3751,58 +3751,58 @@ export class LinearTimeSeriesForecaster_Model<Scalar = unknown> extends SDKHandl
    * var featureSize: Int { get }
    * @availability iOS 18.0+
    */
-  get featureSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 657955739226056, this, []); }
+  get featureSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 657955739226056, this, []); }
   /**
    * var annotationSize: Int { get }
    * @availability iOS 18.0+
    */
-  get annotationSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1774951434890689, this, []); }
+  get annotationSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1774951434890689, this, []); }
   /**
    * var inputWindowSize: Int { get }
    * @availability iOS 18.0+
    */
-  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3535832539651102, this, []); }
+  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3535832539651102, this, []); }
   /**
    * var forecastWindowSize: Int { get }
    * @availability iOS 18.0+
    */
-  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1572397994480988, this, []); }
+  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1572397994480988, this, []); }
   /**
    * var bias: MLShapedArray<Scalar>? { get }
    * @availability iOS 18.0+
    */
-  get bias(): $SDK72 { return callSDK<$SDK72>("CreateMLComponents_c1f28409f8601238", 2251413422265408, this, []); }
+  get bias(): $SDK72 { return callSDK<$SDK72>("CreateMLComponents_e11dfd5beee01da3", 2251413422265408, this, []); }
   /**
    * func export(to url: URL, metadata: ModelMetadata) throws
    * @availability iOS 18.0+
    */
-  exportToMetadata(url: string, metadata: ModelMetadata): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 3588726016383591, this, [url, metadata]); }
+  exportToMetadata(url: string, metadata: ModelMetadata): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3588726016383591, this, [url, metadata]); }
   /**
    * func export(to url: URL) throws
    * @availability iOS 18.0+
    */
-  exportTo(url: string): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 1702130189264061, this, [url]); }
+  exportTo(url: string): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1702130189264061, this, [url]); }
   /**
    * var stride: Int
    * @availability iOS 18.0+
    */
-  get stride(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2627436391267789, this, []); }
-  set stride(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 69949034249370, this, [value]); }
+  get stride(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2627436391267789, this, []); }
+  set stride(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 69949034249370, this, [value]); }
   /**
    * var weight: MLShapedArray<Scalar> { get }
    * @availability iOS 18.0+
    */
-  get weight(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 1252430960815280, this, []); }
+  get weight(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1252430960815280, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  appliedToEventHandler(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_c1f28409f8601238", 382373240829210, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  appliedToEventHandler(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 382373240829210, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func applied(toWindow input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  appliedToWindowEventHandler(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_c1f28409f8601238", 2194589081553190, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  appliedToWindowEventHandler(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 2194589081553190, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV": true };
 }
 
@@ -3839,55 +3839,55 @@ export class LinearTimeSeriesForecasterConfiguration extends SDKHandle {
    * var randomSeed: Int?
    * @availability iOS 18.0+
    */
-  get randomSeed(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 477709620066308, this, []); }
-  set randomSeed(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 957534793745118, this, [value]); }
+  get randomSeed(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 477709620066308, this, []); }
+  set randomSeed(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 957534793745118, this, [value]); }
   /**
    * var learningRate: Float
    * @availability iOS 18.0+
    */
-  get learningRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 784013936837066, this, []); }
-  set learningRate(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 452811039552891, this, [value]); }
+  get learningRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 784013936837066, this, []); }
+  set learningRate(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 452811039552891, this, [value]); }
   /**
    * init(inputWindowSize: Int, forecastWindowSize: Int)
    * @availability iOS 18.0+
    */
-  static init(inputWindowSize: number, forecastWindowSize: number): LinearTimeSeriesForecasterConfiguration { return callSDK<LinearTimeSeriesForecasterConfiguration>("CreateMLComponents_c1f28409f8601238", 4355017120394511, undefined, [inputWindowSize, forecastWindowSize]); }
+  static init(inputWindowSize: number, forecastWindowSize: number): LinearTimeSeriesForecasterConfiguration { return callSDK<LinearTimeSeriesForecasterConfiguration>("CreateMLComponents_e11dfd5beee01da3", 4355017120394511, undefined, [inputWindowSize, forecastWindowSize]); }
   /**
    * var inputWindowSize: Int
    * @availability iOS 18.0+
    */
-  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 690794687247222, this, []); }
-  set inputWindowSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2111012985102632, this, [value]); }
+  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 690794687247222, this, []); }
+  set inputWindowSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2111012985102632, this, [value]); }
   /**
    * var forecastWindowSize: Int
    * @availability iOS 18.0+
    */
-  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 683820646242914, this, []); }
-  set forecastWindowSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3050742454462287, this, [value]); }
+  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 683820646242914, this, []); }
+  set forecastWindowSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3050742454462287, this, [value]); }
   /**
    * var maximumIterationCount: Int
    * @availability iOS 18.0+
    */
-  get maximumIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 270028315290173, this, []); }
-  set maximumIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3916580336957368, this, [value]); }
+  get maximumIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 270028315290173, this, []); }
+  set maximumIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3916580336957368, this, [value]); }
   /**
    * var earlyStoppingTolerance: Float
    * @availability iOS 18.0+
    */
-  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1855114662144945, this, []); }
-  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1462683265221668, this, [value]); }
+  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1855114662144945, this, []); }
+  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1462683265221668, this, [value]); }
   /**
    * var earlyStoppingIterationCount: Int
    * @availability iOS 18.0+
    */
-  get earlyStoppingIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4148599110196617, this, []); }
-  set earlyStoppingIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1108050032988326, this, [value]); }
+  get earlyStoppingIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4148599110196617, this, []); }
+  set earlyStoppingIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1108050032988326, this, [value]); }
   /**
    * var batchSize: Int
    * @availability iOS 18.0+
    */
-  get batchSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1853114728826073, this, []); }
-  set batchSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3639617124447229, this, [value]); }
+  get batchSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1853114728826073, this, []); }
+  set batchSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3639617124447229, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents39LinearTimeSeriesForecasterConfigurationV": true };
 }
 
@@ -3900,34 +3900,34 @@ export class LinearTransformer<Element = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2976345546252957, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2976345546252957, this, []); }
   /**
    * init(scale: Element, offset: Element)
    * @availability iOS 16.0+
    */
-  static init(scale: number, offset: number): LinearTransformer<number> { return callSDK<LinearTransformer<number>>("CreateMLComponents_c1f28409f8601238", 863518046629334, undefined, [scale, offset]); }
+  static init(scale: number, offset: number): LinearTransformer<number> { return callSDK<LinearTransformer<number>>("CreateMLComponents_e11dfd5beee01da3", 863518046629334, undefined, [scale, offset]); }
   /**
    * var scale: Element
    * @availability iOS 16.0+
    */
-  get scale(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2002652823262314, this, []); }
-  set scale(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3880282224455551, this, [value]); }
+  get scale(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2002652823262314, this, []); }
+  set scale(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3880282224455551, this, [value]); }
   /**
    * var offset: Element
    * @availability iOS 16.0+
    */
-  get offset(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2176405988949308, this, []); }
-  set offset(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4268771613978329, this, [value]); }
+  get offset(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2176405988949308, this, []); }
+  set offset(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4268771613978329, this, [value]); }
   /**
    * func applied<S>(to input: S, eventHandler: EventHandler? = nil) -> [Element] where Element == S.Element, S : Sequence
    * @availability iOS 16.0+
    */
-  appliedToEventHandler(input: Array<number>, eventHandler?: $SDK9): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 3443173236966722, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  appliedToEventHandler(input: Array<number>, eventHandler?: $SDK9): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 3443173236966722, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  appliedToEventHandler7721(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3658144936386831, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  appliedToEventHandler7721(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3658144936386831, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents17LinearTransformerV": true };
 }
 
@@ -3952,33 +3952,33 @@ export class LogisticRegressionClassifier<Scalar = unknown, Label = unknown> ext
    * var configuration: LogisticRegressionClassifier<Scalar, Label>.Configuration { get set }
    * @availability iOS 16.0+
    */
-  get configuration(): $SDK76 { return callSDK<$SDK76>("CreateMLComponents_c1f28409f8601238", 2032638041090486, this, []); }
-  set configuration(value: $SDK76) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2931535724151884, this, [value]); }
+  get configuration(): $SDK76 { return callSDK<$SDK76>("CreateMLComponents_e11dfd5beee01da3", 2032638041090486, this, []); }
+  set configuration(value: $SDK76) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2931535724151884, this, [value]); }
   /**
    * func makeTransformer() -> LogisticRegressionClassifier<Scalar, Label>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK77 { return callSDK<$SDK77>("CreateMLComponents_c1f28409f8601238", 3214254156074153, this, []); }
+  makeTransformer(): $SDK77 { return callSDK<$SDK77>("CreateMLComponents_e11dfd5beee01da3", 3214254156074153, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> LogisticRegressionClassifier<Scalar, Label>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK77; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK77; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 509136111331404, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK77; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK77; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 509136111331404, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: LogisticRegressionClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK77, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1534060055548268, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK77, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1534060055548268, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> LogisticRegressionClassifierModel<Scalar, Label>
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK77; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK77; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 429106292873567, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK77; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK77; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 429106292873567, this, [decoder]); }
   /**
    * func encode(_ transformer: LogisticRegressionClassifierModel<Scalar, Label>, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK77, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 12283142627526, this, [transformer, encoder]); }
+  encode(transformer: $SDK77, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 12283142627526, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents28LogisticRegressionClassifierV": true };
 }
 
@@ -3997,50 +3997,50 @@ export class LogisticRegressionClassifier_Configuration<Scalar = unknown, Label 
    * var scaleFeatures: Bool
    * @availability iOS 17.0+
    */
-  get scaleFeatures(): boolean { return callSDK<boolean>("CreateMLComponents_c1f28409f8601238", 946153699807749, this, []); }
-  set scaleFeatures(value: boolean) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2364266757113783, this, [value]); }
+  get scaleFeatures(): boolean { return callSDK<boolean>("CreateMLComponents_e11dfd5beee01da3", 946153699807749, this, []); }
+  set scaleFeatures(value: boolean) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2364266757113783, this, [value]); }
   /**
    * var maximumIterations: Int
    * @availability iOS 16.0+
    */
-  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3065575180082469, this, []); }
-  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2133571061690885, this, [value]); }
+  get maximumIterations(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3065575180082469, this, []); }
+  set maximumIterations(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2133571061690885, this, [value]); }
   /**
    * var convergenceThreshold: Double
    * @availability iOS 16.0+
    */
-  get convergenceThreshold(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1573004512176281, this, []); }
-  set convergenceThreshold(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4109142322272464, this, [value]); }
+  get convergenceThreshold(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1573004512176281, this, []); }
+  set convergenceThreshold(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4109142322272464, this, [value]); }
   /**
    * var optimizationStrategy: OptimizationStrategy { get set }
    * @availability iOS 17.0+
    */
-  get optimizationStrategy(): OptimizationStrategy { return callSDK<OptimizationStrategy>("CreateMLComponents_c1f28409f8601238", 1252251196483807, this, []); }
-  set optimizationStrategy(value: OptimizationStrategy) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3720871103704673, this, [value]); }
+  get optimizationStrategy(): OptimizationStrategy { return callSDK<OptimizationStrategy>("CreateMLComponents_e11dfd5beee01da3", 1252251196483807, this, []); }
+  set optimizationStrategy(value: OptimizationStrategy) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3720871103704673, this, [value]); }
   /**
    * var earlyStopIterationCount: Int
    * @availability iOS 17.0+
    */
-  get earlyStopIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1103127300094743, this, []); }
-  set earlyStopIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 691623741731676, this, [value]); }
+  get earlyStopIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1103127300094743, this, []); }
+  set earlyStopIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 691623741731676, this, [value]); }
   /**
    * var stepSize: Double
    * @availability iOS 16.0+
    */
-  get stepSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3798029139704762, this, []); }
-  set stepSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2097110061124452, this, [value]); }
+  get stepSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3798029139704762, this, []); }
+  set stepSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2097110061124452, this, [value]); }
   /**
    * var l1Penalty: Double
    * @availability iOS 16.0+
    */
-  get l1Penalty(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1095051378300118, this, []); }
-  set l1Penalty(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 823959267195630, this, [value]); }
+  get l1Penalty(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1095051378300118, this, []); }
+  set l1Penalty(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 823959267195630, this, [value]); }
   /**
    * var l2Penalty: Double
    * @availability iOS 16.0+
    */
-  get l2Penalty(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3498079035937539, this, []); }
-  set l2Penalty(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1443953619332526, this, [value]); }
+  get l2Penalty(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3498079035937539, this, []); }
+  set l2Penalty(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1443953619332526, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents28LogisticRegressionClassifierV13ConfigurationV": true };
 }
 
@@ -4059,17 +4059,17 @@ export class LogisticRegressionClassifierModel<Scalar = unknown, Label = unknown
    * var coefficients: [Scalar] { get }
    * @availability iOS 17.0+
    */
-  get coefficients(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 2221029201294394, this, []); }
+  get coefficients(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 2221029201294394, this, []); }
   /**
    * var featureCount: Int { get }
    * @availability iOS 17.0+
    */
-  get featureCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1931774862678763, this, []); }
+  get featureCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1931774862678763, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<Label>
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53> { return callSDKAsync<$SDK53>("CreateMLComponents_c1f28409f8601238", 3229332349174131, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53> { return callSDKAsync<$SDK53>("CreateMLComponents_e11dfd5beee01da3", 3229332349174131, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents33LogisticRegressionClassifierModelV": true };
 }
 
@@ -4094,12 +4094,12 @@ export class MaxAbsScaler<Element = unknown> extends SDKHandle {
    * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> MaxAbsScaler<Element>.Transformer where Element == S.Element, S : Sequence
    * @availability iOS 16.0+
    */
-  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK79 { return callSDK<$SDK79>("CreateMLComponents_c1f28409f8601238", 2178720857305993, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK79 { return callSDK<$SDK79>("CreateMLComponents_e11dfd5beee01da3", 2178720857305993, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): MaxAbsScaler<number> { return callSDK<MaxAbsScaler<number>>("CreateMLComponents_c1f28409f8601238", 3624561783548369, undefined, []); }
+  static init(): MaxAbsScaler<number> { return callSDK<MaxAbsScaler<number>>("CreateMLComponents_e11dfd5beee01da3", 3624561783548369, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents12MaxAbsScalerV": true };
 }
 
@@ -4112,23 +4112,23 @@ export class MaxAbsScaler_Transformer<Element = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 279826734139602, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 279826734139602, this, []); }
   /**
    * init(maximumAbsoluteValue: Element)
    * @availability iOS 16.0+
    */
-  static init(maximumAbsoluteValue: number): $SDK79 { return callSDK<$SDK79>("CreateMLComponents_c1f28409f8601238", 497524857494006, undefined, [maximumAbsoluteValue]); }
+  static init(maximumAbsoluteValue: number): $SDK79 { return callSDK<$SDK79>("CreateMLComponents_e11dfd5beee01da3", 497524857494006, undefined, [maximumAbsoluteValue]); }
   /**
    * var maximumAbsoluteValue: Element
    * @availability iOS 16.0+
    */
-  get maximumAbsoluteValue(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4043310713765619, this, []); }
-  set maximumAbsoluteValue(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2872506273732953, this, [value]); }
+  get maximumAbsoluteValue(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4043310713765619, this, []); }
+  set maximumAbsoluteValue(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2872506273732953, this, [value]); }
   /**
    * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2816579634558991, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2816579634558991, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12MaxAbsScalerV11TransformerV": true };
 }
 
@@ -4155,73 +4155,73 @@ export const MetricsKey = {
    * static let trainingLoss: MetricsKey
    * @availability iOS 16.0+
    */
-  get trainingLoss(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 2195376228593154, undefined, []); },
+  get trainingLoss(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 2195376228593154, undefined, []); },
   /**
    * static let trainingError: MetricsKey
    * @availability iOS 16.0+
    */
-  get trainingError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 2870713053063813, undefined, []); },
+  get trainingError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 2870713053063813, undefined, []); },
   /**
    * static let validationLoss: MetricsKey
    * @availability iOS 16.0+
    */
-  get validationLoss(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 2318371364355271, undefined, []); },
+  get validationLoss(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 2318371364355271, undefined, []); },
   /**
    * static let validationError: MetricsKey
    * @availability iOS 16.0+
    */
-  get validationError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 866462737137854, undefined, []); },
+  get validationError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 866462737137854, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  getDebugDescription($self: MetricsKey): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 919755745925956, $self, []); },
+  getDebugDescription($self: MetricsKey): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 919755745925956, $self, []); },
   /**
    * static let trainingAccuracy: MetricsKey
    * @availability iOS 16.0+
    */
-  get trainingAccuracy(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 3322596216594432, undefined, []); },
+  get trainingAccuracy(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 3322596216594432, undefined, []); },
   /**
    * static let validationAccuracy: MetricsKey
    * @availability iOS 16.0+
    */
-  get validationAccuracy(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 74842289177729, undefined, []); },
+  get validationAccuracy(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 74842289177729, undefined, []); },
   /**
    * static let trainingMaximumError: MetricsKey
    * @availability iOS 16.0+
    */
-  get trainingMaximumError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 384264364985869, undefined, []); },
+  get trainingMaximumError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 384264364985869, undefined, []); },
   /**
    * static let validationMaximumError: MetricsKey
    * @availability iOS 16.0+
    */
-  get validationMaximumError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 3889444710266833, undefined, []); },
+  get validationMaximumError(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 3889444710266833, undefined, []); },
   /**
    * static let trainingMeanAveragePrecision: MetricsKey
    * @availability iOS 17.0+
    */
-  get trainingMeanAveragePrecision(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 3616179897289171, undefined, []); },
+  get trainingMeanAveragePrecision(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 3616179897289171, undefined, []); },
   /**
    * static let validationMeanAveragePrecision: MetricsKey
    * @availability iOS 17.0+
    */
-  get validationMeanAveragePrecision(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 2693275673141909, undefined, []); },
+  get validationMeanAveragePrecision(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 2693275673141909, undefined, []); },
   /**
    * static let source: MetricsKey
    * @availability iOS 16.0+
    */
-  get source(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 498982756555698, undefined, []); },
+  get source(): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 498982756555698, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_c1f28409f8601238", 4018285175489634, undefined, [rawValue]); },
+  init(rawValue: string): MetricsKey { return callSDK<MetricsKey>("CreateMLComponents_e11dfd5beee01da3", 4018285175489634, undefined, [rawValue]); },
   /**
    * var rawValue: String
    * @availability iOS 16.0+
    */
-  getRawValue($self: MetricsKey): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 322247612079958, $self, []); },
-  setRawValue($self: MetricsKey, value: string): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 1017823478497360, $self, [value]); }
+  getRawValue($self: MetricsKey): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 322247612079958, $self, []); },
+  setRawValue($self: MetricsKey, value: string): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1017823478497360, $self, [value]); }
 };
 
 /**
@@ -4239,18 +4239,18 @@ export class MinMaxScaler<Element = unknown> extends SDKHandle {
    * init(range: ClosedRange<Element> = 0...1)
    * @availability iOS 16.0+
    */
-  static init(range?: SDKHandle): MinMaxScaler<number> { return callSDK<MinMaxScaler<number>>("CreateMLComponents_c1f28409f8601238", 331216637894167, undefined, [range]); }
+  static init(range?: SDKHandle): MinMaxScaler<number> { return callSDK<MinMaxScaler<number>>("CreateMLComponents_e11dfd5beee01da3", 331216637894167, undefined, [range]); }
   /**
    * var range: ClosedRange<Element>
    * @availability iOS 16.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 3591865791417148, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2678842945237121, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 3591865791417148, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2678842945237121, this, [value]); }
   /**
    * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> MinMaxScaler<Element>.Transformer where Element == S.Element, S : Sequence
    * @availability iOS 16.0+
    */
-  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK80 { return callSDK<$SDK80>("CreateMLComponents_c1f28409f8601238", 233618650118059, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK80 { return callSDK<$SDK80>("CreateMLComponents_e11dfd5beee01da3", 233618650118059, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12MinMaxScalerV": true };
 }
 
@@ -4263,29 +4263,29 @@ export class MinMaxScaler_Transformer<Element = unknown> extends SDKHandle {
    * var fittedRange: ClosedRange<Element>
    * @availability iOS 16.0+
    */
-  get fittedRange(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 3224562537614221, this, []); }
-  set fittedRange(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3728802093617518, this, [value]); }
+  get fittedRange(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 3224562537614221, this, []); }
+  set fittedRange(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3728802093617518, this, [value]); }
   /**
    * init(desiredRange: ClosedRange<Element>, fittedRange: ClosedRange<Element>)
    * @availability iOS 16.0+
    */
-  static init(desiredRange: SDKHandle, fittedRange: SDKHandle): $SDK80 { return callSDK<$SDK80>("CreateMLComponents_c1f28409f8601238", 3059100655807072, undefined, [desiredRange, fittedRange]); }
+  static init(desiredRange: SDKHandle, fittedRange: SDKHandle): $SDK80 { return callSDK<$SDK80>("CreateMLComponents_e11dfd5beee01da3", 3059100655807072, undefined, [desiredRange, fittedRange]); }
   /**
    * var desiredRange: ClosedRange<Element>
    * @availability iOS 16.0+
    */
-  get desiredRange(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 140188443503756, this, []); }
-  set desiredRange(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 78753414545111, this, [value]); }
+  get desiredRange(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 140188443503756, this, []); }
+  set desiredRange(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 78753414545111, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 212511489968217, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 212511489968217, this, []); }
   /**
    * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3683353958041145, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3683353958041145, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12MinMaxScalerV11TransformerV": true };
 }
 
@@ -4310,22 +4310,22 @@ export class MLModelClassifierAdaptor<Scalar = unknown> extends SDKHandle {
    * init(contentsOf url: URL, configuration: MLModelConfiguration) throws
    * @availability iOS 16.0+
    */
-  static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK81 { return callSDK<$SDK81>("CreateMLComponents_c1f28409f8601238", 3810889042298005, undefined, [url, configuration]); }
+  static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK81 { return callSDK<$SDK81>("CreateMLComponents_e11dfd5beee01da3", 3810889042298005, undefined, [url, configuration]); }
   /**
    * init(model: MLModel) throws
    * @availability iOS 16.0+
    */
-  static initModel(model: _CoreML_MLModel): $SDK81 { return callSDK<$SDK81>("CreateMLComponents_c1f28409f8601238", 3391738089052807, undefined, [model]); }
+  static initModel(model: _CoreML_MLModel): $SDK81 { return callSDK<$SDK81>("CreateMLComponents_e11dfd5beee01da3", 3391738089052807, undefined, [model]); }
   /**
    * let model: MLModel
    * @availability iOS 16.0+
    */
-  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_c1f28409f8601238", 2237957930320361, this, []); }
+  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_e11dfd5beee01da3", 2237957930320361, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<MLModelClassifierAdaptor<Scalar>.Label>
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>> { return callSDKAsync<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>>("CreateMLComponents_c1f28409f8601238", 2882821354716084, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>> { return callSDKAsync<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>>("CreateMLComponents_e11dfd5beee01da3", 2882821354716084, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents24MLModelClassifierAdaptorV": true };
 }
 
@@ -4344,17 +4344,17 @@ export class MLModelClassifierAdaptor_Label<Scalar = unknown> extends SDKHandle 
    * init(stringLiteral value: String)
    * @availability iOS 16.0+
    */
-  static initStringLiteral(value: string): $SDK83 { return callSDK<$SDK83>("CreateMLComponents_c1f28409f8601238", 2364933099798443, undefined, [value]); }
+  static initStringLiteral(value: string): $SDK83 { return callSDK<$SDK83>("CreateMLComponents_e11dfd5beee01da3", 2364933099798443, undefined, [value]); }
   /**
    * init(integerLiteral value: Int)
    * @availability iOS 16.0+
    */
-  static initIntegerLiteral(value: number): $SDK83 { return callSDK<$SDK83>("CreateMLComponents_c1f28409f8601238", 760302179839849, undefined, [value]); }
+  static initIntegerLiteral(value: number): $SDK83 { return callSDK<$SDK83>("CreateMLComponents_e11dfd5beee01da3", 760302179839849, undefined, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 301770121206998, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 301770121206998, this, []); }
   declare readonly $type: { "s:18CreateMLComponents24MLModelClassifierAdaptorV5LabelO": true };
 }
 
@@ -4397,32 +4397,32 @@ export class MLModelImageFeatureExtractor extends SDKHandle {
    * init(contentsOf url: URL, configuration: MLModelConfiguration, inputName: String = "image", outputName: String, context: CIContext = CIContext()) async throws
    * @availability iOS 16.0+
    */
-  static initContentsOfConfigurationInputNameOutputNameContext(url: string, configuration: _CoreML_MLModelConfiguration, inputName: string, outputName: string, context?: _CoreImage_CIContext): Promise<MLModelImageFeatureExtractor> { return callSDKAsync<MLModelImageFeatureExtractor>("CreateMLComponents_c1f28409f8601238", 506107973303841, undefined, [url, configuration, inputName, outputName, context]); }
+  static initContentsOfConfigurationInputNameOutputNameContext(url: string, configuration: _CoreML_MLModelConfiguration, inputName: string, outputName: string, context?: _CoreImage_CIContext): Promise<MLModelImageFeatureExtractor> { return callSDKAsync<MLModelImageFeatureExtractor>("CreateMLComponents_e11dfd5beee01da3", 506107973303841, undefined, [url, configuration, inputName, outputName, context]); }
   /**
    * let outputName: String
    * @availability iOS 16.0+
    */
-  get outputName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 704406509892321, this, []); }
+  get outputName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 704406509892321, this, []); }
   /**
    * init(model: MLModel, inputName: String = "image", outputName: String, context: CIContext = CIContext()) throws
    * @availability iOS 16.0+
    */
-  static initModelInputNameOutputNameContext(model: _CoreML_MLModel, inputName: string, outputName: string, context?: _CoreImage_CIContext): MLModelImageFeatureExtractor { return callSDK<MLModelImageFeatureExtractor>("CreateMLComponents_c1f28409f8601238", 188121593623187, undefined, [model, inputName, outputName, context]); }
+  static initModelInputNameOutputNameContext(model: _CoreML_MLModel, inputName: string, outputName: string, context?: _CoreImage_CIContext): MLModelImageFeatureExtractor { return callSDK<MLModelImageFeatureExtractor>("CreateMLComponents_e11dfd5beee01da3", 188121593623187, undefined, [model, inputName, outputName, context]); }
   /**
    * let model: MLModel
    * @availability iOS 16.0+
    */
-  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_c1f28409f8601238", 1669964510067760, this, []); }
+  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_e11dfd5beee01da3", 1669964510067760, this, []); }
   /**
    * func applied(to input: CIImage, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Float>
    * @availability iOS 16.0+
    */
-  applied(input: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_c1f28409f8601238", 1478706324413085, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1478706324413085, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * let inputName: String
    * @availability iOS 16.0+
    */
-  get inputName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1795633970248038, this, []); }
+  get inputName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1795633970248038, this, []); }
   declare readonly $type: { "s:18CreateMLComponents28MLModelImageFeatureExtractorV": true };
 }
 
@@ -4435,7 +4435,7 @@ export class MLModelImageFeatureExtractor_Error extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3357146240454881, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3357146240454881, this, []); }
   declare readonly $type: { "s:18CreateMLComponents28MLModelImageFeatureExtractorV5ErrorO": true };
 }
 
@@ -4460,22 +4460,22 @@ export class MLModelRegressorAdaptor<Scalar = unknown> extends SDKHandle {
    * init(contentsOf url: URL, configuration: MLModelConfiguration) throws
    * @availability iOS 16.0+
    */
-  static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK85 { return callSDK<$SDK85>("CreateMLComponents_c1f28409f8601238", 913080096020217, undefined, [url, configuration]); }
+  static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK85 { return callSDK<$SDK85>("CreateMLComponents_e11dfd5beee01da3", 913080096020217, undefined, [url, configuration]); }
   /**
    * init(model: MLModel) throws
    * @availability iOS 16.0+
    */
-  static initModel(model: _CoreML_MLModel): $SDK85 { return callSDK<$SDK85>("CreateMLComponents_c1f28409f8601238", 3508174758860223, undefined, [model]); }
+  static initModel(model: _CoreML_MLModel): $SDK85 { return callSDK<$SDK85>("CreateMLComponents_e11dfd5beee01da3", 3508174758860223, undefined, [model]); }
   /**
    * let model: MLModel
    * @availability iOS 16.0+
    */
-  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_c1f28409f8601238", 265677118884731, this, []); }
+  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_e11dfd5beee01da3", 265677118884731, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> Double
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<number> { return callSDKAsync<number>("CreateMLComponents_c1f28409f8601238", 328293357516219, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<number> { return callSDKAsync<number>("CreateMLComponents_e11dfd5beee01da3", 328293357516219, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents23MLModelRegressorAdaptorV": true };
 }
 
@@ -4500,22 +4500,22 @@ export class MLModelTransformerAdaptor<Scalar = unknown> extends SDKHandle {
    * init(contentsOf url: URL, configuration: MLModelConfiguration) throws
    * @availability iOS 16.0+
    */
-  static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK86 { return callSDK<$SDK86>("CreateMLComponents_c1f28409f8601238", 3146913744018487, undefined, [url, configuration]); }
+  static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK86 { return callSDK<$SDK86>("CreateMLComponents_e11dfd5beee01da3", 3146913744018487, undefined, [url, configuration]); }
   /**
    * init(model: MLModel) throws
    * @availability iOS 16.0+
    */
-  static initModel(model: _CoreML_MLModel): $SDK86 { return callSDK<$SDK86>("CreateMLComponents_c1f28409f8601238", 284755446795317, undefined, [model]); }
+  static initModel(model: _CoreML_MLModel): $SDK86 { return callSDK<$SDK86>("CreateMLComponents_e11dfd5beee01da3", 284755446795317, undefined, [model]); }
   /**
    * let model: MLModel
    * @availability iOS 16.0+
    */
-  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_c1f28409f8601238", 35931928609387, this, []); }
+  get model(): _CoreML_MLModel { return callSDK<_CoreML_MLModel>("CreateMLComponents_e11dfd5beee01da3", 35931928609387, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
    * @availability iOS 16.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_c1f28409f8601238", 1712886532264617, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1712886532264617, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents25MLModelTransformerAdaptorV": true };
 }
 
@@ -4540,12 +4540,12 @@ export class ModelCompatibilityError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2804638608162019, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2804638608162019, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 3887393848188907, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 3887393848188907, this, []); }
   declare readonly $type: { "s:18CreateMLComponents23ModelCompatibilityErrorO": true };
 }
 
@@ -4558,37 +4558,37 @@ export class ModelMetadata extends SDKHandle {
    * init(description: String = "", version: String = "", author: String = "", license: String = "", creatorDefined: [String : String] = [:])
    * @availability iOS 17.0+
    */
-  static init(description?: string, version?: string, author?: string, license?: string, creatorDefined?: Record<string, string>): ModelMetadata { return callSDK<ModelMetadata>("CreateMLComponents_c1f28409f8601238", 3661965154505509, undefined, [description, version, author, license, creatorDefined]); }
+  static init(description?: string, version?: string, author?: string, license?: string, creatorDefined?: Record<string, string>): ModelMetadata { return callSDK<ModelMetadata>("CreateMLComponents_e11dfd5beee01da3", 3661965154505509, undefined, [description, version, author, license, creatorDefined]); }
   /**
    * var description: String
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2909736235323458, this, []); }
-  set description(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 974793703311050, this, [value]); }
+  get description(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2909736235323458, this, []); }
+  set description(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 974793703311050, this, [value]); }
   /**
    * var creatorDefined: [String : String]
    * @availability iOS 17.0+
    */
-  get creatorDefined(): Record<string, string> { return callSDK<Record<string, string>>("CreateMLComponents_c1f28409f8601238", 3303979127827194, this, []); }
-  set creatorDefined(value: Record<string, string>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4096860970733832, this, [value]); }
+  get creatorDefined(): Record<string, string> { return callSDK<Record<string, string>>("CreateMLComponents_e11dfd5beee01da3", 3303979127827194, this, []); }
+  set creatorDefined(value: Record<string, string>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4096860970733832, this, [value]); }
   /**
    * var author: String
    * @availability iOS 17.0+
    */
-  get author(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1470432658422745, this, []); }
-  set author(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2582075327639524, this, [value]); }
+  get author(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1470432658422745, this, []); }
+  set author(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2582075327639524, this, [value]); }
   /**
    * var license: String
    * @availability iOS 17.0+
    */
-  get license(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1226117997627598, this, []); }
-  set license(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 841795528301343, this, [value]); }
+  get license(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1226117997627598, this, []); }
+  set license(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 841795528301343, this, [value]); }
   /**
    * var version: String
    * @availability iOS 17.0+
    */
-  get version(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4041058583563198, this, []); }
-  set version(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 209503242797432, this, [value]); }
+  get version(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4041058583563198, this, []); }
+  set version(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 209503242797432, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents13ModelMetadataV": true };
 }
 
@@ -4601,12 +4601,12 @@ export class ModelUpdateError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3921743524136991, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3921743524136991, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 1829580677245675, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 1829580677245675, this, []); }
   declare readonly $type: { "s:18CreateMLComponents16ModelUpdateErrorO": true };
 }
 
@@ -4619,67 +4619,67 @@ export class MultiLabelClassificationMetrics<Label = unknown> extends SDKHandle 
    * func recallScore(for label: Label) -> Float
    * @availability iOS 17.0+
    */
-  recallScore(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4330904490858207, this, [label]); }
+  recallScore(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4330904490858207, this, [label]); }
   /**
    * var exampleCount: Int { get }
    * @availability iOS 17.0+
    */
-  get exampleCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4252692843631375, this, []); }
+  get exampleCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4252692843631375, this, []); }
   /**
    * func precisionScore(for label: Label) -> Float
    * @availability iOS 17.0+
    */
-  precisionScore(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2120660045475883, this, [label]); }
+  precisionScore(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2120660045475883, this, [label]); }
   /**
    * func trueNegativeCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  trueNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2350355899335260, this, [label]); }
+  trueNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2350355899335260, this, [label]); }
   /**
    * func truePositiveCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  truePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3366363452600304, this, [label]); }
+  truePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3366363452600304, this, [label]); }
   /**
    * func falseNegativeCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  falseNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1129956347219233, this, [label]); }
+  falseNegativeCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1129956347219233, this, [label]); }
   /**
    * func falsePositiveCount(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  falsePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4411510608970184, this, [label]); }
+  falsePositiveCount(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4411510608970184, this, [label]); }
   /**
    * init(confidenceThresholds: [Label : Float])
    * @availability iOS 17.0+
    */
-  static init(confidenceThresholds: Record<number, number>): MultiLabelClassificationMetrics<number> { return callSDK<MultiLabelClassificationMetrics<number>>("CreateMLComponents_c1f28409f8601238", 3823786477289569, undefined, [confidenceThresholds]); }
+  static init(confidenceThresholds: Record<number, number>): MultiLabelClassificationMetrics<number> { return callSDK<MultiLabelClassificationMetrics<number>>("CreateMLComponents_e11dfd5beee01da3", 3823786477289569, undefined, [confidenceThresholds]); }
   /**
    * var confidenceThresholds: [Label : Float] { get }
    * @availability iOS 17.0+
    */
-  get confidenceThresholds(): Record<number, number> { return callSDK<Record<number, number>>("CreateMLComponents_c1f28409f8601238", 574390188743063, this, []); }
+  get confidenceThresholds(): Record<number, number> { return callSDK<Record<number, number>>("CreateMLComponents_e11dfd5beee01da3", 574390188743063, this, []); }
   /**
    * var meanAveragePrecision: Float { get }
    * @availability iOS 17.0+
    */
-  get meanAveragePrecision(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3743795901155570, this, []); }
+  get meanAveragePrecision(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3743795901155570, this, []); }
   /**
    * func count(of label: Label) -> Int
    * @availability iOS 17.0+
    */
-  count(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3355557917616983, this, [label]); }
+  count(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3355557917616983, this, [label]); }
   /**
    * var labels: Set<Label> { get }
    * @availability iOS 17.0+
    */
-  get labels(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 2352439895256159, this, []); }
+  get labels(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 2352439895256159, this, []); }
   /**
    * func f1Score(for label: Label) -> Float
    * @availability iOS 17.0+
    */
-  f1Score(label: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4070909577329247, this, [label]); }
+  f1Score(label: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4070909577329247, this, [label]); }
   declare readonly $type: { "s:18CreateMLComponents31MultiLabelClassificationMetricsV": true };
 }
 
@@ -4700,43 +4700,43 @@ export class MultivariateLinearRegressor<Scalar = unknown> extends SDKHandle {
    * var configuration: MultivariateLinearRegressor<Scalar>.Configuration
    * @availability iOS 18.0+
    */
-  get configuration(): MultivariateLinearRegressorConfiguration { return callSDK<MultivariateLinearRegressorConfiguration>("CreateMLComponents_c1f28409f8601238", 1523122248236606, this, []); }
-  set configuration(value: MultivariateLinearRegressorConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1998149801611195, this, [value]); }
+  get configuration(): MultivariateLinearRegressorConfiguration { return callSDK<MultivariateLinearRegressorConfiguration>("CreateMLComponents_e11dfd5beee01da3", 1523122248236606, this, []); }
+  set configuration(value: MultivariateLinearRegressorConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1998149801611195, this, [value]); }
   /**
    * func makeTransformer() -> MultivariateLinearRegressor<Scalar>.Model
    * @availability iOS 18.0+
    */
-  makeTransformer(): $SDK88 { return callSDK<$SDK88>("CreateMLComponents_c1f28409f8601238", 3449229790542215, this, []); }
+  makeTransformer(): $SDK88 { return callSDK<$SDK88>("CreateMLComponents_e11dfd5beee01da3", 3449229790542215, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> MultivariateLinearRegressor<Scalar>.Model
    * @availability iOS 18.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK88; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK88; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3791701485728191, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK88; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK88; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3791701485728191, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ model: MultivariateLinearRegressor<Scalar>.Model, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 18.0+
    */
-  encodeWithOptimizer(model: $SDK88, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1303667975032786, this, [model, encoder]); }
+  encodeWithOptimizer(model: $SDK88, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1303667975032786, this, [model, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> MultivariateLinearRegressor<Scalar>.Model
    * @availability iOS 18.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK88; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK88; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2448597476962197, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK88; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK88; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2448597476962197, this, [decoder]); }
   /**
    * func encode(_ model: MultivariateLinearRegressor<Scalar>.Model, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 18.0+
    */
-  encode(model: $SDK88, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4461918721591764, this, [model, encoder]); }
+  encode(model: $SDK88, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4461918721591764, this, [model, encoder]); }
   /**
    * func fitted(to input: AnnotatedBatch<Scalar>, validateOn validation: AnnotatedBatch<Scalar>?, eventHandler: EventHandler? = nil) async throws -> MultivariateLinearRegressor<Scalar>.Model
    * @availability iOS 18.0+
    */
-  fitted(input: AnnotatedBatch<number>, validation?: $SDK89, eventHandler?: $SDK9): Promise<$SDK88> { return callSDKAsync<$SDK88>("CreateMLComponents_c1f28409f8601238", 2315176186208171, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fitted(input: AnnotatedBatch<number>, validation?: $SDK89, eventHandler?: $SDK9): Promise<$SDK88> { return callSDKAsync<$SDK88>("CreateMLComponents_e11dfd5beee01da3", 2315176186208171, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ model: inout MultivariateLinearRegressor<Scalar>.Model, with input: AnnotatedBatch<Scalar>) async throws -> Scalar
    * @availability iOS 18.0+
    */
-  update(model: $SDK88, input: AnnotatedBatch<number>): Promise<{ $ret: number; $out: { "model": $SDK88 } }> { return callSDKAsync<{ $ret: number; $out: { "model": $SDK88 } }>("CreateMLComponents_c1f28409f8601238", 394482038943394, this, [model, input]); }
+  update(model: $SDK88, input: AnnotatedBatch<number>): Promise<{ $ret: number; $out: { "model": $SDK88 } }> { return callSDKAsync<{ $ret: number; $out: { "model": $SDK88 } }>("CreateMLComponents_e11dfd5beee01da3", 394482038943394, this, [model, input]); }
   declare readonly $type: { "s:18CreateMLComponents27MultivariateLinearRegressorV": true };
 }
 
@@ -4767,32 +4767,32 @@ export class MultivariateLinearRegressor_Model<Scalar = unknown> extends SDKHand
    * var outputSize: Int { get }
    * @availability iOS 18.0+
    */
-  get outputSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 111220903216093, this, []); }
+  get outputSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 111220903216093, this, []); }
   /**
    * var bias: MLShapedArray<Scalar>? { get }
    * @availability iOS 18.0+
    */
-  get bias(): $SDK72 { return callSDK<$SDK72>("CreateMLComponents_c1f28409f8601238", 1714563750387818, this, []); }
+  get bias(): $SDK72 { return callSDK<$SDK72>("CreateMLComponents_e11dfd5beee01da3", 1714563750387818, this, []); }
   /**
    * init(weight: MLShapedArray<Scalar>, bias: MLShapedArray<Scalar>?)
    * @availability iOS 18.0+
    */
-  static init(weight: $SDK0, bias?: $SDK72): $SDK88 { return callSDK<$SDK88>("CreateMLComponents_c1f28409f8601238", 2201449514554577, undefined, [weight, bias]); }
+  static init(weight: $SDK0, bias?: $SDK72): $SDK88 { return callSDK<$SDK88>("CreateMLComponents_e11dfd5beee01da3", 2201449514554577, undefined, [weight, bias]); }
   /**
    * var weight: MLShapedArray<Scalar> { get }
    * @availability iOS 18.0+
    */
-  get weight(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 4057975271367023, this, []); }
+  get weight(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 4057975271367023, this, []); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_c1f28409f8601238", 3993894852316308, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0> { return callSDKAsync<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 3993894852316308, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var inputSize: Int { get }
    * @availability iOS 18.0+
    */
-  get inputSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1337257406386859, this, []); }
+  get inputSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1337257406386859, this, []); }
   declare readonly $type: { "s:18CreateMLComponents27MultivariateLinearRegressorV5ModelV": true };
 }
 
@@ -4823,43 +4823,43 @@ export class MultivariateLinearRegressorConfiguration extends SDKHandle {
    * var randomSeed: Int?
    * @availability iOS 18.0+
    */
-  get randomSeed(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 3232464926802352, this, []); }
-  set randomSeed(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4078051304558766, this, [value]); }
+  get randomSeed(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 3232464926802352, this, []); }
+  set randomSeed(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4078051304558766, this, [value]); }
   /**
    * var learningRate: Float
    * @availability iOS 18.0+
    */
-  get learningRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1603755933952130, this, []); }
-  set learningRate(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3762780284602777, this, [value]); }
+  get learningRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1603755933952130, this, []); }
+  set learningRate(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3762780284602777, this, [value]); }
   /**
    * var maximumIterationCount: Int
    * @availability iOS 18.0+
    */
-  get maximumIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2515916587079863, this, []); }
-  set maximumIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2788984431392440, this, [value]); }
+  get maximumIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2515916587079863, this, []); }
+  set maximumIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2788984431392440, this, [value]); }
   /**
    * var earlyStoppingTolerance: Float
    * @availability iOS 18.0+
    */
-  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4487880753671486, this, []); }
-  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4412116120508032, this, [value]); }
+  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4487880753671486, this, []); }
+  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4412116120508032, this, [value]); }
   /**
    * var earlyStoppingIterationCount: Int
    * @availability iOS 18.0+
    */
-  get earlyStoppingIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 655687581935698, this, []); }
-  set earlyStoppingIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2598306816689543, this, [value]); }
+  get earlyStoppingIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 655687581935698, this, []); }
+  set earlyStoppingIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2598306816689543, this, [value]); }
   /**
    * var batchSize: Int
    * @availability iOS 18.0+
    */
-  get batchSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 78158273591600, this, []); }
-  set batchSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4012916297721318, this, [value]); }
+  get batchSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 78158273591600, this, []); }
+  set batchSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4012916297721318, this, [value]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): MultivariateLinearRegressorConfiguration { return callSDK<MultivariateLinearRegressorConfiguration>("CreateMLComponents_c1f28409f8601238", 2234336280379403, undefined, []); }
+  static init(): MultivariateLinearRegressorConfiguration { return callSDK<MultivariateLinearRegressorConfiguration>("CreateMLComponents_e11dfd5beee01da3", 2234336280379403, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents40MultivariateLinearRegressorConfigurationV": true };
 }
 
@@ -4872,18 +4872,18 @@ export class NormalizationScaler<Element = unknown> extends SDKHandle {
    * var norm: NormalizationScaler<Element>.NormalizationStrategy
    * @availability iOS 16.0+
    */
-  get norm(): $SDK91 { return callSDK<$SDK91>("CreateMLComponents_c1f28409f8601238", 2428984471794940, this, []); }
-  set norm(value: $SDK91) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2468153347169734, this, [value]); }
+  get norm(): $SDK91 { return callSDK<$SDK91>("CreateMLComponents_e11dfd5beee01da3", 2428984471794940, this, []); }
+  set norm(value: $SDK91) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2468153347169734, this, [value]); }
   /**
    * init(norm: NormalizationScaler<Element>.NormalizationStrategy = .l2)
    * @availability iOS 16.0+
    */
-  static init(norm?: $SDK91): NormalizationScaler<number> { return callSDK<NormalizationScaler<number>>("CreateMLComponents_c1f28409f8601238", 2719757578242523, undefined, [norm]); }
+  static init(norm?: $SDK91): NormalizationScaler<number> { return callSDK<NormalizationScaler<number>>("CreateMLComponents_e11dfd5beee01da3", 2719757578242523, undefined, [norm]); }
   /**
    * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> NormalizationScaler<Element>.Transformer where Element == S.Element, S : Sequence
    * @availability iOS 16.0+
    */
-  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK93 { return callSDK<$SDK93>("CreateMLComponents_c1f28409f8601238", 3733058798636966, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK93 { return callSDK<$SDK93>("CreateMLComponents_e11dfd5beee01da3", 3733058798636966, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents19NormalizationScalerV": true };
 }
 
@@ -4902,23 +4902,23 @@ export class NormalizationScaler_Transformer<Element = unknown> extends SDKHandl
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 131468722587158, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 131468722587158, this, []); }
   /**
    * init(scale: Element)
    * @availability iOS 16.0+
    */
-  static init(scale: number): $SDK93 { return callSDK<$SDK93>("CreateMLComponents_c1f28409f8601238", 1580166317070403, undefined, [scale]); }
+  static init(scale: number): $SDK93 { return callSDK<$SDK93>("CreateMLComponents_e11dfd5beee01da3", 1580166317070403, undefined, [scale]); }
   /**
    * var scale: Element
    * @availability iOS 16.0+
    */
-  get scale(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 584064960474955, this, []); }
-  set scale(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4353667752745490, this, [value]); }
+  get scale(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 584064960474955, this, []); }
+  set scale(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4353667752745490, this, [value]); }
   /**
    * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1871513596040690, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1871513596040690, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents19NormalizationScalerV11TransformerV": true };
 }
 
@@ -4943,33 +4943,33 @@ export class NumericImputer<Element = unknown> extends SDKHandle {
    * func makeTransformer() -> NumericImputer<Element>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK64 { return callSDK<$SDK64>("CreateMLComponents_c1f28409f8601238", 3297094113475788, this, []); }
+  makeTransformer(): $SDK64 { return callSDK<$SDK64>("CreateMLComponents_e11dfd5beee01da3", 3297094113475788, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> NumericImputer<Element>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK64; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK64; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2681831370191671, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK64; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK64; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2681831370191671, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: NumericImputer<Element>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK64, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1236073665308396, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK64, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1236073665308396, this, [transformer, encoder]); }
   /**
    * init(constant: Element)
    * @availability iOS 16.0+
    */
-  static initConstant(constant: number): NumericImputer<number> { return callSDK<NumericImputer<number>>("CreateMLComponents_c1f28409f8601238", 1425217354904733, undefined, [constant]); }
+  static initConstant(constant: number): NumericImputer<number> { return callSDK<NumericImputer<number>>("CreateMLComponents_e11dfd5beee01da3", 1425217354904733, undefined, [constant]); }
   /**
    * var strategy: NumericImputer<Element>.Strategy
    * @availability iOS 16.0+
    */
-  get strategy(): $SDK94 { return callSDK<$SDK94>("CreateMLComponents_c1f28409f8601238", 3648299004520070, this, []); }
-  set strategy(value: $SDK94) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4414222750713657, this, [value]); }
+  get strategy(): $SDK94 { return callSDK<$SDK94>("CreateMLComponents_e11dfd5beee01da3", 3648299004520070, this, []); }
+  set strategy(value: $SDK94) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4414222750713657, this, [value]); }
   /**
    * init(_ strategy: NumericImputer<Element>.Strategy)
    * @availability iOS 16.0+
    */
-  static init(strategy: $SDK94): NumericImputer<number> { return callSDK<NumericImputer<number>>("CreateMLComponents_c1f28409f8601238", 3772387537768908, undefined, [strategy]); }
+  static init(strategy: $SDK94): NumericImputer<number> { return callSDK<NumericImputer<number>>("CreateMLComponents_e11dfd5beee01da3", 3772387537768908, undefined, [strategy]); }
   declare readonly $type: { "s:18CreateMLComponents14NumericImputerV": true };
 }
 
@@ -4996,17 +4996,17 @@ export class ObjectDetectionAnnotation<Label = unknown> extends SDKHandle {
    * let imageFileName: String
    * @availability iOS 17.0+
    */
-  get imageFileName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1189496670135312, this, []); }
+  get imageFileName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1189496670135312, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1650016045495956, this, []); }
+  get id(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1650016045495956, this, []); }
   /**
    * let objects: [ObjectDetectionAnnotation<Label>.Annotation]
    * @availability iOS 17.0+
    */
-  get objects(): Array<ObjectDetectionAnnotation_Annotation<SDKHandle>> { return callSDK<Array<ObjectDetectionAnnotation_Annotation<SDKHandle>>>("CreateMLComponents_c1f28409f8601238", 2702934160763618, this, []); }
+  get objects(): Array<ObjectDetectionAnnotation_Annotation<SDKHandle>> { return callSDK<Array<ObjectDetectionAnnotation_Annotation<SDKHandle>>>("CreateMLComponents_e11dfd5beee01da3", 2702934160763618, this, []); }
   declare readonly $type: { "s:18CreateMLComponents25ObjectDetectionAnnotationV": true };
 }
 
@@ -5019,7 +5019,7 @@ export class ObjectDetectionAnnotation_Annotation<Label = unknown> extends SDKHa
    * let boundingBox: CGRect
    * @availability iOS 17.0+
    */
-  get boundingBox(): $SDK42 { return callSDK<$SDK42>("CreateMLComponents_c1f28409f8601238", 1506063709933014, this, []); }
+  get boundingBox(): $SDK42 { return callSDK<$SDK42>("CreateMLComponents_e11dfd5beee01da3", 1506063709933014, this, []); }
   declare readonly $type: { "s:18CreateMLComponents25ObjectDetectionAnnotationV0E0V": true };
 }
 
@@ -5034,17 +5034,17 @@ export const ObjectDetectionAnnotation_Annotation_CodingKeys = {
    * var stringValue: String { get }
    * @availability iOS 17.0+
    */
-  getStringValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3328208757866164, $self, []); },
+  getStringValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3328208757866164, $self, []); },
   /**
    * var intValue: Int? { get }
    * @availability iOS 17.0+
    */
-  getIntValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 16832934588662, $self, []); },
+  getIntValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 16832934588662, $self, []); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 709782786489876, $self, []); }
+  getRawValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 709782786489876, $self, []); }
 };
 
 /**
@@ -5064,17 +5064,17 @@ export const ObjectDetectionAnnotation_CodingKeys = {
    * var stringValue: String { get }
    * @availability iOS 17.0+
    */
-  getStringValue($self: ObjectDetectionAnnotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 450982553764069, $self, []); },
+  getStringValue($self: ObjectDetectionAnnotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 450982553764069, $self, []); },
   /**
    * var intValue: Int? { get }
    * @availability iOS 17.0+
    */
-  getIntValue($self: ObjectDetectionAnnotation_CodingKeys): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 1177764569664909, $self, []); },
+  getIntValue($self: ObjectDetectionAnnotation_CodingKeys): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 1177764569664909, $self, []); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: ObjectDetectionAnnotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2160185942716390, $self, []); }
+  getRawValue($self: ObjectDetectionAnnotation_CodingKeys): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2160185942716390, $self, []); }
 };
 
 /**
@@ -5098,8 +5098,8 @@ export class ObjectDetectionMetrics<Label = unknown> extends SDKHandle {
    * var defaultConfidenceThreshold: Float
    * @availability iOS 17.0+
    */
-  get defaultConfidenceThreshold(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4293822342792420, this, []); }
-  set defaultConfidenceThreshold(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4389985942434947, this, [value]); }
+  get defaultConfidenceThreshold(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4293822342792420, this, []); }
+  set defaultConfidenceThreshold(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4389985942434947, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents22ObjectDetectionMetricsV": true };
 }
 
@@ -5112,17 +5112,17 @@ export class OneHotEncoder<Category = unknown> extends SDKHandle {
    * func makeTransformer() -> OneHotEncoder<Category>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK96 { return callSDK<$SDK96>("CreateMLComponents_c1f28409f8601238", 2786365007082943, this, []); }
+  makeTransformer(): $SDK96 { return callSDK<$SDK96>("CreateMLComponents_e11dfd5beee01da3", 2786365007082943, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> OneHotEncoder<Category>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK96; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK96; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2614740274761452, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK96; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK96; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2614740274761452, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: OneHotEncoder<Category>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK96, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 689448619236569, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK96, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 689448619236569, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents13OneHotEncoderV": true };
 }
 
@@ -5135,7 +5135,7 @@ export class OneHotEncoder_Transformer<Category = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3460600888593289, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3460600888593289, this, []); }
   declare readonly $type: { "s:18CreateMLComponents13OneHotEncoderV11TransformerV": true };
 }
 
@@ -5162,12 +5162,12 @@ export const OptimizationError = {
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  getDebugDescription($self: OptimizationError): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1629063608181708, $self, []); },
+  getDebugDescription($self: OptimizationError): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1629063608181708, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  getErrorDescription($self: OptimizationError): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 2748431291491742, $self, []); }
+  getErrorDescription($self: OptimizationError): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 2748431291491742, $self, []); }
 };
 
 /**
@@ -5185,12 +5185,12 @@ export class OptionalUnwrapper<Element = unknown> extends SDKHandle {
    * func applied(to input: Element?, eventHandler: EventHandler? = nil) throws -> Element
    * @availability iOS 16.0+
    */
-  applied(input?: (unknown) | null, eventHandler?: $SDK9): unknown { return callSDK<unknown>("CreateMLComponents_c1f28409f8601238", 1190578499080398, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input?: (unknown) | null, eventHandler?: $SDK9): unknown { return callSDK<unknown>("CreateMLComponents_e11dfd5beee01da3", 1190578499080398, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): OptionalUnwrapper<unknown> { return callSDK<OptionalUnwrapper<unknown>>("CreateMLComponents_c1f28409f8601238", 3640511090050860, undefined, []); }
+  static init(): OptionalUnwrapper<unknown> { return callSDK<OptionalUnwrapper<unknown>>("CreateMLComponents_e11dfd5beee01da3", 3640511090050860, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents17OptionalUnwrapperV": true };
 }
 
@@ -5215,17 +5215,17 @@ export class OrdinalEncoder<Category = unknown> extends SDKHandle {
    * func makeTransformer() -> OrdinalEncoder<Category>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK98 { return callSDK<$SDK98>("CreateMLComponents_c1f28409f8601238", 196748473609499, this, []); }
+  makeTransformer(): $SDK98 { return callSDK<$SDK98>("CreateMLComponents_e11dfd5beee01da3", 196748473609499, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> OrdinalEncoder<Category>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK98; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK98; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3646632435229041, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK98; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK98; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3646632435229041, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: OrdinalEncoder<Category>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK98, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4423383299640915, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK98, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4423383299640915, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents14OrdinalEncoderV": true };
 }
 
@@ -5238,7 +5238,7 @@ export class OrdinalEncoder_Transformer<Category = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3440089431926043, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3440089431926043, this, []); }
   declare readonly $type: { "s:18CreateMLComponents14OrdinalEncoderV11TransformerV": true };
 }
 
@@ -5263,12 +5263,12 @@ export class PipelineDataError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4386238312206449, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4386238312206449, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 354956245844726, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 354956245844726, this, []); }
   declare readonly $type: { "s:18CreateMLComponents17PipelineDataErrorO": true };
 }
 
@@ -5281,18 +5281,18 @@ export class Pose extends SDKHandle {
    * func boundingBoxArea(confidenceThreshold: Float = 0.2) -> Float
    * @availability iOS 16.0+
    */
-  boundingBoxArea(confidenceThreshold?: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1311683164477736, this, [confidenceThreshold]); }
+  boundingBoxArea(confidenceThreshold?: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1311683164477736, this, [confidenceThreshold]); }
   /**
    * var keypoints: [JointKey : JointPoint]
    * @availability iOS 16.0+
    */
-  get keypoints(): $SDK99 { return callSDK<$SDK99>("CreateMLComponents_c1f28409f8601238", 3756831729683061, this, []); }
-  set keypoints(value: $SDK99) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1057069790475973, this, [value]); }
+  get keypoints(): $SDK99 { return callSDK<$SDK99>("CreateMLComponents_e11dfd5beee01da3", 3756831729683061, this, []); }
+  set keypoints(value: $SDK99) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1057069790475973, this, [value]); }
   /**
    * init(_ observation: VNRecognizedPointsObservation) throws
    * @availability iOS 16.0+
    */
-  static init(observation: _Vision_VNRecognizedPointsObservation): Pose { return callSDK<Pose>("CreateMLComponents_c1f28409f8601238", 3444820520183837, undefined, [observation]); }
+  static init(observation: _Vision_VNRecognizedPointsObservation): Pose { return callSDK<Pose>("CreateMLComponents_e11dfd5beee01da3", 3444820520183837, undefined, [observation]); }
   declare readonly $type: { "s:18CreateMLComponents4PoseV": true };
 }
 
@@ -5311,39 +5311,39 @@ export class PoseSelector extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2162562692961820, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2162562692961820, this, []); }
   /**
    * var confidenceThreshold: Float
    * @availability iOS 16.0+
    */
-  get confidenceThreshold(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 511491069758226, this, []); }
-  set confidenceThreshold(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1797218814831598, this, [value]); }
+  get confidenceThreshold(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 511491069758226, this, []); }
+  set confidenceThreshold(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1797218814831598, this, [value]); }
   /**
    * func applied(to input: [Pose], eventHandler: EventHandler? = nil) -> Pose
    * @availability iOS 16.0+
    */
-  applied(input: Array<Pose>, eventHandler?: $SDK9): Pose { return callSDK<Pose>("CreateMLComponents_c1f28409f8601238", 2142785127631970, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: Array<Pose>, eventHandler?: $SDK9): Pose { return callSDK<Pose>("CreateMLComponents_e11dfd5beee01da3", 2142785127631970, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(strategy: PoseSelectionStrategy, confidenceThreshold: Float)
    * @availability iOS 16.0+
    */
-  static initStrategyConfidenceThreshold(strategy: PoseSelectionStrategy, confidenceThreshold: number): PoseSelector { return callSDK<PoseSelector>("CreateMLComponents_c1f28409f8601238", 2405447703024007, undefined, [strategy, confidenceThreshold]); }
+  static initStrategyConfidenceThreshold(strategy: PoseSelectionStrategy, confidenceThreshold: number): PoseSelector { return callSDK<PoseSelector>("CreateMLComponents_e11dfd5beee01da3", 2405447703024007, undefined, [strategy, confidenceThreshold]); }
   /**
    * var strategy: PoseSelectionStrategy
    * @availability iOS 16.0+
    */
-  get strategy(): PoseSelectionStrategy { return callSDK<PoseSelectionStrategy>("CreateMLComponents_c1f28409f8601238", 204915955409638, this, []); }
-  set strategy(value: PoseSelectionStrategy) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4210538181884054, this, [value]); }
+  get strategy(): PoseSelectionStrategy { return callSDK<PoseSelectionStrategy>("CreateMLComponents_e11dfd5beee01da3", 204915955409638, this, []); }
+  set strategy(value: PoseSelectionStrategy) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4210538181884054, this, [value]); }
   /**
    * init(strategy: PoseSelectionStrategy)
    * @availability iOS 16.0+
    */
-  static initStrategy(strategy: PoseSelectionStrategy): PoseSelector { return callSDK<PoseSelector>("CreateMLComponents_c1f28409f8601238", 4485870436401198, undefined, [strategy]); }
+  static initStrategy(strategy: PoseSelectionStrategy): PoseSelector { return callSDK<PoseSelector>("CreateMLComponents_e11dfd5beee01da3", 4485870436401198, undefined, [strategy]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): PoseSelector { return callSDK<PoseSelector>("CreateMLComponents_c1f28409f8601238", 4327574854659833, undefined, []); }
+  static init(): PoseSelector { return callSDK<PoseSelector>("CreateMLComponents_e11dfd5beee01da3", 4327574854659833, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents12PoseSelectorV": true };
 }
 
@@ -5368,18 +5368,18 @@ export class PreprocessedFeatureSequence<Feature = unknown> extends SDKHandle {
    * func makeAsyncIterator() -> PreprocessedFeatureSequence<Feature>.AsyncIterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): PreprocessedFeatureSequence_AsyncIterator<unknown> { return callSDK<PreprocessedFeatureSequence_AsyncIterator<unknown>>("CreateMLComponents_c1f28409f8601238", 503220406122880, this, []); }
+  makeAsyncIterator(): PreprocessedFeatureSequence_AsyncIterator<unknown> { return callSDK<PreprocessedFeatureSequence_AsyncIterator<unknown>>("CreateMLComponents_e11dfd5beee01da3", 503220406122880, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 3317081404955512, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 3317081404955512, this, []); }
   /**
    * var features: [TemporalFeature<Feature>]
    * @availability iOS 16.0+
    */
-  get features(): Array<TemporalFeature<unknown>> { return callSDK<Array<TemporalFeature<unknown>>>("CreateMLComponents_c1f28409f8601238", 3316454239077601, this, []); }
-  set features(value: Array<TemporalFeature<unknown>>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3447015676458989, this, [value]); }
+  get features(): Array<TemporalFeature<unknown>> { return callSDK<Array<TemporalFeature<unknown>>>("CreateMLComponents_e11dfd5beee01da3", 3316454239077601, this, []); }
+  set features(value: Array<TemporalFeature<unknown>>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3447015676458989, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents27PreprocessedFeatureSequenceV": true };
   declare readonly $element: PreprocessedFeatureSequence_Element<unknown>;
 }
@@ -5393,7 +5393,7 @@ export class PreprocessedFeatureSequence_AsyncIterator<Feature = unknown> extend
    * mutating func next() -> TemporalFeature<Feature>?
    * @availability iOS 16.0+
    */
-  next(): (TemporalFeature<unknown>) | null { return callSDK<(TemporalFeature<unknown>) | null>("CreateMLComponents_c1f28409f8601238", 1740288580845161, this, []); }
+  next(): (TemporalFeature<unknown>) | null { return callSDK<(TemporalFeature<unknown>) | null>("CreateMLComponents_e11dfd5beee01da3", 1740288580845161, this, []); }
   declare readonly $type: { "s:18CreateMLComponents27PreprocessedFeatureSequenceV13AsyncIteratorV": true };
 }
 
@@ -5418,12 +5418,12 @@ export class PreprocessingEstimator<Preprocessor = unknown, Estimator = unknown>
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3956358258192860, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3956358258192860, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1284961736318289, this, [transformer, encoder]); }
+  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1284961736318289, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents22PreprocessingEstimatorV": true };
 }
 
@@ -5460,12 +5460,12 @@ export class PreprocessingSupervisedEstimator<Preprocessor = unknown, Estimator 
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingSupervisedEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2714541366488434, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2714541366488434, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingSupervisedEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 954480380916120, this, [transformer, encoder]); }
+  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 954480380916120, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV": true };
 }
 
@@ -5508,33 +5508,33 @@ export class PreprocessingSupervisedTabularEstimator<Preprocessor = unknown, Est
    * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 17.0+
    */
-  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 4186445402262273, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 4186445402262273, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var preprocessor: Preprocessor
    * @availability iOS 17.0+
    */
-  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 173960800450467, this, []); }
-  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2031248204832841, this, [value]); }
+  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 173960800450467, this, []); }
+  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2031248204832841, this, [value]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 347230112651957, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 347230112651957, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3264085847003021, this, [transformer, encoder]); }
+  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3264085847003021, this, [transformer, encoder]); }
   /**
    * func fitted(toPreprocessed preprocessedInput: DataFrame, validateOn preprocessedValidation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToPreprocessedValidateOnEventHandler(preprocessedInput: _TabularData_DataFrame, preprocessedValidation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 3850036181624064, this, [preprocessedInput, preprocessedValidation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fittedToPreprocessedValidateOnEventHandler(preprocessedInput: _TabularData_DataFrame, preprocessedValidation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 3850036181624064, this, [preprocessedInput, preprocessedValidation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToValidateOnEventHandler(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 488779272514666, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fittedToValidateOnEventHandler(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 488779272514666, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents39PreprocessingSupervisedTabularEstimatorV": true };
 }
 
@@ -5579,13 +5579,13 @@ export class PreprocessingSupervisedTemporalEstimator<Preprocessor = unknown, Es
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1224829003004556, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1224829003004556, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 7206849363071, this, [transformer, encoder]); }
+  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 7206849363071, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents40PreprocessingSupervisedTemporalEstimatorV": true };
 }
 
@@ -5633,33 +5633,33 @@ export class PreprocessingTabularEstimator<Preprocessor = unknown, Estimator = u
    * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 17.0+
    */
-  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 4097513237743342, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 4097513237743342, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var preprocessor: Preprocessor
    * @availability iOS 17.0+
    */
-  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 3859215218165633, this, []); }
-  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1393290425965378, this, [value]); }
+  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 3859215218165633, this, []); }
+  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1393290425965378, this, [value]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2449791393568260, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2449791393568260, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2414751125588489, this, [transformer, encoder]); }
+  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2414751125588489, this, [transformer, encoder]); }
   /**
    * func fitted(toPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToPreprocessedEventHandler(preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 1143545806271790, this, [preprocessed, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fittedToPreprocessedEventHandler(preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 1143545806271790, this, [preprocessed, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToEventHandler(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 3278685266417387, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fittedToEventHandler(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 3278685266417387, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents29PreprocessingTabularEstimatorV": true };
 }
 
@@ -5698,13 +5698,13 @@ export class PreprocessingTemporalEstimator<Preprocessor = unknown, Estimator = 
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1942279863492010, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1942279863492010, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 328126671768376, this, [transformer, encoder]); }
+  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 328126671768376, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents30PreprocessingTemporalEstimatorV": true };
 }
 
@@ -5745,27 +5745,27 @@ export class PreprocessingUpdatableEstimator<Preprocessor = unknown, Estimator =
    * func makeTransformer() -> PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  makeTransformer(): $SDK104 { return callSDK<$SDK104>("CreateMLComponents_c1f28409f8601238", 1199052051542518, this, []); }
+  makeTransformer(): $SDK104 { return callSDK<$SDK104>("CreateMLComponents_e11dfd5beee01da3", 1199052051542518, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4012717267797917, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4012717267797917, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3713068716902970, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3713068716902970, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1793560056442325, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1793560056442325, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4350885884096193, this, [transformer, encoder]); }
+  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4350885884096193, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents31PreprocessingUpdatableEstimatorV": true };
 }
 
@@ -5802,27 +5802,27 @@ export class PreprocessingUpdatableSupervisedEstimator<Preprocessor = unknown, E
    * func makeTransformer() -> PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  makeTransformer(): $SDK104 { return callSDK<$SDK104>("CreateMLComponents_c1f28409f8601238", 815639360220264, this, []); }
+  makeTransformer(): $SDK104 { return callSDK<$SDK104>("CreateMLComponents_e11dfd5beee01da3", 815639360220264, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3202180102350863, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3202180102350863, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1183743112350696, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1183743112350696, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2332746353574244, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK104; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK104; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2332746353574244, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3212711815721090, this, [transformer, encoder]); }
+  encode(transformer: $SDK104, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3212711815721090, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents41PreprocessingUpdatableSupervisedEstimatorV": true };
 }
 
@@ -5865,58 +5865,58 @@ export class PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor = unk
    * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 17.0+
    */
-  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 3159613088092950, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 3159613088092950, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var preprocessor: Preprocessor
    * @availability iOS 17.0+
    */
-  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 3531322343027260, this, []); }
-  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2125732180909156, this, [value]); }
+  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 3531322343027260, this, []); }
+  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2125732180909156, this, [value]); }
   /**
    * func makeTransformer() -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK106 { return callSDK<$SDK106>("CreateMLComponents_c1f28409f8601238", 1956283020234256, this, []); }
+  makeTransformer(): $SDK106 { return callSDK<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 1956283020234256, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1998796204799858, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1998796204799858, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3164357873517638, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3164357873517638, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1156426029926437, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1156426029926437, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2484239129214882, this, [transformer, encoder]); }
+  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2484239129214882, this, [transformer, encoder]); }
   /**
    * func fitted(toPreprocessed preprocessedInput: DataFrame, validateOn preprocessedValidation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToPreprocessedValidateOnEventHandler(preprocessedInput: _TabularData_DataFrame, preprocessedValidation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 1673558180603139, this, [preprocessedInput, preprocessedValidation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fittedToPreprocessedValidateOnEventHandler(preprocessedInput: _TabularData_DataFrame, preprocessedValidation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 1673558180603139, this, [preprocessedInput, preprocessedValidation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToValidateOnEventHandler(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 3028171383159720, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fittedToValidateOnEventHandler(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 3028171383159720, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, withPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws
    * @availability iOS 17.0+
    */
-  updateWithPreprocessedEventHandler(transformer: $SDK106, preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_c1f28409f8601238", 1139885738128951, this, [transformer, preprocessed, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  updateWithPreprocessedEventHandler(transformer: $SDK106, preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_e11dfd5beee01da3", 1139885738128951, this, [transformer, preprocessed, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
    * @availability iOS 17.0+
    */
-  updateWithEventHandler(transformer: $SDK106, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_c1f28409f8601238", 1996671523616833, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  updateWithEventHandler(transformer: $SDK106, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_e11dfd5beee01da3", 1996671523616833, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents48PreprocessingUpdatableSupervisedTabularEstimatorV": true };
 }
 
@@ -5961,31 +5961,31 @@ export class PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor = un
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  makeTransformer(): $SDK108 { return callSDK<$SDK108>("CreateMLComponents_c1f28409f8601238", 2797409519269758, this, []); }
+  makeTransformer(): $SDK108 { return callSDK<$SDK108>("CreateMLComponents_e11dfd5beee01da3", 2797409519269758, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2441105226543369, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2441105226543369, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2196796297173689, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2196796297173689, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2278942102116762, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2278942102116762, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1814800143451117, this, [transformer, encoder]); }
+  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1814800143451117, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents49PreprocessingUpdatableSupervisedTemporalEstimatorV": true };
 }
 
@@ -6033,58 +6033,58 @@ export class PreprocessingUpdatableTabularEstimator<Preprocessor = unknown, Esti
    * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 17.0+
    */
-  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 1806923299066537, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 1806923299066537, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var preprocessor: Preprocessor
    * @availability iOS 17.0+
    */
-  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 2562615191840739, this, []); }
-  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 70927741721876, this, [value]); }
+  get preprocessor(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 2562615191840739, this, []); }
+  set preprocessor(value: TreeRegressorModel) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 70927741721876, this, [value]); }
   /**
    * func makeTransformer() -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK106 { return callSDK<$SDK106>("CreateMLComponents_c1f28409f8601238", 4047592207369092, this, []); }
+  makeTransformer(): $SDK106 { return callSDK<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 4047592207369092, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2059698964060801, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2059698964060801, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1407255973356650, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1407255973356650, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3571709922401204, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK106; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK106; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3571709922401204, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2430043963359380, this, [transformer, encoder]); }
+  encode(transformer: $SDK106, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2430043963359380, this, [transformer, encoder]); }
   /**
    * func fitted(toPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToPreprocessedEventHandler(preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 1794273382111434, this, [preprocessed, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fittedToPreprocessedEventHandler(preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 1794273382111434, this, [preprocessed, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 17.0+
    */
-  fittedToEventHandler(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_c1f28409f8601238", 3305288977484823, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fittedToEventHandler(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106> { return callSDKAsync<$SDK106>("CreateMLComponents_e11dfd5beee01da3", 3305288977484823, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, withPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws
    * @availability iOS 17.0+
    */
-  updateWithPreprocessedEventHandler(transformer: $SDK106, preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_c1f28409f8601238", 3503583392333038, this, [transformer, preprocessed, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  updateWithPreprocessedEventHandler(transformer: $SDK106, preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_e11dfd5beee01da3", 3503583392333038, this, [transformer, preprocessed, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
    * @availability iOS 17.0+
    */
-  updateWithEventHandler(transformer: $SDK106, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_c1f28409f8601238", 3429803281045887, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  updateWithEventHandler(transformer: $SDK106, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": $SDK106 } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": $SDK106 } }>("CreateMLComponents_e11dfd5beee01da3", 3429803281045887, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents38PreprocessingUpdatableTabularEstimatorV": true };
 }
 
@@ -6123,31 +6123,31 @@ export class PreprocessingUpdatableTemporalEstimator<Preprocessor = unknown, Est
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  makeTransformer(): $SDK108 { return callSDK<$SDK108>("CreateMLComponents_c1f28409f8601238", 2392986518807495, this, []); }
+  makeTransformer(): $SDK108 { return callSDK<$SDK108>("CreateMLComponents_e11dfd5beee01da3", 2392986518807495, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2433270816500364, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2433270816500364, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 36889842582572, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 36889842582572, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4494043432283361, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK108; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK108; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4494043432283361, this, [decoder]); }
   /**
    * func encode(_ transformer: PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3761209918953704, this, [transformer, encoder]); }
+  encode(transformer: $SDK108, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3761209918953704, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents39PreprocessingUpdatableTemporalEstimatorV": true };
 }
 
@@ -6188,17 +6188,17 @@ export class RandomImageCropper extends SDKHandle {
    * init(targetSize: CGSize)
    * @availability iOS 17.0+
    */
-  static initTargetSize(targetSize: $SDK63): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_c1f28409f8601238", 2595521897627023, undefined, [targetSize]); }
+  static initTargetSize(targetSize: $SDK63): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_e11dfd5beee01da3", 2595521897627023, undefined, [targetSize]); }
   /**
    * init(targetWidth: Double, targetHeight: Double)
    * @availability iOS 17.0+
    */
-  static initTargetWidthTargetHeight(targetWidth: number, targetHeight: number): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_c1f28409f8601238", 3213799444292478, undefined, [targetWidth, targetHeight]); }
+  static initTargetWidthTargetHeight(targetWidth: number, targetHeight: number): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_e11dfd5beee01da3", 3213799444292478, undefined, [targetWidth, targetHeight]); }
   /**
    * init(scale: ClosedRange<Double>, aspectRatio: Double? = nil)
    * @availability iOS 17.0+
    */
-  static initScaleAspectRatio(scale: SDKHandle, aspectRatio?: (number) | null): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_c1f28409f8601238", 4235047260675436, undefined, [scale, aspectRatio]); }
+  static initScaleAspectRatio(scale: SDKHandle, aspectRatio?: (number) | null): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_e11dfd5beee01da3", 4235047260675436, undefined, [scale, aspectRatio]); }
   declare readonly $type: { "s:18CreateMLComponents18RandomImageCropperV": true };
 }
 
@@ -6223,18 +6223,18 @@ export class RandomImageNoiseGenerator extends SDKHandle {
    * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
    * @availability iOS 17.0+
    */
-  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_c1f28409f8601238", 719205470958891, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage { return callSDK<_CoreImage_CIImage>("CreateMLComponents_e11dfd5beee01da3", 719205470958891, this, [image, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(intensity: Double)
    * @availability iOS 17.0+
    */
-  static init(intensity: number): RandomImageNoiseGenerator { return callSDK<RandomImageNoiseGenerator>("CreateMLComponents_c1f28409f8601238", 1599575529794039, undefined, [intensity]); }
+  static init(intensity: number): RandomImageNoiseGenerator { return callSDK<RandomImageNoiseGenerator>("CreateMLComponents_e11dfd5beee01da3", 1599575529794039, undefined, [intensity]); }
   /**
    * var intensity: Double
    * @availability iOS 17.0+
    */
-  get intensity(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2851533704844809, this, []); }
-  set intensity(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1105794798753071, this, [value]); }
+  get intensity(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2851533704844809, this, []); }
+  set intensity(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1105794798753071, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents25RandomImageNoiseGeneratorV": true };
 }
 
@@ -6283,18 +6283,18 @@ export class Reshaper<Scalar = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3455372652011139, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3455372652011139, this, []); }
   /**
    * var shape: [Int]
    * @availability iOS 16.0+
    */
-  get shape(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_c1f28409f8601238", 1734428080024196, this, []); }
-  set shape(value: Array<number>) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1117412976729431, this, [value]); }
+  get shape(): Array<number> { return callSDK<Array<number>>("CreateMLComponents_e11dfd5beee01da3", 1734428080024196, this, []); }
+  set shape(value: Array<number>) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1117412976729431, this, [value]); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) throws -> MLShapedArray<Scalar>
    * @availability iOS 16.0+
    */
-  applied(input: _CoreML_MLShapedArray<SDKHandle>, eventHandler?: $SDK9): _CoreML_MLShapedArray<SDKHandle> { return callSDK<_CoreML_MLShapedArray<SDKHandle>>("CreateMLComponents_c1f28409f8601238", 4003789630828693, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _CoreML_MLShapedArray<SDKHandle>, eventHandler?: $SDK9): _CoreML_MLShapedArray<SDKHandle> { return callSDK<_CoreML_MLShapedArray<SDKHandle>>("CreateMLComponents_e11dfd5beee01da3", 4003789630828693, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents8ReshaperV": true };
 }
 
@@ -6319,18 +6319,18 @@ export class RobustScaler<Element = unknown> extends SDKHandle {
    * init(quantileRange: ClosedRange<Element> = 0.25...0.75)
    * @availability iOS 16.0+
    */
-  static init(quantileRange?: SDKHandle): RobustScaler<number> { return callSDK<RobustScaler<number>>("CreateMLComponents_c1f28409f8601238", 3015579810093373, undefined, [quantileRange]); }
+  static init(quantileRange?: SDKHandle): RobustScaler<number> { return callSDK<RobustScaler<number>>("CreateMLComponents_e11dfd5beee01da3", 3015579810093373, undefined, [quantileRange]); }
   /**
    * var quantileRange: ClosedRange<Element>
    * @availability iOS 16.0+
    */
-  get quantileRange(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 449169367743813, this, []); }
-  set quantileRange(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3290166330900976, this, [value]); }
+  get quantileRange(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 449169367743813, this, []); }
+  set quantileRange(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3290166330900976, this, [value]); }
   /**
    * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> RobustScaler<Element>.Transformer where Element == S.Element, S : Sequence
    * @availability iOS 16.0+
    */
-  fitted(input: Array<number>, eventHandler?: $SDK9): RobustScaler_Transformer<number> { return callSDK<RobustScaler_Transformer<number>>("CreateMLComponents_c1f28409f8601238", 1216459069406215, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: Array<number>, eventHandler?: $SDK9): RobustScaler_Transformer<number> { return callSDK<RobustScaler_Transformer<number>>("CreateMLComponents_e11dfd5beee01da3", 1216459069406215, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12RobustScalerV": true };
 }
 
@@ -6343,29 +6343,29 @@ export class RobustScaler_Transformer<Element = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 3464732216846166, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 3464732216846166, this, []); }
   /**
    * var interQuartileRange: Element
    * @availability iOS 16.0+
    */
-  get interQuartileRange(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2727679632158650, this, []); }
-  set interQuartileRange(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2169463394577973, this, [value]); }
+  get interQuartileRange(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2727679632158650, this, []); }
+  set interQuartileRange(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2169463394577973, this, [value]); }
   /**
    * init(median: Element, interQuartileRange: Element)
    * @availability iOS 16.0+
    */
-  static init(median: number, interQuartileRange: number): RobustScaler_Transformer<number> { return callSDK<RobustScaler_Transformer<number>>("CreateMLComponents_c1f28409f8601238", 1800546520385853, undefined, [median, interQuartileRange]); }
+  static init(median: number, interQuartileRange: number): RobustScaler_Transformer<number> { return callSDK<RobustScaler_Transformer<number>>("CreateMLComponents_e11dfd5beee01da3", 1800546520385853, undefined, [median, interQuartileRange]); }
   /**
    * var median: Element
    * @availability iOS 16.0+
    */
-  get median(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3385366239663738, this, []); }
-  set median(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 278340324953182, this, [value]); }
+  get median(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3385366239663738, this, []); }
+  set median(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 278340324953182, this, [value]); }
   /**
    * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2302672251460149, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2302672251460149, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents12RobustScalerV11TransformerV": true };
 }
 
@@ -6390,12 +6390,12 @@ export class SerializationError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 98511869912128, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 98511869912128, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 4409586623523503, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 4409586623523503, this, []); }
   declare readonly $type: { "s:18CreateMLComponents18SerializationErrorO": true };
 }
 
@@ -6428,57 +6428,57 @@ export class SlidingWindows<Scalar = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 18.0+
    */
-  get startIndex(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 822180116248689, this, []); }
+  get startIndex(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 822180116248689, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 18.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1963897559685661, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1963897559685661, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 18.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3185690305661166, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3185690305661166, this, [i]); }
   /**
    * func index(_ i: Int, offsetBy distance: Int) -> Int
    * @availability iOS 18.0+
    */
-  indexOffsetBy(i: number, distance: number): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3419531425238678, this, [i, distance]); }
+  indexOffsetBy(i: number, distance: number): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3419531425238678, this, [i, distance]); }
   /**
    * let input: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get input(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 522424722504715, this, []); }
+  get input(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 522424722504715, this, []); }
   /**
    * init(input: MLShapedArray<Scalar>, length: Int, stride: Int = 1) throws
    * @availability iOS 18.0+
    */
-  static init(input: $SDK0, length: number, stride?: number): SlidingWindows<number> { return callSDK<SlidingWindows<number>>("CreateMLComponents_c1f28409f8601238", 1638193037010619, undefined, [input, length, stride]); }
+  static init(input: $SDK0, length: number, stride?: number): SlidingWindows<number> { return callSDK<SlidingWindows<number>>("CreateMLComponents_e11dfd5beee01da3", 1638193037010619, undefined, [input, length, stride]); }
   /**
    * let length: Int
    * @availability iOS 18.0+
    */
-  get length(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1565151989105580, this, []); }
+  get length(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1565151989105580, this, []); }
   /**
    * let stride: Int
    * @availability iOS 18.0+
    */
-  get stride(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 668423632190497, this, []); }
+  get stride(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 668423632190497, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 18.0+
    */
-  get endIndex(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3891063893600846, this, []); }
+  get endIndex(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3891063893600846, this, []); }
   /**
    * subscript(position: Int) -> MLShapedArray<Scalar> { get }
    * @availability iOS 18.0+
    */
-  subscript(position: number): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 1318957594281976, this, [position]); }
+  subscript(position: number): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1318957594281976, this, [position]); }
   /**
    * subscript(bounds: Range<Int>) -> Slice<SlidingWindows<Scalar>> { get }
    * @availability iOS 18.0+
    */
-  subscript48200(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 4031470763306132, this, [bounds]); }
+  subscript48200(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 4031470763306132, this, [bounds]); }
   declare readonly $type: { "s:18CreateMLComponents14SlidingWindowsV": true };
 }
 
@@ -6521,17 +6521,17 @@ export class SlidingWindowTransformer<Input = unknown> extends SDKHandle {
    * let length: Int
    * @availability iOS 16.0+
    */
-  get length(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3939091050841893, this, []); }
+  get length(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3939091050841893, this, []); }
   /**
    * init(stride: Int, length: Int)
    * @availability iOS 16.0+
    */
-  static init(stride: number, length: number): SlidingWindowTransformer<number> { return callSDK<SlidingWindowTransformer<number>>("CreateMLComponents_c1f28409f8601238", 2931560447998147, undefined, [stride, length]); }
+  static init(stride: number, length: number): SlidingWindowTransformer<number> { return callSDK<SlidingWindowTransformer<number>>("CreateMLComponents_e11dfd5beee01da3", 2931560447998147, undefined, [stride, length]); }
   /**
    * let stride: Int
    * @availability iOS 16.0+
    */
-  get stride(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 631129218814687, this, []); }
+  get stride(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 631129218814687, this, []); }
   declare readonly $type: { "s:18CreateMLComponents24SlidingWindowTransformerV": true };
 }
 
@@ -6562,12 +6562,12 @@ export class SlidingWindowTransformer_WindowSequence<Input = unknown> extends SD
    * func makeAsyncIterator() -> SlidingWindowTransformer<Input>.WindowSequence.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): SlidingWindowTransformer_WindowSequence_Iterator<number> { return callSDK<SlidingWindowTransformer_WindowSequence_Iterator<number>>("CreateMLComponents_c1f28409f8601238", 680238698155061, this, []); }
+  makeAsyncIterator(): SlidingWindowTransformer_WindowSequence_Iterator<number> { return callSDK<SlidingWindowTransformer_WindowSequence_Iterator<number>>("CreateMLComponents_e11dfd5beee01da3", 680238698155061, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 4437401473286576, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 4437401473286576, this, []); }
   declare readonly $type: { "s:18CreateMLComponents24SlidingWindowTransformerV0D8SequenceV": true };
   declare readonly $element: SlidingWindowTransformer_WindowSequence_Element<unknown>;
 }
@@ -6599,7 +6599,7 @@ export class SlidingWindowTransformer_WindowSequence_Iterator<Input = unknown> e
    * mutating func next() async throws -> TemporalFeature<SlidingWindowTransformer<Input>.Output>?
    * @availability iOS 16.0+
    */
-  next(): Promise<(TemporalFeature<Array<number>>) | null> { return callSDKAsync<(TemporalFeature<Array<number>>) | null>("CreateMLComponents_c1f28409f8601238", 3630223819715600, this, []); }
+  next(): Promise<(TemporalFeature<Array<number>>) | null> { return callSDKAsync<(TemporalFeature<Array<number>>) | null>("CreateMLComponents_e11dfd5beee01da3", 3630223819715600, this, []); }
   declare readonly $type: { "s:18CreateMLComponents24SlidingWindowTransformerV0D8SequenceV8IteratorV": true };
 }
 
@@ -6618,27 +6618,27 @@ export class StandardScaler<Element = unknown> extends SDKHandle {
    * func makeTransformer() -> StandardScaler<Element>.Transformer
    * @availability iOS 17.0+
    */
-  makeTransformer(): $SDK119 { return callSDK<$SDK119>("CreateMLComponents_c1f28409f8601238", 545921047087208, this, []); }
+  makeTransformer(): $SDK119 { return callSDK<$SDK119>("CreateMLComponents_e11dfd5beee01da3", 545921047087208, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> StandardScaler<Element>.Transformer
    * @availability iOS 17.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK119; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK119; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1250010586352261, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK119; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK119; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1250010586352261, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: StandardScaler<Element>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 17.0+
    */
-  encodeWithOptimizer(transformer: $SDK119, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4228220907834271, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK119, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4228220907834271, this, [transformer, encoder]); }
   /**
    * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> StandardScaler<Element>.Transformer where Element == S.Element, S : Sequence
    * @availability iOS 16.0+
    */
-  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK119 { return callSDK<$SDK119>("CreateMLComponents_c1f28409f8601238", 367289032689743, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: Array<number>, eventHandler?: $SDK9): $SDK119 { return callSDK<$SDK119>("CreateMLComponents_e11dfd5beee01da3", 367289032689743, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): StandardScaler<number> { return callSDK<StandardScaler<number>>("CreateMLComponents_c1f28409f8601238", 3468355413845769, undefined, []); }
+  static init(): StandardScaler<number> { return callSDK<StandardScaler<number>>("CreateMLComponents_e11dfd5beee01da3", 3468355413845769, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents14StandardScalerV": true };
 }
 
@@ -6651,29 +6651,29 @@ export class StandardScaler_Transformer<Element = unknown> extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2858767925987168, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2858767925987168, this, []); }
   /**
    * var standardDeviation: Element
    * @availability iOS 16.0+
    */
-  get standardDeviation(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2718845470167004, this, []); }
-  set standardDeviation(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4362946392030151, this, [value]); }
+  get standardDeviation(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2718845470167004, this, []); }
+  set standardDeviation(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4362946392030151, this, [value]); }
   /**
    * init(mean: Element, standardDeviation: Element)
    * @availability iOS 16.0+
    */
-  static init(mean: number, standardDeviation: number): $SDK119 { return callSDK<$SDK119>("CreateMLComponents_c1f28409f8601238", 1841273037803030, undefined, [mean, standardDeviation]); }
+  static init(mean: number, standardDeviation: number): $SDK119 { return callSDK<$SDK119>("CreateMLComponents_e11dfd5beee01da3", 1841273037803030, undefined, [mean, standardDeviation]); }
   /**
    * var mean: Element
    * @availability iOS 16.0+
    */
-  get mean(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3521075191611712, this, []); }
-  set mean(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1591485049225932, this, [value]); }
+  get mean(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3521075191611712, this, []); }
+  set mean(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1591485049225932, this, [value]); }
   /**
    * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
    * @availability iOS 16.0+
    */
-  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 694906147504769, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: number, eventHandler?: $SDK9): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 694906147504769, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents14StandardScalerV11TransformerV": true };
 }
 
@@ -6727,13 +6727,13 @@ export class SupervisedEstimatorToTemporalAdaptor<Base = unknown> extends SDKHan
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 272108031895394, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 272108031895394, this, [decoder]); }
   /**
    * func encode(_ transformer: SupervisedEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3148860859395064, this, [transformer, encoder]); }
+  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3148860859395064, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents36SupervisedEstimatorToTemporalAdaptorV": true };
 }
 
@@ -6850,8 +6850,8 @@ export class TabularEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation
    * var annotationColumnID: ColumnID<Annotation>
    * @availability iOS 16.0+
    */
-  get annotationColumnID(): $SDK21 { return callSDK<$SDK21>("CreateMLComponents_c1f28409f8601238", 3407813576161023, this, []); }
-  set annotationColumnID(value: $SDK21) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2718532053398375, this, [value]); }
+  get annotationColumnID(): $SDK21 { return callSDK<$SDK21>("CreateMLComponents_e11dfd5beee01da3", 3407813576161023, this, []); }
+  set annotationColumnID(value: $SDK21) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2718532053398375, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents35TabularEstimatorToSupervisedAdaptorV": true };
 }
 
@@ -6870,12 +6870,12 @@ export class TabularPipelineDataError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 247131251470710, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 247131251470710, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 2197037037069769, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 2197037037069769, this, []); }
   declare readonly $type: { "s:18CreateMLComponents24TabularPipelineDataErrorO": true };
 }
 
@@ -6900,27 +6900,27 @@ export class TabularTransformerToEstimatorAdaptor<Transformer = unknown> extends
    * let transformer: Transformer
    * @availability iOS 16.0+
    */
-  get transformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 4005777185171411, this, []); }
+  get transformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 4005777185171411, this, []); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1397266199669553, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1397266199669553, this, [decoder]); }
   /**
    * func encode(_ transformer: Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2273639792571229, this, [transformer, encoder]); }
+  encode(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2273639792571229, this, [transformer, encoder]); }
   /**
    * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> Transformer
    * @availability iOS 16.0+
    */
-  fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<TreeRegressorModel> { return callSDKAsync<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 1853947930663618, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<TreeRegressorModel> { return callSDKAsync<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 1853947930663618, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(_ transformer: Transformer)
    * @availability iOS 16.0+
    */
-  static init(transformer: TreeRegressorModel): TabularTransformerToEstimatorAdaptor<TreeRegressorModel> { return callSDK<TabularTransformerToEstimatorAdaptor<TreeRegressorModel>>("CreateMLComponents_c1f28409f8601238", 3048364520482735, undefined, [transformer]); }
+  static init(transformer: TreeRegressorModel): TabularTransformerToEstimatorAdaptor<TreeRegressorModel> { return callSDK<TabularTransformerToEstimatorAdaptor<TreeRegressorModel>>("CreateMLComponents_e11dfd5beee01da3", 3048364520482735, undefined, [transformer]); }
   declare readonly $type: { "s:18CreateMLComponents36TabularTransformerToEstimatorAdaptorV": true };
 }
 
@@ -6933,47 +6933,47 @@ export class TabularTransformerToUpdatableEstimatorAdaptor<Transformer = unknown
    * func makeTransformer() -> Transformer
    * @availability iOS 16.0+
    */
-  makeTransformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 3902028934281951, this, []); }
+  makeTransformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 3902028934281951, this, []); }
   /**
    * let transformer: Transformer
    * @availability iOS 16.0+
    */
-  get transformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 4424202331610263, this, []); }
+  get transformer(): TreeRegressorModel { return callSDK<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 4424202331610263, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2564419570719317, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2564419570719317, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1474624341556798, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1474624341556798, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4233577218758229, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: TreeRegressorModel; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4233577218758229, this, [decoder]); }
   /**
    * func encode(_ transformer: Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1092418192451700, this, [transformer, encoder]); }
+  encode(transformer: TreeRegressorModel, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1092418192451700, this, [transformer, encoder]); }
   /**
    * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> Transformer
    * @availability iOS 16.0+
    */
-  fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<TreeRegressorModel> { return callSDKAsync<TreeRegressorModel>("CreateMLComponents_c1f28409f8601238", 4133704457528452, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<TreeRegressorModel> { return callSDKAsync<TreeRegressorModel>("CreateMLComponents_e11dfd5beee01da3", 4133704457528452, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
    * @availability iOS 16.0+
    */
-  update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": TreeRegressorModel } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": TreeRegressorModel } }>("CreateMLComponents_c1f28409f8601238", 1224372841395880, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": TreeRegressorModel } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": TreeRegressorModel } }>("CreateMLComponents_e11dfd5beee01da3", 1224372841395880, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(_ transformer: Transformer)
    * @availability iOS 16.0+
    */
-  static init(transformer: TreeRegressorModel): TabularTransformerToUpdatableEstimatorAdaptor<TreeRegressorModel> { return callSDK<TabularTransformerToUpdatableEstimatorAdaptor<TreeRegressorModel>>("CreateMLComponents_c1f28409f8601238", 3308056640817838, undefined, [transformer]); }
+  static init(transformer: TreeRegressorModel): TabularTransformerToUpdatableEstimatorAdaptor<TreeRegressorModel> { return callSDK<TabularTransformerToUpdatableEstimatorAdaptor<TreeRegressorModel>>("CreateMLComponents_e11dfd5beee01da3", 3308056640817838, undefined, [transformer]); }
   declare readonly $type: { "s:18CreateMLComponents45TabularTransformerToUpdatableEstimatorAdaptorV": true };
 }
 
@@ -7040,13 +7040,13 @@ export class TemporalEstimatorToSupervisedAdaptor<Estimator = unknown, Annotatio
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2408603597710047, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2408603597710047, this, [decoder]); }
   /**
    * func encode(_ transformer: TemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2657251554960339, this, [transformer, encoder]); }
+  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2657251554960339, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents36TemporalEstimatorToSupervisedAdaptorV": true };
 }
 
@@ -7066,19 +7066,19 @@ export class TemporalFeature<Feature = unknown> extends SDKHandle {
    * init(id: TemporalSegmentIdentifier, feature: Feature)
    * @availability iOS 16.0+
    */
-  static init(id: TemporalSegmentIdentifier, feature: unknown): $SDK8 { return callSDK<$SDK8>("CreateMLComponents_c1f28409f8601238", 1239317446981778, undefined, [id, feature]); }
+  static init(id: TemporalSegmentIdentifier, feature: unknown): $SDK8 { return callSDK<$SDK8>("CreateMLComponents_e11dfd5beee01da3", 1239317446981778, undefined, [id, feature]); }
   /**
    * var id: TemporalSegmentIdentifier
    * @availability iOS 16.0+
    */
-  get id(): TemporalSegmentIdentifier { return callSDK<TemporalSegmentIdentifier>("CreateMLComponents_c1f28409f8601238", 1911454861174532, this, []); }
-  set id(value: TemporalSegmentIdentifier) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1479925602416804, this, [value]); }
+  get id(): TemporalSegmentIdentifier { return callSDK<TemporalSegmentIdentifier>("CreateMLComponents_e11dfd5beee01da3", 1911454861174532, this, []); }
+  set id(value: TemporalSegmentIdentifier) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1479925602416804, this, [value]); }
   /**
    * var feature: Feature
    * @availability iOS 16.0+
    */
-  get feature(): unknown { return callSDK<unknown>("CreateMLComponents_c1f28409f8601238", 3527000327729491, this, []); }
-  set feature(value: unknown) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3798269943259412, this, [value]); }
+  get feature(): unknown { return callSDK<unknown>("CreateMLComponents_e11dfd5beee01da3", 3527000327729491, this, []); }
+  set feature(value: unknown) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3798269943259412, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents15TemporalFeatureV": true };
 }
 
@@ -7097,19 +7097,19 @@ export class TemporalFileSegment extends SDKHandle {
    * var url: URL
    * @availability iOS 16.0+
    */
-  get url(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 29822454468142, this, []); }
-  set url(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2604082863721373, this, [value]); }
+  get url(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 29822454468142, this, []); }
+  set url(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2604082863721373, this, [value]); }
   /**
    * init(url: URL, range: Range<TimeInterval>)
    * @availability iOS 16.0+
    */
-  static init(url: string, range: SDKHandle): TemporalFileSegment { return callSDK<TemporalFileSegment>("CreateMLComponents_c1f28409f8601238", 2461984977713896, undefined, [url, range]); }
+  static init(url: string, range: SDKHandle): TemporalFileSegment { return callSDK<TemporalFileSegment>("CreateMLComponents_e11dfd5beee01da3", 2461984977713896, undefined, [url, range]); }
   /**
    * var range: Range<TimeInterval>
    * @availability iOS 16.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 2013845365499110, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1051267438366243, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 2013845365499110, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1051267438366243, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents19TemporalFileSegmentV": true };
 }
 
@@ -7122,35 +7122,35 @@ export class TemporalSegmentIdentifier extends SDKHandle {
    * var rangeInSeconds: Range<TimeInterval> { get }
    * @availability iOS 16.0+
    */
-  get rangeInSeconds(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 3855641761477671, this, []); }
+  get rangeInSeconds(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 3855641761477671, this, []); }
   /**
    * var durationInSeconds: TimeInterval { get }
    * @availability iOS 16.0+
    */
-  get durationInSeconds(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3403552612823438, this, []); }
+  get durationInSeconds(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3403552612823438, this, []); }
   /**
    * var range: Range<Int>
    * @availability iOS 16.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 728533800468740, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4143392960249886, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 728533800468740, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4143392960249886, this, [value]); }
   /**
    * init(source: String, range: Range<Int>, timescale: Int)
    * @availability iOS 16.0+
    */
-  static init(source: string, range: SDKHandle, timescale: number): TemporalSegmentIdentifier { return callSDK<TemporalSegmentIdentifier>("CreateMLComponents_c1f28409f8601238", 2332461685041197, undefined, [source, range, timescale]); }
+  static init(source: string, range: SDKHandle, timescale: number): TemporalSegmentIdentifier { return callSDK<TemporalSegmentIdentifier>("CreateMLComponents_e11dfd5beee01da3", 2332461685041197, undefined, [source, range, timescale]); }
   /**
    * var source: String
    * @availability iOS 16.0+
    */
-  get source(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1227626781813143, this, []); }
-  set source(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2282331065429025, this, [value]); }
+  get source(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1227626781813143, this, []); }
+  set source(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2282331065429025, this, [value]); }
   /**
    * var timescale: Int
    * @availability iOS 16.0+
    */
-  get timescale(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 900100444159184, this, []); }
-  set timescale(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 362323345660251, this, [value]); }
+  get timescale(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 900100444159184, this, []); }
+  set timescale(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 362323345660251, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents25TemporalSegmentIdentifierV": true };
 }
 
@@ -7201,23 +7201,23 @@ export class TimeSeriesClassifier<Scalar = unknown, Label = unknown> extends SDK
    * var configuration: TimeSeriesClassifierConfiguration
    * @availability iOS 18.0+
    */
-  get configuration(): TimeSeriesClassifierConfiguration { return callSDK<TimeSeriesClassifierConfiguration>("CreateMLComponents_c1f28409f8601238", 1066658897583592, this, []); }
-  set configuration(value: TimeSeriesClassifierConfiguration) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4294070218743680, this, [value]); }
+  get configuration(): TimeSeriesClassifierConfiguration { return callSDK<TimeSeriesClassifierConfiguration>("CreateMLComponents_e11dfd5beee01da3", 1066658897583592, this, []); }
+  set configuration(value: TimeSeriesClassifierConfiguration) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4294070218743680, this, [value]); }
   /**
    * func makeTransformer() -> TimeSeriesClassifier<Scalar, Label>.Model
    * @availability iOS 18.0+
    */
-  makeTransformer(): $SDK123 { return callSDK<$SDK123>("CreateMLComponents_c1f28409f8601238", 2758263779417230, this, []); }
+  makeTransformer(): $SDK123 { return callSDK<$SDK123>("CreateMLComponents_e11dfd5beee01da3", 2758263779417230, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> TimeSeriesClassifier<Scalar, Label>.Transformer
    * @availability iOS 18.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK123; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK123; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3283558258415025, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK123; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK123; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3283558258415025, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: TimeSeriesClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 18.0+
    */
-  encodeWithOptimizer(transformer: $SDK123, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 6541931261727, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK123, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 6541931261727, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents20TimeSeriesClassifierV": true };
 }
 
@@ -7242,23 +7242,23 @@ export class TimeSeriesClassifier_Model<Scalar = unknown, Label = unknown> exten
    * func export(to url: URL, metadata: ModelMetadata) throws
    * @availability iOS 18.0+
    */
-  exportToMetadata(url: string, metadata: ModelMetadata): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 2724422902068117, this, [url, metadata]); }
+  exportToMetadata(url: string, metadata: ModelMetadata): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2724422902068117, this, [url, metadata]); }
   /**
    * func export(to url: URL) throws
    * @availability iOS 18.0+
    */
-  exportTo(url: string): void { return callSDK<void>("CreateMLComponents_c1f28409f8601238", 3818990099488253, this, [url]); }
+  exportTo(url: string): void { return callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3818990099488253, this, [url]); }
   /**
    * var stride: Int
    * @availability iOS 18.0+
    */
-  get stride(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3149473070429739, this, []); }
-  set stride(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3086421755838976, this, [value]); }
+  get stride(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3149473070429739, this, []); }
+  set stride(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3086421755838976, this, [value]); }
   /**
    * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<Label>
    * @availability iOS 18.0+
    */
-  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53> { return callSDKAsync<$SDK53>("CreateMLComponents_c1f28409f8601238", 8255760472390, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53> { return callSDKAsync<$SDK53>("CreateMLComponents_e11dfd5beee01da3", 8255760472390, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents20TimeSeriesClassifierV5ModelV": true };
 }
 
@@ -7295,55 +7295,55 @@ export class TimeSeriesClassifierConfiguration extends SDKHandle {
    * var randomSeed: Int?
    * @availability iOS 18.0+
    */
-  get randomSeed(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 3255271331771391, this, []); }
-  set randomSeed(value: (number) | null) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1577140709556450, this, [value]); }
+  get randomSeed(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 3255271331771391, this, []); }
+  set randomSeed(value: (number) | null) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1577140709556450, this, [value]); }
   /**
    * var learningRate: Float
    * @availability iOS 18.0+
    */
-  get learningRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 239242168500609, this, []); }
-  set learningRate(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2949731934145339, this, [value]); }
+  get learningRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 239242168500609, this, []); }
+  set learningRate(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2949731934145339, this, [value]); }
   /**
    * var maximumIterationCount: Int
    * @availability iOS 18.0+
    */
-  get maximumIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 320412260480257, this, []); }
-  set maximumIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2012396805155011, this, [value]); }
+  get maximumIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 320412260480257, this, []); }
+  set maximumIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2012396805155011, this, [value]); }
   /**
    * var maximumSequenceLength: Int
    * @availability iOS 18.0+
    */
-  get maximumSequenceLength(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4083721732189119, this, []); }
-  set maximumSequenceLength(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1831964786772021, this, [value]); }
+  get maximumSequenceLength(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4083721732189119, this, []); }
+  set maximumSequenceLength(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1831964786772021, this, [value]); }
   /**
    * var minimumSequenceLength: Int
    * @availability iOS 18.0+
    */
-  get minimumSequenceLength(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1034802251321591, this, []); }
-  set minimumSequenceLength(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3683406158516641, this, [value]); }
+  get minimumSequenceLength(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1034802251321591, this, []); }
+  set minimumSequenceLength(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3683406158516641, this, [value]); }
   /**
    * var earlyStoppingTolerance: Float
    * @availability iOS 18.0+
    */
-  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1848118004360008, this, []); }
-  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 707774418197135, this, [value]); }
+  get earlyStoppingTolerance(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1848118004360008, this, []); }
+  set earlyStoppingTolerance(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 707774418197135, this, [value]); }
   /**
    * var earlyStoppingIterationCount: Int
    * @availability iOS 18.0+
    */
-  get earlyStoppingIterationCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2430960325010878, this, []); }
-  set earlyStoppingIterationCount(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1072655936483204, this, [value]); }
+  get earlyStoppingIterationCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2430960325010878, this, []); }
+  set earlyStoppingIterationCount(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1072655936483204, this, [value]); }
   /**
    * var batchSize: Int
    * @availability iOS 18.0+
    */
-  get batchSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 261677159305289, this, []); }
-  set batchSize(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1190768932158475, this, [value]); }
+  get batchSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 261677159305289, this, []); }
+  set batchSize(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1190768932158475, this, [value]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): TimeSeriesClassifierConfiguration { return callSDK<TimeSeriesClassifierConfiguration>("CreateMLComponents_c1f28409f8601238", 2373542291643323, undefined, []); }
+  static init(): TimeSeriesClassifierConfiguration { return callSDK<TimeSeriesClassifierConfiguration>("CreateMLComponents_e11dfd5beee01da3", 2373542291643323, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents33TimeSeriesClassifierConfigurationV": true };
 }
 
@@ -7356,49 +7356,49 @@ export class TimeSeriesForecasterAnnotatedWindows<Scalar = unknown> extends SDKH
    * let annotations: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get annotations(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 2357095761121435, this, []); }
+  get annotations(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 2357095761121435, this, []); }
   /**
    * func makeIterator() -> TimeSeriesForecasterAnnotatedWindows<Scalar>.Iterator
    * @availability iOS 18.0+
    */
-  makeIterator(): TimeSeriesForecasterAnnotatedWindows_Iterator<number> { return callSDK<TimeSeriesForecasterAnnotatedWindows_Iterator<number>>("CreateMLComponents_c1f28409f8601238", 4416532115693681, this, []); }
+  makeIterator(): TimeSeriesForecasterAnnotatedWindows_Iterator<number> { return callSDK<TimeSeriesForecasterAnnotatedWindows_Iterator<number>>("CreateMLComponents_e11dfd5beee01da3", 4416532115693681, this, []); }
   /**
    * let inputWindowSize: Int
    * @availability iOS 18.0+
    */
-  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4305034359901579, this, []); }
+  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4305034359901579, this, []); }
   /**
    * var shufflesElements: Bool
    * @availability iOS 18.0+
    */
-  get shufflesElements(): boolean { return callSDK<boolean>("CreateMLComponents_c1f28409f8601238", 3587325825669556, this, []); }
-  set shufflesElements(value: boolean) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4207211399020837, this, [value]); }
+  get shufflesElements(): boolean { return callSDK<boolean>("CreateMLComponents_e11dfd5beee01da3", 3587325825669556, this, []); }
+  set shufflesElements(value: boolean) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4207211399020837, this, [value]); }
   /**
    * let forecastWindowSize: Int
    * @availability iOS 18.0+
    */
-  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4003579665626550, this, []); }
+  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4003579665626550, this, []); }
   /**
    * var underestimatedCount: Int { get }
    * @availability iOS 18.0+
    */
-  get underestimatedCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3165624508008146, this, []); }
+  get underestimatedCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3165624508008146, this, []); }
   /**
    * var stride: Int
    * @availability iOS 18.0+
    */
-  get stride(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 279189216216986, this, []); }
-  set stride(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3288757390530322, this, [value]); }
+  get stride(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 279189216216986, this, []); }
+  set stride(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3288757390530322, this, [value]); }
   /**
    * init(features: MLShapedArray<Scalar>, annotations: MLShapedArray<Scalar>, inputWindowSize: Int, forecastWindowSize: Int, stride: Int = 1, shufflesElements: Bool = true) throws
    * @availability iOS 18.0+
    */
-  static init(features: $SDK0, annotations: $SDK0, inputWindowSize: number, forecastWindowSize: number, stride?: number, shufflesElements?: boolean): TimeSeriesForecasterAnnotatedWindows<number> { return callSDK<TimeSeriesForecasterAnnotatedWindows<number>>("CreateMLComponents_c1f28409f8601238", 3244210083339203, undefined, [features, annotations, inputWindowSize, forecastWindowSize, stride, shufflesElements]); }
+  static init(features: $SDK0, annotations: $SDK0, inputWindowSize: number, forecastWindowSize: number, stride?: number, shufflesElements?: boolean): TimeSeriesForecasterAnnotatedWindows<number> { return callSDK<TimeSeriesForecasterAnnotatedWindows<number>>("CreateMLComponents_e11dfd5beee01da3", 3244210083339203, undefined, [features, annotations, inputWindowSize, forecastWindowSize, stride, shufflesElements]); }
   /**
    * let features: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get features(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 3054390977523198, this, []); }
+  get features(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 3054390977523198, this, []); }
   declare readonly $type: { "s:18CreateMLComponents36TimeSeriesForecasterAnnotatedWindowsV": true };
 }
 
@@ -7417,7 +7417,7 @@ export class TimeSeriesForecasterAnnotatedWindows_Iterator<Scalar = unknown> ext
    * mutating func next() -> AnnotatedFeature<MLShapedArray<Scalar>, MLShapedArray<Scalar>>?
    * @availability iOS 18.0+
    */
-  next(): (AnnotatedFeature<_CoreML_MLShapedArray<number>, _CoreML_MLShapedArray<number>>) | null { return callSDK<(AnnotatedFeature<_CoreML_MLShapedArray<number>, _CoreML_MLShapedArray<number>>) | null>("CreateMLComponents_c1f28409f8601238", 2051521537492190, this, []); }
+  next(): (AnnotatedFeature<_CoreML_MLShapedArray<number>, _CoreML_MLShapedArray<number>>) | null { return callSDK<(AnnotatedFeature<_CoreML_MLShapedArray<number>, _CoreML_MLShapedArray<number>>) | null>("CreateMLComponents_e11dfd5beee01da3", 2051521537492190, this, []); }
   declare readonly $type: { "s:18CreateMLComponents36TimeSeriesForecasterAnnotatedWindowsV8IteratorV": true };
 }
 
@@ -7436,48 +7436,48 @@ export class TimeSeriesForecasterBatches<Scalar = unknown> extends SDKHandle {
    * var shufflesBatches: Bool
    * @availability iOS 18.0+
    */
-  get shufflesBatches(): boolean { return callSDK<boolean>("CreateMLComponents_c1f28409f8601238", 517161965669736, this, []); }
-  set shufflesBatches(value: boolean) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 823093529834765, this, [value]); }
+  get shufflesBatches(): boolean { return callSDK<boolean>("CreateMLComponents_e11dfd5beee01da3", 517161965669736, this, []); }
+  set shufflesBatches(value: boolean) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 823093529834765, this, [value]); }
   /**
    * let annotations: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get annotations(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 1155937044123938, this, []); }
+  get annotations(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 1155937044123938, this, []); }
   /**
    * func makeIterator() -> TimeSeriesForecasterBatches<Scalar>.Iterator
    * @availability iOS 18.0+
    */
-  makeIterator(): TimeSeriesForecasterBatches_Iterator<number> { return callSDK<TimeSeriesForecasterBatches_Iterator<number>>("CreateMLComponents_c1f28409f8601238", 252317323365916, this, []); }
+  makeIterator(): TimeSeriesForecasterBatches_Iterator<number> { return callSDK<TimeSeriesForecasterBatches_Iterator<number>>("CreateMLComponents_e11dfd5beee01da3", 252317323365916, this, []); }
   /**
    * let inputWindowSize: Int
    * @availability iOS 18.0+
    */
-  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3588655086348706, this, []); }
+  get inputWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3588655086348706, this, []); }
   /**
    * let forecastWindowSize: Int
    * @availability iOS 18.0+
    */
-  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 972606763481051, this, []); }
+  get forecastWindowSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 972606763481051, this, []); }
   /**
    * var underestimatedCount: Int { get }
    * @availability iOS 18.0+
    */
-  get underestimatedCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3034353372924461, this, []); }
+  get underestimatedCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3034353372924461, this, []); }
   /**
    * init(features: MLShapedArray<Scalar>, annotations: MLShapedArray<Scalar>, batchSize: Int, inputWindowSize: Int, forecastWindowSize: Int, shufflesBatches: Bool = true) throws
    * @availability iOS 18.0+
    */
-  static init(features: $SDK0, annotations: $SDK0, batchSize: number, inputWindowSize: number, forecastWindowSize: number, shufflesBatches?: boolean): TimeSeriesForecasterBatches<number> { return callSDK<TimeSeriesForecasterBatches<number>>("CreateMLComponents_c1f28409f8601238", 1459403729321101, undefined, [features, annotations, batchSize, inputWindowSize, forecastWindowSize, shufflesBatches]); }
+  static init(features: $SDK0, annotations: $SDK0, batchSize: number, inputWindowSize: number, forecastWindowSize: number, shufflesBatches?: boolean): TimeSeriesForecasterBatches<number> { return callSDK<TimeSeriesForecasterBatches<number>>("CreateMLComponents_e11dfd5beee01da3", 1459403729321101, undefined, [features, annotations, batchSize, inputWindowSize, forecastWindowSize, shufflesBatches]); }
   /**
    * let features: MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  get features(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_c1f28409f8601238", 2901755963000048, this, []); }
+  get features(): $SDK0 { return callSDK<$SDK0>("CreateMLComponents_e11dfd5beee01da3", 2901755963000048, this, []); }
   /**
    * let batchSize: Int
    * @availability iOS 18.0+
    */
-  get batchSize(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 4446701769252971, this, []); }
+  get batchSize(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 4446701769252971, this, []); }
   declare readonly $type: { "s:18CreateMLComponents27TimeSeriesForecasterBatchesV": true };
 }
 
@@ -7496,7 +7496,7 @@ export class TimeSeriesForecasterBatches_Iterator<Scalar = unknown> extends SDKH
    * mutating func next() -> AnnotatedBatch<Scalar>?
    * @availability iOS 18.0+
    */
-  next(): $SDK89 { return callSDK<$SDK89>("CreateMLComponents_c1f28409f8601238", 177488095646629, this, []); }
+  next(): $SDK89 { return callSDK<$SDK89>("CreateMLComponents_e11dfd5beee01da3", 177488095646629, this, []); }
   declare readonly $type: { "s:18CreateMLComponents27TimeSeriesForecasterBatchesV8IteratorV": true };
 }
 
@@ -7573,33 +7573,33 @@ export class TreeClassifierModel<Label = unknown> extends SDKHandle {
    * var classCount: Int { get }
    * @availability iOS 17.0+
    */
-  get classCount(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 142225212426099, this, []); }
+  get classCount(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 142225212426099, this, []); }
   /**
    * func buildDataFrame(_ distributions: [ClassificationDistribution<Label>]) -> DataFrame
    * @availability iOS 16.0+
    */
-  buildDataFrame(distributions: Array<ClassificationDistribution<number>>): _TabularData_DataFrame { return callSDK<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 1594025506203692, this, [distributions]); }
+  buildDataFrame(distributions: Array<ClassificationDistribution<number>>): _TabularData_DataFrame { return callSDK<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 1594025506203692, this, [distributions]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1427044162002528, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1427044162002528, this, []); }
   /**
    * var featureColumnNames: [String] { get }
    * @availability iOS 17.0+
    */
-  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_c1f28409f8601238", 2416849171755550, this, []); }
+  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_e11dfd5beee01da3", 2416849171755550, this, []); }
   /**
    * var predictionColumnName: String
    * @availability iOS 17.0+
    */
-  get predictionColumnName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1481446233569571, this, []); }
-  set predictionColumnName(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1424605613382558, this, [value]); }
+  get predictionColumnName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1481446233569571, this, []); }
+  set predictionColumnName(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1424605613382558, this, [value]); }
   /**
    * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 16.0+
    */
-  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 3978757740592613, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 3978757740592613, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents19TreeClassifierModelV": true };
 }
 
@@ -7624,23 +7624,23 @@ export class TreeRegressorModel extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 1368612001145786, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 1368612001145786, this, []); }
   /**
    * var featureColumnNames: [String] { get }
    * @availability iOS 17.0+
    */
-  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_c1f28409f8601238", 2410065849092199, this, []); }
+  get featureColumnNames(): Array<string> { return callSDK<Array<string>>("CreateMLComponents_e11dfd5beee01da3", 2410065849092199, this, []); }
   /**
    * var predictionColumnName: String
    * @availability iOS 17.0+
    */
-  get predictionColumnName(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 4189070972574425, this, []); }
-  set predictionColumnName(value: string) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 4093079676658999, this, [value]); }
+  get predictionColumnName(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 4189070972574425, this, []); }
+  set predictionColumnName(value: string) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 4093079676658999, this, [value]); }
   /**
    * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
    * @availability iOS 16.0+
    */
-  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_c1f28409f8601238", 2476323498508989, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame> { return callSDKAsync<_TabularData_DataFrame>("CreateMLComponents_e11dfd5beee01da3", 2476323498508989, this, [input, eventHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents18TreeRegressorModelV": true };
 }
 
@@ -7665,8 +7665,8 @@ export class UniformRandomFloatingPointParameter<RandomTransformer = unknown, Pa
    * var range: ClosedRange<Parameter>
    * @availability iOS 17.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 2103366476387045, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1196412109326403, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 2103366476387045, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1196412109326403, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents35UniformRandomFloatingPointParameterV": true };
 }
 
@@ -7691,8 +7691,8 @@ export class UniformRandomIntegerParameter<RandomTransformer = unknown, Paramete
    * final var range: Range<Parameter>
    * @availability iOS 17.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_c1f28409f8601238", 3115045141331614, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2664444045507100, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("CreateMLComponents_e11dfd5beee01da3", 3115045141331614, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2664444045507100, this, [value]); }
   declare readonly $type: { "s:18CreateMLComponents29UniformRandomIntegerParameterC": true };
 }
 
@@ -7759,22 +7759,22 @@ export class UpdatableEstimatorToSupervisedAdaptor<Estimator = unknown, Annotati
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2758580924720388, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2758580924720388, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4292437777928705, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4292437777928705, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1947956124622702, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1947956124622702, this, [decoder]); }
   /**
    * func encode(_ transformer: UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 168682588905740, this, [transformer, encoder]); }
+  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 168682588905740, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents37UpdatableEstimatorToSupervisedAdaptorV": true };
 }
 
@@ -7795,31 +7795,31 @@ export class UpdatableEstimatorToTemporalAdaptor<Base = unknown> extends SDKHand
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  makeTransformer(): $SDK48 { return callSDK<$SDK48>("CreateMLComponents_c1f28409f8601238", 3758688550842586, this, []); }
+  makeTransformer(): $SDK48 { return callSDK<$SDK48>("CreateMLComponents_e11dfd5beee01da3", 3758688550842586, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToTemporalAdaptor<Base>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1156957816193127, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1156957816193127, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: UpdatableEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encodeWithOptimizer(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 159575810148859, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 159575810148859, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToTemporalAdaptor<Base>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 42389955618419, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 42389955618419, this, [decoder]); }
   /**
    * func encode(_ transformer: UpdatableEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2131002943508311, this, [transformer, encoder]); }
+  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2131002943508311, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents35UpdatableEstimatorToTemporalAdaptorV": true };
 }
 
@@ -7902,31 +7902,31 @@ export class UpdatableSupervisedEstimatorToTemporalAdaptor<Base = unknown> exten
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  makeTransformer(): $SDK48 { return callSDK<$SDK48>("CreateMLComponents_c1f28409f8601238", 2976695445717341, this, []); }
+  makeTransformer(): $SDK48 { return callSDK<$SDK48>("CreateMLComponents_e11dfd5beee01da3", 2976695445717341, this, []); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1258077253367702, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1258077253367702, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encodeWithOptimizer(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2329835175437096, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2329835175437096, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1703148623761209, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: $SDK48; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: $SDK48; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1703148623761209, this, [decoder]); }
   /**
    * func encode(_ transformer: UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 304817345968029, this, [transformer, encoder]); }
+  encode(transformer: $SDK48, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 304817345968029, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents45UpdatableSupervisedEstimatorToTemporalAdaptorV": true };
 }
 
@@ -8107,38 +8107,38 @@ export class UpdatableTabularEstimatorToSupervisedAdaptor<Estimator = unknown, A
    * var annotationColumnID: ColumnID<Annotation>
    * @availability iOS 16.0+
    */
-  get annotationColumnID(): $SDK40 { return callSDK<$SDK40>("CreateMLComponents_c1f28409f8601238", 137384875838272, this, []); }
-  set annotationColumnID(value: $SDK40) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3514511279007575, this, [value]); }
+  get annotationColumnID(): $SDK40 { return callSDK<$SDK40>("CreateMLComponents_e11dfd5beee01da3", 137384875838272, this, []); }
+  set annotationColumnID(value: $SDK40) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3514511279007575, this, [value]); }
   /**
    * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 4438634029877140, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 4438634029877140, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 3659374456215632, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 3659374456215632, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    */
-  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 453397840287628, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 453397840287628, this, [decoder]); }
   /**
    * func encode(_ transformer: UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    */
-  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1103790833666046, this, [transformer, encoder]); }
+  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1103790833666046, this, [transformer, encoder]); }
   /**
    * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    */
-  fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<unknown> { return callSDKAsync<unknown>("CreateMLComponents_c1f28409f8601238", 3238148331568345, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<unknown> { return callSDKAsync<unknown>("CreateMLComponents_e11dfd5beee01da3", 3238148331568345, this, [input, validation, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func update(_ transformer: inout UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
    * @availability iOS 16.0+
    */
-  update(transformer: unknown, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": unknown } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": unknown } }>("CreateMLComponents_c1f28409f8601238", 1721290234833776, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
+  update(transformer: unknown, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{ $ret: null; $out: { "transformer": unknown } }> { return callSDKAsync<{ $ret: null; $out: { "transformer": unknown } }>("CreateMLComponents_e11dfd5beee01da3", 1721290234833776, this, [transformer, input, eventHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:18CreateMLComponents44UpdatableTabularEstimatorToSupervisedAdaptorV": true };
 }
 
@@ -8209,25 +8209,25 @@ export class UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator = unknown, 
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decodeWithOptimizer(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1680045714652587, this, [decoder]); }
+  decodeWithOptimizer(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1680045714652587, this, [decoder]); }
   /**
    * func encodeWithOptimizer(_ transformer: UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1323389800800366, this, [transformer, encoder]); }
+  encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1323389800800366, this, [transformer, encoder]); }
   /**
    * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 1665164190508550, this, [decoder]); }
+  decode(decoder: SDKHandle): { $ret: unknown; $out: { "decoder": SDKHandle } } { return callSDK<{ $ret: unknown; $out: { "decoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 1665164190508550, this, [decoder]); }
   /**
    * func encode(_ transformer: UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_c1f28409f8601238", 2648488462409897, this, [transformer, encoder]); }
+  encode(transformer: unknown, encoder: SDKHandle): { $ret: null; $out: { "encoder": SDKHandle } } { return callSDK<{ $ret: null; $out: { "encoder": SDKHandle } }>("CreateMLComponents_e11dfd5beee01da3", 2648488462409897, this, [transformer, encoder]); }
   declare readonly $type: { "s:18CreateMLComponents45UpdatableTemporalEstimatorToSupervisedAdaptorV": true };
 }
 
@@ -8247,7 +8247,7 @@ export class UpsampledAugmentationSequence<Base = unknown, RandomTransformer = u
    * let transformer: RandomTransformer
    * @availability iOS 17.0+
    */
-  get transformer(): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_c1f28409f8601238", 3805568670139719, this, []); }
+  get transformer(): RandomImageCropper { return callSDK<RandomImageCropper>("CreateMLComponents_e11dfd5beee01da3", 3805568670139719, this, []); }
   declare readonly $type: { "s:18CreateMLComponents29UpsampledAugmentationSequenceV": true };
   declare readonly $element: UpsampledAugmentationSequence_Element<unknown, unknown, unknown, unknown>;
 }
@@ -8281,27 +8281,27 @@ export class VideoReader extends SDKHandle {
    * static func readCamera(configuration: VideoReader.CameraConfiguration) async throws -> VideoReader.CameraAsyncBuffers
    * @availability iOS 16.0+
    */
-  static readCamera(configuration: VideoReader_CameraConfiguration): Promise<VideoReader_CameraAsyncBuffers> { return callSDKAsync<VideoReader_CameraAsyncBuffers>("CreateMLComponents_c1f28409f8601238", 736235663433628, undefined, [configuration]); }
+  static readCamera(configuration: VideoReader_CameraConfiguration): Promise<VideoReader_CameraAsyncBuffers> { return callSDKAsync<VideoReader_CameraAsyncBuffers>("CreateMLComponents_e11dfd5beee01da3", 736235663433628, undefined, [configuration]); }
   /**
    * static func read(contentsOf url: URL) async throws -> VideoReader.AsyncFrames
    * @availability iOS 16.0+
    */
-  static readContentsOf(url: string): Promise<VideoReader_AsyncFrames> { return callSDKAsync<VideoReader_AsyncFrames>("CreateMLComponents_c1f28409f8601238", 1403597446151986, undefined, [url]); }
+  static readContentsOf(url: string): Promise<VideoReader_AsyncFrames> { return callSDKAsync<VideoReader_AsyncFrames>("CreateMLComponents_e11dfd5beee01da3", 1403597446151986, undefined, [url]); }
   /**
    * static func read<S>(_ files: S) async throws -> [VideoReader.AsyncFrames] where S : Sequence, S.Element == URL
    * @availability iOS 16.0+
    */
-  static read(files: Array<string>): Promise<Array<VideoReader_AsyncFrames>> { return callSDKAsync<Array<VideoReader_AsyncFrames>>("CreateMLComponents_c1f28409f8601238", 3294094287026826, undefined, [files]); }
+  static read(files: Array<string>): Promise<Array<VideoReader_AsyncFrames>> { return callSDKAsync<Array<VideoReader_AsyncFrames>>("CreateMLComponents_e11dfd5beee01da3", 3294094287026826, undefined, [files]); }
   /**
    * func applied(to url: URL, eventHandler: EventHandler?) async throws -> VideoReader.AsyncFrames
    * @availability iOS 16.0+
    */
-  applied(url: string, eventHandler?: $SDK9): Promise<VideoReader_AsyncFrames> { return callSDKAsync<VideoReader_AsyncFrames>("CreateMLComponents_c1f28409f8601238", 4404540879390801, this, [url, eventHandler], [null,{"callback":{"out":[]}}]); }
+  applied(url: string, eventHandler?: $SDK9): Promise<VideoReader_AsyncFrames> { return callSDKAsync<VideoReader_AsyncFrames>("CreateMLComponents_e11dfd5beee01da3", 4404540879390801, this, [url, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): VideoReader { return callSDK<VideoReader>("CreateMLComponents_c1f28409f8601238", 159942535335343, undefined, []); }
+  static init(): VideoReader { return callSDK<VideoReader>("CreateMLComponents_e11dfd5beee01da3", 159942535335343, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents11VideoReaderV": true };
 }
 
@@ -8314,37 +8314,37 @@ export class VideoReader_AsyncFrames extends SDKHandle {
    * func makeAsyncIterator() -> VideoReader.AsyncFrames.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): VideoReader_AsyncFrames_Iterator { return callSDK<VideoReader_AsyncFrames_Iterator>("CreateMLComponents_c1f28409f8601238", 1494820990852371, this, []); }
+  makeAsyncIterator(): VideoReader_AsyncFrames_Iterator { return callSDK<VideoReader_AsyncFrames_Iterator>("CreateMLComponents_e11dfd5beee01da3", 1494820990852371, this, []); }
   /**
    * let videoDuration: CMTime
    * @availability iOS 16.0+
    */
-  get videoDuration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("CreateMLComponents_c1f28409f8601238", 4108131158333397, this, []); }
+  get videoDuration(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("CreateMLComponents_e11dfd5beee01da3", 4108131158333397, this, []); }
   /**
    * let nominalFrameRate: Float
    * @availability iOS 16.0+
    */
-  get nominalFrameRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3098762077404939, this, []); }
+  get nominalFrameRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3098762077404939, this, []); }
   /**
    * let url: URL
    * @availability iOS 16.0+
    */
-  get url(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 2445180782763965, this, []); }
+  get url(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 2445180782763965, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 2552989369889356, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 2552989369889356, this, []); }
   /**
    * let frameSize: CGSize
    * @availability iOS 16.0+
    */
-  get frameSize(): $SDK63 { return callSDK<$SDK63>("CreateMLComponents_c1f28409f8601238", 2092958098556503, this, []); }
+  get frameSize(): $SDK63 { return callSDK<$SDK63>("CreateMLComponents_e11dfd5beee01da3", 2092958098556503, this, []); }
   /**
    * let timescale: CMTimeScale
    * @availability iOS 16.0+
    */
-  get timescale(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 65996745258699, this, []); }
+  get timescale(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 65996745258699, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11VideoReaderV11AsyncFramesV": true };
   declare readonly $element: $SDK135;
 }
@@ -8376,7 +8376,7 @@ export class VideoReader_AsyncFrames_Iterator extends SDKHandle {
    * mutating func next() async throws -> TemporalFeature<CIImage>?
    * @availability iOS 16.0+
    */
-  next(): Promise<$SDK136> { return callSDKAsync<$SDK136>("CreateMLComponents_c1f28409f8601238", 3621796120764808, this, []); }
+  next(): Promise<$SDK136> { return callSDKAsync<$SDK136>("CreateMLComponents_e11dfd5beee01da3", 3621796120764808, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11VideoReaderV11AsyncFramesV8IteratorV": true };
 }
 
@@ -8395,17 +8395,17 @@ export class VideoReader_CameraAsyncBuffers extends SDKHandle {
    * consuming func makeAsyncIterator() -> VideoReader.CameraAsyncBuffers.Iterator
    * @availability iOS 16.0+
    */
-  makeAsyncIterator(): VideoReader_CameraAsyncBuffers_Iterator { return callSDK<VideoReader_CameraAsyncBuffers_Iterator>("CreateMLComponents_c1f28409f8601238", 125491607845722, this, []); }
+  makeAsyncIterator(): VideoReader_CameraAsyncBuffers_Iterator { return callSDK<VideoReader_CameraAsyncBuffers_Iterator>("CreateMLComponents_e11dfd5beee01da3", 125491607845722, this, []); }
   /**
    * var captureSession: AVCaptureSession { get }
    * @availability iOS 18.0+
    */
-  get captureSession(): _AVFoundation_AVCaptureSession { return callSDK<_AVFoundation_AVCaptureSession>("CreateMLComponents_c1f28409f8601238", 951727695806662, this, []); }
+  get captureSession(): _AVFoundation_AVCaptureSession { return callSDK<_AVFoundation_AVCaptureSession>("CreateMLComponents_e11dfd5beee01da3", 951727695806662, this, []); }
   /**
    * var count: Int? { get }
    * @availability iOS 16.0+
    */
-  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_c1f28409f8601238", 3562935705478084, this, []); }
+  get count(): (number) | null { return callSDK<(number) | null>("CreateMLComponents_e11dfd5beee01da3", 3562935705478084, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11VideoReaderV18CameraAsyncBuffersV": true };
   declare readonly $element: $SDK135;
 }
@@ -8437,7 +8437,7 @@ export class VideoReader_CameraAsyncBuffers_Iterator extends SDKHandle {
    * final func next() async throws -> TemporalFeature<CIImage>?
    * @availability iOS 16.0+
    */
-  next(): Promise<$SDK136> { return callSDKAsync<$SDK136>("CreateMLComponents_c1f28409f8601238", 258156229300302, this, []); }
+  next(): Promise<$SDK136> { return callSDKAsync<$SDK136>("CreateMLComponents_e11dfd5beee01da3", 258156229300302, this, []); }
   declare readonly $type: { "s:18CreateMLComponents11VideoReaderV18CameraAsyncBuffersV8IteratorC": true };
 }
 
@@ -8456,42 +8456,42 @@ export class VideoReader_CameraConfiguration extends SDKHandle {
    * var resolution: VideoReader.CameraConfiguration.Resolution
    * @availability iOS 16.0+
    */
-  get resolution(): VideoReader_CameraConfiguration_Resolution { return callSDK<VideoReader_CameraConfiguration_Resolution>("CreateMLComponents_c1f28409f8601238", 3968127624807540, this, []); }
-  set resolution(value: VideoReader_CameraConfiguration_Resolution) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2823750318531079, this, [value]); }
+  get resolution(): VideoReader_CameraConfiguration_Resolution { return callSDK<VideoReader_CameraConfiguration_Resolution>("CreateMLComponents_e11dfd5beee01da3", 3968127624807540, this, []); }
+  set resolution(value: VideoReader_CameraConfiguration_Resolution) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2823750318531079, this, [value]); }
   /**
    * var pixelFormat: VideoReader.CameraConfiguration.PixelFormat
    * @availability iOS 16.0+
    */
-  get pixelFormat(): VideoReader_CameraConfiguration_PixelFormat { return callSDK<VideoReader_CameraConfiguration_PixelFormat>("CreateMLComponents_c1f28409f8601238", 3830899385365401, this, []); }
-  set pixelFormat(value: VideoReader_CameraConfiguration_PixelFormat) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 1040384373466898, this, [value]); }
+  get pixelFormat(): VideoReader_CameraConfiguration_PixelFormat { return callSDK<VideoReader_CameraConfiguration_PixelFormat>("CreateMLComponents_e11dfd5beee01da3", 3830899385365401, this, []); }
+  set pixelFormat(value: VideoReader_CameraConfiguration_PixelFormat) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 1040384373466898, this, [value]); }
   /**
    * var cameraPosition: VideoReader.CameraConfiguration.Position { get }
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  get cameraPosition(): VideoReader_CameraConfiguration_Position { return callSDK<VideoReader_CameraConfiguration_Position>("CreateMLComponents_c1f28409f8601238", 3837131502276872, this, []); }
+  get cameraPosition(): VideoReader_CameraConfiguration_Position { return callSDK<VideoReader_CameraConfiguration_Position>("CreateMLComponents_e11dfd5beee01da3", 3837131502276872, this, []); }
   /**
    * init(position: VideoReader.CameraConfiguration.Position = .front, pixelFormat: VideoReader.CameraConfiguration.PixelFormat = .bgra32, resolution: VideoReader.CameraConfiguration.Resolution = .high, frameRate: Double = 30.0)
    * @availability iOS 16.0+
    */
-  static initPositionPixelFormatResolutionFrameRate(position?: VideoReader_CameraConfiguration_Position, pixelFormat?: VideoReader_CameraConfiguration_PixelFormat, resolution?: VideoReader_CameraConfiguration_Resolution, frameRate?: number): VideoReader_CameraConfiguration { return callSDK<VideoReader_CameraConfiguration>("CreateMLComponents_c1f28409f8601238", 754176524732320, undefined, [position, pixelFormat, resolution, frameRate]); }
+  static initPositionPixelFormatResolutionFrameRate(position?: VideoReader_CameraConfiguration_Position, pixelFormat?: VideoReader_CameraConfiguration_PixelFormat, resolution?: VideoReader_CameraConfiguration_Resolution, frameRate?: number): VideoReader_CameraConfiguration { return callSDK<VideoReader_CameraConfiguration>("CreateMLComponents_e11dfd5beee01da3", 754176524732320, undefined, [position, pixelFormat, resolution, frameRate]); }
   /**
    * var position: VideoReader.CameraConfiguration.Position
    * @availability iOS 16.0+
    */
-  get position(): VideoReader_CameraConfiguration_Position { return callSDK<VideoReader_CameraConfiguration_Position>("CreateMLComponents_c1f28409f8601238", 2482542275689238, this, []); }
-  set position(value: VideoReader_CameraConfiguration_Position) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 3246157223757555, this, [value]); }
+  get position(): VideoReader_CameraConfiguration_Position { return callSDK<VideoReader_CameraConfiguration_Position>("CreateMLComponents_e11dfd5beee01da3", 2482542275689238, this, []); }
+  set position(value: VideoReader_CameraConfiguration_Position) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 3246157223757555, this, [value]); }
   /**
    * var frameRate: Double
    * @availability iOS 16.0+
    */
-  get frameRate(): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 74627114594746, this, []); }
-  set frameRate(value: number) { callSDK<void>("CreateMLComponents_c1f28409f8601238", 2307420872798530, this, [value]); }
+  get frameRate(): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 74627114594746, this, []); }
+  set frameRate(value: number) { callSDK<void>("CreateMLComponents_e11dfd5beee01da3", 2307420872798530, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): VideoReader_CameraConfiguration { return callSDK<VideoReader_CameraConfiguration>("CreateMLComponents_c1f28409f8601238", 3520674141246142, undefined, []); }
+  static init(): VideoReader_CameraConfiguration { return callSDK<VideoReader_CameraConfiguration>("CreateMLComponents_e11dfd5beee01da3", 3520674141246142, undefined, []); }
   declare readonly $type: { "s:18CreateMLComponents11VideoReaderV19CameraConfigurationV": true };
 }
 
@@ -8534,12 +8534,12 @@ export class VideoReaderError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("CreateMLComponents_c1f28409f8601238", 392595205456745, this, []); }
+  get debugDescription(): string { return callSDK<string>("CreateMLComponents_e11dfd5beee01da3", 392595205456745, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_c1f28409f8601238", 2635877767684676, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("CreateMLComponents_e11dfd5beee01da3", 2635877767684676, this, []); }
   declare readonly $type: { "s:18CreateMLComponents16VideoReaderErrorO": true };
 }
 
@@ -8548,244 +8548,244 @@ export class VideoReaderError extends SDKHandle {
 func meanSquaredError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export function meanSquaredError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 3393136757638167, undefined, [annotatedPredictions]); }
+export function meanSquaredError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 3393136757638167, undefined, [annotatedPredictions]); }
 
 /**
  * func meanAbsoluteError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export function meanAbsoluteError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 1799462391391782, undefined, [annotatedPredictions]); }
+export function meanAbsoluteError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 1799462391391782, undefined, [annotatedPredictions]); }
 
 /**
  * func maximumAbsoluteError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export function maximumAbsoluteError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2247452303960878, undefined, [annotatedPredictions]); }
+export function maximumAbsoluteError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2247452303960878, undefined, [annotatedPredictions]); }
 
 /**
  * func rootMeanSquaredError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export function rootMeanSquaredError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 853293173694681, undefined, [annotatedPredictions]); }
+export function rootMeanSquaredError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 853293173694681, undefined, [annotatedPredictions]); }
 
 /**
  * func meanAbsolutePercentageError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export function meanAbsolutePercentageError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_c1f28409f8601238", 2938809296812423, undefined, [annotatedPredictions]); }
+export function meanAbsolutePercentageError(annotatedPredictions: $SDK137): number { return callSDK<number>("CreateMLComponents_e11dfd5beee01da3", 2938809296812423, undefined, [annotatedPredictions]); }
 
-registerSDKClass("CreateMLComponents.AnnotatedBatch", AnnotatedBatch, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AnnotatedFeature", AnnotatedFeature, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AnnotatedFeatureProvider", AnnotatedFeatureProvider, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":210513156282843},"encode":{"id":974723938948823}} });
-registerSDKClass("CreateMLComponents.AnnotatedFiles", AnnotatedFiles, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"index":{"id":121472529508669},"subscript":{"id":930691126756152}} });
-registerSDKClass("CreateMLComponents.AnnotatedPrediction", AnnotatedPrediction, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AnyTemporalIterator", AnyTemporalIterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":2392986857451541}} });
-registerSDKClass("CreateMLComponents.AnyTemporalSequence", AnyTemporalSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":2497650718691981}} });
-registerSDKClass("CreateMLComponents.ApplyEachRandomly", ApplyEachRandomly, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ApplyRandomly", ApplyRandomly, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AudioConvertingTransformer", AudioConvertingTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1990172876316061,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.AudioFeaturePrint", AudioFeaturePrint, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AudioFeaturePrint.FeatureSequence", AudioFeaturePrint_FeatureSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":946794158560378}} });
-registerSDKClass("CreateMLComponents.AudioFeaturePrint.FeatureSequence.Iterator", AudioFeaturePrint_FeatureSequence_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":3727789812583197}} });
-registerSDKClass("CreateMLComponents.AudioPreprocessingError", AudioPreprocessingError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AudioReader", AudioReader, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2566399144098139,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.AudioReader.AsyncBuffers", AudioReader_AsyncBuffers, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":3736173601487871}} });
-registerSDKClass("CreateMLComponents.AudioReader.AsyncBuffers.Iterator", AudioReader_AsyncBuffers_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":239544392549008}} });
-registerSDKClass("CreateMLComponents.AudioReader.Configuration", AudioReader_Configuration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AudioReader.MicrophoneAsyncBuffers", AudioReader_MicrophoneAsyncBuffers, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":4492551497049683}} });
-registerSDKClass("CreateMLComponents.AudioReader.MicrophoneAsyncBuffers.Iterator", AudioReader_MicrophoneAsyncBuffers_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":996724916474074}} });
-registerSDKClass("CreateMLComponents.AugmentationBuilder", AugmentationBuilder, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AugmentationSequence", AugmentationSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AugmentationSequence.AsyncIterator", AugmentationSequence_AsyncIterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AugmentationSequence.BatchedSequence", AugmentationSequence_BatchedSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.AugmentationSequence.BatchedSequence.AsyncIterator", AugmentationSequence_BatchedSequence_AsyncIterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.Augmenter", Augmenter, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.BoostedTreeClassifier", BoostedTreeClassifier, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":1926037736978406},"decodeWithOptimizer":{"id":1326635671483412},"encodeWithOptimizer":{"id":3557729178968165},"decode":{"id":170695391553508},"encode":{"id":1630064846278672},"fitted":{"id":349387187901618,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":3426232364171601,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.BoostedTreeConfiguration", BoostedTreeConfiguration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.BoostedTreeRegressor", BoostedTreeRegressor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":1800620452094984},"decodeWithOptimizer":{"id":4281475734447958},"encodeWithOptimizer":{"id":4456127984240954},"decode":{"id":1254070615454154},"encode":{"id":4467586139166819},"fitted":{"id":186849008635725,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":1987740330677991,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.CategoricalImputer", CategoricalImputer, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.CategoricalImputer.Strategy", CategoricalImputer_Strategy, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ChooseRandomly", ChooseRandomly, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.Classification", Classification, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ClassificationDistribution", ClassificationDistribution, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"indexAfter":{"id":1064214259890444},"indexBefore":{"id":3594539657036982},"topLabels":{"id":3037179312745369},"subscript":{"id":1661082753425642},"subscript33028":{"id":2901360548635636},"subscript19732":{"id":1932768059720680}} });
-registerSDKClass("CreateMLComponents.ClassificationMetrics", ClassificationMetrics, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"recallScore":{"id":459508772643536},"precisionScore":{"id":532143977757945},"trueNegativeCount":{"id":246211048455132},"truePositiveCount":{"id":4351384771396369},"falseNegativeCount":{"id":3556365857799217},"falsePositiveCount":{"id":2171838633605355},"countLabel":{"id":1712873314905698},"countPredictedLabel":{"id":2954868088905626},"countPredicted":{"id":3470446223666078},"f1Score":{"id":1953573423800455}} });
+registerSDKClass("CreateMLComponents.AnnotatedBatch", AnnotatedBatch, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AnnotatedFeature", AnnotatedFeature, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AnnotatedFeatureProvider", AnnotatedFeatureProvider, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":210513156282843},"encode":{"id":974723938948823}} });
+registerSDKClass("CreateMLComponents.AnnotatedFiles", AnnotatedFiles, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"index":{"id":121472529508669},"subscript":{"id":930691126756152}} });
+registerSDKClass("CreateMLComponents.AnnotatedPrediction", AnnotatedPrediction, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AnyTemporalIterator", AnyTemporalIterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":2392986857451541}} });
+registerSDKClass("CreateMLComponents.AnyTemporalSequence", AnyTemporalSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":2497650718691981}} });
+registerSDKClass("CreateMLComponents.ApplyEachRandomly", ApplyEachRandomly, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ApplyRandomly", ApplyRandomly, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AudioConvertingTransformer", AudioConvertingTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1990172876316061,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.AudioFeaturePrint", AudioFeaturePrint, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AudioFeaturePrint.FeatureSequence", AudioFeaturePrint_FeatureSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":946794158560378}} });
+registerSDKClass("CreateMLComponents.AudioFeaturePrint.FeatureSequence.Iterator", AudioFeaturePrint_FeatureSequence_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":3727789812583197}} });
+registerSDKClass("CreateMLComponents.AudioPreprocessingError", AudioPreprocessingError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AudioReader", AudioReader, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2566399144098139,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.AudioReader.AsyncBuffers", AudioReader_AsyncBuffers, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":3736173601487871}} });
+registerSDKClass("CreateMLComponents.AudioReader.AsyncBuffers.Iterator", AudioReader_AsyncBuffers_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":239544392549008}} });
+registerSDKClass("CreateMLComponents.AudioReader.Configuration", AudioReader_Configuration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AudioReader.MicrophoneAsyncBuffers", AudioReader_MicrophoneAsyncBuffers, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":4492551497049683}} });
+registerSDKClass("CreateMLComponents.AudioReader.MicrophoneAsyncBuffers.Iterator", AudioReader_MicrophoneAsyncBuffers_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":996724916474074}} });
+registerSDKClass("CreateMLComponents.AugmentationBuilder", AugmentationBuilder, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AugmentationSequence", AugmentationSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AugmentationSequence.AsyncIterator", AugmentationSequence_AsyncIterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AugmentationSequence.BatchedSequence", AugmentationSequence_BatchedSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.AugmentationSequence.BatchedSequence.AsyncIterator", AugmentationSequence_BatchedSequence_AsyncIterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.Augmenter", Augmenter, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.BoostedTreeClassifier", BoostedTreeClassifier, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":1926037736978406},"decodeWithOptimizer":{"id":1326635671483412},"encodeWithOptimizer":{"id":3557729178968165},"decode":{"id":170695391553508},"encode":{"id":1630064846278672},"fitted":{"id":349387187901618,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":3426232364171601,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.BoostedTreeConfiguration", BoostedTreeConfiguration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.BoostedTreeRegressor", BoostedTreeRegressor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":1800620452094984},"decodeWithOptimizer":{"id":4281475734447958},"encodeWithOptimizer":{"id":4456127984240954},"decode":{"id":1254070615454154},"encode":{"id":4467586139166819},"fitted":{"id":186849008635725,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":1987740330677991,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.CategoricalImputer", CategoricalImputer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.CategoricalImputer.Strategy", CategoricalImputer_Strategy, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ChooseRandomly", ChooseRandomly, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.Classification", Classification, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ClassificationDistribution", ClassificationDistribution, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"indexAfter":{"id":1064214259890444},"indexBefore":{"id":3594539657036982},"topLabels":{"id":3037179312745369},"subscript":{"id":1661082753425642},"subscript33028":{"id":2901360548635636},"subscript19732":{"id":1932768059720680}} });
+registerSDKClass("CreateMLComponents.ClassificationMetrics", ClassificationMetrics, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"recallScore":{"id":459508772643536},"precisionScore":{"id":532143977757945},"trueNegativeCount":{"id":246211048455132},"truePositiveCount":{"id":4351384771396369},"falseNegativeCount":{"id":3556365857799217},"falsePositiveCount":{"id":2171838633605355},"countLabel":{"id":1712873314905698},"countPredictedLabel":{"id":2954868088905626},"countPredicted":{"id":3470446223666078},"f1Score":{"id":1953573423800455}} });
 registerSDKProtocol("s:18CreateMLComponents10ClassifierP", {"appliedToEventHandler":"applied(to:eventHandler:)"});
-registerSDKClass("CreateMLComponents.ColumnConcatenator", ColumnConcatenator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2628697921549255,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ColumnSelection", ColumnSelection, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ColumnSelector", ColumnSelector, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":2189532975178669},"encode":{"id":3833481844252549},"fitted":{"id":4057261089577910,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ColumnSelectorTransformer", ColumnSelectorTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2717660904946823,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.CompatibilityError", CompatibilityError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ComposedTabularTransformer", ComposedTabularTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":3694974518718630,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ComposedTemporalTransformer", ComposedTemporalTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ComposedTransformer", ComposedTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":4187754663975933,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ConcatenationError", ConcatenationError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("TabularData.DataFrame", DataFrame, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"loadRangedAnnotations":{"id":3124324846618793},"selecting":{"id":1876778730800625}} }, true);
-registerSDKClass("CreateMLComponents.DataFrameTemporalAnnotationParameters", DataFrameTemporalAnnotationParameters, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.DataFrameTemporalAnnotationParameters.FilePathType", DataFrameTemporalAnnotationParameters_FilePathType, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.DatasetError", DatasetError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.DateFeatureExtractor", DateFeatureExtractor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2489384920823894,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.DetectedObject", DetectedObject, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.Downsampler", Downsampler, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.Downsampler.DownStreamSequence", Downsampler_DownStreamSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":1358150815607684}} });
-registerSDKClass("CreateMLComponents.Downsampler.DownStreamSequence.Iterator", Downsampler_DownStreamSequence_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":1319688262497928}} });
+registerSDKClass("CreateMLComponents.ColumnConcatenator", ColumnConcatenator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2628697921549255,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ColumnSelection", ColumnSelection, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ColumnSelector", ColumnSelector, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":2189532975178669},"encode":{"id":3833481844252549},"fitted":{"id":4057261089577910,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ColumnSelectorTransformer", ColumnSelectorTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2717660904946823,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.CompatibilityError", CompatibilityError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ComposedTabularTransformer", ComposedTabularTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":3694974518718630,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ComposedTemporalTransformer", ComposedTemporalTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ComposedTransformer", ComposedTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":4187754663975933,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ConcatenationError", ConcatenationError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("TabularData.DataFrame", DataFrame, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"loadRangedAnnotations":{"id":3124324846618793},"selecting":{"id":1876778730800625}} }, true);
+registerSDKClass("CreateMLComponents.DataFrameTemporalAnnotationParameters", DataFrameTemporalAnnotationParameters, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.DataFrameTemporalAnnotationParameters.FilePathType", DataFrameTemporalAnnotationParameters_FilePathType, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.DatasetError", DatasetError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.DateFeatureExtractor", DateFeatureExtractor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2489384920823894,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.DetectedObject", DetectedObject, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.Downsampler", Downsampler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.Downsampler.DownStreamSequence", Downsampler_DownStreamSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":1358150815607684}} });
+registerSDKClass("CreateMLComponents.Downsampler.DownStreamSequence.Iterator", Downsampler_DownStreamSequence_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":1319688262497928}} });
 registerSDKProtocol("s:18CreateMLComponents9EstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)"});
 registerSDKProtocol("s:18CreateMLComponents16EstimatorDecoderP", {"decode":"decode(_:)","decodeOptimizer":"decodeOptimizer(_:)"});
 registerSDKProtocol("s:18CreateMLComponents16EstimatorEncoderP", {"encode":"encode(_:)","encodeOptimizer":"encodeOptimizer(_:)"});
-registerSDKClass("CreateMLComponents.EstimatorEncodingError", EstimatorEncodingError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.EstimatorToSupervisedAdaptor", EstimatorToSupervisedAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":3775178530371978},"encode":{"id":3253892302169625}} });
-registerSDKClass("CreateMLComponents.EstimatorToTemporalAdaptor", EstimatorToTemporalAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":3709490548840691},"encode":{"id":1588678981231365}} });
-registerSDKClass("CreateMLComponents.Event", Event, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkClassifier", FullyConnectedNetworkClassifier, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":4495712940772},"decodeWithOptimizer":{"id":2064977209047138},"encodeWithOptimizer":{"id":1810001264887546},"decode":{"id":2473443258325856}} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkClassifierModel", FullyConnectedNetworkClassifierModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":983324564733587,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkConfiguration", FullyConnectedNetworkConfiguration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkMultiLabelClassifier", FullyConnectedNetworkMultiLabelClassifier, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":959754497791420},"decodeWithOptimizer":{"id":797476206834519},"encodeWithOptimizer":{"id":335200477233020},"decode":{"id":707129444758486}} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkMultiLabelClassifierModel", FullyConnectedNetworkMultiLabelClassifierModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1063214701115151,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkRegressor", FullyConnectedNetworkRegressor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":2572859478584297},"decodeWithOptimizer":{"id":4481820984272564},"encodeWithOptimizer":{"id":1250284999713184},"decode":{"id":906393242144445},"fittedToValidateOnEventHandler":{"id":519500515740894,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":1206477403867995,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1107826397388693,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.FullyConnectedNetworkRegressorModel", FullyConnectedNetworkRegressorModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2670056504142048,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.HumanBodyActionCounter", HumanBodyActionCounter, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.HumanBodyActionCounter.CumulativeSumSequence", HumanBodyActionCounter_CumulativeSumSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":4052922786194873}} });
-registerSDKClass("CreateMLComponents.HumanBodyActionCounter.CumulativeSumSequence.Iterator", HumanBodyActionCounter_CumulativeSumSequence_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":3019391602787706}} });
-registerSDKClass("CreateMLComponents.HumanBodyActionPeriodPredictor", HumanBodyActionPeriodPredictor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":4478929706115760,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.HumanBodyActionPeriodPredictor.Prediction", HumanBodyActionPeriodPredictor_Prediction, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.HumanBodyPoseExtractor", HumanBodyPoseExtractor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":525198306739010,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.HumanHandPoseExtractor", HumanHandPoseExtractor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2556028602597959,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageBlur", ImageBlur, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2328307103185177,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageColorTransformer", ImageColorTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2445272928723757,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageCropper", ImageCropper, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":361974633849885,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageExposureAdjuster", ImageExposureAdjuster, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":695939771543396,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.EstimatorEncodingError", EstimatorEncodingError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.EstimatorToSupervisedAdaptor", EstimatorToSupervisedAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":3775178530371978},"encode":{"id":3253892302169625}} });
+registerSDKClass("CreateMLComponents.EstimatorToTemporalAdaptor", EstimatorToTemporalAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":3709490548840691},"encode":{"id":1588678981231365}} });
+registerSDKClass("CreateMLComponents.Event", Event, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkClassifier", FullyConnectedNetworkClassifier, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":4495712940772},"decodeWithOptimizer":{"id":2064977209047138},"encodeWithOptimizer":{"id":1810001264887546},"decode":{"id":2473443258325856}} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkClassifierModel", FullyConnectedNetworkClassifierModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":983324564733587,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkConfiguration", FullyConnectedNetworkConfiguration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkMultiLabelClassifier", FullyConnectedNetworkMultiLabelClassifier, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":959754497791420},"decodeWithOptimizer":{"id":797476206834519},"encodeWithOptimizer":{"id":335200477233020},"decode":{"id":707129444758486}} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkMultiLabelClassifierModel", FullyConnectedNetworkMultiLabelClassifierModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1063214701115151,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkRegressor", FullyConnectedNetworkRegressor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":2572859478584297},"decodeWithOptimizer":{"id":4481820984272564},"encodeWithOptimizer":{"id":1250284999713184},"decode":{"id":906393242144445},"fittedToValidateOnEventHandler":{"id":519500515740894,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":1206477403867995,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1107826397388693,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.FullyConnectedNetworkRegressorModel", FullyConnectedNetworkRegressorModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2670056504142048,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.HumanBodyActionCounter", HumanBodyActionCounter, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.HumanBodyActionCounter.CumulativeSumSequence", HumanBodyActionCounter_CumulativeSumSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":4052922786194873}} });
+registerSDKClass("CreateMLComponents.HumanBodyActionCounter.CumulativeSumSequence.Iterator", HumanBodyActionCounter_CumulativeSumSequence_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":3019391602787706}} });
+registerSDKClass("CreateMLComponents.HumanBodyActionPeriodPredictor", HumanBodyActionPeriodPredictor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":4478929706115760,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.HumanBodyActionPeriodPredictor.Prediction", HumanBodyActionPeriodPredictor_Prediction, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.HumanBodyPoseExtractor", HumanBodyPoseExtractor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":525198306739010,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.HumanHandPoseExtractor", HumanHandPoseExtractor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2556028602597959,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageBlur", ImageBlur, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2328307103185177,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageColorTransformer", ImageColorTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2445272928723757,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageCropper", ImageCropper, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":361974633849885,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageExposureAdjuster", ImageExposureAdjuster, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":695939771543396,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("s:18CreateMLComponents21ImageFeatureExtractorP", {"appliedToEventHandler":"applied(to:eventHandler:)"});
-registerSDKClass("CreateMLComponents.ImageFeaturePrint", ImageFeaturePrint, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1685718205521975,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageFlipper", ImageFlipper, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":3075605186662405,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageReader", ImageReader, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":885122353801687,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageRotator", ImageRotator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":4370568672719853,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImageScaler", ImageScaler, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":4232778464053546,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ImputeTransformer", ImputeTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":3893860916611437,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.JointPoint", JointPoint, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.JointsSelector", JointsSelector, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2766178973213808,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.LinearRegressor", LinearRegressor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":3411707026953376},"decodeWithOptimizer":{"id":1496499757482521},"encodeWithOptimizer":{"id":409697771078130},"decode":{"id":2927641715352536},"encode":{"id":2056104907907178},"fittedToValidateOnEventHandler":{"id":3521567500928450,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":2686020114773871,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1918245929010866,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.LinearRegressor.Configuration", LinearRegressor_Configuration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.LinearRegressorModel", LinearRegressorModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":985909749828928,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.LinearTimeSeriesForecaster", LinearTimeSeriesForecaster, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":4155822906604143},"decodeWithOptimizer":{"id":574262557151437},"encodeWithOptimizer":{"id":2769534496167796},"decode":{"id":3981783473697294},"encode":{"id":3880936170092703},"update":{"id":1595083974534169}} });
-registerSDKClass("CreateMLComponents.LinearTimeSeriesForecaster.Model", LinearTimeSeriesForecaster_Model, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"exportToMetadata":{"id":3588726016383591},"exportTo":{"id":1702130189264061},"appliedToEventHandler":{"id":382373240829210,"hints":[null,{"callback":{"out":[]}}]},"appliedToWindowEventHandler":{"id":2194589081553190,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.LinearTimeSeriesForecasterConfiguration", LinearTimeSeriesForecasterConfiguration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.LinearTransformer", LinearTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"appliedToEventHandler":{"id":3443173236966722,"hints":[null,{"callback":{"out":[]}}]},"appliedToEventHandler7721":{"id":3658144936386831,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.LogisticRegressionClassifier", LogisticRegressionClassifier, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":3214254156074153},"decodeWithOptimizer":{"id":509136111331404},"encodeWithOptimizer":{"id":1534060055548268},"decode":{"id":429106292873567},"encode":{"id":12283142627526}} });
-registerSDKClass("CreateMLComponents.LogisticRegressionClassifier.Configuration", LogisticRegressionClassifier_Configuration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.LogisticRegressionClassifierModel", LogisticRegressionClassifierModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":3229332349174131,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MaxAbsScaler", MaxAbsScaler, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"fitted":{"id":2178720857305993,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MaxAbsScaler.Transformer", MaxAbsScaler_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2816579634558991,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MinMaxScaler", MinMaxScaler, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"fitted":{"id":233618650118059,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MinMaxScaler.Transformer", MinMaxScaler_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":3683353958041145,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MLModelClassifierAdaptor", MLModelClassifierAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2882821354716084,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MLModelClassifierAdaptor.Label", MLModelClassifierAdaptor_Label, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.MLModelImageFeatureExtractor", MLModelImageFeatureExtractor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1478706324413085,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MLModelImageFeatureExtractor.Error", MLModelImageFeatureExtractor_Error, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.MLModelRegressorAdaptor", MLModelRegressorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":328293357516219,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MLModelTransformerAdaptor", MLModelTransformerAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1712886532264617,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.ModelCompatibilityError", ModelCompatibilityError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ModelMetadata", ModelMetadata, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ModelUpdateError", ModelUpdateError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.MultiLabelClassificationMetrics", MultiLabelClassificationMetrics, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"recallScore":{"id":4330904490858207},"precisionScore":{"id":2120660045475883},"trueNegativeCount":{"id":2350355899335260},"truePositiveCount":{"id":3366363452600304},"falseNegativeCount":{"id":1129956347219233},"falsePositiveCount":{"id":4411510608970184},"count":{"id":3355557917616983},"f1Score":{"id":4070909577329247}} });
-registerSDKClass("CreateMLComponents.MultiLabelClassificationMetrics.ThresholdSelectionStrategy", MultiLabelClassificationMetrics_ThresholdSelectionStrategy, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.MultivariateLinearRegressor", MultivariateLinearRegressor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":3449229790542215},"decodeWithOptimizer":{"id":3791701485728191},"encodeWithOptimizer":{"id":1303667975032786},"decode":{"id":2448597476962197},"encode":{"id":4461918721591764},"fitted":{"id":2315176186208171,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":394482038943394}} });
-registerSDKClass("CreateMLComponents.MultivariateLinearRegressor.Model", MultivariateLinearRegressor_Model, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":3993894852316308,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.MultivariateLinearRegressorConfiguration", MultivariateLinearRegressorConfiguration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.NormalizationScaler", NormalizationScaler, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"fitted":{"id":3733058798636966,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.NormalizationScaler.Transformer", NormalizationScaler_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1871513596040690,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.NumericImputer", NumericImputer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":3297094113475788},"decodeWithOptimizer":{"id":2681831370191671},"encodeWithOptimizer":{"id":1236073665308396}} });
-registerSDKClass("CreateMLComponents.NumericImputer.Strategy", NumericImputer_Strategy, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ObjectDetectionAnnotation", ObjectDetectionAnnotation, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ObjectDetectionAnnotation.Annotation", ObjectDetectionAnnotation_Annotation, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ObjectDetectionMetrics", ObjectDetectionMetrics, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.OneHotEncoder", OneHotEncoder, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":2786365007082943},"decodeWithOptimizer":{"id":2614740274761452},"encodeWithOptimizer":{"id":689448619236569}} });
-registerSDKClass("CreateMLComponents.OneHotEncoder.Transformer", OneHotEncoder_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.OptionalUnwrapper", OptionalUnwrapper, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":1190578499080398,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.OrdinalEncoder", OrdinalEncoder, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":196748473609499},"decodeWithOptimizer":{"id":3646632435229041},"encodeWithOptimizer":{"id":4423383299640915}} });
-registerSDKClass("CreateMLComponents.OrdinalEncoder.Transformer", OrdinalEncoder_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.PipelineDataError", PipelineDataError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.Pose", Pose, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"boundingBoxArea":{"id":1311683164477736}} });
-registerSDKClass("CreateMLComponents.PoseSelector", PoseSelector, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2142785127631970,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.PreprocessedFeatureSequence", PreprocessedFeatureSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":503220406122880}} });
-registerSDKClass("CreateMLComponents.PreprocessedFeatureSequence.AsyncIterator", PreprocessedFeatureSequence_AsyncIterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":1740288580845161}} });
-registerSDKClass("CreateMLComponents.PreprocessingEstimator", PreprocessingEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":3956358258192860},"encode":{"id":1284961736318289}} });
-registerSDKClass("CreateMLComponents.PreprocessingSupervisedEstimator", PreprocessingSupervisedEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":2714541366488434},"encode":{"id":954480380916120}} });
-registerSDKClass("CreateMLComponents.PreprocessingSupervisedTabularEstimator", PreprocessingSupervisedTabularEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"preprocessed":{"id":4186445402262273,"hints":[null,{"callback":{"out":[]}}]},"decode":{"id":347230112651957},"encode":{"id":3264085847003021},"fittedToPreprocessedValidateOnEventHandler":{"id":3850036181624064,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToValidateOnEventHandler":{"id":488779272514666,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.PreprocessingSupervisedTemporalEstimator", PreprocessingSupervisedTemporalEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":1224829003004556},"encode":{"id":7206849363071}} });
-registerSDKClass("CreateMLComponents.PreprocessingTabularEstimator", PreprocessingTabularEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"preprocessed":{"id":4097513237743342,"hints":[null,{"callback":{"out":[]}}]},"decode":{"id":2449791393568260},"encode":{"id":2414751125588489},"fittedToPreprocessedEventHandler":{"id":1143545806271790,"hints":[null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":3278685266417387,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.PreprocessingTemporalEstimator", PreprocessingTemporalEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":1942279863492010},"encode":{"id":328126671768376}} });
-registerSDKClass("CreateMLComponents.PreprocessingUpdatableEstimator", PreprocessingUpdatableEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":1199052051542518},"decodeWithOptimizer":{"id":4012717267797917},"encodeWithOptimizer":{"id":3713068716902970},"decode":{"id":1793560056442325},"encode":{"id":4350885884096193}} });
-registerSDKClass("CreateMLComponents.PreprocessingUpdatableSupervisedEstimator", PreprocessingUpdatableSupervisedEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":815639360220264},"decodeWithOptimizer":{"id":3202180102350863},"encodeWithOptimizer":{"id":1183743112350696},"decode":{"id":2332746353574244},"encode":{"id":3212711815721090}} });
-registerSDKClass("CreateMLComponents.PreprocessingUpdatableSupervisedTabularEstimator", PreprocessingUpdatableSupervisedTabularEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"preprocessed":{"id":3159613088092950,"hints":[null,{"callback":{"out":[]}}]},"makeTransformer":{"id":1956283020234256},"decodeWithOptimizer":{"id":1998796204799858},"encodeWithOptimizer":{"id":3164357873517638},"decode":{"id":1156426029926437},"encode":{"id":2484239129214882},"fittedToPreprocessedValidateOnEventHandler":{"id":1673558180603139,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToValidateOnEventHandler":{"id":3028171383159720,"hints":[null,null,{"callback":{"out":[]}}]},"updateWithPreprocessedEventHandler":{"id":1139885738128951,"hints":[null,null,{"callback":{"out":[]}}]},"updateWithEventHandler":{"id":1996671523616833,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.PreprocessingUpdatableSupervisedTemporalEstimator", PreprocessingUpdatableSupervisedTemporalEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":2797409519269758},"decodeWithOptimizer":{"id":2441105226543369},"encodeWithOptimizer":{"id":2196796297173689},"decode":{"id":2278942102116762},"encode":{"id":1814800143451117}} });
-registerSDKClass("CreateMLComponents.PreprocessingUpdatableTabularEstimator", PreprocessingUpdatableTabularEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"preprocessed":{"id":1806923299066537,"hints":[null,{"callback":{"out":[]}}]},"makeTransformer":{"id":4047592207369092},"decodeWithOptimizer":{"id":2059698964060801},"encodeWithOptimizer":{"id":1407255973356650},"decode":{"id":3571709922401204},"encode":{"id":2430043963359380},"fittedToPreprocessedEventHandler":{"id":1794273382111434,"hints":[null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":3305288977484823,"hints":[null,{"callback":{"out":[]}}]},"updateWithPreprocessedEventHandler":{"id":3503583392333038,"hints":[null,null,{"callback":{"out":[]}}]},"updateWithEventHandler":{"id":3429803281045887,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.PreprocessingUpdatableTemporalEstimator", PreprocessingUpdatableTemporalEstimator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":2392986518807495},"decodeWithOptimizer":{"id":2433270816500364},"encodeWithOptimizer":{"id":36889842582572},"decode":{"id":4494043432283361},"encode":{"id":3761209918953704}} });
-registerSDKClass("CreateMLComponents.RandomImageCropper", RandomImageCropper, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.RandomImageNoiseGenerator", RandomImageNoiseGenerator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":719205470958891,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageFeaturePrint", ImageFeaturePrint, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1685718205521975,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageFlipper", ImageFlipper, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":3075605186662405,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageReader", ImageReader, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":885122353801687,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageRotator", ImageRotator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":4370568672719853,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImageScaler", ImageScaler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":4232778464053546,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ImputeTransformer", ImputeTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":3893860916611437,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.JointPoint", JointPoint, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.JointsSelector", JointsSelector, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2766178973213808,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.LinearRegressor", LinearRegressor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":3411707026953376},"decodeWithOptimizer":{"id":1496499757482521},"encodeWithOptimizer":{"id":409697771078130},"decode":{"id":2927641715352536},"encode":{"id":2056104907907178},"fittedToValidateOnEventHandler":{"id":3521567500928450,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":2686020114773871,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1918245929010866,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.LinearRegressor.Configuration", LinearRegressor_Configuration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.LinearRegressorModel", LinearRegressorModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":985909749828928,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.LinearTimeSeriesForecaster", LinearTimeSeriesForecaster, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":4155822906604143},"decodeWithOptimizer":{"id":574262557151437},"encodeWithOptimizer":{"id":2769534496167796},"decode":{"id":3981783473697294},"encode":{"id":3880936170092703},"update":{"id":1595083974534169}} });
+registerSDKClass("CreateMLComponents.LinearTimeSeriesForecaster.Model", LinearTimeSeriesForecaster_Model, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"exportToMetadata":{"id":3588726016383591},"exportTo":{"id":1702130189264061},"appliedToEventHandler":{"id":382373240829210,"hints":[null,{"callback":{"out":[]}}]},"appliedToWindowEventHandler":{"id":2194589081553190,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.LinearTimeSeriesForecasterConfiguration", LinearTimeSeriesForecasterConfiguration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.LinearTransformer", LinearTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"appliedToEventHandler":{"id":3443173236966722,"hints":[null,{"callback":{"out":[]}}]},"appliedToEventHandler7721":{"id":3658144936386831,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.LogisticRegressionClassifier", LogisticRegressionClassifier, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":3214254156074153},"decodeWithOptimizer":{"id":509136111331404},"encodeWithOptimizer":{"id":1534060055548268},"decode":{"id":429106292873567},"encode":{"id":12283142627526}} });
+registerSDKClass("CreateMLComponents.LogisticRegressionClassifier.Configuration", LogisticRegressionClassifier_Configuration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.LogisticRegressionClassifierModel", LogisticRegressionClassifierModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":3229332349174131,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MaxAbsScaler", MaxAbsScaler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"fitted":{"id":2178720857305993,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MaxAbsScaler.Transformer", MaxAbsScaler_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2816579634558991,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MinMaxScaler", MinMaxScaler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"fitted":{"id":233618650118059,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MinMaxScaler.Transformer", MinMaxScaler_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":3683353958041145,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MLModelClassifierAdaptor", MLModelClassifierAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2882821354716084,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MLModelClassifierAdaptor.Label", MLModelClassifierAdaptor_Label, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.MLModelImageFeatureExtractor", MLModelImageFeatureExtractor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1478706324413085,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MLModelImageFeatureExtractor.Error", MLModelImageFeatureExtractor_Error, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.MLModelRegressorAdaptor", MLModelRegressorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":328293357516219,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MLModelTransformerAdaptor", MLModelTransformerAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1712886532264617,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.ModelCompatibilityError", ModelCompatibilityError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ModelMetadata", ModelMetadata, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ModelUpdateError", ModelUpdateError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.MultiLabelClassificationMetrics", MultiLabelClassificationMetrics, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"recallScore":{"id":4330904490858207},"precisionScore":{"id":2120660045475883},"trueNegativeCount":{"id":2350355899335260},"truePositiveCount":{"id":3366363452600304},"falseNegativeCount":{"id":1129956347219233},"falsePositiveCount":{"id":4411510608970184},"count":{"id":3355557917616983},"f1Score":{"id":4070909577329247}} });
+registerSDKClass("CreateMLComponents.MultiLabelClassificationMetrics.ThresholdSelectionStrategy", MultiLabelClassificationMetrics_ThresholdSelectionStrategy, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.MultivariateLinearRegressor", MultivariateLinearRegressor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":3449229790542215},"decodeWithOptimizer":{"id":3791701485728191},"encodeWithOptimizer":{"id":1303667975032786},"decode":{"id":2448597476962197},"encode":{"id":4461918721591764},"fitted":{"id":2315176186208171,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":394482038943394}} });
+registerSDKClass("CreateMLComponents.MultivariateLinearRegressor.Model", MultivariateLinearRegressor_Model, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":3993894852316308,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.MultivariateLinearRegressorConfiguration", MultivariateLinearRegressorConfiguration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.NormalizationScaler", NormalizationScaler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"fitted":{"id":3733058798636966,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.NormalizationScaler.Transformer", NormalizationScaler_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1871513596040690,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.NumericImputer", NumericImputer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":3297094113475788},"decodeWithOptimizer":{"id":2681831370191671},"encodeWithOptimizer":{"id":1236073665308396}} });
+registerSDKClass("CreateMLComponents.NumericImputer.Strategy", NumericImputer_Strategy, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ObjectDetectionAnnotation", ObjectDetectionAnnotation, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ObjectDetectionAnnotation.Annotation", ObjectDetectionAnnotation_Annotation, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ObjectDetectionMetrics", ObjectDetectionMetrics, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.OneHotEncoder", OneHotEncoder, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":2786365007082943},"decodeWithOptimizer":{"id":2614740274761452},"encodeWithOptimizer":{"id":689448619236569}} });
+registerSDKClass("CreateMLComponents.OneHotEncoder.Transformer", OneHotEncoder_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.OptionalUnwrapper", OptionalUnwrapper, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":1190578499080398,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.OrdinalEncoder", OrdinalEncoder, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":196748473609499},"decodeWithOptimizer":{"id":3646632435229041},"encodeWithOptimizer":{"id":4423383299640915}} });
+registerSDKClass("CreateMLComponents.OrdinalEncoder.Transformer", OrdinalEncoder_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.PipelineDataError", PipelineDataError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.Pose", Pose, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"boundingBoxArea":{"id":1311683164477736}} });
+registerSDKClass("CreateMLComponents.PoseSelector", PoseSelector, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2142785127631970,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.PreprocessedFeatureSequence", PreprocessedFeatureSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":503220406122880}} });
+registerSDKClass("CreateMLComponents.PreprocessedFeatureSequence.AsyncIterator", PreprocessedFeatureSequence_AsyncIterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":1740288580845161}} });
+registerSDKClass("CreateMLComponents.PreprocessingEstimator", PreprocessingEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":3956358258192860},"encode":{"id":1284961736318289}} });
+registerSDKClass("CreateMLComponents.PreprocessingSupervisedEstimator", PreprocessingSupervisedEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":2714541366488434},"encode":{"id":954480380916120}} });
+registerSDKClass("CreateMLComponents.PreprocessingSupervisedTabularEstimator", PreprocessingSupervisedTabularEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"preprocessed":{"id":4186445402262273,"hints":[null,{"callback":{"out":[]}}]},"decode":{"id":347230112651957},"encode":{"id":3264085847003021},"fittedToPreprocessedValidateOnEventHandler":{"id":3850036181624064,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToValidateOnEventHandler":{"id":488779272514666,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.PreprocessingSupervisedTemporalEstimator", PreprocessingSupervisedTemporalEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":1224829003004556},"encode":{"id":7206849363071}} });
+registerSDKClass("CreateMLComponents.PreprocessingTabularEstimator", PreprocessingTabularEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"preprocessed":{"id":4097513237743342,"hints":[null,{"callback":{"out":[]}}]},"decode":{"id":2449791393568260},"encode":{"id":2414751125588489},"fittedToPreprocessedEventHandler":{"id":1143545806271790,"hints":[null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":3278685266417387,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.PreprocessingTemporalEstimator", PreprocessingTemporalEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":1942279863492010},"encode":{"id":328126671768376}} });
+registerSDKClass("CreateMLComponents.PreprocessingUpdatableEstimator", PreprocessingUpdatableEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":1199052051542518},"decodeWithOptimizer":{"id":4012717267797917},"encodeWithOptimizer":{"id":3713068716902970},"decode":{"id":1793560056442325},"encode":{"id":4350885884096193}} });
+registerSDKClass("CreateMLComponents.PreprocessingUpdatableSupervisedEstimator", PreprocessingUpdatableSupervisedEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":815639360220264},"decodeWithOptimizer":{"id":3202180102350863},"encodeWithOptimizer":{"id":1183743112350696},"decode":{"id":2332746353574244},"encode":{"id":3212711815721090}} });
+registerSDKClass("CreateMLComponents.PreprocessingUpdatableSupervisedTabularEstimator", PreprocessingUpdatableSupervisedTabularEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"preprocessed":{"id":3159613088092950,"hints":[null,{"callback":{"out":[]}}]},"makeTransformer":{"id":1956283020234256},"decodeWithOptimizer":{"id":1998796204799858},"encodeWithOptimizer":{"id":3164357873517638},"decode":{"id":1156426029926437},"encode":{"id":2484239129214882},"fittedToPreprocessedValidateOnEventHandler":{"id":1673558180603139,"hints":[null,null,{"callback":{"out":[]}}]},"fittedToValidateOnEventHandler":{"id":3028171383159720,"hints":[null,null,{"callback":{"out":[]}}]},"updateWithPreprocessedEventHandler":{"id":1139885738128951,"hints":[null,null,{"callback":{"out":[]}}]},"updateWithEventHandler":{"id":1996671523616833,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.PreprocessingUpdatableSupervisedTemporalEstimator", PreprocessingUpdatableSupervisedTemporalEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":2797409519269758},"decodeWithOptimizer":{"id":2441105226543369},"encodeWithOptimizer":{"id":2196796297173689},"decode":{"id":2278942102116762},"encode":{"id":1814800143451117}} });
+registerSDKClass("CreateMLComponents.PreprocessingUpdatableTabularEstimator", PreprocessingUpdatableTabularEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"preprocessed":{"id":1806923299066537,"hints":[null,{"callback":{"out":[]}}]},"makeTransformer":{"id":4047592207369092},"decodeWithOptimizer":{"id":2059698964060801},"encodeWithOptimizer":{"id":1407255973356650},"decode":{"id":3571709922401204},"encode":{"id":2430043963359380},"fittedToPreprocessedEventHandler":{"id":1794273382111434,"hints":[null,{"callback":{"out":[]}}]},"fittedToEventHandler":{"id":3305288977484823,"hints":[null,{"callback":{"out":[]}}]},"updateWithPreprocessedEventHandler":{"id":3503583392333038,"hints":[null,null,{"callback":{"out":[]}}]},"updateWithEventHandler":{"id":3429803281045887,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.PreprocessingUpdatableTemporalEstimator", PreprocessingUpdatableTemporalEstimator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":2392986518807495},"decodeWithOptimizer":{"id":2433270816500364},"encodeWithOptimizer":{"id":36889842582572},"decode":{"id":4494043432283361},"encode":{"id":3761209918953704}} });
+registerSDKClass("CreateMLComponents.RandomImageCropper", RandomImageCropper, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.RandomImageNoiseGenerator", RandomImageNoiseGenerator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":719205470958891,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("s:18CreateMLComponents17RandomTransformerP", {"appliedToGeneratorEventHandler":"applied(to:generator:eventHandler:)"});
 registerSDKProtocol("s:18CreateMLComponents9RegressorP", {"appliedToEventHandler":"applied(to:eventHandler:)"});
-registerSDKClass("CreateMLComponents.Reshaper", Reshaper, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":4003789630828693,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.RobustScaler", RobustScaler, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"fitted":{"id":1216459069406215,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.RobustScaler.Transformer", RobustScaler_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2302672251460149,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.SerializationError", SerializationError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.ShuffleRandomly", ShuffleRandomly, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.SlidingWindows", SlidingWindows, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"indexAfter":{"id":1963897559685661},"indexBefore":{"id":3185690305661166},"indexOffsetBy":{"id":3419531425238678},"subscript":{"id":1318957594281976},"subscript48200":{"id":4031470763306132}} });
-registerSDKClass("CreateMLComponents.SlidingWindowTransformer", SlidingWindowTransformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.SlidingWindowTransformer.WindowSequence", SlidingWindowTransformer_WindowSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":680238698155061}} });
-registerSDKClass("CreateMLComponents.SlidingWindowTransformer.WindowSequence.Iterator", SlidingWindowTransformer_WindowSequence_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":3630223819715600}} });
-registerSDKClass("CreateMLComponents.StandardScaler", StandardScaler, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":545921047087208},"decodeWithOptimizer":{"id":1250010586352261},"encodeWithOptimizer":{"id":4228220907834271},"fitted":{"id":367289032689743,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.StandardScaler.Transformer", StandardScaler_Transformer, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":694906147504769,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.Reshaper", Reshaper, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":4003789630828693,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.RobustScaler", RobustScaler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"fitted":{"id":1216459069406215,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.RobustScaler.Transformer", RobustScaler_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2302672251460149,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.SerializationError", SerializationError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.ShuffleRandomly", ShuffleRandomly, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.SlidingWindows", SlidingWindows, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"indexAfter":{"id":1963897559685661},"indexBefore":{"id":3185690305661166},"indexOffsetBy":{"id":3419531425238678},"subscript":{"id":1318957594281976},"subscript48200":{"id":4031470763306132}} });
+registerSDKClass("CreateMLComponents.SlidingWindowTransformer", SlidingWindowTransformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.SlidingWindowTransformer.WindowSequence", SlidingWindowTransformer_WindowSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":680238698155061}} });
+registerSDKClass("CreateMLComponents.SlidingWindowTransformer.WindowSequence.Iterator", SlidingWindowTransformer_WindowSequence_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":3630223819715600}} });
+registerSDKClass("CreateMLComponents.StandardScaler", StandardScaler, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":545921047087208},"decodeWithOptimizer":{"id":1250010586352261},"encodeWithOptimizer":{"id":4228220907834271},"fitted":{"id":367289032689743,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.StandardScaler.Transformer", StandardScaler_Transformer, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":694906147504769,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("s:18CreateMLComponents19SupervisedEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","fittedToValidateOnEventHandler":"fitted(to:validateOn:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)"});
-registerSDKClass("CreateMLComponents.SupervisedEstimatorToTemporalAdaptor", SupervisedEstimatorToTemporalAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":272108031895394},"encode":{"id":3148860859395064}} });
+registerSDKClass("CreateMLComponents.SupervisedEstimatorToTemporalAdaptor", SupervisedEstimatorToTemporalAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":272108031895394},"encode":{"id":3148860859395064}} });
 registerSDKProtocol("s:18CreateMLComponents26SupervisedTabularEstimatorP", {"fittedToValidateOnEventHandler":"fitted(to:validateOn:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)"});
 registerSDKProtocol("s:18CreateMLComponents27SupervisedTemporalEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","fittedToValidateOnEventHandler":"fitted(to:validateOn:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)"});
 registerSDKProtocol("s:18CreateMLComponents16TabularEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)"});
-registerSDKClass("CreateMLComponents.TabularEstimatorToSupervisedAdaptor", TabularEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TabularPipelineDataError", TabularPipelineDataError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
+registerSDKClass("CreateMLComponents.TabularEstimatorToSupervisedAdaptor", TabularEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TabularPipelineDataError", TabularPipelineDataError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:18CreateMLComponents18TabularTransformerP", {"appliedToEventHandler":"applied(to:eventHandler:)"});
-registerSDKClass("CreateMLComponents.TabularTransformerToEstimatorAdaptor", TabularTransformerToEstimatorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":1397266199669553},"encode":{"id":2273639792571229},"fitted":{"id":1853947930663618,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.TabularTransformerToUpdatableEstimatorAdaptor", TabularTransformerToUpdatableEstimatorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":3902028934281951},"decodeWithOptimizer":{"id":2564419570719317},"encodeWithOptimizer":{"id":1474624341556798},"decode":{"id":4233577218758229},"encode":{"id":1092418192451700},"fitted":{"id":4133704457528452,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1224372841395880,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.TemporalAdaptor", TemporalAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
+registerSDKClass("CreateMLComponents.TabularTransformerToEstimatorAdaptor", TabularTransformerToEstimatorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":1397266199669553},"encode":{"id":2273639792571229},"fitted":{"id":1853947930663618,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.TabularTransformerToUpdatableEstimatorAdaptor", TabularTransformerToUpdatableEstimatorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":3902028934281951},"decodeWithOptimizer":{"id":2564419570719317},"encodeWithOptimizer":{"id":1474624341556798},"decode":{"id":4233577218758229},"encode":{"id":1092418192451700},"fitted":{"id":4133704457528452,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1224372841395880,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.TemporalAdaptor", TemporalAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:18CreateMLComponents17TemporalEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)"});
-registerSDKClass("CreateMLComponents.TemporalEstimatorToSupervisedAdaptor", TemporalEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decode":{"id":2408603597710047},"encode":{"id":2657251554960339}} });
-registerSDKClass("CreateMLComponents.TemporalFeature", TemporalFeature, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TemporalFileSegment", TemporalFileSegment, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TemporalSegmentIdentifier", TemporalSegmentIdentifier, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
+registerSDKClass("CreateMLComponents.TemporalEstimatorToSupervisedAdaptor", TemporalEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decode":{"id":2408603597710047},"encode":{"id":2657251554960339}} });
+registerSDKClass("CreateMLComponents.TemporalFeature", TemporalFeature, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TemporalFileSegment", TemporalFileSegment, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TemporalSegmentIdentifier", TemporalSegmentIdentifier, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:18CreateMLComponents16TemporalSequenceP", {});
 registerSDKProtocol("s:18CreateMLComponents19TemporalTransformerP", {"appliedToEventHandler":"applied(to:eventHandler:)"});
-registerSDKClass("CreateMLComponents.TemporalTransformerToEstimatorAdaptor", TemporalTransformerToEstimatorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TemporalTransformerToUpdatableEstimatorAdaptor", TemporalTransformerToUpdatableEstimatorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TimeSeriesClassifier", TimeSeriesClassifier, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":2758263779417230},"decodeWithOptimizer":{"id":3283558258415025},"encodeWithOptimizer":{"id":6541931261727}} });
-registerSDKClass("CreateMLComponents.TimeSeriesClassifier.Model", TimeSeriesClassifier_Model, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"exportToMetadata":{"id":2724422902068117},"exportTo":{"id":3818990099488253},"applied":{"id":8255760472390,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.TimeSeriesClassifierConfiguration", TimeSeriesClassifierConfiguration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TimeSeriesForecasterAnnotatedWindows", TimeSeriesForecasterAnnotatedWindows, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeIterator":{"id":4416532115693681}} });
-registerSDKClass("CreateMLComponents.TimeSeriesForecasterAnnotatedWindows.Iterator", TimeSeriesForecasterAnnotatedWindows_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":2051521537492190}} });
-registerSDKClass("CreateMLComponents.TimeSeriesForecasterBatches", TimeSeriesForecasterBatches, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeIterator":{"id":252317323365916}} });
-registerSDKClass("CreateMLComponents.TimeSeriesForecasterBatches.Iterator", TimeSeriesForecasterBatches_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":177488095646629}} });
+registerSDKClass("CreateMLComponents.TemporalTransformerToEstimatorAdaptor", TemporalTransformerToEstimatorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TemporalTransformerToUpdatableEstimatorAdaptor", TemporalTransformerToUpdatableEstimatorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TimeSeriesClassifier", TimeSeriesClassifier, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":2758263779417230},"decodeWithOptimizer":{"id":3283558258415025},"encodeWithOptimizer":{"id":6541931261727}} });
+registerSDKClass("CreateMLComponents.TimeSeriesClassifier.Model", TimeSeriesClassifier_Model, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"exportToMetadata":{"id":2724422902068117},"exportTo":{"id":3818990099488253},"applied":{"id":8255760472390,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.TimeSeriesClassifierConfiguration", TimeSeriesClassifierConfiguration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TimeSeriesForecasterAnnotatedWindows", TimeSeriesForecasterAnnotatedWindows, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeIterator":{"id":4416532115693681}} });
+registerSDKClass("CreateMLComponents.TimeSeriesForecasterAnnotatedWindows.Iterator", TimeSeriesForecasterAnnotatedWindows_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":2051521537492190}} });
+registerSDKClass("CreateMLComponents.TimeSeriesForecasterBatches", TimeSeriesForecasterBatches, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeIterator":{"id":252317323365916}} });
+registerSDKClass("CreateMLComponents.TimeSeriesForecasterBatches.Iterator", TimeSeriesForecasterBatches_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":177488095646629}} });
 registerSDKProtocol("s:18CreateMLComponents11TransformerP", {"appliedToEventHandler":"applied(to:eventHandler:)"});
-registerSDKClass("CreateMLComponents.TransformerToEstimatorAdaptor", TransformerToEstimatorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TransformerToTemporalAdaptor", TransformerToTemporalAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TransformerToUpdatableEstimatorAdaptor", TransformerToUpdatableEstimatorAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.TreeClassifierModel", TreeClassifierModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"buildDataFrame":{"id":1594025506203692},"applied":{"id":3978757740592613,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.TreeRegressorModel", TreeRegressorModel, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":2476323498508989,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.UniformRandomFloatingPointParameter", UniformRandomFloatingPointParameter, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.UniformRandomIntegerParameter", UniformRandomIntegerParameter, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
+registerSDKClass("CreateMLComponents.TransformerToEstimatorAdaptor", TransformerToEstimatorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TransformerToTemporalAdaptor", TransformerToTemporalAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TransformerToUpdatableEstimatorAdaptor", TransformerToUpdatableEstimatorAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.TreeClassifierModel", TreeClassifierModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"buildDataFrame":{"id":1594025506203692},"applied":{"id":3978757740592613,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.TreeRegressorModel", TreeRegressorModel, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":2476323498508989,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.UniformRandomFloatingPointParameter", UniformRandomFloatingPointParameter, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.UniformRandomIntegerParameter", UniformRandomIntegerParameter, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:18CreateMLComponents18UpdatableEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)","makeTransformer":"makeTransformer()","updateWithEventHandler":"update(_:with:eventHandler:)","encodeWithOptimizerTo":"encodeWithOptimizer(_:to:)","decodeWithOptimizerFrom":"decodeWithOptimizer(from:)"});
-registerSDKClass("CreateMLComponents.UpdatableEstimatorToSupervisedAdaptor", UpdatableEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decodeWithOptimizer":{"id":2758580924720388},"encodeWithOptimizer":{"id":4292437777928705},"decode":{"id":1947956124622702},"encode":{"id":168682588905740}} });
-registerSDKClass("CreateMLComponents.UpdatableEstimatorToTemporalAdaptor", UpdatableEstimatorToTemporalAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":3758688550842586},"decodeWithOptimizer":{"id":1156957816193127},"encodeWithOptimizer":{"id":159575810148859},"decode":{"id":42389955618419},"encode":{"id":2131002943508311}} });
+registerSDKClass("CreateMLComponents.UpdatableEstimatorToSupervisedAdaptor", UpdatableEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decodeWithOptimizer":{"id":2758580924720388},"encodeWithOptimizer":{"id":4292437777928705},"decode":{"id":1947956124622702},"encode":{"id":168682588905740}} });
+registerSDKClass("CreateMLComponents.UpdatableEstimatorToTemporalAdaptor", UpdatableEstimatorToTemporalAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":3758688550842586},"decodeWithOptimizer":{"id":1156957816193127},"encodeWithOptimizer":{"id":159575810148859},"decode":{"id":42389955618419},"encode":{"id":2131002943508311}} });
 registerSDKProtocol("s:18CreateMLComponents28UpdatableSupervisedEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","fittedToValidateOnEventHandler":"fitted(to:validateOn:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)","makeTransformer":"makeTransformer()","updateWithEventHandler":"update(_:with:eventHandler:)","encodeWithOptimizerTo":"encodeWithOptimizer(_:to:)","decodeWithOptimizerFrom":"decodeWithOptimizer(from:)"});
-registerSDKClass("CreateMLComponents.UpdatableSupervisedEstimatorToTemporalAdaptor", UpdatableSupervisedEstimatorToTemporalAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeTransformer":{"id":2976695445717341},"decodeWithOptimizer":{"id":1258077253367702},"encodeWithOptimizer":{"id":2329835175437096},"decode":{"id":1703148623761209},"encode":{"id":304817345968029}} });
+registerSDKClass("CreateMLComponents.UpdatableSupervisedEstimatorToTemporalAdaptor", UpdatableSupervisedEstimatorToTemporalAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeTransformer":{"id":2976695445717341},"decodeWithOptimizer":{"id":1258077253367702},"encodeWithOptimizer":{"id":2329835175437096},"decode":{"id":1703148623761209},"encode":{"id":304817345968029}} });
 registerSDKProtocol("s:18CreateMLComponents35UpdatableSupervisedTabularEstimatorP", {"fittedToValidateOnEventHandler":"fitted(to:validateOn:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)","makeTransformer":"makeTransformer()","updateWithEventHandler":"update(_:with:eventHandler:)","encodeWithOptimizerTo":"encodeWithOptimizer(_:to:)","decodeWithOptimizerFrom":"decodeWithOptimizer(from:)"});
 registerSDKProtocol("s:18CreateMLComponents36UpdatableSupervisedTemporalEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","fittedToValidateOnEventHandler":"fitted(to:validateOn:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)","makeTransformer":"makeTransformer()","updateWithEventHandler":"update(_:with:eventHandler:)","encodeWithOptimizerTo":"encodeWithOptimizer(_:to:)","decodeWithOptimizerFrom":"decodeWithOptimizer(from:)"});
 registerSDKProtocol("s:18CreateMLComponents25UpdatableTabularEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)","makeTransformer":"makeTransformer()","updateWithEventHandler":"update(_:with:eventHandler:)","encodeWithOptimizerTo":"encodeWithOptimizer(_:to:)","decodeWithOptimizerFrom":"decodeWithOptimizer(from:)"});
-registerSDKClass("CreateMLComponents.UpdatableTabularEstimatorToSupervisedAdaptor", UpdatableTabularEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decodeWithOptimizer":{"id":4438634029877140},"encodeWithOptimizer":{"id":3659374456215632},"decode":{"id":453397840287628},"encode":{"id":1103790833666046},"fitted":{"id":3238148331568345,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":1721290234833776,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.UpdatableTabularEstimatorToSupervisedAdaptor", UpdatableTabularEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decodeWithOptimizer":{"id":4438634029877140},"encodeWithOptimizer":{"id":3659374456215632},"decode":{"id":453397840287628},"encode":{"id":1103790833666046},"fitted":{"id":3238148331568345,"hints":[null,null,{"callback":{"out":[]}}]},"update":{"id":1721290234833776,"hints":[null,null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("s:18CreateMLComponents26UpdatableTemporalEstimatorP", {"fittedToEventHandler":"fitted(to:eventHandler:)","encodeTo":"encode(_:to:)","decodeFrom":"decode(from:)","makeTransformer":"makeTransformer()","updateWithEventHandler":"update(_:with:eventHandler:)","encodeWithOptimizerTo":"encodeWithOptimizer(_:to:)","decodeWithOptimizerFrom":"decodeWithOptimizer(from:)"});
-registerSDKClass("CreateMLComponents.UpdatableTemporalEstimatorToSupervisedAdaptor", UpdatableTemporalEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"decodeWithOptimizer":{"id":1680045714652587},"encodeWithOptimizer":{"id":1323389800800366},"decode":{"id":1665164190508550},"encode":{"id":2648488462409897}} });
-registerSDKClass("CreateMLComponents.UpsampledAugmentationSequence", UpsampledAugmentationSequence, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.UpsampledAugmentationSequence.AsyncIterator", UpsampledAugmentationSequence_AsyncIterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.VideoReader", VideoReader, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"applied":{"id":4404540879390801,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CreateMLComponents.VideoReader.AsyncFrames", VideoReader_AsyncFrames, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":1494820990852371}} });
-registerSDKClass("CreateMLComponents.VideoReader.AsyncFrames.Iterator", VideoReader_AsyncFrames_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":3621796120764808}} });
-registerSDKClass("CreateMLComponents.VideoReader.CameraAsyncBuffers", VideoReader_CameraAsyncBuffers, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"makeAsyncIterator":{"id":125491607845722}} });
-registerSDKClass("CreateMLComponents.VideoReader.CameraAsyncBuffers.Iterator", VideoReader_CameraAsyncBuffers_Iterator, { module: "CreateMLComponents_c1f28409f8601238", properties: {}, methods: {"next":{"id":258156229300302}} });
-registerSDKClass("CreateMLComponents.VideoReader.CameraConfiguration", VideoReader_CameraConfiguration, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
-registerSDKClass("CreateMLComponents.VideoReaderError", VideoReaderError, { module: "CreateMLComponents_c1f28409f8601238", properties: {} });
+registerSDKClass("CreateMLComponents.UpdatableTemporalEstimatorToSupervisedAdaptor", UpdatableTemporalEstimatorToSupervisedAdaptor, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"decodeWithOptimizer":{"id":1680045714652587},"encodeWithOptimizer":{"id":1323389800800366},"decode":{"id":1665164190508550},"encode":{"id":2648488462409897}} });
+registerSDKClass("CreateMLComponents.UpsampledAugmentationSequence", UpsampledAugmentationSequence, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.UpsampledAugmentationSequence.AsyncIterator", UpsampledAugmentationSequence_AsyncIterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.VideoReader", VideoReader, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"applied":{"id":4404540879390801,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CreateMLComponents.VideoReader.AsyncFrames", VideoReader_AsyncFrames, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":1494820990852371}} });
+registerSDKClass("CreateMLComponents.VideoReader.AsyncFrames.Iterator", VideoReader_AsyncFrames_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":3621796120764808}} });
+registerSDKClass("CreateMLComponents.VideoReader.CameraAsyncBuffers", VideoReader_CameraAsyncBuffers, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":125491607845722}} });
+registerSDKClass("CreateMLComponents.VideoReader.CameraAsyncBuffers.Iterator", VideoReader_CameraAsyncBuffers_Iterator, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":258156229300302}} });
+registerSDKClass("CreateMLComponents.VideoReader.CameraConfiguration", VideoReader_CameraConfiguration, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CreateMLComponents.VideoReaderError", VideoReaderError, { module: "CreateMLComponents_e11dfd5beee01da3", properties: {} });

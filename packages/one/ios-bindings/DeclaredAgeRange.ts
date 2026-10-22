@@ -13,27 +13,27 @@ export class AgeRangeService extends SDKHandle {
    * var isEligibleForAgeFeatures: Bool { get async throws }
    * @availability iOS 26.2+
    */
-  get isEligibleForAgeFeatures(): Promise<boolean> { return callSDKAsync<boolean>("DeclaredAgeRange_c1f28409f8601238", 2985398461584807, this, []); }
+  get isEligibleForAgeFeatures(): Promise<boolean> { return callSDKAsync<boolean>("DeclaredAgeRange_e11dfd5beee01da3", 2985398461584807, this, []); }
   /**
    * func requestAgeRange(ageGates threshold1: Int, _ threshold2: Int? = nil, _ threshold3: Int? = nil, in viewController: UIViewController) async throws -> AgeRangeService.Response
    * @availability iOS 26.0+
    */
-  requestAgeRange(threshold1: number, threshold2: (number) | null, threshold3: (number) | null, viewController: _UIKit_UIViewController): Promise<AgeRangeService_Response> { return callSDKAsync<AgeRangeService_Response>("DeclaredAgeRange_c1f28409f8601238", 22730226148315, this, [threshold1, threshold2, threshold3, viewController]); }
+  requestAgeRange(threshold1: number, threshold2: (number) | null, threshold3: (number) | null, viewController: _UIKit_UIViewController): Promise<AgeRangeService_Response> { return callSDKAsync<AgeRangeService_Response>("DeclaredAgeRange_e11dfd5beee01da3", 22730226148315, this, [threshold1, threshold2, threshold3, viewController]); }
   /**
    * var requiredRegulatoryFeatures: Set<AgeRangeService.RegulatoryFeature> { get async throws }
    * @availability iOS 26.4+
    */
-  get requiredRegulatoryFeatures(): Promise<Array<AgeRangeService_RegulatoryFeature>> { return callSDKAsync<Array<AgeRangeService_RegulatoryFeature>>("DeclaredAgeRange_c1f28409f8601238", 3016440123366141, this, []); }
+  get requiredRegulatoryFeatures(): Promise<Array<AgeRangeService_RegulatoryFeature>> { return callSDKAsync<Array<AgeRangeService_RegulatoryFeature>>("DeclaredAgeRange_e11dfd5beee01da3", 3016440123366141, this, []); }
   /**
    * @MainActor func showSignificantUpdateAcknowledgment(in windowScene: UIWindowScene, updateDescription: String) async throws
    * @availability iOS 26.4+
    */
-  showSignificantUpdateAcknowledgment(windowScene: _UIKit_UIWindowScene, updateDescription: string): Promise<void> { return callSDKAsync<void>("DeclaredAgeRange_c1f28409f8601238", 2728124245029474, this, [windowScene, updateDescription]); }
+  showSignificantUpdateAcknowledgment(windowScene: _UIKit_UIWindowScene, updateDescription: string): Promise<void> { return callSDKAsync<void>("DeclaredAgeRange_e11dfd5beee01da3", 2728124245029474, this, [windowScene, updateDescription]); }
   /**
    * static let shared: AgeRangeService
    * @availability iOS 26.0+
    */
-  static get shared(): AgeRangeService { return callSDK<AgeRangeService>("DeclaredAgeRange_c1f28409f8601238", 2843966462723015, undefined, []); }
+  static get shared(): AgeRangeService { return callSDK<AgeRangeService>("DeclaredAgeRange_e11dfd5beee01da3", 2843966462723015, undefined, []); }
   declare readonly $type: { "s:16DeclaredAgeRange0bC7ServiceV": true };
 }
 
@@ -46,26 +46,26 @@ export class AgeRangeService_AgeRange extends SDKHandle {
    * var ageRangeDeclaration: AgeRangeService.AgeRangeDeclaration?
    * @availability iOS 26.0+
    */
-  get ageRangeDeclaration(): $SDK1 { return callSDK<$SDK1>("DeclaredAgeRange_c1f28409f8601238", 1273982087291392, this, []); }
-  set ageRangeDeclaration(value: $SDK1) { callSDK<void>("DeclaredAgeRange_c1f28409f8601238", 4261367887351440, this, [value]); }
+  get ageRangeDeclaration(): $SDK1 { return callSDK<$SDK1>("DeclaredAgeRange_e11dfd5beee01da3", 1273982087291392, this, []); }
+  set ageRangeDeclaration(value: $SDK1) { callSDK<void>("DeclaredAgeRange_e11dfd5beee01da3", 4261367887351440, this, [value]); }
   /**
    * var lowerBound: Int?
    * @availability iOS 26.0+
    */
-  get lowerBound(): (number) | null { return callSDK<(number) | null>("DeclaredAgeRange_c1f28409f8601238", 3173777240179183, this, []); }
-  set lowerBound(value: (number) | null) { callSDK<void>("DeclaredAgeRange_c1f28409f8601238", 3455542047704138, this, [value]); }
+  get lowerBound(): (number) | null { return callSDK<(number) | null>("DeclaredAgeRange_e11dfd5beee01da3", 3173777240179183, this, []); }
+  set lowerBound(value: (number) | null) { callSDK<void>("DeclaredAgeRange_e11dfd5beee01da3", 3455542047704138, this, [value]); }
   /**
    * var upperBound: Int?
    * @availability iOS 26.0+
    */
-  get upperBound(): (number) | null { return callSDK<(number) | null>("DeclaredAgeRange_c1f28409f8601238", 2103516088499732, this, []); }
-  set upperBound(value: (number) | null) { callSDK<void>("DeclaredAgeRange_c1f28409f8601238", 4199796719991905, this, [value]); }
+  get upperBound(): (number) | null { return callSDK<(number) | null>("DeclaredAgeRange_e11dfd5beee01da3", 2103516088499732, this, []); }
+  set upperBound(value: (number) | null) { callSDK<void>("DeclaredAgeRange_e11dfd5beee01da3", 4199796719991905, this, [value]); }
   /**
    * var activeParentalControls: AgeRangeService.ParentalControls
    * @availability iOS 26.0+
    */
-  get activeParentalControls(): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_c1f28409f8601238", 3762323893486572, this, []); }
-  set activeParentalControls(value: AgeRangeService_ParentalControls) { callSDK<void>("DeclaredAgeRange_c1f28409f8601238", 4251881764331700, this, [value]); }
+  get activeParentalControls(): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_e11dfd5beee01da3", 3762323893486572, this, []); }
+  set activeParentalControls(value: AgeRangeService_ParentalControls) { callSDK<void>("DeclaredAgeRange_e11dfd5beee01da3", 4251881764331700, this, [value]); }
   declare readonly $type: { "s:16DeclaredAgeRange0bC7ServiceV0bC0V": true };
 }
 
@@ -92,28 +92,28 @@ export const AgeRangeService_ParentalControls = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: AgeRangeService_ParentalControls): string { return callSDK<string>("DeclaredAgeRange_c1f28409f8601238", 3908441747782532, $self, []); },
+  getDescription($self: AgeRangeService_ParentalControls): string { return callSDK<string>("DeclaredAgeRange_e11dfd5beee01da3", 3908441747782532, $self, []); },
   /**
    * static let communicationLimits: AgeRangeService.ParentalControls
    * @availability iOS 26.0+
    */
-  get communicationLimits(): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_c1f28409f8601238", 2884128833155504, undefined, []); },
+  get communicationLimits(): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_e11dfd5beee01da3", 2884128833155504, undefined, []); },
   /**
    * static let significantAppChangeApprovalRequired: AgeRangeService.ParentalControls
    * @availability iOS 26.2+
    * @deprecated iOS 26.4
    */
-  get significantAppChangeApprovalRequired(): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_c1f28409f8601238", 1363897430259187, undefined, []); },
+  get significantAppChangeApprovalRequired(): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_e11dfd5beee01da3", 1363897430259187, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_c1f28409f8601238", 3772847133165657, undefined, [rawValue]); },
+  init(rawValue: number): AgeRangeService_ParentalControls { return callSDK<AgeRangeService_ParentalControls>("DeclaredAgeRange_e11dfd5beee01da3", 3772847133165657, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: AgeRangeService_ParentalControls): number { return callSDK<number>("DeclaredAgeRange_c1f28409f8601238", 2753636880102951, $self, []); }
+  getRawValue($self: AgeRangeService_ParentalControls): number { return callSDK<number>("DeclaredAgeRange_e11dfd5beee01da3", 2753636880102951, $self, []); }
 };
 
 /**
@@ -157,7 +157,7 @@ export class DeclaredAgeRangeAction extends SDKHandle {
    * func callAsFunction(ageGates threshold1: Int, _ threshold2: Int? = nil, _ threshold3: Int? = nil) async throws -> AgeRangeService.Response
    * @availability iOS 26.0+
    */
-  callAsFunction(threshold1: number, threshold2?: (number) | null, threshold3?: (number) | null): Promise<AgeRangeService_Response> { return callSDKAsync<AgeRangeService_Response>("DeclaredAgeRange_c1f28409f8601238", 4309015374974940, this, [threshold1, threshold2, threshold3]); }
+  callAsFunction(threshold1: number, threshold2?: (number) | null, threshold3?: (number) | null): Promise<AgeRangeService_Response> { return callSDKAsync<AgeRangeService_Response>("DeclaredAgeRange_e11dfd5beee01da3", 4309015374974940, this, [threshold1, threshold2, threshold3]); }
   declare readonly $type: { "s:16DeclaredAgeRange0abC6ActionV": true };
 }
 
@@ -170,12 +170,12 @@ export class SignificantUpdateAction extends SDKHandle {
    * func callAsFunction(updateDescription: String) async throws
    * @availability iOS 26.4+
    */
-  callAsFunction(updateDescription: string): Promise<void> { return callSDKAsync<void>("DeclaredAgeRange_c1f28409f8601238", 341113044962964, this, [updateDescription]); }
+  callAsFunction(updateDescription: string): Promise<void> { return callSDKAsync<void>("DeclaredAgeRange_e11dfd5beee01da3", 341113044962964, this, [updateDescription]); }
   declare readonly $type: { "s:16DeclaredAgeRange23SignificantUpdateActionV": true };
 }
 
-registerSDKClass("DeclaredAgeRange.AgeRangeService", AgeRangeService, { module: "DeclaredAgeRange_c1f28409f8601238", properties: {}, methods: {"requestAgeRange":{"id":22730226148315},"showSignificantUpdateAcknowledgment":{"id":2728124245029474}} });
-registerSDKClass("DeclaredAgeRange.AgeRangeService.AgeRange", AgeRangeService_AgeRange, { module: "DeclaredAgeRange_c1f28409f8601238", properties: {} });
-registerSDKClass("DeclaredAgeRange.AgeRangeService.Response", AgeRangeService_Response, { module: "DeclaredAgeRange_c1f28409f8601238", properties: {} });
-registerSDKClass("DeclaredAgeRange.DeclaredAgeRangeAction", DeclaredAgeRangeAction, { module: "DeclaredAgeRange_c1f28409f8601238", properties: {}, methods: {"callAsFunction":{"id":4309015374974940}} });
-registerSDKClass("DeclaredAgeRange.SignificantUpdateAction", SignificantUpdateAction, { module: "DeclaredAgeRange_c1f28409f8601238", properties: {}, methods: {"callAsFunction":{"id":341113044962964}} });
+registerSDKClass("DeclaredAgeRange.AgeRangeService", AgeRangeService, { module: "DeclaredAgeRange_e11dfd5beee01da3", properties: {}, methods: {"requestAgeRange":{"id":22730226148315},"showSignificantUpdateAcknowledgment":{"id":2728124245029474}} });
+registerSDKClass("DeclaredAgeRange.AgeRangeService.AgeRange", AgeRangeService_AgeRange, { module: "DeclaredAgeRange_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeclaredAgeRange.AgeRangeService.Response", AgeRangeService_Response, { module: "DeclaredAgeRange_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DeclaredAgeRange.DeclaredAgeRangeAction", DeclaredAgeRangeAction, { module: "DeclaredAgeRange_e11dfd5beee01da3", properties: {}, methods: {"callAsFunction":{"id":4309015374974940}} });
+registerSDKClass("DeclaredAgeRange.SignificantUpdateAction", SignificantUpdateAction, { module: "DeclaredAgeRange_e11dfd5beee01da3", properties: {}, methods: {"callAsFunction":{"id":341113044962964}} });

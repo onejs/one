@@ -43,14 +43,14 @@ export class AccessibilityComponent extends SDKHandle {
    * var customRotors: [AccessibilityComponent.RotorType] { get set }
    * @availability iOS 17.0+
    */
-  get customRotors(): $SDK0 { return callSDK<$SDK0>("RealityKit_c1f28409f8601238", 330212585877626, this, []); }
-  set customRotors(value: $SDK0) { callSDK<void>("RealityKit_c1f28409f8601238", 3345634836432762, this, [value]); }
+  get customRotors(): $SDK0 { return callSDK<$SDK0>("RealityKit_e11dfd5beee01da3", 330212585877626, this, []); }
+  set customRotors(value: $SDK0) { callSDK<void>("RealityKit_e11dfd5beee01da3", 3345634836432762, this, [value]); }
   /**
    * var traits: UIAccessibilityTraits { get set }
    * @availability iOS 17.0+
    */
-  get traits(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("RealityKit_c1f28409f8601238", 4177998473586819, this, []); }
-  set traits(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("RealityKit_c1f28409f8601238", 1665317229567916, this, [value]); }
+  get traits(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("RealityKit_e11dfd5beee01da3", 4177998473586819, this, []); }
+  set traits(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1665317229567916, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation22AccessibilityComponentV": true };
 }
 
@@ -79,13 +79,13 @@ export class AccessibilityEvents_Activate extends SDKHandle {
    * var entity: Entity
    * @availability iOS 17.0+
    */
-  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_c1f28409f8601238", 96633372336214, this, []); }
-  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_c1f28409f8601238", 600435331298805, this, [value]); }
+  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_e11dfd5beee01da3", 96633372336214, this, []); }
+  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_e11dfd5beee01da3", 600435331298805, this, [value]); }
   /**
    * init(entity: Entity)
    * @availability iOS 17.0+
    */
-  static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Activate { return callSDK<AccessibilityEvents_Activate>("RealityKit_c1f28409f8601238", 2475403493631611, undefined, [entity]); }
+  static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Activate { return callSDK<AccessibilityEvents_Activate>("RealityKit_e11dfd5beee01da3", 2475403493631611, undefined, [entity]); }
   declare readonly $type: { "s:10RealityKit19AccessibilityEventsO8ActivateV": true };
 }
 
@@ -98,19 +98,19 @@ export class AccessibilityEvents_CustomAction extends SDKHandle {
    * var key: LocalizedStringResource
    * @availability iOS 17.0+
    */
-  get key(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("RealityKit_c1f28409f8601238", 103167723489077, this, []); }
-  set key(value: _Foundation_LocalizedStringResource) { callSDK<void>("RealityKit_c1f28409f8601238", 1876286321735066, this, [value]); }
+  get key(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("RealityKit_e11dfd5beee01da3", 103167723489077, this, []); }
+  set key(value: _Foundation_LocalizedStringResource) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1876286321735066, this, [value]); }
   /**
    * init(key: LocalizedStringResource, entity: Entity)
    * @availability iOS 17.0+
    */
-  static init(key: _Foundation_LocalizedStringResource, entity: _RealityFoundation_Entity): AccessibilityEvents_CustomAction { return callSDK<AccessibilityEvents_CustomAction>("RealityKit_c1f28409f8601238", 3037319614555253, undefined, [key, entity]); }
+  static init(key: _Foundation_LocalizedStringResource, entity: _RealityFoundation_Entity): AccessibilityEvents_CustomAction { return callSDK<AccessibilityEvents_CustomAction>("RealityKit_e11dfd5beee01da3", 3037319614555253, undefined, [key, entity]); }
   /**
    * var entity: Entity
    * @availability iOS 17.0+
    */
-  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_c1f28409f8601238", 2358244897365353, this, []); }
-  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_c1f28409f8601238", 153860579543664, this, [value]); }
+  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_e11dfd5beee01da3", 2358244897365353, this, []); }
+  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_e11dfd5beee01da3", 153860579543664, this, [value]); }
   declare readonly $type: { "s:10RealityKit19AccessibilityEventsO12CustomActionV": true };
 }
 
@@ -123,13 +123,13 @@ export class AccessibilityEvents_Decrement extends SDKHandle {
    * var entity: Entity
    * @availability iOS 17.0+
    */
-  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_c1f28409f8601238", 774393849892456, this, []); }
-  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_c1f28409f8601238", 3176429504589812, this, [value]); }
+  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_e11dfd5beee01da3", 774393849892456, this, []); }
+  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_e11dfd5beee01da3", 3176429504589812, this, [value]); }
   /**
    * init(entity: Entity)
    * @availability iOS 17.0+
    */
-  static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Decrement { return callSDK<AccessibilityEvents_Decrement>("RealityKit_c1f28409f8601238", 2948240482268451, undefined, [entity]); }
+  static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Decrement { return callSDK<AccessibilityEvents_Decrement>("RealityKit_e11dfd5beee01da3", 2948240482268451, undefined, [entity]); }
   declare readonly $type: { "s:10RealityKit19AccessibilityEventsO9DecrementV": true };
 }
 
@@ -142,13 +142,13 @@ export class AccessibilityEvents_Increment extends SDKHandle {
    * var entity: Entity
    * @availability iOS 17.0+
    */
-  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_c1f28409f8601238", 3547463057907441, this, []); }
-  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_c1f28409f8601238", 1487754701616616, this, [value]); }
+  get entity(): _RealityFoundation_Entity { return callSDK<_RealityFoundation_Entity>("RealityKit_e11dfd5beee01da3", 3547463057907441, this, []); }
+  set entity(value: _RealityFoundation_Entity) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1487754701616616, this, [value]); }
   /**
    * init(entity: Entity)
    * @availability iOS 17.0+
    */
-  static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Increment { return callSDK<AccessibilityEvents_Increment>("RealityKit_c1f28409f8601238", 2710095893966287, undefined, [entity]); }
+  static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Increment { return callSDK<AccessibilityEvents_Increment>("RealityKit_e11dfd5beee01da3", 2710095893966287, undefined, [entity]); }
   declare readonly $type: { "s:10RealityKit19AccessibilityEventsO9IncrementV": true };
 }
 
@@ -161,32 +161,32 @@ export class AccessibilityEvents_RotorNavigation extends SDKHandle {
    * @MainActor @preconcurrency let hostEntity: Entity
    * @availability iOS 17.0+
    */
-  get hostEntity(): Promise<_RealityFoundation_Entity> { return callSDKAsync<_RealityFoundation_Entity>("RealityKit_c1f28409f8601238", 2845773027791347, this, []); }
+  get hostEntity(): Promise<_RealityFoundation_Entity> { return callSDKAsync<_RealityFoundation_Entity>("RealityKit_e11dfd5beee01da3", 2845773027791347, this, []); }
   /**
    * @MainActor @preconcurrency let currentItem: Any?
    * @availability iOS 17.0+
    */
-  get currentItem(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("RealityKit_c1f28409f8601238", 1556468670453441, this, []); }
+  get currentItem(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("RealityKit_e11dfd5beee01da3", 1556468670453441, this, []); }
   /**
    * @MainActor @preconcurrency let resultHandler: (Any) -> Void
    * @availability iOS 17.0+
    */
-  get resultHandler(): Promise<((arg0: unknown) => Promise<void>)> { return callSDKAsync<((arg0: unknown) => Promise<void>)>("RealityKit_c1f28409f8601238", 1476817593031214, this, []); }
+  get resultHandler(): Promise<((arg0: unknown) => Promise<void>)> { return callSDKAsync<((arg0: unknown) => Promise<void>)>("RealityKit_e11dfd5beee01da3", 1476817593031214, this, []); }
   /**
    * @MainActor @preconcurrency let searchDirection: UIAccessibilityCustomRotor.Direction
    * @availability iOS 17.0+
    */
-  get searchDirection(): Promise<_UIKit_UIAccessibilityCustomRotor_Direction> { return callSDKAsync<_UIKit_UIAccessibilityCustomRotor_Direction>("RealityKit_c1f28409f8601238", 2739620101175519, this, []); }
+  get searchDirection(): Promise<_UIKit_UIAccessibilityCustomRotor_Direction> { return callSDKAsync<_UIKit_UIAccessibilityCustomRotor_Direction>("RealityKit_e11dfd5beee01da3", 2739620101175519, this, []); }
   /**
    * @MainActor @preconcurrency let rotorType: AccessibilityComponent.RotorType
    * @availability iOS 17.0+
    */
-  get rotorType(): Promise<AccessibilityComponent_RotorType> { return callSDKAsync<AccessibilityComponent_RotorType>("RealityKit_c1f28409f8601238", 1292966489245284, this, []); }
+  get rotorType(): Promise<AccessibilityComponent_RotorType> { return callSDKAsync<AccessibilityComponent_RotorType>("RealityKit_e11dfd5beee01da3", 1292966489245284, this, []); }
   /**
    * @MainActor @preconcurrency init(rotorType: AccessibilityComponent.RotorType, hostEntity: Entity, currentItem: Any?, searchDirection: UIAccessibilityCustomRotor.Direction, resultHandler: @escaping (Any) -> Void)
    * @availability iOS 17.0+
    */
-  static init(rotorType: AccessibilityComponent_RotorType, hostEntity: _RealityFoundation_Entity, currentItem: (unknown) | null, searchDirection: _UIKit_UIAccessibilityCustomRotor_Direction, resultHandler: ((arg0: unknown) => void)): Promise<AccessibilityEvents_RotorNavigation> { return callSDKAsync<AccessibilityEvents_RotorNavigation>("RealityKit_c1f28409f8601238", 3771409667358785, undefined, [rotorType, hostEntity, currentItem, searchDirection, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static init(rotorType: AccessibilityComponent_RotorType, hostEntity: _RealityFoundation_Entity, currentItem: (unknown) | null, searchDirection: _UIKit_UIAccessibilityCustomRotor_Direction, resultHandler: ((arg0: unknown) => void)): Promise<AccessibilityEvents_RotorNavigation> { return callSDKAsync<AccessibilityEvents_RotorNavigation>("RealityKit_e11dfd5beee01da3", 3771409667358785, undefined, [rotorType, hostEntity, currentItem, searchDirection, resultHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:10RealityKit19AccessibilityEventsO15RotorNavigationV": true };
 }
 
@@ -195,12 +195,12 @@ export class AnchorEntity extends SDKHandle {
    * @MainActor @preconcurrency convenience init(raycastResult: ARRaycastResult)
    * @availability iOS 13.0+
    */
-  static initRaycastResult(raycastResult: _ARKit_ARRaycastResult): Promise<_RealityFoundation_AnchorEntity> { return callSDKAsync<_RealityFoundation_AnchorEntity>("RealityKit_c1f28409f8601238", 3903825983335162, undefined, [raycastResult]); }
+  static initRaycastResult(raycastResult: _ARKit_ARRaycastResult): Promise<_RealityFoundation_AnchorEntity> { return callSDKAsync<_RealityFoundation_AnchorEntity>("RealityKit_e11dfd5beee01da3", 3903825983335162, undefined, [raycastResult]); }
   /**
    * @MainActor @preconcurrency convenience init(anchor: ARAnchor)
    * @availability iOS 13.0+
    */
-  static initAnchor(anchor: _ARKit_ARAnchor): Promise<_RealityFoundation_AnchorEntity> { return callSDKAsync<_RealityFoundation_AnchorEntity>("RealityKit_c1f28409f8601238", 3268020539890290, undefined, [anchor]); }
+  static initAnchor(anchor: _ARKit_ARAnchor): Promise<_RealityFoundation_AnchorEntity> { return callSDKAsync<_RealityFoundation_AnchorEntity>("RealityKit_e11dfd5beee01da3", 3268020539890290, undefined, [anchor]); }
   declare readonly $type: { "s:17RealityFoundation12AnchorEntityC": true; "s:17RealityFoundation6EntityC": true };
 }
 
@@ -209,7 +209,7 @@ export class AnchoringComponent extends SDKHandle {
    * init(_ anchor: ARAnchor)
    * @availability iOS 13.0+
    */
-  static init(anchor: _ARKit_ARAnchor): _RealityFoundation_AnchoringComponent { return callSDK<_RealityFoundation_AnchoringComponent>("RealityKit_c1f28409f8601238", 1560972372955552, undefined, [anchor]); }
+  static init(anchor: _ARKit_ARAnchor): _RealityFoundation_AnchoringComponent { return callSDK<_RealityFoundation_AnchoringComponent>("RealityKit_e11dfd5beee01da3", 1560972372955552, undefined, [anchor]); }
   declare readonly $type: { "s:17RealityFoundation18AnchoringComponentV": true };
 }
 
@@ -222,7 +222,7 @@ export class ARKitAnchorComponent extends SDKHandle {
    * var arAnchor: ARAnchor { get }
    * @availability iOS 26.0+
    */
-  get arAnchor(): _ARKit_ARAnchor { return callSDK<_ARKit_ARAnchor>("RealityKit_c1f28409f8601238", 106898160748925, this, []); }
+  get arAnchor(): _ARKit_ARAnchor { return callSDK<_ARKit_ARAnchor>("RealityKit_e11dfd5beee01da3", 106898160748925, this, []); }
   declare readonly $type: { "s:10RealityKit20ARKitAnchorComponentV": true };
 }
 
@@ -235,208 +235,208 @@ export class ARView extends SDKHandle {
    * @MainActor @preconcurrency override dynamic class var layerClass: AnyClass { get }
    * @availability iOS 13.0+
    */
-  static get layerClass(): Promise<string> { return callSDKAsync<string>("RealityKit_c1f28409f8601238", 3524057797315930, undefined, []); }
+  static get layerClass(): Promise<string> { return callSDKAsync<string>("RealityKit_e11dfd5beee01da3", 3524057797315930, undefined, []); }
   /**
    * @MainActor @preconcurrency override dynamic func didMoveToSuperview()
    * @availability iOS 13.0+
    */
-  didMoveToSuperview(): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 257728475313411, this, []); }
+  didMoveToSuperview(): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 257728475313411, this, []); }
   /**
    * @MainActor @preconcurrency @objc dynamic func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
    * @availability iOS 13.0+
    */
-  gestureRecognizerShouldReceive(gestureRecognizer: _UIKit_UIGestureRecognizer, touch: _UIKit_UITouch): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 652337509679640, this, [gestureRecognizer, touch]); }
+  gestureRecognizerShouldReceive(gestureRecognizer: _UIKit_UIGestureRecognizer, touch: _UIKit_UITouch): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 652337509679640, this, [gestureRecognizer, touch]); }
   /**
    * @MainActor @preconcurrency @objc dynamic func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
    * @availability iOS 13.0+
    */
-  gestureRecognizerShouldRecognizeSimultaneouslyWith(gestureRecognizer: _UIKit_UIGestureRecognizer, otherGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 178437922020098, this, [gestureRecognizer, otherGestureRecognizer]); }
+  gestureRecognizerShouldRecognizeSimultaneouslyWith(gestureRecognizer: _UIKit_UIGestureRecognizer, otherGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 178437922020098, this, [gestureRecognizer, otherGestureRecognizer]); }
   /**
    * @MainActor @preconcurrency override dynamic func layoutSubviews()
    * @availability iOS 13.0+
    */
-  layoutSubviews(): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1641966580421319, this, []); }
+  layoutSubviews(): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1641966580421319, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
    * @availability iOS 13.0+
    */
-  touchesBegan(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 425921552292686, this, [touches, event]); }
+  touchesBegan(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 425921552292686, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
    * @availability iOS 13.0+
    */
-  touchesCancelled(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3568651419768315, this, [touches, event]); }
+  touchesCancelled(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3568651419768315, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
    * @availability iOS 13.0+
    */
-  touchesEnded(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 799992897084172, this, [touches, event]); }
+  touchesEnded(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 799992897084172, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
    * @availability iOS 13.0+
    */
-  touchesMoved(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 253729813930570, this, [touches, event]); }
+  touchesMoved(touches: Array<_UIKit_UITouch>, event?: (_UIKit_UIEvent) | null): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 253729813930570, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic var contentScaleFactor: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get contentScaleFactor(): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 1708825325148727, this, []); }
-  setContentScaleFactor(value: number): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2085958273355169, this, [value]); }
+  get contentScaleFactor(): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 1708825325148727, this, []); }
+  setContentScaleFactor(value: number): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2085958273355169, this, [value]); }
   /**
    * @MainActor @preconcurrency dynamic var session: ARSession { get set }
    * @availability iOS 13.0+
    */
-  get session(): Promise<_ARKit_ARSession> { return callSDKAsync<_ARKit_ARSession>("RealityKit_c1f28409f8601238", 4032399990674433, this, []); }
-  setSession(value: _ARKit_ARSession): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1823673241700583, this, [value]); }
+  get session(): Promise<_ARKit_ARSession> { return callSDKAsync<_ARKit_ARSession>("RealityKit_e11dfd5beee01da3", 4032399990674433, this, []); }
+  setSession(value: _ARKit_ARSession): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1823673241700583, this, [value]); }
   /**
    * @MainActor @preconcurrency required dynamic init?(coder decoder: NSCoder)
    * @availability iOS 13.0+
    */
-  static initCoder(decoder: _Foundation_NSCoder): Promise<(ARView) | null> { return callSDKAsync<(ARView) | null>("RealityKit_c1f28409f8601238", 807926477518263, undefined, [decoder]); }
+  static initCoder(decoder: _Foundation_NSCoder): Promise<(ARView) | null> { return callSDKAsync<(ARView) | null>("RealityKit_e11dfd5beee01da3", 807926477518263, undefined, [decoder]); }
   /**
    * @MainActor @preconcurrency override required dynamic init(frame frameRect: CGRect)
    * @availability iOS 13.0+
    */
-  static initFrame(frameRect: $SDK3): Promise<ARView> { return callSDKAsync<ARView>("RealityKit_c1f28409f8601238", 1544999992549533, undefined, [frameRect]); }
+  static initFrame(frameRect: $SDK3): Promise<ARView> { return callSDKAsync<ARView>("RealityKit_e11dfd5beee01da3", 1544999992549533, undefined, [frameRect]); }
   /**
    * @MainActor @preconcurrency var cameraMode: ARView.CameraMode { get set }
    * @availability iOS 13.0+
    */
-  get cameraMode(): Promise<ARView_CameraMode> { return callSDKAsync<ARView_CameraMode>("RealityKit_c1f28409f8601238", 2167562568266329, this, []); }
-  setCameraMode(value: ARView_CameraMode): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2637096085633425, this, [value]); }
+  get cameraMode(): Promise<ARView_CameraMode> { return callSDKAsync<ARView_CameraMode>("RealityKit_e11dfd5beee01da3", 2167562568266329, this, []); }
+  setCameraMode(value: ARView_CameraMode): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2637096085633425, this, [value]); }
   /**
    * @MainActor @preconcurrency var environment: ARView.Environment { get set }
    * @availability iOS 13.0+
    */
-  get environment(): Promise<ARView_Environment> { return callSDKAsync<ARView_Environment>("RealityKit_c1f28409f8601238", 917807965991464, this, []); }
-  setEnvironment(value: ARView_Environment): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 907407165573861, this, [value]); }
+  get environment(): Promise<ARView_Environment> { return callSDKAsync<ARView_Environment>("RealityKit_e11dfd5beee01da3", 917807965991464, this, []); }
+  setEnvironment(value: ARView_Environment): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 907407165573861, this, [value]); }
   /**
    * @MainActor @preconcurrency var debugOptions: ARView.DebugOptions { get set }
    * @availability iOS 13.0+
    */
-  get debugOptions(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 2500164973914594, this, []); }
-  setDebugOptions(value: ARView_DebugOptions): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3721576904973474, this, [value]); }
+  get debugOptions(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 2500164973914594, this, []); }
+  setDebugOptions(value: ARView_DebugOptions): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3721576904973474, this, [value]); }
   /**
    * @MainActor @preconcurrency var audioListener: Entity? { get set }
    * @availability iOS 13.0+
    */
-  get audioListener(): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_c1f28409f8601238", 714337889465424, this, []); }
-  setAudioListener(value?: $SDK4): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3419579358873033, this, [value]); }
+  get audioListener(): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_e11dfd5beee01da3", 714337889465424, this, []); }
+  setAudioListener(value?: $SDK4): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3419579358873033, this, [value]); }
   /**
    * @MainActor @preconcurrency var physicsOrigin: Entity? { get set }
    * @availability iOS 13.0+
    */
-  get physicsOrigin(): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_c1f28409f8601238", 3809956538756332, this, []); }
-  setPhysicsOrigin(value?: $SDK4): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1786950185958730, this, [value]); }
+  get physicsOrigin(): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_e11dfd5beee01da3", 3809956538756332, this, []); }
+  setPhysicsOrigin(value?: $SDK4): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1786950185958730, this, [value]); }
   /**
    * @MainActor @preconcurrency var renderOptions: ARView.RenderOptions { get set }
    * @availability iOS 13.0+
    */
-  get renderOptions(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 1867486525048258, this, []); }
-  setRenderOptions(value: ARView_RenderOptions): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3602225916398525, this, [value]); }
+  get renderOptions(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 1867486525048258, this, []); }
+  setRenderOptions(value: ARView_RenderOptions): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3602225916398525, this, [value]); }
   /**
    * @MainActor @preconcurrency func trackedRaycast(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment, updateHandler: @escaping ([ARRaycastResult]) -> Void) -> ARTrackedRaycast?
    * @availability iOS 13.0+
    */
-  trackedRaycast(point: $SDK6, target: _ARKit_ARRaycastQuery_Target, alignment: _ARKit_ARRaycastQuery_TargetAlignment, updateHandler: ((arg0: Array<_ARKit_ARRaycastResult>) => void)): Promise<(_ARKit_ARTrackedRaycast) | null> { return callSDKAsync<(_ARKit_ARTrackedRaycast) | null>("RealityKit_c1f28409f8601238", 2382415419014821, this, [point, target, alignment, updateHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  trackedRaycast(point: $SDK6, target: _ARKit_ARRaycastQuery_Target, alignment: _ARKit_ARRaycastQuery_TargetAlignment, updateHandler: ((arg0: Array<_ARKit_ARRaycastResult>) => void)): Promise<(_ARKit_ARTrackedRaycast) | null> { return callSDKAsync<(_ARKit_ARTrackedRaycast) | null>("RealityKit_e11dfd5beee01da3", 2382415419014821, this, [point, target, alignment, updateHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency var cameraTransform: Transform { get }
    * @availability iOS 13.0+
    */
-  get cameraTransform(): Promise<_RealityFoundation_Transform> { return callSDKAsync<_RealityFoundation_Transform>("RealityKit_c1f28409f8601238", 3848470838115927, this, []); }
+  get cameraTransform(): Promise<_RealityFoundation_Transform> { return callSDKAsync<_RealityFoundation_Transform>("RealityKit_e11dfd5beee01da3", 3848470838115927, this, []); }
   /**
    * @discardableResult @MainActor @preconcurrency func installGestures(_ gestures: ARView.EntityGestures = .all, for entity: any HasCollision) -> [any EntityGestureRecognizer]
    * @availability iOS 13.0+
    */
-  installGestures(gestures: ARView_EntityGestures, entity: Implements<_RealityFoundation_HasCollision> | SDKHandle): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("RealityKit_c1f28409f8601238", 2130267082755634, this, [gestures, entity], [null,{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
+  installGestures(gestures: ARView_EntityGestures, entity: Implements<_RealityFoundation_HasCollision> | SDKHandle): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("RealityKit_e11dfd5beee01da3", 2130267082755634, this, [gestures, entity], [null,{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
   /**
    * @MainActor @preconcurrency var renderCallbacks: ARView.RenderCallbacks { get set }
    * @availability iOS 15.0+
    */
-  get renderCallbacks(): Promise<ARView_RenderCallbacks> { return callSDKAsync<ARView_RenderCallbacks>("RealityKit_c1f28409f8601238", 1410221607125137, this, []); }
-  setRenderCallbacks(value: ARView_RenderCallbacks): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1430128203831038, this, [value]); }
+  get renderCallbacks(): Promise<ARView_RenderCallbacks> { return callSDKAsync<ARView_RenderCallbacks>("RealityKit_e11dfd5beee01da3", 1410221607125137, this, []); }
+  setRenderCallbacks(value: ARView_RenderCallbacks): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1430128203831038, this, [value]); }
   /**
    * @MainActor @preconcurrency func makeRaycastQuery(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> ARRaycastQuery?
    * @availability iOS 13.0+
    */
-  makeRaycastQuery(point: $SDK6, target: _ARKit_ARRaycastQuery_Target, alignment: _ARKit_ARRaycastQuery_TargetAlignment): Promise<(_ARKit_ARRaycastQuery) | null> { return callSDKAsync<(_ARKit_ARRaycastQuery) | null>("RealityKit_c1f28409f8601238", 3249423905682927, this, [point, target, alignment]); }
+  makeRaycastQuery(point: $SDK6, target: _ARKit_ARRaycastQuery_Target, alignment: _ARKit_ARRaycastQuery_TargetAlignment): Promise<(_ARKit_ARRaycastQuery) | null> { return callSDKAsync<(_ARKit_ARRaycastQuery) | null>("RealityKit_e11dfd5beee01da3", 3249423905682927, this, [point, target, alignment]); }
   /**
    * @MainActor @preconcurrency var automaticallyConfigureSession: Bool { get set }
    * @availability iOS 13.0+
    */
-  get automaticallyConfigureSession(): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 1087960287768552, this, []); }
-  setAutomaticallyConfigureSession(value: boolean): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 903663994685924, this, [value]); }
+  get automaticallyConfigureSession(): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 1087960287768552, this, []); }
+  setAutomaticallyConfigureSession(value: boolean): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 903663994685924, this, [value]); }
   /**
    * @MainActor @preconcurrency func ray(through screenPoint: CGPoint) -> (origin: SIMD3<Float>, direction: SIMD3<Float>)?
    * @availability iOS 13.0+
    */
-  ray(screenPoint: $SDK6): Promise<({ "origin": SDKHandle; "direction": SDKHandle }) | null> { return callSDKAsync<({ "origin": SDKHandle; "direction": SDKHandle }) | null>("RealityKit_c1f28409f8601238", 4473754177111247, this, [screenPoint]); }
+  ray(screenPoint: $SDK6): Promise<({ "origin": SDKHandle; "direction": SDKHandle }) | null> { return callSDKAsync<({ "origin": SDKHandle; "direction": SDKHandle }) | null>("RealityKit_e11dfd5beee01da3", 4473754177111247, this, [screenPoint]); }
   /**
    * @MainActor @preconcurrency init(frame frameRect: CGRect, cameraMode: ARView.CameraMode, automaticallyConfigureSession: Bool)
    * @availability iOS 13.0+
    */
-  static initFrameCameraModeAutomaticallyConfigureSession(frameRect: $SDK3, cameraMode: ARView_CameraMode, automaticallyConfigureSession: boolean): Promise<ARView> { return callSDKAsync<ARView>("RealityKit_c1f28409f8601238", 159197629416972, undefined, [frameRect, cameraMode, automaticallyConfigureSession]); }
+  static initFrameCameraModeAutomaticallyConfigureSession(frameRect: $SDK3, cameraMode: ARView_CameraMode, automaticallyConfigureSession: boolean): Promise<ARView> { return callSDKAsync<ARView>("RealityKit_e11dfd5beee01da3", 159197629416972, undefined, [frameRect, cameraMode, automaticallyConfigureSession]); }
   /**
    * @MainActor @preconcurrency convenience init(frame frameRect: CGRect, cameraMode: ARView.CameraMode)
    * @availability iOS 13.0+
    * @deprecated
    */
-  static initFrameCameraMode(frameRect: $SDK3, cameraMode: ARView_CameraMode): Promise<ARView> { return callSDKAsync<ARView>("RealityKit_c1f28409f8601238", 1808521876071016, undefined, [frameRect, cameraMode]); }
+  static initFrameCameraMode(frameRect: $SDK3, cameraMode: ARView_CameraMode): Promise<ARView> { return callSDKAsync<ARView>("RealityKit_e11dfd5beee01da3", 1808521876071016, undefined, [frameRect, cameraMode]); }
   /**
    * @MainActor @preconcurrency var scene: Scene { get }
    * @availability iOS 13.0+
    */
-  get scene(): Promise<_RealityFoundation_Scene> { return callSDKAsync<_RealityFoundation_Scene>("RealityKit_c1f28409f8601238", 4328351602750467, this, []); }
+  get scene(): Promise<_RealityFoundation_Scene> { return callSDKAsync<_RealityFoundation_Scene>("RealityKit_e11dfd5beee01da3", 4328351602750467, this, []); }
   /**
    * @MainActor @preconcurrency func entity(at point: CGPoint) -> Entity?
    * @availability iOS 13.0+
    */
-  entity(point: $SDK6): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_c1f28409f8601238", 1172889022637839, this, [point]); }
+  entity(point: $SDK6): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_e11dfd5beee01da3", 1172889022637839, this, [point]); }
   /**
    * @MainActor @preconcurrency func hitTest(_ point: CGPoint, query: CollisionCastQueryType = .all, mask: CollisionGroup = .all) -> [CollisionCastHit]
    * @availability iOS 13.0+
    */
-  hitTestQueryMask(point: $SDK6, query?: _RealityFoundation_CollisionCastQueryType, mask?: _RealityFoundation_CollisionGroup): Promise<Array<_RealityFoundation_CollisionCastHit>> { return callSDKAsync<Array<_RealityFoundation_CollisionCastHit>>("RealityKit_c1f28409f8601238", 3138701382705735, this, [point, query, mask]); }
+  hitTestQueryMask(point: $SDK6, query?: _RealityFoundation_CollisionCastQueryType, mask?: _RealityFoundation_CollisionGroup): Promise<Array<_RealityFoundation_CollisionCastHit>> { return callSDKAsync<Array<_RealityFoundation_CollisionCastHit>>("RealityKit_e11dfd5beee01da3", 3138701382705735, this, [point, query, mask]); }
   /**
    * @MainActor @preconcurrency func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
    * @availability iOS 13.0+
    */
-  hitTestTypes(point: $SDK6, types: _ARKit_ARHitTestResult_ResultType): Promise<Array<_ARKit_ARHitTestResult>> { return callSDKAsync<Array<_ARKit_ARHitTestResult>>("RealityKit_c1f28409f8601238", 809287284194631, this, [point, types]); }
+  hitTestTypes(point: $SDK6, types: _ARKit_ARHitTestResult_ResultType): Promise<Array<_ARKit_ARHitTestResult>> { return callSDKAsync<Array<_ARKit_ARHitTestResult>>("RealityKit_e11dfd5beee01da3", 809287284194631, this, [point, types]); }
   /**
    * @MainActor @preconcurrency func project(_ point: SIMD3<Float>) -> CGPoint?
    * @availability iOS 13.0+
    */
-  project(point: SDKHandle): Promise<({ x: number; y: number }) | null> { return callSDKAsync<({ x: number; y: number }) | null>("RealityKit_c1f28409f8601238", 1092659977480136, this, [point]); }
+  project(point: SDKHandle): Promise<({ x: number; y: number }) | null> { return callSDKAsync<({ x: number; y: number }) | null>("RealityKit_e11dfd5beee01da3", 1092659977480136, this, [point]); }
   /**
    * @MainActor @preconcurrency func raycast(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> [ARRaycastResult]
    * @availability iOS 13.0+
    */
-  raycast(point: $SDK6, target: _ARKit_ARRaycastQuery_Target, alignment: _ARKit_ARRaycastQuery_TargetAlignment): Promise<Array<_ARKit_ARRaycastResult>> { return callSDKAsync<Array<_ARKit_ARRaycastResult>>("RealityKit_c1f28409f8601238", 1117087658537743, this, [point, target, alignment]); }
+  raycast(point: $SDK6, target: _ARKit_ARRaycastQuery_Target, alignment: _ARKit_ARRaycastQuery_TargetAlignment): Promise<Array<_ARKit_ARRaycastResult>> { return callSDKAsync<Array<_ARKit_ARRaycastResult>>("RealityKit_e11dfd5beee01da3", 1117087658537743, this, [point, target, alignment]); }
   /**
    * @MainActor @preconcurrency func entities(at point: CGPoint) -> [Entity]
    * @availability iOS 13.0+
    */
-  entities(point: $SDK6): Promise<Array<_RealityFoundation_Entity>> { return callSDKAsync<Array<_RealityFoundation_Entity>>("RealityKit_c1f28409f8601238", 2468658821543873, this, [point]); }
+  entities(point: $SDK6): Promise<Array<_RealityFoundation_Entity>> { return callSDKAsync<Array<_RealityFoundation_Entity>>("RealityKit_e11dfd5beee01da3", 2468658821543873, this, [point]); }
   /**
    * @MainActor @preconcurrency func snapshot(saveToHDR: Bool, completion: @escaping (ARView.Image?) -> Void)
    * @availability iOS 13.0+
    */
-  snapshot(saveToHDR: boolean, completion: ((arg0: (_UIKit_UIImage) | null) => void)): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2419856071067724, this, [saveToHDR, completion], [null,{"callback":{"out":[]}}]); }
+  snapshot(saveToHDR: boolean, completion: ((arg0: (_UIKit_UIImage) | null) => void)): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2419856071067724, this, [saveToHDR, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency func unproject(_ point: CGPoint, viewport: CGRect) -> SIMD3<Float>?
    * @availability iOS 13.0+
    */
-  unprojectViewport(point: $SDK6, viewport: $SDK3): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 3345907629683201, this, [point, viewport]); }
+  unprojectViewport(point: $SDK6, viewport: $SDK3): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 3345907629683201, this, [point, viewport]); }
   /**
    * @MainActor @preconcurrency func unproject(_ point: CGPoint, ontoPlane planeTransform: float4x4, relativeToCamera: Bool) -> SIMD3<Float>?
    * @availability iOS 14.0+
    */
-  unprojectOntoPlaneRelativeToCamera(point: $SDK6, planeTransform: SDKHandle, relativeToCamera: boolean): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 1473043312478833, this, [point, planeTransform, relativeToCamera]); }
+  unprojectOntoPlaneRelativeToCamera(point: $SDK6, planeTransform: SDKHandle, relativeToCamera: boolean): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 1473043312478833, this, [point, planeTransform, relativeToCamera]); }
   /**
    * @MainActor @preconcurrency func unproject(_ point: CGPoint, ontoPlane planeTransform: float4x4) -> SIMD3<Float>?
    * @availability iOS 13.0+
    */
-  unprojectOntoPlane(point: $SDK6, planeTransform: SDKHandle): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 850545597420874, this, [point, planeTransform]); }
+  unprojectOntoPlane(point: $SDK6, planeTransform: SDKHandle): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 850545597420874, this, [point, planeTransform]); }
   declare readonly $type: { "c:@M@RealityKit@objc(cs)ARView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -457,52 +457,52 @@ export const ARView_DebugOptions = {
    * static let showPhysics: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get showPhysics(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 689152483762154, undefined, []); },
+  get showPhysics(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 689152483762154, undefined, []); },
   /**
    * static let showStatistics: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get showStatistics(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 1582103640251497, undefined, []); },
+  get showStatistics(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 1582103640251497, undefined, []); },
   /**
    * static let showWorldOrigin: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get showWorldOrigin(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 2037652365013567, undefined, []); },
+  get showWorldOrigin(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 2037652365013567, undefined, []); },
   /**
    * static let showAnchorOrigins: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get showAnchorOrigins(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 2180348680987427, undefined, []); },
+  get showAnchorOrigins(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 2180348680987427, undefined, []); },
   /**
    * static let showFeaturePoints: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get showFeaturePoints(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 178211382999498, undefined, []); },
+  get showFeaturePoints(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 178211382999498, undefined, []); },
   /**
    * static let showAnchorGeometry: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get showAnchorGeometry(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 66174619133651, undefined, []); },
+  get showAnchorGeometry(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 66174619133651, undefined, []); },
   /**
    * static let showSceneUnderstanding: ARView.DebugOptions
    * @availability iOS 13.4+
    */
-  get showSceneUnderstanding(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 2198207376696457, undefined, []); },
+  get showSceneUnderstanding(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 2198207376696457, undefined, []); },
   /**
    * static let none: ARView.DebugOptions
    * @availability iOS 13.0+
    */
-  get none(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 4044160380746704, undefined, []); },
+  get none(): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 4044160380746704, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_c1f28409f8601238", 3580079544650518, undefined, [rawValue]); },
+  init(rawValue: number): Promise<ARView_DebugOptions> { return callSDKAsync<ARView_DebugOptions>("RealityKit_e11dfd5beee01da3", 3580079544650518, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 13.0+
    */
-  getRawValue($self: ARView_DebugOptions): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 2279144435207977, $self, []); }
+  getRawValue($self: ARView_DebugOptions): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 2279144435207977, $self, []); }
 };
 
 /**
@@ -534,32 +534,32 @@ export const ARView_EntityGestures = {
    * static let translation: ARView.EntityGestures
    * @availability iOS 13.0+
    */
-  get translation(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_c1f28409f8601238", 3613856895790454, undefined, []); },
+  get translation(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_e11dfd5beee01da3", 3613856895790454, undefined, []); },
   /**
    * static let all: ARView.EntityGestures
    * @availability iOS 13.0+
    */
-  get all(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_c1f28409f8601238", 2644758426068174, undefined, []); },
+  get all(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_e11dfd5beee01da3", 2644758426068174, undefined, []); },
   /**
    * static let scale: ARView.EntityGestures
    * @availability iOS 13.0+
    */
-  get scale(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_c1f28409f8601238", 1262831661400115, undefined, []); },
+  get scale(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_e11dfd5beee01da3", 1262831661400115, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_c1f28409f8601238", 4379440446897925, undefined, [rawValue]); },
+  init(rawValue: number): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_e11dfd5beee01da3", 4379440446897925, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 13.0+
    */
-  getRawValue($self: ARView_EntityGestures): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 4451416281534751, $self, []); },
+  getRawValue($self: ARView_EntityGestures): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 4451416281534751, $self, []); },
   /**
    * static let rotation: ARView.EntityGestures
    * @availability iOS 13.0+
    */
-  get rotation(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_c1f28409f8601238", 1924445602523242, undefined, []); }
+  get rotation(): Promise<ARView_EntityGestures> { return callSDKAsync<ARView_EntityGestures>("RealityKit_e11dfd5beee01da3", 1924445602523242, undefined, []); }
 };
 
 /**
@@ -589,30 +589,30 @@ export class ARView_Environment extends SDKHandle {
    * init(background: ARView.Environment.Background, lighting: ARView.Environment.ImageBasedLight, reverb: ARView.Environment.Reverb)
    * @availability iOS 13.0+
    */
-  static init(background: ARView_Environment_Background, lighting: ARView_Environment_ImageBasedLight, reverb: ARView_Environment_Reverb): Promise<ARView_Environment> { return callSDKAsync<ARView_Environment>("RealityKit_c1f28409f8601238", 2508234954998983, undefined, [background, lighting, reverb]); }
+  static init(background: ARView_Environment_Background, lighting: ARView_Environment_ImageBasedLight, reverb: ARView_Environment_Reverb): Promise<ARView_Environment> { return callSDKAsync<ARView_Environment>("RealityKit_e11dfd5beee01da3", 2508234954998983, undefined, [background, lighting, reverb]); }
   /**
    * var background: ARView.Environment.Background
    * @availability iOS 13.0+
    */
-  get background(): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_c1f28409f8601238", 197243407618441, this, []); }
-  setBackground(value: ARView_Environment_Background): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 242390459703408, this, [value]); }
+  get background(): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_e11dfd5beee01da3", 197243407618441, this, []); }
+  setBackground(value: ARView_Environment_Background): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 242390459703408, this, [value]); }
   /**
    * var sceneUnderstanding: ARView.Environment.SceneUnderstanding { mutating get set }
    * @availability iOS 13.4+
    */
-  setSceneUnderstanding(value: ARView_Environment_SceneUnderstanding): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1688415370141100, this, [value]); }
+  setSceneUnderstanding(value: ARView_Environment_SceneUnderstanding): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1688415370141100, this, [value]); }
   /**
    * var reverb: ARView.Environment.Reverb
    * @availability iOS 13.0+
    */
-  get reverb(): Promise<ARView_Environment_Reverb> { return callSDKAsync<ARView_Environment_Reverb>("RealityKit_c1f28409f8601238", 4200715183292510, this, []); }
-  setReverb(value: ARView_Environment_Reverb): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2290253619267468, this, [value]); }
+  get reverb(): Promise<ARView_Environment_Reverb> { return callSDKAsync<ARView_Environment_Reverb>("RealityKit_e11dfd5beee01da3", 4200715183292510, this, []); }
+  setReverb(value: ARView_Environment_Reverb): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2290253619267468, this, [value]); }
   /**
    * var lighting: ARView.Environment.ImageBasedLight
    * @availability iOS 13.0+
    */
-  get lighting(): Promise<ARView_Environment_ImageBasedLight> { return callSDKAsync<ARView_Environment_ImageBasedLight>("RealityKit_c1f28409f8601238", 31915089454003, this, []); }
-  setLighting(value: ARView_Environment_ImageBasedLight): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1490164518733350, this, [value]); }
+  get lighting(): Promise<ARView_Environment_ImageBasedLight> { return callSDKAsync<ARView_Environment_ImageBasedLight>("RealityKit_e11dfd5beee01da3", 31915089454003, this, []); }
+  setLighting(value: ARView_Environment_ImageBasedLight): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1490164518733350, this, [value]); }
   declare readonly $type: { "s:10RealityKit6ARViewC11EnvironmentV": true };
 }
 
@@ -625,17 +625,17 @@ export class ARView_Environment_Background extends SDKHandle {
    * static func cameraFeed(exposureCompensation: Float = 0.0) -> ARView.Environment.Background
    * @availability iOS 13.0+
    */
-  static cameraFeed(exposureCompensation?: number): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_c1f28409f8601238", 3214033508337123, undefined, [exposureCompensation]); }
+  static cameraFeed(exposureCompensation?: number): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_e11dfd5beee01da3", 3214033508337123, undefined, [exposureCompensation]); }
   /**
    * static func color(_ color: ARView.Environment.Color) -> ARView.Environment.Background
    * @availability iOS 13.0+
    */
-  static color(color: _UIKit_UIColor): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_c1f28409f8601238", 2313524958856977, undefined, [color]); }
+  static color(color: _UIKit_UIColor): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_e11dfd5beee01da3", 2313524958856977, undefined, [color]); }
   /**
    * static func skybox(_ resource: EnvironmentResource) -> ARView.Environment.Background
    * @availability iOS 13.0+
    */
-  static skybox(resource: _RealityFoundation_EnvironmentResource): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_c1f28409f8601238", 1852164746634983, undefined, [resource]); }
+  static skybox(resource: _RealityFoundation_EnvironmentResource): Promise<ARView_Environment_Background> { return callSDKAsync<ARView_Environment_Background>("RealityKit_e11dfd5beee01da3", 1852164746634983, undefined, [resource]); }
   declare readonly $type: { "s:10RealityKit6ARViewC11EnvironmentV10BackgroundV": true };
 }
 
@@ -654,14 +654,14 @@ export class ARView_Environment_ImageBasedLight extends SDKHandle {
    * var intensityExponent: Float
    * @availability iOS 13.0+
    */
-  get intensityExponent(): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 1124596464812019, this, []); }
-  setIntensityExponent(value: number): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 468249615291057, this, [value]); }
+  get intensityExponent(): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 1124596464812019, this, []); }
+  setIntensityExponent(value: number): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 468249615291057, this, [value]); }
   /**
    * var resource: EnvironmentResource?
    * @availability iOS 13.0+
    */
-  get resource(): Promise<$SDK17> { return callSDKAsync<$SDK17>("RealityKit_c1f28409f8601238", 1208545906850809, this, []); }
-  setResource(value?: $SDK17): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 4022662769647505, this, [value]); }
+  get resource(): Promise<$SDK17> { return callSDKAsync<$SDK17>("RealityKit_e11dfd5beee01da3", 1208545906850809, this, []); }
+  setResource(value?: $SDK17): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 4022662769647505, this, [value]); }
   declare readonly $type: { "s:10RealityKit6ARViewC11EnvironmentV15ImageBasedLightV": true };
 }
 
@@ -674,7 +674,7 @@ export class ARView_Environment_Reverb extends SDKHandle {
    * static var automatic: ARView.Environment.Reverb { get }
    * @availability iOS 13.0+
    */
-  static get automatic(): Promise<ARView_Environment_Reverb> { return callSDKAsync<ARView_Environment_Reverb>("RealityKit_c1f28409f8601238", 2342248936824404, undefined, []); }
+  static get automatic(): Promise<ARView_Environment_Reverb> { return callSDKAsync<ARView_Environment_Reverb>("RealityKit_e11dfd5beee01da3", 2342248936824404, undefined, []); }
   declare readonly $type: { "s:10RealityKit6ARViewC11EnvironmentV6ReverbO": true };
 }
 
@@ -689,7 +689,7 @@ export const ARView_Environment_Reverb_Preset = {
    * nonisolated static var allCases: [ARView.Environment.Reverb.Preset] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Promise<$SDK18> { return callSDKAsync<$SDK18>("RealityKit_c1f28409f8601238", 2385672440005918, undefined, []); }
+  get allCases(): Promise<$SDK18> { return callSDKAsync<$SDK18>("RealityKit_e11dfd5beee01da3", 2385672440005918, undefined, []); }
 };
 
 /**
@@ -707,8 +707,8 @@ export class ARView_Environment_SceneUnderstanding extends SDKHandle {
    * var options: ARView.Environment.SceneUnderstanding.Options { get set }
    * @availability iOS 13.4+
    */
-  get options(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 806314336642936, this, []); }
-  setOptions(value: ARView_Environment_SceneUnderstanding_Options): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 872208844256347, this, [value]); }
+  get options(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 806314336642936, this, []); }
+  setOptions(value: ARView_Environment_SceneUnderstanding_Options): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 872208844256347, this, [value]); }
   declare readonly $type: { "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV": true };
 }
 
@@ -723,37 +723,37 @@ export const ARView_Environment_SceneUnderstanding_Options = {
    * static let receivesLighting: ARView.Environment.SceneUnderstanding.Options
    * @availability iOS 13.4+
    */
-  get receivesLighting(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 1027345244217267, undefined, []); },
+  get receivesLighting(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 1027345244217267, undefined, []); },
   /**
    * static let `default`: ARView.Environment.SceneUnderstanding.Options
    * @availability iOS 13.4+
    */
-  get default(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 3824035787958158, undefined, []); },
+  get default(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 3824035787958158, undefined, []); },
   /**
    * static let physics: ARView.Environment.SceneUnderstanding.Options
    * @availability iOS 13.4+
    */
-  get physics(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 3020331089232803, undefined, []); },
+  get physics(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 3020331089232803, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 4228177084313122, undefined, [rawValue]); },
+  init(rawValue: number): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 4228177084313122, undefined, [rawValue]); },
   /**
    * let rawValue: UInt32
    * @availability iOS 13.4+
    */
-  getRawValue($self: ARView_Environment_SceneUnderstanding_Options): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 4340373679603793, $self, []); },
+  getRawValue($self: ARView_Environment_SceneUnderstanding_Options): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 4340373679603793, $self, []); },
   /**
    * static let collision: ARView.Environment.SceneUnderstanding.Options
    * @availability iOS 13.4+
    */
-  get collision(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 422840701097991, undefined, []); },
+  get collision(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 422840701097991, undefined, []); },
   /**
    * static let occlusion: ARView.Environment.SceneUnderstanding.Options
    * @availability iOS 13.4+
    */
-  get occlusion(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_c1f28409f8601238", 4286800626844849, undefined, []); }
+  get occlusion(): Promise<ARView_Environment_SceneUnderstanding_Options> { return callSDKAsync<ARView_Environment_SceneUnderstanding_Options>("RealityKit_e11dfd5beee01da3", 4286800626844849, undefined, []); }
 };
 
 /**
@@ -789,49 +789,49 @@ export class ARView_PostProcessContext extends SDKHandle {
    * var projection: float4x4
    * @availability iOS 15.0+
    */
-  get projection(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 3250412297384522, this, []); }
-  setProjection(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 4465922290395378, this, [value]); }
+  get projection(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 3250412297384522, this, []); }
+  setProjection(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 4465922290395378, this, [value]); }
   /**
    * var commandBuffer: any MTLCommandBuffer
    * @availability iOS 15.0+
    */
-  get commandBuffer(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 3739766231159703, this, []); }
-  setCommandBuffer(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1252881145706164, this, [value]); }
+  get commandBuffer(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 3739766231159703, this, []); }
+  setCommandBuffer(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1252881145706164, this, [value]); }
   /**
    * var sourceColorTexture: any MTLTexture
    * @availability iOS 15.0+
    */
-  get sourceColorTexture(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 2038872994472811, this, []); }
-  setSourceColorTexture(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3412534225788123, this, [value]); }
+  get sourceColorTexture(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 2038872994472811, this, []); }
+  setSourceColorTexture(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3412534225788123, this, [value]); }
   /**
    * var sourceDepthTexture: any MTLTexture
    * @availability iOS 15.0+
    */
-  get sourceDepthTexture(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 1896175297746895, this, []); }
-  setSourceDepthTexture(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3517123604562011, this, [value]); }
+  get sourceDepthTexture(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 1896175297746895, this, []); }
+  setSourceDepthTexture(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3517123604562011, this, [value]); }
   /**
    * var targetColorTexture: any MTLTexture
    * @availability iOS 15.0+
    */
-  get targetColorTexture(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 98168311036813, this, []); }
-  setTargetColorTexture(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 4353609222468301, this, [value]); }
+  get targetColorTexture(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 98168311036813, this, []); }
+  setTargetColorTexture(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 4353609222468301, this, [value]); }
   /**
    * var time: TimeInterval
    * @availability iOS 15.0+
    */
-  get time(): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 1211966302176648, this, []); }
-  setTime(value: number): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3380112407771335, this, [value]); }
+  get time(): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 1211966302176648, this, []); }
+  setTime(value: number): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3380112407771335, this, [value]); }
   /**
    * var device: any MTLDevice
    * @availability iOS 15.0+
    */
-  get device(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 2190037922041948, this, []); }
-  setDevice(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 4161929104525875, this, [value]); }
+  get device(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 2190037922041948, this, []); }
+  setDevice(value: SDKHandle): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 4161929104525875, this, [value]); }
   /**
    * init(_ device: any MTLDevice, _ commandBuffer: any MTLCommandBuffer, _ sourceColorTexture: any MTLTexture, _ sourceDepthTexture: any MTLTexture, _ targetColorTexture: any MTLTexture, _ projection: float4x4, _ time: TimeInterval)
    * @availability iOS 15.0+
    */
-  static init(device: SDKHandle, commandBuffer: SDKHandle, sourceColorTexture: SDKHandle, sourceDepthTexture: SDKHandle, targetColorTexture: SDKHandle, projection: SDKHandle, time: number): Promise<ARView_PostProcessContext> { return callSDKAsync<ARView_PostProcessContext>("RealityKit_c1f28409f8601238", 4166726657354001, undefined, [device, commandBuffer, sourceColorTexture, sourceDepthTexture, targetColorTexture, projection, time]); }
+  static init(device: SDKHandle, commandBuffer: SDKHandle, sourceColorTexture: SDKHandle, sourceDepthTexture: SDKHandle, targetColorTexture: SDKHandle, projection: SDKHandle, time: number): Promise<ARView_PostProcessContext> { return callSDKAsync<ARView_PostProcessContext>("RealityKit_e11dfd5beee01da3", 4166726657354001, undefined, [device, commandBuffer, sourceColorTexture, sourceDepthTexture, targetColorTexture, projection, time]); }
   declare readonly $type: { "s:10RealityKit6ARViewC18PostProcessContextV": true };
 }
 
@@ -844,19 +844,19 @@ export class ARView_RenderCallbacks extends SDKHandle {
    * var postProcess: ((ARView.PostProcessContext) -> Void)?
    * @availability iOS 15.0+
    */
-  get postProcess(): Promise<(((arg0: ARView_PostProcessContext) => Promise<void>)) | null> { return callSDKAsync<(((arg0: ARView_PostProcessContext) => Promise<void>)) | null>("RealityKit_c1f28409f8601238", 1337655677656902, this, []); }
-  setPostProcess(value?: (((arg0: ARView_PostProcessContext) => void)) | null): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2784159207938999, this, [value], [{"callback":{"out":[]}}]); }
+  get postProcess(): Promise<(((arg0: ARView_PostProcessContext) => Promise<void>)) | null> { return callSDKAsync<(((arg0: ARView_PostProcessContext) => Promise<void>)) | null>("RealityKit_e11dfd5beee01da3", 1337655677656902, this, []); }
+  setPostProcess(value?: (((arg0: ARView_PostProcessContext) => void)) | null): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2784159207938999, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var prepareWithDevice: ((any MTLDevice) -> Void)?
    * @availability iOS 15.0+
    */
-  get prepareWithDevice(): Promise<(((arg0: SDKHandle) => Promise<void>)) | null> { return callSDKAsync<(((arg0: SDKHandle) => Promise<void>)) | null>("RealityKit_c1f28409f8601238", 2204889923501015, this, []); }
-  setPrepareWithDevice(value?: (((arg0: SDKHandle) => void)) | null): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1500162045524185, this, [value], [{"callback":{"out":[]}}]); }
+  get prepareWithDevice(): Promise<(((arg0: SDKHandle) => Promise<void>)) | null> { return callSDKAsync<(((arg0: SDKHandle) => Promise<void>)) | null>("RealityKit_e11dfd5beee01da3", 2204889923501015, this, []); }
+  setPrepareWithDevice(value?: (((arg0: SDKHandle) => void)) | null): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1500162045524185, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): Promise<ARView_RenderCallbacks> { return callSDKAsync<ARView_RenderCallbacks>("RealityKit_c1f28409f8601238", 3794755049300262, undefined, []); }
+  static init(): Promise<ARView_RenderCallbacks> { return callSDKAsync<ARView_RenderCallbacks>("RealityKit_e11dfd5beee01da3", 3794755049300262, undefined, []); }
   declare readonly $type: { "s:10RealityKit6ARViewC15RenderCallbacksV": true };
 }
 
@@ -871,64 +871,64 @@ export const ARView_RenderOptions = {
    * static let disableHDR: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableHDR(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 1186794604040110, undefined, []); },
+  get disableHDR(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 1186794604040110, undefined, []); },
   /**
    * static let disableFaceMesh: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableFaceMesh(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 699496433828454, undefined, []); },
+  get disableFaceMesh(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 699496433828454, undefined, []); },
   /**
    * static let disableMotionBlur: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableMotionBlur(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 4213258019934034, undefined, []); },
+  get disableMotionBlur(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 4213258019934034, undefined, []); },
   /**
    * static let disableCameraGrain: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableCameraGrain(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 461313096457126, undefined, []); },
+  get disableCameraGrain(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 461313096457126, undefined, []); },
   /**
    * static let disableDepthOfField: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableDepthOfField(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 2368697376600023, undefined, []); },
+  get disableDepthOfField(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 2368697376600023, undefined, []); },
   /**
    * static let disableFaceOcclusions: ARView.RenderOptions
    * @availability iOS 13.0+
    * @deprecated
    */
-  get disableFaceOcclusions(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 903423299282105, undefined, []); },
+  get disableFaceOcclusions(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 903423299282105, undefined, []); },
   /**
    * static let disablePersonOcclusion: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disablePersonOcclusion(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 1932790717335513, undefined, []); },
+  get disablePersonOcclusion(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 1932790717335513, undefined, []); },
   /**
    * static let disableGroundingShadows: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableGroundingShadows(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 3691002583669362, undefined, []); },
+  get disableGroundingShadows(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 3691002583669362, undefined, []); },
   /**
    * static let disableAutomaticLighting: ARView.RenderOptions
    * @availability iOS 13.0+
    * @deprecated
    */
-  get disableAutomaticLighting(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 2386093293258606, undefined, []); },
+  get disableAutomaticLighting(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 2386093293258606, undefined, []); },
   /**
    * static let disableAREnvironmentLighting: ARView.RenderOptions
    * @availability iOS 13.0+
    */
-  get disableAREnvironmentLighting(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 2763437798204066, undefined, []); },
+  get disableAREnvironmentLighting(): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 2763437798204066, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_c1f28409f8601238", 2323640204575078, undefined, [rawValue]); },
+  init(rawValue: number): Promise<ARView_RenderOptions> { return callSDKAsync<ARView_RenderOptions>("RealityKit_e11dfd5beee01da3", 2323640204575078, undefined, [rawValue]); },
   /**
    * let rawValue: UInt
    * @availability iOS 13.0+
    */
-  getRawValue($self: ARView_RenderOptions): Promise<number> { return callSDKAsync<number>("RealityKit_c1f28409f8601238", 1869031431694813, $self, []); }
+  getRawValue($self: ARView_RenderOptions): Promise<number> { return callSDKAsync<number>("RealityKit_e11dfd5beee01da3", 1869031431694813, $self, []); }
 };
 
 /**
@@ -960,13 +960,13 @@ export class CustomMaterial_BaseColor extends SDKHandle {
    * init(tint: UIColor = .white, texture: CustomMaterial.Texture? = nil)
    * @availability iOS 15.0+
    */
-  static init(tint?: _UIKit_UIColor, texture?: $SDK23): _RealityFoundation_CustomMaterial_BaseColor { return callSDK<_RealityFoundation_CustomMaterial_BaseColor>("RealityKit_c1f28409f8601238", 3133441228581926, undefined, [tint, texture]); }
+  static init(tint?: _UIKit_UIColor, texture?: $SDK23): _RealityFoundation_CustomMaterial_BaseColor { return callSDK<_RealityFoundation_CustomMaterial_BaseColor>("RealityKit_e11dfd5beee01da3", 3133441228581926, undefined, [tint, texture]); }
   /**
    * var tint: UIColor { get set }
    * @availability iOS 15.0+
    */
-  get tint(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 3084510573585030, this, []); }
-  set tint(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 3566912669939161, this, [value]); }
+  get tint(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 3084510573585030, this, []); }
+  set tint(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 3566912669939161, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation14CustomMaterialV9BaseColorV": true };
 }
 
@@ -975,13 +975,13 @@ export class CustomMaterial_EmissiveColor extends SDKHandle {
    * init(color: UIColor = .black, texture: CustomMaterial.Texture? = nil)
    * @availability iOS 15.0+
    */
-  static init(color?: _UIKit_UIColor, texture?: $SDK23): _RealityFoundation_CustomMaterial_EmissiveColor { return callSDK<_RealityFoundation_CustomMaterial_EmissiveColor>("RealityKit_c1f28409f8601238", 3569895830598761, undefined, [color, texture]); }
+  static init(color?: _UIKit_UIColor, texture?: $SDK23): _RealityFoundation_CustomMaterial_EmissiveColor { return callSDK<_RealityFoundation_CustomMaterial_EmissiveColor>("RealityKit_e11dfd5beee01da3", 3569895830598761, undefined, [color, texture]); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 15.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 633062458439654, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 3397088049781007, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 633062458439654, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 3397088049781007, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation14CustomMaterialV13EmissiveColorV": true };
 }
 
@@ -990,13 +990,13 @@ export class DirectionalLightComponent extends SDKHandle {
    * init(color: DirectionalLightComponent.Color = .white, intensity: Float = 2145.7078, isRealWorldProxy: Bool = false)
    * @availability iOS 13.0+
    */
-  static init(color?: _UIKit_UIColor, intensity?: number, isRealWorldProxy?: boolean): _RealityFoundation_DirectionalLightComponent { return callSDK<_RealityFoundation_DirectionalLightComponent>("RealityKit_c1f28409f8601238", 1671703331701358, undefined, [color, intensity, isRealWorldProxy]); }
+  static init(color?: _UIKit_UIColor, intensity?: number, isRealWorldProxy?: boolean): _RealityFoundation_DirectionalLightComponent { return callSDK<_RealityFoundation_DirectionalLightComponent>("RealityKit_e11dfd5beee01da3", 1671703331701358, undefined, [color, intensity, isRealWorldProxy]); }
   /**
    * var color: DirectionalLightComponent.Color { get set }
    * @availability iOS 13.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 900963223578664, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 1523570482302918, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 900963223578664, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1523570482302918, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation25DirectionalLightComponentV": true };
 }
 
@@ -1011,44 +1011,44 @@ export class Entity extends SDKHandle {
    * @MainActor @preconcurrency var accessibilityValue: LocalizedStringResource? { get set }
    * @availability iOS 17.0+
    */
-  get accessibilityValue(): Promise<$SDK24> { return callSDKAsync<$SDK24>("RealityKit_c1f28409f8601238", 2104302435955646, this, []); }
-  setAccessibilityValue(value?: $SDK24): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1264067537915695, this, [value]); }
+  get accessibilityValue(): Promise<$SDK24> { return callSDKAsync<$SDK24>("RealityKit_e11dfd5beee01da3", 2104302435955646, this, []); }
+  setAccessibilityValue(value?: $SDK24): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1264067537915695, this, [value]); }
   /**
    * @MainActor @preconcurrency var accessibilityTraits: UIAccessibilityTraits { get set }
    * @availability iOS 17.0+
    */
-  get accessibilityTraits(): Promise<_UIKit_UIAccessibilityTraits> { return callSDKAsync<_UIKit_UIAccessibilityTraits>("RealityKit_c1f28409f8601238", 78127269086788, this, []); }
-  setAccessibilityTraits(value: _UIKit_UIAccessibilityTraits): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1290710069170020, this, [value]); }
+  get accessibilityTraits(): Promise<_UIKit_UIAccessibilityTraits> { return callSDKAsync<_UIKit_UIAccessibilityTraits>("RealityKit_e11dfd5beee01da3", 78127269086788, this, []); }
+  setAccessibilityTraits(value: _UIKit_UIAccessibilityTraits): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1290710069170020, this, [value]); }
   /**
    * @MainActor @preconcurrency var accessibilityLabelKey: LocalizedStringResource? { get set }
    * @availability iOS 17.0+
    */
-  get accessibilityLabelKey(): Promise<$SDK24> { return callSDKAsync<$SDK24>("RealityKit_c1f28409f8601238", 2200091969322537, this, []); }
-  setAccessibilityLabelKey(value?: $SDK24): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2454642077157460, this, [value]); }
+  get accessibilityLabelKey(): Promise<$SDK24> { return callSDKAsync<$SDK24>("RealityKit_e11dfd5beee01da3", 2200091969322537, this, []); }
+  setAccessibilityLabelKey(value?: $SDK24): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2454642077157460, this, [value]); }
   /**
    * @MainActor @preconcurrency var accessibilityCustomRotors: [AccessibilityComponent.RotorType] { get set }
    * @availability iOS 17.0+
    */
-  get accessibilityCustomRotors(): Promise<$SDK0> { return callSDKAsync<$SDK0>("RealityKit_c1f28409f8601238", 2400967381168097, this, []); }
-  setAccessibilityCustomRotors(value: $SDK0): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 4288803895578303, this, [value]); }
+  get accessibilityCustomRotors(): Promise<$SDK0> { return callSDKAsync<$SDK0>("RealityKit_e11dfd5beee01da3", 2400967381168097, this, []); }
+  setAccessibilityCustomRotors(value: $SDK0): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 4288803895578303, this, [value]); }
   /**
    * @MainActor @preconcurrency var accessibilityCustomActions: [LocalizedStringResource] { get set }
    * @availability iOS 17.0+
    */
-  get accessibilityCustomActions(): Promise<$SDK25> { return callSDKAsync<$SDK25>("RealityKit_c1f28409f8601238", 1182626875894450, this, []); }
-  setAccessibilityCustomActions(value: $SDK25): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3218100324330536, this, [value]); }
+  get accessibilityCustomActions(): Promise<$SDK25> { return callSDKAsync<$SDK25>("RealityKit_e11dfd5beee01da3", 1182626875894450, this, []); }
+  setAccessibilityCustomActions(value: $SDK25): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3218100324330536, this, [value]); }
   /**
    * @MainActor @preconcurrency var accessibilityCustomContent: [AccessibilityComponent.CustomContent] { get set }
    * @availability iOS 17.0+
    */
-  get accessibilityCustomContent(): Promise<$SDK26> { return callSDKAsync<$SDK26>("RealityKit_c1f28409f8601238", 4153438698758940, this, []); }
-  setAccessibilityCustomContent(value: $SDK26): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1814981797862040, this, [value]); }
+  get accessibilityCustomContent(): Promise<$SDK26> { return callSDKAsync<$SDK26>("RealityKit_e11dfd5beee01da3", 4153438698758940, this, []); }
+  setAccessibilityCustomContent(value: $SDK26): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1814981797862040, this, [value]); }
   /**
    * @MainActor @preconcurrency var accessibilitySystemActions: AccessibilityComponent.SupportedActions { get set }
    * @availability iOS 17.0+
    */
-  get accessibilitySystemActions(): Promise<_RealityFoundation_AccessibilityComponent_SupportedActions> { return callSDKAsync<_RealityFoundation_AccessibilityComponent_SupportedActions>("RealityKit_c1f28409f8601238", 1147504491400929, this, []); }
-  setAccessibilitySystemActions(value: _RealityFoundation_AccessibilityComponent_SupportedActions): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 370143478887874, this, [value]); }
+  get accessibilitySystemActions(): Promise<_RealityFoundation_AccessibilityComponent_SupportedActions> { return callSDKAsync<_RealityFoundation_AccessibilityComponent_SupportedActions>("RealityKit_e11dfd5beee01da3", 1147504491400929, this, []); }
+  setAccessibilitySystemActions(value: _RealityFoundation_AccessibilityComponent_SupportedActions): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 370143478887874, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation6EntityC": true };
   declare readonly $observable: { "accessibilityValue": true; "accessibilityTraits": true; "accessibilityLabelKey": true; "accessibilityCustomRotors": true; "accessibilityCustomActions": true; "accessibilityCustomContent": true; "accessibilitySystemActions": true };
 }
@@ -1074,18 +1074,18 @@ export class EntityRotationGestureRecognizer extends SDKHandle {
    * @MainActor @preconcurrency override dynamic func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool
    * @availability iOS 13.0+
    */
-  canPrevent(preventedGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 157929716649546, this, [preventedGestureRecognizer]); }
+  canPrevent(preventedGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 157929716649546, this, [preventedGestureRecognizer]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent)
    * @availability iOS 13.0+
    */
-  touchesBegan(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2225787314851340, this, [touches, event]); }
+  touchesBegan(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2225787314851340, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency var entity: (any HasCollision)? { get set }
    * @availability iOS 13.0+
    */
-  get entity(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 737518080225042, this, []); }
-  setEntity(value?: $SDK27): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3497928102981806, this, [value], [{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
+  get entity(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 737518080225042, this, []); }
+  setEntity(value?: $SDK27): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3497928102981806, this, [value], [{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
   declare readonly $type: { "c:@M@RealityKit@objc(cs)EntityRotationGestureRecognizer": true; "c:objc(cs)UIRotationGestureRecognizer": true; "c:objc(cs)UIGestureRecognizer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1098,18 +1098,18 @@ export class EntityScaleGestureRecognizer extends SDKHandle {
    * @MainActor @preconcurrency override dynamic func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool
    * @availability iOS 13.0+
    */
-  canPrevent(preventedGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 619483366065973, this, [preventedGestureRecognizer]); }
+  canPrevent(preventedGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 619483366065973, this, [preventedGestureRecognizer]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent)
    * @availability iOS 13.0+
    */
-  touchesBegan(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1386759673899671, this, [touches, event]); }
+  touchesBegan(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1386759673899671, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency var entity: (any HasCollision)? { get set }
    * @availability iOS 13.0+
    */
-  get entity(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 3612781561411523, this, []); }
-  setEntity(value?: $SDK27): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1869098488014757, this, [value], [{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
+  get entity(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 3612781561411523, this, []); }
+  setEntity(value?: $SDK27): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1869098488014757, this, [value], [{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
   declare readonly $type: { "c:@M@RealityKit@objc(cs)EntityScaleGestureRecognizer": true; "c:objc(cs)UIPinchGestureRecognizer": true; "c:objc(cs)UIGestureRecognizer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1122,58 +1122,58 @@ export class EntityTranslationGestureRecognizer extends SDKHandle {
    * @MainActor @preconcurrency override dynamic func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool
    * @availability iOS 13.0+
    */
-  canPrevent(preventedGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 1742970295130443, this, [preventedGestureRecognizer]); }
+  canPrevent(preventedGestureRecognizer: _UIKit_UIGestureRecognizer): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 1742970295130443, this, [preventedGestureRecognizer]); }
   /**
    * @MainActor @preconcurrency override dynamic func reset()
    * @availability iOS 13.0+
    */
-  reset(): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3374261315555324, this, []); }
+  reset(): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3374261315555324, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent)
    * @availability iOS 13.0+
    */
-  touchesBegan(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 171237405950356, this, [touches, event]); }
+  touchesBegan(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 171237405950356, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent)
    * @availability iOS 13.0+
    */
-  touchesCancelled(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 2094684266882332, this, [touches, event]); }
+  touchesCancelled(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 2094684266882332, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent)
    * @availability iOS 13.0+
    */
-  touchesEnded(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1937019302729190, this, [touches, event]); }
+  touchesEnded(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1937019302729190, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency override dynamic func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent)
    * @availability iOS 13.0+
    */
-  touchesMoved(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 3006376494011115, this, [touches, event]); }
+  touchesMoved(touches: Array<_UIKit_UITouch>, event: _UIKit_UIEvent): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 3006376494011115, this, [touches, event]); }
   /**
    * @MainActor @preconcurrency func setTranslation(_ translation: SIMD3<Float>, in entity: Entity?)
    * @availability iOS 13.0+
    */
-  setTranslation(translation: SDKHandle, entity?: $SDK4): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1430991401464814, this, [translation, entity]); }
+  setTranslation(translation: SDKHandle, entity?: $SDK4): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1430991401464814, this, [translation, entity]); }
   /**
    * @MainActor @preconcurrency func translation(in entity: Entity?) -> SIMD3<Float>?
    * @availability iOS 13.0+
    */
-  translation(entity?: $SDK4): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 722198110483335, this, [entity]); }
+  translation(entity?: $SDK4): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 722198110483335, this, [entity]); }
   /**
    * @MainActor @preconcurrency var entity: (any HasCollision)? { get set }
    * @availability iOS 13.0+
    */
-  get entity(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 2928860772487306, this, []); }
-  setEntity(value?: $SDK27): Promise<void> { return callSDKAsync<void>("RealityKit_c1f28409f8601238", 1769459298300540, this, [value], [{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
+  get entity(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 2928860772487306, this, []); }
+  setEntity(value?: $SDK27): Promise<void> { return callSDKAsync<void>("RealityKit_e11dfd5beee01da3", 1769459298300540, this, [value], [{"protocol":"s:17RealityFoundation12HasCollisionP"}]); }
   /**
    * @MainActor @preconcurrency func location(in entity: Entity?) -> SIMD3<Float>?
    * @availability iOS 13.0+
    */
-  location(entity?: $SDK4): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 4142541294446138, this, [entity]); }
+  location(entity?: $SDK4): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 4142541294446138, this, [entity]); }
   /**
    * @MainActor @preconcurrency func velocity(in entity: Entity?) -> SIMD3<Float>
    * @availability iOS 13.0+
    */
-  velocity(entity?: $SDK4): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_c1f28409f8601238", 1320965182729373, this, [entity]); }
+  velocity(entity?: $SDK4): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("RealityKit_e11dfd5beee01da3", 1320965182729373, this, [entity]); }
   declare readonly $type: { "c:@M@RealityKit@objc(cs)EntityTranslationGestureRecognizer": true; "c:objc(cs)UIGestureRecognizer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1182,18 +1182,18 @@ export class HoverEffectComponent_HighlightHoverEffectStyle extends SDKHandle {
    * init(color: UIColor? = nil, strength: Float = 1.0, opacityFunction: HoverEffectComponent.OpacityFunction)
    * @availability iOS 18.0+
    */
-  static initColorStrengthOpacityFunction(color: (_UIKit_UIColor) | null, strength: number, opacityFunction: _RealityFoundation_HoverEffectComponent_OpacityFunction): _RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle>("RealityKit_c1f28409f8601238", 3927767742634337, undefined, [color, strength, opacityFunction]); }
+  static initColorStrengthOpacityFunction(color: (_UIKit_UIColor) | null, strength: number, opacityFunction: _RealityFoundation_HoverEffectComponent_OpacityFunction): _RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle>("RealityKit_e11dfd5beee01da3", 3927767742634337, undefined, [color, strength, opacityFunction]); }
   /**
    * init(color: UIColor? = nil, strength: Float = 1.0)
    * @availability iOS 18.0+
    */
-  static initColorStrength(color?: (_UIKit_UIColor) | null, strength?: number): _RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle>("RealityKit_c1f28409f8601238", 3180974894404343, undefined, [color, strength]); }
+  static initColorStrength(color?: (_UIKit_UIColor) | null, strength?: number): _RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_HighlightHoverEffectStyle>("RealityKit_e11dfd5beee01da3", 3180974894404343, undefined, [color, strength]); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 18.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 2434711687740593, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 1351336957605530, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 2434711687740593, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1351336957605530, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation20HoverEffectComponentV09HighlightcD5StyleV": true };
 }
 
@@ -1202,18 +1202,18 @@ export class HoverEffectComponent_SpotlightHoverEffectStyle extends SDKHandle {
    * init(color: UIColor? = nil, strength: Float = 1.0, opacityFunction: HoverEffectComponent.OpacityFunction)
    * @availability iOS 18.0+
    */
-  static initColorStrengthOpacityFunction(color: (_UIKit_UIColor) | null, strength: number, opacityFunction: _RealityFoundation_HoverEffectComponent_OpacityFunction): _RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle>("RealityKit_c1f28409f8601238", 2837685812662884, undefined, [color, strength, opacityFunction]); }
+  static initColorStrengthOpacityFunction(color: (_UIKit_UIColor) | null, strength: number, opacityFunction: _RealityFoundation_HoverEffectComponent_OpacityFunction): _RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle>("RealityKit_e11dfd5beee01da3", 2837685812662884, undefined, [color, strength, opacityFunction]); }
   /**
    * init(color: UIColor? = nil, strength: Float = 1.0)
    * @availability iOS 18.0+
    */
-  static initColorStrength(color?: (_UIKit_UIColor) | null, strength?: number): _RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle>("RealityKit_c1f28409f8601238", 1549732073122611, undefined, [color, strength]); }
+  static initColorStrength(color?: (_UIKit_UIColor) | null, strength?: number): _RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle { return callSDK<_RealityFoundation_HoverEffectComponent_SpotlightHoverEffectStyle>("RealityKit_e11dfd5beee01da3", 1549732073122611, undefined, [color, strength]); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 18.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 4127349331571633, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 1514297453127346, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 4127349331571633, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1514297453127346, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation20HoverEffectComponentV09SpotlightcD5StyleV": true };
 }
 
@@ -1236,12 +1236,12 @@ export class MaterialParameters_Value extends SDKHandle {
    * var colorValue: UIColor? { get }
    * @availability iOS 18.0+
    */
-  get colorValue(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("RealityKit_c1f28409f8601238", 902257523045604, this, []); }
+  get colorValue(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("RealityKit_e11dfd5beee01da3", 902257523045604, this, []); }
   /**
    * static func color(_ color: UIColor) -> MaterialParameters.Value
    * @availability iOS 18.0+
    */
-  static color(color: _UIKit_UIColor): _RealityFoundation_MaterialParameters_Value { return callSDK<_RealityFoundation_MaterialParameters_Value>("RealityKit_c1f28409f8601238", 1912321510647040, undefined, [color]); }
+  static color(color: _UIKit_UIColor): _RealityFoundation_MaterialParameters_Value { return callSDK<_RealityFoundation_MaterialParameters_Value>("RealityKit_e11dfd5beee01da3", 1912321510647040, undefined, [color]); }
   declare readonly $type: { "s:17RealityFoundation18MaterialParametersV5ValueO": true };
 }
 
@@ -1260,42 +1260,42 @@ export class MultipeerConnectivityService extends SDKHandle {
    * func setHandshake(count: UInt32, timeoutMs: UInt32)
    * @availability iOS 13.0+
    */
-  setHandshake(count: number, timeoutMs: number): void { return callSDK<void>("RealityKit_c1f28409f8601238", 1802489874541679, this, [count, timeoutMs]); }
+  setHandshake(count: number, timeoutMs: number): void { return callSDK<void>("RealityKit_e11dfd5beee01da3", 1802489874541679, this, [count, timeoutMs]); }
   /**
    * @MainActor @preconcurrency func giveOwnership(of entity: Entity, toPeer peer: any SynchronizationPeerID) -> Bool
    * @availability iOS 13.0+
    */
-  giveOwnership(entity: _RealityFoundation_Entity, peer: Implements<_RealityFoundation_SynchronizationPeerID> | SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_c1f28409f8601238", 3047666613274314, this, [entity, peer], [null,{"protocol":"s:17RealityFoundation21SynchronizationPeerIDP"}]); }
+  giveOwnership(entity: _RealityFoundation_Entity, peer: Implements<_RealityFoundation_SynchronizationPeerID> | SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("RealityKit_e11dfd5beee01da3", 3047666613274314, this, [entity, peer], [null,{"protocol":"s:17RealityFoundation21SynchronizationPeerIDP"}]); }
   /**
    * @MainActor @preconcurrency func owner(of entity: Entity) -> (any SynchronizationPeerID)?
    * @availability iOS 13.0+
    */
-  owner(entity: _RealityFoundation_Entity): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_c1f28409f8601238", 1383274620903457, this, [entity]); }
+  owner(entity: _RealityFoundation_Entity): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("RealityKit_e11dfd5beee01da3", 1383274620903457, this, [entity]); }
   /**
    * @MainActor @preconcurrency func entity(for identifier: MultipeerConnectivityService.Identifier) -> Entity?
    * @availability iOS 13.0+
    */
-  entity(identifier: number): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_c1f28409f8601238", 3480459469378555, this, [identifier]); }
+  entity(identifier: number): Promise<$SDK4> { return callSDKAsync<$SDK4>("RealityKit_e11dfd5beee01da3", 3480459469378555, this, [identifier]); }
   /**
    * init(session: MCSession) throws
    * @availability iOS 13.0+
    */
-  static init(session: _MultipeerConnectivity_MCSession): MultipeerConnectivityService { return callSDK<MultipeerConnectivityService>("RealityKit_c1f28409f8601238", 1392907516382592, undefined, [session]); }
+  static init(session: _MultipeerConnectivity_MCSession): MultipeerConnectivityService { return callSDK<MultipeerConnectivityService>("RealityKit_e11dfd5beee01da3", 1392907516382592, undefined, [session]); }
   /**
    * final let session: MCSession
    * @availability iOS 13.0+
    */
-  get session(): _MultipeerConnectivity_MCSession { return callSDK<_MultipeerConnectivity_MCSession>("RealityKit_c1f28409f8601238", 451285006931088, this, []); }
+  get session(): _MultipeerConnectivity_MCSession { return callSDK<_MultipeerConnectivity_MCSession>("RealityKit_e11dfd5beee01da3", 451285006931088, this, []); }
   /**
    * func stopSync()
    * @availability iOS 13.0+
    */
-  stopSync(): void { return callSDK<void>("RealityKit_c1f28409f8601238", 1090681668643608, this, []); }
+  stopSync(): void { return callSDK<void>("RealityKit_e11dfd5beee01da3", 1090681668643608, this, []); }
   /**
    * func startSync()
    * @availability iOS 13.0+
    */
-  startSync(): void { return callSDK<void>("RealityKit_c1f28409f8601238", 3775909780788330, this, []); }
+  startSync(): void { return callSDK<void>("RealityKit_e11dfd5beee01da3", 3775909780788330, this, []); }
   declare readonly $type: { "s:10RealityKit28MultipeerConnectivityServiceC": true };
 }
 
@@ -1304,8 +1304,8 @@ export class ParticleEmitterComponent extends SDKHandle {
    * var timing: ParticleEmitterComponent.Timing { get set }
    * @availability iOS 18.0+
    */
-  get timing(): ParticleEmitterComponent_Timing { return callSDK<ParticleEmitterComponent_Timing>("RealityKit_c1f28409f8601238", 3576365702638977, this, []); }
-  set timing(value: ParticleEmitterComponent_Timing) { callSDK<void>("RealityKit_c1f28409f8601238", 2019189025268556, this, [value]); }
+  get timing(): ParticleEmitterComponent_Timing { return callSDK<ParticleEmitterComponent_Timing>("RealityKit_e11dfd5beee01da3", 3576365702638977, this, []); }
+  set timing(value: ParticleEmitterComponent_Timing) { callSDK<void>("RealityKit_e11dfd5beee01da3", 2019189025268556, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation24ParticleEmitterComponentV": true };
 }
 
@@ -1314,8 +1314,8 @@ export class ParticleEmitterComponent_ParticleEmitter extends SDKHandle {
    * var color: ParticleEmitterComponent.ParticleEmitter.ParticleColor { get set }
    * @availability iOS 18.0+
    */
-  get color(): ParticleEmitterComponent_ParticleEmitter_ParticleColor { return callSDK<ParticleEmitterComponent_ParticleEmitter_ParticleColor>("RealityKit_c1f28409f8601238", 4246647780706915, this, []); }
-  set color(value: ParticleEmitterComponent_ParticleEmitter_ParticleColor) { callSDK<void>("RealityKit_c1f28409f8601238", 4043197065300461, this, [value]); }
+  get color(): ParticleEmitterComponent_ParticleEmitter_ParticleColor { return callSDK<ParticleEmitterComponent_ParticleEmitter_ParticleColor>("RealityKit_e11dfd5beee01da3", 4246647780706915, this, []); }
+  set color(value: ParticleEmitterComponent_ParticleEmitter_ParticleColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 4043197065300461, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation24ParticleEmitterComponentV0cD0V": true };
 }
 
@@ -1350,32 +1350,32 @@ export class ParticleEmitterComponent_Presets extends SDKHandle {
    * static var rain: ParticleEmitterComponent { get }
    * @availability iOS 18.0+
    */
-  static get rain(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_c1f28409f8601238", 4252035680202237, undefined, []); }
+  static get rain(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_e11dfd5beee01da3", 4252035680202237, undefined, []); }
   /**
    * static var snow: ParticleEmitterComponent { get }
    * @availability iOS 18.0+
    */
-  static get snow(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_c1f28409f8601238", 1529875902669634, undefined, []); }
+  static get snow(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_e11dfd5beee01da3", 1529875902669634, undefined, []); }
   /**
    * static var magic: ParticleEmitterComponent { get }
    * @availability iOS 18.0+
    */
-  static get magic(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_c1f28409f8601238", 2194729216656596, undefined, []); }
+  static get magic(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_e11dfd5beee01da3", 2194729216656596, undefined, []); }
   /**
    * static var impact: ParticleEmitterComponent { get }
    * @availability iOS 18.0+
    */
-  static get impact(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_c1f28409f8601238", 1873229107701892, undefined, []); }
+  static get impact(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_e11dfd5beee01da3", 1873229107701892, undefined, []); }
   /**
    * static var sparks: ParticleEmitterComponent { get }
    * @availability iOS 18.0+
    */
-  static get sparks(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_c1f28409f8601238", 2578364536571967, undefined, []); }
+  static get sparks(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_e11dfd5beee01da3", 2578364536571967, undefined, []); }
   /**
    * static var fireworks: ParticleEmitterComponent { get }
    * @availability iOS 18.0+
    */
-  static get fireworks(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_c1f28409f8601238", 1074751544729026, undefined, []); }
+  static get fireworks(): _RealityFoundation_ParticleEmitterComponent { return callSDK<_RealityFoundation_ParticleEmitterComponent>("RealityKit_e11dfd5beee01da3", 1074751544729026, undefined, []); }
   declare readonly $type: { "s:17RealityFoundation24ParticleEmitterComponentV0A3KitE7PresetsV": true };
 }
 
@@ -1396,17 +1396,17 @@ export class ParticleEmitterComponent_Timing_VariableDuration extends SDKHandle 
    * init(duration: TimeInterval, variation: TimeInterval? = nil)
    * @availability iOS 18.0+
    */
-  static init(duration: number, variation?: (number) | null): ParticleEmitterComponent_Timing_VariableDuration { return callSDK<ParticleEmitterComponent_Timing_VariableDuration>("RealityKit_c1f28409f8601238", 2867247035121735, undefined, [duration, variation]); }
+  static init(duration: number, variation?: (number) | null): ParticleEmitterComponent_Timing_VariableDuration { return callSDK<ParticleEmitterComponent_Timing_VariableDuration>("RealityKit_e11dfd5beee01da3", 2867247035121735, undefined, [duration, variation]); }
   /**
    * let duration: TimeInterval
    * @availability iOS 18.0+
    */
-  get duration(): number { return callSDK<number>("RealityKit_c1f28409f8601238", 297940040530034, this, []); }
+  get duration(): number { return callSDK<number>("RealityKit_e11dfd5beee01da3", 297940040530034, this, []); }
   /**
    * let variation: TimeInterval?
    * @availability iOS 18.0+
    */
-  get variation(): (number) | null { return callSDK<(number) | null>("RealityKit_c1f28409f8601238", 3753066611183121, this, []); }
+  get variation(): (number) | null { return callSDK<(number) | null>("RealityKit_e11dfd5beee01da3", 3753066611183121, this, []); }
   declare readonly $type: { "s:17RealityFoundation24ParticleEmitterComponentV0A3KitE6TimingO16VariableDurationV": true };
 }
 
@@ -1415,13 +1415,13 @@ export class PhysicallyBasedMaterial_BaseColor extends SDKHandle {
    * init(tint: UIColor = .white, texture: MaterialParameters.Texture? = nil)
    * @availability iOS 15.0+
    */
-  static init(tint?: _UIKit_UIColor, texture?: $SDK29): _RealityFoundation_PhysicallyBasedMaterial_BaseColor { return callSDK<_RealityFoundation_PhysicallyBasedMaterial_BaseColor>("RealityKit_c1f28409f8601238", 1772173932093292, undefined, [tint, texture]); }
+  static init(tint?: _UIKit_UIColor, texture?: $SDK29): _RealityFoundation_PhysicallyBasedMaterial_BaseColor { return callSDK<_RealityFoundation_PhysicallyBasedMaterial_BaseColor>("RealityKit_e11dfd5beee01da3", 1772173932093292, undefined, [tint, texture]); }
   /**
    * var tint: UIColor { get set }
    * @availability iOS 15.0+
    */
-  get tint(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 3790215876991227, this, []); }
-  set tint(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 3842627173851192, this, [value]); }
+  get tint(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 3790215876991227, this, []); }
+  set tint(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 3842627173851192, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation23PhysicallyBasedMaterialV9BaseColorV": true };
 }
 
@@ -1430,13 +1430,13 @@ export class PhysicallyBasedMaterial_EmissiveColor extends SDKHandle {
    * init(color: UIColor = .black, texture: MaterialParameters.Texture? = nil)
    * @availability iOS 15.0+
    */
-  static init(color?: _UIKit_UIColor, texture?: $SDK29): _RealityFoundation_PhysicallyBasedMaterial_EmissiveColor { return callSDK<_RealityFoundation_PhysicallyBasedMaterial_EmissiveColor>("RealityKit_c1f28409f8601238", 1657547304209828, undefined, [color, texture]); }
+  static init(color?: _UIKit_UIColor, texture?: $SDK29): _RealityFoundation_PhysicallyBasedMaterial_EmissiveColor { return callSDK<_RealityFoundation_PhysicallyBasedMaterial_EmissiveColor>("RealityKit_e11dfd5beee01da3", 1657547304209828, undefined, [color, texture]); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 15.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 1408855441400853, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 2313698835042796, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 1408855441400853, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 2313698835042796, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation23PhysicallyBasedMaterialV13EmissiveColorV": true };
 }
 
@@ -1445,13 +1445,13 @@ export class PhysicallyBasedMaterial_SheenColor extends SDKHandle {
    * init(tint: UIColor = .white, texture: MaterialParameters.Texture? = nil)
    * @availability iOS 15.0+
    */
-  static init(tint?: _UIKit_UIColor, texture?: $SDK29): _RealityFoundation_PhysicallyBasedMaterial_SheenColor { return callSDK<_RealityFoundation_PhysicallyBasedMaterial_SheenColor>("RealityKit_c1f28409f8601238", 2482380538772915, undefined, [tint, texture]); }
+  static init(tint?: _UIKit_UIColor, texture?: $SDK29): _RealityFoundation_PhysicallyBasedMaterial_SheenColor { return callSDK<_RealityFoundation_PhysicallyBasedMaterial_SheenColor>("RealityKit_e11dfd5beee01da3", 2482380538772915, undefined, [tint, texture]); }
   /**
    * var tint: UIColor { get set }
    * @availability iOS 15.0+
    */
-  get tint(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 1129140034405022, this, []); }
-  set tint(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 920074561997018, this, [value]); }
+  get tint(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 1129140034405022, this, []); }
+  set tint(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 920074561997018, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation23PhysicallyBasedMaterialV10SheenColorV": true };
 }
 
@@ -1460,18 +1460,18 @@ export class PointLightComponent extends SDKHandle {
    * init(color: PointLightComponent.Color = .white, intensity: Float = 26963.76, attenuationRadius: Float = 10.0, attenuationFalloffExponent: Float = 2.0)
    * @availability iOS 18.0+
    */
-  static initColorIntensityAttenuationRadiusAttenuationFalloffExponent(color?: _UIKit_UIColor, intensity?: number, attenuationRadius?: number, attenuationFalloffExponent?: number): _RealityFoundation_PointLightComponent { return callSDK<_RealityFoundation_PointLightComponent>("RealityKit_c1f28409f8601238", 632455508726799, undefined, [color, intensity, attenuationRadius, attenuationFalloffExponent]); }
+  static initColorIntensityAttenuationRadiusAttenuationFalloffExponent(color?: _UIKit_UIColor, intensity?: number, attenuationRadius?: number, attenuationFalloffExponent?: number): _RealityFoundation_PointLightComponent { return callSDK<_RealityFoundation_PointLightComponent>("RealityKit_e11dfd5beee01da3", 632455508726799, undefined, [color, intensity, attenuationRadius, attenuationFalloffExponent]); }
   /**
    * init(color: PointLightComponent.Color = .white, intensity: Float = 26963.76, attenuationRadius: Float = 10.0)
    * @availability iOS 13.0+
    */
-  static initColorIntensityAttenuationRadius(color?: _UIKit_UIColor, intensity?: number, attenuationRadius?: number): _RealityFoundation_PointLightComponent { return callSDK<_RealityFoundation_PointLightComponent>("RealityKit_c1f28409f8601238", 2100101594186381, undefined, [color, intensity, attenuationRadius]); }
+  static initColorIntensityAttenuationRadius(color?: _UIKit_UIColor, intensity?: number, attenuationRadius?: number): _RealityFoundation_PointLightComponent { return callSDK<_RealityFoundation_PointLightComponent>("RealityKit_e11dfd5beee01da3", 2100101594186381, undefined, [color, intensity, attenuationRadius]); }
   /**
    * var color: PointLightComponent.Color { get set }
    * @availability iOS 13.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 459169069954240, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 770497693720615, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 459169069954240, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 770497693720615, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation19PointLightComponentV": true };
 }
 
@@ -1486,7 +1486,7 @@ export class ShapeResource extends SDKHandle {
    * nonisolated static func generateStaticMesh(from meshAnchor: ARMeshAnchor) async throws -> ShapeResource
    * @availability iOS 18.0+
    */
-  static generateStaticMesh(meshAnchor: _ARKit_ARMeshAnchor): Promise<_RealityFoundation_ShapeResource> { return callSDKAsync<_RealityFoundation_ShapeResource>("RealityKit_c1f28409f8601238", 2381713309649196, undefined, [meshAnchor]); }
+  static generateStaticMesh(meshAnchor: _ARKit_ARMeshAnchor): Promise<_RealityFoundation_ShapeResource> { return callSDKAsync<_RealityFoundation_ShapeResource>("RealityKit_e11dfd5beee01da3", 2381713309649196, undefined, [meshAnchor]); }
   declare readonly $type: { "s:17RealityFoundation13ShapeResourceC": true };
 }
 
@@ -1495,21 +1495,21 @@ export class SimpleMaterial extends SDKHandle {
    * init(color: SimpleMaterial.Color, roughness: MaterialScalarParameter = 0.0, isMetallic: Bool)
    * @availability iOS 13.0+
    */
-  static init(color: _UIKit_UIColor, roughness: _RealityFoundation_MaterialScalarParameter, isMetallic: boolean): _RealityFoundation_SimpleMaterial { return callSDK<_RealityFoundation_SimpleMaterial>("RealityKit_c1f28409f8601238", 4460458300049363, undefined, [color, roughness, isMetallic]); }
+  static init(color: _UIKit_UIColor, roughness: _RealityFoundation_MaterialScalarParameter, isMetallic: boolean): _RealityFoundation_SimpleMaterial { return callSDK<_RealityFoundation_SimpleMaterial>("RealityKit_e11dfd5beee01da3", 4460458300049363, undefined, [color, roughness, isMetallic]); }
   /**
    * var baseColor: MaterialColorParameter { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get baseColor(): MaterialColorParameter { return callSDK<MaterialColorParameter>("RealityKit_c1f28409f8601238", 3731743445860288, this, []); }
-  set baseColor(value: MaterialColorParameter) { callSDK<void>("RealityKit_c1f28409f8601238", 1735876972573359, this, [value]); }
+  get baseColor(): MaterialColorParameter { return callSDK<MaterialColorParameter>("RealityKit_e11dfd5beee01da3", 3731743445860288, this, []); }
+  set baseColor(value: MaterialColorParameter) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1735876972573359, this, [value]); }
   /**
    * var tintColor: UIColor { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get tintColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 3959870910223374, this, []); }
-  set tintColor(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 2559356609152594, this, [value]); }
+  get tintColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 3959870910223374, this, []); }
+  set tintColor(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 2559356609152594, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation14SimpleMaterialV": true };
 }
 
@@ -1518,18 +1518,18 @@ export class SpotLightComponent extends SDKHandle {
    * init(color: SpotLightComponent.Color = .white, intensity: Float = 6740.94, innerAngleInDegrees: Float = 45.0, outerAngleInDegrees: Float = 60.0, attenuationRadius: Float = 10.0, attenuationFalloffExponent: Float = 2.0)
    * @availability iOS 18.0+
    */
-  static initColorIntensityInnerAngleInDegreesOuterAngleInDegreesAttenuationRadiusAttenuationFalloffExponent(color?: _UIKit_UIColor, intensity?: number, innerAngleInDegrees?: number, outerAngleInDegrees?: number, attenuationRadius?: number, attenuationFalloffExponent?: number): _RealityFoundation_SpotLightComponent { return callSDK<_RealityFoundation_SpotLightComponent>("RealityKit_c1f28409f8601238", 1220490141425041, undefined, [color, intensity, innerAngleInDegrees, outerAngleInDegrees, attenuationRadius, attenuationFalloffExponent]); }
+  static initColorIntensityInnerAngleInDegreesOuterAngleInDegreesAttenuationRadiusAttenuationFalloffExponent(color?: _UIKit_UIColor, intensity?: number, innerAngleInDegrees?: number, outerAngleInDegrees?: number, attenuationRadius?: number, attenuationFalloffExponent?: number): _RealityFoundation_SpotLightComponent { return callSDK<_RealityFoundation_SpotLightComponent>("RealityKit_e11dfd5beee01da3", 1220490141425041, undefined, [color, intensity, innerAngleInDegrees, outerAngleInDegrees, attenuationRadius, attenuationFalloffExponent]); }
   /**
    * init(color: SpotLightComponent.Color = .white, intensity: Float = 6740.94, innerAngleInDegrees: Float = 45.0, outerAngleInDegrees: Float = 60.0, attenuationRadius: Float = 10.0)
    * @availability iOS 13.0+
    */
-  static initColorIntensityInnerAngleInDegreesOuterAngleInDegreesAttenuationRadius(color?: _UIKit_UIColor, intensity?: number, innerAngleInDegrees?: number, outerAngleInDegrees?: number, attenuationRadius?: number): _RealityFoundation_SpotLightComponent { return callSDK<_RealityFoundation_SpotLightComponent>("RealityKit_c1f28409f8601238", 3898338915663864, undefined, [color, intensity, innerAngleInDegrees, outerAngleInDegrees, attenuationRadius]); }
+  static initColorIntensityInnerAngleInDegreesOuterAngleInDegreesAttenuationRadius(color?: _UIKit_UIColor, intensity?: number, innerAngleInDegrees?: number, outerAngleInDegrees?: number, attenuationRadius?: number): _RealityFoundation_SpotLightComponent { return callSDK<_RealityFoundation_SpotLightComponent>("RealityKit_e11dfd5beee01da3", 3898338915663864, undefined, [color, intensity, innerAngleInDegrees, outerAngleInDegrees, attenuationRadius]); }
   /**
    * var color: SpotLightComponent.Color { get set }
    * @availability iOS 13.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 3934687490227003, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 3402479231762189, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 3934687490227003, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 3402479231762189, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation18SpotLightComponentV": true };
 }
 
@@ -1544,8 +1544,8 @@ export class TextComponent extends SDKHandle {
    * var edgeInsets: TextComponent.EdgeInsets { get set }
    * @availability iOS 18.0+
    */
-  get edgeInsets(): $SDK30 { return callSDK<$SDK30>("RealityKit_c1f28409f8601238", 2500309306842466, this, []); }
-  set edgeInsets(value: $SDK30) { callSDK<void>("RealityKit_c1f28409f8601238", 283741390142644, this, [value]); }
+  get edgeInsets(): $SDK30 { return callSDK<$SDK30>("RealityKit_e11dfd5beee01da3", 2500309306842466, this, []); }
+  set edgeInsets(value: $SDK30) { callSDK<void>("RealityKit_e11dfd5beee01da3", 283741390142644, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation13TextComponentV": true };
 }
 
@@ -1560,34 +1560,34 @@ export class TextureResource extends SDKHandle {
    * @MainActor @preconcurrency static func load(named name: String, in bundle: Bundle? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
    * @availability iOS 15.0+
    */
-  static loadNamedInOptions(name: string, bundle: $SDK31, options: _RealityFoundation_TextureResource_CreateOptions): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_c1f28409f8601238", 865170895405728, undefined, [name, bundle, options]); }
+  static loadNamedInOptions(name: string, bundle: $SDK31, options: _RealityFoundation_TextureResource_CreateOptions): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_e11dfd5beee01da3", 865170895405728, undefined, [name, bundle, options]); }
   /**
    * @MainActor @preconcurrency static func load(named name: String, in bundle: Bundle? = nil) throws -> TextureResource
    * @availability iOS 13.0+
    */
-  static loadNamedIn(name: string, bundle?: $SDK31): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_c1f28409f8601238", 3853381296368920, undefined, [name, bundle]); }
+  static loadNamedIn(name: string, bundle?: $SDK31): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_e11dfd5beee01da3", 3853381296368920, undefined, [name, bundle]); }
   /**
    * @MainActor @preconcurrency convenience init(named name: String, in bundle: Bundle? = nil, options: TextureResource.CreateOptions) async throws
    * @availability iOS 18.0+
    */
-  static initNamedInOptions(name: string, bundle: $SDK31, options: _RealityFoundation_TextureResource_CreateOptions): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_c1f28409f8601238", 3458439514131831, undefined, [name, bundle, options]); }
+  static initNamedInOptions(name: string, bundle: $SDK31, options: _RealityFoundation_TextureResource_CreateOptions): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_e11dfd5beee01da3", 3458439514131831, undefined, [name, bundle, options]); }
   /**
    * @MainActor @preconcurrency convenience init(named name: String, in bundle: Bundle? = nil) async throws
    * @availability iOS 18.0+
    */
-  static initNamedIn(name: string, bundle?: $SDK31): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_c1f28409f8601238", 4044313914668792, undefined, [name, bundle]); }
+  static initNamedIn(name: string, bundle?: $SDK31): Promise<_RealityFoundation_TextureResource> { return callSDKAsync<_RealityFoundation_TextureResource>("RealityKit_e11dfd5beee01da3", 4044313914668792, undefined, [name, bundle]); }
   /**
    * @MainActor @preconcurrency static func loadAsync(named name: String, in bundle: Bundle? = nil, options: TextureResource.CreateOptions) -> LoadRequest<TextureResource>
    * @availability iOS 15.0+
    * @deprecated iOS 18.0
    */
-  static loadAsyncNamedInOptions(name: string, bundle: $SDK31, options: _RealityFoundation_TextureResource_CreateOptions): Promise<$SDK32> { return callSDKAsync<$SDK32>("RealityKit_c1f28409f8601238", 3027089382532153, undefined, [name, bundle, options]); }
+  static loadAsyncNamedInOptions(name: string, bundle: $SDK31, options: _RealityFoundation_TextureResource_CreateOptions): Promise<$SDK32> { return callSDKAsync<$SDK32>("RealityKit_e11dfd5beee01da3", 3027089382532153, undefined, [name, bundle, options]); }
   /**
    * @MainActor @preconcurrency static func loadAsync(named name: String, in bundle: Bundle? = nil) -> LoadRequest<TextureResource>
    * @availability iOS 13.0+
    * @deprecated iOS 18.0
    */
-  static loadAsyncNamedIn(name: string, bundle?: $SDK31): Promise<$SDK32> { return callSDKAsync<$SDK32>("RealityKit_c1f28409f8601238", 3869391833618602, undefined, [name, bundle]); }
+  static loadAsyncNamedIn(name: string, bundle?: $SDK31): Promise<$SDK32> { return callSDKAsync<$SDK32>("RealityKit_e11dfd5beee01da3", 3869391833618602, undefined, [name, bundle]); }
   declare readonly $type: { "s:17RealityFoundation15TextureResourceC": true };
 }
 
@@ -1596,77 +1596,77 @@ export class UnlitMaterial extends SDKHandle {
    * init(color: UIColor, applyPostProcessToneMap: Bool)
    * @availability iOS 18.0+
    */
-  static initColorApplyPostProcessToneMap(color: _UIKit_UIColor, applyPostProcessToneMap: boolean): _RealityFoundation_UnlitMaterial { return callSDK<_RealityFoundation_UnlitMaterial>("RealityKit_c1f28409f8601238", 2691773558082560, undefined, [color, applyPostProcessToneMap]); }
+  static initColorApplyPostProcessToneMap(color: _UIKit_UIColor, applyPostProcessToneMap: boolean): _RealityFoundation_UnlitMaterial { return callSDK<_RealityFoundation_UnlitMaterial>("RealityKit_e11dfd5beee01da3", 2691773558082560, undefined, [color, applyPostProcessToneMap]); }
   /**
    * init(color: UIColor)
    * @availability iOS 13.0+
    */
-  static initColor(color: _UIKit_UIColor): _RealityFoundation_UnlitMaterial { return callSDK<_RealityFoundation_UnlitMaterial>("RealityKit_c1f28409f8601238", 551342898713414, undefined, [color]); }
+  static initColor(color: _UIKit_UIColor): _RealityFoundation_UnlitMaterial { return callSDK<_RealityFoundation_UnlitMaterial>("RealityKit_e11dfd5beee01da3", 551342898713414, undefined, [color]); }
   /**
    * var baseColor: MaterialColorParameter { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get baseColor(): MaterialColorParameter { return callSDK<MaterialColorParameter>("RealityKit_c1f28409f8601238", 2202252474850581, this, []); }
-  set baseColor(value: MaterialColorParameter) { callSDK<void>("RealityKit_c1f28409f8601238", 1096429207031211, this, [value]); }
+  get baseColor(): MaterialColorParameter { return callSDK<MaterialColorParameter>("RealityKit_e11dfd5beee01da3", 2202252474850581, this, []); }
+  set baseColor(value: MaterialColorParameter) { callSDK<void>("RealityKit_e11dfd5beee01da3", 1096429207031211, this, [value]); }
   /**
    * var tintColor: UIColor { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 15.0
    */
-  get tintColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_c1f28409f8601238", 1178601619960092, this, []); }
-  set tintColor(value: _UIKit_UIColor) { callSDK<void>("RealityKit_c1f28409f8601238", 2497581829994839, this, [value]); }
+  get tintColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("RealityKit_e11dfd5beee01da3", 1178601619960092, this, []); }
+  set tintColor(value: _UIKit_UIColor) { callSDK<void>("RealityKit_e11dfd5beee01da3", 2497581829994839, this, [value]); }
   declare readonly $type: { "s:17RealityFoundation13UnlitMaterialV": true };
 }
 
-registerSDKClass("RealityFoundation.AccessibilityComponent", AccessibilityComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityKit.AccessibilityComponent.RotorType", AccessibilityComponent_RotorType, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.AccessibilityEvents", AccessibilityEvents, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.AccessibilityEvents.Activate", AccessibilityEvents_Activate, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.AccessibilityEvents.CustomAction", AccessibilityEvents_CustomAction, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.AccessibilityEvents.Decrement", AccessibilityEvents_Decrement, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.AccessibilityEvents.Increment", AccessibilityEvents_Increment, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.AccessibilityEvents.RotorNavigation", AccessibilityEvents_RotorNavigation, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityFoundation.AnchorEntity", AnchorEntity, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.AnchoringComponent", AnchoringComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityKit.ARKitAnchorComponent", ARKitAnchorComponent, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView", ARView, { module: "RealityKit_c1f28409f8601238", properties: {}, methods: {"didMoveToSuperview":{"id":257728475313411},"gestureRecognizerShouldReceive":{"id":652337509679640},"gestureRecognizerShouldRecognizeSimultaneouslyWith":{"id":178437922020098},"layoutSubviews":{"id":1641966580421319},"touchesBegan":{"id":425921552292686},"touchesCancelled":{"id":3568651419768315},"touchesEnded":{"id":799992897084172},"touchesMoved":{"id":253729813930570},"trackedRaycast":{"id":2382415419014821,"hints":[null,null,null,{"callback":{"out":[]}}]},"installGestures":{"id":2130267082755634,"hints":[null,{"protocol":"s:17RealityFoundation12HasCollisionP"}]},"makeRaycastQuery":{"id":3249423905682927},"ray":{"id":4473754177111247},"entity":{"id":1172889022637839},"hitTestQueryMask":{"id":3138701382705735},"hitTestTypes":{"id":809287284194631},"project":{"id":1092659977480136},"raycast":{"id":1117087658537743},"entities":{"id":2468658821543873},"snapshot":{"id":2419856071067724,"hints":[null,{"callback":{"out":[]}}]},"unprojectViewport":{"id":3345907629683201},"unprojectOntoPlaneRelativeToCamera":{"id":1473043312478833},"unprojectOntoPlane":{"id":850545597420874}} });
-registerSDKClass("RealityKit.ARView.Environment", ARView_Environment, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView.Environment.Background", ARView_Environment_Background, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView.Environment.ImageBasedLight", ARView_Environment_ImageBasedLight, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView.Environment.Reverb", ARView_Environment_Reverb, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView.Environment.SceneUnderstanding", ARView_Environment_SceneUnderstanding, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView.PostProcessContext", ARView_PostProcessContext, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ARView.RenderCallbacks", ARView_RenderCallbacks, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityFoundation.CustomMaterial.BaseColor", CustomMaterial_BaseColor, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.CustomMaterial.EmissiveColor", CustomMaterial_EmissiveColor, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.DirectionalLightComponent", DirectionalLightComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.Entity", Entity, { module: "RealityKit_c1f28409f8601238", properties: {"accessibilityValue":2104302435955646,"accessibilityTraits":78127269086788,"accessibilityLabelKey":2200091969322537,"accessibilityCustomRotors":2400967381168097,"accessibilityCustomActions":1182626875894450,"accessibilityCustomContent":4153438698758940,"accessibilitySystemActions":1147504491400929} }, true);
+registerSDKClass("RealityFoundation.AccessibilityComponent", AccessibilityComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityKit.AccessibilityComponent.RotorType", AccessibilityComponent_RotorType, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.AccessibilityEvents", AccessibilityEvents, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.AccessibilityEvents.Activate", AccessibilityEvents_Activate, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.AccessibilityEvents.CustomAction", AccessibilityEvents_CustomAction, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.AccessibilityEvents.Decrement", AccessibilityEvents_Decrement, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.AccessibilityEvents.Increment", AccessibilityEvents_Increment, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.AccessibilityEvents.RotorNavigation", AccessibilityEvents_RotorNavigation, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityFoundation.AnchorEntity", AnchorEntity, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.AnchoringComponent", AnchoringComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityKit.ARKitAnchorComponent", ARKitAnchorComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView", ARView, { module: "RealityKit_e11dfd5beee01da3", properties: {}, methods: {"didMoveToSuperview":{"id":257728475313411},"gestureRecognizerShouldReceive":{"id":652337509679640},"gestureRecognizerShouldRecognizeSimultaneouslyWith":{"id":178437922020098},"layoutSubviews":{"id":1641966580421319},"touchesBegan":{"id":425921552292686},"touchesCancelled":{"id":3568651419768315},"touchesEnded":{"id":799992897084172},"touchesMoved":{"id":253729813930570},"trackedRaycast":{"id":2382415419014821,"hints":[null,null,null,{"callback":{"out":[]}}]},"installGestures":{"id":2130267082755634,"hints":[null,{"protocol":"s:17RealityFoundation12HasCollisionP"}]},"makeRaycastQuery":{"id":3249423905682927},"ray":{"id":4473754177111247},"entity":{"id":1172889022637839},"hitTestQueryMask":{"id":3138701382705735},"hitTestTypes":{"id":809287284194631},"project":{"id":1092659977480136},"raycast":{"id":1117087658537743},"entities":{"id":2468658821543873},"snapshot":{"id":2419856071067724,"hints":[null,{"callback":{"out":[]}}]},"unprojectViewport":{"id":3345907629683201},"unprojectOntoPlaneRelativeToCamera":{"id":1473043312478833},"unprojectOntoPlane":{"id":850545597420874}} });
+registerSDKClass("RealityKit.ARView.Environment", ARView_Environment, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView.Environment.Background", ARView_Environment_Background, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView.Environment.ImageBasedLight", ARView_Environment_ImageBasedLight, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView.Environment.Reverb", ARView_Environment_Reverb, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView.Environment.SceneUnderstanding", ARView_Environment_SceneUnderstanding, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView.PostProcessContext", ARView_PostProcessContext, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ARView.RenderCallbacks", ARView_RenderCallbacks, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityFoundation.CustomMaterial.BaseColor", CustomMaterial_BaseColor, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.CustomMaterial.EmissiveColor", CustomMaterial_EmissiveColor, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.DirectionalLightComponent", DirectionalLightComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.Entity", Entity, { module: "RealityKit_e11dfd5beee01da3", properties: {"accessibilityValue":2104302435955646,"accessibilityTraits":78127269086788,"accessibilityLabelKey":2200091969322537,"accessibilityCustomRotors":2400967381168097,"accessibilityCustomActions":1182626875894450,"accessibilityCustomContent":4153438698758940,"accessibilitySystemActions":1147504491400929} }, true);
 registerSDKProtocol("s:10RealityKit23EntityGestureRecognizerP", {"locationIn":"location(in:)"});
-registerSDKClass("RealityKit.EntityRotationGestureRecognizer", EntityRotationGestureRecognizer, { module: "RealityKit_c1f28409f8601238", properties: {}, methods: {"canPrevent":{"id":157929716649546},"touchesBegan":{"id":2225787314851340}} });
-registerSDKClass("RealityKit.EntityScaleGestureRecognizer", EntityScaleGestureRecognizer, { module: "RealityKit_c1f28409f8601238", properties: {}, methods: {"canPrevent":{"id":619483366065973},"touchesBegan":{"id":1386759673899671}} });
-registerSDKClass("RealityKit.EntityTranslationGestureRecognizer", EntityTranslationGestureRecognizer, { module: "RealityKit_c1f28409f8601238", properties: {}, methods: {"canPrevent":{"id":1742970295130443},"reset":{"id":3374261315555324},"touchesBegan":{"id":171237405950356},"touchesCancelled":{"id":2094684266882332},"touchesEnded":{"id":1937019302729190},"touchesMoved":{"id":3006376494011115},"setTranslation":{"id":1430991401464814},"translation":{"id":722198110483335},"location":{"id":4142541294446138},"velocity":{"id":1320965182729373}} });
-registerSDKClass("RealityFoundation.HoverEffectComponent.HighlightHoverEffectStyle", HoverEffectComponent_HighlightHoverEffectStyle, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.HoverEffectComponent.SpotlightHoverEffectStyle", HoverEffectComponent_SpotlightHoverEffectStyle, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityKit.MaterialColorParameter", MaterialColorParameter, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityFoundation.MaterialParameters.Value", MaterialParameters_Value, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityKit.MultipeerConnectivityService", MultipeerConnectivityService, { module: "RealityKit_c1f28409f8601238", properties: {}, methods: {"setHandshake":{"id":1802489874541679},"giveOwnership":{"id":3047666613274314,"hints":[null,{"protocol":"s:17RealityFoundation21SynchronizationPeerIDP"}]},"owner":{"id":1383274620903457},"entity":{"id":3480459469378555},"stopSync":{"id":1090681668643608},"startSync":{"id":3775909780788330}} });
-registerSDKClass("RealityFoundation.ParticleEmitterComponent", ParticleEmitterComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.ParticleEmitterComponent.ParticleEmitter", ParticleEmitterComponent_ParticleEmitter, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityKit.ParticleEmitterComponent.ParticleEmitter.ParticleColor", ParticleEmitterComponent_ParticleEmitter_ParticleColor, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ParticleEmitterComponent.ParticleEmitter.ParticleColor.ColorValue", ParticleEmitterComponent_ParticleEmitter_ParticleColor_ColorValue, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ParticleEmitterComponent.Presets", ParticleEmitterComponent_Presets, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ParticleEmitterComponent.Timing", ParticleEmitterComponent_Timing, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityKit.ParticleEmitterComponent.Timing.VariableDuration", ParticleEmitterComponent_Timing_VariableDuration, { module: "RealityKit_c1f28409f8601238", properties: {} });
-registerSDKClass("RealityFoundation.PhysicallyBasedMaterial.BaseColor", PhysicallyBasedMaterial_BaseColor, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.PhysicallyBasedMaterial.EmissiveColor", PhysicallyBasedMaterial_EmissiveColor, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.PhysicallyBasedMaterial.SheenColor", PhysicallyBasedMaterial_SheenColor, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.PointLightComponent", PointLightComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.ShapeResource", ShapeResource, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.SimpleMaterial", SimpleMaterial, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.SpotLightComponent", SpotLightComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.TextComponent", TextComponent, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.TextureResource", TextureResource, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
-registerSDKClass("RealityFoundation.UnlitMaterial", UnlitMaterial, { module: "RealityKit_c1f28409f8601238", properties: {} }, true);
+registerSDKClass("RealityKit.EntityRotationGestureRecognizer", EntityRotationGestureRecognizer, { module: "RealityKit_e11dfd5beee01da3", properties: {}, methods: {"canPrevent":{"id":157929716649546},"touchesBegan":{"id":2225787314851340}} });
+registerSDKClass("RealityKit.EntityScaleGestureRecognizer", EntityScaleGestureRecognizer, { module: "RealityKit_e11dfd5beee01da3", properties: {}, methods: {"canPrevent":{"id":619483366065973},"touchesBegan":{"id":1386759673899671}} });
+registerSDKClass("RealityKit.EntityTranslationGestureRecognizer", EntityTranslationGestureRecognizer, { module: "RealityKit_e11dfd5beee01da3", properties: {}, methods: {"canPrevent":{"id":1742970295130443},"reset":{"id":3374261315555324},"touchesBegan":{"id":171237405950356},"touchesCancelled":{"id":2094684266882332},"touchesEnded":{"id":1937019302729190},"touchesMoved":{"id":3006376494011115},"setTranslation":{"id":1430991401464814},"translation":{"id":722198110483335},"location":{"id":4142541294446138},"velocity":{"id":1320965182729373}} });
+registerSDKClass("RealityFoundation.HoverEffectComponent.HighlightHoverEffectStyle", HoverEffectComponent_HighlightHoverEffectStyle, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.HoverEffectComponent.SpotlightHoverEffectStyle", HoverEffectComponent_SpotlightHoverEffectStyle, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityKit.MaterialColorParameter", MaterialColorParameter, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityFoundation.MaterialParameters.Value", MaterialParameters_Value, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityKit.MultipeerConnectivityService", MultipeerConnectivityService, { module: "RealityKit_e11dfd5beee01da3", properties: {}, methods: {"setHandshake":{"id":1802489874541679},"giveOwnership":{"id":3047666613274314,"hints":[null,{"protocol":"s:17RealityFoundation21SynchronizationPeerIDP"}]},"owner":{"id":1383274620903457},"entity":{"id":3480459469378555},"stopSync":{"id":1090681668643608},"startSync":{"id":3775909780788330}} });
+registerSDKClass("RealityFoundation.ParticleEmitterComponent", ParticleEmitterComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.ParticleEmitterComponent.ParticleEmitter", ParticleEmitterComponent_ParticleEmitter, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityKit.ParticleEmitterComponent.ParticleEmitter.ParticleColor", ParticleEmitterComponent_ParticleEmitter_ParticleColor, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ParticleEmitterComponent.ParticleEmitter.ParticleColor.ColorValue", ParticleEmitterComponent_ParticleEmitter_ParticleColor_ColorValue, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ParticleEmitterComponent.Presets", ParticleEmitterComponent_Presets, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ParticleEmitterComponent.Timing", ParticleEmitterComponent_Timing, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityKit.ParticleEmitterComponent.Timing.VariableDuration", ParticleEmitterComponent_Timing_VariableDuration, { module: "RealityKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RealityFoundation.PhysicallyBasedMaterial.BaseColor", PhysicallyBasedMaterial_BaseColor, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.PhysicallyBasedMaterial.EmissiveColor", PhysicallyBasedMaterial_EmissiveColor, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.PhysicallyBasedMaterial.SheenColor", PhysicallyBasedMaterial_SheenColor, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.PointLightComponent", PointLightComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.ShapeResource", ShapeResource, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.SimpleMaterial", SimpleMaterial, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.SpotLightComponent", SpotLightComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.TextComponent", TextComponent, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.TextureResource", TextureResource, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
+registerSDKClass("RealityFoundation.UnlitMaterial", UnlitMaterial, { module: "RealityKit_e11dfd5beee01da3", properties: {} }, true);
 registerSDKProtocol("s:17RealityFoundation12HasCollisionP", {"ancestorFromSpaceTransform":"ancestorFromSpaceTransform()","transformFrom":"transform(from:)","ancestorFromSpaceTransformFloat":"ancestorFromSpaceTransformFloat()"});
 registerSDKProtocol("s:17RealityFoundation21SynchronizationPeerIDP", {});

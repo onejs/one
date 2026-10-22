@@ -25,19 +25,19 @@ export class NSExtensionContext extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  completeRequestWithBroadcastBroadcastConfigurationSetupInfo(broadcastURL: string, broadcastConfiguration: RPBroadcastConfiguration, setupInfo?: $SDK0): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 4319001704319081, this, [broadcastURL, broadcastConfiguration, setupInfo]); }
+  completeRequestWithBroadcastBroadcastConfigurationSetupInfo(broadcastURL: string, broadcastConfiguration: RPBroadcastConfiguration, setupInfo?: $SDK0): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 4319001704319081, this, [broadcastURL, broadcastConfiguration, setupInfo]); }
   /**
    * func completeRequest(withBroadcast broadcastURL: URL, setupInfo: [String : any NSCoding & NSObjectProtocol]?)
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  completeRequestWithBroadcastSetupInfo(broadcastURL: string, setupInfo?: $SDK0): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3459622224592895, this, [broadcastURL, setupInfo]); }
+  completeRequestWithBroadcastSetupInfo(broadcastURL: string, setupInfo?: $SDK0): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3459622224592895, this, [broadcastURL, setupInfo]); }
   /**
    * func loadBroadcastingApplicationInfo() async -> (String, String, UIImage?)
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  loadBroadcastingApplicationInfo(handler: ((arg0: string, arg1: string, arg2: (_UIKit_UIImage) | null) => void)): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 1049210779064085, this, [handler], [{"callback":{"out":[]}}]); }
+  loadBroadcastingApplicationInfo(handler: ((arg0: string, arg1: string, arg2: (_UIKit_UIImage) | null) => void)): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 1049210779064085, this, [handler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
 }
 
@@ -52,22 +52,22 @@ export class RPBroadcastActivityViewController extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  static loadHandler(handler: $SDK2): Promise<void> { return callSDKAsync<void>("ReplayKit_c1f28409f8601238", 1422813713163324, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static loadHandler(handler: $SDK2): Promise<void> { return callSDKAsync<void>("ReplayKit_e11dfd5beee01da3", 1422813713163324, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * class func load(withPreferredExtension preferredExtension: String?, handler: @escaping (RPBroadcastActivityViewController?, (any Error)?) -> Void)
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  static loadWithPreferredExtensionHandler(preferredExtension: (string) | null, handler: $SDK2): Promise<void> { return callSDKAsync<void>("ReplayKit_c1f28409f8601238", 3662814729332726, undefined, [preferredExtension, handler], [null,{"callback":{"out":[]}}]); }
+  static loadWithPreferredExtensionHandler(preferredExtension: (string) | null, handler: $SDK2): Promise<void> { return callSDKAsync<void>("ReplayKit_e11dfd5beee01da3", 3662814729332726, undefined, [preferredExtension, handler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): Promise<RPBroadcastActivityViewController> { return callSDKAsync<RPBroadcastActivityViewController>("ReplayKit_c1f28409f8601238", 2392357855735416, undefined, []); }
+  static init(): Promise<RPBroadcastActivityViewController> { return callSDKAsync<RPBroadcastActivityViewController>("ReplayKit_e11dfd5beee01da3", 2392357855735416, undefined, []); }
   /**
    * weak var delegate: (any RPBroadcastActivityViewControllerDelegate)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ReplayKit_c1f28409f8601238", 4083810218492116, this, []); }
-  setDelegate(value?: (Implements<RPBroadcastActivityViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("ReplayKit_c1f28409f8601238", 1832058879179041, this, [value], [{"protocol":"c:objc(pl)RPBroadcastActivityViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ReplayKit_e11dfd5beee01da3", 4083810218492116, this, []); }
+  setDelegate(value?: (Implements<RPBroadcastActivityViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("ReplayKit_e11dfd5beee01da3", 1832058879179041, this, [value], [{"protocol":"c:objc(pl)RPBroadcastActivityViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)RPBroadcastActivityViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -93,21 +93,21 @@ export interface RPBroadcastActivityViewControllerDelegate {
  */
 export class RPBroadcastConfiguration extends SDKHandle {
   /** init() */
-  static init(): RPBroadcastConfiguration { return callSDK<RPBroadcastConfiguration>("ReplayKit_c1f28409f8601238", 2231569496074298, undefined, []); }
+  static init(): RPBroadcastConfiguration { return callSDK<RPBroadcastConfiguration>("ReplayKit_e11dfd5beee01da3", 2231569496074298, undefined, []); }
   /**
    * var clipDuration: TimeInterval { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  get clipDuration(): number { return callSDK<number>("ReplayKit_c1f28409f8601238", 426760646206656, this, []); }
-  set clipDuration(value: number) { callSDK<void>("ReplayKit_c1f28409f8601238", 4113618997241283, this, [value]); }
+  get clipDuration(): number { return callSDK<number>("ReplayKit_e11dfd5beee01da3", 426760646206656, this, []); }
+  set clipDuration(value: number) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 4113618997241283, this, [value]); }
   /**
    * var videoCompressionProperties: [String : any NSSecureCoding & NSObjectProtocol]? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  get videoCompressionProperties(): $SDK0 { return callSDK<$SDK0>("ReplayKit_c1f28409f8601238", 614581052185449, this, []); }
-  set videoCompressionProperties(value: $SDK0) { callSDK<void>("ReplayKit_c1f28409f8601238", 244822525611778, this, [value]); }
+  get videoCompressionProperties(): $SDK0 { return callSDK<$SDK0>("ReplayKit_e11dfd5beee01da3", 614581052185449, this, []); }
+  set videoCompressionProperties(value: $SDK0) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 244822525611778, this, [value]); }
   declare readonly $type: { "c:objc(cs)RPBroadcastConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "clipDuration": true; "videoCompressionProperties": true };
 }
@@ -123,64 +123,64 @@ export class RPBroadcastController extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  finishBroadcast(handler: $SDK5): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2030878117047239, this, [handler], [{"callback":{"out":[]}}]); }
+  finishBroadcast(handler: $SDK5): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2030878117047239, this, [handler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): RPBroadcastController { return callSDK<RPBroadcastController>("ReplayKit_c1f28409f8601238", 399329565115246, undefined, []); }
+  static init(): RPBroadcastController { return callSDK<RPBroadcastController>("ReplayKit_e11dfd5beee01da3", 399329565115246, undefined, []); }
   /**
    * func pauseBroadcast()
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  pauseBroadcast(): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 1974948903228138, this, []); }
+  pauseBroadcast(): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 1974948903228138, this, []); }
   /**
    * func resumeBroadcast()
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  resumeBroadcast(): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 4023366414125890, this, []); }
+  resumeBroadcast(): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 4023366414125890, this, []); }
   /**
    * func startBroadcast(handler: @escaping ((any Error)?) -> Void)
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  startBroadcast(handler: $SDK5): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3041897007506224, this, [handler], [{"callback":{"out":[]}}]); }
+  startBroadcast(handler: $SDK5): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3041897007506224, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var broadcastExtensionBundleID: String? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  get broadcastExtensionBundleID(): (string) | null { return callSDK<(string) | null>("ReplayKit_c1f28409f8601238", 3847975287757264, this, []); }
+  get broadcastExtensionBundleID(): (string) | null { return callSDK<(string) | null>("ReplayKit_e11dfd5beee01da3", 3847975287757264, this, []); }
   /**
    * var broadcastURL: URL { get }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get broadcastURL(): string { return callSDK<string>("ReplayKit_c1f28409f8601238", 4437186498701143, this, []); }
+  get broadcastURL(): string { return callSDK<string>("ReplayKit_e11dfd5beee01da3", 4437186498701143, this, []); }
   /**
    * var isBroadcasting: Bool { get }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get isBroadcasting(): boolean { return callSDK<boolean>("ReplayKit_c1f28409f8601238", 177009715531642, this, []); }
+  get isBroadcasting(): boolean { return callSDK<boolean>("ReplayKit_e11dfd5beee01da3", 177009715531642, this, []); }
   /**
    * weak var delegate: (any RPBroadcastControllerDelegate)? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ReplayKit_c1f28409f8601238", 4310067053229352, this, []); }
-  set delegate(value: (Implements<RPBroadcastControllerDelegate> | SDKHandle) | null) { callSDK<void>("ReplayKit_c1f28409f8601238", 310401057094143, this, [value], [{"protocol":"c:objc(pl)RPBroadcastControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ReplayKit_e11dfd5beee01da3", 4310067053229352, this, []); }
+  set delegate(value: (Implements<RPBroadcastControllerDelegate> | SDKHandle) | null) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 310401057094143, this, [value], [{"protocol":"c:objc(pl)RPBroadcastControllerDelegate"}]); }
   /**
    * var isPaused: Bool { get }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get isPaused(): boolean { return callSDK<boolean>("ReplayKit_c1f28409f8601238", 1788235122685619, this, []); }
+  get isPaused(): boolean { return callSDK<boolean>("ReplayKit_e11dfd5beee01da3", 1788235122685619, this, []); }
   /**
    * var serviceInfo: [String : any NSCoding & NSObjectProtocol]? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get serviceInfo(): $SDK0 { return callSDK<$SDK0>("ReplayKit_c1f28409f8601238", 1056311745284562, this, []); }
+  get serviceInfo(): $SDK0 { return callSDK<$SDK0>("ReplayKit_e11dfd5beee01da3", 1056311745284562, this, []); }
   declare readonly $type: { "c:objc(cs)RPBroadcastController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "broadcastExtensionBundleID": true; "broadcastURL": true; "isBroadcasting": true; "delegate": true; "isPaused": true; "serviceInfo": true };
 }
@@ -218,19 +218,19 @@ export interface RPBroadcastControllerDelegate {
  */
 export class RPBroadcastHandler extends SDKHandle {
   /** init() */
-  static init(): RPBroadcastHandler { return callSDK<RPBroadcastHandler>("ReplayKit_c1f28409f8601238", 2457653961198032, undefined, []); }
+  static init(): RPBroadcastHandler { return callSDK<RPBroadcastHandler>("ReplayKit_e11dfd5beee01da3", 2457653961198032, undefined, []); }
   /**
    * func updateBroadcast(_ broadcastURL: URL)
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  updateBroadcast(broadcastURL: string): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 947705005449682, this, [broadcastURL]); }
+  updateBroadcast(broadcastURL: string): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 947705005449682, this, [broadcastURL]); }
   /**
    * func updateServiceInfo(_ serviceInfo: [String : any NSCoding & NSObjectProtocol])
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  updateServiceInfo(serviceInfo: $SDK7): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 4212396601012097, this, [serviceInfo]); }
+  updateServiceInfo(serviceInfo: $SDK7): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 4212396601012097, this, [serviceInfo]); }
   declare readonly $type: { "c:objc(cs)RPBroadcastHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -245,15 +245,15 @@ export class RPBroadcastMP4ClipHandler extends (RPBroadcastHandler as unknown as
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  finishedProcessingMP4Clip(broadcastConfiguration?: (RPBroadcastConfiguration) | null, error?: (NativeError) | null): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3287370766925797, this, [broadcastConfiguration, error]); }
+  finishedProcessingMP4Clip(broadcastConfiguration?: (RPBroadcastConfiguration) | null, error?: (NativeError) | null): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3287370766925797, this, [broadcastConfiguration, error]); }
   /** init() */
-  static init(): RPBroadcastMP4ClipHandler { return callSDK<RPBroadcastMP4ClipHandler>("ReplayKit_c1f28409f8601238", 1881027747006866, undefined, []); }
+  static init(): RPBroadcastMP4ClipHandler { return callSDK<RPBroadcastMP4ClipHandler>("ReplayKit_e11dfd5beee01da3", 1881027747006866, undefined, []); }
   /**
    * func processMP4Clip(with mp4ClipURL: URL?, setupInfo: [String : NSObject]?, finished: Bool)
    * @availability iOS 10.0+
    * @deprecated iOS 11.0
    */
-  processMP4Clip(mp4ClipURL: (string) | null, setupInfo: $SDK9, finished: boolean): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3708505856145133, this, [mp4ClipURL, setupInfo, finished]); }
+  processMP4Clip(mp4ClipURL: (string) | null, setupInfo: $SDK9, finished: boolean): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3708505856145133, this, [mp4ClipURL, setupInfo, finished]); }
   declare readonly $type: { "c:objc(cs)RPBroadcastMP4ClipHandler": true; "c:objc(cs)RPBroadcastHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -268,45 +268,45 @@ export class RPBroadcastSampleHandler extends (RPBroadcastHandler as unknown as 
    * @availability iOS 11.2+
    * @deprecated iOS 27.0
    */
-  broadcastAnnotated(applicationInfo: NativeMap<unknown, unknown>): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 1045288479563379, this, [applicationInfo]); }
+  broadcastAnnotated(applicationInfo: NativeMap<unknown, unknown>): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 1045288479563379, this, [applicationInfo]); }
   /**
    * func broadcastFinished()
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  broadcastFinished(): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3718888454191779, this, []); }
+  broadcastFinished(): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3718888454191779, this, []); }
   /**
    * func broadcastPaused()
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  broadcastPaused(): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3887813626433556, this, []); }
+  broadcastPaused(): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3887813626433556, this, []); }
   /**
    * func broadcastResumed()
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  broadcastResumed(): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3011549887455172, this, []); }
+  broadcastResumed(): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3011549887455172, this, []); }
   /**
    * func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?)
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  broadcastStarted(setupInfo?: $SDK9): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3418304934729240, this, [setupInfo]); }
+  broadcastStarted(setupInfo?: $SDK9): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3418304934729240, this, [setupInfo]); }
   /**
    * func finishBroadcastWithError(_ error: any Error)
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  finishBroadcastWithError(error: NativeError): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2571687050540083, this, [error]); }
+  finishBroadcastWithError(error: NativeError): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2571687050540083, this, [error]); }
   /** init() */
-  static init(): RPBroadcastSampleHandler { return callSDK<RPBroadcastSampleHandler>("ReplayKit_c1f28409f8601238", 3884117232202012, undefined, []); }
+  static init(): RPBroadcastSampleHandler { return callSDK<RPBroadcastSampleHandler>("ReplayKit_e11dfd5beee01da3", 3884117232202012, undefined, []); }
   /**
    * func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType)
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  processSampleBuffer(sampleBuffer: _CoreMedia_CMSampleBuffer, sampleBufferType: RPSampleBufferType): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2216846337718411, this, [sampleBuffer, sampleBufferType]); }
+  processSampleBuffer(sampleBuffer: _CoreMedia_CMSampleBuffer, sampleBufferType: RPSampleBufferType): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2216846337718411, this, [sampleBuffer, sampleBufferType]); }
   declare readonly $type: { "c:objc(cs)RPBroadcastSampleHandler": true; "c:objc(cs)RPBroadcastHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -323,7 +323,7 @@ export const RPCameraPosition = {
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (RPCameraPosition) | null { return callSDK<(RPCameraPosition) | null>("ReplayKit_c1f28409f8601238", 2044849334453965, undefined, [rawValue]); }
+  init(rawValue: number): (RPCameraPosition) | null { return callSDK<(RPCameraPosition) | null>("ReplayKit_e11dfd5beee01da3", 2044849334453965, undefined, [rawValue]); }
 };
 
 /**
@@ -333,14 +333,14 @@ export const RPCameraPosition = {
  */
 export class RPPreviewViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<RPPreviewViewController> { return callSDKAsync<RPPreviewViewController>("ReplayKit_c1f28409f8601238", 2677910804504491, undefined, []); }
+  static init(): Promise<RPPreviewViewController> { return callSDKAsync<RPPreviewViewController>("ReplayKit_e11dfd5beee01da3", 2677910804504491, undefined, []); }
   /**
    * weak var previewControllerDelegate: (any RPPreviewViewControllerDelegate)? { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  get previewControllerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ReplayKit_c1f28409f8601238", 603127682416230, this, []); }
-  setPreviewControllerDelegate(value?: (Implements<RPPreviewViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("ReplayKit_c1f28409f8601238", 2515062100812420, this, [value], [{"protocol":"c:objc(pl)RPPreviewViewControllerDelegate"}]); }
+  get previewControllerDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ReplayKit_e11dfd5beee01da3", 603127682416230, this, []); }
+  setPreviewControllerDelegate(value?: (Implements<RPPreviewViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("ReplayKit_e11dfd5beee01da3", 2515062100812420, this, [value], [{"protocol":"c:objc(pl)RPPreviewViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)RPPreviewViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "previewControllerDelegate": true };
 }
@@ -378,7 +378,7 @@ export const RPRecordingErrorCode = {
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (RPRecordingErrorCode) | null { return callSDK<(RPRecordingErrorCode) | null>("ReplayKit_c1f28409f8601238", 3309827465740391, undefined, [rawValue]); }
+  init(rawValue: number): (RPRecordingErrorCode) | null { return callSDK<(RPRecordingErrorCode) | null>("ReplayKit_e11dfd5beee01da3", 3309827465740391, undefined, [rawValue]); }
 };
 
 /**
@@ -394,7 +394,7 @@ export const RPSampleBufferType = {
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (RPSampleBufferType) | null { return callSDK<(RPSampleBufferType) | null>("ReplayKit_c1f28409f8601238", 3328479918619486, undefined, [rawValue]); }
+  init(rawValue: number): (RPSampleBufferType) | null { return callSDK<(RPSampleBufferType) | null>("ReplayKit_e11dfd5beee01da3", 3328479918619486, undefined, [rawValue]); }
 };
 
 /**
@@ -408,113 +408,113 @@ export class RPScreenRecorder extends SDKHandle {
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  static shared(): RPScreenRecorder { return callSDK<RPScreenRecorder>("ReplayKit_c1f28409f8601238", 3509726540384098, undefined, []); }
+  static shared(): RPScreenRecorder { return callSDK<RPScreenRecorder>("ReplayKit_e11dfd5beee01da3", 3509726540384098, undefined, []); }
   /**
    * func discardRecording(handler: @escaping () -> Void)
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  discardRecording(handler: (() => void)): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3602814251060315, this, [handler], [{"callback":{"out":[]}}]); }
+  discardRecording(handler: (() => void)): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3602814251060315, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func exportClip(to url: URL, duration: TimeInterval) async throws
    * @availability iOS 15.0+
    * @deprecated iOS 27.0
    */
-  exportClip(url: string, duration: number, completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2426774864618342, this, [url, duration, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  exportClip(url: string, duration: number, completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2426774864618342, this, [url, duration, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func startCapture(handler captureHandler: ((CMSampleBuffer, RPSampleBufferType, (any Error)?) -> Void)?) async throws
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  startCapture(captureHandler?: (((arg0: _CoreMedia_CMSampleBuffer, arg1: RPSampleBufferType, arg2: (NativeError) | null) => void)) | null, completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2331111729839414, this, [captureHandler, completionHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  startCapture(captureHandler?: (((arg0: _CoreMedia_CMSampleBuffer, arg1: RPSampleBufferType, arg2: (NativeError) | null) => void)) | null, completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2331111729839414, this, [captureHandler, completionHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func startClipBuffering() async throws
    * @availability iOS 15.0+
    * @deprecated iOS 27.0
    */
-  startClipBuffering(completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 1466710122087554, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  startClipBuffering(completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 1466710122087554, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func startRecording(handler: (((any Error)?) -> Void)? = nil)
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  startRecordingHandler(handler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2282833222097165, this, [handler], [{"callback":{"out":[]}}]); }
+  startRecordingHandler(handler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2282833222097165, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func startRecording(withMicrophoneEnabled microphoneEnabled: Bool, handler: (((any Error)?) -> Void)? = nil)
    * @availability iOS 9.0+
    * @deprecated iOS 10.0
    */
-  startRecordingWithMicrophoneEnabledHandler(microphoneEnabled: boolean, handler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 2618724261279134, this, [microphoneEnabled, handler], [null,{"callback":{"out":[]}}]); }
+  startRecordingWithMicrophoneEnabledHandler(microphoneEnabled: boolean, handler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 2618724261279134, this, [microphoneEnabled, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopCapture(handler: (((any Error)?) -> Void)? = nil)
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  stopCapture(handler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3373641786328953, this, [handler], [{"callback":{"out":[]}}]); }
+  stopCapture(handler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3373641786328953, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func stopClipBuffering() async throws
    * @availability iOS 15.0+
    * @deprecated iOS 27.0
    */
-  stopClipBuffering(completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3079398734775925, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  stopClipBuffering(completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3079398734775925, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func stopRecording(handler: ((RPPreviewViewController?, (any Error)?) -> Void)? = nil)
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  stopRecordingHandler(handler?: (((arg0: (RPPreviewViewController) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 3005704009482178, this, [handler], [{"callback":{"out":[]}}]); }
+  stopRecordingHandler(handler?: (((arg0: (RPPreviewViewController) | null, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 3005704009482178, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func stopRecording(withOutput url: URL) async throws
    * @availability iOS 14.0+
    * @deprecated iOS 27.0
    */
-  stopRecordingWithOutputCompletionHandler(url: string, completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_c1f28409f8601238", 4286528110844065, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  stopRecordingWithOutputCompletionHandler(url: string, completionHandler?: $SDK12): void { return callSDK<void>("ReplayKit_e11dfd5beee01da3", 4286528110844065, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var isAvailable: Bool { get }
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  get isAvailable(): boolean { return callSDK<boolean>("ReplayKit_c1f28409f8601238", 3532909267155092, this, []); }
+  get isAvailable(): boolean { return callSDK<boolean>("ReplayKit_e11dfd5beee01da3", 3532909267155092, this, []); }
   /**
    * var isCameraEnabled: Bool { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get isCameraEnabled(): boolean { return callSDK<boolean>("ReplayKit_c1f28409f8601238", 2165448434880667, this, []); }
-  set isCameraEnabled(value: boolean) { callSDK<void>("ReplayKit_c1f28409f8601238", 986331052131219, this, [value]); }
+  get isCameraEnabled(): boolean { return callSDK<boolean>("ReplayKit_e11dfd5beee01da3", 2165448434880667, this, []); }
+  set isCameraEnabled(value: boolean) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 986331052131219, this, [value]); }
   /**
    * var cameraPosition: RPCameraPosition { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  get cameraPosition(): RPCameraPosition { return callSDK<RPCameraPosition>("ReplayKit_c1f28409f8601238", 654373477406336, this, []); }
-  set cameraPosition(value: RPCameraPosition) { callSDK<void>("ReplayKit_c1f28409f8601238", 2475862549365541, this, [value]); }
+  get cameraPosition(): RPCameraPosition { return callSDK<RPCameraPosition>("ReplayKit_e11dfd5beee01da3", 654373477406336, this, []); }
+  set cameraPosition(value: RPCameraPosition) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 2475862549365541, this, [value]); }
   /**
    * var cameraPreviewView: UIView? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 27.0
    */
-  get cameraPreviewView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("ReplayKit_c1f28409f8601238", 1506018535058583, this, []); }
+  get cameraPreviewView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("ReplayKit_e11dfd5beee01da3", 1506018535058583, this, []); }
   /**
    * weak var delegate: (any RPScreenRecorderDelegate)? { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ReplayKit_c1f28409f8601238", 1926911259577055, this, []); }
-  set delegate(value: (Implements<RPScreenRecorderDelegate> | SDKHandle) | null) { callSDK<void>("ReplayKit_c1f28409f8601238", 1602315691565590, this, [value], [{"protocol":"c:objc(pl)RPScreenRecorderDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ReplayKit_e11dfd5beee01da3", 1926911259577055, this, []); }
+  set delegate(value: (Implements<RPScreenRecorderDelegate> | SDKHandle) | null) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 1602315691565590, this, [value], [{"protocol":"c:objc(pl)RPScreenRecorderDelegate"}]); }
   /**
    * var isMicrophoneEnabled: Bool { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  get isMicrophoneEnabled(): boolean { return callSDK<boolean>("ReplayKit_c1f28409f8601238", 2127700771758144, this, []); }
-  set isMicrophoneEnabled(value: boolean) { callSDK<void>("ReplayKit_c1f28409f8601238", 1707795229974152, this, [value]); }
+  get isMicrophoneEnabled(): boolean { return callSDK<boolean>("ReplayKit_e11dfd5beee01da3", 2127700771758144, this, []); }
+  set isMicrophoneEnabled(value: boolean) { callSDK<void>("ReplayKit_e11dfd5beee01da3", 1707795229974152, this, [value]); }
   /**
    * var isRecording: Bool { get }
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  get isRecording(): boolean { return callSDK<boolean>("ReplayKit_c1f28409f8601238", 1279637957210580, this, []); }
+  get isRecording(): boolean { return callSDK<boolean>("ReplayKit_e11dfd5beee01da3", 1279637957210580, this, []); }
   declare readonly $type: { "c:objc(cs)RPScreenRecorder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAvailable": true; "isCameraEnabled": true; "cameraPosition": true; "cameraPreviewView": true; "delegate": true; "isMicrophoneEnabled": true; "isRecording": true };
 }
@@ -552,21 +552,21 @@ export interface RPScreenRecorderDelegate {
  */
 export class RPSystemBroadcastPickerView extends SDKHandle {
   /** init() */
-  static init(): Promise<RPSystemBroadcastPickerView> { return callSDKAsync<RPSystemBroadcastPickerView>("ReplayKit_c1f28409f8601238", 452225921352928, undefined, []); }
+  static init(): Promise<RPSystemBroadcastPickerView> { return callSDKAsync<RPSystemBroadcastPickerView>("ReplayKit_e11dfd5beee01da3", 452225921352928, undefined, []); }
   /**
    * var preferredExtension: String? { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  get preferredExtension(): Promise<(string) | null> { return callSDKAsync<(string) | null>("ReplayKit_c1f28409f8601238", 60824744127799, this, []); }
-  setPreferredExtension(value?: (string) | null): Promise<void> { return callSDKAsync<void>("ReplayKit_c1f28409f8601238", 548194579055726, this, [value]); }
+  get preferredExtension(): Promise<(string) | null> { return callSDKAsync<(string) | null>("ReplayKit_e11dfd5beee01da3", 60824744127799, this, []); }
+  setPreferredExtension(value?: (string) | null): Promise<void> { return callSDKAsync<void>("ReplayKit_e11dfd5beee01da3", 548194579055726, this, [value]); }
   /**
    * var showsMicrophoneButton: Bool { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  get showsMicrophoneButton(): Promise<boolean> { return callSDKAsync<boolean>("ReplayKit_c1f28409f8601238", 1065204245552218, this, []); }
-  setShowsMicrophoneButton(value: boolean): Promise<void> { return callSDKAsync<void>("ReplayKit_c1f28409f8601238", 1616955589783833, this, [value]); }
+  get showsMicrophoneButton(): Promise<boolean> { return callSDKAsync<boolean>("ReplayKit_e11dfd5beee01da3", 1065204245552218, this, []); }
+  setShowsMicrophoneButton(value: boolean): Promise<void> { return callSDKAsync<void>("ReplayKit_e11dfd5beee01da3", 1616955589783833, this, [value]); }
   declare readonly $type: { "c:objc(cs)RPSystemBroadcastPickerView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferredExtension": true; "showsMicrophoneButton": true };
 }
@@ -576,36 +576,36 @@ export class RPSystemBroadcastPickerView extends SDKHandle {
  * @availability iOS 11.2+
  * @deprecated iOS 27.0
  */
-export const RPApplicationInfoBundleIdentifierKey: string = callSDK<string>("ReplayKit_c1f28409f8601238", 617442183009024, undefined, []);
+export const RPApplicationInfoBundleIdentifierKey: string = callSDK<string>("ReplayKit_e11dfd5beee01da3", 617442183009024, undefined, []);
 
 /**
  * let RPRecordingErrorDomain: String
  * @availability iOS 9.0+
  * @deprecated iOS 27.0
  */
-export const RPRecordingErrorDomain: string = callSDK<string>("ReplayKit_c1f28409f8601238", 2413374852800044, undefined, []);
+export const RPRecordingErrorDomain: string = callSDK<string>("ReplayKit_e11dfd5beee01da3", 2413374852800044, undefined, []);
 
 /**
  * let RPVideoSampleOrientationKey: String
  * @availability iOS 11.0+
  * @deprecated iOS 27.0
  */
-export const RPVideoSampleOrientationKey: string = callSDK<string>("ReplayKit_c1f28409f8601238", 605658590476448, undefined, []);
+export const RPVideoSampleOrientationKey: string = callSDK<string>("ReplayKit_e11dfd5beee01da3", 605658590476448, undefined, []);
 
 /** let SCStreamErrorDomain: String */
-export const SCStreamErrorDomain: string = callSDK<string>("ReplayKit_c1f28409f8601238", 1406365284218581, undefined, []);
+export const SCStreamErrorDomain: string = callSDK<string>("ReplayKit_e11dfd5beee01da3", 1406365284218581, undefined, []);
 
-registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "ReplayKit_c1f28409f8601238", properties: {}, methods: {"completeRequestWithBroadcastBroadcastConfigurationSetupInfo":{"id":4319001704319081},"completeRequestWithBroadcastSetupInfo":{"id":3459622224592895},"loadBroadcastingApplicationInfo":{"id":1049210779064085,"hints":[{"callback":{"out":[]}}]}} }, true);
-registerSDKClass("RPBroadcastActivityViewController", RPBroadcastActivityViewController, { module: "ReplayKit_c1f28409f8601238", properties: {"delegate":4083810218492116} });
+registerSDKClass("NSExtensionContext", NSExtensionContext, { module: "ReplayKit_e11dfd5beee01da3", properties: {}, methods: {"completeRequestWithBroadcastBroadcastConfigurationSetupInfo":{"id":4319001704319081},"completeRequestWithBroadcastSetupInfo":{"id":3459622224592895},"loadBroadcastingApplicationInfo":{"id":1049210779064085,"hints":[{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("RPBroadcastActivityViewController", RPBroadcastActivityViewController, { module: "ReplayKit_e11dfd5beee01da3", properties: {"delegate":4083810218492116} });
 registerSDKProtocol("c:objc(pl)RPBroadcastActivityViewControllerDelegate", {"broadcastActivityViewControllerDidFinishWithError":"broadcastActivityViewController(_:didFinishWith:error:)"});
-registerSDKClass("RPBroadcastConfiguration", RPBroadcastConfiguration, { module: "ReplayKit_c1f28409f8601238", properties: {"clipDuration":426760646206656,"videoCompressionProperties":614581052185449} });
-registerSDKClass("RPBroadcastController", RPBroadcastController, { module: "ReplayKit_c1f28409f8601238", properties: {"broadcastExtensionBundleID":3847975287757264,"broadcastURL":4437186498701143,"isBroadcasting":177009715531642,"delegate":4310067053229352,"isPaused":1788235122685619,"serviceInfo":1056311745284562}, methods: {"finishBroadcast":{"id":2030878117047239,"hints":[{"callback":{"out":[]}}]},"pauseBroadcast":{"id":1974948903228138},"resumeBroadcast":{"id":4023366414125890},"startBroadcast":{"id":3041897007506224,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("RPBroadcastConfiguration", RPBroadcastConfiguration, { module: "ReplayKit_e11dfd5beee01da3", properties: {"clipDuration":426760646206656,"videoCompressionProperties":614581052185449} });
+registerSDKClass("RPBroadcastController", RPBroadcastController, { module: "ReplayKit_e11dfd5beee01da3", properties: {"broadcastExtensionBundleID":3847975287757264,"broadcastURL":4437186498701143,"isBroadcasting":177009715531642,"delegate":4310067053229352,"isPaused":1788235122685619,"serviceInfo":1056311745284562}, methods: {"finishBroadcast":{"id":2030878117047239,"hints":[{"callback":{"out":[]}}]},"pauseBroadcast":{"id":1974948903228138},"resumeBroadcast":{"id":4023366414125890},"startBroadcast":{"id":3041897007506224,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)RPBroadcastControllerDelegate", {"broadcastControllerDidFinishWithError":"broadcastController(_:didFinishWithError:)","broadcastControllerDidUpdateServiceInfo":"broadcastController(_:didUpdateServiceInfo:)","broadcastControllerDidUpdateBroadcast":"broadcastController(_:didUpdateBroadcast:)"});
-registerSDKClass("RPBroadcastHandler", RPBroadcastHandler, { module: "ReplayKit_c1f28409f8601238", properties: {}, methods: {"updateBroadcast":{"id":947705005449682},"updateServiceInfo":{"id":4212396601012097}} });
-registerSDKClass("RPBroadcastMP4ClipHandler", RPBroadcastMP4ClipHandler, { module: "ReplayKit_c1f28409f8601238", properties: {}, methods: {"finishedProcessingMP4Clip":{"id":3287370766925797},"processMP4Clip":{"id":3708505856145133}} });
-registerSDKClass("RPBroadcastSampleHandler", RPBroadcastSampleHandler, { module: "ReplayKit_c1f28409f8601238", properties: {}, methods: {"broadcastAnnotated":{"id":1045288479563379},"broadcastFinished":{"id":3718888454191779},"broadcastPaused":{"id":3887813626433556},"broadcastResumed":{"id":3011549887455172},"broadcastStarted":{"id":3418304934729240},"finishBroadcastWithError":{"id":2571687050540083},"processSampleBuffer":{"id":2216846337718411}} });
-registerSDKClass("RPPreviewViewController", RPPreviewViewController, { module: "ReplayKit_c1f28409f8601238", properties: {"previewControllerDelegate":603127682416230} });
+registerSDKClass("RPBroadcastHandler", RPBroadcastHandler, { module: "ReplayKit_e11dfd5beee01da3", properties: {}, methods: {"updateBroadcast":{"id":947705005449682},"updateServiceInfo":{"id":4212396601012097}} });
+registerSDKClass("RPBroadcastMP4ClipHandler", RPBroadcastMP4ClipHandler, { module: "ReplayKit_e11dfd5beee01da3", properties: {}, methods: {"finishedProcessingMP4Clip":{"id":3287370766925797},"processMP4Clip":{"id":3708505856145133}} });
+registerSDKClass("RPBroadcastSampleHandler", RPBroadcastSampleHandler, { module: "ReplayKit_e11dfd5beee01da3", properties: {}, methods: {"broadcastAnnotated":{"id":1045288479563379},"broadcastFinished":{"id":3718888454191779},"broadcastPaused":{"id":3887813626433556},"broadcastResumed":{"id":3011549887455172},"broadcastStarted":{"id":3418304934729240},"finishBroadcastWithError":{"id":2571687050540083},"processSampleBuffer":{"id":2216846337718411}} });
+registerSDKClass("RPPreviewViewController", RPPreviewViewController, { module: "ReplayKit_e11dfd5beee01da3", properties: {"previewControllerDelegate":603127682416230} });
 registerSDKProtocol("c:objc(pl)RPPreviewViewControllerDelegate", {"previewControllerDidFinish":"previewControllerDidFinish(_:)","previewControllerDidFinishWithActivityTypes":"previewController(_:didFinishWithActivityTypes:)"});
-registerSDKClass("RPScreenRecorder", RPScreenRecorder, { module: "ReplayKit_c1f28409f8601238", properties: {"isAvailable":3532909267155092,"isCameraEnabled":2165448434880667,"cameraPosition":654373477406336,"cameraPreviewView":1506018535058583,"delegate":1926911259577055,"isMicrophoneEnabled":2127700771758144,"isRecording":1279637957210580}, methods: {"discardRecording":{"id":3602814251060315,"hints":[{"callback":{"out":[]}}]},"exportClip":{"id":2426774864618342,"hints":[null,null,{"callback":{"out":[]}}]},"startCapture":{"id":2331111729839414,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]},"startClipBuffering":{"id":1466710122087554,"hints":[{"callback":{"out":[]}}]},"startRecordingHandler":{"id":2282833222097165,"hints":[{"callback":{"out":[]}}]},"startRecordingWithMicrophoneEnabledHandler":{"id":2618724261279134,"hints":[null,{"callback":{"out":[]}}]},"stopCapture":{"id":3373641786328953,"hints":[{"callback":{"out":[]}}]},"stopClipBuffering":{"id":3079398734775925,"hints":[{"callback":{"out":[]}}]},"stopRecordingHandler":{"id":3005704009482178,"hints":[{"callback":{"out":[]}}]},"stopRecordingWithOutputCompletionHandler":{"id":4286528110844065,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("RPScreenRecorder", RPScreenRecorder, { module: "ReplayKit_e11dfd5beee01da3", properties: {"isAvailable":3532909267155092,"isCameraEnabled":2165448434880667,"cameraPosition":654373477406336,"cameraPreviewView":1506018535058583,"delegate":1926911259577055,"isMicrophoneEnabled":2127700771758144,"isRecording":1279637957210580}, methods: {"discardRecording":{"id":3602814251060315,"hints":[{"callback":{"out":[]}}]},"exportClip":{"id":2426774864618342,"hints":[null,null,{"callback":{"out":[]}}]},"startCapture":{"id":2331111729839414,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]},"startClipBuffering":{"id":1466710122087554,"hints":[{"callback":{"out":[]}}]},"startRecordingHandler":{"id":2282833222097165,"hints":[{"callback":{"out":[]}}]},"startRecordingWithMicrophoneEnabledHandler":{"id":2618724261279134,"hints":[null,{"callback":{"out":[]}}]},"stopCapture":{"id":3373641786328953,"hints":[{"callback":{"out":[]}}]},"stopClipBuffering":{"id":3079398734775925,"hints":[{"callback":{"out":[]}}]},"stopRecordingHandler":{"id":3005704009482178,"hints":[{"callback":{"out":[]}}]},"stopRecordingWithOutputCompletionHandler":{"id":4286528110844065,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)RPScreenRecorderDelegate", {"screenRecorderDidStopRecordingWithErrorPreviewViewController":"screenRecorder(_:didStopRecordingWithError:previewViewController:)","screenRecorderDidStopRecordingWithError":"screenRecorder(_:didStopRecordingWith:error:)","screenRecorderDidChangeAvailability":"screenRecorderDidChangeAvailability(_:)"});
-registerSDKClass("RPSystemBroadcastPickerView", RPSystemBroadcastPickerView, { module: "ReplayKit_c1f28409f8601238", properties: {"preferredExtension":60824744127799,"showsMicrophoneButton":1065204245552218} });
+registerSDKClass("RPSystemBroadcastPickerView", RPSystemBroadcastPickerView, { module: "ReplayKit_e11dfd5beee01da3", properties: {"preferredExtension":60824744127799,"showsMicrophoneButton":1065204245552218} });

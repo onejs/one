@@ -13,7 +13,7 @@ export const SAAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SAAuthorizationStatus) | null { return callSDK<(SAAuthorizationStatus) | null>("SafetyKit_c1f28409f8601238", 2851562374585545, undefined, [rawValue]); }
+  init(rawValue: number): (SAAuthorizationStatus) | null { return callSDK<(SAAuthorizationStatus) | null>("SafetyKit_e11dfd5beee01da3", 2851562374585545, undefined, [rawValue]); }
 };
 
 /**
@@ -37,17 +37,17 @@ export class SACrashDetectionEvent extends SDKHandle {
    * var date: Date { get }
    * @availability iOS 16.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("SafetyKit_c1f28409f8601238", 2684405804497530, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("SafetyKit_e11dfd5beee01da3", 2684405804497530, this, []); }
   /**
    * var location: CLLocation? { get }
    * @availability iOS 16.0+
    */
-  get location(): (__LocationEssentials_CLLocation) | null { return callSDK<(__LocationEssentials_CLLocation) | null>("SafetyKit_c1f28409f8601238", 1640465985677914, this, []); }
+  get location(): (__LocationEssentials_CLLocation) | null { return callSDK<(__LocationEssentials_CLLocation) | null>("SafetyKit_e11dfd5beee01da3", 1640465985677914, this, []); }
   /**
    * var response: SACrashDetectionEvent.Response { get }
    * @availability iOS 16.0+
    */
-  get response(): SACrashDetectionEvent_Response { return callSDK<SACrashDetectionEvent_Response>("SafetyKit_c1f28409f8601238", 1331203342976162, this, []); }
+  get response(): SACrashDetectionEvent_Response { return callSDK<SACrashDetectionEvent_Response>("SafetyKit_e11dfd5beee01da3", 1331203342976162, this, []); }
   declare readonly $type: { "c:objc(cs)SACrashDetectionEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "date": true; "location": true; "response": true };
 }
@@ -63,7 +63,7 @@ export const SACrashDetectionEvent_Response = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SACrashDetectionEvent_Response) | null { return callSDK<(SACrashDetectionEvent_Response) | null>("SafetyKit_c1f28409f8601238", 3148762064460068, undefined, [rawValue]); }
+  init(rawValue: number): (SACrashDetectionEvent_Response) | null { return callSDK<(SACrashDetectionEvent_Response) | null>("SafetyKit_e11dfd5beee01da3", 3148762064460068, undefined, [rawValue]); }
 };
 
 /**
@@ -75,25 +75,25 @@ export class SACrashDetectionManager extends SDKHandle {
    * class var isAvailable: Bool { get }
    * @availability iOS 16.0+
    */
-  static get isAvailable(): boolean { return callSDK<boolean>("SafetyKit_c1f28409f8601238", 2772155330559051, undefined, []); }
+  static get isAvailable(): boolean { return callSDK<boolean>("SafetyKit_e11dfd5beee01da3", 2772155330559051, undefined, []); }
   /** init() */
-  static init(): SACrashDetectionManager { return callSDK<SACrashDetectionManager>("SafetyKit_c1f28409f8601238", 511440011903019, undefined, []); }
+  static init(): SACrashDetectionManager { return callSDK<SACrashDetectionManager>("SafetyKit_e11dfd5beee01da3", 511440011903019, undefined, []); }
   /**
    * func requestAuthorization() async throws -> SAAuthorizationStatus
    * @availability iOS 16.0+
    */
-  requestAuthorization(handler: ((arg0: SAAuthorizationStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafetyKit_c1f28409f8601238", 2991014145048841, this, [handler], [{"callback":{"out":[]}}]); }
+  requestAuthorization(handler: ((arg0: SAAuthorizationStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafetyKit_e11dfd5beee01da3", 2991014145048841, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var authorizationStatus: SAAuthorizationStatus { get }
    * @availability iOS 16.0+
    */
-  get authorizationStatus(): SAAuthorizationStatus { return callSDK<SAAuthorizationStatus>("SafetyKit_c1f28409f8601238", 3891173221573785, this, []); }
+  get authorizationStatus(): SAAuthorizationStatus { return callSDK<SAAuthorizationStatus>("SafetyKit_e11dfd5beee01da3", 3891173221573785, this, []); }
   /**
    * weak var delegate: (any SACrashDetectionDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SafetyKit_c1f28409f8601238", 2522276565083855, this, []); }
-  set delegate(value: (Implements<SACrashDetectionDelegate> | SDKHandle) | null) { callSDK<void>("SafetyKit_c1f28409f8601238", 636637742293996, this, [value], [{"protocol":"c:objc(pl)SACrashDetectionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SafetyKit_e11dfd5beee01da3", 2522276565083855, this, []); }
+  set delegate(value: (Implements<SACrashDetectionDelegate> | SDKHandle) | null) { callSDK<void>("SafetyKit_e11dfd5beee01da3", 636637742293996, this, [value], [{"protocol":"c:objc(pl)SACrashDetectionDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SACrashDetectionManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationStatus": true; "delegate": true };
 }
@@ -119,15 +119,15 @@ export class SAEmergencyResponseManager extends SDKHandle {
    * func dialVoiceCall(toPhoneNumber phoneNumber: String) async throws -> Bool
    * @availability iOS 16.0+
    */
-  dialVoiceCall(phoneNumber: string, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafetyKit_c1f28409f8601238", 3551467074185455, this, [phoneNumber, handler], [null,{"callback":{"out":[]}}]); }
+  dialVoiceCall(phoneNumber: string, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafetyKit_e11dfd5beee01da3", 3551467074185455, this, [phoneNumber, handler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SAEmergencyResponseManager { return callSDK<SAEmergencyResponseManager>("SafetyKit_c1f28409f8601238", 2703428511794994, undefined, []); }
+  static init(): SAEmergencyResponseManager { return callSDK<SAEmergencyResponseManager>("SafetyKit_e11dfd5beee01da3", 2703428511794994, undefined, []); }
   /**
    * weak var delegate: (any SAEmergencyResponseDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SafetyKit_c1f28409f8601238", 1072354075128288, this, []); }
-  set delegate(value: (Implements<SAEmergencyResponseDelegate> | SDKHandle) | null) { callSDK<void>("SafetyKit_c1f28409f8601238", 1487420109273611, this, [value], [{"protocol":"c:objc(pl)SAEmergencyResponseDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SafetyKit_e11dfd5beee01da3", 1072354075128288, this, []); }
+  set delegate(value: (Implements<SAEmergencyResponseDelegate> | SDKHandle) | null) { callSDK<void>("SafetyKit_e11dfd5beee01da3", 1487420109273611, this, [value], [{"protocol":"c:objc(pl)SAEmergencyResponseDelegate"}]); }
   declare readonly $type: { "c:objc(cs)SAEmergencyResponseManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -143,7 +143,7 @@ export const SAEmergencyResponseManager_VoiceCallStatus = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SAEmergencyResponseManager_VoiceCallStatus) | null { return callSDK<(SAEmergencyResponseManager_VoiceCallStatus) | null>("SafetyKit_c1f28409f8601238", 2860749121293516, undefined, [rawValue]); }
+  init(rawValue: number): (SAEmergencyResponseManager_VoiceCallStatus) | null { return callSDK<(SAEmergencyResponseManager_VoiceCallStatus) | null>("SafetyKit_e11dfd5beee01da3", 2860749121293516, undefined, [rawValue]); }
 };
 
 /**
@@ -155,27 +155,27 @@ export class SAError extends SDKHandle {
    * static var notAllowed: SAError.Code { get }
    * @availability iOS 16.0+
    */
-  static get notAllowed(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_c1f28409f8601238", 1896620860448785, undefined, []); }
+  static get notAllowed(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_e11dfd5beee01da3", 1896620860448785, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 16.0+
    */
-  static get errorDomain(): string { return callSDK<string>("SafetyKit_c1f28409f8601238", 2389283101792751, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SafetyKit_e11dfd5beee01da3", 2389283101792751, undefined, []); }
   /**
    * static var notAuthorized: SAError.Code { get }
    * @availability iOS 16.0+
    */
-  static get notAuthorized(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_c1f28409f8601238", 1909478495570010, undefined, []); }
+  static get notAuthorized(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_e11dfd5beee01da3", 1909478495570010, undefined, []); }
   /**
    * static var invalidArgument: SAError.Code { get }
    * @availability iOS 16.0+
    */
-  static get invalidArgument(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_c1f28409f8601238", 2475540514179251, undefined, []); }
+  static get invalidArgument(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_e11dfd5beee01da3", 2475540514179251, undefined, []); }
   /**
    * static var operationFailed: SAError.Code { get }
    * @availability iOS 16.0+
    */
-  static get operationFailed(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_c1f28409f8601238", 1349615316081760, undefined, []); }
+  static get operationFailed(): SAError_Code { return callSDK<SAError_Code>("SafetyKit_e11dfd5beee01da3", 1349615316081760, undefined, []); }
   declare readonly $type: { "s:SC11SAErrorCodeLeV": true };
 }
 
@@ -190,18 +190,18 @@ export const SAError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (SAError_Code) | null { return callSDK<(SAError_Code) | null>("SafetyKit_c1f28409f8601238", 1888070374595373, undefined, [rawValue]); }
+  init(rawValue: number): (SAError_Code) | null { return callSDK<(SAError_Code) | null>("SafetyKit_e11dfd5beee01da3", 1888070374595373, undefined, [rawValue]); }
 };
 
 /**
  * let SAErrorDomain: String
  * @availability iOS 16.0+
  */
-export const SAErrorDomain: string = callSDK<string>("SafetyKit_c1f28409f8601238", 3468620206522220, undefined, []);
+export const SAErrorDomain: string = callSDK<string>("SafetyKit_e11dfd5beee01da3", 3468620206522220, undefined, []);
 
 registerSDKProtocol("c:objc(pl)SACrashDetectionDelegate", {"crashDetectionManagerDidDetect":"crashDetectionManager(_:didDetect:)"});
-registerSDKClass("SACrashDetectionEvent", SACrashDetectionEvent, { module: "SafetyKit_c1f28409f8601238", properties: {"date":2684405804497530,"location":1640465985677914,"response":1331203342976162} });
-registerSDKClass("SACrashDetectionManager", SACrashDetectionManager, { module: "SafetyKit_c1f28409f8601238", properties: {"authorizationStatus":3891173221573785,"delegate":2522276565083855}, methods: {"requestAuthorization":{"id":2991014145048841,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("SACrashDetectionEvent", SACrashDetectionEvent, { module: "SafetyKit_e11dfd5beee01da3", properties: {"date":2684405804497530,"location":1640465985677914,"response":1331203342976162} });
+registerSDKClass("SACrashDetectionManager", SACrashDetectionManager, { module: "SafetyKit_e11dfd5beee01da3", properties: {"authorizationStatus":3891173221573785,"delegate":2522276565083855}, methods: {"requestAuthorization":{"id":2991014145048841,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)SAEmergencyResponseDelegate", {"emergencyResponseManagerDidUpdateVoiceCallStatus":"emergencyResponseManager(_:didUpdateVoiceCallStatus:)"});
-registerSDKClass("SAEmergencyResponseManager", SAEmergencyResponseManager, { module: "SafetyKit_c1f28409f8601238", properties: {"delegate":1072354075128288}, methods: {"dialVoiceCall":{"id":3551467074185455,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("SafetyKit.SAError", SAError, { module: "SafetyKit_c1f28409f8601238", properties: {} });
+registerSDKClass("SAEmergencyResponseManager", SAEmergencyResponseManager, { module: "SafetyKit_e11dfd5beee01da3", properties: {"delegate":1072354075128288}, methods: {"dialVoiceCall":{"id":3551467074185455,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SafetyKit.SAError", SAError, { module: "SafetyKit_e11dfd5beee01da3", properties: {} });

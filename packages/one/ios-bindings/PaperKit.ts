@@ -36,73 +36,73 @@ export class FeatureSet extends SDKHandle {
    * var contentVersion: FeatureSet.ContentVersion
    * @availability iOS 26.0+
    */
-  get contentVersion(): FeatureSet_ContentVersion { return callSDK<FeatureSet_ContentVersion>("PaperKit_c1f28409f8601238", 1050302180264733, this, []); }
-  set contentVersion(value: FeatureSet_ContentVersion) { callSDK<void>("PaperKit_c1f28409f8601238", 794226590211958, this, [value]); }
+  get contentVersion(): FeatureSet_ContentVersion { return callSDK<FeatureSet_ContentVersion>("PaperKit_e11dfd5beee01da3", 1050302180264733, this, []); }
+  set contentVersion(value: FeatureSet_ContentVersion) { callSDK<void>("PaperKit_e11dfd5beee01da3", 794226590211958, this, [value]); }
   /**
    * var lineMarkerPositions: FeatureSet.LineMarkerPositions
    * @availability iOS 26.0+
    */
-  get lineMarkerPositions(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_c1f28409f8601238", 3421881190849527, this, []); }
-  set lineMarkerPositions(value: FeatureSet_LineMarkerPositions) { callSDK<void>("PaperKit_c1f28409f8601238", 4418652448731065, this, [value]); }
+  get lineMarkerPositions(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_e11dfd5beee01da3", 3421881190849527, this, []); }
+  set lineMarkerPositions(value: FeatureSet_LineMarkerPositions) { callSDK<void>("PaperKit_e11dfd5beee01da3", 4418652448731065, this, [value]); }
   /**
    * var colorMaximumLinearExposure: CGFloat
    * @availability iOS 26.0+
    */
-  get colorMaximumLinearExposure(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2043680649098180, this, []); }
-  set colorMaximumLinearExposure(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 1372565993462838, this, [value]); }
+  get colorMaximumLinearExposure(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2043680649098180, this, []); }
+  set colorMaximumLinearExposure(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1372565993462838, this, [value]); }
   /**
    * var inks: Set<PKInkingTool.InkType>
    * @availability iOS 26.0+
    */
-  get inks(): $SDK0 { return callSDK<$SDK0>("PaperKit_c1f28409f8601238", 3518798358218786, this, []); }
-  set inks(value: $SDK0) { callSDK<void>("PaperKit_c1f28409f8601238", 2318178170638979, this, [value]); }
+  get inks(): $SDK0 { return callSDK<$SDK0>("PaperKit_e11dfd5beee01da3", 3518798358218786, this, []); }
+  set inks(value: $SDK0) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2318178170638979, this, [value]); }
   /**
    * static var empty: FeatureSet { get }
    * @availability iOS 26.0+
    */
-  static get empty(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 3339627454685114, undefined, []); }
+  static get empty(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 3339627454685114, undefined, []); }
   /**
    * mutating func insert(_ newFeature: FeatureSet.Feature)
    * @availability iOS 26.0+
    */
-  insert(newFeature: FeatureSet_Feature): void { return callSDK<void>("PaperKit_c1f28409f8601238", 3954452415099511, this, [newFeature]); }
+  insert(newFeature: FeatureSet_Feature): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 3954452415099511, this, [newFeature]); }
   /**
    * static var latest: FeatureSet { get }
    * @availability iOS 26.0+
    */
-  static get latest(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 678134166362184, undefined, []); }
+  static get latest(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 678134166362184, undefined, []); }
   /**
    * mutating func remove(_ feature: FeatureSet.Feature)
    * @availability iOS 26.0+
    */
-  remove(feature: FeatureSet_Feature): void { return callSDK<void>("PaperKit_c1f28409f8601238", 3650163303807623, this, [feature]); }
+  remove(feature: FeatureSet_Feature): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 3650163303807623, this, [feature]); }
   /**
    * var shapes: Set<ShapeConfiguration.Shape>
    * @availability iOS 26.0+
    */
-  get shapes(): $SDK1 { return callSDK<$SDK1>("PaperKit_c1f28409f8601238", 779161666278417, this, []); }
-  set shapes(value: $SDK1) { callSDK<void>("PaperKit_c1f28409f8601238", 474693017077429, this, [value]); }
+  get shapes(): $SDK1 { return callSDK<$SDK1>("PaperKit_e11dfd5beee01da3", 779161666278417, this, []); }
+  set shapes(value: $SDK1) { callSDK<void>("PaperKit_e11dfd5beee01da3", 474693017077429, this, [value]); }
   /**
    * func contains(_ feature: FeatureSet.Feature) -> Bool
    * @availability iOS 26.0+
    */
-  contains(feature: FeatureSet_Feature): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 2221442660989743, this, [feature]); }
+  contains(feature: FeatureSet_Feature): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 2221442660989743, this, [feature]); }
   /**
    * var features: Set<FeatureSet.Feature>
    * @availability iOS 26.0+
    */
-  get features(): $SDK2 { return callSDK<$SDK2>("PaperKit_c1f28409f8601238", 3804399713869913, this, []); }
-  set features(value: $SDK2) { callSDK<void>("PaperKit_c1f28409f8601238", 805485919522383, this, [value]); }
+  get features(): $SDK2 { return callSDK<$SDK2>("PaperKit_e11dfd5beee01da3", 3804399713869913, this, []); }
+  set features(value: $SDK2) { callSDK<void>("PaperKit_e11dfd5beee01da3", 805485919522383, this, [value]); }
   /**
    * func isSubset(of other: FeatureSet) -> Bool
    * @availability iOS 26.0+
    */
-  isSubset(other: FeatureSet): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 3837054559629387, this, [other]); }
+  isSubset(other: FeatureSet): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 3837054559629387, this, [other]); }
   /**
    * static var version1: FeatureSet { get }
    * @availability iOS 26.0+
    */
-  static get version1(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 2628279890051773, undefined, []); }
+  static get version1(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 2628279890051773, undefined, []); }
   declare readonly $type: { "s:8PaperKit10FeatureSetV": true };
 }
 
@@ -117,22 +117,22 @@ export const FeatureSet_ContentVersion = {
    * var pencilKitContentVersion: PKContentVersion { get }
    * @availability iOS 26.0+
    */
-  getPencilKitContentVersion($self: FeatureSet_ContentVersion): _PencilKit_PKContentVersion { return callSDK<_PencilKit_PKContentVersion>("PaperKit_c1f28409f8601238", 405074111754237, $self, []); },
+  getPencilKitContentVersion($self: FeatureSet_ContentVersion): _PencilKit_PKContentVersion { return callSDK<_PencilKit_PKContentVersion>("PaperKit_e11dfd5beee01da3", 405074111754237, $self, []); },
   /**
    * static var latest: FeatureSet.ContentVersion { get }
    * @availability iOS 26.0+
    */
-  get latest(): FeatureSet_ContentVersion { return callSDK<FeatureSet_ContentVersion>("PaperKit_c1f28409f8601238", 1388268988215546, undefined, []); },
+  get latest(): FeatureSet_ContentVersion { return callSDK<FeatureSet_ContentVersion>("PaperKit_e11dfd5beee01da3", 1388268988215546, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (FeatureSet_ContentVersion) | null { return callSDK<(FeatureSet_ContentVersion) | null>("PaperKit_c1f28409f8601238", 3605733217043413, undefined, [rawValue]); },
+  init(rawValue: number): (FeatureSet_ContentVersion) | null { return callSDK<(FeatureSet_ContentVersion) | null>("PaperKit_e11dfd5beee01da3", 3605733217043413, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: FeatureSet_ContentVersion): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2713962413940803, $self, []); }
+  getRawValue($self: FeatureSet_ContentVersion): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2713962413940803, $self, []); }
 };
 
 /**
@@ -152,7 +152,7 @@ export const FeatureSet_Feature = {
    * static var allCases: [FeatureSet.Feature] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK2 { return callSDK<$SDK2>("PaperKit_c1f28409f8601238", 998763832898872, undefined, []); }
+  get allCases(): $SDK2 { return callSDK<$SDK2>("PaperKit_e11dfd5beee01da3", 998763832898872, undefined, []); }
 };
 
 /**
@@ -172,32 +172,32 @@ export const FeatureSet_LineMarkerPositions = {
    * static let all: FeatureSet.LineMarkerPositions
    * @availability iOS 26.0+
    */
-  get all(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_c1f28409f8601238", 3274813147650835, undefined, []); },
+  get all(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_e11dfd5beee01da3", 3274813147650835, undefined, []); },
   /**
    * static let plain: FeatureSet.LineMarkerPositions
    * @availability iOS 26.0+
    */
-  get plain(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_c1f28409f8601238", 3548841567693794, undefined, []); },
+  get plain(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_e11dfd5beee01da3", 3548841567693794, undefined, []); },
   /**
    * static let double: FeatureSet.LineMarkerPositions
    * @availability iOS 26.0+
    */
-  get double(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_c1f28409f8601238", 961851049920880, undefined, []); },
+  get double(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_e11dfd5beee01da3", 961851049920880, undefined, []); },
   /**
    * static let single: FeatureSet.LineMarkerPositions
    * @availability iOS 26.0+
    */
-  get single(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_c1f28409f8601238", 2808995452490799, undefined, []); },
+  get single(): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_e11dfd5beee01da3", 2808995452490799, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_c1f28409f8601238", 809407624340635, undefined, [rawValue]); },
+  init(rawValue: number): FeatureSet_LineMarkerPositions { return callSDK<FeatureSet_LineMarkerPositions>("PaperKit_e11dfd5beee01da3", 809407624340635, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: FeatureSet_LineMarkerPositions): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2573329583408230, $self, []); }
+  getRawValue($self: FeatureSet_LineMarkerPositions): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2573329583408230, $self, []); }
 };
 
 /**
@@ -227,90 +227,90 @@ export class ImageMarkup extends SDKHandle {
    * mutating func replaceImage(with url: URL) throws
    * @availability iOS 27.0+
    */
-  replaceImageWith(url: string): void { return callSDK<void>("PaperKit_c1f28409f8601238", 4369733700124434, this, [url]); }
+  replaceImageWith(url: string): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 4369733700124434, this, [url]); }
   /**
    * mutating func replaceImage(with image: CGImage)
    * @availability iOS 27.0+
    */
-  replaceImageWith25937(image: _CoreGraphics_CGImage): void { return callSDK<void>("PaperKit_c1f28409f8601238", 324336084161081, this, [image]); }
+  replaceImageWith25937(image: _CoreGraphics_CGImage): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 324336084161081, this, [image]); }
   /**
    * var featureSet: FeatureSet { get }
    * @availability iOS 27.0+
    */
-  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 1290992771284977, this, []); }
+  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 1290992771284977, this, []); }
   /**
    * var orientation: CGImagePropertyOrientation { get set }
    * @availability iOS 27.0+
    */
-  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("PaperKit_c1f28409f8601238", 852018718614168, this, []); }
-  set orientation(value: _ImageIO_CGImagePropertyOrientation) { callSDK<void>("PaperKit_c1f28409f8601238", 241123210736101, this, [value]); }
+  get orientation(): _ImageIO_CGImagePropertyOrientation { return callSDK<_ImageIO_CGImagePropertyOrientation>("PaperKit_e11dfd5beee01da3", 852018718614168, this, []); }
+  set orientation(value: _ImageIO_CGImagePropertyOrientation) { callSDK<void>("PaperKit_e11dfd5beee01da3", 241123210736101, this, [value]); }
   /**
    * var renderFrame: CGRect { get }
    * @availability iOS 27.0+
    */
-  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 993671647660234, this, []); }
+  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 993671647660234, this, []); }
   /**
    * var contentsBounds: CGRect { get set }
    * @availability iOS 27.0+
    */
-  get contentsBounds(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 893072781480283, this, []); }
-  set contentsBounds(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 79048038572843, this, [value]); }
+  get contentsBounds(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 893072781480283, this, []); }
+  set contentsBounds(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 79048038572843, this, [value]); }
   /**
    * var allowedInteractions: MarkupInteractions { get set }
    * @availability iOS 27.0+
    */
-  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 2233435664027363, this, []); }
-  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_c1f28409f8601238", 137761507277136, this, [value]); }
+  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 2233435664027363, this, []); }
+  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_e11dfd5beee01da3", 137761507277136, this, [value]); }
   /**
    * var accessibilityDescription: String? { get set }
    * @availability iOS 27.0+
    */
-  get accessibilityDescription(): (string) | null { return callSDK<(string) | null>("PaperKit_c1f28409f8601238", 1924377405554317, this, []); }
-  set accessibilityDescription(value: (string) | null) { callSDK<void>("PaperKit_c1f28409f8601238", 1227805118967767, this, [value]); }
+  get accessibilityDescription(): (string) | null { return callSDK<(string) | null>("PaperKit_e11dfd5beee01da3", 1924377405554317, this, []); }
+  set accessibilityDescription(value: (string) | null) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1227805118967767, this, [value]); }
   /**
    * mutating func removeContentUnsupported(by featureSet: FeatureSet) -> Bool
    * @availability iOS 27.0+
    */
-  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 3690435160899727, this, [featureSet]); }
+  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 3690435160899727, this, [featureSet]); }
   /**
    * var id: MarkupID<ImageMarkup>
    * @availability iOS 27.0+
    */
-  get id(): MarkupID<ImageMarkup> { return callSDK<MarkupID<ImageMarkup>>("PaperKit_c1f28409f8601238", 2051424999064322, this, []); }
-  set id(value: MarkupID<ImageMarkup>) { callSDK<void>("PaperKit_c1f28409f8601238", 2227302248686803, this, [value]); }
+  get id(): MarkupID<ImageMarkup> { return callSDK<MarkupID<ImageMarkup>>("PaperKit_e11dfd5beee01da3", 2051424999064322, this, []); }
+  set id(value: MarkupID<ImageMarkup>) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2227302248686803, this, [value]); }
   /**
    * var frame: CGRect { get set }
    * @availability iOS 27.0+
    */
-  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 620898887817578, this, []); }
-  set frame(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 3039369674874184, this, [value]); }
+  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 620898887817578, this, []); }
+  set frame(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3039369674874184, this, [value]); }
   /**
    * init(image: CGImage, frame: CGRect, rotation: CGFloat = 0.0, orientation: CGImagePropertyOrientation = .up, opacity: CGFloat = 1.0, contentsBounds: CGRect = CGRect(x: 0, y: 0, width: 1, height: 1), accessibilityDescription: String? = nil, allowedInteractions: MarkupInteractions = .all, id: MarkupID<ImageMarkup> = MarkupID())
    * @availability iOS 27.0+
    */
-  static initImageFrameRotationOrientationOpacityContentsBoundsAccessibilityDescriptionAllowedInteractionsId(image: _CoreGraphics_CGImage, frame: $SDK3, rotation?: number, orientation?: _ImageIO_CGImagePropertyOrientation, opacity?: number, contentsBounds?: $SDK3, accessibilityDescription?: (string) | null, allowedInteractions?: MarkupInteractions, id?: MarkupID<ImageMarkup>): ImageMarkup { return callSDK<ImageMarkup>("PaperKit_c1f28409f8601238", 227522643259144, undefined, [image, frame, rotation, orientation, opacity, contentsBounds, accessibilityDescription, allowedInteractions, id]); }
+  static initImageFrameRotationOrientationOpacityContentsBoundsAccessibilityDescriptionAllowedInteractionsId(image: _CoreGraphics_CGImage, frame: $SDK3, rotation?: number, orientation?: _ImageIO_CGImagePropertyOrientation, opacity?: number, contentsBounds?: $SDK3, accessibilityDescription?: (string) | null, allowedInteractions?: MarkupInteractions, id?: MarkupID<ImageMarkup>): ImageMarkup { return callSDK<ImageMarkup>("PaperKit_e11dfd5beee01da3", 227522643259144, undefined, [image, frame, rotation, orientation, opacity, contentsBounds, accessibilityDescription, allowedInteractions, id]); }
   /**
    * init?(image: UIImage, frame: CGRect, rotation: CGFloat = 0.0, opacity: CGFloat = 1.0, contentsBounds: CGRect = CGRect(x: 0, y: 0, width: 1, height: 1), accessibilityDescription: String? = nil, allowedInteractions: MarkupInteractions = .all, id: MarkupID<ImageMarkup> = MarkupID())
    * @availability iOS 27.0+
    */
-  static initImageFrameRotationOpacityContentsBoundsAccessibilityDescriptionAllowedInteractionsId(image: _UIKit_UIImage, frame: $SDK3, rotation?: number, opacity?: number, contentsBounds?: $SDK3, accessibilityDescription?: (string) | null, allowedInteractions?: MarkupInteractions, id?: MarkupID<ImageMarkup>): (ImageMarkup) | null { return callSDK<(ImageMarkup) | null>("PaperKit_c1f28409f8601238", 3568039204128109, undefined, [image, frame, rotation, opacity, contentsBounds, accessibilityDescription, allowedInteractions, id]); }
+  static initImageFrameRotationOpacityContentsBoundsAccessibilityDescriptionAllowedInteractionsId(image: _UIKit_UIImage, frame: $SDK3, rotation?: number, opacity?: number, contentsBounds?: $SDK3, accessibilityDescription?: (string) | null, allowedInteractions?: MarkupInteractions, id?: MarkupID<ImageMarkup>): (ImageMarkup) | null { return callSDK<(ImageMarkup) | null>("PaperKit_e11dfd5beee01da3", 3568039204128109, undefined, [image, frame, rotation, opacity, contentsBounds, accessibilityDescription, allowedInteractions, id]); }
   /**
    * var image: CGImage? { get async }
    * @availability iOS 27.0+
    */
-  get image(): Promise<(_CoreGraphics_CGImage) | null> { return callSDKAsync<(_CoreGraphics_CGImage) | null>("PaperKit_c1f28409f8601238", 607242884596616, this, []); }
+  get image(): Promise<(_CoreGraphics_CGImage) | null> { return callSDKAsync<(_CoreGraphics_CGImage) | null>("PaperKit_e11dfd5beee01da3", 607242884596616, this, []); }
   /**
    * var opacity: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get opacity(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 81937927899576, this, []); }
-  set opacity(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 650472164238100, this, [value]); }
+  get opacity(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 81937927899576, this, []); }
+  set opacity(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 650472164238100, this, [value]); }
   /**
    * var rotation: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get rotation(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 127450932274132, this, []); }
-  set rotation(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 1342239310649614, this, [value]); }
+  get rotation(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 127450932274132, this, []); }
+  set rotation(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1342239310649614, this, [value]); }
   declare readonly $type: { "s:8PaperKit11ImageMarkupV": true };
 }
 
@@ -329,57 +329,57 @@ export class LinkMarkup extends SDKHandle {
    * var featureSet: FeatureSet { get }
    * @availability iOS 27.0+
    */
-  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 1505003703953218, this, []); }
+  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 1505003703953218, this, []); }
   /**
    * var renderFrame: CGRect { get }
    * @availability iOS 27.0+
    */
-  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 2406852834481953, this, []); }
+  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 2406852834481953, this, []); }
   /**
    * var allowedInteractions: MarkupInteractions { get set }
    * @availability iOS 27.0+
    */
-  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 1775025846862600, this, []); }
-  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_c1f28409f8601238", 3781165439414433, this, [value]); }
+  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 1775025846862600, this, []); }
+  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3781165439414433, this, [value]); }
   /**
    * mutating func removeContentUnsupported(by featureSet: FeatureSet) -> Bool
    * @availability iOS 27.0+
    */
-  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 1091165175293636, this, [featureSet]); }
+  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 1091165175293636, this, [featureSet]); }
   /**
    * var id: MarkupID<LinkMarkup>
    * @availability iOS 27.0+
    */
-  get id(): MarkupID<LinkMarkup> { return callSDK<MarkupID<LinkMarkup>>("PaperKit_c1f28409f8601238", 507666257090042, this, []); }
-  set id(value: MarkupID<LinkMarkup>) { callSDK<void>("PaperKit_c1f28409f8601238", 1153864470480958, this, [value]); }
+  get id(): MarkupID<LinkMarkup> { return callSDK<MarkupID<LinkMarkup>>("PaperKit_e11dfd5beee01da3", 507666257090042, this, []); }
+  set id(value: MarkupID<LinkMarkup>) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1153864470480958, this, [value]); }
   /**
    * var url: URL { get set }
    * @availability iOS 27.0+
    */
-  get url(): string { return callSDK<string>("PaperKit_c1f28409f8601238", 175013041162624, this, []); }
-  set url(value: string) { callSDK<void>("PaperKit_c1f28409f8601238", 4476597192302814, this, [value]); }
+  get url(): string { return callSDK<string>("PaperKit_e11dfd5beee01da3", 175013041162624, this, []); }
+  set url(value: string) { callSDK<void>("PaperKit_e11dfd5beee01da3", 4476597192302814, this, [value]); }
   /**
    * init(url: URL, frame: CGRect, allowedInteractions: MarkupInteractions = .all, id: MarkupID<LinkMarkup> = MarkupID())
    * @availability iOS 27.0+
    */
-  static init(url: string, frame: $SDK3, allowedInteractions?: MarkupInteractions, id?: MarkupID<LinkMarkup>): LinkMarkup { return callSDK<LinkMarkup>("PaperKit_c1f28409f8601238", 2565507077608245, undefined, [url, frame, allowedInteractions, id]); }
+  static init(url: string, frame: $SDK3, allowedInteractions?: MarkupInteractions, id?: MarkupID<LinkMarkup>): LinkMarkup { return callSDK<LinkMarkup>("PaperKit_e11dfd5beee01da3", 2565507077608245, undefined, [url, frame, allowedInteractions, id]); }
   /**
    * var frame: CGRect { get set }
    * @availability iOS 27.0+
    */
-  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 3784097041665596, this, []); }
-  set frame(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 702224299051523, this, [value]); }
+  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 3784097041665596, this, []); }
+  set frame(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 702224299051523, this, [value]); }
   /**
    * var rotation: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get rotation(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2017874963426201, this, []); }
-  set rotation(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 3858863364130750, this, [value]); }
+  get rotation(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2017874963426201, this, []); }
+  set rotation(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3858863364130750, this, [value]); }
   /**
    * var elementID: MarkupOrderedSet.ElementID { get }
    * @availability iOS 27.0+
    */
-  get elementID(): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_c1f28409f8601238", 4289581465311279, this, []); }
+  get elementID(): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_e11dfd5beee01da3", 4289581465311279, this, []); }
   declare readonly $type: { "s:8PaperKit10LinkMarkupV": true };
 }
 
@@ -398,69 +398,69 @@ export class LoupeMarkup extends SDKHandle {
    * var featureSet: FeatureSet { get }
    * @availability iOS 27.0+
    */
-  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 2429230257051318, this, []); }
+  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 2429230257051318, this, []); }
   /**
    * var renderFrame: CGRect { get }
    * @availability iOS 27.0+
    */
-  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 3916303171561821, this, []); }
+  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 3916303171561821, this, []); }
   /**
    * var strokeColor: CGColor? { get set }
    * @availability iOS 27.0+
    */
-  get strokeColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_c1f28409f8601238", 2709500740722892, this, []); }
-  set strokeColor(value: $SDK5) { callSDK<void>("PaperKit_c1f28409f8601238", 3210239614568123, this, [value]); }
+  get strokeColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_e11dfd5beee01da3", 2709500740722892, this, []); }
+  set strokeColor(value: $SDK5) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3210239614568123, this, [value]); }
   /**
    * var magnification: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get magnification(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 3394597566344179, this, []); }
-  set magnification(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 3301366507247475, this, [value]); }
+  get magnification(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 3394597566344179, this, []); }
+  set magnification(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3301366507247475, this, [value]); }
   /**
    * var allowedInteractions: MarkupInteractions { get set }
    * @availability iOS 27.0+
    */
-  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 3343878789562066, this, []); }
-  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_c1f28409f8601238", 4461422200902159, this, [value]); }
+  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 3343878789562066, this, []); }
+  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_e11dfd5beee01da3", 4461422200902159, this, [value]); }
   /**
    * mutating func removeContentUnsupported(by featureSet: FeatureSet) -> Bool
    * @availability iOS 27.0+
    */
-  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 1949900551758906, this, [featureSet]); }
+  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 1949900551758906, this, [featureSet]); }
   /**
    * var id: MarkupID<LoupeMarkup>
    * @availability iOS 27.0+
    */
-  get id(): MarkupID<LoupeMarkup> { return callSDK<MarkupID<LoupeMarkup>>("PaperKit_c1f28409f8601238", 3690133512968016, this, []); }
-  set id(value: MarkupID<LoupeMarkup>) { callSDK<void>("PaperKit_c1f28409f8601238", 547268601698754, this, [value]); }
+  get id(): MarkupID<LoupeMarkup> { return callSDK<MarkupID<LoupeMarkup>>("PaperKit_e11dfd5beee01da3", 3690133512968016, this, []); }
+  set id(value: MarkupID<LoupeMarkup>) { callSDK<void>("PaperKit_e11dfd5beee01da3", 547268601698754, this, [value]); }
   /**
    * init(frame: CGRect, magnification: CGFloat = 1.5, strokeColor: CGColor? = nil, lineWidth: CGFloat = 2.0, allowedInteractions: MarkupInteractions = .all, id: MarkupID<LoupeMarkup> = MarkupID())
    * @availability iOS 27.0+
    */
-  static init(frame: $SDK3, magnification?: number, strokeColor?: $SDK5, lineWidth?: number, allowedInteractions?: MarkupInteractions, id?: MarkupID<LoupeMarkup>): LoupeMarkup { return callSDK<LoupeMarkup>("PaperKit_c1f28409f8601238", 4460518069815195, undefined, [frame, magnification, strokeColor, lineWidth, allowedInteractions, id]); }
+  static init(frame: $SDK3, magnification?: number, strokeColor?: $SDK5, lineWidth?: number, allowedInteractions?: MarkupInteractions, id?: MarkupID<LoupeMarkup>): LoupeMarkup { return callSDK<LoupeMarkup>("PaperKit_e11dfd5beee01da3", 4460518069815195, undefined, [frame, magnification, strokeColor, lineWidth, allowedInteractions, id]); }
   /**
    * var frame: CGRect { get set }
    * @availability iOS 27.0+
    */
-  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 3874671645664351, this, []); }
-  set frame(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 1034217978305219, this, [value]); }
+  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 3874671645664351, this, []); }
+  set frame(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1034217978305219, this, [value]); }
   /**
    * var rotation: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get rotation(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 4059109383930987, this, []); }
-  set rotation(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 1863847661575101, this, [value]); }
+  get rotation(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 4059109383930987, this, []); }
+  set rotation(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1863847661575101, this, [value]); }
   /**
    * var elementID: MarkupOrderedSet.ElementID { get }
    * @availability iOS 27.0+
    */
-  get elementID(): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_c1f28409f8601238", 3483939015270027, this, []); }
+  get elementID(): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_e11dfd5beee01da3", 3483939015270027, this, []); }
   /**
    * var lineWidth: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get lineWidth(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 434181027290306, this, []); }
-  set lineWidth(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 3976861839486206, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 434181027290306, this, []); }
+  set lineWidth(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3976861839486206, this, [value]); }
   declare readonly $type: { "s:8PaperKit11LoupeMarkupV": true };
 }
 
@@ -496,57 +496,57 @@ export class MarkupAdornment extends SDKHandle {
    * var dragRegion: MarkupAdornment.DragRegion
    * @availability iOS 27.0+
    */
-  get dragRegion(): MarkupAdornment_DragRegion { return callSDK<MarkupAdornment_DragRegion>("PaperKit_c1f28409f8601238", 3718612045924971, this, []); }
-  set dragRegion(value: MarkupAdornment_DragRegion) { callSDK<void>("PaperKit_c1f28409f8601238", 1835935986582263, this, [value]); }
+  get dragRegion(): MarkupAdornment_DragRegion { return callSDK<MarkupAdornment_DragRegion>("PaperKit_e11dfd5beee01da3", 3718612045924971, this, []); }
+  set dragRegion(value: MarkupAdornment_DragRegion) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1835935986582263, this, [value]); }
   /**
    * var scalesWithZoom: Bool
    * @availability iOS 27.0+
    */
-  get scalesWithZoom(): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 118305061780025, this, []); }
-  set scalesWithZoom(value: boolean) { callSDK<void>("PaperKit_c1f28409f8601238", 1037111906029298, this, [value]); }
+  get scalesWithZoom(): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 118305061780025, this, []); }
+  set scalesWithZoom(value: boolean) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1037111906029298, this, [value]); }
   /**
    * var imageConfiguration: MarkupAdornment.ImageConfiguration
    * @availability iOS 27.0+
    */
-  get imageConfiguration(): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_c1f28409f8601238", 2289322581447482, this, []); }
-  set imageConfiguration(value: MarkupAdornment_ImageConfiguration) { callSDK<void>("PaperKit_c1f28409f8601238", 3377400353671627, this, [value]); }
+  get imageConfiguration(): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_e11dfd5beee01da3", 2289322581447482, this, []); }
+  set imageConfiguration(value: MarkupAdornment_ImageConfiguration) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3377400353671627, this, [value]); }
   /**
    * var id: UUID
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("PaperKit_c1f28409f8601238", 4385708538246133, this, []); }
-  set id(value: string) { callSDK<void>("PaperKit_c1f28409f8601238", 1644906588307415, this, [value]); }
+  get id(): string { return callSDK<string>("PaperKit_e11dfd5beee01da3", 4385708538246133, this, []); }
+  set id(value: string) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1644906588307415, this, [value]); }
   /**
    * init(id: UUID = UUID(), anchor: MarkupAdornment.Anchor, imageConfiguration: MarkupAdornment.ImageConfiguration = .default, dragRegion: MarkupAdornment.DragRegion = .canvas, scalesWithZoom: Bool = false)
    * @availability iOS 27.0+
    */
-  static init(id: string, anchor: MarkupAdornment_Anchor, imageConfiguration?: MarkupAdornment_ImageConfiguration, dragRegion?: MarkupAdornment_DragRegion, scalesWithZoom?: boolean): MarkupAdornment { return callSDK<MarkupAdornment>("PaperKit_c1f28409f8601238", 2976030657678663, undefined, [id, anchor, imageConfiguration, dragRegion, scalesWithZoom]); }
+  static init(id: string, anchor: MarkupAdornment_Anchor, imageConfiguration?: MarkupAdornment_ImageConfiguration, dragRegion?: MarkupAdornment_DragRegion, scalesWithZoom?: boolean): MarkupAdornment { return callSDK<MarkupAdornment>("PaperKit_e11dfd5beee01da3", 2976030657678663, undefined, [id, anchor, imageConfiguration, dragRegion, scalesWithZoom]); }
   /**
    * var anchor: MarkupAdornment.Anchor
    * @availability iOS 27.0+
    */
-  get anchor(): MarkupAdornment_Anchor { return callSDK<MarkupAdornment_Anchor>("PaperKit_c1f28409f8601238", 2087722897027352, this, []); }
-  set anchor(value: MarkupAdornment_Anchor) { callSDK<void>("PaperKit_c1f28409f8601238", 2482136716599079, this, [value]); }
+  get anchor(): MarkupAdornment_Anchor { return callSDK<MarkupAdornment_Anchor>("PaperKit_e11dfd5beee01da3", 2087722897027352, this, []); }
+  set anchor(value: MarkupAdornment_Anchor) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2482136716599079, this, [value]); }
   declare readonly $type: { "s:8PaperKit15MarkupAdornmentV": true };
 }
 
 /** struct Anchor */
 export class MarkupAdornment_Anchor extends SDKHandle {
   /** var description: String { get } */
-  get description(): string { return callSDK<string>("PaperKit_c1f28409f8601238", 385759023632253, this, []); }
+  get description(): string { return callSDK<string>("PaperKit_e11dfd5beee01da3", 385759023632253, this, []); }
   /** static func canvas(location: CGPoint) -> MarkupAdornment.Anchor */
-  static canvas(location: $SDK6): MarkupAdornment_Anchor { return callSDK<MarkupAdornment_Anchor>("PaperKit_c1f28409f8601238", 293792635372040, undefined, [location]); }
+  static canvas(location: $SDK6): MarkupAdornment_Anchor { return callSDK<MarkupAdornment_Anchor>("PaperKit_e11dfd5beee01da3", 293792635372040, undefined, [location]); }
   /** func location(in markup: PaperMarkup) -> CGPoint? */
-  location(markup: PaperMarkup): $SDK7 { return callSDK<$SDK7>("PaperKit_c1f28409f8601238", 692741307699425, this, [markup]); }
+  location(markup: PaperMarkup): $SDK7 { return callSDK<$SDK7>("PaperKit_e11dfd5beee01da3", 692741307699425, this, [markup]); }
   declare readonly $type: { "s:8PaperKit15MarkupAdornmentV6AnchorV": true };
 }
 
 /** struct DragRegion */
 export class MarkupAdornment_DragRegion extends SDKHandle {
   /** static let fixed: MarkupAdornment.DragRegion */
-  static get fixed(): MarkupAdornment_DragRegion { return callSDK<MarkupAdornment_DragRegion>("PaperKit_c1f28409f8601238", 3691398666098194, undefined, []); }
+  static get fixed(): MarkupAdornment_DragRegion { return callSDK<MarkupAdornment_DragRegion>("PaperKit_e11dfd5beee01da3", 3691398666098194, undefined, []); }
   /** static let canvas: MarkupAdornment.DragRegion */
-  static get canvas(): MarkupAdornment_DragRegion { return callSDK<MarkupAdornment_DragRegion>("PaperKit_c1f28409f8601238", 3264421385981353, undefined, []); }
+  static get canvas(): MarkupAdornment_DragRegion { return callSDK<MarkupAdornment_DragRegion>("PaperKit_e11dfd5beee01da3", 3264421385981353, undefined, []); }
   declare readonly $type: { "s:8PaperKit15MarkupAdornmentV10DragRegionV": true };
 }
 
@@ -559,11 +559,11 @@ export type MarkupAdornment_ID = string;
 /** struct ImageConfiguration */
 export class MarkupAdornment_ImageConfiguration extends SDKHandle {
   /** static func systemImage(_ name: String, tint: UIColor = .tintColor, size: CGSize? = nil, alignmentAnchor: CGPoint = .zero) -> MarkupAdornment.ImageConfiguration */
-  static systemImage(name: string, tint?: _UIKit_UIColor, size?: ({ width: number; height: number }) | null, alignmentAnchor?: $SDK6): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_c1f28409f8601238", 1810463673316655, undefined, [name, tint, size, alignmentAnchor]); }
+  static systemImage(name: string, tint?: _UIKit_UIColor, size?: ({ width: number; height: number }) | null, alignmentAnchor?: $SDK6): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_e11dfd5beee01da3", 1810463673316655, undefined, [name, tint, size, alignmentAnchor]); }
   /** static func image(_ image: UIImage, alignmentAnchor: CGPoint = .zero) -> MarkupAdornment.ImageConfiguration */
-  static image(image: _UIKit_UIImage, alignmentAnchor?: $SDK6): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_c1f28409f8601238", 4186392313262732, undefined, [image, alignmentAnchor]); }
+  static image(image: _UIKit_UIImage, alignmentAnchor?: $SDK6): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_e11dfd5beee01da3", 4186392313262732, undefined, [image, alignmentAnchor]); }
   /** static let `default`: MarkupAdornment.ImageConfiguration */
-  static get default(): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_c1f28409f8601238", 2514714792535515, undefined, []); }
+  static get default(): MarkupAdornment_ImageConfiguration { return callSDK<MarkupAdornment_ImageConfiguration>("PaperKit_e11dfd5beee01da3", 2514714792535515, undefined, []); }
   declare readonly $type: { "s:8PaperKit15MarkupAdornmentV18ImageConfigurationV": true };
 }
 
@@ -578,22 +578,22 @@ export const MarkupAutoresizing = {
    * static let flexibleWidth: MarkupAutoresizing
    * @availability iOS 27.0+
    */
-  get flexibleWidth(): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_c1f28409f8601238", 1191450085225025, undefined, []); },
+  get flexibleWidth(): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_e11dfd5beee01da3", 1191450085225025, undefined, []); },
   /**
    * static let flexibleHeight: MarkupAutoresizing
    * @availability iOS 27.0+
    */
-  get flexibleHeight(): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_c1f28409f8601238", 3524364552200899, undefined, []); },
+  get flexibleHeight(): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_e11dfd5beee01da3", 3524364552200899, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_c1f28409f8601238", 770911450847141, undefined, [rawValue]); },
+  init(rawValue: number): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_e11dfd5beee01da3", 770911450847141, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 27.0+
    */
-  getRawValue($self: MarkupAutoresizing): number { return callSDK<number>("PaperKit_c1f28409f8601238", 3142641837156, $self, []); }
+  getRawValue($self: MarkupAutoresizing): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 3142641837156, $self, []); }
 };
 
 /**
@@ -623,23 +623,23 @@ export class MarkupEditViewController extends SDKHandle {
    * @MainActor @preconcurrency override dynamic func viewDidLoad()
    * @availability iOS 26.0+
    */
-  viewDidLoad(): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 331636457180062, this, []); }
+  viewDidLoad(): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 331636457180062, this, []); }
   /**
    * @MainActor @preconcurrency init(supportedFeatureSet: FeatureSet, additionalActions: [UIMenuElement] = [])
    * @availability iOS 26.0+
    */
-  static init(supportedFeatureSet: FeatureSet, additionalActions?: Array<_UIKit_UIMenuElement>): Promise<MarkupEditViewController> { return callSDKAsync<MarkupEditViewController>("PaperKit_c1f28409f8601238", 3470677179040916, undefined, [supportedFeatureSet, additionalActions]); }
+  static init(supportedFeatureSet: FeatureSet, additionalActions?: Array<_UIKit_UIMenuElement>): Promise<MarkupEditViewController> { return callSDKAsync<MarkupEditViewController>("PaperKit_e11dfd5beee01da3", 3470677179040916, undefined, [supportedFeatureSet, additionalActions]); }
   /**
    * @MainActor @preconcurrency final let supportedFeatureSet: FeatureSet
    * @availability iOS 26.0+
    */
-  get supportedFeatureSet(): Promise<FeatureSet> { return callSDKAsync<FeatureSet>("PaperKit_c1f28409f8601238", 1993126724046200, this, []); }
+  get supportedFeatureSet(): Promise<FeatureSet> { return callSDKAsync<FeatureSet>("PaperKit_e11dfd5beee01da3", 1993126724046200, this, []); }
   /**
    * @MainActor @preconcurrency weak var delegate: (any MarkupEditViewController.Delegate)? { get set }
    * @availability iOS 26.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 2395648816963710, this, []); }
-  setDelegate(value?: (Implements<MarkupEditViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 4378818921460398, this, [value], [{"protocol":"s:8PaperKit24MarkupEditViewControllerC8DelegateP"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 2395648816963710, this, []); }
+  setDelegate(value?: (Implements<MarkupEditViewController_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 4378818921460398, this, [value], [{"protocol":"s:8PaperKit24MarkupEditViewControllerC8DelegateP"}]); }
   declare readonly $type: { "c:@M@PaperKit@objc(cs)MarkupEditViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -687,12 +687,12 @@ export const MarkupID = {
    * var rawValue: Data { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: MarkupID): ArrayBuffer { return callSDK<ArrayBuffer>("PaperKit_c1f28409f8601238", 565347460935611, $self, []); },
+  getRawValue($self: MarkupID): ArrayBuffer { return callSDK<ArrayBuffer>("PaperKit_e11dfd5beee01da3", 565347460935611, $self, []); },
   /**
    * init?(rawValue: Data)
    * @availability iOS 27.0+
    */
-  init(rawValue: ArrayBuffer): (MarkupID<unknown>) | null { return callSDK<(MarkupID<unknown>) | null>("PaperKit_c1f28409f8601238", 838170155498426, undefined, [rawValue]); }
+  init(rawValue: ArrayBuffer): (MarkupID<unknown>) | null { return callSDK<(MarkupID<unknown>) | null>("PaperKit_e11dfd5beee01da3", 838170155498426, undefined, [rawValue]); }
 };
 
 /**
@@ -712,52 +712,52 @@ export const MarkupInteractions = {
    * static let all: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get all(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 1990576933783586, undefined, []); },
+  get all(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 1990576933783586, undefined, []); },
   /**
    * static let move: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get move(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 1968284439839541, undefined, []); },
+  get move(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 1968284439839541, undefined, []); },
   /**
    * static let style: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get style(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 3134342385751490, undefined, []); },
+  get style(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 3134342385751490, undefined, []); },
   /**
    * static let delete: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get delete(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 4167652844127284, undefined, []); },
+  get delete(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 4167652844127284, undefined, []); },
   /**
    * static let resize: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get resize(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 4252353813041872, undefined, []); },
+  get resize(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 4252353813041872, undefined, []); },
   /**
    * static let rotate: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get rotate(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 2565702302953618, undefined, []); },
+  get rotate(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 2565702302953618, undefined, []); },
   /**
    * static let select: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get select(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 220278351315901, undefined, []); },
+  get select(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 220278351315901, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 3041576787523558, undefined, [rawValue]); },
+  init(rawValue: number): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 3041576787523558, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 27.0+
    */
-  getRawValue($self: MarkupInteractions): number { return callSDK<number>("PaperKit_c1f28409f8601238", 1467407376238208, $self, []); },
+  getRawValue($self: MarkupInteractions): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 1467407376238208, $self, []); },
   /**
    * static let readOnly: MarkupInteractions
    * @availability iOS 27.0+
    */
-  get readOnly(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 1718235005629028, undefined, []); }
+  get readOnly(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 1718235005629028, undefined, []); }
 };
 
 /**
@@ -787,107 +787,107 @@ export class MarkupOrderedSet extends SDKHandle {
    * func firstIndex(of element: MarkupOrderedSet.Element) -> Int?
    * @availability iOS 27.0+
    */
-  firstIndex(element: SDKHandle): (number) | null { return callSDK<(number) | null>("PaperKit_c1f28409f8601238", 3495255623380466, this, [element]); }
+  firstIndex(element: SDKHandle): (number) | null { return callSDK<(number) | null>("PaperKit_e11dfd5beee01da3", 3495255623380466, this, [element]); }
   /**
    * var startIndex: MarkupOrderedSet.Index { get }
    * @availability iOS 27.0+
    */
-  get startIndex(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 1885573941116861, this, []); }
+  get startIndex(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 1885573941116861, this, []); }
   /**
    * func makeIterator() -> MarkupOrderedSet.Iterator
    * @availability iOS 27.0+
    */
-  makeIterator(): MarkupOrderedSet_Iterator { return callSDK<MarkupOrderedSet_Iterator>("PaperKit_c1f28409f8601238", 3933062528857571, this, []); }
+  makeIterator(): MarkupOrderedSet_Iterator { return callSDK<MarkupOrderedSet_Iterator>("PaperKit_e11dfd5beee01da3", 3933062528857571, this, []); }
   /**
    * @discardableResult mutating func removeStroke(for id: UUID) -> PKStroke?
    * @availability iOS 27.0+
    */
-  removeStroke(id: string): (_PencilKit_PKStroke) | null { return callSDK<(_PencilKit_PKStroke) | null>("PaperKit_c1f28409f8601238", 1568316769902384, this, [id]); }
+  removeStroke(id: string): (_PencilKit_PKStroke) | null { return callSDK<(_PencilKit_PKStroke) | null>("PaperKit_e11dfd5beee01da3", 1568316769902384, this, [id]); }
   /**
    * @discardableResult mutating func removeElement(for id: MarkupOrderedSet.ElementID) -> MarkupOrderedSet.Element?
    * @availability iOS 27.0+
    */
-  removeElement(id: MarkupOrderedSet_ElementID): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 805727657240558, this, [id]); }
+  removeElement(id: MarkupOrderedSet_ElementID): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 805727657240558, this, [id]); }
   /**
    * @discardableResult mutating func updateOrAppend(_ item: MarkupOrderedSet.Element) -> MarkupOrderedSet.Element?
    * @availability iOS 27.0+
    */
-  updateOrAppend(item: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 2911207309689846, this, [item]); }
+  updateOrAppend(item: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 2911207309689846, this, [item]); }
   /**
    * var ids: MarkupOrderedSet.ElementIDs { get }
    * @availability iOS 27.0+
    */
-  get ids(): MarkupOrderedSet_ElementIDs { return callSDK<MarkupOrderedSet_ElementIDs>("PaperKit_c1f28409f8601238", 214397197089648, this, []); }
+  get ids(): MarkupOrderedSet_ElementIDs { return callSDK<MarkupOrderedSet_ElementIDs>("PaperKit_e11dfd5beee01da3", 214397197089648, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 27.0+
    */
-  get count(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 1532366757221254, this, []); }
+  get count(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 1532366757221254, this, []); }
   /**
    * func index(after i: MarkupOrderedSet.Index) -> MarkupOrderedSet.Index
    * @availability iOS 27.0+
    */
-  index(i: number): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2237218949601843, this, [i]); }
+  index(i: number): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2237218949601843, this, [i]); }
   /**
    * @discardableResult mutating func append(_ item: MarkupOrderedSet.Element) -> (inserted: Bool, index: Int)
    * @availability iOS 27.0+
    */
-  append(item: SDKHandle): $SDK12 { return callSDK<$SDK12>("PaperKit_c1f28409f8601238", 1004187276115692, this, [item]); }
+  append(item: SDKHandle): $SDK12 { return callSDK<$SDK12>("PaperKit_e11dfd5beee01da3", 1004187276115692, this, [item]); }
   /**
    * @discardableResult mutating func insert(_ item: MarkupOrderedSet.Element, at index: Int) -> (inserted: Bool, index: Int)
    * @availability iOS 27.0+
    */
-  insert(item: SDKHandle, index: number): $SDK12 { return callSDK<$SDK12>("PaperKit_c1f28409f8601238", 790442488586394, this, [item, index]); }
+  insert(item: SDKHandle, index: number): $SDK12 { return callSDK<$SDK12>("PaperKit_e11dfd5beee01da3", 790442488586394, this, [item, index]); }
   /**
    * @discardableResult mutating func remove(at index: Int) -> MarkupOrderedSet.Element
    * @availability iOS 27.0+
    */
-  removeAt(index: number): SDKHandle { return callSDK<SDKHandle>("PaperKit_c1f28409f8601238", 582356795746505, this, [index]); }
+  removeAt(index: number): SDKHandle { return callSDK<SDKHandle>("PaperKit_e11dfd5beee01da3", 582356795746505, this, [index]); }
   /**
    * @discardableResult mutating func remove(_ member: MarkupOrderedSet.Element) -> MarkupOrderedSet.Element?
    * @availability iOS 27.0+
    */
-  remove(member: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 3476900439871527, this, [member]); }
+  remove(member: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 3476900439871527, this, [member]); }
   /**
    * var strokes: [PKStroke] { get }
    * @availability iOS 27.0+
    */
-  get strokes(): Array<_PencilKit_PKStroke> { return callSDK<Array<_PencilKit_PKStroke>>("PaperKit_c1f28409f8601238", 2970402731855361, this, []); }
+  get strokes(): Array<_PencilKit_PKStroke> { return callSDK<Array<_PencilKit_PKStroke>>("PaperKit_e11dfd5beee01da3", 2970402731855361, this, []); }
   /**
    * func contains(_ element: MarkupOrderedSet.Element) -> Bool
    * @availability iOS 27.0+
    */
-  contains(element: SDKHandle): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 2026692690623238, this, [element]); }
+  contains(element: SDKHandle): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 2026692690623238, this, [element]); }
   /**
    * var endIndex: MarkupOrderedSet.Index { get }
    * @availability iOS 27.0+
    */
-  get endIndex(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 4269325012544469, this, []); }
+  get endIndex(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 4269325012544469, this, []); }
   /**
    * mutating func removeAll(where shouldBeRemoved: (MarkupOrderedSet.Element) throws -> Bool) rethrows
    * @availability iOS 27.0+
    */
-  removeAll(shouldBeRemoved: ((arg0: SDKHandle) => boolean)): void { return callSDK<void>("PaperKit_c1f28409f8601238", 2780669843421269, this, [shouldBeRemoved], [{"callback":{"out":[]}}], true); }
+  removeAll(shouldBeRemoved: ((arg0: SDKHandle) => boolean)): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 2780669843421269, this, [shouldBeRemoved], [{"callback":{"out":[]}}], true); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): MarkupOrderedSet { return callSDK<MarkupOrderedSet>("PaperKit_c1f28409f8601238", 4484294414647641, undefined, []); }
+  static init(): MarkupOrderedSet { return callSDK<MarkupOrderedSet>("PaperKit_e11dfd5beee01da3", 4484294414647641, undefined, []); }
   /**
    * subscript(id: UUID) -> PKStroke? { get set }
    * @availability iOS 27.0+
    */
-  subscript(id: string): (_PencilKit_PKStroke) | null { return callSDK<(_PencilKit_PKStroke) | null>("PaperKit_c1f28409f8601238", 2998602748485970, this, [id]); }
+  subscript(id: string): (_PencilKit_PKStroke) | null { return callSDK<(_PencilKit_PKStroke) | null>("PaperKit_e11dfd5beee01da3", 2998602748485970, this, [id]); }
   /**
    * subscript(id: MarkupOrderedSet.ElementID) -> MarkupOrderedSet.Element? { get set }
    * @availability iOS 27.0+
    */
-  subscript31870(id: MarkupOrderedSet_ElementID): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 1830326272979447, this, [id]); }
+  subscript31870(id: MarkupOrderedSet_ElementID): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 1830326272979447, this, [id]); }
   /**
    * subscript(index: Int) -> MarkupOrderedSet.Element { get }
    * @availability iOS 27.0+
    */
-  subscript64709(index: number): SDKHandle { return callSDK<SDKHandle>("PaperKit_c1f28409f8601238", 2345142801713030, this, [index]); }
+  subscript64709(index: number): SDKHandle { return callSDK<SDKHandle>("PaperKit_e11dfd5beee01da3", 2345142801713030, this, [index]); }
   declare readonly $type: { "s:8PaperKit16MarkupOrderedSetV": true };
 }
 
@@ -906,17 +906,17 @@ export class MarkupOrderedSet_ElementID extends SDKHandle {
    * var rawValue: Data { get }
    * @availability iOS 27.0+
    */
-  get rawValue(): ArrayBuffer { return callSDK<ArrayBuffer>("PaperKit_c1f28409f8601238", 3372696254236466, this, []); }
+  get rawValue(): ArrayBuffer { return callSDK<ArrayBuffer>("PaperKit_e11dfd5beee01da3", 3372696254236466, this, []); }
   /**
    * init?(rawValue: Data)
    * @availability iOS 27.0+
    */
-  static initRawValue(rawValue: ArrayBuffer): (MarkupOrderedSet_ElementID) | null { return callSDK<(MarkupOrderedSet_ElementID) | null>("PaperKit_c1f28409f8601238", 426755626090350, undefined, [rawValue]); }
+  static initRawValue(rawValue: ArrayBuffer): (MarkupOrderedSet_ElementID) | null { return callSDK<(MarkupOrderedSet_ElementID) | null>("PaperKit_e11dfd5beee01da3", 426755626090350, undefined, [rawValue]); }
   /**
    * init(_ id: UUID)
    * @availability iOS 27.0+
    */
-  static init(id: string): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_c1f28409f8601238", 1535190880251551, undefined, [id]); }
+  static init(id: string): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_e11dfd5beee01da3", 1535190880251551, undefined, [id]); }
   declare readonly $type: { "s:8PaperKit16MarkupOrderedSetV9ElementIDO": true };
 }
 
@@ -935,22 +935,22 @@ export class MarkupOrderedSet_ElementIDs extends SDKHandle {
    * var startIndex: MarkupOrderedSet.ElementIDs.Index { get }
    * @availability iOS 27.0+
    */
-  get startIndex(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 21802135527190, this, []); }
+  get startIndex(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 21802135527190, this, []); }
   /**
    * func index(after i: MarkupOrderedSet.ElementIDs.Index) -> MarkupOrderedSet.ElementIDs.Index
    * @availability iOS 27.0+
    */
-  index(i: number): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2286489984946075, this, [i]); }
+  index(i: number): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2286489984946075, this, [i]); }
   /**
    * var endIndex: MarkupOrderedSet.ElementIDs.Index { get }
    * @availability iOS 27.0+
    */
-  get endIndex(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 1550499138765559, this, []); }
+  get endIndex(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 1550499138765559, this, []); }
   /**
    * subscript(position: MarkupOrderedSet.ElementIDs.Index) -> MarkupOrderedSet.ElementIDs.Element { get }
    * @availability iOS 27.0+
    */
-  subscript(position: number): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_c1f28409f8601238", 417131521337792, this, [position]); }
+  subscript(position: number): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_e11dfd5beee01da3", 417131521337792, this, [position]); }
   declare readonly $type: { "s:8PaperKit16MarkupOrderedSetV10ElementIDsV": true };
 }
 
@@ -1005,7 +1005,7 @@ export class MarkupOrderedSet_Iterator extends SDKHandle {
    * mutating func next() -> (any Markup)?
    * @availability iOS 27.0+
    */
-  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 2323745502896928, this, []); }
+  next(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 2323745502896928, this, []); }
   declare readonly $type: { "s:8PaperKit16MarkupOrderedSetV8IteratorV": true };
 }
 
@@ -1030,106 +1030,106 @@ export class PaperMarkup extends SDKHandle {
    * var featureSet: FeatureSet { get }
    * @availability iOS 26.0+
    */
-  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 295188594533557, this, []); }
+  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 295188594533557, this, []); }
   /**
    * var subelements: MarkupOrderedSet { get set }
    * @availability iOS 27.0+
    */
-  get subelements(): MarkupOrderedSet { return callSDK<MarkupOrderedSet>("PaperKit_c1f28409f8601238", 2590342272381150, this, []); }
-  set subelements(value: MarkupOrderedSet) { callSDK<void>("PaperKit_c1f28409f8601238", 3151905661243437, this, [value]); }
+  get subelements(): MarkupOrderedSet { return callSDK<MarkupOrderedSet>("PaperKit_e11dfd5beee01da3", 2590342272381150, this, []); }
+  set subelements(value: MarkupOrderedSet) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3151905661243437, this, [value]); }
   /**
    * mutating func insertNewLine(configuration: ShapeConfiguration, from start: CGPoint, to end: CGPoint, startMarker lineStartMarker: Bool = false, endMarker lineEndMarker: Bool = false)
    * @availability iOS 26.0+
    */
-  insertNewLine(configuration: ShapeConfiguration, start: $SDK6, end: $SDK6, lineStartMarker?: boolean, lineEndMarker?: boolean): void { return callSDK<void>("PaperKit_c1f28409f8601238", 4142205071435851, this, [configuration, start, end, lineStartMarker, lineEndMarker]); }
+  insertNewLine(configuration: ShapeConfiguration, start: $SDK6, end: $SDK6, lineStartMarker?: boolean, lineEndMarker?: boolean): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 4142205071435851, this, [configuration, start, end, lineStartMarker, lineEndMarker]); }
   /**
    * mutating func insertNewImage(_ image: CGImage, frame: CGRect, rotation: CGFloat = 0)
    * @availability iOS 26.0+
    */
-  insertNewImage(image: _CoreGraphics_CGImage, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_c1f28409f8601238", 1569416803558958, this, [image, frame, rotation]); }
+  insertNewImage(image: _CoreGraphics_CGImage, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 1569416803558958, this, [image, frame, rotation]); }
   /**
    * mutating func insertNewShape(configuration: ShapeConfiguration, frame: CGRect, rotation: CGFloat = 0)
    * @availability iOS 26.0+
    */
-  insertNewShape(configuration: ShapeConfiguration, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_c1f28409f8601238", 654955027725251, this, [configuration, frame, rotation]); }
+  insertNewShape(configuration: ShapeConfiguration, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 654955027725251, this, [configuration, frame, rotation]); }
   /**
    * var backgroundColor: CGColor? { get set }
    * @availability iOS 27.0+
    */
-  get backgroundColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_c1f28409f8601238", 2197109123376913, this, []); }
-  set backgroundColor(value: $SDK5) { callSDK<void>("PaperKit_c1f28409f8601238", 3663745233094949, this, [value]); }
+  get backgroundColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_e11dfd5beee01da3", 2197109123376913, this, []); }
+  set backgroundColor(value: $SDK5) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3663745233094949, this, [value]); }
   /**
    * var indexableContent: String? { get async }
    * @availability iOS 26.0+
    */
-  get indexableContent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("PaperKit_c1f28409f8601238", 4303473063254458, this, []); }
+  get indexableContent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("PaperKit_e11dfd5beee01da3", 4303473063254458, this, []); }
   /**
    * mutating func insertNewTextbox(attributedText: AttributedString, frame: CGRect, rotation: CGFloat = 0)
    * @availability iOS 26.0+
    */
-  insertNewTextboxAttributedTextFrameRotation(attributedText: _Foundation_AttributedString, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_c1f28409f8601238", 199747868717462, this, [attributedText, frame, rotation]); }
+  insertNewTextboxAttributedTextFrameRotation(attributedText: _Foundation_AttributedString, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 199747868717462, this, [attributedText, frame, rotation]); }
   /**
    * mutating func insertNewTextbox(attributedText: NSAttributedString, frame: CGRect, rotation: CGFloat = 0)
    * @availability iOS 26.0+
    */
-  insertNewTextboxAttributedTextFrameRotation68161(attributedText: _Foundation_NSAttributedString, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_c1f28409f8601238", 2692184094819766, this, [attributedText, frame, rotation]); }
+  insertNewTextboxAttributedTextFrameRotation68161(attributedText: _Foundation_NSAttributedString, frame: $SDK3, rotation?: number): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 2692184094819766, this, [attributedText, frame, rotation]); }
   /**
    * mutating func transformContent(_ transform: CGAffineTransform)
    * @availability iOS 26.0+
    */
-  transformContent(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PaperKit_c1f28409f8601238", 4384000720450614, this, [transform]); }
+  transformContent(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 4384000720450614, this, [transform]); }
   /**
    * func dataRepresentation() async throws -> Data
    * @availability iOS 26.0+
    */
-  dataRepresentation(): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("PaperKit_c1f28409f8601238", 2828706909461563, this, []); }
+  dataRepresentation(): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("PaperKit_e11dfd5beee01da3", 2828706909461563, this, []); }
   /**
    * init(dataRepresentation: Data) throws
    * @availability iOS 26.0+
    */
-  static initDataRepresentation(dataRepresentation: ArrayBuffer): PaperMarkup { return callSDK<PaperMarkup>("PaperKit_c1f28409f8601238", 2999624817497815, undefined, [dataRepresentation]); }
+  static initDataRepresentation(dataRepresentation: ArrayBuffer): PaperMarkup { return callSDK<PaperMarkup>("PaperKit_e11dfd5beee01da3", 2999624817497815, undefined, [dataRepresentation]); }
   /**
    * var contentsRenderFrame: CGRect { get }
    * @availability iOS 26.0+
    */
-  get contentsRenderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 4331183812656436, this, []); }
+  get contentsRenderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 4331183812656436, this, []); }
   /**
    * mutating func removeContentUnsupported(by featureSet: FeatureSet)
    * @availability iOS 26.0+
    */
-  removeContentUnsupported(featureSet: FeatureSet): void { return callSDK<void>("PaperKit_c1f28409f8601238", 269479077257103, this, [featureSet]); }
+  removeContentUnsupported(featureSet: FeatureSet): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 269479077257103, this, [featureSet]); }
   /**
    * var id: MarkupID<PaperMarkup> { get set }
    * @availability iOS 27.0+
    */
-  get id(): MarkupID<PaperMarkup> { return callSDK<MarkupID<PaperMarkup>>("PaperKit_c1f28409f8601238", 2784215513927700, this, []); }
-  set id(value: MarkupID<PaperMarkup>) { callSDK<void>("PaperKit_c1f28409f8601238", 2547045702047586, this, [value]); }
+  get id(): MarkupID<PaperMarkup> { return callSDK<MarkupID<PaperMarkup>>("PaperKit_e11dfd5beee01da3", 2784215513927700, this, []); }
+  set id(value: MarkupID<PaperMarkup>) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2547045702047586, this, [value]); }
   /**
    * nonisolated(nonsending) func draw(in context: CGContext, frame: CGRect, options: RenderingOptions = RenderingOptions()) async
    * @availability iOS 26.0+
    */
-  draw(context: _CoreGraphics_CGContext, frame: $SDK3, options?: RenderingOptions): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3455614697098113, this, [context, frame, options]); }
+  draw(context: _CoreGraphics_CGContext, frame: $SDK3, options?: RenderingOptions): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3455614697098113, this, [context, frame, options]); }
   /**
    * mutating func append(contentsOf drawing: PKDrawing)
    * @availability iOS 26.0+
    */
-  appendContentsOf(drawing: _PencilKit_PKDrawing): void { return callSDK<void>("PaperKit_c1f28409f8601238", 2016355040989539, this, [drawing]); }
+  appendContentsOf(drawing: _PencilKit_PKDrawing): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 2016355040989539, this, [drawing]); }
   /**
    * mutating func append(contentsOf other: PaperMarkup)
    * @availability iOS 26.0+
    */
-  appendContentsOf77581(other: PaperMarkup): void { return callSDK<void>("PaperKit_c1f28409f8601238", 1978333112825980, this, [other]); }
+  appendContentsOf77581(other: PaperMarkup): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 1978333112825980, this, [other]); }
   /**
    * init(bounds: CGRect)
    * @availability iOS 26.0+
    */
-  static initBounds(bounds: $SDK3): PaperMarkup { return callSDK<PaperMarkup>("PaperKit_c1f28409f8601238", 1228163707668369, undefined, [bounds]); }
+  static initBounds(bounds: $SDK3): PaperMarkup { return callSDK<PaperMarkup>("PaperKit_e11dfd5beee01da3", 1228163707668369, undefined, [bounds]); }
   /**
    * var bounds: CGRect { get set }
    * @availability iOS 26.0+
    */
-  get bounds(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 2224556611488863, this, []); }
-  set bounds(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 1537585332713843, this, [value]); }
+  get bounds(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 2224556611488863, this, []); }
+  set bounds(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1537585332713843, this, [value]); }
   declare readonly $type: { "s:8PaperKit0A6MarkupV": true };
 }
 
@@ -1148,175 +1148,175 @@ export class PaperMarkupViewController extends SDKHandle {
    * @MainActor @preconcurrency func toolPickerIsRulerActiveDidChange(_ toolPicker: PKToolPicker)
    * @availability iOS 26.0+
    */
-  toolPickerIsRulerActiveDidChange(toolPicker: _PencilKit_PKToolPicker): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3887834931561202, this, [toolPicker]); }
+  toolPickerIsRulerActiveDidChange(toolPicker: _PencilKit_PKToolPicker): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3887834931561202, this, [toolPicker]); }
   /**
    * @MainActor @preconcurrency func toolPickerSelectedToolItemDidChange(_ toolPicker: PKToolPicker)
    * @availability iOS 26.0+
    */
-  toolPickerSelectedToolItemDidChange(toolPicker: _PencilKit_PKToolPicker): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 153811270536358, this, [toolPicker]); }
+  toolPickerSelectedToolItemDidChange(toolPicker: _PencilKit_PKToolPicker): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 153811270536358, this, [toolPicker]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewDidLoad()
    * @availability iOS 26.0+
    */
-  viewDidLoad(): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2259800918780802, this, []); }
+  viewDidLoad(): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2259800918780802, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var canBecomeFirstResponder: Bool { get }
    * @availability iOS 26.0+
    */
-  get canBecomeFirstResponder(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 860671758984111, this, []); }
+  get canBecomeFirstResponder(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 860671758984111, this, []); }
   /**
    * @MainActor @preconcurrency override dynamic var undoManager: UndoManager? { get }
    * @availability iOS 26.0+
    */
-  get undoManager(): Promise<(_Foundation_UndoManager) | null> { return callSDKAsync<(_Foundation_UndoManager) | null>("PaperKit_c1f28409f8601238", 1708717491442016, this, []); }
+  get undoManager(): Promise<(_Foundation_UndoManager) | null> { return callSDKAsync<(_Foundation_UndoManager) | null>("PaperKit_e11dfd5beee01da3", 1708717491442016, this, []); }
   /**
    * @MainActor @preconcurrency func markupEditViewController(_ markupEditViewController: MarkupEditViewController, insertNewShape type: ShapeConfiguration.Shape)
    * @availability iOS 26.0+
    */
-  markupEditViewControllerInsertNewShape(markupEditViewController: MarkupEditViewController, type: ShapeConfiguration_Shape): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 655876697052557, this, [markupEditViewController, type]); }
+  markupEditViewControllerInsertNewShape(markupEditViewController: MarkupEditViewController, type: ShapeConfiguration_Shape): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 655876697052557, this, [markupEditViewController, type]); }
   /**
    * @MainActor @preconcurrency func markupEditViewController(_ markupEditViewController: MarkupEditViewController, insertNewContents toInsert: PaperMarkup)
    * @availability iOS 26.0+
    */
-  markupEditViewControllerInsertNewContents(markupEditViewController: MarkupEditViewController, toInsert: PaperMarkup): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 232059807648270, this, [markupEditViewController, toInsert]); }
+  markupEditViewControllerInsertNewContents(markupEditViewController: MarkupEditViewController, toInsert: PaperMarkup): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 232059807648270, this, [markupEditViewController, toInsert]); }
   /**
    * @MainActor @preconcurrency func markupEditViewController(_ markupEditViewController: MarkupEditViewController, insertNewLineWithStartMarker lineStartMarker: Bool, endMarker lineEndMarker: Bool)
    * @availability iOS 26.0+
    */
-  markupEditViewControllerInsertNewLineWithStartMarkerEndMarker(markupEditViewController: MarkupEditViewController, lineStartMarker: boolean, lineEndMarker: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 796770641756602, this, [markupEditViewController, lineStartMarker, lineEndMarker]); }
+  markupEditViewControllerInsertNewLineWithStartMarkerEndMarker(markupEditViewController: MarkupEditViewController, lineStartMarker: boolean, lineEndMarker: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 796770641756602, this, [markupEditViewController, lineStartMarker, lineEndMarker]); }
   /**
    * @MainActor @preconcurrency func markupEditViewControllerInsertNewTextbox(_ markupEditViewController: MarkupEditViewController)
    * @availability iOS 26.0+
    */
-  markupEditViewControllerInsertNewTextbox(markupEditViewController: MarkupEditViewController): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 767519184604313, this, [markupEditViewController]); }
+  markupEditViewControllerInsertNewTextbox(markupEditViewController: MarkupEditViewController): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 767519184604313, this, [markupEditViewController]); }
   /**
    * @MainActor @preconcurrency var contentView: UIView? { get set }
    * @availability iOS 26.0+
    */
-  get contentView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("PaperKit_c1f28409f8601238", 2525565928528982, this, []); }
-  setContentView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 1917264572323326, this, [value]); }
+  get contentView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("PaperKit_e11dfd5beee01da3", 2525565928528982, this, []); }
+  setContentView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 1917264572323326, this, [value]); }
   /**
    * @MainActor @preconcurrency var selectedMarkup: PaperMarkup { get set }
    * @availability iOS 26.0+
    */
-  get selectedMarkup(): Promise<PaperMarkup> { return callSDKAsync<PaperMarkup>("PaperKit_c1f28409f8601238", 2726719786967245, this, []); }
-  setSelectedMarkup(value: PaperMarkup): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2713585980416569, this, [value]); }
+  get selectedMarkup(): Promise<PaperMarkup> { return callSDKAsync<PaperMarkup>("PaperKit_e11dfd5beee01da3", 2726719786967245, this, []); }
+  setSelectedMarkup(value: PaperMarkup): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2713585980416569, this, [value]); }
   /**
    * @MainActor @preconcurrency var adornments: [MarkupAdornment] { get set }
    * @availability iOS 27.0+
    */
-  get adornments(): Promise<Array<MarkupAdornment>> { return callSDKAsync<Array<MarkupAdornment>>("PaperKit_c1f28409f8601238", 2067895991269792, this, []); }
-  setAdornments(value: Array<MarkupAdornment>): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 619238453206325, this, [value]); }
+  get adornments(): Promise<Array<MarkupAdornment>> { return callSDKAsync<Array<MarkupAdornment>>("PaperKit_e11dfd5beee01da3", 2067895991269792, this, []); }
+  setAdornments(value: Array<MarkupAdornment>): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 619238453206325, this, [value]); }
   /**
    * @MainActor @preconcurrency var isEditable: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isEditable(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 3164937462437449, this, []); }
-  setIsEditable(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3968787291059156, this, [value]); }
+  get isEditable(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 3164937462437449, this, []); }
+  setIsEditable(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3968787291059156, this, [value]); }
   /**
    * @MainActor @preconcurrency var drawingTool: any PKTool { get set }
    * @availability iOS 26.0+
    */
-  get drawingTool(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("PaperKit_c1f28409f8601238", 332242944923047, this, []); }
-  setDrawingTool(value: Implements<_PencilKit_PKTool> | SDKHandle): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 231631258817461, this, [value], [{"protocol":"s:9PencilKit6PKToolP"}]); }
+  get drawingTool(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("PaperKit_e11dfd5beee01da3", 332242944923047, this, []); }
+  setDrawingTool(value: Implements<_PencilKit_PKTool> | SDKHandle): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 231631258817461, this, [value], [{"protocol":"s:9PencilKit6PKToolP"}]); }
   /**
    * @MainActor @preconcurrency var isRulerActive: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isRulerActive(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 71346284812284, this, []); }
-  setIsRulerActive(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 365935620256107, this, [value]); }
+  get isRulerActive(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 71346284812284, this, []); }
+  setIsRulerActive(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 365935620256107, this, [value]); }
   /**
    * @MainActor @preconcurrency func adornmentFrame(for id: UUID) -> CGRect?
    * @availability iOS 27.0+
    */
-  adornmentFrame(id: string): Promise<({ x: number; y: number; width: number; height: number }) | null> { return callSDKAsync<({ x: number; y: number; width: number; height: number }) | null>("PaperKit_c1f28409f8601238", 910061910328271, this, [id]); }
+  adornmentFrame(id: string): Promise<({ x: number; y: number; width: number; height: number }) | null> { return callSDKAsync<({ x: number; y: number; width: number; height: number }) | null>("PaperKit_e11dfd5beee01da3", 910061910328271, this, [id]); }
   /**
    * @MainActor @preconcurrency var directTouchMode: PaperMarkupViewController.TouchMode { get set }
    * @availability iOS 26.0+
    */
-  get directTouchMode(): Promise<PaperMarkupViewController_TouchMode> { return callSDKAsync<PaperMarkupViewController_TouchMode>("PaperKit_c1f28409f8601238", 3831726550322444, this, []); }
-  setDirectTouchMode(value: PaperMarkupViewController_TouchMode): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3096297513511849, this, [value]); }
+  get directTouchMode(): Promise<PaperMarkupViewController_TouchMode> { return callSDKAsync<PaperMarkupViewController_TouchMode>("PaperKit_e11dfd5beee01da3", 3831726550322444, this, []); }
+  setDirectTouchMode(value: PaperMarkupViewController_TouchMode): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3096297513511849, this, [value]); }
   /**
    * @MainActor @preconcurrency var contentVisibleFrame: CGRect { get set }
    * @availability iOS 26.0+
    */
-  get contentVisibleFrame(): Promise<$SDK3> { return callSDKAsync<$SDK3>("PaperKit_c1f28409f8601238", 3328066784388463, this, []); }
-  setContentVisibleFrame(value: $SDK3): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2561417040584470, this, [value]); }
+  get contentVisibleFrame(): Promise<$SDK3> { return callSDKAsync<$SDK3>("PaperKit_e11dfd5beee01da3", 3328066784388463, this, []); }
+  setContentVisibleFrame(value: $SDK3): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2561417040584470, this, [value]); }
   /**
    * @MainActor @preconcurrency var scrollConfiguration: PaperMarkupViewController.ScrollConfiguration { get }
    * @availability iOS 27.0+
    */
-  get scrollConfiguration(): Promise<PaperMarkupViewController_ScrollConfiguration> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration>("PaperKit_c1f28409f8601238", 236481536106123, this, []); }
+  get scrollConfiguration(): Promise<PaperMarkupViewController_ScrollConfiguration> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration>("PaperKit_e11dfd5beee01da3", 236481536106123, this, []); }
   /**
    * @MainActor @preconcurrency var supportedFeatureSet: FeatureSet { get }
    * @availability iOS 26.0+
    */
-  get supportedFeatureSet(): Promise<FeatureSet> { return callSDKAsync<FeatureSet>("PaperKit_c1f28409f8601238", 2414744017377237, this, []); }
+  get supportedFeatureSet(): Promise<FeatureSet> { return callSDKAsync<FeatureSet>("PaperKit_e11dfd5beee01da3", 2414744017377237, this, []); }
   /**
    * @MainActor @preconcurrency func setContentVisibleFrame(_ rect: CGRect, animated: Bool)
    * @availability iOS 26.0+
    */
-  setContentVisibleFrame66674(rect: $SDK3, animated: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3818457583141056, this, [rect, animated]); }
+  setContentVisibleFrame66674(rect: $SDK3, animated: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3818457583141056, this, [rect, animated]); }
   /**
    * @MainActor @preconcurrency var indirectPointerTouchMode: PaperMarkupViewController.TouchMode { get set }
    * @availability iOS 26.0+
    */
-  get indirectPointerTouchMode(): Promise<PaperMarkupViewController_TouchMode> { return callSDKAsync<PaperMarkupViewController_TouchMode>("PaperKit_c1f28409f8601238", 2902650867108977, this, []); }
-  setIndirectPointerTouchMode(value: PaperMarkupViewController_TouchMode): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3114536439502037, this, [value]); }
+  get indirectPointerTouchMode(): Promise<PaperMarkupViewController_TouchMode> { return callSDKAsync<PaperMarkupViewController_TouchMode>("PaperKit_e11dfd5beee01da3", 2902650867108977, this, []); }
+  setIndirectPointerTouchMode(value: PaperMarkupViewController_TouchMode): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3114536439502037, this, [value]); }
   /**
    * @MainActor @preconcurrency func suggestedFrameForInserting(contentInFrame frame: CGRect) -> CGRect
    * @availability iOS 26.0+
    */
-  suggestedFrameForInserting(frame: $SDK3): Promise<$SDK3> { return callSDKAsync<$SDK3>("PaperKit_c1f28409f8601238", 4283295450344569, this, [frame]); }
+  suggestedFrameForInserting(frame: $SDK3): Promise<$SDK3> { return callSDKAsync<$SDK3>("PaperKit_e11dfd5beee01da3", 4283295450344569, this, [frame]); }
   /**
    * @MainActor @preconcurrency var showsVerticalScrollIndicator: Bool { get set }
    * @availability iOS 26.1+
    * @deprecated iOS 27.0
    */
-  get showsVerticalScrollIndicator(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 1382738052233859, this, []); }
-  setShowsVerticalScrollIndicator(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2567903168039545, this, [value]); }
+  get showsVerticalScrollIndicator(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 1382738052233859, this, []); }
+  setShowsVerticalScrollIndicator(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2567903168039545, this, [value]); }
   /**
    * @MainActor @preconcurrency var directTouchAutomaticallyDraws: Bool { get set }
    * @availability iOS 26.0+
    */
-  get directTouchAutomaticallyDraws(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 3907742723104563, this, []); }
-  setDirectTouchAutomaticallyDraws(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2435143812939760, this, [value]); }
+  get directTouchAutomaticallyDraws(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 3907742723104563, this, []); }
+  setDirectTouchAutomaticallyDraws(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2435143812939760, this, [value]); }
   /**
    * @MainActor @preconcurrency var showsHorizontalScrollIndicator: Bool { get set }
    * @availability iOS 26.1+
    * @deprecated iOS 27.0
    */
-  get showsHorizontalScrollIndicator(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 2187256602526684, this, []); }
-  setShowsHorizontalScrollIndicator(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2616001186957182, this, [value]); }
+  get showsHorizontalScrollIndicator(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 2187256602526684, this, []); }
+  setShowsHorizontalScrollIndicator(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2616001186957182, this, [value]); }
   /**
    * @MainActor @preconcurrency init(markup: PaperMarkup? = nil, supportedFeatureSet: FeatureSet)
    * @availability iOS 26.0+
    */
-  static init(markup: (PaperMarkup) | null, supportedFeatureSet: FeatureSet): Promise<PaperMarkupViewController> { return callSDKAsync<PaperMarkupViewController>("PaperKit_c1f28409f8601238", 3252703689908675, undefined, [markup, supportedFeatureSet]); }
+  static init(markup: (PaperMarkup) | null, supportedFeatureSet: FeatureSet): Promise<PaperMarkupViewController> { return callSDKAsync<PaperMarkupViewController>("PaperKit_e11dfd5beee01da3", 3252703689908675, undefined, [markup, supportedFeatureSet]); }
   /**
    * @MainActor @preconcurrency var markup: PaperMarkup? { get set }
    * @availability iOS 26.0+
    */
-  get markup(): Promise<(PaperMarkup) | null> { return callSDKAsync<(PaperMarkup) | null>("PaperKit_c1f28409f8601238", 4288332750789323, this, []); }
-  setMarkup(value?: (PaperMarkup) | null): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2143599894290550, this, [value]); }
+  get markup(): Promise<(PaperMarkup) | null> { return callSDKAsync<(PaperMarkup) | null>("PaperKit_e11dfd5beee01da3", 4288332750789323, this, []); }
+  setMarkup(value?: (PaperMarkup) | null): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2143599894290550, this, [value]); }
   /**
    * @MainActor @preconcurrency weak var delegate: (any PaperMarkupViewController.Delegate)? { get set }
    * @availability iOS 26.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PaperKit_c1f28409f8601238", 2740554536009129, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3177940076831693, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("PaperKit_e11dfd5beee01da3", 2740554536009129, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3177940076831693, this, [value]); }
   /**
    * @MainActor @preconcurrency var selection: Set<MarkupOrderedSet.ElementID> { get set }
    * @availability iOS 27.0+
    */
-  get selection(): Promise<$SDK18> { return callSDKAsync<$SDK18>("PaperKit_c1f28409f8601238", 14954155192093, this, []); }
-  setSelection(value: $SDK18): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3074157816722261, this, [value]); }
+  get selection(): Promise<$SDK18> { return callSDKAsync<$SDK18>("PaperKit_e11dfd5beee01da3", 14954155192093, this, []); }
+  setSelection(value: $SDK18): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3074157816722261, this, [value]); }
   /**
    * @MainActor @preconcurrency var zoomRange: ClosedRange<CGFloat> { get set }
    * @availability iOS 26.0+
    */
-  get zoomRange(): Promise<"animatableData" | SDKHandle> { return callSDKAsync<"animatableData" | SDKHandle>("PaperKit_c1f28409f8601238", 80076085662767, this, []); }
-  setZoomRange(value: "animatableData" | SDKHandle): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 1699144518898012, this, [value]); }
+  get zoomRange(): Promise<"animatableData" | SDKHandle> { return callSDKAsync<"animatableData" | SDKHandle>("PaperKit_e11dfd5beee01da3", 80076085662767, this, []); }
+  setZoomRange(value: "animatableData" | SDKHandle): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 1699144518898012, this, [value]); }
   declare readonly $type: { "c:@M@PaperKit@objc(cs)PaperMarkupViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "canBecomeFirstResponder": true; "undoManager": true; "contentView": true; "selectedMarkup": true; "adornments": true; "isEditable": true; "drawingTool": true; "isRulerActive": true; "directTouchMode": true; "contentVisibleFrame": true; "scrollConfiguration": true; "supportedFeatureSet": true; "indirectPointerTouchMode": true; "showsVerticalScrollIndicator": true; "directTouchAutomaticallyDraws": true; "showsHorizontalScrollIndicator": true; "markup": true; "delegate": true; "selection": true; "zoomRange": true };
 }
@@ -1372,79 +1372,79 @@ export class PaperMarkupViewController_ScrollConfiguration extends SDKHandle {
    * final var horizontalScrollIndicatorInsets: UIEdgeInsets { get set }
    * @availability iOS 27.0+
    */
-  get horizontalScrollIndicatorInsets(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_c1f28409f8601238", 760343180068218, this, []); }
-  setHorizontalScrollIndicatorInsets(value: $SDK21): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 4226911817545176, this, [value]); }
+  get horizontalScrollIndicatorInsets(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_e11dfd5beee01da3", 760343180068218, this, []); }
+  setHorizontalScrollIndicatorInsets(value: $SDK21): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 4226911817545176, this, [value]); }
   /**
    * final var isScrollEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get isScrollEnabled(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 1297182193621124, this, []); }
-  setIsScrollEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 4293705917945309, this, [value]); }
+  get isScrollEnabled(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 1297182193621124, this, []); }
+  setIsScrollEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 4293705917945309, this, [value]); }
   /**
    * final var visibleScrollIndicators: PaperMarkupViewController.ScrollConfiguration.Axis { get set }
    * @availability iOS 27.0+
    */
-  get visibleScrollIndicators(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 1455032136819507, this, []); }
-  setVisibleScrollIndicators(value: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 1557096732863723, this, [value]); }
+  get visibleScrollIndicators(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 1455032136819507, this, []); }
+  setVisibleScrollIndicators(value: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 1557096732863723, this, [value]); }
   /**
    * final var verticalScrollIndicatorInsets: UIEdgeInsets { get set }
    * @availability iOS 27.0+
    */
-  get verticalScrollIndicatorInsets(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_c1f28409f8601238", 549903883390855, this, []); }
-  setVerticalScrollIndicatorInsets(value: $SDK21): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 118247072091700, this, [value]); }
+  get verticalScrollIndicatorInsets(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_e11dfd5beee01da3", 549903883390855, this, []); }
+  setVerticalScrollIndicatorInsets(value: $SDK21): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 118247072091700, this, [value]); }
   /**
    * final var bouncesZoom: Bool { get set }
    * @availability iOS 27.0+
    */
-  get bouncesZoom(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 1404321242671603, this, []); }
-  setBouncesZoom(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3181388701780254, this, [value]); }
+  get bouncesZoom(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 1404321242671603, this, []); }
+  setBouncesZoom(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3181388701780254, this, [value]); }
   /**
    * final var contentInset: UIEdgeInsets { get set }
    * @availability iOS 27.0+
    */
-  get contentInset(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_c1f28409f8601238", 647136535853426, this, []); }
-  setContentInset(value: $SDK21): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2544282883921582, this, [value]); }
+  get contentInset(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_e11dfd5beee01da3", 647136535853426, this, []); }
+  setContentInset(value: $SDK21): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2544282883921582, this, [value]); }
   /**
    * final var scrollsToTop: Bool { get set }
    * @availability iOS 27.0+
    */
-  get scrollsToTop(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 2076177034279148, this, []); }
-  setScrollsToTop(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3940993286653453, this, [value]); }
+  get scrollsToTop(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 2076177034279148, this, []); }
+  setScrollsToTop(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3940993286653453, this, [value]); }
   /**
    * final var alwaysBounces: PaperMarkupViewController.ScrollConfiguration.Axis { get set }
    * @availability iOS 27.0+
    */
-  get alwaysBounces(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 1571669218494277, this, []); }
-  setAlwaysBounces(value: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 1642064437834046, this, [value]); }
+  get alwaysBounces(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 1571669218494277, this, []); }
+  setAlwaysBounces(value: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 1642064437834046, this, [value]); }
   /**
    * final var adjustedContentInset: UIEdgeInsets { get }
    * @availability iOS 27.0+
    */
-  get adjustedContentInset(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_c1f28409f8601238", 2494839560785119, this, []); }
+  get adjustedContentInset(): Promise<$SDK21> { return callSDKAsync<$SDK21>("PaperKit_e11dfd5beee01da3", 2494839560785119, this, []); }
   /**
    * final var isDirectionalLockEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get isDirectionalLockEnabled(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_c1f28409f8601238", 1252767422591529, this, []); }
-  setIsDirectionalLockEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 2997696402649403, this, [value]); }
+  get isDirectionalLockEnabled(): Promise<boolean> { return callSDKAsync<boolean>("PaperKit_e11dfd5beee01da3", 1252767422591529, this, []); }
+  setIsDirectionalLockEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 2997696402649403, this, [value]); }
   /**
    * final var contentInsetAdjustmentBehavior: UIScrollView.ContentInsetAdjustmentBehavior { get set }
    * @availability iOS 27.0+
    */
-  get contentInsetAdjustmentBehavior(): Promise<_UIKit_UIScrollView_ContentInsetAdjustmentBehavior> { return callSDKAsync<_UIKit_UIScrollView_ContentInsetAdjustmentBehavior>("PaperKit_c1f28409f8601238", 2808428094689143, this, []); }
-  setContentInsetAdjustmentBehavior(value: _UIKit_UIScrollView_ContentInsetAdjustmentBehavior): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3934365323438000, this, [value]); }
+  get contentInsetAdjustmentBehavior(): Promise<_UIKit_UIScrollView_ContentInsetAdjustmentBehavior> { return callSDKAsync<_UIKit_UIScrollView_ContentInsetAdjustmentBehavior>("PaperKit_e11dfd5beee01da3", 2808428094689143, this, []); }
+  setContentInsetAdjustmentBehavior(value: _UIKit_UIScrollView_ContentInsetAdjustmentBehavior): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3934365323438000, this, [value]); }
   /**
    * final var bounces: PaperMarkupViewController.ScrollConfiguration.Axis { get set }
    * @availability iOS 27.0+
    */
-  get bounces(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 2739595377304543, this, []); }
-  setBounces(value: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 922751802056136, this, [value]); }
+  get bounces(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 2739595377304543, this, []); }
+  setBounces(value: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 922751802056136, this, [value]); }
   /**
    * final var zoomScale: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get zoomScale(): Promise<number> { return callSDKAsync<number>("PaperKit_c1f28409f8601238", 2151641345119663, this, []); }
-  setZoomScale(value: number): Promise<void> { return callSDKAsync<void>("PaperKit_c1f28409f8601238", 3396332403790955, this, [value]); }
+  get zoomScale(): Promise<number> { return callSDKAsync<number>("PaperKit_e11dfd5beee01da3", 2151641345119663, this, []); }
+  setZoomScale(value: number): Promise<void> { return callSDKAsync<void>("PaperKit_e11dfd5beee01da3", 3396332403790955, this, [value]); }
   declare readonly $type: { "s:8PaperKit0A20MarkupViewControllerC19ScrollConfigurationC": true };
   declare readonly $observable: { "horizontalScrollIndicatorInsets": true; "isScrollEnabled": true; "visibleScrollIndicators": true; "verticalScrollIndicatorInsets": true; "bouncesZoom": true; "contentInset": true; "scrollsToTop": true; "alwaysBounces": true; "adjustedContentInset": true; "isDirectionalLockEnabled": true; "contentInsetAdjustmentBehavior": true; "bounces": true; "zoomScale": true };
 }
@@ -1460,27 +1460,27 @@ export const PaperMarkupViewController_ScrollConfiguration_Axis = {
    * static let horizontal: PaperMarkupViewController.ScrollConfiguration.Axis
    * @availability iOS 27.0+
    */
-  get horizontal(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 638807214823653, undefined, []); },
+  get horizontal(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 638807214823653, undefined, []); },
   /**
    * static let both: PaperMarkupViewController.ScrollConfiguration.Axis
    * @availability iOS 27.0+
    */
-  get both(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 1547034049783043, undefined, []); },
+  get both(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 1547034049783043, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 628818200185576, undefined, [rawValue]); },
+  init(rawValue: number): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 628818200185576, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 27.0+
    */
-  getRawValue($self: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<number> { return callSDKAsync<number>("PaperKit_c1f28409f8601238", 1776161533275378, $self, []); },
+  getRawValue($self: PaperMarkupViewController_ScrollConfiguration_Axis): Promise<number> { return callSDKAsync<number>("PaperKit_e11dfd5beee01da3", 1776161533275378, $self, []); },
   /**
    * static let vertical: PaperMarkupViewController.ScrollConfiguration.Axis
    * @availability iOS 27.0+
    */
-  get vertical(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_c1f28409f8601238", 2572596109348525, undefined, []); }
+  get vertical(): Promise<PaperMarkupViewController_ScrollConfiguration_Axis> { return callSDKAsync<PaperMarkupViewController_ScrollConfiguration_Axis>("PaperKit_e11dfd5beee01da3", 2572596109348525, undefined, []); }
 };
 
 /**
@@ -1512,45 +1512,45 @@ export class PKStroke extends SDKHandle {
    * var featureSet: FeatureSet { get }
    * @availability iOS 27.0+
    */
-  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 3375193911627709, this, []); }
+  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 3375193911627709, this, []); }
   /**
    * var renderFrame: CGRect { get }
    * @availability iOS 27.0+
    */
-  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 1747645387497173, this, []); }
+  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 1747645387497173, this, []); }
   /**
    * mutating func applyTransform(_ transform: CGAffineTransform)
    * @availability iOS 27.0+
    */
-  applyTransform(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PaperKit_c1f28409f8601238", 2879151968744147, this, [transform]); }
+  applyTransform(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PaperKit_e11dfd5beee01da3", 2879151968744147, this, [transform]); }
   /**
    * var allowedInteractions: MarkupInteractions { get set }
    * @availability iOS 27.0+
    */
-  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 2228452155306166, this, []); }
-  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_c1f28409f8601238", 3708116282548238, this, [value]); }
+  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 2228452155306166, this, []); }
+  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3708116282548238, this, [value]); }
   /**
    * mutating func removeContentUnsupported(by featureSet: FeatureSet) -> Bool
    * @availability iOS 27.0+
    */
-  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 2472167966164800, this, [featureSet]); }
+  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 2472167966164800, this, [featureSet]); }
   /**
    * var frame: CGRect { get set }
    * @availability iOS 27.0+
    */
-  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 2045510579371014, this, []); }
-  set frame(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 1280908376822592, this, [value]); }
+  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 2045510579371014, this, []); }
+  set frame(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1280908376822592, this, [value]); }
   /**
    * var rotation: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get rotation(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2713190288428822, this, []); }
-  set rotation(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 2891152485083756, this, [value]); }
+  get rotation(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2713190288428822, this, []); }
+  set rotation(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2891152485083756, this, [value]); }
   /**
    * var elementID: MarkupOrderedSet.ElementID { get }
    * @availability iOS 27.0+
    */
-  get elementID(): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_c1f28409f8601238", 2523836389590821, this, []); }
+  get elementID(): MarkupOrderedSet_ElementID { return callSDK<MarkupOrderedSet_ElementID>("PaperKit_e11dfd5beee01da3", 2523836389590821, this, []); }
   declare readonly $type: { "s:9PencilKit8PKStrokeV": true };
 }
 
@@ -1563,24 +1563,24 @@ export class RenderingOptions extends SDKHandle {
    * init(traitCollection: UITraitCollection)
    * @availability iOS 26.0+
    */
-  static initTraitCollection(traitCollection: _UIKit_UITraitCollection): RenderingOptions { return callSDK<RenderingOptions>("PaperKit_c1f28409f8601238", 4050506719681411, undefined, [traitCollection]); }
+  static initTraitCollection(traitCollection: _UIKit_UITraitCollection): RenderingOptions { return callSDK<RenderingOptions>("PaperKit_e11dfd5beee01da3", 4050506719681411, undefined, [traitCollection]); }
   /**
    * init(darkUserInterfaceStyle: Bool = false, layoutRightToLeft: Bool = false)
    * @availability iOS 26.0+
    */
-  static initDarkUserInterfaceStyleLayoutRightToLeft(darkUserInterfaceStyle?: boolean, layoutRightToLeft?: boolean): RenderingOptions { return callSDK<RenderingOptions>("PaperKit_c1f28409f8601238", 2465864407255868, undefined, [darkUserInterfaceStyle, layoutRightToLeft]); }
+  static initDarkUserInterfaceStyleLayoutRightToLeft(darkUserInterfaceStyle?: boolean, layoutRightToLeft?: boolean): RenderingOptions { return callSDK<RenderingOptions>("PaperKit_e11dfd5beee01da3", 2465864407255868, undefined, [darkUserInterfaceStyle, layoutRightToLeft]); }
   /**
    * var darkUserInterfaceStyle: Bool
    * @availability iOS 26.0+
    */
-  get darkUserInterfaceStyle(): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 3387865761792383, this, []); }
-  set darkUserInterfaceStyle(value: boolean) { callSDK<void>("PaperKit_c1f28409f8601238", 3156751698390938, this, [value]); }
+  get darkUserInterfaceStyle(): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 3387865761792383, this, []); }
+  set darkUserInterfaceStyle(value: boolean) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3156751698390938, this, [value]); }
   /**
    * var rightToLeftLayoutDirection: Bool
    * @availability iOS 26.0+
    */
-  get rightToLeftLayoutDirection(): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 1847418338272832, this, []); }
-  set rightToLeftLayoutDirection(value: boolean) { callSDK<void>("PaperKit_c1f28409f8601238", 3709203274823286, this, [value]); }
+  get rightToLeftLayoutDirection(): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 1847418338272832, this, []); }
+  set rightToLeftLayoutDirection(value: boolean) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3709203274823286, this, [value]); }
   declare readonly $type: { "s:8PaperKit16RenderingOptionsV": true };
 }
 
@@ -1593,31 +1593,31 @@ export class ShapeConfiguration extends SDKHandle {
    * var strokeColor: CGColor?
    * @availability iOS 26.0+
    */
-  get strokeColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_c1f28409f8601238", 233308224618065, this, []); }
-  set strokeColor(value: $SDK5) { callSDK<void>("PaperKit_c1f28409f8601238", 2623573823403226, this, [value]); }
+  get strokeColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_e11dfd5beee01da3", 233308224618065, this, []); }
+  set strokeColor(value: $SDK5) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2623573823403226, this, [value]); }
   /**
    * init(type: ShapeConfiguration.Shape, fillColor: CGColor? = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1), strokeColor: CGColor? = nil, lineWidth: CGFloat = 0)
    * @availability iOS 26.0+
    */
-  static init(type: ShapeConfiguration_Shape, fillColor?: $SDK5, strokeColor?: $SDK5, lineWidth?: number): ShapeConfiguration { return callSDK<ShapeConfiguration>("PaperKit_c1f28409f8601238", 1413882265269592, undefined, [type, fillColor, strokeColor, lineWidth]); }
+  static init(type: ShapeConfiguration_Shape, fillColor?: $SDK5, strokeColor?: $SDK5, lineWidth?: number): ShapeConfiguration { return callSDK<ShapeConfiguration>("PaperKit_e11dfd5beee01da3", 1413882265269592, undefined, [type, fillColor, strokeColor, lineWidth]); }
   /**
    * var type: ShapeConfiguration.Shape
    * @availability iOS 26.0+
    */
-  get type(): ShapeConfiguration_Shape { return callSDK<ShapeConfiguration_Shape>("PaperKit_c1f28409f8601238", 618938742262652, this, []); }
-  set type(value: ShapeConfiguration_Shape) { callSDK<void>("PaperKit_c1f28409f8601238", 3239824889192324, this, [value]); }
+  get type(): ShapeConfiguration_Shape { return callSDK<ShapeConfiguration_Shape>("PaperKit_e11dfd5beee01da3", 618938742262652, this, []); }
+  set type(value: ShapeConfiguration_Shape) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3239824889192324, this, [value]); }
   /**
    * var fillColor: CGColor?
    * @availability iOS 26.0+
    */
-  get fillColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_c1f28409f8601238", 2731095799876146, this, []); }
-  set fillColor(value: $SDK5) { callSDK<void>("PaperKit_c1f28409f8601238", 1630730916766495, this, [value]); }
+  get fillColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_e11dfd5beee01da3", 2731095799876146, this, []); }
+  set fillColor(value: $SDK5) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1630730916766495, this, [value]); }
   /**
    * var lineWidth: CGFloat
    * @availability iOS 26.0+
    */
-  get lineWidth(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 726888216353293, this, []); }
-  set lineWidth(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 175264548732896, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 726888216353293, this, []); }
+  set lineWidth(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 175264548732896, this, [value]); }
   declare readonly $type: { "s:8PaperKit18ShapeConfigurationV": true };
 }
 
@@ -1632,7 +1632,7 @@ export const ShapeConfiguration_Shape = {
    * nonisolated static var allCases: [ShapeConfiguration.Shape] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK1 { return callSDK<$SDK1>("PaperKit_c1f28409f8601238", 1313809522162511, undefined, []); }
+  get allCases(): $SDK1 { return callSDK<$SDK1>("PaperKit_e11dfd5beee01da3", 1313809522162511, undefined, []); }
 };
 
 /**
@@ -1650,111 +1650,111 @@ export class ShapeMarkup extends SDKHandle {
    * var featureSet: FeatureSet { get }
    * @availability iOS 27.0+
    */
-  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_c1f28409f8601238", 1988071115731558, this, []); }
+  get featureSet(): FeatureSet { return callSDK<FeatureSet>("PaperKit_e11dfd5beee01da3", 1988071115731558, this, []); }
   /**
    * var renderFrame: CGRect { get }
    * @availability iOS 27.0+
    */
-  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 2018298931185944, this, []); }
+  get renderFrame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 2018298931185944, this, []); }
   /**
    * var shapeScaled: ShapeMarkup.Shape { get set }
    * @availability iOS 27.0+
    */
-  get shapeScaled(): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 88510105729402, this, []); }
-  set shapeScaled(value: ShapeMarkup_Shape) { callSDK<void>("PaperKit_c1f28409f8601238", 3486052076693341, this, [value]); }
+  get shapeScaled(): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 88510105729402, this, []); }
+  set shapeScaled(value: ShapeMarkup_Shape) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3486052076693341, this, [value]); }
   /**
    * var strokeColor: CGColor? { get set }
    * @availability iOS 27.0+
    */
-  get strokeColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_c1f28409f8601238", 2066663359854513, this, []); }
-  set strokeColor(value: $SDK5) { callSDK<void>("PaperKit_c1f28409f8601238", 451697599012133, this, [value]); }
+  get strokeColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_e11dfd5beee01da3", 2066663359854513, this, []); }
+  set strokeColor(value: $SDK5) { callSDK<void>("PaperKit_e11dfd5beee01da3", 451697599012133, this, [value]); }
   /**
    * var autoresizing: MarkupAutoresizing { get set }
    * @availability iOS 27.0+
    */
-  get autoresizing(): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_c1f28409f8601238", 1138208881944390, this, []); }
-  set autoresizing(value: MarkupAutoresizing) { callSDK<void>("PaperKit_c1f28409f8601238", 4366578181688576, this, [value]); }
+  get autoresizing(): MarkupAutoresizing { return callSDK<MarkupAutoresizing>("PaperKit_e11dfd5beee01da3", 1138208881944390, this, []); }
+  set autoresizing(value: MarkupAutoresizing) { callSDK<void>("PaperKit_e11dfd5beee01da3", 4366578181688576, this, [value]); }
   /**
    * init(configuration: ShapeConfiguration, frame: CGRect, rotation: CGFloat = 0.0)
    * @availability iOS 27.0+
    */
-  static initConfigurationFrameRotation(configuration: ShapeConfiguration, frame: $SDK3, rotation?: number): ShapeMarkup { return callSDK<ShapeMarkup>("PaperKit_c1f28409f8601238", 4071138059678274, undefined, [configuration, frame, rotation]); }
+  static initConfigurationFrameRotation(configuration: ShapeConfiguration, frame: $SDK3, rotation?: number): ShapeMarkup { return callSDK<ShapeMarkup>("PaperKit_e11dfd5beee01da3", 4071138059678274, undefined, [configuration, frame, rotation]); }
   /**
    * var endLineMarker: ShapeMarkup.LineMarker { get set }
    * @availability iOS 27.0+
    */
-  get endLineMarker(): ShapeMarkup_LineMarker { return callSDK<ShapeMarkup_LineMarker>("PaperKit_c1f28409f8601238", 4090450923202337, this, []); }
-  set endLineMarker(value: ShapeMarkup_LineMarker) { callSDK<void>("PaperKit_c1f28409f8601238", 2662024843768109, this, [value]); }
+  get endLineMarker(): ShapeMarkup_LineMarker { return callSDK<ShapeMarkup_LineMarker>("PaperKit_e11dfd5beee01da3", 4090450923202337, this, []); }
+  set endLineMarker(value: ShapeMarkup_LineMarker) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2662024843768109, this, [value]); }
   /**
    * var attributedText: AttributedString { get set }
    * @availability iOS 27.0+
    */
-  get attributedText(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("PaperKit_c1f28409f8601238", 2133249873325031, this, []); }
-  set attributedText(value: _Foundation_AttributedString) { callSDK<void>("PaperKit_c1f28409f8601238", 3330496158685756, this, [value]); }
+  get attributedText(): _Foundation_AttributedString { return callSDK<_Foundation_AttributedString>("PaperKit_e11dfd5beee01da3", 2133249873325031, this, []); }
+  set attributedText(value: _Foundation_AttributedString) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3330496158685756, this, [value]); }
   /**
    * var startLineMarker: ShapeMarkup.LineMarker { get set }
    * @availability iOS 27.0+
    */
-  get startLineMarker(): ShapeMarkup_LineMarker { return callSDK<ShapeMarkup_LineMarker>("PaperKit_c1f28409f8601238", 296030494999538, this, []); }
-  set startLineMarker(value: ShapeMarkup_LineMarker) { callSDK<void>("PaperKit_c1f28409f8601238", 1325546229381282, this, [value]); }
+  get startLineMarker(): ShapeMarkup_LineMarker { return callSDK<ShapeMarkup_LineMarker>("PaperKit_e11dfd5beee01da3", 296030494999538, this, []); }
+  set startLineMarker(value: ShapeMarkup_LineMarker) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1325546229381282, this, [value]); }
   /**
    * var allowedInteractions: MarkupInteractions { get set }
    * @availability iOS 27.0+
    */
-  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_c1f28409f8601238", 3663607933938465, this, []); }
-  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_c1f28409f8601238", 1426083194520181, this, [value]); }
+  get allowedInteractions(): MarkupInteractions { return callSDK<MarkupInteractions>("PaperKit_e11dfd5beee01da3", 3663607933938465, this, []); }
+  set allowedInteractions(value: MarkupInteractions) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1426083194520181, this, [value]); }
   /**
    * mutating func removeContentUnsupported(by featureSet: FeatureSet) -> Bool
    * @availability iOS 27.0+
    */
-  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 2838517420180504, this, [featureSet]); }
+  removeContentUnsupported(featureSet: FeatureSet): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 2838517420180504, this, [featureSet]); }
   /**
    * var id: MarkupID<ShapeMarkup>
    * @availability iOS 27.0+
    */
-  get id(): MarkupID<ShapeMarkup> { return callSDK<MarkupID<ShapeMarkup>>("PaperKit_c1f28409f8601238", 3828196019250959, this, []); }
-  set id(value: MarkupID<ShapeMarkup>) { callSDK<void>("PaperKit_c1f28409f8601238", 2134699306022590, this, [value]); }
+  get id(): MarkupID<ShapeMarkup> { return callSDK<MarkupID<ShapeMarkup>>("PaperKit_e11dfd5beee01da3", 3828196019250959, this, []); }
+  set id(value: MarkupID<ShapeMarkup>) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2134699306022590, this, [value]); }
   /**
    * var frame: CGRect { get set }
    * @availability iOS 27.0+
    */
-  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_c1f28409f8601238", 3450580081712525, this, []); }
-  set frame(value: $SDK3) { callSDK<void>("PaperKit_c1f28409f8601238", 1363724546985920, this, [value]); }
+  get frame(): $SDK3 { return callSDK<$SDK3>("PaperKit_e11dfd5beee01da3", 3450580081712525, this, []); }
+  set frame(value: $SDK3) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1363724546985920, this, [value]); }
   /**
    * init(shape: ShapeMarkup.Shape, frame: CGRect, rotation: CGFloat = 0.0, fillColor: CGColor? = nil, strokeColor: CGColor? = nil, lineWidth: CGFloat = 1.0, opacity: CGFloat = 1.0, startLineMarker: ShapeMarkup.LineMarker = .none, endLineMarker: ShapeMarkup.LineMarker = .none, attributedText: AttributedString = Foundation.AttributedString(), allowedInteractions: MarkupInteractions = .all, autoresizing: MarkupAutoresizing = [], id: MarkupID<ShapeMarkup> = MarkupID())
    * @availability iOS 27.0+
    */
-  static initShapeFrameRotationFillColorStrokeColorLineWidthOpacityStartLineMarkerEndLineMarkerAttributedTextAllowedInteractionsAutoresizingId(shape: ShapeMarkup_Shape, frame: $SDK3, rotation?: number, fillColor?: $SDK5, strokeColor?: $SDK5, lineWidth?: number, opacity?: number, startLineMarker?: ShapeMarkup_LineMarker, endLineMarker?: ShapeMarkup_LineMarker, attributedText?: _Foundation_AttributedString, allowedInteractions?: MarkupInteractions, autoresizing?: MarkupAutoresizing, id?: MarkupID<ShapeMarkup>): ShapeMarkup { return callSDK<ShapeMarkup>("PaperKit_c1f28409f8601238", 955928237331065, undefined, [shape, frame, rotation, fillColor, strokeColor, lineWidth, opacity, startLineMarker, endLineMarker, attributedText, allowedInteractions, autoresizing, id]); }
+  static initShapeFrameRotationFillColorStrokeColorLineWidthOpacityStartLineMarkerEndLineMarkerAttributedTextAllowedInteractionsAutoresizingId(shape: ShapeMarkup_Shape, frame: $SDK3, rotation?: number, fillColor?: $SDK5, strokeColor?: $SDK5, lineWidth?: number, opacity?: number, startLineMarker?: ShapeMarkup_LineMarker, endLineMarker?: ShapeMarkup_LineMarker, attributedText?: _Foundation_AttributedString, allowedInteractions?: MarkupInteractions, autoresizing?: MarkupAutoresizing, id?: MarkupID<ShapeMarkup>): ShapeMarkup { return callSDK<ShapeMarkup>("PaperKit_e11dfd5beee01da3", 955928237331065, undefined, [shape, frame, rotation, fillColor, strokeColor, lineWidth, opacity, startLineMarker, endLineMarker, attributedText, allowedInteractions, autoresizing, id]); }
   /**
    * var shape: ShapeMarkup.Shape { get set }
    * @availability iOS 27.0+
    */
-  get shape(): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 1516008352881950, this, []); }
-  set shape(value: ShapeMarkup_Shape) { callSDK<void>("PaperKit_c1f28409f8601238", 1507234155909213, this, [value]); }
+  get shape(): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 1516008352881950, this, []); }
+  set shape(value: ShapeMarkup_Shape) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1507234155909213, this, [value]); }
   /**
    * var opacity: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get opacity(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 1111791110320197, this, []); }
-  set opacity(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 104053122265628, this, [value]); }
+  get opacity(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 1111791110320197, this, []); }
+  set opacity(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 104053122265628, this, [value]); }
   /**
    * var rotation: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get rotation(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 2036123786352973, this, []); }
-  set rotation(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 2882469922994003, this, [value]); }
+  get rotation(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 2036123786352973, this, []); }
+  set rotation(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2882469922994003, this, [value]); }
   /**
    * var fillColor: CGColor? { get set }
    * @availability iOS 27.0+
    */
-  get fillColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_c1f28409f8601238", 1729834533709780, this, []); }
-  set fillColor(value: $SDK5) { callSDK<void>("PaperKit_c1f28409f8601238", 1602861986457992, this, [value]); }
+  get fillColor(): $SDK5 { return callSDK<$SDK5>("PaperKit_e11dfd5beee01da3", 1729834533709780, this, []); }
+  set fillColor(value: $SDK5) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1602861986457992, this, [value]); }
   /**
    * var lineWidth: CGFloat { get set }
    * @availability iOS 27.0+
    */
-  get lineWidth(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 597858237107422, this, []); }
-  set lineWidth(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 2106373461336541, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 597858237107422, this, []); }
+  set lineWidth(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2106373461336541, this, [value]); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV": true };
 }
 
@@ -1779,52 +1779,52 @@ export class ShapeMarkup_Shape extends SDKHandle {
    * static func arrowShape(cornerPoint: CGPoint) -> ShapeMarkup.Shape
    * @availability iOS 27.0+
    */
-  static arrowShape(cornerPoint: $SDK6): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 4212036394025405, undefined, [cornerPoint]); }
+  static arrowShape(cornerPoint: $SDK6): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 4212036394025405, undefined, [cornerPoint]); }
   /**
    * static func chatBubble(tailLocation: CGPoint, tailAngle: CGFloat) -> ShapeMarkup.Shape
    * @availability iOS 27.0+
    */
-  static chatBubble(tailLocation: $SDK6, tailAngle: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 1707404726321604, undefined, [tailLocation, tailAngle]); }
+  static chatBubble(tailLocation: $SDK6, tailAngle: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 1707404726321604, undefined, [tailLocation, tailAngle]); }
   /**
    * static func regularPolygon(sides: Int) -> ShapeMarkup.Shape
    * @availability iOS 27.0+
    */
-  static regularPolygon(sides: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 3125534799066769, undefined, [sides]); }
+  static regularPolygon(sides: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 3125534799066769, undefined, [sides]); }
   /**
    * static func roundedRectangle(cornerRadius: CGFloat) -> ShapeMarkup.Shape
    * @availability iOS 27.0+
    */
-  static roundedRectangle(cornerRadius: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 1493363714908813, undefined, [cornerRadius]); }
+  static roundedRectangle(cornerRadius: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 1493363714908813, undefined, [cornerRadius]); }
   /**
    * var configurationType: ShapeConfiguration.Shape { get }
    * @availability iOS 27.0+
    */
-  get configurationType(): ShapeConfiguration_Shape { return callSDK<ShapeConfiguration_Shape>("PaperKit_c1f28409f8601238", 3150859805858331, this, []); }
+  get configurationType(): ShapeConfiguration_Shape { return callSDK<ShapeConfiguration_Shape>("PaperKit_e11dfd5beee01da3", 3150859805858331, this, []); }
   /**
    * init(configurationType: ShapeConfiguration.Shape)
    * @availability iOS 27.0+
    */
-  static init(configurationType: ShapeConfiguration_Shape): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 2514242508588384, undefined, [configurationType]); }
+  static init(configurationType: ShapeConfiguration_Shape): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 2514242508588384, undefined, [configurationType]); }
   /**
    * var supportsLineMarkers: Bool { get }
    * @availability iOS 27.0+
    */
-  get supportsLineMarkers(): boolean { return callSDK<boolean>("PaperKit_c1f28409f8601238", 847011123266639, this, []); }
+  get supportsLineMarkers(): boolean { return callSDK<boolean>("PaperKit_e11dfd5beee01da3", 847011123266639, this, []); }
   /**
    * static func line(start: CGPoint, control: CGPoint? = nil, end: CGPoint) -> ShapeMarkup.Shape
    * @availability iOS 27.0+
    */
-  static line(start: $SDK6, control: $SDK7, end: $SDK6): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 3327117495140332, undefined, [start, control, end]); }
+  static line(start: $SDK6, control: $SDK7, end: $SDK6): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 3327117495140332, undefined, [start, control, end]); }
   /**
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 225987964752950, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 225987964752950, this, []); }
   /**
    * static func star(points: Int, innerRadius: CGFloat) -> ShapeMarkup.Shape
    * @availability iOS 27.0+
    */
-  static star(points: number, innerRadius: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_c1f28409f8601238", 2746478746416466, undefined, [points, innerRadius]); }
+  static star(points: number, innerRadius: number): ShapeMarkup_Shape { return callSDK<ShapeMarkup_Shape>("PaperKit_e11dfd5beee01da3", 2746478746416466, undefined, [points, innerRadius]); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O": true };
 }
 
@@ -1837,18 +1837,18 @@ export class ShapeMarkup_Shape_ArrowShape extends SDKHandle {
    * init(cornerPoint: CGPoint)
    * @availability iOS 27.0+
    */
-  static init(cornerPoint: $SDK6): ShapeMarkup_Shape_ArrowShape { return callSDK<ShapeMarkup_Shape_ArrowShape>("PaperKit_c1f28409f8601238", 3643469764382017, undefined, [cornerPoint]); }
+  static init(cornerPoint: $SDK6): ShapeMarkup_Shape_ArrowShape { return callSDK<ShapeMarkup_Shape_ArrowShape>("PaperKit_e11dfd5beee01da3", 3643469764382017, undefined, [cornerPoint]); }
   /**
    * var cornerPoint: CGPoint
    * @availability iOS 27.0+
    */
-  get cornerPoint(): $SDK6 { return callSDK<$SDK6>("PaperKit_c1f28409f8601238", 3248878402750587, this, []); }
-  set cornerPoint(value: $SDK6) { callSDK<void>("PaperKit_c1f28409f8601238", 324326498648729, this, [value]); }
+  get cornerPoint(): $SDK6 { return callSDK<$SDK6>("PaperKit_e11dfd5beee01da3", 3248878402750587, this, []); }
+  set cornerPoint(value: $SDK6) { callSDK<void>("PaperKit_e11dfd5beee01da3", 324326498648729, this, [value]); }
   /**
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 715566988145816, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 715566988145816, this, []); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O05ArrowC0V": true };
 }
 
@@ -1861,24 +1861,24 @@ export class ShapeMarkup_Shape_ChatBubble extends SDKHandle {
    * init(tailLocation: CGPoint, tailAngle: CGFloat)
    * @availability iOS 27.0+
    */
-  static init(tailLocation: $SDK6, tailAngle: number): ShapeMarkup_Shape_ChatBubble { return callSDK<ShapeMarkup_Shape_ChatBubble>("PaperKit_c1f28409f8601238", 32961906958498, undefined, [tailLocation, tailAngle]); }
+  static init(tailLocation: $SDK6, tailAngle: number): ShapeMarkup_Shape_ChatBubble { return callSDK<ShapeMarkup_Shape_ChatBubble>("PaperKit_e11dfd5beee01da3", 32961906958498, undefined, [tailLocation, tailAngle]); }
   /**
    * var tailLocation: CGPoint
    * @availability iOS 27.0+
    */
-  get tailLocation(): $SDK6 { return callSDK<$SDK6>("PaperKit_c1f28409f8601238", 3479803674056450, this, []); }
-  set tailLocation(value: $SDK6) { callSDK<void>("PaperKit_c1f28409f8601238", 2735932548221816, this, [value]); }
+  get tailLocation(): $SDK6 { return callSDK<$SDK6>("PaperKit_e11dfd5beee01da3", 3479803674056450, this, []); }
+  set tailLocation(value: $SDK6) { callSDK<void>("PaperKit_e11dfd5beee01da3", 2735932548221816, this, [value]); }
   /**
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 2454141789461314, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 2454141789461314, this, []); }
   /**
    * var tailAngle: CGFloat
    * @availability iOS 27.0+
    */
-  get tailAngle(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 1943409904268836, this, []); }
-  set tailAngle(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 361002734679204, this, [value]); }
+  get tailAngle(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 1943409904268836, this, []); }
+  set tailAngle(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 361002734679204, this, [value]); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O10ChatBubbleV": true };
 }
 
@@ -1891,12 +1891,12 @@ export class ShapeMarkup_Shape_Ellipse extends SDKHandle {
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 3401246848422888, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 3401246848422888, this, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ShapeMarkup_Shape_Ellipse { return callSDK<ShapeMarkup_Shape_Ellipse>("PaperKit_c1f28409f8601238", 2366552704641735, undefined, []); }
+  static init(): ShapeMarkup_Shape_Ellipse { return callSDK<ShapeMarkup_Shape_Ellipse>("PaperKit_e11dfd5beee01da3", 2366552704641735, undefined, []); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O7EllipseV": true };
 }
 
@@ -1909,30 +1909,30 @@ export class ShapeMarkup_Shape_Line extends SDKHandle {
    * var end: CGPoint
    * @availability iOS 27.0+
    */
-  get end(): $SDK6 { return callSDK<$SDK6>("PaperKit_c1f28409f8601238", 3520210613253267, this, []); }
-  set end(value: $SDK6) { callSDK<void>("PaperKit_c1f28409f8601238", 1754928849711489, this, [value]); }
+  get end(): $SDK6 { return callSDK<$SDK6>("PaperKit_e11dfd5beee01da3", 3520210613253267, this, []); }
+  set end(value: $SDK6) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1754928849711489, this, [value]); }
   /**
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 2312832068778608, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 2312832068778608, this, []); }
   /**
    * init(start: CGPoint, control: CGPoint? = nil, end: CGPoint)
    * @availability iOS 27.0+
    */
-  static init(start: $SDK6, control: $SDK7, end: $SDK6): ShapeMarkup_Shape_Line { return callSDK<ShapeMarkup_Shape_Line>("PaperKit_c1f28409f8601238", 2392643438099702, undefined, [start, control, end]); }
+  static init(start: $SDK6, control: $SDK7, end: $SDK6): ShapeMarkup_Shape_Line { return callSDK<ShapeMarkup_Shape_Line>("PaperKit_e11dfd5beee01da3", 2392643438099702, undefined, [start, control, end]); }
   /**
    * var start: CGPoint
    * @availability iOS 27.0+
    */
-  get start(): $SDK6 { return callSDK<$SDK6>("PaperKit_c1f28409f8601238", 77093343633604, this, []); }
-  set start(value: $SDK6) { callSDK<void>("PaperKit_c1f28409f8601238", 1824518472865143, this, [value]); }
+  get start(): $SDK6 { return callSDK<$SDK6>("PaperKit_e11dfd5beee01da3", 77093343633604, this, []); }
+  set start(value: $SDK6) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1824518472865143, this, [value]); }
   /**
    * var control: CGPoint?
    * @availability iOS 27.0+
    */
-  get control(): $SDK7 { return callSDK<$SDK7>("PaperKit_c1f28409f8601238", 1683543181261505, this, []); }
-  set control(value: $SDK7) { callSDK<void>("PaperKit_c1f28409f8601238", 3075400838760901, this, [value]); }
+  get control(): $SDK7 { return callSDK<$SDK7>("PaperKit_e11dfd5beee01da3", 1683543181261505, this, []); }
+  set control(value: $SDK7) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3075400838760901, this, [value]); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O4LineV": true };
 }
 
@@ -1945,18 +1945,18 @@ export class ShapeMarkup_Shape_Rectangle extends SDKHandle {
    * var cornerRadius: CGFloat?
    * @availability iOS 27.0+
    */
-  get cornerRadius(): (number) | null { return callSDK<(number) | null>("PaperKit_c1f28409f8601238", 2838797899255309, this, []); }
-  set cornerRadius(value: (number) | null) { callSDK<void>("PaperKit_c1f28409f8601238", 3772091177750475, this, [value]); }
+  get cornerRadius(): (number) | null { return callSDK<(number) | null>("PaperKit_e11dfd5beee01da3", 2838797899255309, this, []); }
+  set cornerRadius(value: (number) | null) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3772091177750475, this, [value]); }
   /**
    * init(cornerRadius: CGFloat? = nil)
    * @availability iOS 27.0+
    */
-  static init(cornerRadius?: (number) | null): ShapeMarkup_Shape_Rectangle { return callSDK<ShapeMarkup_Shape_Rectangle>("PaperKit_c1f28409f8601238", 3765499855962352, undefined, [cornerRadius]); }
+  static init(cornerRadius?: (number) | null): ShapeMarkup_Shape_Rectangle { return callSDK<ShapeMarkup_Shape_Rectangle>("PaperKit_e11dfd5beee01da3", 3765499855962352, undefined, [cornerRadius]); }
   /**
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 2348135447093738, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 2348135447093738, this, []); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O9RectangleV": true };
 }
 
@@ -1969,18 +1969,18 @@ export class ShapeMarkup_Shape_RegularPolygon extends SDKHandle {
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 2475282461471463, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 2475282461471463, this, []); }
   /**
    * init(sides: Int)
    * @availability iOS 27.0+
    */
-  static init(sides: number): ShapeMarkup_Shape_RegularPolygon { return callSDK<ShapeMarkup_Shape_RegularPolygon>("PaperKit_c1f28409f8601238", 2160826410086159, undefined, [sides]); }
+  static init(sides: number): ShapeMarkup_Shape_RegularPolygon { return callSDK<ShapeMarkup_Shape_RegularPolygon>("PaperKit_e11dfd5beee01da3", 2160826410086159, undefined, [sides]); }
   /**
    * var sides: Int
    * @availability iOS 27.0+
    */
-  get sides(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 3239830115828122, this, []); }
-  set sides(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 3690626943399545, this, [value]); }
+  get sides(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 3239830115828122, this, []); }
+  set sides(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 3690626943399545, this, [value]); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O14RegularPolygonV": true };
 }
 
@@ -1993,56 +1993,56 @@ export class ShapeMarkup_Shape_Star extends SDKHandle {
    * var innerRadius: CGFloat
    * @availability iOS 27.0+
    */
-  get innerRadius(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 3263471188038620, this, []); }
-  set innerRadius(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 1268863543030900, this, [value]); }
+  get innerRadius(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 3263471188038620, this, []); }
+  set innerRadius(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1268863543030900, this, [value]); }
   /**
    * var path: CGPath { get }
    * @availability iOS 27.0+
    */
-  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_c1f28409f8601238", 124792454744973, this, []); }
+  get path(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PaperKit_e11dfd5beee01da3", 124792454744973, this, []); }
   /**
    * init(points: Int, innerRadius: CGFloat)
    * @availability iOS 27.0+
    */
-  static init(points: number, innerRadius: number): ShapeMarkup_Shape_Star { return callSDK<ShapeMarkup_Shape_Star>("PaperKit_c1f28409f8601238", 1146682962678385, undefined, [points, innerRadius]); }
+  static init(points: number, innerRadius: number): ShapeMarkup_Shape_Star { return callSDK<ShapeMarkup_Shape_Star>("PaperKit_e11dfd5beee01da3", 1146682962678385, undefined, [points, innerRadius]); }
   /**
    * var points: Int
    * @availability iOS 27.0+
    */
-  get points(): number { return callSDK<number>("PaperKit_c1f28409f8601238", 3559858596823506, this, []); }
-  set points(value: number) { callSDK<void>("PaperKit_c1f28409f8601238", 1457425706468792, this, [value]); }
+  get points(): number { return callSDK<number>("PaperKit_e11dfd5beee01da3", 3559858596823506, this, []); }
+  set points(value: number) { callSDK<void>("PaperKit_e11dfd5beee01da3", 1457425706468792, this, [value]); }
   declare readonly $type: { "s:8PaperKit11ShapeMarkupV0C0O4StarV": true };
 }
 
-registerSDKClass("PaperKit.FeatureSet", FeatureSet, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"insert":{"id":3954452415099511},"remove":{"id":3650163303807623},"contains":{"id":2221442660989743},"isSubset":{"id":3837054559629387}} });
-registerSDKClass("PaperKit.ImageMarkup", ImageMarkup, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"replaceImageWith":{"id":4369733700124434},"replaceImageWith25937":{"id":324336084161081},"removeContentUnsupported":{"id":3690435160899727}} });
-registerSDKClass("PaperKit.LinkMarkup", LinkMarkup, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"removeContentUnsupported":{"id":1091165175293636}} });
-registerSDKClass("PaperKit.LoupeMarkup", LoupeMarkup, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"removeContentUnsupported":{"id":1949900551758906}} });
+registerSDKClass("PaperKit.FeatureSet", FeatureSet, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"insert":{"id":3954452415099511},"remove":{"id":3650163303807623},"contains":{"id":2221442660989743},"isSubset":{"id":3837054559629387}} });
+registerSDKClass("PaperKit.ImageMarkup", ImageMarkup, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"replaceImageWith":{"id":4369733700124434},"replaceImageWith25937":{"id":324336084161081},"removeContentUnsupported":{"id":3690435160899727}} });
+registerSDKClass("PaperKit.LinkMarkup", LinkMarkup, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"removeContentUnsupported":{"id":1091165175293636}} });
+registerSDKClass("PaperKit.LoupeMarkup", LoupeMarkup, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"removeContentUnsupported":{"id":1949900551758906}} });
 registerSDKProtocol("s:8PaperKit6MarkupP", {"applyTransform":"applyTransform(_:)","removeContentUnsupportedBy":"removeContentUnsupported(by:)"});
-registerSDKClass("PaperKit.MarkupAdornment", MarkupAdornment, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.MarkupAdornment.Anchor", MarkupAdornment_Anchor, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"location":{"id":692741307699425}} });
-registerSDKClass("PaperKit.MarkupAdornment.DragRegion", MarkupAdornment_DragRegion, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.MarkupAdornment.ImageConfiguration", MarkupAdornment_ImageConfiguration, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.MarkupEditViewController", MarkupEditViewController, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"viewDidLoad":{"id":331636457180062}} });
+registerSDKClass("PaperKit.MarkupAdornment", MarkupAdornment, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.MarkupAdornment.Anchor", MarkupAdornment_Anchor, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"location":{"id":692741307699425}} });
+registerSDKClass("PaperKit.MarkupAdornment.DragRegion", MarkupAdornment_DragRegion, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.MarkupAdornment.ImageConfiguration", MarkupAdornment_ImageConfiguration, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.MarkupEditViewController", MarkupEditViewController, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"viewDidLoad":{"id":331636457180062}} });
 registerSDKProtocol("s:8PaperKit24MarkupEditViewControllerC8DelegateP", {"markupEditViewControllerInsertNewShape":"markupEditViewController(_:insertNewShape:)","markupEditViewControllerInsertNewTextbox":"markupEditViewControllerInsertNewTextbox(_:)","markupEditViewControllerInsertNewLineWithStartMarkerEndMarker":"markupEditViewController(_:insertNewLineWithStartMarker:endMarker:)","markupEditViewControllerInsertNewContents":"markupEditViewController(_:insertNewContents:)"});
-registerSDKClass("PaperKit.MarkupOrderedSet", MarkupOrderedSet, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"firstIndex":{"id":3495255623380466},"makeIterator":{"id":3933062528857571},"removeStroke":{"id":1568316769902384},"removeElement":{"id":805727657240558},"updateOrAppend":{"id":2911207309689846},"index":{"id":2237218949601843},"append":{"id":1004187276115692},"insert":{"id":790442488586394},"removeAt":{"id":582356795746505},"remove":{"id":3476900439871527},"contains":{"id":2026692690623238},"subscript":{"id":2998602748485970},"subscript31870":{"id":1830326272979447},"subscript64709":{"id":2345142801713030}} });
-registerSDKClass("PaperKit.MarkupOrderedSet.ElementID", MarkupOrderedSet_ElementID, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.MarkupOrderedSet.ElementIDs", MarkupOrderedSet_ElementIDs, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"index":{"id":2286489984946075},"subscript":{"id":417131521337792}} });
-registerSDKClass("PaperKit.MarkupOrderedSet.Iterator", MarkupOrderedSet_Iterator, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"next":{"id":2323745502896928}} });
-registerSDKClass("PaperKit.PaperMarkup", PaperMarkup, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"insertNewLine":{"id":4142205071435851},"insertNewImage":{"id":1569416803558958},"insertNewShape":{"id":654955027725251},"insertNewTextboxAttributedTextFrameRotation":{"id":199747868717462},"insertNewTextboxAttributedTextFrameRotation68161":{"id":2692184094819766},"transformContent":{"id":4384000720450614},"dataRepresentation":{"id":2828706909461563},"removeContentUnsupported":{"id":269479077257103},"draw":{"id":3455614697098113},"appendContentsOf":{"id":2016355040989539},"appendContentsOf77581":{"id":1978333112825980}} });
-registerSDKClass("PaperKit.PaperMarkupViewController", PaperMarkupViewController, { module: "PaperKit_c1f28409f8601238", properties: {"canBecomeFirstResponder":860671758984111,"undoManager":1708717491442016,"contentView":2525565928528982,"selectedMarkup":2726719786967245,"adornments":2067895991269792,"isEditable":3164937462437449,"drawingTool":332242944923047,"isRulerActive":71346284812284,"directTouchMode":3831726550322444,"contentVisibleFrame":3328066784388463,"scrollConfiguration":236481536106123,"supportedFeatureSet":2414744017377237,"indirectPointerTouchMode":2902650867108977,"showsVerticalScrollIndicator":1382738052233859,"directTouchAutomaticallyDraws":3907742723104563,"showsHorizontalScrollIndicator":2187256602526684,"markup":4288332750789323,"delegate":2740554536009129,"selection":14954155192093,"zoomRange":80076085662767}, methods: {"toolPickerIsRulerActiveDidChange":{"id":3887834931561202},"toolPickerSelectedToolItemDidChange":{"id":153811270536358},"viewDidLoad":{"id":2259800918780802},"markupEditViewControllerInsertNewShape":{"id":655876697052557},"markupEditViewControllerInsertNewContents":{"id":232059807648270},"markupEditViewControllerInsertNewLineWithStartMarkerEndMarker":{"id":796770641756602},"markupEditViewControllerInsertNewTextbox":{"id":767519184604313},"adornmentFrame":{"id":910061910328271},"setContentVisibleFrame66674":{"id":3818457583141056},"suggestedFrameForInserting":{"id":4283295450344569}} });
+registerSDKClass("PaperKit.MarkupOrderedSet", MarkupOrderedSet, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"firstIndex":{"id":3495255623380466},"makeIterator":{"id":3933062528857571},"removeStroke":{"id":1568316769902384},"removeElement":{"id":805727657240558},"updateOrAppend":{"id":2911207309689846},"index":{"id":2237218949601843},"append":{"id":1004187276115692},"insert":{"id":790442488586394},"removeAt":{"id":582356795746505},"remove":{"id":3476900439871527},"contains":{"id":2026692690623238},"subscript":{"id":2998602748485970},"subscript31870":{"id":1830326272979447},"subscript64709":{"id":2345142801713030}} });
+registerSDKClass("PaperKit.MarkupOrderedSet.ElementID", MarkupOrderedSet_ElementID, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.MarkupOrderedSet.ElementIDs", MarkupOrderedSet_ElementIDs, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"index":{"id":2286489984946075},"subscript":{"id":417131521337792}} });
+registerSDKClass("PaperKit.MarkupOrderedSet.Iterator", MarkupOrderedSet_Iterator, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":2323745502896928}} });
+registerSDKClass("PaperKit.PaperMarkup", PaperMarkup, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"insertNewLine":{"id":4142205071435851},"insertNewImage":{"id":1569416803558958},"insertNewShape":{"id":654955027725251},"insertNewTextboxAttributedTextFrameRotation":{"id":199747868717462},"insertNewTextboxAttributedTextFrameRotation68161":{"id":2692184094819766},"transformContent":{"id":4384000720450614},"dataRepresentation":{"id":2828706909461563},"removeContentUnsupported":{"id":269479077257103},"draw":{"id":3455614697098113},"appendContentsOf":{"id":2016355040989539},"appendContentsOf77581":{"id":1978333112825980}} });
+registerSDKClass("PaperKit.PaperMarkupViewController", PaperMarkupViewController, { module: "PaperKit_e11dfd5beee01da3", properties: {"canBecomeFirstResponder":860671758984111,"undoManager":1708717491442016,"contentView":2525565928528982,"selectedMarkup":2726719786967245,"adornments":2067895991269792,"isEditable":3164937462437449,"drawingTool":332242944923047,"isRulerActive":71346284812284,"directTouchMode":3831726550322444,"contentVisibleFrame":3328066784388463,"scrollConfiguration":236481536106123,"supportedFeatureSet":2414744017377237,"indirectPointerTouchMode":2902650867108977,"showsVerticalScrollIndicator":1382738052233859,"directTouchAutomaticallyDraws":3907742723104563,"showsHorizontalScrollIndicator":2187256602526684,"markup":4288332750789323,"delegate":2740554536009129,"selection":14954155192093,"zoomRange":80076085662767}, methods: {"toolPickerIsRulerActiveDidChange":{"id":3887834931561202},"toolPickerSelectedToolItemDidChange":{"id":153811270536358},"viewDidLoad":{"id":2259800918780802},"markupEditViewControllerInsertNewShape":{"id":655876697052557},"markupEditViewControllerInsertNewContents":{"id":232059807648270},"markupEditViewControllerInsertNewLineWithStartMarkerEndMarker":{"id":796770641756602},"markupEditViewControllerInsertNewTextbox":{"id":767519184604313},"adornmentFrame":{"id":910061910328271},"setContentVisibleFrame66674":{"id":3818457583141056},"suggestedFrameForInserting":{"id":4283295450344569}} });
 registerSDKProtocol("s:8PaperKit0A20MarkupViewControllerC8DelegateP", {"paperMarkupViewControllerDidChangeMarkup":"paperMarkupViewControllerDidChangeMarkup(_:)","paperMarkupViewControllerDidChangeSelection":"paperMarkupViewControllerDidChangeSelection(_:)","paperMarkupViewControllerDidBeginDrawing":"paperMarkupViewControllerDidBeginDrawing(_:)","paperMarkupViewControllerDidChangeContentVisibleFrame":"paperMarkupViewControllerDidChangeContentVisibleFrame(_:)","paperMarkupViewControllerDidTapAdornmentWithID":"paperMarkupViewController(_:didTapAdornmentWithID:)","paperMarkupViewControllerWillUpdateAdornmentWithIDToProposedAnchor":"paperMarkupViewController(_:willUpdateAdornmentWithID:toProposedAnchor:)","paperMarkupViewControllerDidUpdateAdornmentWithIDToAnchor":"paperMarkupViewController(_:didUpdateAdornmentWithID:toAnchor:)"});
-registerSDKClass("PaperKit.PaperMarkupViewController.ScrollConfiguration", PaperMarkupViewController_ScrollConfiguration, { module: "PaperKit_c1f28409f8601238", properties: {"horizontalScrollIndicatorInsets":760343180068218,"isScrollEnabled":1297182193621124,"visibleScrollIndicators":1455032136819507,"verticalScrollIndicatorInsets":549903883390855,"bouncesZoom":1404321242671603,"contentInset":647136535853426,"scrollsToTop":2076177034279148,"alwaysBounces":1571669218494277,"adjustedContentInset":2494839560785119,"isDirectionalLockEnabled":1252767422591529,"contentInsetAdjustmentBehavior":2808428094689143,"bounces":2739595377304543,"zoomScale":2151641345119663} });
-registerSDKClass("PencilKit.PKStroke", PKStroke, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"applyTransform":{"id":2879151968744147},"removeContentUnsupported":{"id":2472167966164800}} }, true);
-registerSDKClass("PaperKit.RenderingOptions", RenderingOptions, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeConfiguration", ShapeConfiguration, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup", ShapeMarkup, { module: "PaperKit_c1f28409f8601238", properties: {}, methods: {"removeContentUnsupported":{"id":2838517420180504}} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape", ShapeMarkup_Shape, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.ArrowShape", ShapeMarkup_Shape_ArrowShape, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.ChatBubble", ShapeMarkup_Shape_ChatBubble, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.Ellipse", ShapeMarkup_Shape_Ellipse, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.Line", ShapeMarkup_Shape_Line, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.Rectangle", ShapeMarkup_Shape_Rectangle, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.RegularPolygon", ShapeMarkup_Shape_RegularPolygon, { module: "PaperKit_c1f28409f8601238", properties: {} });
-registerSDKClass("PaperKit.ShapeMarkup.Shape.Star", ShapeMarkup_Shape_Star, { module: "PaperKit_c1f28409f8601238", properties: {} });
+registerSDKClass("PaperKit.PaperMarkupViewController.ScrollConfiguration", PaperMarkupViewController_ScrollConfiguration, { module: "PaperKit_e11dfd5beee01da3", properties: {"horizontalScrollIndicatorInsets":760343180068218,"isScrollEnabled":1297182193621124,"visibleScrollIndicators":1455032136819507,"verticalScrollIndicatorInsets":549903883390855,"bouncesZoom":1404321242671603,"contentInset":647136535853426,"scrollsToTop":2076177034279148,"alwaysBounces":1571669218494277,"adjustedContentInset":2494839560785119,"isDirectionalLockEnabled":1252767422591529,"contentInsetAdjustmentBehavior":2808428094689143,"bounces":2739595377304543,"zoomScale":2151641345119663} });
+registerSDKClass("PencilKit.PKStroke", PKStroke, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"applyTransform":{"id":2879151968744147},"removeContentUnsupported":{"id":2472167966164800}} }, true);
+registerSDKClass("PaperKit.RenderingOptions", RenderingOptions, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeConfiguration", ShapeConfiguration, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup", ShapeMarkup, { module: "PaperKit_e11dfd5beee01da3", properties: {}, methods: {"removeContentUnsupported":{"id":2838517420180504}} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape", ShapeMarkup_Shape, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.ArrowShape", ShapeMarkup_Shape_ArrowShape, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.ChatBubble", ShapeMarkup_Shape_ChatBubble, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.Ellipse", ShapeMarkup_Shape_Ellipse, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.Line", ShapeMarkup_Shape_Line, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.Rectangle", ShapeMarkup_Shape_Rectangle, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.RegularPolygon", ShapeMarkup_Shape_RegularPolygon, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("PaperKit.ShapeMarkup.Shape.Star", ShapeMarkup_Shape_Star, { module: "PaperKit_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:9PencilKit6PKToolP", {});

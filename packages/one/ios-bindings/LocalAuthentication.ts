@@ -27,7 +27,7 @@ export const LAAccessControlOperation = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (LAAccessControlOperation) | null { return callSDK<(LAAccessControlOperation) | null>("LocalAuthentication_c1f28409f8601238", 3277129640848719, undefined, [rawValue]); }
+  init(rawValue: number): (LAAccessControlOperation) | null { return callSDK<(LAAccessControlOperation) | null>("LocalAuthentication_e11dfd5beee01da3", 3277129640848719, undefined, [rawValue]); }
 };
 
 /**
@@ -39,24 +39,24 @@ export class LAAuthenticationRequirement extends SDKHandle {
    * class func biometry(fallback: LABiometryFallbackRequirement) -> Self
    * @availability iOS 16.0+
    */
-  static biometryFallback(fallback: LABiometryFallbackRequirement): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_c1f28409f8601238", 1136199431996509, undefined, [fallback]); }
+  static biometryFallback(fallback: LABiometryFallbackRequirement): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_e11dfd5beee01da3", 1136199431996509, undefined, [fallback]); }
   /**
    * class var biometryCurrentSet: LAAuthenticationRequirement { get }
    * @availability iOS 16.0+
    */
-  static get biometryCurrentSet(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_c1f28409f8601238", 2638529288994567, undefined, []); }
+  static get biometryCurrentSet(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_e11dfd5beee01da3", 2638529288994567, undefined, []); }
   /**
    * class var biometry: LAAuthenticationRequirement { get }
    * @availability iOS 16.0+
    */
-  static get biometry(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_c1f28409f8601238", 3205498814267498, undefined, []); }
+  static get biometry(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_e11dfd5beee01da3", 3205498814267498, undefined, []); }
   /**
    * class var `default`: LAAuthenticationRequirement { get }
    * @availability iOS 16.0+
    */
-  static get default(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_c1f28409f8601238", 2660031913296395, undefined, []); }
+  static get default(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_e11dfd5beee01da3", 2660031913296395, undefined, []); }
   /** init() */
-  static init(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_c1f28409f8601238", 241154033004805, undefined, []); }
+  static init(): LAAuthenticationRequirement { return callSDK<LAAuthenticationRequirement>("LocalAuthentication_e11dfd5beee01da3", 241154033004805, undefined, []); }
   declare readonly $type: { "c:objc(cs)LAAuthenticationRequirement": true; "c:objc(cs)NSObject": true };
 }
 
@@ -69,14 +69,14 @@ export class LABiometryFallbackRequirement extends SDKHandle {
    * class var `default`: LABiometryFallbackRequirement { get }
    * @availability iOS 16.0+
    */
-  static get default(): LABiometryFallbackRequirement { return callSDK<LABiometryFallbackRequirement>("LocalAuthentication_c1f28409f8601238", 4197983050453705, undefined, []); }
+  static get default(): LABiometryFallbackRequirement { return callSDK<LABiometryFallbackRequirement>("LocalAuthentication_e11dfd5beee01da3", 4197983050453705, undefined, []); }
   /**
    * class var devicePasscode: LABiometryFallbackRequirement { get }
    * @availability iOS 16.0+
    */
-  static get devicePasscode(): LABiometryFallbackRequirement { return callSDK<LABiometryFallbackRequirement>("LocalAuthentication_c1f28409f8601238", 1188276353260495, undefined, []); }
+  static get devicePasscode(): LABiometryFallbackRequirement { return callSDK<LABiometryFallbackRequirement>("LocalAuthentication_e11dfd5beee01da3", 1188276353260495, undefined, []); }
   /** init() */
-  static init(): LABiometryFallbackRequirement { return callSDK<LABiometryFallbackRequirement>("LocalAuthentication_c1f28409f8601238", 965626775475389, undefined, []); }
+  static init(): LABiometryFallbackRequirement { return callSDK<LABiometryFallbackRequirement>("LocalAuthentication_e11dfd5beee01da3", 965626775475389, undefined, []); }
   declare readonly $type: { "c:objc(cs)LABiometryFallbackRequirement": true; "c:objc(cs)NSObject": true };
 }
 
@@ -92,12 +92,12 @@ export const LABiometryType = {
    * @availability iOS 11.0+
    * @deprecated iOS 11.2
    */
-  get LABiometryNone(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_c1f28409f8601238", 1346716864366228, undefined, []); },
+  get LABiometryNone(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_e11dfd5beee01da3", 1346716864366228, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (LABiometryType) | null { return callSDK<(LABiometryType) | null>("LocalAuthentication_c1f28409f8601238", 2239274463410268, undefined, [rawValue]); }
+  init(rawValue: number): (LABiometryType) | null { return callSDK<(LABiometryType) | null>("LocalAuthentication_e11dfd5beee01da3", 2239274463410268, undefined, [rawValue]); }
 };
 
 /**
@@ -111,7 +111,7 @@ export const LACompanionType = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (LACompanionType) | null { return callSDK<(LACompanionType) | null>("LocalAuthentication_c1f28409f8601238", 4228204142570997, undefined, [rawValue]); }
+  init(rawValue: number): (LACompanionType) | null { return callSDK<(LACompanionType) | null>("LocalAuthentication_e11dfd5beee01da3", 4228204142570997, undefined, [rawValue]); }
 };
 
 /**
@@ -123,87 +123,87 @@ export class LAContext extends SDKHandle {
    * func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool
    * @availability iOS 8.0+
    */
-  canEvaluatePolicy(policy: LAPolicy): { $ret: boolean; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (_Foundation_NSError) | null } }>("LocalAuthentication_c1f28409f8601238", 468587203890238, this, [policy, null]); }
+  canEvaluatePolicy(policy: LAPolicy): { $ret: boolean; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: boolean; $out: { "error": (_Foundation_NSError) | null } }>("LocalAuthentication_e11dfd5beee01da3", 468587203890238, this, [policy, null]); }
   /**
    * func evaluateAccessControl(_ accessControl: SecAccessControl, operation: LAAccessControlOperation, localizedReason: String) async throws -> Bool
    * @availability iOS 9.0+
    */
-  evaluateAccessControl(accessControl: _Security_SecAccessControl, operation: LAAccessControlOperation, localizedReason: string, reply: $SDK1): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 2383328253524527, this, [accessControl, operation, localizedReason, reply], [null,null,null,{"callback":{"out":[]}}]); }
+  evaluateAccessControl(accessControl: _Security_SecAccessControl, operation: LAAccessControlOperation, localizedReason: string, reply: $SDK1): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2383328253524527, this, [accessControl, operation, localizedReason, reply], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func evaluatePolicy(_ policy: LAPolicy, localizedReason: String) async throws -> Bool
    * @availability iOS 8.0+
    */
-  evaluatePolicy(policy: LAPolicy, localizedReason: string, reply: $SDK1): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 2041345328684310, this, [policy, localizedReason, reply], [null,null,{"callback":{"out":[]}}]); }
+  evaluatePolicy(policy: LAPolicy, localizedReason: string, reply: $SDK1): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2041345328684310, this, [policy, localizedReason, reply], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): LAContext { return callSDK<LAContext>("LocalAuthentication_c1f28409f8601238", 1123215201334549, undefined, []); }
+  static init(): LAContext { return callSDK<LAContext>("LocalAuthentication_e11dfd5beee01da3", 1123215201334549, undefined, []); }
   /**
    * func invalidate()
    * @availability iOS 9.0+
    */
-  invalidate(): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 776408388122406, this, []); }
+  invalidate(): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 776408388122406, this, []); }
   /**
    * func isCredentialSet(_ type: LACredentialType) -> Bool
    * @availability iOS 9.0+
    */
-  isCredentialSet(type: LACredentialType): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 828319176592987, this, [type]); }
+  isCredentialSet(type: LACredentialType): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 828319176592987, this, [type]); }
   /**
    * func setCredential(_ credential: Data?, type: LACredentialType) -> Bool
    * @availability iOS 9.0+
    */
-  setCredential(credential: (ArrayBuffer) | null, type: LACredentialType): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 2235669221909934, this, [credential, type]); }
+  setCredential(credential: (ArrayBuffer) | null, type: LACredentialType): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 2235669221909934, this, [credential, type]); }
   /**
    * var biometryType: LABiometryType { get }
    * @availability iOS 11.0+
    */
-  get biometryType(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_c1f28409f8601238", 2251461676856285, this, []); }
+  get biometryType(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_e11dfd5beee01da3", 2251461676856285, this, []); }
   /**
    * var domainState: LADomainState { get }
    * @availability iOS 18.0+
    */
-  get domainState(): LADomainState { return callSDK<LADomainState>("LocalAuthentication_c1f28409f8601238", 3778326282127522, this, []); }
+  get domainState(): LADomainState { return callSDK<LADomainState>("LocalAuthentication_e11dfd5beee01da3", 3778326282127522, this, []); }
   /**
    * var evaluatedPolicyDomainState: Data? { get }
    * @availability iOS 9.0+
    * @deprecated iOS 18.0
    */
-  get evaluatedPolicyDomainState(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_c1f28409f8601238", 948179398327915, this, []); }
+  get evaluatedPolicyDomainState(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_e11dfd5beee01da3", 948179398327915, this, []); }
   /**
    * var interactionNotAllowed: Bool { get set }
    * @availability iOS 11.0+
    */
-  get interactionNotAllowed(): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 1608741381546673, this, []); }
-  set interactionNotAllowed(value: boolean) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 3653576291091471, this, [value]); }
+  get interactionNotAllowed(): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 1608741381546673, this, []); }
+  set interactionNotAllowed(value: boolean) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 3653576291091471, this, [value]); }
   /**
    * var localizedCancelTitle: String? { get set }
    * @availability iOS 10.0+
    */
-  get localizedCancelTitle(): (string) | null { return callSDK<(string) | null>("LocalAuthentication_c1f28409f8601238", 1193325409428399, this, []); }
-  set localizedCancelTitle(value: (string) | null) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 1187011478266100, this, [value]); }
+  get localizedCancelTitle(): (string) | null { return callSDK<(string) | null>("LocalAuthentication_e11dfd5beee01da3", 1193325409428399, this, []); }
+  set localizedCancelTitle(value: (string) | null) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 1187011478266100, this, [value]); }
   /**
    * var localizedFallbackTitle: String? { get set }
    * @availability iOS 8.0+
    */
-  get localizedFallbackTitle(): (string) | null { return callSDK<(string) | null>("LocalAuthentication_c1f28409f8601238", 852779793506768, this, []); }
-  set localizedFallbackTitle(value: (string) | null) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 4180340693798820, this, [value]); }
+  get localizedFallbackTitle(): (string) | null { return callSDK<(string) | null>("LocalAuthentication_e11dfd5beee01da3", 852779793506768, this, []); }
+  set localizedFallbackTitle(value: (string) | null) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 4180340693798820, this, [value]); }
   /**
    * var localizedReason: String { get set }
    * @availability iOS 11.0+
    */
-  get localizedReason(): string { return callSDK<string>("LocalAuthentication_c1f28409f8601238", 4382784447006291, this, []); }
-  set localizedReason(value: string) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 941280384581614, this, [value]); }
+  get localizedReason(): string { return callSDK<string>("LocalAuthentication_e11dfd5beee01da3", 4382784447006291, this, []); }
+  set localizedReason(value: string) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 941280384581614, this, [value]); }
   /**
    * var maxBiometryFailures: NSNumber? { get set }
    * @availability iOS 8.3+
    * @deprecated iOS 9.0
    */
-  get maxBiometryFailures(): $SDK2 { return callSDK<$SDK2>("LocalAuthentication_c1f28409f8601238", 3360026034930212, this, []); }
-  set maxBiometryFailures(value: $SDK2) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 497366779208813, this, [value]); }
+  get maxBiometryFailures(): $SDK2 { return callSDK<$SDK2>("LocalAuthentication_e11dfd5beee01da3", 3360026034930212, this, []); }
+  set maxBiometryFailures(value: $SDK2) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 497366779208813, this, [value]); }
   /**
    * var touchIDAuthenticationAllowableReuseDuration: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get touchIDAuthenticationAllowableReuseDuration(): number { return callSDK<number>("LocalAuthentication_c1f28409f8601238", 2350439019908233, this, []); }
-  set touchIDAuthenticationAllowableReuseDuration(value: number) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 2428889022292496, this, [value]); }
+  get touchIDAuthenticationAllowableReuseDuration(): number { return callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2350439019908233, this, []); }
+  set touchIDAuthenticationAllowableReuseDuration(value: number) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2428889022292496, this, [value]); }
   declare readonly $type: { "c:objc(cs)LAContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "biometryType": true; "domainState": true; "evaluatedPolicyDomainState": true; "interactionNotAllowed": true; "localizedCancelTitle": true; "localizedFallbackTitle": true; "localizedReason": true; "maxBiometryFailures": true; "touchIDAuthenticationAllowableReuseDuration": true };
 }
@@ -225,7 +225,7 @@ export const LACredentialType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (LACredentialType) | null { return callSDK<(LACredentialType) | null>("LocalAuthentication_c1f28409f8601238", 2419540453374111, undefined, [rawValue]); }
+  init(rawValue: number): (LACredentialType) | null { return callSDK<(LACredentialType) | null>("LocalAuthentication_e11dfd5beee01da3", 2419540453374111, undefined, [rawValue]); }
 };
 
 /**
@@ -237,17 +237,17 @@ export class LADomainState extends SDKHandle {
    * var biometry: LADomainStateBiometry { get }
    * @availability iOS 18.0+
    */
-  get biometry(): LADomainStateBiometry { return callSDK<LADomainStateBiometry>("LocalAuthentication_c1f28409f8601238", 3607508655547516, this, []); }
+  get biometry(): LADomainStateBiometry { return callSDK<LADomainStateBiometry>("LocalAuthentication_e11dfd5beee01da3", 3607508655547516, this, []); }
   /**
    * var companion: LADomainStateCompanion { get }
    * @availability iOS 18.0+
    */
-  get companion(): LADomainStateCompanion { return callSDK<LADomainStateCompanion>("LocalAuthentication_c1f28409f8601238", 1016252593926765, this, []); }
+  get companion(): LADomainStateCompanion { return callSDK<LADomainStateCompanion>("LocalAuthentication_e11dfd5beee01da3", 1016252593926765, this, []); }
   /**
    * var stateHash: Data? { get }
    * @availability iOS 18.0+
    */
-  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_c1f28409f8601238", 1896767967328905, this, []); }
+  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_e11dfd5beee01da3", 1896767967328905, this, []); }
   declare readonly $type: { "c:objc(cs)LADomainState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "biometry": true; "companion": true; "stateHash": true };
 }
@@ -261,12 +261,12 @@ export class LADomainStateBiometry extends SDKHandle {
    * var biometryType: LABiometryType { get }
    * @availability iOS 18.0+
    */
-  get biometryType(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_c1f28409f8601238", 4222539944340176, this, []); }
+  get biometryType(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_e11dfd5beee01da3", 4222539944340176, this, []); }
   /**
    * var stateHash: Data? { get }
    * @availability iOS 18.0+
    */
-  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_c1f28409f8601238", 4330824298601289, this, []); }
+  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_e11dfd5beee01da3", 4330824298601289, this, []); }
   declare readonly $type: { "c:objc(cs)LADomainStateBiometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "biometryType": true; "stateHash": true };
 }
@@ -280,17 +280,17 @@ export class LADomainStateCompanion extends SDKHandle {
    * func stateHash(for companionType: LACompanionType) -> Data?
    * @availability iOS 18.0+
    */
-  stateHashFor(companionType: LACompanionType): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_c1f28409f8601238", 87204542867547, this, [companionType]); }
+  stateHashFor(companionType: LACompanionType): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_e11dfd5beee01da3", 87204542867547, this, [companionType]); }
   /**
    * var stateHash: Data? { get }
    * @availability iOS 18.0+
    */
-  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_c1f28409f8601238", 1725203935477060, this, []); }
+  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_e11dfd5beee01da3", 1725203935477060, this, []); }
   /**
    * var availableCompanionTypes: Set<LACompanionType> { get }
    * @availability iOS 18.0+
    */
-  get availableCompanionTypes(): Array<LACompanionType> { return callSDK<Array<LACompanionType>>("LocalAuthentication_c1f28409f8601238", 2483095623307622, this, []); }
+  get availableCompanionTypes(): Array<LACompanionType> { return callSDK<Array<LACompanionType>>("LocalAuthentication_e11dfd5beee01da3", 2483095623307622, this, []); }
   declare readonly $type: { "c:objc(cs)LADomainStateCompanion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "stateHash": true };
 }
@@ -304,22 +304,22 @@ export class LAEnvironment extends SDKHandle {
    * class var currentUser: LAEnvironment { get }
    * @availability iOS 18.0+
    */
-  static get currentUser(): LAEnvironment { return callSDK<LAEnvironment>("LocalAuthentication_c1f28409f8601238", 640906896790839, undefined, []); }
+  static get currentUser(): LAEnvironment { return callSDK<LAEnvironment>("LocalAuthentication_e11dfd5beee01da3", 640906896790839, undefined, []); }
   /**
    * func addObserver(_ observer: any LAEnvironment.Observer)
    * @availability iOS 18.0+
    */
-  addObserver(observer: $SDK3): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 2620995738538711, this, [observer], [{"protocol":"c:objc(pl)LAEnvironmentObserver"}]); }
+  addObserver(observer: $SDK3): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2620995738538711, this, [observer], [{"protocol":"c:objc(pl)LAEnvironmentObserver"}]); }
   /**
    * func removeObserver(_ observer: any LAEnvironment.Observer)
    * @availability iOS 18.0+
    */
-  removeObserver(observer: $SDK3): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 3043798677862946, this, [observer], [{"protocol":"c:objc(pl)LAEnvironmentObserver"}]); }
+  removeObserver(observer: $SDK3): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 3043798677862946, this, [observer], [{"protocol":"c:objc(pl)LAEnvironmentObserver"}]); }
   /**
    * var state: LAEnvironment.State { get }
    * @availability iOS 18.0+
    */
-  get state(): LAEnvironment_State { return callSDK<LAEnvironment_State>("LocalAuthentication_c1f28409f8601238", 1485966946841185, this, []); }
+  get state(): LAEnvironment_State { return callSDK<LAEnvironment_State>("LocalAuthentication_e11dfd5beee01da3", 1485966946841185, this, []); }
   declare readonly $type: { "c:objc(cs)LAEnvironment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "state": true };
 }
@@ -333,17 +333,17 @@ export class LAEnvironment_Mechanism extends SDKHandle {
    * var iconSystemName: String { get }
    * @availability iOS 18.0+
    */
-  get iconSystemName(): string { return callSDK<string>("LocalAuthentication_c1f28409f8601238", 4469712052453819, this, []); }
+  get iconSystemName(): string { return callSDK<string>("LocalAuthentication_e11dfd5beee01da3", 4469712052453819, this, []); }
   /**
    * var isUsable: Bool { get }
    * @availability iOS 18.0+
    */
-  get isUsable(): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 4375331493887704, this, []); }
+  get isUsable(): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 4375331493887704, this, []); }
   /**
    * var localizedName: String { get }
    * @availability iOS 18.0+
    */
-  get localizedName(): string { return callSDK<string>("LocalAuthentication_c1f28409f8601238", 592100925891635, this, []); }
+  get localizedName(): string { return callSDK<string>("LocalAuthentication_e11dfd5beee01da3", 592100925891635, this, []); }
   declare readonly $type: { "c:objc(cs)LAEnvironmentMechanism": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "iconSystemName": true; "isUsable": true; "localizedName": true };
 }
@@ -357,27 +357,27 @@ export class LAEnvironment_MechanismBiometry extends LAEnvironment_Mechanism {
    * var biometryType: LABiometryType { get }
    * @availability iOS 18.0+
    */
-  get biometryType(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_c1f28409f8601238", 1168761816436943, this, []); }
+  get biometryType(): LABiometryType { return callSDK<LABiometryType>("LocalAuthentication_e11dfd5beee01da3", 1168761816436943, this, []); }
   /**
    * var builtInSensorInaccessible: Bool { get }
    * @availability iOS 18.0+
    */
-  get builtInSensorInaccessible(): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 3851032736782122, this, []); }
+  get builtInSensorInaccessible(): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 3851032736782122, this, []); }
   /**
    * var isEnrolled: Bool { get }
    * @availability iOS 18.0+
    */
-  get isEnrolled(): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 3187827272315615, this, []); }
+  get isEnrolled(): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 3187827272315615, this, []); }
   /**
    * var isLockedOut: Bool { get }
    * @availability iOS 18.0+
    */
-  get isLockedOut(): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 3286614679489305, this, []); }
+  get isLockedOut(): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 3286614679489305, this, []); }
   /**
    * var stateHash: Data { get }
    * @availability iOS 18.0+
    */
-  get stateHash(): ArrayBuffer { return callSDK<ArrayBuffer>("LocalAuthentication_c1f28409f8601238", 839228316896119, this, []); }
+  get stateHash(): ArrayBuffer { return callSDK<ArrayBuffer>("LocalAuthentication_e11dfd5beee01da3", 839228316896119, this, []); }
   declare readonly $type: { "c:objc(cs)LAEnvironmentMechanismBiometry": true; "c:objc(cs)LAEnvironmentMechanism": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "iconSystemName": true; "isUsable": true; "localizedName": true; "biometryType": true; "builtInSensorInaccessible": true; "isEnrolled": true; "isLockedOut": true; "stateHash": true };
 }
@@ -391,12 +391,12 @@ export class LAEnvironment_MechanismCompanion extends LAEnvironment_Mechanism {
    * var stateHash: Data? { get }
    * @availability iOS 18.0+
    */
-  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_c1f28409f8601238", 4377602849960546, this, []); }
+  get stateHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("LocalAuthentication_e11dfd5beee01da3", 4377602849960546, this, []); }
   /**
    * var type: LACompanionType { get }
    * @availability iOS 18.0+
    */
-  get type(): LACompanionType { return callSDK<LACompanionType>("LocalAuthentication_c1f28409f8601238", 4019415220675225, this, []); }
+  get type(): LACompanionType { return callSDK<LACompanionType>("LocalAuthentication_e11dfd5beee01da3", 4019415220675225, this, []); }
   declare readonly $type: { "c:objc(cs)LAEnvironmentMechanismCompanion": true; "c:objc(cs)LAEnvironmentMechanism": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "iconSystemName": true; "isUsable": true; "localizedName": true; "stateHash": true; "type": true };
 }
@@ -410,7 +410,7 @@ export class LAEnvironment_MechanismUserPassword extends LAEnvironment_Mechanism
    * var isSet: Bool { get }
    * @availability iOS 18.0+
    */
-  get isSet(): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 2760169985518067, this, []); }
+  get isSet(): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 2760169985518067, this, []); }
   declare readonly $type: { "c:objc(cs)LAEnvironmentMechanismUserPassword": true; "c:objc(cs)LAEnvironmentMechanism": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "iconSystemName": true; "isUsable": true; "localizedName": true; "isSet": true };
 }
@@ -436,22 +436,22 @@ export class LAEnvironment_State extends SDKHandle {
    * var allMechanisms: [LAEnvironment.Mechanism] { get }
    * @availability iOS 18.0+
    */
-  get allMechanisms(): Array<LAEnvironment_Mechanism> { return callSDK<Array<LAEnvironment_Mechanism>>("LocalAuthentication_c1f28409f8601238", 601805260001717, this, []); }
+  get allMechanisms(): Array<LAEnvironment_Mechanism> { return callSDK<Array<LAEnvironment_Mechanism>>("LocalAuthentication_e11dfd5beee01da3", 601805260001717, this, []); }
   /**
    * var biometry: LAEnvironment.MechanismBiometry? { get }
    * @availability iOS 18.0+
    */
-  get biometry(): (LAEnvironment_MechanismBiometry) | null { return callSDK<(LAEnvironment_MechanismBiometry) | null>("LocalAuthentication_c1f28409f8601238", 2625895879845865, this, []); }
+  get biometry(): (LAEnvironment_MechanismBiometry) | null { return callSDK<(LAEnvironment_MechanismBiometry) | null>("LocalAuthentication_e11dfd5beee01da3", 2625895879845865, this, []); }
   /**
    * var companions: [LAEnvironment.MechanismCompanion] { get }
    * @availability iOS 18.0+
    */
-  get companions(): Array<LAEnvironment_MechanismCompanion> { return callSDK<Array<LAEnvironment_MechanismCompanion>>("LocalAuthentication_c1f28409f8601238", 4308329875222525, this, []); }
+  get companions(): Array<LAEnvironment_MechanismCompanion> { return callSDK<Array<LAEnvironment_MechanismCompanion>>("LocalAuthentication_e11dfd5beee01da3", 4308329875222525, this, []); }
   /**
    * var userPassword: LAEnvironment.MechanismUserPassword? { get }
    * @availability iOS 18.0+
    */
-  get userPassword(): (LAEnvironment_MechanismUserPassword) | null { return callSDK<(LAEnvironment_MechanismUserPassword) | null>("LocalAuthentication_c1f28409f8601238", 504952144872648, this, []); }
+  get userPassword(): (LAEnvironment_MechanismUserPassword) | null { return callSDK<(LAEnvironment_MechanismUserPassword) | null>("LocalAuthentication_e11dfd5beee01da3", 504952144872648, this, []); }
   declare readonly $type: { "c:objc(cs)LAEnvironmentState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allMechanisms": true; "biometry": true; "companions": true; "userPassword": true };
 }
@@ -465,85 +465,85 @@ export class LAError extends SDKHandle {
    * static var userCancel: LAError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userCancel(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 4087323523615750, undefined, []); }
+  static get userCancel(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 4087323523615750, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("LocalAuthentication_c1f28409f8601238", 2921151389258764, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("LocalAuthentication_e11dfd5beee01da3", 2921151389258764, undefined, []); }
   /**
    * static var systemCancel: LAError.Code { get }
    * @availability iOS 8.0+
    */
-  static get systemCancel(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 3900052742951253, undefined, []); }
+  static get systemCancel(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 3900052742951253, undefined, []); }
   /**
    * static var userFallback: LAError.Code { get }
    * @availability iOS 8.0+
    */
-  static get userFallback(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 4460355319988503, undefined, []); }
+  static get userFallback(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 4460355319988503, undefined, []); }
   /**
    * static var invalidContext: LAError.Code { get }
    * @availability iOS 9.0+
    */
-  static get invalidContext(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 2240478666405348, undefined, []); }
+  static get invalidContext(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 2240478666405348, undefined, []); }
   /**
    * static var notInteractive: LAError.Code { get }
    * @availability iOS 8.0+
    */
-  static get notInteractive(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 2783676287115326, undefined, []); }
+  static get notInteractive(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 2783676287115326, undefined, []); }
   /**
    * static var passcodeNotSet: LAError.Code { get }
    * @availability iOS 8.0+
    */
-  static get passcodeNotSet(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 1972864396942382, undefined, []); }
+  static get passcodeNotSet(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 1972864396942382, undefined, []); }
   /**
    * static var touchIDLockout: LAError.Code { get }
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static get touchIDLockout(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 3298758773464712, undefined, []); }
+  static get touchIDLockout(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 3298758773464712, undefined, []); }
   /**
    * static var biometryLockout: LAError.Code { get }
    * @availability iOS 11.0+
    */
-  static get biometryLockout(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 3773212776228450, undefined, []); }
+  static get biometryLockout(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 3773212776228450, undefined, []); }
   /**
    * static var touchIDNotEnrolled: LAError.Code { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static get touchIDNotEnrolled(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 3938500919352505, undefined, []); }
+  static get touchIDNotEnrolled(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 3938500919352505, undefined, []); }
   /**
    * static var biometryNotEnrolled: LAError.Code { get }
    * @availability iOS 11.0+
    */
-  static get biometryNotEnrolled(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 879164831973548, undefined, []); }
+  static get biometryNotEnrolled(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 879164831973548, undefined, []); }
   /**
    * static var touchIDNotAvailable: LAError.Code { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static get touchIDNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 1941978024205081, undefined, []); }
+  static get touchIDNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 1941978024205081, undefined, []); }
   /**
    * static var authenticationFailed: LAError.Code { get }
    * @availability iOS 8.0+
    */
-  static get authenticationFailed(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 3843845626384804, undefined, []); }
+  static get authenticationFailed(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 3843845626384804, undefined, []); }
   /**
    * static var biometryNotAvailable: LAError.Code { get }
    * @availability iOS 11.0+
    */
-  static get biometryNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 192551803615841, undefined, []); }
+  static get biometryNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 192551803615841, undefined, []); }
   /**
    * static var companionNotAvailable: LAError.Code { get }
    * @availability iOS 18.0+
    */
-  static get companionNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 4086045411963397, undefined, []); }
+  static get companionNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 4086045411963397, undefined, []); }
   /**
    * static var appCancel: LAError.Code { get }
    * @availability iOS 9.0+
    */
-  static get appCancel(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 1347604171217883, undefined, []); }
+  static get appCancel(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 1347604171217883, undefined, []); }
   declare readonly $type: { "s:SC7LAErrorLeV": true };
 }
 
@@ -558,22 +558,22 @@ export const LAError_Code = {
    * static var biometryLockout: LAError.Code { get }
    * @availability iOS 11.0+
    */
-  get biometryLockout(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 133324690561603, undefined, []); },
+  get biometryLockout(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 133324690561603, undefined, []); },
   /**
    * static var biometryNotEnrolled: LAError.Code { get }
    * @availability iOS 11.0+
    */
-  get biometryNotEnrolled(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 2818576668349502, undefined, []); },
+  get biometryNotEnrolled(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 2818576668349502, undefined, []); },
   /**
    * static var biometryNotAvailable: LAError.Code { get }
    * @availability iOS 11.0+
    */
-  get biometryNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_c1f28409f8601238", 4090811788475288, undefined, []); },
+  get biometryNotAvailable(): LAError_Code { return callSDK<LAError_Code>("LocalAuthentication_e11dfd5beee01da3", 4090811788475288, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (LAError_Code) | null { return callSDK<(LAError_Code) | null>("LocalAuthentication_c1f28409f8601238", 1661820685389785, undefined, [rawValue]); }
+  init(rawValue: number): (LAError_Code) | null { return callSDK<(LAError_Code) | null>("LocalAuthentication_e11dfd5beee01da3", 1661820685389785, undefined, [rawValue]); }
 };
 
 /**
@@ -585,38 +585,38 @@ export class LARight extends SDKHandle {
    * func authorize(localizedReason: String) async throws
    * @availability iOS 16.0+
    */
-  authorize(localizedReason: string, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 2680599188064143, this, [localizedReason, handler], [null,{"callback":{"out":[]}}]); }
+  authorize(localizedReason: string, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2680599188064143, this, [localizedReason, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func checkCanAuthorize() async throws
    * @availability iOS 16.0+
    */
-  checkCanAuthorize(handler: $SDK8): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 707219471742113, this, [handler], [{"callback":{"out":[]}}]); }
+  checkCanAuthorize(handler: $SDK8): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 707219471742113, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func deauthorize() async
    * @availability iOS 16.0+
    */
-  deauthorize(handler: (() => void)): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 1104619837730346, this, [handler], [{"callback":{"out":[]}}]); }
+  deauthorize(handler: (() => void)): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 1104619837730346, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): LARight { return callSDK<LARight>("LocalAuthentication_c1f28409f8601238", 4451777717096325, undefined, []); }
+  static init(): LARight { return callSDK<LARight>("LocalAuthentication_e11dfd5beee01da3", 4451777717096325, undefined, []); }
   /**
    * init(requirement: LAAuthenticationRequirement)
    * @availability iOS 16.0+
    */
-  static initRequirement(requirement: LAAuthenticationRequirement): LARight { return callSDK<LARight>("LocalAuthentication_c1f28409f8601238", 2295348786639744, undefined, [requirement]); }
+  static initRequirement(requirement: LAAuthenticationRequirement): LARight { return callSDK<LARight>("LocalAuthentication_e11dfd5beee01da3", 2295348786639744, undefined, [requirement]); }
   /**
    * var state: LARight.State { get }
    * @availability iOS 16.0+
    */
-  get state(): LARight_State { return callSDK<LARight_State>("LocalAuthentication_c1f28409f8601238", 238594120599688, this, []); }
+  get state(): LARight_State { return callSDK<LARight_State>("LocalAuthentication_e11dfd5beee01da3", 238594120599688, this, []); }
   /**
    * var tag: Int { get set }
    * @availability iOS 16.0+
    */
-  get tag(): number { return callSDK<number>("LocalAuthentication_c1f28409f8601238", 2851594576983295, this, []); }
-  set tag(value: number) { callSDK<void>("LocalAuthentication_c1f28409f8601238", 612403530179739, this, [value]); }
+  get tag(): number { return callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2851594576983295, this, []); }
+  set tag(value: number) { callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 612403530179739, this, [value]); }
   declare readonly $type: { "c:objc(cs)LARight": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "state": true; "tag": true };
 }
@@ -630,12 +630,12 @@ export class LAPersistedRight extends LARight {
    * var key: LAPrivateKey { get }
    * @availability iOS 16.0+
    */
-  get key(): LAPrivateKey { return callSDK<LAPrivateKey>("LocalAuthentication_c1f28409f8601238", 4491136616392221, this, []); }
+  get key(): LAPrivateKey { return callSDK<LAPrivateKey>("LocalAuthentication_e11dfd5beee01da3", 4491136616392221, this, []); }
   /**
    * var secret: LASecret { get }
    * @availability iOS 16.0+
    */
-  get secret(): LASecret { return callSDK<LASecret>("LocalAuthentication_c1f28409f8601238", 784427923055906, this, []); }
+  get secret(): LASecret { return callSDK<LASecret>("LocalAuthentication_e11dfd5beee01da3", 784427923055906, this, []); }
   declare readonly $type: { "c:objc(cs)LAPersistedRight": true; "c:objc(cs)LARight": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "state": true; "tag": true; "key": true; "secret": true };
 }
@@ -651,7 +651,7 @@ export const LAPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (LAPolicy) | null { return callSDK<(LAPolicy) | null>("LocalAuthentication_c1f28409f8601238", 1070020640014021, undefined, [rawValue]); }
+  init(rawValue: number): (LAPolicy) | null { return callSDK<(LAPolicy) | null>("LocalAuthentication_e11dfd5beee01da3", 1070020640014021, undefined, [rawValue]); }
 };
 
 /**
@@ -663,37 +663,37 @@ export class LAPrivateKey extends SDKHandle {
    * func canDecrypt(using algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 16.0+
    */
-  canDecrypt(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 2676605940617992, this, [algorithm]); }
+  canDecrypt(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 2676605940617992, this, [algorithm]); }
   /**
    * func canExchangeKeys(using algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 16.0+
    */
-  canExchangeKeys(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 2721865796211438, this, [algorithm]); }
+  canExchangeKeys(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 2721865796211438, this, [algorithm]); }
   /**
    * func canSign(using algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 16.0+
    */
-  canSign(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 3474140608580480, this, [algorithm]); }
+  canSign(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 3474140608580480, this, [algorithm]); }
   /**
    * func decrypt(_ data: Data, algorithm: SecKeyAlgorithm) async throws -> Data
    * @availability iOS 16.0+
    */
-  decrypt(data: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 315782569981642, this, [data, algorithm, handler], [null,null,{"callback":{"out":[]}}]); }
+  decrypt(data: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 315782569981642, this, [data, algorithm, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func exchangeKeys(publicKey: Data, algorithm: SecKeyAlgorithm, parameters: [AnyHashable : Any]) async throws -> Data
    * @availability iOS 16.0+
    */
-  exchangeKeys(publicKey: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, parameters: NativeMap<unknown, unknown>, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 1449260831485807, this, [publicKey, algorithm, parameters, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  exchangeKeys(publicKey: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, parameters: NativeMap<unknown, unknown>, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 1449260831485807, this, [publicKey, algorithm, parameters, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func sign(_ data: Data, algorithm: SecKeyAlgorithm) async throws -> Data
    * @availability iOS 16.0+
    */
-  sign(data: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 3494532697217180, this, [data, algorithm, handler], [null,null,{"callback":{"out":[]}}]); }
+  sign(data: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 3494532697217180, this, [data, algorithm, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var publicKey: LAPublicKey { get }
    * @availability iOS 16.0+
    */
-  get publicKey(): LAPublicKey { return callSDK<LAPublicKey>("LocalAuthentication_c1f28409f8601238", 2081614605274263, this, []); }
+  get publicKey(): LAPublicKey { return callSDK<LAPublicKey>("LocalAuthentication_e11dfd5beee01da3", 2081614605274263, this, []); }
   declare readonly $type: { "c:objc(cs)LAPrivateKey": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "publicKey": true };
 }
@@ -707,27 +707,27 @@ export class LAPublicKey extends SDKHandle {
    * func canEncrypt(using algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 16.0+
    */
-  canEncrypt(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 3251529690895030, this, [algorithm]); }
+  canEncrypt(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 3251529690895030, this, [algorithm]); }
   /**
    * func canVerify(using algorithm: SecKeyAlgorithm) -> Bool
    * @availability iOS 16.0+
    */
-  canVerify(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_c1f28409f8601238", 4024080203706248, this, [algorithm]); }
+  canVerify(algorithm: _Security_SecKeyAlgorithm): boolean { return callSDK<boolean>("LocalAuthentication_e11dfd5beee01da3", 4024080203706248, this, [algorithm]); }
   /**
    * func encrypt(_ data: Data, algorithm: SecKeyAlgorithm) async throws -> Data
    * @availability iOS 16.0+
    */
-  encrypt(data: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 363318909144054, this, [data, algorithm, handler], [null,null,{"callback":{"out":[]}}]); }
+  encrypt(data: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK9): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 363318909144054, this, [data, algorithm, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var bytes: Data { get async throws }
    * @availability iOS 16.0+
    */
-  exportBytes(handler: $SDK9): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 4050677730791941, this, [handler], [{"callback":{"out":[]}}]); }
+  exportBytes(handler: $SDK9): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 4050677730791941, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func verify(_ signedData: Data, signature: Data, algorithm: SecKeyAlgorithm) async throws
    * @availability iOS 16.0+
    */
-  verify(signedData: ArrayBuffer, signature: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 2182347919993732, this, [signedData, signature, algorithm, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  verify(signedData: ArrayBuffer, signature: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2182347919993732, this, [signedData, signature, algorithm, handler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)LAPublicKey": true; "c:objc(cs)NSObject": true };
 }
 
@@ -742,7 +742,7 @@ export const LARight_State = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (LARight_State) | null { return callSDK<(LARight_State) | null>("LocalAuthentication_c1f28409f8601238", 2656379388896628, undefined, [rawValue]); }
+  init(rawValue: number): (LARight_State) | null { return callSDK<(LARight_State) | null>("LocalAuthentication_e11dfd5beee01da3", 2656379388896628, undefined, [rawValue]); }
 };
 
 /**
@@ -754,37 +754,37 @@ export class LARightStore extends SDKHandle {
    * class var shared: LARightStore { get }
    * @availability iOS 16.0+
    */
-  static get shared(): LARightStore { return callSDK<LARightStore>("LocalAuthentication_c1f28409f8601238", 3545681032035516, undefined, []); }
+  static get shared(): LARightStore { return callSDK<LARightStore>("LocalAuthentication_e11dfd5beee01da3", 3545681032035516, undefined, []); }
   /**
    * func removeAllRights() async throws
    * @availability iOS 16.0+
    */
-  removeAllRights(handler: $SDK8): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 2180170615871179, this, [handler], [{"callback":{"out":[]}}]); }
+  removeAllRights(handler: $SDK8): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 2180170615871179, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func removeRight(_ right: LAPersistedRight) async throws
    * @availability iOS 16.0+
    */
-  removeRightCompletion(right: LAPersistedRight, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 870155985176504, this, [right, handler], [null,{"callback":{"out":[]}}]); }
+  removeRightCompletion(right: LAPersistedRight, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 870155985176504, this, [right, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeRight(forIdentifier identifier: String) async throws
    * @availability iOS 16.0+
    */
-  removeRightForIdentifierCompletion(identifier: string, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 3100016738025020, this, [identifier, handler], [null,{"callback":{"out":[]}}]); }
+  removeRightForIdentifierCompletion(identifier: string, handler: $SDK8): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 3100016738025020, this, [identifier, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func right(forIdentifier identifier: String) async throws -> LAPersistedRight
    * @availability iOS 16.0+
    */
-  right(identifier: string, handler: $SDK11): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 1762317146858175, this, [identifier, handler], [null,{"callback":{"out":[]}}]); }
+  right(identifier: string, handler: $SDK11): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 1762317146858175, this, [identifier, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func saveRight(_ right: LARight, identifier: String) async throws -> LAPersistedRight
    * @availability iOS 16.0+
    */
-  saveRightIdentifierCompletion(right: LARight, identifier: string, handler: $SDK11): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 867725427931223, this, [right, identifier, handler], [null,null,{"callback":{"out":[]}}]); }
+  saveRightIdentifierCompletion(right: LARight, identifier: string, handler: $SDK11): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 867725427931223, this, [right, identifier, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func saveRight(_ right: LARight, identifier: String, secret: Data) async throws -> LAPersistedRight
    * @availability iOS 16.0+
    */
-  saveRightIdentifierSecretCompletion(right: LARight, identifier: string, secret: ArrayBuffer, handler: $SDK11): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 676401865897228, this, [right, identifier, secret, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  saveRightIdentifierSecretCompletion(right: LARight, identifier: string, secret: ArrayBuffer, handler: $SDK11): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 676401865897228, this, [right, identifier, secret, handler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)LARightStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -797,7 +797,7 @@ export class LASecret extends SDKHandle {
    * var rawData: Data { get async throws }
    * @availability iOS 16.0+
    */
-  loadData(handler: $SDK9): void { return callSDK<void>("LocalAuthentication_c1f28409f8601238", 4222127780821552, this, [handler], [{"callback":{"out":[]}}]); }
+  loadData(handler: $SDK9): void { return callSDK<void>("LocalAuthentication_e11dfd5beee01da3", 4222127780821552, this, [handler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)LASecret": true; "c:objc(cs)NSObject": true };
 }
 
@@ -805,160 +805,160 @@ export class LASecret extends SDKHandle {
  * let LAErrorDomain: String
  * @availability iOS 8.3+
  */
-export const LAErrorDomain: string = callSDK<string>("LocalAuthentication_c1f28409f8601238", 3000845682152176, undefined, []);
+export const LAErrorDomain: string = callSDK<string>("LocalAuthentication_e11dfd5beee01da3", 3000845682152176, undefined, []);
 
 /**
  * let LATouchIDAuthenticationMaximumAllowableReuseDuration: TimeInterval
  * @availability iOS 9.0+
  */
-export const LATouchIDAuthenticationMaximumAllowableReuseDuration: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 4308378677658010, undefined, []);
+export const LATouchIDAuthenticationMaximumAllowableReuseDuration: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 4308378677658010, undefined, []);
 
 /** var kLAAccessControlOperationCreateItem: Int32 { get } */
-export const kLAAccessControlOperationCreateItem: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2362040968876150, undefined, []);
+export const kLAAccessControlOperationCreateItem: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2362040968876150, undefined, []);
 
 /** var kLAAccessControlOperationCreateKey: Int32 { get } */
-export const kLAAccessControlOperationCreateKey: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 4234660877877868, undefined, []);
+export const kLAAccessControlOperationCreateKey: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 4234660877877868, undefined, []);
 
 /** var kLAAccessControlOperationUseItem: Int32 { get } */
-export const kLAAccessControlOperationUseItem: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 697951333994656, undefined, []);
+export const kLAAccessControlOperationUseItem: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 697951333994656, undefined, []);
 
 /** var kLAAccessControlOperationUseKeyDecrypt: Int32 { get } */
-export const kLAAccessControlOperationUseKeyDecrypt: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 4355410531278698, undefined, []);
+export const kLAAccessControlOperationUseKeyDecrypt: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 4355410531278698, undefined, []);
 
 /** var kLAAccessControlOperationUseKeyKeyExchange: Int32 { get } */
-export const kLAAccessControlOperationUseKeyKeyExchange: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1142750645442613, undefined, []);
+export const kLAAccessControlOperationUseKeyKeyExchange: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1142750645442613, undefined, []);
 
 /** var kLAAccessControlOperationUseKeySign: Int32 { get } */
-export const kLAAccessControlOperationUseKeySign: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 17048187083315, undefined, []);
+export const kLAAccessControlOperationUseKeySign: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 17048187083315, undefined, []);
 
 /** var kLABiometryTypeFaceID: Int32 { get } */
-export const kLABiometryTypeFaceID: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2872330015183181, undefined, []);
+export const kLABiometryTypeFaceID: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2872330015183181, undefined, []);
 
 /** var kLABiometryTypeNone: Int32 { get } */
-export const kLABiometryTypeNone: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2734577917404590, undefined, []);
+export const kLABiometryTypeNone: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2734577917404590, undefined, []);
 
 /** var kLABiometryTypeOpticID: Int32 { get } */
-export const kLABiometryTypeOpticID: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1147999094309144, undefined, []);
+export const kLABiometryTypeOpticID: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1147999094309144, undefined, []);
 
 /** var kLABiometryTypeTouchID: Int32 { get } */
-export const kLABiometryTypeTouchID: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3519513045308678, undefined, []);
+export const kLABiometryTypeTouchID: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3519513045308678, undefined, []);
 
 /** var kLACompanionTypeMac: Int32 { get } */
-export const kLACompanionTypeMac: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1680256518336875, undefined, []);
+export const kLACompanionTypeMac: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1680256518336875, undefined, []);
 
 /** var kLACompanionTypeNone: Int32 { get } */
-export const kLACompanionTypeNone: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1906900234439050, undefined, []);
+export const kLACompanionTypeNone: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1906900234439050, undefined, []);
 
 /** var kLACompanionTypeVision: Int32 { get } */
-export const kLACompanionTypeVision: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1972717816642298, undefined, []);
+export const kLACompanionTypeVision: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1972717816642298, undefined, []);
 
 /** var kLACompanionTypeWatch: Int32 { get } */
-export const kLACompanionTypeWatch: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1393810377406906, undefined, []);
+export const kLACompanionTypeWatch: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1393810377406906, undefined, []);
 
 /** var kLACredentialSmartCardPIN: Int32 { get } */
-export const kLACredentialSmartCardPIN: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3818640030347054, undefined, []);
+export const kLACredentialSmartCardPIN: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3818640030347054, undefined, []);
 
 /** var kLACredentialTypeApplicationPassword: Int32 { get } */
-export const kLACredentialTypeApplicationPassword: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 684667131871606, undefined, []);
+export const kLACredentialTypeApplicationPassword: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 684667131871606, undefined, []);
 
 /** var kLAErrorAppCancel: Int32 { get } */
-export const kLAErrorAppCancel: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3759083878291991, undefined, []);
+export const kLAErrorAppCancel: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3759083878291991, undefined, []);
 
 /** var kLAErrorAuthenticationFailed: Int32 { get } */
-export const kLAErrorAuthenticationFailed: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3671385575236459, undefined, []);
+export const kLAErrorAuthenticationFailed: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3671385575236459, undefined, []);
 
 /** var kLAErrorBiometryDisconnected: Int32 { get } */
-export const kLAErrorBiometryDisconnected: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3945554036083528, undefined, []);
+export const kLAErrorBiometryDisconnected: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3945554036083528, undefined, []);
 
 /** var kLAErrorBiometryLockout: Int32 { get } */
-export const kLAErrorBiometryLockout: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2580329307378314, undefined, []);
+export const kLAErrorBiometryLockout: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2580329307378314, undefined, []);
 
 /** var kLAErrorBiometryNotAvailable: Int32 { get } */
-export const kLAErrorBiometryNotAvailable: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 777656892963318, undefined, []);
+export const kLAErrorBiometryNotAvailable: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 777656892963318, undefined, []);
 
 /** var kLAErrorBiometryNotEnrolled: Int32 { get } */
-export const kLAErrorBiometryNotEnrolled: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3005348392869686, undefined, []);
+export const kLAErrorBiometryNotEnrolled: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3005348392869686, undefined, []);
 
 /** var kLAErrorBiometryNotPaired: Int32 { get } */
-export const kLAErrorBiometryNotPaired: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1691584812403482, undefined, []);
+export const kLAErrorBiometryNotPaired: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1691584812403482, undefined, []);
 
 /** var kLAErrorCompanionNotAvailable: Int32 { get } */
-export const kLAErrorCompanionNotAvailable: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 338270534632370, undefined, []);
+export const kLAErrorCompanionNotAvailable: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 338270534632370, undefined, []);
 
 /** var kLAErrorDomain: String { get } */
-export const kLAErrorDomain: string = callSDK<string>("LocalAuthentication_c1f28409f8601238", 3913647270649862, undefined, []);
+export const kLAErrorDomain: string = callSDK<string>("LocalAuthentication_e11dfd5beee01da3", 3913647270649862, undefined, []);
 
 /** var kLAErrorInvalidContext: Int32 { get } */
-export const kLAErrorInvalidContext: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2001791984421256, undefined, []);
+export const kLAErrorInvalidContext: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2001791984421256, undefined, []);
 
 /** var kLAErrorInvalidDimensions: Int32 { get } */
-export const kLAErrorInvalidDimensions: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2308388756536391, undefined, []);
+export const kLAErrorInvalidDimensions: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2308388756536391, undefined, []);
 
 /** var kLAErrorNotInteractive: Int32 { get } */
-export const kLAErrorNotInteractive: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3593169432425421, undefined, []);
+export const kLAErrorNotInteractive: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3593169432425421, undefined, []);
 
 /** var kLAErrorPasscodeNotSet: Int32 { get } */
-export const kLAErrorPasscodeNotSet: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 910341713532091, undefined, []);
+export const kLAErrorPasscodeNotSet: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 910341713532091, undefined, []);
 
 /** var kLAErrorSystemCancel: Int32 { get } */
-export const kLAErrorSystemCancel: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3938302284773462, undefined, []);
+export const kLAErrorSystemCancel: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3938302284773462, undefined, []);
 
 /** var kLAErrorTouchIDLockout: Int32 { get } */
-export const kLAErrorTouchIDLockout: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3560781939415981, undefined, []);
+export const kLAErrorTouchIDLockout: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3560781939415981, undefined, []);
 
 /** var kLAErrorTouchIDNotAvailable: Int32 { get } */
-export const kLAErrorTouchIDNotAvailable: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 235607551191190, undefined, []);
+export const kLAErrorTouchIDNotAvailable: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 235607551191190, undefined, []);
 
 /** var kLAErrorTouchIDNotEnrolled: Int32 { get } */
-export const kLAErrorTouchIDNotEnrolled: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 708502949832118, undefined, []);
+export const kLAErrorTouchIDNotEnrolled: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 708502949832118, undefined, []);
 
 /** var kLAErrorUserCancel: Int32 { get } */
-export const kLAErrorUserCancel: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1520495126759440, undefined, []);
+export const kLAErrorUserCancel: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1520495126759440, undefined, []);
 
 /** var kLAErrorUserFallback: Int32 { get } */
-export const kLAErrorUserFallback: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3843508990113321, undefined, []);
+export const kLAErrorUserFallback: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3843508990113321, undefined, []);
 
 /** var kLAErrorWatchNotAvailable: Int32 { get } */
-export const kLAErrorWatchNotAvailable: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 4333360720587890, undefined, []);
+export const kLAErrorWatchNotAvailable: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 4333360720587890, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthentication: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthentication: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2377894059346141, undefined, []);
+export const kLAPolicyDeviceOwnerAuthentication: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2377894059346141, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthenticationWithBiometrics: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthenticationWithBiometrics: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 2089416102792898, undefined, []);
+export const kLAPolicyDeviceOwnerAuthenticationWithBiometrics: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 2089416102792898, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 3576298559391227, undefined, []);
+export const kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 3576298559391227, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 4501756461930276, undefined, []);
+export const kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 4501756461930276, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthenticationWithCompanion: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthenticationWithCompanion: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1310429524024211, undefined, []);
+export const kLAPolicyDeviceOwnerAuthenticationWithCompanion: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1310429524024211, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthenticationWithWatch: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthenticationWithWatch: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 1219946416512111, undefined, []);
+export const kLAPolicyDeviceOwnerAuthenticationWithWatch: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 1219946416512111, undefined, []);
 
 /** var kLAPolicyDeviceOwnerAuthenticationWithWristDetection: Int32 { get } */
-export const kLAPolicyDeviceOwnerAuthenticationWithWristDetection: number = callSDK<number>("LocalAuthentication_c1f28409f8601238", 4892380107826, undefined, []);
+export const kLAPolicyDeviceOwnerAuthenticationWithWristDetection: number = callSDK<number>("LocalAuthentication_e11dfd5beee01da3", 4892380107826, undefined, []);
 
-registerSDKClass("LAAuthenticationRequirement", LAAuthenticationRequirement, { module: "LocalAuthentication_c1f28409f8601238", properties: {} });
-registerSDKClass("LABiometryFallbackRequirement", LABiometryFallbackRequirement, { module: "LocalAuthentication_c1f28409f8601238", properties: {} });
-registerSDKClass("LAContext", LAContext, { module: "LocalAuthentication_c1f28409f8601238", properties: {"biometryType":2251461676856285,"domainState":3778326282127522,"evaluatedPolicyDomainState":948179398327915,"interactionNotAllowed":1608741381546673,"localizedCancelTitle":1193325409428399,"localizedFallbackTitle":852779793506768,"localizedReason":4382784447006291,"maxBiometryFailures":3360026034930212,"touchIDAuthenticationAllowableReuseDuration":2350439019908233}, methods: {"canEvaluatePolicy":{"id":468587203890238,"args":[0,null]},"evaluateAccessControl":{"id":2383328253524527,"hints":[null,null,null,{"callback":{"out":[]}}]},"evaluatePolicy":{"id":2041345328684310,"hints":[null,null,{"callback":{"out":[]}}]},"invalidate":{"id":776408388122406},"isCredentialSet":{"id":828319176592987},"setCredential":{"id":2235669221909934}} });
-registerSDKClass("LADomainState", LADomainState, { module: "LocalAuthentication_c1f28409f8601238", properties: {"biometry":3607508655547516,"companion":1016252593926765,"stateHash":1896767967328905} });
-registerSDKClass("LADomainStateBiometry", LADomainStateBiometry, { module: "LocalAuthentication_c1f28409f8601238", properties: {"biometryType":4222539944340176,"stateHash":4330824298601289} });
-registerSDKClass("LADomainStateCompanion", LADomainStateCompanion, { module: "LocalAuthentication_c1f28409f8601238", properties: {"stateHash":1725203935477060}, methods: {"stateHashFor":{"id":87204542867547}} });
-registerSDKClass("LAEnvironment", LAEnvironment, { module: "LocalAuthentication_c1f28409f8601238", properties: {"state":1485966946841185}, methods: {"addObserver":{"id":2620995738538711,"hints":[{"protocol":"c:objc(pl)LAEnvironmentObserver"}]},"removeObserver":{"id":3043798677862946,"hints":[{"protocol":"c:objc(pl)LAEnvironmentObserver"}]}} });
-registerSDKClass("LAEnvironmentMechanism", LAEnvironment_Mechanism, { module: "LocalAuthentication_c1f28409f8601238", properties: {"iconSystemName":4469712052453819,"isUsable":4375331493887704,"localizedName":592100925891635} });
-registerSDKClass("LAEnvironmentMechanismBiometry", LAEnvironment_MechanismBiometry, { module: "LocalAuthentication_c1f28409f8601238", properties: {"biometryType":1168761816436943,"builtInSensorInaccessible":3851032736782122,"isEnrolled":3187827272315615,"isLockedOut":3286614679489305,"stateHash":839228316896119} });
-registerSDKClass("LAEnvironmentMechanismCompanion", LAEnvironment_MechanismCompanion, { module: "LocalAuthentication_c1f28409f8601238", properties: {"stateHash":4377602849960546,"type":4019415220675225} });
-registerSDKClass("LAEnvironmentMechanismUserPassword", LAEnvironment_MechanismUserPassword, { module: "LocalAuthentication_c1f28409f8601238", properties: {"isSet":2760169985518067} });
+registerSDKClass("LAAuthenticationRequirement", LAAuthenticationRequirement, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {} });
+registerSDKClass("LABiometryFallbackRequirement", LABiometryFallbackRequirement, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {} });
+registerSDKClass("LAContext", LAContext, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"biometryType":2251461676856285,"domainState":3778326282127522,"evaluatedPolicyDomainState":948179398327915,"interactionNotAllowed":1608741381546673,"localizedCancelTitle":1193325409428399,"localizedFallbackTitle":852779793506768,"localizedReason":4382784447006291,"maxBiometryFailures":3360026034930212,"touchIDAuthenticationAllowableReuseDuration":2350439019908233}, methods: {"canEvaluatePolicy":{"id":468587203890238,"args":[0,null]},"evaluateAccessControl":{"id":2383328253524527,"hints":[null,null,null,{"callback":{"out":[]}}]},"evaluatePolicy":{"id":2041345328684310,"hints":[null,null,{"callback":{"out":[]}}]},"invalidate":{"id":776408388122406},"isCredentialSet":{"id":828319176592987},"setCredential":{"id":2235669221909934}} });
+registerSDKClass("LADomainState", LADomainState, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"biometry":3607508655547516,"companion":1016252593926765,"stateHash":1896767967328905} });
+registerSDKClass("LADomainStateBiometry", LADomainStateBiometry, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"biometryType":4222539944340176,"stateHash":4330824298601289} });
+registerSDKClass("LADomainStateCompanion", LADomainStateCompanion, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"stateHash":1725203935477060}, methods: {"stateHashFor":{"id":87204542867547}} });
+registerSDKClass("LAEnvironment", LAEnvironment, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"state":1485966946841185}, methods: {"addObserver":{"id":2620995738538711,"hints":[{"protocol":"c:objc(pl)LAEnvironmentObserver"}]},"removeObserver":{"id":3043798677862946,"hints":[{"protocol":"c:objc(pl)LAEnvironmentObserver"}]}} });
+registerSDKClass("LAEnvironmentMechanism", LAEnvironment_Mechanism, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"iconSystemName":4469712052453819,"isUsable":4375331493887704,"localizedName":592100925891635} });
+registerSDKClass("LAEnvironmentMechanismBiometry", LAEnvironment_MechanismBiometry, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"biometryType":1168761816436943,"builtInSensorInaccessible":3851032736782122,"isEnrolled":3187827272315615,"isLockedOut":3286614679489305,"stateHash":839228316896119} });
+registerSDKClass("LAEnvironmentMechanismCompanion", LAEnvironment_MechanismCompanion, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"stateHash":4377602849960546,"type":4019415220675225} });
+registerSDKClass("LAEnvironmentMechanismUserPassword", LAEnvironment_MechanismUserPassword, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"isSet":2760169985518067} });
 registerSDKProtocol("c:objc(pl)LAEnvironmentObserver", {"environmentStateDidChangeFromOldState":"environment(_:stateDidChangeFromOldState:)"});
-registerSDKClass("LAEnvironmentState", LAEnvironment_State, { module: "LocalAuthentication_c1f28409f8601238", properties: {"allMechanisms":601805260001717,"biometry":2625895879845865,"companions":4308329875222525,"userPassword":504952144872648} });
-registerSDKClass("LocalAuthentication.LAError", LAError, { module: "LocalAuthentication_c1f28409f8601238", properties: {} });
-registerSDKClass("LARight", LARight, { module: "LocalAuthentication_c1f28409f8601238", properties: {"state":238594120599688,"tag":2851594576983295}, methods: {"authorize":{"id":2680599188064143,"hints":[null,{"callback":{"out":[]}}]},"checkCanAuthorize":{"id":707219471742113,"hints":[{"callback":{"out":[]}}]},"deauthorize":{"id":1104619837730346,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("LAPersistedRight", LAPersistedRight, { module: "LocalAuthentication_c1f28409f8601238", properties: {"key":4491136616392221,"secret":784427923055906} });
-registerSDKClass("LAPrivateKey", LAPrivateKey, { module: "LocalAuthentication_c1f28409f8601238", properties: {"publicKey":2081614605274263}, methods: {"canDecrypt":{"id":2676605940617992},"canExchangeKeys":{"id":2721865796211438},"canSign":{"id":3474140608580480},"decrypt":{"id":315782569981642,"hints":[null,null,{"callback":{"out":[]}}]},"exchangeKeys":{"id":1449260831485807,"hints":[null,null,null,{"callback":{"out":[]}}]},"sign":{"id":3494532697217180,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("LAPublicKey", LAPublicKey, { module: "LocalAuthentication_c1f28409f8601238", properties: {}, methods: {"canEncrypt":{"id":3251529690895030},"canVerify":{"id":4024080203706248},"encrypt":{"id":363318909144054,"hints":[null,null,{"callback":{"out":[]}}]},"exportBytes":{"id":4050677730791941,"hints":[{"callback":{"out":[]}}]},"verify":{"id":2182347919993732,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("LARightStore", LARightStore, { module: "LocalAuthentication_c1f28409f8601238", properties: {}, methods: {"removeAllRights":{"id":2180170615871179,"hints":[{"callback":{"out":[]}}]},"removeRightCompletion":{"id":870155985176504,"hints":[null,{"callback":{"out":[]}}]},"removeRightForIdentifierCompletion":{"id":3100016738025020,"hints":[null,{"callback":{"out":[]}}]},"right":{"id":1762317146858175,"hints":[null,{"callback":{"out":[]}}]},"saveRightIdentifierCompletion":{"id":867725427931223,"hints":[null,null,{"callback":{"out":[]}}]},"saveRightIdentifierSecretCompletion":{"id":676401865897228,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("LASecret", LASecret, { module: "LocalAuthentication_c1f28409f8601238", properties: {}, methods: {"loadData":{"id":4222127780821552,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("LAEnvironmentState", LAEnvironment_State, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"allMechanisms":601805260001717,"biometry":2625895879845865,"companions":4308329875222525,"userPassword":504952144872648} });
+registerSDKClass("LocalAuthentication.LAError", LAError, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {} });
+registerSDKClass("LARight", LARight, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"state":238594120599688,"tag":2851594576983295}, methods: {"authorize":{"id":2680599188064143,"hints":[null,{"callback":{"out":[]}}]},"checkCanAuthorize":{"id":707219471742113,"hints":[{"callback":{"out":[]}}]},"deauthorize":{"id":1104619837730346,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("LAPersistedRight", LAPersistedRight, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"key":4491136616392221,"secret":784427923055906} });
+registerSDKClass("LAPrivateKey", LAPrivateKey, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {"publicKey":2081614605274263}, methods: {"canDecrypt":{"id":2676605940617992},"canExchangeKeys":{"id":2721865796211438},"canSign":{"id":3474140608580480},"decrypt":{"id":315782569981642,"hints":[null,null,{"callback":{"out":[]}}]},"exchangeKeys":{"id":1449260831485807,"hints":[null,null,null,{"callback":{"out":[]}}]},"sign":{"id":3494532697217180,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("LAPublicKey", LAPublicKey, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {}, methods: {"canEncrypt":{"id":3251529690895030},"canVerify":{"id":4024080203706248},"encrypt":{"id":363318909144054,"hints":[null,null,{"callback":{"out":[]}}]},"exportBytes":{"id":4050677730791941,"hints":[{"callback":{"out":[]}}]},"verify":{"id":2182347919993732,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("LARightStore", LARightStore, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {}, methods: {"removeAllRights":{"id":2180170615871179,"hints":[{"callback":{"out":[]}}]},"removeRightCompletion":{"id":870155985176504,"hints":[null,{"callback":{"out":[]}}]},"removeRightForIdentifierCompletion":{"id":3100016738025020,"hints":[null,{"callback":{"out":[]}}]},"right":{"id":1762317146858175,"hints":[null,{"callback":{"out":[]}}]},"saveRightIdentifierCompletion":{"id":867725427931223,"hints":[null,null,{"callback":{"out":[]}}]},"saveRightIdentifierSecretCompletion":{"id":676401865897228,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("LASecret", LASecret, { module: "LocalAuthentication_e11dfd5beee01da3", properties: {}, methods: {"loadData":{"id":4222127780821552,"hints":[{"callback":{"out":[]}}]}} });
