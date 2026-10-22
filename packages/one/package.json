@@ -39,7 +39,7 @@
     },
     "./ios/*": {
       "types": "./ios-types/*.d.ts",
-      "react-native": "./ios-bindings/*.ts"
+      "react-native": "./dist/esm/ios/*.native.js"
     },
     "./ios-runtime": {
       "react-native": {

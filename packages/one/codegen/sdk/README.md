@@ -34,10 +34,12 @@ The declarations are committed because package release builds run on Ubuntu.
 Applications resolve `one/ios/<Framework>` through One's package exports without
 prebuilds or tsconfig paths. TypeScript selects `ios-types` declarations, including
 when the consumer enables the `react-native` condition. Native bundlers select
-the shipped `ios-bindings` TypeScript facades through that condition, so dependency
-builds do not need One's Vite or Metro resolver hooks. There is no browser or
-default runtime export. One's integrations still reject framework imports outside
-iOS and resolve the same facades for iOS. Native prebuild generates the matching
+`dist/esm/ios/<Framework>.native.js` through that condition: the package build
+(`codegen/sdk/build.ts`) compiles each `ios-bindings` facade to JavaScript, so
+dependency builds need neither One's Vite or Metro resolver hooks nor a
+TypeScript transform for `declare` fields. There is no browser or default
+runtime export. One's integrations still reject framework imports outside iOS
+and resolve the `ios-bindings` source facades for iOS. Native prebuild generates the matching
 framework tables; package resolution does not require an installed Apple SDK.
 
 Native reference handles retain actual objects. `kCFAllocatorUseContext` is a

@@ -84,10 +84,11 @@ test('packed iOS backends resolve shipped facades under native consumer conditio
       'Contacts',
       'ContactsUI',
     ]) {
-      expect(inputs.some((name) => name.endsWith(`/ios-bindings/${framework}.ts`))).toBe(
-        true
-      )
+      expect(
+        inputs.some((name) => name.endsWith(`/dist/esm/ios/${framework}.native.js`))
+      ).toBe(true)
     }
+    expect(inputs.some((name) => name.includes('/ios-bindings/'))).toBe(false)
     expect(inputs.some((name) => name.endsWith('/dist/esm/ios-runtime.native.js'))).toBe(
       true
     )
@@ -107,7 +108,7 @@ test('packed iOS backends resolve shipped facades under native consumer conditio
       import { createRequire } from 'node:module';
       const require = createRequire(import.meta.url);
       for (const name of ${JSON.stringify(specifiers)}) {
-        const suffix = '/ios-bindings/' + name.slice(8) + '.ts';
+        const suffix = '/dist/esm/ios/' + name.slice(8) + '.native.js';
         if (!import.meta.resolve(name).endsWith(suffix) || !require.resolve(name).endsWith(suffix)) throw Error(name);
       }
     `
@@ -140,6 +141,7 @@ test('packed iOS backends resolve shipped facades under native consumer conditio
     )
     expect(files).toContain(join(installed, 'ios-types/Foundation.d.ts'))
     expect(files).not.toContain(join(installed, 'ios-bindings/Foundation.ts'))
+    expect(files).not.toContain(join(installed, 'dist/esm/ios/Foundation.native.js'))
 
     // ordinary browser and node consumers cannot import an Apple runtime.
     await expect(
