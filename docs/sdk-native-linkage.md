@@ -26,6 +26,35 @@ including explicit module builds. A simulator control also imports and links
 the retained One runtime. The SDK warning about a macOS sysroot remains in
 successful controls; it does not establish a cause for these failures.
 
+## SDK overlay metadata correction
+
+The first correction in PR #1013 covered the 19 helper references but missed
+an AVFoundation overlay dependency. Asset author s65792 reproduced the actual
+fresh generation failure with a typed call to
+`AVCapturePhotoOutput.supportedRawPhotoPixelFormatTypes(for:) -> [OSType]`.
+The SDK's imports pass on device and simulator; the external modulemap alone
+breaks SIL deserialization of `__supportedRawPhotoPixelFormatTypes` on both.
+
+TESTED: changing the external modulemap to a framework module or using the
+original absolute umbrella header does not fix the failure. Providing the
+original `AVFoundation.apinotes` beside the external map does. The SDK notes
+mark `supportedRawPhotoPixelFormatTypesForFileType:` as `SwiftPrivate: true`,
+which supplies the private name used by the distributed Swift overlay. Moving
+the modulemap lost automatic discovery of this native metadata.
+
+The correction keeps the modulemaps and adds Clang API notes search paths for
+the four original SDK framework header directories. One shared flag function
+serves generator checks, generated pods and external consumers. Notes stay in
+the SDK and are read from the selected target's SDK root. No copies, replacement
+notes, symbol aliases, changed table entries or suppressed checks are involved.
+
+TESTED: the retained full AVFoundation table that failed fresh generation now
+passes the generator's SIL check against both SDKs. The typed overlay call and
+all 19 exported helper references also compile and link together under C++20,
+WMO and explicit modules on both targets. This is bounded source qualification,
+not a complete fresh SDK generation or combined constants capture. Its exact
+controls and results are in the `overlay` subdirectory of the evidence record.
+
 ## Native availability
 
 TESTED: Objective-C rejects `kColorSyncPreferredCMM` as unavailable on iOS.
@@ -50,11 +79,14 @@ subject to the capture owner's actual regenerated input count.
 
 ## Consumer boundary and remaining acceptance
 
-The SDK bundle exports `writeSdkNativeSupport(buildSupportDir)`, returning
+The SDK bundle exports `writeSdkNativeSupport(buildSupportDir, sdkRoot)`, returning
 `{ generation, swiftFlags }`. Consumers compare its generation with the cached
 tables and append its flags unchanged. The helper writes `module.modulemap`
 and header imports below the supplied directory. Its paths refer to that
-directory, never an SDK installation or mutable generation cache. The generator
+directory. API notes search paths refer to the original selected SDK. If omitted,
+the SDK root defaults to the selected iPhone simulator SDK. Generated pods use
+the build's `$(SDKROOT)`; generator checks use each target's explicit SDK root.
+The generator
 fingerprint includes the modulemap writer, so old caches cannot claim the new
 policy's identity.
 

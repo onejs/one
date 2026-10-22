@@ -11,7 +11,7 @@ import { Bridge, buildIndex, collectFacts } from './bridge'
 import { emitModule, MINIMUM_IOS, type ModuleOutput } from './emit'
 import { loadGraph, sdkModules, type Symbol } from './graph'
 import { checkInheritedInits } from './inherited-inits'
-import { writeCLinkageModules } from './c-linkage'
+import { cLinkageSwiftFlags, writeCLinkageModules } from './c-linkage'
 
 const run = promisify(execFile)
 export const RUNTIME = resolve(import.meta.dirname, '../../ios/SDK/OneSDKRuntime.swift')
@@ -27,16 +27,16 @@ const SDKS = [
   { sdk: 'iphoneos', suffix: '' },
 ] as const
 type Sdk = (typeof SDKS)[number]
-const targetArgs = new Map<Sdk, string[]>()
+const targetArgs = new Map<Sdk, { sdkRoot: string; args: string[] }>()
 const target = (sdk: Sdk) => {
-  let args = targetArgs.get(sdk)
-  if (!args) {
+  let configuration = targetArgs.get(sdk)
+  if (!configuration) {
     const path = execFileSync('xcrun', ['--sdk', sdk.sdk, '--show-sdk-path'], { encoding: 'utf8' }).trim()
-    args = ['-swift-version', '5', '-sdk', path, '-target', `arm64-apple-ios${MINIMUM_IOS}${sdk.suffix}`,
-      '-explicit-module-build', ...CXX_INTEROP]
-    targetArgs.set(sdk, args)
+    configuration = { sdkRoot: path, args: ['-swift-version', '5', '-sdk', path, '-target', `arm64-apple-ios${MINIMUM_IOS}${sdk.suffix}`,
+      '-explicit-module-build', ...CXX_INTEROP] }
+    targetArgs.set(sdk, configuration)
   }
-  return args
+  return configuration
 }
 
 // the bindings compile in their own pod against One, so they typecheck against
@@ -48,8 +48,8 @@ function oneModule(sdk: Sdk) {
     module = (async () => {
       const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
       const moduleMap = writeCLinkageModules(join(dir, 'CLinkage'))
-      await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(sdk),
-        '-Xcc', `-fmodule-map-file=${moduleMap}`,
+      await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(sdk).args,
+        ...cLinkageSwiftFlags(moduleMap, target(sdk).sdkRoot),
         '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])
       return dir
     })()
@@ -66,8 +66,8 @@ export async function typecheck(files: string[]) {
   const errors = await Promise.all(SDKS.map(async (sdk) => {
     try {
       const dir = await oneModule(sdk)
-      await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...target(sdk),
-        '-Xcc', `-fmodule-map-file=${join(dir, 'CLinkage/module.modulemap')}`,
+      await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...target(sdk).args,
+        ...cLinkageSwiftFlags(join(dir, 'CLinkage/module.modulemap'), target(sdk).sdkRoot),
         '-I', dir, ...files], { maxBuffer: 256 * 1024 * 1024 })
       return []
     } catch (error) {
