@@ -15,6 +15,7 @@ jobs:
         include:
           - shard: proof
             suites: proof
+            launch-screen-proof: ''
     env:
       FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
       ANDROID_SDK_PACKAGES: 'platform-tools emulator platforms;android-37.0 build-tools;37.0.0 system-images;android-37.0;google_apis;x86_64'
