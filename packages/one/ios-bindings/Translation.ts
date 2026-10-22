@@ -17,7 +17,7 @@ export class AttributeScopes_TranslationAttributes extends SDKHandle {
    * let skipsTranslation: AttributeScopes.TranslationAttributes.SkipTranslationAttribute
    * @availability iOS 26.4+
    */
-  get skipsTranslation(): AttributeScopes_TranslationAttributes_SkipTranslationAttribute { return callSDK<AttributeScopes_TranslationAttributes_SkipTranslationAttribute>("Translation_e11dfd5beee01da3", 2623882999111691, this, []); }
+  get skipsTranslation(): AttributeScopes_TranslationAttributes_SkipTranslationAttribute { return callSDK<AttributeScopes_TranslationAttributes_SkipTranslationAttribute>("Translation_3864e7f38681b875", 2623882999111691, this, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO11TranslationE0D10AttributesV": true };
 }
 
@@ -42,7 +42,7 @@ export class AttributeScopes_TranslationAttributes_SkipTranslationAttribute exte
    * static let name: String
    * @availability iOS 26.4+
    */
-  static get nameValue(): string { return callSDK<string>("Translation_e11dfd5beee01da3", 2090453517852140, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Translation_3864e7f38681b875", 2090453517852140, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO11TranslationE0D10AttributesV04SkipdB0O": true };
 }
 
@@ -61,32 +61,32 @@ export class LanguageAvailability extends SDKHandle {
    * var preferredStrategy: TranslationSession.Strategy { get }
    * @availability iOS 26.4+
    */
-  get preferredStrategy(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_e11dfd5beee01da3", 2834249174846223, this, []); }
+  get preferredStrategy(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_3864e7f38681b875", 2834249174846223, this, []); }
   /**
    * init(preferredStrategy: TranslationSession.Strategy)
    * @availability iOS 26.4+
    */
-  static initPreferredStrategy(preferredStrategy: TranslationSession_Strategy): LanguageAvailability { return callSDK<LanguageAvailability>("Translation_e11dfd5beee01da3", 1766794919205113, undefined, [preferredStrategy]); }
+  static initPreferredStrategy(preferredStrategy: TranslationSession_Strategy): LanguageAvailability { return callSDK<LanguageAvailability>("Translation_3864e7f38681b875", 1766794919205113, undefined, [preferredStrategy]); }
   /**
    * var supportedLanguages: [Locale.Language] { get async }
    * @availability iOS 18.0+
    */
-  get supportedLanguages(): Promise<Array<_Foundation_Locale_Language>> { return callSDKAsync<Array<_Foundation_Locale_Language>>("Translation_e11dfd5beee01da3", 1660224215010372, this, []); }
+  get supportedLanguages(): Promise<Array<_Foundation_Locale_Language>> { return callSDKAsync<Array<_Foundation_Locale_Language>>("Translation_3864e7f38681b875", 1660224215010372, this, []); }
   /**
    * func status(for text: String, to target: Locale.Language?) async throws -> LanguageAvailability.Status
    * @availability iOS 18.0+
    */
-  statusForTo(text: string, target?: $SDK1): Promise<LanguageAvailability_Status> { return callSDKAsync<LanguageAvailability_Status>("Translation_e11dfd5beee01da3", 2835107731221114, this, [text, target]); }
+  statusForTo(text: string, target?: $SDK1): Promise<LanguageAvailability_Status> { return callSDKAsync<LanguageAvailability_Status>("Translation_3864e7f38681b875", 2835107731221114, this, [text, target]); }
   /**
    * func status(from source: Locale.Language, to target: Locale.Language?) async -> LanguageAvailability.Status
    * @availability iOS 18.0+
    */
-  statusFromTo(source: _Foundation_Locale_Language, target?: $SDK1): Promise<LanguageAvailability_Status> { return callSDKAsync<LanguageAvailability_Status>("Translation_e11dfd5beee01da3", 78149930095236, this, [source, target]); }
+  statusFromTo(source: _Foundation_Locale_Language, target?: $SDK1): Promise<LanguageAvailability_Status> { return callSDKAsync<LanguageAvailability_Status>("Translation_3864e7f38681b875", 78149930095236, this, [source, target]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): LanguageAvailability { return callSDK<LanguageAvailability>("Translation_e11dfd5beee01da3", 591801421168976, undefined, []); }
+  static init(): LanguageAvailability { return callSDK<LanguageAvailability>("Translation_3864e7f38681b875", 591801421168976, undefined, []); }
   declare readonly $type: { "s:11Translation20LanguageAvailabilityC": true };
 }
 
@@ -105,52 +105,52 @@ export class TranslationError extends SDKHandle {
    * static let internalError: TranslationError
    * @availability iOS 18.0+
    */
-  static get internalError(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 767259257132649, undefined, []); }
+  static get internalError(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 767259257132649, undefined, []); }
   /**
    * static let notInstalled: TranslationError
    * @availability iOS 26.0+
    */
-  static get notInstalled(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 193110087947811, undefined, []); }
+  static get notInstalled(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 193110087947811, undefined, []); }
   /**
    * var failureReason: String? { get }
    * @availability iOS 18.0+
    */
-  get failureReason(): (string) | null { return callSDK<(string) | null>("Translation_e11dfd5beee01da3", 793613265821514, this, []); }
+  get failureReason(): (string) | null { return callSDK<(string) | null>("Translation_3864e7f38681b875", 793613265821514, this, []); }
   /**
    * static let alreadyCancelled: TranslationError
    * @availability iOS 26.0+
    */
-  static get alreadyCancelled(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 632812619055431, undefined, []); }
+  static get alreadyCancelled(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 632812619055431, undefined, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 18.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("Translation_e11dfd5beee01da3", 2124677520835825, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("Translation_3864e7f38681b875", 2124677520835825, this, []); }
   /**
    * static let nothingToTranslate: TranslationError
    * @availability iOS 18.0+
    */
-  static get nothingToTranslate(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 2571167468731600, undefined, []); }
+  static get nothingToTranslate(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 2571167468731600, undefined, []); }
   /**
    * static let unableToIdentifyLanguage: TranslationError
    * @availability iOS 18.0+
    */
-  static get unableToIdentifyLanguage(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 3766322552674703, undefined, []); }
+  static get unableToIdentifyLanguage(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 3766322552674703, undefined, []); }
   /**
    * static let unsupportedSourceLanguage: TranslationError
    * @availability iOS 18.0+
    */
-  static get unsupportedSourceLanguage(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 4399447785190808, undefined, []); }
+  static get unsupportedSourceLanguage(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 4399447785190808, undefined, []); }
   /**
    * static let unsupportedTargetLanguage: TranslationError
    * @availability iOS 18.0+
    */
-  static get unsupportedTargetLanguage(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 2885451600671956, undefined, []); }
+  static get unsupportedTargetLanguage(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 2885451600671956, undefined, []); }
   /**
    * static let unsupportedLanguagePairing: TranslationError
    * @availability iOS 18.0+
    */
-  static get unsupportedLanguagePairing(): TranslationError { return callSDK<TranslationError>("Translation_e11dfd5beee01da3", 2179472668763895, undefined, []); }
+  static get unsupportedLanguagePairing(): TranslationError { return callSDK<TranslationError>("Translation_3864e7f38681b875", 2179472668763895, undefined, []); }
   declare readonly $type: { "s:11Translation0A5ErrorV": true };
 }
 
@@ -163,67 +163,67 @@ export class TranslationSession extends SDKHandle {
    * func prepareTranslation() async throws
    * @availability iOS 18.0+
    */
-  prepareTranslation(): Promise<void> { return callSDKAsync<void>("Translation_e11dfd5beee01da3", 268490018896225, this, []); }
+  prepareTranslation(): Promise<void> { return callSDKAsync<void>("Translation_3864e7f38681b875", 268490018896225, this, []); }
   /**
    * func translations(from batch: [TranslationSession.Request]) async throws -> [TranslationSession.Response]
    * @availability iOS 18.0+
    */
-  translations(batch: $SDK3): Promise<Array<TranslationSession_Response>> { return callSDKAsync<Array<TranslationSession_Response>>("Translation_e11dfd5beee01da3", 1494095532838078, this, [batch]); }
+  translations(batch: $SDK3): Promise<Array<TranslationSession_Response>> { return callSDKAsync<Array<TranslationSession_Response>>("Translation_3864e7f38681b875", 1494095532838078, this, [batch]); }
   /**
    * final let sourceLanguage: Locale.Language?
    * @availability iOS 18.0+
    */
-  get sourceLanguage(): $SDK1 { return callSDK<$SDK1>("Translation_e11dfd5beee01da3", 1086831144132959, this, []); }
+  get sourceLanguage(): $SDK1 { return callSDK<$SDK1>("Translation_3864e7f38681b875", 1086831144132959, this, []); }
   /**
    * final let targetLanguage: Locale.Language?
    * @availability iOS 18.0+
    */
-  get targetLanguage(): $SDK1 { return callSDK<$SDK1>("Translation_e11dfd5beee01da3", 4281621578696505, this, []); }
+  get targetLanguage(): $SDK1 { return callSDK<$SDK1>("Translation_3864e7f38681b875", 4281621578696505, this, []); }
   /**
    * convenience init(installedSource source: Locale.Language, target: Locale.Language?, preferredStrategy: TranslationSession.Strategy)
    * @availability iOS 26.4+
    */
-  static initInstalledSourceTargetPreferredStrategy(source: _Foundation_Locale_Language, target: $SDK1, preferredStrategy: TranslationSession_Strategy): TranslationSession { return callSDK<TranslationSession>("Translation_e11dfd5beee01da3", 738280467769918, undefined, [source, target, preferredStrategy]); }
+  static initInstalledSourceTargetPreferredStrategy(source: _Foundation_Locale_Language, target: $SDK1, preferredStrategy: TranslationSession_Strategy): TranslationSession { return callSDK<TranslationSession>("Translation_3864e7f38681b875", 738280467769918, undefined, [source, target, preferredStrategy]); }
   /**
    * convenience init(installedSource source: Locale.Language, target: Locale.Language?)
    * @availability iOS 26.0+
    */
-  static initInstalledSourceTarget(source: _Foundation_Locale_Language, target?: $SDK1): TranslationSession { return callSDK<TranslationSession>("Translation_e11dfd5beee01da3", 913359910069651, undefined, [source, target]); }
+  static initInstalledSourceTarget(source: _Foundation_Locale_Language, target?: $SDK1): TranslationSession { return callSDK<TranslationSession>("Translation_3864e7f38681b875", 913359910069651, undefined, [source, target]); }
   /**
    * var preferredStrategy: TranslationSession.Strategy { get }
    * @availability iOS 26.4+
    */
-  get preferredStrategy(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_e11dfd5beee01da3", 747114227180236, this, []); }
+  get preferredStrategy(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_3864e7f38681b875", 747114227180236, this, []); }
   /**
    * var canRequestDownloads: Bool { get }
    * @availability iOS 26.0+
    */
-  get canRequestDownloads(): boolean { return callSDK<boolean>("Translation_e11dfd5beee01da3", 945437737022590, this, []); }
+  get canRequestDownloads(): boolean { return callSDK<boolean>("Translation_3864e7f38681b875", 945437737022590, this, []); }
   /**
    * func cancel()
    * @availability iOS 26.0+
    */
-  cancel(): void { return callSDK<void>("Translation_e11dfd5beee01da3", 1415958865659312, this, []); }
+  cancel(): void { return callSDK<void>("Translation_3864e7f38681b875", 1415958865659312, this, []); }
   /**
    * var isReady: Bool { get async }
    * @availability iOS 26.0+
    */
-  get isReady(): Promise<boolean> { return callSDKAsync<boolean>("Translation_e11dfd5beee01da3", 2879846773189886, this, []); }
+  get isReady(): Promise<boolean> { return callSDKAsync<boolean>("Translation_3864e7f38681b875", 2879846773189886, this, []); }
   /**
    * func translate(batch: [TranslationSession.Request]) -> TranslationSession.BatchResponse
    * @availability iOS 18.0+
    */
-  translateBatch(batch: $SDK3): TranslationSession_BatchResponse { return callSDK<TranslationSession_BatchResponse>("Translation_e11dfd5beee01da3", 421249247497272, this, [batch]); }
+  translateBatch(batch: $SDK3): TranslationSession_BatchResponse { return callSDK<TranslationSession_BatchResponse>("Translation_3864e7f38681b875", 421249247497272, this, [batch]); }
   /**
    * func translate(_ string: AttributedString) async throws -> TranslationSession.Response
    * @availability iOS 26.4+
    */
-  translate(string: _Foundation_AttributedString): Promise<TranslationSession_Response> { return callSDKAsync<TranslationSession_Response>("Translation_e11dfd5beee01da3", 1362963116421310, this, [string]); }
+  translate(string: _Foundation_AttributedString): Promise<TranslationSession_Response> { return callSDKAsync<TranslationSession_Response>("Translation_3864e7f38681b875", 1362963116421310, this, [string]); }
   /**
    * func translate(_ string: String) async throws -> TranslationSession.Response
    * @availability iOS 18.0+
    */
-  translate9306(string: string): Promise<TranslationSession_Response> { return callSDKAsync<TranslationSession_Response>("Translation_e11dfd5beee01da3", 4137463357528520, this, [string]); }
+  translate9306(string: string): Promise<TranslationSession_Response> { return callSDKAsync<TranslationSession_Response>("Translation_3864e7f38681b875", 4137463357528520, this, [string]); }
   declare readonly $type: { "s:11Translation0A7SessionC": true };
 }
 
@@ -236,7 +236,7 @@ export class TranslationSession_BatchResponse extends SDKHandle {
    * func makeAsyncIterator() -> TranslationSession.BatchResponse.AsyncIterator
    * @availability iOS 18.0+
    */
-  makeAsyncIterator(): TranslationSession_BatchResponse_AsyncIterator { return callSDK<TranslationSession_BatchResponse_AsyncIterator>("Translation_e11dfd5beee01da3", 1274597995819015, this, []); }
+  makeAsyncIterator(): TranslationSession_BatchResponse_AsyncIterator { return callSDK<TranslationSession_BatchResponse_AsyncIterator>("Translation_3864e7f38681b875", 1274597995819015, this, []); }
   declare readonly $type: { "s:11Translation0A7SessionC13BatchResponseV": true };
   declare readonly $element: TranslationSession_Response;
 }
@@ -250,7 +250,7 @@ export class TranslationSession_BatchResponse_AsyncIterator extends SDKHandle {
    * mutating func next() async throws -> TranslationSession.BatchResponse.Element?
    * @availability iOS 18.0+
    */
-  next(): Promise<(TranslationSession_Response) | null> { return callSDKAsync<(TranslationSession_Response) | null>("Translation_e11dfd5beee01da3", 1211717903974251, this, []); }
+  next(): Promise<(TranslationSession_Response) | null> { return callSDKAsync<(TranslationSession_Response) | null>("Translation_3864e7f38681b875", 1211717903974251, this, []); }
   declare readonly $type: { "s:11Translation0A7SessionC13BatchResponseV13AsyncIteratorV": true };
 }
 
@@ -275,40 +275,40 @@ export class TranslationSession_Configuration extends SDKHandle {
    * mutating func invalidate()
    * @availability iOS 18.0+
    */
-  invalidate(): void { return callSDK<void>("Translation_e11dfd5beee01da3", 1788336881802218, this, []); }
+  invalidate(): void { return callSDK<void>("Translation_3864e7f38681b875", 1788336881802218, this, []); }
   /**
    * var preferredStrategy: TranslationSession.Strategy
    * @availability iOS 26.4+
    */
-  get preferredStrategy(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_e11dfd5beee01da3", 1292794780586708, this, []); }
-  set preferredStrategy(value: TranslationSession_Strategy) { callSDK<void>("Translation_e11dfd5beee01da3", 3093953552170364, this, [value]); }
+  get preferredStrategy(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_3864e7f38681b875", 1292794780586708, this, []); }
+  set preferredStrategy(value: TranslationSession_Strategy) { callSDK<void>("Translation_3864e7f38681b875", 3093953552170364, this, [value]); }
   /**
    * var source: Locale.Language?
    * @availability iOS 18.0+
    */
-  get source(): $SDK1 { return callSDK<$SDK1>("Translation_e11dfd5beee01da3", 367090557218595, this, []); }
-  set source(value: $SDK1) { callSDK<void>("Translation_e11dfd5beee01da3", 184854948647220, this, [value]); }
+  get source(): $SDK1 { return callSDK<$SDK1>("Translation_3864e7f38681b875", 367090557218595, this, []); }
+  set source(value: $SDK1) { callSDK<void>("Translation_3864e7f38681b875", 184854948647220, this, [value]); }
   /**
    * init(source: Locale.Language? = nil, target: Locale.Language? = nil, preferredStrategy: TranslationSession.Strategy)
    * @availability iOS 26.4+
    */
-  static initSourceTargetPreferredStrategy(source: $SDK1, target: $SDK1, preferredStrategy: TranslationSession_Strategy): TranslationSession_Configuration { return callSDK<TranslationSession_Configuration>("Translation_e11dfd5beee01da3", 3823152702226702, undefined, [source, target, preferredStrategy]); }
+  static initSourceTargetPreferredStrategy(source: $SDK1, target: $SDK1, preferredStrategy: TranslationSession_Strategy): TranslationSession_Configuration { return callSDK<TranslationSession_Configuration>("Translation_3864e7f38681b875", 3823152702226702, undefined, [source, target, preferredStrategy]); }
   /**
    * init(source: Locale.Language? = nil, target: Locale.Language? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTarget(source?: $SDK1, target?: $SDK1): TranslationSession_Configuration { return callSDK<TranslationSession_Configuration>("Translation_e11dfd5beee01da3", 249761574661165, undefined, [source, target]); }
+  static initSourceTarget(source?: $SDK1, target?: $SDK1): TranslationSession_Configuration { return callSDK<TranslationSession_Configuration>("Translation_3864e7f38681b875", 249761574661165, undefined, [source, target]); }
   /**
    * var target: Locale.Language?
    * @availability iOS 18.0+
    */
-  get target(): $SDK1 { return callSDK<$SDK1>("Translation_e11dfd5beee01da3", 2720420984425264, this, []); }
-  set target(value: $SDK1) { callSDK<void>("Translation_e11dfd5beee01da3", 3026603505210309, this, [value]); }
+  get target(): $SDK1 { return callSDK<$SDK1>("Translation_3864e7f38681b875", 2720420984425264, this, []); }
+  set target(value: $SDK1) { callSDK<void>("Translation_3864e7f38681b875", 3026603505210309, this, [value]); }
   /**
    * var version: Int { get }
    * @availability iOS 18.0+
    */
-  get version(): number { return callSDK<number>("Translation_e11dfd5beee01da3", 3449664104703521, this, []); }
+  get version(): number { return callSDK<number>("Translation_3864e7f38681b875", 3449664104703521, this, []); }
   declare readonly $type: { "s:11Translation0A7SessionC13ConfigurationV": true };
 }
 
@@ -321,30 +321,30 @@ export class TranslationSession_Request extends SDKHandle {
    * init(sourceText: AttributedString, clientIdentifier: String? = nil)
    * @availability iOS 26.4+
    */
-  static initSourceTextClientIdentifier(sourceText: _Foundation_AttributedString, clientIdentifier?: (string) | null): TranslationSession_Request { return callSDK<TranslationSession_Request>("Translation_e11dfd5beee01da3", 3663804894639615, undefined, [sourceText, clientIdentifier]); }
+  static initSourceTextClientIdentifier(sourceText: _Foundation_AttributedString, clientIdentifier?: (string) | null): TranslationSession_Request { return callSDK<TranslationSession_Request>("Translation_3864e7f38681b875", 3663804894639615, undefined, [sourceText, clientIdentifier]); }
   /**
    * init(sourceText: String, clientIdentifier: String? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceTextClientIdentifier35269(sourceText: string, clientIdentifier?: (string) | null): TranslationSession_Request { return callSDK<TranslationSession_Request>("Translation_e11dfd5beee01da3", 63054324543381, undefined, [sourceText, clientIdentifier]); }
+  static initSourceTextClientIdentifier35269(sourceText: string, clientIdentifier?: (string) | null): TranslationSession_Request { return callSDK<TranslationSession_Request>("Translation_3864e7f38681b875", 63054324543381, undefined, [sourceText, clientIdentifier]); }
   /**
    * var sourceText: String
    * @availability iOS 18.0+
    */
-  get sourceText(): string { return callSDK<string>("Translation_e11dfd5beee01da3", 2024167754021484, this, []); }
-  set sourceText(value: string) { callSDK<void>("Translation_e11dfd5beee01da3", 3389864535754161, this, [value]); }
+  get sourceText(): string { return callSDK<string>("Translation_3864e7f38681b875", 2024167754021484, this, []); }
+  set sourceText(value: string) { callSDK<void>("Translation_3864e7f38681b875", 3389864535754161, this, [value]); }
   /**
    * var clientIdentifier: String?
    * @availability iOS 18.0+
    */
-  get clientIdentifier(): (string) | null { return callSDK<(string) | null>("Translation_e11dfd5beee01da3", 919754979128905, this, []); }
-  set clientIdentifier(value: (string) | null) { callSDK<void>("Translation_e11dfd5beee01da3", 1589434256099661, this, [value]); }
+  get clientIdentifier(): (string) | null { return callSDK<(string) | null>("Translation_3864e7f38681b875", 919754979128905, this, []); }
+  set clientIdentifier(value: (string) | null) { callSDK<void>("Translation_3864e7f38681b875", 1589434256099661, this, [value]); }
   /**
    * var attributedSourceText: AttributedString? { get set }
    * @availability iOS 26.4+
    */
-  get attributedSourceText(): $SDK5 { return callSDK<$SDK5>("Translation_e11dfd5beee01da3", 1128471128789838, this, []); }
-  set attributedSourceText(value: $SDK5) { callSDK<void>("Translation_e11dfd5beee01da3", 3196157720197760, this, [value]); }
+  get attributedSourceText(): $SDK5 { return callSDK<$SDK5>("Translation_3864e7f38681b875", 1128471128789838, this, []); }
+  set attributedSourceText(value: $SDK5) { callSDK<void>("Translation_3864e7f38681b875", 3196157720197760, this, [value]); }
   declare readonly $type: { "s:11Translation0A7SessionC7RequestV": true };
 }
 
@@ -357,47 +357,47 @@ export class TranslationSession_Response extends SDKHandle {
    * let sourceText: String
    * @availability iOS 18.0+
    */
-  get sourceText(): string { return callSDK<string>("Translation_e11dfd5beee01da3", 4114711249323760, this, []); }
+  get sourceText(): string { return callSDK<string>("Translation_3864e7f38681b875", 4114711249323760, this, []); }
   /**
    * let targetText: String
    * @availability iOS 18.0+
    */
-  get targetText(): string { return callSDK<string>("Translation_e11dfd5beee01da3", 3111699027473424, this, []); }
+  get targetText(): string { return callSDK<string>("Translation_3864e7f38681b875", 3111699027473424, this, []); }
   /**
    * init(sourceLanguage: Locale.Language, targetLanguage: Locale.Language, sourceAttributedText: AttributedString, targetAttributedText: AttributedString, clientIdentifier: String? = nil)
    * @availability iOS 26.4+
    */
-  static initSourceLanguageTargetLanguageSourceAttributedTextTargetAttributedTextClientIdentifier(sourceLanguage: _Foundation_Locale_Language, targetLanguage: _Foundation_Locale_Language, sourceAttributedText: _Foundation_AttributedString, targetAttributedText: _Foundation_AttributedString, clientIdentifier?: (string) | null): TranslationSession_Response { return callSDK<TranslationSession_Response>("Translation_e11dfd5beee01da3", 3623536382318042, undefined, [sourceLanguage, targetLanguage, sourceAttributedText, targetAttributedText, clientIdentifier]); }
+  static initSourceLanguageTargetLanguageSourceAttributedTextTargetAttributedTextClientIdentifier(sourceLanguage: _Foundation_Locale_Language, targetLanguage: _Foundation_Locale_Language, sourceAttributedText: _Foundation_AttributedString, targetAttributedText: _Foundation_AttributedString, clientIdentifier?: (string) | null): TranslationSession_Response { return callSDK<TranslationSession_Response>("Translation_3864e7f38681b875", 3623536382318042, undefined, [sourceLanguage, targetLanguage, sourceAttributedText, targetAttributedText, clientIdentifier]); }
   /**
    * init(sourceLanguage: Locale.Language, targetLanguage: Locale.Language, sourceText: String, targetText: String, clientIdentifier: String? = nil)
    * @availability iOS 18.0+
    */
-  static initSourceLanguageTargetLanguageSourceTextTargetTextClientIdentifier(sourceLanguage: _Foundation_Locale_Language, targetLanguage: _Foundation_Locale_Language, sourceText: string, targetText: string, clientIdentifier?: (string) | null): TranslationSession_Response { return callSDK<TranslationSession_Response>("Translation_e11dfd5beee01da3", 2023575767652546, undefined, [sourceLanguage, targetLanguage, sourceText, targetText, clientIdentifier]); }
+  static initSourceLanguageTargetLanguageSourceTextTargetTextClientIdentifier(sourceLanguage: _Foundation_Locale_Language, targetLanguage: _Foundation_Locale_Language, sourceText: string, targetText: string, clientIdentifier?: (string) | null): TranslationSession_Response { return callSDK<TranslationSession_Response>("Translation_3864e7f38681b875", 2023575767652546, undefined, [sourceLanguage, targetLanguage, sourceText, targetText, clientIdentifier]); }
   /**
    * let sourceLanguage: Locale.Language
    * @availability iOS 18.0+
    */
-  get sourceLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("Translation_e11dfd5beee01da3", 41057453736879, this, []); }
+  get sourceLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("Translation_3864e7f38681b875", 41057453736879, this, []); }
   /**
    * let targetLanguage: Locale.Language
    * @availability iOS 18.0+
    */
-  get targetLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("Translation_e11dfd5beee01da3", 1487335996335222, this, []); }
+  get targetLanguage(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("Translation_3864e7f38681b875", 1487335996335222, this, []); }
   /**
    * let clientIdentifier: String?
    * @availability iOS 18.0+
    */
-  get clientIdentifier(): (string) | null { return callSDK<(string) | null>("Translation_e11dfd5beee01da3", 333649987235680, this, []); }
+  get clientIdentifier(): (string) | null { return callSDK<(string) | null>("Translation_3864e7f38681b875", 333649987235680, this, []); }
   /**
    * let attributedSourceText: AttributedString?
    * @availability iOS 26.4+
    */
-  get attributedSourceText(): $SDK5 { return callSDK<$SDK5>("Translation_e11dfd5beee01da3", 837414887854066, this, []); }
+  get attributedSourceText(): $SDK5 { return callSDK<$SDK5>("Translation_3864e7f38681b875", 837414887854066, this, []); }
   /**
    * let attributedTargetText: AttributedString?
    * @availability iOS 26.4+
    */
-  get attributedTargetText(): $SDK5 { return callSDK<$SDK5>("Translation_e11dfd5beee01da3", 1927068108325091, this, []); }
+  get attributedTargetText(): $SDK5 { return callSDK<$SDK5>("Translation_3864e7f38681b875", 1927068108325091, this, []); }
   declare readonly $type: { "s:11Translation0A7SessionC8ResponseV": true };
 }
 
@@ -410,23 +410,23 @@ export class TranslationSession_Strategy extends SDKHandle {
    * static let lowLatency: TranslationSession.Strategy
    * @availability iOS 26.4+
    */
-  static get lowLatency(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_e11dfd5beee01da3", 2678933249263411, undefined, []); }
+  static get lowLatency(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_3864e7f38681b875", 2678933249263411, undefined, []); }
   /**
    * static let highFidelity: TranslationSession.Strategy
    * @availability iOS 26.4+
    */
-  static get highFidelity(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_e11dfd5beee01da3", 3255190585244425, undefined, []); }
+  static get highFidelity(): TranslationSession_Strategy { return callSDK<TranslationSession_Strategy>("Translation_3864e7f38681b875", 3255190585244425, undefined, []); }
   declare readonly $type: { "s:11Translation0A7SessionC8StrategyV": true };
 }
 
-registerSDKClass("Translation.AttributeScopes.TranslationAttributes", AttributeScopes_TranslationAttributes, { module: "Translation_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Translation.AttributeScopes.TranslationAttributes.SkipTranslationAttribute", AttributeScopes_TranslationAttributes_SkipTranslationAttribute, { module: "Translation_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Translation.LanguageAvailability", LanguageAvailability, { module: "Translation_e11dfd5beee01da3", properties: {}, methods: {"statusForTo":{"id":2835107731221114},"statusFromTo":{"id":78149930095236}} });
-registerSDKClass("Translation.TranslationError", TranslationError, { module: "Translation_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Translation.TranslationSession", TranslationSession, { module: "Translation_e11dfd5beee01da3", properties: {}, methods: {"prepareTranslation":{"id":268490018896225},"translations":{"id":1494095532838078},"cancel":{"id":1415958865659312},"translateBatch":{"id":421249247497272},"translate":{"id":1362963116421310},"translate9306":{"id":4137463357528520}} });
-registerSDKClass("Translation.TranslationSession.BatchResponse", TranslationSession_BatchResponse, { module: "Translation_e11dfd5beee01da3", properties: {}, methods: {"makeAsyncIterator":{"id":1274597995819015}} });
-registerSDKClass("Translation.TranslationSession.BatchResponse.AsyncIterator", TranslationSession_BatchResponse_AsyncIterator, { module: "Translation_e11dfd5beee01da3", properties: {}, methods: {"next":{"id":1211717903974251}} });
-registerSDKClass("Translation.TranslationSession.Configuration", TranslationSession_Configuration, { module: "Translation_e11dfd5beee01da3", properties: {}, methods: {"invalidate":{"id":1788336881802218}} });
-registerSDKClass("Translation.TranslationSession.Request", TranslationSession_Request, { module: "Translation_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Translation.TranslationSession.Response", TranslationSession_Response, { module: "Translation_e11dfd5beee01da3", properties: {} });
-registerSDKClass("Translation.TranslationSession.Strategy", TranslationSession_Strategy, { module: "Translation_e11dfd5beee01da3", properties: {} });
+registerSDKClass("Translation.AttributeScopes.TranslationAttributes", AttributeScopes_TranslationAttributes, { module: "Translation_3864e7f38681b875", properties: {} });
+registerSDKClass("Translation.AttributeScopes.TranslationAttributes.SkipTranslationAttribute", AttributeScopes_TranslationAttributes_SkipTranslationAttribute, { module: "Translation_3864e7f38681b875", properties: {} });
+registerSDKClass("Translation.LanguageAvailability", LanguageAvailability, { module: "Translation_3864e7f38681b875", properties: {}, methods: {"statusForTo":{"id":2835107731221114},"statusFromTo":{"id":78149930095236}} });
+registerSDKClass("Translation.TranslationError", TranslationError, { module: "Translation_3864e7f38681b875", properties: {} });
+registerSDKClass("Translation.TranslationSession", TranslationSession, { module: "Translation_3864e7f38681b875", properties: {}, methods: {"prepareTranslation":{"id":268490018896225},"translations":{"id":1494095532838078},"cancel":{"id":1415958865659312},"translateBatch":{"id":421249247497272},"translate":{"id":1362963116421310},"translate9306":{"id":4137463357528520}} });
+registerSDKClass("Translation.TranslationSession.BatchResponse", TranslationSession_BatchResponse, { module: "Translation_3864e7f38681b875", properties: {}, methods: {"makeAsyncIterator":{"id":1274597995819015}} });
+registerSDKClass("Translation.TranslationSession.BatchResponse.AsyncIterator", TranslationSession_BatchResponse_AsyncIterator, { module: "Translation_3864e7f38681b875", properties: {}, methods: {"next":{"id":1211717903974251}} });
+registerSDKClass("Translation.TranslationSession.Configuration", TranslationSession_Configuration, { module: "Translation_3864e7f38681b875", properties: {}, methods: {"invalidate":{"id":1788336881802218}} });
+registerSDKClass("Translation.TranslationSession.Request", TranslationSession_Request, { module: "Translation_3864e7f38681b875", properties: {} });
+registerSDKClass("Translation.TranslationSession.Response", TranslationSession_Response, { module: "Translation_3864e7f38681b875", properties: {} });
+registerSDKClass("Translation.TranslationSession.Strategy", TranslationSession_Strategy, { module: "Translation_3864e7f38681b875", properties: {} });

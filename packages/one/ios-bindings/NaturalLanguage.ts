@@ -16,77 +16,77 @@ export class NLContextualEmbedding extends SDKHandle {
    * init?(language: NLLanguage)
    * @availability iOS 17.0+
    */
-  static initLanguage(language: NLLanguage): (NLContextualEmbedding) | null { return callSDK<(NLContextualEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 412581110829087, undefined, [language]); }
+  static initLanguage(language: NLLanguage): (NLContextualEmbedding) | null { return callSDK<(NLContextualEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 412581110829087, undefined, [language]); }
   /**
    * convenience init?(modelIdentifier: String)
    * @availability iOS 17.0+
    */
-  static initModelIdentifier(modelIdentifier: string): (NLContextualEmbedding) | null { return callSDK<(NLContextualEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 3271407629261106, undefined, [modelIdentifier]); }
+  static initModelIdentifier(modelIdentifier: string): (NLContextualEmbedding) | null { return callSDK<(NLContextualEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 3271407629261106, undefined, [modelIdentifier]); }
   /**
    * init?(script: NLScript)
    * @availability iOS 17.0+
    */
-  static initScript(script: NLScript): (NLContextualEmbedding) | null { return callSDK<(NLContextualEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 3101467860514824, undefined, [script]); }
+  static initScript(script: NLScript): (NLContextualEmbedding) | null { return callSDK<(NLContextualEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 3101467860514824, undefined, [script]); }
   /**
    * class func contextualEmbeddings(forValues valuesDictionary: [NLContextualEmbeddingKey : Any]) -> [NLContextualEmbedding]
    * @availability iOS 17.0+
    */
-  static contextualEmbeddings(valuesDictionary: NativeMap<NLContextualEmbeddingKey, unknown>): Array<NLContextualEmbedding> { return callSDK<Array<NLContextualEmbedding>>("NaturalLanguage_e11dfd5beee01da3", 1024942809310990, undefined, [valuesDictionary]); }
+  static contextualEmbeddings(valuesDictionary: NativeMap<NLContextualEmbeddingKey, unknown>): Array<NLContextualEmbedding> { return callSDK<Array<NLContextualEmbedding>>("NaturalLanguage_3864e7f38681b875", 1024942809310990, undefined, [valuesDictionary]); }
   /**
    * func embeddingResult(for string: String, language: NLLanguage?) throws -> NLContextualEmbeddingResult
    * @availability iOS 17.0+
    */
-  embeddingResult(string: string, language?: (NLLanguage) | null): NLContextualEmbeddingResult { return callSDK<NLContextualEmbeddingResult>("NaturalLanguage_e11dfd5beee01da3", 2509966831598528, this, [string, language]); }
+  embeddingResult(string: string, language?: (NLLanguage) | null): NLContextualEmbeddingResult { return callSDK<NLContextualEmbeddingResult>("NaturalLanguage_3864e7f38681b875", 2509966831598528, this, [string, language]); }
   /**
    * func load() throws
    * @availability iOS 17.0+
    */
-  load(): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 3435057443247006, this, []); }
+  load(): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 3435057443247006, this, []); }
   /**
    * func requestAssets() async throws -> NLContextualEmbedding.AssetsResult
    * @availability iOS 17.0+
    */
-  requestAssets(completionHandler: ((arg0: NLContextualEmbedding_AssetsResult, arg1: (NativeError) | null) => void)): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 1369687341582078, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestAssets(completionHandler: ((arg0: NLContextualEmbedding_AssetsResult, arg1: (NativeError) | null) => void)): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 1369687341582078, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func unload()
    * @availability iOS 17.0+
    */
-  unload(): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 2811051360903175, this, []); }
+  unload(): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 2811051360903175, this, []); }
   /**
    * var dimension: Int { get }
    * @availability iOS 17.0+
    */
-  get dimension(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 3431708615860169, this, []); }
+  get dimension(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 3431708615860169, this, []); }
   /**
    * var hasAvailableAssets: Bool { get }
    * @availability iOS 17.0+
    */
-  get hasAvailableAssets(): boolean { return callSDK<boolean>("NaturalLanguage_e11dfd5beee01da3", 547263977003075, this, []); }
+  get hasAvailableAssets(): boolean { return callSDK<boolean>("NaturalLanguage_3864e7f38681b875", 547263977003075, this, []); }
   /**
    * var languages: [NLLanguage] { get }
    * @availability iOS 17.0+
    */
-  get languages(): Array<NLLanguage> { return callSDK<Array<NLLanguage>>("NaturalLanguage_e11dfd5beee01da3", 2690907587981022, this, []); }
+  get languages(): Array<NLLanguage> { return callSDK<Array<NLLanguage>>("NaturalLanguage_3864e7f38681b875", 2690907587981022, this, []); }
   /**
    * var maximumSequenceLength: Int { get }
    * @availability iOS 17.0+
    */
-  get maximumSequenceLength(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 58700540811809, this, []); }
+  get maximumSequenceLength(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 58700540811809, this, []); }
   /**
    * var modelIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  get modelIdentifier(): string { return callSDK<string>("NaturalLanguage_e11dfd5beee01da3", 2603210035567760, this, []); }
+  get modelIdentifier(): string { return callSDK<string>("NaturalLanguage_3864e7f38681b875", 2603210035567760, this, []); }
   /**
    * var revision: Int { get }
    * @availability iOS 17.0+
    */
-  get revision(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 600177318189053, this, []); }
+  get revision(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 600177318189053, this, []); }
   /**
    * var scripts: [NLScript] { get }
    * @availability iOS 17.0+
    */
-  get scripts(): Array<NLScript> { return callSDK<Array<NLScript>>("NaturalLanguage_e11dfd5beee01da3", 569751860860123, this, []); }
+  get scripts(): Array<NLScript> { return callSDK<Array<NLScript>>("NaturalLanguage_3864e7f38681b875", 569751860860123, this, []); }
   declare readonly $type: { "c:objc(cs)NLContextualEmbedding": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dimension": true; "hasAvailableAssets": true; "languages": true; "maximumSequenceLength": true; "modelIdentifier": true; "revision": true; "scripts": true };
 }
@@ -96,7 +96,7 @@ export type NLContextualEmbedding_AssetsResult = "available" | "notAvailable" | 
 
 export const NLContextualEmbedding_AssetsResult = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (NLContextualEmbedding_AssetsResult) | null { return callSDK<(NLContextualEmbedding_AssetsResult) | null>("NaturalLanguage_e11dfd5beee01da3", 325528954796958, undefined, [rawValue]); }
+  init(rawValue: number): (NLContextualEmbedding_AssetsResult) | null { return callSDK<(NLContextualEmbedding_AssetsResult) | null>("NaturalLanguage_3864e7f38681b875", 325528954796958, undefined, [rawValue]); }
 };
 
 /** struct NLContextualEmbeddingKey */
@@ -104,15 +104,15 @@ export type NLContextualEmbeddingKey = "languages" | "scripts" | "revision" | (s
 
 export const NLContextualEmbeddingKey = {
   /** static let languages: NLContextualEmbeddingKey */
-  get languages(): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_e11dfd5beee01da3", 1746328549276356, undefined, []); },
+  get languages(): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_3864e7f38681b875", 1746328549276356, undefined, []); },
   /** static let revision: NLContextualEmbeddingKey */
-  get revision(): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_e11dfd5beee01da3", 1412936509986496, undefined, []); },
+  get revision(): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_3864e7f38681b875", 1412936509986496, undefined, []); },
   /** static let scripts: NLContextualEmbeddingKey */
-  get scripts(): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_e11dfd5beee01da3", 3311336498703277, undefined, []); },
+  get scripts(): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_3864e7f38681b875", 3311336498703277, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_e11dfd5beee01da3", 660808220950275, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_3864e7f38681b875", 660808220950275, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_e11dfd5beee01da3", 4338630847706980, undefined, [rawValue]); }
+  init(rawValue: string): NLContextualEmbeddingKey { return callSDK<NLContextualEmbeddingKey>("NaturalLanguage_3864e7f38681b875", 4338630847706980, undefined, [rawValue]); }
 };
 
 /**
@@ -124,22 +124,22 @@ export class NLContextualEmbeddingResult extends SDKHandle {
    * var language: NLLanguage { get }
    * @availability iOS 17.0+
    */
-  get language(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1293640918652224, this, []); }
+  get language(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1293640918652224, this, []); }
   /**
    * var sequenceLength: Int { get }
    * @availability iOS 17.0+
    */
-  get sequenceLength(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 294792361066442, this, []); }
+  get sequenceLength(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 294792361066442, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 17.0+
    */
-  get string(): string { return callSDK<string>("NaturalLanguage_e11dfd5beee01da3", 2461872881550119, this, []); }
+  get string(): string { return callSDK<string>("NaturalLanguage_3864e7f38681b875", 2461872881550119, this, []); }
   /**
    * @nonobjc func tokenVector(at index: String.Index) -> ([Double], Range<String.Index>)?
    * @availability iOS 17.0+
    */
-  tokenVector(index: SDKHandle): ([Array<number>, SDKHandle]) | null { return callSDK<([Array<number>, SDKHandle]) | null>("NaturalLanguage_e11dfd5beee01da3", 4261422679898481, this, [index]); }
+  tokenVector(index: SDKHandle): ([Array<number>, SDKHandle]) | null { return callSDK<([Array<number>, SDKHandle]) | null>("NaturalLanguage_3864e7f38681b875", 4261422679898481, this, [index]); }
   declare readonly $type: { "c:objc(cs)NLContextualEmbeddingResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "language": true; "sequenceLength": true; "string": true };
 }
@@ -152,7 +152,7 @@ export type NLDistanceType = "cosine";
 
 export const NLDistanceType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (NLDistanceType) | null { return callSDK<(NLDistanceType) | null>("NaturalLanguage_e11dfd5beee01da3", 978442934486371, undefined, [rawValue]); }
+  init(rawValue: number): (NLDistanceType) | null { return callSDK<(NLDistanceType) | null>("NaturalLanguage_3864e7f38681b875", 978442934486371, undefined, [rawValue]); }
 };
 
 /**
@@ -164,97 +164,97 @@ export class NLEmbedding extends SDKHandle {
    * class func currentRevision(for language: NLLanguage) -> Int
    * @availability iOS 13.0+
    */
-  static currentRevision(language: NLLanguage): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 585654419880273, undefined, [language]); }
+  static currentRevision(language: NLLanguage): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 585654419880273, undefined, [language]); }
   /**
    * class func currentSentenceEmbeddingRevision(for language: NLLanguage) -> Int
    * @availability iOS 14.0+
    */
-  static currentSentenceEmbeddingRevision(language: NLLanguage): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 1581805724482893, undefined, [language]); }
+  static currentSentenceEmbeddingRevision(language: NLLanguage): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 1581805724482893, undefined, [language]); }
   /**
    * convenience init(contentsOf url: URL) throws
    * @availability iOS 13.0+
    */
-  static init(url: string): NLEmbedding { return callSDK<NLEmbedding>("NaturalLanguage_e11dfd5beee01da3", 1919994863603910, undefined, [url]); }
+  static init(url: string): NLEmbedding { return callSDK<NLEmbedding>("NaturalLanguage_3864e7f38681b875", 1919994863603910, undefined, [url]); }
   /**
    * class func sentenceEmbedding(for language: NLLanguage) -> NLEmbedding?
    * @availability iOS 14.0+
    */
-  static sentenceEmbeddingFor(language: NLLanguage): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 1820278806277859, undefined, [language]); }
+  static sentenceEmbeddingFor(language: NLLanguage): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 1820278806277859, undefined, [language]); }
   /**
    * class func sentenceEmbedding(for language: NLLanguage, revision: Int) -> NLEmbedding?
    * @availability iOS 14.0+
    */
-  static sentenceEmbeddingForRevision(language: NLLanguage, revision: number): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 3966801249183473, undefined, [language, revision]); }
+  static sentenceEmbeddingForRevision(language: NLLanguage, revision: number): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 3966801249183473, undefined, [language, revision]); }
   /**
    * class func supportedRevisions(for language: NLLanguage) -> IndexSet
    * @availability iOS 13.0+
    */
-  static supportedRevisions(language: NLLanguage): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("NaturalLanguage_e11dfd5beee01da3", 1010323751366611, undefined, [language]); }
+  static supportedRevisions(language: NLLanguage): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("NaturalLanguage_3864e7f38681b875", 1010323751366611, undefined, [language]); }
   /**
    * class func supportedSentenceEmbeddingRevisions(for language: NLLanguage) -> IndexSet
    * @availability iOS 14.0+
    */
-  static supportedSentenceEmbeddingRevisions(language: NLLanguage): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("NaturalLanguage_e11dfd5beee01da3", 3957956667408920, undefined, [language]); }
+  static supportedSentenceEmbeddingRevisions(language: NLLanguage): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("NaturalLanguage_3864e7f38681b875", 3957956667408920, undefined, [language]); }
   /**
    * class func wordEmbedding(for language: NLLanguage) -> NLEmbedding?
    * @availability iOS 13.0+
    */
-  static wordEmbeddingFor(language: NLLanguage): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 3537091217710137, undefined, [language]); }
+  static wordEmbeddingFor(language: NLLanguage): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 3537091217710137, undefined, [language]); }
   /**
    * class func wordEmbedding(for language: NLLanguage, revision: Int) -> NLEmbedding?
    * @availability iOS 13.0+
    */
-  static wordEmbeddingForRevision(language: NLLanguage, revision: number): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_e11dfd5beee01da3", 3153246517402834, undefined, [language, revision]); }
+  static wordEmbeddingForRevision(language: NLLanguage, revision: number): (NLEmbedding) | null { return callSDK<(NLEmbedding) | null>("NaturalLanguage_3864e7f38681b875", 3153246517402834, undefined, [language, revision]); }
   /**
    * func contains(_ string: String) -> Bool
    * @availability iOS 13.0+
    */
-  contains(string: string): boolean { return callSDK<boolean>("NaturalLanguage_e11dfd5beee01da3", 2515245176748837, this, [string]); }
+  contains(string: string): boolean { return callSDK<boolean>("NaturalLanguage_3864e7f38681b875", 2515245176748837, this, [string]); }
   /**
    * var dimension: Int { get }
    * @availability iOS 13.0+
    */
-  get dimension(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 370566572105974, this, []); }
+  get dimension(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 370566572105974, this, []); }
   /**
    * var language: NLLanguage? { get }
    * @availability iOS 13.0+
    */
-  get language(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_e11dfd5beee01da3", 763312521200762, this, []); }
+  get language(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_3864e7f38681b875", 763312521200762, this, []); }
   /**
    * var revision: Int { get }
    * @availability iOS 13.0+
    */
-  get revision(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 2962485894193546, this, []); }
+  get revision(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 2962485894193546, this, []); }
   /**
    * var vocabularySize: Int { get }
    * @availability iOS 13.0+
    */
-  get vocabularySize(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 785831610706960, this, []); }
+  get vocabularySize(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 785831610706960, this, []); }
   /**
    * @nonobjc class func write(_ dictionary: [String : [Double]], language: NLLanguage?, revision: Int, to url: URL) throws
    * @availability iOS 13.0+
    */
-  static write(dictionary: Record<string, Array<number>>, language: (NLLanguage) | null, revision: number, url: string): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 2465646796535417, undefined, [dictionary, language, revision, url]); }
+  static write(dictionary: Record<string, Array<number>>, language: (NLLanguage) | null, revision: number, url: string): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 2465646796535417, undefined, [dictionary, language, revision, url]); }
   /**
    * @nonobjc func vector(for string: String) -> [Double]?
    * @availability iOS 13.0+
    */
-  vector(string: string): (Array<number>) | null { return callSDK<(Array<number>) | null>("NaturalLanguage_e11dfd5beee01da3", 4241532361170421, this, [string]); }
+  vector(string: string): (Array<number>) | null { return callSDK<(Array<number>) | null>("NaturalLanguage_3864e7f38681b875", 4241532361170421, this, [string]); }
   /**
    * @nonobjc func distance(between firstString: String, and secondString: String, distanceType: NLDistanceType = .cosine) -> NLDistance
    * @availability iOS 13.0+
    */
-  distance(firstString: string, secondString: string, distanceType?: NLDistanceType): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 509546306148060, this, [firstString, secondString, distanceType]); }
+  distance(firstString: string, secondString: string, distanceType?: NLDistanceType): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 509546306148060, this, [firstString, secondString, distanceType]); }
   /**
    * @nonobjc func neighbors(for string: String, maximumCount maxCount: Int, distanceType: NLDistanceType = .cosine) -> [(String, NLDistance)]
    * @availability iOS 13.0+
    */
-  neighborsForMaximumCountDistanceType(string: string, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]> { return callSDK<Array<[string, number]>>("NaturalLanguage_e11dfd5beee01da3", 4110234167222378, this, [string, maxCount, distanceType]); }
+  neighborsForMaximumCountDistanceType(string: string, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]> { return callSDK<Array<[string, number]>>("NaturalLanguage_3864e7f38681b875", 4110234167222378, this, [string, maxCount, distanceType]); }
   /**
    * @nonobjc func neighbors(for vector: [Double], maximumCount maxCount: Int, distanceType: NLDistanceType = .cosine) -> [(String, NLDistance)]
    * @availability iOS 13.0+
    */
-  neighborsForMaximumCountDistanceType78787(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]> { return callSDK<Array<[string, number]>>("NaturalLanguage_e11dfd5beee01da3", 189818921502408, this, [vector, maxCount, distanceType]); }
+  neighborsForMaximumCountDistanceType78787(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]> { return callSDK<Array<[string, number]>>("NaturalLanguage_3864e7f38681b875", 189818921502408, this, [vector, maxCount, distanceType]); }
   declare readonly $type: { "c:objc(cs)NLEmbedding": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dimension": true; "language": true; "revision": true; "vocabularySize": true };
 }
@@ -268,37 +268,37 @@ export class NLGazetteer extends SDKHandle {
    * class func write(_ dictionary: [String : [String]], language: NLLanguage?, to url: URL) throws
    * @availability iOS 13.0+
    */
-  static write(dictionary: $SDK5, language: (NLLanguage) | null, url: string): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 2500732996639625, undefined, [dictionary, language, url]); }
+  static write(dictionary: $SDK5, language: (NLLanguage) | null, url: string): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 2500732996639625, undefined, [dictionary, language, url]); }
   /**
    * init(contentsOf url: URL) throws
    * @availability iOS 13.0+
    */
-  static initContentsOf(url: string): NLGazetteer { return callSDK<NLGazetteer>("NaturalLanguage_e11dfd5beee01da3", 2313220692625529, undefined, [url]); }
+  static initContentsOf(url: string): NLGazetteer { return callSDK<NLGazetteer>("NaturalLanguage_3864e7f38681b875", 2313220692625529, undefined, [url]); }
   /**
    * init(data: Data) throws
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): NLGazetteer { return callSDK<NLGazetteer>("NaturalLanguage_e11dfd5beee01da3", 2766904129889512, undefined, [data]); }
+  static initData(data: ArrayBuffer): NLGazetteer { return callSDK<NLGazetteer>("NaturalLanguage_3864e7f38681b875", 2766904129889512, undefined, [data]); }
   /**
    * init(dictionary: [String : [String]], language: NLLanguage?) throws
    * @availability iOS 13.0+
    */
-  static initDictionaryLanguage(dictionary: $SDK5, language?: (NLLanguage) | null): NLGazetteer { return callSDK<NLGazetteer>("NaturalLanguage_e11dfd5beee01da3", 2277014489816350, undefined, [dictionary, language]); }
+  static initDictionaryLanguage(dictionary: $SDK5, language?: (NLLanguage) | null): NLGazetteer { return callSDK<NLGazetteer>("NaturalLanguage_3864e7f38681b875", 2277014489816350, undefined, [dictionary, language]); }
   /**
    * func label(for string: String) -> String?
    * @availability iOS 13.0+
    */
-  label(string: string): (string) | null { return callSDK<(string) | null>("NaturalLanguage_e11dfd5beee01da3", 68753397460549, this, [string]); }
+  label(string: string): (string) | null { return callSDK<(string) | null>("NaturalLanguage_3864e7f38681b875", 68753397460549, this, [string]); }
   /**
    * var data: Data { get }
    * @availability iOS 13.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("NaturalLanguage_e11dfd5beee01da3", 2999654066242954, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("NaturalLanguage_3864e7f38681b875", 2999654066242954, this, []); }
   /**
    * var language: NLLanguage? { get }
    * @availability iOS 13.0+
    */
-  get language(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_e11dfd5beee01da3", 4446399336836617, this, []); }
+  get language(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_3864e7f38681b875", 4446399336836617, this, []); }
   declare readonly $type: { "c:objc(cs)NLGazetteer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "language": true };
 }
@@ -311,296 +311,296 @@ export const NLLanguage = {
    * static let amharic: NLLanguage
    * @availability iOS 12.0+
    */
-  get amharic(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3819107753741285, undefined, []); },
+  get amharic(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3819107753741285, undefined, []); },
   /**
    * static let arabic: NLLanguage
    * @availability iOS 12.0+
    */
-  get arabic(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 266147675483066, undefined, []); },
+  get arabic(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 266147675483066, undefined, []); },
   /**
    * static let armenian: NLLanguage
    * @availability iOS 12.0+
    */
-  get armenian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 924078787570051, undefined, []); },
+  get armenian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 924078787570051, undefined, []); },
   /**
    * static let bengali: NLLanguage
    * @availability iOS 12.0+
    */
-  get bengali(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1282601289940425, undefined, []); },
+  get bengali(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1282601289940425, undefined, []); },
   /**
    * static let bulgarian: NLLanguage
    * @availability iOS 12.0+
    */
-  get bulgarian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3727077454877943, undefined, []); },
+  get bulgarian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3727077454877943, undefined, []); },
   /**
    * static let burmese: NLLanguage
    * @availability iOS 12.0+
    */
-  get burmese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1557450593435760, undefined, []); },
+  get burmese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1557450593435760, undefined, []); },
   /**
    * static let catalan: NLLanguage
    * @availability iOS 12.0+
    */
-  get catalan(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 719002431231354, undefined, []); },
+  get catalan(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 719002431231354, undefined, []); },
   /**
    * static let cherokee: NLLanguage
    * @availability iOS 12.0+
    */
-  get cherokee(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2638804407476448, undefined, []); },
+  get cherokee(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2638804407476448, undefined, []); },
   /**
    * static let croatian: NLLanguage
    * @availability iOS 12.0+
    */
-  get croatian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3010018495733009, undefined, []); },
+  get croatian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3010018495733009, undefined, []); },
   /**
    * static let czech: NLLanguage
    * @availability iOS 12.0+
    */
-  get czech(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 403037392972652, undefined, []); },
+  get czech(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 403037392972652, undefined, []); },
   /**
    * static let danish: NLLanguage
    * @availability iOS 12.0+
    */
-  get danish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 4468462748413891, undefined, []); },
+  get danish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 4468462748413891, undefined, []); },
   /**
    * static let dutch: NLLanguage
    * @availability iOS 12.0+
    */
-  get dutch(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 139909853068774, undefined, []); },
+  get dutch(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 139909853068774, undefined, []); },
   /**
    * static let english: NLLanguage
    * @availability iOS 12.0+
    */
-  get english(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3722597398368705, undefined, []); },
+  get english(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3722597398368705, undefined, []); },
   /**
    * static let finnish: NLLanguage
    * @availability iOS 12.0+
    */
-  get finnish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1926633503220703, undefined, []); },
+  get finnish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1926633503220703, undefined, []); },
   /**
    * static let french: NLLanguage
    * @availability iOS 12.0+
    */
-  get french(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3288617743408521, undefined, []); },
+  get french(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3288617743408521, undefined, []); },
   /**
    * static let georgian: NLLanguage
    * @availability iOS 12.0+
    */
-  get georgian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3430576207449815, undefined, []); },
+  get georgian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3430576207449815, undefined, []); },
   /**
    * static let german: NLLanguage
    * @availability iOS 12.0+
    */
-  get german(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3995852756908131, undefined, []); },
+  get german(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3995852756908131, undefined, []); },
   /**
    * static let greek: NLLanguage
    * @availability iOS 12.0+
    */
-  get greek(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 955615922199290, undefined, []); },
+  get greek(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 955615922199290, undefined, []); },
   /**
    * static let gujarati: NLLanguage
    * @availability iOS 12.0+
    */
-  get gujarati(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2158168613623472, undefined, []); },
+  get gujarati(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2158168613623472, undefined, []); },
   /**
    * static let hebrew: NLLanguage
    * @availability iOS 12.0+
    */
-  get hebrew(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3377460642365018, undefined, []); },
+  get hebrew(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3377460642365018, undefined, []); },
   /**
    * static let hindi: NLLanguage
    * @availability iOS 12.0+
    */
-  get hindi(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1773589689211419, undefined, []); },
+  get hindi(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1773589689211419, undefined, []); },
   /**
    * static let hungarian: NLLanguage
    * @availability iOS 12.0+
    */
-  get hungarian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 504763646474970, undefined, []); },
+  get hungarian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 504763646474970, undefined, []); },
   /**
    * static let icelandic: NLLanguage
    * @availability iOS 12.0+
    */
-  get icelandic(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 894233793580803, undefined, []); },
+  get icelandic(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 894233793580803, undefined, []); },
   /**
    * static let indonesian: NLLanguage
    * @availability iOS 12.0+
    */
-  get indonesian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3794078346031253, undefined, []); },
+  get indonesian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3794078346031253, undefined, []); },
   /**
    * static let italian: NLLanguage
    * @availability iOS 12.0+
    */
-  get italian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2609523732886203, undefined, []); },
+  get italian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2609523732886203, undefined, []); },
   /**
    * static let japanese: NLLanguage
    * @availability iOS 12.0+
    */
-  get japanese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3410978124106524, undefined, []); },
+  get japanese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3410978124106524, undefined, []); },
   /**
    * static let kannada: NLLanguage
    * @availability iOS 12.0+
    */
-  get kannada(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2272199951950175, undefined, []); },
+  get kannada(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2272199951950175, undefined, []); },
   /**
    * static let kazakh: NLLanguage
    * @availability iOS 16.0+
    */
-  get kazakh(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1384465330137678, undefined, []); },
+  get kazakh(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1384465330137678, undefined, []); },
   /**
    * static let khmer: NLLanguage
    * @availability iOS 12.0+
    */
-  get khmer(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 698062528159481, undefined, []); },
+  get khmer(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 698062528159481, undefined, []); },
   /**
    * static let korean: NLLanguage
    * @availability iOS 12.0+
    */
-  get korean(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3094989195335430, undefined, []); },
+  get korean(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3094989195335430, undefined, []); },
   /**
    * static let lao: NLLanguage
    * @availability iOS 12.0+
    */
-  get lao(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2188369279749781, undefined, []); },
+  get lao(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2188369279749781, undefined, []); },
   /**
    * static let malay: NLLanguage
    * @availability iOS 12.0+
    */
-  get malay(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1071995803275391, undefined, []); },
+  get malay(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1071995803275391, undefined, []); },
   /**
    * static let malayalam: NLLanguage
    * @availability iOS 12.0+
    */
-  get malayalam(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 424146768351044, undefined, []); },
+  get malayalam(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 424146768351044, undefined, []); },
   /**
    * static let marathi: NLLanguage
    * @availability iOS 12.0+
    */
-  get marathi(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1866979690960582, undefined, []); },
+  get marathi(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1866979690960582, undefined, []); },
   /**
    * static let mongolian: NLLanguage
    * @availability iOS 12.0+
    */
-  get mongolian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3671101539104975, undefined, []); },
+  get mongolian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3671101539104975, undefined, []); },
   /**
    * static let norwegian: NLLanguage
    * @availability iOS 12.0+
    */
-  get norwegian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2686199801194338, undefined, []); },
+  get norwegian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2686199801194338, undefined, []); },
   /**
    * static let oriya: NLLanguage
    * @availability iOS 12.0+
    */
-  get oriya(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2107424943224449, undefined, []); },
+  get oriya(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2107424943224449, undefined, []); },
   /**
    * static let persian: NLLanguage
    * @availability iOS 12.0+
    */
-  get persian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 4061680647143709, undefined, []); },
+  get persian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 4061680647143709, undefined, []); },
   /**
    * static let polish: NLLanguage
    * @availability iOS 12.0+
    */
-  get polish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3804187862645345, undefined, []); },
+  get polish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3804187862645345, undefined, []); },
   /**
    * static let portuguese: NLLanguage
    * @availability iOS 12.0+
    */
-  get portuguese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1228407683953096, undefined, []); },
+  get portuguese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1228407683953096, undefined, []); },
   /**
    * static let punjabi: NLLanguage
    * @availability iOS 12.0+
    */
-  get punjabi(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1828457881824563, undefined, []); },
+  get punjabi(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1828457881824563, undefined, []); },
   /**
    * static let romanian: NLLanguage
    * @availability iOS 12.0+
    */
-  get romanian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2681497857572703, undefined, []); },
+  get romanian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2681497857572703, undefined, []); },
   /**
    * static let russian: NLLanguage
    * @availability iOS 12.0+
    */
-  get russian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2893747817970714, undefined, []); },
+  get russian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2893747817970714, undefined, []); },
   /**
    * static let simplifiedChinese: NLLanguage
    * @availability iOS 12.0+
    */
-  get simplifiedChinese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 492802851112278, undefined, []); },
+  get simplifiedChinese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 492802851112278, undefined, []); },
   /**
    * static let sinhalese: NLLanguage
    * @availability iOS 12.0+
    */
-  get sinhalese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2810874114571358, undefined, []); },
+  get sinhalese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2810874114571358, undefined, []); },
   /**
    * static let slovak: NLLanguage
    * @availability iOS 12.0+
    */
-  get slovak(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3581109763000856, undefined, []); },
+  get slovak(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3581109763000856, undefined, []); },
   /**
    * static let spanish: NLLanguage
    * @availability iOS 12.0+
    */
-  get spanish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 4277978086958220, undefined, []); },
+  get spanish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 4277978086958220, undefined, []); },
   /**
    * static let swedish: NLLanguage
    * @availability iOS 12.0+
    */
-  get swedish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1542515961634755, undefined, []); },
+  get swedish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1542515961634755, undefined, []); },
   /**
    * static let tamil: NLLanguage
    * @availability iOS 12.0+
    */
-  get tamil(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3052959819043108, undefined, []); },
+  get tamil(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3052959819043108, undefined, []); },
   /**
    * static let telugu: NLLanguage
    * @availability iOS 12.0+
    */
-  get telugu(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2962956967177439, undefined, []); },
+  get telugu(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2962956967177439, undefined, []); },
   /**
    * static let thai: NLLanguage
    * @availability iOS 12.0+
    */
-  get thai(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 4009715644584682, undefined, []); },
+  get thai(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 4009715644584682, undefined, []); },
   /**
    * static let tibetan: NLLanguage
    * @availability iOS 12.0+
    */
-  get tibetan(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 2914874560034174, undefined, []); },
+  get tibetan(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 2914874560034174, undefined, []); },
   /**
    * static let traditionalChinese: NLLanguage
    * @availability iOS 12.0+
    */
-  get traditionalChinese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1067720305737750, undefined, []); },
+  get traditionalChinese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1067720305737750, undefined, []); },
   /**
    * static let turkish: NLLanguage
    * @availability iOS 12.0+
    */
-  get turkish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 96138736617575, undefined, []); },
+  get turkish(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 96138736617575, undefined, []); },
   /**
    * static let ukrainian: NLLanguage
    * @availability iOS 12.0+
    */
-  get ukrainian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 4437065645100122, undefined, []); },
+  get ukrainian(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 4437065645100122, undefined, []); },
   /**
    * static let undetermined: NLLanguage
    * @availability iOS 12.0+
    */
-  get undetermined(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1875435544554021, undefined, []); },
+  get undetermined(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1875435544554021, undefined, []); },
   /**
    * static let urdu: NLLanguage
    * @availability iOS 12.0+
    */
-  get urdu(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3691624699134992, undefined, []); },
+  get urdu(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3691624699134992, undefined, []); },
   /**
    * static let vietnamese: NLLanguage
    * @availability iOS 12.0+
    */
-  get vietnamese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 3641587017726046, undefined, []); },
+  get vietnamese(): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 3641587017726046, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 1702170839408108, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 1702170839408108, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_e11dfd5beee01da3", 733362350249846, undefined, [rawValue]); }
+  init(rawValue: string): NLLanguage { return callSDK<NLLanguage>("NaturalLanguage_3864e7f38681b875", 733362350249846, undefined, [rawValue]); }
 };
 
 /**
@@ -612,44 +612,44 @@ export class NLLanguageRecognizer extends SDKHandle {
    * class func dominantLanguage(for string: String) -> NLLanguage?
    * @availability iOS 12.0+
    */
-  static dominantLanguageFor(string: string): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_e11dfd5beee01da3", 2787896192606071, undefined, [string]); }
+  static dominantLanguageFor(string: string): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_3864e7f38681b875", 2787896192606071, undefined, [string]); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NLLanguageRecognizer { return callSDK<NLLanguageRecognizer>("NaturalLanguage_e11dfd5beee01da3", 4232068636706641, undefined, []); }
+  static init(): NLLanguageRecognizer { return callSDK<NLLanguageRecognizer>("NaturalLanguage_3864e7f38681b875", 4232068636706641, undefined, []); }
   /**
    * func processString(_ string: String)
    * @availability iOS 12.0+
    */
-  processString(string: string): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 4471376508429139, this, [string]); }
+  processString(string: string): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 4471376508429139, this, [string]); }
   /**
    * func reset()
    * @availability iOS 12.0+
    */
-  reset(): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 4214864848684244, this, []); }
+  reset(): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 4214864848684244, this, []); }
   /**
    * var dominantLanguage: NLLanguage? { get }
    * @availability iOS 12.0+
    */
-  get dominantLanguage(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_e11dfd5beee01da3", 1063977467487403, this, []); }
+  get dominantLanguage(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_3864e7f38681b875", 1063977467487403, this, []); }
   /**
    * var languageConstraints: [NLLanguage] { get set }
    * @availability iOS 12.0+
    */
-  get languageConstraints(): Array<NLLanguage> { return callSDK<Array<NLLanguage>>("NaturalLanguage_e11dfd5beee01da3", 2441569522076324, this, []); }
-  set languageConstraints(value: Array<NLLanguage>) { callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 3030135295761412, this, [value]); }
+  get languageConstraints(): Array<NLLanguage> { return callSDK<Array<NLLanguage>>("NaturalLanguage_3864e7f38681b875", 2441569522076324, this, []); }
+  set languageConstraints(value: Array<NLLanguage>) { callSDK<void>("NaturalLanguage_3864e7f38681b875", 3030135295761412, this, [value]); }
   /**
    * @nonobjc var languageHints: [NLLanguage : Double] { get set }
    * @availability iOS 12.0+
    */
-  get languageHints(): $SDK6 { return callSDK<$SDK6>("NaturalLanguage_e11dfd5beee01da3", 1143977021594111, this, []); }
-  set languageHints(value: $SDK6) { callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 123492721135723, this, [value]); }
+  get languageHints(): $SDK6 { return callSDK<$SDK6>("NaturalLanguage_3864e7f38681b875", 1143977021594111, this, []); }
+  set languageHints(value: $SDK6) { callSDK<void>("NaturalLanguage_3864e7f38681b875", 123492721135723, this, [value]); }
   /**
    * @nonobjc func languageHypotheses(withMaximum maxHypotheses: Int) -> [NLLanguage : Double]
    * @availability iOS 12.0+
    */
-  languageHypotheses(maxHypotheses: number): $SDK6 { return callSDK<$SDK6>("NaturalLanguage_e11dfd5beee01da3", 2716471684797645, this, [maxHypotheses]); }
+  languageHypotheses(maxHypotheses: number): $SDK6 { return callSDK<$SDK6>("NaturalLanguage_3864e7f38681b875", 2716471684797645, this, [maxHypotheses]); }
   declare readonly $type: { "c:objc(cs)NLLanguageRecognizer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dominantLanguage": true; "languageConstraints": true };
 }
@@ -663,37 +663,37 @@ export class NLModel extends SDKHandle {
    * convenience init(contentsOf url: URL) throws
    * @availability iOS 12.0+
    */
-  static initContentsOf(url: string): NLModel { return callSDK<NLModel>("NaturalLanguage_e11dfd5beee01da3", 3337061165570572, undefined, [url]); }
+  static initContentsOf(url: string): NLModel { return callSDK<NLModel>("NaturalLanguage_3864e7f38681b875", 3337061165570572, undefined, [url]); }
   /**
    * convenience init(mlModel: MLModel) throws
    * @availability iOS 12.0+
    */
-  static initMlModel(mlModel: _CoreML_MLModel): NLModel { return callSDK<NLModel>("NaturalLanguage_e11dfd5beee01da3", 4425799509133379, undefined, [mlModel]); }
+  static initMlModel(mlModel: _CoreML_MLModel): NLModel { return callSDK<NLModel>("NaturalLanguage_3864e7f38681b875", 4425799509133379, undefined, [mlModel]); }
   /**
    * func predictedLabel(for string: String) -> String?
    * @availability iOS 12.0+
    */
-  predictedLabel(string: string): (string) | null { return callSDK<(string) | null>("NaturalLanguage_e11dfd5beee01da3", 1514856710823184, this, [string]); }
+  predictedLabel(string: string): (string) | null { return callSDK<(string) | null>("NaturalLanguage_3864e7f38681b875", 1514856710823184, this, [string]); }
   /**
    * func predictedLabels(forTokens tokens: [String]) -> [String]
    * @availability iOS 12.0+
    */
-  predictedLabels(tokens: Array<string>): Array<string> { return callSDK<Array<string>>("NaturalLanguage_e11dfd5beee01da3", 1206665151856201, this, [tokens]); }
+  predictedLabels(tokens: Array<string>): Array<string> { return callSDK<Array<string>>("NaturalLanguage_3864e7f38681b875", 1206665151856201, this, [tokens]); }
   /**
    * @NSCopying var configuration: NLModelConfiguration { get }
    * @availability iOS 12.0+
    */
-  get configuration(): NLModelConfiguration { return callSDK<NLModelConfiguration>("NaturalLanguage_e11dfd5beee01da3", 3126849070095654, this, []); }
+  get configuration(): NLModelConfiguration { return callSDK<NLModelConfiguration>("NaturalLanguage_3864e7f38681b875", 3126849070095654, this, []); }
   /**
    * @nonobjc func predictedLabelHypotheses(for string: String, maximumCount maxCount: Int) -> [String : Double]
    * @availability iOS 14.0+
    */
-  predictedLabelHypothesesForMaximumCount(string: string, maxCount: number): Record<string, number> { return callSDK<Record<string, number>>("NaturalLanguage_e11dfd5beee01da3", 3598343941458786, this, [string, maxCount]); }
+  predictedLabelHypothesesForMaximumCount(string: string, maxCount: number): Record<string, number> { return callSDK<Record<string, number>>("NaturalLanguage_3864e7f38681b875", 3598343941458786, this, [string, maxCount]); }
   /**
    * @nonobjc func predictedLabelHypotheses(forTokens tokens: [String], maximumCount maxCount: Int) -> [[String : Double]]
    * @availability iOS 14.0+
    */
-  predictedLabelHypothesesForTokensMaximumCount(tokens: Array<string>, maxCount: number): Array<Record<string, number>> { return callSDK<Array<Record<string, number>>>("NaturalLanguage_e11dfd5beee01da3", 421436158068447, this, [tokens, maxCount]); }
+  predictedLabelHypothesesForTokensMaximumCount(tokens: Array<string>, maxCount: number): Array<Record<string, number>> { return callSDK<Array<Record<string, number>>>("NaturalLanguage_3864e7f38681b875", 421436158068447, this, [tokens, maxCount]); }
   declare readonly $type: { "c:objc(cs)NLModel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true };
 }
@@ -703,7 +703,7 @@ export type NLModel_ModelType = "classifier" | "sequence";
 
 export const NLModel_ModelType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (NLModel_ModelType) | null { return callSDK<(NLModel_ModelType) | null>("NaturalLanguage_e11dfd5beee01da3", 124825068016062, undefined, [rawValue]); }
+  init(rawValue: number): (NLModel_ModelType) | null { return callSDK<(NLModel_ModelType) | null>("NaturalLanguage_3864e7f38681b875", 124825068016062, undefined, [rawValue]); }
 };
 
 /**
@@ -715,29 +715,29 @@ export class NLModelConfiguration extends SDKHandle {
    * class func currentRevision(for type: NLModel.ModelType) -> Int
    * @availability iOS 12.0+
    */
-  static currentRevision(type: NLModel_ModelType): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 1025933698192220, undefined, [type]); }
+  static currentRevision(type: NLModel_ModelType): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 1025933698192220, undefined, [type]); }
   /**
    * class func supportedRevisions(for type: NLModel.ModelType) -> IndexSet
    * @availability iOS 12.0+
    */
-  static supportedRevisions(type: NLModel_ModelType): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("NaturalLanguage_e11dfd5beee01da3", 2521669937088767, undefined, [type]); }
+  static supportedRevisions(type: NLModel_ModelType): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("NaturalLanguage_3864e7f38681b875", 2521669937088767, undefined, [type]); }
   /** init() */
-  static init(): NLModelConfiguration { return callSDK<NLModelConfiguration>("NaturalLanguage_e11dfd5beee01da3", 2856173811293416, undefined, []); }
+  static init(): NLModelConfiguration { return callSDK<NLModelConfiguration>("NaturalLanguage_3864e7f38681b875", 2856173811293416, undefined, []); }
   /**
    * var language: NLLanguage? { get }
    * @availability iOS 12.0+
    */
-  get language(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_e11dfd5beee01da3", 2539509600627177, this, []); }
+  get language(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_3864e7f38681b875", 2539509600627177, this, []); }
   /**
    * var revision: Int { get }
    * @availability iOS 12.0+
    */
-  get revision(): number { return callSDK<number>("NaturalLanguage_e11dfd5beee01da3", 244763753719367, this, []); }
+  get revision(): number { return callSDK<number>("NaturalLanguage_3864e7f38681b875", 244763753719367, this, []); }
   /**
    * var type: NLModel.ModelType { get }
    * @availability iOS 12.0+
    */
-  get type(): NLModel_ModelType { return callSDK<NLModel_ModelType>("NaturalLanguage_e11dfd5beee01da3", 2553350135245256, this, []); }
+  get type(): NLModel_ModelType { return callSDK<NLModel_ModelType>("NaturalLanguage_3864e7f38681b875", 2553350135245256, this, []); }
   declare readonly $type: { "c:objc(cs)NLModelConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "language": true; "revision": true; "type": true };
 }
@@ -750,161 +750,161 @@ export const NLScript = {
    * static let arabic: NLScript
    * @availability iOS 17.0+
    */
-  get arabic(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 552463633169819, undefined, []); },
+  get arabic(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 552463633169819, undefined, []); },
   /**
    * static let armenian: NLScript
    * @availability iOS 17.0+
    */
-  get armenian(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 83003929968802, undefined, []); },
+  get armenian(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 83003929968802, undefined, []); },
   /**
    * static let bengali: NLScript
    * @availability iOS 17.0+
    */
-  get bengali(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 3268698244184726, undefined, []); },
+  get bengali(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 3268698244184726, undefined, []); },
   /**
    * static let canadianAboriginalSyllabics: NLScript
    * @availability iOS 17.0+
    */
-  get canadianAboriginalSyllabics(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 185446670871005, undefined, []); },
+  get canadianAboriginalSyllabics(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 185446670871005, undefined, []); },
   /**
    * static let cherokee: NLScript
    * @availability iOS 17.0+
    */
-  get cherokee(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 3319824168246853, undefined, []); },
+  get cherokee(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 3319824168246853, undefined, []); },
   /**
    * static let cyrillic: NLScript
    * @availability iOS 17.0+
    */
-  get cyrillic(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 3879082004377184, undefined, []); },
+  get cyrillic(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 3879082004377184, undefined, []); },
   /**
    * static let devanagari: NLScript
    * @availability iOS 17.0+
    */
-  get devanagari(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 2390161082355921, undefined, []); },
+  get devanagari(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 2390161082355921, undefined, []); },
   /**
    * static let ethiopic: NLScript
    * @availability iOS 17.0+
    */
-  get ethiopic(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1951574306351901, undefined, []); },
+  get ethiopic(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1951574306351901, undefined, []); },
   /**
    * static let georgian: NLScript
    * @availability iOS 17.0+
    */
-  get georgian(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 423605720138544, undefined, []); },
+  get georgian(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 423605720138544, undefined, []); },
   /**
    * static let greek: NLScript
    * @availability iOS 17.0+
    */
-  get greek(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 2684006247397913, undefined, []); },
+  get greek(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 2684006247397913, undefined, []); },
   /**
    * static let gujarati: NLScript
    * @availability iOS 17.0+
    */
-  get gujarati(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 669159644563276, undefined, []); },
+  get gujarati(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 669159644563276, undefined, []); },
   /**
    * static let gurmukhi: NLScript
    * @availability iOS 17.0+
    */
-  get gurmukhi(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 255536096666968, undefined, []); },
+  get gurmukhi(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 255536096666968, undefined, []); },
   /**
    * static let hebrew: NLScript
    * @availability iOS 17.0+
    */
-  get hebrew(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 4447243915231909, undefined, []); },
+  get hebrew(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 4447243915231909, undefined, []); },
   /**
    * static let japanese: NLScript
    * @availability iOS 17.0+
    */
-  get japanese(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 3896902403865202, undefined, []); },
+  get japanese(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 3896902403865202, undefined, []); },
   /**
    * static let kannada: NLScript
    * @availability iOS 17.0+
    */
-  get kannada(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1634028161397077, undefined, []); },
+  get kannada(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1634028161397077, undefined, []); },
   /**
    * static let khmer: NLScript
    * @availability iOS 17.0+
    */
-  get khmer(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1790550120230886, undefined, []); },
+  get khmer(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1790550120230886, undefined, []); },
   /**
    * static let korean: NLScript
    * @availability iOS 17.0+
    */
-  get korean(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 4493629454812900, undefined, []); },
+  get korean(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 4493629454812900, undefined, []); },
   /**
    * static let lao: NLScript
    * @availability iOS 17.0+
    */
-  get lao(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 2240770012234198, undefined, []); },
+  get lao(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 2240770012234198, undefined, []); },
   /**
    * static let latin: NLScript
    * @availability iOS 17.0+
    */
-  get latin(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 2573243341646669, undefined, []); },
+  get latin(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 2573243341646669, undefined, []); },
   /**
    * static let malayalam: NLScript
    * @availability iOS 17.0+
    */
-  get malayalam(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1007998960428393, undefined, []); },
+  get malayalam(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1007998960428393, undefined, []); },
   /**
    * static let mongolian: NLScript
    * @availability iOS 17.0+
    */
-  get mongolian(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1959324399704225, undefined, []); },
+  get mongolian(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1959324399704225, undefined, []); },
   /**
    * static let myanmar: NLScript
    * @availability iOS 17.0+
    */
-  get myanmar(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 4398518736006207, undefined, []); },
+  get myanmar(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 4398518736006207, undefined, []); },
   /**
    * static let oriya: NLScript
    * @availability iOS 17.0+
    */
-  get oriya(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 4120375490458851, undefined, []); },
+  get oriya(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 4120375490458851, undefined, []); },
   /**
    * static let simplifiedChinese: NLScript
    * @availability iOS 17.0+
    */
-  get simplifiedChinese(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1571820855001259, undefined, []); },
+  get simplifiedChinese(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1571820855001259, undefined, []); },
   /**
    * static let sinhala: NLScript
    * @availability iOS 17.0+
    */
-  get sinhala(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 2843022169012043, undefined, []); },
+  get sinhala(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 2843022169012043, undefined, []); },
   /**
    * static let tamil: NLScript
    * @availability iOS 17.0+
    */
-  get tamil(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 3418932269016571, undefined, []); },
+  get tamil(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 3418932269016571, undefined, []); },
   /**
    * static let telugu: NLScript
    * @availability iOS 17.0+
    */
-  get telugu(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 4483017787105805, undefined, []); },
+  get telugu(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 4483017787105805, undefined, []); },
   /**
    * static let thai: NLScript
    * @availability iOS 17.0+
    */
-  get thai(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 4100617399943782, undefined, []); },
+  get thai(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 4100617399943782, undefined, []); },
   /**
    * static let tibetan: NLScript
    * @availability iOS 17.0+
    */
-  get tibetan(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1837120670972191, undefined, []); },
+  get tibetan(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1837120670972191, undefined, []); },
   /**
    * static let traditionalChinese: NLScript
    * @availability iOS 17.0+
    */
-  get traditionalChinese(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 642106168298066, undefined, []); },
+  get traditionalChinese(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 642106168298066, undefined, []); },
   /**
    * static let undetermined: NLScript
    * @availability iOS 17.0+
    */
-  get undetermined(): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 1511532129492220, undefined, []); },
+  get undetermined(): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 1511532129492220, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 3274630478578465, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 3274630478578465, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): NLScript { return callSDK<NLScript>("NaturalLanguage_e11dfd5beee01da3", 605158970751572, undefined, [rawValue]); }
+  init(rawValue: string): NLScript { return callSDK<NLScript>("NaturalLanguage_3864e7f38681b875", 605158970751572, undefined, [rawValue]); }
 };
 
 /** struct NLTag */
@@ -915,161 +915,161 @@ export const NLTag = {
    * static let adjective: NLTag
    * @availability iOS 12.0+
    */
-  get adjective(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1267941921425352, undefined, []); },
+  get adjective(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1267941921425352, undefined, []); },
   /**
    * static let adverb: NLTag
    * @availability iOS 12.0+
    */
-  get adverb(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1550138999067936, undefined, []); },
+  get adverb(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1550138999067936, undefined, []); },
   /**
    * static let classifier: NLTag
    * @availability iOS 12.0+
    */
-  get classifier(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3105200664761569, undefined, []); },
+  get classifier(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3105200664761569, undefined, []); },
   /**
    * static let closeParenthesis: NLTag
    * @availability iOS 12.0+
    */
-  get closeParenthesis(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3405542960340925, undefined, []); },
+  get closeParenthesis(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3405542960340925, undefined, []); },
   /**
    * static let closeQuote: NLTag
    * @availability iOS 12.0+
    */
-  get closeQuote(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3747067835803688, undefined, []); },
+  get closeQuote(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3747067835803688, undefined, []); },
   /**
    * static let conjunction: NLTag
    * @availability iOS 12.0+
    */
-  get conjunction(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2087927950984845, undefined, []); },
+  get conjunction(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2087927950984845, undefined, []); },
   /**
    * static let dash: NLTag
    * @availability iOS 12.0+
    */
-  get dash(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 4362245464605849, undefined, []); },
+  get dash(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 4362245464605849, undefined, []); },
   /**
    * static let determiner: NLTag
    * @availability iOS 12.0+
    */
-  get determiner(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1321824081325002, undefined, []); },
+  get determiner(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1321824081325002, undefined, []); },
   /**
    * static let idiom: NLTag
    * @availability iOS 12.0+
    */
-  get idiom(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2159278028819031, undefined, []); },
+  get idiom(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2159278028819031, undefined, []); },
   /**
    * static let interjection: NLTag
    * @availability iOS 12.0+
    */
-  get interjection(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1281034512330631, undefined, []); },
+  get interjection(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1281034512330631, undefined, []); },
   /**
    * static let noun: NLTag
    * @availability iOS 12.0+
    */
-  get noun(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3634037772778332, undefined, []); },
+  get noun(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3634037772778332, undefined, []); },
   /**
    * static let number: NLTag
    * @availability iOS 12.0+
    */
-  get number(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 124329227299271, undefined, []); },
+  get number(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 124329227299271, undefined, []); },
   /**
    * static let openParenthesis: NLTag
    * @availability iOS 12.0+
    */
-  get openParenthesis(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2841718362673620, undefined, []); },
+  get openParenthesis(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2841718362673620, undefined, []); },
   /**
    * static let openQuote: NLTag
    * @availability iOS 12.0+
    */
-  get openQuote(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3234292319947641, undefined, []); },
+  get openQuote(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3234292319947641, undefined, []); },
   /**
    * static let organizationName: NLTag
    * @availability iOS 12.0+
    */
-  get organizationName(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2296461715941996, undefined, []); },
+  get organizationName(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2296461715941996, undefined, []); },
   /**
    * static let other: NLTag
    * @availability iOS 12.0+
    */
-  get other(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3328988959950278, undefined, []); },
+  get other(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3328988959950278, undefined, []); },
   /**
    * static let otherPunctuation: NLTag
    * @availability iOS 12.0+
    */
-  get otherPunctuation(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1756252383319889, undefined, []); },
+  get otherPunctuation(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1756252383319889, undefined, []); },
   /**
    * static let otherWhitespace: NLTag
    * @availability iOS 12.0+
    */
-  get otherWhitespace(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1246467995806959, undefined, []); },
+  get otherWhitespace(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1246467995806959, undefined, []); },
   /**
    * static let otherWord: NLTag
    * @availability iOS 12.0+
    */
-  get otherWord(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3968039171262075, undefined, []); },
+  get otherWord(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3968039171262075, undefined, []); },
   /**
    * static let paragraphBreak: NLTag
    * @availability iOS 12.0+
    */
-  get paragraphBreak(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3280568994648577, undefined, []); },
+  get paragraphBreak(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3280568994648577, undefined, []); },
   /**
    * static let particle: NLTag
    * @availability iOS 12.0+
    */
-  get particle(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 357617657340241, undefined, []); },
+  get particle(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 357617657340241, undefined, []); },
   /**
    * static let personalName: NLTag
    * @availability iOS 12.0+
    */
-  get personalName(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1677258390546180, undefined, []); },
+  get personalName(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1677258390546180, undefined, []); },
   /**
    * static let placeName: NLTag
    * @availability iOS 12.0+
    */
-  get placeName(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 343179293028237, undefined, []); },
+  get placeName(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 343179293028237, undefined, []); },
   /**
    * static let preposition: NLTag
    * @availability iOS 12.0+
    */
-  get preposition(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3173768840599205, undefined, []); },
+  get preposition(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3173768840599205, undefined, []); },
   /**
    * static let pronoun: NLTag
    * @availability iOS 12.0+
    */
-  get pronoun(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3965305194830164, undefined, []); },
+  get pronoun(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3965305194830164, undefined, []); },
   /**
    * static let punctuation: NLTag
    * @availability iOS 12.0+
    */
-  get punctuation(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 4202000749680828, undefined, []); },
+  get punctuation(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 4202000749680828, undefined, []); },
   /**
    * static let sentenceTerminator: NLTag
    * @availability iOS 12.0+
    */
-  get sentenceTerminator(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3854454200636162, undefined, []); },
+  get sentenceTerminator(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3854454200636162, undefined, []); },
   /**
    * static let verb: NLTag
    * @availability iOS 12.0+
    */
-  get verb(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 1847955355728459, undefined, []); },
+  get verb(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 1847955355728459, undefined, []); },
   /**
    * static let whitespace: NLTag
    * @availability iOS 12.0+
    */
-  get whitespace(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3000553199124700, undefined, []); },
+  get whitespace(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3000553199124700, undefined, []); },
   /**
    * static let word: NLTag
    * @availability iOS 12.0+
    */
-  get word(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2722031366601762, undefined, []); },
+  get word(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2722031366601762, undefined, []); },
   /**
    * static let wordJoiner: NLTag
    * @availability iOS 12.0+
    */
-  get wordJoiner(): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2913488996215615, undefined, []); },
+  get wordJoiner(): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2913488996215615, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 2338904168202436, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 2338904168202436, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): NLTag { return callSDK<NLTag>("NaturalLanguage_e11dfd5beee01da3", 3489688077418344, undefined, [rawValue]); }
+  init(rawValue: string): NLTag { return callSDK<NLTag>("NaturalLanguage_3864e7f38681b875", 3489688077418344, undefined, [rawValue]); }
 };
 
 /**
@@ -1081,88 +1081,88 @@ export class NLTagger extends SDKHandle {
    * class func availableTagSchemes(for unit: NLTokenUnit, language: NLLanguage) -> [NLTagScheme]
    * @availability iOS 12.0+
    */
-  static availableTagSchemes(unit: NLTokenUnit, language: NLLanguage): Array<NLTagScheme> { return callSDK<Array<NLTagScheme>>("NaturalLanguage_e11dfd5beee01da3", 182815158131605, undefined, [unit, language]); }
+  static availableTagSchemes(unit: NLTokenUnit, language: NLLanguage): Array<NLTagScheme> { return callSDK<Array<NLTagScheme>>("NaturalLanguage_3864e7f38681b875", 182815158131605, undefined, [unit, language]); }
   /**
    * class func requestAssets(for language: NLLanguage, tagScheme: NLTagScheme) async throws -> NLTagger.AssetsResult
    * @availability iOS 13.0+
    */
-  static requestAssets(language: NLLanguage, tagScheme: NLTagScheme, completionHandler: ((arg0: NLTagger_AssetsResult, arg1: (NativeError) | null) => void)): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 832520486134771, undefined, [language, tagScheme, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static requestAssets(language: NLLanguage, tagScheme: NLTagScheme, completionHandler: ((arg0: NLTagger_AssetsResult, arg1: (NativeError) | null) => void)): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 832520486134771, undefined, [language, tagScheme, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func gazetteers(for tagScheme: NLTagScheme) -> [NLGazetteer]
    * @availability iOS 13.0+
    */
-  gazetteers(tagScheme: NLTagScheme): Array<NLGazetteer> { return callSDK<Array<NLGazetteer>>("NaturalLanguage_e11dfd5beee01da3", 3501881112824370, this, [tagScheme]); }
+  gazetteers(tagScheme: NLTagScheme): Array<NLGazetteer> { return callSDK<Array<NLGazetteer>>("NaturalLanguage_3864e7f38681b875", 3501881112824370, this, [tagScheme]); }
   /**
    * init(tagSchemes: [NLTagScheme])
    * @availability iOS 12.0+
    */
-  static init(tagSchemes: Array<NLTagScheme>): NLTagger { return callSDK<NLTagger>("NaturalLanguage_e11dfd5beee01da3", 238521018832971, undefined, [tagSchemes]); }
+  static init(tagSchemes: Array<NLTagScheme>): NLTagger { return callSDK<NLTagger>("NaturalLanguage_3864e7f38681b875", 238521018832971, undefined, [tagSchemes]); }
   /**
    * func models(forTagScheme tagScheme: NLTagScheme) -> [NLModel]
    * @availability iOS 12.0+
    */
-  models(tagScheme: NLTagScheme): Array<NLModel> { return callSDK<Array<NLModel>>("NaturalLanguage_e11dfd5beee01da3", 713791740924115, this, [tagScheme]); }
+  models(tagScheme: NLTagScheme): Array<NLModel> { return callSDK<Array<NLModel>>("NaturalLanguage_3864e7f38681b875", 713791740924115, this, [tagScheme]); }
   /**
    * func setGazetteers(_ gazetteers: [NLGazetteer], for tagScheme: NLTagScheme)
    * @availability iOS 13.0+
    */
-  setGazetteers(gazetteers: Array<NLGazetteer>, tagScheme: NLTagScheme): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 3550172707457076, this, [gazetteers, tagScheme]); }
+  setGazetteers(gazetteers: Array<NLGazetteer>, tagScheme: NLTagScheme): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 3550172707457076, this, [gazetteers, tagScheme]); }
   /**
    * func setModels(_ models: [NLModel], forTagScheme tagScheme: NLTagScheme)
    * @availability iOS 12.0+
    */
-  setModels(models: Array<NLModel>, tagScheme: NLTagScheme): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 775472390593907, this, [models, tagScheme]); }
+  setModels(models: Array<NLModel>, tagScheme: NLTagScheme): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 775472390593907, this, [models, tagScheme]); }
   /**
    * var dominantLanguage: NLLanguage? { get }
    * @availability iOS 12.0+
    */
-  get dominantLanguage(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_e11dfd5beee01da3", 1812553996227321, this, []); }
+  get dominantLanguage(): (NLLanguage) | null { return callSDK<(NLLanguage) | null>("NaturalLanguage_3864e7f38681b875", 1812553996227321, this, []); }
   /**
    * var string: String? { get set }
    * @availability iOS 12.0+
    */
-  get string(): (string) | null { return callSDK<(string) | null>("NaturalLanguage_e11dfd5beee01da3", 1726221854278569, this, []); }
-  set string(value: (string) | null) { callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 2901776707381457, this, [value]); }
+  get string(): (string) | null { return callSDK<(string) | null>("NaturalLanguage_3864e7f38681b875", 1726221854278569, this, []); }
+  set string(value: (string) | null) { callSDK<void>("NaturalLanguage_3864e7f38681b875", 2901776707381457, this, [value]); }
   /**
    * var tagSchemes: [NLTagScheme] { get }
    * @availability iOS 12.0+
    */
-  get tagSchemes(): Array<NLTagScheme> { return callSDK<Array<NLTagScheme>>("NaturalLanguage_e11dfd5beee01da3", 3072181115744528, this, []); }
+  get tagSchemes(): Array<NLTagScheme> { return callSDK<Array<NLTagScheme>>("NaturalLanguage_3864e7f38681b875", 3072181115744528, this, []); }
   /**
    * @nonobjc func setLanguage(_ language: NLLanguage, range: Range<String.Index>)
    * @availability iOS 12.0+
    */
-  setLanguage(language: NLLanguage, range: SDKHandle): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 3117270648274800, this, [language, range]); }
+  setLanguage(language: NLLanguage, range: SDKHandle): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 3117270648274800, this, [language, range]); }
   /**
    * @nonobjc func tokenRange(at index: String.Index, unit: NLTokenUnit) -> Range<String.Index>
    * @availability iOS 12.0+
    */
-  tokenRangeAtUnit(index: SDKHandle, unit: NLTokenUnit): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_e11dfd5beee01da3", 3232815202456564, this, [index, unit]); }
+  tokenRangeAtUnit(index: SDKHandle, unit: NLTokenUnit): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_3864e7f38681b875", 3232815202456564, this, [index, unit]); }
   /**
    * @nonobjc func tokenRange(for range: Range<String.Index>, unit: NLTokenUnit) -> Range<String.Index>
    * @availability iOS 14.0+
    */
-  tokenRangeForUnit(range: SDKHandle, unit: NLTokenUnit): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_e11dfd5beee01da3", 479100748201542, this, [range, unit]); }
+  tokenRangeForUnit(range: SDKHandle, unit: NLTokenUnit): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_3864e7f38681b875", 479100748201542, this, [range, unit]); }
   /**
    * @nonobjc func tagHypotheses(at index: String.Index, unit: NLTokenUnit, scheme: NLTagScheme, maximumCount: Int) -> ([String : Double], Range<String.Index>)
    * @availability iOS 14.0+
    */
-  tagHypotheses(index: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, maximumCount: number): [Record<string, number>, SDKHandle] { return callSDK<[Record<string, number>, SDKHandle]>("NaturalLanguage_e11dfd5beee01da3", 1426919129026700, this, [index, unit, scheme, maximumCount]); }
+  tagHypotheses(index: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, maximumCount: number): [Record<string, number>, SDKHandle] { return callSDK<[Record<string, number>, SDKHandle]>("NaturalLanguage_3864e7f38681b875", 1426919129026700, this, [index, unit, scheme, maximumCount]); }
   /**
    * @nonobjc func setOrthography(_ orthography: NSOrthography, range: Range<String.Index>)
    * @availability iOS 12.0+
    */
-  setOrthography(orthography: _Foundation_NSOrthography, range: SDKHandle): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 503330574185143, this, [orthography, range]); }
+  setOrthography(orthography: _Foundation_NSOrthography, range: SDKHandle): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 503330574185143, this, [orthography, range]); }
   /**
    * @nonobjc func tag(at index: String.Index, unit: NLTokenUnit, scheme: NLTagScheme) -> (NLTag?, Range<String.Index>)
    * @availability iOS 12.0+
    */
-  tag(index: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme): [(NLTag) | null, SDKHandle] { return callSDK<[(NLTag) | null, SDKHandle]>("NaturalLanguage_e11dfd5beee01da3", 246656389830265, this, [index, unit, scheme]); }
+  tag(index: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme): [(NLTag) | null, SDKHandle] { return callSDK<[(NLTag) | null, SDKHandle]>("NaturalLanguage_3864e7f38681b875", 246656389830265, this, [index, unit, scheme]); }
   /**
    * @nonobjc func tags(in range: Range<String.Index>, unit: NLTokenUnit, scheme: NLTagScheme, options: NLTagger.Options = []) -> [(NLTag?, Range<String.Index>)]
    * @availability iOS 12.0+
    */
-  tags(range: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, options?: NLTagger_Options): Array<[(NLTag) | null, SDKHandle]> { return callSDK<Array<[(NLTag) | null, SDKHandle]>>("NaturalLanguage_e11dfd5beee01da3", 2873489915993332, this, [range, unit, scheme, options]); }
+  tags(range: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, options?: NLTagger_Options): Array<[(NLTag) | null, SDKHandle]> { return callSDK<Array<[(NLTag) | null, SDKHandle]>>("NaturalLanguage_3864e7f38681b875", 2873489915993332, this, [range, unit, scheme, options]); }
   declare readonly $type: { "c:objc(cs)NLTagger": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dominantLanguage": true; "string": true; "tagSchemes": true };
 }
@@ -1172,7 +1172,7 @@ export type NLTagger_AssetsResult = "available" | "notAvailable" | "error";
 
 export const NLTagger_AssetsResult = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (NLTagger_AssetsResult) | null { return callSDK<(NLTagger_AssetsResult) | null>("NaturalLanguage_e11dfd5beee01da3", 3498257847931277, undefined, [rawValue]); }
+  init(rawValue: number): (NLTagger_AssetsResult) | null { return callSDK<(NLTagger_AssetsResult) | null>("NaturalLanguage_3864e7f38681b875", 3498257847931277, undefined, [rawValue]); }
 };
 
 /** struct Options */
@@ -1180,19 +1180,19 @@ export type NLTagger_Options = Array<"omitWords" | "omitPunctuation" | "omitWhit
 
 export const NLTagger_Options = {
   /** static var joinContractions: NLTagger.Options { get } */
-  get joinContractions(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 774858171934082, undefined, []); },
+  get joinContractions(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 774858171934082, undefined, []); },
   /** static var joinNames: NLTagger.Options { get } */
-  get joinNames(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 2476772562276873, undefined, []); },
+  get joinNames(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 2476772562276873, undefined, []); },
   /** static var omitOther: NLTagger.Options { get } */
-  get omitOther(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 1956953429317638, undefined, []); },
+  get omitOther(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 1956953429317638, undefined, []); },
   /** static var omitPunctuation: NLTagger.Options { get } */
-  get omitPunctuation(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 1355715082974521, undefined, []); },
+  get omitPunctuation(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 1355715082974521, undefined, []); },
   /** static var omitWhitespace: NLTagger.Options { get } */
-  get omitWhitespace(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 1214127315816185, undefined, []); },
+  get omitWhitespace(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 1214127315816185, undefined, []); },
   /** static var omitWords: NLTagger.Options { get } */
-  get omitWords(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 3293181563501566, undefined, []); },
+  get omitWords(): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 3293181563501566, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_e11dfd5beee01da3", 254362819034208, undefined, [rawValue]); }
+  init(rawValue: number): NLTagger_Options { return callSDK<NLTagger_Options>("NaturalLanguage_3864e7f38681b875", 254362819034208, undefined, [rawValue]); }
 };
 
 /** struct NLTagScheme */
@@ -1203,46 +1203,46 @@ export const NLTagScheme = {
    * static let language: NLTagScheme
    * @availability iOS 12.0+
    */
-  get language(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 2298898876979275, undefined, []); },
+  get language(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 2298898876979275, undefined, []); },
   /**
    * static let lemma: NLTagScheme
    * @availability iOS 12.0+
    */
-  get lemma(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 1019364155734882, undefined, []); },
+  get lemma(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 1019364155734882, undefined, []); },
   /**
    * static let lexicalClass: NLTagScheme
    * @availability iOS 12.0+
    */
-  get lexicalClass(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 929764182470328, undefined, []); },
+  get lexicalClass(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 929764182470328, undefined, []); },
   /**
    * static let nameType: NLTagScheme
    * @availability iOS 12.0+
    */
-  get nameType(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 3375943284279855, undefined, []); },
+  get nameType(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 3375943284279855, undefined, []); },
   /**
    * static let nameTypeOrLexicalClass: NLTagScheme
    * @availability iOS 12.0+
    */
-  get nameTypeOrLexicalClass(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 342338804750534, undefined, []); },
+  get nameTypeOrLexicalClass(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 342338804750534, undefined, []); },
   /**
    * static let script: NLTagScheme
    * @availability iOS 12.0+
    */
-  get script(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 772095608378188, undefined, []); },
+  get script(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 772095608378188, undefined, []); },
   /**
    * static let sentimentScore: NLTagScheme
    * @availability iOS 13.0+
    */
-  get sentimentScore(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 3849226681469200, undefined, []); },
+  get sentimentScore(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 3849226681469200, undefined, []); },
   /**
    * static let tokenType: NLTagScheme
    * @availability iOS 12.0+
    */
-  get tokenType(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 4373297479620697, undefined, []); },
+  get tokenType(): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 4373297479620697, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 1270715835963332, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 1270715835963332, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_e11dfd5beee01da3", 3890066097907252, undefined, [rawValue]); }
+  init(rawValue: string): NLTagScheme { return callSDK<NLTagScheme>("NaturalLanguage_3864e7f38681b875", 3890066097907252, undefined, [rawValue]); }
 };
 
 /**
@@ -1254,38 +1254,38 @@ export class NLTokenizer extends SDKHandle {
    * init(unit: NLTokenUnit)
    * @availability iOS 12.0+
    */
-  static init(unit: NLTokenUnit): NLTokenizer { return callSDK<NLTokenizer>("NaturalLanguage_e11dfd5beee01da3", 2514980568255493, undefined, [unit]); }
+  static init(unit: NLTokenUnit): NLTokenizer { return callSDK<NLTokenizer>("NaturalLanguage_3864e7f38681b875", 2514980568255493, undefined, [unit]); }
   /**
    * func setLanguage(_ language: NLLanguage)
    * @availability iOS 12.0+
    */
-  setLanguage(language: NLLanguage): void { return callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 456873331442827, this, [language]); }
+  setLanguage(language: NLLanguage): void { return callSDK<void>("NaturalLanguage_3864e7f38681b875", 456873331442827, this, [language]); }
   /**
    * var string: String? { get set }
    * @availability iOS 12.0+
    */
-  get string(): (string) | null { return callSDK<(string) | null>("NaturalLanguage_e11dfd5beee01da3", 2122550811203822, this, []); }
-  set string(value: (string) | null) { callSDK<void>("NaturalLanguage_e11dfd5beee01da3", 412400072965434, this, [value]); }
+  get string(): (string) | null { return callSDK<(string) | null>("NaturalLanguage_3864e7f38681b875", 2122550811203822, this, []); }
+  set string(value: (string) | null) { callSDK<void>("NaturalLanguage_3864e7f38681b875", 412400072965434, this, [value]); }
   /**
    * var unit: NLTokenUnit { get }
    * @availability iOS 12.0+
    */
-  get unit(): NLTokenUnit { return callSDK<NLTokenUnit>("NaturalLanguage_e11dfd5beee01da3", 2077957375078546, this, []); }
+  get unit(): NLTokenUnit { return callSDK<NLTokenUnit>("NaturalLanguage_3864e7f38681b875", 2077957375078546, this, []); }
   /**
    * @nonobjc func tokenRange(at index: String.Index) -> Range<String.Index>
    * @availability iOS 12.0+
    */
-  tokenRangeAt(index: SDKHandle): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_e11dfd5beee01da3", 2572146164422965, this, [index]); }
+  tokenRangeAt(index: SDKHandle): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_3864e7f38681b875", 2572146164422965, this, [index]); }
   /**
    * @nonobjc func tokenRange(for range: Range<String.Index>) -> Range<String.Index>
    * @availability iOS 14.0+
    */
-  tokenRangeFor(range: SDKHandle): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_e11dfd5beee01da3", 2066938416302902, this, [range]); }
+  tokenRangeFor(range: SDKHandle): SDKHandle { return callSDK<SDKHandle>("NaturalLanguage_3864e7f38681b875", 2066938416302902, this, [range]); }
   /**
    * @nonobjc func tokens(for range: Range<String.Index>) -> [Range<String.Index>]
    * @availability iOS 12.0+
    */
-  tokens(range: SDKHandle): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("NaturalLanguage_e11dfd5beee01da3", 628746508424119, this, [range]); }
+  tokens(range: SDKHandle): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("NaturalLanguage_3864e7f38681b875", 628746508424119, this, [range]); }
   declare readonly $type: { "c:objc(cs)NLTokenizer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "string": true; "unit": true };
 }
@@ -1295,13 +1295,13 @@ export type NLTokenizer_Attributes = Array<"numeric" | "symbolic" | "emoji">;
 
 export const NLTokenizer_Attributes = {
   /** static var emoji: NLTokenizer.Attributes { get } */
-  get emoji(): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_e11dfd5beee01da3", 3722298168456806, undefined, []); },
+  get emoji(): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_3864e7f38681b875", 3722298168456806, undefined, []); },
   /** static var numeric: NLTokenizer.Attributes { get } */
-  get numeric(): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_e11dfd5beee01da3", 3911987043017183, undefined, []); },
+  get numeric(): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_3864e7f38681b875", 3911987043017183, undefined, []); },
   /** static var symbolic: NLTokenizer.Attributes { get } */
-  get symbolic(): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_e11dfd5beee01da3", 3415336606701432, undefined, []); },
+  get symbolic(): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_3864e7f38681b875", 3415336606701432, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_e11dfd5beee01da3", 773153093980776, undefined, [rawValue]); }
+  init(rawValue: number): NLTokenizer_Attributes { return callSDK<NLTokenizer_Attributes>("NaturalLanguage_3864e7f38681b875", 773153093980776, undefined, [rawValue]); }
 };
 
 /** enum NLTokenUnit */
@@ -1309,15 +1309,15 @@ export type NLTokenUnit = "word" | "sentence" | "paragraph" | "document";
 
 export const NLTokenUnit = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (NLTokenUnit) | null { return callSDK<(NLTokenUnit) | null>("NaturalLanguage_e11dfd5beee01da3", 2037144060558456, undefined, [rawValue]); }
+  init(rawValue: number): (NLTokenUnit) | null { return callSDK<(NLTokenUnit) | null>("NaturalLanguage_3864e7f38681b875", 2037144060558456, undefined, [rawValue]); }
 };
 
-registerSDKClass("NLContextualEmbedding", NLContextualEmbedding, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"dimension":3431708615860169,"hasAvailableAssets":547263977003075,"languages":2690907587981022,"maximumSequenceLength":58700540811809,"modelIdentifier":2603210035567760,"revision":600177318189053,"scripts":569751860860123}, methods: {"embeddingResult":{"id":2509966831598528},"load":{"id":3435057443247006},"requestAssets":{"id":1369687341582078,"hints":[{"callback":{"out":[]}}]},"unload":{"id":2811051360903175}} });
-registerSDKClass("NLContextualEmbeddingResult", NLContextualEmbeddingResult, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"language":1293640918652224,"sequenceLength":294792361066442,"string":2461872881550119}, methods: {"tokenVector":{"id":4261422679898481}} });
-registerSDKClass("NLEmbedding", NLEmbedding, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"dimension":370566572105974,"language":763312521200762,"revision":2962485894193546,"vocabularySize":785831610706960}, methods: {"contains":{"id":2515245176748837},"vector":{"id":4241532361170421},"distance":{"id":509546306148060},"neighborsForMaximumCountDistanceType":{"id":4110234167222378},"neighborsForMaximumCountDistanceType78787":{"id":189818921502408}} });
-registerSDKClass("NLGazetteer", NLGazetteer, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"data":2999654066242954,"language":4446399336836617}, methods: {"label":{"id":68753397460549}} });
-registerSDKClass("NLLanguageRecognizer", NLLanguageRecognizer, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"dominantLanguage":1063977467487403,"languageConstraints":2441569522076324}, methods: {"processString":{"id":4471376508429139},"reset":{"id":4214864848684244},"languageHypotheses":{"id":2716471684797645}} });
-registerSDKClass("NLModel", NLModel, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"configuration":3126849070095654}, methods: {"predictedLabel":{"id":1514856710823184},"predictedLabels":{"id":1206665151856201},"predictedLabelHypothesesForMaximumCount":{"id":3598343941458786},"predictedLabelHypothesesForTokensMaximumCount":{"id":421436158068447}} });
-registerSDKClass("NLModelConfiguration", NLModelConfiguration, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"language":2539509600627177,"revision":244763753719367,"type":2553350135245256} });
-registerSDKClass("NLTagger", NLTagger, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"dominantLanguage":1812553996227321,"string":1726221854278569,"tagSchemes":3072181115744528}, methods: {"gazetteers":{"id":3501881112824370},"models":{"id":713791740924115},"setGazetteers":{"id":3550172707457076},"setModels":{"id":775472390593907},"setLanguage":{"id":3117270648274800},"tokenRangeAtUnit":{"id":3232815202456564},"tokenRangeForUnit":{"id":479100748201542},"tagHypotheses":{"id":1426919129026700},"setOrthography":{"id":503330574185143},"tag":{"id":246656389830265},"tags":{"id":2873489915993332}} });
-registerSDKClass("NLTokenizer", NLTokenizer, { module: "NaturalLanguage_e11dfd5beee01da3", properties: {"string":2122550811203822,"unit":2077957375078546}, methods: {"setLanguage":{"id":456873331442827},"tokenRangeAt":{"id":2572146164422965},"tokenRangeFor":{"id":2066938416302902},"tokens":{"id":628746508424119}} });
+registerSDKClass("NLContextualEmbedding", NLContextualEmbedding, { module: "NaturalLanguage_3864e7f38681b875", properties: {"dimension":3431708615860169,"hasAvailableAssets":547263977003075,"languages":2690907587981022,"maximumSequenceLength":58700540811809,"modelIdentifier":2603210035567760,"revision":600177318189053,"scripts":569751860860123}, methods: {"embeddingResult":{"id":2509966831598528},"load":{"id":3435057443247006},"requestAssets":{"id":1369687341582078,"hints":[{"callback":{"out":[]}}]},"unload":{"id":2811051360903175}} });
+registerSDKClass("NLContextualEmbeddingResult", NLContextualEmbeddingResult, { module: "NaturalLanguage_3864e7f38681b875", properties: {"language":1293640918652224,"sequenceLength":294792361066442,"string":2461872881550119}, methods: {"tokenVector":{"id":4261422679898481}} });
+registerSDKClass("NLEmbedding", NLEmbedding, { module: "NaturalLanguage_3864e7f38681b875", properties: {"dimension":370566572105974,"language":763312521200762,"revision":2962485894193546,"vocabularySize":785831610706960}, methods: {"contains":{"id":2515245176748837},"vector":{"id":4241532361170421},"distance":{"id":509546306148060},"neighborsForMaximumCountDistanceType":{"id":4110234167222378},"neighborsForMaximumCountDistanceType78787":{"id":189818921502408}} });
+registerSDKClass("NLGazetteer", NLGazetteer, { module: "NaturalLanguage_3864e7f38681b875", properties: {"data":2999654066242954,"language":4446399336836617}, methods: {"label":{"id":68753397460549}} });
+registerSDKClass("NLLanguageRecognizer", NLLanguageRecognizer, { module: "NaturalLanguage_3864e7f38681b875", properties: {"dominantLanguage":1063977467487403,"languageConstraints":2441569522076324}, methods: {"processString":{"id":4471376508429139},"reset":{"id":4214864848684244},"languageHypotheses":{"id":2716471684797645}} });
+registerSDKClass("NLModel", NLModel, { module: "NaturalLanguage_3864e7f38681b875", properties: {"configuration":3126849070095654}, methods: {"predictedLabel":{"id":1514856710823184},"predictedLabels":{"id":1206665151856201},"predictedLabelHypothesesForMaximumCount":{"id":3598343941458786},"predictedLabelHypothesesForTokensMaximumCount":{"id":421436158068447}} });
+registerSDKClass("NLModelConfiguration", NLModelConfiguration, { module: "NaturalLanguage_3864e7f38681b875", properties: {"language":2539509600627177,"revision":244763753719367,"type":2553350135245256} });
+registerSDKClass("NLTagger", NLTagger, { module: "NaturalLanguage_3864e7f38681b875", properties: {"dominantLanguage":1812553996227321,"string":1726221854278569,"tagSchemes":3072181115744528}, methods: {"gazetteers":{"id":3501881112824370},"models":{"id":713791740924115},"setGazetteers":{"id":3550172707457076},"setModels":{"id":775472390593907},"setLanguage":{"id":3117270648274800},"tokenRangeAtUnit":{"id":3232815202456564},"tokenRangeForUnit":{"id":479100748201542},"tagHypotheses":{"id":1426919129026700},"setOrthography":{"id":503330574185143},"tag":{"id":246656389830265},"tags":{"id":2873489915993332}} });
+registerSDKClass("NLTokenizer", NLTokenizer, { module: "NaturalLanguage_3864e7f38681b875", properties: {"string":2122550811203822,"unit":2077957375078546}, methods: {"setLanguage":{"id":456873331442827},"tokenRangeAt":{"id":2572146164422965},"tokenRangeFor":{"id":2066938416302902},"tokens":{"id":628746508424119}} });

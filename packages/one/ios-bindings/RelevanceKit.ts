@@ -13,52 +13,52 @@ export class RelevantContext extends SDKHandle {
    * @availability iOS 17.0+
    * @deprecated iOS 26.0
    */
-  static dateFromTo(from: globalThis.Date, to: globalThis.Date): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 918497719225901, undefined, [from, to]); }
+  static dateFromTo(from: globalThis.Date, to: globalThis.Date): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 918497719225901, undefined, [from, to]); }
   /**
    * static func date(range: ClosedRange<Date>, kind: RelevantContext.DateKind) -> RelevantContext
    * @availability iOS 26.0+
    */
-  static dateRangeKind(range: SDKHandle, kind: RelevantContext_DateKind): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 1894122686848088, undefined, [range, kind]); }
+  static dateRangeKind(range: SDKHandle, kind: RelevantContext_DateKind): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 1894122686848088, undefined, [range, kind]); }
   /**
    * static func date(interval: DateInterval, kind: RelevantContext.DateKind) -> RelevantContext
    * @availability iOS 26.0+
    */
-  static dateIntervalKind(interval: _Foundation_DateInterval, kind: RelevantContext_DateKind): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 1651549561306376, undefined, [interval, kind]); }
+  static dateIntervalKind(interval: _Foundation_DateInterval, kind: RelevantContext_DateKind): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 1651549561306376, undefined, [interval, kind]); }
   /**
    * static func date(_ exact: Date, kind: RelevantContext.DateKind) -> RelevantContext
    * @availability iOS 26.0+
    */
-  static dateKind(exact: globalThis.Date, kind: RelevantContext_DateKind): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 2594614253549498, undefined, [exact, kind]); }
+  static dateKind(exact: globalThis.Date, kind: RelevantContext_DateKind): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 2594614253549498, undefined, [exact, kind]); }
   /**
    * static func date(_ exact: Date) -> RelevantContext
    * @availability iOS 17.0+
    */
-  static date(exact: globalThis.Date): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 746582684323908, undefined, [exact]); }
+  static date(exact: globalThis.Date): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 746582684323908, undefined, [exact]); }
   /**
    * static func sleep(_ condition: RelevantContext.SleepCondition) -> RelevantContext
    * @availability iOS 17.0+
    */
-  static sleep(condition: RelevantContext_SleepCondition): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 960924823901804, undefined, [condition]); }
+  static sleep(condition: RelevantContext_SleepCondition): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 960924823901804, undefined, [condition]); }
   /**
    * static func fitness(_ condition: RelevantContext.FitnessCondition) -> RelevantContext
    * @availability iOS 17.0+
    */
-  static fitness(condition: RelevantContext_FitnessCondition): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 3057497057346220, undefined, [condition]); }
+  static fitness(condition: RelevantContext_FitnessCondition): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 3057497057346220, undefined, [condition]); }
   /**
    * static func hardware(headphones: RelevantContext.HeadphonesCondition) -> RelevantContext
    * @availability iOS 17.0+
    */
-  static hardware(headphones: RelevantContext_HeadphonesCondition): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 3233401361764314, undefined, [headphones]); }
+  static hardware(headphones: RelevantContext_HeadphonesCondition): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 3233401361764314, undefined, [headphones]); }
   /**
    * static func location(inferred: RelevantContext.InferredLocation) -> RelevantContext
    * @availability iOS 17.0+
    */
-  static locationInferred(inferred: RelevantContext_InferredLocation): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 3404378061742106, undefined, [inferred]); }
+  static locationInferred(inferred: RelevantContext_InferredLocation): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 3404378061742106, undefined, [inferred]); }
   /**
    * static func location(_ exact: CLRegion) -> RelevantContext
    * @availability iOS 17.0+
    */
-  static location(exact: _CoreLocation_CLRegion): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_e11dfd5beee01da3", 3157088910179736, undefined, [exact]); }
+  static location(exact: _CoreLocation_CLRegion): RelevantContext { return callSDK<RelevantContext>("RelevanceKit_3864e7f38681b875", 3157088910179736, undefined, [exact]); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV": true };
 }
 
@@ -71,17 +71,17 @@ export class RelevantContext_DateKind extends SDKHandle {
    * static var informational: RelevantContext.DateKind { get }
    * @availability iOS 26.0+
    */
-  static get informational(): RelevantContext_DateKind { return callSDK<RelevantContext_DateKind>("RelevanceKit_e11dfd5beee01da3", 1158478538055491, undefined, []); }
+  static get informational(): RelevantContext_DateKind { return callSDK<RelevantContext_DateKind>("RelevanceKit_3864e7f38681b875", 1158478538055491, undefined, []); }
   /**
    * static var `default`: RelevantContext.DateKind { get }
    * @availability iOS 26.0+
    */
-  static get default(): RelevantContext_DateKind { return callSDK<RelevantContext_DateKind>("RelevanceKit_e11dfd5beee01da3", 2521807692608040, undefined, []); }
+  static get default(): RelevantContext_DateKind { return callSDK<RelevantContext_DateKind>("RelevanceKit_3864e7f38681b875", 2521807692608040, undefined, []); }
   /**
    * static var scheduled: RelevantContext.DateKind { get }
    * @availability iOS 26.0+
    */
-  static get scheduled(): RelevantContext_DateKind { return callSDK<RelevantContext_DateKind>("RelevanceKit_e11dfd5beee01da3", 2827866132509646, undefined, []); }
+  static get scheduled(): RelevantContext_DateKind { return callSDK<RelevantContext_DateKind>("RelevanceKit_3864e7f38681b875", 2827866132509646, undefined, []); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV8DateKindV": true };
 }
 
@@ -94,12 +94,12 @@ export class RelevantContext_FitnessCondition extends SDKHandle {
    * static var workoutActive: RelevantContext.FitnessCondition { get }
    * @availability iOS 17.0+
    */
-  static get workoutActive(): RelevantContext_FitnessCondition { return callSDK<RelevantContext_FitnessCondition>("RelevanceKit_e11dfd5beee01da3", 4345045668310286, undefined, []); }
+  static get workoutActive(): RelevantContext_FitnessCondition { return callSDK<RelevantContext_FitnessCondition>("RelevanceKit_3864e7f38681b875", 4345045668310286, undefined, []); }
   /**
    * static var activityRingsIncomplete: RelevantContext.FitnessCondition { get }
    * @availability iOS 17.0+
    */
-  static get activityRingsIncomplete(): RelevantContext_FitnessCondition { return callSDK<RelevantContext_FitnessCondition>("RelevanceKit_e11dfd5beee01da3", 586970222991239, undefined, []); }
+  static get activityRingsIncomplete(): RelevantContext_FitnessCondition { return callSDK<RelevantContext_FitnessCondition>("RelevanceKit_3864e7f38681b875", 586970222991239, undefined, []); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV16FitnessConditionV": true };
 }
 
@@ -112,7 +112,7 @@ export class RelevantContext_HeadphonesCondition extends SDKHandle {
    * static var connected: RelevantContext.HeadphonesCondition { get }
    * @availability iOS 17.0+
    */
-  static get connected(): RelevantContext_HeadphonesCondition { return callSDK<RelevantContext_HeadphonesCondition>("RelevanceKit_e11dfd5beee01da3", 183823606231045, undefined, []); }
+  static get connected(): RelevantContext_HeadphonesCondition { return callSDK<RelevantContext_HeadphonesCondition>("RelevanceKit_3864e7f38681b875", 183823606231045, undefined, []); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV19HeadphonesConditionV": true };
 }
 
@@ -125,22 +125,22 @@ export class RelevantContext_InferredLocation extends SDKHandle {
    * static var home: RelevantContext.InferredLocation { get }
    * @availability iOS 17.0+
    */
-  static get home(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_e11dfd5beee01da3", 3690466351403093, undefined, []); }
+  static get home(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_3864e7f38681b875", 3690466351403093, undefined, []); }
   /**
    * static var work: RelevantContext.InferredLocation { get }
    * @availability iOS 17.0+
    */
-  static get work(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_e11dfd5beee01da3", 3314992534280967, undefined, []); }
+  static get work(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_3864e7f38681b875", 3314992534280967, undefined, []); }
   /**
    * static var school: RelevantContext.InferredLocation { get }
    * @availability iOS 17.0+
    */
-  static get school(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_e11dfd5beee01da3", 268561208685688, undefined, []); }
+  static get school(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_3864e7f38681b875", 268561208685688, undefined, []); }
   /**
    * static var commute: RelevantContext.InferredLocation { get }
    * @availability iOS 17.0+
    */
-  static get commute(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_e11dfd5beee01da3", 2686500805291951, undefined, []); }
+  static get commute(): RelevantContext_InferredLocation { return callSDK<RelevantContext_InferredLocation>("RelevanceKit_3864e7f38681b875", 2686500805291951, undefined, []); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV16InferredLocationV": true };
 }
 
@@ -153,18 +153,18 @@ export class RelevantContext_SleepCondition extends SDKHandle {
    * static var wakeup: RelevantContext.SleepCondition { get }
    * @availability iOS 17.0+
    */
-  static get wakeup(): RelevantContext_SleepCondition { return callSDK<RelevantContext_SleepCondition>("RelevanceKit_e11dfd5beee01da3", 2375796237840396, undefined, []); }
+  static get wakeup(): RelevantContext_SleepCondition { return callSDK<RelevantContext_SleepCondition>("RelevanceKit_3864e7f38681b875", 2375796237840396, undefined, []); }
   /**
    * static var bedtime: RelevantContext.SleepCondition { get }
    * @availability iOS 17.0+
    */
-  static get bedtime(): RelevantContext_SleepCondition { return callSDK<RelevantContext_SleepCondition>("RelevanceKit_e11dfd5beee01da3", 680099582582207, undefined, []); }
+  static get bedtime(): RelevantContext_SleepCondition { return callSDK<RelevantContext_SleepCondition>("RelevanceKit_3864e7f38681b875", 680099582582207, undefined, []); }
   declare readonly $type: { "s:12RelevanceKit15RelevantContextV14SleepConditionV": true };
 }
 
-registerSDKClass("RelevanceKit.RelevantContext", RelevantContext, { module: "RelevanceKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RelevanceKit.RelevantContext.DateKind", RelevantContext_DateKind, { module: "RelevanceKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RelevanceKit.RelevantContext.FitnessCondition", RelevantContext_FitnessCondition, { module: "RelevanceKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RelevanceKit.RelevantContext.HeadphonesCondition", RelevantContext_HeadphonesCondition, { module: "RelevanceKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RelevanceKit.RelevantContext.InferredLocation", RelevantContext_InferredLocation, { module: "RelevanceKit_e11dfd5beee01da3", properties: {} });
-registerSDKClass("RelevanceKit.RelevantContext.SleepCondition", RelevantContext_SleepCondition, { module: "RelevanceKit_e11dfd5beee01da3", properties: {} });
+registerSDKClass("RelevanceKit.RelevantContext", RelevantContext, { module: "RelevanceKit_3864e7f38681b875", properties: {} });
+registerSDKClass("RelevanceKit.RelevantContext.DateKind", RelevantContext_DateKind, { module: "RelevanceKit_3864e7f38681b875", properties: {} });
+registerSDKClass("RelevanceKit.RelevantContext.FitnessCondition", RelevantContext_FitnessCondition, { module: "RelevanceKit_3864e7f38681b875", properties: {} });
+registerSDKClass("RelevanceKit.RelevantContext.HeadphonesCondition", RelevantContext_HeadphonesCondition, { module: "RelevanceKit_3864e7f38681b875", properties: {} });
+registerSDKClass("RelevanceKit.RelevantContext.InferredLocation", RelevantContext_InferredLocation, { module: "RelevanceKit_3864e7f38681b875", properties: {} });
+registerSDKClass("RelevanceKit.RelevantContext.SleepCondition", RelevantContext_SleepCondition, { module: "RelevanceKit_3864e7f38681b875", properties: {} });
