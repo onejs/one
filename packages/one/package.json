@@ -38,7 +38,8 @@
       "require": "./dist/cjs/ui/index.cjs"
     },
     "./ios/*": {
-      "types": "./ios-types/*.d.ts"
+      "types": "./ios-types/*.d.ts",
+      "react-native": "./ios-bindings/*.ts"
     },
     "./ios-runtime": {
       "react-native": {

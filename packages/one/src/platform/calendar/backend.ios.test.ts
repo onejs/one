@@ -8,8 +8,8 @@ import { resolveIosSdkImport } from '../../utils/iosSdkFacade'
 import type { calendarNative as backendCalendarNative } from './backend.ios'
 
 // boundary integration over the real ios calendar backend. production keeps
-// the public one/ios/* specifiers (types-only package export, rewritten by
-// the shipped metro/vite resolvers). vitest cannot resolve those specifiers,
+// the public one/ios/* specifiers (native package export, also resolved by
+// the shipped metro/vite resolvers). web vitest cannot resolve those specifiers,
 // so a test-local harness rewrites them to temp doubles and loads the real
 // backend source through esbuild. no global config, no production fallback.
 // native thread hop timing stays unproven here and needs a device run.
