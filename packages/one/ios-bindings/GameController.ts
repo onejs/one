@@ -30,30 +30,30 @@ export class GCAcceleration extends SDKHandle {
    * var x: Double
    * @availability iOS 8.0+
    */
-  get x(): number { return callSDK<number>("GameController_c1f28409f8601238", 2884330349434872, this, []); }
-  set x(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3397755792491533, this, [value]); }
+  get x(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2884330349434872, this, []); }
+  set x(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3397755792491533, this, [value]); }
   /**
    * var y: Double
    * @availability iOS 8.0+
    */
-  get y(): number { return callSDK<number>("GameController_c1f28409f8601238", 462852914505361, this, []); }
-  set y(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2122707550039696, this, [value]); }
+  get y(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 462852914505361, this, []); }
+  set y(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2122707550039696, this, [value]); }
   /**
    * var z: Double
    * @availability iOS 8.0+
    */
-  get z(): number { return callSDK<number>("GameController_c1f28409f8601238", 4359526592183729, this, []); }
-  set z(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2086883270535324, this, [value]); }
+  get z(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 4359526592183729, this, []); }
+  set z(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2086883270535324, this, [value]); }
   /**
    * init(x: Double, y: Double, z: Double)
    * @availability iOS 8.0+
    */
-  static initXYZ(x: number, y: number, z: number): GCAcceleration { return callSDK<GCAcceleration>("GameController_c1f28409f8601238", 3879552728628929, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): GCAcceleration { return callSDK<GCAcceleration>("GameController_e11dfd5beee01da3", 3879552728628929, undefined, [x, y, z]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): GCAcceleration { return callSDK<GCAcceleration>("GameController_c1f28409f8601238", 226011802473207, undefined, []); }
+  static init(): GCAcceleration { return callSDK<GCAcceleration>("GameController_e11dfd5beee01da3", 226011802473207, undefined, []); }
   declare readonly $type: { "c:@SA@GCAcceleration": true };
 }
 
@@ -84,12 +84,12 @@ export const GCAxisElementName = {
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): GCAxisElementName { return callSDK<GCAxisElementName>("GameController_c1f28409f8601238", 4034059592074405, undefined, [rawValue]); },
+  init(rawValue: string): GCAxisElementName { return callSDK<GCAxisElementName>("GameController_e11dfd5beee01da3", 4034059592074405, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: GCAxisElementName): string { return callSDK<string>("GameController_c1f28409f8601238", 3184244549381135, $self, []); }
+  getRawValue($self: GCAxisElementName): string { return callSDK<string>("GameController_e11dfd5beee01da3", 3184244549381135, $self, []); }
 };
 
 /**
@@ -131,132 +131,132 @@ export const GCButtonElementName = {
    * static let leftBumper: GCButtonElementName
    * @availability iOS 17.4+
    */
-  get leftBumper(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 111991281314386, undefined, []); },
+  get leftBumper(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 111991281314386, undefined, []); },
   /**
    * static let leftTrigger: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get leftTrigger(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2952883910627439, undefined, []); },
+  get leftTrigger(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2952883910627439, undefined, []); },
   /**
    * static let rightBumper: GCButtonElementName
    * @availability iOS 17.4+
    */
-  get rightBumper(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1568203969410699, undefined, []); },
+  get rightBumper(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1568203969410699, undefined, []); },
   /**
    * static func arcadeButton(row: Int, column: Int) -> GCButtonElementName
    * @availability iOS 17.0+
    */
-  arcadeButton(row: number, column: number): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 3080974095611152, undefined, [row, column]); },
+  arcadeButton(row: number, column: number): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 3080974095611152, undefined, [row, column]); },
   /**
    * static let leftShoulder: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get leftShoulder(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 170407811937583, undefined, []); },
+  get leftShoulder(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 170407811937583, undefined, []); },
   /**
    * static let rightTrigger: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get rightTrigger(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2290568093580406, undefined, []); },
+  get rightTrigger(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2290568093580406, undefined, []); },
   /**
    * static let rightShoulder: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get rightShoulder(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1673341892871314, undefined, []); },
+  get rightShoulder(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1673341892871314, undefined, []); },
   /**
    * static func backLeftButton(position: Int) -> GCButtonElementName
    * @availability iOS 17.4+
    */
-  backLeftButton(position: number): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 985376659380201, undefined, [position]); },
+  backLeftButton(position: number): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 985376659380201, undefined, [position]); },
   /**
    * static let leftSideButton: GCButtonElementName
    * @availability iOS 26.4+
    */
-  get leftSideButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1342102512856569, undefined, []); },
+  get leftSideButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1342102512856569, undefined, []); },
   /**
    * static func backRightButton(position: Int) -> GCButtonElementName
    * @availability iOS 17.4+
    */
-  backRightButton(position: number): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2296801544917899, undefined, [position]); },
+  backRightButton(position: number): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2296801544917899, undefined, [position]); },
   /**
    * static let rightSideButton: GCButtonElementName
    * @availability iOS 26.4+
    */
-  get rightSideButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 4193918567229565, undefined, []); },
+  get rightSideButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 4193918567229565, undefined, []); },
   /**
    * static let thumbstickButton: GCButtonElementName
    * @availability iOS 26.0+
    */
-  get thumbstickButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 37705294342819, undefined, []); },
+  get thumbstickButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 37705294342819, undefined, []); },
   /**
    * static let a: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get a(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2865812939862682, undefined, []); },
+  get a(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2865812939862682, undefined, []); },
   /**
    * static let b: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get b(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 3532741980038551, undefined, []); },
+  get b(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 3532741980038551, undefined, []); },
   /**
    * static let x: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get x(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1075736402512929, undefined, []); },
+  get x(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1075736402512929, undefined, []); },
   /**
    * static let y: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get y(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1694471077441192, undefined, []); },
+  get y(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1694471077441192, undefined, []); },
   /**
    * static let leftThumbstickButton: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get leftThumbstickButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 4067775810284443, undefined, []); },
+  get leftThumbstickButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 4067775810284443, undefined, []); },
   /**
    * static let rightThumbstickButton: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get rightThumbstickButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2956413421875333, undefined, []); },
+  get rightThumbstickButton(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2956413421875333, undefined, []); },
   /**
    * static let grip: GCButtonElementName
    * @availability iOS 26.0+
    */
-  get grip(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 412353675113661, undefined, []); },
+  get grip(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 412353675113661, undefined, []); },
   /**
    * static let home: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get home(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 3606665164442120, undefined, []); },
+  get home(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 3606665164442120, undefined, []); },
   /**
    * static let menu: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get menu(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2646092863590438, undefined, []); },
+  get menu(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2646092863590438, undefined, []); },
   /**
    * static let share: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get share(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 2339463443531886, undefined, []); },
+  get share(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 2339463443531886, undefined, []); },
   /**
    * static let options: GCButtonElementName
    * @availability iOS 16.0+
    */
-  get options(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1043116308981212, undefined, []); },
+  get options(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1043116308981212, undefined, []); },
   /**
    * static let trigger: GCButtonElementName
    * @availability iOS 26.0+
    */
-  get trigger(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 3542002965253243, undefined, []); },
+  get trigger(): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 3542002965253243, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_c1f28409f8601238", 1912470205788195, undefined, [rawValue]); },
+  init(rawValue: string): GCButtonElementName { return callSDK<GCButtonElementName>("GameController_e11dfd5beee01da3", 1912470205788195, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: GCButtonElementName): string { return callSDK<string>("GameController_c1f28409f8601238", 2381967843434187, $self, []); }
+  getRawValue($self: GCButtonElementName): string { return callSDK<string>("GameController_e11dfd5beee01da3", 2381967843434187, $self, []); }
 };
 
 /**
@@ -280,22 +280,22 @@ export class GCColor extends SDKHandle {
    * init(red: Float, green: Float, blue: Float)
    * @availability iOS 14.0+
    */
-  static init(red: number, green: number, blue: number): GCColor { return callSDK<GCColor>("GameController_c1f28409f8601238", 3997851712667299, undefined, [red, green, blue]); }
+  static init(red: number, green: number, blue: number): GCColor { return callSDK<GCColor>("GameController_e11dfd5beee01da3", 3997851712667299, undefined, [red, green, blue]); }
   /**
    * var blue: Float { get }
    * @availability iOS 14.0+
    */
-  get blue(): number { return callSDK<number>("GameController_c1f28409f8601238", 893603567860791, this, []); }
+  get blue(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 893603567860791, this, []); }
   /**
    * var green: Float { get }
    * @availability iOS 14.0+
    */
-  get green(): number { return callSDK<number>("GameController_c1f28409f8601238", 2559365721505066, this, []); }
+  get green(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2559365721505066, this, []); }
   /**
    * var red: Float { get }
    * @availability iOS 14.0+
    */
-  get red(): number { return callSDK<number>("GameController_c1f28409f8601238", 2360231972117427, this, []); }
+  get red(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2360231972117427, this, []); }
   declare readonly $type: { "c:objc(cs)GCColor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "blue": true; "green": true; "red": true };
 }
@@ -309,114 +309,114 @@ export class GCController extends SDKHandle {
    * class func withExtendedGamepad() -> GCController
    * @availability iOS 13.0+
    */
-  static withExtendedGamepad(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 1402965524597852, undefined, []); }
+  static withExtendedGamepad(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 1402965524597852, undefined, []); }
   /**
    * class func withMicroGamepad() -> GCController
    * @availability iOS 13.0+
    */
-  static withMicroGamepad(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 3503352850968455, undefined, []); }
+  static withMicroGamepad(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 3503352850968455, undefined, []); }
   /**
    * class func controllers() -> [GCController]
    * @availability iOS 7.0+
    */
-  static controllers(): Array<GCController> { return callSDK<Array<GCController>>("GameController_c1f28409f8601238", 2810418481696080, undefined, []); }
+  static controllers(): Array<GCController> { return callSDK<Array<GCController>>("GameController_e11dfd5beee01da3", 2810418481696080, undefined, []); }
   /**
    * class func startWirelessControllerDiscovery() async
    * @availability iOS 7.0+
    */
-  static startWirelessControllerDiscovery(completionHandler?: ((() => void)) | null): void { return callSDK<void>("GameController_c1f28409f8601238", 853914194014197, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static startWirelessControllerDiscovery(completionHandler?: ((() => void)) | null): void { return callSDK<void>("GameController_e11dfd5beee01da3", 853914194014197, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func stopWirelessControllerDiscovery()
    * @availability iOS 7.0+
    */
-  static stopWirelessControllerDiscovery(): void { return callSDK<void>("GameController_c1f28409f8601238", 4496614605193877, undefined, []); }
+  static stopWirelessControllerDiscovery(): void { return callSDK<void>("GameController_e11dfd5beee01da3", 4496614605193877, undefined, []); }
   /**
    * class var current: GCController? { get }
    * @availability iOS 14.0+
    */
-  static get current(): (GCController) | null { return callSDK<(GCController) | null>("GameController_c1f28409f8601238", 91303193862334, undefined, []); }
+  static get current(): (GCController) | null { return callSDK<(GCController) | null>("GameController_e11dfd5beee01da3", 91303193862334, undefined, []); }
   /**
    * class var shouldMonitorBackgroundEvents: Bool { get set }
    * @availability iOS 14.5+
    */
-  static get shouldMonitorBackgroundEvents(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 301579403664691, undefined, []); }
-  static set shouldMonitorBackgroundEvents(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 2871888636594235, undefined, [value]); }
+  static get shouldMonitorBackgroundEvents(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 301579403664691, undefined, []); }
+  static set shouldMonitorBackgroundEvents(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 2871888636594235, undefined, [value]); }
   /**
    * func capture() -> GCController
    * @availability iOS 13.0+
    */
-  capture(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 3491575767869268, this, []); }
+  capture(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 3491575767869268, this, []); }
   /** init() */
-  static init(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 3679646687311210, undefined, []); }
+  static init(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 3679646687311210, undefined, []); }
   /**
    * var isAttachedToDevice: Bool { get }
    * @availability iOS 7.0+
    */
-  get isAttachedToDevice(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3573066680435196, this, []); }
+  get isAttachedToDevice(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3573066680435196, this, []); }
   /**
    * @NSCopying var battery: GCDeviceBattery? { get }
    * @availability iOS 14.0+
    */
-  get battery(): (GCDeviceBattery) | null { return callSDK<(GCDeviceBattery) | null>("GameController_c1f28409f8601238", 4164332299412134, this, []); }
+  get battery(): (GCDeviceBattery) | null { return callSDK<(GCDeviceBattery) | null>("GameController_e11dfd5beee01da3", 4164332299412134, this, []); }
   /**
    * var controllerPausedHandler: ((GCController) -> Void)? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get controllerPausedHandler(): (((arg0: GCController) => Promise<void>)) | null { return callSDK<(((arg0: GCController) => Promise<void>)) | null>("GameController_c1f28409f8601238", 1413232080508142, this, []); }
-  set controllerPausedHandler(value: (((arg0: GCController) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 1035951650786696, this, [value], [{"callback":{"out":[]}}]); }
+  get controllerPausedHandler(): (((arg0: GCController) => Promise<void>)) | null { return callSDK<(((arg0: GCController) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 1413232080508142, this, []); }
+  set controllerPausedHandler(value: (((arg0: GCController) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 1035951650786696, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var extendedGamepad: GCExtendedGamepad? { get }
    * @availability iOS 7.0+
    */
-  get extendedGamepad(): (GCExtendedGamepad) | null { return callSDK<(GCExtendedGamepad) | null>("GameController_c1f28409f8601238", 1151002505367089, this, []); }
+  get extendedGamepad(): (GCExtendedGamepad) | null { return callSDK<(GCExtendedGamepad) | null>("GameController_e11dfd5beee01da3", 1151002505367089, this, []); }
   /**
    * var gamepad: GCGamepad? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get gamepad(): (GCGamepad) | null { return callSDK<(GCGamepad) | null>("GameController_c1f28409f8601238", 2501564269009400, this, []); }
+  get gamepad(): (GCGamepad) | null { return callSDK<(GCGamepad) | null>("GameController_e11dfd5beee01da3", 2501564269009400, this, []); }
   /**
    * var haptics: GCDeviceHaptics? { get }
    * @availability iOS 14.0+
    */
-  get haptics(): (GCDeviceHaptics) | null { return callSDK<(GCDeviceHaptics) | null>("GameController_c1f28409f8601238", 529349875025345, this, []); }
+  get haptics(): (GCDeviceHaptics) | null { return callSDK<(GCDeviceHaptics) | null>("GameController_e11dfd5beee01da3", 529349875025345, this, []); }
   /**
    * var input: GCControllerLiveInput { get }
    * @availability iOS 17.0+
    */
-  get input(): GCControllerLiveInput { return callSDK<GCControllerLiveInput>("GameController_c1f28409f8601238", 1317225384627624, this, []); }
+  get input(): GCControllerLiveInput { return callSDK<GCControllerLiveInput>("GameController_e11dfd5beee01da3", 1317225384627624, this, []); }
   /**
    * var light: GCDeviceLight? { get }
    * @availability iOS 14.0+
    */
-  get light(): (GCDeviceLight) | null { return callSDK<(GCDeviceLight) | null>("GameController_c1f28409f8601238", 987345196384644, this, []); }
+  get light(): (GCDeviceLight) | null { return callSDK<(GCDeviceLight) | null>("GameController_e11dfd5beee01da3", 987345196384644, this, []); }
   /**
    * var microGamepad: GCMicroGamepad? { get }
    * @availability iOS 10.0+
    */
-  get microGamepad(): (GCMicroGamepad) | null { return callSDK<(GCMicroGamepad) | null>("GameController_c1f28409f8601238", 464623316783623, this, []); }
+  get microGamepad(): (GCMicroGamepad) | null { return callSDK<(GCMicroGamepad) | null>("GameController_e11dfd5beee01da3", 464623316783623, this, []); }
   /**
    * var motion: GCMotion? { get }
    * @availability iOS 8.0+
    */
-  get motion(): (GCMotion) | null { return callSDK<(GCMotion) | null>("GameController_c1f28409f8601238", 2670318836740616, this, []); }
+  get motion(): (GCMotion) | null { return callSDK<(GCMotion) | null>("GameController_e11dfd5beee01da3", 2670318836740616, this, []); }
   /**
    * var physicalInputProfile: GCPhysicalInputProfile { get }
    * @availability iOS 14.0+
    */
-  get physicalInputProfile(): GCPhysicalInputProfile { return callSDK<GCPhysicalInputProfile>("GameController_c1f28409f8601238", 3546481095317315, this, []); }
+  get physicalInputProfile(): GCPhysicalInputProfile { return callSDK<GCPhysicalInputProfile>("GameController_e11dfd5beee01da3", 3546481095317315, this, []); }
   /**
    * var playerIndex: GCControllerPlayerIndex { get set }
    * @availability iOS 7.0+
    */
-  get playerIndex(): GCControllerPlayerIndex { return callSDK<GCControllerPlayerIndex>("GameController_c1f28409f8601238", 2914323223654354, this, []); }
-  set playerIndex(value: GCControllerPlayerIndex) { callSDK<void>("GameController_c1f28409f8601238", 2371046073500994, this, [value]); }
+  get playerIndex(): GCControllerPlayerIndex { return callSDK<GCControllerPlayerIndex>("GameController_e11dfd5beee01da3", 2914323223654354, this, []); }
+  set playerIndex(value: GCControllerPlayerIndex) { callSDK<void>("GameController_e11dfd5beee01da3", 2371046073500994, this, [value]); }
   /**
    * var isSnapshot: Bool { get }
    * @availability iOS 13.0+
    */
-  get isSnapshot(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 1681688636298249, this, []); }
+  get isSnapshot(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 1681688636298249, this, []); }
   declare readonly $type: { "c:objc(cs)GCController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAttachedToDevice": true; "battery": true; "extendedGamepad": true; "gamepad": true; "haptics": true; "input": true; "light": true; "microGamepad": true; "motion": true; "physicalInputProfile": true; "playerIndex": true; "isSnapshot": true };
 }
@@ -430,23 +430,23 @@ export class GCController_DidBecomeCurrentMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCController.DidBecomeCurrentMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidBecomeCurrentMessage) | null> { return callSDKAsync<(GCController_DidBecomeCurrentMessage) | null>("GameController_c1f28409f8601238", 2390036792417483, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidBecomeCurrentMessage) | null> { return callSDKAsync<(GCController_DidBecomeCurrentMessage) | null>("GameController_e11dfd5beee01da3", 2390036792417483, undefined, [notification]); }
   /**
    * var controller: GCController
    * @availability iOS 26.0+
    */
-  get controller(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 1679676222748071, this, []); }
-  set controller(value: GCController) { callSDK<void>("GameController_c1f28409f8601238", 691512538347506, this, [value]); }
+  get controller(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 1679676222748071, this, []); }
+  set controller(value: GCController) { callSDK<void>("GameController_e11dfd5beee01da3", 691512538347506, this, [value]); }
   /**
    * init(controller: GCController)
    * @availability iOS 26.0+
    */
-  static init(controller: GCController): GCController_DidBecomeCurrentMessage { return callSDK<GCController_DidBecomeCurrentMessage>("GameController_c1f28409f8601238", 2561995084594775, undefined, [controller]); }
+  static init(controller: GCController): GCController_DidBecomeCurrentMessage { return callSDK<GCController_DidBecomeCurrentMessage>("GameController_e11dfd5beee01da3", 2561995084594775, undefined, [controller]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 4299939959317317, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 4299939959317317, undefined, []); }
   declare readonly $type: { "s:So12GCControllerC14GameControllerE23DidBecomeCurrentMessageV": true };
 }
 
@@ -465,23 +465,23 @@ export class GCController_DidConnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCController.DidConnectMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidConnectMessage) | null> { return callSDKAsync<(GCController_DidConnectMessage) | null>("GameController_c1f28409f8601238", 1867333979876777, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidConnectMessage) | null> { return callSDKAsync<(GCController_DidConnectMessage) | null>("GameController_e11dfd5beee01da3", 1867333979876777, undefined, [notification]); }
   /**
    * var controller: GCController
    * @availability iOS 26.0+
    */
-  get controller(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 2037231667436832, this, []); }
-  set controller(value: GCController) { callSDK<void>("GameController_c1f28409f8601238", 1144709227444103, this, [value]); }
+  get controller(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 2037231667436832, this, []); }
+  set controller(value: GCController) { callSDK<void>("GameController_e11dfd5beee01da3", 1144709227444103, this, [value]); }
   /**
    * init(controller: GCController)
    * @availability iOS 26.0+
    */
-  static init(controller: GCController): GCController_DidConnectMessage { return callSDK<GCController_DidConnectMessage>("GameController_c1f28409f8601238", 1131838766335389, undefined, [controller]); }
+  static init(controller: GCController): GCController_DidConnectMessage { return callSDK<GCController_DidConnectMessage>("GameController_e11dfd5beee01da3", 1131838766335389, undefined, [controller]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3040448923932703, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3040448923932703, undefined, []); }
   declare readonly $type: { "s:So12GCControllerC14GameControllerE17DidConnectMessageV": true };
 }
 
@@ -500,23 +500,23 @@ export class GCController_DidDisconnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCController.DidDisconnectMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidDisconnectMessage) | null> { return callSDKAsync<(GCController_DidDisconnectMessage) | null>("GameController_c1f28409f8601238", 3377792412274412, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidDisconnectMessage) | null> { return callSDKAsync<(GCController_DidDisconnectMessage) | null>("GameController_e11dfd5beee01da3", 3377792412274412, undefined, [notification]); }
   /**
    * var controller: GCController
    * @availability iOS 26.0+
    */
-  get controller(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 1519089355770395, this, []); }
-  set controller(value: GCController) { callSDK<void>("GameController_c1f28409f8601238", 1569355632715277, this, [value]); }
+  get controller(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 1519089355770395, this, []); }
+  set controller(value: GCController) { callSDK<void>("GameController_e11dfd5beee01da3", 1569355632715277, this, [value]); }
   /**
    * init(controller: GCController)
    * @availability iOS 26.0+
    */
-  static init(controller: GCController): GCController_DidDisconnectMessage { return callSDK<GCController_DidDisconnectMessage>("GameController_c1f28409f8601238", 2256981566774992, undefined, [controller]); }
+  static init(controller: GCController): GCController_DidDisconnectMessage { return callSDK<GCController_DidDisconnectMessage>("GameController_e11dfd5beee01da3", 2256981566774992, undefined, [controller]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 4310394416668845, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 4310394416668845, undefined, []); }
   declare readonly $type: { "s:So12GCControllerC14GameControllerE20DidDisconnectMessageV": true };
 }
 
@@ -535,23 +535,23 @@ export class GCController_DidStopBeingCurrentMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCController.DidStopBeingCurrentMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidStopBeingCurrentMessage) | null> { return callSDKAsync<(GCController_DidStopBeingCurrentMessage) | null>("GameController_c1f28409f8601238", 3928864303003364, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCController_DidStopBeingCurrentMessage) | null> { return callSDKAsync<(GCController_DidStopBeingCurrentMessage) | null>("GameController_e11dfd5beee01da3", 3928864303003364, undefined, [notification]); }
   /**
    * var controller: GCController
    * @availability iOS 26.0+
    */
-  get controller(): GCController { return callSDK<GCController>("GameController_c1f28409f8601238", 4037003615362039, this, []); }
-  set controller(value: GCController) { callSDK<void>("GameController_c1f28409f8601238", 3681531965303907, this, [value]); }
+  get controller(): GCController { return callSDK<GCController>("GameController_e11dfd5beee01da3", 4037003615362039, this, []); }
+  set controller(value: GCController) { callSDK<void>("GameController_e11dfd5beee01da3", 3681531965303907, this, [value]); }
   /**
    * init(controller: GCController)
    * @availability iOS 26.0+
    */
-  static init(controller: GCController): GCController_DidStopBeingCurrentMessage { return callSDK<GCController_DidStopBeingCurrentMessage>("GameController_c1f28409f8601238", 2579736509977464, undefined, [controller]); }
+  static init(controller: GCController): GCController_DidStopBeingCurrentMessage { return callSDK<GCController_DidStopBeingCurrentMessage>("GameController_e11dfd5beee01da3", 2579736509977464, undefined, [controller]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 1188757944097667, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 1188757944097667, undefined, []); }
   declare readonly $type: { "s:So12GCControllerC14GameControllerE26DidStopBeingCurrentMessageV": true };
 }
 
@@ -567,57 +567,57 @@ export type GCController_DidStopBeingCurrentMessage_Subject = GCController;
  */
 export class GCControllerElement extends SDKHandle {
   /** init() */
-  static init(): GCControllerElement { return callSDK<GCControllerElement>("GameController_c1f28409f8601238", 4496516494841840, undefined, []); }
+  static init(): GCControllerElement { return callSDK<GCControllerElement>("GameController_e11dfd5beee01da3", 4496516494841840, undefined, []); }
   /**
    * var aliases: Set<String> { get }
    * @availability iOS 14.0+
    */
-  get aliases(): Array<string> { return callSDK<Array<string>>("GameController_c1f28409f8601238", 1757587382199038, this, []); }
+  get aliases(): Array<string> { return callSDK<Array<string>>("GameController_e11dfd5beee01da3", 1757587382199038, this, []); }
   /**
    * var isAnalog: Bool { get }
    * @availability iOS 7.0+
    */
-  get isAnalog(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 370377455303098, this, []); }
+  get isAnalog(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 370377455303098, this, []); }
   /**
    * var isBoundToSystemGesture: Bool { get }
    * @availability iOS 14.0+
    */
-  get isBoundToSystemGesture(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 264776332372049, this, []); }
+  get isBoundToSystemGesture(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 264776332372049, this, []); }
   /**
    * weak var collection: GCControllerElement? { get }
    * @availability iOS 7.0+
    */
-  get collection(): $SDK9 { return callSDK<$SDK9>("GameController_c1f28409f8601238", 2784507525713436, this, []); }
+  get collection(): $SDK9 { return callSDK<$SDK9>("GameController_e11dfd5beee01da3", 2784507525713436, this, []); }
   /**
    * var localizedName: String? { get set }
    * @availability iOS 14.0+
    */
-  get localizedName(): (string) | null { return callSDK<(string) | null>("GameController_c1f28409f8601238", 389680359225012, this, []); }
-  set localizedName(value: (string) | null) { callSDK<void>("GameController_c1f28409f8601238", 2470004862471798, this, [value]); }
+  get localizedName(): (string) | null { return callSDK<(string) | null>("GameController_e11dfd5beee01da3", 389680359225012, this, []); }
+  set localizedName(value: (string) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 2470004862471798, this, [value]); }
   /**
    * var preferredSystemGestureState: GCControllerElement.SystemGestureState { get set }
    * @availability iOS 14.0+
    */
-  get preferredSystemGestureState(): GCControllerElement_SystemGestureState { return callSDK<GCControllerElement_SystemGestureState>("GameController_c1f28409f8601238", 480319452954848, this, []); }
-  set preferredSystemGestureState(value: GCControllerElement_SystemGestureState) { callSDK<void>("GameController_c1f28409f8601238", 3828629438811082, this, [value]); }
+  get preferredSystemGestureState(): GCControllerElement_SystemGestureState { return callSDK<GCControllerElement_SystemGestureState>("GameController_e11dfd5beee01da3", 480319452954848, this, []); }
+  set preferredSystemGestureState(value: GCControllerElement_SystemGestureState) { callSDK<void>("GameController_e11dfd5beee01da3", 3828629438811082, this, [value]); }
   /**
    * var sfSymbolsName: String? { get set }
    * @availability iOS 14.0+
    */
-  get sfSymbolsName(): (string) | null { return callSDK<(string) | null>("GameController_c1f28409f8601238", 1562676911406314, this, []); }
-  set sfSymbolsName(value: (string) | null) { callSDK<void>("GameController_c1f28409f8601238", 3875824400588688, this, [value]); }
+  get sfSymbolsName(): (string) | null { return callSDK<(string) | null>("GameController_e11dfd5beee01da3", 1562676911406314, this, []); }
+  set sfSymbolsName(value: (string) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 3875824400588688, this, [value]); }
   /**
    * var unmappedLocalizedName: String? { get set }
    * @availability iOS 14.0+
    */
-  get unmappedLocalizedName(): (string) | null { return callSDK<(string) | null>("GameController_c1f28409f8601238", 1961916858104847, this, []); }
-  set unmappedLocalizedName(value: (string) | null) { callSDK<void>("GameController_c1f28409f8601238", 1620505290689808, this, [value]); }
+  get unmappedLocalizedName(): (string) | null { return callSDK<(string) | null>("GameController_e11dfd5beee01da3", 1961916858104847, this, []); }
+  set unmappedLocalizedName(value: (string) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 1620505290689808, this, [value]); }
   /**
    * var unmappedSfSymbolsName: String? { get set }
    * @availability iOS 14.0+
    */
-  get unmappedSfSymbolsName(): (string) | null { return callSDK<(string) | null>("GameController_c1f28409f8601238", 1278903762926634, this, []); }
-  set unmappedSfSymbolsName(value: (string) | null) { callSDK<void>("GameController_c1f28409f8601238", 2865276127299548, this, [value]); }
+  get unmappedSfSymbolsName(): (string) | null { return callSDK<(string) | null>("GameController_e11dfd5beee01da3", 1278903762926634, this, []); }
+  set unmappedSfSymbolsName(value: (string) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 2865276127299548, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true };
 }
@@ -628,23 +628,23 @@ export class GCControllerElement extends SDKHandle {
  */
 export class GCControllerAxisInput extends (GCControllerElement as unknown as Omit<typeof GCControllerElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCControllerElement)) {
   /** init() */
-  static init(): GCControllerAxisInput { return callSDK<GCControllerAxisInput>("GameController_c1f28409f8601238", 1405994011649973, undefined, []); }
+  static init(): GCControllerAxisInput { return callSDK<GCControllerAxisInput>("GameController_e11dfd5beee01da3", 1405994011649973, undefined, []); }
   /**
    * func setValue(_ value: Float)
    * @availability iOS 13.0+
    */
-  setValue(value: number): void { return callSDK<void>("GameController_c1f28409f8601238", 2500162012266362, this, [value]); }
+  setValue(value: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2500162012266362, this, [value]); }
   /**
    * var value: Float { get }
    * @availability iOS 7.0+
    */
-  get value(): number { return callSDK<number>("GameController_c1f28409f8601238", 2597054695468189, this, []); }
+  get value(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2597054695468189, this, []); }
   /**
    * var valueChangedHandler: GCControllerAxisValueChangedHandler? { get set }
    * @availability iOS 7.0+
    */
-  get valueChangedHandler(): (((arg0: GCControllerAxisInput, arg1: number) => Promise<void>)) | null { return callSDK<(((arg0: GCControllerAxisInput, arg1: number) => Promise<void>)) | null>("GameController_c1f28409f8601238", 3692384721760934, this, []); }
-  set valueChangedHandler(value: (((arg0: GCControllerAxisInput, arg1: number) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 3562213655720282, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): (((arg0: GCControllerAxisInput, arg1: number) => Promise<void>)) | null { return callSDK<(((arg0: GCControllerAxisInput, arg1: number) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 3692384721760934, this, []); }
+  set valueChangedHandler(value: (((arg0: GCControllerAxisInput, arg1: number) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 3562213655720282, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCControllerAxisInput": true; "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true; "value": true };
 }
@@ -661,45 +661,45 @@ export type GCControllerAxisValueChangedHandler = ((arg0: GCControllerAxisInput,
  */
 export class GCControllerButtonInput extends (GCControllerElement as unknown as Omit<typeof GCControllerElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCControllerElement)) {
   /** init() */
-  static init(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 979725441061926, undefined, []); }
+  static init(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 979725441061926, undefined, []); }
   /**
    * func setValue(_ value: Float)
    * @availability iOS 13.0+
    */
-  setValue(value: number): void { return callSDK<void>("GameController_c1f28409f8601238", 3788587750461472, this, [value]); }
+  setValue(value: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 3788587750461472, this, [value]); }
   /**
    * var isPressed: Bool { get }
    * @availability iOS 7.0+
    */
-  get isPressed(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3121856208545797, this, []); }
+  get isPressed(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3121856208545797, this, []); }
   /**
    * var pressedChangedHandler: GCControllerButtonValueChangedHandler? { get set }
    * @availability iOS 8.0+
    */
-  get pressedChangedHandler(): $SDK13 { return callSDK<$SDK13>("GameController_c1f28409f8601238", 3691541470891517, this, []); }
-  set pressedChangedHandler(value: $SDK14) { callSDK<void>("GameController_c1f28409f8601238", 4319566591918082, this, [value], [{"callback":{"out":[]}}]); }
+  get pressedChangedHandler(): $SDK13 { return callSDK<$SDK13>("GameController_e11dfd5beee01da3", 3691541470891517, this, []); }
+  set pressedChangedHandler(value: $SDK14) { callSDK<void>("GameController_e11dfd5beee01da3", 4319566591918082, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var isTouched: Bool { get }
    * @availability iOS 7.0+
    */
-  get isTouched(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3359582812016472, this, []); }
+  get isTouched(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3359582812016472, this, []); }
   /**
    * var touchedChangedHandler: GCControllerButtonTouchedChangedHandler? { get set }
    * @availability iOS 14.0+
    */
-  get touchedChangedHandler(): (((arg0: GCControllerButtonInput, arg1: number, arg2: boolean, arg3: boolean) => Promise<void>)) | null { return callSDK<(((arg0: GCControllerButtonInput, arg1: number, arg2: boolean, arg3: boolean) => Promise<void>)) | null>("GameController_c1f28409f8601238", 263778423542967, this, []); }
-  set touchedChangedHandler(value: (((arg0: GCControllerButtonInput, arg1: number, arg2: boolean, arg3: boolean) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 3335053240345427, this, [value], [{"callback":{"out":[]}}]); }
+  get touchedChangedHandler(): (((arg0: GCControllerButtonInput, arg1: number, arg2: boolean, arg3: boolean) => Promise<void>)) | null { return callSDK<(((arg0: GCControllerButtonInput, arg1: number, arg2: boolean, arg3: boolean) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 263778423542967, this, []); }
+  set touchedChangedHandler(value: (((arg0: GCControllerButtonInput, arg1: number, arg2: boolean, arg3: boolean) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 3335053240345427, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var value: Float { get }
    * @availability iOS 7.0+
    */
-  get value(): number { return callSDK<number>("GameController_c1f28409f8601238", 1715238686487735, this, []); }
+  get value(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1715238686487735, this, []); }
   /**
    * var valueChangedHandler: GCControllerButtonValueChangedHandler? { get set }
    * @availability iOS 7.0+
    */
-  get valueChangedHandler(): $SDK13 { return callSDK<$SDK13>("GameController_c1f28409f8601238", 2583723482955442, this, []); }
-  set valueChangedHandler(value: $SDK14) { callSDK<void>("GameController_c1f28409f8601238", 1190059345379263, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): $SDK13 { return callSDK<$SDK13>("GameController_e11dfd5beee01da3", 2583723482955442, this, []); }
+  set valueChangedHandler(value: $SDK14) { callSDK<void>("GameController_e11dfd5beee01da3", 1190059345379263, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCControllerButtonInput": true; "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true; "isPressed": true; "isTouched": true; "value": true };
 }
@@ -722,48 +722,48 @@ export type GCControllerButtonValueChangedHandler = ((arg0: GCControllerButtonIn
  */
 export class GCControllerDirectionPad extends (GCControllerElement as unknown as Omit<typeof GCControllerElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCControllerElement)) {
   /** init() */
-  static init(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 1624291715167765, undefined, []); }
+  static init(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 1624291715167765, undefined, []); }
   /**
    * func setValueForXAxis(_ xAxis: Float, yAxis: Float)
    * @availability iOS 13.0+
    */
-  setValueForXAxis(xAxis: number, yAxis: number): void { return callSDK<void>("GameController_c1f28409f8601238", 3135948846332614, this, [xAxis, yAxis]); }
+  setValueForXAxis(xAxis: number, yAxis: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 3135948846332614, this, [xAxis, yAxis]); }
   /**
    * var down: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get down(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 741039514077230, this, []); }
+  get down(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 741039514077230, this, []); }
   /**
    * var left: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get left(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2920608870746371, this, []); }
+  get left(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2920608870746371, this, []); }
   /**
    * var right: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get right(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2636903444956292, this, []); }
+  get right(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2636903444956292, this, []); }
   /**
    * var up: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get up(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2925475127559201, this, []); }
+  get up(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2925475127559201, this, []); }
   /**
    * var valueChangedHandler: GCControllerDirectionPadValueChangedHandler? { get set }
    * @availability iOS 7.0+
    */
-  get valueChangedHandler(): (((arg0: GCControllerDirectionPad, arg1: number, arg2: number) => Promise<void>)) | null { return callSDK<(((arg0: GCControllerDirectionPad, arg1: number, arg2: number) => Promise<void>)) | null>("GameController_c1f28409f8601238", 4362666608765358, this, []); }
-  set valueChangedHandler(value: (((arg0: GCControllerDirectionPad, arg1: number, arg2: number) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 861305160578326, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): (((arg0: GCControllerDirectionPad, arg1: number, arg2: number) => Promise<void>)) | null { return callSDK<(((arg0: GCControllerDirectionPad, arg1: number, arg2: number) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 4362666608765358, this, []); }
+  set valueChangedHandler(value: (((arg0: GCControllerDirectionPad, arg1: number, arg2: number) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 861305160578326, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var xAxis: GCControllerAxisInput { get }
    * @availability iOS 7.0+
    */
-  get xAxis(): GCControllerAxisInput { return callSDK<GCControllerAxisInput>("GameController_c1f28409f8601238", 3401220502474098, this, []); }
+  get xAxis(): GCControllerAxisInput { return callSDK<GCControllerAxisInput>("GameController_e11dfd5beee01da3", 3401220502474098, this, []); }
   /**
    * var yAxis: GCControllerAxisInput { get }
    * @availability iOS 7.0+
    */
-  get yAxis(): GCControllerAxisInput { return callSDK<GCControllerAxisInput>("GameController_c1f28409f8601238", 4096033194176907, this, []); }
+  get yAxis(): GCControllerAxisInput { return callSDK<GCControllerAxisInput>("GameController_e11dfd5beee01da3", 4096033194176907, this, []); }
   declare readonly $type: { "c:objc(cs)GCControllerDirectionPad": true; "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true; "down": true; "left": true; "right": true; "up": true; "xAxis": true; "yAxis": true };
 }
@@ -785,7 +785,7 @@ export const GCControllerElement_SystemGestureState = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (GCControllerElement_SystemGestureState) | null { return callSDK<(GCControllerElement_SystemGestureState) | null>("GameController_c1f28409f8601238", 2253742226805471, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerElement_SystemGestureState) | null { return callSDK<(GCControllerElement_SystemGestureState) | null>("GameController_e11dfd5beee01da3", 2253742226805471, undefined, [rawValue]); }
 };
 
 /**
@@ -799,7 +799,7 @@ export const GCControllerHomeButtonSettingCustomizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (GCControllerHomeButtonSettingCustomizationStatus) | null { return callSDK<(GCControllerHomeButtonSettingCustomizationStatus) | null>("GameController_c1f28409f8601238", 3565178898055067, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerHomeButtonSettingCustomizationStatus) | null { return callSDK<(GCControllerHomeButtonSettingCustomizationStatus) | null>("GameController_e11dfd5beee01da3", 3565178898055067, undefined, [rawValue]); }
 };
 
 /**
@@ -813,7 +813,7 @@ export const GCControllerHomeButtonSettingInAppAction = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (GCControllerHomeButtonSettingInAppAction) | null { return callSDK<(GCControllerHomeButtonSettingInAppAction) | null>("GameController_c1f28409f8601238", 1821923546409789, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerHomeButtonSettingInAppAction) | null { return callSDK<(GCControllerHomeButtonSettingInAppAction) | null>("GameController_e11dfd5beee01da3", 1821923546409789, undefined, [rawValue]); }
 };
 
 /**
@@ -827,7 +827,7 @@ export const GCControllerHomeButtonSettingsCustomizationActivity = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (GCControllerHomeButtonSettingsCustomizationActivity) | null { return callSDK<(GCControllerHomeButtonSettingsCustomizationActivity) | null>("GameController_c1f28409f8601238", 1813195203059232, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerHomeButtonSettingsCustomizationActivity) | null { return callSDK<(GCControllerHomeButtonSettingsCustomizationActivity) | null>("GameController_e11dfd5beee01da3", 1813195203059232, undefined, [rawValue]); }
 };
 
 /**
@@ -839,27 +839,27 @@ export class GCControllerHomeButtonSettingsManager extends SDKHandle {
    * var controllerHomeButtonInAppAction: (action: GCControllerHomeButtonSettingsManager.InAppAction, customized: GCControllerHomeButtonSettingsManager.SettingCustomizationStatus) { get throws }
    * @availability iOS 27.0+
    */
-  get controllerHomeButtonInAppAction(): { "action": GCControllerHomeButtonSettingInAppAction; "customized": GCControllerHomeButtonSettingCustomizationStatus } { return callSDK<{ "action": GCControllerHomeButtonSettingInAppAction; "customized": GCControllerHomeButtonSettingCustomizationStatus }>("GameController_c1f28409f8601238", 1295176230485918, this, []); }
+  get controllerHomeButtonInAppAction(): { "action": GCControllerHomeButtonSettingInAppAction; "customized": GCControllerHomeButtonSettingCustomizationStatus } { return callSDK<{ "action": GCControllerHomeButtonSettingInAppAction; "customized": GCControllerHomeButtonSettingCustomizationStatus }>("GameController_e11dfd5beee01da3", 1295176230485918, this, []); }
   /**
    * var controllerHomeButtonSystemAction: (action: GCControllerHomeButtonSettingsManager.SystemAction, customized: GCControllerHomeButtonSettingsManager.SettingCustomizationStatus) { get throws }
    * @availability iOS 27.0+
    */
-  get controllerHomeButtonSystemAction(): { "action": GCControllerHomeButtonSettingSystemAction; "customized": GCControllerHomeButtonSettingCustomizationStatus } { return callSDK<{ "action": GCControllerHomeButtonSettingSystemAction; "customized": GCControllerHomeButtonSettingCustomizationStatus }>("GameController_c1f28409f8601238", 3526470164913382, this, []); }
+  get controllerHomeButtonSystemAction(): { "action": GCControllerHomeButtonSettingSystemAction; "customized": GCControllerHomeButtonSettingCustomizationStatus } { return callSDK<{ "action": GCControllerHomeButtonSettingSystemAction; "customized": GCControllerHomeButtonSettingCustomizationStatus }>("GameController_e11dfd5beee01da3", 3526470164913382, this, []); }
   /**
    * func openControllerHomeButtonSettings(for activity: GCControllerHomeButtonSettingsManager.SettingsCustomizationActivity) throws
    * @availability iOS 27.0+
    */
-  openControllerHomeButtonSettings(activity: GCControllerHomeButtonSettingsCustomizationActivity): void { return callSDK<void>("GameController_c1f28409f8601238", 2715192067219880, this, [activity]); }
+  openControllerHomeButtonSettings(activity: GCControllerHomeButtonSettingsCustomizationActivity): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2715192067219880, this, [activity]); }
   /**
    * var settingsUpdates: some AsyncSequence<(), Never> { get }
    * @availability iOS 27.0+
    */
-  get settingsUpdates(): SDKHandle { return callSDK<SDKHandle>("GameController_c1f28409f8601238", 3519076266058729, this, []); }
+  get settingsUpdates(): SDKHandle { return callSDK<SDKHandle>("GameController_e11dfd5beee01da3", 3519076266058729, this, []); }
   /**
    * @MainActor init()
    * @availability iOS 27.0+
    */
-  static init(): Promise<GCControllerHomeButtonSettingsManager> { return callSDKAsync<GCControllerHomeButtonSettingsManager>("GameController_c1f28409f8601238", 482011622082497, undefined, []); }
+  static init(): Promise<GCControllerHomeButtonSettingsManager> { return callSDKAsync<GCControllerHomeButtonSettingsManager>("GameController_e11dfd5beee01da3", 482011622082497, undefined, []); }
   declare readonly $type: { "s:14GameController37GCControllerHomeButtonSettingsManagerC": true };
 }
 
@@ -898,7 +898,7 @@ export const GCControllerHomeButtonSettingSystemAction = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (GCControllerHomeButtonSettingSystemAction) | null { return callSDK<(GCControllerHomeButtonSettingSystemAction) | null>("GameController_c1f28409f8601238", 3932264448375441, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerHomeButtonSettingSystemAction) | null { return callSDK<(GCControllerHomeButtonSettingSystemAction) | null>("GameController_e11dfd5beee01da3", 3932264448375441, undefined, [rawValue]); }
 };
 
 /**
@@ -907,7 +907,7 @@ export const GCControllerHomeButtonSettingSystemAction = {
  */
 export class GCControllerInputState extends SDKHandle {
   /** init() */
-  static init(): GCControllerInputState { return callSDK<GCControllerInputState>("GameController_c1f28409f8601238", 3378029103083060, undefined, []); }
+  static init(): GCControllerInputState { return callSDK<GCControllerInputState>("GameController_e11dfd5beee01da3", 3378029103083060, undefined, []); }
   declare readonly $type: { "c:objc(cs)GCControllerInputState": true; "c:objc(cs)NSObject": true };
 }
 
@@ -920,19 +920,19 @@ export class GCControllerLiveInput extends (GCControllerInputState as unknown as
    * func capture() -> GCControllerInputState
    * @availability iOS 17.0+
    */
-  capture(): GCControllerInputState { return callSDK<GCControllerInputState>("GameController_c1f28409f8601238", 1580435275669913, this, []); }
+  capture(): GCControllerInputState { return callSDK<GCControllerInputState>("GameController_e11dfd5beee01da3", 1580435275669913, this, []); }
   /** init() */
-  static init(): GCControllerLiveInput { return callSDK<GCControllerLiveInput>("GameController_c1f28409f8601238", 1443468362964376, undefined, []); }
+  static init(): GCControllerLiveInput { return callSDK<GCControllerLiveInput>("GameController_e11dfd5beee01da3", 1443468362964376, undefined, []); }
   /**
    * func nextInputState() -> (any GCControllerInputState & GCDevicePhysicalInputStateDiff)?
    * @availability iOS 17.0+
    */
-  nextInputState(): ((GCControllerInputState) & (SDKHandle)) | null { return callSDK<((GCControllerInputState) & (SDKHandle)) | null>("GameController_c1f28409f8601238", 1860944562365960, this, []); }
+  nextInputState(): ((GCControllerInputState) & (SDKHandle)) | null { return callSDK<((GCControllerInputState) & (SDKHandle)) | null>("GameController_e11dfd5beee01da3", 1860944562365960, this, []); }
   /**
    * var unmapped: GCControllerLiveInput? { get }
    * @availability iOS 17.0+
    */
-  get unmapped(): (GCControllerLiveInput) | null { return callSDK<(GCControllerLiveInput) | null>("GameController_c1f28409f8601238", 3304164883483662, this, []); }
+  get unmapped(): (GCControllerLiveInput) | null { return callSDK<(GCControllerLiveInput) | null>("GameController_e11dfd5beee01da3", 3304164883483662, this, []); }
   declare readonly $type: { "c:objc(cs)GCControllerLiveInput": true; "c:objc(cs)GCControllerInputState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "unmapped": true };
 }
@@ -948,7 +948,7 @@ export const GCControllerPlayerIndex = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (GCControllerPlayerIndex) | null { return callSDK<(GCControllerPlayerIndex) | null>("GameController_c1f28409f8601238", 2175087971771542, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerPlayerIndex) | null { return callSDK<(GCControllerPlayerIndex) | null>("GameController_e11dfd5beee01da3", 2175087971771542, undefined, [rawValue]); }
 };
 
 /**
@@ -957,51 +957,51 @@ export const GCControllerPlayerIndex = {
  */
 export class GCControllerTouchpad extends (GCControllerElement as unknown as Omit<typeof GCControllerElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCControllerElement)) {
   /** init() */
-  static init(): GCControllerTouchpad { return callSDK<GCControllerTouchpad>("GameController_c1f28409f8601238", 2657339750105712, undefined, []); }
+  static init(): GCControllerTouchpad { return callSDK<GCControllerTouchpad>("GameController_e11dfd5beee01da3", 2657339750105712, undefined, []); }
   /**
    * func setValueForXAxis(_ xAxis: Float, yAxis: Float, touchDown: Bool, buttonValue: Float)
    * @availability iOS 13.0+
    */
-  setValueForXAxis(xAxis: number, yAxis: number, touchDown: boolean, buttonValue: number): void { return callSDK<void>("GameController_c1f28409f8601238", 2004479184104154, this, [xAxis, yAxis, touchDown, buttonValue]); }
+  setValueForXAxis(xAxis: number, yAxis: number, touchDown: boolean, buttonValue: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2004479184104154, this, [xAxis, yAxis, touchDown, buttonValue]); }
   /**
    * var button: GCControllerButtonInput { get }
    * @availability iOS 13.0+
    */
-  get button(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 4301153473716481, this, []); }
+  get button(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 4301153473716481, this, []); }
   /**
    * var reportsAbsoluteTouchSurfaceValues: Bool { get set }
    * @availability iOS 13.0+
    */
-  get reportsAbsoluteTouchSurfaceValues(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 4157874587931078, this, []); }
-  set reportsAbsoluteTouchSurfaceValues(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 2952309375703, this, [value]); }
+  get reportsAbsoluteTouchSurfaceValues(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 4157874587931078, this, []); }
+  set reportsAbsoluteTouchSurfaceValues(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 2952309375703, this, [value]); }
   /**
    * var touchDown: GCControllerTouchpadHandler? { get set }
    * @availability iOS 13.0+
    */
-  get touchDown(): $SDK26 { return callSDK<$SDK26>("GameController_c1f28409f8601238", 3996918769775463, this, []); }
-  set touchDown(value: $SDK27) { callSDK<void>("GameController_c1f28409f8601238", 2666490040556615, this, [value], [{"callback":{"out":[]}}]); }
+  get touchDown(): $SDK26 { return callSDK<$SDK26>("GameController_e11dfd5beee01da3", 3996918769775463, this, []); }
+  set touchDown(value: $SDK27) { callSDK<void>("GameController_e11dfd5beee01da3", 2666490040556615, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var touchMoved: GCControllerTouchpadHandler? { get set }
    * @availability iOS 13.0+
    */
-  get touchMoved(): $SDK26 { return callSDK<$SDK26>("GameController_c1f28409f8601238", 2559703613915493, this, []); }
-  set touchMoved(value: $SDK27) { callSDK<void>("GameController_c1f28409f8601238", 3943927674501184, this, [value], [{"callback":{"out":[]}}]); }
+  get touchMoved(): $SDK26 { return callSDK<$SDK26>("GameController_e11dfd5beee01da3", 2559703613915493, this, []); }
+  set touchMoved(value: $SDK27) { callSDK<void>("GameController_e11dfd5beee01da3", 3943927674501184, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var touchState: GCControllerTouchpad.TouchState { get }
    * @availability iOS 13.0+
    */
-  get touchState(): GCControllerTouchpad_TouchState { return callSDK<GCControllerTouchpad_TouchState>("GameController_c1f28409f8601238", 1568050100713508, this, []); }
+  get touchState(): GCControllerTouchpad_TouchState { return callSDK<GCControllerTouchpad_TouchState>("GameController_e11dfd5beee01da3", 1568050100713508, this, []); }
   /**
    * var touchSurface: GCControllerDirectionPad { get }
    * @availability iOS 13.0+
    */
-  get touchSurface(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 3835362214537905, this, []); }
+  get touchSurface(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 3835362214537905, this, []); }
   /**
    * var touchUp: GCControllerTouchpadHandler? { get set }
    * @availability iOS 13.0+
    */
-  get touchUp(): $SDK26 { return callSDK<$SDK26>("GameController_c1f28409f8601238", 1416010556048019, this, []); }
-  set touchUp(value: $SDK27) { callSDK<void>("GameController_c1f28409f8601238", 4295099142744346, this, [value], [{"callback":{"out":[]}}]); }
+  get touchUp(): $SDK26 { return callSDK<$SDK26>("GameController_e11dfd5beee01da3", 1416010556048019, this, []); }
+  set touchUp(value: $SDK27) { callSDK<void>("GameController_e11dfd5beee01da3", 4295099142744346, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCControllerTouchpad": true; "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true; "button": true; "reportsAbsoluteTouchSurfaceValues": true; "touchState": true; "touchSurface": true };
 }
@@ -1017,7 +1017,7 @@ export const GCControllerTouchpad_TouchState = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (GCControllerTouchpad_TouchState) | null { return callSDK<(GCControllerTouchpad_TouchState) | null>("GameController_c1f28409f8601238", 3999430978801032, undefined, [rawValue]); }
+  init(rawValue: number): (GCControllerTouchpad_TouchState) | null { return callSDK<(GCControllerTouchpad_TouchState) | null>("GameController_e11dfd5beee01da3", 3999430978801032, undefined, [rawValue]); }
 };
 
 /**
@@ -1046,12 +1046,12 @@ export class GCDeviceBattery extends SDKHandle {
    * var batteryLevel: Float { get }
    * @availability iOS 14.0+
    */
-  get batteryLevel(): number { return callSDK<number>("GameController_c1f28409f8601238", 2001928318826196, this, []); }
+  get batteryLevel(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2001928318826196, this, []); }
   /**
    * var batteryState: GCDeviceBattery.State { get }
    * @availability iOS 14.0+
    */
-  get batteryState(): GCDeviceBattery_State { return callSDK<GCDeviceBattery_State>("GameController_c1f28409f8601238", 2791236700988292, this, []); }
+  get batteryState(): GCDeviceBattery_State { return callSDK<GCDeviceBattery_State>("GameController_e11dfd5beee01da3", 2791236700988292, this, []); }
   declare readonly $type: { "c:objc(cs)GCDeviceBattery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "batteryLevel": true; "batteryState": true };
 }
@@ -1067,7 +1067,7 @@ export const GCDeviceBattery_State = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (GCDeviceBattery_State) | null { return callSDK<(GCDeviceBattery_State) | null>("GameController_c1f28409f8601238", 1607291023704, undefined, [rawValue]); }
+  init(rawValue: number): (GCDeviceBattery_State) | null { return callSDK<(GCDeviceBattery_State) | null>("GameController_e11dfd5beee01da3", 1607291023704, undefined, [rawValue]); }
 };
 
 /** typealias GCDeviceButtonInput = GCControllerButtonInput */
@@ -1079,7 +1079,7 @@ export type GCDeviceButtonInput = GCControllerButtonInput;
  */
 export class GCDeviceCursor extends (GCControllerDirectionPad as unknown as Omit<typeof GCControllerDirectionPad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCControllerDirectionPad)) {
   /** init() */
-  static init(): GCDeviceCursor { return callSDK<GCDeviceCursor>("GameController_c1f28409f8601238", 3331023696028947, undefined, []); }
+  static init(): GCDeviceCursor { return callSDK<GCDeviceCursor>("GameController_e11dfd5beee01da3", 3331023696028947, undefined, []); }
   declare readonly $type: { "c:objc(cs)GCDeviceCursor": true; "c:objc(cs)GCControllerDirectionPad": true; "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true; "down": true; "left": true; "right": true; "up": true; "xAxis": true; "yAxis": true };
 }
@@ -1096,12 +1096,12 @@ export type GCDeviceElement = GCControllerElement;
  */
 export class GCDeviceHaptics extends SDKHandle {
   /** init() */
-  static init(): GCDeviceHaptics { return callSDK<GCDeviceHaptics>("GameController_c1f28409f8601238", 3800669172795692, undefined, []); }
+  static init(): GCDeviceHaptics { return callSDK<GCDeviceHaptics>("GameController_e11dfd5beee01da3", 3800669172795692, undefined, []); }
   /**
    * var supportedLocalities: Set<GCHapticsLocality> { get }
    * @availability iOS 14.0+
    */
-  get supportedLocalities(): Array<GCHapticsLocality> { return callSDK<Array<GCHapticsLocality>>("GameController_c1f28409f8601238", 48482686926321, this, []); }
+  get supportedLocalities(): Array<GCHapticsLocality> { return callSDK<Array<GCHapticsLocality>>("GameController_e11dfd5beee01da3", 48482686926321, this, []); }
   declare readonly $type: { "c:objc(cs)GCDeviceHaptics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "supportedLocalities": true };
 }
@@ -1115,8 +1115,8 @@ export class GCDeviceLight extends SDKHandle {
    * @NSCopying var color: GCColor { get set }
    * @availability iOS 14.0+
    */
-  get color(): GCColor { return callSDK<GCColor>("GameController_c1f28409f8601238", 3226956728591134, this, []); }
-  set color(value: GCColor) { callSDK<void>("GameController_c1f28409f8601238", 2195694378682504, this, [value]); }
+  get color(): GCColor { return callSDK<GCColor>("GameController_e11dfd5beee01da3", 3226956728591134, this, []); }
+  set color(value: GCColor) { callSDK<void>("GameController_e11dfd5beee01da3", 2195694378682504, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCDeviceLight": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "color": true };
 }
@@ -1154,7 +1154,7 @@ export const GCDevicePhysicalInputElementChange = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (GCDevicePhysicalInputElementChange) | null { return callSDK<(GCDevicePhysicalInputElementChange) | null>("GameController_c1f28409f8601238", 1848421070255786, undefined, [rawValue]); }
+  init(rawValue: number): (GCDevicePhysicalInputElementChange) | null { return callSDK<(GCDevicePhysicalInputElementChange) | null>("GameController_e11dfd5beee01da3", 1848421070255786, undefined, [rawValue]); }
 };
 
 /**
@@ -1193,100 +1193,100 @@ export class GCPhysicalInputProfile extends SDKHandle {
    * func capture() -> Self
    * @availability iOS 14.0+
    */
-  capture(): GCPhysicalInputProfile { return callSDK<GCPhysicalInputProfile>("GameController_c1f28409f8601238", 164914159579425, this, []); }
+  capture(): GCPhysicalInputProfile { return callSDK<GCPhysicalInputProfile>("GameController_e11dfd5beee01da3", 164914159579425, this, []); }
   /** init() */
-  static init(): GCPhysicalInputProfile { return callSDK<GCPhysicalInputProfile>("GameController_c1f28409f8601238", 2852368183112285, undefined, []); }
+  static init(): GCPhysicalInputProfile { return callSDK<GCPhysicalInputProfile>("GameController_e11dfd5beee01da3", 2852368183112285, undefined, []); }
   /**
    * func mappedElementAlias(forPhysicalInputName inputName: String) -> String
    * @availability iOS 15.0+
    */
-  mappedElementAlias(inputName: string): string { return callSDK<string>("GameController_c1f28409f8601238", 2223482326347876, this, [inputName]); }
+  mappedElementAlias(inputName: string): string { return callSDK<string>("GameController_e11dfd5beee01da3", 2223482326347876, this, [inputName]); }
   /**
    * func mappedPhysicalInputNames(forElementAlias elementAlias: String) -> Set<String>
    * @availability iOS 15.0+
    */
-  mappedPhysicalInputNames(elementAlias: string): Array<string> { return callSDK<Array<string>>("GameController_c1f28409f8601238", 1022218131251419, this, [elementAlias]); }
+  mappedPhysicalInputNames(elementAlias: string): Array<string> { return callSDK<Array<string>>("GameController_e11dfd5beee01da3", 1022218131251419, this, [elementAlias]); }
   /**
    * subscript(key: String) -> GCControllerElement? { get }
    * @availability iOS 14.0+
    */
-  subscript(key: string): $SDK9 { return callSDK<$SDK9>("GameController_c1f28409f8601238", 3892637615201656, this, [key]); }
+  subscript(key: string): $SDK9 { return callSDK<$SDK9>("GameController_e11dfd5beee01da3", 3892637615201656, this, [key]); }
   /**
    * func setStateFromPhysicalInput(_ physicalInput: GCPhysicalInputProfile)
    * @availability iOS 14.0+
    */
-  setStateFromPhysicalInput(physicalInput: GCPhysicalInputProfile): void { return callSDK<void>("GameController_c1f28409f8601238", 2499086685889194, this, [physicalInput]); }
+  setStateFromPhysicalInput(physicalInput: GCPhysicalInputProfile): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2499086685889194, this, [physicalInput]); }
   /**
    * var allAxes: Set<GCControllerAxisInput> { get }
    * @availability iOS 14.0+
    */
-  get allAxes(): Array<GCControllerAxisInput> { return callSDK<Array<GCControllerAxisInput>>("GameController_c1f28409f8601238", 841033142032771, this, []); }
+  get allAxes(): Array<GCControllerAxisInput> { return callSDK<Array<GCControllerAxisInput>>("GameController_e11dfd5beee01da3", 841033142032771, this, []); }
   /**
    * var allButtons: Set<GCControllerButtonInput> { get }
    * @availability iOS 14.0+
    */
-  get allButtons(): Array<GCControllerButtonInput> { return callSDK<Array<GCControllerButtonInput>>("GameController_c1f28409f8601238", 2127867284300193, this, []); }
+  get allButtons(): Array<GCControllerButtonInput> { return callSDK<Array<GCControllerButtonInput>>("GameController_e11dfd5beee01da3", 2127867284300193, this, []); }
   /**
    * var allDpads: Set<GCControllerDirectionPad> { get }
    * @availability iOS 14.0+
    */
-  get allDpads(): Array<GCControllerDirectionPad> { return callSDK<Array<GCControllerDirectionPad>>("GameController_c1f28409f8601238", 3146990978282782, this, []); }
+  get allDpads(): Array<GCControllerDirectionPad> { return callSDK<Array<GCControllerDirectionPad>>("GameController_e11dfd5beee01da3", 3146990978282782, this, []); }
   /**
    * var allElements: Set<GCControllerElement> { get }
    * @availability iOS 14.0+
    */
-  get allElements(): Array<GCControllerElement> { return callSDK<Array<GCControllerElement>>("GameController_c1f28409f8601238", 3363454563010379, this, []); }
+  get allElements(): Array<GCControllerElement> { return callSDK<Array<GCControllerElement>>("GameController_e11dfd5beee01da3", 3363454563010379, this, []); }
   /**
    * var allTouchpads: Set<GCControllerTouchpad> { get }
    * @availability iOS 14.0+
    */
-  get allTouchpads(): Array<GCControllerTouchpad> { return callSDK<Array<GCControllerTouchpad>>("GameController_c1f28409f8601238", 4365812211721376, this, []); }
+  get allTouchpads(): Array<GCControllerTouchpad> { return callSDK<Array<GCControllerTouchpad>>("GameController_e11dfd5beee01da3", 4365812211721376, this, []); }
   /**
    * var axes: [String : GCControllerAxisInput] { get }
    * @availability iOS 14.0+
    */
-  get axes(): Record<string, GCControllerAxisInput> { return callSDK<Record<string, GCControllerAxisInput>>("GameController_c1f28409f8601238", 3209481013176593, this, []); }
+  get axes(): Record<string, GCControllerAxisInput> { return callSDK<Record<string, GCControllerAxisInput>>("GameController_e11dfd5beee01da3", 3209481013176593, this, []); }
   /**
    * var buttons: [String : GCControllerButtonInput] { get }
    * @availability iOS 14.0+
    */
-  get buttons(): Record<string, GCControllerButtonInput> { return callSDK<Record<string, GCControllerButtonInput>>("GameController_c1f28409f8601238", 4208713564186302, this, []); }
+  get buttons(): Record<string, GCControllerButtonInput> { return callSDK<Record<string, GCControllerButtonInput>>("GameController_e11dfd5beee01da3", 4208713564186302, this, []); }
   /**
    * weak var device: (any GCDevice)? { get }
    * @availability iOS 14.0+
    */
-  get device(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_c1f28409f8601238", 4350126193281639, this, []); }
+  get device(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_e11dfd5beee01da3", 4350126193281639, this, []); }
   /**
    * var dpads: [String : GCControllerDirectionPad] { get }
    * @availability iOS 14.0+
    */
-  get dpads(): Record<string, GCControllerDirectionPad> { return callSDK<Record<string, GCControllerDirectionPad>>("GameController_c1f28409f8601238", 177932636989302, this, []); }
+  get dpads(): Record<string, GCControllerDirectionPad> { return callSDK<Record<string, GCControllerDirectionPad>>("GameController_e11dfd5beee01da3", 177932636989302, this, []); }
   /**
    * var elements: [String : GCControllerElement] { get }
    * @availability iOS 14.0+
    */
-  get elements(): Record<string, GCControllerElement> { return callSDK<Record<string, GCControllerElement>>("GameController_c1f28409f8601238", 3594594499559201, this, []); }
+  get elements(): Record<string, GCControllerElement> { return callSDK<Record<string, GCControllerElement>>("GameController_e11dfd5beee01da3", 3594594499559201, this, []); }
   /**
    * var hasRemappedElements: Bool { get }
    * @availability iOS 15.0+
    */
-  get hasRemappedElements(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 599673674299145, this, []); }
+  get hasRemappedElements(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 599673674299145, this, []); }
   /**
    * var lastEventTimestamp: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get lastEventTimestamp(): number { return callSDK<number>("GameController_c1f28409f8601238", 126778124169881, this, []); }
+  get lastEventTimestamp(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 126778124169881, this, []); }
   /**
    * var touchpads: [String : GCControllerTouchpad] { get }
    * @availability iOS 14.0+
    */
-  get touchpads(): Record<string, GCControllerTouchpad> { return callSDK<Record<string, GCControllerTouchpad>>("GameController_c1f28409f8601238", 5120679219079, this, []); }
+  get touchpads(): Record<string, GCControllerTouchpad> { return callSDK<Record<string, GCControllerTouchpad>>("GameController_e11dfd5beee01da3", 5120679219079, this, []); }
   /**
    * var valueDidChangeHandler: ((GCPhysicalInputProfile, GCControllerElement) -> Void)? { get set }
    * @availability iOS 16.0+
    */
-  get valueDidChangeHandler(): (((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_c1f28409f8601238", 2823628850323249, this, []); }
-  set valueDidChangeHandler(value: (((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 3120909530253485, this, [value], [{"callback":{"out":[]}}]); }
+  get valueDidChangeHandler(): (((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 2823628850323249, this, []); }
+  set valueDidChangeHandler(value: (((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 3120909530253485, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true };
 }
@@ -1297,61 +1297,61 @@ export class GCPhysicalInputProfile extends SDKHandle {
  */
 export class GCMicroGamepad extends (GCPhysicalInputProfile as unknown as Omit<typeof GCPhysicalInputProfile, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCPhysicalInputProfile)) {
   /** init() */
-  static init(): GCMicroGamepad { return callSDK<GCMicroGamepad>("GameController_c1f28409f8601238", 1358801991579474, undefined, []); }
+  static init(): GCMicroGamepad { return callSDK<GCMicroGamepad>("GameController_e11dfd5beee01da3", 1358801991579474, undefined, []); }
   /**
    * func saveSnapshot() -> GCMicroGamepadSnapshot
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  saveSnapshot(): GCMicroGamepadSnapshot { return callSDK<GCMicroGamepadSnapshot>("GameController_c1f28409f8601238", 3462152076424120, this, []); }
+  saveSnapshot(): GCMicroGamepadSnapshot { return callSDK<GCMicroGamepadSnapshot>("GameController_e11dfd5beee01da3", 3462152076424120, this, []); }
   /**
    * func setStateFrom(_ microGamepad: GCMicroGamepad)
    * @availability iOS 13.0+
    */
-  setStateFrom(microGamepad: GCMicroGamepad): void { return callSDK<void>("GameController_c1f28409f8601238", 3307962324690811, this, [microGamepad]); }
+  setStateFrom(microGamepad: GCMicroGamepad): void { return callSDK<void>("GameController_e11dfd5beee01da3", 3307962324690811, this, [microGamepad]); }
   /**
    * var allowsRotation: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsRotation(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3011283549514469, this, []); }
-  set allowsRotation(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 2989762587500918, this, [value]); }
+  get allowsRotation(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3011283549514469, this, []); }
+  set allowsRotation(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 2989762587500918, this, [value]); }
   /**
    * var buttonA: GCControllerButtonInput { get }
    * @availability iOS 9.0+
    */
-  get buttonA(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 3846698935617159, this, []); }
+  get buttonA(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 3846698935617159, this, []); }
   /**
    * var buttonMenu: GCControllerButtonInput { get }
    * @availability iOS 13.0+
    */
-  get buttonMenu(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1296787463937312, this, []); }
+  get buttonMenu(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1296787463937312, this, []); }
   /**
    * var buttonX: GCControllerButtonInput { get }
    * @availability iOS 9.0+
    */
-  get buttonX(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 723865919970445, this, []); }
+  get buttonX(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 723865919970445, this, []); }
   /**
    * weak var controller: GCController? { get }
    * @availability iOS 9.0+
    */
-  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_c1f28409f8601238", 963857543267121, this, []); }
+  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_e11dfd5beee01da3", 963857543267121, this, []); }
   /**
    * var dpad: GCControllerDirectionPad { get }
    * @availability iOS 9.0+
    */
-  get dpad(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 1012083881284531, this, []); }
+  get dpad(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 1012083881284531, this, []); }
   /**
    * var reportsAbsoluteDpadValues: Bool { get set }
    * @availability iOS 9.0+
    */
-  get reportsAbsoluteDpadValues(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3540590342654169, this, []); }
-  set reportsAbsoluteDpadValues(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 91824383697345, this, [value]); }
+  get reportsAbsoluteDpadValues(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3540590342654169, this, []); }
+  set reportsAbsoluteDpadValues(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 91824383697345, this, [value]); }
   /**
    * var valueChangedHandler: GCMicroGamepadValueChangedHandler? { get set }
    * @availability iOS 9.0+
    */
-  get valueChangedHandler(): (((arg0: GCMicroGamepad, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCMicroGamepad, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_c1f28409f8601238", 3262322447114183, this, []); }
-  set valueChangedHandler(value: (((arg0: GCMicroGamepad, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 4103510972596188, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): (((arg0: GCMicroGamepad, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCMicroGamepad, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 3262322447114183, this, []); }
+  set valueChangedHandler(value: (((arg0: GCMicroGamepad, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 4103510972596188, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCMicroGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "allowsRotation": true; "buttonA": true; "buttonMenu": true; "buttonX": true; "controller": true; "dpad": true; "reportsAbsoluteDpadValues": true };
 }
@@ -1362,7 +1362,7 @@ export class GCMicroGamepad extends (GCPhysicalInputProfile as unknown as Omit<t
  */
 export class GCDirectionalGamepad extends (GCMicroGamepad as unknown as Omit<typeof GCMicroGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCMicroGamepad)) {
   /** init() */
-  static init(): GCDirectionalGamepad { return callSDK<GCDirectionalGamepad>("GameController_c1f28409f8601238", 4281355261211630, undefined, []); }
+  static init(): GCDirectionalGamepad { return callSDK<GCDirectionalGamepad>("GameController_e11dfd5beee01da3", 4281355261211630, undefined, []); }
   declare readonly $type: { "c:objc(cs)GCDirectionalGamepad": true; "c:objc(cs)GCMicroGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "allowsRotation": true; "buttonA": true; "buttonMenu": true; "buttonX": true; "controller": true; "dpad": true; "reportsAbsoluteDpadValues": true };
 }
@@ -1386,32 +1386,32 @@ export const GCDirectionPadElementName = {
    * static let directionPad: GCDirectionPadElementName
    * @availability iOS 16.0+
    */
-  get directionPad(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_c1f28409f8601238", 523082609104481, undefined, []); },
+  get directionPad(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_e11dfd5beee01da3", 523082609104481, undefined, []); },
   /**
    * static let thumbstick: GCDirectionPadElementName
    * @availability iOS 26.0+
    */
-  get thumbstick(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_c1f28409f8601238", 3451594659473052, undefined, []); },
+  get thumbstick(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_e11dfd5beee01da3", 3451594659473052, undefined, []); },
   /**
    * static let leftThumbstick: GCDirectionPadElementName
    * @availability iOS 16.0+
    */
-  get leftThumbstick(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_c1f28409f8601238", 3653777008341329, undefined, []); },
+  get leftThumbstick(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_e11dfd5beee01da3", 3653777008341329, undefined, []); },
   /**
    * static let rightThumbstick: GCDirectionPadElementName
    * @availability iOS 16.0+
    */
-  get rightThumbstick(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_c1f28409f8601238", 248815556438809, undefined, []); },
+  get rightThumbstick(): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_e11dfd5beee01da3", 248815556438809, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_c1f28409f8601238", 536684081939240, undefined, [rawValue]); },
+  init(rawValue: string): GCDirectionPadElementName { return callSDK<GCDirectionPadElementName>("GameController_e11dfd5beee01da3", 536684081939240, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: GCDirectionPadElementName): string { return callSDK<string>("GameController_c1f28409f8601238", 4253178003669031, $self, []); }
+  getRawValue($self: GCDirectionPadElementName): string { return callSDK<string>("GameController_e11dfd5beee01da3", 4253178003669031, $self, []); }
 };
 
 /**
@@ -1435,59 +1435,59 @@ export class GCDualSenseAdaptiveTrigger extends (GCControllerButtonInput as unkn
    * class var discretePositionCount: Int { get }
    * @availability iOS 15.4+
    */
-  static get discretePositionCount(): number { return callSDK<number>("GameController_c1f28409f8601238", 2072333325251599, undefined, []); }
+  static get discretePositionCount(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2072333325251599, undefined, []); }
   /** init() */
-  static init(): GCDualSenseAdaptiveTrigger { return callSDK<GCDualSenseAdaptiveTrigger>("GameController_c1f28409f8601238", 4313458977058280, undefined, []); }
+  static init(): GCDualSenseAdaptiveTrigger { return callSDK<GCDualSenseAdaptiveTrigger>("GameController_e11dfd5beee01da3", 4313458977058280, undefined, []); }
   /**
    * func setModeFeedback(resistiveStrengths positionalResistiveStrengths: GCDualSenseAdaptiveTrigger.PositionalResistiveStrengths)
    * @availability iOS 15.4+
    */
-  setModeFeedback(positionalResistiveStrengths: GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths): void { return callSDK<void>("GameController_c1f28409f8601238", 2433400601623905, this, [positionalResistiveStrengths]); }
+  setModeFeedback(positionalResistiveStrengths: GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2433400601623905, this, [positionalResistiveStrengths]); }
   /**
    * func setModeFeedbackWithStartPosition(_ startPosition: Float, resistiveStrength: Float)
    * @availability iOS 14.5+
    */
-  setModeFeedbackWithStartPosition(startPosition: number, resistiveStrength: number): void { return callSDK<void>("GameController_c1f28409f8601238", 2039317246680453, this, [startPosition, resistiveStrength]); }
+  setModeFeedbackWithStartPosition(startPosition: number, resistiveStrength: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2039317246680453, this, [startPosition, resistiveStrength]); }
   /**
    * func setModeOff()
    * @availability iOS 14.5+
    */
-  setModeOff(): void { return callSDK<void>("GameController_c1f28409f8601238", 441533950516675, this, []); }
+  setModeOff(): void { return callSDK<void>("GameController_e11dfd5beee01da3", 441533950516675, this, []); }
   /**
    * func setModeSlopeFeedback(startPosition: Float, endPosition: Float, startStrength: Float, endStrength: Float)
    * @availability iOS 15.4+
    */
-  setModeSlopeFeedback(startPosition: number, endPosition: number, startStrength: number, endStrength: number): void { return callSDK<void>("GameController_c1f28409f8601238", 1191196477051503, this, [startPosition, endPosition, startStrength, endStrength]); }
+  setModeSlopeFeedback(startPosition: number, endPosition: number, startStrength: number, endStrength: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 1191196477051503, this, [startPosition, endPosition, startStrength, endStrength]); }
   /**
    * func setModeVibration(amplitudes positionalAmplitudes: GCDualSenseAdaptiveTrigger.PositionalAmplitudes, frequency: Float)
    * @availability iOS 15.4+
    */
-  setModeVibration(positionalAmplitudes: GCDualSenseAdaptiveTrigger_PositionalAmplitudes, frequency: number): void { return callSDK<void>("GameController_c1f28409f8601238", 3455770077170295, this, [positionalAmplitudes, frequency]); }
+  setModeVibration(positionalAmplitudes: GCDualSenseAdaptiveTrigger_PositionalAmplitudes, frequency: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 3455770077170295, this, [positionalAmplitudes, frequency]); }
   /**
    * func setModeVibrationWithStartPosition(_ startPosition: Float, amplitude: Float, frequency: Float)
    * @availability iOS 14.5+
    */
-  setModeVibrationWithStartPosition(startPosition: number, amplitude: number, frequency: number): void { return callSDK<void>("GameController_c1f28409f8601238", 2899874975711754, this, [startPosition, amplitude, frequency]); }
+  setModeVibrationWithStartPosition(startPosition: number, amplitude: number, frequency: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2899874975711754, this, [startPosition, amplitude, frequency]); }
   /**
    * func setModeWeaponWithStartPosition(_ startPosition: Float, endPosition: Float, resistiveStrength: Float)
    * @availability iOS 14.5+
    */
-  setModeWeaponWithStartPosition(startPosition: number, endPosition: number, resistiveStrength: number): void { return callSDK<void>("GameController_c1f28409f8601238", 951628517964304, this, [startPosition, endPosition, resistiveStrength]); }
+  setModeWeaponWithStartPosition(startPosition: number, endPosition: number, resistiveStrength: number): void { return callSDK<void>("GameController_e11dfd5beee01da3", 951628517964304, this, [startPosition, endPosition, resistiveStrength]); }
   /**
    * var armPosition: Float { get }
    * @availability iOS 14.5+
    */
-  get armPosition(): number { return callSDK<number>("GameController_c1f28409f8601238", 221913776555271, this, []); }
+  get armPosition(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 221913776555271, this, []); }
   /**
    * var mode: GCDualSenseAdaptiveTrigger.Mode { get }
    * @availability iOS 14.5+
    */
-  get mode(): GCDualSenseAdaptiveTrigger_Mode { return callSDK<GCDualSenseAdaptiveTrigger_Mode>("GameController_c1f28409f8601238", 3506399256641867, this, []); }
+  get mode(): GCDualSenseAdaptiveTrigger_Mode { return callSDK<GCDualSenseAdaptiveTrigger_Mode>("GameController_e11dfd5beee01da3", 3506399256641867, this, []); }
   /**
    * var status: GCDualSenseAdaptiveTrigger.Status { get }
    * @availability iOS 14.5+
    */
-  get status(): GCDualSenseAdaptiveTrigger_Status { return callSDK<GCDualSenseAdaptiveTrigger_Status>("GameController_c1f28409f8601238", 2270555498254713, this, []); }
+  get status(): GCDualSenseAdaptiveTrigger_Status { return callSDK<GCDualSenseAdaptiveTrigger_Status>("GameController_e11dfd5beee01da3", 2270555498254713, this, []); }
   declare readonly $type: { "c:objc(cs)GCDualSenseAdaptiveTrigger": true; "c:objc(cs)GCControllerButtonInput": true; "c:objc(cs)GCControllerElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "aliases": true; "isAnalog": true; "isBoundToSystemGesture": true; "collection": true; "localizedName": true; "preferredSystemGestureState": true; "sfSymbolsName": true; "unmappedLocalizedName": true; "unmappedSfSymbolsName": true; "isPressed": true; "isTouched": true; "value": true; "armPosition": true; "mode": true; "status": true };
 }
@@ -1503,7 +1503,7 @@ export const GCDualSenseAdaptiveTrigger_Mode = {
    * init?(rawValue: Int)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): (GCDualSenseAdaptiveTrigger_Mode) | null { return callSDK<(GCDualSenseAdaptiveTrigger_Mode) | null>("GameController_c1f28409f8601238", 2560071358570613, undefined, [rawValue]); }
+  init(rawValue: number): (GCDualSenseAdaptiveTrigger_Mode) | null { return callSDK<(GCDualSenseAdaptiveTrigger_Mode) | null>("GameController_e11dfd5beee01da3", 2560071358570613, undefined, [rawValue]); }
 };
 
 /**
@@ -1515,18 +1515,18 @@ export class GCDualSenseAdaptiveTrigger_PositionalAmplitudes extends SDKHandle {
    * var values: (Float, Float, Float, Float, Float, Float, Float, Float, Float, Float)
    * @availability iOS 15.4+
    */
-  get values(): $SDK45 { return callSDK<$SDK45>("GameController_c1f28409f8601238", 915417422139082, this, []); }
-  set values(value: $SDK45) { callSDK<void>("GameController_c1f28409f8601238", 379042684956485, this, [value]); }
+  get values(): $SDK45 { return callSDK<$SDK45>("GameController_e11dfd5beee01da3", 915417422139082, this, []); }
+  set values(value: $SDK45) { callSDK<void>("GameController_e11dfd5beee01da3", 379042684956485, this, [value]); }
   /**
    * init(values: (Float, Float, Float, Float, Float, Float, Float, Float, Float, Float))
    * @availability iOS 15.4+
    */
-  static initValues(values: $SDK45): GCDualSenseAdaptiveTrigger_PositionalAmplitudes { return callSDK<GCDualSenseAdaptiveTrigger_PositionalAmplitudes>("GameController_c1f28409f8601238", 4499153175018500, undefined, [values]); }
+  static initValues(values: $SDK45): GCDualSenseAdaptiveTrigger_PositionalAmplitudes { return callSDK<GCDualSenseAdaptiveTrigger_PositionalAmplitudes>("GameController_e11dfd5beee01da3", 4499153175018500, undefined, [values]); }
   /**
    * init()
    * @availability iOS 15.4+
    */
-  static init(): GCDualSenseAdaptiveTrigger_PositionalAmplitudes { return callSDK<GCDualSenseAdaptiveTrigger_PositionalAmplitudes>("GameController_c1f28409f8601238", 759810775130527, undefined, []); }
+  static init(): GCDualSenseAdaptiveTrigger_PositionalAmplitudes { return callSDK<GCDualSenseAdaptiveTrigger_PositionalAmplitudes>("GameController_e11dfd5beee01da3", 759810775130527, undefined, []); }
   declare readonly $type: { "c:@SA@GCDualSenseAdaptiveTriggerPositionalAmplitudes": true };
 }
 
@@ -1539,18 +1539,18 @@ export class GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths extends SDK
    * var values: (Float, Float, Float, Float, Float, Float, Float, Float, Float, Float)
    * @availability iOS 15.4+
    */
-  get values(): $SDK45 { return callSDK<$SDK45>("GameController_c1f28409f8601238", 3502339318553422, this, []); }
-  set values(value: $SDK45) { callSDK<void>("GameController_c1f28409f8601238", 1832337822498314, this, [value]); }
+  get values(): $SDK45 { return callSDK<$SDK45>("GameController_e11dfd5beee01da3", 3502339318553422, this, []); }
+  set values(value: $SDK45) { callSDK<void>("GameController_e11dfd5beee01da3", 1832337822498314, this, [value]); }
   /**
    * init(values: (Float, Float, Float, Float, Float, Float, Float, Float, Float, Float))
    * @availability iOS 15.4+
    */
-  static initValues(values: $SDK45): GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths { return callSDK<GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths>("GameController_c1f28409f8601238", 1933158080782502, undefined, [values]); }
+  static initValues(values: $SDK45): GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths { return callSDK<GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths>("GameController_e11dfd5beee01da3", 1933158080782502, undefined, [values]); }
   /**
    * init()
    * @availability iOS 15.4+
    */
-  static init(): GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths { return callSDK<GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths>("GameController_c1f28409f8601238", 3232514047201448, undefined, []); }
+  static init(): GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths { return callSDK<GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths>("GameController_e11dfd5beee01da3", 3232514047201448, undefined, []); }
   declare readonly $type: { "c:@SA@GCDualSenseAdaptiveTriggerPositionalResistiveStrengths": true };
 }
 
@@ -1565,7 +1565,7 @@ export const GCDualSenseAdaptiveTrigger_Status = {
    * init?(rawValue: Int)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): (GCDualSenseAdaptiveTrigger_Status) | null { return callSDK<(GCDualSenseAdaptiveTrigger_Status) | null>("GameController_c1f28409f8601238", 4246695468222257, undefined, [rawValue]); }
+  init(rawValue: number): (GCDualSenseAdaptiveTrigger_Status) | null { return callSDK<(GCDualSenseAdaptiveTrigger_Status) | null>("GameController_e11dfd5beee01da3", 4246695468222257, undefined, [rawValue]); }
 };
 
 /**
@@ -1574,109 +1574,109 @@ export const GCDualSenseAdaptiveTrigger_Status = {
  */
 export class GCExtendedGamepad extends (GCPhysicalInputProfile as unknown as Omit<typeof GCPhysicalInputProfile, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCPhysicalInputProfile)) {
   /** init() */
-  static init(): GCExtendedGamepad { return callSDK<GCExtendedGamepad>("GameController_c1f28409f8601238", 209883393129145, undefined, []); }
+  static init(): GCExtendedGamepad { return callSDK<GCExtendedGamepad>("GameController_e11dfd5beee01da3", 209883393129145, undefined, []); }
   /**
    * func saveSnapshot() -> GCExtendedGamepadSnapshot
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  saveSnapshot(): GCExtendedGamepadSnapshot { return callSDK<GCExtendedGamepadSnapshot>("GameController_c1f28409f8601238", 1860859808151060, this, []); }
+  saveSnapshot(): GCExtendedGamepadSnapshot { return callSDK<GCExtendedGamepadSnapshot>("GameController_e11dfd5beee01da3", 1860859808151060, this, []); }
   /**
    * func setStateFrom(_ extendedGamepad: GCExtendedGamepad)
    * @availability iOS 13.0+
    */
-  setStateFrom(extendedGamepad: GCExtendedGamepad): void { return callSDK<void>("GameController_c1f28409f8601238", 2083501493740840, this, [extendedGamepad]); }
+  setStateFrom(extendedGamepad: GCExtendedGamepad): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2083501493740840, this, [extendedGamepad]); }
   /**
    * var buttonA: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get buttonA(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 358763696202611, this, []); }
+  get buttonA(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 358763696202611, this, []); }
   /**
    * var buttonB: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get buttonB(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1788604563959296, this, []); }
+  get buttonB(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1788604563959296, this, []); }
   /**
    * var buttonHome: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get buttonHome(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 4164858669974137, this, []); }
+  get buttonHome(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 4164858669974137, this, []); }
   /**
    * var buttonMenu: GCControllerButtonInput { get }
    * @availability iOS 13.0+
    */
-  get buttonMenu(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1414838794924843, this, []); }
+  get buttonMenu(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1414838794924843, this, []); }
   /**
    * var buttonOptions: GCControllerButtonInput? { get }
    * @availability iOS 13.0+
    */
-  get buttonOptions(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 4340831754226672, this, []); }
+  get buttonOptions(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 4340831754226672, this, []); }
   /**
    * var buttonX: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get buttonX(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1365403090173445, this, []); }
+  get buttonX(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1365403090173445, this, []); }
   /**
    * var buttonY: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get buttonY(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 3031601547272574, this, []); }
+  get buttonY(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 3031601547272574, this, []); }
   /**
    * weak var controller: GCController? { get }
    * @availability iOS 7.0+
    */
-  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_c1f28409f8601238", 2203125182113496, this, []); }
+  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_e11dfd5beee01da3", 2203125182113496, this, []); }
   /**
    * var dpad: GCControllerDirectionPad { get }
    * @availability iOS 7.0+
    */
-  get dpad(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 550942733958403, this, []); }
+  get dpad(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 550942733958403, this, []); }
   /**
    * var leftShoulder: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get leftShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1327016948895442, this, []); }
+  get leftShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1327016948895442, this, []); }
   /**
    * var leftThumbstick: GCControllerDirectionPad { get }
    * @availability iOS 7.0+
    */
-  get leftThumbstick(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 2561220159375041, this, []); }
+  get leftThumbstick(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 2561220159375041, this, []); }
   /**
    * var leftThumbstickButton: GCControllerButtonInput? { get }
    * @availability iOS 12.1+
    */
-  get leftThumbstickButton(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 991697710812068, this, []); }
+  get leftThumbstickButton(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 991697710812068, this, []); }
   /**
    * var leftTrigger: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get leftTrigger(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2782002569204401, this, []); }
+  get leftTrigger(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2782002569204401, this, []); }
   /**
    * var rightShoulder: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get rightShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1260247312999082, this, []); }
+  get rightShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1260247312999082, this, []); }
   /**
    * var rightThumbstick: GCControllerDirectionPad { get }
    * @availability iOS 7.0+
    */
-  get rightThumbstick(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 1379694217180655, this, []); }
+  get rightThumbstick(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 1379694217180655, this, []); }
   /**
    * var rightThumbstickButton: GCControllerButtonInput? { get }
    * @availability iOS 12.1+
    */
-  get rightThumbstickButton(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 3819086544124702, this, []); }
+  get rightThumbstickButton(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 3819086544124702, this, []); }
   /**
    * var rightTrigger: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    */
-  get rightTrigger(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 3610277791315155, this, []); }
+  get rightTrigger(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 3610277791315155, this, []); }
   /**
    * var valueChangedHandler: GCExtendedGamepadValueChangedHandler? { get set }
    * @availability iOS 7.0+
    */
-  get valueChangedHandler(): (((arg0: GCExtendedGamepad, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCExtendedGamepad, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_c1f28409f8601238", 1446341228618939, this, []); }
-  set valueChangedHandler(value: (((arg0: GCExtendedGamepad, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 3798656728928780, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): (((arg0: GCExtendedGamepad, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCExtendedGamepad, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 1446341228618939, this, []); }
+  set valueChangedHandler(value: (((arg0: GCExtendedGamepad, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 3798656728928780, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCExtendedGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonHome": true; "buttonMenu": true; "buttonOptions": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "leftThumbstick": true; "leftThumbstickButton": true; "leftTrigger": true; "rightShoulder": true; "rightThumbstick": true; "rightThumbstickButton": true; "rightTrigger": true };
 }
@@ -1687,32 +1687,32 @@ export class GCExtendedGamepad extends (GCPhysicalInputProfile as unknown as Omi
  */
 export class GCDualSenseGamepad extends (GCExtendedGamepad as unknown as Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GCExtendedGamepad, "leftTrigger" | "rightTrigger">)) {
   /** init() */
-  static init(): GCDualSenseGamepad { return callSDK<GCDualSenseGamepad>("GameController_c1f28409f8601238", 2088150810209586, undefined, []); }
+  static init(): GCDualSenseGamepad { return callSDK<GCDualSenseGamepad>("GameController_e11dfd5beee01da3", 2088150810209586, undefined, []); }
   /**
    * var leftTrigger: GCDualSenseAdaptiveTrigger { get }
    * @availability iOS 14.5+
    */
-  get leftTrigger(): GCDualSenseAdaptiveTrigger { return callSDK<GCDualSenseAdaptiveTrigger>("GameController_c1f28409f8601238", 1656130278502242, this, []); }
+  get leftTrigger(): GCDualSenseAdaptiveTrigger { return callSDK<GCDualSenseAdaptiveTrigger>("GameController_e11dfd5beee01da3", 1656130278502242, this, []); }
   /**
    * var rightTrigger: GCDualSenseAdaptiveTrigger { get }
    * @availability iOS 14.5+
    */
-  get rightTrigger(): GCDualSenseAdaptiveTrigger { return callSDK<GCDualSenseAdaptiveTrigger>("GameController_c1f28409f8601238", 4255271043081324, this, []); }
+  get rightTrigger(): GCDualSenseAdaptiveTrigger { return callSDK<GCDualSenseAdaptiveTrigger>("GameController_e11dfd5beee01da3", 4255271043081324, this, []); }
   /**
    * var touchpadButton: GCControllerButtonInput { get }
    * @availability iOS 14.5+
    */
-  get touchpadButton(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2130881747185581, this, []); }
+  get touchpadButton(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2130881747185581, this, []); }
   /**
    * var touchpadPrimary: GCControllerDirectionPad { get }
    * @availability iOS 14.5+
    */
-  get touchpadPrimary(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 2219810252395849, this, []); }
+  get touchpadPrimary(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 2219810252395849, this, []); }
   /**
    * var touchpadSecondary: GCControllerDirectionPad { get }
    * @availability iOS 14.5+
    */
-  get touchpadSecondary(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 1597516286532800, this, []); }
+  get touchpadSecondary(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 1597516286532800, this, []); }
   declare readonly $type: { "c:objc(cs)GCDualSenseGamepad": true; "c:objc(cs)GCExtendedGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonHome": true; "buttonMenu": true; "buttonOptions": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "leftThumbstick": true; "leftThumbstickButton": true; "leftTrigger": true; "rightShoulder": true; "rightThumbstick": true; "rightThumbstickButton": true; "rightTrigger": true; "touchpadButton": true; "touchpadPrimary": true; "touchpadSecondary": true };
 }
@@ -1723,22 +1723,22 @@ export class GCDualSenseGamepad extends (GCExtendedGamepad as unknown as Omit<ty
  */
 export class GCDualShockGamepad extends (GCExtendedGamepad as unknown as Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCExtendedGamepad)) {
   /** init() */
-  static init(): GCDualShockGamepad { return callSDK<GCDualShockGamepad>("GameController_c1f28409f8601238", 3032338474374008, undefined, []); }
+  static init(): GCDualShockGamepad { return callSDK<GCDualShockGamepad>("GameController_e11dfd5beee01da3", 3032338474374008, undefined, []); }
   /**
    * var touchpadButton: GCControllerButtonInput! { get }
    * @availability iOS 14.0+
    */
-  get touchpadButton(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 3124853804459104, this, []); }
+  get touchpadButton(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 3124853804459104, this, []); }
   /**
    * var touchpadPrimary: GCControllerDirectionPad! { get }
    * @availability iOS 14.0+
    */
-  get touchpadPrimary(): $SDK49 { return callSDK<$SDK49>("GameController_c1f28409f8601238", 2622117765195298, this, []); }
+  get touchpadPrimary(): $SDK49 { return callSDK<$SDK49>("GameController_e11dfd5beee01da3", 2622117765195298, this, []); }
   /**
    * var touchpadSecondary: GCControllerDirectionPad! { get }
    * @availability iOS 14.0+
    */
-  get touchpadSecondary(): $SDK49 { return callSDK<$SDK49>("GameController_c1f28409f8601238", 3772261233276671, this, []); }
+  get touchpadSecondary(): $SDK49 { return callSDK<$SDK49>("GameController_e11dfd5beee01da3", 3772261233276671, this, []); }
   declare readonly $type: { "c:objc(cs)GCDualShockGamepad": true; "c:objc(cs)GCExtendedGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonHome": true; "buttonMenu": true; "buttonOptions": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "leftThumbstick": true; "leftThumbstickButton": true; "leftTrigger": true; "rightShoulder": true; "rightThumbstick": true; "rightThumbstickButton": true; "rightTrigger": true; "touchpadButton": true; "touchpadPrimary": true; "touchpadSecondary": true };
 }
@@ -1752,30 +1752,30 @@ export class GCEulerAngles extends SDKHandle {
    * var pitch: Double
    * @availability iOS 8.0+
    */
-  get pitch(): number { return callSDK<number>("GameController_c1f28409f8601238", 1421903144680927, this, []); }
-  set pitch(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1662622257390481, this, [value]); }
+  get pitch(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1421903144680927, this, []); }
+  set pitch(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1662622257390481, this, [value]); }
   /**
    * var roll: Double
    * @availability iOS 8.0+
    */
-  get roll(): number { return callSDK<number>("GameController_c1f28409f8601238", 1725046911405028, this, []); }
-  set roll(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1265505226369664, this, [value]); }
+  get roll(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1725046911405028, this, []); }
+  set roll(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1265505226369664, this, [value]); }
   /**
    * var yaw: Double
    * @availability iOS 8.0+
    */
-  get yaw(): number { return callSDK<number>("GameController_c1f28409f8601238", 454204689210983, this, []); }
-  set yaw(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1996727287318401, this, [value]); }
+  get yaw(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 454204689210983, this, []); }
+  set yaw(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1996727287318401, this, [value]); }
   /**
    * init(pitch: Double, yaw: Double, roll: Double)
    * @availability iOS 8.0+
    */
-  static initPitchYawRoll(pitch: number, yaw: number, roll: number): GCEulerAngles { return callSDK<GCEulerAngles>("GameController_c1f28409f8601238", 3137036867719781, undefined, [pitch, yaw, roll]); }
+  static initPitchYawRoll(pitch: number, yaw: number, roll: number): GCEulerAngles { return callSDK<GCEulerAngles>("GameController_e11dfd5beee01da3", 3137036867719781, undefined, [pitch, yaw, roll]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): GCEulerAngles { return callSDK<GCEulerAngles>("GameController_c1f28409f8601238", 565977827463466, undefined, []); }
+  static init(): GCEulerAngles { return callSDK<GCEulerAngles>("GameController_e11dfd5beee01da3", 565977827463466, undefined, []); }
   declare readonly $type: { "c:@SA@GCEulerAngles": true };
 }
 
@@ -1788,19 +1788,19 @@ export class GCEventInteraction extends SDKHandle {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): GCEventInteraction { return callSDK<GCEventInteraction>("GameController_c1f28409f8601238", 4022356695773638, undefined, []); }
+  static init(): GCEventInteraction { return callSDK<GCEventInteraction>("GameController_e11dfd5beee01da3", 4022356695773638, undefined, []); }
   /**
    * var handledEventTypes: GCUIEventTypes { get set }
    * @availability iOS 18.0+
    */
-  get handledEventTypes(): GCUIEventTypes { return callSDK<GCUIEventTypes>("GameController_c1f28409f8601238", 4448981972450406, this, []); }
-  set handledEventTypes(value: GCUIEventTypes) { callSDK<void>("GameController_c1f28409f8601238", 1087474862041715, this, [value]); }
+  get handledEventTypes(): GCUIEventTypes { return callSDK<GCUIEventTypes>("GameController_e11dfd5beee01da3", 4448981972450406, this, []); }
+  set handledEventTypes(value: GCUIEventTypes) { callSDK<void>("GameController_e11dfd5beee01da3", 1087474862041715, this, [value]); }
   /**
    * var receivesEventsInView: Bool { get set }
    * @availability iOS 26.0+
    */
-  get receivesEventsInView(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2136827420408979, this, []); }
-  set receivesEventsInView(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 3436946822223894, this, [value]); }
+  get receivesEventsInView(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2136827420408979, this, []); }
+  set receivesEventsInView(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 3436946822223894, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCEventInteraction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "handledEventTypes": true; "receivesEventsInView": true };
 }
@@ -1811,13 +1811,13 @@ export class GCEventInteraction extends SDKHandle {
  */
 export class GCEventViewController extends SDKHandle {
   /** init() */
-  static init(): Promise<GCEventViewController> { return callSDKAsync<GCEventViewController>("GameController_c1f28409f8601238", 1899938514695265, undefined, []); }
+  static init(): Promise<GCEventViewController> { return callSDKAsync<GCEventViewController>("GameController_e11dfd5beee01da3", 1899938514695265, undefined, []); }
   /**
    * var controllerUserInteractionEnabled: Bool { get set }
    * @availability iOS 9.0+
    */
-  get controllerUserInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("GameController_c1f28409f8601238", 1296057667758496, this, []); }
-  setControllerUserInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("GameController_c1f28409f8601238", 308560701580459, this, [value]); }
+  get controllerUserInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("GameController_e11dfd5beee01da3", 1296057667758496, this, []); }
+  setControllerUserInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("GameController_e11dfd5beee01da3", 308560701580459, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCEventViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "controllerUserInteractionEnabled": true };
 }
@@ -1833,20 +1833,20 @@ export class GCExtendedGamepadSnapshot extends GCExtendedGamepad {
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initControllerSnapshotData(controller: GCController, data: ArrayBuffer): GCExtendedGamepadSnapshot { return callSDK<GCExtendedGamepadSnapshot>("GameController_c1f28409f8601238", 916292203127324, undefined, [controller, data]); }
+  static initControllerSnapshotData(controller: GCController, data: ArrayBuffer): GCExtendedGamepadSnapshot { return callSDK<GCExtendedGamepadSnapshot>("GameController_e11dfd5beee01da3", 916292203127324, undefined, [controller, data]); }
   /**
    * init(snapshotData data: Data)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initSnapshotData(data: ArrayBuffer): GCExtendedGamepadSnapshot { return callSDK<GCExtendedGamepadSnapshot>("GameController_c1f28409f8601238", 2424201885733710, undefined, [data]); }
+  static initSnapshotData(data: ArrayBuffer): GCExtendedGamepadSnapshot { return callSDK<GCExtendedGamepadSnapshot>("GameController_e11dfd5beee01da3", 2424201885733710, undefined, [data]); }
   /**
    * var snapshotData: Data { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get snapshotData(): ArrayBuffer { return callSDK<ArrayBuffer>("GameController_c1f28409f8601238", 1522106473765168, this, []); }
-  set snapshotData(value: ArrayBuffer) { callSDK<void>("GameController_c1f28409f8601238", 896393501546231, this, [value]); }
+  get snapshotData(): ArrayBuffer { return callSDK<ArrayBuffer>("GameController_e11dfd5beee01da3", 1522106473765168, this, []); }
+  set snapshotData(value: ArrayBuffer) { callSDK<void>("GameController_e11dfd5beee01da3", 896393501546231, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCExtendedGamepadSnapshot": true; "c:objc(cs)GCExtendedGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonHome": true; "buttonMenu": true; "buttonOptions": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "leftThumbstick": true; "leftThumbstickButton": true; "leftTrigger": true; "rightShoulder": true; "rightThumbstick": true; "rightThumbstickButton": true; "rightTrigger": true; "snapshotData": true };
 }
@@ -1862,146 +1862,146 @@ export class GCExtendedGamepadSnapshotData extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get buttonA(): number { return callSDK<number>("GameController_c1f28409f8601238", 4129614529059047, this, []); }
-  set buttonA(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3621334487236366, this, [value]); }
+  get buttonA(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 4129614529059047, this, []); }
+  set buttonA(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3621334487236366, this, [value]); }
   /**
    * var buttonB: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get buttonB(): number { return callSDK<number>("GameController_c1f28409f8601238", 3061117389104531, this, []); }
-  set buttonB(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3750110095659117, this, [value]); }
+  get buttonB(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3061117389104531, this, []); }
+  set buttonB(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3750110095659117, this, [value]); }
   /**
    * var buttonX: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get buttonX(): number { return callSDK<number>("GameController_c1f28409f8601238", 2599242336783997, this, []); }
-  set buttonX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 116775575077523, this, [value]); }
+  get buttonX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2599242336783997, this, []); }
+  set buttonX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 116775575077523, this, [value]); }
   /**
    * var buttonY: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get buttonY(): number { return callSDK<number>("GameController_c1f28409f8601238", 283473367485628, this, []); }
-  set buttonY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2685386473613726, this, [value]); }
+  get buttonY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 283473367485628, this, []); }
+  set buttonY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2685386473613726, this, [value]); }
   /**
    * var dpadX: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get dpadX(): number { return callSDK<number>("GameController_c1f28409f8601238", 4115717683851173, this, []); }
-  set dpadX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3732281341655552, this, [value]); }
+  get dpadX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 4115717683851173, this, []); }
+  set dpadX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3732281341655552, this, [value]); }
   /**
    * var dpadY: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get dpadY(): number { return callSDK<number>("GameController_c1f28409f8601238", 2538704748975338, this, []); }
-  set dpadY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 126406113914536, this, [value]); }
+  get dpadY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2538704748975338, this, []); }
+  set dpadY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 126406113914536, this, [value]); }
   /**
    * var leftShoulder: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get leftShoulder(): number { return callSDK<number>("GameController_c1f28409f8601238", 2195512745202877, this, []); }
-  set leftShoulder(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2906657063460880, this, [value]); }
+  get leftShoulder(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2195512745202877, this, []); }
+  set leftShoulder(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2906657063460880, this, [value]); }
   /**
    * var leftThumbstickButton: ObjCBool
    * @availability iOS 12.1+
    * @deprecated iOS 13.0
    */
-  get leftThumbstickButton(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 4443795018375988, this, []); }
-  set leftThumbstickButton(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 1075822118520243, this, [value]); }
+  get leftThumbstickButton(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 4443795018375988, this, []); }
+  set leftThumbstickButton(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 1075822118520243, this, [value]); }
   /**
    * var leftThumbstickX: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get leftThumbstickX(): number { return callSDK<number>("GameController_c1f28409f8601238", 3082181191155036, this, []); }
-  set leftThumbstickX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1718192596362400, this, [value]); }
+  get leftThumbstickX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3082181191155036, this, []); }
+  set leftThumbstickX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1718192596362400, this, [value]); }
   /**
    * var leftThumbstickY: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get leftThumbstickY(): number { return callSDK<number>("GameController_c1f28409f8601238", 1438680240555935, this, []); }
-  set leftThumbstickY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 711387192508198, this, [value]); }
+  get leftThumbstickY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1438680240555935, this, []); }
+  set leftThumbstickY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 711387192508198, this, [value]); }
   /**
    * var leftTrigger: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get leftTrigger(): number { return callSDK<number>("GameController_c1f28409f8601238", 123962373628148, this, []); }
-  set leftTrigger(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4309573475738187, this, [value]); }
+  get leftTrigger(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 123962373628148, this, []); }
+  set leftTrigger(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4309573475738187, this, [value]); }
   /**
    * var rightShoulder: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get rightShoulder(): number { return callSDK<number>("GameController_c1f28409f8601238", 2028540532515761, this, []); }
-  set rightShoulder(value: number) { callSDK<void>("GameController_c1f28409f8601238", 221897939565315, this, [value]); }
+  get rightShoulder(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2028540532515761, this, []); }
+  set rightShoulder(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 221897939565315, this, [value]); }
   /**
    * var rightThumbstickButton: ObjCBool
    * @availability iOS 12.1+
    * @deprecated iOS 13.0
    */
-  get rightThumbstickButton(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 4380711488211147, this, []); }
-  set rightThumbstickButton(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 49009501103862, this, [value]); }
+  get rightThumbstickButton(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 4380711488211147, this, []); }
+  set rightThumbstickButton(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 49009501103862, this, [value]); }
   /**
    * var rightThumbstickX: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get rightThumbstickX(): number { return callSDK<number>("GameController_c1f28409f8601238", 756009859975347, this, []); }
-  set rightThumbstickX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2773342613288749, this, [value]); }
+  get rightThumbstickX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 756009859975347, this, []); }
+  set rightThumbstickX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2773342613288749, this, [value]); }
   /**
    * var rightThumbstickY: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get rightThumbstickY(): number { return callSDK<number>("GameController_c1f28409f8601238", 863017914893505, this, []); }
-  set rightThumbstickY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1530037726767814, this, [value]); }
+  get rightThumbstickY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 863017914893505, this, []); }
+  set rightThumbstickY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1530037726767814, this, [value]); }
   /**
    * var rightTrigger: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get rightTrigger(): number { return callSDK<number>("GameController_c1f28409f8601238", 2062811497351276, this, []); }
-  set rightTrigger(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1932259299212430, this, [value]); }
+  get rightTrigger(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2062811497351276, this, []); }
+  set rightTrigger(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1932259299212430, this, [value]); }
   /**
    * var size: UInt16
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get size(): number { return callSDK<number>("GameController_c1f28409f8601238", 3256470899622261, this, []); }
-  set size(value: number) { callSDK<void>("GameController_c1f28409f8601238", 577982762061710, this, [value]); }
+  get size(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3256470899622261, this, []); }
+  set size(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 577982762061710, this, [value]); }
   /**
    * var supportsClickableThumbsticks: ObjCBool
    * @availability iOS 12.1+
    * @deprecated iOS 13.0
    */
-  get supportsClickableThumbsticks(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2563637841510176, this, []); }
-  set supportsClickableThumbsticks(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 4485312153839631, this, [value]); }
+  get supportsClickableThumbsticks(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2563637841510176, this, []); }
+  set supportsClickableThumbsticks(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 4485312153839631, this, [value]); }
   /**
    * var version: UInt16
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get version(): number { return callSDK<number>("GameController_c1f28409f8601238", 249839531866083, this, []); }
-  set version(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4409079174905982, this, [value]); }
+  get version(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 249839531866083, this, []); }
+  set version(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4409079174905982, this, [value]); }
   /**
    * init(version: UInt16, size: UInt16, dpadX: Float, dpadY: Float, buttonA: Float, buttonB: Float, buttonX: Float, buttonY: Float, leftShoulder: Float, rightShoulder: Float, leftThumbstickX: Float, leftThumbstickY: Float, rightThumbstickX: Float, rightThumbstickY: Float, leftTrigger: Float, rightTrigger: Float, supportsClickableThumbsticks: ObjCBool, leftThumbstickButton: ObjCBool, rightThumbstickButton: ObjCBool)
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  static initVersionSizeDpadXDpadYButtonAButtonBButtonXButtonYLeftShoulderRightShoulderLeftThumbstickXLeftThumbstickYRightThumbstickXRightThumbstickYLeftTriggerRightTriggerSupportsClickableThumbsticksLeftThumbstickButtonRightThumbstickButton(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonB: number, buttonX: number, buttonY: number, leftShoulder: number, rightShoulder: number, leftThumbstickX: number, leftThumbstickY: number, rightThumbstickX: number, rightThumbstickY: number, leftTrigger: number, rightTrigger: number, supportsClickableThumbsticks: boolean, leftThumbstickButton: boolean, rightThumbstickButton: boolean): GCExtendedGamepadSnapshotData { return callSDK<GCExtendedGamepadSnapshotData>("GameController_c1f28409f8601238", 2376497076244833, undefined, [version, size, dpadX, dpadY, buttonA, buttonB, buttonX, buttonY, leftShoulder, rightShoulder, leftThumbstickX, leftThumbstickY, rightThumbstickX, rightThumbstickY, leftTrigger, rightTrigger, supportsClickableThumbsticks, leftThumbstickButton, rightThumbstickButton]); }
+  static initVersionSizeDpadXDpadYButtonAButtonBButtonXButtonYLeftShoulderRightShoulderLeftThumbstickXLeftThumbstickYRightThumbstickXRightThumbstickYLeftTriggerRightTriggerSupportsClickableThumbsticksLeftThumbstickButtonRightThumbstickButton(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonB: number, buttonX: number, buttonY: number, leftShoulder: number, rightShoulder: number, leftThumbstickX: number, leftThumbstickY: number, rightThumbstickX: number, rightThumbstickY: number, leftTrigger: number, rightTrigger: number, supportsClickableThumbsticks: boolean, leftThumbstickButton: boolean, rightThumbstickButton: boolean): GCExtendedGamepadSnapshotData { return callSDK<GCExtendedGamepadSnapshotData>("GameController_e11dfd5beee01da3", 2376497076244833, undefined, [version, size, dpadX, dpadY, buttonA, buttonB, buttonX, buttonY, leftShoulder, rightShoulder, leftThumbstickX, leftThumbstickY, rightThumbstickX, rightThumbstickY, leftTrigger, rightTrigger, supportsClickableThumbsticks, leftThumbstickButton, rightThumbstickButton]); }
   /**
    * init()
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  static init(): GCExtendedGamepadSnapshotData { return callSDK<GCExtendedGamepadSnapshotData>("GameController_c1f28409f8601238", 692092713349284, undefined, []); }
+  static init(): GCExtendedGamepadSnapshotData { return callSDK<GCExtendedGamepadSnapshotData>("GameController_e11dfd5beee01da3", 692092713349284, undefined, []); }
   declare readonly $type: { "c:@SA@GCExtendedGamepadSnapshotData": true };
 }
 
@@ -2016,125 +2016,125 @@ export class GCExtendedGamepadSnapShotDataV100 extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonA(): number { return callSDK<number>("GameController_c1f28409f8601238", 3083765976687073, this, []); }
-  set buttonA(value: number) { callSDK<void>("GameController_c1f28409f8601238", 314238538203650, this, [value]); }
+  get buttonA(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3083765976687073, this, []); }
+  set buttonA(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 314238538203650, this, [value]); }
   /**
    * var buttonB: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonB(): number { return callSDK<number>("GameController_c1f28409f8601238", 27389438923068, this, []); }
-  set buttonB(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3285329715371170, this, [value]); }
+  get buttonB(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 27389438923068, this, []); }
+  set buttonB(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3285329715371170, this, [value]); }
   /**
    * var buttonX: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonX(): number { return callSDK<number>("GameController_c1f28409f8601238", 3920064901708602, this, []); }
-  set buttonX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 587576162314431, this, [value]); }
+  get buttonX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3920064901708602, this, []); }
+  set buttonX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 587576162314431, this, [value]); }
   /**
    * var buttonY: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonY(): number { return callSDK<number>("GameController_c1f28409f8601238", 2705332354358666, this, []); }
-  set buttonY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4102488500351541, this, [value]); }
+  get buttonY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2705332354358666, this, []); }
+  set buttonY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4102488500351541, this, [value]); }
   /**
    * var dpadX: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get dpadX(): number { return callSDK<number>("GameController_c1f28409f8601238", 3390522221717190, this, []); }
-  set dpadX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4406380363046662, this, [value]); }
+  get dpadX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3390522221717190, this, []); }
+  set dpadX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4406380363046662, this, [value]); }
   /**
    * var dpadY: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get dpadY(): number { return callSDK<number>("GameController_c1f28409f8601238", 2115193003533176, this, []); }
-  set dpadY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4200600316193194, this, [value]); }
+  get dpadY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2115193003533176, this, []); }
+  set dpadY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4200600316193194, this, [value]); }
   /**
    * var leftShoulder: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get leftShoulder(): number { return callSDK<number>("GameController_c1f28409f8601238", 1285094255430278, this, []); }
-  set leftShoulder(value: number) { callSDK<void>("GameController_c1f28409f8601238", 96828567343291, this, [value]); }
+  get leftShoulder(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1285094255430278, this, []); }
+  set leftShoulder(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 96828567343291, this, [value]); }
   /**
    * var leftThumbstickX: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get leftThumbstickX(): number { return callSDK<number>("GameController_c1f28409f8601238", 3911895786312731, this, []); }
-  set leftThumbstickX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 803130886027344, this, [value]); }
+  get leftThumbstickX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3911895786312731, this, []); }
+  set leftThumbstickX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 803130886027344, this, [value]); }
   /**
    * var leftThumbstickY: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get leftThumbstickY(): number { return callSDK<number>("GameController_c1f28409f8601238", 3148486260575934, this, []); }
-  set leftThumbstickY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1283428374149283, this, [value]); }
+  get leftThumbstickY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3148486260575934, this, []); }
+  set leftThumbstickY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1283428374149283, this, [value]); }
   /**
    * var leftTrigger: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get leftTrigger(): number { return callSDK<number>("GameController_c1f28409f8601238", 1291627585215044, this, []); }
-  set leftTrigger(value: number) { callSDK<void>("GameController_c1f28409f8601238", 412669931458903, this, [value]); }
+  get leftTrigger(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1291627585215044, this, []); }
+  set leftTrigger(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 412669931458903, this, [value]); }
   /**
    * var rightShoulder: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get rightShoulder(): number { return callSDK<number>("GameController_c1f28409f8601238", 1587917989085159, this, []); }
-  set rightShoulder(value: number) { callSDK<void>("GameController_c1f28409f8601238", 904186977201899, this, [value]); }
+  get rightShoulder(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1587917989085159, this, []); }
+  set rightShoulder(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 904186977201899, this, [value]); }
   /**
    * var rightThumbstickX: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get rightThumbstickX(): number { return callSDK<number>("GameController_c1f28409f8601238", 914384108813886, this, []); }
-  set rightThumbstickX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1892294332660698, this, [value]); }
+  get rightThumbstickX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 914384108813886, this, []); }
+  set rightThumbstickX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1892294332660698, this, [value]); }
   /**
    * var rightThumbstickY: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get rightThumbstickY(): number { return callSDK<number>("GameController_c1f28409f8601238", 2109212280878485, this, []); }
-  set rightThumbstickY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2793590547613720, this, [value]); }
+  get rightThumbstickY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2109212280878485, this, []); }
+  set rightThumbstickY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2793590547613720, this, [value]); }
   /**
    * var rightTrigger: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get rightTrigger(): number { return callSDK<number>("GameController_c1f28409f8601238", 808838210526275, this, []); }
-  set rightTrigger(value: number) { callSDK<void>("GameController_c1f28409f8601238", 253614400516875, this, [value]); }
+  get rightTrigger(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 808838210526275, this, []); }
+  set rightTrigger(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 253614400516875, this, [value]); }
   /**
    * var size: UInt16
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get size(): number { return callSDK<number>("GameController_c1f28409f8601238", 1618353928471460, this, []); }
-  set size(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2039120374426058, this, [value]); }
+  get size(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1618353928471460, this, []); }
+  set size(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2039120374426058, this, [value]); }
   /**
    * var version: UInt16
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get version(): number { return callSDK<number>("GameController_c1f28409f8601238", 731986852201953, this, []); }
-  set version(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1886617695544557, this, [value]); }
+  get version(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 731986852201953, this, []); }
+  set version(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1886617695544557, this, [value]); }
   /**
    * init(version: UInt16, size: UInt16, dpadX: Float, dpadY: Float, buttonA: Float, buttonB: Float, buttonX: Float, buttonY: Float, leftShoulder: Float, rightShoulder: Float, leftThumbstickX: Float, leftThumbstickY: Float, rightThumbstickX: Float, rightThumbstickY: Float, leftTrigger: Float, rightTrigger: Float)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initVersionSizeDpadXDpadYButtonAButtonBButtonXButtonYLeftShoulderRightShoulderLeftThumbstickXLeftThumbstickYRightThumbstickXRightThumbstickYLeftTriggerRightTrigger(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonB: number, buttonX: number, buttonY: number, leftShoulder: number, rightShoulder: number, leftThumbstickX: number, leftThumbstickY: number, rightThumbstickX: number, rightThumbstickY: number, leftTrigger: number, rightTrigger: number): GCExtendedGamepadSnapShotDataV100 { return callSDK<GCExtendedGamepadSnapShotDataV100>("GameController_c1f28409f8601238", 2100946609969961, undefined, [version, size, dpadX, dpadY, buttonA, buttonB, buttonX, buttonY, leftShoulder, rightShoulder, leftThumbstickX, leftThumbstickY, rightThumbstickX, rightThumbstickY, leftTrigger, rightTrigger]); }
+  static initVersionSizeDpadXDpadYButtonAButtonBButtonXButtonYLeftShoulderRightShoulderLeftThumbstickXLeftThumbstickYRightThumbstickXRightThumbstickYLeftTriggerRightTrigger(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonB: number, buttonX: number, buttonY: number, leftShoulder: number, rightShoulder: number, leftThumbstickX: number, leftThumbstickY: number, rightThumbstickX: number, rightThumbstickY: number, leftTrigger: number, rightTrigger: number): GCExtendedGamepadSnapShotDataV100 { return callSDK<GCExtendedGamepadSnapShotDataV100>("GameController_e11dfd5beee01da3", 2100946609969961, undefined, [version, size, dpadX, dpadY, buttonA, buttonB, buttonX, buttonY, leftShoulder, rightShoulder, leftThumbstickX, leftThumbstickY, rightThumbstickX, rightThumbstickY, leftTrigger, rightTrigger]); }
   /**
    * init()
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static init(): GCExtendedGamepadSnapShotDataV100 { return callSDK<GCExtendedGamepadSnapShotDataV100>("GameController_c1f28409f8601238", 4257872276905132, undefined, []); }
+  static init(): GCExtendedGamepadSnapShotDataV100 { return callSDK<GCExtendedGamepadSnapShotDataV100>("GameController_e11dfd5beee01da3", 4257872276905132, undefined, []); }
   declare readonly $type: { "c:@SA@GCExtendedGamepadSnapShotDataV100": true };
 }
 
@@ -2151,7 +2151,7 @@ export const GCExtendedGamepadSnapshotDataVersion = {
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  init(rawValue: number): (GCExtendedGamepadSnapshotDataVersion) | null { return callSDK<(GCExtendedGamepadSnapshotDataVersion) | null>("GameController_c1f28409f8601238", 3560236557056082, undefined, [rawValue]); }
+  init(rawValue: number): (GCExtendedGamepadSnapshotDataVersion) | null { return callSDK<(GCExtendedGamepadSnapshotDataVersion) | null>("GameController_e11dfd5beee01da3", 3560236557056082, undefined, [rawValue]); }
 };
 
 /**
@@ -2169,7 +2169,7 @@ export class GCGameControllerActivationContext extends SDKHandle {
    * var previousApplicationBundleID: String? { get }
    * @availability iOS 18.0+
    */
-  get previousApplicationBundleID(): (string) | null { return callSDK<(string) | null>("GameController_c1f28409f8601238", 1073982269741682, this, []); }
+  get previousApplicationBundleID(): (string) | null { return callSDK<(string) | null>("GameController_e11dfd5beee01da3", 1073982269741682, this, []); }
   declare readonly $type: { "c:objc(cs)GCGameControllerActivationContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "previousApplicationBundleID": true };
 }
@@ -2193,68 +2193,68 @@ export interface GCGameControllerSceneDelegate {
  */
 export class GCGamepad extends (GCPhysicalInputProfile as unknown as Omit<typeof GCPhysicalInputProfile, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCPhysicalInputProfile)) {
   /** init() */
-  static init(): GCGamepad { return callSDK<GCGamepad>("GameController_c1f28409f8601238", 1500360952057369, undefined, []); }
+  static init(): GCGamepad { return callSDK<GCGamepad>("GameController_e11dfd5beee01da3", 1500360952057369, undefined, []); }
   /**
    * func saveSnapshot() -> GCGamepadSnapshot
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  saveSnapshot(): GCGamepadSnapshot { return callSDK<GCGamepadSnapshot>("GameController_c1f28409f8601238", 2669759149258048, this, []); }
+  saveSnapshot(): GCGamepadSnapshot { return callSDK<GCGamepadSnapshot>("GameController_e11dfd5beee01da3", 2669759149258048, this, []); }
   /**
    * var buttonA: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get buttonA(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2483552845252552, this, []); }
+  get buttonA(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2483552845252552, this, []); }
   /**
    * var buttonB: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get buttonB(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2048255411060860, this, []); }
+  get buttonB(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2048255411060860, this, []); }
   /**
    * var buttonX: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get buttonX(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1754819051006883, this, []); }
+  get buttonX(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1754819051006883, this, []); }
   /**
    * var buttonY: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get buttonY(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 3216794429382532, this, []); }
+  get buttonY(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 3216794429382532, this, []); }
   /**
    * weak var controller: GCController? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_c1f28409f8601238", 1860063384386786, this, []); }
+  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_e11dfd5beee01da3", 1860063384386786, this, []); }
   /**
    * var dpad: GCControllerDirectionPad { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get dpad(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_c1f28409f8601238", 3256961262066945, this, []); }
+  get dpad(): GCControllerDirectionPad { return callSDK<GCControllerDirectionPad>("GameController_e11dfd5beee01da3", 3256961262066945, this, []); }
   /**
    * var leftShoulder: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get leftShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 765622300078533, this, []); }
+  get leftShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 765622300078533, this, []); }
   /**
    * var rightShoulder: GCControllerButtonInput { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get rightShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 1669161053164319, this, []); }
+  get rightShoulder(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 1669161053164319, this, []); }
   /**
    * var valueChangedHandler: GCGamepadValueChangedHandler? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get valueChangedHandler(): (((arg0: GCGamepad, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCGamepad, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_c1f28409f8601238", 4489945078337844, this, []); }
-  set valueChangedHandler(value: (((arg0: GCGamepad, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 657773542026797, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): (((arg0: GCGamepad, arg1: GCControllerElement) => Promise<void>)) | null { return callSDK<(((arg0: GCGamepad, arg1: GCControllerElement) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 4489945078337844, this, []); }
+  set valueChangedHandler(value: (((arg0: GCGamepad, arg1: GCControllerElement) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 657773542026797, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "rightShoulder": true };
 }
@@ -2270,20 +2270,20 @@ export class GCGamepadSnapshot extends GCGamepad {
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initControllerSnapshotData(controller: GCController, data: ArrayBuffer): GCGamepadSnapshot { return callSDK<GCGamepadSnapshot>("GameController_c1f28409f8601238", 4292176777493713, undefined, [controller, data]); }
+  static initControllerSnapshotData(controller: GCController, data: ArrayBuffer): GCGamepadSnapshot { return callSDK<GCGamepadSnapshot>("GameController_e11dfd5beee01da3", 4292176777493713, undefined, [controller, data]); }
   /**
    * init(snapshotData data: Data)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initSnapshotData(data: ArrayBuffer): GCGamepadSnapshot { return callSDK<GCGamepadSnapshot>("GameController_c1f28409f8601238", 2476356888202589, undefined, [data]); }
+  static initSnapshotData(data: ArrayBuffer): GCGamepadSnapshot { return callSDK<GCGamepadSnapshot>("GameController_e11dfd5beee01da3", 2476356888202589, undefined, [data]); }
   /**
    * var snapshotData: Data { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get snapshotData(): ArrayBuffer { return callSDK<ArrayBuffer>("GameController_c1f28409f8601238", 4188860498465287, this, []); }
-  set snapshotData(value: ArrayBuffer) { callSDK<void>("GameController_c1f28409f8601238", 1956899559397508, this, [value]); }
+  get snapshotData(): ArrayBuffer { return callSDK<ArrayBuffer>("GameController_e11dfd5beee01da3", 4188860498465287, this, []); }
+  set snapshotData(value: ArrayBuffer) { callSDK<void>("GameController_e11dfd5beee01da3", 1956899559397508, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCGamepadSnapshot": true; "c:objc(cs)GCGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "rightShoulder": true; "snapshotData": true };
 }
@@ -2299,83 +2299,83 @@ export class GCGamepadSnapShotDataV100 extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonA(): number { return callSDK<number>("GameController_c1f28409f8601238", 1276778585501531, this, []); }
-  set buttonA(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4147989323355806, this, [value]); }
+  get buttonA(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1276778585501531, this, []); }
+  set buttonA(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4147989323355806, this, [value]); }
   /**
    * var buttonB: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonB(): number { return callSDK<number>("GameController_c1f28409f8601238", 1071180793444507, this, []); }
-  set buttonB(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3544786981669767, this, [value]); }
+  get buttonB(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1071180793444507, this, []); }
+  set buttonB(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3544786981669767, this, [value]); }
   /**
    * var buttonX: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonX(): number { return callSDK<number>("GameController_c1f28409f8601238", 484209435887586, this, []); }
-  set buttonX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 743446101176583, this, [value]); }
+  get buttonX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 484209435887586, this, []); }
+  set buttonX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 743446101176583, this, [value]); }
   /**
    * var buttonY: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get buttonY(): number { return callSDK<number>("GameController_c1f28409f8601238", 358945752203118, this, []); }
-  set buttonY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1935175907385625, this, [value]); }
+  get buttonY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 358945752203118, this, []); }
+  set buttonY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1935175907385625, this, [value]); }
   /**
    * var dpadX: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get dpadX(): number { return callSDK<number>("GameController_c1f28409f8601238", 1182797217277441, this, []); }
-  set dpadX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3026306614719222, this, [value]); }
+  get dpadX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1182797217277441, this, []); }
+  set dpadX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3026306614719222, this, [value]); }
   /**
    * var dpadY: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get dpadY(): number { return callSDK<number>("GameController_c1f28409f8601238", 2353644581162951, this, []); }
-  set dpadY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4004812695847861, this, [value]); }
+  get dpadY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2353644581162951, this, []); }
+  set dpadY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4004812695847861, this, [value]); }
   /**
    * var leftShoulder: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get leftShoulder(): number { return callSDK<number>("GameController_c1f28409f8601238", 1511476662682579, this, []); }
-  set leftShoulder(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2387077531756852, this, [value]); }
+  get leftShoulder(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1511476662682579, this, []); }
+  set leftShoulder(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2387077531756852, this, [value]); }
   /**
    * var rightShoulder: Float
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get rightShoulder(): number { return callSDK<number>("GameController_c1f28409f8601238", 475061088887760, this, []); }
-  set rightShoulder(value: number) { callSDK<void>("GameController_c1f28409f8601238", 550748729247066, this, [value]); }
+  get rightShoulder(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 475061088887760, this, []); }
+  set rightShoulder(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 550748729247066, this, [value]); }
   /**
    * var size: UInt16
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get size(): number { return callSDK<number>("GameController_c1f28409f8601238", 402675002708428, this, []); }
-  set size(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4381882238285390, this, [value]); }
+  get size(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 402675002708428, this, []); }
+  set size(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4381882238285390, this, [value]); }
   /**
    * var version: UInt16
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get version(): number { return callSDK<number>("GameController_c1f28409f8601238", 2457474506129271, this, []); }
-  set version(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3070009183916120, this, [value]); }
+  get version(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2457474506129271, this, []); }
+  set version(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3070009183916120, this, [value]); }
   /**
    * init(version: UInt16, size: UInt16, dpadX: Float, dpadY: Float, buttonA: Float, buttonB: Float, buttonX: Float, buttonY: Float, leftShoulder: Float, rightShoulder: Float)
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static initVersionSizeDpadXDpadYButtonAButtonBButtonXButtonYLeftShoulderRightShoulder(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonB: number, buttonX: number, buttonY: number, leftShoulder: number, rightShoulder: number): GCGamepadSnapShotDataV100 { return callSDK<GCGamepadSnapShotDataV100>("GameController_c1f28409f8601238", 1929131696356790, undefined, [version, size, dpadX, dpadY, buttonA, buttonB, buttonX, buttonY, leftShoulder, rightShoulder]); }
+  static initVersionSizeDpadXDpadYButtonAButtonBButtonXButtonYLeftShoulderRightShoulder(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonB: number, buttonX: number, buttonY: number, leftShoulder: number, rightShoulder: number): GCGamepadSnapShotDataV100 { return callSDK<GCGamepadSnapShotDataV100>("GameController_e11dfd5beee01da3", 1929131696356790, undefined, [version, size, dpadX, dpadY, buttonA, buttonB, buttonX, buttonY, leftShoulder, rightShoulder]); }
   /**
    * init()
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  static init(): GCGamepadSnapShotDataV100 { return callSDK<GCGamepadSnapShotDataV100>("GameController_c1f28409f8601238", 4134412919742156, undefined, []); }
+  static init(): GCGamepadSnapShotDataV100 { return callSDK<GCGamepadSnapShotDataV100>("GameController_e11dfd5beee01da3", 4134412919742156, undefined, []); }
   declare readonly $type: { "c:@SA@GCGamepadSnapShotDataV100": true };
 }
 
@@ -2396,47 +2396,47 @@ export const GCHapticsLocality = {
    * static let all: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get all(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 957252796260597, undefined, []); },
+  get all(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 957252796260597, undefined, []); },
   /**
    * static let `default`: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get default(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 2011330457185464, undefined, []); },
+  get default(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 2011330457185464, undefined, []); },
   /**
    * static let handles: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get handles(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 96461375456180, undefined, []); },
+  get handles(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 96461375456180, undefined, []); },
   /**
    * static let leftHandle: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get leftHandle(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 987654862891344, undefined, []); },
+  get leftHandle(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 987654862891344, undefined, []); },
   /**
    * static let leftTrigger: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get leftTrigger(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 593859521401183, undefined, []); },
+  get leftTrigger(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 593859521401183, undefined, []); },
   /**
    * static let rightHandle: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get rightHandle(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 2327256392426005, undefined, []); },
+  get rightHandle(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 2327256392426005, undefined, []); },
   /**
    * static let rightTrigger: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get rightTrigger(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 3354969995102119, undefined, []); },
+  get rightTrigger(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 3354969995102119, undefined, []); },
   /**
    * static let triggers: GCHapticsLocality
    * @availability iOS 14.0+
    */
-  get triggers(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 2651224639256530, undefined, []); },
+  get triggers(): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 2651224639256530, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 14.0+
    */
-  init(rawValue: string): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_c1f28409f8601238", 1496025990710755, undefined, [rawValue]); }
+  init(rawValue: string): GCHapticsLocality { return callSDK<GCHapticsLocality>("GameController_e11dfd5beee01da3", 1496025990710755, undefined, [rawValue]); }
 };
 
 /**
@@ -2448,14 +2448,14 @@ export class GCKeyboard extends SDKHandle {
    * class var coalesced: GCKeyboard? { get }
    * @availability iOS 14.0+
    */
-  static get coalesced(): (GCKeyboard) | null { return callSDK<(GCKeyboard) | null>("GameController_c1f28409f8601238", 3112796896055983, undefined, []); }
+  static get coalesced(): (GCKeyboard) | null { return callSDK<(GCKeyboard) | null>("GameController_e11dfd5beee01da3", 3112796896055983, undefined, []); }
   /** init() */
-  static init(): GCKeyboard { return callSDK<GCKeyboard>("GameController_c1f28409f8601238", 412075561482590, undefined, []); }
+  static init(): GCKeyboard { return callSDK<GCKeyboard>("GameController_e11dfd5beee01da3", 412075561482590, undefined, []); }
   /**
    * var keyboardInput: GCKeyboardInput? { get }
    * @availability iOS 14.0+
    */
-  get keyboardInput(): (GCKeyboardInput) | null { return callSDK<(GCKeyboardInput) | null>("GameController_c1f28409f8601238", 3830525686451722, this, []); }
+  get keyboardInput(): (GCKeyboardInput) | null { return callSDK<(GCKeyboardInput) | null>("GameController_e11dfd5beee01da3", 3830525686451722, this, []); }
   declare readonly $type: { "c:objc(cs)GCKeyboard": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "keyboardInput": true };
 }
@@ -2469,23 +2469,23 @@ export class GCKeyboard_DidConnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCKeyboard.DidConnectMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCKeyboard_DidConnectMessage) | null> { return callSDKAsync<(GCKeyboard_DidConnectMessage) | null>("GameController_c1f28409f8601238", 1252973773120376, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCKeyboard_DidConnectMessage) | null> { return callSDKAsync<(GCKeyboard_DidConnectMessage) | null>("GameController_e11dfd5beee01da3", 1252973773120376, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 1186271979144550, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 1186271979144550, undefined, []); }
   /**
    * var keyboard: GCKeyboard
    * @availability iOS 26.0+
    */
-  get keyboard(): GCKeyboard { return callSDK<GCKeyboard>("GameController_c1f28409f8601238", 1259979484228092, this, []); }
-  set keyboard(value: GCKeyboard) { callSDK<void>("GameController_c1f28409f8601238", 4223377399554008, this, [value]); }
+  get keyboard(): GCKeyboard { return callSDK<GCKeyboard>("GameController_e11dfd5beee01da3", 1259979484228092, this, []); }
+  set keyboard(value: GCKeyboard) { callSDK<void>("GameController_e11dfd5beee01da3", 4223377399554008, this, [value]); }
   /**
    * init(keyboard: GCKeyboard)
    * @availability iOS 26.0+
    */
-  static init(keyboard: GCKeyboard): GCKeyboard_DidConnectMessage { return callSDK<GCKeyboard_DidConnectMessage>("GameController_c1f28409f8601238", 3526715278072926, undefined, [keyboard]); }
+  static init(keyboard: GCKeyboard): GCKeyboard_DidConnectMessage { return callSDK<GCKeyboard_DidConnectMessage>("GameController_e11dfd5beee01da3", 3526715278072926, undefined, [keyboard]); }
   declare readonly $type: { "s:So10GCKeyboardC14GameControllerE17DidConnectMessageV": true };
 }
 
@@ -2504,23 +2504,23 @@ export class GCKeyboard_DidDisconnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCKeyboard.DidDisconnectMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCKeyboard_DidDisconnectMessage) | null> { return callSDKAsync<(GCKeyboard_DidDisconnectMessage) | null>("GameController_c1f28409f8601238", 3283388094021993, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCKeyboard_DidDisconnectMessage) | null> { return callSDKAsync<(GCKeyboard_DidDisconnectMessage) | null>("GameController_e11dfd5beee01da3", 3283388094021993, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 2977657565466344, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 2977657565466344, undefined, []); }
   /**
    * var keyboard: GCKeyboard
    * @availability iOS 26.0+
    */
-  get keyboard(): GCKeyboard { return callSDK<GCKeyboard>("GameController_c1f28409f8601238", 1882665020363893, this, []); }
-  set keyboard(value: GCKeyboard) { callSDK<void>("GameController_c1f28409f8601238", 1261733758800758, this, [value]); }
+  get keyboard(): GCKeyboard { return callSDK<GCKeyboard>("GameController_e11dfd5beee01da3", 1882665020363893, this, []); }
+  set keyboard(value: GCKeyboard) { callSDK<void>("GameController_e11dfd5beee01da3", 1261733758800758, this, [value]); }
   /**
    * init(keyboard: GCKeyboard)
    * @availability iOS 26.0+
    */
-  static init(keyboard: GCKeyboard): GCKeyboard_DidDisconnectMessage { return callSDK<GCKeyboard_DidDisconnectMessage>("GameController_c1f28409f8601238", 3129304654352636, undefined, [keyboard]); }
+  static init(keyboard: GCKeyboard): GCKeyboard_DidDisconnectMessage { return callSDK<GCKeyboard_DidDisconnectMessage>("GameController_e11dfd5beee01da3", 3129304654352636, undefined, [keyboard]); }
   declare readonly $type: { "s:So10GCKeyboardC14GameControllerE20DidDisconnectMessageV": true };
 }
 
@@ -2539,20 +2539,20 @@ export class GCKeyboardInput extends (GCPhysicalInputProfile as unknown as Omit<
    * func button(forKeyCode code: GCKeyCode) -> GCControllerButtonInput?
    * @availability iOS 14.0+
    */
-  button(code: GCKeyCode): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 3473601121756950, this, [code]); }
+  button(code: GCKeyCode): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 3473601121756950, this, [code]); }
   /** init() */
-  static init(): GCKeyboardInput { return callSDK<GCKeyboardInput>("GameController_c1f28409f8601238", 2097501101629268, undefined, []); }
+  static init(): GCKeyboardInput { return callSDK<GCKeyboardInput>("GameController_e11dfd5beee01da3", 2097501101629268, undefined, []); }
   /**
    * var isAnyKeyPressed: Bool { get }
    * @availability iOS 14.0+
    */
-  get isAnyKeyPressed(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2247349208060831, this, []); }
+  get isAnyKeyPressed(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2247349208060831, this, []); }
   /**
    * var keyChangedHandler: GCKeyboardValueChangedHandler? { get set }
    * @availability iOS 14.0+
    */
-  get keyChangedHandler(): (((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => Promise<void>)) | null { return callSDK<(((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => Promise<void>)) | null>("GameController_c1f28409f8601238", 1036039483796590, this, []); }
-  set keyChangedHandler(value: (((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 850816426151125, this, [value], [{"callback":{"out":[]}}]); }
+  get keyChangedHandler(): (((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => Promise<void>)) | null { return callSDK<(((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 1036039483796590, this, []); }
+  set keyChangedHandler(value: (((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 850816426151125, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCKeyboardInput": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "isAnyKeyPressed": true };
 }
@@ -2574,677 +2574,677 @@ export const GCKeyCode = {
    * static let application: GCKeyCode
    * @availability iOS 14.0+
    */
-  get application(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3139617999536298, undefined, []); },
+  get application(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3139617999536298, undefined, []); },
   /**
    * static let backslash: GCKeyCode
    * @availability iOS 14.0+
    */
-  get backslash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1439543198931590, undefined, []); },
+  get backslash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1439543198931590, undefined, []); },
   /**
    * static let capsLock: GCKeyCode
    * @availability iOS 14.0+
    */
-  get capsLock(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2520354117268566, undefined, []); },
+  get capsLock(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2520354117268566, undefined, []); },
   /**
    * static let closeBracket: GCKeyCode
    * @availability iOS 14.0+
    */
-  get closeBracket(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1262735605454645, undefined, []); },
+  get closeBracket(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1262735605454645, undefined, []); },
   /**
    * static let comma: GCKeyCode
    * @availability iOS 14.0+
    */
-  get comma(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3448923761307073, undefined, []); },
+  get comma(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3448923761307073, undefined, []); },
   /**
    * static let deleteForward: GCKeyCode
    * @availability iOS 14.0+
    */
-  get deleteForward(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2428579626294254, undefined, []); },
+  get deleteForward(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2428579626294254, undefined, []); },
   /**
    * static let deleteOrBackspace: GCKeyCode
    * @availability iOS 14.0+
    */
-  get deleteOrBackspace(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2602564741776281, undefined, []); },
+  get deleteOrBackspace(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2602564741776281, undefined, []); },
   /**
    * static let downArrow: GCKeyCode
    * @availability iOS 14.0+
    */
-  get downArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2040596926146175, undefined, []); },
+  get downArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2040596926146175, undefined, []); },
   /**
    * static let eight: GCKeyCode
    * @availability iOS 14.0+
    */
-  get eight(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1284236380522632, undefined, []); },
+  get eight(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1284236380522632, undefined, []); },
   /**
    * static let end: GCKeyCode
    * @availability iOS 14.0+
    */
-  get end(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3865261932438623, undefined, []); },
+  get end(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3865261932438623, undefined, []); },
   /**
    * static let equalSign: GCKeyCode
    * @availability iOS 14.0+
    */
-  get equalSign(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2826778518673685, undefined, []); },
+  get equalSign(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2826778518673685, undefined, []); },
   /**
    * static let escape: GCKeyCode
    * @availability iOS 14.0+
    */
-  get escape(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2393304314198794, undefined, []); },
+  get escape(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2393304314198794, undefined, []); },
   /**
    * static let F10: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F10(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3936087393383875, undefined, []); },
+  get F10(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3936087393383875, undefined, []); },
   /**
    * static let F11: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F11(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3134874944827041, undefined, []); },
+  get F11(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3134874944827041, undefined, []); },
   /**
    * static let F12: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F12(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 554805426470905, undefined, []); },
+  get F12(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 554805426470905, undefined, []); },
   /**
    * static let F13: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F13(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 167192242466761, undefined, []); },
+  get F13(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 167192242466761, undefined, []); },
   /**
    * static let F14: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F14(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 411848751405823, undefined, []); },
+  get F14(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 411848751405823, undefined, []); },
   /**
    * static let F15: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F15(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1223142794476771, undefined, []); },
+  get F15(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1223142794476771, undefined, []); },
   /**
    * static let F16: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F16(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1508430316686374, undefined, []); },
+  get F16(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1508430316686374, undefined, []); },
   /**
    * static let F17: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F17(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 820943822912671, undefined, []); },
+  get F17(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 820943822912671, undefined, []); },
   /**
    * static let F18: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F18(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2557215401484710, undefined, []); },
+  get F18(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2557215401484710, undefined, []); },
   /**
    * static let F19: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F19(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1777177402715965, undefined, []); },
+  get F19(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1777177402715965, undefined, []); },
   /**
    * static let F1: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4341191792753837, undefined, []); },
+  get F1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4341191792753837, undefined, []); },
   /**
    * static let F20: GCKeyCode
    * @availability iOS 15.0+
    */
-  get F20(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 86802737913616, undefined, []); },
+  get F20(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 86802737913616, undefined, []); },
   /**
    * static let F2: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4171492084494965, undefined, []); },
+  get F2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4171492084494965, undefined, []); },
   /**
    * static let F3: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4084181255858076, undefined, []); },
+  get F3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4084181255858076, undefined, []); },
   /**
    * static let F4: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2916347345907358, undefined, []); },
+  get F4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2916347345907358, undefined, []); },
   /**
    * static let F5: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3051498697959053, undefined, []); },
+  get F5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3051498697959053, undefined, []); },
   /**
    * static let F6: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3816752502517819, undefined, []); },
+  get F6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3816752502517819, undefined, []); },
   /**
    * static let F7: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3219591509053531, undefined, []); },
+  get F7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3219591509053531, undefined, []); },
   /**
    * static let F8: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2490768413148530, undefined, []); },
+  get F8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2490768413148530, undefined, []); },
   /**
    * static let F9: GCKeyCode
    * @availability iOS 14.0+
    */
-  get F9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 206410387977058, undefined, []); },
+  get F9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 206410387977058, undefined, []); },
   /**
    * static let five: GCKeyCode
    * @availability iOS 14.0+
    */
-  get five(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 380304901055791, undefined, []); },
+  get five(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 380304901055791, undefined, []); },
   /**
    * static let four: GCKeyCode
    * @availability iOS 14.0+
    */
-  get four(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 49243037858383, undefined, []); },
+  get four(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 49243037858383, undefined, []); },
   /**
    * static let graveAccentAndTilde: GCKeyCode
    * @availability iOS 14.0+
    */
-  get graveAccentAndTilde(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 735357705929663, undefined, []); },
+  get graveAccentAndTilde(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 735357705929663, undefined, []); },
   /**
    * static let home: GCKeyCode
    * @availability iOS 14.0+
    */
-  get home(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1773273888418297, undefined, []); },
+  get home(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1773273888418297, undefined, []); },
   /**
    * static let hyphen: GCKeyCode
    * @availability iOS 14.0+
    */
-  get hyphen(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 53604185843888, undefined, []); },
+  get hyphen(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 53604185843888, undefined, []); },
   /**
    * static let insert: GCKeyCode
    * @availability iOS 14.0+
    */
-  get insert(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3406813900681426, undefined, []); },
+  get insert(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3406813900681426, undefined, []); },
   /**
    * static let international1: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1061901908660831, undefined, []); },
+  get international1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1061901908660831, undefined, []); },
   /**
    * static let international2: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1160324743340851, undefined, []); },
+  get international2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1160324743340851, undefined, []); },
   /**
    * static let international3: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 881500341921449, undefined, []); },
+  get international3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 881500341921449, undefined, []); },
   /**
    * static let international4: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2679494727059215, undefined, []); },
+  get international4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2679494727059215, undefined, []); },
   /**
    * static let international5: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3499357421591296, undefined, []); },
+  get international5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3499357421591296, undefined, []); },
   /**
    * static let international6: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3545286867081214, undefined, []); },
+  get international6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3545286867081214, undefined, []); },
   /**
    * static let international7: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3454772872503377, undefined, []); },
+  get international7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3454772872503377, undefined, []); },
   /**
    * static let international8: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 655774245351281, undefined, []); },
+  get international8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 655774245351281, undefined, []); },
   /**
    * static let international9: GCKeyCode
    * @availability iOS 14.0+
    */
-  get international9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3374648753998290, undefined, []); },
+  get international9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3374648753998290, undefined, []); },
   /**
    * static let keyA: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyA(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2806104727606094, undefined, []); },
+  get keyA(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2806104727606094, undefined, []); },
   /**
    * static let keyB: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyB(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3515433817972028, undefined, []); },
+  get keyB(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3515433817972028, undefined, []); },
   /**
    * static let keyC: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyC(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 578763164130947, undefined, []); },
+  get keyC(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 578763164130947, undefined, []); },
   /**
    * static let keyD: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyD(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1010298608717847, undefined, []); },
+  get keyD(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1010298608717847, undefined, []); },
   /**
    * static let keyE: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyE(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2380389416184952, undefined, []); },
+  get keyE(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2380389416184952, undefined, []); },
   /**
    * static let keyF: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyF(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2934546803967143, undefined, []); },
+  get keyF(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2934546803967143, undefined, []); },
   /**
    * static let keyG: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyG(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2040219371345500, undefined, []); },
+  get keyG(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2040219371345500, undefined, []); },
   /**
    * static let keyH: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyH(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3145773415546366, undefined, []); },
+  get keyH(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3145773415546366, undefined, []); },
   /**
    * static let keyI: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyI(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2614652357599373, undefined, []); },
+  get keyI(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2614652357599373, undefined, []); },
   /**
    * static let keyJ: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyJ(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1815623211201601, undefined, []); },
+  get keyJ(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1815623211201601, undefined, []); },
   /**
    * static let keyK: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyK(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 948764808278716, undefined, []); },
+  get keyK(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 948764808278716, undefined, []); },
   /**
    * static let keyL: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyL(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2261973667241186, undefined, []); },
+  get keyL(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2261973667241186, undefined, []); },
   /**
    * static let keyM: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyM(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1295487364458966, undefined, []); },
+  get keyM(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1295487364458966, undefined, []); },
   /**
    * static let keyN: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyN(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2726132819918741, undefined, []); },
+  get keyN(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2726132819918741, undefined, []); },
   /**
    * static let keyO: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyO(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 652412008429117, undefined, []); },
+  get keyO(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 652412008429117, undefined, []); },
   /**
    * static let keyP: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyP(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2534462574108388, undefined, []); },
+  get keyP(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2534462574108388, undefined, []); },
   /**
    * static let keyQ: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyQ(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2456792070348001, undefined, []); },
+  get keyQ(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2456792070348001, undefined, []); },
   /**
    * static let keyR: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyR(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1916736140987967, undefined, []); },
+  get keyR(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1916736140987967, undefined, []); },
   /**
    * static let keyS: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyS(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3727368703589475, undefined, []); },
+  get keyS(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3727368703589475, undefined, []); },
   /**
    * static let keyT: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyT(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1769510638563394, undefined, []); },
+  get keyT(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1769510638563394, undefined, []); },
   /**
    * static let keyU: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyU(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3450387024576942, undefined, []); },
+  get keyU(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3450387024576942, undefined, []); },
   /**
    * static let keyV: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyV(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 807400822173504, undefined, []); },
+  get keyV(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 807400822173504, undefined, []); },
   /**
    * static let keyW: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyW(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4134029160916199, undefined, []); },
+  get keyW(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4134029160916199, undefined, []); },
   /**
    * static let keyX: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyX(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3154258168125408, undefined, []); },
+  get keyX(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3154258168125408, undefined, []); },
   /**
    * static let keyY: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyY(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3922886472543424, undefined, []); },
+  get keyY(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3922886472543424, undefined, []); },
   /**
    * static let keyZ: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keyZ(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4003614869750678, undefined, []); },
+  get keyZ(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4003614869750678, undefined, []); },
   /**
    * static let keypad0: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad0(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3238088813100626, undefined, []); },
+  get keypad0(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3238088813100626, undefined, []); },
   /**
    * static let keypad1: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1309636989864200, undefined, []); },
+  get keypad1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1309636989864200, undefined, []); },
   /**
    * static let keypad2: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 357472971159971, undefined, []); },
+  get keypad2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 357472971159971, undefined, []); },
   /**
    * static let keypad3: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1059147388175485, undefined, []); },
+  get keypad3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1059147388175485, undefined, []); },
   /**
    * static let keypad4: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 216610298939245, undefined, []); },
+  get keypad4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 216610298939245, undefined, []); },
   /**
    * static let keypad5: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2189104635867091, undefined, []); },
+  get keypad5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2189104635867091, undefined, []); },
   /**
    * static let keypad6: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2391406573374887, undefined, []); },
+  get keypad6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2391406573374887, undefined, []); },
   /**
    * static let keypad7: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 275893399853403, undefined, []); },
+  get keypad7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 275893399853403, undefined, []); },
   /**
    * static let keypad8: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3729880043398352, undefined, []); },
+  get keypad8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3729880043398352, undefined, []); },
   /**
    * static let keypad9: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypad9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4451079643268534, undefined, []); },
+  get keypad9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4451079643268534, undefined, []); },
   /**
    * static let keypadAsterisk: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadAsterisk(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1603849553539894, undefined, []); },
+  get keypadAsterisk(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1603849553539894, undefined, []); },
   /**
    * static let keypadEnter: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadEnter(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1933627882244482, undefined, []); },
+  get keypadEnter(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1933627882244482, undefined, []); },
   /**
    * static let keypadEqualSign: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadEqualSign(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 70135335173356, undefined, []); },
+  get keypadEqualSign(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 70135335173356, undefined, []); },
   /**
    * static let keypadHyphen: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadHyphen(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4152701913079059, undefined, []); },
+  get keypadHyphen(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4152701913079059, undefined, []); },
   /**
    * static let keypadNumLock: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadNumLock(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2843316532356859, undefined, []); },
+  get keypadNumLock(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2843316532356859, undefined, []); },
   /**
    * static let keypadPeriod: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadPeriod(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 140976913561838, undefined, []); },
+  get keypadPeriod(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 140976913561838, undefined, []); },
   /**
    * static let keypadPlus: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadPlus(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1849755260673768, undefined, []); },
+  get keypadPlus(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1849755260673768, undefined, []); },
   /**
    * static let keypadSlash: GCKeyCode
    * @availability iOS 14.0+
    */
-  get keypadSlash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1274739665719071, undefined, []); },
+  get keypadSlash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1274739665719071, undefined, []); },
   /**
    * static let LANG1: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2085666171336245, undefined, []); },
+  get LANG1(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2085666171336245, undefined, []); },
   /**
    * static let LANG2: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3174607604143566, undefined, []); },
+  get LANG2(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3174607604143566, undefined, []); },
   /**
    * static let LANG3: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2928384698584076, undefined, []); },
+  get LANG3(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2928384698584076, undefined, []); },
   /**
    * static let LANG4: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3278965137363884, undefined, []); },
+  get LANG4(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3278965137363884, undefined, []); },
   /**
    * static let LANG5: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1172501481063139, undefined, []); },
+  get LANG5(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1172501481063139, undefined, []); },
   /**
    * static let LANG6: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3441204210947263, undefined, []); },
+  get LANG6(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3441204210947263, undefined, []); },
   /**
    * static let LANG7: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2689782459396022, undefined, []); },
+  get LANG7(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2689782459396022, undefined, []); },
   /**
    * static let LANG8: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2434425954255461, undefined, []); },
+  get LANG8(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2434425954255461, undefined, []); },
   /**
    * static let LANG9: GCKeyCode
    * @availability iOS 14.0+
    */
-  get LANG9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4154729235311943, undefined, []); },
+  get LANG9(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4154729235311943, undefined, []); },
   /**
    * static let leftAlt: GCKeyCode
    * @availability iOS 14.0+
    */
-  get leftAlt(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 323828046801741, undefined, []); },
+  get leftAlt(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 323828046801741, undefined, []); },
   /**
    * static let leftArrow: GCKeyCode
    * @availability iOS 14.0+
    */
-  get leftArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1394714853894173, undefined, []); },
+  get leftArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1394714853894173, undefined, []); },
   /**
    * static let leftControl: GCKeyCode
    * @availability iOS 14.0+
    */
-  get leftControl(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1130330719437587, undefined, []); },
+  get leftControl(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1130330719437587, undefined, []); },
   /**
    * static let leftGUI: GCKeyCode
    * @availability iOS 14.0+
    */
-  get leftGUI(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 370503488580491, undefined, []); },
+  get leftGUI(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 370503488580491, undefined, []); },
   /**
    * static let leftShift: GCKeyCode
    * @availability iOS 14.0+
    */
-  get leftShift(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3110101862054913, undefined, []); },
+  get leftShift(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3110101862054913, undefined, []); },
   /**
    * static let nine: GCKeyCode
    * @availability iOS 14.0+
    */
-  get nine(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4467324821522294, undefined, []); },
+  get nine(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4467324821522294, undefined, []); },
   /**
    * static let nonUSBackslash: GCKeyCode
    * @availability iOS 14.0+
    */
-  get nonUSBackslash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2791328846088621, undefined, []); },
+  get nonUSBackslash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2791328846088621, undefined, []); },
   /**
    * static let nonUSPound: GCKeyCode
    * @availability iOS 14.0+
    */
-  get nonUSPound(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3178279249975212, undefined, []); },
+  get nonUSPound(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3178279249975212, undefined, []); },
   /**
    * static let one: GCKeyCode
    * @availability iOS 14.0+
    */
-  get one(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1965428315428146, undefined, []); },
+  get one(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1965428315428146, undefined, []); },
   /**
    * static let openBracket: GCKeyCode
    * @availability iOS 14.0+
    */
-  get openBracket(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 401473038460999, undefined, []); },
+  get openBracket(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 401473038460999, undefined, []); },
   /**
    * static let pageDown: GCKeyCode
    * @availability iOS 14.0+
    */
-  get pageDown(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1897228252748370, undefined, []); },
+  get pageDown(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1897228252748370, undefined, []); },
   /**
    * static let pageUp: GCKeyCode
    * @availability iOS 14.0+
    */
-  get pageUp(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1077688178042093, undefined, []); },
+  get pageUp(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1077688178042093, undefined, []); },
   /**
    * static let pause: GCKeyCode
    * @availability iOS 14.0+
    */
-  get pause(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1037091287839053, undefined, []); },
+  get pause(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1037091287839053, undefined, []); },
   /**
    * static let period: GCKeyCode
    * @availability iOS 14.0+
    */
-  get period(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3434984597113759, undefined, []); },
+  get period(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3434984597113759, undefined, []); },
   /**
    * static let power: GCKeyCode
    * @availability iOS 14.0+
    */
-  get power(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1257027056101917, undefined, []); },
+  get power(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1257027056101917, undefined, []); },
   /**
    * static let printScreen: GCKeyCode
    * @availability iOS 14.0+
    */
-  get printScreen(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4234063331901496, undefined, []); },
+  get printScreen(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4234063331901496, undefined, []); },
   /**
    * static let quote: GCKeyCode
    * @availability iOS 14.0+
    */
-  get quote(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1689058334502575, undefined, []); },
+  get quote(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1689058334502575, undefined, []); },
   /**
    * static let returnOrEnter: GCKeyCode
    * @availability iOS 14.0+
    */
-  get returnOrEnter(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 220614544664343, undefined, []); },
+  get returnOrEnter(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 220614544664343, undefined, []); },
   /**
    * static let rightAlt: GCKeyCode
    * @availability iOS 14.0+
    */
-  get rightAlt(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2833810188493648, undefined, []); },
+  get rightAlt(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2833810188493648, undefined, []); },
   /**
    * static let rightArrow: GCKeyCode
    * @availability iOS 14.0+
    */
-  get rightArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1182428017701822, undefined, []); },
+  get rightArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1182428017701822, undefined, []); },
   /**
    * static let rightControl: GCKeyCode
    * @availability iOS 14.0+
    */
-  get rightControl(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2927941038412894, undefined, []); },
+  get rightControl(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2927941038412894, undefined, []); },
   /**
    * static let rightGUI: GCKeyCode
    * @availability iOS 14.0+
    */
-  get rightGUI(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 657721003865994, undefined, []); },
+  get rightGUI(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 657721003865994, undefined, []); },
   /**
    * static let rightShift: GCKeyCode
    * @availability iOS 14.0+
    */
-  get rightShift(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4129467782428681, undefined, []); },
+  get rightShift(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4129467782428681, undefined, []); },
   /**
    * static let scrollLock: GCKeyCode
    * @availability iOS 14.0+
    */
-  get scrollLock(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1266478180377214, undefined, []); },
+  get scrollLock(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1266478180377214, undefined, []); },
   /**
    * static let semicolon: GCKeyCode
    * @availability iOS 14.0+
    */
-  get semicolon(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 847968018206589, undefined, []); },
+  get semicolon(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 847968018206589, undefined, []); },
   /**
    * static let seven: GCKeyCode
    * @availability iOS 14.0+
    */
-  get seven(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 495565934432286, undefined, []); },
+  get seven(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 495565934432286, undefined, []); },
   /**
    * static let six: GCKeyCode
    * @availability iOS 14.0+
    */
-  get six(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 4366513210288306, undefined, []); },
+  get six(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 4366513210288306, undefined, []); },
   /**
    * static let slash: GCKeyCode
    * @availability iOS 14.0+
    */
-  get slash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3582475625188868, undefined, []); },
+  get slash(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3582475625188868, undefined, []); },
   /**
    * static let spacebar: GCKeyCode
    * @availability iOS 14.0+
    */
-  get spacebar(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 378872527019016, undefined, []); },
+  get spacebar(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 378872527019016, undefined, []); },
   /**
    * static let tab: GCKeyCode
    * @availability iOS 14.0+
    */
-  get tab(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2817208244247893, undefined, []); },
+  get tab(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2817208244247893, undefined, []); },
   /**
    * static let three: GCKeyCode
    * @availability iOS 14.0+
    */
-  get three(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3143693208431706, undefined, []); },
+  get three(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3143693208431706, undefined, []); },
   /**
    * static let two: GCKeyCode
    * @availability iOS 14.0+
    */
-  get two(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2002247582443629, undefined, []); },
+  get two(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2002247582443629, undefined, []); },
   /**
    * static let upArrow: GCKeyCode
    * @availability iOS 14.0+
    */
-  get upArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 1897902537561765, undefined, []); },
+  get upArrow(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 1897902537561765, undefined, []); },
   /**
    * static let zero: GCKeyCode
    * @availability iOS 14.0+
    */
-  get zero(): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 3015180931113341, undefined, []); },
+  get zero(): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 3015180931113341, undefined, []); },
   /**
    * init(rawValue: CFIndex)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): GCKeyCode { return callSDK<GCKeyCode>("GameController_c1f28409f8601238", 2250132517209764, undefined, [rawValue]); }
+  init(rawValue: number): GCKeyCode { return callSDK<GCKeyCode>("GameController_e11dfd5beee01da3", 2250132517209764, undefined, [rawValue]); }
 };
 
 /**
@@ -3266,20 +3266,20 @@ export class GCMicroGamepadSnapshot extends GCMicroGamepad {
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  static initControllerSnapshotData(controller: GCController, data: ArrayBuffer): GCMicroGamepadSnapshot { return callSDK<GCMicroGamepadSnapshot>("GameController_c1f28409f8601238", 3397857322965039, undefined, [controller, data]); }
+  static initControllerSnapshotData(controller: GCController, data: ArrayBuffer): GCMicroGamepadSnapshot { return callSDK<GCMicroGamepadSnapshot>("GameController_e11dfd5beee01da3", 3397857322965039, undefined, [controller, data]); }
   /**
    * init(snapshotData data: Data)
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  static initSnapshotData(data: ArrayBuffer): GCMicroGamepadSnapshot { return callSDK<GCMicroGamepadSnapshot>("GameController_c1f28409f8601238", 1423971235041974, undefined, [data]); }
+  static initSnapshotData(data: ArrayBuffer): GCMicroGamepadSnapshot { return callSDK<GCMicroGamepadSnapshot>("GameController_e11dfd5beee01da3", 1423971235041974, undefined, [data]); }
   /**
    * var snapshotData: Data { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get snapshotData(): ArrayBuffer { return callSDK<ArrayBuffer>("GameController_c1f28409f8601238", 3649733928395637, this, []); }
-  set snapshotData(value: ArrayBuffer) { callSDK<void>("GameController_c1f28409f8601238", 1461884310189344, this, [value]); }
+  get snapshotData(): ArrayBuffer { return callSDK<ArrayBuffer>("GameController_e11dfd5beee01da3", 3649733928395637, this, []); }
+  set snapshotData(value: ArrayBuffer) { callSDK<void>("GameController_e11dfd5beee01da3", 1461884310189344, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCMicroGamepadSnapshot": true; "c:objc(cs)GCMicroGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "allowsRotation": true; "buttonA": true; "buttonMenu": true; "buttonX": true; "controller": true; "dpad": true; "reportsAbsoluteDpadValues": true; "snapshotData": true };
 }
@@ -3295,55 +3295,55 @@ export class GCMicroGamepadSnapshotData extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get buttonA(): number { return callSDK<number>("GameController_c1f28409f8601238", 3541871038488277, this, []); }
-  set buttonA(value: number) { callSDK<void>("GameController_c1f28409f8601238", 990533247765458, this, [value]); }
+  get buttonA(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3541871038488277, this, []); }
+  set buttonA(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 990533247765458, this, [value]); }
   /**
    * var buttonX: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get buttonX(): number { return callSDK<number>("GameController_c1f28409f8601238", 3135786411260744, this, []); }
-  set buttonX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4425757546838303, this, [value]); }
+  get buttonX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3135786411260744, this, []); }
+  set buttonX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4425757546838303, this, [value]); }
   /**
    * var dpadX: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get dpadX(): number { return callSDK<number>("GameController_c1f28409f8601238", 3796575375776758, this, []); }
-  set dpadX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3250352693847145, this, [value]); }
+  get dpadX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3796575375776758, this, []); }
+  set dpadX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3250352693847145, this, [value]); }
   /**
    * var dpadY: Float
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get dpadY(): number { return callSDK<number>("GameController_c1f28409f8601238", 374036329747103, this, []); }
-  set dpadY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 361154032122052, this, [value]); }
+  get dpadY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 374036329747103, this, []); }
+  set dpadY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 361154032122052, this, [value]); }
   /**
    * var size: UInt16
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get size(): number { return callSDK<number>("GameController_c1f28409f8601238", 635066335213960, this, []); }
-  set size(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1005254538610292, this, [value]); }
+  get size(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 635066335213960, this, []); }
+  set size(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1005254538610292, this, [value]); }
   /**
    * var version: UInt16
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  get version(): number { return callSDK<number>("GameController_c1f28409f8601238", 1055841928616809, this, []); }
-  set version(value: number) { callSDK<void>("GameController_c1f28409f8601238", 221013434000252, this, [value]); }
+  get version(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1055841928616809, this, []); }
+  set version(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 221013434000252, this, [value]); }
   /**
    * init(version: UInt16, size: UInt16, dpadX: Float, dpadY: Float, buttonA: Float, buttonX: Float)
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  static initVersionSizeDpadXDpadYButtonAButtonX(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonX: number): GCMicroGamepadSnapshotData { return callSDK<GCMicroGamepadSnapshotData>("GameController_c1f28409f8601238", 3480194308840819, undefined, [version, size, dpadX, dpadY, buttonA, buttonX]); }
+  static initVersionSizeDpadXDpadYButtonAButtonX(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonX: number): GCMicroGamepadSnapshotData { return callSDK<GCMicroGamepadSnapshotData>("GameController_e11dfd5beee01da3", 3480194308840819, undefined, [version, size, dpadX, dpadY, buttonA, buttonX]); }
   /**
    * init()
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  static init(): GCMicroGamepadSnapshotData { return callSDK<GCMicroGamepadSnapshotData>("GameController_c1f28409f8601238", 66034738693727, undefined, []); }
+  static init(): GCMicroGamepadSnapshotData { return callSDK<GCMicroGamepadSnapshotData>("GameController_e11dfd5beee01da3", 66034738693727, undefined, []); }
   declare readonly $type: { "c:@SA@GCMicroGamepadSnapshotData": true };
 }
 
@@ -3358,55 +3358,55 @@ export class GCMicroGamepadSnapShotDataV100 extends SDKHandle {
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get buttonA(): number { return callSDK<number>("GameController_c1f28409f8601238", 1327302493651729, this, []); }
-  set buttonA(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3862424675732010, this, [value]); }
+  get buttonA(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1327302493651729, this, []); }
+  set buttonA(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3862424675732010, this, [value]); }
   /**
    * var buttonX: Float
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get buttonX(): number { return callSDK<number>("GameController_c1f28409f8601238", 2193399368958901, this, []); }
-  set buttonX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2907298015452215, this, [value]); }
+  get buttonX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2193399368958901, this, []); }
+  set buttonX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2907298015452215, this, [value]); }
   /**
    * var dpadX: Float
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get dpadX(): number { return callSDK<number>("GameController_c1f28409f8601238", 1180177061893237, this, []); }
-  set dpadX(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4057908485819041, this, [value]); }
+  get dpadX(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1180177061893237, this, []); }
+  set dpadX(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4057908485819041, this, [value]); }
   /**
    * var dpadY: Float
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get dpadY(): number { return callSDK<number>("GameController_c1f28409f8601238", 2005916027420895, this, []); }
-  set dpadY(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2576044322227227, this, [value]); }
+  get dpadY(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2005916027420895, this, []); }
+  set dpadY(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2576044322227227, this, [value]); }
   /**
    * var size: UInt16
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get size(): number { return callSDK<number>("GameController_c1f28409f8601238", 752564450088442, this, []); }
-  set size(value: number) { callSDK<void>("GameController_c1f28409f8601238", 613505200958094, this, [value]); }
+  get size(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 752564450088442, this, []); }
+  set size(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 613505200958094, this, [value]); }
   /**
    * var version: UInt16
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get version(): number { return callSDK<number>("GameController_c1f28409f8601238", 580238736635796, this, []); }
-  set version(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3966313716848003, this, [value]); }
+  get version(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 580238736635796, this, []); }
+  set version(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3966313716848003, this, [value]); }
   /**
    * init(version: UInt16, size: UInt16, dpadX: Float, dpadY: Float, buttonA: Float, buttonX: Float)
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  static initVersionSizeDpadXDpadYButtonAButtonX(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonX: number): GCMicroGamepadSnapShotDataV100 { return callSDK<GCMicroGamepadSnapShotDataV100>("GameController_c1f28409f8601238", 3087421957570034, undefined, [version, size, dpadX, dpadY, buttonA, buttonX]); }
+  static initVersionSizeDpadXDpadYButtonAButtonX(version: number, size: number, dpadX: number, dpadY: number, buttonA: number, buttonX: number): GCMicroGamepadSnapShotDataV100 { return callSDK<GCMicroGamepadSnapShotDataV100>("GameController_e11dfd5beee01da3", 3087421957570034, undefined, [version, size, dpadX, dpadY, buttonA, buttonX]); }
   /**
    * init()
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  static init(): GCMicroGamepadSnapShotDataV100 { return callSDK<GCMicroGamepadSnapShotDataV100>("GameController_c1f28409f8601238", 2605027567075192, undefined, []); }
+  static init(): GCMicroGamepadSnapShotDataV100 { return callSDK<GCMicroGamepadSnapShotDataV100>("GameController_e11dfd5beee01da3", 2605027567075192, undefined, []); }
   declare readonly $type: { "c:@SA@GCMicroGamepadSnapShotDataV100": true };
 }
 
@@ -3423,7 +3423,7 @@ export const GCMicroGamepadSnapshotDataVersion = {
    * @availability iOS 13.0+
    * @deprecated iOS 13.0
    */
-  init(rawValue: number): (GCMicroGamepadSnapshotDataVersion) | null { return callSDK<(GCMicroGamepadSnapshotDataVersion) | null>("GameController_c1f28409f8601238", 4213431945544027, undefined, [rawValue]); }
+  init(rawValue: number): (GCMicroGamepadSnapshotDataVersion) | null { return callSDK<(GCMicroGamepadSnapshotDataVersion) | null>("GameController_e11dfd5beee01da3", 4213431945544027, undefined, [rawValue]); }
 };
 
 /**
@@ -3438,105 +3438,105 @@ export type GCMicroGamepadValueChangedHandler = ((arg0: GCMicroGamepad, arg1: GC
  */
 export class GCMotion extends SDKHandle {
   /** init() */
-  static init(): GCMotion { return callSDK<GCMotion>("GameController_c1f28409f8601238", 3629211624650877, undefined, []); }
+  static init(): GCMotion { return callSDK<GCMotion>("GameController_e11dfd5beee01da3", 3629211624650877, undefined, []); }
   /**
    * func setAcceleration(_ acceleration: GCAcceleration)
    * @availability iOS 14.0+
    */
-  setAcceleration(acceleration: GCAcceleration): void { return callSDK<void>("GameController_c1f28409f8601238", 944080450926043, this, [acceleration]); }
+  setAcceleration(acceleration: GCAcceleration): void { return callSDK<void>("GameController_e11dfd5beee01da3", 944080450926043, this, [acceleration]); }
   /**
    * func setAttitude(_ attitude: GCQuaternion)
    * @availability iOS 13.0+
    */
-  setAttitude(attitude: GCQuaternion): void { return callSDK<void>("GameController_c1f28409f8601238", 1279809371101296, this, [attitude]); }
+  setAttitude(attitude: GCQuaternion): void { return callSDK<void>("GameController_e11dfd5beee01da3", 1279809371101296, this, [attitude]); }
   /**
    * func setGravity(_ gravity: GCAcceleration)
    * @availability iOS 13.0+
    */
-  setGravity(gravity: GCAcceleration): void { return callSDK<void>("GameController_c1f28409f8601238", 81701763558069, this, [gravity]); }
+  setGravity(gravity: GCAcceleration): void { return callSDK<void>("GameController_e11dfd5beee01da3", 81701763558069, this, [gravity]); }
   /**
    * func setRotationRate(_ rotationRate: GCRotationRate)
    * @availability iOS 13.0+
    */
-  setRotationRate(rotationRate: GCRotationRate): void { return callSDK<void>("GameController_c1f28409f8601238", 2263625606380447, this, [rotationRate]); }
+  setRotationRate(rotationRate: GCRotationRate): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2263625606380447, this, [rotationRate]); }
   /**
    * func setStateFrom(_ motion: GCMotion)
    * @availability iOS 13.0+
    */
-  setStateFrom(motion: GCMotion): void { return callSDK<void>("GameController_c1f28409f8601238", 2970065223047729, this, [motion]); }
+  setStateFrom(motion: GCMotion): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2970065223047729, this, [motion]); }
   /**
    * func setUserAcceleration(_ userAcceleration: GCAcceleration)
    * @availability iOS 13.0+
    */
-  setUserAcceleration(userAcceleration: GCAcceleration): void { return callSDK<void>("GameController_c1f28409f8601238", 1572883052782752, this, [userAcceleration]); }
+  setUserAcceleration(userAcceleration: GCAcceleration): void { return callSDK<void>("GameController_e11dfd5beee01da3", 1572883052782752, this, [userAcceleration]); }
   /**
    * var acceleration: GCAcceleration { get }
    * @availability iOS 14.0+
    */
-  get acceleration(): GCAcceleration { return callSDK<GCAcceleration>("GameController_c1f28409f8601238", 2415944198941351, this, []); }
+  get acceleration(): GCAcceleration { return callSDK<GCAcceleration>("GameController_e11dfd5beee01da3", 2415944198941351, this, []); }
   /**
    * var attitude: GCQuaternion { get }
    * @availability iOS 8.0+
    */
-  get attitude(): GCQuaternion { return callSDK<GCQuaternion>("GameController_c1f28409f8601238", 3386494012163954, this, []); }
+  get attitude(): GCQuaternion { return callSDK<GCQuaternion>("GameController_e11dfd5beee01da3", 3386494012163954, this, []); }
   /**
    * weak var controller: GCController? { get }
    * @availability iOS 8.0+
    */
-  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_c1f28409f8601238", 3967919904119796, this, []); }
+  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_e11dfd5beee01da3", 3967919904119796, this, []); }
   /**
    * var gravity: GCAcceleration { get }
    * @availability iOS 8.0+
    */
-  get gravity(): GCAcceleration { return callSDK<GCAcceleration>("GameController_c1f28409f8601238", 1484696835326350, this, []); }
+  get gravity(): GCAcceleration { return callSDK<GCAcceleration>("GameController_e11dfd5beee01da3", 1484696835326350, this, []); }
   /**
    * var hasAttitude: Bool { get }
    * @availability iOS 14.0+
    */
-  get hasAttitude(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 399369703979147, this, []); }
+  get hasAttitude(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 399369703979147, this, []); }
   /**
    * var hasAttitudeAndRotationRate: Bool { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get hasAttitudeAndRotationRate(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2792919172320425, this, []); }
+  get hasAttitudeAndRotationRate(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2792919172320425, this, []); }
   /**
    * var hasGravityAndUserAcceleration: Bool { get }
    * @availability iOS 14.0+
    */
-  get hasGravityAndUserAcceleration(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2373759841123657, this, []); }
+  get hasGravityAndUserAcceleration(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2373759841123657, this, []); }
   /**
    * var hasRotationRate: Bool { get }
    * @availability iOS 14.0+
    */
-  get hasRotationRate(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2634722255599680, this, []); }
+  get hasRotationRate(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2634722255599680, this, []); }
   /**
    * var rotationRate: GCRotationRate { get }
    * @availability iOS 8.0+
    */
-  get rotationRate(): GCRotationRate { return callSDK<GCRotationRate>("GameController_c1f28409f8601238", 3677191521379125, this, []); }
+  get rotationRate(): GCRotationRate { return callSDK<GCRotationRate>("GameController_e11dfd5beee01da3", 3677191521379125, this, []); }
   /**
    * var sensorsActive: Bool { get set }
    * @availability iOS 14.0+
    */
-  get sensorsActive(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 823238568917520, this, []); }
-  set sensorsActive(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 4137417456930713, this, [value]); }
+  get sensorsActive(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 823238568917520, this, []); }
+  set sensorsActive(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 4137417456930713, this, [value]); }
   /**
    * var sensorsRequireManualActivation: Bool { get }
    * @availability iOS 14.0+
    */
-  get sensorsRequireManualActivation(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 1570790093312533, this, []); }
+  get sensorsRequireManualActivation(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 1570790093312533, this, []); }
   /**
    * var userAcceleration: GCAcceleration { get }
    * @availability iOS 8.0+
    */
-  get userAcceleration(): GCAcceleration { return callSDK<GCAcceleration>("GameController_c1f28409f8601238", 864191805875140, this, []); }
+  get userAcceleration(): GCAcceleration { return callSDK<GCAcceleration>("GameController_e11dfd5beee01da3", 864191805875140, this, []); }
   /**
    * var valueChangedHandler: GCMotionValueChangedHandler? { get set }
    * @availability iOS 8.0+
    */
-  get valueChangedHandler(): (((arg0: GCMotion) => Promise<void>)) | null { return callSDK<(((arg0: GCMotion) => Promise<void>)) | null>("GameController_c1f28409f8601238", 2207809222951225, this, []); }
-  set valueChangedHandler(value: (((arg0: GCMotion) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 371238394876522, this, [value], [{"callback":{"out":[]}}]); }
+  get valueChangedHandler(): (((arg0: GCMotion) => Promise<void>)) | null { return callSDK<(((arg0: GCMotion) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 2207809222951225, this, []); }
+  set valueChangedHandler(value: (((arg0: GCMotion) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 371238394876522, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)GCMotion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "acceleration": true; "attitude": true; "controller": true; "gravity": true; "hasAttitude": true; "hasAttitudeAndRotationRate": true; "hasGravityAndUserAcceleration": true; "hasRotationRate": true; "rotationRate": true; "sensorsActive": true; "sensorsRequireManualActivation": true; "userAcceleration": true };
 }
@@ -3556,19 +3556,19 @@ export class GCMouse extends SDKHandle {
    * class func mice() -> [GCMouse]
    * @availability iOS 14.0+
    */
-  static mice(): Array<GCMouse> { return callSDK<Array<GCMouse>>("GameController_c1f28409f8601238", 1607872468836072, undefined, []); }
+  static mice(): Array<GCMouse> { return callSDK<Array<GCMouse>>("GameController_e11dfd5beee01da3", 1607872468836072, undefined, []); }
   /**
    * class var current: GCMouse? { get }
    * @availability iOS 14.0+
    */
-  static get current(): (GCMouse) | null { return callSDK<(GCMouse) | null>("GameController_c1f28409f8601238", 1867828115645113, undefined, []); }
+  static get current(): (GCMouse) | null { return callSDK<(GCMouse) | null>("GameController_e11dfd5beee01da3", 1867828115645113, undefined, []); }
   /** init() */
-  static init(): GCMouse { return callSDK<GCMouse>("GameController_c1f28409f8601238", 4491340354821483, undefined, []); }
+  static init(): GCMouse { return callSDK<GCMouse>("GameController_e11dfd5beee01da3", 4491340354821483, undefined, []); }
   /**
    * var mouseInput: GCMouseInput? { get }
    * @availability iOS 14.0+
    */
-  get mouseInput(): (GCMouseInput) | null { return callSDK<(GCMouseInput) | null>("GameController_c1f28409f8601238", 1310684392485332, this, []); }
+  get mouseInput(): (GCMouseInput) | null { return callSDK<(GCMouseInput) | null>("GameController_e11dfd5beee01da3", 1310684392485332, this, []); }
   declare readonly $type: { "c:objc(cs)GCMouse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mouseInput": true };
 }
@@ -3582,23 +3582,23 @@ export class GCMouse_DidBecomeCurrentMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCMouse.DidBecomeCurrentMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidBecomeCurrentMessage) | null> { return callSDKAsync<(GCMouse_DidBecomeCurrentMessage) | null>("GameController_c1f28409f8601238", 3982041201902655, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidBecomeCurrentMessage) | null> { return callSDKAsync<(GCMouse_DidBecomeCurrentMessage) | null>("GameController_e11dfd5beee01da3", 3982041201902655, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 263411053895247, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 263411053895247, undefined, []); }
   /**
    * var mouse: GCMouse
    * @availability iOS 26.0+
    */
-  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_c1f28409f8601238", 2547371243184073, this, []); }
-  set mouse(value: GCMouse) { callSDK<void>("GameController_c1f28409f8601238", 253932074606173, this, [value]); }
+  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_e11dfd5beee01da3", 2547371243184073, this, []); }
+  set mouse(value: GCMouse) { callSDK<void>("GameController_e11dfd5beee01da3", 253932074606173, this, [value]); }
   /**
    * init(mouse: GCMouse)
    * @availability iOS 26.0+
    */
-  static init(mouse: GCMouse): GCMouse_DidBecomeCurrentMessage { return callSDK<GCMouse_DidBecomeCurrentMessage>("GameController_c1f28409f8601238", 1333898824065531, undefined, [mouse]); }
+  static init(mouse: GCMouse): GCMouse_DidBecomeCurrentMessage { return callSDK<GCMouse_DidBecomeCurrentMessage>("GameController_e11dfd5beee01da3", 1333898824065531, undefined, [mouse]); }
   declare readonly $type: { "s:So7GCMouseC14GameControllerE23DidBecomeCurrentMessageV": true };
 }
 
@@ -3617,23 +3617,23 @@ export class GCMouse_DidConnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCMouse.DidConnectMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidConnectMessage) | null> { return callSDKAsync<(GCMouse_DidConnectMessage) | null>("GameController_c1f28409f8601238", 2008563269154266, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidConnectMessage) | null> { return callSDKAsync<(GCMouse_DidConnectMessage) | null>("GameController_e11dfd5beee01da3", 2008563269154266, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 1565731803443463, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 1565731803443463, undefined, []); }
   /**
    * var mouse: GCMouse
    * @availability iOS 26.0+
    */
-  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_c1f28409f8601238", 3100563524887090, this, []); }
-  set mouse(value: GCMouse) { callSDK<void>("GameController_c1f28409f8601238", 1967582736022185, this, [value]); }
+  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_e11dfd5beee01da3", 3100563524887090, this, []); }
+  set mouse(value: GCMouse) { callSDK<void>("GameController_e11dfd5beee01da3", 1967582736022185, this, [value]); }
   /**
    * init(mouse: GCMouse)
    * @availability iOS 26.0+
    */
-  static init(mouse: GCMouse): GCMouse_DidConnectMessage { return callSDK<GCMouse_DidConnectMessage>("GameController_c1f28409f8601238", 1091030046143411, undefined, [mouse]); }
+  static init(mouse: GCMouse): GCMouse_DidConnectMessage { return callSDK<GCMouse_DidConnectMessage>("GameController_e11dfd5beee01da3", 1091030046143411, undefined, [mouse]); }
   declare readonly $type: { "s:So7GCMouseC14GameControllerE17DidConnectMessageV": true };
 }
 
@@ -3652,23 +3652,23 @@ export class GCMouse_DidDisconnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCMouse.DidDisconnectMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidDisconnectMessage) | null> { return callSDKAsync<(GCMouse_DidDisconnectMessage) | null>("GameController_c1f28409f8601238", 3700656404497979, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidDisconnectMessage) | null> { return callSDKAsync<(GCMouse_DidDisconnectMessage) | null>("GameController_e11dfd5beee01da3", 3700656404497979, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3023106899269259, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3023106899269259, undefined, []); }
   /**
    * var mouse: GCMouse
    * @availability iOS 26.0+
    */
-  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_c1f28409f8601238", 978494481717487, this, []); }
-  set mouse(value: GCMouse) { callSDK<void>("GameController_c1f28409f8601238", 3572599101795611, this, [value]); }
+  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_e11dfd5beee01da3", 978494481717487, this, []); }
+  set mouse(value: GCMouse) { callSDK<void>("GameController_e11dfd5beee01da3", 3572599101795611, this, [value]); }
   /**
    * init(mouse: GCMouse)
    * @availability iOS 26.0+
    */
-  static init(mouse: GCMouse): GCMouse_DidDisconnectMessage { return callSDK<GCMouse_DidDisconnectMessage>("GameController_c1f28409f8601238", 4224297862008913, undefined, [mouse]); }
+  static init(mouse: GCMouse): GCMouse_DidDisconnectMessage { return callSDK<GCMouse_DidDisconnectMessage>("GameController_e11dfd5beee01da3", 4224297862008913, undefined, [mouse]); }
   declare readonly $type: { "s:So7GCMouseC14GameControllerE20DidDisconnectMessageV": true };
 }
 
@@ -3687,23 +3687,23 @@ export class GCMouse_DidStopBeingCurrentMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> GCMouse.DidStopBeingCurrentMessage?
    * @availability iOS 26.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidStopBeingCurrentMessage) | null> { return callSDKAsync<(GCMouse_DidStopBeingCurrentMessage) | null>("GameController_c1f28409f8601238", 1518122523642808, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(GCMouse_DidStopBeingCurrentMessage) | null> { return callSDKAsync<(GCMouse_DidStopBeingCurrentMessage) | null>("GameController_e11dfd5beee01da3", 1518122523642808, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 26.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 300702513380693, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 300702513380693, undefined, []); }
   /**
    * var mouse: GCMouse
    * @availability iOS 26.0+
    */
-  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_c1f28409f8601238", 1629862730642311, this, []); }
-  set mouse(value: GCMouse) { callSDK<void>("GameController_c1f28409f8601238", 3642152991295062, this, [value]); }
+  get mouse(): GCMouse { return callSDK<GCMouse>("GameController_e11dfd5beee01da3", 1629862730642311, this, []); }
+  set mouse(value: GCMouse) { callSDK<void>("GameController_e11dfd5beee01da3", 3642152991295062, this, [value]); }
   /**
    * init(mouse: GCMouse)
    * @availability iOS 26.0+
    */
-  static init(mouse: GCMouse): GCMouse_DidStopBeingCurrentMessage { return callSDK<GCMouse_DidStopBeingCurrentMessage>("GameController_c1f28409f8601238", 189273157612950, undefined, [mouse]); }
+  static init(mouse: GCMouse): GCMouse_DidStopBeingCurrentMessage { return callSDK<GCMouse_DidStopBeingCurrentMessage>("GameController_e11dfd5beee01da3", 189273157612950, undefined, [mouse]); }
   declare readonly $type: { "s:So7GCMouseC14GameControllerE26DidStopBeingCurrentMessageV": true };
 }
 
@@ -3719,38 +3719,38 @@ export type GCMouse_DidStopBeingCurrentMessage_Subject = GCMouse;
  */
 export class GCMouseInput extends (GCPhysicalInputProfile as unknown as Omit<typeof GCPhysicalInputProfile, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCPhysicalInputProfile)) {
   /** init() */
-  static init(): GCMouseInput { return callSDK<GCMouseInput>("GameController_c1f28409f8601238", 1774095555706660, undefined, []); }
+  static init(): GCMouseInput { return callSDK<GCMouseInput>("GameController_e11dfd5beee01da3", 1774095555706660, undefined, []); }
   /**
    * var auxiliaryButtons: [GCControllerButtonInput]? { get }
    * @availability iOS 14.0+
    */
-  get auxiliaryButtons(): (Array<GCControllerButtonInput>) | null { return callSDK<(Array<GCControllerButtonInput>) | null>("GameController_c1f28409f8601238", 438704316708171, this, []); }
+  get auxiliaryButtons(): (Array<GCControllerButtonInput>) | null { return callSDK<(Array<GCControllerButtonInput>) | null>("GameController_e11dfd5beee01da3", 438704316708171, this, []); }
   /**
    * var leftButton: GCControllerButtonInput { get }
    * @availability iOS 14.0+
    */
-  get leftButton(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_c1f28409f8601238", 2465614532501926, this, []); }
+  get leftButton(): GCControllerButtonInput { return callSDK<GCControllerButtonInput>("GameController_e11dfd5beee01da3", 2465614532501926, this, []); }
   /**
    * var middleButton: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get middleButton(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 870627803719127, this, []); }
+  get middleButton(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 870627803719127, this, []); }
   /**
    * var mouseMovedHandler: GCMouseMoved? { get set }
    * @availability iOS 14.0+
    */
-  get mouseMovedHandler(): (((arg0: GCMouseInput, arg1: number, arg2: number) => Promise<void>)) | null { return callSDK<(((arg0: GCMouseInput, arg1: number, arg2: number) => Promise<void>)) | null>("GameController_c1f28409f8601238", 3765329731336787, this, []); }
-  set mouseMovedHandler(value: (((arg0: GCMouseInput, arg1: number, arg2: number) => void)) | null) { callSDK<void>("GameController_c1f28409f8601238", 1799373265882592, this, [value], [{"callback":{"out":[]}}]); }
+  get mouseMovedHandler(): (((arg0: GCMouseInput, arg1: number, arg2: number) => Promise<void>)) | null { return callSDK<(((arg0: GCMouseInput, arg1: number, arg2: number) => Promise<void>)) | null>("GameController_e11dfd5beee01da3", 3765329731336787, this, []); }
+  set mouseMovedHandler(value: (((arg0: GCMouseInput, arg1: number, arg2: number) => void)) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 1799373265882592, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var rightButton: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get rightButton(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 542619926023906, this, []); }
+  get rightButton(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 542619926023906, this, []); }
   /**
    * var scroll: GCDeviceCursor { get }
    * @availability iOS 14.0+
    */
-  get scroll(): GCDeviceCursor { return callSDK<GCDeviceCursor>("GameController_c1f28409f8601238", 2217430128401567, this, []); }
+  get scroll(): GCDeviceCursor { return callSDK<GCDeviceCursor>("GameController_e11dfd5beee01da3", 2217430128401567, this, []); }
   declare readonly $type: { "c:objc(cs)GCMouseInput": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "auxiliaryButtons": true; "leftButton": true; "middleButton": true; "rightButton": true; "scroll": true };
 }
@@ -3778,47 +3778,47 @@ export class GCPhysicalInputElementCollection<T = unknown> extends SDKHandle {
    * var startIndex: GCPhysicalInputElementCollection<T>.Index { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): $SDK72 { return callSDK<$SDK72>("GameController_c1f28409f8601238", 414938286835882, this, []); }
+  get startIndex(): $SDK72 { return callSDK<$SDK72>("GameController_e11dfd5beee01da3", 414938286835882, this, []); }
   /**
    * func index(after i: GCPhysicalInputElementCollection<T>.Index) -> GCPhysicalInputElementCollection<T>.Index
    * @availability iOS 16.0+
    */
-  index(i: $SDK72): $SDK72 { return callSDK<$SDK72>("GameController_c1f28409f8601238", 4431944727149832, this, [i]); }
+  index(i: $SDK72): $SDK72 { return callSDK<$SDK72>("GameController_e11dfd5beee01da3", 4431944727149832, this, [i]); }
   /**
    * var endIndex: GCPhysicalInputElementCollection<T>.Index { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): $SDK72 { return callSDK<$SDK72>("GameController_c1f28409f8601238", 83177552439570, this, []); }
+  get endIndex(): $SDK72 { return callSDK<$SDK72>("GameController_e11dfd5beee01da3", 83177552439570, this, []); }
   /**
    * subscript(elementName: GCDirectionPadElementName) -> T? { get }
    * @availability iOS 16.0+
    */
-  subscript(elementName: GCDirectionPadElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_c1f28409f8601238", 2267281373905625, this, [elementName]); }
+  subscript(elementName: GCDirectionPadElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_e11dfd5beee01da3", 2267281373905625, this, [elementName]); }
   /**
    * subscript(elementName: GCAxisElementName) -> T? { get }
    * @availability iOS 16.0+
    */
-  subscript89440(elementName: GCAxisElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_c1f28409f8601238", 2690645160085497, this, [elementName]); }
+  subscript89440(elementName: GCAxisElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_e11dfd5beee01da3", 2690645160085497, this, [elementName]); }
   /**
    * subscript(elementName: GCButtonElementName) -> T? { get }
    * @availability iOS 16.0+
    */
-  subscript20909(elementName: GCButtonElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_c1f28409f8601238", 3340799541614264, this, [elementName]); }
+  subscript20909(elementName: GCButtonElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_e11dfd5beee01da3", 3340799541614264, this, [elementName]); }
   /**
    * subscript(elementName: GCSwitchElementName) -> T? { get }
    * @availability iOS 16.0+
    */
-  subscript52213(elementName: GCSwitchElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_c1f28409f8601238", 2625473784736938, this, [elementName]); }
+  subscript52213(elementName: GCSwitchElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_e11dfd5beee01da3", 2625473784736938, this, [elementName]); }
   /**
    * subscript(elementName: GCPhysicalInputElementName) -> T? { get }
    * @availability iOS 16.0+
    */
-  subscript28148(elementName: GCPhysicalInputElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_c1f28409f8601238", 1796778872986586, this, [elementName]); }
+  subscript28148(elementName: GCPhysicalInputElementName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GameController_e11dfd5beee01da3", 1796778872986586, this, [elementName]); }
   /**
    * subscript(position: GCPhysicalInputElementCollection<T>.Index) -> GCPhysicalInputElementCollection<T>.Element { get }
    * @availability iOS 16.0+
    */
-  subscript73322(position: $SDK72): SDKHandle { return callSDK<SDKHandle>("GameController_c1f28409f8601238", 1715065047274783, this, [position]); }
+  subscript73322(position: $SDK72): SDKHandle { return callSDK<SDKHandle>("GameController_e11dfd5beee01da3", 1715065047274783, this, [position]); }
   declare readonly $type: { "s:14GameController32GCPhysicalInputElementCollectionV": true };
 }
 
@@ -3865,12 +3865,12 @@ export const GCPhysicalInputElementName = {
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): GCPhysicalInputElementName { return callSDK<GCPhysicalInputElementName>("GameController_c1f28409f8601238", 4011978581998129, undefined, [rawValue]); },
+  init(rawValue: string): GCPhysicalInputElementName { return callSDK<GCPhysicalInputElementName>("GameController_e11dfd5beee01da3", 4011978581998129, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: GCPhysicalInputElementName): string { return callSDK<string>("GameController_c1f28409f8601238", 2348076617564805, $self, []); }
+  getRawValue($self: GCPhysicalInputElementName): string { return callSDK<string>("GameController_e11dfd5beee01da3", 2348076617564805, $self, []); }
 };
 
 /**
@@ -3920,27 +3920,27 @@ export const GCPhysicalInputSourceDirection = {
    * static var down: GCPhysicalInputSourceDirection { get }
    * @availability iOS 17.0+
    */
-  get down(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_c1f28409f8601238", 1853278599799191, undefined, []); },
+  get down(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_e11dfd5beee01da3", 1853278599799191, undefined, []); },
   /**
    * static var left: GCPhysicalInputSourceDirection { get }
    * @availability iOS 17.0+
    */
-  get left(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_c1f28409f8601238", 3211514151537196, undefined, []); },
+  get left(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_e11dfd5beee01da3", 3211514151537196, undefined, []); },
   /**
    * static var right: GCPhysicalInputSourceDirection { get }
    * @availability iOS 17.0+
    */
-  get right(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_c1f28409f8601238", 3731495283052219, undefined, []); },
+  get right(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_e11dfd5beee01da3", 3731495283052219, undefined, []); },
   /**
    * static var up: GCPhysicalInputSourceDirection { get }
    * @availability iOS 17.0+
    */
-  get up(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_c1f28409f8601238", 1434469444902292, undefined, []); },
+  get up(): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_e11dfd5beee01da3", 1434469444902292, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_c1f28409f8601238", 2764392814547547, undefined, [rawValue]); }
+  init(rawValue: number): GCPhysicalInputSourceDirection { return callSDK<GCPhysicalInputSourceDirection>("GameController_e11dfd5beee01da3", 2764392814547547, undefined, [rawValue]); }
 };
 
 /**
@@ -3952,24 +3952,24 @@ export class GCPoint2 extends SDKHandle {
    * var x: Float
    * @availability iOS 17.4+
    */
-  get x(): number { return callSDK<number>("GameController_c1f28409f8601238", 926008737112290, this, []); }
-  set x(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1772030704255531, this, [value]); }
+  get x(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 926008737112290, this, []); }
+  set x(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1772030704255531, this, [value]); }
   /**
    * var y: Float
    * @availability iOS 17.4+
    */
-  get y(): number { return callSDK<number>("GameController_c1f28409f8601238", 1227155986391514, this, []); }
-  set y(value: number) { callSDK<void>("GameController_c1f28409f8601238", 4056390467292887, this, [value]); }
+  get y(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1227155986391514, this, []); }
+  set y(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 4056390467292887, this, [value]); }
   /**
    * init(x: Float, y: Float)
    * @availability iOS 17.4+
    */
-  static initXY(x: number, y: number): GCPoint2 { return callSDK<GCPoint2>("GameController_c1f28409f8601238", 222669202949168, undefined, [x, y]); }
+  static initXY(x: number, y: number): GCPoint2 { return callSDK<GCPoint2>("GameController_e11dfd5beee01da3", 222669202949168, undefined, [x, y]); }
   /**
    * init()
    * @availability iOS 17.4+
    */
-  static init(): GCPoint2 { return callSDK<GCPoint2>("GameController_c1f28409f8601238", 1707233942674453, undefined, []); }
+  static init(): GCPoint2 { return callSDK<GCPoint2>("GameController_e11dfd5beee01da3", 1707233942674453, undefined, []); }
   declare readonly $type: { "c:@S@GCPoint2": true };
 }
 
@@ -3990,36 +3990,36 @@ export class GCQuaternion extends SDKHandle {
    * var w: Double
    * @availability iOS 8.0+
    */
-  get w(): number { return callSDK<number>("GameController_c1f28409f8601238", 4479893769683063, this, []); }
-  set w(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1733435080575476, this, [value]); }
+  get w(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 4479893769683063, this, []); }
+  set w(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1733435080575476, this, [value]); }
   /**
    * var x: Double
    * @availability iOS 8.0+
    */
-  get x(): number { return callSDK<number>("GameController_c1f28409f8601238", 1110618572955589, this, []); }
-  set x(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3625110545065923, this, [value]); }
+  get x(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1110618572955589, this, []); }
+  set x(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3625110545065923, this, [value]); }
   /**
    * var y: Double
    * @availability iOS 8.0+
    */
-  get y(): number { return callSDK<number>("GameController_c1f28409f8601238", 45298771329344, this, []); }
-  set y(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1066314247191215, this, [value]); }
+  get y(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 45298771329344, this, []); }
+  set y(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1066314247191215, this, [value]); }
   /**
    * var z: Double
    * @availability iOS 8.0+
    */
-  get z(): number { return callSDK<number>("GameController_c1f28409f8601238", 636175231057245, this, []); }
-  set z(value: number) { callSDK<void>("GameController_c1f28409f8601238", 1158339569688038, this, [value]); }
+  get z(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 636175231057245, this, []); }
+  set z(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 1158339569688038, this, [value]); }
   /**
    * init(x: Double, y: Double, z: Double, w: Double)
    * @availability iOS 8.0+
    */
-  static initXYZW(x: number, y: number, z: number, w: number): GCQuaternion { return callSDK<GCQuaternion>("GameController_c1f28409f8601238", 1609866373300047, undefined, [x, y, z, w]); }
+  static initXYZW(x: number, y: number, z: number, w: number): GCQuaternion { return callSDK<GCQuaternion>("GameController_e11dfd5beee01da3", 1609866373300047, undefined, [x, y, z, w]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): GCQuaternion { return callSDK<GCQuaternion>("GameController_c1f28409f8601238", 1870512533620714, undefined, []); }
+  static init(): GCQuaternion { return callSDK<GCQuaternion>("GameController_e11dfd5beee01da3", 1870512533620714, undefined, []); }
   declare readonly $type: { "c:@S@GCQuaternion": true };
 }
 
@@ -4040,30 +4040,30 @@ export class GCRotationRate extends SDKHandle {
    * var x: Double
    * @availability iOS 8.0+
    */
-  get x(): number { return callSDK<number>("GameController_c1f28409f8601238", 3024536832378107, this, []); }
-  set x(value: number) { callSDK<void>("GameController_c1f28409f8601238", 2211709273557610, this, [value]); }
+  get x(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 3024536832378107, this, []); }
+  set x(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 2211709273557610, this, [value]); }
   /**
    * var y: Double
    * @availability iOS 8.0+
    */
-  get y(): number { return callSDK<number>("GameController_c1f28409f8601238", 1951505182398468, this, []); }
-  set y(value: number) { callSDK<void>("GameController_c1f28409f8601238", 3991715895076702, this, [value]); }
+  get y(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 1951505182398468, this, []); }
+  set y(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 3991715895076702, this, [value]); }
   /**
    * var z: Double
    * @availability iOS 8.0+
    */
-  get z(): number { return callSDK<number>("GameController_c1f28409f8601238", 2571875550530206, this, []); }
-  set z(value: number) { callSDK<void>("GameController_c1f28409f8601238", 900479555356465, this, [value]); }
+  get z(): number { return callSDK<number>("GameController_e11dfd5beee01da3", 2571875550530206, this, []); }
+  set z(value: number) { callSDK<void>("GameController_e11dfd5beee01da3", 900479555356465, this, [value]); }
   /**
    * init(x: Double, y: Double, z: Double)
    * @availability iOS 8.0+
    */
-  static initXYZ(x: number, y: number, z: number): GCRotationRate { return callSDK<GCRotationRate>("GameController_c1f28409f8601238", 498159300132860, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): GCRotationRate { return callSDK<GCRotationRate>("GameController_e11dfd5beee01da3", 498159300132860, undefined, [x, y, z]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): GCRotationRate { return callSDK<GCRotationRate>("GameController_c1f28409f8601238", 996863329998999, undefined, []); }
+  static init(): GCRotationRate { return callSDK<GCRotationRate>("GameController_e11dfd5beee01da3", 996863329998999, undefined, []); }
   declare readonly $type: { "c:@SA@GCRotationRate": true };
 }
 
@@ -4086,12 +4086,12 @@ export const GCSwitchElementName = {
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): GCSwitchElementName { return callSDK<GCSwitchElementName>("GameController_c1f28409f8601238", 1583390183919375, undefined, [rawValue]); },
+  init(rawValue: string): GCSwitchElementName { return callSDK<GCSwitchElementName>("GameController_e11dfd5beee01da3", 1583390183919375, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: GCSwitchElementName): string { return callSDK<string>("GameController_c1f28409f8601238", 1245717888048607, $self, []); }
+  getRawValue($self: GCSwitchElementName): string { return callSDK<string>("GameController_e11dfd5beee01da3", 1245717888048607, $self, []); }
 };
 
 /**
@@ -4133,12 +4133,12 @@ export const GCUIEventTypes = {
    * static var gamepad: GCUIEventTypes { get }
    * @availability iOS 18.0+
    */
-  get gamepad(): GCUIEventTypes { return callSDK<GCUIEventTypes>("GameController_c1f28409f8601238", 3361639530239460, undefined, []); },
+  get gamepad(): GCUIEventTypes { return callSDK<GCUIEventTypes>("GameController_e11dfd5beee01da3", 3361639530239460, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): GCUIEventTypes { return callSDK<GCUIEventTypes>("GameController_c1f28409f8601238", 730496097256226, undefined, [rawValue]); }
+  init(rawValue: number): GCUIEventTypes { return callSDK<GCUIEventTypes>("GameController_e11dfd5beee01da3", 730496097256226, undefined, [rawValue]); }
 };
 
 /**
@@ -4150,32 +4150,32 @@ export class GCVirtualController extends SDKHandle {
    * func connect() async throws
    * @availability iOS 15.0+
    */
-  connect(reply?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameController_c1f28409f8601238", 2450815074910620, this, [reply], [{"callback":{"out":[]}}]); }
+  connect(reply?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2450815074910620, this, [reply], [{"callback":{"out":[]}}]); }
   /**
    * func disconnect()
    * @availability iOS 15.0+
    */
-  disconnect(): void { return callSDK<void>("GameController_c1f28409f8601238", 4371663221146942, this, []); }
+  disconnect(): void { return callSDK<void>("GameController_e11dfd5beee01da3", 4371663221146942, this, []); }
   /**
    * init(configuration: GCVirtualController.Configuration)
    * @availability iOS 15.0+
    */
-  static init(configuration: GCVirtualController_Configuration): GCVirtualController { return callSDK<GCVirtualController>("GameController_c1f28409f8601238", 4001097556313453, undefined, [configuration]); }
+  static init(configuration: GCVirtualController_Configuration): GCVirtualController { return callSDK<GCVirtualController>("GameController_e11dfd5beee01da3", 4001097556313453, undefined, [configuration]); }
   /**
    * func setPosition(_ position: CGPoint, forDirectionPadElement element: String)
    * @availability iOS 17.0+
    */
-  setPosition(position: { x: number; y: number }, element: string): void { return callSDK<void>("GameController_c1f28409f8601238", 1071645599596183, this, [position, element]); }
+  setPosition(position: { x: number; y: number }, element: string): void { return callSDK<void>("GameController_e11dfd5beee01da3", 1071645599596183, this, [position, element]); }
   /**
    * func setValue(_ value: CGFloat, forButtonElement element: String)
    * @availability iOS 17.0+
    */
-  setValue(value: number, element: string): void { return callSDK<void>("GameController_c1f28409f8601238", 2675804203675778, this, [value, element]); }
+  setValue(value: number, element: string): void { return callSDK<void>("GameController_e11dfd5beee01da3", 2675804203675778, this, [value, element]); }
   /**
    * var controller: GCController? { get }
    * @availability iOS 15.0+
    */
-  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_c1f28409f8601238", 2468925685095441, this, []); }
+  get controller(): (GCController) | null { return callSDK<(GCController) | null>("GameController_e11dfd5beee01da3", 2468925685095441, this, []); }
   declare readonly $type: { "c:objc(cs)GCVirtualController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "controller": true };
 }
@@ -4186,19 +4186,19 @@ export class GCVirtualController extends SDKHandle {
  */
 export class GCVirtualController_Configuration extends SDKHandle {
   /** init() */
-  static init(): GCVirtualController_Configuration { return callSDK<GCVirtualController_Configuration>("GameController_c1f28409f8601238", 3661958339322800, undefined, []); }
+  static init(): GCVirtualController_Configuration { return callSDK<GCVirtualController_Configuration>("GameController_e11dfd5beee01da3", 3661958339322800, undefined, []); }
   /**
    * var elements: Set<String> { get set }
    * @availability iOS 15.0+
    */
-  get elements(): Array<string> { return callSDK<Array<string>>("GameController_c1f28409f8601238", 3614758068401319, this, []); }
-  set elements(value: Array<string>) { callSDK<void>("GameController_c1f28409f8601238", 1186086856589106, this, [value]); }
+  get elements(): Array<string> { return callSDK<Array<string>>("GameController_e11dfd5beee01da3", 3614758068401319, this, []); }
+  set elements(value: Array<string>) { callSDK<void>("GameController_e11dfd5beee01da3", 1186086856589106, this, [value]); }
   /**
    * var isHidden: Bool { get set }
    * @availability iOS 17.0+
    */
-  get isHidden(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 1541630269610692, this, []); }
-  set isHidden(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 1394459035888658, this, [value]); }
+  get isHidden(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 1541630269610692, this, []); }
+  set isHidden(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 1394459035888658, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCVirtualControllerConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elements": true; "isHidden": true };
 }
@@ -4209,25 +4209,25 @@ export class GCVirtualController_Configuration extends SDKHandle {
  */
 export class GCVirtualController_ElementConfiguration extends SDKHandle {
   /** init() */
-  static init(): GCVirtualController_ElementConfiguration { return callSDK<GCVirtualController_ElementConfiguration>("GameController_c1f28409f8601238", 16590846698704, undefined, []); }
+  static init(): GCVirtualController_ElementConfiguration { return callSDK<GCVirtualController_ElementConfiguration>("GameController_e11dfd5beee01da3", 16590846698704, undefined, []); }
   /**
    * var actsAsTouchpad: Bool { get set }
    * @availability iOS 15.0+
    */
-  get actsAsTouchpad(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3323965211633483, this, []); }
-  set actsAsTouchpad(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 619896014718938, this, [value]); }
+  get actsAsTouchpad(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3323965211633483, this, []); }
+  set actsAsTouchpad(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 619896014718938, this, [value]); }
   /**
    * var isHidden: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isHidden(): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 4411161641937620, this, []); }
-  set isHidden(value: boolean) { callSDK<void>("GameController_c1f28409f8601238", 3676438830709244, this, [value]); }
+  get isHidden(): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 4411161641937620, this, []); }
+  set isHidden(value: boolean) { callSDK<void>("GameController_e11dfd5beee01da3", 3676438830709244, this, [value]); }
   /**
    * var path: UIBezierPath? { get set }
    * @availability iOS 15.0+
    */
-  get path(): (_UIKit_UIBezierPath) | null { return callSDK<(_UIKit_UIBezierPath) | null>("GameController_c1f28409f8601238", 2754038939700353, this, []); }
-  set path(value: (_UIKit_UIBezierPath) | null) { callSDK<void>("GameController_c1f28409f8601238", 2958980665272937, this, [value]); }
+  get path(): (_UIKit_UIBezierPath) | null { return callSDK<(_UIKit_UIBezierPath) | null>("GameController_e11dfd5beee01da3", 2754038939700353, this, []); }
+  set path(value: (_UIKit_UIBezierPath) | null) { callSDK<void>("GameController_e11dfd5beee01da3", 2958980665272937, this, [value]); }
   declare readonly $type: { "c:objc(cs)GCVirtualControllerElementConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actsAsTouchpad": true; "isHidden": true; "path": true };
 }
@@ -4238,32 +4238,32 @@ export class GCVirtualController_ElementConfiguration extends SDKHandle {
  */
 export class GCXboxGamepad extends (GCExtendedGamepad as unknown as Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCExtendedGamepad)) {
   /** init() */
-  static init(): GCXboxGamepad { return callSDK<GCXboxGamepad>("GameController_c1f28409f8601238", 4307653009406251, undefined, []); }
+  static init(): GCXboxGamepad { return callSDK<GCXboxGamepad>("GameController_e11dfd5beee01da3", 4307653009406251, undefined, []); }
   /**
    * var buttonShare: GCControllerButtonInput? { get }
    * @availability iOS 15.0+
    */
-  get buttonShare(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 157540952446647, this, []); }
+  get buttonShare(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 157540952446647, this, []); }
   /**
    * var paddleButton1: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get paddleButton1(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 3412605999027073, this, []); }
+  get paddleButton1(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 3412605999027073, this, []); }
   /**
    * var paddleButton2: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get paddleButton2(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 3398082370347121, this, []); }
+  get paddleButton2(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 3398082370347121, this, []); }
   /**
    * var paddleButton3: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get paddleButton3(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 3668782310960080, this, []); }
+  get paddleButton3(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 3668782310960080, this, []); }
   /**
    * var paddleButton4: GCControllerButtonInput? { get }
    * @availability iOS 14.0+
    */
-  get paddleButton4(): $SDK46 { return callSDK<$SDK46>("GameController_c1f28409f8601238", 1978526627265536, this, []); }
+  get paddleButton4(): $SDK46 { return callSDK<$SDK46>("GameController_e11dfd5beee01da3", 1978526627265536, this, []); }
   declare readonly $type: { "c:objc(cs)GCXboxGamepad": true; "c:objc(cs)GCExtendedGamepad": true; "c:objc(cs)GCPhysicalInputProfile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allAxes": true; "allButtons": true; "allDpads": true; "allElements": true; "allTouchpads": true; "axes": true; "buttons": true; "device": true; "dpads": true; "elements": true; "hasRemappedElements": true; "lastEventTimestamp": true; "touchpads": true; "buttonA": true; "buttonB": true; "buttonHome": true; "buttonMenu": true; "buttonOptions": true; "buttonX": true; "buttonY": true; "controller": true; "dpad": true; "leftShoulder": true; "leftThumbstick": true; "leftThumbstickButton": true; "leftTrigger": true; "rightShoulder": true; "rightThumbstick": true; "rightThumbstickButton": true; "rightTrigger": true; "buttonShare": true; "paddleButton1": true; "paddleButton2": true; "paddleButton3": true; "paddleButton4": true };
 }
@@ -4275,57 +4275,57 @@ export const NSNotification_Name = {
    * static let GCControllerDidBecomeCurrent: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCControllerDidBecomeCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3288298186925629, undefined, []); },
+  get GCControllerDidBecomeCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3288298186925629, undefined, []); },
   /**
    * static let GCControllerDidConnect: NSNotification.Name
    * @availability iOS 7.0+
    */
-  get GCControllerDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 406432310457942, undefined, []); },
+  get GCControllerDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 406432310457942, undefined, []); },
   /**
    * static let GCControllerDidDisconnect: NSNotification.Name
    * @availability iOS 7.0+
    */
-  get GCControllerDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3370612409284665, undefined, []); },
+  get GCControllerDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3370612409284665, undefined, []); },
   /**
    * static let GCControllerDidStopBeingCurrent: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCControllerDidStopBeingCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3842161238441602, undefined, []); },
+  get GCControllerDidStopBeingCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3842161238441602, undefined, []); },
   /**
    * static let GCControllerUserCustomizationsDidChange: NSNotification.Name
    * @availability iOS 16.0+
    */
-  get GCControllerUserCustomizationsDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 2332747310874386, undefined, []); },
+  get GCControllerUserCustomizationsDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 2332747310874386, undefined, []); },
   /**
    * static let GCKeyboardDidConnect: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCKeyboardDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3986430845590923, undefined, []); },
+  get GCKeyboardDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3986430845590923, undefined, []); },
   /**
    * static let GCKeyboardDidDisconnect: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCKeyboardDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3576636714879125, undefined, []); },
+  get GCKeyboardDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3576636714879125, undefined, []); },
   /**
    * static let GCMouseDidBecomeCurrent: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCMouseDidBecomeCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 2352821687494393, undefined, []); },
+  get GCMouseDidBecomeCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 2352821687494393, undefined, []); },
   /**
    * static let GCMouseDidConnect: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCMouseDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 4270844211199784, undefined, []); },
+  get GCMouseDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 4270844211199784, undefined, []); },
   /**
    * static let GCMouseDidDisconnect: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCMouseDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 3284105805326363, undefined, []); },
+  get GCMouseDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 3284105805326363, undefined, []); },
   /**
    * static let GCMouseDidStopBeingCurrent: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get GCMouseDidStopBeingCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_c1f28409f8601238", 1718362185875332, undefined, []); }
+  get GCMouseDidStopBeingCurrent(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("GameController_e11dfd5beee01da3", 1718362185875332, undefined, []); }
 };
 
 export class NSValue extends SDKHandle {
@@ -4333,12 +4333,12 @@ export class NSValue extends SDKHandle {
    * convenience init(GCPoint2 point: GCPoint2)
    * @availability iOS 17.4+
    */
-  static init(point: GCPoint2): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("GameController_c1f28409f8601238", 3657403723138168, undefined, [point]); }
+  static init(point: GCPoint2): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("GameController_e11dfd5beee01da3", 3657403723138168, undefined, [point]); }
   /**
    * var gcPoint2Value: GCPoint2 { get }
    * @availability iOS 17.4+
    */
-  get gcPoint2Value(): GCPoint2 { return callSDK<GCPoint2>("GameController_c1f28409f8601238", 3806919707969406, this, []); }
+  get gcPoint2Value(): GCPoint2 { return callSDK<GCPoint2>("GameController_e11dfd5beee01da3", 3806919707969406, this, []); }
   declare readonly $type: { "c:objc(cs)NSValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "gcPoint2Value": true };
 }
@@ -4348,7 +4348,7 @@ export class UIScene_ConnectionOptions extends SDKHandle {
    * var gameControllerActivationContext: GCGameControllerActivationContext? { get }
    * @availability iOS 18.0+
    */
-  get gameControllerActivationContext(): Promise<(GCGameControllerActivationContext) | null> { return callSDKAsync<(GCGameControllerActivationContext) | null>("GameController_c1f28409f8601238", 1068436146942055, this, []); }
+  get gameControllerActivationContext(): Promise<(GCGameControllerActivationContext) | null> { return callSDKAsync<(GCGameControllerActivationContext) | null>("GameController_e11dfd5beee01da3", 1068436146942055, this, []); }
   declare readonly $type: { "c:objc(cs)UISceneConnectionOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "gameControllerActivationContext": true };
 }
@@ -4358,1278 +4358,1278 @@ export class UIScene_ConnectionOptions extends SDKHandle {
  * @availability iOS 7.0+
  * @deprecated iOS 13.0
  */
-export function GCExtendedGamepadSnapShotDataV100FromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 1664868352748823, undefined, [snapshotData, data]); }
+export function GCExtendedGamepadSnapShotDataV100FromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 1664868352748823, undefined, [snapshotData, data]); }
 
 /**
  * func GCExtendedGamepadSnapshotDataFromNSData(_ snapshotData: UnsafeMutablePointer<GCExtendedGamepadSnapshotData>?, _ data: Data?) -> Bool
  * @availability iOS 13.0+
  * @deprecated iOS 13.0
  */
-export function GCExtendedGamepadSnapshotDataFromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 2535396367075552, undefined, [snapshotData, data]); }
+export function GCExtendedGamepadSnapshotDataFromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 2535396367075552, undefined, [snapshotData, data]); }
 
 /**
  * func GCGamepadSnapShotDataV100FromNSData(_ snapshotData: UnsafeMutablePointer<GCGamepadSnapShotDataV100>?, _ data: Data?) -> Bool
  * @availability iOS 7.0+
  * @deprecated iOS 13.0
  */
-export function GCGamepadSnapShotDataV100FromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 1726396321850945, undefined, [snapshotData, data]); }
+export function GCGamepadSnapShotDataV100FromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 1726396321850945, undefined, [snapshotData, data]); }
 
 /**
  * func GCMicroGamepadSnapShotDataV100FromNSData(_ snapshotData: UnsafeMutablePointer<GCMicroGamepadSnapShotDataV100>?, _ data: Data?) -> Bool
  * @availability iOS 9.0+
  * @deprecated iOS 13.0
  */
-export function GCMicroGamepadSnapShotDataV100FromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 4429307332213554, undefined, [snapshotData, data]); }
+export function GCMicroGamepadSnapShotDataV100FromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 4429307332213554, undefined, [snapshotData, data]); }
 
 /**
  * func GCMicroGamepadSnapshotDataFromNSData(_ snapshotData: UnsafeMutablePointer<GCMicroGamepadSnapshotData>?, _ data: Data?) -> Bool
  * @availability iOS 13.0+
  * @deprecated iOS 13.0
  */
-export function GCMicroGamepadSnapshotDataFromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 518361406434681, undefined, [snapshotData, data]); }
+export function GCMicroGamepadSnapshotDataFromNSData(snapshotData?: (SDKHandle) | null, data?: (ArrayBuffer) | null): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 518361406434681, undefined, [snapshotData, data]); }
 
 /**
  * func GCPoint2Equal(_ point1: GCPoint2, _ point2: GCPoint2) -> Bool
  * @availability iOS 17.4+
  */
-export function GCPoint2Equal(point1: GCPoint2, point2: GCPoint2): boolean { return callSDK<boolean>("GameController_c1f28409f8601238", 3110267543859067, undefined, [point1, point2]); }
+export function GCPoint2Equal(point1: GCPoint2, point2: GCPoint2): boolean { return callSDK<boolean>("GameController_e11dfd5beee01da3", 3110267543859067, undefined, [point1, point2]); }
 
 /**
  * func GCPoint2Make(_ x: Float, _ y: Float) -> GCPoint2
  * @availability iOS 17.4+
  */
-export function GCPoint2Make(x: number, y: number): GCPoint2 { return callSDK<GCPoint2>("GameController_c1f28409f8601238", 2791868065443666, undefined, [x, y]); }
+export function GCPoint2Make(x: number, y: number): GCPoint2 { return callSDK<GCPoint2>("GameController_e11dfd5beee01da3", 2791868065443666, undefined, [x, y]); }
 
 /**
  * func NSDataFromGCExtendedGamepadSnapShotDataV100(_ snapshotData: UnsafeMutablePointer<GCExtendedGamepadSnapShotDataV100>?) -> Data?
  * @availability iOS 7.0+
  * @deprecated iOS 13.0
  */
-export function NSDataFromGCExtendedGamepadSnapShotDataV100(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_c1f28409f8601238", 3014032128761958, undefined, [snapshotData]); }
+export function NSDataFromGCExtendedGamepadSnapShotDataV100(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_e11dfd5beee01da3", 3014032128761958, undefined, [snapshotData]); }
 
 /**
  * func NSDataFromGCExtendedGamepadSnapshotData(_ snapshotData: UnsafeMutablePointer<GCExtendedGamepadSnapshotData>?) -> Data?
  * @availability iOS 13.0+
  * @deprecated iOS 13.0
  */
-export function NSDataFromGCExtendedGamepadSnapshotData(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_c1f28409f8601238", 4349244100983430, undefined, [snapshotData]); }
+export function NSDataFromGCExtendedGamepadSnapshotData(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_e11dfd5beee01da3", 4349244100983430, undefined, [snapshotData]); }
 
 /**
  * func NSDataFromGCGamepadSnapShotDataV100(_ snapshotData: UnsafeMutablePointer<GCGamepadSnapShotDataV100>?) -> Data?
  * @availability iOS 7.0+
  * @deprecated iOS 13.0
  */
-export function NSDataFromGCGamepadSnapShotDataV100(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_c1f28409f8601238", 1669127854075979, undefined, [snapshotData]); }
+export function NSDataFromGCGamepadSnapShotDataV100(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_e11dfd5beee01da3", 1669127854075979, undefined, [snapshotData]); }
 
 /**
  * func NSDataFromGCMicroGamepadSnapShotDataV100(_ snapshotData: UnsafeMutablePointer<GCMicroGamepadSnapShotDataV100>?) -> Data?
  * @availability iOS 9.0+
  * @deprecated iOS 13.0
  */
-export function NSDataFromGCMicroGamepadSnapShotDataV100(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_c1f28409f8601238", 1169942276479261, undefined, [snapshotData]); }
+export function NSDataFromGCMicroGamepadSnapShotDataV100(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_e11dfd5beee01da3", 1169942276479261, undefined, [snapshotData]); }
 
 /**
  * func NSDataFromGCMicroGamepadSnapshotData(_ snapshotData: UnsafeMutablePointer<GCMicroGamepadSnapshotData>?) -> Data?
  * @availability iOS 13.0+
  * @deprecated iOS 13.0
  */
-export function NSDataFromGCMicroGamepadSnapshotData(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_c1f28409f8601238", 308251797158445, undefined, [snapshotData]); }
+export function NSDataFromGCMicroGamepadSnapshotData(snapshotData?: (SDKHandle) | null): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("GameController_e11dfd5beee01da3", 308251797158445, undefined, [snapshotData]); }
 
 /**
  * func NSStringFromGCPoint2(_ point: GCPoint2) -> String
  * @availability iOS 17.4+
  */
-export function NSStringFromGCPoint2(point: GCPoint2): string { return callSDK<string>("GameController_c1f28409f8601238", 1304331228689208, undefined, [point]); }
+export function NSStringFromGCPoint2(point: GCPoint2): string { return callSDK<string>("GameController_e11dfd5beee01da3", 1304331228689208, undefined, [point]); }
 
 /**
  * let GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion
  * @availability iOS 9.0+
  * @deprecated iOS 13.0
  */
-export const GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion = callSDK<GCExtendedGamepadSnapshotDataVersion>("GameController_c1f28409f8601238", 1322716085106017, undefined, []);
+export const GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion = callSDK<GCExtendedGamepadSnapshotDataVersion>("GameController_e11dfd5beee01da3", 1322716085106017, undefined, []);
 
 /**
  * let GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion
  * @availability iOS 13.0+
  * @deprecated iOS 13.0
  */
-export const GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion = callSDK<GCMicroGamepadSnapshotDataVersion>("GameController_c1f28409f8601238", 574757670294804, undefined, []);
+export const GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion = callSDK<GCMicroGamepadSnapshotDataVersion>("GameController_e11dfd5beee01da3", 574757670294804, undefined, []);
 
 /**
  * let GCHapticDurationInfinite: Float
  * @availability iOS 14.0+
  */
-export const GCHapticDurationInfinite: number = callSDK<number>("GameController_c1f28409f8601238", 1212582224960664, undefined, []);
+export const GCHapticDurationInfinite: number = callSDK<number>("GameController_e11dfd5beee01da3", 1212582224960664, undefined, []);
 
 /**
  * let GCInputDirectionalCardinalDpad: String
  * @availability iOS 14.5+
  */
-export const GCInputDirectionalCardinalDpad: string = callSDK<string>("GameController_c1f28409f8601238", 678520431471088, undefined, []);
+export const GCInputDirectionalCardinalDpad: string = callSDK<string>("GameController_e11dfd5beee01da3", 678520431471088, undefined, []);
 
 /**
  * let GCInputDirectionalCenterButton: String
  * @availability iOS 15.0+
  */
-export const GCInputDirectionalCenterButton: string = callSDK<string>("GameController_c1f28409f8601238", 3955220798409338, undefined, []);
+export const GCInputDirectionalCenterButton: string = callSDK<string>("GameController_e11dfd5beee01da3", 3955220798409338, undefined, []);
 
 /**
  * let GCInputDirectionalDpad: String
  * @availability iOS 14.5+
  */
-export const GCInputDirectionalDpad: string = callSDK<string>("GameController_c1f28409f8601238", 3396487447723015, undefined, []);
+export const GCInputDirectionalDpad: string = callSDK<string>("GameController_e11dfd5beee01da3", 3396487447723015, undefined, []);
 
 /**
  * let GCInputDirectionalTouchSurfaceButton: String
  * @availability iOS 15.0+
  */
-export const GCInputDirectionalTouchSurfaceButton: string = callSDK<string>("GameController_c1f28409f8601238", 1871147975883153, undefined, []);
+export const GCInputDirectionalTouchSurfaceButton: string = callSDK<string>("GameController_e11dfd5beee01da3", 1871147975883153, undefined, []);
 
 /**
  * let GCInputMicroGamepadButtonA: String
  * @availability iOS 15.0+
  */
-export const GCInputMicroGamepadButtonA: string = callSDK<string>("GameController_c1f28409f8601238", 2317485310120539, undefined, []);
+export const GCInputMicroGamepadButtonA: string = callSDK<string>("GameController_e11dfd5beee01da3", 2317485310120539, undefined, []);
 
 /**
  * let GCInputMicroGamepadButtonMenu: String
  * @availability iOS 15.0+
  */
-export const GCInputMicroGamepadButtonMenu: string = callSDK<string>("GameController_c1f28409f8601238", 624294239972855, undefined, []);
+export const GCInputMicroGamepadButtonMenu: string = callSDK<string>("GameController_e11dfd5beee01da3", 624294239972855, undefined, []);
 
 /**
  * let GCInputMicroGamepadButtonX: String
  * @availability iOS 15.0+
  */
-export const GCInputMicroGamepadButtonX: string = callSDK<string>("GameController_c1f28409f8601238", 1108544935810205, undefined, []);
+export const GCInputMicroGamepadButtonX: string = callSDK<string>("GameController_e11dfd5beee01da3", 1108544935810205, undefined, []);
 
 /**
  * let GCInputMicroGamepadDpad: String
  * @availability iOS 15.0+
  */
-export const GCInputMicroGamepadDpad: string = callSDK<string>("GameController_c1f28409f8601238", 2505979364600481, undefined, []);
+export const GCInputMicroGamepadDpad: string = callSDK<string>("GameController_e11dfd5beee01da3", 2505979364600481, undefined, []);
 
 /**
  * let GCKeyA: String
  * @availability iOS 14.0+
  */
-export const GCKeyA: string = callSDK<string>("GameController_c1f28409f8601238", 1634511676382208, undefined, []);
+export const GCKeyA: string = callSDK<string>("GameController_e11dfd5beee01da3", 1634511676382208, undefined, []);
 
 /**
  * let GCKeyApplication: String
  * @availability iOS 14.0+
  */
-export const GCKeyApplication: string = callSDK<string>("GameController_c1f28409f8601238", 2128501029249926, undefined, []);
+export const GCKeyApplication: string = callSDK<string>("GameController_e11dfd5beee01da3", 2128501029249926, undefined, []);
 
 /**
  * let GCKeyB: String
  * @availability iOS 14.0+
  */
-export const GCKeyB: string = callSDK<string>("GameController_c1f28409f8601238", 2331220301380158, undefined, []);
+export const GCKeyB: string = callSDK<string>("GameController_e11dfd5beee01da3", 2331220301380158, undefined, []);
 
 /**
  * let GCKeyBackslash: String
  * @availability iOS 14.0+
  */
-export const GCKeyBackslash: string = callSDK<string>("GameController_c1f28409f8601238", 1236315095410805, undefined, []);
+export const GCKeyBackslash: string = callSDK<string>("GameController_e11dfd5beee01da3", 1236315095410805, undefined, []);
 
 /**
  * let GCKeyC: String
  * @availability iOS 14.0+
  */
-export const GCKeyC: string = callSDK<string>("GameController_c1f28409f8601238", 3669795701605017, undefined, []);
+export const GCKeyC: string = callSDK<string>("GameController_e11dfd5beee01da3", 3669795701605017, undefined, []);
 
 /**
  * let GCKeyCapsLock: String
  * @availability iOS 14.0+
  */
-export const GCKeyCapsLock: string = callSDK<string>("GameController_c1f28409f8601238", 1989670570482044, undefined, []);
+export const GCKeyCapsLock: string = callSDK<string>("GameController_e11dfd5beee01da3", 1989670570482044, undefined, []);
 
 /**
  * let GCKeyCloseBracket: String
  * @availability iOS 14.0+
  */
-export const GCKeyCloseBracket: string = callSDK<string>("GameController_c1f28409f8601238", 245514778612476, undefined, []);
+export const GCKeyCloseBracket: string = callSDK<string>("GameController_e11dfd5beee01da3", 245514778612476, undefined, []);
 
 /**
  * let GCKeyComma: String
  * @availability iOS 14.0+
  */
-export const GCKeyComma: string = callSDK<string>("GameController_c1f28409f8601238", 3174405074743913, undefined, []);
+export const GCKeyComma: string = callSDK<string>("GameController_e11dfd5beee01da3", 3174405074743913, undefined, []);
 
 /**
  * let GCKeyD: String
  * @availability iOS 14.0+
  */
-export const GCKeyD: string = callSDK<string>("GameController_c1f28409f8601238", 2948505749143506, undefined, []);
+export const GCKeyD: string = callSDK<string>("GameController_e11dfd5beee01da3", 2948505749143506, undefined, []);
 
 /**
  * let GCKeyDeleteForward: String
  * @availability iOS 14.0+
  */
-export const GCKeyDeleteForward: string = callSDK<string>("GameController_c1f28409f8601238", 2920550002719545, undefined, []);
+export const GCKeyDeleteForward: string = callSDK<string>("GameController_e11dfd5beee01da3", 2920550002719545, undefined, []);
 
 /**
  * let GCKeyDeleteOrBackspace: String
  * @availability iOS 14.0+
  */
-export const GCKeyDeleteOrBackspace: string = callSDK<string>("GameController_c1f28409f8601238", 3692445904006539, undefined, []);
+export const GCKeyDeleteOrBackspace: string = callSDK<string>("GameController_e11dfd5beee01da3", 3692445904006539, undefined, []);
 
 /**
  * let GCKeyDownArrow: String
  * @availability iOS 14.0+
  */
-export const GCKeyDownArrow: string = callSDK<string>("GameController_c1f28409f8601238", 703562601527260, undefined, []);
+export const GCKeyDownArrow: string = callSDK<string>("GameController_e11dfd5beee01da3", 703562601527260, undefined, []);
 
 /**
  * let GCKeyE: String
  * @availability iOS 14.0+
  */
-export const GCKeyE: string = callSDK<string>("GameController_c1f28409f8601238", 1310589389244586, undefined, []);
+export const GCKeyE: string = callSDK<string>("GameController_e11dfd5beee01da3", 1310589389244586, undefined, []);
 
 /**
  * let GCKeyEight: String
  * @availability iOS 14.0+
  */
-export const GCKeyEight: string = callSDK<string>("GameController_c1f28409f8601238", 3483531157430717, undefined, []);
+export const GCKeyEight: string = callSDK<string>("GameController_e11dfd5beee01da3", 3483531157430717, undefined, []);
 
 /**
  * let GCKeyEnd: String
  * @availability iOS 14.0+
  */
-export const GCKeyEnd: string = callSDK<string>("GameController_c1f28409f8601238", 131922502207573, undefined, []);
+export const GCKeyEnd: string = callSDK<string>("GameController_e11dfd5beee01da3", 131922502207573, undefined, []);
 
 /**
  * let GCKeyEqualSign: String
  * @availability iOS 14.0+
  */
-export const GCKeyEqualSign: string = callSDK<string>("GameController_c1f28409f8601238", 883064512235105, undefined, []);
+export const GCKeyEqualSign: string = callSDK<string>("GameController_e11dfd5beee01da3", 883064512235105, undefined, []);
 
 /**
  * let GCKeyEscape: String
  * @availability iOS 14.0+
  */
-export const GCKeyEscape: string = callSDK<string>("GameController_c1f28409f8601238", 2173583416150779, undefined, []);
+export const GCKeyEscape: string = callSDK<string>("GameController_e11dfd5beee01da3", 2173583416150779, undefined, []);
 
 /**
  * let GCKeyF10: String
  * @availability iOS 14.0+
  */
-export const GCKeyF10: string = callSDK<string>("GameController_c1f28409f8601238", 666967438097841, undefined, []);
+export const GCKeyF10: string = callSDK<string>("GameController_e11dfd5beee01da3", 666967438097841, undefined, []);
 
 /**
  * let GCKeyF11: String
  * @availability iOS 14.0+
  */
-export const GCKeyF11: string = callSDK<string>("GameController_c1f28409f8601238", 3137009764317705, undefined, []);
+export const GCKeyF11: string = callSDK<string>("GameController_e11dfd5beee01da3", 3137009764317705, undefined, []);
 
 /**
  * let GCKeyF12: String
  * @availability iOS 14.0+
  */
-export const GCKeyF12: string = callSDK<string>("GameController_c1f28409f8601238", 438695791704734, undefined, []);
+export const GCKeyF12: string = callSDK<string>("GameController_e11dfd5beee01da3", 438695791704734, undefined, []);
 
 /**
  * let GCKeyF13: String
  * @availability iOS 15.0+
  */
-export const GCKeyF13: string = callSDK<string>("GameController_c1f28409f8601238", 563730931014257, undefined, []);
+export const GCKeyF13: string = callSDK<string>("GameController_e11dfd5beee01da3", 563730931014257, undefined, []);
 
 /**
  * let GCKeyF14: String
  * @availability iOS 15.0+
  */
-export const GCKeyF14: string = callSDK<string>("GameController_c1f28409f8601238", 250311949616244, undefined, []);
+export const GCKeyF14: string = callSDK<string>("GameController_e11dfd5beee01da3", 250311949616244, undefined, []);
 
 /**
  * let GCKeyF15: String
  * @availability iOS 15.0+
  */
-export const GCKeyF15: string = callSDK<string>("GameController_c1f28409f8601238", 2975417035437585, undefined, []);
+export const GCKeyF15: string = callSDK<string>("GameController_e11dfd5beee01da3", 2975417035437585, undefined, []);
 
 /**
  * let GCKeyF16: String
  * @availability iOS 15.0+
  */
-export const GCKeyF16: string = callSDK<string>("GameController_c1f28409f8601238", 801501304852202, undefined, []);
+export const GCKeyF16: string = callSDK<string>("GameController_e11dfd5beee01da3", 801501304852202, undefined, []);
 
 /**
  * let GCKeyF17: String
  * @availability iOS 15.0+
  */
-export const GCKeyF17: string = callSDK<string>("GameController_c1f28409f8601238", 1687906668984871, undefined, []);
+export const GCKeyF17: string = callSDK<string>("GameController_e11dfd5beee01da3", 1687906668984871, undefined, []);
 
 /**
  * let GCKeyF18: String
  * @availability iOS 15.0+
  */
-export const GCKeyF18: string = callSDK<string>("GameController_c1f28409f8601238", 2735335721175968, undefined, []);
+export const GCKeyF18: string = callSDK<string>("GameController_e11dfd5beee01da3", 2735335721175968, undefined, []);
 
 /**
  * let GCKeyF19: String
  * @availability iOS 15.0+
  */
-export const GCKeyF19: string = callSDK<string>("GameController_c1f28409f8601238", 711846889871364, undefined, []);
+export const GCKeyF19: string = callSDK<string>("GameController_e11dfd5beee01da3", 711846889871364, undefined, []);
 
 /**
  * let GCKeyF1: String
  * @availability iOS 14.0+
  */
-export const GCKeyF1: string = callSDK<string>("GameController_c1f28409f8601238", 2401718589833185, undefined, []);
+export const GCKeyF1: string = callSDK<string>("GameController_e11dfd5beee01da3", 2401718589833185, undefined, []);
 
 /**
  * let GCKeyF20: String
  * @availability iOS 15.0+
  */
-export const GCKeyF20: string = callSDK<string>("GameController_c1f28409f8601238", 1183907427953209, undefined, []);
+export const GCKeyF20: string = callSDK<string>("GameController_e11dfd5beee01da3", 1183907427953209, undefined, []);
 
 /**
  * let GCKeyF2: String
  * @availability iOS 14.0+
  */
-export const GCKeyF2: string = callSDK<string>("GameController_c1f28409f8601238", 3466857260316581, undefined, []);
+export const GCKeyF2: string = callSDK<string>("GameController_e11dfd5beee01da3", 3466857260316581, undefined, []);
 
 /**
  * let GCKeyF3: String
  * @availability iOS 14.0+
  */
-export const GCKeyF3: string = callSDK<string>("GameController_c1f28409f8601238", 1556140365362158, undefined, []);
+export const GCKeyF3: string = callSDK<string>("GameController_e11dfd5beee01da3", 1556140365362158, undefined, []);
 
 /**
  * let GCKeyF4: String
  * @availability iOS 14.0+
  */
-export const GCKeyF4: string = callSDK<string>("GameController_c1f28409f8601238", 2139957537037084, undefined, []);
+export const GCKeyF4: string = callSDK<string>("GameController_e11dfd5beee01da3", 2139957537037084, undefined, []);
 
 /**
  * let GCKeyF5: String
  * @availability iOS 14.0+
  */
-export const GCKeyF5: string = callSDK<string>("GameController_c1f28409f8601238", 3579940689533699, undefined, []);
+export const GCKeyF5: string = callSDK<string>("GameController_e11dfd5beee01da3", 3579940689533699, undefined, []);
 
 /**
  * let GCKeyF6: String
  * @availability iOS 14.0+
  */
-export const GCKeyF6: string = callSDK<string>("GameController_c1f28409f8601238", 1020997763895631, undefined, []);
+export const GCKeyF6: string = callSDK<string>("GameController_e11dfd5beee01da3", 1020997763895631, undefined, []);
 
 /**
  * let GCKeyF7: String
  * @availability iOS 14.0+
  */
-export const GCKeyF7: string = callSDK<string>("GameController_c1f28409f8601238", 1570697335900413, undefined, []);
+export const GCKeyF7: string = callSDK<string>("GameController_e11dfd5beee01da3", 1570697335900413, undefined, []);
 
 /**
  * let GCKeyF8: String
  * @availability iOS 14.0+
  */
-export const GCKeyF8: string = callSDK<string>("GameController_c1f28409f8601238", 406644335634088, undefined, []);
+export const GCKeyF8: string = callSDK<string>("GameController_e11dfd5beee01da3", 406644335634088, undefined, []);
 
 /**
  * let GCKeyF9: String
  * @availability iOS 14.0+
  */
-export const GCKeyF9: string = callSDK<string>("GameController_c1f28409f8601238", 949458208668931, undefined, []);
+export const GCKeyF9: string = callSDK<string>("GameController_e11dfd5beee01da3", 949458208668931, undefined, []);
 
 /**
  * let GCKeyF: String
  * @availability iOS 14.0+
  */
-export const GCKeyF: string = callSDK<string>("GameController_c1f28409f8601238", 1338027467968303, undefined, []);
+export const GCKeyF: string = callSDK<string>("GameController_e11dfd5beee01da3", 1338027467968303, undefined, []);
 
 /**
  * let GCKeyFive: String
  * @availability iOS 14.0+
  */
-export const GCKeyFive: string = callSDK<string>("GameController_c1f28409f8601238", 2041776706735388, undefined, []);
+export const GCKeyFive: string = callSDK<string>("GameController_e11dfd5beee01da3", 2041776706735388, undefined, []);
 
 /**
  * let GCKeyFour: String
  * @availability iOS 14.0+
  */
-export const GCKeyFour: string = callSDK<string>("GameController_c1f28409f8601238", 593992300840082, undefined, []);
+export const GCKeyFour: string = callSDK<string>("GameController_e11dfd5beee01da3", 593992300840082, undefined, []);
 
 /**
  * let GCKeyG: String
  * @availability iOS 14.0+
  */
-export const GCKeyG: string = callSDK<string>("GameController_c1f28409f8601238", 1487211496422913, undefined, []);
+export const GCKeyG: string = callSDK<string>("GameController_e11dfd5beee01da3", 1487211496422913, undefined, []);
 
 /**
  * let GCKeyGraveAccentAndTilde: String
  * @availability iOS 14.0+
  */
-export const GCKeyGraveAccentAndTilde: string = callSDK<string>("GameController_c1f28409f8601238", 3763970381888275, undefined, []);
+export const GCKeyGraveAccentAndTilde: string = callSDK<string>("GameController_e11dfd5beee01da3", 3763970381888275, undefined, []);
 
 /**
  * let GCKeyH: String
  * @availability iOS 14.0+
  */
-export const GCKeyH: string = callSDK<string>("GameController_c1f28409f8601238", 3771012922087070, undefined, []);
+export const GCKeyH: string = callSDK<string>("GameController_e11dfd5beee01da3", 3771012922087070, undefined, []);
 
 /**
  * let GCKeyHome: String
  * @availability iOS 14.0+
  */
-export const GCKeyHome: string = callSDK<string>("GameController_c1f28409f8601238", 3104354505108358, undefined, []);
+export const GCKeyHome: string = callSDK<string>("GameController_e11dfd5beee01da3", 3104354505108358, undefined, []);
 
 /**
  * let GCKeyHyphen: String
  * @availability iOS 14.0+
  */
-export const GCKeyHyphen: string = callSDK<string>("GameController_c1f28409f8601238", 2722814958197833, undefined, []);
+export const GCKeyHyphen: string = callSDK<string>("GameController_e11dfd5beee01da3", 2722814958197833, undefined, []);
 
 /**
  * let GCKeyI: String
  * @availability iOS 14.0+
  */
-export const GCKeyI: string = callSDK<string>("GameController_c1f28409f8601238", 3098103823894235, undefined, []);
+export const GCKeyI: string = callSDK<string>("GameController_e11dfd5beee01da3", 3098103823894235, undefined, []);
 
 /**
  * let GCKeyInsert: String
  * @availability iOS 14.0+
  */
-export const GCKeyInsert: string = callSDK<string>("GameController_c1f28409f8601238", 3354832243501882, undefined, []);
+export const GCKeyInsert: string = callSDK<string>("GameController_e11dfd5beee01da3", 3354832243501882, undefined, []);
 
 /**
  * let GCKeyInternational1: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational1: string = callSDK<string>("GameController_c1f28409f8601238", 1239862269478042, undefined, []);
+export const GCKeyInternational1: string = callSDK<string>("GameController_e11dfd5beee01da3", 1239862269478042, undefined, []);
 
 /**
  * let GCKeyInternational2: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational2: string = callSDK<string>("GameController_c1f28409f8601238", 2532489080585839, undefined, []);
+export const GCKeyInternational2: string = callSDK<string>("GameController_e11dfd5beee01da3", 2532489080585839, undefined, []);
 
 /**
  * let GCKeyInternational3: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational3: string = callSDK<string>("GameController_c1f28409f8601238", 4242341797311704, undefined, []);
+export const GCKeyInternational3: string = callSDK<string>("GameController_e11dfd5beee01da3", 4242341797311704, undefined, []);
 
 /**
  * let GCKeyInternational4: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational4: string = callSDK<string>("GameController_c1f28409f8601238", 1644333422955942, undefined, []);
+export const GCKeyInternational4: string = callSDK<string>("GameController_e11dfd5beee01da3", 1644333422955942, undefined, []);
 
 /**
  * let GCKeyInternational5: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational5: string = callSDK<string>("GameController_c1f28409f8601238", 1196534403257164, undefined, []);
+export const GCKeyInternational5: string = callSDK<string>("GameController_e11dfd5beee01da3", 1196534403257164, undefined, []);
 
 /**
  * let GCKeyInternational6: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational6: string = callSDK<string>("GameController_c1f28409f8601238", 4344099857490788, undefined, []);
+export const GCKeyInternational6: string = callSDK<string>("GameController_e11dfd5beee01da3", 4344099857490788, undefined, []);
 
 /**
  * let GCKeyInternational7: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational7: string = callSDK<string>("GameController_c1f28409f8601238", 2309482156655047, undefined, []);
+export const GCKeyInternational7: string = callSDK<string>("GameController_e11dfd5beee01da3", 2309482156655047, undefined, []);
 
 /**
  * let GCKeyInternational8: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational8: string = callSDK<string>("GameController_c1f28409f8601238", 1360839495117035, undefined, []);
+export const GCKeyInternational8: string = callSDK<string>("GameController_e11dfd5beee01da3", 1360839495117035, undefined, []);
 
 /**
  * let GCKeyInternational9: String
  * @availability iOS 14.0+
  */
-export const GCKeyInternational9: string = callSDK<string>("GameController_c1f28409f8601238", 599056833861730, undefined, []);
+export const GCKeyInternational9: string = callSDK<string>("GameController_e11dfd5beee01da3", 599056833861730, undefined, []);
 
 /**
  * let GCKeyJ: String
  * @availability iOS 14.0+
  */
-export const GCKeyJ: string = callSDK<string>("GameController_c1f28409f8601238", 1837859452177893, undefined, []);
+export const GCKeyJ: string = callSDK<string>("GameController_e11dfd5beee01da3", 1837859452177893, undefined, []);
 
 /**
  * let GCKeyK: String
  * @availability iOS 14.0+
  */
-export const GCKeyK: string = callSDK<string>("GameController_c1f28409f8601238", 1667358800931417, undefined, []);
+export const GCKeyK: string = callSDK<string>("GameController_e11dfd5beee01da3", 1667358800931417, undefined, []);
 
 /**
  * let GCKeyKeypad0: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad0: string = callSDK<string>("GameController_c1f28409f8601238", 3369275186480719, undefined, []);
+export const GCKeyKeypad0: string = callSDK<string>("GameController_e11dfd5beee01da3", 3369275186480719, undefined, []);
 
 /**
  * let GCKeyKeypad1: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad1: string = callSDK<string>("GameController_c1f28409f8601238", 2227763696902247, undefined, []);
+export const GCKeyKeypad1: string = callSDK<string>("GameController_e11dfd5beee01da3", 2227763696902247, undefined, []);
 
 /**
  * let GCKeyKeypad2: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad2: string = callSDK<string>("GameController_c1f28409f8601238", 3996824726892784, undefined, []);
+export const GCKeyKeypad2: string = callSDK<string>("GameController_e11dfd5beee01da3", 3996824726892784, undefined, []);
 
 /**
  * let GCKeyKeypad3: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad3: string = callSDK<string>("GameController_c1f28409f8601238", 1227343915096343, undefined, []);
+export const GCKeyKeypad3: string = callSDK<string>("GameController_e11dfd5beee01da3", 1227343915096343, undefined, []);
 
 /**
  * let GCKeyKeypad4: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad4: string = callSDK<string>("GameController_c1f28409f8601238", 3094680945064891, undefined, []);
+export const GCKeyKeypad4: string = callSDK<string>("GameController_e11dfd5beee01da3", 3094680945064891, undefined, []);
 
 /**
  * let GCKeyKeypad5: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad5: string = callSDK<string>("GameController_c1f28409f8601238", 960598230140466, undefined, []);
+export const GCKeyKeypad5: string = callSDK<string>("GameController_e11dfd5beee01da3", 960598230140466, undefined, []);
 
 /**
  * let GCKeyKeypad6: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad6: string = callSDK<string>("GameController_c1f28409f8601238", 3274601914582639, undefined, []);
+export const GCKeyKeypad6: string = callSDK<string>("GameController_e11dfd5beee01da3", 3274601914582639, undefined, []);
 
 /**
  * let GCKeyKeypad7: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad7: string = callSDK<string>("GameController_c1f28409f8601238", 1138690552172409, undefined, []);
+export const GCKeyKeypad7: string = callSDK<string>("GameController_e11dfd5beee01da3", 1138690552172409, undefined, []);
 
 /**
  * let GCKeyKeypad8: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad8: string = callSDK<string>("GameController_c1f28409f8601238", 1739375343828991, undefined, []);
+export const GCKeyKeypad8: string = callSDK<string>("GameController_e11dfd5beee01da3", 1739375343828991, undefined, []);
 
 /**
  * let GCKeyKeypad9: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypad9: string = callSDK<string>("GameController_c1f28409f8601238", 3845914113782632, undefined, []);
+export const GCKeyKeypad9: string = callSDK<string>("GameController_e11dfd5beee01da3", 3845914113782632, undefined, []);
 
 /**
  * let GCKeyKeypadAsterisk: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadAsterisk: string = callSDK<string>("GameController_c1f28409f8601238", 236638146520470, undefined, []);
+export const GCKeyKeypadAsterisk: string = callSDK<string>("GameController_e11dfd5beee01da3", 236638146520470, undefined, []);
 
 /**
  * let GCKeyKeypadEnter: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadEnter: string = callSDK<string>("GameController_c1f28409f8601238", 1961623135246704, undefined, []);
+export const GCKeyKeypadEnter: string = callSDK<string>("GameController_e11dfd5beee01da3", 1961623135246704, undefined, []);
 
 /**
  * let GCKeyKeypadEqualSign: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadEqualSign: string = callSDK<string>("GameController_c1f28409f8601238", 3987958464889930, undefined, []);
+export const GCKeyKeypadEqualSign: string = callSDK<string>("GameController_e11dfd5beee01da3", 3987958464889930, undefined, []);
 
 /**
  * let GCKeyKeypadHyphen: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadHyphen: string = callSDK<string>("GameController_c1f28409f8601238", 3047966480238583, undefined, []);
+export const GCKeyKeypadHyphen: string = callSDK<string>("GameController_e11dfd5beee01da3", 3047966480238583, undefined, []);
 
 /**
  * let GCKeyKeypadNumLock: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadNumLock: string = callSDK<string>("GameController_c1f28409f8601238", 999851966100238, undefined, []);
+export const GCKeyKeypadNumLock: string = callSDK<string>("GameController_e11dfd5beee01da3", 999851966100238, undefined, []);
 
 /**
  * let GCKeyKeypadPeriod: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadPeriod: string = callSDK<string>("GameController_c1f28409f8601238", 3323105073201195, undefined, []);
+export const GCKeyKeypadPeriod: string = callSDK<string>("GameController_e11dfd5beee01da3", 3323105073201195, undefined, []);
 
 /**
  * let GCKeyKeypadPlus: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadPlus: string = callSDK<string>("GameController_c1f28409f8601238", 2503342323138349, undefined, []);
+export const GCKeyKeypadPlus: string = callSDK<string>("GameController_e11dfd5beee01da3", 2503342323138349, undefined, []);
 
 /**
  * let GCKeyKeypadSlash: String
  * @availability iOS 14.0+
  */
-export const GCKeyKeypadSlash: string = callSDK<string>("GameController_c1f28409f8601238", 3443011059569753, undefined, []);
+export const GCKeyKeypadSlash: string = callSDK<string>("GameController_e11dfd5beee01da3", 3443011059569753, undefined, []);
 
 /**
  * let GCKeyL: String
  * @availability iOS 14.0+
  */
-export const GCKeyL: string = callSDK<string>("GameController_c1f28409f8601238", 1311697851576687, undefined, []);
+export const GCKeyL: string = callSDK<string>("GameController_e11dfd5beee01da3", 1311697851576687, undefined, []);
 
 /**
  * let GCKeyLANG1: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG1: string = callSDK<string>("GameController_c1f28409f8601238", 3989057336848219, undefined, []);
+export const GCKeyLANG1: string = callSDK<string>("GameController_e11dfd5beee01da3", 3989057336848219, undefined, []);
 
 /**
  * let GCKeyLANG2: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG2: string = callSDK<string>("GameController_c1f28409f8601238", 3691842106922134, undefined, []);
+export const GCKeyLANG2: string = callSDK<string>("GameController_e11dfd5beee01da3", 3691842106922134, undefined, []);
 
 /**
  * let GCKeyLANG3: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG3: string = callSDK<string>("GameController_c1f28409f8601238", 887594110063660, undefined, []);
+export const GCKeyLANG3: string = callSDK<string>("GameController_e11dfd5beee01da3", 887594110063660, undefined, []);
 
 /**
  * let GCKeyLANG4: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG4: string = callSDK<string>("GameController_c1f28409f8601238", 483094028139851, undefined, []);
+export const GCKeyLANG4: string = callSDK<string>("GameController_e11dfd5beee01da3", 483094028139851, undefined, []);
 
 /**
  * let GCKeyLANG5: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG5: string = callSDK<string>("GameController_c1f28409f8601238", 921675061903048, undefined, []);
+export const GCKeyLANG5: string = callSDK<string>("GameController_e11dfd5beee01da3", 921675061903048, undefined, []);
 
 /**
  * let GCKeyLANG6: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG6: string = callSDK<string>("GameController_c1f28409f8601238", 294195764828548, undefined, []);
+export const GCKeyLANG6: string = callSDK<string>("GameController_e11dfd5beee01da3", 294195764828548, undefined, []);
 
 /**
  * let GCKeyLANG7: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG7: string = callSDK<string>("GameController_c1f28409f8601238", 2658817141049744, undefined, []);
+export const GCKeyLANG7: string = callSDK<string>("GameController_e11dfd5beee01da3", 2658817141049744, undefined, []);
 
 /**
  * let GCKeyLANG8: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG8: string = callSDK<string>("GameController_c1f28409f8601238", 1295482726044182, undefined, []);
+export const GCKeyLANG8: string = callSDK<string>("GameController_e11dfd5beee01da3", 1295482726044182, undefined, []);
 
 /**
  * let GCKeyLANG9: String
  * @availability iOS 14.0+
  */
-export const GCKeyLANG9: string = callSDK<string>("GameController_c1f28409f8601238", 2697019356551236, undefined, []);
+export const GCKeyLANG9: string = callSDK<string>("GameController_e11dfd5beee01da3", 2697019356551236, undefined, []);
 
 /**
  * let GCKeyLeftAlt: String
  * @availability iOS 14.0+
  */
-export const GCKeyLeftAlt: string = callSDK<string>("GameController_c1f28409f8601238", 319252405908321, undefined, []);
+export const GCKeyLeftAlt: string = callSDK<string>("GameController_e11dfd5beee01da3", 319252405908321, undefined, []);
 
 /**
  * let GCKeyLeftArrow: String
  * @availability iOS 14.0+
  */
-export const GCKeyLeftArrow: string = callSDK<string>("GameController_c1f28409f8601238", 2704553792727755, undefined, []);
+export const GCKeyLeftArrow: string = callSDK<string>("GameController_e11dfd5beee01da3", 2704553792727755, undefined, []);
 
 /**
  * let GCKeyLeftControl: String
  * @availability iOS 14.0+
  */
-export const GCKeyLeftControl: string = callSDK<string>("GameController_c1f28409f8601238", 911266563492451, undefined, []);
+export const GCKeyLeftControl: string = callSDK<string>("GameController_e11dfd5beee01da3", 911266563492451, undefined, []);
 
 /**
  * let GCKeyLeftGUI: String
  * @availability iOS 14.0+
  */
-export const GCKeyLeftGUI: string = callSDK<string>("GameController_c1f28409f8601238", 1820448468143270, undefined, []);
+export const GCKeyLeftGUI: string = callSDK<string>("GameController_e11dfd5beee01da3", 1820448468143270, undefined, []);
 
 /**
  * let GCKeyLeftShift: String
  * @availability iOS 14.0+
  */
-export const GCKeyLeftShift: string = callSDK<string>("GameController_c1f28409f8601238", 2001077526917874, undefined, []);
+export const GCKeyLeftShift: string = callSDK<string>("GameController_e11dfd5beee01da3", 2001077526917874, undefined, []);
 
 /**
  * let GCKeyM: String
  * @availability iOS 14.0+
  */
-export const GCKeyM: string = callSDK<string>("GameController_c1f28409f8601238", 4044658462786450, undefined, []);
+export const GCKeyM: string = callSDK<string>("GameController_e11dfd5beee01da3", 4044658462786450, undefined, []);
 
 /**
  * let GCKeyN: String
  * @availability iOS 14.0+
  */
-export const GCKeyN: string = callSDK<string>("GameController_c1f28409f8601238", 306416244618829, undefined, []);
+export const GCKeyN: string = callSDK<string>("GameController_e11dfd5beee01da3", 306416244618829, undefined, []);
 
 /**
  * let GCKeyNine: String
  * @availability iOS 14.0+
  */
-export const GCKeyNine: string = callSDK<string>("GameController_c1f28409f8601238", 2610961063100031, undefined, []);
+export const GCKeyNine: string = callSDK<string>("GameController_e11dfd5beee01da3", 2610961063100031, undefined, []);
 
 /**
  * let GCKeyNonUSBackslash: String
  * @availability iOS 14.0+
  */
-export const GCKeyNonUSBackslash: string = callSDK<string>("GameController_c1f28409f8601238", 43533380767518, undefined, []);
+export const GCKeyNonUSBackslash: string = callSDK<string>("GameController_e11dfd5beee01da3", 43533380767518, undefined, []);
 
 /**
  * let GCKeyNonUSPound: String
  * @availability iOS 14.0+
  */
-export const GCKeyNonUSPound: string = callSDK<string>("GameController_c1f28409f8601238", 3784910934886105, undefined, []);
+export const GCKeyNonUSPound: string = callSDK<string>("GameController_e11dfd5beee01da3", 3784910934886105, undefined, []);
 
 /**
  * let GCKeyO: String
  * @availability iOS 14.0+
  */
-export const GCKeyO: string = callSDK<string>("GameController_c1f28409f8601238", 2052482166277913, undefined, []);
+export const GCKeyO: string = callSDK<string>("GameController_e11dfd5beee01da3", 2052482166277913, undefined, []);
 
 /**
  * let GCKeyOne: String
  * @availability iOS 14.0+
  */
-export const GCKeyOne: string = callSDK<string>("GameController_c1f28409f8601238", 237323387968745, undefined, []);
+export const GCKeyOne: string = callSDK<string>("GameController_e11dfd5beee01da3", 237323387968745, undefined, []);
 
 /**
  * let GCKeyOpenBracket: String
  * @availability iOS 14.0+
  */
-export const GCKeyOpenBracket: string = callSDK<string>("GameController_c1f28409f8601238", 3712791545115274, undefined, []);
+export const GCKeyOpenBracket: string = callSDK<string>("GameController_e11dfd5beee01da3", 3712791545115274, undefined, []);
 
 /**
  * let GCKeyP: String
  * @availability iOS 14.0+
  */
-export const GCKeyP: string = callSDK<string>("GameController_c1f28409f8601238", 2346745114074485, undefined, []);
+export const GCKeyP: string = callSDK<string>("GameController_e11dfd5beee01da3", 2346745114074485, undefined, []);
 
 /**
  * let GCKeyPageDown: String
  * @availability iOS 14.0+
  */
-export const GCKeyPageDown: string = callSDK<string>("GameController_c1f28409f8601238", 4161455002993525, undefined, []);
+export const GCKeyPageDown: string = callSDK<string>("GameController_e11dfd5beee01da3", 4161455002993525, undefined, []);
 
 /**
  * let GCKeyPageUp: String
  * @availability iOS 14.0+
  */
-export const GCKeyPageUp: string = callSDK<string>("GameController_c1f28409f8601238", 3133775062046297, undefined, []);
+export const GCKeyPageUp: string = callSDK<string>("GameController_e11dfd5beee01da3", 3133775062046297, undefined, []);
 
 /**
  * let GCKeyPause: String
  * @availability iOS 14.0+
  */
-export const GCKeyPause: string = callSDK<string>("GameController_c1f28409f8601238", 533221969389404, undefined, []);
+export const GCKeyPause: string = callSDK<string>("GameController_e11dfd5beee01da3", 533221969389404, undefined, []);
 
 /**
  * let GCKeyPeriod: String
  * @availability iOS 14.0+
  */
-export const GCKeyPeriod: string = callSDK<string>("GameController_c1f28409f8601238", 3246450718582202, undefined, []);
+export const GCKeyPeriod: string = callSDK<string>("GameController_e11dfd5beee01da3", 3246450718582202, undefined, []);
 
 /**
  * let GCKeyPower: String
  * @availability iOS 14.0+
  */
-export const GCKeyPower: string = callSDK<string>("GameController_c1f28409f8601238", 3003617796630393, undefined, []);
+export const GCKeyPower: string = callSDK<string>("GameController_e11dfd5beee01da3", 3003617796630393, undefined, []);
 
 /**
  * let GCKeyPrintScreen: String
  * @availability iOS 14.0+
  */
-export const GCKeyPrintScreen: string = callSDK<string>("GameController_c1f28409f8601238", 4387192005558171, undefined, []);
+export const GCKeyPrintScreen: string = callSDK<string>("GameController_e11dfd5beee01da3", 4387192005558171, undefined, []);
 
 /**
  * let GCKeyQ: String
  * @availability iOS 14.0+
  */
-export const GCKeyQ: string = callSDK<string>("GameController_c1f28409f8601238", 4212029895297858, undefined, []);
+export const GCKeyQ: string = callSDK<string>("GameController_e11dfd5beee01da3", 4212029895297858, undefined, []);
 
 /**
  * let GCKeyQuote: String
  * @availability iOS 14.0+
  */
-export const GCKeyQuote: string = callSDK<string>("GameController_c1f28409f8601238", 732395131533501, undefined, []);
+export const GCKeyQuote: string = callSDK<string>("GameController_e11dfd5beee01da3", 732395131533501, undefined, []);
 
 /**
  * let GCKeyR: String
  * @availability iOS 14.0+
  */
-export const GCKeyR: string = callSDK<string>("GameController_c1f28409f8601238", 1457529270517277, undefined, []);
+export const GCKeyR: string = callSDK<string>("GameController_e11dfd5beee01da3", 1457529270517277, undefined, []);
 
 /**
  * let GCKeyReturnOrEnter: String
  * @availability iOS 14.0+
  */
-export const GCKeyReturnOrEnter: string = callSDK<string>("GameController_c1f28409f8601238", 1302199443137550, undefined, []);
+export const GCKeyReturnOrEnter: string = callSDK<string>("GameController_e11dfd5beee01da3", 1302199443137550, undefined, []);
 
 /**
  * let GCKeyRightAlt: String
  * @availability iOS 14.0+
  */
-export const GCKeyRightAlt: string = callSDK<string>("GameController_c1f28409f8601238", 3496452543400291, undefined, []);
+export const GCKeyRightAlt: string = callSDK<string>("GameController_e11dfd5beee01da3", 3496452543400291, undefined, []);
 
 /**
  * let GCKeyRightArrow: String
  * @availability iOS 14.0+
  */
-export const GCKeyRightArrow: string = callSDK<string>("GameController_c1f28409f8601238", 3803594576893217, undefined, []);
+export const GCKeyRightArrow: string = callSDK<string>("GameController_e11dfd5beee01da3", 3803594576893217, undefined, []);
 
 /**
  * let GCKeyRightControl: String
  * @availability iOS 14.0+
  */
-export const GCKeyRightControl: string = callSDK<string>("GameController_c1f28409f8601238", 2065827534845452, undefined, []);
+export const GCKeyRightControl: string = callSDK<string>("GameController_e11dfd5beee01da3", 2065827534845452, undefined, []);
 
 /**
  * let GCKeyRightGUI: String
  * @availability iOS 14.0+
  */
-export const GCKeyRightGUI: string = callSDK<string>("GameController_c1f28409f8601238", 2578417884773145, undefined, []);
+export const GCKeyRightGUI: string = callSDK<string>("GameController_e11dfd5beee01da3", 2578417884773145, undefined, []);
 
 /**
  * let GCKeyRightShift: String
  * @availability iOS 14.0+
  */
-export const GCKeyRightShift: string = callSDK<string>("GameController_c1f28409f8601238", 3689414357580842, undefined, []);
+export const GCKeyRightShift: string = callSDK<string>("GameController_e11dfd5beee01da3", 3689414357580842, undefined, []);
 
 /**
  * let GCKeyS: String
  * @availability iOS 14.0+
  */
-export const GCKeyS: string = callSDK<string>("GameController_c1f28409f8601238", 2732550490744921, undefined, []);
+export const GCKeyS: string = callSDK<string>("GameController_e11dfd5beee01da3", 2732550490744921, undefined, []);
 
 /**
  * let GCKeyScrollLock: String
  * @availability iOS 14.0+
  */
-export const GCKeyScrollLock: string = callSDK<string>("GameController_c1f28409f8601238", 901542694078365, undefined, []);
+export const GCKeyScrollLock: string = callSDK<string>("GameController_e11dfd5beee01da3", 901542694078365, undefined, []);
 
 /**
  * let GCKeySemicolon: String
  * @availability iOS 14.0+
  */
-export const GCKeySemicolon: string = callSDK<string>("GameController_c1f28409f8601238", 583621331750430, undefined, []);
+export const GCKeySemicolon: string = callSDK<string>("GameController_e11dfd5beee01da3", 583621331750430, undefined, []);
 
 /**
  * let GCKeySeven: String
  * @availability iOS 14.0+
  */
-export const GCKeySeven: string = callSDK<string>("GameController_c1f28409f8601238", 3896842626702324, undefined, []);
+export const GCKeySeven: string = callSDK<string>("GameController_e11dfd5beee01da3", 3896842626702324, undefined, []);
 
 /**
  * let GCKeySix: String
  * @availability iOS 14.0+
  */
-export const GCKeySix: string = callSDK<string>("GameController_c1f28409f8601238", 3355948979001940, undefined, []);
+export const GCKeySix: string = callSDK<string>("GameController_e11dfd5beee01da3", 3355948979001940, undefined, []);
 
 /**
  * let GCKeySlash: String
  * @availability iOS 14.0+
  */
-export const GCKeySlash: string = callSDK<string>("GameController_c1f28409f8601238", 1708118435612004, undefined, []);
+export const GCKeySlash: string = callSDK<string>("GameController_e11dfd5beee01da3", 1708118435612004, undefined, []);
 
 /**
  * let GCKeySpacebar: String
  * @availability iOS 14.0+
  */
-export const GCKeySpacebar: string = callSDK<string>("GameController_c1f28409f8601238", 2638524432763559, undefined, []);
+export const GCKeySpacebar: string = callSDK<string>("GameController_e11dfd5beee01da3", 2638524432763559, undefined, []);
 
 /**
  * let GCKeyT: String
  * @availability iOS 14.0+
  */
-export const GCKeyT: string = callSDK<string>("GameController_c1f28409f8601238", 864237032681122, undefined, []);
+export const GCKeyT: string = callSDK<string>("GameController_e11dfd5beee01da3", 864237032681122, undefined, []);
 
 /**
  * let GCKeyTab: String
  * @availability iOS 14.0+
  */
-export const GCKeyTab: string = callSDK<string>("GameController_c1f28409f8601238", 3030469761686875, undefined, []);
+export const GCKeyTab: string = callSDK<string>("GameController_e11dfd5beee01da3", 3030469761686875, undefined, []);
 
 /**
  * let GCKeyThree: String
  * @availability iOS 14.0+
  */
-export const GCKeyThree: string = callSDK<string>("GameController_c1f28409f8601238", 3235226408211399, undefined, []);
+export const GCKeyThree: string = callSDK<string>("GameController_e11dfd5beee01da3", 3235226408211399, undefined, []);
 
 /**
  * let GCKeyTwo: String
  * @availability iOS 14.0+
  */
-export const GCKeyTwo: string = callSDK<string>("GameController_c1f28409f8601238", 1977682038443117, undefined, []);
+export const GCKeyTwo: string = callSDK<string>("GameController_e11dfd5beee01da3", 1977682038443117, undefined, []);
 
 /**
  * let GCKeyU: String
  * @availability iOS 14.0+
  */
-export const GCKeyU: string = callSDK<string>("GameController_c1f28409f8601238", 1882814801206411, undefined, []);
+export const GCKeyU: string = callSDK<string>("GameController_e11dfd5beee01da3", 1882814801206411, undefined, []);
 
 /**
  * let GCKeyUpArrow: String
  * @availability iOS 14.0+
  */
-export const GCKeyUpArrow: string = callSDK<string>("GameController_c1f28409f8601238", 3360318762364482, undefined, []);
+export const GCKeyUpArrow: string = callSDK<string>("GameController_e11dfd5beee01da3", 3360318762364482, undefined, []);
 
 /**
  * let GCKeyV: String
  * @availability iOS 14.0+
  */
-export const GCKeyV: string = callSDK<string>("GameController_c1f28409f8601238", 210556876814979, undefined, []);
+export const GCKeyV: string = callSDK<string>("GameController_e11dfd5beee01da3", 210556876814979, undefined, []);
 
 /**
  * let GCKeyW: String
  * @availability iOS 14.0+
  */
-export const GCKeyW: string = callSDK<string>("GameController_c1f28409f8601238", 1328838529855523, undefined, []);
+export const GCKeyW: string = callSDK<string>("GameController_e11dfd5beee01da3", 1328838529855523, undefined, []);
 
 /**
  * let GCKeyX: String
  * @availability iOS 14.0+
  */
-export const GCKeyX: string = callSDK<string>("GameController_c1f28409f8601238", 226545463568, undefined, []);
+export const GCKeyX: string = callSDK<string>("GameController_e11dfd5beee01da3", 226545463568, undefined, []);
 
 /**
  * let GCKeyY: String
  * @availability iOS 14.0+
  */
-export const GCKeyY: string = callSDK<string>("GameController_c1f28409f8601238", 1993162620161982, undefined, []);
+export const GCKeyY: string = callSDK<string>("GameController_e11dfd5beee01da3", 1993162620161982, undefined, []);
 
 /**
  * let GCKeyZ: String
  * @availability iOS 14.0+
  */
-export const GCKeyZ: string = callSDK<string>("GameController_c1f28409f8601238", 2589753379701409, undefined, []);
+export const GCKeyZ: string = callSDK<string>("GameController_e11dfd5beee01da3", 2589753379701409, undefined, []);
 
 /**
  * let GCKeyZero: String
  * @availability iOS 14.0+
  */
-export const GCKeyZero: string = callSDK<string>("GameController_c1f28409f8601238", 4385222690375034, undefined, []);
+export const GCKeyZero: string = callSDK<string>("GameController_e11dfd5beee01da3", 4385222690375034, undefined, []);
 
 /**
  * let GCPoint2Zero: GCPoint2
  * @availability iOS 17.4+
  */
-export const GCPoint2Zero: GCPoint2 = callSDK<GCPoint2>("GameController_c1f28409f8601238", 543929288838275, undefined, []);
+export const GCPoint2Zero: GCPoint2 = callSDK<GCPoint2>("GameController_e11dfd5beee01da3", 543929288838275, undefined, []);
 
 /**
  * let GCProductCategoryArcadeStick: String
  * @availability iOS 17.0+
  */
-export const GCProductCategoryArcadeStick: string = callSDK<string>("GameController_c1f28409f8601238", 1201444971449471, undefined, []);
+export const GCProductCategoryArcadeStick: string = callSDK<string>("GameController_e11dfd5beee01da3", 1201444971449471, undefined, []);
 
 /**
  * let GCProductCategoryCoalescedRemote: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryCoalescedRemote: string = callSDK<string>("GameController_c1f28409f8601238", 2208745214667006, undefined, []);
+export const GCProductCategoryCoalescedRemote: string = callSDK<string>("GameController_e11dfd5beee01da3", 2208745214667006, undefined, []);
 
 /**
  * let GCProductCategoryControlCenterRemote: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryControlCenterRemote: string = callSDK<string>("GameController_c1f28409f8601238", 4131828890616338, undefined, []);
+export const GCProductCategoryControlCenterRemote: string = callSDK<string>("GameController_e11dfd5beee01da3", 4131828890616338, undefined, []);
 
 /**
  * let GCProductCategoryDualSense: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryDualSense: string = callSDK<string>("GameController_c1f28409f8601238", 3540077778325582, undefined, []);
+export const GCProductCategoryDualSense: string = callSDK<string>("GameController_e11dfd5beee01da3", 3540077778325582, undefined, []);
 
 /**
  * let GCProductCategoryDualShock4: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryDualShock4: string = callSDK<string>("GameController_c1f28409f8601238", 3623860051790918, undefined, []);
+export const GCProductCategoryDualShock4: string = callSDK<string>("GameController_e11dfd5beee01da3", 3623860051790918, undefined, []);
 
 /**
  * let GCProductCategoryHID: String
  * @availability iOS 16.0+
  */
-export const GCProductCategoryHID: string = callSDK<string>("GameController_c1f28409f8601238", 2772806772411221, undefined, []);
+export const GCProductCategoryHID: string = callSDK<string>("GameController_e11dfd5beee01da3", 2772806772411221, undefined, []);
 
 /**
  * let GCProductCategoryKeyboard: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryKeyboard: string = callSDK<string>("GameController_c1f28409f8601238", 2977452438263226, undefined, []);
+export const GCProductCategoryKeyboard: string = callSDK<string>("GameController_e11dfd5beee01da3", 2977452438263226, undefined, []);
 
 /**
  * let GCProductCategoryMFi: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryMFi: string = callSDK<string>("GameController_c1f28409f8601238", 481000988467647, undefined, []);
+export const GCProductCategoryMFi: string = callSDK<string>("GameController_e11dfd5beee01da3", 481000988467647, undefined, []);
 
 /**
  * let GCProductCategoryMouse: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryMouse: string = callSDK<string>("GameController_c1f28409f8601238", 3466516722934187, undefined, []);
+export const GCProductCategoryMouse: string = callSDK<string>("GameController_e11dfd5beee01da3", 3466516722934187, undefined, []);
 
 /**
  * let GCProductCategorySiriRemote1stGen: String
  * @availability iOS 15.0+
  */
-export const GCProductCategorySiriRemote1stGen: string = callSDK<string>("GameController_c1f28409f8601238", 1374217456964705, undefined, []);
+export const GCProductCategorySiriRemote1stGen: string = callSDK<string>("GameController_e11dfd5beee01da3", 1374217456964705, undefined, []);
 
 /**
  * let GCProductCategorySiriRemote2ndGen: String
  * @availability iOS 15.0+
  */
-export const GCProductCategorySiriRemote2ndGen: string = callSDK<string>("GameController_c1f28409f8601238", 2882861362038764, undefined, []);
+export const GCProductCategorySiriRemote2ndGen: string = callSDK<string>("GameController_e11dfd5beee01da3", 2882861362038764, undefined, []);
 
 /**
  * let GCProductCategorySpatialController: String
  * @availability iOS 26.0+
  */
-export const GCProductCategorySpatialController: string = callSDK<string>("GameController_c1f28409f8601238", 197682288443321, undefined, []);
+export const GCProductCategorySpatialController: string = callSDK<string>("GameController_e11dfd5beee01da3", 197682288443321, undefined, []);
 
 /**
  * let GCProductCategoryUniversalElectronicsRemote: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryUniversalElectronicsRemote: string = callSDK<string>("GameController_c1f28409f8601238", 1671228787036669, undefined, []);
+export const GCProductCategoryUniversalElectronicsRemote: string = callSDK<string>("GameController_e11dfd5beee01da3", 1671228787036669, undefined, []);
 
 /**
  * let GCProductCategoryXboxOne: String
  * @availability iOS 15.0+
  */
-export const GCProductCategoryXboxOne: string = callSDK<string>("GameController_c1f28409f8601238", 4162506950025359, undefined, []);
+export const GCProductCategoryXboxOne: string = callSDK<string>("GameController_e11dfd5beee01da3", 4162506950025359, undefined, []);
 
 /** var kIOHIDGCSyntheticDeviceKey: String { get } */
-export const kIOHIDGCSyntheticDeviceKey: string = callSDK<string>("GameController_c1f28409f8601238", 2638729104286255, undefined, []);
+export const kIOHIDGCSyntheticDeviceKey: string = callSDK<string>("GameController_e11dfd5beee01da3", 2638729104286255, undefined, []);
 
 /**
  * var GCInputButtonA: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonA: string = callSDK<string>("GameController_c1f28409f8601238", 552575563768230, undefined, []);
+export const GCInputButtonA: string = callSDK<string>("GameController_e11dfd5beee01da3", 552575563768230, undefined, []);
 
 /**
  * var GCInputButtonB: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonB: string = callSDK<string>("GameController_c1f28409f8601238", 1522463373842388, undefined, []);
+export const GCInputButtonB: string = callSDK<string>("GameController_e11dfd5beee01da3", 1522463373842388, undefined, []);
 
 /**
  * var GCInputButtonX: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonX: string = callSDK<string>("GameController_c1f28409f8601238", 3568855088043994, undefined, []);
+export const GCInputButtonX: string = callSDK<string>("GameController_e11dfd5beee01da3", 3568855088043994, undefined, []);
 
 /**
  * var GCInputButtonY: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonY: string = callSDK<string>("GameController_c1f28409f8601238", 1007786820643612, undefined, []);
+export const GCInputButtonY: string = callSDK<string>("GameController_e11dfd5beee01da3", 1007786820643612, undefined, []);
 
 /**
  * var GCInputButtonHome: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonHome: string = callSDK<string>("GameController_c1f28409f8601238", 4461106987399451, undefined, []);
+export const GCInputButtonHome: string = callSDK<string>("GameController_e11dfd5beee01da3", 4461106987399451, undefined, []);
 
 /**
  * var GCInputButtonMenu: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonMenu: string = callSDK<string>("GameController_c1f28409f8601238", 3936641092384623, undefined, []);
+export const GCInputButtonMenu: string = callSDK<string>("GameController_e11dfd5beee01da3", 3936641092384623, undefined, []);
 
 /**
  * var GCInputButtonShare: String { get }
  * @availability iOS 15.0+
  */
-export const GCInputButtonShare: string = callSDK<string>("GameController_c1f28409f8601238", 1955463799699069, undefined, []);
+export const GCInputButtonShare: string = callSDK<string>("GameController_e11dfd5beee01da3", 1955463799699069, undefined, []);
 
 /**
  * var GCInputLeftTrigger: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputLeftTrigger: string = callSDK<string>("GameController_c1f28409f8601238", 3876038904049601, undefined, []);
+export const GCInputLeftTrigger: string = callSDK<string>("GameController_e11dfd5beee01da3", 3876038904049601, undefined, []);
 
 /**
  * var GCInputDirectionPad: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputDirectionPad: string = callSDK<string>("GameController_c1f28409f8601238", 1795464103330745, undefined, []);
+export const GCInputDirectionPad: string = callSDK<string>("GameController_e11dfd5beee01da3", 1795464103330745, undefined, []);
 
 /**
  * var GCInputLeftShoulder: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputLeftShoulder: string = callSDK<string>("GameController_c1f28409f8601238", 3028879110945911, undefined, []);
+export const GCInputLeftShoulder: string = callSDK<string>("GameController_e11dfd5beee01da3", 3028879110945911, undefined, []);
 
 /**
  * var GCInputRightTrigger: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputRightTrigger: string = callSDK<string>("GameController_c1f28409f8601238", 300133004288827, undefined, []);
+export const GCInputRightTrigger: string = callSDK<string>("GameController_e11dfd5beee01da3", 300133004288827, undefined, []);
 
 /**
  * var GCInputButtonOptions: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputButtonOptions: string = callSDK<string>("GameController_c1f28409f8601238", 651139274779862, undefined, []);
+export const GCInputButtonOptions: string = callSDK<string>("GameController_e11dfd5beee01da3", 651139274779862, undefined, []);
 
 /**
  * var GCInputRightShoulder: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputRightShoulder: string = callSDK<string>("GameController_c1f28409f8601238", 4282365341970994, undefined, []);
+export const GCInputRightShoulder: string = callSDK<string>("GameController_e11dfd5beee01da3", 4282365341970994, undefined, []);
 
 /**
  * var GCInputXboxPaddleOne: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputXboxPaddleOne: string = callSDK<string>("GameController_c1f28409f8601238", 2330106511720358, undefined, []);
+export const GCInputXboxPaddleOne: string = callSDK<string>("GameController_e11dfd5beee01da3", 2330106511720358, undefined, []);
 
 /**
  * var GCInputXboxPaddleTwo: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputXboxPaddleTwo: string = callSDK<string>("GameController_c1f28409f8601238", 2455774872502809, undefined, []);
+export const GCInputXboxPaddleTwo: string = callSDK<string>("GameController_e11dfd5beee01da3", 2455774872502809, undefined, []);
 
 /**
  * var GCInputLeftThumbstick: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputLeftThumbstick: string = callSDK<string>("GameController_c1f28409f8601238", 2058929523020162, undefined, []);
+export const GCInputLeftThumbstick: string = callSDK<string>("GameController_e11dfd5beee01da3", 2058929523020162, undefined, []);
 
 /**
  * var GCInputXboxPaddleFour: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputXboxPaddleFour: string = callSDK<string>("GameController_c1f28409f8601238", 348032748213870, undefined, []);
+export const GCInputXboxPaddleFour: string = callSDK<string>("GameController_e11dfd5beee01da3", 348032748213870, undefined, []);
 
 /**
  * var GCInputRightThumbstick: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputRightThumbstick: string = callSDK<string>("GameController_c1f28409f8601238", 3066269818959519, undefined, []);
+export const GCInputRightThumbstick: string = callSDK<string>("GameController_e11dfd5beee01da3", 3066269818959519, undefined, []);
 
 /**
  * var GCInputXboxPaddleThree: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputXboxPaddleThree: string = callSDK<string>("GameController_c1f28409f8601238", 2738433071853488, undefined, []);
+export const GCInputXboxPaddleThree: string = callSDK<string>("GameController_e11dfd5beee01da3", 2738433071853488, undefined, []);
 
 /**
  * var GCInputDualShockTouchpadOne: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputDualShockTouchpadOne: string = callSDK<string>("GameController_c1f28409f8601238", 749925074422068, undefined, []);
+export const GCInputDualShockTouchpadOne: string = callSDK<string>("GameController_e11dfd5beee01da3", 749925074422068, undefined, []);
 
 /**
  * var GCInputDualShockTouchpadTwo: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputDualShockTouchpadTwo: string = callSDK<string>("GameController_c1f28409f8601238", 2885235257204, undefined, []);
+export const GCInputDualShockTouchpadTwo: string = callSDK<string>("GameController_e11dfd5beee01da3", 2885235257204, undefined, []);
 
 /**
  * var GCInputLeftThumbstickButton: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputLeftThumbstickButton: string = callSDK<string>("GameController_c1f28409f8601238", 6431803288481, undefined, []);
+export const GCInputLeftThumbstickButton: string = callSDK<string>("GameController_e11dfd5beee01da3", 6431803288481, undefined, []);
 
 /**
  * var GCInputRightThumbstickButton: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputRightThumbstickButton: string = callSDK<string>("GameController_c1f28409f8601238", 3445829367023401, undefined, []);
+export const GCInputRightThumbstickButton: string = callSDK<string>("GameController_e11dfd5beee01da3", 3445829367023401, undefined, []);
 
 /**
  * var GCInputDualShockTouchpadButton: String { get }
  * @availability iOS 14.0+
  */
-export const GCInputDualShockTouchpadButton: string = callSDK<string>("GameController_c1f28409f8601238", 3020569784197059, undefined, []);
+export const GCInputDualShockTouchpadButton: string = callSDK<string>("GameController_e11dfd5beee01da3", 3020569784197059, undefined, []);
 
-registerSDKClass("GameController.GCAcceleration", GCAcceleration, { module: "GameController_c1f28409f8601238", properties: {} });
+registerSDKClass("GameController.GCAcceleration", GCAcceleration, { module: "GameController_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("c:objc(pl)GCAxis2DInput", {});
 registerSDKProtocol("c:objc(pl)GCAxisElement", {});
 registerSDKProtocol("c:objc(pl)GCAxisInput", {});
 registerSDKProtocol("c:objc(pl)GCButtonElement", {});
-registerSDKClass("GCColor", GCColor, { module: "GameController_c1f28409f8601238", properties: {"blue":893603567860791,"green":2559365721505066,"red":2360231972117427} });
-registerSDKClass("GCController", GCController, { module: "GameController_c1f28409f8601238", properties: {"isAttachedToDevice":3573066680435196,"battery":4164332299412134,"extendedGamepad":1151002505367089,"gamepad":2501564269009400,"haptics":529349875025345,"input":1317225384627624,"light":987345196384644,"microGamepad":464623316783623,"motion":2670318836740616,"physicalInputProfile":3546481095317315,"playerIndex":2914323223654354,"isSnapshot":1681688636298249}, methods: {"capture":{"id":3491575767869268}} });
-registerSDKClass("GameController.GCController.DidBecomeCurrentMessage", GCController_DidBecomeCurrentMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCController.DidConnectMessage", GCController_DidConnectMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCController.DidDisconnectMessage", GCController_DidDisconnectMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCController.DidStopBeingCurrentMessage", GCController_DidStopBeingCurrentMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCControllerElement", GCControllerElement, { module: "GameController_c1f28409f8601238", properties: {"aliases":1757587382199038,"isAnalog":370377455303098,"isBoundToSystemGesture":264776332372049,"collection":2784507525713436,"localizedName":389680359225012,"preferredSystemGestureState":480319452954848,"sfSymbolsName":1562676911406314,"unmappedLocalizedName":1961916858104847,"unmappedSfSymbolsName":1278903762926634} });
-registerSDKClass("GCControllerAxisInput", GCControllerAxisInput, { module: "GameController_c1f28409f8601238", properties: {"value":2597054695468189}, methods: {"setValue":{"id":2500162012266362}} });
-registerSDKClass("GCControllerButtonInput", GCControllerButtonInput, { module: "GameController_c1f28409f8601238", properties: {"isPressed":3121856208545797,"isTouched":3359582812016472,"value":1715238686487735}, methods: {"setValue":{"id":3788587750461472}} });
-registerSDKClass("GCControllerDirectionPad", GCControllerDirectionPad, { module: "GameController_c1f28409f8601238", properties: {"down":741039514077230,"left":2920608870746371,"right":2636903444956292,"up":2925475127559201,"xAxis":3401220502474098,"yAxis":4096033194176907}, methods: {"setValueForXAxis":{"id":3135948846332614}} });
-registerSDKClass("GameController.GCControllerHomeButtonSettingsManager", GCControllerHomeButtonSettingsManager, { module: "GameController_c1f28409f8601238", properties: {}, methods: {"openControllerHomeButtonSettings":{"id":2715192067219880}} });
-registerSDKClass("GCControllerInputState", GCControllerInputState, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCControllerLiveInput", GCControllerLiveInput, { module: "GameController_c1f28409f8601238", properties: {"unmapped":3304164883483662}, methods: {"capture":{"id":1580435275669913},"nextInputState":{"id":1860944562365960}} });
-registerSDKClass("GCControllerTouchpad", GCControllerTouchpad, { module: "GameController_c1f28409f8601238", properties: {"button":4301153473716481,"reportsAbsoluteTouchSurfaceValues":4157874587931078,"touchState":1568050100713508,"touchSurface":3835362214537905}, methods: {"setValueForXAxis":{"id":2004479184104154}} });
+registerSDKClass("GCColor", GCColor, { module: "GameController_e11dfd5beee01da3", properties: {"blue":893603567860791,"green":2559365721505066,"red":2360231972117427} });
+registerSDKClass("GCController", GCController, { module: "GameController_e11dfd5beee01da3", properties: {"isAttachedToDevice":3573066680435196,"battery":4164332299412134,"extendedGamepad":1151002505367089,"gamepad":2501564269009400,"haptics":529349875025345,"input":1317225384627624,"light":987345196384644,"microGamepad":464623316783623,"motion":2670318836740616,"physicalInputProfile":3546481095317315,"playerIndex":2914323223654354,"isSnapshot":1681688636298249}, methods: {"capture":{"id":3491575767869268}} });
+registerSDKClass("GameController.GCController.DidBecomeCurrentMessage", GCController_DidBecomeCurrentMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCController.DidConnectMessage", GCController_DidConnectMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCController.DidDisconnectMessage", GCController_DidDisconnectMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCController.DidStopBeingCurrentMessage", GCController_DidStopBeingCurrentMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCControllerElement", GCControllerElement, { module: "GameController_e11dfd5beee01da3", properties: {"aliases":1757587382199038,"isAnalog":370377455303098,"isBoundToSystemGesture":264776332372049,"collection":2784507525713436,"localizedName":389680359225012,"preferredSystemGestureState":480319452954848,"sfSymbolsName":1562676911406314,"unmappedLocalizedName":1961916858104847,"unmappedSfSymbolsName":1278903762926634} });
+registerSDKClass("GCControllerAxisInput", GCControllerAxisInput, { module: "GameController_e11dfd5beee01da3", properties: {"value":2597054695468189}, methods: {"setValue":{"id":2500162012266362}} });
+registerSDKClass("GCControllerButtonInput", GCControllerButtonInput, { module: "GameController_e11dfd5beee01da3", properties: {"isPressed":3121856208545797,"isTouched":3359582812016472,"value":1715238686487735}, methods: {"setValue":{"id":3788587750461472}} });
+registerSDKClass("GCControllerDirectionPad", GCControllerDirectionPad, { module: "GameController_e11dfd5beee01da3", properties: {"down":741039514077230,"left":2920608870746371,"right":2636903444956292,"up":2925475127559201,"xAxis":3401220502474098,"yAxis":4096033194176907}, methods: {"setValueForXAxis":{"id":3135948846332614}} });
+registerSDKClass("GameController.GCControllerHomeButtonSettingsManager", GCControllerHomeButtonSettingsManager, { module: "GameController_e11dfd5beee01da3", properties: {}, methods: {"openControllerHomeButtonSettings":{"id":2715192067219880}} });
+registerSDKClass("GCControllerInputState", GCControllerInputState, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCControllerLiveInput", GCControllerLiveInput, { module: "GameController_e11dfd5beee01da3", properties: {"unmapped":3304164883483662}, methods: {"capture":{"id":1580435275669913},"nextInputState":{"id":1860944562365960}} });
+registerSDKClass("GCControllerTouchpad", GCControllerTouchpad, { module: "GameController_e11dfd5beee01da3", properties: {"button":4301153473716481,"reportsAbsoluteTouchSurfaceValues":4157874587931078,"touchState":1568050100713508,"touchSurface":3835362214537905}, methods: {"setValueForXAxis":{"id":2004479184104154}} });
 registerSDKProtocol("c:objc(pl)GCDevice", {});
-registerSDKClass("GCDeviceBattery", GCDeviceBattery, { module: "GameController_c1f28409f8601238", properties: {"batteryLevel":2001928318826196,"batteryState":2791236700988292} });
-registerSDKClass("GCDeviceCursor", GCDeviceCursor, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCDeviceHaptics", GCDeviceHaptics, { module: "GameController_c1f28409f8601238", properties: {"supportedLocalities":48482686926321} });
-registerSDKClass("GCDeviceLight", GCDeviceLight, { module: "GameController_c1f28409f8601238", properties: {"color":3226956728591134} });
+registerSDKClass("GCDeviceBattery", GCDeviceBattery, { module: "GameController_e11dfd5beee01da3", properties: {"batteryLevel":2001928318826196,"batteryState":2791236700988292} });
+registerSDKClass("GCDeviceCursor", GCDeviceCursor, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCDeviceHaptics", GCDeviceHaptics, { module: "GameController_e11dfd5beee01da3", properties: {"supportedLocalities":48482686926321} });
+registerSDKClass("GCDeviceLight", GCDeviceLight, { module: "GameController_e11dfd5beee01da3", properties: {"color":3226956728591134} });
 registerSDKProtocol("c:objc(pl)GCDevicePhysicalInput", {"subscript":"subscript(_:)","capture":"capture()","nextInputState":"nextInputState()"});
 registerSDKProtocol("c:objc(pl)GCDevicePhysicalInputState", {"subscript":"subscript(_:)"});
 registerSDKProtocol("c:objc(pl)GCDevicePhysicalInputStateDiff", {"changeFor":"change(for:)"});
-registerSDKClass("GCPhysicalInputProfile", GCPhysicalInputProfile, { module: "GameController_c1f28409f8601238", properties: {"allAxes":841033142032771,"allButtons":2127867284300193,"allDpads":3146990978282782,"allElements":3363454563010379,"allTouchpads":4365812211721376,"axes":3209481013176593,"buttons":4208713564186302,"device":4350126193281639,"dpads":177932636989302,"elements":3594594499559201,"hasRemappedElements":599673674299145,"lastEventTimestamp":126778124169881,"touchpads":5120679219079}, methods: {"capture":{"id":164914159579425},"mappedElementAlias":{"id":2223482326347876},"mappedPhysicalInputNames":{"id":1022218131251419},"subscript":{"id":3892637615201656},"setStateFromPhysicalInput":{"id":2499086685889194}} });
-registerSDKClass("GCMicroGamepad", GCMicroGamepad, { module: "GameController_c1f28409f8601238", properties: {"allowsRotation":3011283549514469,"buttonA":3846698935617159,"buttonMenu":1296787463937312,"buttonX":723865919970445,"controller":963857543267121,"dpad":1012083881284531,"reportsAbsoluteDpadValues":3540590342654169}, methods: {"saveSnapshot":{"id":3462152076424120},"setStateFrom":{"id":3307962324690811}} });
-registerSDKClass("GCDirectionalGamepad", GCDirectionalGamepad, { module: "GameController_c1f28409f8601238", properties: {} });
+registerSDKClass("GCPhysicalInputProfile", GCPhysicalInputProfile, { module: "GameController_e11dfd5beee01da3", properties: {"allAxes":841033142032771,"allButtons":2127867284300193,"allDpads":3146990978282782,"allElements":3363454563010379,"allTouchpads":4365812211721376,"axes":3209481013176593,"buttons":4208713564186302,"device":4350126193281639,"dpads":177932636989302,"elements":3594594499559201,"hasRemappedElements":599673674299145,"lastEventTimestamp":126778124169881,"touchpads":5120679219079}, methods: {"capture":{"id":164914159579425},"mappedElementAlias":{"id":2223482326347876},"mappedPhysicalInputNames":{"id":1022218131251419},"subscript":{"id":3892637615201656},"setStateFromPhysicalInput":{"id":2499086685889194}} });
+registerSDKClass("GCMicroGamepad", GCMicroGamepad, { module: "GameController_e11dfd5beee01da3", properties: {"allowsRotation":3011283549514469,"buttonA":3846698935617159,"buttonMenu":1296787463937312,"buttonX":723865919970445,"controller":963857543267121,"dpad":1012083881284531,"reportsAbsoluteDpadValues":3540590342654169}, methods: {"saveSnapshot":{"id":3462152076424120},"setStateFrom":{"id":3307962324690811}} });
+registerSDKClass("GCDirectionalGamepad", GCDirectionalGamepad, { module: "GameController_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("c:objc(pl)GCDirectionPadElement", {});
-registerSDKClass("GCDualSenseAdaptiveTrigger", GCDualSenseAdaptiveTrigger, { module: "GameController_c1f28409f8601238", properties: {"armPosition":221913776555271,"mode":3506399256641867,"status":2270555498254713}, methods: {"setModeFeedback":{"id":2433400601623905},"setModeFeedbackWithStartPosition":{"id":2039317246680453},"setModeOff":{"id":441533950516675},"setModeSlopeFeedback":{"id":1191196477051503},"setModeVibration":{"id":3455770077170295},"setModeVibrationWithStartPosition":{"id":2899874975711754},"setModeWeaponWithStartPosition":{"id":951628517964304}} });
-registerSDKClass("GameController.GCDualSenseAdaptiveTrigger.PositionalAmplitudes", GCDualSenseAdaptiveTrigger_PositionalAmplitudes, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCDualSenseAdaptiveTrigger.PositionalResistiveStrengths", GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCExtendedGamepad", GCExtendedGamepad, { module: "GameController_c1f28409f8601238", properties: {"buttonA":358763696202611,"buttonB":1788604563959296,"buttonHome":4164858669974137,"buttonMenu":1414838794924843,"buttonOptions":4340831754226672,"buttonX":1365403090173445,"buttonY":3031601547272574,"controller":2203125182113496,"dpad":550942733958403,"leftShoulder":1327016948895442,"leftThumbstick":2561220159375041,"leftThumbstickButton":991697710812068,"leftTrigger":2782002569204401,"rightShoulder":1260247312999082,"rightThumbstick":1379694217180655,"rightThumbstickButton":3819086544124702,"rightTrigger":3610277791315155}, methods: {"saveSnapshot":{"id":1860859808151060},"setStateFrom":{"id":2083501493740840}} });
-registerSDKClass("GCDualSenseGamepad", GCDualSenseGamepad, { module: "GameController_c1f28409f8601238", properties: {"leftTrigger":1656130278502242,"rightTrigger":4255271043081324,"touchpadButton":2130881747185581,"touchpadPrimary":2219810252395849,"touchpadSecondary":1597516286532800} });
-registerSDKClass("GCDualShockGamepad", GCDualShockGamepad, { module: "GameController_c1f28409f8601238", properties: {"touchpadButton":3124853804459104,"touchpadPrimary":2622117765195298,"touchpadSecondary":3772261233276671} });
-registerSDKClass("GameController.GCEulerAngles", GCEulerAngles, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCEventInteraction", GCEventInteraction, { module: "GameController_c1f28409f8601238", properties: {"handledEventTypes":4448981972450406,"receivesEventsInView":2136827420408979} });
-registerSDKClass("GCEventViewController", GCEventViewController, { module: "GameController_c1f28409f8601238", properties: {"controllerUserInteractionEnabled":1296057667758496} });
-registerSDKClass("GCExtendedGamepadSnapshot", GCExtendedGamepadSnapshot, { module: "GameController_c1f28409f8601238", properties: {"snapshotData":1522106473765168} });
-registerSDKClass("GameController.GCExtendedGamepadSnapshotData", GCExtendedGamepadSnapshotData, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCExtendedGamepadSnapShotDataV100", GCExtendedGamepadSnapShotDataV100, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCGameControllerActivationContext", GCGameControllerActivationContext, { module: "GameController_c1f28409f8601238", properties: {"previousApplicationBundleID":1073982269741682} });
+registerSDKClass("GCDualSenseAdaptiveTrigger", GCDualSenseAdaptiveTrigger, { module: "GameController_e11dfd5beee01da3", properties: {"armPosition":221913776555271,"mode":3506399256641867,"status":2270555498254713}, methods: {"setModeFeedback":{"id":2433400601623905},"setModeFeedbackWithStartPosition":{"id":2039317246680453},"setModeOff":{"id":441533950516675},"setModeSlopeFeedback":{"id":1191196477051503},"setModeVibration":{"id":3455770077170295},"setModeVibrationWithStartPosition":{"id":2899874975711754},"setModeWeaponWithStartPosition":{"id":951628517964304}} });
+registerSDKClass("GameController.GCDualSenseAdaptiveTrigger.PositionalAmplitudes", GCDualSenseAdaptiveTrigger_PositionalAmplitudes, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCDualSenseAdaptiveTrigger.PositionalResistiveStrengths", GCDualSenseAdaptiveTrigger_PositionalResistiveStrengths, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCExtendedGamepad", GCExtendedGamepad, { module: "GameController_e11dfd5beee01da3", properties: {"buttonA":358763696202611,"buttonB":1788604563959296,"buttonHome":4164858669974137,"buttonMenu":1414838794924843,"buttonOptions":4340831754226672,"buttonX":1365403090173445,"buttonY":3031601547272574,"controller":2203125182113496,"dpad":550942733958403,"leftShoulder":1327016948895442,"leftThumbstick":2561220159375041,"leftThumbstickButton":991697710812068,"leftTrigger":2782002569204401,"rightShoulder":1260247312999082,"rightThumbstick":1379694217180655,"rightThumbstickButton":3819086544124702,"rightTrigger":3610277791315155}, methods: {"saveSnapshot":{"id":1860859808151060},"setStateFrom":{"id":2083501493740840}} });
+registerSDKClass("GCDualSenseGamepad", GCDualSenseGamepad, { module: "GameController_e11dfd5beee01da3", properties: {"leftTrigger":1656130278502242,"rightTrigger":4255271043081324,"touchpadButton":2130881747185581,"touchpadPrimary":2219810252395849,"touchpadSecondary":1597516286532800} });
+registerSDKClass("GCDualShockGamepad", GCDualShockGamepad, { module: "GameController_e11dfd5beee01da3", properties: {"touchpadButton":3124853804459104,"touchpadPrimary":2622117765195298,"touchpadSecondary":3772261233276671} });
+registerSDKClass("GameController.GCEulerAngles", GCEulerAngles, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCEventInteraction", GCEventInteraction, { module: "GameController_e11dfd5beee01da3", properties: {"handledEventTypes":4448981972450406,"receivesEventsInView":2136827420408979} });
+registerSDKClass("GCEventViewController", GCEventViewController, { module: "GameController_e11dfd5beee01da3", properties: {"controllerUserInteractionEnabled":1296057667758496} });
+registerSDKClass("GCExtendedGamepadSnapshot", GCExtendedGamepadSnapshot, { module: "GameController_e11dfd5beee01da3", properties: {"snapshotData":1522106473765168} });
+registerSDKClass("GameController.GCExtendedGamepadSnapshotData", GCExtendedGamepadSnapshotData, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCExtendedGamepadSnapShotDataV100", GCExtendedGamepadSnapShotDataV100, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCGameControllerActivationContext", GCGameControllerActivationContext, { module: "GameController_e11dfd5beee01da3", properties: {"previousApplicationBundleID":1073982269741682} });
 registerSDKProtocol("c:objc(pl)GCGameControllerSceneDelegate", {"sceneDidActivateGameControllerWith":"scene(_:didActivateGameControllerWith:)"});
-registerSDKClass("GCGamepad", GCGamepad, { module: "GameController_c1f28409f8601238", properties: {"buttonA":2483552845252552,"buttonB":2048255411060860,"buttonX":1754819051006883,"buttonY":3216794429382532,"controller":1860063384386786,"dpad":3256961262066945,"leftShoulder":765622300078533,"rightShoulder":1669161053164319}, methods: {"saveSnapshot":{"id":2669759149258048}} });
-registerSDKClass("GCGamepadSnapshot", GCGamepadSnapshot, { module: "GameController_c1f28409f8601238", properties: {"snapshotData":4188860498465287} });
-registerSDKClass("GameController.GCGamepadSnapShotDataV100", GCGamepadSnapShotDataV100, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCKeyboard", GCKeyboard, { module: "GameController_c1f28409f8601238", properties: {"keyboardInput":3830525686451722} });
-registerSDKClass("GameController.GCKeyboard.DidConnectMessage", GCKeyboard_DidConnectMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCKeyboard.DidDisconnectMessage", GCKeyboard_DidDisconnectMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCKeyboardInput", GCKeyboardInput, { module: "GameController_c1f28409f8601238", properties: {"isAnyKeyPressed":2247349208060831}, methods: {"button":{"id":3473601121756950}} });
+registerSDKClass("GCGamepad", GCGamepad, { module: "GameController_e11dfd5beee01da3", properties: {"buttonA":2483552845252552,"buttonB":2048255411060860,"buttonX":1754819051006883,"buttonY":3216794429382532,"controller":1860063384386786,"dpad":3256961262066945,"leftShoulder":765622300078533,"rightShoulder":1669161053164319}, methods: {"saveSnapshot":{"id":2669759149258048}} });
+registerSDKClass("GCGamepadSnapshot", GCGamepadSnapshot, { module: "GameController_e11dfd5beee01da3", properties: {"snapshotData":4188860498465287} });
+registerSDKClass("GameController.GCGamepadSnapShotDataV100", GCGamepadSnapShotDataV100, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCKeyboard", GCKeyboard, { module: "GameController_e11dfd5beee01da3", properties: {"keyboardInput":3830525686451722} });
+registerSDKClass("GameController.GCKeyboard.DidConnectMessage", GCKeyboard_DidConnectMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCKeyboard.DidDisconnectMessage", GCKeyboard_DidDisconnectMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCKeyboardInput", GCKeyboardInput, { module: "GameController_e11dfd5beee01da3", properties: {"isAnyKeyPressed":2247349208060831}, methods: {"button":{"id":3473601121756950}} });
 registerSDKProtocol("c:objc(pl)GCLinearInput", {});
-registerSDKClass("GCMicroGamepadSnapshot", GCMicroGamepadSnapshot, { module: "GameController_c1f28409f8601238", properties: {"snapshotData":3649733928395637} });
-registerSDKClass("GameController.GCMicroGamepadSnapshotData", GCMicroGamepadSnapshotData, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCMicroGamepadSnapShotDataV100", GCMicroGamepadSnapShotDataV100, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCMotion", GCMotion, { module: "GameController_c1f28409f8601238", properties: {"acceleration":2415944198941351,"attitude":3386494012163954,"controller":3967919904119796,"gravity":1484696835326350,"hasAttitude":399369703979147,"hasAttitudeAndRotationRate":2792919172320425,"hasGravityAndUserAcceleration":2373759841123657,"hasRotationRate":2634722255599680,"rotationRate":3677191521379125,"sensorsActive":823238568917520,"sensorsRequireManualActivation":1570790093312533,"userAcceleration":864191805875140}, methods: {"setAcceleration":{"id":944080450926043},"setAttitude":{"id":1279809371101296},"setGravity":{"id":81701763558069},"setRotationRate":{"id":2263625606380447},"setStateFrom":{"id":2970065223047729},"setUserAcceleration":{"id":1572883052782752}} });
-registerSDKClass("GCMouse", GCMouse, { module: "GameController_c1f28409f8601238", properties: {"mouseInput":1310684392485332} });
-registerSDKClass("GameController.GCMouse.DidBecomeCurrentMessage", GCMouse_DidBecomeCurrentMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCMouse.DidConnectMessage", GCMouse_DidConnectMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCMouse.DidDisconnectMessage", GCMouse_DidDisconnectMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GameController.GCMouse.DidStopBeingCurrentMessage", GCMouse_DidStopBeingCurrentMessage, { module: "GameController_c1f28409f8601238", properties: {} });
-registerSDKClass("GCMouseInput", GCMouseInput, { module: "GameController_c1f28409f8601238", properties: {"auxiliaryButtons":438704316708171,"leftButton":2465614532501926,"middleButton":870627803719127,"rightButton":542619926023906,"scroll":2217430128401567} });
+registerSDKClass("GCMicroGamepadSnapshot", GCMicroGamepadSnapshot, { module: "GameController_e11dfd5beee01da3", properties: {"snapshotData":3649733928395637} });
+registerSDKClass("GameController.GCMicroGamepadSnapshotData", GCMicroGamepadSnapshotData, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCMicroGamepadSnapShotDataV100", GCMicroGamepadSnapShotDataV100, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCMotion", GCMotion, { module: "GameController_e11dfd5beee01da3", properties: {"acceleration":2415944198941351,"attitude":3386494012163954,"controller":3967919904119796,"gravity":1484696835326350,"hasAttitude":399369703979147,"hasAttitudeAndRotationRate":2792919172320425,"hasGravityAndUserAcceleration":2373759841123657,"hasRotationRate":2634722255599680,"rotationRate":3677191521379125,"sensorsActive":823238568917520,"sensorsRequireManualActivation":1570790093312533,"userAcceleration":864191805875140}, methods: {"setAcceleration":{"id":944080450926043},"setAttitude":{"id":1279809371101296},"setGravity":{"id":81701763558069},"setRotationRate":{"id":2263625606380447},"setStateFrom":{"id":2970065223047729},"setUserAcceleration":{"id":1572883052782752}} });
+registerSDKClass("GCMouse", GCMouse, { module: "GameController_e11dfd5beee01da3", properties: {"mouseInput":1310684392485332} });
+registerSDKClass("GameController.GCMouse.DidBecomeCurrentMessage", GCMouse_DidBecomeCurrentMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCMouse.DidConnectMessage", GCMouse_DidConnectMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCMouse.DidDisconnectMessage", GCMouse_DidDisconnectMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GameController.GCMouse.DidStopBeingCurrentMessage", GCMouse_DidStopBeingCurrentMessage, { module: "GameController_e11dfd5beee01da3", properties: {} });
+registerSDKClass("GCMouseInput", GCMouseInput, { module: "GameController_e11dfd5beee01da3", properties: {"auxiliaryButtons":438704316708171,"leftButton":2465614532501926,"middleButton":870627803719127,"rightButton":542619926023906,"scroll":2217430128401567} });
 registerSDKProtocol("c:objc(pl)GCPhysicalInputElement", {});
-registerSDKClass("GameController.GCPhysicalInputElementCollection", GCPhysicalInputElementCollection, { module: "GameController_c1f28409f8601238", properties: {}, methods: {"index":{"id":4431944727149832},"subscript":{"id":2267281373905625},"subscript89440":{"id":2690645160085497},"subscript20909":{"id":3340799541614264},"subscript52213":{"id":2625473784736938},"subscript28148":{"id":1796778872986586},"subscript73322":{"id":1715065047274783}} });
-registerSDKClass("GameController.GCPhysicalInputElementCollection.Index", GCPhysicalInputElementCollection_Index, { module: "GameController_c1f28409f8601238", properties: {} });
+registerSDKClass("GameController.GCPhysicalInputElementCollection", GCPhysicalInputElementCollection, { module: "GameController_e11dfd5beee01da3", properties: {}, methods: {"index":{"id":4431944727149832},"subscript":{"id":2267281373905625},"subscript89440":{"id":2690645160085497},"subscript20909":{"id":3340799541614264},"subscript52213":{"id":2625473784736938},"subscript28148":{"id":1796778872986586},"subscript73322":{"id":1715065047274783}} });
+registerSDKClass("GameController.GCPhysicalInputElementCollection.Index", GCPhysicalInputElementCollection_Index, { module: "GameController_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:14GameController31GCPhysicalInputElementTypedNameP", {});
 registerSDKProtocol("c:objc(pl)GCPhysicalInputExtents", {});
 registerSDKProtocol("c:objc(pl)GCPhysicalInputSource", {});
-registerSDKClass("GameController.GCPoint2", GCPoint2, { module: "GameController_c1f28409f8601238", properties: {} });
+registerSDKClass("GameController.GCPoint2", GCPoint2, { module: "GameController_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("c:objc(pl)GCPressedStateInput", {});
-registerSDKClass("GameController.GCQuaternion", GCQuaternion, { module: "GameController_c1f28409f8601238", properties: {} });
+registerSDKClass("GameController.GCQuaternion", GCQuaternion, { module: "GameController_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("c:objc(pl)GCRelativeInput", {});
-registerSDKClass("GameController.GCRotationRate", GCRotationRate, { module: "GameController_c1f28409f8601238", properties: {} });
+registerSDKClass("GameController.GCRotationRate", GCRotationRate, { module: "GameController_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("c:objc(pl)GCSwitchElement", {});
 registerSDKProtocol("c:objc(pl)GCSwitchPositionInput", {});
 registerSDKProtocol("c:objc(pl)GCTouchedStateInput", {});
-registerSDKClass("GCVirtualController", GCVirtualController, { module: "GameController_c1f28409f8601238", properties: {"controller":2468925685095441}, methods: {"connect":{"id":2450815074910620,"hints":[{"callback":{"out":[]}}]},"disconnect":{"id":4371663221146942},"setPosition":{"id":1071645599596183},"setValue":{"id":2675804203675778}} });
-registerSDKClass("GCVirtualControllerConfiguration", GCVirtualController_Configuration, { module: "GameController_c1f28409f8601238", properties: {"elements":3614758068401319,"isHidden":1541630269610692} });
-registerSDKClass("GCVirtualControllerElementConfiguration", GCVirtualController_ElementConfiguration, { module: "GameController_c1f28409f8601238", properties: {"actsAsTouchpad":3323965211633483,"isHidden":4411161641937620,"path":2754038939700353} });
-registerSDKClass("GCXboxGamepad", GCXboxGamepad, { module: "GameController_c1f28409f8601238", properties: {"buttonShare":157540952446647,"paddleButton1":3412605999027073,"paddleButton2":3398082370347121,"paddleButton3":3668782310960080,"paddleButton4":1978526627265536} });
-registerSDKClass("NSValue", NSValue, { module: "GameController_c1f28409f8601238", properties: {"gcPoint2Value":3806919707969406} }, true);
-registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "GameController_c1f28409f8601238", properties: {"gameControllerActivationContext":1068436146942055} }, true);
+registerSDKClass("GCVirtualController", GCVirtualController, { module: "GameController_e11dfd5beee01da3", properties: {"controller":2468925685095441}, methods: {"connect":{"id":2450815074910620,"hints":[{"callback":{"out":[]}}]},"disconnect":{"id":4371663221146942},"setPosition":{"id":1071645599596183},"setValue":{"id":2675804203675778}} });
+registerSDKClass("GCVirtualControllerConfiguration", GCVirtualController_Configuration, { module: "GameController_e11dfd5beee01da3", properties: {"elements":3614758068401319,"isHidden":1541630269610692} });
+registerSDKClass("GCVirtualControllerElementConfiguration", GCVirtualController_ElementConfiguration, { module: "GameController_e11dfd5beee01da3", properties: {"actsAsTouchpad":3323965211633483,"isHidden":4411161641937620,"path":2754038939700353} });
+registerSDKClass("GCXboxGamepad", GCXboxGamepad, { module: "GameController_e11dfd5beee01da3", properties: {"buttonShare":157540952446647,"paddleButton1":3412605999027073,"paddleButton2":3398082370347121,"paddleButton3":3668782310960080,"paddleButton4":1978526627265536} });
+registerSDKClass("NSValue", NSValue, { module: "GameController_e11dfd5beee01da3", properties: {"gcPoint2Value":3806919707969406} }, true);
+registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "GameController_e11dfd5beee01da3", properties: {"gameControllerActivationContext":1068436146942055} }, true);

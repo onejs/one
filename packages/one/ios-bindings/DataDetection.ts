@@ -27,17 +27,17 @@ export class DataDetector_Match extends SDKHandle {
    * let preferredHighlightStyle: DataDetector.Match.HighlightStyle
    * @availability iOS 26.0+
    */
-  get preferredHighlightStyle(): DataDetector_Match_HighlightStyle { return callSDK<DataDetector_Match_HighlightStyle>("DataDetection_c1f28409f8601238", 3701978805335627, this, []); }
+  get preferredHighlightStyle(): DataDetector_Match_HighlightStyle { return callSDK<DataDetector_Match_HighlightStyle>("DataDetection_e11dfd5beee01da3", 3701978805335627, this, []); }
   /**
    * let range: Range<String.Index>?
    * @availability iOS 26.0+
    */
-  get range(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("DataDetection_c1f28409f8601238", 3771572793648666, this, []); }
+  get range(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("DataDetection_e11dfd5beee01da3", 3771572793648666, this, []); }
   /**
    * let details: DataDetector.Match.SemanticDetails
    * @availability iOS 26.0+
    */
-  get details(): DataDetector_Match_SemanticDetails { return callSDK<DataDetector_Match_SemanticDetails>("DataDetection_c1f28409f8601238", 826863418132256, this, []); }
+  get details(): DataDetector_Match_SemanticDetails { return callSDK<DataDetector_Match_SemanticDetails>("DataDetection_e11dfd5beee01da3", 826863418132256, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV": true };
 }
 
@@ -64,27 +64,27 @@ export class DataDetector_Match_SemanticDetails_CalendarEvent extends SDKHandle 
    * let endTimeZone: TimeZone?
    * @availability iOS 26.0+
    */
-  get endTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_c1f28409f8601238", 2938234619133341, this, []); }
+  get endTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_e11dfd5beee01da3", 2938234619133341, this, []); }
   /**
    * let startTimeZone: TimeZone?
    * @availability iOS 26.0+
    */
-  get startTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_c1f28409f8601238", 2272749640141131, this, []); }
+  get startTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_e11dfd5beee01da3", 2272749640141131, this, []); }
   /**
    * let allDay: Bool
    * @availability iOS 26.0+
    */
-  get allDay(): boolean { return callSDK<boolean>("DataDetection_c1f28409f8601238", 494837084716315, this, []); }
+  get allDay(): boolean { return callSDK<boolean>("DataDetection_e11dfd5beee01da3", 494837084716315, this, []); }
   /**
    * let endDate: Date?
    * @availability iOS 26.0+
    */
-  get endDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_c1f28409f8601238", 3166053446632713, this, []); }
+  get endDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_e11dfd5beee01da3", 3166053446632713, this, []); }
   /**
    * let startDate: Date?
    * @availability iOS 26.0+
    */
-  get startDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_c1f28409f8601238", 1910299999493226, this, []); }
+  get startDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_e11dfd5beee01da3", 1910299999493226, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO13CalendarEventV": true };
 }
 
@@ -97,12 +97,12 @@ export class DataDetector_Match_SemanticDetails_EmailAddress extends SDKHandle {
    * let emailAddress: String
    * @availability iOS 26.0+
    */
-  get emailAddress(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 3867439756183251, this, []); }
+  get emailAddress(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 3867439756183251, this, []); }
   /**
    * let label: String?
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 4017637616153197, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 4017637616153197, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO12EmailAddressV": true };
 }
 
@@ -115,12 +115,12 @@ export class DataDetector_Match_SemanticDetails_FlightNumber extends SDKHandle {
    * let flightNumber: Int
    * @availability iOS 26.0+
    */
-  get flightNumber(): number { return callSDK<number>("DataDetection_c1f28409f8601238", 3988697050269679, this, []); }
+  get flightNumber(): number { return callSDK<number>("DataDetection_e11dfd5beee01da3", 3988697050269679, this, []); }
   /**
    * let airlineCode: String
    * @availability iOS 26.0+
    */
-  get airlineCode(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 2669912250257157, this, []); }
+  get airlineCode(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 2669912250257157, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO12FlightNumberV": true };
 }
 
@@ -133,7 +133,7 @@ export class DataDetector_Match_SemanticDetails_Link extends SDKHandle {
    * let url: URL
    * @availability iOS 26.0+
    */
-  get url(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 2560162591938839, this, []); }
+  get url(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 2560162591938839, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO4LinkV": true };
 }
 
@@ -146,17 +146,17 @@ export class DataDetector_Match_SemanticDetails_Measurement extends SDKHandle {
    * func measurement<D>(in dimension: D) -> Measurement<D> where D : Dimension
    * @availability iOS 26.0+
    */
-  measurement(dimension: _Foundation_Dimension): _Foundation_Measurement<_Foundation_Dimension> { return callSDK<_Foundation_Measurement<_Foundation_Dimension>>("DataDetection_c1f28409f8601238", 2984578028330915, this, [dimension]); }
+  measurement(dimension: _Foundation_Dimension): _Foundation_Measurement<_Foundation_Dimension> { return callSDK<_Foundation_Measurement<_Foundation_Dimension>>("DataDetection_e11dfd5beee01da3", 2984578028330915, this, [dimension]); }
   /**
    * let possibleDimensions: [Dimension]
    * @availability iOS 26.0+
    */
-  get possibleDimensions(): Array<_Foundation_Dimension> { return callSDK<Array<_Foundation_Dimension>>("DataDetection_c1f28409f8601238", 3706720989335465, this, []); }
+  get possibleDimensions(): Array<_Foundation_Dimension> { return callSDK<Array<_Foundation_Dimension>>("DataDetection_e11dfd5beee01da3", 3706720989335465, this, []); }
   /**
    * let value: Double
    * @availability iOS 26.0+
    */
-  get value(): number { return callSDK<number>("DataDetection_c1f28409f8601238", 1421632551143337, this, []); }
+  get value(): number { return callSDK<number>("DataDetection_e11dfd5beee01da3", 1421632551143337, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO11MeasurementV": true };
 }
 
@@ -169,12 +169,12 @@ export class DataDetector_Match_SemanticDetails_MoneyAmount extends SDKHandle {
    * let amount: Decimal
    * @availability iOS 26.0+
    */
-  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("DataDetection_c1f28409f8601238", 2177994315642289, this, []); }
+  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("DataDetection_e11dfd5beee01da3", 2177994315642289, this, []); }
   /**
    * let currency: Locale.Currency
    * @availability iOS 26.0+
    */
-  get currency(): _Foundation_Locale_Currency { return callSDK<_Foundation_Locale_Currency>("DataDetection_c1f28409f8601238", 3605466392796649, this, []); }
+  get currency(): _Foundation_Locale_Currency { return callSDK<_Foundation_Locale_Currency>("DataDetection_e11dfd5beee01da3", 3605466392796649, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO11MoneyAmountV": true };
 }
 
@@ -187,12 +187,12 @@ export class DataDetector_Match_SemanticDetails_PaymentIdentifier extends SDKHan
    * let identifier: String
    * @availability iOS 26.0+
    */
-  get identifier(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 101768000868588, this, []); }
+  get identifier(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 101768000868588, this, []); }
   /**
    * let type: DataDetector.Match.SemanticDetails.PaymentIdentifier.PaymentSystem
    * @availability iOS 26.0+
    */
-  get type(): DataDetector_Match_SemanticDetails_PaymentIdentifier_PaymentSystem { return callSDK<DataDetector_Match_SemanticDetails_PaymentIdentifier_PaymentSystem>("DataDetection_c1f28409f8601238", 4071410577712163, this, []); }
+  get type(): DataDetector_Match_SemanticDetails_PaymentIdentifier_PaymentSystem { return callSDK<DataDetector_Match_SemanticDetails_PaymentIdentifier_PaymentSystem>("DataDetection_e11dfd5beee01da3", 4071410577712163, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO17PaymentIdentifierV": true };
 }
 
@@ -211,12 +211,12 @@ export class DataDetector_Match_SemanticDetails_PhoneNumber extends SDKHandle {
    * let phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 2868346368184037, this, []); }
+  get phoneNumber(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 2868346368184037, this, []); }
   /**
    * let label: String?
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 2030099010894158, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 2030099010894158, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO11PhoneNumberV": true };
 }
 
@@ -229,42 +229,42 @@ export class DataDetector_Match_SemanticDetails_PostalAddress extends SDKHandle 
    * let fullAddress: String
    * @availability iOS 26.0+
    */
-  get fullAddress(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 1086030125820829, this, []); }
+  get fullAddress(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 1086030125820829, this, []); }
   /**
    * let postalCode: String?
    * @availability iOS 26.0+
    */
-  get postalCode(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 4418663437327593, this, []); }
+  get postalCode(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 4418663437327593, this, []); }
   /**
    * let regionCode: Locale.Region?
    * @availability iOS 26.0+
    */
-  get regionCode(): $SDK4 { return callSDK<$SDK4>("DataDetection_c1f28409f8601238", 478101477597208, this, []); }
+  get regionCode(): $SDK4 { return callSDK<$SDK4>("DataDetection_e11dfd5beee01da3", 478101477597208, this, []); }
   /**
    * let city: String?
    * @availability iOS 26.0+
    */
-  get city(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 7548439976379, this, []); }
+  get city(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 7548439976379, this, []); }
   /**
    * let label: String?
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 3464999687284135, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 3464999687284135, this, []); }
   /**
    * let state: String?
    * @availability iOS 26.0+
    */
-  get state(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 2456136471357311, this, []); }
+  get state(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 2456136471357311, this, []); }
   /**
    * let region: String?
    * @availability iOS 26.0+
    */
-  get region(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 2766758361201645, this, []); }
+  get region(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 2766758361201645, this, []); }
   /**
    * let street: String?
    * @availability iOS 26.0+
    */
-  get street(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 3503441450187567, this, []); }
+  get street(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 3503441450187567, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO13PostalAddressV": true };
 }
 
@@ -277,17 +277,17 @@ export class DataDetector_Match_SemanticDetails_ShipmentTrackingNumber extends S
    * let trackingNumber: String
    * @availability iOS 26.0+
    */
-  get trackingNumber(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 601828195658572, this, []); }
+  get trackingNumber(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 601828195658572, this, []); }
   /**
    * let trackingURL: URL?
    * @availability iOS 26.0+
    */
-  get trackingURL(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 4035134857849512, this, []); }
+  get trackingURL(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 4035134857849512, this, []); }
   /**
    * let carrier: String
    * @availability iOS 26.0+
    */
-  get carrier(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 350832674631858, this, []); }
+  get carrier(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 350832674631858, this, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO22ShipmentTrackingNumberV": true };
 }
 
@@ -302,67 +302,67 @@ export const DataDetector_MatchType = {
    * static let measurement: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get measurement(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 596218310680583, undefined, []); },
+  get measurement(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 596218310680583, undefined, []); },
   /**
    * static let moneyAmount: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get moneyAmount(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 3076211105811017, undefined, []); },
+  get moneyAmount(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 3076211105811017, undefined, []); },
   /**
    * static let phoneNumber: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get phoneNumber(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 3882628699876313, undefined, []); },
+  get phoneNumber(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 3882628699876313, undefined, []); },
   /**
    * static let emailAddress: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get emailAddress(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 3205179957159624, undefined, []); },
+  get emailAddress(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 3205179957159624, undefined, []); },
   /**
    * static let flightNumber: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get flightNumber(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 488463863380942, undefined, []); },
+  get flightNumber(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 488463863380942, undefined, []); },
   /**
    * static let calendarEvent: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get calendarEvent(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 387847118028371, undefined, []); },
+  get calendarEvent(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 387847118028371, undefined, []); },
   /**
    * static let postalAddress: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get postalAddress(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 598627448488455, undefined, []); },
+  get postalAddress(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 598627448488455, undefined, []); },
   /**
    * static let paymentIdentifier: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get paymentIdentifier(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 1410227846399901, undefined, []); },
+  get paymentIdentifier(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 1410227846399901, undefined, []); },
   /**
    * static let shipmentTrackingNumber: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get shipmentTrackingNumber(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 2982909079768567, undefined, []); },
+  get shipmentTrackingNumber(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 2982909079768567, undefined, []); },
   /**
    * static let all: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get all(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 458557750649933, undefined, []); },
+  get all(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 458557750649933, undefined, []); },
   /**
    * static let link: DataDetector.MatchType
    * @availability iOS 26.0+
    */
-  get link(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 374777068454359, undefined, []); },
+  get link(): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 374777068454359, undefined, []); },
   /**
    * init(rawValue: UInt64)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_c1f28409f8601238", 4360168681352967, undefined, [rawValue]); },
+  init(rawValue: number): DataDetector_MatchType { return callSDK<DataDetector_MatchType>("DataDetection_e11dfd5beee01da3", 4360168681352967, undefined, [rawValue]); },
   /**
    * let rawValue: UInt64
    * @availability iOS 26.0+
    */
-  getRawValue($self: DataDetector_MatchType): number { return callSDK<number>("DataDetection_c1f28409f8601238", 2080007423390484, $self, []); }
+  getRawValue($self: DataDetector_MatchType): number { return callSDK<number>("DataDetection_e11dfd5beee01da3", 2080007423390484, $self, []); }
 };
 
 /**
@@ -392,31 +392,31 @@ export class DataDetector_Options extends SDKHandle {
    * var documentDate: Date?
    * @availability iOS 26.0+
    */
-  get documentDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_c1f28409f8601238", 2367272094248196, this, []); }
-  set documentDate(value: $SDK1) { callSDK<void>("DataDetection_c1f28409f8601238", 429915841528015, this, [value]); }
+  get documentDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_e11dfd5beee01da3", 2367272094248196, this, []); }
+  set documentDate(value: $SDK1) { callSDK<void>("DataDetection_e11dfd5beee01da3", 429915841528015, this, [value]); }
   /**
    * var documentRegion: Locale.Region?
    * @availability iOS 26.0+
    */
-  get documentRegion(): $SDK4 { return callSDK<$SDK4>("DataDetection_c1f28409f8601238", 3446386090229375, this, []); }
-  set documentRegion(value: $SDK4) { callSDK<void>("DataDetection_c1f28409f8601238", 3423115044070437, this, [value]); }
+  get documentRegion(): $SDK4 { return callSDK<$SDK4>("DataDetection_e11dfd5beee01da3", 3446386090229375, this, []); }
+  set documentRegion(value: $SDK4) { callSDK<void>("DataDetection_e11dfd5beee01da3", 3423115044070437, this, [value]); }
   /**
    * var documentTimeZone: TimeZone?
    * @availability iOS 26.0+
    */
-  get documentTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_c1f28409f8601238", 2929744104566077, this, []); }
-  set documentTimeZone(value: $SDK0) { callSDK<void>("DataDetection_c1f28409f8601238", 3254444489095977, this, [value]); }
+  get documentTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_e11dfd5beee01da3", 2929744104566077, this, []); }
+  set documentTimeZone(value: $SDK0) { callSDK<void>("DataDetection_e11dfd5beee01da3", 3254444489095977, this, [value]); }
   /**
    * var documentLanguageCode: Locale.LanguageCode?
    * @availability iOS 26.0+
    */
-  get documentLanguageCode(): $SDK5 { return callSDK<$SDK5>("DataDetection_c1f28409f8601238", 2350287754051216, this, []); }
-  set documentLanguageCode(value: $SDK5) { callSDK<void>("DataDetection_c1f28409f8601238", 4241513740997204, this, [value]); }
+  get documentLanguageCode(): $SDK5 { return callSDK<$SDK5>("DataDetection_e11dfd5beee01da3", 2350287754051216, this, []); }
+  set documentLanguageCode(value: $SDK5) { callSDK<void>("DataDetection_e11dfd5beee01da3", 4241513740997204, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): DataDetector_Options { return callSDK<DataDetector_Options>("DataDetection_c1f28409f8601238", 1874268522630436, undefined, []); }
+  static init(): DataDetector_Options { return callSDK<DataDetector_Options>("DataDetection_e11dfd5beee01da3", 1874268522630436, undefined, []); }
   declare readonly $type: { "s:13DataDetection0A8DetectorO7OptionsV": true };
 }
 
@@ -429,7 +429,7 @@ export class DDMatch extends SDKHandle {
    * var matchedString: String { get }
    * @availability iOS 15.0+
    */
-  get matchedString(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 1305385525484922, this, []); }
+  get matchedString(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 1305385525484922, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true };
 }
@@ -443,27 +443,27 @@ export class DDMatchCalendarEvent extends DDMatch {
    * var isAllDay: Bool { get }
    * @availability iOS 15.0+
    */
-  get isAllDay(): boolean { return callSDK<boolean>("DataDetection_c1f28409f8601238", 109633648169604, this, []); }
+  get isAllDay(): boolean { return callSDK<boolean>("DataDetection_e11dfd5beee01da3", 109633648169604, this, []); }
   /**
    * var endDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get endDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_c1f28409f8601238", 2617487234634757, this, []); }
+  get endDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_e11dfd5beee01da3", 2617487234634757, this, []); }
   /**
    * var endTimeZone: TimeZone? { get }
    * @availability iOS 15.0+
    */
-  get endTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_c1f28409f8601238", 3310615371119527, this, []); }
+  get endTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_e11dfd5beee01da3", 3310615371119527, this, []); }
   /**
    * var startDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get startDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_c1f28409f8601238", 1223150337793184, this, []); }
+  get startDate(): $SDK1 { return callSDK<$SDK1>("DataDetection_e11dfd5beee01da3", 1223150337793184, this, []); }
   /**
    * var startTimeZone: TimeZone? { get }
    * @availability iOS 15.0+
    */
-  get startTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_c1f28409f8601238", 810276015374658, this, []); }
+  get startTimeZone(): $SDK0 { return callSDK<$SDK0>("DataDetection_e11dfd5beee01da3", 810276015374658, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchCalendarEvent": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "isAllDay": true; "endDate": true; "endTimeZone": true; "startDate": true; "startTimeZone": true };
 }
@@ -477,12 +477,12 @@ export class DDMatchEmailAddress extends DDMatch {
    * var emailAddress: String { get }
    * @availability iOS 15.0+
    */
-  get emailAddress(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 148832704574800, this, []); }
+  get emailAddress(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 148832704574800, this, []); }
   /**
    * var label: String? { get }
    * @availability iOS 15.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 3503793420516546, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 3503793420516546, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchEmailAddress": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "emailAddress": true; "label": true };
 }
@@ -496,12 +496,12 @@ export class DDMatchFlightNumber extends DDMatch {
    * var airline: String { get }
    * @availability iOS 15.0+
    */
-  get airline(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 4421170082169255, this, []); }
+  get airline(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 4421170082169255, this, []); }
   /**
    * var flightNumber: String { get }
    * @availability iOS 15.0+
    */
-  get flightNumber(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 1559177657410688, this, []); }
+  get flightNumber(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 1559177657410688, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchFlightNumber": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "airline": true; "flightNumber": true };
 }
@@ -515,7 +515,7 @@ export class DDMatchLink extends DDMatch {
    * var url: URL { get }
    * @availability iOS 15.0+
    */
-  get url(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 2408901644371743, this, []); }
+  get url(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 2408901644371743, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchLink": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "url": true };
 }
@@ -529,12 +529,12 @@ export class DDMatchMoneyAmount extends DDMatch {
    * var amount: Double { get }
    * @availability iOS 15.0+
    */
-  get amount(): number { return callSDK<number>("DataDetection_c1f28409f8601238", 3336504385317443, this, []); }
+  get amount(): number { return callSDK<number>("DataDetection_e11dfd5beee01da3", 3336504385317443, this, []); }
   /**
    * var currency: String { get }
    * @availability iOS 15.0+
    */
-  get currency(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 549340503525668, this, []); }
+  get currency(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 549340503525668, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchMoneyAmount": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "amount": true; "currency": true };
 }
@@ -548,12 +548,12 @@ export class DDMatchPhoneNumber extends DDMatch {
    * var label: String? { get }
    * @availability iOS 15.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 2634084374430045, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 2634084374430045, this, []); }
   /**
    * var phoneNumber: String { get }
    * @availability iOS 15.0+
    */
-  get phoneNumber(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 2522032105338094, this, []); }
+  get phoneNumber(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 2522032105338094, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchPhoneNumber": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "label": true; "phoneNumber": true };
 }
@@ -567,27 +567,27 @@ export class DDMatchPostalAddress extends DDMatch {
    * var city: String? { get }
    * @availability iOS 15.0+
    */
-  get city(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 4238036819957145, this, []); }
+  get city(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 4238036819957145, this, []); }
   /**
    * var country: String? { get }
    * @availability iOS 15.0+
    */
-  get country(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 2333583074344730, this, []); }
+  get country(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 2333583074344730, this, []); }
   /**
    * var postalCode: String? { get }
    * @availability iOS 15.0+
    */
-  get postalCode(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 1598578669267267, this, []); }
+  get postalCode(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 1598578669267267, this, []); }
   /**
    * var state: String? { get }
    * @availability iOS 15.0+
    */
-  get state(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 116188592221840, this, []); }
+  get state(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 116188592221840, this, []); }
   /**
    * var street: String? { get }
    * @availability iOS 15.0+
    */
-  get street(): (string) | null { return callSDK<(string) | null>("DataDetection_c1f28409f8601238", 3285235019162638, this, []); }
+  get street(): (string) | null { return callSDK<(string) | null>("DataDetection_e11dfd5beee01da3", 3285235019162638, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchPostalAddress": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "city": true; "country": true; "postalCode": true; "state": true; "street": true };
 }
@@ -601,36 +601,36 @@ export class DDMatchShipmentTrackingNumber extends DDMatch {
    * var carrier: String { get }
    * @availability iOS 15.0+
    */
-  get carrier(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 1386447956962016, this, []); }
+  get carrier(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 1386447956962016, this, []); }
   /**
    * var trackingNumber: String { get }
    * @availability iOS 15.0+
    */
-  get trackingNumber(): string { return callSDK<string>("DataDetection_c1f28409f8601238", 3087468472712235, this, []); }
+  get trackingNumber(): string { return callSDK<string>("DataDetection_e11dfd5beee01da3", 3087468472712235, this, []); }
   declare readonly $type: { "c:objc(cs)DDMatchShipmentTrackingNumber": true; "c:objc(cs)DDMatch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "matchedString": true; "carrier": true; "trackingNumber": true };
 }
 
-registerSDKClass("DataDetection.DataDetector", DataDetector, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match", DataDetector_Match, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails", DataDetector_Match_SemanticDetails, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.CalendarEvent", DataDetector_Match_SemanticDetails_CalendarEvent, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.EmailAddress", DataDetector_Match_SemanticDetails_EmailAddress, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.FlightNumber", DataDetector_Match_SemanticDetails_FlightNumber, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.Link", DataDetector_Match_SemanticDetails_Link, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.Measurement", DataDetector_Match_SemanticDetails_Measurement, { module: "DataDetection_c1f28409f8601238", properties: {}, methods: {"measurement":{"id":2984578028330915}} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.MoneyAmount", DataDetector_Match_SemanticDetails_MoneyAmount, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.PaymentIdentifier", DataDetector_Match_SemanticDetails_PaymentIdentifier, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.PhoneNumber", DataDetector_Match_SemanticDetails_PhoneNumber, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.PostalAddress", DataDetector_Match_SemanticDetails_PostalAddress, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.ShipmentTrackingNumber", DataDetector_Match_SemanticDetails_ShipmentTrackingNumber, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DataDetection.DataDetector.Options", DataDetector_Options, { module: "DataDetection_c1f28409f8601238", properties: {} });
-registerSDKClass("DDMatch", DDMatch, { module: "DataDetection_c1f28409f8601238", properties: {"matchedString":1305385525484922} });
-registerSDKClass("DDMatchCalendarEvent", DDMatchCalendarEvent, { module: "DataDetection_c1f28409f8601238", properties: {"isAllDay":109633648169604,"endDate":2617487234634757,"endTimeZone":3310615371119527,"startDate":1223150337793184,"startTimeZone":810276015374658} });
-registerSDKClass("DDMatchEmailAddress", DDMatchEmailAddress, { module: "DataDetection_c1f28409f8601238", properties: {"emailAddress":148832704574800,"label":3503793420516546} });
-registerSDKClass("DDMatchFlightNumber", DDMatchFlightNumber, { module: "DataDetection_c1f28409f8601238", properties: {"airline":4421170082169255,"flightNumber":1559177657410688} });
-registerSDKClass("DDMatchLink", DDMatchLink, { module: "DataDetection_c1f28409f8601238", properties: {"url":2408901644371743} });
-registerSDKClass("DDMatchMoneyAmount", DDMatchMoneyAmount, { module: "DataDetection_c1f28409f8601238", properties: {"amount":3336504385317443,"currency":549340503525668} });
-registerSDKClass("DDMatchPhoneNumber", DDMatchPhoneNumber, { module: "DataDetection_c1f28409f8601238", properties: {"label":2634084374430045,"phoneNumber":2522032105338094} });
-registerSDKClass("DDMatchPostalAddress", DDMatchPostalAddress, { module: "DataDetection_c1f28409f8601238", properties: {"city":4238036819957145,"country":2333583074344730,"postalCode":1598578669267267,"state":116188592221840,"street":3285235019162638} });
-registerSDKClass("DDMatchShipmentTrackingNumber", DDMatchShipmentTrackingNumber, { module: "DataDetection_c1f28409f8601238", properties: {"carrier":1386447956962016,"trackingNumber":3087468472712235} });
+registerSDKClass("DataDetection.DataDetector", DataDetector, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match", DataDetector_Match, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails", DataDetector_Match_SemanticDetails, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.CalendarEvent", DataDetector_Match_SemanticDetails_CalendarEvent, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.EmailAddress", DataDetector_Match_SemanticDetails_EmailAddress, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.FlightNumber", DataDetector_Match_SemanticDetails_FlightNumber, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.Link", DataDetector_Match_SemanticDetails_Link, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.Measurement", DataDetector_Match_SemanticDetails_Measurement, { module: "DataDetection_e11dfd5beee01da3", properties: {}, methods: {"measurement":{"id":2984578028330915}} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.MoneyAmount", DataDetector_Match_SemanticDetails_MoneyAmount, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.PaymentIdentifier", DataDetector_Match_SemanticDetails_PaymentIdentifier, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.PhoneNumber", DataDetector_Match_SemanticDetails_PhoneNumber, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.PostalAddress", DataDetector_Match_SemanticDetails_PostalAddress, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Match.SemanticDetails.ShipmentTrackingNumber", DataDetector_Match_SemanticDetails_ShipmentTrackingNumber, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DataDetection.DataDetector.Options", DataDetector_Options, { module: "DataDetection_e11dfd5beee01da3", properties: {} });
+registerSDKClass("DDMatch", DDMatch, { module: "DataDetection_e11dfd5beee01da3", properties: {"matchedString":1305385525484922} });
+registerSDKClass("DDMatchCalendarEvent", DDMatchCalendarEvent, { module: "DataDetection_e11dfd5beee01da3", properties: {"isAllDay":109633648169604,"endDate":2617487234634757,"endTimeZone":3310615371119527,"startDate":1223150337793184,"startTimeZone":810276015374658} });
+registerSDKClass("DDMatchEmailAddress", DDMatchEmailAddress, { module: "DataDetection_e11dfd5beee01da3", properties: {"emailAddress":148832704574800,"label":3503793420516546} });
+registerSDKClass("DDMatchFlightNumber", DDMatchFlightNumber, { module: "DataDetection_e11dfd5beee01da3", properties: {"airline":4421170082169255,"flightNumber":1559177657410688} });
+registerSDKClass("DDMatchLink", DDMatchLink, { module: "DataDetection_e11dfd5beee01da3", properties: {"url":2408901644371743} });
+registerSDKClass("DDMatchMoneyAmount", DDMatchMoneyAmount, { module: "DataDetection_e11dfd5beee01da3", properties: {"amount":3336504385317443,"currency":549340503525668} });
+registerSDKClass("DDMatchPhoneNumber", DDMatchPhoneNumber, { module: "DataDetection_e11dfd5beee01da3", properties: {"label":2634084374430045,"phoneNumber":2522032105338094} });
+registerSDKClass("DDMatchPostalAddress", DDMatchPostalAddress, { module: "DataDetection_e11dfd5beee01da3", properties: {"city":4238036819957145,"country":2333583074344730,"postalCode":1598578669267267,"state":116188592221840,"street":3285235019162638} });
+registerSDKClass("DDMatchShipmentTrackingNumber", DDMatchShipmentTrackingNumber, { module: "DataDetection_e11dfd5beee01da3", properties: {"carrier":1386447956962016,"trackingNumber":3087468472712235} });

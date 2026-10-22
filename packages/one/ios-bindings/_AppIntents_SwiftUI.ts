@@ -11,7 +11,7 @@ export class ShortcutsLink extends SDKHandle {
    * @MainActor @preconcurrency init(action: @escaping () -> Void = {})
    * @availability iOS 16.0+
    */
-  static init(action?: (() => void)): Promise<ShortcutsLink> { return callSDKAsync<ShortcutsLink>("_AppIntents_SwiftUI_c1f28409f8601238", 131550743071745, undefined, [action], [{"callback":{"out":[]}}]); }
+  static init(action?: (() => void)): Promise<ShortcutsLink> { return callSDKAsync<ShortcutsLink>("_AppIntents_SwiftUI_e11dfd5beee01da3", 131550743071745, undefined, [action], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:19_AppIntents_SwiftUI13ShortcutsLinkV": true };
 }
 
@@ -30,32 +30,32 @@ export class ShortcutsLinkStyle extends SDKHandle {
    * static let darkOutline: ShortcutsLinkStyle
    * @availability iOS 16.0+
    */
-  static get darkOutline(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 359625675361263, undefined, []); }
+  static get darkOutline(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 359625675361263, undefined, []); }
   /**
    * static let lightOutline: ShortcutsLinkStyle
    * @availability iOS 16.0+
    */
-  static get lightOutline(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 2115141711229537, undefined, []); }
+  static get lightOutline(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 2115141711229537, undefined, []); }
   /**
    * static let automaticOutline: ShortcutsLinkStyle
    * @availability iOS 16.0+
    */
-  static get automaticOutline(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 1024796878395059, undefined, []); }
+  static get automaticOutline(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 1024796878395059, undefined, []); }
   /**
    * static let dark: ShortcutsLinkStyle
    * @availability iOS 16.0+
    */
-  static get dark(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 898978542817574, undefined, []); }
+  static get dark(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 898978542817574, undefined, []); }
   /**
    * static let light: ShortcutsLinkStyle
    * @availability iOS 16.0+
    */
-  static get light(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 777500898424621, undefined, []); }
+  static get light(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 777500898424621, undefined, []); }
   /**
    * static let automatic: ShortcutsLinkStyle
    * @availability iOS 16.0+
    */
-  static get automatic(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 4448504384898959, undefined, []); }
+  static get automatic(): ShortcutsLinkStyle { return callSDK<ShortcutsLinkStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 4448504384898959, undefined, []); }
   declare readonly $type: { "s:19_AppIntents_SwiftUI18ShortcutsLinkStyleV": true };
 }
 
@@ -82,21 +82,21 @@ export class SiriTipViewStyle extends SDKHandle {
    * static let dark: SiriTipViewStyle
    * @availability iOS 16.0+
    */
-  static get dark(): SiriTipViewStyle { return callSDK<SiriTipViewStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 1792807615549762, undefined, []); }
+  static get dark(): SiriTipViewStyle { return callSDK<SiriTipViewStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 1792807615549762, undefined, []); }
   /**
    * static let light: SiriTipViewStyle
    * @availability iOS 16.0+
    */
-  static get light(): SiriTipViewStyle { return callSDK<SiriTipViewStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 423729244563028, undefined, []); }
+  static get light(): SiriTipViewStyle { return callSDK<SiriTipViewStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 423729244563028, undefined, []); }
   /**
    * static let automatic: SiriTipViewStyle
    * @availability iOS 16.0+
    */
-  static get automatic(): SiriTipViewStyle { return callSDK<SiriTipViewStyle>("_AppIntents_SwiftUI_c1f28409f8601238", 3233552785016761, undefined, []); }
+  static get automatic(): SiriTipViewStyle { return callSDK<SiriTipViewStyle>("_AppIntents_SwiftUI_e11dfd5beee01da3", 3233552785016761, undefined, []); }
   declare readonly $type: { "s:19_AppIntents_SwiftUI16SiriTipViewStyleV": true };
 }
 
-registerSDKClass("_AppIntents_SwiftUI.ShortcutsLink", ShortcutsLink, { module: "_AppIntents_SwiftUI_c1f28409f8601238", properties: {} });
-registerSDKClass("_AppIntents_SwiftUI.ShortcutsLinkStyle", ShortcutsLinkStyle, { module: "_AppIntents_SwiftUI_c1f28409f8601238", properties: {} });
-registerSDKClass("_AppIntents_SwiftUI.SiriTipView", SiriTipView, { module: "_AppIntents_SwiftUI_c1f28409f8601238", properties: {} });
-registerSDKClass("_AppIntents_SwiftUI.SiriTipViewStyle", SiriTipViewStyle, { module: "_AppIntents_SwiftUI_c1f28409f8601238", properties: {} });
+registerSDKClass("_AppIntents_SwiftUI.ShortcutsLink", ShortcutsLink, { module: "_AppIntents_SwiftUI_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_AppIntents_SwiftUI.ShortcutsLinkStyle", ShortcutsLinkStyle, { module: "_AppIntents_SwiftUI_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_AppIntents_SwiftUI.SiriTipView", SiriTipView, { module: "_AppIntents_SwiftUI_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_AppIntents_SwiftUI.SiriTipViewStyle", SiriTipViewStyle, { module: "_AppIntents_SwiftUI_e11dfd5beee01da3", properties: {} });

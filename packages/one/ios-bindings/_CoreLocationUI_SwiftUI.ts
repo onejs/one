@@ -11,7 +11,7 @@ export class LocationButton extends SDKHandle {
    * nonisolated init(_ title: LocationButton.Title? = .currentLocation, action: @escaping () -> Void)
    * @availability iOS 15.0+
    */
-  static init(title: (LocationButton_Title) | null, action: (() => void)): Promise<LocationButton> { return callSDKAsync<LocationButton>("_CoreLocationUI_SwiftUI_c1f28409f8601238", 3278262291563445, undefined, [title, action], [null,{"callback":{"out":[]}}]); }
+  static init(title: (LocationButton_Title) | null, action: (() => void)): Promise<LocationButton> { return callSDKAsync<LocationButton>("_CoreLocationUI_SwiftUI_e11dfd5beee01da3", 3278262291563445, undefined, [title, action], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:021_CoreLocationUI_SwiftC00B6ButtonV": true };
 }
 
@@ -30,29 +30,29 @@ export class LocationButton_Title extends SDKHandle {
    * static let sendCurrentLocation: LocationButton.Title
    * @availability iOS 15.0+
    */
-  static get sendCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_c1f28409f8601238", 4085559523994012, undefined, []); }
+  static get sendCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_e11dfd5beee01da3", 4085559523994012, undefined, []); }
   /**
    * static let shareCurrentLocation: LocationButton.Title
    * @availability iOS 15.0+
    */
-  static get shareCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_c1f28409f8601238", 2045366337792825, undefined, []); }
+  static get shareCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_e11dfd5beee01da3", 2045366337792825, undefined, []); }
   /**
    * static let sendMyCurrentLocation: LocationButton.Title
    * @availability iOS 15.0+
    */
-  static get sendMyCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_c1f28409f8601238", 2914162365739330, undefined, []); }
+  static get sendMyCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_e11dfd5beee01da3", 2914162365739330, undefined, []); }
   /**
    * static let shareMyCurrentLocation: LocationButton.Title
    * @availability iOS 15.0+
    */
-  static get shareMyCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_c1f28409f8601238", 1887555536839139, undefined, []); }
+  static get shareMyCurrentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_e11dfd5beee01da3", 1887555536839139, undefined, []); }
   /**
    * static let currentLocation: LocationButton.Title
    * @availability iOS 15.0+
    */
-  static get currentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_c1f28409f8601238", 2118647590365022, undefined, []); }
+  static get currentLocation(): Promise<LocationButton_Title> { return callSDKAsync<LocationButton_Title>("_CoreLocationUI_SwiftUI_e11dfd5beee01da3", 2118647590365022, undefined, []); }
   declare readonly $type: { "s:021_CoreLocationUI_SwiftC00B6ButtonV5TitleV": true };
 }
 
-registerSDKClass("_CoreLocationUI_SwiftUI.LocationButton", LocationButton, { module: "_CoreLocationUI_SwiftUI_c1f28409f8601238", properties: {} });
-registerSDKClass("_CoreLocationUI_SwiftUI.LocationButton.Title", LocationButton_Title, { module: "_CoreLocationUI_SwiftUI_c1f28409f8601238", properties: {} });
+registerSDKClass("_CoreLocationUI_SwiftUI.LocationButton", LocationButton, { module: "_CoreLocationUI_SwiftUI_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_CoreLocationUI_SwiftUI.LocationButton.Title", LocationButton_Title, { module: "_CoreLocationUI_SwiftUI_e11dfd5beee01da3", properties: {} });

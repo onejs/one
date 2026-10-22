@@ -150,6 +150,8 @@ const POINTERS = /^(Unsafe(Mutable)?(Raw)?(Buffer)?Pointer|OpaquePointer|Autorel
 // nor any member whose signature carries one of them. clang and swift usrs both
 // spell the imported names (c:objc(cs)UIWebView, s:So24UIWebViewNavigationTypeV)
 const APP_STORE_REJECTED = /UIWebView|UIWebPagination/
+const appStoreRejected = (usr: string | undefined): Bridged | undefined =>
+  usr && APP_STORE_REJECTED.test(usr) ? { ok: false, reason: 'rejected by App Store processing' } : undefined
 
 const UNBRIDGEABLE_NAMES: Record<string, string> = {
   Selector: 'selector', NSZone: 'pointer',
@@ -578,7 +580,8 @@ export class Bridge {
     }
     if (UNBRIDGEABLE_NAMES[last]) return { ok: false, reason: UNBRIDGEABLE_NAMES[last] }
     const usr = type.usr ?? VALUE_NAMES[type.name]
-    if (usr && APP_STORE_REJECTED.test(usr)) return { ok: false, reason: 'rejected by App Store processing' }
+    const rejected = appStoreRejected(usr)
+    if (rejected) return rejected
     if (usr && VALUES[usr]) return { ok: true, ts: VALUES[usr] }
     if (type.name === 'Any' || type.name === 'AnyObject' || type.name === 'AnyHashable') {
       return { ok: true, ts: 'unknown' }
@@ -838,6 +841,8 @@ export class Bridge {
 
   protocolType(type: SwiftType, position: Position, generics: Generics): Bridged {
     if (type.k !== 'named') return this.type(type, position, generics)
+    const rejected = appStoreRejected(type.usr)
+    if (rejected) return rejected
     const info = type.usr ? this.index.get(type.usr) : undefined
     if (type.name === 'Error' || type.usr === 's:s5ErrorP') return { ok: true, ts: 'NativeError' }
     if (type.name === 'AnyObject' || type.name === 'Any') return { ok: true, ts: 'unknown' }

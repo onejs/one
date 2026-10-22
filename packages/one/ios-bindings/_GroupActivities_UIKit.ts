@@ -11,23 +11,23 @@ export class GroupActivitySharingController extends SDKHandle {
    * @MainActor override dynamic func viewDidLoad()
    * @availability iOS 15.4+
    */
-  viewDidLoad(): Promise<void> { return callSDKAsync<void>("_GroupActivities_UIKit_c1f28409f8601238", 3867686584792455, this, []); }
+  viewDidLoad(): Promise<void> { return callSDKAsync<void>("_GroupActivities_UIKit_e11dfd5beee01da3", 3867686584792455, this, []); }
   /**
    * @MainActor override dynamic func viewWillAppear(_ animated: Bool)
    * @availability iOS 15.4+
    */
-  viewWillAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("_GroupActivities_UIKit_c1f28409f8601238", 1800983163497012, this, [animated]); }
+  viewWillAppear(animated: boolean): Promise<void> { return callSDKAsync<void>("_GroupActivities_UIKit_e11dfd5beee01da3", 1800983163497012, this, [animated]); }
   /**
    * @MainActor override dynamic var modalPresentationStyle: UIModalPresentationStyle { get set }
    * @availability iOS 15.4+
    */
-  get modalPresentationStyle(): Promise<_UIKit_UIModalPresentationStyle> { return callSDKAsync<_UIKit_UIModalPresentationStyle>("_GroupActivities_UIKit_c1f28409f8601238", 917910468214678, this, []); }
-  setModalPresentationStyle(value: _UIKit_UIModalPresentationStyle): Promise<void> { return callSDKAsync<void>("_GroupActivities_UIKit_c1f28409f8601238", 3801589814690054, this, [value]); }
+  get modalPresentationStyle(): Promise<_UIKit_UIModalPresentationStyle> { return callSDKAsync<_UIKit_UIModalPresentationStyle>("_GroupActivities_UIKit_e11dfd5beee01da3", 917910468214678, this, []); }
+  setModalPresentationStyle(value: _UIKit_UIModalPresentationStyle): Promise<void> { return callSDKAsync<void>("_GroupActivities_UIKit_e11dfd5beee01da3", 3801589814690054, this, [value]); }
   /**
    * @MainActor var result: GroupActivitySharingResult { get async }
    * @availability iOS 15.4+
    */
-  get result(): Promise<GroupActivitySharingResult> { return callSDKAsync<GroupActivitySharingResult>("_GroupActivities_UIKit_c1f28409f8601238", 3692276941333975, this, []); }
+  get result(): Promise<GroupActivitySharingResult> { return callSDKAsync<GroupActivitySharingResult>("_GroupActivities_UIKit_e11dfd5beee01da3", 3692276941333975, this, []); }
   declare readonly $type: { "c:@M@_GroupActivities_UIKit@objc(cs)GroupActivitySharingController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -37,4 +37,4 @@ export class GroupActivitySharingController extends SDKHandle {
  */
 export type GroupActivitySharingResult = "success" | "cancelled";
 
-registerSDKClass("_GroupActivities_UIKit.GroupActivitySharingController", GroupActivitySharingController, { module: "_GroupActivities_UIKit_c1f28409f8601238", properties: {}, methods: {"viewDidLoad":{"id":3867686584792455},"viewWillAppear":{"id":1800983163497012}} });
+registerSDKClass("_GroupActivities_UIKit.GroupActivitySharingController", GroupActivitySharingController, { module: "_GroupActivities_UIKit_e11dfd5beee01da3", properties: {}, methods: {"viewDidLoad":{"id":3867686584792455},"viewWillAppear":{"id":1800983163497012}} });

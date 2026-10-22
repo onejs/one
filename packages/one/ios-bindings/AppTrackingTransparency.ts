@@ -11,12 +11,12 @@ export class ATTrackingManager extends SDKHandle {
    * class func requestTrackingAuthorization() async -> ATTrackingManager.AuthorizationStatus
    * @availability iOS 14.0+
    */
-  static requestTrackingAuthorization(completion: ((arg0: ATTrackingManager_AuthorizationStatus) => void)): void { return callSDK<void>("AppTrackingTransparency_c1f28409f8601238", 1896139118960609, undefined, [completion], [{"callback":{"out":[]}}]); }
+  static requestTrackingAuthorization(completion: ((arg0: ATTrackingManager_AuthorizationStatus) => void)): void { return callSDK<void>("AppTrackingTransparency_e11dfd5beee01da3", 1896139118960609, undefined, [completion], [{"callback":{"out":[]}}]); }
   /**
    * class var trackingAuthorizationStatus: ATTrackingManager.AuthorizationStatus { get }
    * @availability iOS 14.0+
    */
-  static get trackingAuthorizationStatus(): ATTrackingManager_AuthorizationStatus { return callSDK<ATTrackingManager_AuthorizationStatus>("AppTrackingTransparency_c1f28409f8601238", 483006477113776, undefined, []); }
+  static get trackingAuthorizationStatus(): ATTrackingManager_AuthorizationStatus { return callSDK<ATTrackingManager_AuthorizationStatus>("AppTrackingTransparency_e11dfd5beee01da3", 483006477113776, undefined, []); }
   declare readonly $type: { "c:objc(cs)ATTrackingManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -31,7 +31,7 @@ export const ATTrackingManager_AuthorizationStatus = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ATTrackingManager_AuthorizationStatus) | null { return callSDK<(ATTrackingManager_AuthorizationStatus) | null>("AppTrackingTransparency_c1f28409f8601238", 1414893187928855, undefined, [rawValue]); }
+  init(rawValue: number): (ATTrackingManager_AuthorizationStatus) | null { return callSDK<(ATTrackingManager_AuthorizationStatus) | null>("AppTrackingTransparency_e11dfd5beee01da3", 1414893187928855, undefined, [rawValue]); }
 };
 
-registerSDKClass("ATTrackingManager", ATTrackingManager, { module: "AppTrackingTransparency_c1f28409f8601238", properties: {} });
+registerSDKClass("ATTrackingManager", ATTrackingManager, { module: "AppTrackingTransparency_e11dfd5beee01da3", properties: {} });

@@ -10,12 +10,12 @@ type $SDK0 = { latitude: number; longitude: number };
  */
 export class CLFloor extends SDKHandle {
   /** init() */
-  static init(): CLFloor { return callSDK<CLFloor>("_LocationEssentials_c1f28409f8601238", 1473793788849209, undefined, []); }
+  static init(): CLFloor { return callSDK<CLFloor>("_LocationEssentials_e11dfd5beee01da3", 1473793788849209, undefined, []); }
   /**
    * var level: Int { get }
    * @availability iOS 8.0+
    */
-  get level(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 939076211391347, this, []); }
+  get level(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 939076211391347, this, []); }
   declare readonly $type: { "c:objc(cs)CLFloor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "level": true };
 }
@@ -29,92 +29,92 @@ export class CLLocation extends SDKHandle {
    * func distance(from location: CLLocation) -> CLLocationDistance
    * @availability iOS 3.2+
    */
-  distance(location: CLLocation): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 495313321811762, this, [location]); }
+  distance(location: CLLocation): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 495313321811762, this, [location]); }
   /**
    * init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance, horizontalAccuracy hAccuracy: CLLocationAccuracy, verticalAccuracy vAccuracy: CLLocationAccuracy, course: CLLocationDirection, courseAccuracy: CLLocationDirectionAccuracy, speed: CLLocationSpeed, speedAccuracy: CLLocationSpeedAccuracy, timestamp: Date)
    * @availability iOS 13.4+
    */
-  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyCourseCourseAccuracySpeedSpeedAccuracyTimestamp(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, course: number, courseAccuracy: number, speed: number, speedAccuracy: number, timestamp: globalThis.Date): CLLocation { return callSDK<CLLocation>("_LocationEssentials_c1f28409f8601238", 4231492706076054, undefined, [coordinate, altitude, hAccuracy, vAccuracy, course, courseAccuracy, speed, speedAccuracy, timestamp]); }
+  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyCourseCourseAccuracySpeedSpeedAccuracyTimestamp(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, course: number, courseAccuracy: number, speed: number, speedAccuracy: number, timestamp: globalThis.Date): CLLocation { return callSDK<CLLocation>("_LocationEssentials_e11dfd5beee01da3", 4231492706076054, undefined, [coordinate, altitude, hAccuracy, vAccuracy, course, courseAccuracy, speed, speedAccuracy, timestamp]); }
   /**
    * init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance, horizontalAccuracy hAccuracy: CLLocationAccuracy, verticalAccuracy vAccuracy: CLLocationAccuracy, course: CLLocationDirection, courseAccuracy: CLLocationDirectionAccuracy, speed: CLLocationSpeed, speedAccuracy: CLLocationSpeedAccuracy, timestamp: Date, sourceInfo: CLLocationSourceInformation)
    * @availability iOS 15.0+
    */
-  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyCourseCourseAccuracySpeedSpeedAccuracyTimestampSourceInfo(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, course: number, courseAccuracy: number, speed: number, speedAccuracy: number, timestamp: globalThis.Date, sourceInfo: CLLocationSourceInformation): CLLocation { return callSDK<CLLocation>("_LocationEssentials_c1f28409f8601238", 3772647042019179, undefined, [coordinate, altitude, hAccuracy, vAccuracy, course, courseAccuracy, speed, speedAccuracy, timestamp, sourceInfo]); }
+  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyCourseCourseAccuracySpeedSpeedAccuracyTimestampSourceInfo(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, course: number, courseAccuracy: number, speed: number, speedAccuracy: number, timestamp: globalThis.Date, sourceInfo: CLLocationSourceInformation): CLLocation { return callSDK<CLLocation>("_LocationEssentials_e11dfd5beee01da3", 3772647042019179, undefined, [coordinate, altitude, hAccuracy, vAccuracy, course, courseAccuracy, speed, speedAccuracy, timestamp, sourceInfo]); }
   /**
    * init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance, horizontalAccuracy hAccuracy: CLLocationAccuracy, verticalAccuracy vAccuracy: CLLocationAccuracy, course: CLLocationDirection, speed: CLLocationSpeed, timestamp: Date)
    * @availability iOS 4.2+
    */
-  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyCourseSpeedTimestamp(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, course: number, speed: number, timestamp: globalThis.Date): CLLocation { return callSDK<CLLocation>("_LocationEssentials_c1f28409f8601238", 3261437867921877, undefined, [coordinate, altitude, hAccuracy, vAccuracy, course, speed, timestamp]); }
+  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyCourseSpeedTimestamp(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, course: number, speed: number, timestamp: globalThis.Date): CLLocation { return callSDK<CLLocation>("_LocationEssentials_e11dfd5beee01da3", 3261437867921877, undefined, [coordinate, altitude, hAccuracy, vAccuracy, course, speed, timestamp]); }
   /**
    * init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance, horizontalAccuracy hAccuracy: CLLocationAccuracy, verticalAccuracy vAccuracy: CLLocationAccuracy, timestamp: Date)
    * @availability iOS 2.0+
    */
-  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyTimestamp(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, timestamp: globalThis.Date): CLLocation { return callSDK<CLLocation>("_LocationEssentials_c1f28409f8601238", 2088004690952707, undefined, [coordinate, altitude, hAccuracy, vAccuracy, timestamp]); }
+  static initCoordinateAltitudeHorizontalAccuracyVerticalAccuracyTimestamp(coordinate: $SDK0, altitude: number, hAccuracy: number, vAccuracy: number, timestamp: globalThis.Date): CLLocation { return callSDK<CLLocation>("_LocationEssentials_e11dfd5beee01da3", 2088004690952707, undefined, [coordinate, altitude, hAccuracy, vAccuracy, timestamp]); }
   /**
    * init(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
    * @availability iOS 2.0+
    */
-  static initLatitudeLongitude(latitude: number, longitude: number): CLLocation { return callSDK<CLLocation>("_LocationEssentials_c1f28409f8601238", 2125652945788523, undefined, [latitude, longitude]); }
+  static initLatitudeLongitude(latitude: number, longitude: number): CLLocation { return callSDK<CLLocation>("_LocationEssentials_e11dfd5beee01da3", 2125652945788523, undefined, [latitude, longitude]); }
   /**
    * var altitude: CLLocationDistance { get }
    * @availability iOS 2.0+
    */
-  get altitude(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 243462847548448, this, []); }
+  get altitude(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 243462847548448, this, []); }
   /**
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 2.0+
    */
-  get coordinate(): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_c1f28409f8601238", 508814881250326, this, []); }
+  get coordinate(): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_e11dfd5beee01da3", 508814881250326, this, []); }
   /**
    * var course: CLLocationDirection { get }
    * @availability iOS 2.2+
    */
-  get course(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 4181574917334477, this, []); }
+  get course(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 4181574917334477, this, []); }
   /**
    * var courseAccuracy: CLLocationDirectionAccuracy { get }
    * @availability iOS 13.4+
    */
-  get courseAccuracy(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 509265531622715, this, []); }
+  get courseAccuracy(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 509265531622715, this, []); }
   /**
    * var ellipsoidalAltitude: CLLocationDistance { get }
    * @availability iOS 15.0+
    */
-  get ellipsoidalAltitude(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 4405949923160047, this, []); }
+  get ellipsoidalAltitude(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 4405949923160047, this, []); }
   /**
    * @NSCopying var floor: CLFloor? { get }
    * @availability iOS 8.0+
    */
-  get floor(): (CLFloor) | null { return callSDK<(CLFloor) | null>("_LocationEssentials_c1f28409f8601238", 1979498467565338, this, []); }
+  get floor(): (CLFloor) | null { return callSDK<(CLFloor) | null>("_LocationEssentials_e11dfd5beee01da3", 1979498467565338, this, []); }
   /**
    * var horizontalAccuracy: CLLocationAccuracy { get }
    * @availability iOS 2.0+
    */
-  get horizontalAccuracy(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 1773660887319580, this, []); }
+  get horizontalAccuracy(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 1773660887319580, this, []); }
   /**
    * var sourceInformation: CLLocationSourceInformation? { get }
    * @availability iOS 15.0+
    */
-  get sourceInformation(): (CLLocationSourceInformation) | null { return callSDK<(CLLocationSourceInformation) | null>("_LocationEssentials_c1f28409f8601238", 51566510667446, this, []); }
+  get sourceInformation(): (CLLocationSourceInformation) | null { return callSDK<(CLLocationSourceInformation) | null>("_LocationEssentials_e11dfd5beee01da3", 51566510667446, this, []); }
   /**
    * var speed: CLLocationSpeed { get }
    * @availability iOS 2.2+
    */
-  get speed(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 3178431235460446, this, []); }
+  get speed(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 3178431235460446, this, []); }
   /**
    * var speedAccuracy: CLLocationSpeedAccuracy { get }
    * @availability iOS 10.0+
    */
-  get speedAccuracy(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 82708603492369, this, []); }
+  get speedAccuracy(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 82708603492369, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 2.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("_LocationEssentials_c1f28409f8601238", 1582251592675469, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("_LocationEssentials_e11dfd5beee01da3", 1582251592675469, this, []); }
   /**
    * var verticalAccuracy: CLLocationAccuracy { get }
    * @availability iOS 2.0+
    */
-  get verticalAccuracy(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 3585988476033829, this, []); }
+  get verticalAccuracy(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 3585988476033829, this, []); }
   declare readonly $type: { "c:objc(cs)CLLocation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "altitude": true; "coordinate": true; "course": true; "courseAccuracy": true; "ellipsoidalAltitude": true; "floor": true; "horizontalAccuracy": true; "sourceInformation": true; "speed": true; "speedAccuracy": true; "timestamp": true; "verticalAccuracy": true };
 }
@@ -125,15 +125,15 @@ export type CLLocationAccuracy = number;
 /** struct CLLocationCoordinate2D */
 export class CLLocationCoordinate2D extends SDKHandle {
   /** var latitude: CLLocationDegrees */
-  get latitude(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 2270093731160005, this, []); }
-  set latitude(value: number) { callSDK<void>("_LocationEssentials_c1f28409f8601238", 3501053709925153, this, [value]); }
+  get latitude(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 2270093731160005, this, []); }
+  set latitude(value: number) { callSDK<void>("_LocationEssentials_e11dfd5beee01da3", 3501053709925153, this, [value]); }
   /** var longitude: CLLocationDegrees */
-  get longitude(): number { return callSDK<number>("_LocationEssentials_c1f28409f8601238", 2821260165158297, this, []); }
-  set longitude(value: number) { callSDK<void>("_LocationEssentials_c1f28409f8601238", 570756271249340, this, [value]); }
+  get longitude(): number { return callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 2821260165158297, this, []); }
+  set longitude(value: number) { callSDK<void>("_LocationEssentials_e11dfd5beee01da3", 570756271249340, this, [value]); }
   /** init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) */
-  static initLatitudeLongitude(latitude: number, longitude: number): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_c1f28409f8601238", 1486457162394027, undefined, [latitude, longitude]); }
+  static initLatitudeLongitude(latitude: number, longitude: number): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_e11dfd5beee01da3", 1486457162394027, undefined, [latitude, longitude]); }
   /** init() */
-  static init(): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_c1f28409f8601238", 984829462464911, undefined, []); }
+  static init(): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_e11dfd5beee01da3", 984829462464911, undefined, []); }
   declare readonly $type: { "c:@S@CLLocationCoordinate2D": true };
 }
 
@@ -158,17 +158,17 @@ export class CLLocationSourceInformation extends SDKHandle {
    * init(softwareSimulationState isSoftware: Bool, andExternalAccessoryState isAccessory: Bool)
    * @availability iOS 15.0+
    */
-  static init(isSoftware: boolean, isAccessory: boolean): CLLocationSourceInformation { return callSDK<CLLocationSourceInformation>("_LocationEssentials_c1f28409f8601238", 4122049765606232, undefined, [isSoftware, isAccessory]); }
+  static init(isSoftware: boolean, isAccessory: boolean): CLLocationSourceInformation { return callSDK<CLLocationSourceInformation>("_LocationEssentials_e11dfd5beee01da3", 4122049765606232, undefined, [isSoftware, isAccessory]); }
   /**
    * var isProducedByAccessory: Bool { get }
    * @availability iOS 15.0+
    */
-  get isProducedByAccessory(): boolean { return callSDK<boolean>("_LocationEssentials_c1f28409f8601238", 2387546333929343, this, []); }
+  get isProducedByAccessory(): boolean { return callSDK<boolean>("_LocationEssentials_e11dfd5beee01da3", 2387546333929343, this, []); }
   /**
    * var isSimulatedBySoftware: Bool { get }
    * @availability iOS 15.0+
    */
-  get isSimulatedBySoftware(): boolean { return callSDK<boolean>("_LocationEssentials_c1f28409f8601238", 3805558053493971, this, []); }
+  get isSimulatedBySoftware(): boolean { return callSDK<boolean>("_LocationEssentials_e11dfd5beee01da3", 3805558053493971, this, []); }
   declare readonly $type: { "c:objc(cs)CLLocationSourceInformation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isProducedByAccessory": true; "isSimulatedBySoftware": true };
 }
@@ -183,63 +183,63 @@ export type CLLocationSpeedAccuracy = number;
  * func CLLocationCoordinate2DIsValid(_ coord: CLLocationCoordinate2D) -> Bool
  * @availability iOS 4.0+
  */
-export function CLLocationCoordinate2DIsValid(coord: $SDK0): boolean { return callSDK<boolean>("_LocationEssentials_c1f28409f8601238", 2073613760737396, undefined, [coord]); }
+export function CLLocationCoordinate2DIsValid(coord: $SDK0): boolean { return callSDK<boolean>("_LocationEssentials_e11dfd5beee01da3", 2073613760737396, undefined, [coord]); }
 
 /**
  * func CLLocationCoordinate2DMake(_ latitude: CLLocationDegrees, _ longitude: CLLocationDegrees) -> CLLocationCoordinate2D
  * @availability iOS 4.0+
  */
-export function CLLocationCoordinate2DMake(latitude: number, longitude: number): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_c1f28409f8601238", 1192181974141486, undefined, [latitude, longitude]); }
+export function CLLocationCoordinate2DMake(latitude: number, longitude: number): $SDK0 { return callSDK<$SDK0>("_LocationEssentials_e11dfd5beee01da3", 1192181974141486, undefined, [latitude, longitude]); }
 
 /**
  * let CLLocationDistanceMax: CLLocationDistance
  * @availability iOS 6.0+
  */
-export const CLLocationDistanceMax: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 770539781474870, undefined, []);
+export const CLLocationDistanceMax: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 770539781474870, undefined, []);
 
 /**
  * let CLTimeIntervalMax: TimeInterval
  * @availability iOS 6.0+
  */
-export const CLTimeIntervalMax: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 97527808964706, undefined, []);
+export const CLTimeIntervalMax: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 97527808964706, undefined, []);
 
 /** let kCLDistanceFilterNone: CLLocationDistance */
-export const kCLDistanceFilterNone: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 483251886623047, undefined, []);
+export const kCLDistanceFilterNone: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 483251886623047, undefined, []);
 
 /** let kCLLocationAccuracyBest: CLLocationAccuracy */
-export const kCLLocationAccuracyBest: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 1347947335117011, undefined, []);
+export const kCLLocationAccuracyBest: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 1347947335117011, undefined, []);
 
 /**
  * let kCLLocationAccuracyBestForNavigation: CLLocationAccuracy
  * @availability iOS 4.0+
  */
-export const kCLLocationAccuracyBestForNavigation: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 279769435743963, undefined, []);
+export const kCLLocationAccuracyBestForNavigation: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 279769435743963, undefined, []);
 
 /** let kCLLocationAccuracyHundredMeters: CLLocationAccuracy */
-export const kCLLocationAccuracyHundredMeters: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 886285835457190, undefined, []);
+export const kCLLocationAccuracyHundredMeters: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 886285835457190, undefined, []);
 
 /** let kCLLocationAccuracyKilometer: CLLocationAccuracy */
-export const kCLLocationAccuracyKilometer: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 3010689767546760, undefined, []);
+export const kCLLocationAccuracyKilometer: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 3010689767546760, undefined, []);
 
 /** let kCLLocationAccuracyNearestTenMeters: CLLocationAccuracy */
-export const kCLLocationAccuracyNearestTenMeters: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 3058102560619990, undefined, []);
+export const kCLLocationAccuracyNearestTenMeters: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 3058102560619990, undefined, []);
 
 /**
  * let kCLLocationAccuracyReduced: CLLocationAccuracy
  * @availability iOS 14.0+
  */
-export const kCLLocationAccuracyReduced: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 67537904909586, undefined, []);
+export const kCLLocationAccuracyReduced: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 67537904909586, undefined, []);
 
 /** let kCLLocationAccuracyThreeKilometers: CLLocationAccuracy */
-export const kCLLocationAccuracyThreeKilometers: number = callSDK<number>("_LocationEssentials_c1f28409f8601238", 2637240631876108, undefined, []);
+export const kCLLocationAccuracyThreeKilometers: number = callSDK<number>("_LocationEssentials_e11dfd5beee01da3", 2637240631876108, undefined, []);
 
 /**
  * let kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D
  * @availability iOS 4.0+
  */
-export const kCLLocationCoordinate2DInvalid: $SDK0 = callSDK<$SDK0>("_LocationEssentials_c1f28409f8601238", 1424439483111391, undefined, []);
+export const kCLLocationCoordinate2DInvalid: $SDK0 = callSDK<$SDK0>("_LocationEssentials_e11dfd5beee01da3", 1424439483111391, undefined, []);
 
-registerSDKClass("CLFloor", CLFloor, { module: "_LocationEssentials_c1f28409f8601238", properties: {"level":939076211391347} });
-registerSDKClass("CLLocation", CLLocation, { module: "_LocationEssentials_c1f28409f8601238", properties: {"altitude":243462847548448,"coordinate":508814881250326,"course":4181574917334477,"courseAccuracy":509265531622715,"ellipsoidalAltitude":4405949923160047,"floor":1979498467565338,"horizontalAccuracy":1773660887319580,"sourceInformation":51566510667446,"speed":3178431235460446,"speedAccuracy":82708603492369,"timestamp":1582251592675469,"verticalAccuracy":3585988476033829}, methods: {"distance":{"id":495313321811762}} });
-registerSDKClass("_LocationEssentials.CLLocationCoordinate2D", CLLocationCoordinate2D, { module: "_LocationEssentials_c1f28409f8601238", properties: {} });
-registerSDKClass("CLLocationSourceInformation", CLLocationSourceInformation, { module: "_LocationEssentials_c1f28409f8601238", properties: {"isProducedByAccessory":2387546333929343,"isSimulatedBySoftware":3805558053493971} });
+registerSDKClass("CLFloor", CLFloor, { module: "_LocationEssentials_e11dfd5beee01da3", properties: {"level":939076211391347} });
+registerSDKClass("CLLocation", CLLocation, { module: "_LocationEssentials_e11dfd5beee01da3", properties: {"altitude":243462847548448,"coordinate":508814881250326,"course":4181574917334477,"courseAccuracy":509265531622715,"ellipsoidalAltitude":4405949923160047,"floor":1979498467565338,"horizontalAccuracy":1773660887319580,"sourceInformation":51566510667446,"speed":3178431235460446,"speedAccuracy":82708603492369,"timestamp":1582251592675469,"verticalAccuracy":3585988476033829}, methods: {"distance":{"id":495313321811762}} });
+registerSDKClass("_LocationEssentials.CLLocationCoordinate2D", CLLocationCoordinate2D, { module: "_LocationEssentials_e11dfd5beee01da3", properties: {} });
+registerSDKClass("CLLocationSourceInformation", CLLocationSourceInformation, { module: "_LocationEssentials_e11dfd5beee01da3", properties: {"isProducedByAccessory":2387546333929343,"isSimulatedBySoftware":3805558053493971} });

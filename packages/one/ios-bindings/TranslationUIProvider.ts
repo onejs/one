@@ -12,7 +12,7 @@ export class TranslationProviderUIExtensionConfiguration extends SDKHandle {
    * @MainActor @preconcurrency init(_ appExtension: any TranslationUIProviderExtension)
    * @availability iOS 18.4+
    */
-  static init(appExtension: SDKHandle): Promise<TranslationProviderUIExtensionConfiguration> { return callSDKAsync<TranslationProviderUIExtensionConfiguration>("TranslationUIProvider_c1f28409f8601238", 605705596064954, undefined, [appExtension]); }
+  static init(appExtension: SDKHandle): Promise<TranslationProviderUIExtensionConfiguration> { return callSDKAsync<TranslationProviderUIExtensionConfiguration>("TranslationUIProvider_e11dfd5beee01da3", 605705596064954, undefined, [appExtension]); }
   declare readonly $type: { "s:21TranslationUIProvider0A32ProviderUIExtensionConfigurationV": true };
 }
 
@@ -63,8 +63,8 @@ export class TranslationUIProviderSelectedTextScene<Content = unknown> extends S
  */
 export type TranslationUIProviderSelectedTextScene_Body<Content = unknown> = SDKHandle;
 
-registerSDKClass("TranslationUIProvider.TranslationProviderUIExtensionConfiguration", TranslationProviderUIExtensionConfiguration, { module: "TranslationUIProvider_c1f28409f8601238", properties: {} });
+registerSDKClass("TranslationUIProvider.TranslationProviderUIExtensionConfiguration", TranslationProviderUIExtensionConfiguration, { module: "TranslationUIProvider_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:21TranslationUIProvider0aB7ContextP", {"finishTranslation":"finish(translation:)","expandSheet":"expandSheet()"});
 registerSDKProtocol("s:21TranslationUIProvider0aB9ExtensionP", {"init":"init()"});
 registerSDKProtocol("s:21TranslationUIProvider0aB14ExtensionSceneP", {});
-registerSDKClass("TranslationUIProvider.TranslationUIProviderSelectedTextScene", TranslationUIProviderSelectedTextScene, { module: "TranslationUIProvider_c1f28409f8601238", properties: {} });
+registerSDKClass("TranslationUIProvider.TranslationUIProviderSelectedTextScene", TranslationUIProviderSelectedTextScene, { module: "TranslationUIProvider_e11dfd5beee01da3", properties: {} });

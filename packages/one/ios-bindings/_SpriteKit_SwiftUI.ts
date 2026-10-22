@@ -14,17 +14,17 @@ export class SpriteView extends SDKHandle {
    * @preconcurrency nonisolated init(scene: SKScene, transition: SKTransition? = nil, isPaused: Bool = false, preferredFramesPerSecond: Int = 60, options: SpriteView.Options = [.shouldCullNonVisibleNodes], debugOptions: SpriteView.DebugOptions, shouldRender: @escaping @MainActor (TimeInterval) -> Bool = { _ in true })
    * @availability iOS 15.0+
    */
-  static initSceneTransitionIsPausedPreferredFramesPerSecondOptionsDebugOptions(scene: _SpriteKit_SKScene, transition: $SDK0, isPaused: boolean, preferredFramesPerSecond: number, options: SpriteView_Options, debugOptions: SpriteView_DebugOptions): Promise<SpriteView> { return callSDKAsync<SpriteView>("_SpriteKit_SwiftUI_c1f28409f8601238", 1363183716208969, undefined, [scene, transition, isPaused, preferredFramesPerSecond, options, debugOptions]); }
+  static initSceneTransitionIsPausedPreferredFramesPerSecondOptionsDebugOptions(scene: _SpriteKit_SKScene, transition: $SDK0, isPaused: boolean, preferredFramesPerSecond: number, options: SpriteView_Options, debugOptions: SpriteView_DebugOptions): Promise<SpriteView> { return callSDKAsync<SpriteView>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 1363183716208969, undefined, [scene, transition, isPaused, preferredFramesPerSecond, options, debugOptions]); }
   /**
    * @preconcurrency nonisolated init(scene: SKScene, transition: SKTransition? = nil, isPaused: Bool = false, preferredFramesPerSecond: Int = 60, options: SpriteView.Options = [.shouldCullNonVisibleNodes], shouldRender: @escaping @MainActor (TimeInterval) -> Bool = { _ in true })
    * @availability iOS 14.0+
    */
-  static initSceneTransitionIsPausedPreferredFramesPerSecondOptions(scene: _SpriteKit_SKScene, transition?: $SDK0, isPaused?: boolean, preferredFramesPerSecond?: number, options?: SpriteView_Options): Promise<SpriteView> { return callSDKAsync<SpriteView>("_SpriteKit_SwiftUI_c1f28409f8601238", 4241704325519602, undefined, [scene, transition, isPaused, preferredFramesPerSecond, options]); }
+  static initSceneTransitionIsPausedPreferredFramesPerSecondOptions(scene: _SpriteKit_SKScene, transition?: $SDK0, isPaused?: boolean, preferredFramesPerSecond?: number, options?: SpriteView_Options): Promise<SpriteView> { return callSDKAsync<SpriteView>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 4241704325519602, undefined, [scene, transition, isPaused, preferredFramesPerSecond, options]); }
   /**
    * nonisolated init(scene: SKScene, transition: SKTransition? = nil, isPaused: Bool = false, preferredFramesPerSecond: Int = 60)
    * @availability iOS 14.0+
    */
-  static initSceneTransitionIsPausedPreferredFramesPerSecond(scene: _SpriteKit_SKScene, transition?: $SDK0, isPaused?: boolean, preferredFramesPerSecond?: number): Promise<SpriteView> { return callSDKAsync<SpriteView>("_SpriteKit_SwiftUI_c1f28409f8601238", 2259311002650687, undefined, [scene, transition, isPaused, preferredFramesPerSecond]); }
+  static initSceneTransitionIsPausedPreferredFramesPerSecond(scene: _SpriteKit_SKScene, transition?: $SDK0, isPaused?: boolean, preferredFramesPerSecond?: number): Promise<SpriteView> { return callSDKAsync<SpriteView>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 2259311002650687, undefined, [scene, transition, isPaused, preferredFramesPerSecond]); }
   declare readonly $type: { "s:18_SpriteKit_SwiftUI0A4ViewV": true };
 }
 
@@ -45,42 +45,42 @@ export const SpriteView_DebugOptions = {
    * static let showsFields: SpriteView.DebugOptions
    * @availability iOS 14.0+
    */
-  get showsFields(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 994005282651907, undefined, []); },
+  get showsFields(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 994005282651907, undefined, []); },
   /**
    * static let showsPhysics: SpriteView.DebugOptions
    * @availability iOS 14.0+
    */
-  get showsPhysics(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 211684209841196, undefined, []); },
+  get showsPhysics(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 211684209841196, undefined, []); },
   /**
    * static let showsDrawCount: SpriteView.DebugOptions
    * @availability iOS 14.0+
    */
-  get showsDrawCount(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 1320954031213392, undefined, []); },
+  get showsDrawCount(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 1320954031213392, undefined, []); },
   /**
    * static let showsNodeCount: SpriteView.DebugOptions
    * @availability iOS 14.0+
    */
-  get showsNodeCount(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 2149767184244147, undefined, []); },
+  get showsNodeCount(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 2149767184244147, undefined, []); },
   /**
    * static let showsQuadCount: SpriteView.DebugOptions
    * @availability iOS 14.0+
    */
-  get showsQuadCount(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 1833209671610317, undefined, []); },
+  get showsQuadCount(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 1833209671610317, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 3029327630422597, undefined, [rawValue]); },
+  init(rawValue: number): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 3029327630422597, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 14.0+
    */
-  getRawValue($self: SpriteView_DebugOptions): Promise<number> { return callSDKAsync<number>("_SpriteKit_SwiftUI_c1f28409f8601238", 736860045507417, $self, []); },
+  getRawValue($self: SpriteView_DebugOptions): Promise<number> { return callSDKAsync<number>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 736860045507417, $self, []); },
   /**
    * static let showsFPS: SpriteView.DebugOptions
    * @availability iOS 14.0+
    */
-  get showsFPS(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_c1f28409f8601238", 2322835836237196, undefined, []); }
+  get showsFPS(): Promise<SpriteView_DebugOptions> { return callSDKAsync<SpriteView_DebugOptions>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 2322835836237196, undefined, []); }
 };
 
 /**
@@ -112,27 +112,27 @@ export const SpriteView_Options = {
    * static let allowsTransparency: SpriteView.Options
    * @availability iOS 14.0+
    */
-  get allowsTransparency(): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_c1f28409f8601238", 3784945212031102, undefined, []); },
+  get allowsTransparency(): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 3784945212031102, undefined, []); },
   /**
    * static let ignoresSiblingOrder: SpriteView.Options
    * @availability iOS 14.0+
    */
-  get ignoresSiblingOrder(): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_c1f28409f8601238", 2559011504855329, undefined, []); },
+  get ignoresSiblingOrder(): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 2559011504855329, undefined, []); },
   /**
    * static let shouldCullNonVisibleNodes: SpriteView.Options
    * @availability iOS 14.0+
    */
-  get shouldCullNonVisibleNodes(): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_c1f28409f8601238", 1509992505188193, undefined, []); },
+  get shouldCullNonVisibleNodes(): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 1509992505188193, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_c1f28409f8601238", 93860724996347, undefined, [rawValue]); },
+  init(rawValue: number): Promise<SpriteView_Options> { return callSDKAsync<SpriteView_Options>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 93860724996347, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 14.0+
    */
-  getRawValue($self: SpriteView_Options): Promise<number> { return callSDKAsync<number>("_SpriteKit_SwiftUI_c1f28409f8601238", 1615956636437265, $self, []); }
+  getRawValue($self: SpriteView_Options): Promise<number> { return callSDKAsync<number>("_SpriteKit_SwiftUI_e11dfd5beee01da3", 1615956636437265, $self, []); }
 };
 
 /**
@@ -153,4 +153,4 @@ export type SpriteView_Options_Element = SpriteView_Options;
  */
 export type SpriteView_Options_RawValue = number;
 
-registerSDKClass("_SpriteKit_SwiftUI.SpriteView", SpriteView, { module: "_SpriteKit_SwiftUI_c1f28409f8601238", properties: {} });
+registerSDKClass("_SpriteKit_SwiftUI.SpriteView", SpriteView, { module: "_SpriteKit_SwiftUI_e11dfd5beee01da3", properties: {} });

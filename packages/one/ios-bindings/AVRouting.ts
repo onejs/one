@@ -15,17 +15,17 @@ type $SDK3 = (Implements<AVRoutingPlaybackParticipant> | SDKHandle) | null;
  */
 export class AVCustomDeviceRoute extends SDKHandle {
   /** init() */
-  static init(): AVCustomDeviceRoute { return callSDK<AVCustomDeviceRoute>("AVRouting_c1f28409f8601238", 3584039809474712, undefined, []); }
+  static init(): AVCustomDeviceRoute { return callSDK<AVCustomDeviceRoute>("AVRouting_e11dfd5beee01da3", 3584039809474712, undefined, []); }
   /**
    * var bluetoothIdentifier: UUID? { get }
    * @availability iOS 16.0+
    */
-  get bluetoothIdentifier(): (string) | null { return callSDK<(string) | null>("AVRouting_c1f28409f8601238", 4204461396644883, this, []); }
+  get bluetoothIdentifier(): (string) | null { return callSDK<(string) | null>("AVRouting_e11dfd5beee01da3", 4204461396644883, this, []); }
   /**
    * var networkEndpoint: nw_endpoint_t? { get }
    * @availability iOS 16.0+
    */
-  get networkEndpoint(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_c1f28409f8601238", 1104922136028668, this, []); }
+  get networkEndpoint(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_e11dfd5beee01da3", 1104922136028668, this, []); }
   declare readonly $type: { "c:objc(cs)AVCustomDeviceRoute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bluetoothIdentifier": true; "networkEndpoint": true };
 }
@@ -36,13 +36,13 @@ export class AVCustomDeviceRoute extends SDKHandle {
  */
 export class AVCustomRoutingActionItem extends SDKHandle {
   /** init() */
-  static init(): AVCustomRoutingActionItem { return callSDK<AVCustomRoutingActionItem>("AVRouting_c1f28409f8601238", 1613856744217575, undefined, []); }
+  static init(): AVCustomRoutingActionItem { return callSDK<AVCustomRoutingActionItem>("AVRouting_e11dfd5beee01da3", 1613856744217575, undefined, []); }
   /**
    * var overrideTitle: String? { get set }
    * @availability iOS 16.0+
    */
-  get overrideTitle(): (string) | null { return callSDK<(string) | null>("AVRouting_c1f28409f8601238", 3290305562960780, this, []); }
-  set overrideTitle(value: (string) | null) { callSDK<void>("AVRouting_c1f28409f8601238", 1046266366010321, this, [value]); }
+  get overrideTitle(): (string) | null { return callSDK<(string) | null>("AVRouting_e11dfd5beee01da3", 3290305562960780, this, []); }
+  set overrideTitle(value: (string) | null) { callSDK<void>("AVRouting_e11dfd5beee01da3", 1046266366010321, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVCustomRoutingActionItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "overrideTitle": true };
 }
@@ -56,47 +56,47 @@ export class AVCustomRoutingController extends SDKHandle {
    * class let authorizedRoutesDidChange: NSNotification.Name
    * @availability iOS 16.0+
    */
-  static get authorizedRoutesDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVRouting_c1f28409f8601238", 174651251545805, undefined, []); }
+  static get authorizedRoutesDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVRouting_e11dfd5beee01da3", 174651251545805, undefined, []); }
   /** init() */
-  static init(): AVCustomRoutingController { return callSDK<AVCustomRoutingController>("AVRouting_c1f28409f8601238", 3915504032879488, undefined, []); }
+  static init(): AVCustomRoutingController { return callSDK<AVCustomRoutingController>("AVRouting_e11dfd5beee01da3", 3915504032879488, undefined, []); }
   /**
    * func invalidateAuthorization(for route: AVCustomDeviceRoute)
    * @availability iOS 16.0+
    */
-  invalidateAuthorization(route: AVCustomDeviceRoute): void { return callSDK<void>("AVRouting_c1f28409f8601238", 3781054979465583, this, [route]); }
+  invalidateAuthorization(route: AVCustomDeviceRoute): void { return callSDK<void>("AVRouting_e11dfd5beee01da3", 3781054979465583, this, [route]); }
   /**
    * func isRouteActive(_ route: AVCustomDeviceRoute) -> Bool
    * @availability iOS 16.0+
    */
-  isRouteActive(route: AVCustomDeviceRoute): boolean { return callSDK<boolean>("AVRouting_c1f28409f8601238", 2238314312563014, this, [route]); }
+  isRouteActive(route: AVCustomDeviceRoute): boolean { return callSDK<boolean>("AVRouting_e11dfd5beee01da3", 2238314312563014, this, [route]); }
   /**
    * func setActive(_ active: Bool, for route: AVCustomDeviceRoute)
    * @availability iOS 16.0+
    */
-  setActive(active: boolean, route: AVCustomDeviceRoute): void { return callSDK<void>("AVRouting_c1f28409f8601238", 4122320749038147, this, [active, route]); }
+  setActive(active: boolean, route: AVCustomDeviceRoute): void { return callSDK<void>("AVRouting_e11dfd5beee01da3", 4122320749038147, this, [active, route]); }
   /**
    * var authorizedRoutes: [AVCustomDeviceRoute] { get }
    * @availability iOS 16.0+
    */
-  get authorizedRoutes(): Array<AVCustomDeviceRoute> { return callSDK<Array<AVCustomDeviceRoute>>("AVRouting_c1f28409f8601238", 4127015716400365, this, []); }
+  get authorizedRoutes(): Array<AVCustomDeviceRoute> { return callSDK<Array<AVCustomDeviceRoute>>("AVRouting_e11dfd5beee01da3", 4127015716400365, this, []); }
   /**
    * var customActionItems: [AVCustomRoutingActionItem] { get set }
    * @availability iOS 16.0+
    */
-  get customActionItems(): $SDK1 { return callSDK<$SDK1>("AVRouting_c1f28409f8601238", 2158283843050388, this, []); }
-  set customActionItems(value: $SDK1) { callSDK<void>("AVRouting_c1f28409f8601238", 1110126984032145, this, [value]); }
+  get customActionItems(): $SDK1 { return callSDK<$SDK1>("AVRouting_e11dfd5beee01da3", 2158283843050388, this, []); }
+  set customActionItems(value: $SDK1) { callSDK<void>("AVRouting_e11dfd5beee01da3", 1110126984032145, this, [value]); }
   /**
    * weak var delegate: (any AVCustomRoutingControllerDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_c1f28409f8601238", 2766033495789098, this, []); }
-  set delegate(value: (SDKHandle) | null) { callSDK<void>("AVRouting_c1f28409f8601238", 647685325623232, this, [value]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_e11dfd5beee01da3", 2766033495789098, this, []); }
+  set delegate(value: (SDKHandle) | null) { callSDK<void>("AVRouting_e11dfd5beee01da3", 647685325623232, this, [value]); }
   /**
    * var knownRouteIPs: [AVCustomRoutingPartialIP] { get set }
    * @availability iOS 16.1+
    */
-  get knownRouteIPs(): $SDK2 { return callSDK<$SDK2>("AVRouting_c1f28409f8601238", 4127418169727372, this, []); }
-  set knownRouteIPs(value: $SDK2) { callSDK<void>("AVRouting_c1f28409f8601238", 3181690920856321, this, [value]); }
+  get knownRouteIPs(): $SDK2 { return callSDK<$SDK2>("AVRouting_e11dfd5beee01da3", 4127418169727372, this, []); }
+  set knownRouteIPs(value: $SDK2) { callSDK<void>("AVRouting_e11dfd5beee01da3", 3181690920856321, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVCustomRoutingController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizedRoutes": true; "customActionItems": true; "delegate": true; "knownRouteIPs": true };
 }
@@ -129,17 +129,17 @@ export interface AVCustomRoutingControllerDelegate {
  */
 export class AVCustomRoutingEvent extends SDKHandle {
   /** init() */
-  static init(): AVCustomRoutingEvent { return callSDK<AVCustomRoutingEvent>("AVRouting_c1f28409f8601238", 4242149674494449, undefined, []); }
+  static init(): AVCustomRoutingEvent { return callSDK<AVCustomRoutingEvent>("AVRouting_e11dfd5beee01da3", 4242149674494449, undefined, []); }
   /**
    * var reason: AVCustomRoutingEventReason { get }
    * @availability iOS 16.0+
    */
-  get reason(): AVCustomRoutingEventReason { return callSDK<AVCustomRoutingEventReason>("AVRouting_c1f28409f8601238", 3064076400768719, this, []); }
+  get reason(): AVCustomRoutingEventReason { return callSDK<AVCustomRoutingEventReason>("AVRouting_e11dfd5beee01da3", 3064076400768719, this, []); }
   /**
    * var route: AVCustomDeviceRoute { get }
    * @availability iOS 16.0+
    */
-  get route(): AVCustomDeviceRoute { return callSDK<AVCustomDeviceRoute>("AVRouting_c1f28409f8601238", 2311293282754083, this, []); }
+  get route(): AVCustomDeviceRoute { return callSDK<AVCustomDeviceRoute>("AVRouting_e11dfd5beee01da3", 2311293282754083, this, []); }
   declare readonly $type: { "c:objc(cs)AVCustomRoutingEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "reason": true; "route": true };
 }
@@ -149,7 +149,7 @@ export type AVCustomRoutingEventReason = "activate" | "deactivate" | "reactivate
 
 export const AVCustomRoutingEventReason = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVCustomRoutingEventReason) | null { return callSDK<(AVCustomRoutingEventReason) | null>("AVRouting_c1f28409f8601238", 3450203964195375, undefined, [rawValue]); }
+  init(rawValue: number): (AVCustomRoutingEventReason) | null { return callSDK<(AVCustomRoutingEventReason) | null>("AVRouting_e11dfd5beee01da3", 3450203964195375, undefined, [rawValue]); }
 };
 
 /**
@@ -161,17 +161,17 @@ export class AVCustomRoutingPartialIP extends SDKHandle {
    * init(address: Data, mask: Data)
    * @availability iOS 16.1+
    */
-  static init(address: ArrayBuffer, mask: ArrayBuffer): AVCustomRoutingPartialIP { return callSDK<AVCustomRoutingPartialIP>("AVRouting_c1f28409f8601238", 3314489087960555, undefined, [address, mask]); }
+  static init(address: ArrayBuffer, mask: ArrayBuffer): AVCustomRoutingPartialIP { return callSDK<AVCustomRoutingPartialIP>("AVRouting_e11dfd5beee01da3", 3314489087960555, undefined, [address, mask]); }
   /**
    * var address: Data { get }
    * @availability iOS 16.1+
    */
-  get address(): ArrayBuffer { return callSDK<ArrayBuffer>("AVRouting_c1f28409f8601238", 3939930416865356, this, []); }
+  get address(): ArrayBuffer { return callSDK<ArrayBuffer>("AVRouting_e11dfd5beee01da3", 3939930416865356, this, []); }
   /**
    * var mask: Data { get }
    * @availability iOS 16.1+
    */
-  get mask(): ArrayBuffer { return callSDK<ArrayBuffer>("AVRouting_c1f28409f8601238", 389643410073946, this, []); }
+  get mask(): ArrayBuffer { return callSDK<ArrayBuffer>("AVRouting_e11dfd5beee01da3", 389643410073946, this, []); }
   declare readonly $type: { "c:objc(cs)AVCustomRoutingPartialIP": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "address": true; "mask": true };
 }
@@ -185,19 +185,19 @@ export class AVRoutingPlaybackArbiter extends SDKHandle {
    * class func shared() -> AVRoutingPlaybackArbiter
    * @availability iOS 26.0+
    */
-  static shared(): AVRoutingPlaybackArbiter { return callSDK<AVRoutingPlaybackArbiter>("AVRouting_c1f28409f8601238", 2842207658483677, undefined, []); }
+  static shared(): AVRoutingPlaybackArbiter { return callSDK<AVRoutingPlaybackArbiter>("AVRouting_e11dfd5beee01da3", 2842207658483677, undefined, []); }
   /**
    * weak var preferredParticipantForExternalPlayback: (any AVRoutingPlaybackParticipant)? { get set }
    * @availability iOS 26.0+
    */
-  get preferredParticipantForExternalPlayback(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_c1f28409f8601238", 3945679186632848, this, []); }
-  set preferredParticipantForExternalPlayback(value: $SDK3) { callSDK<void>("AVRouting_c1f28409f8601238", 3577514078470721, this, [value], [{"protocol":"c:objc(pl)AVRoutingPlaybackParticipant"}]); }
+  get preferredParticipantForExternalPlayback(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_e11dfd5beee01da3", 3945679186632848, this, []); }
+  set preferredParticipantForExternalPlayback(value: $SDK3) { callSDK<void>("AVRouting_e11dfd5beee01da3", 3577514078470721, this, [value], [{"protocol":"c:objc(pl)AVRoutingPlaybackParticipant"}]); }
   /**
    * weak var preferredParticipantForNonMixableAudioRoutes: (any AVRoutingPlaybackParticipant)? { get set }
    * @availability iOS 27.0+
    */
-  get preferredParticipantForNonMixableAudioRoutes(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_c1f28409f8601238", 4183676495446381, this, []); }
-  set preferredParticipantForNonMixableAudioRoutes(value: $SDK3) { callSDK<void>("AVRouting_c1f28409f8601238", 2503655030615990, this, [value], [{"protocol":"c:objc(pl)AVRoutingPlaybackParticipant"}]); }
+  get preferredParticipantForNonMixableAudioRoutes(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVRouting_e11dfd5beee01da3", 4183676495446381, this, []); }
+  set preferredParticipantForNonMixableAudioRoutes(value: $SDK3) { callSDK<void>("AVRouting_e11dfd5beee01da3", 2503655030615990, this, [value], [{"protocol":"c:objc(pl)AVRoutingPlaybackParticipant"}]); }
   declare readonly $type: { "c:objc(cs)AVRoutingPlaybackArbiter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "preferredParticipantForExternalPlayback": true; "preferredParticipantForNonMixableAudioRoutes": true };
 }
@@ -210,11 +210,11 @@ export interface AVRoutingPlaybackParticipant {
 
 }
 
-registerSDKClass("AVCustomDeviceRoute", AVCustomDeviceRoute, { module: "AVRouting_c1f28409f8601238", properties: {"bluetoothIdentifier":4204461396644883,"networkEndpoint":1104922136028668} });
-registerSDKClass("AVCustomRoutingActionItem", AVCustomRoutingActionItem, { module: "AVRouting_c1f28409f8601238", properties: {"overrideTitle":3290305562960780} });
-registerSDKClass("AVCustomRoutingController", AVCustomRoutingController, { module: "AVRouting_c1f28409f8601238", properties: {"authorizedRoutes":4127015716400365,"customActionItems":2158283843050388,"delegate":2766033495789098,"knownRouteIPs":4127418169727372}, methods: {"invalidateAuthorization":{"id":3781054979465583},"isRouteActive":{"id":2238314312563014},"setActive":{"id":4122320749038147}} });
+registerSDKClass("AVCustomDeviceRoute", AVCustomDeviceRoute, { module: "AVRouting_e11dfd5beee01da3", properties: {"bluetoothIdentifier":4204461396644883,"networkEndpoint":1104922136028668} });
+registerSDKClass("AVCustomRoutingActionItem", AVCustomRoutingActionItem, { module: "AVRouting_e11dfd5beee01da3", properties: {"overrideTitle":3290305562960780} });
+registerSDKClass("AVCustomRoutingController", AVCustomRoutingController, { module: "AVRouting_e11dfd5beee01da3", properties: {"authorizedRoutes":4127015716400365,"customActionItems":2158283843050388,"delegate":2766033495789098,"knownRouteIPs":4127418169727372}, methods: {"invalidateAuthorization":{"id":3781054979465583},"isRouteActive":{"id":2238314312563014},"setActive":{"id":4122320749038147}} });
 registerSDKProtocol("c:objc(pl)AVCustomRoutingControllerDelegate", {"customRoutingControllerHandle":"customRoutingController(_:handle:)","customRoutingControllerEventDidTimeOut":"customRoutingController(_:eventDidTimeOut:)","customRoutingControllerDidSelect":"customRoutingController(_:didSelect:)"});
-registerSDKClass("AVCustomRoutingEvent", AVCustomRoutingEvent, { module: "AVRouting_c1f28409f8601238", properties: {"reason":3064076400768719,"route":2311293282754083} });
-registerSDKClass("AVCustomRoutingPartialIP", AVCustomRoutingPartialIP, { module: "AVRouting_c1f28409f8601238", properties: {"address":3939930416865356,"mask":389643410073946} });
-registerSDKClass("AVRoutingPlaybackArbiter", AVRoutingPlaybackArbiter, { module: "AVRouting_c1f28409f8601238", properties: {"preferredParticipantForExternalPlayback":3945679186632848,"preferredParticipantForNonMixableAudioRoutes":4183676495446381} });
+registerSDKClass("AVCustomRoutingEvent", AVCustomRoutingEvent, { module: "AVRouting_e11dfd5beee01da3", properties: {"reason":3064076400768719,"route":2311293282754083} });
+registerSDKClass("AVCustomRoutingPartialIP", AVCustomRoutingPartialIP, { module: "AVRouting_e11dfd5beee01da3", properties: {"address":3939930416865356,"mask":389643410073946} });
+registerSDKClass("AVRoutingPlaybackArbiter", AVRoutingPlaybackArbiter, { module: "AVRouting_e11dfd5beee01da3", properties: {"preferredParticipantForExternalPlayback":3945679186632848,"preferredParticipantForNonMixableAudioRoutes":4183676495446381} });
 registerSDKProtocol("c:objc(pl)AVRoutingPlaybackParticipant", {});

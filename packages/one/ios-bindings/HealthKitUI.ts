@@ -13,18 +13,18 @@ type $SDK1 = (_UIKit_UIViewController) | null;
  */
 export class HKActivityRingView extends SDKHandle {
   /** init() */
-  static init(): Promise<HKActivityRingView> { return callSDKAsync<HKActivityRingView>("HealthKitUI_c1f28409f8601238", 2698687961683737, undefined, []); }
+  static init(): Promise<HKActivityRingView> { return callSDKAsync<HKActivityRingView>("HealthKitUI_e11dfd5beee01da3", 2698687961683737, undefined, []); }
   /**
    * func setActivitySummary(_ activitySummary: HKActivitySummary?, animated: Bool)
    * @availability iOS 9.3+
    */
-  setActivitySummary(activitySummary: $SDK0, animated: boolean): Promise<void> { return callSDKAsync<void>("HealthKitUI_c1f28409f8601238", 3831211975457642, this, [activitySummary, animated]); }
+  setActivitySummary(activitySummary: $SDK0, animated: boolean): Promise<void> { return callSDKAsync<void>("HealthKitUI_e11dfd5beee01da3", 3831211975457642, this, [activitySummary, animated]); }
   /**
    * var activitySummary: HKActivitySummary? { get set }
    * @availability iOS 9.3+
    */
-  get activitySummary(): Promise<$SDK0> { return callSDKAsync<$SDK0>("HealthKitUI_c1f28409f8601238", 105216668976579, this, []); }
-  setActivitySummary73249(value?: $SDK0): Promise<void> { return callSDKAsync<void>("HealthKitUI_c1f28409f8601238", 3609457027179036, this, [value]); }
+  get activitySummary(): Promise<$SDK0> { return callSDKAsync<$SDK0>("HealthKitUI_e11dfd5beee01da3", 105216668976579, this, []); }
+  setActivitySummary73249(value?: $SDK0): Promise<void> { return callSDKAsync<void>("HealthKitUI_e11dfd5beee01da3", 3609457027179036, this, [value]); }
   declare readonly $type: { "c:objc(cs)HKActivityRingView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activitySummary": true };
 }
@@ -34,8 +34,8 @@ export class HKHealthStore extends SDKHandle {
    * weak var authorizationViewControllerPresenter: UIViewController? { get set }
    * @availability iOS 17.0+
    */
-  get authorizationViewControllerPresenter(): $SDK1 { return callSDK<$SDK1>("HealthKitUI_c1f28409f8601238", 1033790846586112, this, []); }
-  set authorizationViewControllerPresenter(value: $SDK1) { callSDK<void>("HealthKitUI_c1f28409f8601238", 3691632426868472, this, [value]); }
+  get authorizationViewControllerPresenter(): $SDK1 { return callSDK<$SDK1>("HealthKitUI_e11dfd5beee01da3", 1033790846586112, this, []); }
+  set authorizationViewControllerPresenter(value: $SDK1) { callSDK<void>("HealthKitUI_e11dfd5beee01da3", 3691632426868472, this, [value]); }
   declare readonly $type: { "c:objc(cs)HKHealthStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationViewControllerPresenter": true };
 }
@@ -45,10 +45,10 @@ export class UIScene_ConnectionOptions extends SDKHandle {
    * @MainActor @preconcurrency var shouldHandleActiveWorkoutRecovery: Bool { get }
    * @availability iOS 26.0+
    */
-  get shouldHandleActiveWorkoutRecovery(): Promise<boolean> { return callSDKAsync<boolean>("HealthKitUI_c1f28409f8601238", 2264995442284528, this, []); }
+  get shouldHandleActiveWorkoutRecovery(): Promise<boolean> { return callSDKAsync<boolean>("HealthKitUI_e11dfd5beee01da3", 2264995442284528, this, []); }
   declare readonly $type: { "c:objc(cs)UISceneConnectionOptions": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("HKActivityRingView", HKActivityRingView, { module: "HealthKitUI_c1f28409f8601238", properties: {"activitySummary":105216668976579}, methods: {"setActivitySummary":{"id":3831211975457642}} });
-registerSDKClass("HKHealthStore", HKHealthStore, { module: "HealthKitUI_c1f28409f8601238", properties: {"authorizationViewControllerPresenter":1033790846586112} }, true);
-registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "HealthKitUI_c1f28409f8601238", properties: {} }, true);
+registerSDKClass("HKActivityRingView", HKActivityRingView, { module: "HealthKitUI_e11dfd5beee01da3", properties: {"activitySummary":105216668976579}, methods: {"setActivitySummary":{"id":3831211975457642}} });
+registerSDKClass("HKHealthStore", HKHealthStore, { module: "HealthKitUI_e11dfd5beee01da3", properties: {"authorizationViewControllerPresenter":1033790846586112} }, true);
+registerSDKClass("UISceneConnectionOptions", UIScene_ConnectionOptions, { module: "HealthKitUI_e11dfd5beee01da3", properties: {} }, true);

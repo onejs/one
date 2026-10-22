@@ -26,134 +26,134 @@ export class ComputeGraphComponent extends SDKHandle {
    * var randomSeed: UInt32? { get set }
    * @availability iOS 27.0+
    */
-  get randomSeed(): (number) | null { return callSDK<(number) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 3058879033026112, this, []); }
-  set randomSeed(value: (number) | null) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 592516693486889, this, [value]); }
+  get randomSeed(): (number) | null { return callSDK<(number) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3058879033026112, this, []); }
+  set randomSeed(value: (number) | null) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 592516693486889, this, [value]); }
   /**
    * mutating func setTexture(_ texture: (any MTLTexture)?, at index: Int)
    * @availability iOS 27.0+
    */
-  setTextureAt(texture: (SDKHandle) | null, index: number): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 555025907963277, this, [texture, index]); }
+  setTextureAt(texture: (SDKHandle) | null, index: number): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 555025907963277, this, [texture, index]); }
   /**
    * @discardableResult mutating func setTexture(_ texture: (any MTLTexture)?, port: ComputeNodeGraph.Port.Address) -> Bool
    * @availability iOS 27.0+
    */
-  setTexturePort(texture: (SDKHandle) | null, port: _ComputeGraph_ComputeNodeGraph_Port_Address): boolean { return callSDK<boolean>("_RealityKit_ComputeGraph_c1f28409f8601238", 3439114394192595, this, [texture, port]); }
+  setTexturePort(texture: (SDKHandle) | null, port: _ComputeGraph_ComputeNodeGraph_Port_Address): boolean { return callSDK<boolean>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3439114394192595, this, [texture, port]); }
   /**
    * mutating func fastForward(stepCount: Int, stepDeltaTime: Float)
    * @availability iOS 27.0+
    */
-  fastForwardStepCountStepDeltaTime(stepCount: number, stepDeltaTime: number): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2948370955182076, this, [stepCount, stepDeltaTime]); }
+  fastForwardStepCountStepDeltaTime(stepCount: number, stepDeltaTime: number): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2948370955182076, this, [stepCount, stepDeltaTime]); }
   /**
    * mutating func fastForward()
    * @availability iOS 27.0+
    */
-  fastForward(): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 39337576777740, this, []); }
+  fastForward(): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 39337576777740, this, []); }
   /**
    * func uniformHandle(named name: String) -> ComputeGraphComponent.UniformHandle?
    * @availability iOS 27.0+
    */
-  uniformHandle(name: string): (ComputeGraphComponent_UniformHandle) | null { return callSDK<(ComputeGraphComponent_UniformHandle) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 2467809241537581, this, [name]); }
+  uniformHandle(name: string): (ComputeGraphComponent_UniformHandle) | null { return callSDK<(ComputeGraphComponent_UniformHandle) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2467809241537581, this, [name]); }
   /**
    * var simulationRate: ComputeGraphSimulation.SimulationRate { get set }
    * @availability iOS 27.0+
    */
-  get simulationRate(): _ComputeGraph_ComputeGraphSimulation_SimulationRate { return callSDK<_ComputeGraph_ComputeGraphSimulation_SimulationRate>("_RealityKit_ComputeGraph_c1f28409f8601238", 3545836449820314, this, []); }
-  set simulationRate(value: _ComputeGraph_ComputeGraphSimulation_SimulationRate) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 4501434631325322, this, [value]); }
+  get simulationRate(): _ComputeGraph_ComputeGraphSimulation_SimulationRate { return callSDK<_ComputeGraph_ComputeGraphSimulation_SimulationRate>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3545836449820314, this, []); }
+  set simulationRate(value: _ComputeGraph_ComputeGraphSimulation_SimulationRate) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 4501434631325322, this, [value]); }
   /**
    * func findBufferIndex(port: ComputeNodeGraph.Port.Address) -> Int?
    * @availability iOS 27.0+
    */
-  findBufferIndex(port: _ComputeGraph_ComputeNodeGraph_Port_Address): (number) | null { return callSDK<(number) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 1178482898994941, this, [port]); }
+  findBufferIndex(port: _ComputeGraph_ComputeNodeGraph_Port_Address): (number) | null { return callSDK<(number) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1178482898994941, this, [port]); }
   /**
    * func isOutputEnabled(_ outputID: ComputeNodeGraph.NodeID) -> Bool
    * @availability iOS 27.0+
    */
-  isOutputEnabled(outputID: number): boolean { return callSDK<boolean>("_RealityKit_ComputeGraph_c1f28409f8601238", 4417053565341281, this, [outputID]); }
+  isOutputEnabled(outputID: number): boolean { return callSDK<boolean>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 4417053565341281, this, [outputID]); }
   /**
    * mutating func replaceUniforms(_ data: Data)
    * @availability iOS 27.0+
    */
-  replaceUniforms(data: ArrayBuffer): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2678351630261389, this, [data]); }
+  replaceUniforms(data: ArrayBuffer): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2678351630261389, this, [data]); }
   /**
    * func firstBufferIndex(type: String) -> Int?
    * @availability iOS 27.0+
    */
-  firstBufferIndex(type: string): (number) | null { return callSDK<(number) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 805907696578891, this, [type]); }
+  firstBufferIndex(type: string): (number) | null { return callSDK<(number) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 805907696578891, this, [type]); }
   /**
    * mutating func setOutputEnabled(_ outputID: ComputeNodeGraph.NodeID, enabled: Bool)
    * @availability iOS 27.0+
    */
-  setOutputEnabled(outputID: number, enabled: boolean): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2005968534871646, this, [outputID, enabled]); }
+  setOutputEnabled(outputID: number, enabled: boolean): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2005968534871646, this, [outputID, enabled]); }
   /**
    * mutating func play()
    * @availability iOS 27.0+
    */
-  play(): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2519860895098870, this, []); }
+  play(): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2519860895098870, this, []); }
   /**
    * mutating func step()
    * @availability iOS 27.0+
    */
-  step(): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2798516937872117, this, []); }
+  step(): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2798516937872117, this, []); }
   /**
    * mutating func pause()
    * @availability iOS 27.0+
    */
-  pause(): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 1613272541549871, this, []); }
+  pause(): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1613272541549871, this, []); }
   /**
    * mutating func spawn(element: ElementSpawnParameters, in system: ComputeNodeGraph.NodeID? = nil)
    * @availability iOS 27.0+
    */
-  spawnElementIn(element: _ComputeGraph_ElementSpawnParameters, system?: (number) | null): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 1960884233767866, this, [element, system]); }
+  spawnElementIn(element: _ComputeGraph_ElementSpawnParameters, system?: (number) | null): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1960884233767866, this, [element, system]); }
   /**
    * mutating func spawn(elements: [ElementSpawnParameters], in system: ComputeNodeGraph.NodeID? = nil)
    * @availability iOS 27.0+
    */
-  spawnElementsIn(elements: Array<_ComputeGraph_ElementSpawnParameters>, system?: (number) | null): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2776654165874826, this, [elements, system]); }
+  spawnElementsIn(elements: Array<_ComputeGraph_ElementSpawnParameters>, system?: (number) | null): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2776654165874826, this, [elements, system]); }
   /**
    * var state: ComputeGraphComponent.SimulationState { get set }
    * @availability iOS 27.0+
    */
-  get state(): ComputeGraphComponent_SimulationState { return callSDK<ComputeGraphComponent_SimulationState>("_RealityKit_ComputeGraph_c1f28409f8601238", 2393831859494070, this, []); }
-  set state(value: ComputeGraphComponent_SimulationState) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 906852554582134, this, [value]); }
+  get state(): ComputeGraphComponent_SimulationState { return callSDK<ComputeGraphComponent_SimulationState>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2393831859494070, this, []); }
+  set state(value: ComputeGraphComponent_SimulationState) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 906852554582134, this, [value]); }
   /**
    * var models: [ComputeNodeGraph.NodeID : ModelComponent] { get set }
    * @availability iOS 27.0+
    */
-  get models(): $SDK2 { return callSDK<$SDK2>("_RealityKit_ComputeGraph_c1f28409f8601238", 1399410378333097, this, []); }
-  set models(value: $SDK2) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2721064920265464, this, [value]); }
+  get models(): $SDK2 { return callSDK<$SDK2>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1399410378333097, this, []); }
+  set models(value: $SDK2) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2721064920265464, this, [value]); }
   /**
    * var resource: ComputeGraphResource? { get set }
    * @availability iOS 27.0+
    */
-  get resource(): $SDK3 { return callSDK<$SDK3>("_RealityKit_ComputeGraph_c1f28409f8601238", 4321176431078437, this, []); }
-  set resource(value: $SDK3) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 2967546736382162, this, [value]); }
+  get resource(): $SDK3 { return callSDK<$SDK3>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 4321176431078437, this, []); }
+  set resource(value: $SDK3) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2967546736382162, this, [value]); }
   /**
    * init(resource: ComputeGraphResource)
    * @availability iOS 27.0+
    */
-  static initResource(resource: ComputeGraphResource): ComputeGraphComponent { return callSDK<ComputeGraphComponent>("_RealityKit_ComputeGraph_c1f28409f8601238", 3075065228869589, undefined, [resource]); }
+  static initResource(resource: ComputeGraphResource): ComputeGraphComponent { return callSDK<ComputeGraphComponent>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3075065228869589, undefined, [resource]); }
   /**
    * var materials: [ComputeNodeGraph.NodeID : any Material] { get set }
    * @availability iOS 27.0+
    */
-  get materials(): Record<number, SDKHandle> { return callSDK<Record<number, SDKHandle>>("_RealityKit_ComputeGraph_c1f28409f8601238", 1865386121563784, this, []); }
-  set materials(value: $SDK5) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 3469807673660920, this, [value], [{"dictionary":{"protocol":"s:17RealityFoundation8MaterialP"}}]); }
+  get materials(): Record<number, SDKHandle> { return callSDK<Record<number, SDKHandle>>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1865386121563784, this, []); }
+  set materials(value: $SDK5) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3469807673660920, this, [value], [{"dictionary":{"protocol":"s:17RealityFoundation8MaterialP"}}]); }
   /**
    * var pipelines: ComputeNodeGraph.Pipelines? { get set }
    * @availability iOS 27.0+
    */
-  get pipelines(): $SDK6 { return callSDK<$SDK6>("_RealityKit_ComputeGraph_c1f28409f8601238", 4383603578098220, this, []); }
-  set pipelines(value: $SDK6) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 1757132535718870, this, [value]); }
+  get pipelines(): $SDK6 { return callSDK<$SDK6>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 4383603578098220, this, []); }
+  set pipelines(value: $SDK6) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1757132535718870, this, [value]); }
   /**
    * mutating func setBuffer(_ buffer: (any MTLBuffer)?, bufferOffset: Int = 0, elementCount: Int? = nil, at index: Int)
    * @availability iOS 27.0+
    */
-  setBuffer(buffer: (SDKHandle) | null, bufferOffset: number, elementCount: (number) | null, index: number): void { return callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 1219912292554416, this, [buffer, bufferOffset, elementCount, index]); }
+  setBuffer(buffer: (SDKHandle) | null, bufferOffset: number, elementCount: (number) | null, index: number): void { return callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1219912292554416, this, [buffer, bufferOffset, elementCount, index]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ComputeGraphComponent { return callSDK<ComputeGraphComponent>("_RealityKit_ComputeGraph_c1f28409f8601238", 1869333810615426, undefined, []); }
+  static init(): ComputeGraphComponent { return callSDK<ComputeGraphComponent>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1869333810615426, undefined, []); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD9ComponentV": true };
 }
 
@@ -180,7 +180,7 @@ export class ComputeGraphOutputComponent extends SDKHandle {
    * var outputID: ComputeNodeGraph.NodeID { get }
    * @availability iOS 27.0+
    */
-  get outputID(): number { return callSDK<number>("_RealityKit_ComputeGraph_c1f28409f8601238", 594944636251315, this, []); }
+  get outputID(): number { return callSDK<number>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 594944636251315, this, []); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD15OutputComponentV": true };
 }
 
@@ -193,17 +193,17 @@ export class ComputeGraphResource extends SDKHandle {
    * convenience init(contentsOf url: URL, bundle: Bundle? = nil) async throws
    * @availability iOS 27.0+
    */
-  static initContentsOfBundle(url: string, bundle?: (_Foundation_Bundle) | null): Promise<ComputeGraphResource> { return callSDKAsync<ComputeGraphResource>("_RealityKit_ComputeGraph_c1f28409f8601238", 2832757174173409, undefined, [url, bundle]); }
+  static initContentsOfBundle(url: string, bundle?: (_Foundation_Bundle) | null): Promise<ComputeGraphResource> { return callSDKAsync<ComputeGraphResource>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2832757174173409, undefined, [url, bundle]); }
   /**
    * convenience init(contentsOf url: URL) async throws
    * @availability iOS 27.0+
    */
-  static initContentsOf(url: string): Promise<ComputeGraphResource> { return callSDKAsync<ComputeGraphResource>("_RealityKit_ComputeGraph_c1f28409f8601238", 2988029139847375, undefined, [url]); }
+  static initContentsOf(url: string): Promise<ComputeGraphResource> { return callSDKAsync<ComputeGraphResource>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2988029139847375, undefined, [url]); }
   /**
    * @MainActor convenience init(graph: ComputeNodeGraph, pipelines: ComputeNodeGraph.Pipelines, dependencies: ComputeGraphResource.Dependencies) throws
    * @availability iOS 27.0+
    */
-  static initGraphPipelinesDependencies(graph: _ComputeGraph_ComputeNodeGraph, pipelines: _ComputeGraph_ComputeNodeGraph_Pipelines, dependencies: ComputeGraphResource_Dependencies): Promise<ComputeGraphResource> { return callSDKAsync<ComputeGraphResource>("_RealityKit_ComputeGraph_c1f28409f8601238", 953047840988478, undefined, [graph, pipelines, dependencies]); }
+  static initGraphPipelinesDependencies(graph: _ComputeGraph_ComputeNodeGraph, pipelines: _ComputeGraph_ComputeNodeGraph_Pipelines, dependencies: ComputeGraphResource_Dependencies): Promise<ComputeGraphResource> { return callSDKAsync<ComputeGraphResource>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 953047840988478, undefined, [graph, pipelines, dependencies]); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD8ResourceC": true };
 }
 
@@ -216,7 +216,7 @@ export class ComputeGraphResource_BufferInfo extends SDKHandle {
    * init(buffer: any MTLBuffer, bufferOffset: Int = 0, elementCount: Int)
    * @availability iOS 27.0+
    */
-  static init(buffer: SDKHandle, bufferOffset: number, elementCount: number): ComputeGraphResource_BufferInfo { return callSDK<ComputeGraphResource_BufferInfo>("_RealityKit_ComputeGraph_c1f28409f8601238", 2507220448759922, undefined, [buffer, bufferOffset, elementCount]); }
+  static init(buffer: SDKHandle, bufferOffset: number, elementCount: number): ComputeGraphResource_BufferInfo { return callSDK<ComputeGraphResource_BufferInfo>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2507220448759922, undefined, [buffer, bufferOffset, elementCount]); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD8ResourceC10BufferInfoV": true };
 }
 
@@ -229,31 +229,31 @@ export class ComputeGraphResource_Dependencies extends SDKHandle {
    * var outputModels: [ComputeNodeGraph.NodeID : ModelComponent]
    * @availability iOS 27.0+
    */
-  get outputModels(): $SDK2 { return callSDK<$SDK2>("_RealityKit_ComputeGraph_c1f28409f8601238", 944112251689632, this, []); }
-  set outputModels(value: $SDK2) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 930931084975152, this, [value]); }
+  get outputModels(): $SDK2 { return callSDK<$SDK2>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 944112251689632, this, []); }
+  set outputModels(value: $SDK2) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 930931084975152, this, [value]); }
   /**
    * var outputMaterials: [ComputeNodeGraph.NodeID : any Material]
    * @availability iOS 27.0+
    */
-  get outputMaterials(): Record<number, SDKHandle> { return callSDK<Record<number, SDKHandle>>("_RealityKit_ComputeGraph_c1f28409f8601238", 906277288830498, this, []); }
-  set outputMaterials(value: $SDK5) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 1428931058170657, this, [value], [{"dictionary":{"protocol":"s:17RealityFoundation8MaterialP"}}]); }
+  get outputMaterials(): Record<number, SDKHandle> { return callSDK<Record<number, SDKHandle>>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 906277288830498, this, []); }
+  set outputMaterials(value: $SDK5) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1428931058170657, this, [value], [{"dictionary":{"protocol":"s:17RealityFoundation8MaterialP"}}]); }
   /**
    * var buffers: [ComputeNodeGraph.Port.Address : ComputeGraphResource.BufferInfo]
    * @availability iOS 27.0+
    */
-  get buffers(): $SDK8 { return callSDK<$SDK8>("_RealityKit_ComputeGraph_c1f28409f8601238", 3631433627946058, this, []); }
-  set buffers(value: $SDK8) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 1960531530138454, this, [value]); }
+  get buffers(): $SDK8 { return callSDK<$SDK8>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3631433627946058, this, []); }
+  set buffers(value: $SDK8) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1960531530138454, this, [value]); }
   /**
    * var textures: [ComputeNodeGraph.Port.Address : TextureResource]
    * @availability iOS 27.0+
    */
-  get textures(): $SDK9 { return callSDK<$SDK9>("_RealityKit_ComputeGraph_c1f28409f8601238", 2969050761929294, this, []); }
-  set textures(value: $SDK9) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 758203159604281, this, [value]); }
+  get textures(): $SDK9 { return callSDK<$SDK9>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2969050761929294, this, []); }
+  set textures(value: $SDK9) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 758203159604281, this, [value]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ComputeGraphResource_Dependencies { return callSDK<ComputeGraphResource_Dependencies>("_RealityKit_ComputeGraph_c1f28409f8601238", 382480428219901, undefined, []); }
+  static init(): ComputeGraphResource_Dependencies { return callSDK<ComputeGraphResource_Dependencies>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 382480428219901, undefined, []); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD8ResourceC12DependenciesV": true };
 }
 
@@ -266,17 +266,17 @@ export class ComputeGraphRuntimeComponent extends SDKHandle {
    * func readOutput(_ port: ComputeNodeGraph.Port.Address) -> (any MTLBuffer)?
    * @availability iOS 27.0+
    */
-  readOutput(port: _ComputeGraph_ComputeNodeGraph_Port_Address): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 1055941807808154, this, [port]); }
+  readOutput(port: _ComputeGraph_ComputeNodeGraph_Port_Address): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1055941807808154, this, [port]); }
   /**
    * var simulation: ComputeGraphSimulation { get }
    * @availability iOS 27.0+
    */
-  get simulation(): _ComputeGraph_ComputeGraphSimulation { return callSDK<_ComputeGraph_ComputeGraphSimulation>("_RealityKit_ComputeGraph_c1f28409f8601238", 634316636374890, this, []); }
+  get simulation(): _ComputeGraph_ComputeGraphSimulation { return callSDK<_ComputeGraph_ComputeGraphSimulation>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 634316636374890, this, []); }
   /**
    * func readOutputs(_ node: ComputeNodeGraph.NodeID) -> [any MTLBuffer]?
    * @availability iOS 27.0+
    */
-  readOutputs(node: number): (Array<SDKHandle>) | null { return callSDK<(Array<SDKHandle>) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 1912164856746633, this, [node]); }
+  readOutputs(node: number): (Array<SDKHandle>) | null { return callSDK<(Array<SDKHandle>) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1912164856746633, this, [node]); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD16RuntimeComponentV": true };
 }
 
@@ -289,7 +289,7 @@ export class ComputeGraphSharedUniforms extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ComputeGraphSharedUniforms { return callSDK<ComputeGraphSharedUniforms>("_RealityKit_ComputeGraph_c1f28409f8601238", 1416315983184419, undefined, []); }
+  static init(): ComputeGraphSharedUniforms { return callSDK<ComputeGraphSharedUniforms>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 1416315983184419, undefined, []); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD14SharedUniformsC": true };
 }
 
@@ -302,29 +302,29 @@ export class ComputeGraphViewpointComponent extends SDKHandle {
    * var viewPosition: SIMD3<Float>?
    * @availability iOS 27.0+
    */
-  get viewPosition(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 35978632081731, this, []); }
-  set viewPosition(value: (SDKHandle) | null) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 3646675593485542, this, [value]); }
+  get viewPosition(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 35978632081731, this, []); }
+  set viewPosition(value: (SDKHandle) | null) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3646675593485542, this, [value]); }
   /**
    * var viewDirection: SIMD3<Float>?
    * @availability iOS 27.0+
    */
-  get viewDirection(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_RealityKit_ComputeGraph_c1f28409f8601238", 2280146407986083, this, []); }
-  set viewDirection(value: (SDKHandle) | null) { callSDK<void>("_RealityKit_ComputeGraph_c1f28409f8601238", 3981561791265316, this, [value]); }
+  get viewDirection(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 2280146407986083, this, []); }
+  set viewDirection(value: (SDKHandle) | null) { callSDK<void>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3981561791265316, this, [value]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): ComputeGraphViewpointComponent { return callSDK<ComputeGraphViewpointComponent>("_RealityKit_ComputeGraph_c1f28409f8601238", 3043963786275549, undefined, []); }
+  static init(): ComputeGraphViewpointComponent { return callSDK<ComputeGraphViewpointComponent>("_RealityKit_ComputeGraph_e11dfd5beee01da3", 3043963786275549, undefined, []); }
   declare readonly $type: { "s:24_RealityKit_ComputeGraph0cD18ViewpointComponentV": true };
 }
 
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphComponent", ComputeGraphComponent, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {}, methods: {"setTextureAt":{"id":555025907963277},"setTexturePort":{"id":3439114394192595},"fastForwardStepCountStepDeltaTime":{"id":2948370955182076},"fastForward":{"id":39337576777740},"uniformHandle":{"id":2467809241537581},"findBufferIndex":{"id":1178482898994941},"isOutputEnabled":{"id":4417053565341281},"replaceUniforms":{"id":2678351630261389},"firstBufferIndex":{"id":805907696578891},"setOutputEnabled":{"id":2005968534871646},"play":{"id":2519860895098870},"step":{"id":2798516937872117},"pause":{"id":1613272541549871},"spawnElementIn":{"id":1960884233767866},"spawnElementsIn":{"id":2776654165874826},"setBuffer":{"id":1219912292554416}} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphComponent.UniformHandle", ComputeGraphComponent_UniformHandle, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphOutputComponent", ComputeGraphOutputComponent, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphResource", ComputeGraphResource, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphResource.BufferInfo", ComputeGraphResource_BufferInfo, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphResource.Dependencies", ComputeGraphResource_Dependencies, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphRuntimeComponent", ComputeGraphRuntimeComponent, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {}, methods: {"readOutput":{"id":1055941807808154},"readOutputs":{"id":1912164856746633}} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphSharedUniforms", ComputeGraphSharedUniforms, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
-registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphViewpointComponent", ComputeGraphViewpointComponent, { module: "_RealityKit_ComputeGraph_c1f28409f8601238", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphComponent", ComputeGraphComponent, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {}, methods: {"setTextureAt":{"id":555025907963277},"setTexturePort":{"id":3439114394192595},"fastForwardStepCountStepDeltaTime":{"id":2948370955182076},"fastForward":{"id":39337576777740},"uniformHandle":{"id":2467809241537581},"findBufferIndex":{"id":1178482898994941},"isOutputEnabled":{"id":4417053565341281},"replaceUniforms":{"id":2678351630261389},"firstBufferIndex":{"id":805907696578891},"setOutputEnabled":{"id":2005968534871646},"play":{"id":2519860895098870},"step":{"id":2798516937872117},"pause":{"id":1613272541549871},"spawnElementIn":{"id":1960884233767866},"spawnElementsIn":{"id":2776654165874826},"setBuffer":{"id":1219912292554416}} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphComponent.UniformHandle", ComputeGraphComponent_UniformHandle, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphOutputComponent", ComputeGraphOutputComponent, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphResource", ComputeGraphResource, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphResource.BufferInfo", ComputeGraphResource_BufferInfo, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphResource.Dependencies", ComputeGraphResource_Dependencies, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphRuntimeComponent", ComputeGraphRuntimeComponent, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {}, methods: {"readOutput":{"id":1055941807808154},"readOutputs":{"id":1912164856746633}} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphSharedUniforms", ComputeGraphSharedUniforms, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
+registerSDKClass("_RealityKit_ComputeGraph.ComputeGraphViewpointComponent", ComputeGraphViewpointComponent, { module: "_RealityKit_ComputeGraph_e11dfd5beee01da3", properties: {} });
 registerSDKProtocol("s:17RealityFoundation8MaterialP", {});
