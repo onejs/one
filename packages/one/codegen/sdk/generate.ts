@@ -2,14 +2,14 @@
 // installed sdk, so a binding that does not compile is caught without a
 // simulator. run from packages/one:
 //   bun codegen/sdk/generate.ts --out <dir> [--typecheck] Module...
-import { execFile } from 'node:child_process'
+import { execFile, execFileSync } from 'node:child_process'
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { promisify } from 'node:util'
 import { Bridge, buildIndex, collectFacts } from './bridge'
 import { emitModule, MINIMUM_IOS, type ModuleOutput } from './emit'
-import { loadGraph, sdkModules, sdkPath, type Symbol } from './graph'
+import { loadGraph, sdkModules, type Symbol } from './graph'
 import { checkInheritedInits } from './inherited-inits'
 
 const run = promisify(execFile)
@@ -21,34 +21,55 @@ export const CXX_INTEROP = ['-cxx-interoperability-mode=default', '-Xcc', '-std=
 // xcode builds clang modules explicitly, and with c++ interop that drops some
 // imports implicit modules keep (UIEvent.ButtonMask.button), so the typecheck
 // builds them the same way
-let targetArgs: string[] | undefined
-const target = () => targetArgs ??= ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`,
-  '-explicit-module-build', ...CXX_INTEROP]
+const SDKS = [
+  { sdk: 'iphonesimulator', suffix: '-simulator' },
+  { sdk: 'iphoneos', suffix: '' },
+] as const
+type Sdk = (typeof SDKS)[number]
+const targetArgs = new Map<Sdk, string[]>()
+const target = (sdk: Sdk) => {
+  let args = targetArgs.get(sdk)
+  if (!args) {
+    const path = execFileSync('xcrun', ['--sdk', sdk.sdk, '--show-sdk-path'], { encoding: 'utf8' }).trim()
+    args = ['-swift-version', '5', '-sdk', path, '-target', `arm64-apple-ios${MINIMUM_IOS}${sdk.suffix}`,
+      '-explicit-module-build', ...CXX_INTEROP]
+    targetArgs.set(sdk, args)
+  }
+  return args
+}
 
 // the bindings compile in their own pod against One, so they typecheck against
 // the runtime built as a module named One and see only what it makes public
-let runtimeModule: Promise<string> | undefined
-function oneModule() {
-  runtimeModule ??= (async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
-    await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(),
-      '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])
-    return dir
-  })()
-  return runtimeModule
+const runtimeModules = new Map<Sdk, Promise<string>>()
+function oneModule(sdk: Sdk) {
+  let module = runtimeModules.get(sdk)
+  if (!module) {
+    module = (async () => {
+      const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
+      await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...target(sdk),
+        '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])
+      return dir
+    })()
+    runtimeModules.set(sdk, module)
+  }
+  return module
 }
 
 // silgen and the mandatory passes reject what the typecheck admits, such as a
-// capturing closure passed as a c function pointer, so the check emits sil
+// capturing closure passed as a c function pointer, so the check emits sil.
+// the device and simulator sdks each declare api the other lacks
+// (NSSocketPort is simulator only), so the bindings must compile for both
 export async function typecheck(files: string[]) {
-  const flags = target()
-  try {
-    await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...flags, '-I', await oneModule(), ...files], { maxBuffer: 256 * 1024 * 1024 })
-    return []
-  } catch (error) {
-    const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
-    return stderr.split('\n').filter((line) => / error: /.test(line))
-  }
+  const errors = await Promise.all(SDKS.map(async (sdk) => {
+    try {
+      await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...target(sdk), '-I', await oneModule(sdk), ...files], { maxBuffer: 256 * 1024 * 1024 })
+      return []
+    } catch (error) {
+      const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
+      return stderr.split('\n').filter((line) => / error: /.test(line))
+    }
+  }))
+  return errors.flat()
 }
 
 export function prepare() {
