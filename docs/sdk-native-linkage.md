@@ -90,6 +90,46 @@ entries with no added, removed or changed metadata relative to the retained
 baseline, including the same initializer ID. Complete SDK regeneration and metadata
 qualification remain with the asset author.
 
+## CoreData subscript export correction
+
+After the complete combined tables compiled and linked, capture author s65565
+isolated a loader failure before main in the public iOS 18
+`NSManagedObject[String]` getter. Original SDK imports reproduce it on iOS 27.0
+and 27.1. Plain Swift without C++ interop also reproduces it. Neither the
+modulemaps, C++ interop nor a mismatched SDK minor version is necessary.
+
+TESTED: the iOS 27.1 SDK interface and stub declare and export
+`$sSo15NSManagedObjectC8CoreDataEyypSgSScig`. The selected runtime CoreData
+framework, UUID `0BD4B357-EFF1-3400-85FF-55F5BA427A89`, contains the function
+as a local symbol but omits it from its export trie. Its actual disassembly
+at `0x1C8848DEC` bridges the String key to NSString, sends `valueForKey:`,
+and bridges the optional object result to Swift Any. The local setter
+similarly bridges its inputs and sends `setValue:forKey:`. This is an export
+contract defect, not evidence that the API is unavailable or unimplemented.
+
+The emitter calls the public `value(forKey:)` accessor for the exact subscript
+identity `s:So15NSManagedObjectC8CoreDataEyypSgSScip`. That invokes the same
+native operation and Swift bridging established by the runtime implementation.
+It retains dynamic accessor dispatch, the original iOS 18 guard, receiver,
+argument and return metadata, and ID 231231335522069. The bridge emits only
+the getter for this subscript, so there is no generated setter to redirect.
+No SDK or cache is patched, no replacement export is introduced, and no API
+or ID is removed.
+
+TESTED: in-memory emission retains all 1,156 CoreData entries with no added,
+removed or changed metadata. A concrete repaired getter passes SIL and native
+linking for device and simulator with C++20, WMO and the source support flags;
+its imports no longer reference the missing getter. The newly emitted full
+CoreData table passes the generator's dual-target SIL checks. Capture author
+s65565 ran the repaired executable on the same iOS 27.1 simulator: it reaches
+main and passes nil, Unicode String, numeric and Date bridging checks on a
+real managed object. The 71 existing focused tests pass once for this change.
+Detailed disassembly,
+export tables, SDK documentation and bounded controls are retained in the
+`coredata` evidence subdirectory. Complete regeneration and the full constants
+capture remain separate qualification steps owned by the parent and capture
+author.
+
 ## Native availability
 
 TESTED: Objective-C rejects `kColorSyncPreferredCMM` as unavailable on iOS.
