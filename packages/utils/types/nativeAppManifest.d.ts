@@ -153,8 +153,8 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     slug: string;
     scheme: string | string[] | undefined;
     version: string | undefined;
-    orientation: "default" | "landscape" | "portrait" | undefined;
-    userInterfaceStyle: "automatic" | "dark" | "light";
+    orientation: "default" | "portrait" | "landscape" | undefined;
+    userInterfaceStyle: "light" | "dark" | "automatic";
     icon: string | undefined;
     splash: {
         image: string;

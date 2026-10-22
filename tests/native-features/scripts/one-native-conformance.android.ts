@@ -727,6 +727,19 @@ function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
 
+// a back press while the soft keyboard is up only hides it, so a pop
+// issued then never leaves the screen: the inputs screen refocuses its
+// field and re-raises the keyboard after its dialogs dismiss, which ate
+// the pop to safe-area-home. when the keyboard is up, hide it first and
+// pop once it is gone; otherwise this is exactly one back press.
+async function pressBackForPop(config: Config) {
+  if (keyboardShown(config)) {
+    pressBack(config)
+    await waitFor(config, 'soft keyboard hidden before pop', () => !keyboardShown(config))
+  }
+  pressBack(config)
+}
+
 function clearDocumentsUi(config: Config) {
   // the documents fallback remembers its last location, which flaked the
   // cancel leg once, so start it cold. the package is aosp or gms flavored
@@ -4584,7 +4597,7 @@ async function run(config: Config) {
       })
     )
 
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'inputs-navigate-home',
       (nodes) =>
@@ -4773,7 +4786,7 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Delete item?'),
       'one-native-android-inputs-mounted'
     )
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'inputs-dialog-back-dismiss',
       (nodes) =>
@@ -4827,7 +4840,7 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Custom dialog body'),
       'one-native-android-inputs-mounted'
     )
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'inputs-custom-dialog-back-dismiss',
       (nodes) =>
@@ -4864,7 +4877,7 @@ async function run(config: Config) {
     // exclusion. the nested box sits below the status bar, so its top is 0
     // while the outer top stays positive, which proves per-view overlap
     // rather than forwarded window insets.
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'safe-area-home',
       (nodes) =>
@@ -5001,7 +5014,7 @@ async function run(config: Config) {
     // of every verb with the Last label proving each call returned, and an
     // Error: none sweep proving no js throw escaped. redbox detection rides
     // in waitFor via assertNoRedBox on every snapshot.
-    pressBack(config)
+    await pressBackForPop(config)
     await tapNavigation(config, 'nav-one-native-haptics')
     await expect(
       'haptics-module-present',
@@ -5045,7 +5058,7 @@ async function run(config: Config) {
     // getRandomValues fill, regeneration keeping all of it valid, and an
     // Error: none sweep proving no js throw escaped. redbox detection
     // rides in waitFor via assertNoRedBox on every snapshot.
-    pressBack(config)
+    await pressBackForPop(config)
     await tapNavigation(config, 'nav-one-native-crypto')
     const uuidV4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
     const hex32 = /^[0-9a-f]{32}$/
@@ -5103,7 +5116,7 @@ async function run(config: Config) {
     // app info on Android: the exact stamped fixture-manifest values reach
     // runtime through the native constants module, not template defaults.
     // redbox detection rides in waitFor via assertNoRedBox on every snapshot.
-    pressBack(config)
+    await pressBackForPop(config)
     await tapNavigation(config, 'nav-one-native-app-info')
     await expect(
       'app-info-stamped-values',
@@ -5132,7 +5145,7 @@ async function run(config: Config) {
 
     // apple auth on Android answers the way the web entry does: isAvailable is
     // false and both requests reject, without a code, as needing an iOS build.
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'apple-auth-navigate-home',
       (nodes) =>
@@ -5179,7 +5192,7 @@ async function run(config: Config) {
     )
 
     // browser on Android: warmup and mayLaunchUrl exercise Custom Tabs service
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'browser-navigate-home',
       (nodes) =>
@@ -5248,7 +5261,7 @@ async function run(config: Config) {
     // must round-trip through the bridge. the camera leg stays manual: the
     // runtime permission dialog and the camera app are outside this
     // harness's contract.
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'image-picker-navigate-home',
       (nodes) =>
@@ -5297,7 +5310,7 @@ async function run(config: Config) {
       'system picker foregrounds',
       (nodes) => !exactlyOneId(nodes, 'one-native-image-picker-library')
     )
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'image-picker-cancel',
       (nodes) =>
@@ -5344,7 +5357,7 @@ async function run(config: Config) {
       'crop system picker foregrounds',
       (nodes) => !exactlyOneId(nodes, 'one-native-image-picker-library-edit')
     )
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'image-picker-crop-cancel',
       (nodes) =>
@@ -6005,7 +6018,7 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Last: n4-cold/N4 cold'),
       'one-native-notifications-last-refresh'
     )
-    pressBack(config)
+    await pressBackForPop(config)
     await expect(
       'fonts-navigate-home',
       (nodes) =>
@@ -6070,7 +6083,7 @@ async function run(config: Config) {
     // this leg proves mount and the camera and marker prop path only. tap,
     // gesture and camera events need a real key; marker rendering is the
     // ios ui-map suite's pixel gate.
-    pressBack(config)
+    await pressBackForPop(config)
     await tapNavigation(config, 'nav-one-native-ui-map')
     await expect(
       'ui-map-mounted',
@@ -6113,15 +6126,15 @@ async function run(config: Config) {
       'one-native-ui-map-pins'
     )
 
-    pressBack(config)
+    await pressBackForPop(config)
     await portal()
-    pressBack(config)
+    await pressBackForPop(config)
     await pager()
 
     // the webgpu path: a raw triangle pane plus an R3F cube on
     // WebGPURenderer. dawn needs vulkan; if the emulator image cannot
     // provide it this leg runs on hardware instead (see the suite notes).
-    pressBack(config)
+    await pressBackForPop(config)
     await tapNavigation(config, 'nav-one-native-gpu')
     const gpuTicks = (nodes: Node[]) =>
       Number(
