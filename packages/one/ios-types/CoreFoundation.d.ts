@@ -1226,7 +1226,7 @@ export declare class CFNotificationCenter extends SDKHandle {
     };
 }
 /** struct CFNotificationName */
-export type CFNotificationName = "cfTimeZoneSystemTimeZoneDidChange" | "cfLocaleCurrentLocaleDidChange" | (number & {});
+export type CFNotificationName = "cfLocaleCurrentLocaleDidChange" | "cfTimeZoneSystemTimeZoneDidChange" | (number & {});
 export declare const CFNotificationName: {
     /**
      * static let cfLocaleCurrentLocaleDidChange: CFNotificationName!

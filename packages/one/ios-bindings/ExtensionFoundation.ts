@@ -55,22 +55,22 @@ export class AppExtensionIdentity extends SDKHandle {
    * var localizedName: String { get }
    * @availability iOS 26.0+
    */
-  get localizedName(): string { return callSDK<string>("ExtensionFoundation_212edf3d13b127f5", 962996838245730, this, []); }
+  get localizedName(): string { return callSDK<string>("ExtensionFoundation_5d69670f0307b385", 962996838245730, this, []); }
   /**
    * var bundleIdentifier: String { get }
    * @availability iOS 26.0+
    */
-  get bundleIdentifier(): string { return callSDK<string>("ExtensionFoundation_212edf3d13b127f5", 1092029524207301, this, []); }
+  get bundleIdentifier(): string { return callSDK<string>("ExtensionFoundation_5d69670f0307b385", 1092029524207301, this, []); }
   /**
    * var extensionPointIdentifier: String { get }
    * @availability iOS 26.0+
    */
-  get extensionPointIdentifier(): string { return callSDK<string>("ExtensionFoundation_212edf3d13b127f5", 4433345661846038, this, []); }
+  get extensionPointIdentifier(): string { return callSDK<string>("ExtensionFoundation_5d69670f0307b385", 4433345661846038, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("ExtensionFoundation_212edf3d13b127f5", 2841520548991564, this, []); }
+  get id(): string { return callSDK<string>("ExtensionFoundation_5d69670f0307b385", 2841520548991564, this, []); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA8IdentityV": true };
 }
 
@@ -89,12 +89,12 @@ export class AppExtensionPoint extends SDKHandle {
    * init(identifier: StaticString) throws
    * @availability iOS 26.0+
    */
-  static init(identifier: SDKHandle): AppExtensionPoint { return callSDK<AppExtensionPoint>("ExtensionFoundation_212edf3d13b127f5", 4210538347755519, undefined, [identifier]); }
+  static init(identifier: SDKHandle): AppExtensionPoint { return callSDK<AppExtensionPoint>("ExtensionFoundation_5d69670f0307b385", 4210538347755519, undefined, [identifier]); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("ExtensionFoundation_212edf3d13b127f5", 2348164750467833, this, []); }
+  get id(): string { return callSDK<string>("ExtensionFoundation_5d69670f0307b385", 2348164750467833, this, []); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV": true };
 }
 
@@ -115,12 +115,12 @@ export class AppExtensionPoint_Bind extends SDKHandle {
    * static func buildBlock(_ identifier: AppExtensionPoint.Identifier) -> AppExtensionPoint
    * @availability iOS 26.0+
    */
-  static buildBlock(identifier: AppExtensionPoint_Identifier): AppExtensionPoint { return callSDK<AppExtensionPoint>("ExtensionFoundation_212edf3d13b127f5", 198005607070756, undefined, [identifier]); }
+  static buildBlock(identifier: AppExtensionPoint_Identifier): AppExtensionPoint { return callSDK<AppExtensionPoint>("ExtensionFoundation_5d69670f0307b385", 198005607070756, undefined, [identifier]); }
   /**
    * static func buildBlock(_ identifier: AppExtensionPoint.Identifier, _ capabilities: AppExtensionPoint.Capabilities) -> AppExtensionPoint
    * @availability iOS 26.2+
    */
-  static buildBlock30908(identifier: AppExtensionPoint_Identifier, capabilities: AppExtensionPoint_Capabilities): AppExtensionPoint { return callSDK<AppExtensionPoint>("ExtensionFoundation_212edf3d13b127f5", 1891092065653344, undefined, [identifier, capabilities]); }
+  static buildBlock30908(identifier: AppExtensionPoint_Identifier, capabilities: AppExtensionPoint_Capabilities): AppExtensionPoint { return callSDK<AppExtensionPoint>("ExtensionFoundation_5d69670f0307b385", 1891092065653344, undefined, [identifier, capabilities]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV4BindV": true };
 }
 
@@ -165,7 +165,7 @@ export class AppExtensionPoint_EnhancedSecurity extends SDKHandle {
    * init(_ value: Bool = true)
    * @availability iOS 26.0+
    */
-  static init(value?: boolean): AppExtensionPoint_EnhancedSecurity { return callSDK<AppExtensionPoint_EnhancedSecurity>("ExtensionFoundation_212edf3d13b127f5", 2742391958930767, undefined, [value]); }
+  static init(value?: boolean): AppExtensionPoint_EnhancedSecurity { return callSDK<AppExtensionPoint_EnhancedSecurity>("ExtensionFoundation_5d69670f0307b385", 2742391958930767, undefined, [value]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV16EnhancedSecurityV": true };
 }
 
@@ -192,12 +192,12 @@ export class AppExtensionPoint_Identifier extends SDKHandle {
    * init(host bundleIdentifier: StaticString, name: StaticString)
    * @availability iOS 26.0+
    */
-  static initHostName(bundleIdentifier: SDKHandle, name: SDKHandle): AppExtensionPoint_Identifier { return callSDK<AppExtensionPoint_Identifier>("ExtensionFoundation_212edf3d13b127f5", 3389387211494050, undefined, [bundleIdentifier, name]); }
+  static initHostName(bundleIdentifier: SDKHandle, name: SDKHandle): AppExtensionPoint_Identifier { return callSDK<AppExtensionPoint_Identifier>("ExtensionFoundation_5d69670f0307b385", 3389387211494050, undefined, [bundleIdentifier, name]); }
   /**
    * init(_ value: StaticString)
    * @availability iOS 26.0+
    */
-  static init(value: SDKHandle): AppExtensionPoint_Identifier { return callSDK<AppExtensionPoint_Identifier>("ExtensionFoundation_212edf3d13b127f5", 3923780049477357, undefined, [value]); }
+  static init(value: SDKHandle): AppExtensionPoint_Identifier { return callSDK<AppExtensionPoint_Identifier>("ExtensionFoundation_5d69670f0307b385", 3923780049477357, undefined, [value]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV10IdentifierV": true };
 }
 
@@ -210,32 +210,32 @@ export class AppExtensionPoint_Monitor extends SDKHandle {
    * final func addAppExtensionPoint(_ appExtensionPoint: AppExtensionPoint) async throws
    * @availability iOS 26.0+
    */
-  addAppExtensionPoint(appExtensionPoint: AppExtensionPoint): Promise<void> { return callSDKAsync<void>("ExtensionFoundation_212edf3d13b127f5", 4164126789854893, this, [appExtensionPoint]); }
+  addAppExtensionPoint(appExtensionPoint: AppExtensionPoint): Promise<void> { return callSDKAsync<void>("ExtensionFoundation_5d69670f0307b385", 4164126789854893, this, [appExtensionPoint]); }
   /**
    * convenience init(appExtensionPoint: AppExtensionPoint) async throws
    * @availability iOS 26.0+
    */
-  static initAppExtensionPoint(appExtensionPoint: AppExtensionPoint): Promise<AppExtensionPoint_Monitor> { return callSDKAsync<AppExtensionPoint_Monitor>("ExtensionFoundation_212edf3d13b127f5", 3657642220216321, undefined, [appExtensionPoint]); }
+  static initAppExtensionPoint(appExtensionPoint: AppExtensionPoint): Promise<AppExtensionPoint_Monitor> { return callSDKAsync<AppExtensionPoint_Monitor>("ExtensionFoundation_5d69670f0307b385", 3657642220216321, undefined, [appExtensionPoint]); }
   /**
    * final func removeAppExtensionPoint(_ appExtensionPoint: AppExtensionPoint) async throws
    * @availability iOS 26.0+
    */
-  removeAppExtensionPoint(appExtensionPoint: AppExtensionPoint): Promise<void> { return callSDKAsync<void>("ExtensionFoundation_212edf3d13b127f5", 592825982440703, this, [appExtensionPoint]); }
+  removeAppExtensionPoint(appExtensionPoint: AppExtensionPoint): Promise<void> { return callSDKAsync<void>("ExtensionFoundation_5d69670f0307b385", 592825982440703, this, [appExtensionPoint]); }
   /**
    * final var identities: [AppExtensionIdentity] { get }
    * @availability iOS 26.0+
    */
-  get identities(): $SDK0 { return callSDK<$SDK0>("ExtensionFoundation_212edf3d13b127f5", 626458474301758, this, []); }
+  get identities(): $SDK0 { return callSDK<$SDK0>("ExtensionFoundation_5d69670f0307b385", 626458474301758, this, []); }
   /**
    * final var state: AppExtensionPoint.Monitor.State { get }
    * @availability iOS 26.0+
    */
-  get state(): AppExtensionPoint_Monitor_State { return callSDK<AppExtensionPoint_Monitor_State>("ExtensionFoundation_212edf3d13b127f5", 2683142250744495, this, []); }
+  get state(): AppExtensionPoint_Monitor_State { return callSDK<AppExtensionPoint_Monitor_State>("ExtensionFoundation_5d69670f0307b385", 2683142250744495, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): AppExtensionPoint_Monitor { return callSDK<AppExtensionPoint_Monitor>("ExtensionFoundation_212edf3d13b127f5", 3756054649585250, undefined, []); }
+  static init(): AppExtensionPoint_Monitor { return callSDK<AppExtensionPoint_Monitor>("ExtensionFoundation_5d69670f0307b385", 3756054649585250, undefined, []); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV7MonitorC": true };
   declare readonly $observable: { "identities": true; "state": true };
 }
@@ -249,17 +249,17 @@ export class AppExtensionPoint_Monitor_State extends SDKHandle {
    * var identities: [AppExtensionIdentity] { get }
    * @availability iOS 26.0+
    */
-  get identities(): $SDK0 { return callSDK<$SDK0>("ExtensionFoundation_212edf3d13b127f5", 1498327986087579, this, []); }
+  get identities(): $SDK0 { return callSDK<$SDK0>("ExtensionFoundation_5d69670f0307b385", 1498327986087579, this, []); }
   /**
    * var disabledCount: Int { get }
    * @availability iOS 26.0+
    */
-  get disabledCount(): number { return callSDK<number>("ExtensionFoundation_212edf3d13b127f5", 275889265746192, this, []); }
+  get disabledCount(): number { return callSDK<number>("ExtensionFoundation_5d69670f0307b385", 275889265746192, this, []); }
   /**
    * var unapprovedCount: Int { get }
    * @availability iOS 26.0+
    */
-  get unapprovedCount(): number { return callSDK<number>("ExtensionFoundation_212edf3d13b127f5", 1188229330802598, this, []); }
+  get unapprovedCount(): number { return callSDK<number>("ExtensionFoundation_5d69670f0307b385", 1188229330802598, this, []); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV7MonitorC5StateV": true };
 }
 
@@ -272,7 +272,7 @@ export class AppExtensionPoint_Name extends SDKHandle {
    * init(_ value: StaticString)
    * @availability iOS 26.0+
    */
-  static init(value: SDKHandle): AppExtensionPoint_Name { return callSDK<AppExtensionPoint_Name>("ExtensionFoundation_212edf3d13b127f5", 1513746009851097, undefined, [value]); }
+  static init(value: SDKHandle): AppExtensionPoint_Name { return callSDK<AppExtensionPoint_Name>("ExtensionFoundation_5d69670f0307b385", 1513746009851097, undefined, [value]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV4NameV": true };
 }
 
@@ -285,7 +285,7 @@ export class AppExtensionPoint_Scope extends SDKHandle {
    * init(restriction: AppExtensionPoint.Scope.Restriction = .application)
    * @availability iOS 26.0+
    */
-  static init(restriction?: AppExtensionPoint_Scope_Restriction): AppExtensionPoint_Scope { return callSDK<AppExtensionPoint_Scope>("ExtensionFoundation_212edf3d13b127f5", 3910316809075929, undefined, [restriction]); }
+  static init(restriction?: AppExtensionPoint_Scope_Restriction): AppExtensionPoint_Scope { return callSDK<AppExtensionPoint_Scope>("ExtensionFoundation_5d69670f0307b385", 3910316809075929, undefined, [restriction]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV5ScopeV": true };
 }
 
@@ -304,12 +304,12 @@ export class AppExtensionPoint_UserInterface extends SDKHandle {
    * let value: Bool
    * @availability iOS 26.0+
    */
-  get value(): boolean { return callSDK<boolean>("ExtensionFoundation_212edf3d13b127f5", 1289063143022320, this, []); }
+  get value(): boolean { return callSDK<boolean>("ExtensionFoundation_5d69670f0307b385", 1289063143022320, this, []); }
   /**
    * init(_ value: Bool = true)
    * @availability iOS 26.0+
    */
-  static init(value?: boolean): AppExtensionPoint_UserInterface { return callSDK<AppExtensionPoint_UserInterface>("ExtensionFoundation_212edf3d13b127f5", 305313144157457, undefined, [value]); }
+  static init(value?: boolean): AppExtensionPoint_UserInterface { return callSDK<AppExtensionPoint_UserInterface>("ExtensionFoundation_5d69670f0307b385", 305313144157457, undefined, [value]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA5PointV13UserInterfaceV": true };
 }
 
@@ -322,27 +322,27 @@ export class AppExtensionProcess extends SDKHandle {
    * func invalidate()
    * @availability iOS 26.0+
    */
-  invalidate(): void { return callSDK<void>("ExtensionFoundation_212edf3d13b127f5", 1116557392815883, this, []); }
+  invalidate(): void { return callSDK<void>("ExtensionFoundation_5d69670f0307b385", 1116557392815883, this, []); }
   /**
    * init(configuration: AppExtensionProcess.Configuration) throws
    * @availability iOS 26.0+
    */
-  static initConfiguration(configuration: AppExtensionProcess_Configuration): AppExtensionProcess { return callSDK<AppExtensionProcess>("ExtensionFoundation_212edf3d13b127f5", 4032059838838360, undefined, [configuration]); }
+  static initConfiguration(configuration: AppExtensionProcess_Configuration): AppExtensionProcess { return callSDK<AppExtensionProcess>("ExtensionFoundation_5d69670f0307b385", 4032059838838360, undefined, [configuration]); }
   /**
    * init(configuration: AppExtensionProcess.Configuration) async throws
    * @availability iOS 26.0+
    */
-  static initConfiguration86313(configuration: AppExtensionProcess_Configuration): Promise<AppExtensionProcess> { return callSDKAsync<AppExtensionProcess>("ExtensionFoundation_212edf3d13b127f5", 1259147591696420, undefined, [configuration]); }
+  static initConfiguration86313(configuration: AppExtensionProcess_Configuration): Promise<AppExtensionProcess> { return callSDKAsync<AppExtensionProcess>("ExtensionFoundation_5d69670f0307b385", 1259147591696420, undefined, [configuration]); }
   /**
    * func makeXPCSession() throws -> XPCSession
    * @availability iOS 26.0+
    */
-  makeXPCSession(): SDKHandle { return callSDK<SDKHandle>("ExtensionFoundation_212edf3d13b127f5", 2304347906197403, this, []); }
+  makeXPCSession(): SDKHandle { return callSDK<SDKHandle>("ExtensionFoundation_5d69670f0307b385", 2304347906197403, this, []); }
   /**
    * func makeXPCConnection() throws -> NSXPCConnection
    * @availability iOS 26.0+
    */
-  makeXPCConnection(): _Foundation_NSXPCConnection { return callSDK<_Foundation_NSXPCConnection>("ExtensionFoundation_212edf3d13b127f5", 3990418039924194, this, []); }
+  makeXPCConnection(): _Foundation_NSXPCConnection { return callSDK<_Foundation_NSXPCConnection>("ExtensionFoundation_5d69670f0307b385", 3990418039924194, this, []); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA7ProcessV": true };
 }
 
@@ -355,19 +355,19 @@ export class AppExtensionProcess_Configuration extends SDKHandle {
    * init(appExtensionIdentity: AppExtensionIdentity, onInterruption: @escaping () -> Void = {})
    * @availability iOS 26.0+
    */
-  static init(appExtensionIdentity: AppExtensionIdentity, onInterruption?: (() => void)): AppExtensionProcess_Configuration { return callSDK<AppExtensionProcess_Configuration>("ExtensionFoundation_212edf3d13b127f5", 2298220455976874, undefined, [appExtensionIdentity, onInterruption], [null,{"callback":{"out":[]}}]); }
+  static init(appExtensionIdentity: AppExtensionIdentity, onInterruption?: (() => void)): AppExtensionProcess_Configuration { return callSDK<AppExtensionProcess_Configuration>("ExtensionFoundation_5d69670f0307b385", 2298220455976874, undefined, [appExtensionIdentity, onInterruption], [null,{"callback":{"out":[]}}]); }
   /**
    * var appExtensionIdentity: AppExtensionIdentity { get set }
    * @availability iOS 26.0+
    */
-  get appExtensionIdentity(): AppExtensionIdentity { return callSDK<AppExtensionIdentity>("ExtensionFoundation_212edf3d13b127f5", 2212908120586583, this, []); }
-  set appExtensionIdentity(value: AppExtensionIdentity) { callSDK<void>("ExtensionFoundation_212edf3d13b127f5", 3285340118787616, this, [value]); }
+  get appExtensionIdentity(): AppExtensionIdentity { return callSDK<AppExtensionIdentity>("ExtensionFoundation_5d69670f0307b385", 2212908120586583, this, []); }
+  set appExtensionIdentity(value: AppExtensionIdentity) { callSDK<void>("ExtensionFoundation_5d69670f0307b385", 3285340118787616, this, [value]); }
   /**
    * var onInterruption: () -> Void
    * @availability iOS 26.0+
    */
-  get onInterruption(): (() => Promise<void>) { return callSDK<(() => Promise<void>)>("ExtensionFoundation_212edf3d13b127f5", 448445017608674, this, []); }
-  set onInterruption(value: (() => void)) { callSDK<void>("ExtensionFoundation_212edf3d13b127f5", 1792185905001161, this, [value], [{"callback":{"out":[]}}]); }
+  get onInterruption(): (() => Promise<void>) { return callSDK<(() => Promise<void>)>("ExtensionFoundation_5d69670f0307b385", 448445017608674, this, []); }
+  set onInterruption(value: (() => void)) { callSDK<void>("ExtensionFoundation_5d69670f0307b385", 1792185905001161, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:19ExtensionFoundation03AppA7ProcessV13ConfigurationV": true };
 }
 
@@ -380,7 +380,7 @@ export class ConnectionHandler extends SDKHandle {
    * nonisolated func accept(connection: NSXPCConnection) -> Bool
    * @availability iOS 26.0+
    */
-  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("ExtensionFoundation_212edf3d13b127f5", 2824590731788278, this, [connection]); }
+  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("ExtensionFoundation_5d69670f0307b385", 2824590731788278, this, [connection]); }
   declare readonly $type: { "s:19ExtensionFoundation17ConnectionHandlerV": true };
 }
 
@@ -394,23 +394,23 @@ export interface ExtensionPointDefining {
 
 registerSDKProtocol("s:19ExtensionFoundation03AppA0P", {"init":"init()"});
 registerSDKProtocol("s:19ExtensionFoundation03AppA13ConfigurationP", {"acceptConnection":"accept(connection:)"});
-registerSDKClass("ExtensionFoundation.AppExtensionIdentity", AppExtensionIdentity, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint", AppExtensionPoint, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionIdentity", AppExtensionIdentity, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint", AppExtensionPoint, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:19ExtensionFoundation03AppA5PointV9AttributeP", {});
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Bind", AppExtensionPoint_Bind, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Capabilities", AppExtensionPoint_Capabilities, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Capabilities.Builder", AppExtensionPoint_Capabilities_Builder, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Bind", AppExtensionPoint_Bind, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Capabilities", AppExtensionPoint_Capabilities, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Capabilities.Builder", AppExtensionPoint_Capabilities_Builder, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:19ExtensionFoundation03AppA5PointV10CapabilityP", {});
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Definition", AppExtensionPoint_Definition, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.EnhancedSecurity", AppExtensionPoint_EnhancedSecurity, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Error", AppExtensionPoint_Error, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Identifier", AppExtensionPoint_Identifier, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Monitor", AppExtensionPoint_Monitor, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {"identities":626458474301758,"state":2683142250744495}, methods: {"addAppExtensionPoint":{"id":4164126789854893},"removeAppExtensionPoint":{"id":592825982440703}} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Monitor.State", AppExtensionPoint_Monitor_State, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Name", AppExtensionPoint_Name, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.Scope", AppExtensionPoint_Scope, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionPoint.UserInterface", AppExtensionPoint_UserInterface, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.AppExtensionProcess", AppExtensionProcess, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {}, methods: {"invalidate":{"id":1116557392815883},"makeXPCSession":{"id":2304347906197403},"makeXPCConnection":{"id":3990418039924194}} });
-registerSDKClass("ExtensionFoundation.AppExtensionProcess.Configuration", AppExtensionProcess_Configuration, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {} });
-registerSDKClass("ExtensionFoundation.ConnectionHandler", ConnectionHandler, { module: "ExtensionFoundation_212edf3d13b127f5", properties: {}, methods: {"accept":{"id":2824590731788278}} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Definition", AppExtensionPoint_Definition, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.EnhancedSecurity", AppExtensionPoint_EnhancedSecurity, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Error", AppExtensionPoint_Error, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Identifier", AppExtensionPoint_Identifier, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Monitor", AppExtensionPoint_Monitor, { module: "ExtensionFoundation_5d69670f0307b385", properties: {"identities":626458474301758,"state":2683142250744495}, methods: {"addAppExtensionPoint":{"id":4164126789854893},"removeAppExtensionPoint":{"id":592825982440703}} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Monitor.State", AppExtensionPoint_Monitor_State, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Name", AppExtensionPoint_Name, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.Scope", AppExtensionPoint_Scope, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionPoint.UserInterface", AppExtensionPoint_UserInterface, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.AppExtensionProcess", AppExtensionProcess, { module: "ExtensionFoundation_5d69670f0307b385", properties: {}, methods: {"invalidate":{"id":1116557392815883},"makeXPCSession":{"id":2304347906197403},"makeXPCConnection":{"id":3990418039924194}} });
+registerSDKClass("ExtensionFoundation.AppExtensionProcess.Configuration", AppExtensionProcess_Configuration, { module: "ExtensionFoundation_5d69670f0307b385", properties: {} });
+registerSDKClass("ExtensionFoundation.ConnectionHandler", ConnectionHandler, { module: "ExtensionFoundation_5d69670f0307b385", properties: {}, methods: {"accept":{"id":2824590731788278}} });
 registerSDKProtocol("s:19ExtensionFoundation0A13PointDefiningP", {});

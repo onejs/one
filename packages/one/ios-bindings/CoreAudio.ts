@@ -6,15 +6,15 @@ type $SDK0 = ((arg0: SDKHandle) => unknown);
 
 export class AudioBuffer extends SDKHandle {
   /** init<Element>(_ typedBuffer: UnsafeMutableBufferPointer<Element>, numberOfChannels: Int) */
-  static init(typedBuffer: unknown[], numberOfChannels: number): _CoreAudioTypes_AudioBuffer { return callSDK<_CoreAudioTypes_AudioBuffer>("CoreAudio_212edf3d13b127f5", 3382044809472631, undefined, [typedBuffer, numberOfChannels]); }
+  static init(typedBuffer: unknown[], numberOfChannels: number): _CoreAudioTypes_AudioBuffer { return callSDK<_CoreAudioTypes_AudioBuffer>("CoreAudio_5d69670f0307b385", 3382044809472631, undefined, [typedBuffer, numberOfChannels]); }
   declare readonly $type: { "c:@S@AudioBuffer": true };
 }
 
 export class AudioBufferList extends SDKHandle {
   /** static func sizeInBytes(maximumBuffers: Int) -> Int */
-  static sizeInBytes(maximumBuffers: number): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 2593399019217635, undefined, [maximumBuffers]); }
+  static sizeInBytes(maximumBuffers: number): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 2593399019217635, undefined, [maximumBuffers]); }
   /** static func allocate(maximumBuffers: Int) -> UnsafeMutableAudioBufferListPointer */
-  static allocate(maximumBuffers: number): UnsafeMutableAudioBufferListPointer { return callSDK<UnsafeMutableAudioBufferListPointer>("CoreAudio_212edf3d13b127f5", 191355965036560, undefined, [maximumBuffers]); }
+  static allocate(maximumBuffers: number): UnsafeMutableAudioBufferListPointer { return callSDK<UnsafeMutableAudioBufferListPointer>("CoreAudio_5d69670f0307b385", 191355965036560, undefined, [maximumBuffers]); }
   declare readonly $type: { "c:@S@AudioBufferList": true };
 }
 
@@ -23,7 +23,7 @@ export class AudioChannelLayout extends SDKHandle {
    * static func sizeInBytes(maximumDescriptions: Int) -> Int
    * @availability iOS 13.0+
    */
-  static sizeInBytes(maximumDescriptions: number): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 2160762245037777, undefined, [maximumDescriptions]); }
+  static sizeInBytes(maximumDescriptions: number): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 2160762245037777, undefined, [maximumDescriptions]); }
   declare readonly $type: { "c:@S@AudioChannelLayout": true };
 }
 
@@ -36,44 +36,44 @@ export class AudioChannelLayout_UnsafeMutablePointer extends SDKHandle {
    * var unsafePointer: UnsafePointer<AudioChannelLayout> { get }
    * @availability iOS 13.0+
    */
-  get unsafePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_212edf3d13b127f5", 1874569454902414, this, []); }
+  get unsafePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_5d69670f0307b385", 1874569454902414, this, []); }
   /**
    * var unsafeMutablePointer: UnsafeMutablePointer<AudioChannelLayout>
    * @availability iOS 13.0+
    */
-  get unsafeMutablePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_212edf3d13b127f5", 4199806756711158, this, []); }
-  set unsafeMutablePointer(value: SDKHandle) { callSDK<void>("CoreAudio_212edf3d13b127f5", 12959734454156, this, [value]); }
+  get unsafeMutablePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_5d69670f0307b385", 4199806756711158, this, []); }
+  set unsafeMutablePointer(value: SDKHandle) { callSDK<void>("CoreAudio_5d69670f0307b385", 12959734454156, this, [value]); }
   /**
    * var startIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 4288954043524538, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 4288954043524538, this, []); }
   /**
    * var count: Int { get nonmutating set }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 1927845353984032, this, []); }
-  set count(value: number) { callSDK<void>("CoreAudio_212edf3d13b127f5", 700567414193875, this, [value]); }
+  get count(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 1927845353984032, this, []); }
+  set count(value: number) { callSDK<void>("CoreAudio_5d69670f0307b385", 700567414193875, this, [value]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 3147076255184823, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 3147076255184823, this, []); }
   /**
    * init?(_ p: UnsafeMutablePointer<AudioChannelLayout>?)
    * @availability iOS 13.0+
    */
-  static init(p?: (SDKHandle) | null): (AudioChannelLayout_UnsafeMutablePointer) | null { return callSDK<(AudioChannelLayout_UnsafeMutablePointer) | null>("CoreAudio_212edf3d13b127f5", 504445597855939, undefined, [p]); }
+  static init(p?: (SDKHandle) | null): (AudioChannelLayout_UnsafeMutablePointer) | null { return callSDK<(AudioChannelLayout_UnsafeMutablePointer) | null>("CoreAudio_5d69670f0307b385", 504445597855939, undefined, [p]); }
   /**
    * init(_ p: UnsafeMutablePointer<AudioChannelLayout>)
    * @availability iOS 13.0+
    */
-  static init253(p: SDKHandle): AudioChannelLayout_UnsafeMutablePointer { return callSDK<AudioChannelLayout_UnsafeMutablePointer>("CoreAudio_212edf3d13b127f5", 4170739777342781, undefined, [p]); }
+  static init253(p: SDKHandle): AudioChannelLayout_UnsafeMutablePointer { return callSDK<AudioChannelLayout_UnsafeMutablePointer>("CoreAudio_5d69670f0307b385", 4170739777342781, undefined, [p]); }
   /**
    * subscript(index: AudioChannelLayout.UnsafeMutablePointer.Index) -> AudioChannelLayout.UnsafeMutablePointer.Element { get nonmutating set }
    * @availability iOS 13.0+
    */
-  subscript(index: number): _CoreAudioTypes_AudioChannelDescription { return callSDK<_CoreAudioTypes_AudioChannelDescription>("CoreAudio_212edf3d13b127f5", 3539121274777712, this, [index]); }
+  subscript(index: number): _CoreAudioTypes_AudioChannelDescription { return callSDK<_CoreAudioTypes_AudioChannelDescription>("CoreAudio_5d69670f0307b385", 3539121274777712, this, [index]); }
   declare readonly $type: { "s:So18AudioChannelLayoutV04CoreA0E20UnsafeMutablePointerV": true };
 }
 
@@ -116,38 +116,38 @@ export class AudioChannelLayout_UnsafePointer extends SDKHandle {
    * var unsafePointer: UnsafePointer<AudioChannelLayout>
    * @availability iOS 13.0+
    */
-  get unsafePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_212edf3d13b127f5", 1015524157581727, this, []); }
-  set unsafePointer(value: SDKHandle) { callSDK<void>("CoreAudio_212edf3d13b127f5", 3651911584180175, this, [value]); }
+  get unsafePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_5d69670f0307b385", 1015524157581727, this, []); }
+  set unsafePointer(value: SDKHandle) { callSDK<void>("CoreAudio_5d69670f0307b385", 3651911584180175, this, [value]); }
   /**
    * var startIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 2066079514517034, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 2066079514517034, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 2801565486935700, this, []); }
+  get count(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 2801565486935700, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 3738497897531338, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 3738497897531338, this, []); }
   /**
    * init(_ p: UnsafePointer<AudioChannelLayout>)
    * @availability iOS 13.0+
    */
-  static init(p: SDKHandle): AudioChannelLayout_UnsafePointer { return callSDK<AudioChannelLayout_UnsafePointer>("CoreAudio_212edf3d13b127f5", 4114956856527688, undefined, [p]); }
+  static init(p: SDKHandle): AudioChannelLayout_UnsafePointer { return callSDK<AudioChannelLayout_UnsafePointer>("CoreAudio_5d69670f0307b385", 4114956856527688, undefined, [p]); }
   /**
    * init?(_ p: UnsafePointer<AudioChannelLayout>?)
    * @availability iOS 13.0+
    */
-  static init69219(p?: (SDKHandle) | null): (AudioChannelLayout_UnsafePointer) | null { return callSDK<(AudioChannelLayout_UnsafePointer) | null>("CoreAudio_212edf3d13b127f5", 2824391981099607, undefined, [p]); }
+  static init69219(p?: (SDKHandle) | null): (AudioChannelLayout_UnsafePointer) | null { return callSDK<(AudioChannelLayout_UnsafePointer) | null>("CoreAudio_5d69670f0307b385", 2824391981099607, undefined, [p]); }
   /**
    * subscript(index: AudioChannelLayout.UnsafePointer.Index) -> AudioChannelLayout.UnsafePointer.Element { get }
    * @availability iOS 13.0+
    */
-  subscript(index: number): _CoreAudioTypes_AudioChannelDescription { return callSDK<_CoreAudioTypes_AudioChannelDescription>("CoreAudio_212edf3d13b127f5", 3091094619827972, this, [index]); }
+  subscript(index: number): _CoreAudioTypes_AudioChannelDescription { return callSDK<_CoreAudioTypes_AudioChannelDescription>("CoreAudio_5d69670f0307b385", 3091094619827972, this, [index]); }
   declare readonly $type: { "s:So18AudioChannelLayoutV04CoreA0E13UnsafePointerV": true };
 }
 
@@ -190,60 +190,60 @@ export class ManagedAudioChannelLayout extends SDKHandle {
    * var sizeInBytes: Int { get }
    * @availability iOS 13.0+
    */
-  get sizeInBytes(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 2076269930561731, this, []); }
+  get sizeInBytes(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 2076269930561731, this, []); }
   /**
    * mutating func setAllToUnknown()
    * @availability iOS 13.0+
    */
-  setAllToUnknown(): void { return callSDK<void>("CoreAudio_212edf3d13b127f5", 4433264209565066, this, []); }
+  setAllToUnknown(): void { return callSDK<void>("CoreAudio_5d69670f0307b385", 4433264209565066, this, []); }
   /**
    * var numberOfChannels: Int { get }
    * @availability iOS 13.0+
    */
-  get numberOfChannels(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 1698949817339914, this, []); }
+  get numberOfChannels(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 1698949817339914, this, []); }
   /**
    * func withUnsafePointer<Result>(_ body: (UnsafePointer<AudioChannelLayout>) throws -> Result) rethrows -> Result
    * @availability iOS 13.0+
    */
-  withUnsafePointer(body: $SDK0): unknown { return callSDK<unknown>("CoreAudio_212edf3d13b127f5", 2398920299821243, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafePointer(body: $SDK0): unknown { return callSDK<unknown>("CoreAudio_5d69670f0307b385", 2398920299821243, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var channelDescriptions: ManagedAudioChannelLayout.ChannelDescriptions { get set }
    * @availability iOS 13.0+
    */
-  get channelDescriptions(): ManagedAudioChannelLayout_ChannelDescriptions { return callSDK<ManagedAudioChannelLayout_ChannelDescriptions>("CoreAudio_212edf3d13b127f5", 785066853275709, this, []); }
-  set channelDescriptions(value: ManagedAudioChannelLayout_ChannelDescriptions) { callSDK<void>("CoreAudio_212edf3d13b127f5", 3153136320818073, this, [value]); }
+  get channelDescriptions(): ManagedAudioChannelLayout_ChannelDescriptions { return callSDK<ManagedAudioChannelLayout_ChannelDescriptions>("CoreAudio_5d69670f0307b385", 785066853275709, this, []); }
+  set channelDescriptions(value: ManagedAudioChannelLayout_ChannelDescriptions) { callSDK<void>("CoreAudio_5d69670f0307b385", 3153136320818073, this, [value]); }
   /**
    * init(channelDescriptions: [AudioChannelDescription])
    * @availability iOS 13.0+
    */
-  static initChannelDescriptions(channelDescriptions: Array<_CoreAudioTypes_AudioChannelDescription>): ManagedAudioChannelLayout { return callSDK<ManagedAudioChannelLayout>("CoreAudio_212edf3d13b127f5", 342860512276535, undefined, [channelDescriptions]); }
+  static initChannelDescriptions(channelDescriptions: Array<_CoreAudioTypes_AudioChannelDescription>): ManagedAudioChannelLayout { return callSDK<ManagedAudioChannelLayout>("CoreAudio_5d69670f0307b385", 342860512276535, undefined, [channelDescriptions]); }
   /**
    * init(maximumDescriptions: Int)
    * @availability iOS 13.0+
    */
-  static initMaximumDescriptions(maximumDescriptions: number): ManagedAudioChannelLayout { return callSDK<ManagedAudioChannelLayout>("CoreAudio_212edf3d13b127f5", 2123066528119785, undefined, [maximumDescriptions]); }
+  static initMaximumDescriptions(maximumDescriptions: number): ManagedAudioChannelLayout { return callSDK<ManagedAudioChannelLayout>("CoreAudio_5d69670f0307b385", 2123066528119785, undefined, [maximumDescriptions]); }
   /**
    * mutating func withUnsafeMutablePointer<Result>(_ body: (UnsafeMutablePointer<AudioChannelLayout>) throws -> Result) rethrows -> Result
    * @availability iOS 13.0+
    */
-  withUnsafeMutablePointer(body: $SDK0): unknown { return callSDK<unknown>("CoreAudio_212edf3d13b127f5", 1026144386887873, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeMutablePointer(body: $SDK0): unknown { return callSDK<unknown>("CoreAudio_5d69670f0307b385", 1026144386887873, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init(tag: AudioChannelLayoutTag)
    * @availability iOS 13.0+
    */
-  static initTag(tag: number): ManagedAudioChannelLayout { return callSDK<ManagedAudioChannelLayout>("CoreAudio_212edf3d13b127f5", 1709441479658969, undefined, [tag]); }
+  static initTag(tag: number): ManagedAudioChannelLayout { return callSDK<ManagedAudioChannelLayout>("CoreAudio_5d69670f0307b385", 1709441479658969, undefined, [tag]); }
   /**
    * var tag: AudioChannelLayoutTag { get set }
    * @availability iOS 13.0+
    */
-  get tag(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 1266679414263297, this, []); }
-  set tag(value: number) { callSDK<void>("CoreAudio_212edf3d13b127f5", 2856818382765032, this, [value]); }
+  get tag(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 1266679414263297, this, []); }
+  set tag(value: number) { callSDK<void>("CoreAudio_5d69670f0307b385", 2856818382765032, this, [value]); }
   /**
    * var bitmap: AudioChannelBitmap { get set }
    * @availability iOS 13.0+
    */
-  get bitmap(): _CoreAudioTypes_AudioChannelBitmap { return callSDK<_CoreAudioTypes_AudioChannelBitmap>("CoreAudio_212edf3d13b127f5", 1082747218168300, this, []); }
-  set bitmap(value: _CoreAudioTypes_AudioChannelBitmap) { callSDK<void>("CoreAudio_212edf3d13b127f5", 2384700187291386, this, [value]); }
+  get bitmap(): _CoreAudioTypes_AudioChannelBitmap { return callSDK<_CoreAudioTypes_AudioChannelBitmap>("CoreAudio_5d69670f0307b385", 1082747218168300, this, []); }
+  set bitmap(value: _CoreAudioTypes_AudioChannelBitmap) { callSDK<void>("CoreAudio_5d69670f0307b385", 2384700187291386, this, [value]); }
   declare readonly $type: { "s:9CoreAudio07ManagedB13ChannelLayoutV": true };
 }
 
@@ -256,22 +256,22 @@ export class ManagedAudioChannelLayout_ChannelDescriptions extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 1141784354920294, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 1141784354920294, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.0+
    */
-  get count(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 3906346159553556, this, []); }
+  get count(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 3906346159553556, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 13.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 4380894332839102, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 4380894332839102, this, []); }
   /**
    * subscript(index: ManagedAudioChannelLayout.ChannelDescriptions.Index) -> ManagedAudioChannelLayout.ChannelDescriptions.Element { get set }
    * @availability iOS 13.0+
    */
-  subscript(index: number): _CoreAudioTypes_AudioChannelDescription { return callSDK<_CoreAudioTypes_AudioChannelDescription>("CoreAudio_212edf3d13b127f5", 2075451941438038, this, [index]); }
+  subscript(index: number): _CoreAudioTypes_AudioChannelDescription { return callSDK<_CoreAudioTypes_AudioChannelDescription>("CoreAudio_5d69670f0307b385", 2075451941438038, this, [index]); }
   declare readonly $type: { "s:9CoreAudio07ManagedB13ChannelLayoutV0D12DescriptionsV": true };
 }
 
@@ -308,23 +308,23 @@ export type ManagedAudioChannelLayout_ChannelDescriptions_SubSequence = SDKHandl
 /** struct UnsafeMutableAudioBufferListPointer */
 export class UnsafeMutableAudioBufferListPointer extends SDKHandle {
   /** var unsafePointer: UnsafePointer<AudioBufferList> { get } */
-  get unsafePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_212edf3d13b127f5", 2692062631012294, this, []); }
+  get unsafePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_5d69670f0307b385", 2692062631012294, this, []); }
   /** var unsafeMutablePointer: UnsafeMutablePointer<AudioBufferList> */
-  get unsafeMutablePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_212edf3d13b127f5", 552973231384687, this, []); }
-  set unsafeMutablePointer(value: SDKHandle) { callSDK<void>("CoreAudio_212edf3d13b127f5", 773280134583831, this, [value]); }
+  get unsafeMutablePointer(): SDKHandle { return callSDK<SDKHandle>("CoreAudio_5d69670f0307b385", 552973231384687, this, []); }
+  set unsafeMutablePointer(value: SDKHandle) { callSDK<void>("CoreAudio_5d69670f0307b385", 773280134583831, this, [value]); }
   /** var startIndex: Int { get } */
-  get startIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 3738366817931774, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 3738366817931774, this, []); }
   /** var count: Int { get nonmutating set } */
-  get count(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 1653737004707234, this, []); }
-  set count(value: number) { callSDK<void>("CoreAudio_212edf3d13b127f5", 3975785761505164, this, [value]); }
+  get count(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 1653737004707234, this, []); }
+  set count(value: number) { callSDK<void>("CoreAudio_5d69670f0307b385", 3975785761505164, this, [value]); }
   /** var endIndex: Int { get } */
-  get endIndex(): number { return callSDK<number>("CoreAudio_212edf3d13b127f5", 3292642282044077, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreAudio_5d69670f0307b385", 3292642282044077, this, []); }
   /** init?(_ p: UnsafeMutablePointer<AudioBufferList>?) */
-  static init(p?: (SDKHandle) | null): (UnsafeMutableAudioBufferListPointer) | null { return callSDK<(UnsafeMutableAudioBufferListPointer) | null>("CoreAudio_212edf3d13b127f5", 3651193011242041, undefined, [p]); }
+  static init(p?: (SDKHandle) | null): (UnsafeMutableAudioBufferListPointer) | null { return callSDK<(UnsafeMutableAudioBufferListPointer) | null>("CoreAudio_5d69670f0307b385", 3651193011242041, undefined, [p]); }
   /** init(_ p: UnsafeMutablePointer<AudioBufferList>) */
-  static init13092(p: SDKHandle): UnsafeMutableAudioBufferListPointer { return callSDK<UnsafeMutableAudioBufferListPointer>("CoreAudio_212edf3d13b127f5", 856027102760001, undefined, [p]); }
+  static init13092(p: SDKHandle): UnsafeMutableAudioBufferListPointer { return callSDK<UnsafeMutableAudioBufferListPointer>("CoreAudio_5d69670f0307b385", 856027102760001, undefined, [p]); }
   /** subscript(index: UnsafeMutableAudioBufferListPointer.Index) -> UnsafeMutableAudioBufferListPointer.Element { get nonmutating set } */
-  subscript(index: number): _CoreAudioTypes_AudioBuffer { return callSDK<_CoreAudioTypes_AudioBuffer>("CoreAudio_212edf3d13b127f5", 1423929072301347, this, [index]); }
+  subscript(index: number): _CoreAudioTypes_AudioBuffer { return callSDK<_CoreAudioTypes_AudioBuffer>("CoreAudio_5d69670f0307b385", 1423929072301347, this, [index]); }
   declare readonly $type: { "s:9CoreAudio013UnsafeMutableB17BufferListPointerV": true };
 }
 
@@ -343,11 +343,11 @@ export type UnsafeMutableAudioBufferListPointer_Iterator = "count" | SDKHandle;
 /** typealias SubSequence = Slice<UnsafeMutableAudioBufferListPointer> */
 export type UnsafeMutableAudioBufferListPointer_SubSequence = "count" | SDKHandle;
 
-registerSDKClass("CoreAudioTypes.AudioBuffer", AudioBuffer, { module: "CoreAudio_212edf3d13b127f5", properties: {} }, true);
-registerSDKClass("CoreAudioTypes.AudioBufferList", AudioBufferList, { module: "CoreAudio_212edf3d13b127f5", properties: {} }, true);
-registerSDKClass("CoreAudioTypes.AudioChannelLayout", AudioChannelLayout, { module: "CoreAudio_212edf3d13b127f5", properties: {} }, true);
-registerSDKClass("CoreAudio.AudioChannelLayout.UnsafeMutablePointer", AudioChannelLayout_UnsafeMutablePointer, { module: "CoreAudio_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":3539121274777712}} });
-registerSDKClass("CoreAudio.AudioChannelLayout.UnsafePointer", AudioChannelLayout_UnsafePointer, { module: "CoreAudio_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":3091094619827972}} });
-registerSDKClass("CoreAudio.ManagedAudioChannelLayout", ManagedAudioChannelLayout, { module: "CoreAudio_212edf3d13b127f5", properties: {}, methods: {"setAllToUnknown":{"id":4433264209565066}} });
-registerSDKClass("CoreAudio.ManagedAudioChannelLayout.ChannelDescriptions", ManagedAudioChannelLayout_ChannelDescriptions, { module: "CoreAudio_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":2075451941438038}} });
-registerSDKClass("CoreAudio.UnsafeMutableAudioBufferListPointer", UnsafeMutableAudioBufferListPointer, { module: "CoreAudio_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":1423929072301347}} });
+registerSDKClass("CoreAudioTypes.AudioBuffer", AudioBuffer, { module: "CoreAudio_5d69670f0307b385", properties: {} }, true);
+registerSDKClass("CoreAudioTypes.AudioBufferList", AudioBufferList, { module: "CoreAudio_5d69670f0307b385", properties: {} }, true);
+registerSDKClass("CoreAudioTypes.AudioChannelLayout", AudioChannelLayout, { module: "CoreAudio_5d69670f0307b385", properties: {} }, true);
+registerSDKClass("CoreAudio.AudioChannelLayout.UnsafeMutablePointer", AudioChannelLayout_UnsafeMutablePointer, { module: "CoreAudio_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":3539121274777712}} });
+registerSDKClass("CoreAudio.AudioChannelLayout.UnsafePointer", AudioChannelLayout_UnsafePointer, { module: "CoreAudio_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":3091094619827972}} });
+registerSDKClass("CoreAudio.ManagedAudioChannelLayout", ManagedAudioChannelLayout, { module: "CoreAudio_5d69670f0307b385", properties: {}, methods: {"setAllToUnknown":{"id":4433264209565066}} });
+registerSDKClass("CoreAudio.ManagedAudioChannelLayout.ChannelDescriptions", ManagedAudioChannelLayout_ChannelDescriptions, { module: "CoreAudio_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":2075451941438038}} });
+registerSDKClass("CoreAudio.UnsafeMutableAudioBufferListPointer", UnsafeMutableAudioBufferListPointer, { module: "CoreAudio_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":1423929072301347}} });

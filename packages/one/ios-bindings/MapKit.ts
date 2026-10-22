@@ -63,17 +63,17 @@ export class MKAddress extends SDKHandle {
    * init?(fullAddress: String, shortAddress: String?)
    * @availability iOS 26.0+
    */
-  static init(fullAddress: string, shortAddress?: (string) | null): (MKAddress) | null { return callSDK<(MKAddress) | null>("MapKit_212edf3d13b127f5", 2599631124671879, undefined, [fullAddress, shortAddress]); }
+  static init(fullAddress: string, shortAddress?: (string) | null): (MKAddress) | null { return callSDK<(MKAddress) | null>("MapKit_5d69670f0307b385", 2599631124671879, undefined, [fullAddress, shortAddress]); }
   /**
    * var fullAddress: String { get }
    * @availability iOS 26.0+
    */
-  get fullAddress(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 316408492109989, this, []); }
+  get fullAddress(): string { return callSDK<string>("MapKit_5d69670f0307b385", 316408492109989, this, []); }
   /**
    * var shortAddress: String? { get }
    * @availability iOS 26.0+
    */
-  get shortAddress(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 1534282769778357, this, []); }
+  get shortAddress(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 1534282769778357, this, []); }
   declare readonly $type: { "c:objc(cs)MKAddress": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fullAddress": true; "shortAddress": true };
 }
@@ -87,32 +87,32 @@ export class MKAddressFilter extends SDKHandle {
    * class var excludingAll: MKAddressFilter { get }
    * @availability iOS 18.0+
    */
-  static get excludingAll(): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_212edf3d13b127f5", 2031325376542483, undefined, []); }
+  static get excludingAll(): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_5d69670f0307b385", 2031325376542483, undefined, []); }
   /**
    * class var includingAll: MKAddressFilter { get }
    * @availability iOS 18.0+
    */
-  static get includingAll(): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_212edf3d13b127f5", 4141275684433221, undefined, []); }
+  static get includingAll(): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_5d69670f0307b385", 4141275684433221, undefined, []); }
   /**
    * func excludes(_ options: MKAddressFilter.Options) -> Bool
    * @availability iOS 18.0+
    */
-  excludes(options: MKAddressFilter_Options): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 684536769617032, this, [options]); }
+  excludes(options: MKAddressFilter_Options): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 684536769617032, this, [options]); }
   /**
    * func includes(_ options: MKAddressFilter.Options) -> Bool
    * @availability iOS 18.0+
    */
-  includes(options: MKAddressFilter_Options): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1532575705040069, this, [options]); }
+  includes(options: MKAddressFilter_Options): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1532575705040069, this, [options]); }
   /**
    * init(excluding options: MKAddressFilter.Options)
    * @availability iOS 18.0+
    */
-  static initExcluding(options: MKAddressFilter_Options): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_212edf3d13b127f5", 4301938363711712, undefined, [options]); }
+  static initExcluding(options: MKAddressFilter_Options): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_5d69670f0307b385", 4301938363711712, undefined, [options]); }
   /**
    * init(including options: MKAddressFilter.Options)
    * @availability iOS 18.0+
    */
-  static initIncluding(options: MKAddressFilter_Options): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_212edf3d13b127f5", 3865380327418268, undefined, [options]); }
+  static initIncluding(options: MKAddressFilter_Options): MKAddressFilter { return callSDK<MKAddressFilter>("MapKit_5d69670f0307b385", 3865380327418268, undefined, [options]); }
   declare readonly $type: { "c:objc(cs)MKAddressFilter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -127,37 +127,37 @@ export const MKAddressFilter_Options = {
    * static var administrativeArea: MKAddressFilter.Options { get }
    * @availability iOS 18.0+
    */
-  get administrativeArea(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 137475565175535, undefined, []); },
+  get administrativeArea(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 137475565175535, undefined, []); },
   /**
    * static var country: MKAddressFilter.Options { get }
    * @availability iOS 18.0+
    */
-  get country(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 3489418219395401, undefined, []); },
+  get country(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 3489418219395401, undefined, []); },
   /**
    * static var locality: MKAddressFilter.Options { get }
    * @availability iOS 18.0+
    */
-  get locality(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 2874587131906638, undefined, []); },
+  get locality(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 2874587131906638, undefined, []); },
   /**
    * static var postalCode: MKAddressFilter.Options { get }
    * @availability iOS 18.0+
    */
-  get postalCode(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 2606941905188784, undefined, []); },
+  get postalCode(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 2606941905188784, undefined, []); },
   /**
    * static var subAdministrativeArea: MKAddressFilter.Options { get }
    * @availability iOS 18.0+
    */
-  get subAdministrativeArea(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 3186140838999241, undefined, []); },
+  get subAdministrativeArea(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 3186140838999241, undefined, []); },
   /**
    * static var subLocality: MKAddressFilter.Options { get }
    * @availability iOS 18.0+
    */
-  get subLocality(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 3770149501876387, undefined, []); },
+  get subLocality(): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 3770149501876387, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_212edf3d13b127f5", 583372747684023, undefined, [rawValue]); }
+  init(rawValue: number): MKAddressFilter_Options { return callSDK<MKAddressFilter_Options>("MapKit_5d69670f0307b385", 583372747684023, undefined, [rawValue]); }
 };
 
 /**
@@ -169,32 +169,32 @@ export class MKAddressRepresentations extends SDKHandle {
    * func cityWithContext(_ style: MKAddressRepresentations.ContextStyle) -> String?
    * @availability iOS 26.0+
    */
-  cityWithContext(style: MKAddressRepresentations_ContextStyle): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 2073746362676863, this, [style]); }
+  cityWithContext(style: MKAddressRepresentations_ContextStyle): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 2073746362676863, this, [style]); }
   /**
    * func fullAddress(includingRegion: Bool, singleLine: Bool) -> String?
    * @availability iOS 26.0+
    */
-  fullAddress(includingRegion: boolean, singleLine: boolean): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 1631790585299094, this, [includingRegion, singleLine]); }
+  fullAddress(includingRegion: boolean, singleLine: boolean): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 1631790585299094, this, [includingRegion, singleLine]); }
   /**
    * var cityName: String? { get }
    * @availability iOS 26.0+
    */
-  get cityName(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 4190874252461958, this, []); }
+  get cityName(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 4190874252461958, this, []); }
   /**
    * var cityWithContext: String? { get }
    * @availability iOS 26.0+
    */
-  get cityWithContext19911(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 2851095207456187, this, []); }
+  get cityWithContext19911(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 2851095207456187, this, []); }
   /**
    * var regionName: String? { get }
    * @availability iOS 26.0+
    */
-  get regionName(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 2239362917696718, this, []); }
+  get regionName(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 2239362917696718, this, []); }
   /**
    * var region: Locale.Region? { get }
    * @availability iOS 26.0+
    */
-  get region(): (_Foundation_Locale_Region) | null { return callSDK<(_Foundation_Locale_Region) | null>("MapKit_212edf3d13b127f5", 2073325582351655, this, []); }
+  get region(): (_Foundation_Locale_Region) | null { return callSDK<(_Foundation_Locale_Region) | null>("MapKit_5d69670f0307b385", 2073325582351655, this, []); }
   declare readonly $type: { "c:objc(cs)MKAddressRepresentations": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cityName": true; "cityWithContext19911": true; "regionName": true };
 }
@@ -210,7 +210,7 @@ export const MKAddressRepresentations_ContextStyle = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (MKAddressRepresentations_ContextStyle) | null { return callSDK<(MKAddressRepresentations_ContextStyle) | null>("MapKit_212edf3d13b127f5", 1047016820745439, undefined, [rawValue]); }
+  init(rawValue: number): (MKAddressRepresentations_ContextStyle) | null { return callSDK<(MKAddressRepresentations_ContextStyle) | null>("MapKit_5d69670f0307b385", 1047016820745439, undefined, [rawValue]); }
 };
 
 /** protocol MKAnnotation : NSObjectProtocol */
@@ -227,156 +227,156 @@ export class MKAnnotationView extends SDKHandle {
    * init(annotation: (any MKAnnotation)?, reuseIdentifier: String?)
    * @availability iOS 3.0+
    */
-  static initAnnotationReuseIdentifier(annotation?: (SDKHandle) | null, reuseIdentifier?: (string) | null): Promise<MKAnnotationView> { return callSDKAsync<MKAnnotationView>("MapKit_212edf3d13b127f5", 3725007903810550, undefined, [annotation, reuseIdentifier]); }
+  static initAnnotationReuseIdentifier(annotation?: (SDKHandle) | null, reuseIdentifier?: (string) | null): Promise<MKAnnotationView> { return callSDKAsync<MKAnnotationView>("MapKit_5d69670f0307b385", 3725007903810550, undefined, [annotation, reuseIdentifier]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 3.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): Promise<(MKAnnotationView) | null> { return callSDKAsync<(MKAnnotationView) | null>("MapKit_212edf3d13b127f5", 3814865365259828, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): Promise<(MKAnnotationView) | null> { return callSDKAsync<(MKAnnotationView) | null>("MapKit_5d69670f0307b385", 3814865365259828, undefined, [aDecoder]); }
   /**
    * func prepareForDisplay()
    * @availability iOS 11.0+
    */
-  prepareForDisplay(): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4309116893675175, this, []); }
+  prepareForDisplay(): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4309116893675175, this, []); }
   /**
    * func prepareForReuse()
    * @availability iOS 3.0+
    */
-  prepareForReuse(): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2854454998048612, this, []); }
+  prepareForReuse(): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2854454998048612, this, []); }
   /**
    * func setDragState(_ newDragState: MKAnnotationView.DragState, animated: Bool)
    * @availability iOS 4.2+
    */
-  setDragState(newDragState: MKAnnotationView_DragState, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1964863206126586, this, [newDragState, animated]); }
+  setDragState(newDragState: MKAnnotationView_DragState, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1964863206126586, this, [newDragState, animated]); }
   /**
    * func setSelected(_ selected: Bool, animated: Bool)
    * @availability iOS 3.0+
    */
-  setSelected(selected: boolean, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1706355094388321, this, [selected, animated]); }
+  setSelected(selected: boolean, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1706355094388321, this, [selected, animated]); }
   /**
    * var accessoryOffset: CGPoint { get set }
    * @availability iOS 18.0+
    */
-  get accessoryOffset(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_212edf3d13b127f5", 2873879032540030, this, []); }
-  setAccessoryOffset(value: $SDK1): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4376886245337760, this, [value]); }
+  get accessoryOffset(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_5d69670f0307b385", 2873879032540030, this, []); }
+  setAccessoryOffset(value: $SDK1): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4376886245337760, this, [value]); }
   /**
    * var annotation: (any MKAnnotation)? { get set }
    * @availability iOS 3.0+
    */
-  get annotation(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_212edf3d13b127f5", 1290776544582100, this, []); }
-  setAnnotation(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3667394493209289, this, [value]); }
+  get annotation(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_5d69670f0307b385", 1290776544582100, this, []); }
+  setAnnotation(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3667394493209289, this, [value]); }
   /**
    * var calloutOffset: CGPoint { get set }
    * @availability iOS 3.0+
    */
-  get calloutOffset(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_212edf3d13b127f5", 2726828484948335, this, []); }
-  setCalloutOffset(value: $SDK1): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1700134201837890, this, [value]); }
+  get calloutOffset(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_5d69670f0307b385", 2726828484948335, this, []); }
+  setCalloutOffset(value: $SDK1): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1700134201837890, this, [value]); }
   /**
    * var canShowCallout: Bool { get set }
    * @availability iOS 3.0+
    */
-  get canShowCallout(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 200532324877821, this, []); }
-  setCanShowCallout(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1629038435424596, this, [value]); }
+  get canShowCallout(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 200532324877821, this, []); }
+  setCanShowCallout(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1629038435424596, this, [value]); }
   /**
    * var centerOffset: CGPoint { get set }
    * @availability iOS 3.0+
    */
-  get centerOffset(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_212edf3d13b127f5", 997951059616030, this, []); }
-  setCenterOffset(value: $SDK1): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 910838916483463, this, [value]); }
+  get centerOffset(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_5d69670f0307b385", 997951059616030, this, []); }
+  setCenterOffset(value: $SDK1): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 910838916483463, this, [value]); }
   /**
    * weak var cluster: MKAnnotationView? { get }
    * @availability iOS 11.0+
    */
-  get cluster(): Promise<$SDK2> { return callSDKAsync<$SDK2>("MapKit_212edf3d13b127f5", 1397514840090561, this, []); }
+  get cluster(): Promise<$SDK2> { return callSDKAsync<$SDK2>("MapKit_5d69670f0307b385", 1397514840090561, this, []); }
   /**
    * var clusteringIdentifier: String? { get set }
    * @availability iOS 11.0+
    */
-  get clusteringIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MapKit_212edf3d13b127f5", 2325589965627619, this, []); }
-  setClusteringIdentifier(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2234370113314436, this, [value]); }
+  get clusteringIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MapKit_5d69670f0307b385", 2325589965627619, this, []); }
+  setClusteringIdentifier(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2234370113314436, this, [value]); }
   /**
    * var collisionMode: MKAnnotationView.CollisionMode { get set }
    * @availability iOS 11.0+
    */
-  get collisionMode(): Promise<MKAnnotationView_CollisionMode> { return callSDKAsync<MKAnnotationView_CollisionMode>("MapKit_212edf3d13b127f5", 183846528009342, this, []); }
-  setCollisionMode(value: MKAnnotationView_CollisionMode): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2985786359493257, this, [value]); }
+  get collisionMode(): Promise<MKAnnotationView_CollisionMode> { return callSDKAsync<MKAnnotationView_CollisionMode>("MapKit_5d69670f0307b385", 183846528009342, this, []); }
+  setCollisionMode(value: MKAnnotationView_CollisionMode): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2985786359493257, this, [value]); }
   /**
    * var detailCalloutAccessoryView: UIView? { get set }
    * @availability iOS 9.0+
    */
-  get detailCalloutAccessoryView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("MapKit_212edf3d13b127f5", 1467624933950804, this, []); }
-  setDetailCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3456697735231754, this, [value]); }
+  get detailCalloutAccessoryView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("MapKit_5d69670f0307b385", 1467624933950804, this, []); }
+  setDetailCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3456697735231754, this, [value]); }
   /**
    * var displayPriority: MKFeatureDisplayPriority { get set }
    * @availability iOS 11.0+
    */
-  get displayPriority(): Promise<MKFeatureDisplayPriority> { return callSDKAsync<MKFeatureDisplayPriority>("MapKit_212edf3d13b127f5", 609308877285073, this, []); }
-  setDisplayPriority(value: MKFeatureDisplayPriority): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4318536668093425, this, [value]); }
+  get displayPriority(): Promise<MKFeatureDisplayPriority> { return callSDKAsync<MKFeatureDisplayPriority>("MapKit_5d69670f0307b385", 609308877285073, this, []); }
+  setDisplayPriority(value: MKFeatureDisplayPriority): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4318536668093425, this, [value]); }
   /**
    * var dragState: MKAnnotationView.DragState { get set }
    * @availability iOS 4.0+
    */
-  get dragState(): Promise<MKAnnotationView_DragState> { return callSDKAsync<MKAnnotationView_DragState>("MapKit_212edf3d13b127f5", 4037884778630324, this, []); }
-  setDragState76552(value: MKAnnotationView_DragState): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2653377384154620, this, [value]); }
+  get dragState(): Promise<MKAnnotationView_DragState> { return callSDKAsync<MKAnnotationView_DragState>("MapKit_5d69670f0307b385", 4037884778630324, this, []); }
+  setDragState76552(value: MKAnnotationView_DragState): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2653377384154620, this, [value]); }
   /**
    * var isDraggable: Bool { get set }
    * @availability iOS 4.0+
    */
-  get isDraggable(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 567523715769983, this, []); }
-  setIsDraggable(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2014229840391544, this, [value]); }
+  get isDraggable(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 567523715769983, this, []); }
+  setIsDraggable(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2014229840391544, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 857963248559047, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 986592462939422, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 857963248559047, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 986592462939422, this, [value]); }
   /**
    * var isHighlighted: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isHighlighted(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 2065329144155159, this, []); }
-  setIsHighlighted(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2144007001790487, this, [value]); }
+  get isHighlighted(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 2065329144155159, this, []); }
+  setIsHighlighted(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2144007001790487, this, [value]); }
   /**
    * var image: UIImage? { get set }
    * @availability iOS 3.0+
    */
-  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MapKit_212edf3d13b127f5", 1458340929896523, this, []); }
-  setImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3447831950819192, this, [value]); }
+  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MapKit_5d69670f0307b385", 1458340929896523, this, []); }
+  setImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3447831950819192, this, [value]); }
   /**
    * var leftCalloutAccessoryView: UIView? { get set }
    * @availability iOS 3.0+
    */
-  get leftCalloutAccessoryView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("MapKit_212edf3d13b127f5", 1047396744865891, this, []); }
-  setLeftCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 431441055587255, this, [value]); }
+  get leftCalloutAccessoryView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("MapKit_5d69670f0307b385", 1047396744865891, this, []); }
+  setLeftCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 431441055587255, this, [value]); }
   /**
    * var reuseIdentifier: String? { get }
    * @availability iOS 3.0+
    */
-  get reuseIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MapKit_212edf3d13b127f5", 2725092357649687, this, []); }
+  get reuseIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MapKit_5d69670f0307b385", 2725092357649687, this, []); }
   /**
    * var rightCalloutAccessoryView: UIView? { get set }
    * @availability iOS 3.0+
    */
-  get rightCalloutAccessoryView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("MapKit_212edf3d13b127f5", 4089443631315320, this, []); }
-  setRightCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4019404272700344, this, [value]); }
+  get rightCalloutAccessoryView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("MapKit_5d69670f0307b385", 4089443631315320, this, []); }
+  setRightCalloutAccessoryView(value?: (_UIKit_UIView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4019404272700344, this, [value]); }
   /**
    * var isSelected: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isSelected(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 1024797141818243, this, []); }
-  setIsSelected(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 524494929805605, this, [value]); }
+  get isSelected(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 1024797141818243, this, []); }
+  setIsSelected(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 524494929805605, this, [value]); }
   /**
    * var selectedZPriority: MKAnnotationViewZPriority { get set }
    * @availability iOS 14.0+
    */
-  get selectedZPriority(): Promise<MKAnnotationViewZPriority> { return callSDKAsync<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 62244940740837, this, []); }
-  setSelectedZPriority(value: MKAnnotationViewZPriority): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 317302731509173, this, [value]); }
+  get selectedZPriority(): Promise<MKAnnotationViewZPriority> { return callSDKAsync<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 62244940740837, this, []); }
+  setSelectedZPriority(value: MKAnnotationViewZPriority): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 317302731509173, this, [value]); }
   /**
    * var zPriority: MKAnnotationViewZPriority { get set }
    * @availability iOS 14.0+
    */
-  get zPriority(): Promise<MKAnnotationViewZPriority> { return callSDKAsync<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 1746732256668306, this, []); }
-  setZPriority(value: MKAnnotationViewZPriority): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 204004639713639, this, [value]); }
+  get zPriority(): Promise<MKAnnotationViewZPriority> { return callSDKAsync<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 1746732256668306, this, []); }
+  setZPriority(value: MKAnnotationViewZPriority): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 204004639713639, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKAnnotationView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryOffset": true; "annotation": true; "calloutOffset": true; "canShowCallout": true; "centerOffset": true; "cluster": true; "clusteringIdentifier": true; "collisionMode": true; "detailCalloutAccessoryView": true; "displayPriority": true; "dragState": true; "isDraggable": true; "isEnabled": true; "isHighlighted": true; "image": true; "leftCalloutAccessoryView": true; "reuseIdentifier": true; "rightCalloutAccessoryView": true; "isSelected": true; "selectedZPriority": true; "zPriority": true };
 }
@@ -392,7 +392,7 @@ export const MKAnnotationView_CollisionMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): Promise<(MKAnnotationView_CollisionMode) | null> { return callSDKAsync<(MKAnnotationView_CollisionMode) | null>("MapKit_212edf3d13b127f5", 3515309675741400, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(MKAnnotationView_CollisionMode) | null> { return callSDKAsync<(MKAnnotationView_CollisionMode) | null>("MapKit_5d69670f0307b385", 3515309675741400, undefined, [rawValue]); }
 };
 
 /**
@@ -406,7 +406,7 @@ export const MKAnnotationView_DragState = {
    * init?(rawValue: UInt)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): Promise<(MKAnnotationView_DragState) | null> { return callSDKAsync<(MKAnnotationView_DragState) | null>("MapKit_212edf3d13b127f5", 3582104998328467, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(MKAnnotationView_DragState) | null> { return callSDKAsync<(MKAnnotationView_DragState) | null>("MapKit_5d69670f0307b385", 3582104998328467, undefined, [rawValue]); }
 };
 
 /**
@@ -420,32 +420,32 @@ export const MKAnnotationViewZPriority = {
    * static var defaultSelected: MKAnnotationViewZPriority { get }
    * @availability iOS 14.0+
    */
-  get defaultSelected(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 4029841668189840, undefined, []); },
+  get defaultSelected(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 4029841668189840, undefined, []); },
   /**
    * static var defaultUnselected: MKAnnotationViewZPriority { get }
    * @availability iOS 14.0+
    */
-  get defaultUnselected(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 4160171368870860, undefined, []); },
+  get defaultUnselected(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 4160171368870860, undefined, []); },
   /**
    * static var max: MKAnnotationViewZPriority { get }
    * @availability iOS 14.0+
    */
-  get max(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 3887299780110359, undefined, []); },
+  get max(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 3887299780110359, undefined, []); },
   /**
    * static var min: MKAnnotationViewZPriority { get }
    * @availability iOS 14.0+
    */
-  get min(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 813825352918695, undefined, []); },
+  get min(): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 813825352918695, undefined, []); },
   /**
    * init(rawValue: Float)
    * @availability iOS 14.0+
    */
-  initRawValue(rawValue: number): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 4327478893970839, undefined, [rawValue]); },
+  initRawValue(rawValue: number): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 4327478893970839, undefined, [rawValue]); },
   /**
    * init(_ rawValue: Float)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_212edf3d13b127f5", 1077199561495438, undefined, [rawValue]); }
+  init(rawValue: number): MKAnnotationViewZPriority { return callSDK<MKAnnotationViewZPriority>("MapKit_5d69670f0307b385", 1077199561495438, undefined, [rawValue]); }
 };
 
 /**
@@ -454,19 +454,19 @@ export const MKAnnotationViewZPriority = {
  */
 export class MKShape extends SDKHandle {
   /** init() */
-  static init(): MKShape { return callSDK<MKShape>("MapKit_212edf3d13b127f5", 1410624246071415, undefined, []); }
+  static init(): MKShape { return callSDK<MKShape>("MapKit_5d69670f0307b385", 1410624246071415, undefined, []); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 4.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 12173553644419, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 2461385465416101, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 12173553644419, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 2461385465416101, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 4.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 2412294954329103, this, []); }
-  set title(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 3788459570564158, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 2412294954329103, this, []); }
+  set title(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 3788459570564158, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true };
 }
@@ -480,27 +480,27 @@ export class MKCircle extends MKShape {
    * convenience init(center coord: CLLocationCoordinate2D, radius: CLLocationDistance)
    * @availability iOS 4.0+
    */
-  static initCenterRadius(coord: $SDK3, radius: number): MKCircle { return callSDK<MKCircle>("MapKit_212edf3d13b127f5", 385499940797252, undefined, [coord, radius]); }
+  static initCenterRadius(coord: $SDK3, radius: number): MKCircle { return callSDK<MKCircle>("MapKit_5d69670f0307b385", 385499940797252, undefined, [coord, radius]); }
   /**
    * convenience init(mapRect: MKMapRect)
    * @availability iOS 4.0+
    */
-  static initMapRect(mapRect: MKMapRect): MKCircle { return callSDK<MKCircle>("MapKit_212edf3d13b127f5", 4470581199253218, undefined, [mapRect]); }
+  static initMapRect(mapRect: MKMapRect): MKCircle { return callSDK<MKCircle>("MapKit_5d69670f0307b385", 4470581199253218, undefined, [mapRect]); }
   /**
    * var boundingMapRect: MKMapRect { get }
    * @availability iOS 4.0+
    */
-  get boundingMapRect(): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 651328952600640, this, []); }
+  get boundingMapRect(): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 651328952600640, this, []); }
   /**
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 4.0+
    */
-  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 1982179887492866, this, []); }
+  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 1982179887492866, this, []); }
   /**
    * var radius: CLLocationDistance { get }
    * @availability iOS 4.0+
    */
-  get radius(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1698410513764997, this, []); }
+  get radius(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1698410513764997, this, []); }
   declare readonly $type: { "c:objc(cs)MKCircle": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "boundingMapRect": true; "coordinate": true; "radius": true };
 }
@@ -514,74 +514,74 @@ export class MKOverlayRenderer extends SDKHandle {
    * func canDraw(_ mapRect: MKMapRect, zoomScale: MKZoomScale) -> Bool
    * @availability iOS 7.0+
    */
-  canDraw(mapRect: MKMapRect, zoomScale: number): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1013100834061473, this, [mapRect, zoomScale]); }
+  canDraw(mapRect: MKMapRect, zoomScale: number): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1013100834061473, this, [mapRect, zoomScale]); }
   /**
    * func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext)
    * @availability iOS 7.0+
    */
-  draw(mapRect: MKMapRect, zoomScale: number, context: _CoreGraphics_CGContext): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1955950188583644, this, [mapRect, zoomScale, context]); }
+  draw(mapRect: MKMapRect, zoomScale: number, context: _CoreGraphics_CGContext): void { return callSDK<void>("MapKit_5d69670f0307b385", 1955950188583644, this, [mapRect, zoomScale, context]); }
   /**
    * init(overlay: any MKOverlay)
    * @availability iOS 7.0+
    */
-  static init(overlay: SDKHandle): MKOverlayRenderer { return callSDK<MKOverlayRenderer>("MapKit_212edf3d13b127f5", 291689349899859, undefined, [overlay]); }
+  static init(overlay: SDKHandle): MKOverlayRenderer { return callSDK<MKOverlayRenderer>("MapKit_5d69670f0307b385", 291689349899859, undefined, [overlay]); }
   /**
    * func mapPoint(for point: CGPoint) -> MKMapPoint
    * @availability iOS 7.0+
    */
-  mapPoint(point: $SDK1): MKMapPoint { return callSDK<MKMapPoint>("MapKit_212edf3d13b127f5", 358317985552314, this, [point]); }
+  mapPoint(point: $SDK1): MKMapPoint { return callSDK<MKMapPoint>("MapKit_5d69670f0307b385", 358317985552314, this, [point]); }
   /**
    * func mapRect(for rect: CGRect) -> MKMapRect
    * @availability iOS 7.0+
    */
-  mapRect(rect: $SDK4): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 1255439574578732, this, [rect]); }
+  mapRect(rect: $SDK4): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 1255439574578732, this, [rect]); }
   /**
    * func point(for mapPoint: MKMapPoint) -> CGPoint
    * @availability iOS 7.0+
    */
-  point(mapPoint: MKMapPoint): $SDK1 { return callSDK<$SDK1>("MapKit_212edf3d13b127f5", 3893402517243675, this, [mapPoint]); }
+  point(mapPoint: MKMapPoint): $SDK1 { return callSDK<$SDK1>("MapKit_5d69670f0307b385", 3893402517243675, this, [mapPoint]); }
   /**
    * func rect(for mapRect: MKMapRect) -> CGRect
    * @availability iOS 7.0+
    */
-  rect(mapRect: MKMapRect): $SDK4 { return callSDK<$SDK4>("MapKit_212edf3d13b127f5", 2612510501336321, this, [mapRect]); }
+  rect(mapRect: MKMapRect): $SDK4 { return callSDK<$SDK4>("MapKit_5d69670f0307b385", 2612510501336321, this, [mapRect]); }
   /**
    * func setNeedsDisplay()
    * @availability iOS 7.0+
    */
-  setNeedsDisplay(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2025111965474105, this, []); }
+  setNeedsDisplay(): void { return callSDK<void>("MapKit_5d69670f0307b385", 2025111965474105, this, []); }
   /**
    * func setNeedsDisplay(_ mapRect: MKMapRect)
    * @availability iOS 7.0+
    */
-  setNeedsDisplay78809(mapRect: MKMapRect): void { return callSDK<void>("MapKit_212edf3d13b127f5", 188774462605148, this, [mapRect]); }
+  setNeedsDisplay78809(mapRect: MKMapRect): void { return callSDK<void>("MapKit_5d69670f0307b385", 188774462605148, this, [mapRect]); }
   /**
    * func setNeedsDisplay(_ mapRect: MKMapRect, zoomScale: MKZoomScale)
    * @availability iOS 7.0+
    */
-  setNeedsDisplayZoomScale(mapRect: MKMapRect, zoomScale: number): void { return callSDK<void>("MapKit_212edf3d13b127f5", 3615342976538812, this, [mapRect, zoomScale]); }
+  setNeedsDisplayZoomScale(mapRect: MKMapRect, zoomScale: number): void { return callSDK<void>("MapKit_5d69670f0307b385", 3615342976538812, this, [mapRect, zoomScale]); }
   /**
    * var alpha: CGFloat { get set }
    * @availability iOS 7.0+
    */
-  get alpha(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 4202567929002115, this, []); }
-  set alpha(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 1990693133769266, this, [value]); }
+  get alpha(): number { return callSDK<number>("MapKit_5d69670f0307b385", 4202567929002115, this, []); }
+  set alpha(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 1990693133769266, this, [value]); }
   /**
    * var blendMode: CGBlendMode { get set }
    * @availability iOS 16.0+
    */
-  get blendMode(): _CoreGraphics_CGBlendMode { return callSDK<_CoreGraphics_CGBlendMode>("MapKit_212edf3d13b127f5", 4427452710941153, this, []); }
-  set blendMode(value: _CoreGraphics_CGBlendMode) { callSDK<void>("MapKit_212edf3d13b127f5", 125774165694738, this, [value]); }
+  get blendMode(): _CoreGraphics_CGBlendMode { return callSDK<_CoreGraphics_CGBlendMode>("MapKit_5d69670f0307b385", 4427452710941153, this, []); }
+  set blendMode(value: _CoreGraphics_CGBlendMode) { callSDK<void>("MapKit_5d69670f0307b385", 125774165694738, this, [value]); }
   /**
    * var contentScaleFactor: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get contentScaleFactor(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2046841710796422, this, []); }
+  get contentScaleFactor(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2046841710796422, this, []); }
   /**
    * var overlay: any MKOverlay { get }
    * @availability iOS 7.0+
    */
-  get overlay(): SDKHandle { return callSDK<SDKHandle>("MapKit_212edf3d13b127f5", 1883693776948802, this, []); }
+  get overlay(): SDKHandle { return callSDK<SDKHandle>("MapKit_5d69670f0307b385", 1883693776948802, this, []); }
   declare readonly $type: { "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true };
 }
@@ -595,94 +595,94 @@ export class MKOverlayPathRenderer extends (MKOverlayRenderer as unknown as Omit
    * func applyFillProperties(to context: CGContext, atZoomScale zoomScale: MKZoomScale)
    * @availability iOS 7.0+
    */
-  applyFillProperties(context: _CoreGraphics_CGContext, zoomScale: number): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1551775148523129, this, [context, zoomScale]); }
+  applyFillProperties(context: _CoreGraphics_CGContext, zoomScale: number): void { return callSDK<void>("MapKit_5d69670f0307b385", 1551775148523129, this, [context, zoomScale]); }
   /**
    * func applyStrokeProperties(to context: CGContext, atZoomScale zoomScale: MKZoomScale)
    * @availability iOS 7.0+
    */
-  applyStrokeProperties(context: _CoreGraphics_CGContext, zoomScale: number): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2784728898118545, this, [context, zoomScale]); }
+  applyStrokeProperties(context: _CoreGraphics_CGContext, zoomScale: number): void { return callSDK<void>("MapKit_5d69670f0307b385", 2784728898118545, this, [context, zoomScale]); }
   /**
    * func createPath()
    * @availability iOS 7.0+
    */
-  createPath(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2377689415299596, this, []); }
+  createPath(): void { return callSDK<void>("MapKit_5d69670f0307b385", 2377689415299596, this, []); }
   /**
    * func fillPath(_ path: CGPath, in context: CGContext)
    * @availability iOS 7.0+
    */
-  fillPath(path: _CoreGraphics_CGPath, context: _CoreGraphics_CGContext): void { return callSDK<void>("MapKit_212edf3d13b127f5", 3345457228508851, this, [path, context]); }
+  fillPath(path: _CoreGraphics_CGPath, context: _CoreGraphics_CGContext): void { return callSDK<void>("MapKit_5d69670f0307b385", 3345457228508851, this, [path, context]); }
   /** init() */
-  static init(): MKOverlayPathRenderer { return callSDK<MKOverlayPathRenderer>("MapKit_212edf3d13b127f5", 2946263176212852, undefined, []); }
+  static init(): MKOverlayPathRenderer { return callSDK<MKOverlayPathRenderer>("MapKit_5d69670f0307b385", 2946263176212852, undefined, []); }
   /**
    * func invalidatePath()
    * @availability iOS 7.0+
    */
-  invalidatePath(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2575333195867422, this, []); }
+  invalidatePath(): void { return callSDK<void>("MapKit_5d69670f0307b385", 2575333195867422, this, []); }
   /**
    * func strokePath(_ path: CGPath, in context: CGContext)
    * @availability iOS 7.0+
    */
-  strokePath(path: _CoreGraphics_CGPath, context: _CoreGraphics_CGContext): void { return callSDK<void>("MapKit_212edf3d13b127f5", 4335004513862738, this, [path, context]); }
+  strokePath(path: _CoreGraphics_CGPath, context: _CoreGraphics_CGContext): void { return callSDK<void>("MapKit_5d69670f0307b385", 4335004513862738, this, [path, context]); }
   /**
    * var fillColor: UIColor? { get set }
    * @availability iOS 7.0+
    */
-  get fillColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("MapKit_212edf3d13b127f5", 1609118127874738, this, []); }
-  set fillColor(value: (_UIKit_UIColor) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 344699304136958, this, [value]); }
+  get fillColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("MapKit_5d69670f0307b385", 1609118127874738, this, []); }
+  set fillColor(value: (_UIKit_UIColor) | null) { callSDK<void>("MapKit_5d69670f0307b385", 344699304136958, this, [value]); }
   /**
    * var lineCap: CGLineCap { get set }
    * @availability iOS 7.0+
    */
-  get lineCap(): _CoreGraphics_CGLineCap { return callSDK<_CoreGraphics_CGLineCap>("MapKit_212edf3d13b127f5", 3103447373678161, this, []); }
-  set lineCap(value: _CoreGraphics_CGLineCap) { callSDK<void>("MapKit_212edf3d13b127f5", 3466939680287617, this, [value]); }
+  get lineCap(): _CoreGraphics_CGLineCap { return callSDK<_CoreGraphics_CGLineCap>("MapKit_5d69670f0307b385", 3103447373678161, this, []); }
+  set lineCap(value: _CoreGraphics_CGLineCap) { callSDK<void>("MapKit_5d69670f0307b385", 3466939680287617, this, [value]); }
   /**
    * var lineDashPattern: [NSNumber]? { get set }
    * @availability iOS 7.0+
    */
-  get lineDashPattern(): $SDK5 { return callSDK<$SDK5>("MapKit_212edf3d13b127f5", 897307507910459, this, []); }
-  set lineDashPattern(value: $SDK5) { callSDK<void>("MapKit_212edf3d13b127f5", 1471155220475662, this, [value]); }
+  get lineDashPattern(): $SDK5 { return callSDK<$SDK5>("MapKit_5d69670f0307b385", 897307507910459, this, []); }
+  set lineDashPattern(value: $SDK5) { callSDK<void>("MapKit_5d69670f0307b385", 1471155220475662, this, [value]); }
   /**
    * var lineDashPhase: CGFloat { get set }
    * @availability iOS 7.0+
    */
-  get lineDashPhase(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1207221637675307, this, []); }
-  set lineDashPhase(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2235413785867530, this, [value]); }
+  get lineDashPhase(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1207221637675307, this, []); }
+  set lineDashPhase(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2235413785867530, this, [value]); }
   /**
    * var lineJoin: CGLineJoin { get set }
    * @availability iOS 7.0+
    */
-  get lineJoin(): _CoreGraphics_CGLineJoin { return callSDK<_CoreGraphics_CGLineJoin>("MapKit_212edf3d13b127f5", 836273103854592, this, []); }
-  set lineJoin(value: _CoreGraphics_CGLineJoin) { callSDK<void>("MapKit_212edf3d13b127f5", 687437427201877, this, [value]); }
+  get lineJoin(): _CoreGraphics_CGLineJoin { return callSDK<_CoreGraphics_CGLineJoin>("MapKit_5d69670f0307b385", 836273103854592, this, []); }
+  set lineJoin(value: _CoreGraphics_CGLineJoin) { callSDK<void>("MapKit_5d69670f0307b385", 687437427201877, this, [value]); }
   /**
    * var lineWidth: CGFloat { get set }
    * @availability iOS 7.0+
    */
-  get lineWidth(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 621637425292590, this, []); }
-  set lineWidth(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 450045444052429, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("MapKit_5d69670f0307b385", 621637425292590, this, []); }
+  set lineWidth(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 450045444052429, this, [value]); }
   /**
    * var miterLimit: CGFloat { get set }
    * @availability iOS 7.0+
    */
-  get miterLimit(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3558400892814640, this, []); }
-  set miterLimit(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2556420660900548, this, [value]); }
+  get miterLimit(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3558400892814640, this, []); }
+  set miterLimit(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2556420660900548, this, [value]); }
   /**
    * var path: CGPath! { get set }
    * @availability iOS 7.0+
    */
-  get path(): $SDK6 { return callSDK<$SDK6>("MapKit_212edf3d13b127f5", 1155172401900233, this, []); }
-  set path(value: $SDK6) { callSDK<void>("MapKit_212edf3d13b127f5", 627079341332271, this, [value]); }
+  get path(): $SDK6 { return callSDK<$SDK6>("MapKit_5d69670f0307b385", 1155172401900233, this, []); }
+  set path(value: $SDK6) { callSDK<void>("MapKit_5d69670f0307b385", 627079341332271, this, [value]); }
   /**
    * var shouldRasterize: Bool { get set }
    * @availability iOS 13.0+
    */
-  get shouldRasterize(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2997591914770543, this, []); }
-  set shouldRasterize(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 1757857142541976, this, [value]); }
+  get shouldRasterize(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2997591914770543, this, []); }
+  set shouldRasterize(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 1757857142541976, this, [value]); }
   /**
    * var strokeColor: UIColor? { get set }
    * @availability iOS 7.0+
    */
-  get strokeColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("MapKit_212edf3d13b127f5", 3867185968425210, this, []); }
-  set strokeColor(value: (_UIKit_UIColor) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 469733587032858, this, [value]); }
+  get strokeColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("MapKit_5d69670f0307b385", 3867185968425210, this, []); }
+  set strokeColor(value: (_UIKit_UIColor) | null) { callSDK<void>("MapKit_5d69670f0307b385", 469733587032858, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true };
 }
@@ -696,24 +696,24 @@ export class MKCircleRenderer extends (MKOverlayPathRenderer as unknown as Omit<
    * init(circle: MKCircle)
    * @availability iOS 7.0+
    */
-  static init(circle: MKCircle): MKCircleRenderer { return callSDK<MKCircleRenderer>("MapKit_212edf3d13b127f5", 3538451812030811, undefined, [circle]); }
+  static init(circle: MKCircle): MKCircleRenderer { return callSDK<MKCircleRenderer>("MapKit_5d69670f0307b385", 3538451812030811, undefined, [circle]); }
   /**
    * var circle: MKCircle { get }
    * @availability iOS 7.0+
    */
-  get circle(): MKCircle { return callSDK<MKCircle>("MapKit_212edf3d13b127f5", 1228471027851338, this, []); }
+  get circle(): MKCircle { return callSDK<MKCircle>("MapKit_5d69670f0307b385", 1228471027851338, this, []); }
   /**
    * var strokeEnd: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get strokeEnd(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3408083950947644, this, []); }
-  set strokeEnd(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2843651191565295, this, [value]); }
+  get strokeEnd(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3408083950947644, this, []); }
+  set strokeEnd(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2843651191565295, this, [value]); }
   /**
    * var strokeStart: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get strokeStart(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3821110166354562, this, []); }
-  set strokeStart(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2240075144292684, this, [value]); }
+  get strokeStart(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3821110166354562, this, []); }
+  set strokeStart(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2240075144292684, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKCircleRenderer": true; "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true; "circle": true; "strokeEnd": true; "strokeStart": true };
 }
@@ -725,7 +725,7 @@ export class MKCircleRenderer extends (MKOverlayPathRenderer as unknown as Omit<
  */
 export class MKOverlayView extends SDKHandle {
   /** init() */
-  static init(): Promise<MKOverlayView> { return callSDKAsync<MKOverlayView>("MapKit_212edf3d13b127f5", 2316999795412368, undefined, []); }
+  static init(): Promise<MKOverlayView> { return callSDKAsync<MKOverlayView>("MapKit_5d69670f0307b385", 2316999795412368, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKOverlayView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -736,7 +736,7 @@ export class MKOverlayView extends SDKHandle {
  */
 export class MKOverlayPathView extends (MKOverlayView as unknown as Omit<typeof MKOverlayView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayView)) {
   /** init() */
-  static init(): Promise<MKOverlayPathView> { return callSDKAsync<MKOverlayPathView>("MapKit_212edf3d13b127f5", 2812563960312875, undefined, []); }
+  static init(): Promise<MKOverlayPathView> { return callSDKAsync<MKOverlayPathView>("MapKit_5d69670f0307b385", 2812563960312875, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKOverlayPathView": true; "c:objc(cs)MKOverlayView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -747,7 +747,7 @@ export class MKOverlayPathView extends (MKOverlayView as unknown as Omit<typeof 
  */
 export class MKCircleView extends (MKOverlayPathView as unknown as Omit<typeof MKOverlayPathView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathView)) {
   /** init() */
-  static init(): Promise<MKCircleView> { return callSDKAsync<MKCircleView>("MapKit_212edf3d13b127f5", 2970837543849482, undefined, []); }
+  static init(): Promise<MKCircleView> { return callSDKAsync<MKCircleView>("MapKit_5d69670f0307b385", 2970837543849482, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKCircleView": true; "c:objc(cs)MKOverlayPathView": true; "c:objc(cs)MKOverlayView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -760,24 +760,24 @@ export class MKClusterAnnotation extends SDKHandle {
    * init(memberAnnotations: [any MKAnnotation])
    * @availability iOS 11.0+
    */
-  static init(memberAnnotations: Array<SDKHandle>): MKClusterAnnotation { return callSDK<MKClusterAnnotation>("MapKit_212edf3d13b127f5", 3061654320764471, undefined, [memberAnnotations]); }
+  static init(memberAnnotations: Array<SDKHandle>): MKClusterAnnotation { return callSDK<MKClusterAnnotation>("MapKit_5d69670f0307b385", 3061654320764471, undefined, [memberAnnotations]); }
   /**
    * var memberAnnotations: [any MKAnnotation] { get }
    * @availability iOS 11.0+
    */
-  get memberAnnotations(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("MapKit_212edf3d13b127f5", 3964881453727748, this, []); }
+  get memberAnnotations(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("MapKit_5d69670f0307b385", 3964881453727748, this, []); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 11.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 2812248446891790, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 3140010463925129, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 2812248446891790, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 3140010463925129, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 11.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 3835730904097282, this, []); }
-  set title(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 3793799799564222, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 3835730904097282, this, []); }
+  set title(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 3793799799564222, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKClusterAnnotation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "memberAnnotations": true; "subtitle": true; "title": true };
 }
@@ -791,19 +791,19 @@ export class MKCompassButton extends SDKHandle {
    * convenience init(mapView: MKMapView?)
    * @availability iOS 11.0+
    */
-  static init(mapView?: (MKMapView) | null): Promise<MKCompassButton> { return callSDKAsync<MKCompassButton>("MapKit_212edf3d13b127f5", 2525618945005450, undefined, [mapView]); }
+  static init(mapView?: (MKMapView) | null): Promise<MKCompassButton> { return callSDKAsync<MKCompassButton>("MapKit_5d69670f0307b385", 2525618945005450, undefined, [mapView]); }
   /**
    * var compassVisibility: MKFeatureVisibility { get set }
    * @availability iOS 11.0+
    */
-  get compassVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_212edf3d13b127f5", 4264658866057437, this, []); }
-  setCompassVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3442228136474220, this, [value]); }
+  get compassVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_5d69670f0307b385", 4264658866057437, this, []); }
+  setCompassVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3442228136474220, this, [value]); }
   /**
    * weak var mapView: MKMapView? { get set }
    * @availability iOS 11.0+
    */
-  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_212edf3d13b127f5", 2538822344916778, this, []); }
-  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2777719152369090, this, [value]); }
+  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_5d69670f0307b385", 2538822344916778, this, []); }
+  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2777719152369090, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKCompassButton": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "compassVisibility": true; "mapView": true };
 }
@@ -814,34 +814,34 @@ export class MKCoordinateRegion extends SDKHandle {
    * init(_ rect: MKMapRect)
    * @availability iOS 4.0+
    */
-  static init(rect: MKMapRect): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 3950794973821075, undefined, [rect]); }
+  static init(rect: MKMapRect): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 3950794973821075, undefined, [rect]); }
   /** init(center centerCoordinate: CLLocationCoordinate2D, latitudinalMeters: CLLocationDistance, longitudinalMeters: CLLocationDistance) */
-  static initCenterLatitudinalMetersLongitudinalMeters(centerCoordinate: $SDK3, latitudinalMeters: number, longitudinalMeters: number): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 233437421755038, undefined, [centerCoordinate, latitudinalMeters, longitudinalMeters]); }
+  static initCenterLatitudinalMetersLongitudinalMeters(centerCoordinate: $SDK3, latitudinalMeters: number, longitudinalMeters: number): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 233437421755038, undefined, [centerCoordinate, latitudinalMeters, longitudinalMeters]); }
   /** var center: CLLocationCoordinate2D */
-  get center(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 3928928466225154, this, []); }
-  set center(value: $SDK3) { callSDK<void>("MapKit_212edf3d13b127f5", 931351561373898, this, [value]); }
+  get center(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 3928928466225154, this, []); }
+  set center(value: $SDK3) { callSDK<void>("MapKit_5d69670f0307b385", 931351561373898, this, [value]); }
   /** var span: MKCoordinateSpan */
-  get span(): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_212edf3d13b127f5", 450216414146039, this, []); }
-  set span(value: MKCoordinateSpan) { callSDK<void>("MapKit_212edf3d13b127f5", 1808540394537426, this, [value]); }
+  get span(): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_5d69670f0307b385", 450216414146039, this, []); }
+  set span(value: MKCoordinateSpan) { callSDK<void>("MapKit_5d69670f0307b385", 1808540394537426, this, [value]); }
   /** init(center: CLLocationCoordinate2D, span: MKCoordinateSpan) */
-  static initCenterSpan(center: $SDK3, span: MKCoordinateSpan): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 1528744067351448, undefined, [center, span]); }
+  static initCenterSpan(center: $SDK3, span: MKCoordinateSpan): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 1528744067351448, undefined, [center, span]); }
   /** init() */
-  static init63636(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 1233950920424705, undefined, []); }
+  static init63636(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 1233950920424705, undefined, []); }
   declare readonly $type: { "c:@SA@MKCoordinateRegion": true };
 }
 
 /** struct MKCoordinateSpan */
 export class MKCoordinateSpan extends SDKHandle {
   /** var latitudeDelta: CLLocationDegrees */
-  get latitudeDelta(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 74738899768668, this, []); }
-  set latitudeDelta(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2401208539807528, this, [value]); }
+  get latitudeDelta(): number { return callSDK<number>("MapKit_5d69670f0307b385", 74738899768668, this, []); }
+  set latitudeDelta(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2401208539807528, this, [value]); }
   /** var longitudeDelta: CLLocationDegrees */
-  get longitudeDelta(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1190237826553910, this, []); }
-  set longitudeDelta(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 1906087891023692, this, [value]); }
+  get longitudeDelta(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1190237826553910, this, []); }
+  set longitudeDelta(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 1906087891023692, this, [value]); }
   /** init(latitudeDelta: CLLocationDegrees, longitudeDelta: CLLocationDegrees) */
-  static initLatitudeDeltaLongitudeDelta(latitudeDelta: number, longitudeDelta: number): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_212edf3d13b127f5", 1437679730868485, undefined, [latitudeDelta, longitudeDelta]); }
+  static initLatitudeDeltaLongitudeDelta(latitudeDelta: number, longitudeDelta: number): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_5d69670f0307b385", 1437679730868485, undefined, [latitudeDelta, longitudeDelta]); }
   /** init() */
-  static init(): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_212edf3d13b127f5", 945314543245236, undefined, []); }
+  static init(): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_5d69670f0307b385", 945314543245236, undefined, []); }
   declare readonly $type: { "c:@SA@MKCoordinateSpan": true };
 }
 
@@ -854,27 +854,27 @@ export class MKDirections extends SDKHandle {
    * func calculate() async throws -> MKDirections.Response
    * @availability iOS 7.0+
    */
-  calculate(completionHandler: ((arg0: (MKDirections_Response) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2846112761186495, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  calculate(completionHandler: ((arg0: (MKDirections_Response) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 2846112761186495, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func calculateETA() async throws -> MKDirections.ETAResponse
    * @availability iOS 7.0+
    */
-  calculateETA(completionHandler: ((arg0: (MKDirections_ETAResponse) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1256732377510055, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  calculateETA(completionHandler: ((arg0: (MKDirections_ETAResponse) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 1256732377510055, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func cancel()
    * @availability iOS 7.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1197430164248197, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 1197430164248197, this, []); }
   /**
    * init(request: MKDirections.Request)
    * @availability iOS 7.0+
    */
-  static init(request: MKDirections_Request): MKDirections { return callSDK<MKDirections>("MapKit_212edf3d13b127f5", 3912835724461708, undefined, [request]); }
+  static init(request: MKDirections_Request): MKDirections { return callSDK<MKDirections>("MapKit_5d69670f0307b385", 3912835724461708, undefined, [request]); }
   /**
    * var isCalculating: Bool { get }
    * @availability iOS 7.0+
    */
-  get isCalculating(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1026008915985355, this, []); }
+  get isCalculating(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1026008915985355, this, []); }
   declare readonly $type: { "c:objc(cs)MKDirections": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCalculating": true };
 }
@@ -891,42 +891,42 @@ export type MKDirections_ETAHandler = ((arg0: (MKDirections_ETAResponse) | null,
  */
 export class MKDirections_ETAResponse extends SDKHandle {
   /** init() */
-  static init(): MKDirections_ETAResponse { return callSDK<MKDirections_ETAResponse>("MapKit_212edf3d13b127f5", 380459917336578, undefined, []); }
+  static init(): MKDirections_ETAResponse { return callSDK<MKDirections_ETAResponse>("MapKit_5d69670f0307b385", 380459917336578, undefined, []); }
   /**
    * var destination: MKMapItem { get }
    * @availability iOS 7.0+
    */
-  get destination(): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 4325804736131575, this, []); }
+  get destination(): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 4325804736131575, this, []); }
   /**
    * var distance: CLLocationDistance { get }
    * @availability iOS 9.0+
    */
-  get distance(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2001431194326494, this, []); }
+  get distance(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2001431194326494, this, []); }
   /**
    * var expectedArrivalDate: Date { get }
    * @availability iOS 9.0+
    */
-  get expectedArrivalDate(): globalThis.Date { return callSDK<globalThis.Date>("MapKit_212edf3d13b127f5", 1991395252466589, this, []); }
+  get expectedArrivalDate(): globalThis.Date { return callSDK<globalThis.Date>("MapKit_5d69670f0307b385", 1991395252466589, this, []); }
   /**
    * var expectedDepartureDate: Date { get }
    * @availability iOS 9.0+
    */
-  get expectedDepartureDate(): globalThis.Date { return callSDK<globalThis.Date>("MapKit_212edf3d13b127f5", 2738634883150642, this, []); }
+  get expectedDepartureDate(): globalThis.Date { return callSDK<globalThis.Date>("MapKit_5d69670f0307b385", 2738634883150642, this, []); }
   /**
    * var expectedTravelTime: TimeInterval { get }
    * @availability iOS 7.0+
    */
-  get expectedTravelTime(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 65272979697736, this, []); }
+  get expectedTravelTime(): number { return callSDK<number>("MapKit_5d69670f0307b385", 65272979697736, this, []); }
   /**
    * var source: MKMapItem { get }
    * @availability iOS 7.0+
    */
-  get source(): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 52247408955646, this, []); }
+  get source(): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 52247408955646, this, []); }
   /**
    * var transportType: MKDirectionsTransportType { get }
    * @availability iOS 9.0+
    */
-  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 4347663305633410, this, []); }
+  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 4347663305633410, this, []); }
   declare readonly $type: { "c:objc(cs)MKETAResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "destination": true; "distance": true; "expectedArrivalDate": true; "expectedDepartureDate": true; "expectedTravelTime": true; "source": true; "transportType": true };
 }
@@ -940,60 +940,60 @@ export class MKDirections_Request extends SDKHandle {
    * class func isDirectionsRequest(_ url: URL) -> Bool
    * @availability iOS 6.0+
    */
-  static isDirectionsRequest(url: string): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3324484660956795, undefined, [url]); }
+  static isDirectionsRequest(url: string): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3324484660956795, undefined, [url]); }
   /**
    * init(contentsOf url: URL)
    * @availability iOS 6.0+
    */
-  static init(url: string): MKDirections_Request { return callSDK<MKDirections_Request>("MapKit_212edf3d13b127f5", 4253149986997663, undefined, [url]); }
+  static init(url: string): MKDirections_Request { return callSDK<MKDirections_Request>("MapKit_5d69670f0307b385", 4253149986997663, undefined, [url]); }
   /**
    * var arrivalDate: Date? { get set }
    * @availability iOS 7.0+
    */
-  get arrivalDate(): $SDK11 { return callSDK<$SDK11>("MapKit_212edf3d13b127f5", 1496794808742102, this, []); }
-  set arrivalDate(value: $SDK11) { callSDK<void>("MapKit_212edf3d13b127f5", 4382533394733402, this, [value]); }
+  get arrivalDate(): $SDK11 { return callSDK<$SDK11>("MapKit_5d69670f0307b385", 1496794808742102, this, []); }
+  set arrivalDate(value: $SDK11) { callSDK<void>("MapKit_5d69670f0307b385", 4382533394733402, this, [value]); }
   /**
    * var departureDate: Date? { get set }
    * @availability iOS 7.0+
    */
-  get departureDate(): $SDK11 { return callSDK<$SDK11>("MapKit_212edf3d13b127f5", 39387534418644, this, []); }
-  set departureDate(value: $SDK11) { callSDK<void>("MapKit_212edf3d13b127f5", 1613939745337354, this, [value]); }
+  get departureDate(): $SDK11 { return callSDK<$SDK11>("MapKit_5d69670f0307b385", 39387534418644, this, []); }
+  set departureDate(value: $SDK11) { callSDK<void>("MapKit_5d69670f0307b385", 1613939745337354, this, [value]); }
   /**
    * var destination: MKMapItem? { get set }
    * @availability iOS 6.0+
    */
-  get destination(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_212edf3d13b127f5", 2321228314221119, this, []); }
-  set destination(value: (MKMapItem) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 3687729075858477, this, [value]); }
+  get destination(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_5d69670f0307b385", 2321228314221119, this, []); }
+  set destination(value: (MKMapItem) | null) { callSDK<void>("MapKit_5d69670f0307b385", 3687729075858477, this, [value]); }
   /**
    * var highwayPreference: MKDirections.RoutePreference { get set }
    * @availability iOS 16.0+
    */
-  get highwayPreference(): MKDirections_RoutePreference { return callSDK<MKDirections_RoutePreference>("MapKit_212edf3d13b127f5", 672353308889650, this, []); }
-  set highwayPreference(value: MKDirections_RoutePreference) { callSDK<void>("MapKit_212edf3d13b127f5", 4008712247685055, this, [value]); }
+  get highwayPreference(): MKDirections_RoutePreference { return callSDK<MKDirections_RoutePreference>("MapKit_5d69670f0307b385", 672353308889650, this, []); }
+  set highwayPreference(value: MKDirections_RoutePreference) { callSDK<void>("MapKit_5d69670f0307b385", 4008712247685055, this, [value]); }
   /**
    * var requestsAlternateRoutes: Bool { get set }
    * @availability iOS 7.0+
    */
-  get requestsAlternateRoutes(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 4075218489913600, this, []); }
-  set requestsAlternateRoutes(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 154775943991119, this, [value]); }
+  get requestsAlternateRoutes(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 4075218489913600, this, []); }
+  set requestsAlternateRoutes(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 154775943991119, this, [value]); }
   /**
    * var source: MKMapItem? { get set }
    * @availability iOS 6.0+
    */
-  get source(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_212edf3d13b127f5", 3139667276024387, this, []); }
-  set source(value: (MKMapItem) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 2548771603847265, this, [value]); }
+  get source(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_5d69670f0307b385", 3139667276024387, this, []); }
+  set source(value: (MKMapItem) | null) { callSDK<void>("MapKit_5d69670f0307b385", 2548771603847265, this, [value]); }
   /**
    * var tollPreference: MKDirections.RoutePreference { get set }
    * @availability iOS 16.0+
    */
-  get tollPreference(): MKDirections_RoutePreference { return callSDK<MKDirections_RoutePreference>("MapKit_212edf3d13b127f5", 3804512643915468, this, []); }
-  set tollPreference(value: MKDirections_RoutePreference) { callSDK<void>("MapKit_212edf3d13b127f5", 1713374481283265, this, [value]); }
+  get tollPreference(): MKDirections_RoutePreference { return callSDK<MKDirections_RoutePreference>("MapKit_5d69670f0307b385", 3804512643915468, this, []); }
+  set tollPreference(value: MKDirections_RoutePreference) { callSDK<void>("MapKit_5d69670f0307b385", 1713374481283265, this, [value]); }
   /**
    * var transportType: MKDirectionsTransportType { get set }
    * @availability iOS 7.0+
    */
-  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 3960493291790223, this, []); }
-  set transportType(value: MKDirectionsTransportType) { callSDK<void>("MapKit_212edf3d13b127f5", 3333356124864536, this, [value]); }
+  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 3960493291790223, this, []); }
+  set transportType(value: MKDirectionsTransportType) { callSDK<void>("MapKit_5d69670f0307b385", 3333356124864536, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKDirectionsRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "arrivalDate": true; "departureDate": true; "destination": true; "highwayPreference": true; "requestsAlternateRoutes": true; "source": true; "tollPreference": true; "transportType": true };
 }
@@ -1004,22 +1004,22 @@ export class MKDirections_Request extends SDKHandle {
  */
 export class MKDirections_Response extends SDKHandle {
   /** init() */
-  static init(): MKDirections_Response { return callSDK<MKDirections_Response>("MapKit_212edf3d13b127f5", 4230154860285458, undefined, []); }
+  static init(): MKDirections_Response { return callSDK<MKDirections_Response>("MapKit_5d69670f0307b385", 4230154860285458, undefined, []); }
   /**
    * var destination: MKMapItem { get }
    * @availability iOS 7.0+
    */
-  get destination(): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 215860020229985, this, []); }
+  get destination(): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 215860020229985, this, []); }
   /**
    * var routes: [MKRoute] { get }
    * @availability iOS 7.0+
    */
-  get routes(): Array<MKRoute> { return callSDK<Array<MKRoute>>("MapKit_212edf3d13b127f5", 1937527990318370, this, []); }
+  get routes(): Array<MKRoute> { return callSDK<Array<MKRoute>>("MapKit_5d69670f0307b385", 1937527990318370, this, []); }
   /**
    * var source: MKMapItem { get }
    * @availability iOS 7.0+
    */
-  get source(): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 714428168545349, this, []); }
+  get source(): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 714428168545349, this, []); }
   declare readonly $type: { "c:objc(cs)MKDirectionsResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "destination": true; "routes": true; "source": true };
 }
@@ -1035,7 +1035,7 @@ export const MKDirections_RoutePreference = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MKDirections_RoutePreference) | null { return callSDK<(MKDirections_RoutePreference) | null>("MapKit_212edf3d13b127f5", 2351228877639130, undefined, [rawValue]); }
+  init(rawValue: number): (MKDirections_RoutePreference) | null { return callSDK<(MKDirections_RoutePreference) | null>("MapKit_5d69670f0307b385", 2351228877639130, undefined, [rawValue]); }
 };
 
 /**
@@ -1049,32 +1049,32 @@ export const MKDirectionsTransportType = {
    * static var any: MKDirectionsTransportType { get }
    * @availability iOS 7.0+
    */
-  get any(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 2894162256007417, undefined, []); },
+  get any(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 2894162256007417, undefined, []); },
   /**
    * static var automobile: MKDirectionsTransportType { get }
    * @availability iOS 7.0+
    */
-  get automobile(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 1414203458372430, undefined, []); },
+  get automobile(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 1414203458372430, undefined, []); },
   /**
    * static var cycling: MKDirectionsTransportType { get }
    * @availability iOS 14.0+
    */
-  get cycling(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 193605971184458, undefined, []); },
+  get cycling(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 193605971184458, undefined, []); },
   /**
    * static var transit: MKDirectionsTransportType { get }
    * @availability iOS 9.0+
    */
-  get transit(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 3599373965567136, undefined, []); },
+  get transit(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 3599373965567136, undefined, []); },
   /**
    * static var walking: MKDirectionsTransportType { get }
    * @availability iOS 7.0+
    */
-  get walking(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 2599894564388175, undefined, []); },
+  get walking(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 2599894564388175, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 2397551936369888, undefined, [rawValue]); }
+  init(rawValue: number): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 2397551936369888, undefined, [rawValue]); }
 };
 
 /**
@@ -1086,32 +1086,32 @@ export class MKDistanceFormatter extends SDKHandle {
    * func distance(from distance: String) -> CLLocationDistance
    * @availability iOS 7.0+
    */
-  distance(distance: string): number { return callSDK<number>("MapKit_212edf3d13b127f5", 4239645230609769, this, [distance]); }
+  distance(distance: string): number { return callSDK<number>("MapKit_5d69670f0307b385", 4239645230609769, this, [distance]); }
   /** init() */
-  static init(): MKDistanceFormatter { return callSDK<MKDistanceFormatter>("MapKit_212edf3d13b127f5", 934611972424578, undefined, []); }
+  static init(): MKDistanceFormatter { return callSDK<MKDistanceFormatter>("MapKit_5d69670f0307b385", 934611972424578, undefined, []); }
   /**
    * func string(fromDistance distance: CLLocationDistance) -> String
    * @availability iOS 7.0+
    */
-  string(distance: number): string { return callSDK<string>("MapKit_212edf3d13b127f5", 3971157598430875, this, [distance]); }
+  string(distance: number): string { return callSDK<string>("MapKit_5d69670f0307b385", 3971157598430875, this, [distance]); }
   /**
    * var locale: Locale! { get set }
    * @availability iOS 7.0+
    */
-  get locale(): $SDK12 { return callSDK<$SDK12>("MapKit_212edf3d13b127f5", 541581364368498, this, []); }
-  set locale(value: $SDK12) { callSDK<void>("MapKit_212edf3d13b127f5", 2093650490975697, this, [value]); }
+  get locale(): $SDK12 { return callSDK<$SDK12>("MapKit_5d69670f0307b385", 541581364368498, this, []); }
+  set locale(value: $SDK12) { callSDK<void>("MapKit_5d69670f0307b385", 2093650490975697, this, [value]); }
   /**
    * var unitStyle: MKDistanceFormatter.DistanceUnitStyle { get set }
    * @availability iOS 7.0+
    */
-  get unitStyle(): MKDistanceFormatter_DistanceUnitStyle { return callSDK<MKDistanceFormatter_DistanceUnitStyle>("MapKit_212edf3d13b127f5", 1950986433058394, this, []); }
-  set unitStyle(value: MKDistanceFormatter_DistanceUnitStyle) { callSDK<void>("MapKit_212edf3d13b127f5", 523281444778377, this, [value]); }
+  get unitStyle(): MKDistanceFormatter_DistanceUnitStyle { return callSDK<MKDistanceFormatter_DistanceUnitStyle>("MapKit_5d69670f0307b385", 1950986433058394, this, []); }
+  set unitStyle(value: MKDistanceFormatter_DistanceUnitStyle) { callSDK<void>("MapKit_5d69670f0307b385", 523281444778377, this, [value]); }
   /**
    * var units: MKDistanceFormatter.Units { get set }
    * @availability iOS 7.0+
    */
-  get units(): MKDistanceFormatter_Units { return callSDK<MKDistanceFormatter_Units>("MapKit_212edf3d13b127f5", 3454705998015421, this, []); }
-  set units(value: MKDistanceFormatter_Units) { callSDK<void>("MapKit_212edf3d13b127f5", 993457615441802, this, [value]); }
+  get units(): MKDistanceFormatter_Units { return callSDK<MKDistanceFormatter_Units>("MapKit_5d69670f0307b385", 3454705998015421, this, []); }
+  set units(value: MKDistanceFormatter_Units) { callSDK<void>("MapKit_5d69670f0307b385", 993457615441802, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKDistanceFormatter": true; "c:objc(cs)NSFormatter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "locale": true; "unitStyle": true; "units": true };
 }
@@ -1127,7 +1127,7 @@ export const MKDistanceFormatter_DistanceUnitStyle = {
    * init?(rawValue: UInt)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MKDistanceFormatter_DistanceUnitStyle) | null { return callSDK<(MKDistanceFormatter_DistanceUnitStyle) | null>("MapKit_212edf3d13b127f5", 2899045942505132, undefined, [rawValue]); }
+  init(rawValue: number): (MKDistanceFormatter_DistanceUnitStyle) | null { return callSDK<(MKDistanceFormatter_DistanceUnitStyle) | null>("MapKit_5d69670f0307b385", 2899045942505132, undefined, [rawValue]); }
 };
 
 /**
@@ -1141,7 +1141,7 @@ export const MKDistanceFormatter_Units = {
    * init?(rawValue: UInt)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MKDistanceFormatter_Units) | null { return callSDK<(MKDistanceFormatter_Units) | null>("MapKit_212edf3d13b127f5", 1860580959147398, undefined, [rawValue]); }
+  init(rawValue: number): (MKDistanceFormatter_Units) | null { return callSDK<(MKDistanceFormatter_Units) | null>("MapKit_5d69670f0307b385", 1860580959147398, undefined, [rawValue]); }
 };
 
 /**
@@ -1153,37 +1153,37 @@ export class MKError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 3.0+
    */
-  static get errorDomain(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 1913489194107380, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("MapKit_5d69670f0307b385", 1913489194107380, undefined, []); }
   /**
    * static var serverFailure: MKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get serverFailure(): MKError_Code { return callSDK<MKError_Code>("MapKit_212edf3d13b127f5", 1854169163521877, undefined, []); }
+  static get serverFailure(): MKError_Code { return callSDK<MKError_Code>("MapKit_5d69670f0307b385", 1854169163521877, undefined, []); }
   /**
    * static var decodingFailed: MKError.Code { get }
    * @availability iOS 13.0+
    */
-  static get decodingFailed(): MKError_Code { return callSDK<MKError_Code>("MapKit_212edf3d13b127f5", 3927183478377996, undefined, []); }
+  static get decodingFailed(): MKError_Code { return callSDK<MKError_Code>("MapKit_5d69670f0307b385", 3927183478377996, undefined, []); }
   /**
    * static var loadingThrottled: MKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get loadingThrottled(): MKError_Code { return callSDK<MKError_Code>("MapKit_212edf3d13b127f5", 101243793714304, undefined, []); }
+  static get loadingThrottled(): MKError_Code { return callSDK<MKError_Code>("MapKit_5d69670f0307b385", 101243793714304, undefined, []); }
   /**
    * static var placemarkNotFound: MKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get placemarkNotFound(): MKError_Code { return callSDK<MKError_Code>("MapKit_212edf3d13b127f5", 2047431502786789, undefined, []); }
+  static get placemarkNotFound(): MKError_Code { return callSDK<MKError_Code>("MapKit_5d69670f0307b385", 2047431502786789, undefined, []); }
   /**
    * static var directionsNotFound: MKError.Code { get }
    * @availability iOS 7.0+
    */
-  static get directionsNotFound(): MKError_Code { return callSDK<MKError_Code>("MapKit_212edf3d13b127f5", 3162961730254891, undefined, []); }
+  static get directionsNotFound(): MKError_Code { return callSDK<MKError_Code>("MapKit_5d69670f0307b385", 3162961730254891, undefined, []); }
   /**
    * static var unknown: MKError.Code { get }
    * @availability iOS 3.0+
    */
-  static get unknown(): MKError_Code { return callSDK<MKError_Code>("MapKit_212edf3d13b127f5", 4232838651058605, undefined, []); }
+  static get unknown(): MKError_Code { return callSDK<MKError_Code>("MapKit_5d69670f0307b385", 4232838651058605, undefined, []); }
   declare readonly $type: { "s:SC11MKErrorCodeLeV": true };
 }
 
@@ -1198,7 +1198,7 @@ export const MKError_Code = {
    * init?(rawValue: UInt)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MKError_Code) | null { return callSDK<(MKError_Code) | null>("MapKit_212edf3d13b127f5", 4190069766606500, undefined, [rawValue]); }
+  init(rawValue: number): (MKError_Code) | null { return callSDK<(MKError_Code) | null>("MapKit_5d69670f0307b385", 4190069766606500, undefined, [rawValue]); }
 };
 
 /**
@@ -1212,27 +1212,27 @@ export const MKFeatureDisplayPriority = {
    * static var defaultHigh: MKFeatureDisplayPriority { get }
    * @availability iOS 11.0+
    */
-  get defaultHigh(): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_212edf3d13b127f5", 471960600571177, undefined, []); },
+  get defaultHigh(): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_5d69670f0307b385", 471960600571177, undefined, []); },
   /**
    * static var defaultLow: MKFeatureDisplayPriority { get }
    * @availability iOS 11.0+
    */
-  get defaultLow(): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_212edf3d13b127f5", 2624949893145484, undefined, []); },
+  get defaultLow(): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_5d69670f0307b385", 2624949893145484, undefined, []); },
   /**
    * static var required: MKFeatureDisplayPriority { get }
    * @availability iOS 11.0+
    */
-  get required(): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_212edf3d13b127f5", 2316511769225840, undefined, []); },
+  get required(): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_5d69670f0307b385", 2316511769225840, undefined, []); },
   /**
    * init(rawValue: Float)
    * @availability iOS 11.0+
    */
-  initRawValue(rawValue: number): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_212edf3d13b127f5", 1700555082313308, undefined, [rawValue]); },
+  initRawValue(rawValue: number): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_5d69670f0307b385", 1700555082313308, undefined, [rawValue]); },
   /**
    * init(_ rawValue: Float)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_212edf3d13b127f5", 3008762122119299, undefined, [rawValue]); }
+  init(rawValue: number): MKFeatureDisplayPriority { return callSDK<MKFeatureDisplayPriority>("MapKit_5d69670f0307b385", 3008762122119299, undefined, [rawValue]); }
 };
 
 /**
@@ -1246,7 +1246,7 @@ export const MKFeatureVisibility = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MKFeatureVisibility) | null { return callSDK<(MKFeatureVisibility) | null>("MapKit_212edf3d13b127f5", 3734732660118448, undefined, [rawValue]); }
+  init(rawValue: number): (MKFeatureVisibility) | null { return callSDK<(MKFeatureVisibility) | null>("MapKit_5d69670f0307b385", 3734732660118448, undefined, [rawValue]); }
 };
 
 /**
@@ -1258,44 +1258,44 @@ export class MKGeocodingRequest extends SDKHandle {
    * func cancel()
    * @availability iOS 26.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 459336985444624, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 459336985444624, this, []); }
   /**
    * var mapItems: [MKMapItem] { get async throws }
    * @availability iOS 26.0+
    */
-  getMapItems(completionHandler: $SDK13): void { return callSDK<void>("MapKit_212edf3d13b127f5", 731091785129852, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getMapItems(completionHandler: $SDK13): void { return callSDK<void>("MapKit_5d69670f0307b385", 731091785129852, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * init?(addressString: String)
    * @availability iOS 26.0+
    */
-  static init(addressString: string): (MKGeocodingRequest) | null { return callSDK<(MKGeocodingRequest) | null>("MapKit_212edf3d13b127f5", 3353336805885734, undefined, [addressString]); }
+  static init(addressString: string): (MKGeocodingRequest) | null { return callSDK<(MKGeocodingRequest) | null>("MapKit_5d69670f0307b385", 3353336805885734, undefined, [addressString]); }
   /**
    * var addressString: String { get }
    * @availability iOS 26.0+
    */
-  get addressString(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 1951564428133448, this, []); }
+  get addressString(): string { return callSDK<string>("MapKit_5d69670f0307b385", 1951564428133448, this, []); }
   /**
    * var isCancelled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1209864976850925, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1209864976850925, this, []); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 26.0+
    */
-  get isLoading(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3823315693059667, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3823315693059667, this, []); }
   /**
    * var preferredLocale: Locale? { get set }
    * @availability iOS 26.0+
    */
-  get preferredLocale(): $SDK12 { return callSDK<$SDK12>("MapKit_212edf3d13b127f5", 1504524042488421, this, []); }
-  set preferredLocale(value: $SDK12) { callSDK<void>("MapKit_212edf3d13b127f5", 3117407875087498, this, [value]); }
+  get preferredLocale(): $SDK12 { return callSDK<$SDK12>("MapKit_5d69670f0307b385", 1504524042488421, this, []); }
+  set preferredLocale(value: $SDK12) { callSDK<void>("MapKit_5d69670f0307b385", 3117407875087498, this, [value]); }
   /**
    * var region: MKCoordinateRegion { get set }
    * @availability iOS 26.0+
    */
-  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 2525757585847607, this, []); }
-  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_212edf3d13b127f5", 724448735770019, this, [value]); }
+  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 2525757585847607, this, []); }
+  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_5d69670f0307b385", 724448735770019, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKGeocodingRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressString": true; "isCancelled": true; "isLoading": true; "preferredLocale": true; "region": true };
 }
@@ -1309,29 +1309,29 @@ export class MKMultiPoint extends (MKShape as unknown as Omit<typeof MKShape, "i
    * func getCoordinates(_ coords: UnsafeMutablePointer<CLLocationCoordinate2D>, range: NSRange)
    * @availability iOS 4.0+
    */
-  getCoordinates(coords: $SDK14, range: SDKHandle): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2073023702038789, this, [coords, range]); }
+  getCoordinates(coords: $SDK14, range: SDKHandle): void { return callSDK<void>("MapKit_5d69670f0307b385", 2073023702038789, this, [coords, range]); }
   /** init() */
-  static init(): MKMultiPoint { return callSDK<MKMultiPoint>("MapKit_212edf3d13b127f5", 694781401459403, undefined, []); }
+  static init(): MKMultiPoint { return callSDK<MKMultiPoint>("MapKit_5d69670f0307b385", 694781401459403, undefined, []); }
   /**
    * func location(atPointIndex index: Int) -> CGFloat
    * @availability iOS 14.0+
    */
-  location(index: number): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1412649591421208, this, [index]); }
+  location(index: number): number { return callSDK<number>("MapKit_5d69670f0307b385", 1412649591421208, this, [index]); }
   /**
    * func points() -> UnsafeMutablePointer<MKMapPoint>
    * @availability iOS 4.0+
    */
-  points(): SDKHandle { return callSDK<SDKHandle>("MapKit_212edf3d13b127f5", 1057482472025096, this, []); }
+  points(): SDKHandle { return callSDK<SDKHandle>("MapKit_5d69670f0307b385", 1057482472025096, this, []); }
   /**
    * var pointCount: Int { get }
    * @availability iOS 4.0+
    */
-  get pointCount(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3850395598528052, this, []); }
+  get pointCount(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3850395598528052, this, []); }
   /**
    * func locations(at indexes: IndexSet) -> [CGFloat]
    * @availability iOS 14.0+
    */
-  locations(indexes: _Foundation_IndexSet): Array<number> { return callSDK<Array<number>>("MapKit_212edf3d13b127f5", 1923013566310737, this, [indexes]); }
+  locations(indexes: _Foundation_IndexSet): Array<number> { return callSDK<Array<number>>("MapKit_5d69670f0307b385", 1923013566310737, this, [indexes]); }
   declare readonly $type: { "c:objc(cs)MKMultiPoint": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "pointCount": true };
 }
@@ -1345,12 +1345,12 @@ export class MKPolyline extends MKMultiPoint {
    * convenience init(coordinates coords: UnsafePointer<CLLocationCoordinate2D>, count: Int)
    * @availability iOS 4.0+
    */
-  static initCoordinatesCount(coords: $SDK14, count: number): MKPolyline { return callSDK<MKPolyline>("MapKit_212edf3d13b127f5", 39882794340262, undefined, [coords, count]); }
+  static initCoordinatesCount(coords: $SDK14, count: number): MKPolyline { return callSDK<MKPolyline>("MapKit_5d69670f0307b385", 39882794340262, undefined, [coords, count]); }
   /**
    * convenience init(points: UnsafePointer<MKMapPoint>, count: Int)
    * @availability iOS 4.0+
    */
-  static initPointsCount(points: SDKHandle, count: number): MKPolyline { return callSDK<MKPolyline>("MapKit_212edf3d13b127f5", 212045629434850, undefined, [points, count]); }
+  static initPointsCount(points: SDKHandle, count: number): MKPolyline { return callSDK<MKPolyline>("MapKit_5d69670f0307b385", 212045629434850, undefined, [points, count]); }
   declare readonly $type: { "c:objc(cs)MKPolyline": true; "c:objc(cs)MKMultiPoint": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "pointCount": true };
 }
@@ -1364,12 +1364,12 @@ export class MKGeodesicPolyline extends (MKPolyline as unknown as Omit<typeof MK
    * convenience init(coordinates coords: UnsafePointer<CLLocationCoordinate2D>, count: Int)
    * @availability iOS 7.0+
    */
-  static initCoordinatesCount(coords: $SDK14, count: number): MKGeodesicPolyline { return callSDK<MKGeodesicPolyline>("MapKit_212edf3d13b127f5", 2754238437155537, undefined, [coords, count]); }
+  static initCoordinatesCount(coords: $SDK14, count: number): MKGeodesicPolyline { return callSDK<MKGeodesicPolyline>("MapKit_5d69670f0307b385", 2754238437155537, undefined, [coords, count]); }
   /**
    * convenience init(points: UnsafePointer<MKMapPoint>, count: Int)
    * @availability iOS 7.0+
    */
-  static initPointsCount(points: SDKHandle, count: number): MKGeodesicPolyline { return callSDK<MKGeodesicPolyline>("MapKit_212edf3d13b127f5", 3272131407221860, undefined, [points, count]); }
+  static initPointsCount(points: SDKHandle, count: number): MKGeodesicPolyline { return callSDK<MKGeodesicPolyline>("MapKit_5d69670f0307b385", 3272131407221860, undefined, [points, count]); }
   declare readonly $type: { "c:objc(cs)MKGeodesicPolyline": true; "c:objc(cs)MKPolyline": true; "c:objc(cs)MKMultiPoint": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "pointCount": true };
 }
@@ -1383,9 +1383,9 @@ export class MKGeoJSONDecoder extends SDKHandle {
    * func decode(_ data: Data) throws -> [any MKGeoJSONObject]
    * @availability iOS 13.0+
    */
-  decode(data: ArrayBuffer): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("MapKit_212edf3d13b127f5", 2426865148879394, this, [data]); }
+  decode(data: ArrayBuffer): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("MapKit_5d69670f0307b385", 2426865148879394, this, [data]); }
   /** init() */
-  static init(): MKGeoJSONDecoder { return callSDK<MKGeoJSONDecoder>("MapKit_212edf3d13b127f5", 3575473722128349, undefined, []); }
+  static init(): MKGeoJSONDecoder { return callSDK<MKGeoJSONDecoder>("MapKit_5d69670f0307b385", 3575473722128349, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKGeoJSONDecoder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1395,22 +1395,22 @@ export class MKGeoJSONDecoder extends SDKHandle {
  */
 export class MKGeoJSONFeature extends SDKHandle {
   /** init() */
-  static init(): MKGeoJSONFeature { return callSDK<MKGeoJSONFeature>("MapKit_212edf3d13b127f5", 113836573547501, undefined, []); }
+  static init(): MKGeoJSONFeature { return callSDK<MKGeoJSONFeature>("MapKit_5d69670f0307b385", 113836573547501, undefined, []); }
   /**
    * var geometry: [any MKShape & MKGeoJSONObject] { get }
    * @availability iOS 13.0+
    */
-  get geometry(): Array<(MKShape) & (SDKHandle)> { return callSDK<Array<(MKShape) & (SDKHandle)>>("MapKit_212edf3d13b127f5", 2967662576094170, this, []); }
+  get geometry(): Array<(MKShape) & (SDKHandle)> { return callSDK<Array<(MKShape) & (SDKHandle)>>("MapKit_5d69670f0307b385", 2967662576094170, this, []); }
   /**
    * var identifier: String? { get }
    * @availability iOS 13.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 1502401199939726, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 1502401199939726, this, []); }
   /**
    * var properties: Data? { get }
    * @availability iOS 13.0+
    */
-  get properties(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("MapKit_212edf3d13b127f5", 3931110914528673, this, []); }
+  get properties(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("MapKit_5d69670f0307b385", 3931110914528673, this, []); }
   declare readonly $type: { "c:objc(cs)MKGeoJSONFeature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "geometry": true; "identifier": true; "properties": true };
 }
@@ -1432,24 +1432,24 @@ export class MKPolylineRenderer extends (MKOverlayPathRenderer as unknown as Omi
    * init(polyline: MKPolyline)
    * @availability iOS 7.0+
    */
-  static init(polyline: MKPolyline): MKPolylineRenderer { return callSDK<MKPolylineRenderer>("MapKit_212edf3d13b127f5", 1643858731670951, undefined, [polyline]); }
+  static init(polyline: MKPolyline): MKPolylineRenderer { return callSDK<MKPolylineRenderer>("MapKit_5d69670f0307b385", 1643858731670951, undefined, [polyline]); }
   /**
    * var polyline: MKPolyline { get }
    * @availability iOS 7.0+
    */
-  get polyline(): MKPolyline { return callSDK<MKPolyline>("MapKit_212edf3d13b127f5", 2233052721358540, this, []); }
+  get polyline(): MKPolyline { return callSDK<MKPolyline>("MapKit_5d69670f0307b385", 2233052721358540, this, []); }
   /**
    * var strokeEnd: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get strokeEnd(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 714910455602043, this, []); }
-  set strokeEnd(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 4097233720213752, this, [value]); }
+  get strokeEnd(): number { return callSDK<number>("MapKit_5d69670f0307b385", 714910455602043, this, []); }
+  set strokeEnd(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 4097233720213752, this, [value]); }
   /**
    * var strokeStart: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get strokeStart(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1610857845408125, this, []); }
-  set strokeStart(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 802813674832215, this, [value]); }
+  get strokeStart(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1610857845408125, this, []); }
+  set strokeStart(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 802813674832215, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKPolylineRenderer": true; "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true; "polyline": true; "strokeEnd": true; "strokeStart": true };
 }
@@ -1460,22 +1460,22 @@ export class MKPolylineRenderer extends (MKOverlayPathRenderer as unknown as Omi
  */
 export class MKGradientPolylineRenderer extends (MKPolylineRenderer as unknown as Omit<typeof MKPolylineRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKPolylineRenderer)) {
   /** init() */
-  static init(): MKGradientPolylineRenderer { return callSDK<MKGradientPolylineRenderer>("MapKit_212edf3d13b127f5", 606186141971176, undefined, []); }
+  static init(): MKGradientPolylineRenderer { return callSDK<MKGradientPolylineRenderer>("MapKit_5d69670f0307b385", 606186141971176, undefined, []); }
   /**
    * var colors: [UIColor] { get }
    * @availability iOS 14.0+
    */
-  get colors(): Array<_UIKit_UIColor> { return callSDK<Array<_UIKit_UIColor>>("MapKit_212edf3d13b127f5", 2068359403048789, this, []); }
+  get colors(): Array<_UIKit_UIColor> { return callSDK<Array<_UIKit_UIColor>>("MapKit_5d69670f0307b385", 2068359403048789, this, []); }
   /**
    * var locations: [CGFloat] { get }
    * @availability iOS 14.0+
    */
-  get locations(): Array<number> { return callSDK<Array<number>>("MapKit_212edf3d13b127f5", 441754835573803, this, []); }
+  get locations(): Array<number> { return callSDK<Array<number>>("MapKit_5d69670f0307b385", 441754835573803, this, []); }
   /**
    * func setColors(_ colors: [UIColor], locations: [CGFloat])
    * @availability iOS 14.0+
    */
-  setColors(colors: Array<_UIKit_UIColor>, locations: Array<number>): void { return callSDK<void>("MapKit_212edf3d13b127f5", 6361287165251, this, [colors, locations]); }
+  setColors(colors: Array<_UIKit_UIColor>, locations: Array<number>): void { return callSDK<void>("MapKit_5d69670f0307b385", 6361287165251, this, [colors, locations]); }
   declare readonly $type: { "c:objc(cs)MKGradientPolylineRenderer": true; "c:objc(cs)MKPolylineRenderer": true; "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true; "polyline": true; "strokeEnd": true; "strokeStart": true; "colors": true };
 }
@@ -1489,8 +1489,8 @@ export class MKMapConfiguration extends SDKHandle {
    * var elevationStyle: MKMapConfiguration.ElevationStyle { get set }
    * @availability iOS 16.0+
    */
-  get elevationStyle(): MKMapConfiguration_ElevationStyle { return callSDK<MKMapConfiguration_ElevationStyle>("MapKit_212edf3d13b127f5", 2590741706934418, this, []); }
-  set elevationStyle(value: MKMapConfiguration_ElevationStyle) { callSDK<void>("MapKit_212edf3d13b127f5", 412550434413206, this, [value]); }
+  get elevationStyle(): MKMapConfiguration_ElevationStyle { return callSDK<MKMapConfiguration_ElevationStyle>("MapKit_5d69670f0307b385", 2590741706934418, this, []); }
+  set elevationStyle(value: MKMapConfiguration_ElevationStyle) { callSDK<void>("MapKit_5d69670f0307b385", 412550434413206, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMapConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elevationStyle": true };
 }
@@ -1504,24 +1504,24 @@ export class MKHybridMapConfiguration extends MKMapConfiguration {
    * init()
    * @availability iOS 16.0+
    */
-  static init(): MKHybridMapConfiguration { return callSDK<MKHybridMapConfiguration>("MapKit_212edf3d13b127f5", 1251211688522188, undefined, []); }
+  static init(): MKHybridMapConfiguration { return callSDK<MKHybridMapConfiguration>("MapKit_5d69670f0307b385", 1251211688522188, undefined, []); }
   /**
    * convenience init(elevationStyle: MKMapConfiguration.ElevationStyle)
    * @availability iOS 16.0+
    */
-  static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKHybridMapConfiguration { return callSDK<MKHybridMapConfiguration>("MapKit_212edf3d13b127f5", 336906280988245, undefined, [elevationStyle]); }
+  static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKHybridMapConfiguration { return callSDK<MKHybridMapConfiguration>("MapKit_5d69670f0307b385", 336906280988245, undefined, [elevationStyle]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 16.0+
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 516616955566588, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 3324025681559167, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 516616955566588, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 3324025681559167, this, [value]); }
   /**
    * var showsTraffic: Bool { get set }
    * @availability iOS 16.0+
    */
-  get showsTraffic(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3261700614242592, this, []); }
-  set showsTraffic(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 1902483915087821, this, [value]); }
+  get showsTraffic(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3261700614242592, this, []); }
+  set showsTraffic(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 1902483915087821, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKHybridMapConfiguration": true; "c:objc(cs)MKMapConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elevationStyle": true; "pointOfInterestFilter": true; "showsTraffic": true };
 }
@@ -1535,12 +1535,12 @@ export class MKIconStyle extends SDKHandle {
    * var backgroundColor: UIColor { get }
    * @availability iOS 16.0+
    */
-  get backgroundColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("MapKit_212edf3d13b127f5", 3002782355489389, this, []); }
+  get backgroundColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("MapKit_5d69670f0307b385", 3002782355489389, this, []); }
   /**
    * var image: UIImage { get }
    * @availability iOS 16.0+
    */
-  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("MapKit_212edf3d13b127f5", 1730593317784238, this, []); }
+  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("MapKit_5d69670f0307b385", 1730593317784238, this, []); }
   declare readonly $type: { "c:objc(cs)MKIconStyle": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundColor": true; "image": true };
 }
@@ -1554,12 +1554,12 @@ export class MKImageryMapConfiguration extends MKMapConfiguration {
    * init()
    * @availability iOS 16.0+
    */
-  static init(): MKImageryMapConfiguration { return callSDK<MKImageryMapConfiguration>("MapKit_212edf3d13b127f5", 2879120375467952, undefined, []); }
+  static init(): MKImageryMapConfiguration { return callSDK<MKImageryMapConfiguration>("MapKit_5d69670f0307b385", 2879120375467952, undefined, []); }
   /**
    * convenience init(elevationStyle: MKMapConfiguration.ElevationStyle)
    * @availability iOS 16.0+
    */
-  static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKImageryMapConfiguration { return callSDK<MKImageryMapConfiguration>("MapKit_212edf3d13b127f5", 2345410553787416, undefined, [elevationStyle]); }
+  static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKImageryMapConfiguration { return callSDK<MKImageryMapConfiguration>("MapKit_5d69670f0307b385", 2345410553787416, undefined, [elevationStyle]); }
   declare readonly $type: { "c:objc(cs)MKImageryMapConfiguration": true; "c:objc(cs)MKMapConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elevationStyle": true };
 }
@@ -1573,38 +1573,38 @@ export class MKLocalPointsOfInterestRequest extends SDKHandle {
    * class let maxRadius: CLLocationDistance
    * @availability iOS 14.0+
    */
-  static get maxRadius(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2019843906435005, undefined, []); }
+  static get maxRadius(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2019843906435005, undefined, []); }
   /**
    * init(center coordinate: CLLocationCoordinate2D, radius: CLLocationDistance)
    * @availability iOS 14.0+
    */
-  static initCenterRadius(coordinate: $SDK3, radius: number): MKLocalPointsOfInterestRequest { return callSDK<MKLocalPointsOfInterestRequest>("MapKit_212edf3d13b127f5", 2119564227352911, undefined, [coordinate, radius]); }
+  static initCenterRadius(coordinate: $SDK3, radius: number): MKLocalPointsOfInterestRequest { return callSDK<MKLocalPointsOfInterestRequest>("MapKit_5d69670f0307b385", 2119564227352911, undefined, [coordinate, radius]); }
   /**
    * init(coordinateRegion region: MKCoordinateRegion)
    * @availability iOS 14.0+
    */
-  static initCoordinateRegion(region: MKCoordinateRegion): MKLocalPointsOfInterestRequest { return callSDK<MKLocalPointsOfInterestRequest>("MapKit_212edf3d13b127f5", 474534788489928, undefined, [region]); }
+  static initCoordinateRegion(region: MKCoordinateRegion): MKLocalPointsOfInterestRequest { return callSDK<MKLocalPointsOfInterestRequest>("MapKit_5d69670f0307b385", 474534788489928, undefined, [region]); }
   /**
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 14.0+
    */
-  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 1385579249673852, this, []); }
+  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 1385579249673852, this, []); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 14.0+
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 760487067357449, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 2656306607431171, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 760487067357449, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 2656306607431171, this, [value]); }
   /**
    * var radius: CLLocationDistance { get }
    * @availability iOS 14.0+
    */
-  get radius(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1235243453321191, this, []); }
+  get radius(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1235243453321191, this, []); }
   /**
    * var region: MKCoordinateRegion { get }
    * @availability iOS 14.0+
    */
-  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 4111518639555415, this, []); }
+  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 4111518639555415, this, []); }
   declare readonly $type: { "c:objc(cs)MKLocalPointsOfInterestRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "coordinate": true; "pointOfInterestFilter": true; "radius": true; "region": true };
 }
@@ -1618,27 +1618,27 @@ export class MKLocalSearch extends SDKHandle {
    * func cancel()
    * @availability iOS 6.1+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 4466978644014191, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 4466978644014191, this, []); }
   /**
    * init(request: MKLocalPointsOfInterestRequest)
    * @availability iOS 14.0+
    */
-  static initRequest(request: MKLocalPointsOfInterestRequest): MKLocalSearch { return callSDK<MKLocalSearch>("MapKit_212edf3d13b127f5", 4326507387075229, undefined, [request]); }
+  static initRequest(request: MKLocalPointsOfInterestRequest): MKLocalSearch { return callSDK<MKLocalSearch>("MapKit_5d69670f0307b385", 4326507387075229, undefined, [request]); }
   /**
    * init(request: MKLocalSearch.Request)
    * @availability iOS 6.1+
    */
-  static initRequest3144(request: MKLocalSearch_Request): MKLocalSearch { return callSDK<MKLocalSearch>("MapKit_212edf3d13b127f5", 2818934884811969, undefined, [request]); }
+  static initRequest3144(request: MKLocalSearch_Request): MKLocalSearch { return callSDK<MKLocalSearch>("MapKit_5d69670f0307b385", 2818934884811969, undefined, [request]); }
   /**
    * func start() async throws -> MKLocalSearch.Response
    * @availability iOS 6.1+
    */
-  start(completionHandler: ((arg0: (MKLocalSearch_Response) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 3416207522896025, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  start(completionHandler: ((arg0: (MKLocalSearch_Response) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 3416207522896025, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var isSearching: Bool { get }
    * @availability iOS 6.1+
    */
-  get isSearching(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2179872818979605, this, []); }
+  get isSearching(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2179872818979605, this, []); }
   declare readonly $type: { "c:objc(cs)MKLocalSearch": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isSearching": true };
 }
@@ -1655,58 +1655,58 @@ export class MKLocalSearch_Request extends SDKHandle {
    * init()
    * @availability iOS 6.1+
    */
-  static init(): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_212edf3d13b127f5", 3867277838769290, undefined, []); }
+  static init(): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_5d69670f0307b385", 3867277838769290, undefined, []); }
   /**
    * init(completion: MKLocalSearchCompletion)
    * @availability iOS 9.3+
    */
-  static initCompletion(completion: MKLocalSearchCompletion): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_212edf3d13b127f5", 2599087017310618, undefined, [completion]); }
+  static initCompletion(completion: MKLocalSearchCompletion): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_5d69670f0307b385", 2599087017310618, undefined, [completion]); }
   /**
    * convenience init(naturalLanguageQuery: String)
    * @availability iOS 13.0+
    */
-  static initNaturalLanguageQuery(naturalLanguageQuery: string): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_212edf3d13b127f5", 4442053618654502, undefined, [naturalLanguageQuery]); }
+  static initNaturalLanguageQuery(naturalLanguageQuery: string): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_5d69670f0307b385", 4442053618654502, undefined, [naturalLanguageQuery]); }
   /**
    * convenience init(naturalLanguageQuery: String, region: MKCoordinateRegion)
    * @availability iOS 13.0+
    */
-  static initNaturalLanguageQueryRegion(naturalLanguageQuery: string, region: MKCoordinateRegion): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_212edf3d13b127f5", 82614286369277, undefined, [naturalLanguageQuery, region]); }
+  static initNaturalLanguageQueryRegion(naturalLanguageQuery: string, region: MKCoordinateRegion): MKLocalSearch_Request { return callSDK<MKLocalSearch_Request>("MapKit_5d69670f0307b385", 82614286369277, undefined, [naturalLanguageQuery, region]); }
   /**
    * @NSCopying var addressFilter: MKAddressFilter? { get set }
    * @availability iOS 18.0+
    */
-  get addressFilter(): $SDK19 { return callSDK<$SDK19>("MapKit_212edf3d13b127f5", 2623008364970568, this, []); }
-  set addressFilter(value: $SDK19) { callSDK<void>("MapKit_212edf3d13b127f5", 3703960334281832, this, [value]); }
+  get addressFilter(): $SDK19 { return callSDK<$SDK19>("MapKit_5d69670f0307b385", 2623008364970568, this, []); }
+  set addressFilter(value: $SDK19) { callSDK<void>("MapKit_5d69670f0307b385", 3703960334281832, this, [value]); }
   /**
    * var naturalLanguageQuery: String? { get set }
    * @availability iOS 6.1+
    */
-  get naturalLanguageQuery(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 1059505983047824, this, []); }
-  set naturalLanguageQuery(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 1032457872197332, this, [value]); }
+  get naturalLanguageQuery(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 1059505983047824, this, []); }
+  set naturalLanguageQuery(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 1032457872197332, this, [value]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 13.0+
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 1846578620906785, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 1942123033157713, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 1846578620906785, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 1942123033157713, this, [value]); }
   /**
    * var region: MKCoordinateRegion { get set }
    * @availability iOS 6.1+
    */
-  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 2718251908512139, this, []); }
-  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_212edf3d13b127f5", 1761359810656857, this, [value]); }
+  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 2718251908512139, this, []); }
+  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_5d69670f0307b385", 1761359810656857, this, [value]); }
   /**
    * var regionPriority: MKLocalSearchRegionPriority { get set }
    * @availability iOS 18.0+
    */
-  get regionPriority(): MKLocalSearchRegionPriority { return callSDK<MKLocalSearchRegionPriority>("MapKit_212edf3d13b127f5", 1905606238965336, this, []); }
-  set regionPriority(value: MKLocalSearchRegionPriority) { callSDK<void>("MapKit_212edf3d13b127f5", 2887620503963967, this, [value]); }
+  get regionPriority(): MKLocalSearchRegionPriority { return callSDK<MKLocalSearchRegionPriority>("MapKit_5d69670f0307b385", 1905606238965336, this, []); }
+  set regionPriority(value: MKLocalSearchRegionPriority) { callSDK<void>("MapKit_5d69670f0307b385", 2887620503963967, this, [value]); }
   /**
    * var resultTypes: MKLocalSearch.ResultType { get set }
    * @availability iOS 13.0+
    */
-  get resultTypes(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_212edf3d13b127f5", 635627983108201, this, []); }
-  set resultTypes(value: MKLocalSearch_ResultType) { callSDK<void>("MapKit_212edf3d13b127f5", 3264414474825152, this, [value]); }
+  get resultTypes(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_5d69670f0307b385", 635627983108201, this, []); }
+  set resultTypes(value: MKLocalSearch_ResultType) { callSDK<void>("MapKit_5d69670f0307b385", 3264414474825152, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKLocalSearchRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressFilter": true; "naturalLanguageQuery": true; "pointOfInterestFilter": true; "region": true; "regionPriority": true; "resultTypes": true };
 }
@@ -1723,17 +1723,17 @@ export type MKLocalSearch_Request_ResultType = MKLocalSearch_ResultType;
  */
 export class MKLocalSearch_Response extends SDKHandle {
   /** init() */
-  static init(): MKLocalSearch_Response { return callSDK<MKLocalSearch_Response>("MapKit_212edf3d13b127f5", 3427738713666191, undefined, []); }
+  static init(): MKLocalSearch_Response { return callSDK<MKLocalSearch_Response>("MapKit_5d69670f0307b385", 3427738713666191, undefined, []); }
   /**
    * var boundingRegion: MKCoordinateRegion { get }
    * @availability iOS 6.1+
    */
-  get boundingRegion(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 371421792718014, this, []); }
+  get boundingRegion(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 371421792718014, this, []); }
   /**
    * var mapItems: [MKMapItem] { get }
    * @availability iOS 6.1+
    */
-  get mapItems(): Array<MKMapItem> { return callSDK<Array<MKMapItem>>("MapKit_212edf3d13b127f5", 1733944531085607, this, []); }
+  get mapItems(): Array<MKMapItem> { return callSDK<Array<MKMapItem>>("MapKit_5d69670f0307b385", 1733944531085607, this, []); }
   declare readonly $type: { "c:objc(cs)MKLocalSearchResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "boundingRegion": true; "mapItems": true };
 }
@@ -1749,22 +1749,22 @@ export const MKLocalSearch_ResultType = {
    * static var address: MKLocalSearch.ResultType { get }
    * @availability iOS 13.0+
    */
-  get address(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_212edf3d13b127f5", 3942504868624110, undefined, []); },
+  get address(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_5d69670f0307b385", 3942504868624110, undefined, []); },
   /**
    * static var physicalFeature: MKLocalSearch.ResultType { get }
    * @availability iOS 18.0+
    */
-  get physicalFeature(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_212edf3d13b127f5", 950834746036150, undefined, []); },
+  get physicalFeature(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_5d69670f0307b385", 950834746036150, undefined, []); },
   /**
    * static var pointOfInterest: MKLocalSearch.ResultType { get }
    * @availability iOS 13.0+
    */
-  get pointOfInterest(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_212edf3d13b127f5", 814011301189772, undefined, []); },
+  get pointOfInterest(): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_5d69670f0307b385", 814011301189772, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_212edf3d13b127f5", 3378439331664174, undefined, [rawValue]); }
+  init(rawValue: number): MKLocalSearch_ResultType { return callSDK<MKLocalSearch_ResultType>("MapKit_5d69670f0307b385", 3378439331664174, undefined, [rawValue]); }
 };
 
 /**
@@ -1776,68 +1776,68 @@ export class MKLocalSearchCompleter extends SDKHandle {
    * func cancel()
    * @availability iOS 9.3+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2036983434544208, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 2036983434544208, this, []); }
   /** init() */
-  static init(): MKLocalSearchCompleter { return callSDK<MKLocalSearchCompleter>("MapKit_212edf3d13b127f5", 4198439161250637, undefined, []); }
+  static init(): MKLocalSearchCompleter { return callSDK<MKLocalSearchCompleter>("MapKit_5d69670f0307b385", 4198439161250637, undefined, []); }
   /**
    * @NSCopying var addressFilter: MKAddressFilter? { get set }
    * @availability iOS 18.0+
    */
-  get addressFilter(): $SDK19 { return callSDK<$SDK19>("MapKit_212edf3d13b127f5", 3251789385416932, this, []); }
-  set addressFilter(value: $SDK19) { callSDK<void>("MapKit_212edf3d13b127f5", 2172690443025941, this, [value]); }
+  get addressFilter(): $SDK19 { return callSDK<$SDK19>("MapKit_5d69670f0307b385", 3251789385416932, this, []); }
+  set addressFilter(value: $SDK19) { callSDK<void>("MapKit_5d69670f0307b385", 2172690443025941, this, [value]); }
   /**
    * weak var delegate: (any MKLocalSearchCompleterDelegate)? { get set }
    * @availability iOS 9.3+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MapKit_212edf3d13b127f5", 1974161511672800, this, []); }
-  set delegate(value: (Implements<MKLocalSearchCompleterDelegate> | SDKHandle) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 244720642212726, this, [value], [{"protocol":"c:objc(pl)MKLocalSearchCompleterDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MapKit_5d69670f0307b385", 1974161511672800, this, []); }
+  set delegate(value: (Implements<MKLocalSearchCompleterDelegate> | SDKHandle) | null) { callSDK<void>("MapKit_5d69670f0307b385", 244720642212726, this, [value], [{"protocol":"c:objc(pl)MKLocalSearchCompleterDelegate"}]); }
   /**
    * var filterType: MKLocalSearchCompleter.FilterType { get set }
    * @availability iOS 9.3+
    * @deprecated iOS 13.0
    */
-  get filterType(): MKLocalSearchCompleter_FilterType { return callSDK<MKLocalSearchCompleter_FilterType>("MapKit_212edf3d13b127f5", 2098317115824848, this, []); }
-  set filterType(value: MKLocalSearchCompleter_FilterType) { callSDK<void>("MapKit_212edf3d13b127f5", 704083670194679, this, [value]); }
+  get filterType(): MKLocalSearchCompleter_FilterType { return callSDK<MKLocalSearchCompleter_FilterType>("MapKit_5d69670f0307b385", 2098317115824848, this, []); }
+  set filterType(value: MKLocalSearchCompleter_FilterType) { callSDK<void>("MapKit_5d69670f0307b385", 704083670194679, this, [value]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 13.0+
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 443277698079315, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 3584218335035764, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 443277698079315, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 3584218335035764, this, [value]); }
   /**
    * var queryFragment: String { get set }
    * @availability iOS 9.3+
    */
-  get queryFragment(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 2326913367048242, this, []); }
-  set queryFragment(value: string) { callSDK<void>("MapKit_212edf3d13b127f5", 2120928437922328, this, [value]); }
+  get queryFragment(): string { return callSDK<string>("MapKit_5d69670f0307b385", 2326913367048242, this, []); }
+  set queryFragment(value: string) { callSDK<void>("MapKit_5d69670f0307b385", 2120928437922328, this, [value]); }
   /**
    * var region: MKCoordinateRegion { get set }
    * @availability iOS 9.3+
    */
-  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 1711732812302946, this, []); }
-  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_212edf3d13b127f5", 4202228795335012, this, [value]); }
+  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 1711732812302946, this, []); }
+  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_5d69670f0307b385", 4202228795335012, this, [value]); }
   /**
    * var regionPriority: MKLocalSearchRegionPriority { get set }
    * @availability iOS 18.0+
    */
-  get regionPriority(): MKLocalSearchRegionPriority { return callSDK<MKLocalSearchRegionPriority>("MapKit_212edf3d13b127f5", 3102503295817197, this, []); }
-  set regionPriority(value: MKLocalSearchRegionPriority) { callSDK<void>("MapKit_212edf3d13b127f5", 3156581638885673, this, [value]); }
+  get regionPriority(): MKLocalSearchRegionPriority { return callSDK<MKLocalSearchRegionPriority>("MapKit_5d69670f0307b385", 3102503295817197, this, []); }
+  set regionPriority(value: MKLocalSearchRegionPriority) { callSDK<void>("MapKit_5d69670f0307b385", 3156581638885673, this, [value]); }
   /**
    * var resultTypes: MKLocalSearchCompleter.ResultType { get set }
    * @availability iOS 13.0+
    */
-  get resultTypes(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_212edf3d13b127f5", 2565977942922035, this, []); }
-  set resultTypes(value: MKLocalSearchCompleter_ResultType) { callSDK<void>("MapKit_212edf3d13b127f5", 1925726242955978, this, [value]); }
+  get resultTypes(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_5d69670f0307b385", 2565977942922035, this, []); }
+  set resultTypes(value: MKLocalSearchCompleter_ResultType) { callSDK<void>("MapKit_5d69670f0307b385", 1925726242955978, this, [value]); }
   /**
    * var results: [MKLocalSearchCompletion] { get }
    * @availability iOS 9.3+
    */
-  get results(): Array<MKLocalSearchCompletion> { return callSDK<Array<MKLocalSearchCompletion>>("MapKit_212edf3d13b127f5", 3381603810868303, this, []); }
+  get results(): Array<MKLocalSearchCompletion> { return callSDK<Array<MKLocalSearchCompletion>>("MapKit_5d69670f0307b385", 3381603810868303, this, []); }
   /**
    * var isSearching: Bool { get }
    * @availability iOS 9.3+
    */
-  get isSearching(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1762459027170189, this, []); }
+  get isSearching(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1762459027170189, this, []); }
   declare readonly $type: { "c:objc(cs)MKLocalSearchCompleter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressFilter": true; "delegate": true; "filterType": true; "pointOfInterestFilter": true; "queryFragment": true; "region": true; "regionPriority": true; "resultTypes": true; "results": true; "isSearching": true };
 }
@@ -1855,7 +1855,7 @@ export const MKLocalSearchCompleter_FilterType = {
    * @availability iOS 9.3+
    * @deprecated iOS 13.0
    */
-  init(rawValue: number): (MKLocalSearchCompleter_FilterType) | null { return callSDK<(MKLocalSearchCompleter_FilterType) | null>("MapKit_212edf3d13b127f5", 4105783258577687, undefined, [rawValue]); }
+  init(rawValue: number): (MKLocalSearchCompleter_FilterType) | null { return callSDK<(MKLocalSearchCompleter_FilterType) | null>("MapKit_5d69670f0307b385", 4105783258577687, undefined, [rawValue]); }
 };
 
 /**
@@ -1869,27 +1869,27 @@ export const MKLocalSearchCompleter_ResultType = {
    * static var address: MKLocalSearchCompleter.ResultType { get }
    * @availability iOS 13.0+
    */
-  get address(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_212edf3d13b127f5", 2639337767241496, undefined, []); },
+  get address(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_5d69670f0307b385", 2639337767241496, undefined, []); },
   /**
    * static var physicalFeature: MKLocalSearchCompleter.ResultType { get }
    * @availability iOS 18.0+
    */
-  get physicalFeature(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_212edf3d13b127f5", 2524745234555455, undefined, []); },
+  get physicalFeature(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_5d69670f0307b385", 2524745234555455, undefined, []); },
   /**
    * static var pointOfInterest: MKLocalSearchCompleter.ResultType { get }
    * @availability iOS 13.0+
    */
-  get pointOfInterest(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_212edf3d13b127f5", 3302400872868144, undefined, []); },
+  get pointOfInterest(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_5d69670f0307b385", 3302400872868144, undefined, []); },
   /**
    * static var query: MKLocalSearchCompleter.ResultType { get }
    * @availability iOS 13.0+
    */
-  get query(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_212edf3d13b127f5", 1360210899362223, undefined, []); },
+  get query(): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_5d69670f0307b385", 1360210899362223, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_212edf3d13b127f5", 1521053392577148, undefined, [rawValue]); }
+  init(rawValue: number): MKLocalSearchCompleter_ResultType { return callSDK<MKLocalSearchCompleter_ResultType>("MapKit_5d69670f0307b385", 1521053392577148, undefined, [rawValue]); }
 };
 
 /**
@@ -1915,27 +1915,27 @@ export interface MKLocalSearchCompleterDelegate {
  */
 export class MKLocalSearchCompletion extends SDKHandle {
   /** init() */
-  static init(): MKLocalSearchCompletion { return callSDK<MKLocalSearchCompletion>("MapKit_212edf3d13b127f5", 3688906523539270, undefined, []); }
+  static init(): MKLocalSearchCompletion { return callSDK<MKLocalSearchCompletion>("MapKit_5d69670f0307b385", 3688906523539270, undefined, []); }
   /**
    * var subtitle: String { get }
    * @availability iOS 9.3+
    */
-  get subtitle(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 1073220268241731, this, []); }
+  get subtitle(): string { return callSDK<string>("MapKit_5d69670f0307b385", 1073220268241731, this, []); }
   /**
    * var subtitleHighlightRanges: [NSValue] { get }
    * @availability iOS 9.3+
    */
-  get subtitleHighlightRanges(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("MapKit_212edf3d13b127f5", 1938487295228497, this, []); }
+  get subtitleHighlightRanges(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("MapKit_5d69670f0307b385", 1938487295228497, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 9.3+
    */
-  get title(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 3327817340140865, this, []); }
+  get title(): string { return callSDK<string>("MapKit_5d69670f0307b385", 3327817340140865, this, []); }
   /**
    * var titleHighlightRanges: [NSValue] { get }
    * @availability iOS 9.3+
    */
-  get titleHighlightRanges(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("MapKit_212edf3d13b127f5", 14253858502771, this, []); }
+  get titleHighlightRanges(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("MapKit_5d69670f0307b385", 14253858502771, this, []); }
   declare readonly $type: { "c:objc(cs)MKLocalSearchCompletion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "subtitleHighlightRanges": true; "title": true; "titleHighlightRanges": true };
 }
@@ -1951,7 +1951,7 @@ export const MKLocalSearchRegionPriority = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MKLocalSearchRegionPriority) | null { return callSDK<(MKLocalSearchRegionPriority) | null>("MapKit_212edf3d13b127f5", 3087869562154309, undefined, [rawValue]); }
+  init(rawValue: number): (MKLocalSearchRegionPriority) | null { return callSDK<(MKLocalSearchRegionPriority) | null>("MapKit_5d69670f0307b385", 3087869562154309, undefined, [rawValue]); }
 };
 
 /**
@@ -1965,7 +1965,7 @@ export const MKLookAroundBadgePosition = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MKLookAroundBadgePosition) | null { return callSDK<(MKLookAroundBadgePosition) | null>("MapKit_212edf3d13b127f5", 1349442281000291, undefined, [rawValue]); }
+  init(rawValue: number): (MKLookAroundBadgePosition) | null { return callSDK<(MKLookAroundBadgePosition) | null>("MapKit_5d69670f0307b385", 1349442281000291, undefined, [rawValue]); }
 };
 
 /**
@@ -1985,42 +1985,42 @@ export class MKLookAroundSceneRequest extends SDKHandle {
    * func cancel()
    * @availability iOS 16.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 3857788551645608, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 3857788551645608, this, []); }
   /**
    * var scene: MKLookAroundScene? { get async throws }
    * @availability iOS 16.0+
    */
-  getSceneWithCompletionHandler(completionHandler: ((arg0: (MKLookAroundScene) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1982556756137263, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getSceneWithCompletionHandler(completionHandler: ((arg0: (MKLookAroundScene) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 1982556756137263, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * init(coordinate: CLLocationCoordinate2D)
    * @availability iOS 16.0+
    */
-  static initCoordinate(coordinate: $SDK3): MKLookAroundSceneRequest { return callSDK<MKLookAroundSceneRequest>("MapKit_212edf3d13b127f5", 4121387984613271, undefined, [coordinate]); }
+  static initCoordinate(coordinate: $SDK3): MKLookAroundSceneRequest { return callSDK<MKLookAroundSceneRequest>("MapKit_5d69670f0307b385", 4121387984613271, undefined, [coordinate]); }
   /**
    * init(mapItem: MKMapItem)
    * @availability iOS 16.0+
    */
-  static initMapItem(mapItem: MKMapItem): MKLookAroundSceneRequest { return callSDK<MKLookAroundSceneRequest>("MapKit_212edf3d13b127f5", 564168394011933, undefined, [mapItem]); }
+  static initMapItem(mapItem: MKMapItem): MKLookAroundSceneRequest { return callSDK<MKLookAroundSceneRequest>("MapKit_5d69670f0307b385", 564168394011933, undefined, [mapItem]); }
   /**
    * var isCancelled: Bool { get }
    * @availability iOS 16.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3042944806484043, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3042944806484043, this, []); }
   /**
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 16.0+
    */
-  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 141215335133255, this, []); }
+  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 141215335133255, this, []); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 16.0+
    */
-  get isLoading(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3178459422747059, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3178459422747059, this, []); }
   /**
    * var mapItem: MKMapItem? { get }
    * @availability iOS 16.0+
    */
-  get mapItem(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_212edf3d13b127f5", 3488632308196591, this, []); }
+  get mapItem(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_5d69670f0307b385", 3488632308196591, this, []); }
   declare readonly $type: { "c:objc(cs)MKLookAroundSceneRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCancelled": true; "coordinate": true; "isLoading": true; "mapItem": true };
 }
@@ -2034,22 +2034,22 @@ export class MKLookAroundSnapshotter extends SDKHandle {
    * func cancel()
    * @availability iOS 16.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 954681282027527, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 954681282027527, this, []); }
   /**
    * var snapshot: MKLookAroundSnapshotter.Snapshot { get async throws }
    * @availability iOS 16.0+
    */
-  getSnapshotWithCompletionHandler(completionHandler: ((arg0: (MKLookAroundSnapshotter_Snapshot) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2458430101920898, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getSnapshotWithCompletionHandler(completionHandler: ((arg0: (MKLookAroundSnapshotter_Snapshot) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 2458430101920898, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * init(scene: MKLookAroundScene, options: MKLookAroundSnapshotter.Options)
    * @availability iOS 16.0+
    */
-  static init(scene: MKLookAroundScene, options: MKLookAroundSnapshotter_Options): MKLookAroundSnapshotter { return callSDK<MKLookAroundSnapshotter>("MapKit_212edf3d13b127f5", 3660130923124519, undefined, [scene, options]); }
+  static init(scene: MKLookAroundScene, options: MKLookAroundSnapshotter_Options): MKLookAroundSnapshotter { return callSDK<MKLookAroundSnapshotter>("MapKit_5d69670f0307b385", 3660130923124519, undefined, [scene, options]); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 16.0+
    */
-  get isLoading(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1829060537226693, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1829060537226693, this, []); }
   declare readonly $type: { "c:objc(cs)MKLookAroundSnapshotter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isLoading": true };
 }
@@ -2060,25 +2060,25 @@ export class MKLookAroundSnapshotter extends SDKHandle {
  */
 export class MKLookAroundSnapshotter_Options extends SDKHandle {
   /** init() */
-  static init(): MKLookAroundSnapshotter_Options { return callSDK<MKLookAroundSnapshotter_Options>("MapKit_212edf3d13b127f5", 2429809994857884, undefined, []); }
+  static init(): MKLookAroundSnapshotter_Options { return callSDK<MKLookAroundSnapshotter_Options>("MapKit_5d69670f0307b385", 2429809994857884, undefined, []); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 16.0+
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 2830604245954008, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 395294487793150, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 2830604245954008, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 395294487793150, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 16.0+
    */
-  get size(): $SDK25 { return callSDK<$SDK25>("MapKit_212edf3d13b127f5", 2235213544292142, this, []); }
-  set size(value: $SDK25) { callSDK<void>("MapKit_212edf3d13b127f5", 713582631619666, this, [value]); }
+  get size(): $SDK25 { return callSDK<$SDK25>("MapKit_5d69670f0307b385", 2235213544292142, this, []); }
+  set size(value: $SDK25) { callSDK<void>("MapKit_5d69670f0307b385", 713582631619666, this, [value]); }
   /**
    * @NSCopying var traitCollection: UITraitCollection { get set }
    * @availability iOS 16.0+
    */
-  get traitCollection(): _UIKit_UITraitCollection { return callSDK<_UIKit_UITraitCollection>("MapKit_212edf3d13b127f5", 579257562464665, this, []); }
-  set traitCollection(value: _UIKit_UITraitCollection) { callSDK<void>("MapKit_212edf3d13b127f5", 1099566917485245, this, [value]); }
+  get traitCollection(): _UIKit_UITraitCollection { return callSDK<_UIKit_UITraitCollection>("MapKit_5d69670f0307b385", 579257562464665, this, []); }
+  set traitCollection(value: _UIKit_UITraitCollection) { callSDK<void>("MapKit_5d69670f0307b385", 1099566917485245, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKLookAroundSnapshotOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pointOfInterestFilter": true; "size": true; "traitCollection": true };
 }
@@ -2089,12 +2089,12 @@ export class MKLookAroundSnapshotter_Options extends SDKHandle {
  */
 export class MKLookAroundSnapshotter_Snapshot extends SDKHandle {
   /** init() */
-  static init(): MKLookAroundSnapshotter_Snapshot { return callSDK<MKLookAroundSnapshotter_Snapshot>("MapKit_212edf3d13b127f5", 4234372301138877, undefined, []); }
+  static init(): MKLookAroundSnapshotter_Snapshot { return callSDK<MKLookAroundSnapshotter_Snapshot>("MapKit_5d69670f0307b385", 4234372301138877, undefined, []); }
   /**
    * var image: UIImage { get }
    * @availability iOS 16.0+
    */
-  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("MapKit_212edf3d13b127f5", 3040468009491486, this, []); }
+  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("MapKit_5d69670f0307b385", 3040468009491486, this, []); }
   declare readonly $type: { "c:objc(cs)MKLookAroundSnapshot": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "image": true };
 }
@@ -2108,53 +2108,53 @@ export class MKLookAroundViewController extends SDKHandle {
    * init?(coder: NSCoder)
    * @availability iOS 16.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(MKLookAroundViewController) | null> { return callSDKAsync<(MKLookAroundViewController) | null>("MapKit_212edf3d13b127f5", 468265189883546, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(MKLookAroundViewController) | null> { return callSDKAsync<(MKLookAroundViewController) | null>("MapKit_5d69670f0307b385", 468265189883546, undefined, [coder]); }
   /**
    * init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
    * @availability iOS 16.0+
    */
-  static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): Promise<MKLookAroundViewController> { return callSDKAsync<MKLookAroundViewController>("MapKit_212edf3d13b127f5", 4039415403746854, undefined, [nibNameOrNil, nibBundleOrNil]); }
+  static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): Promise<MKLookAroundViewController> { return callSDKAsync<MKLookAroundViewController>("MapKit_5d69670f0307b385", 4039415403746854, undefined, [nibNameOrNil, nibBundleOrNil]); }
   /**
    * init(scene: MKLookAroundScene)
    * @availability iOS 16.0+
    */
-  static initScene(scene: MKLookAroundScene): Promise<MKLookAroundViewController> { return callSDKAsync<MKLookAroundViewController>("MapKit_212edf3d13b127f5", 4413250989795958, undefined, [scene]); }
+  static initScene(scene: MKLookAroundScene): Promise<MKLookAroundViewController> { return callSDKAsync<MKLookAroundViewController>("MapKit_5d69670f0307b385", 4413250989795958, undefined, [scene]); }
   /**
    * var badgePosition: MKLookAroundBadgePosition { get set }
    * @availability iOS 16.0+
    */
-  get badgePosition(): Promise<MKLookAroundBadgePosition> { return callSDKAsync<MKLookAroundBadgePosition>("MapKit_212edf3d13b127f5", 2416899265305621, this, []); }
-  setBadgePosition(value: MKLookAroundBadgePosition): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4235492928217155, this, [value]); }
+  get badgePosition(): Promise<MKLookAroundBadgePosition> { return callSDKAsync<MKLookAroundBadgePosition>("MapKit_5d69670f0307b385", 2416899265305621, this, []); }
+  setBadgePosition(value: MKLookAroundBadgePosition): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4235492928217155, this, [value]); }
   /**
    * @IBOutlet weak var delegate: (any MKLookAroundViewControllerDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_212edf3d13b127f5", 1743340895087390, this, []); }
-  setDelegate(value?: (Implements<MKLookAroundViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2186304694293191, this, [value], [{"protocol":"c:objc(pl)MKLookAroundViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_5d69670f0307b385", 1743340895087390, this, []); }
+  setDelegate(value?: (Implements<MKLookAroundViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2186304694293191, this, [value], [{"protocol":"c:objc(pl)MKLookAroundViewControllerDelegate"}]); }
   /**
    * var isNavigationEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isNavigationEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 3619587640169268, this, []); }
-  setIsNavigationEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1869046708638168, this, [value]); }
+  get isNavigationEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 3619587640169268, this, []); }
+  setIsNavigationEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1869046708638168, this, [value]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 16.0+
    */
-  get pointOfInterestFilter(): Promise<$SDK16> { return callSDKAsync<$SDK16>("MapKit_212edf3d13b127f5", 421401017763871, this, []); }
-  setPointOfInterestFilter(value?: $SDK16): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4260209908861682, this, [value]); }
+  get pointOfInterestFilter(): Promise<$SDK16> { return callSDKAsync<$SDK16>("MapKit_5d69670f0307b385", 421401017763871, this, []); }
+  setPointOfInterestFilter(value?: $SDK16): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4260209908861682, this, [value]); }
   /**
    * @NSCopying var scene: MKLookAroundScene? { get set }
    * @availability iOS 16.0+
    */
-  get scene(): Promise<(MKLookAroundScene) | null> { return callSDKAsync<(MKLookAroundScene) | null>("MapKit_212edf3d13b127f5", 2242377814208128, this, []); }
-  setScene(value?: (MKLookAroundScene) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3718103595616297, this, [value]); }
+  get scene(): Promise<(MKLookAroundScene) | null> { return callSDKAsync<(MKLookAroundScene) | null>("MapKit_5d69670f0307b385", 2242377814208128, this, []); }
+  setScene(value?: (MKLookAroundScene) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3718103595616297, this, [value]); }
   /**
    * var showsRoadLabels: Bool { get set }
    * @availability iOS 16.0+
    */
-  get showsRoadLabels(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 3959436122668409, this, []); }
-  setShowsRoadLabels(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2489251762966757, this, [value]); }
+  get showsRoadLabels(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 3959436122668409, this, []); }
+  setShowsRoadLabels(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2489251762966757, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKLookAroundViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "badgePosition": true; "delegate": true; "isNavigationEnabled": true; "pointOfInterestFilter": true; "scene": true; "showsRoadLabels": true };
 }
@@ -2205,48 +2205,48 @@ export class MKMapCamera extends SDKHandle {
    * convenience init(lookingAtCenter centerCoordinate: CLLocationCoordinate2D, fromDistance distance: CLLocationDistance, pitch: CGFloat, heading: CLLocationDirection)
    * @availability iOS 9.0+
    */
-  static initLookingAtCenterFromDistancePitchHeading(centerCoordinate: $SDK3, distance: number, pitch: number, heading: number): MKMapCamera { return callSDK<MKMapCamera>("MapKit_212edf3d13b127f5", 477333489848096, undefined, [centerCoordinate, distance, pitch, heading]); }
+  static initLookingAtCenterFromDistancePitchHeading(centerCoordinate: $SDK3, distance: number, pitch: number, heading: number): MKMapCamera { return callSDK<MKMapCamera>("MapKit_5d69670f0307b385", 477333489848096, undefined, [centerCoordinate, distance, pitch, heading]); }
   /**
    * convenience init(lookingAtCenter centerCoordinate: CLLocationCoordinate2D, fromEyeCoordinate eyeCoordinate: CLLocationCoordinate2D, eyeAltitude: CLLocationDistance)
    * @availability iOS 7.0+
    */
-  static initLookingAtCenterFromEyeCoordinateEyeAltitude(centerCoordinate: $SDK3, eyeCoordinate: $SDK3, eyeAltitude: number): MKMapCamera { return callSDK<MKMapCamera>("MapKit_212edf3d13b127f5", 548704672807749, undefined, [centerCoordinate, eyeCoordinate, eyeAltitude]); }
+  static initLookingAtCenterFromEyeCoordinateEyeAltitude(centerCoordinate: $SDK3, eyeCoordinate: $SDK3, eyeAltitude: number): MKMapCamera { return callSDK<MKMapCamera>("MapKit_5d69670f0307b385", 548704672807749, undefined, [centerCoordinate, eyeCoordinate, eyeAltitude]); }
   /**
    * convenience init(lookingAt mapItem: MKMapItem, forViewSize viewSize: CGSize, allowPitch: Bool)
    * @availability iOS 16.0+
    */
-  static initLookingAtForViewSizeAllowPitch(mapItem: MKMapItem, viewSize: $SDK25, allowPitch: boolean): MKMapCamera { return callSDK<MKMapCamera>("MapKit_212edf3d13b127f5", 4017478246814576, undefined, [mapItem, viewSize, allowPitch]); }
+  static initLookingAtForViewSizeAllowPitch(mapItem: MKMapItem, viewSize: $SDK25, allowPitch: boolean): MKMapCamera { return callSDK<MKMapCamera>("MapKit_5d69670f0307b385", 4017478246814576, undefined, [mapItem, viewSize, allowPitch]); }
   /**
    * var altitude: CLLocationDistance { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get altitude(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3319308337246204, this, []); }
-  set altitude(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 1805151085941673, this, [value]); }
+  get altitude(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3319308337246204, this, []); }
+  set altitude(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 1805151085941673, this, [value]); }
   /**
    * var centerCoordinate: CLLocationCoordinate2D { get set }
    * @availability iOS 7.0+
    */
-  get centerCoordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 3301568572243084, this, []); }
-  set centerCoordinate(value: $SDK3) { callSDK<void>("MapKit_212edf3d13b127f5", 3167412712983036, this, [value]); }
+  get centerCoordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 3301568572243084, this, []); }
+  set centerCoordinate(value: $SDK3) { callSDK<void>("MapKit_5d69670f0307b385", 3167412712983036, this, [value]); }
   /**
    * var centerCoordinateDistance: CLLocationDistance { get set }
    * @availability iOS 13.0+
    */
-  get centerCoordinateDistance(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2508894592664748, this, []); }
-  set centerCoordinateDistance(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 91657712982588, this, [value]); }
+  get centerCoordinateDistance(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2508894592664748, this, []); }
+  set centerCoordinateDistance(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 91657712982588, this, [value]); }
   /**
    * var heading: CLLocationDirection { get set }
    * @availability iOS 7.0+
    */
-  get heading(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 710405335288427, this, []); }
-  set heading(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2903987222533197, this, [value]); }
+  get heading(): number { return callSDK<number>("MapKit_5d69670f0307b385", 710405335288427, this, []); }
+  set heading(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2903987222533197, this, [value]); }
   /**
    * var pitch: CGFloat { get set }
    * @availability iOS 7.0+
    */
-  get pitch(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1814167425356288, this, []); }
-  set pitch(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 154900133693976, this, [value]); }
+  get pitch(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1814167425356288, this, []); }
+  set pitch(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 154900133693976, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMapCamera": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "altitude": true; "centerCoordinate": true; "centerCoordinateDistance": true; "heading": true; "pitch": true };
 }
@@ -2262,7 +2262,7 @@ export const MKMapConfiguration_ElevationStyle = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MKMapConfiguration_ElevationStyle) | null { return callSDK<(MKMapConfiguration_ElevationStyle) | null>("MapKit_212edf3d13b127f5", 3437234176061426, undefined, [rawValue]); }
+  init(rawValue: number): (MKMapConfiguration_ElevationStyle) | null { return callSDK<(MKMapConfiguration_ElevationStyle) | null>("MapKit_5d69670f0307b385", 3437234176061426, undefined, [rawValue]); }
 };
 
 /**
@@ -2274,17 +2274,17 @@ export class MKMapFeatureAnnotation extends SDKHandle {
    * var featureType: MKMapFeatureAnnotation.FeatureType { get }
    * @availability iOS 16.0+
    */
-  get featureType(): MKMapFeatureAnnotation_FeatureType { return callSDK<MKMapFeatureAnnotation_FeatureType>("MapKit_212edf3d13b127f5", 1161737884613988, this, []); }
+  get featureType(): MKMapFeatureAnnotation_FeatureType { return callSDK<MKMapFeatureAnnotation_FeatureType>("MapKit_5d69670f0307b385", 1161737884613988, this, []); }
   /**
    * var iconStyle: MKIconStyle? { get }
    * @availability iOS 16.0+
    */
-  get iconStyle(): (MKIconStyle) | null { return callSDK<(MKIconStyle) | null>("MapKit_212edf3d13b127f5", 3368028412308733, this, []); }
+  get iconStyle(): (MKIconStyle) | null { return callSDK<(MKIconStyle) | null>("MapKit_5d69670f0307b385", 3368028412308733, this, []); }
   /**
    * var pointOfInterestCategory: MKPointOfInterestCategory? { get }
    * @availability iOS 16.0+
    */
-  get pointOfInterestCategory(): $SDK29 { return callSDK<$SDK29>("MapKit_212edf3d13b127f5", 2180765418497834, this, []); }
+  get pointOfInterestCategory(): $SDK29 { return callSDK<$SDK29>("MapKit_5d69670f0307b385", 2180765418497834, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapFeatureAnnotation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "featureType": true; "iconStyle": true; "pointOfInterestCategory": true };
 }
@@ -2300,7 +2300,7 @@ export const MKMapFeatureAnnotation_FeatureType = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MKMapFeatureAnnotation_FeatureType) | null { return callSDK<(MKMapFeatureAnnotation_FeatureType) | null>("MapKit_212edf3d13b127f5", 418157478844351, undefined, [rawValue]); }
+  init(rawValue: number): (MKMapFeatureAnnotation_FeatureType) | null { return callSDK<(MKMapFeatureAnnotation_FeatureType) | null>("MapKit_5d69670f0307b385", 418157478844351, undefined, [rawValue]); }
 };
 
 /**
@@ -2314,22 +2314,22 @@ export const MKMapFeatureOptions = {
    * static var physicalFeatures: MKMapFeatureOptions { get }
    * @availability iOS 16.0+
    */
-  get physicalFeatures(): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_212edf3d13b127f5", 41293988776303, undefined, []); },
+  get physicalFeatures(): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_5d69670f0307b385", 41293988776303, undefined, []); },
   /**
    * static var pointsOfInterest: MKMapFeatureOptions { get }
    * @availability iOS 16.0+
    */
-  get pointsOfInterest(): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_212edf3d13b127f5", 3251904381093789, undefined, []); },
+  get pointsOfInterest(): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_5d69670f0307b385", 3251904381093789, undefined, []); },
   /**
    * static var territories: MKMapFeatureOptions { get }
    * @availability iOS 16.0+
    */
-  get territories(): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_212edf3d13b127f5", 2818701020869641, undefined, []); },
+  get territories(): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_5d69670f0307b385", 2818701020869641, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_212edf3d13b127f5", 2882732704305067, undefined, [rawValue]); }
+  init(rawValue: number): MKMapFeatureOptions { return callSDK<MKMapFeatureOptions>("MapKit_5d69670f0307b385", 2882732704305067, undefined, [rawValue]); }
 };
 
 /**
@@ -2341,104 +2341,104 @@ export class MKMapItem extends SDKHandle {
    * class func forCurrentLocation() -> MKMapItem
    * @availability iOS 6.0+
    */
-  static forCurrentLocation(): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 3911631765751881, undefined, []); }
+  static forCurrentLocation(): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 3911631765751881, undefined, []); }
   /**
    * class func openMaps(with mapItems: [MKMapItem], launchOptions: [String : Any]? = nil) -> Bool
    * @availability iOS 6.0+
    */
-  static openMapsWithLaunchOptions(mapItems: Array<MKMapItem>, launchOptions?: $SDK30): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2063172952909694, undefined, [mapItems, launchOptions]); }
+  static openMapsWithLaunchOptions(mapItems: Array<MKMapItem>, launchOptions?: $SDK30): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2063172952909694, undefined, [mapItems, launchOptions]); }
   /**
    * class func openMaps(with mapItems: [MKMapItem], launchOptions: [String : Any]? = nil, from scene: UIScene?) async -> Bool
    * @availability iOS 13.2+
    */
-  static openMapsWithLaunchOptionsFromCompletionHandler(mapItems: Array<MKMapItem>, launchOptions?: $SDK30, scene?: (_UIKit_UIScene) | null, completion?: $SDK31): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1608222016869732, undefined, [mapItems, launchOptions, scene, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  static openMapsWithLaunchOptionsFromCompletionHandler(mapItems: Array<MKMapItem>, launchOptions?: $SDK30, scene?: (_UIKit_UIScene) | null, completion?: $SDK31): void { return callSDK<void>("MapKit_5d69670f0307b385", 1608222016869732, undefined, [mapItems, launchOptions, scene, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(location: CLLocation, address: MKAddress?)
    * @availability iOS 26.0+
    */
-  static initLocationAddress(location: __LocationEssentials_CLLocation, address?: (MKAddress) | null): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 4398627651218000, undefined, [location, address]); }
+  static initLocationAddress(location: __LocationEssentials_CLLocation, address?: (MKAddress) | null): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 4398627651218000, undefined, [location, address]); }
   /**
    * init(placemark: MKPlacemark)
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  static initPlacemark(placemark: MKPlacemark): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 3389511365953211, undefined, [placemark]); }
+  static initPlacemark(placemark: MKPlacemark): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 3389511365953211, undefined, [placemark]); }
   /**
    * func openInMaps(launchOptions: [String : Any]? = nil) -> Bool
    * @availability iOS 6.0+
    */
-  openInMapsLaunchOptions(launchOptions?: $SDK30): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3481448617665966, this, [launchOptions]); }
+  openInMapsLaunchOptions(launchOptions?: $SDK30): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3481448617665966, this, [launchOptions]); }
   /**
    * func openInMaps(launchOptions: [String : Any]? = nil, from scene: UIScene?) async -> Bool
    * @availability iOS 13.2+
    */
-  openInMapsLaunchOptionsFromCompletionHandler(launchOptions?: $SDK30, scene?: (_UIKit_UIScene) | null, completion?: $SDK31): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2134457740442486, this, [launchOptions, scene, completion], [null,null,{"callback":{"out":[]}}]); }
+  openInMapsLaunchOptionsFromCompletionHandler(launchOptions?: $SDK30, scene?: (_UIKit_UIScene) | null, completion?: $SDK31): void { return callSDK<void>("MapKit_5d69670f0307b385", 2134457740442486, this, [launchOptions, scene, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var address: MKAddress? { get }
    * @availability iOS 26.0+
    */
-  get address(): (MKAddress) | null { return callSDK<(MKAddress) | null>("MapKit_212edf3d13b127f5", 3818885022617184, this, []); }
+  get address(): (MKAddress) | null { return callSDK<(MKAddress) | null>("MapKit_5d69670f0307b385", 3818885022617184, this, []); }
   /**
    * var addressRepresentations: MKAddressRepresentations? { get }
    * @availability iOS 26.0+
    */
-  get addressRepresentations(): (MKAddressRepresentations) | null { return callSDK<(MKAddressRepresentations) | null>("MapKit_212edf3d13b127f5", 881263957520815, this, []); }
+  get addressRepresentations(): (MKAddressRepresentations) | null { return callSDK<(MKAddressRepresentations) | null>("MapKit_5d69670f0307b385", 881263957520815, this, []); }
   /**
    * var alternateIdentifiers: Set<MKMapItem.Identifier> { get }
    * @availability iOS 18.0+
    */
-  get alternateIdentifiers(): Array<MKMapItem_Identifier> { return callSDK<Array<MKMapItem_Identifier>>("MapKit_212edf3d13b127f5", 2445603232845112, this, []); }
+  get alternateIdentifiers(): Array<MKMapItem_Identifier> { return callSDK<Array<MKMapItem_Identifier>>("MapKit_5d69670f0307b385", 2445603232845112, this, []); }
   /**
    * var identifier: MKMapItem.Identifier? { get }
    * @availability iOS 18.0+
    */
-  get identifier(): (MKMapItem_Identifier) | null { return callSDK<(MKMapItem_Identifier) | null>("MapKit_212edf3d13b127f5", 1716383296835805, this, []); }
+  get identifier(): (MKMapItem_Identifier) | null { return callSDK<(MKMapItem_Identifier) | null>("MapKit_5d69670f0307b385", 1716383296835805, this, []); }
   /**
    * var isCurrentLocation: Bool { get }
    * @availability iOS 6.0+
    */
-  get isCurrentLocation(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 685129631369586, this, []); }
+  get isCurrentLocation(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 685129631369586, this, []); }
   /**
    * var location: CLLocation { get }
    * @availability iOS 26.0+
    */
-  get location(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("MapKit_212edf3d13b127f5", 536585167269597, this, []); }
+  get location(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("MapKit_5d69670f0307b385", 536585167269597, this, []); }
   /**
    * var name: String? { get set }
    * @availability iOS 6.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 846491477661679, this, []); }
-  set name(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 3204092030776051, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 846491477661679, this, []); }
+  set name(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 3204092030776051, this, [value]); }
   /**
    * var phoneNumber: String? { get set }
    * @availability iOS 6.0+
    */
-  get phoneNumber(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 3313739813008085, this, []); }
-  set phoneNumber(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 2585853849240462, this, [value]); }
+  get phoneNumber(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 3313739813008085, this, []); }
+  set phoneNumber(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 2585853849240462, this, [value]); }
   /**
    * var placemark: MKPlacemark { get }
    * @availability iOS 6.0+
    * @deprecated iOS 26.0
    */
-  get placemark(): MKPlacemark { return callSDK<MKPlacemark>("MapKit_212edf3d13b127f5", 4045994014549471, this, []); }
+  get placemark(): MKPlacemark { return callSDK<MKPlacemark>("MapKit_5d69670f0307b385", 4045994014549471, this, []); }
   /**
    * var pointOfInterestCategory: MKPointOfInterestCategory? { get set }
    * @availability iOS 13.0+
    */
-  get pointOfInterestCategory(): $SDK29 { return callSDK<$SDK29>("MapKit_212edf3d13b127f5", 1327800333937858, this, []); }
-  set pointOfInterestCategory(value: $SDK29) { callSDK<void>("MapKit_212edf3d13b127f5", 3713725166267063, this, [value]); }
+  get pointOfInterestCategory(): $SDK29 { return callSDK<$SDK29>("MapKit_5d69670f0307b385", 1327800333937858, this, []); }
+  set pointOfInterestCategory(value: $SDK29) { callSDK<void>("MapKit_5d69670f0307b385", 3713725166267063, this, [value]); }
   /**
    * var timeZone: TimeZone? { get set }
    * @availability iOS 9.0+
    */
-  get timeZone(): (_Foundation_TimeZone) | null { return callSDK<(_Foundation_TimeZone) | null>("MapKit_212edf3d13b127f5", 692200545527965, this, []); }
-  set timeZone(value: (_Foundation_TimeZone) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 1278539764766968, this, [value]); }
+  get timeZone(): (_Foundation_TimeZone) | null { return callSDK<(_Foundation_TimeZone) | null>("MapKit_5d69670f0307b385", 692200545527965, this, []); }
+  set timeZone(value: (_Foundation_TimeZone) | null) { callSDK<void>("MapKit_5d69670f0307b385", 1278539764766968, this, [value]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 6.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 4492737939561658, this, []); }
-  set url(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 178110641434287, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 4492737939561658, this, []); }
+  set url(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 178110641434287, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMapItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "address": true; "addressRepresentations": true; "alternateIdentifiers": true; "identifier": true; "isCurrentLocation": true; "location": true; "name": true; "phoneNumber": true; "placemark": true; "pointOfInterestCategory": true; "timeZone": true; "url": true };
 }
@@ -2452,12 +2452,12 @@ export class MKMapItem_Identifier extends SDKHandle {
    * init?(rawValue string: String)
    * @availability iOS 18.0+
    */
-  static init(string: string): (MKMapItem_Identifier) | null { return callSDK<(MKMapItem_Identifier) | null>("MapKit_212edf3d13b127f5", 933878496367913, undefined, [string]); }
+  static init(string: string): (MKMapItem_Identifier) | null { return callSDK<(MKMapItem_Identifier) | null>("MapKit_5d69670f0307b385", 933878496367913, undefined, [string]); }
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  get rawValue(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 2321488951116993, this, []); }
+  get rawValue(): string { return callSDK<string>("MapKit_5d69670f0307b385", 2321488951116993, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapItemIdentifier": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "rawValue": true };
 }
@@ -2477,12 +2477,12 @@ export class MKMapItemAnnotation extends SDKHandle {
    * init?(mapItem: MKMapItem)
    * @availability iOS 18.0+
    */
-  static init(mapItem: MKMapItem): (MKMapItemAnnotation) | null { return callSDK<(MKMapItemAnnotation) | null>("MapKit_212edf3d13b127f5", 2442878227057186, undefined, [mapItem]); }
+  static init(mapItem: MKMapItem): (MKMapItemAnnotation) | null { return callSDK<(MKMapItemAnnotation) | null>("MapKit_5d69670f0307b385", 2442878227057186, undefined, [mapItem]); }
   /**
    * var mapItem: MKMapItem { get }
    * @availability iOS 18.0+
    */
-  get mapItem(): MKMapItem { return callSDK<MKMapItem>("MapKit_212edf3d13b127f5", 3024192023278385, this, []); }
+  get mapItem(): MKMapItem { return callSDK<MKMapItem>("MapKit_5d69670f0307b385", 3024192023278385, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapItemAnnotation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mapItem": true };
 }
@@ -2496,24 +2496,24 @@ export class MKMapItemDetailViewController extends SDKHandle {
    * init(mapItem: MKMapItem?)
    * @availability iOS 18.0+
    */
-  static initMapItem(mapItem?: (MKMapItem) | null): Promise<MKMapItemDetailViewController> { return callSDKAsync<MKMapItemDetailViewController>("MapKit_212edf3d13b127f5", 2325472728951024, undefined, [mapItem]); }
+  static initMapItem(mapItem?: (MKMapItem) | null): Promise<MKMapItemDetailViewController> { return callSDKAsync<MKMapItemDetailViewController>("MapKit_5d69670f0307b385", 2325472728951024, undefined, [mapItem]); }
   /**
    * init(mapItem: MKMapItem?, displaysMap: Bool)
    * @availability iOS 18.0+
    */
-  static initMapItemDisplaysMap(mapItem: (MKMapItem) | null, displaysMap: boolean): Promise<MKMapItemDetailViewController> { return callSDKAsync<MKMapItemDetailViewController>("MapKit_212edf3d13b127f5", 2083374051627536, undefined, [mapItem, displaysMap]); }
+  static initMapItemDisplaysMap(mapItem: (MKMapItem) | null, displaysMap: boolean): Promise<MKMapItemDetailViewController> { return callSDKAsync<MKMapItemDetailViewController>("MapKit_5d69670f0307b385", 2083374051627536, undefined, [mapItem, displaysMap]); }
   /**
    * weak var delegate: (any MKMapItemDetailViewControllerDelegate)? { get set }
    * @availability iOS 18.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_212edf3d13b127f5", 899791293208124, this, []); }
-  setDelegate(value?: (Implements<MKMapItemDetailViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4370586870468220, this, [value], [{"protocol":"c:objc(pl)MKMapItemDetailViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_5d69670f0307b385", 899791293208124, this, []); }
+  setDelegate(value?: (Implements<MKMapItemDetailViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4370586870468220, this, [value], [{"protocol":"c:objc(pl)MKMapItemDetailViewControllerDelegate"}]); }
   /**
    * var mapItem: MKMapItem? { get set }
    * @availability iOS 18.0+
    */
-  get mapItem(): Promise<(MKMapItem) | null> { return callSDKAsync<(MKMapItem) | null>("MapKit_212edf3d13b127f5", 1703096870981218, this, []); }
-  setMapItem(value?: (MKMapItem) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3654923777407919, this, [value]); }
+  get mapItem(): Promise<(MKMapItem) | null> { return callSDKAsync<(MKMapItem) | null>("MapKit_5d69670f0307b385", 1703096870981218, this, []); }
+  setMapItem(value?: (MKMapItem) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3654923777407919, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMapItemDetailViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "mapItem": true };
 }
@@ -2539,58 +2539,58 @@ export class MKMapItemRequest extends SDKHandle {
    * func cancel()
    * @availability iOS 16.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 464380239966224, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 464380239966224, this, []); }
   /**
    * var mapItem: MKMapItem { get async throws }
    * @availability iOS 16.0+
    */
-  getMapItem(completionHandler: ((arg0: (MKMapItem) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 4433108094332981, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getMapItem(completionHandler: ((arg0: (MKMapItem) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 4433108094332981, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * init(mapFeatureAnnotation: MKMapFeatureAnnotation)
    * @availability iOS 16.0+
    */
-  static initMapFeatureAnnotation(mapFeatureAnnotation: MKMapFeatureAnnotation): MKMapItemRequest { return callSDK<MKMapItemRequest>("MapKit_212edf3d13b127f5", 84202441824134, undefined, [mapFeatureAnnotation]); }
+  static initMapFeatureAnnotation(mapFeatureAnnotation: MKMapFeatureAnnotation): MKMapItemRequest { return callSDK<MKMapItemRequest>("MapKit_5d69670f0307b385", 84202441824134, undefined, [mapFeatureAnnotation]); }
   /**
    * init(mapItemIdentifier identifier: MKMapItem.Identifier)
    * @availability iOS 18.0+
    */
-  static initMapItemIdentifier(identifier: MKMapItem_Identifier): MKMapItemRequest { return callSDK<MKMapItemRequest>("MapKit_212edf3d13b127f5", 1623846772336436, undefined, [identifier]); }
+  static initMapItemIdentifier(identifier: MKMapItem_Identifier): MKMapItemRequest { return callSDK<MKMapItemRequest>("MapKit_5d69670f0307b385", 1623846772336436, undefined, [identifier]); }
   /**
    * var isCancelled: Bool { get }
    * @availability iOS 16.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3211570097446030, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3211570097446030, this, []); }
   /**
    * var featureAnnotation: MKMapFeatureAnnotation { get }
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  get featureAnnotation(): MKMapFeatureAnnotation { return callSDK<MKMapFeatureAnnotation>("MapKit_212edf3d13b127f5", 666376871273218, this, []); }
+  get featureAnnotation(): MKMapFeatureAnnotation { return callSDK<MKMapFeatureAnnotation>("MapKit_5d69670f0307b385", 666376871273218, this, []); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 16.0+
    */
-  get isLoading(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1317297751096324, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1317297751096324, this, []); }
   /**
    * var mapFeatureAnnotation: MKMapFeatureAnnotation? { get }
    * @availability iOS 18.0+
    */
-  get mapFeatureAnnotation(): (MKMapFeatureAnnotation) | null { return callSDK<(MKMapFeatureAnnotation) | null>("MapKit_212edf3d13b127f5", 3691825735315485, this, []); }
+  get mapFeatureAnnotation(): (MKMapFeatureAnnotation) | null { return callSDK<(MKMapFeatureAnnotation) | null>("MapKit_5d69670f0307b385", 3691825735315485, this, []); }
   /**
    * var mapItemIdentifier: MKMapItem.Identifier? { get }
    * @availability iOS 18.0+
    */
-  get mapItemIdentifier(): (MKMapItem_Identifier) | null { return callSDK<(MKMapItem_Identifier) | null>("MapKit_212edf3d13b127f5", 2716312172194899, this, []); }
+  get mapItemIdentifier(): (MKMapItem_Identifier) | null { return callSDK<(MKMapItem_Identifier) | null>("MapKit_5d69670f0307b385", 2716312172194899, this, []); }
   /**
    * var placeDescriptor: PlaceDescriptor? { get }
    * @availability iOS 26.0+
    */
-  get placeDescriptor(): (_GeoToolbox_PlaceDescriptor) | null { return callSDK<(_GeoToolbox_PlaceDescriptor) | null>("MapKit_212edf3d13b127f5", 2591237243086540, this, []); }
+  get placeDescriptor(): (_GeoToolbox_PlaceDescriptor) | null { return callSDK<(_GeoToolbox_PlaceDescriptor) | null>("MapKit_5d69670f0307b385", 2591237243086540, this, []); }
   /**
    * convenience init(placeDescriptor: PlaceDescriptor)
    * @availability iOS 26.0+
    */
-  static initPlaceDescriptor(placeDescriptor: _GeoToolbox_PlaceDescriptor): MKMapItemRequest { return callSDK<MKMapItemRequest>("MapKit_212edf3d13b127f5", 1054258439296944, undefined, [placeDescriptor]); }
+  static initPlaceDescriptor(placeDescriptor: _GeoToolbox_PlaceDescriptor): MKMapItemRequest { return callSDK<MKMapItemRequest>("MapKit_5d69670f0307b385", 1054258439296944, undefined, [placeDescriptor]); }
   declare readonly $type: { "c:objc(cs)MKMapItemRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCancelled": true; "featureAnnotation": true; "isLoading": true; "mapFeatureAnnotation": true; "mapItemIdentifier": true };
 }
@@ -2601,27 +2601,27 @@ export class MKMapPoint extends SDKHandle {
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 4.0+
    */
-  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 1783584452024288, this, []); }
+  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 1783584452024288, this, []); }
   /**
    * init(_ coordinate: CLLocationCoordinate2D)
    * @availability iOS 4.0+
    */
-  static init(coordinate: $SDK3): MKMapPoint { return callSDK<MKMapPoint>("MapKit_212edf3d13b127f5", 565325829494270, undefined, [coordinate]); }
+  static init(coordinate: $SDK3): MKMapPoint { return callSDK<MKMapPoint>("MapKit_5d69670f0307b385", 565325829494270, undefined, [coordinate]); }
   /**
    * func distance(to b: MKMapPoint) -> CLLocationDistance
    * @availability iOS 4.0+
    */
-  distance(b: MKMapPoint): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1424627459363550, this, [b]); }
+  distance(b: MKMapPoint): number { return callSDK<number>("MapKit_5d69670f0307b385", 1424627459363550, this, [b]); }
   /** var x: Double */
-  get x(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 674090012150350, this, []); }
-  set x(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 1757996975464654, this, [value]); }
+  get x(): number { return callSDK<number>("MapKit_5d69670f0307b385", 674090012150350, this, []); }
+  set x(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 1757996975464654, this, [value]); }
   /** var y: Double */
-  get y(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2175624765976745, this, []); }
-  set y(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 343339873854014, this, [value]); }
+  get y(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2175624765976745, this, []); }
+  set y(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 343339873854014, this, [value]); }
   /** init(x: Double, y: Double) */
-  static initXY(x: number, y: number): MKMapPoint { return callSDK<MKMapPoint>("MapKit_212edf3d13b127f5", 3924287230339048, undefined, [x, y]); }
+  static initXY(x: number, y: number): MKMapPoint { return callSDK<MKMapPoint>("MapKit_5d69670f0307b385", 3924287230339048, undefined, [x, y]); }
   /** init() */
-  static init47782(): MKMapPoint { return callSDK<MKMapPoint>("MapKit_212edf3d13b127f5", 4037357554509386, undefined, []); }
+  static init47782(): MKMapPoint { return callSDK<MKMapPoint>("MapKit_5d69670f0307b385", 4037357554509386, undefined, []); }
   declare readonly $type: { "c:@SA@MKMapPoint": true };
 }
 
@@ -2631,89 +2631,89 @@ export class MKMapRect extends SDKHandle {
    * func contains(_ point: MKMapPoint) -> Bool
    * @availability iOS 4.0+
    */
-  contains(point: MKMapPoint): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3069200572786617, this, [point]); }
+  contains(point: MKMapPoint): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3069200572786617, this, [point]); }
   /**
    * func contains(_ rect2: MKMapRect) -> Bool
    * @availability iOS 4.0+
    */
-  contains93149(rect2: MKMapRect): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3902944454527668, this, [rect2]); }
+  contains93149(rect2: MKMapRect): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3902944454527668, this, [rect2]); }
   /** var height: Double { get } */
-  get height(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3292670458204519, this, []); }
+  get height(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3292670458204519, this, []); }
   /** var maxX: Double { get } */
-  get maxX(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3479083773704809, this, []); }
+  get maxX(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3479083773704809, this, []); }
   /** var maxY: Double { get } */
-  get maxY(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2625565401686189, this, []); }
+  get maxY(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2625565401686189, this, []); }
   /** var midX: Double { get } */
-  get midX(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2624060829386126, this, []); }
+  get midX(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2624060829386126, this, []); }
   /** var midY: Double { get } */
-  get midY(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1164244706057532, this, []); }
+  get midY(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1164244706057532, this, []); }
   /** var minX: Double { get } */
-  get minX(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2365600641986962, this, []); }
+  get minX(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2365600641986962, this, []); }
   /** var minY: Double { get } */
-  get minY(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2301004152282332, this, []); }
+  get minY(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2301004152282332, this, []); }
   /** var width: Double { get } */
-  get width(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2343386287548461, this, []); }
+  get width(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2343386287548461, this, []); }
   /**
    * func insetBy(dx: Double, dy: Double) -> MKMapRect
    * @availability iOS 4.0+
    */
-  insetBy(dx: number, dy: number): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 3500290618120127, this, [dx, dy]); }
+  insetBy(dx: number, dy: number): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 3500290618120127, this, [dx, dy]); }
   /**
    * func intersection(_ rect2: MKMapRect) -> MKMapRect
    * @availability iOS 4.0+
    */
-  intersection(rect2: MKMapRect): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 2121814659026995, this, [rect2]); }
+  intersection(rect2: MKMapRect): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 2121814659026995, this, [rect2]); }
   /**
    * func intersects(_ rect2: MKMapRect) -> Bool
    * @availability iOS 4.0+
    */
-  intersects(rect2: MKMapRect): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3785555036444143, this, [rect2]); }
+  intersects(rect2: MKMapRect): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3785555036444143, this, [rect2]); }
   /** var isEmpty: Bool { get } */
-  get isEmpty(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2218709312250943, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2218709312250943, this, []); }
   /** var isNull: Bool { get } */
-  get isNull(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1803567480586050, this, []); }
+  get isNull(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1803567480586050, this, []); }
   /** init(x: Double, y: Double, width: Double, height: Double) */
-  static initXYWidthHeight(x: number, y: number, width: number, height: number): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 3097925159713425, undefined, [x, y, width, height]); }
+  static initXYWidthHeight(x: number, y: number, width: number, height: number): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 3097925159713425, undefined, [x, y, width, height]); }
   /**
    * func offsetBy(dx: Double, dy: Double) -> MKMapRect
    * @availability iOS 4.0+
    */
-  offsetBy(dx: number, dy: number): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 1296928156456885, this, [dx, dy]); }
+  offsetBy(dx: number, dy: number): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 1296928156456885, this, [dx, dy]); }
   /**
    * var remainder: MKMapRect { get }
    * @availability iOS 4.0+
    */
-  get remainder(): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 2036090495768161, this, []); }
+  get remainder(): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 2036090495768161, this, []); }
   /**
    * var spans180thMeridian: Bool { get }
    * @availability iOS 4.0+
    */
-  get spans180thMeridian(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 521980944724594, this, []); }
+  get spans180thMeridian(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 521980944724594, this, []); }
   /**
    * func union(_ rect2: MKMapRect) -> MKMapRect
    * @availability iOS 4.0+
    */
-  union(rect2: MKMapRect): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 114918796597361, this, [rect2]); }
+  union(rect2: MKMapRect): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 114918796597361, this, [rect2]); }
   /**
    * static let null: MKMapRect
    * @availability iOS 4.0+
    */
-  static get null(): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 263839322091841, undefined, []); }
+  static get null(): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 263839322091841, undefined, []); }
   /**
    * static let world: MKMapRect
    * @availability iOS 4.0+
    */
-  static get world(): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 2079219662286684, undefined, []); }
+  static get world(): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 2079219662286684, undefined, []); }
   /** var origin: MKMapPoint */
-  get origin(): MKMapPoint { return callSDK<MKMapPoint>("MapKit_212edf3d13b127f5", 3797317513364757, this, []); }
-  set origin(value: MKMapPoint) { callSDK<void>("MapKit_212edf3d13b127f5", 2744495820174613, this, [value]); }
+  get origin(): MKMapPoint { return callSDK<MKMapPoint>("MapKit_5d69670f0307b385", 3797317513364757, this, []); }
+  set origin(value: MKMapPoint) { callSDK<void>("MapKit_5d69670f0307b385", 2744495820174613, this, [value]); }
   /** var size: MKMapSize */
-  get size(): MKMapSize { return callSDK<MKMapSize>("MapKit_212edf3d13b127f5", 1733569905097693, this, []); }
-  set size(value: MKMapSize) { callSDK<void>("MapKit_212edf3d13b127f5", 3467265464957428, this, [value]); }
+  get size(): MKMapSize { return callSDK<MKMapSize>("MapKit_5d69670f0307b385", 1733569905097693, this, []); }
+  set size(value: MKMapSize) { callSDK<void>("MapKit_5d69670f0307b385", 3467265464957428, this, [value]); }
   /** init(origin: MKMapPoint, size: MKMapSize) */
-  static initOriginSize(origin: MKMapPoint, size: MKMapSize): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 2802508042992748, undefined, [origin, size]); }
+  static initOriginSize(origin: MKMapPoint, size: MKMapSize): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 2802508042992748, undefined, [origin, size]); }
   /** init() */
-  static init(): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 3372840597896128, undefined, []); }
+  static init(): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 3372840597896128, undefined, []); }
   declare readonly $type: { "c:@SA@MKMapRect": true };
 }
 
@@ -2723,17 +2723,17 @@ export class MKMapSize extends SDKHandle {
    * static let world: MKMapSize
    * @availability iOS 4.0+
    */
-  static get world(): MKMapSize { return callSDK<MKMapSize>("MapKit_212edf3d13b127f5", 3619370944544024, undefined, []); }
+  static get world(): MKMapSize { return callSDK<MKMapSize>("MapKit_5d69670f0307b385", 3619370944544024, undefined, []); }
   /** var height: Double */
-  get height(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 301676414724861, this, []); }
-  set height(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2601889441229930, this, [value]); }
+  get height(): number { return callSDK<number>("MapKit_5d69670f0307b385", 301676414724861, this, []); }
+  set height(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2601889441229930, this, [value]); }
   /** var width: Double */
-  get width(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2263260135731814, this, []); }
-  set width(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 733622346396216, this, [value]); }
+  get width(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2263260135731814, this, []); }
+  set width(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 733622346396216, this, [value]); }
   /** init(width: Double, height: Double) */
-  static initWidthHeight(width: number, height: number): MKMapSize { return callSDK<MKMapSize>("MapKit_212edf3d13b127f5", 2177511273130351, undefined, [width, height]); }
+  static initWidthHeight(width: number, height: number): MKMapSize { return callSDK<MKMapSize>("MapKit_5d69670f0307b385", 2177511273130351, undefined, [width, height]); }
   /** init() */
-  static init(): MKMapSize { return callSDK<MKMapSize>("MapKit_212edf3d13b127f5", 3524624723138298, undefined, []); }
+  static init(): MKMapSize { return callSDK<MKMapSize>("MapKit_5d69670f0307b385", 3524624723138298, undefined, []); }
   declare readonly $type: { "c:@SA@MKMapSize": true };
 }
 
@@ -2746,27 +2746,27 @@ export class MKMapSnapshotter extends SDKHandle {
    * func cancel()
    * @availability iOS 7.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2067285960099912, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 2067285960099912, this, []); }
   /**
    * init(options: MKMapSnapshotter.Options)
    * @availability iOS 7.0+
    */
-  static init(options: MKMapSnapshotter_Options): MKMapSnapshotter { return callSDK<MKMapSnapshotter>("MapKit_212edf3d13b127f5", 1924390846841706, undefined, [options]); }
+  static init(options: MKMapSnapshotter_Options): MKMapSnapshotter { return callSDK<MKMapSnapshotter>("MapKit_5d69670f0307b385", 1924390846841706, undefined, [options]); }
   /**
    * func start() async throws -> MKMapSnapshotter.Snapshot
    * @availability iOS 7.0+
    */
-  startCompletionHandler(completionHandler: $SDK40): void { return callSDK<void>("MapKit_212edf3d13b127f5", 4333315958339565, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  startCompletionHandler(completionHandler: $SDK40): void { return callSDK<void>("MapKit_5d69670f0307b385", 4333315958339565, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func start(with queue: dispatch_queue_t) async throws -> MKMapSnapshotter.Snapshot
    * @availability iOS 7.0+
    */
-  startWithCompletionHandler(queue: _Dispatch_DispatchQueue, completionHandler: $SDK40): void { return callSDK<void>("MapKit_212edf3d13b127f5", 4130037213130098, this, [queue, completionHandler], [null,{"callback":{"out":[]}}]); }
+  startWithCompletionHandler(queue: _Dispatch_DispatchQueue, completionHandler: $SDK40): void { return callSDK<void>("MapKit_5d69670f0307b385", 4130037213130098, this, [queue, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 7.0+
    */
-  get isLoading(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3716164156744554, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3716164156744554, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapSnapshotter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isLoading": true };
 }
@@ -2780,78 +2780,78 @@ export type MKMapSnapshotter_CompletionHandler = ((arg0: (MKMapSnapshotter_Snaps
  */
 export class MKMapSnapshotter_Options extends SDKHandle {
   /** init() */
-  static init(): MKMapSnapshotter_Options { return callSDK<MKMapSnapshotter_Options>("MapKit_212edf3d13b127f5", 509608099012221, undefined, []); }
+  static init(): MKMapSnapshotter_Options { return callSDK<MKMapSnapshotter_Options>("MapKit_5d69670f0307b385", 509608099012221, undefined, []); }
   /**
    * @NSCopying var camera: MKMapCamera { get set }
    * @availability iOS 7.0+
    */
-  get camera(): MKMapCamera { return callSDK<MKMapCamera>("MapKit_212edf3d13b127f5", 997640252504728, this, []); }
-  set camera(value: MKMapCamera) { callSDK<void>("MapKit_212edf3d13b127f5", 766270596512143, this, [value]); }
+  get camera(): MKMapCamera { return callSDK<MKMapCamera>("MapKit_5d69670f0307b385", 997640252504728, this, []); }
+  set camera(value: MKMapCamera) { callSDK<void>("MapKit_5d69670f0307b385", 766270596512143, this, [value]); }
   /**
    * var mapRect: MKMapRect { get set }
    * @availability iOS 7.0+
    */
-  get mapRect(): MKMapRect { return callSDK<MKMapRect>("MapKit_212edf3d13b127f5", 1404793241381947, this, []); }
-  set mapRect(value: MKMapRect) { callSDK<void>("MapKit_212edf3d13b127f5", 3170358460038914, this, [value]); }
+  get mapRect(): MKMapRect { return callSDK<MKMapRect>("MapKit_5d69670f0307b385", 1404793241381947, this, []); }
+  set mapRect(value: MKMapRect) { callSDK<void>("MapKit_5d69670f0307b385", 3170358460038914, this, [value]); }
   /**
    * var mapType: MKMapType { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get mapType(): MKMapType { return callSDK<MKMapType>("MapKit_212edf3d13b127f5", 3143520924360923, this, []); }
-  set mapType(value: MKMapType) { callSDK<void>("MapKit_212edf3d13b127f5", 1902551642211584, this, [value]); }
+  get mapType(): MKMapType { return callSDK<MKMapType>("MapKit_5d69670f0307b385", 3143520924360923, this, []); }
+  set mapType(value: MKMapType) { callSDK<void>("MapKit_5d69670f0307b385", 1902551642211584, this, [value]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 500951520283476, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 1726970425215286, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 500951520283476, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 1726970425215286, this, [value]); }
   /**
    * @NSCopying var preferredConfiguration: MKMapConfiguration { get set }
    * @availability iOS 17.0+
    */
-  get preferredConfiguration(): MKMapConfiguration { return callSDK<MKMapConfiguration>("MapKit_212edf3d13b127f5", 639206926483896, this, []); }
-  set preferredConfiguration(value: MKMapConfiguration) { callSDK<void>("MapKit_212edf3d13b127f5", 3485484937091584, this, [value]); }
+  get preferredConfiguration(): MKMapConfiguration { return callSDK<MKMapConfiguration>("MapKit_5d69670f0307b385", 639206926483896, this, []); }
+  set preferredConfiguration(value: MKMapConfiguration) { callSDK<void>("MapKit_5d69670f0307b385", 3485484937091584, this, [value]); }
   /**
    * var region: MKCoordinateRegion { get set }
    * @availability iOS 7.0+
    */
-  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 4330858561092164, this, []); }
-  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_212edf3d13b127f5", 4394004516294186, this, [value]); }
+  get region(): MKCoordinateRegion { return callSDK<MKCoordinateRegion>("MapKit_5d69670f0307b385", 4330858561092164, this, []); }
+  set region(value: MKCoordinateRegion) { callSDK<void>("MapKit_5d69670f0307b385", 4394004516294186, this, [value]); }
   /**
    * var scale: CGFloat { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get scale(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1365601245996384, this, []); }
-  set scale(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 2346279754584445, this, [value]); }
+  get scale(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1365601245996384, this, []); }
+  set scale(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 2346279754584445, this, [value]); }
   /**
    * var showsBuildings: Bool { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get showsBuildings(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 926830699397126, this, []); }
-  set showsBuildings(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 403319508034706, this, [value]); }
+  get showsBuildings(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 926830699397126, this, []); }
+  set showsBuildings(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 403319508034706, this, [value]); }
   /**
    * var showsPointsOfInterest: Bool { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get showsPointsOfInterest(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1389338729217343, this, []); }
-  set showsPointsOfInterest(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 1830151470395903, this, [value]); }
+  get showsPointsOfInterest(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1389338729217343, this, []); }
+  set showsPointsOfInterest(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 1830151470395903, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 7.0+
    */
-  get size(): $SDK25 { return callSDK<$SDK25>("MapKit_212edf3d13b127f5", 1304780009584260, this, []); }
-  set size(value: $SDK25) { callSDK<void>("MapKit_212edf3d13b127f5", 413622411893801, this, [value]); }
+  get size(): $SDK25 { return callSDK<$SDK25>("MapKit_5d69670f0307b385", 1304780009584260, this, []); }
+  set size(value: $SDK25) { callSDK<void>("MapKit_5d69670f0307b385", 413622411893801, this, [value]); }
   /**
    * @NSCopying var traitCollection: UITraitCollection { get set }
    * @availability iOS 13.0+
    */
-  get traitCollection(): _UIKit_UITraitCollection { return callSDK<_UIKit_UITraitCollection>("MapKit_212edf3d13b127f5", 2832264386393934, this, []); }
-  set traitCollection(value: _UIKit_UITraitCollection) { callSDK<void>("MapKit_212edf3d13b127f5", 1330603191231281, this, [value]); }
+  get traitCollection(): _UIKit_UITraitCollection { return callSDK<_UIKit_UITraitCollection>("MapKit_5d69670f0307b385", 2832264386393934, this, []); }
+  set traitCollection(value: _UIKit_UITraitCollection) { callSDK<void>("MapKit_5d69670f0307b385", 1330603191231281, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMapSnapshotOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "camera": true; "mapRect": true; "mapType": true; "pointOfInterestFilter": true; "preferredConfiguration": true; "region": true; "scale": true; "showsBuildings": true; "showsPointsOfInterest": true; "size": true; "traitCollection": true };
 }
@@ -2862,22 +2862,22 @@ export class MKMapSnapshotter_Options extends SDKHandle {
  */
 export class MKMapSnapshotter_Snapshot extends SDKHandle {
   /** init() */
-  static init(): MKMapSnapshotter_Snapshot { return callSDK<MKMapSnapshotter_Snapshot>("MapKit_212edf3d13b127f5", 4343341930718134, undefined, []); }
+  static init(): MKMapSnapshotter_Snapshot { return callSDK<MKMapSnapshotter_Snapshot>("MapKit_5d69670f0307b385", 4343341930718134, undefined, []); }
   /**
    * func point(for coordinate: CLLocationCoordinate2D) -> CGPoint
    * @availability iOS 7.0+
    */
-  point(coordinate: $SDK3): $SDK1 { return callSDK<$SDK1>("MapKit_212edf3d13b127f5", 2645582107436682, this, [coordinate]); }
+  point(coordinate: $SDK3): $SDK1 { return callSDK<$SDK1>("MapKit_5d69670f0307b385", 2645582107436682, this, [coordinate]); }
   /**
    * var image: UIImage { get }
    * @availability iOS 7.0+
    */
-  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("MapKit_212edf3d13b127f5", 4142874174651956, this, []); }
+  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("MapKit_5d69670f0307b385", 4142874174651956, this, []); }
   /**
    * var traitCollection: UITraitCollection { get }
    * @availability iOS 13.0+
    */
-  get traitCollection(): _UIKit_UITraitCollection { return callSDK<_UIKit_UITraitCollection>("MapKit_212edf3d13b127f5", 1311498699782596, this, []); }
+  get traitCollection(): _UIKit_UITraitCollection { return callSDK<_UIKit_UITraitCollection>("MapKit_5d69670f0307b385", 1311498699782596, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapSnapshot": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "image": true; "traitCollection": true };
 }
@@ -2893,7 +2893,7 @@ export const MKMapType = {
    * init?(rawValue: UInt)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MKMapType) | null { return callSDK<(MKMapType) | null>("MapKit_212edf3d13b127f5", 484351205698285, undefined, [rawValue]); }
+  init(rawValue: number): (MKMapType) | null { return callSDK<(MKMapType) | null>("MapKit_5d69670f0307b385", 484351205698285, undefined, [rawValue]); }
 };
 
 /**
@@ -2905,395 +2905,395 @@ export class MKMapView extends SDKHandle {
    * func addAnnotation(_ annotation: any MKAnnotation)
    * @availability iOS 3.0+
    */
-  addAnnotation(annotation: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1218605392524082, this, [annotation]); }
+  addAnnotation(annotation: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1218605392524082, this, [annotation]); }
   /**
    * func addAnnotations(_ annotations: [any MKAnnotation])
    * @availability iOS 3.0+
    */
-  addAnnotations(annotations: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2737196481461877, this, [annotations]); }
+  addAnnotations(annotations: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2737196481461877, this, [annotations]); }
   /**
    * func addOverlay(_ overlay: any MKOverlay)
    * @availability iOS 4.0+
    */
-  addOverlay(overlay: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3006523396011154, this, [overlay]); }
+  addOverlay(overlay: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3006523396011154, this, [overlay]); }
   /**
    * func addOverlay(_ overlay: any MKOverlay, level: MKOverlayLevel)
    * @availability iOS 7.0+
    */
-  addOverlayLevel(overlay: SDKHandle, level: MKOverlayLevel): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3998594936608546, this, [overlay, level]); }
+  addOverlayLevel(overlay: SDKHandle, level: MKOverlayLevel): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3998594936608546, this, [overlay, level]); }
   /**
    * func addOverlays(_ overlays: [any MKOverlay])
    * @availability iOS 4.0+
    */
-  addOverlays(overlays: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3825929618042281, this, [overlays]); }
+  addOverlays(overlays: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3825929618042281, this, [overlays]); }
   /**
    * func addOverlays(_ overlays: [any MKOverlay], level: MKOverlayLevel)
    * @availability iOS 7.0+
    */
-  addOverlaysLevel(overlays: Array<SDKHandle>, level: MKOverlayLevel): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4264794664724229, this, [overlays, level]); }
+  addOverlaysLevel(overlays: Array<SDKHandle>, level: MKOverlayLevel): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4264794664724229, this, [overlays, level]); }
   /**
    * func annotations(in mapRect: MKMapRect) -> Set<AnyHashable>
    * @availability iOS 4.2+
    */
-  annotationsIn(mapRect: MKMapRect): Promise<Array<unknown>> { return callSDKAsync<Array<unknown>>("MapKit_212edf3d13b127f5", 1063357200844601, this, [mapRect]); }
+  annotationsIn(mapRect: MKMapRect): Promise<Array<unknown>> { return callSDKAsync<Array<unknown>>("MapKit_5d69670f0307b385", 1063357200844601, this, [mapRect]); }
   /**
    * func convert(_ coordinate: CLLocationCoordinate2D, toPointTo view: UIView?) -> CGPoint
    * @availability iOS 3.0+
    */
-  convertToPointTo(coordinate: $SDK3, view?: (_UIKit_UIView) | null): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_212edf3d13b127f5", 3086109855485599, this, [coordinate, view]); }
+  convertToPointTo(coordinate: $SDK3, view?: (_UIKit_UIView) | null): Promise<$SDK1> { return callSDKAsync<$SDK1>("MapKit_5d69670f0307b385", 3086109855485599, this, [coordinate, view]); }
   /**
    * func convert(_ point: CGPoint, toCoordinateFrom view: UIView?) -> CLLocationCoordinate2D
    * @availability iOS 3.0+
    */
-  convertToCoordinateFrom(point: $SDK1, view?: (_UIKit_UIView) | null): Promise<$SDK3> { return callSDKAsync<$SDK3>("MapKit_212edf3d13b127f5", 1213542024864473, this, [point, view]); }
+  convertToCoordinateFrom(point: $SDK1, view?: (_UIKit_UIView) | null): Promise<$SDK3> { return callSDKAsync<$SDK3>("MapKit_5d69670f0307b385", 1213542024864473, this, [point, view]); }
   /**
    * func convert(_ rect: CGRect, toRegionFrom view: UIView?) -> MKCoordinateRegion
    * @availability iOS 3.0+
    */
-  convertToRegionFrom(rect: $SDK4, view?: (_UIKit_UIView) | null): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 1729457078684044, this, [rect, view]); }
+  convertToRegionFrom(rect: $SDK4, view?: (_UIKit_UIView) | null): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_5d69670f0307b385", 1729457078684044, this, [rect, view]); }
   /**
    * func convert(_ region: MKCoordinateRegion, toRectTo view: UIView?) -> CGRect
    * @availability iOS 3.0+
    */
-  convertToRectTo(region: MKCoordinateRegion, view?: (_UIKit_UIView) | null): Promise<$SDK4> { return callSDKAsync<$SDK4>("MapKit_212edf3d13b127f5", 1187586793046027, this, [region, view]); }
+  convertToRectTo(region: MKCoordinateRegion, view?: (_UIKit_UIView) | null): Promise<$SDK4> { return callSDKAsync<$SDK4>("MapKit_5d69670f0307b385", 1187586793046027, this, [region, view]); }
   /**
    * func dequeueReusableAnnotationView(withIdentifier identifier: String) -> MKAnnotationView?
    * @availability iOS 3.0+
    */
-  dequeueReusableAnnotationViewWithIdentifier(identifier: string): Promise<$SDK2> { return callSDKAsync<$SDK2>("MapKit_212edf3d13b127f5", 3343721510869922, this, [identifier]); }
+  dequeueReusableAnnotationViewWithIdentifier(identifier: string): Promise<$SDK2> { return callSDKAsync<$SDK2>("MapKit_5d69670f0307b385", 3343721510869922, this, [identifier]); }
   /**
    * func dequeueReusableAnnotationView(withIdentifier identifier: String, for annotation: any MKAnnotation) -> MKAnnotationView
    * @availability iOS 11.0+
    */
-  dequeueReusableAnnotationViewWithIdentifierFor(identifier: string, annotation: SDKHandle): Promise<MKAnnotationView> { return callSDKAsync<MKAnnotationView>("MapKit_212edf3d13b127f5", 69268056946638, this, [identifier, annotation]); }
+  dequeueReusableAnnotationViewWithIdentifierFor(identifier: string, annotation: SDKHandle): Promise<MKAnnotationView> { return callSDKAsync<MKAnnotationView>("MapKit_5d69670f0307b385", 69268056946638, this, [identifier, annotation]); }
   /**
    * func deselectAnnotation(_ annotation: (any MKAnnotation)?, animated: Bool)
    * @availability iOS 3.0+
    */
-  deselectAnnotation(annotation: (SDKHandle) | null, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2395996392115377, this, [annotation, animated]); }
+  deselectAnnotation(annotation: (SDKHandle) | null, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2395996392115377, this, [annotation, animated]); }
   /**
    * func exchangeOverlay(_ overlay1: any MKOverlay, with overlay2: any MKOverlay)
    * @availability iOS 7.0+
    */
-  exchangeOverlayWith(overlay1: SDKHandle, overlay2: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1994280909906687, this, [overlay1, overlay2]); }
+  exchangeOverlayWith(overlay1: SDKHandle, overlay2: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1994280909906687, this, [overlay1, overlay2]); }
   /**
    * func exchangeOverlay(at index1: Int, withOverlayAt index2: Int)
    * @availability iOS 4.0+
    */
-  exchangeOverlayAtWithOverlayAt(index1: number, index2: number): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3193996675072532, this, [index1, index2]); }
+  exchangeOverlayAtWithOverlayAt(index1: number, index2: number): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3193996675072532, this, [index1, index2]); }
   /** init() */
-  static init(): Promise<MKMapView> { return callSDKAsync<MKMapView>("MapKit_212edf3d13b127f5", 2975735564012781, undefined, []); }
+  static init(): Promise<MKMapView> { return callSDKAsync<MKMapView>("MapKit_5d69670f0307b385", 2975735564012781, undefined, []); }
   /**
    * func insertOverlay(_ overlay: any MKOverlay, above sibling: any MKOverlay)
    * @availability iOS 4.0+
    */
-  insertOverlayAbove(overlay: SDKHandle, sibling: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3742303635325615, this, [overlay, sibling]); }
+  insertOverlayAbove(overlay: SDKHandle, sibling: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3742303635325615, this, [overlay, sibling]); }
   /**
    * func insertOverlay(_ overlay: any MKOverlay, at index: Int)
    * @availability iOS 4.0+
    */
-  insertOverlayAt(overlay: SDKHandle, index: number): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3508519774250911, this, [overlay, index]); }
+  insertOverlayAt(overlay: SDKHandle, index: number): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3508519774250911, this, [overlay, index]); }
   /**
    * func insertOverlay(_ overlay: any MKOverlay, at index: Int, level: MKOverlayLevel)
    * @availability iOS 7.0+
    */
-  insertOverlayAtLevel(overlay: SDKHandle, index: number, level: MKOverlayLevel): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 231150006102781, this, [overlay, index, level]); }
+  insertOverlayAtLevel(overlay: SDKHandle, index: number, level: MKOverlayLevel): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 231150006102781, this, [overlay, index, level]); }
   /**
    * func insertOverlay(_ overlay: any MKOverlay, below sibling: any MKOverlay)
    * @availability iOS 4.0+
    */
-  insertOverlayBelow(overlay: SDKHandle, sibling: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3403938018265037, this, [overlay, sibling]); }
+  insertOverlayBelow(overlay: SDKHandle, sibling: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3403938018265037, this, [overlay, sibling]); }
   /**
    * func mapRectThatFits(_ mapRect: MKMapRect) -> MKMapRect
    * @availability iOS 3.0+
    */
-  mapRectThatFits(mapRect: MKMapRect): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_212edf3d13b127f5", 3525860032465802, this, [mapRect]); }
+  mapRectThatFits(mapRect: MKMapRect): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_5d69670f0307b385", 3525860032465802, this, [mapRect]); }
   /**
    * func mapRectThatFits(_ mapRect: MKMapRect, edgePadding insets: UIEdgeInsets) -> MKMapRect
    * @availability iOS 3.0+
    */
-  mapRectThatFitsEdgePadding(mapRect: MKMapRect, insets: $SDK42): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_212edf3d13b127f5", 1555515595437875, this, [mapRect, insets]); }
+  mapRectThatFitsEdgePadding(mapRect: MKMapRect, insets: $SDK42): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_5d69670f0307b385", 1555515595437875, this, [mapRect, insets]); }
   /**
    * func overlays(in level: MKOverlayLevel) -> [any MKOverlay]
    * @availability iOS 7.0+
    */
-  overlaysIn(level: MKOverlayLevel): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_212edf3d13b127f5", 2233288045900945, this, [level]); }
+  overlaysIn(level: MKOverlayLevel): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_5d69670f0307b385", 2233288045900945, this, [level]); }
   /**
    * func regionThatFits(_ region: MKCoordinateRegion) -> MKCoordinateRegion
    * @availability iOS 3.0+
    */
-  regionThatFits(region: MKCoordinateRegion): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 2217907472509593, this, [region]); }
+  regionThatFits(region: MKCoordinateRegion): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_5d69670f0307b385", 2217907472509593, this, [region]); }
   /**
    * func register(_ viewClass: AnyClass?, forAnnotationViewWithReuseIdentifier identifier: String)
    * @availability iOS 11.0+
    */
-  register(viewClass: (string) | null, identifier: string): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 526371109211142, this, [viewClass, identifier]); }
+  register(viewClass: (string) | null, identifier: string): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 526371109211142, this, [viewClass, identifier]); }
   /**
    * func removeAnnotation(_ annotation: any MKAnnotation)
    * @availability iOS 3.0+
    */
-  removeAnnotation(annotation: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2076517412989218, this, [annotation]); }
+  removeAnnotation(annotation: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2076517412989218, this, [annotation]); }
   /**
    * func removeAnnotations(_ annotations: [any MKAnnotation])
    * @availability iOS 3.0+
    */
-  removeAnnotations(annotations: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1704064952924801, this, [annotations]); }
+  removeAnnotations(annotations: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1704064952924801, this, [annotations]); }
   /**
    * func removeOverlay(_ overlay: any MKOverlay)
    * @availability iOS 4.0+
    */
-  removeOverlay(overlay: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3584858624480660, this, [overlay]); }
+  removeOverlay(overlay: SDKHandle): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3584858624480660, this, [overlay]); }
   /**
    * func removeOverlays(_ overlays: [any MKOverlay])
    * @availability iOS 4.0+
    */
-  removeOverlays(overlays: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3033586856926630, this, [overlays]); }
+  removeOverlays(overlays: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3033586856926630, this, [overlays]); }
   /**
    * func renderer(for overlay: any MKOverlay) -> MKOverlayRenderer?
    * @availability iOS 7.0+
    */
-  renderer(overlay: SDKHandle): Promise<(MKOverlayRenderer) | null> { return callSDKAsync<(MKOverlayRenderer) | null>("MapKit_212edf3d13b127f5", 2913900823823550, this, [overlay]); }
+  renderer(overlay: SDKHandle): Promise<(MKOverlayRenderer) | null> { return callSDKAsync<(MKOverlayRenderer) | null>("MapKit_5d69670f0307b385", 2913900823823550, this, [overlay]); }
   /**
    * func selectAnnotation(_ annotation: any MKAnnotation, animated: Bool)
    * @availability iOS 3.0+
    */
-  selectAnnotation(annotation: SDKHandle, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3022632415416225, this, [annotation, animated]); }
+  selectAnnotation(annotation: SDKHandle, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3022632415416225, this, [annotation, animated]); }
   /**
    * func setCamera(_ camera: MKMapCamera, animated: Bool)
    * @availability iOS 7.0+
    */
-  setCamera(camera: MKMapCamera, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 366896860832404, this, [camera, animated]); }
+  setCamera(camera: MKMapCamera, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 366896860832404, this, [camera, animated]); }
   /**
    * func setCameraBoundary(_ cameraBoundary: MKMapView.CameraBoundary?, animated: Bool)
    * @availability iOS 13.0+
    */
-  setCameraBoundary(cameraBoundary: $SDK44, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 383467034867677, this, [cameraBoundary, animated]); }
+  setCameraBoundary(cameraBoundary: $SDK44, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 383467034867677, this, [cameraBoundary, animated]); }
   /**
    * func setCameraZoomRange(_ cameraZoomRange: MKMapView.CameraZoomRange?, animated: Bool)
    * @availability iOS 13.0+
    */
-  setCameraZoomRange(cameraZoomRange: $SDK45, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4041302614046743, this, [cameraZoomRange, animated]); }
+  setCameraZoomRange(cameraZoomRange: $SDK45, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4041302614046743, this, [cameraZoomRange, animated]); }
   /**
    * func setCenter(_ coordinate: CLLocationCoordinate2D, animated: Bool)
    * @availability iOS 3.0+
    */
-  setCenter(coordinate: $SDK3, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4315723494004209, this, [coordinate, animated]); }
+  setCenter(coordinate: $SDK3, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4315723494004209, this, [coordinate, animated]); }
   /**
    * func setRegion(_ region: MKCoordinateRegion, animated: Bool)
    * @availability iOS 3.0+
    */
-  setRegion(region: MKCoordinateRegion, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2088023247238460, this, [region, animated]); }
+  setRegion(region: MKCoordinateRegion, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2088023247238460, this, [region, animated]); }
   /**
    * func setUserTrackingMode(_ mode: MKUserTrackingMode, animated: Bool)
    * @availability iOS 5.0+
    */
-  setUserTrackingMode(mode: MKUserTrackingMode, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2749009982053746, this, [mode, animated]); }
+  setUserTrackingMode(mode: MKUserTrackingMode, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2749009982053746, this, [mode, animated]); }
   /**
    * func setVisibleMapRect(_ mapRect: MKMapRect, animated animate: Bool)
    * @availability iOS 3.0+
    */
-  setVisibleMapRectAnimated(mapRect: MKMapRect, animate: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2025556680277629, this, [mapRect, animate]); }
+  setVisibleMapRectAnimated(mapRect: MKMapRect, animate: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2025556680277629, this, [mapRect, animate]); }
   /**
    * func setVisibleMapRect(_ mapRect: MKMapRect, edgePadding insets: UIEdgeInsets, animated animate: Bool)
    * @availability iOS 3.0+
    */
-  setVisibleMapRectEdgePaddingAnimated(mapRect: MKMapRect, insets: $SDK42, animate: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3076912445303360, this, [mapRect, insets, animate]); }
+  setVisibleMapRectEdgePaddingAnimated(mapRect: MKMapRect, insets: $SDK42, animate: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3076912445303360, this, [mapRect, insets, animate]); }
   /**
    * func showAnnotations(_ annotations: [any MKAnnotation], animated: Bool)
    * @availability iOS 7.0+
    */
-  showAnnotations(annotations: Array<SDKHandle>, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2887722411501291, this, [annotations, animated]); }
+  showAnnotations(annotations: Array<SDKHandle>, animated: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2887722411501291, this, [annotations, animated]); }
   /**
    * func view(for annotation: any MKAnnotation) -> MKAnnotationView?
    * @availability iOS 3.0+
    */
-  viewFor(annotation: SDKHandle): Promise<$SDK2> { return callSDKAsync<$SDK2>("MapKit_212edf3d13b127f5", 3981351236103076, this, [annotation]); }
+  viewFor(annotation: SDKHandle): Promise<$SDK2> { return callSDKAsync<$SDK2>("MapKit_5d69670f0307b385", 3981351236103076, this, [annotation]); }
   /**
    * func view(for overlay: any MKOverlay) -> MKOverlayView
    * @availability iOS 4.0+
    * @deprecated iOS 13.0
    */
-  viewFor41435(overlay: SDKHandle): Promise<MKOverlayView> { return callSDKAsync<MKOverlayView>("MapKit_212edf3d13b127f5", 4345538034756547, this, [overlay]); }
+  viewFor41435(overlay: SDKHandle): Promise<MKOverlayView> { return callSDKAsync<MKOverlayView>("MapKit_5d69670f0307b385", 4345538034756547, this, [overlay]); }
   /**
    * var annotationVisibleRect: CGRect { get }
    * @availability iOS 3.0+
    */
-  get annotationVisibleRect(): Promise<$SDK4> { return callSDKAsync<$SDK4>("MapKit_212edf3d13b127f5", 3440820541453401, this, []); }
+  get annotationVisibleRect(): Promise<$SDK4> { return callSDKAsync<$SDK4>("MapKit_5d69670f0307b385", 3440820541453401, this, []); }
   /**
    * var annotations: [any MKAnnotation] { get }
    * @availability iOS 3.0+
    */
-  get annotations(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_212edf3d13b127f5", 1347723370252093, this, []); }
+  get annotations(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_5d69670f0307b385", 1347723370252093, this, []); }
   /**
    * @NSCopying var camera: MKMapCamera { get set }
    * @availability iOS 7.0+
    */
-  get camera(): Promise<MKMapCamera> { return callSDKAsync<MKMapCamera>("MapKit_212edf3d13b127f5", 3593964817287227, this, []); }
-  setCamera29143(value: MKMapCamera): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3434243071242430, this, [value]); }
+  get camera(): Promise<MKMapCamera> { return callSDKAsync<MKMapCamera>("MapKit_5d69670f0307b385", 3593964817287227, this, []); }
+  setCamera29143(value: MKMapCamera): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3434243071242430, this, [value]); }
   /**
    * @NSCopying var cameraBoundary: MKMapView.CameraBoundary? { get set }
    * @availability iOS 13.0+
    */
-  get cameraBoundary(): Promise<$SDK44> { return callSDKAsync<$SDK44>("MapKit_212edf3d13b127f5", 1503412179834258, this, []); }
-  setCameraBoundary3817(value?: $SDK44): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 873843897646141, this, [value]); }
+  get cameraBoundary(): Promise<$SDK44> { return callSDKAsync<$SDK44>("MapKit_5d69670f0307b385", 1503412179834258, this, []); }
+  setCameraBoundary3817(value?: $SDK44): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 873843897646141, this, [value]); }
   /**
    * @NSCopying var cameraZoomRange: MKMapView.CameraZoomRange! { get set }
    * @availability iOS 13.0+
    */
-  get cameraZoomRange(): Promise<$SDK45> { return callSDKAsync<$SDK45>("MapKit_212edf3d13b127f5", 3817525516516836, this, []); }
-  setCameraZoomRange31501(value?: $SDK45): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3707560468553752, this, [value]); }
+  get cameraZoomRange(): Promise<$SDK45> { return callSDKAsync<$SDK45>("MapKit_5d69670f0307b385", 3817525516516836, this, []); }
+  setCameraZoomRange31501(value?: $SDK45): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3707560468553752, this, [value]); }
   /**
    * var centerCoordinate: CLLocationCoordinate2D { get set }
    * @availability iOS 3.0+
    */
-  get centerCoordinate(): Promise<$SDK3> { return callSDKAsync<$SDK3>("MapKit_212edf3d13b127f5", 2048778302449481, this, []); }
-  setCenterCoordinate(value: $SDK3): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3147147064002278, this, [value]); }
+  get centerCoordinate(): Promise<$SDK3> { return callSDKAsync<$SDK3>("MapKit_5d69670f0307b385", 2048778302449481, this, []); }
+  setCenterCoordinate(value: $SDK3): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3147147064002278, this, [value]); }
   /**
    * @IBOutlet weak var delegate: (any MKMapViewDelegate)? { get set }
    * @availability iOS 3.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_212edf3d13b127f5", 3813210656980480, this, []); }
-  setDelegate(value?: (Implements<MKMapViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 623456541017234, this, [value], [{"protocol":"c:objc(pl)MKMapViewDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MapKit_5d69670f0307b385", 3813210656980480, this, []); }
+  setDelegate(value?: (Implements<MKMapViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 623456541017234, this, [value], [{"protocol":"c:objc(pl)MKMapViewDelegate"}]); }
   /**
    * var mapType: MKMapType { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 100000.0
    */
-  get mapType(): Promise<MKMapType> { return callSDKAsync<MKMapType>("MapKit_212edf3d13b127f5", 2397905278200618, this, []); }
-  setMapType(value: MKMapType): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2386438560082659, this, [value]); }
+  get mapType(): Promise<MKMapType> { return callSDKAsync<MKMapType>("MapKit_5d69670f0307b385", 2397905278200618, this, []); }
+  setMapType(value: MKMapType): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2386438560082659, this, [value]); }
   /**
    * var overlays: [any MKOverlay] { get }
    * @availability iOS 4.0+
    */
-  get overlays(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_212edf3d13b127f5", 1141417293887201, this, []); }
+  get overlays(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_5d69670f0307b385", 1141417293887201, this, []); }
   /**
    * var pitchButtonVisibility: MKFeatureVisibility { get set }
    * @availability iOS 17.0+
    */
-  get pitchButtonVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_212edf3d13b127f5", 472366798371034, this, []); }
-  setPitchButtonVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4170574334603949, this, [value]); }
+  get pitchButtonVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_5d69670f0307b385", 472366798371034, this, []); }
+  setPitchButtonVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4170574334603949, this, [value]); }
   /**
    * var isPitchEnabled: Bool { get set }
    * @availability iOS 7.0+
    */
-  get isPitchEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 1643494592707477, this, []); }
-  setIsPitchEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3917091019856447, this, [value]); }
+  get isPitchEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 1643494592707477, this, []); }
+  setIsPitchEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3917091019856447, this, [value]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 100000.0
    */
-  get pointOfInterestFilter(): Promise<$SDK16> { return callSDKAsync<$SDK16>("MapKit_212edf3d13b127f5", 3377635834758452, this, []); }
-  setPointOfInterestFilter(value?: $SDK16): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2088166061331655, this, [value]); }
+  get pointOfInterestFilter(): Promise<$SDK16> { return callSDKAsync<$SDK16>("MapKit_5d69670f0307b385", 3377635834758452, this, []); }
+  setPointOfInterestFilter(value?: $SDK16): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2088166061331655, this, [value]); }
   /**
    * @NSCopying var preferredConfiguration: MKMapConfiguration { get set }
    * @availability iOS 16.0+
    */
-  get preferredConfiguration(): Promise<MKMapConfiguration> { return callSDKAsync<MKMapConfiguration>("MapKit_212edf3d13b127f5", 1448817410791991, this, []); }
-  setPreferredConfiguration(value: MKMapConfiguration): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3831681798970583, this, [value]); }
+  get preferredConfiguration(): Promise<MKMapConfiguration> { return callSDKAsync<MKMapConfiguration>("MapKit_5d69670f0307b385", 1448817410791991, this, []); }
+  setPreferredConfiguration(value: MKMapConfiguration): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3831681798970583, this, [value]); }
   /**
    * var region: MKCoordinateRegion { get set }
    * @availability iOS 3.0+
    */
-  get region(): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 467532731470516, this, []); }
-  setRegion62700(value: MKCoordinateRegion): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 407812820128502, this, [value]); }
+  get region(): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_5d69670f0307b385", 467532731470516, this, []); }
+  setRegion62700(value: MKCoordinateRegion): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 407812820128502, this, [value]); }
   /**
    * var isRotateEnabled: Bool { get set }
    * @availability iOS 7.0+
    */
-  get isRotateEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 866254786924324, this, []); }
-  setIsRotateEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4374916797725441, this, [value]); }
+  get isRotateEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 866254786924324, this, []); }
+  setIsRotateEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4374916797725441, this, [value]); }
   /**
    * var isScrollEnabled: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isScrollEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 3650937223042649, this, []); }
-  setIsScrollEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 288269830032248, this, [value]); }
+  get isScrollEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 3650937223042649, this, []); }
+  setIsScrollEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 288269830032248, this, [value]); }
   /**
    * var selectableMapFeatures: MKMapFeatureOptions { get set }
    * @availability iOS 16.0+
    */
-  get selectableMapFeatures(): Promise<MKMapFeatureOptions> { return callSDKAsync<MKMapFeatureOptions>("MapKit_212edf3d13b127f5", 3261851615618434, this, []); }
-  setSelectableMapFeatures(value: MKMapFeatureOptions): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2080240164661058, this, [value]); }
+  get selectableMapFeatures(): Promise<MKMapFeatureOptions> { return callSDKAsync<MKMapFeatureOptions>("MapKit_5d69670f0307b385", 3261851615618434, this, []); }
+  setSelectableMapFeatures(value: MKMapFeatureOptions): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2080240164661058, this, [value]); }
   /**
    * var selectedAnnotations: [any MKAnnotation] { get set }
    * @availability iOS 3.0+
    */
-  get selectedAnnotations(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_212edf3d13b127f5", 2608821549624913, this, []); }
-  setSelectedAnnotations(value: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 558364182952669, this, [value]); }
+  get selectedAnnotations(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("MapKit_5d69670f0307b385", 2608821549624913, this, []); }
+  setSelectedAnnotations(value: Array<SDKHandle>): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 558364182952669, this, [value]); }
   /**
    * var showsBuildings: Bool { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 100000.0
    */
-  get showsBuildings(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 2612462905271212, this, []); }
-  setShowsBuildings(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3022920547630537, this, [value]); }
+  get showsBuildings(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 2612462905271212, this, []); }
+  setShowsBuildings(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3022920547630537, this, [value]); }
   /**
    * var showsCompass: Bool { get set }
    * @availability iOS 9.0+
    */
-  get showsCompass(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 3085322283613780, this, []); }
-  setShowsCompass(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3931699923018813, this, [value]); }
+  get showsCompass(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 3085322283613780, this, []); }
+  setShowsCompass(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3931699923018813, this, [value]); }
   /**
    * var showsPointsOfInterest: Bool { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get showsPointsOfInterest(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 874092324281944, this, []); }
-  setShowsPointsOfInterest(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1187020338383851, this, [value]); }
+  get showsPointsOfInterest(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 874092324281944, this, []); }
+  setShowsPointsOfInterest(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1187020338383851, this, [value]); }
   /**
    * var showsScale: Bool { get set }
    * @availability iOS 9.0+
    */
-  get showsScale(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 2513374588735174, this, []); }
-  setShowsScale(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3388314944667755, this, [value]); }
+  get showsScale(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 2513374588735174, this, []); }
+  setShowsScale(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3388314944667755, this, [value]); }
   /**
    * var showsTraffic: Bool { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 100000.0
    */
-  get showsTraffic(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 2296870097347495, this, []); }
-  setShowsTraffic(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2741319991132160, this, [value]); }
+  get showsTraffic(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 2296870097347495, this, []); }
+  setShowsTraffic(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2741319991132160, this, [value]); }
   /**
    * var showsUserLocation: Bool { get set }
    * @availability iOS 3.0+
    */
-  get showsUserLocation(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 4366343574911225, this, []); }
-  setShowsUserLocation(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3312038805903300, this, [value]); }
+  get showsUserLocation(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 4366343574911225, this, []); }
+  setShowsUserLocation(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3312038805903300, this, [value]); }
   /**
    * var showsUserTrackingButton: Bool { get set }
    * @availability iOS 17.0+
    */
-  get showsUserTrackingButton(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 514625961107655, this, []); }
-  setShowsUserTrackingButton(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1026961646178365, this, [value]); }
+  get showsUserTrackingButton(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 514625961107655, this, []); }
+  setShowsUserTrackingButton(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1026961646178365, this, [value]); }
   /**
    * var userLocation: MKUserLocation { get }
    * @availability iOS 3.0+
    */
-  get userLocation(): Promise<MKUserLocation> { return callSDKAsync<MKUserLocation>("MapKit_212edf3d13b127f5", 3249104075693205, this, []); }
+  get userLocation(): Promise<MKUserLocation> { return callSDKAsync<MKUserLocation>("MapKit_5d69670f0307b385", 3249104075693205, this, []); }
   /**
    * var isUserLocationVisible: Bool { get }
    * @availability iOS 3.0+
    */
-  get isUserLocationVisible(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 2790554958371808, this, []); }
+  get isUserLocationVisible(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 2790554958371808, this, []); }
   /**
    * var userTrackingMode: MKUserTrackingMode { get set }
    * @availability iOS 5.0+
    */
-  get userTrackingMode(): Promise<MKUserTrackingMode> { return callSDKAsync<MKUserTrackingMode>("MapKit_212edf3d13b127f5", 1689730829532546, this, []); }
-  setUserTrackingMode87597(value: MKUserTrackingMode): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2855206231098197, this, [value]); }
+  get userTrackingMode(): Promise<MKUserTrackingMode> { return callSDKAsync<MKUserTrackingMode>("MapKit_5d69670f0307b385", 1689730829532546, this, []); }
+  setUserTrackingMode87597(value: MKUserTrackingMode): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2855206231098197, this, [value]); }
   /**
    * var visibleMapRect: MKMapRect { get set }
    * @availability iOS 3.0+
    */
-  get visibleMapRect(): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_212edf3d13b127f5", 604401200591396, this, []); }
-  setVisibleMapRect(value: MKMapRect): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3765573044717025, this, [value]); }
+  get visibleMapRect(): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_5d69670f0307b385", 604401200591396, this, []); }
+  setVisibleMapRect(value: MKMapRect): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3765573044717025, this, [value]); }
   /**
    * var isZoomEnabled: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isZoomEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 1280367848158373, this, []); }
-  setIsZoomEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3232194174288105, this, [value]); }
+  get isZoomEnabled(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 1280367848158373, this, []); }
+  setIsZoomEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3232194174288105, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMapView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "annotationVisibleRect": true; "annotations": true; "camera": true; "cameraBoundary": true; "cameraZoomRange": true; "centerCoordinate": true; "delegate": true; "mapType": true; "overlays": true; "pitchButtonVisibility": true; "isPitchEnabled": true; "pointOfInterestFilter": true; "preferredConfiguration": true; "region": true; "isRotateEnabled": true; "isScrollEnabled": true; "selectableMapFeatures": true; "selectedAnnotations": true; "showsBuildings": true; "showsCompass": true; "showsPointsOfInterest": true; "showsScale": true; "showsTraffic": true; "showsUserLocation": true; "showsUserTrackingButton": true; "userLocation": true; "isUserLocationVisible": true; "userTrackingMode": true; "visibleMapRect": true; "isZoomEnabled": true };
 }
@@ -3307,27 +3307,27 @@ export class MKMapView_CameraBoundary extends SDKHandle {
    * init?(coder: NSCoder)
    * @availability iOS 13.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(MKMapView_CameraBoundary) | null> { return callSDKAsync<(MKMapView_CameraBoundary) | null>("MapKit_212edf3d13b127f5", 22203972419042, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(MKMapView_CameraBoundary) | null> { return callSDKAsync<(MKMapView_CameraBoundary) | null>("MapKit_5d69670f0307b385", 22203972419042, undefined, [coder]); }
   /**
    * init?(coordinateRegion region: MKCoordinateRegion)
    * @availability iOS 13.0+
    */
-  static initCoordinateRegion(region: MKCoordinateRegion): Promise<(MKMapView_CameraBoundary) | null> { return callSDKAsync<(MKMapView_CameraBoundary) | null>("MapKit_212edf3d13b127f5", 3013981222347100, undefined, [region]); }
+  static initCoordinateRegion(region: MKCoordinateRegion): Promise<(MKMapView_CameraBoundary) | null> { return callSDKAsync<(MKMapView_CameraBoundary) | null>("MapKit_5d69670f0307b385", 3013981222347100, undefined, [region]); }
   /**
    * init?(mapRect: MKMapRect)
    * @availability iOS 13.0+
    */
-  static initMapRect(mapRect: MKMapRect): Promise<(MKMapView_CameraBoundary) | null> { return callSDKAsync<(MKMapView_CameraBoundary) | null>("MapKit_212edf3d13b127f5", 4497773378226190, undefined, [mapRect]); }
+  static initMapRect(mapRect: MKMapRect): Promise<(MKMapView_CameraBoundary) | null> { return callSDKAsync<(MKMapView_CameraBoundary) | null>("MapKit_5d69670f0307b385", 4497773378226190, undefined, [mapRect]); }
   /**
    * var mapRect: MKMapRect { get }
    * @availability iOS 13.0+
    */
-  get mapRect(): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_212edf3d13b127f5", 1453669069720599, this, []); }
+  get mapRect(): Promise<MKMapRect> { return callSDKAsync<MKMapRect>("MapKit_5d69670f0307b385", 1453669069720599, this, []); }
   /**
    * var region: MKCoordinateRegion { get }
    * @availability iOS 13.0+
    */
-  get region(): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_212edf3d13b127f5", 4030010470528947, this, []); }
+  get region(): Promise<MKCoordinateRegion> { return callSDKAsync<MKCoordinateRegion>("MapKit_5d69670f0307b385", 4030010470528947, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapCameraBoundary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mapRect": true; "region": true };
 }
@@ -3341,27 +3341,27 @@ export class MKMapView_CameraZoomRange extends SDKHandle {
    * convenience init?(maxCenterCoordinateDistance maxDistance: CLLocationDistance)
    * @availability iOS 13.0+
    */
-  static initMaxCenterCoordinateDistance(maxDistance: number): Promise<(MKMapView_CameraZoomRange) | null> { return callSDKAsync<(MKMapView_CameraZoomRange) | null>("MapKit_212edf3d13b127f5", 3891870618303552, undefined, [maxDistance]); }
+  static initMaxCenterCoordinateDistance(maxDistance: number): Promise<(MKMapView_CameraZoomRange) | null> { return callSDKAsync<(MKMapView_CameraZoomRange) | null>("MapKit_5d69670f0307b385", 3891870618303552, undefined, [maxDistance]); }
   /**
    * convenience init?(minCenterCoordinateDistance minDistance: CLLocationDistance)
    * @availability iOS 13.0+
    */
-  static initMinCenterCoordinateDistance(minDistance: number): Promise<(MKMapView_CameraZoomRange) | null> { return callSDKAsync<(MKMapView_CameraZoomRange) | null>("MapKit_212edf3d13b127f5", 2344221812908519, undefined, [minDistance]); }
+  static initMinCenterCoordinateDistance(minDistance: number): Promise<(MKMapView_CameraZoomRange) | null> { return callSDKAsync<(MKMapView_CameraZoomRange) | null>("MapKit_5d69670f0307b385", 2344221812908519, undefined, [minDistance]); }
   /**
    * init?(minCenterCoordinateDistance minDistance: CLLocationDistance, maxCenterCoordinateDistance maxDistance: CLLocationDistance)
    * @availability iOS 13.0+
    */
-  static initMinCenterCoordinateDistanceMaxCenterCoordinateDistance(minDistance: number, maxDistance: number): Promise<(MKMapView_CameraZoomRange) | null> { return callSDKAsync<(MKMapView_CameraZoomRange) | null>("MapKit_212edf3d13b127f5", 3655163770766071, undefined, [minDistance, maxDistance]); }
+  static initMinCenterCoordinateDistanceMaxCenterCoordinateDistance(minDistance: number, maxDistance: number): Promise<(MKMapView_CameraZoomRange) | null> { return callSDKAsync<(MKMapView_CameraZoomRange) | null>("MapKit_5d69670f0307b385", 3655163770766071, undefined, [minDistance, maxDistance]); }
   /**
    * var maxCenterCoordinateDistance: CLLocationDistance { get }
    * @availability iOS 13.0+
    */
-  get maxCenterCoordinateDistance(): Promise<number> { return callSDKAsync<number>("MapKit_212edf3d13b127f5", 1375183409337333, this, []); }
+  get maxCenterCoordinateDistance(): Promise<number> { return callSDKAsync<number>("MapKit_5d69670f0307b385", 1375183409337333, this, []); }
   /**
    * var minCenterCoordinateDistance: CLLocationDistance { get }
    * @availability iOS 13.0+
    */
-  get minCenterCoordinateDistance(): Promise<number> { return callSDKAsync<number>("MapKit_212edf3d13b127f5", 3148229027231488, this, []); }
+  get minCenterCoordinateDistance(): Promise<number> { return callSDKAsync<number>("MapKit_5d69670f0307b385", 3148229027231488, this, []); }
   declare readonly $type: { "c:objc(cs)MKMapCameraZoomRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maxCenterCoordinateDistance": true; "minCenterCoordinateDistance": true };
 }
@@ -3472,55 +3472,55 @@ export interface MKMapViewDelegate {
  */
 export class MKMarkerAnnotationView extends MKAnnotationView {
   /** init() */
-  static init(): Promise<MKMarkerAnnotationView> { return callSDKAsync<MKMarkerAnnotationView>("MapKit_212edf3d13b127f5", 2367432889362778, undefined, []); }
+  static init(): Promise<MKMarkerAnnotationView> { return callSDKAsync<MKMarkerAnnotationView>("MapKit_5d69670f0307b385", 2367432889362778, undefined, []); }
   /**
    * var animatesWhenAdded: Bool { get set }
    * @availability iOS 11.0+
    */
-  get animatesWhenAdded(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 2794110366058976, this, []); }
-  setAnimatesWhenAdded(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 4410938540473992, this, [value]); }
+  get animatesWhenAdded(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 2794110366058976, this, []); }
+  setAnimatesWhenAdded(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 4410938540473992, this, [value]); }
   /**
    * @NSCopying var glyphImage: UIImage? { get set }
    * @availability iOS 11.0+
    */
-  get glyphImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MapKit_212edf3d13b127f5", 3467384831746936, this, []); }
-  setGlyphImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1193306419900523, this, [value]); }
+  get glyphImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MapKit_5d69670f0307b385", 3467384831746936, this, []); }
+  setGlyphImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1193306419900523, this, [value]); }
   /**
    * var glyphText: String? { get set }
    * @availability iOS 11.0+
    */
-  get glyphText(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MapKit_212edf3d13b127f5", 4123195258155557, this, []); }
-  setGlyphText(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2808794253805394, this, [value]); }
+  get glyphText(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MapKit_5d69670f0307b385", 4123195258155557, this, []); }
+  setGlyphText(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2808794253805394, this, [value]); }
   /**
    * @NSCopying var glyphTintColor: UIColor? { get set }
    * @availability iOS 11.0+
    */
-  get glyphTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("MapKit_212edf3d13b127f5", 2107540527452797, this, []); }
-  setGlyphTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2687146348313150, this, [value]); }
+  get glyphTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("MapKit_5d69670f0307b385", 2107540527452797, this, []); }
+  setGlyphTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2687146348313150, this, [value]); }
   /**
    * @NSCopying var markerTintColor: UIColor? { get set }
    * @availability iOS 11.0+
    */
-  get markerTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("MapKit_212edf3d13b127f5", 3220405724842435, this, []); }
-  setMarkerTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1370247416292797, this, [value]); }
+  get markerTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("MapKit_5d69670f0307b385", 3220405724842435, this, []); }
+  setMarkerTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1370247416292797, this, [value]); }
   /**
    * @NSCopying var selectedGlyphImage: UIImage? { get set }
    * @availability iOS 11.0+
    */
-  get selectedGlyphImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MapKit_212edf3d13b127f5", 1787957271745652, this, []); }
-  setSelectedGlyphImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1660241185945079, this, [value]); }
+  get selectedGlyphImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MapKit_5d69670f0307b385", 1787957271745652, this, []); }
+  setSelectedGlyphImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1660241185945079, this, [value]); }
   /**
    * var subtitleVisibility: MKFeatureVisibility { get set }
    * @availability iOS 11.0+
    */
-  get subtitleVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_212edf3d13b127f5", 1408953883315216, this, []); }
-  setSubtitleVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2645370174755107, this, [value]); }
+  get subtitleVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_5d69670f0307b385", 1408953883315216, this, []); }
+  setSubtitleVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2645370174755107, this, [value]); }
   /**
    * var titleVisibility: MKFeatureVisibility { get set }
    * @availability iOS 11.0+
    */
-  get titleVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_212edf3d13b127f5", 1144560194583893, this, []); }
-  setTitleVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 595341053620661, this, [value]); }
+  get titleVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_5d69670f0307b385", 1144560194583893, this, []); }
+  setTitleVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 595341053620661, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKMarkerAnnotationView": true; "c:objc(cs)MKAnnotationView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryOffset": true; "annotation": true; "calloutOffset": true; "canShowCallout": true; "centerOffset": true; "cluster": true; "clusteringIdentifier": true; "collisionMode": true; "detailCalloutAccessoryView": true; "displayPriority": true; "dragState": true; "isDraggable": true; "isEnabled": true; "isHighlighted": true; "image": true; "leftCalloutAccessoryView": true; "reuseIdentifier": true; "rightCalloutAccessoryView": true; "isSelected": true; "selectedZPriority": true; "zPriority": true; "animatesWhenAdded": true; "glyphImage": true; "glyphText": true; "glyphTintColor": true; "markerTintColor": true; "selectedGlyphImage": true; "subtitleVisibility": true; "titleVisibility": true };
 }
@@ -3534,12 +3534,12 @@ export class MKMultiPolygon extends (MKShape as unknown as Omit<typeof MKShape, 
    * init(_ polygons: [MKPolygon])
    * @availability iOS 13.0+
    */
-  static init(polygons: Array<MKPolygon>): MKMultiPolygon { return callSDK<MKMultiPolygon>("MapKit_212edf3d13b127f5", 1599865837645998, undefined, [polygons]); }
+  static init(polygons: Array<MKPolygon>): MKMultiPolygon { return callSDK<MKMultiPolygon>("MapKit_5d69670f0307b385", 1599865837645998, undefined, [polygons]); }
   /**
    * var polygons: [MKPolygon] { get }
    * @availability iOS 13.0+
    */
-  get polygons(): Array<MKPolygon> { return callSDK<Array<MKPolygon>>("MapKit_212edf3d13b127f5", 1326030766586996, this, []); }
+  get polygons(): Array<MKPolygon> { return callSDK<Array<MKPolygon>>("MapKit_5d69670f0307b385", 1326030766586996, this, []); }
   declare readonly $type: { "c:objc(cs)MKMultiPolygon": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "polygons": true };
 }
@@ -3553,12 +3553,12 @@ export class MKMultiPolygonRenderer extends (MKOverlayPathRenderer as unknown as
    * init(multiPolygon: MKMultiPolygon)
    * @availability iOS 13.0+
    */
-  static init(multiPolygon: MKMultiPolygon): MKMultiPolygonRenderer { return callSDK<MKMultiPolygonRenderer>("MapKit_212edf3d13b127f5", 2900634631532334, undefined, [multiPolygon]); }
+  static init(multiPolygon: MKMultiPolygon): MKMultiPolygonRenderer { return callSDK<MKMultiPolygonRenderer>("MapKit_5d69670f0307b385", 2900634631532334, undefined, [multiPolygon]); }
   /**
    * var multiPolygon: MKMultiPolygon { get }
    * @availability iOS 13.0+
    */
-  get multiPolygon(): MKMultiPolygon { return callSDK<MKMultiPolygon>("MapKit_212edf3d13b127f5", 26890160561027, this, []); }
+  get multiPolygon(): MKMultiPolygon { return callSDK<MKMultiPolygon>("MapKit_5d69670f0307b385", 26890160561027, this, []); }
   declare readonly $type: { "c:objc(cs)MKMultiPolygonRenderer": true; "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true; "multiPolygon": true };
 }
@@ -3572,12 +3572,12 @@ export class MKMultiPolyline extends (MKShape as unknown as Omit<typeof MKShape,
    * init(_ polylines: [MKPolyline])
    * @availability iOS 13.0+
    */
-  static init(polylines: Array<MKPolyline>): MKMultiPolyline { return callSDK<MKMultiPolyline>("MapKit_212edf3d13b127f5", 2698181116656911, undefined, [polylines]); }
+  static init(polylines: Array<MKPolyline>): MKMultiPolyline { return callSDK<MKMultiPolyline>("MapKit_5d69670f0307b385", 2698181116656911, undefined, [polylines]); }
   /**
    * var polylines: [MKPolyline] { get }
    * @availability iOS 13.0+
    */
-  get polylines(): Array<MKPolyline> { return callSDK<Array<MKPolyline>>("MapKit_212edf3d13b127f5", 1681203339497718, this, []); }
+  get polylines(): Array<MKPolyline> { return callSDK<Array<MKPolyline>>("MapKit_5d69670f0307b385", 1681203339497718, this, []); }
   declare readonly $type: { "c:objc(cs)MKMultiPolyline": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "polylines": true };
 }
@@ -3591,12 +3591,12 @@ export class MKMultiPolylineRenderer extends (MKOverlayPathRenderer as unknown a
    * init(multiPolyline: MKMultiPolyline)
    * @availability iOS 13.0+
    */
-  static init(multiPolyline: MKMultiPolyline): MKMultiPolylineRenderer { return callSDK<MKMultiPolylineRenderer>("MapKit_212edf3d13b127f5", 3757768336906173, undefined, [multiPolyline]); }
+  static init(multiPolyline: MKMultiPolyline): MKMultiPolylineRenderer { return callSDK<MKMultiPolylineRenderer>("MapKit_5d69670f0307b385", 3757768336906173, undefined, [multiPolyline]); }
   /**
    * var multiPolyline: MKMultiPolyline { get }
    * @availability iOS 13.0+
    */
-  get multiPolyline(): MKMultiPolyline { return callSDK<MKMultiPolyline>("MapKit_212edf3d13b127f5", 4052241739509883, this, []); }
+  get multiPolyline(): MKMultiPolyline { return callSDK<MKMultiPolyline>("MapKit_5d69670f0307b385", 4052241739509883, this, []); }
   declare readonly $type: { "c:objc(cs)MKMultiPolylineRenderer": true; "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true; "multiPolyline": true };
 }
@@ -3620,7 +3620,7 @@ export const MKOverlayLevel = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (MKOverlayLevel) | null { return callSDK<(MKOverlayLevel) | null>("MapKit_212edf3d13b127f5", 1631491796321420, undefined, [rawValue]); }
+  init(rawValue: number): (MKOverlayLevel) | null { return callSDK<(MKOverlayLevel) | null>("MapKit_5d69670f0307b385", 1631491796321420, undefined, [rawValue]); }
 };
 
 /**
@@ -3636,7 +3636,7 @@ export const MKPinAnnotationColor = {
    * @availability iOS 3.0+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MKPinAnnotationColor) | null { return callSDK<(MKPinAnnotationColor) | null>("MapKit_212edf3d13b127f5", 2541457390765340, undefined, [rawValue]); }
+  init(rawValue: number): (MKPinAnnotationColor) | null { return callSDK<(MKPinAnnotationColor) | null>("MapKit_5d69670f0307b385", 2541457390765340, undefined, [rawValue]); }
 };
 
 /**
@@ -3650,42 +3650,42 @@ export class MKPinAnnotationView extends MKAnnotationView {
    * @availability iOS 9.0+
    * @deprecated iOS 16.0
    */
-  static greenPinColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("MapKit_212edf3d13b127f5", 214790533918182, undefined, []); }
+  static greenPinColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("MapKit_5d69670f0307b385", 214790533918182, undefined, []); }
   /**
    * class func purplePinColor() -> UIColor
    * @availability iOS 9.0+
    * @deprecated iOS 16.0
    */
-  static purplePinColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("MapKit_212edf3d13b127f5", 1477039024464039, undefined, []); }
+  static purplePinColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("MapKit_5d69670f0307b385", 1477039024464039, undefined, []); }
   /**
    * class func redPinColor() -> UIColor
    * @availability iOS 9.0+
    * @deprecated iOS 16.0
    */
-  static redPinColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("MapKit_212edf3d13b127f5", 3664881043530357, undefined, []); }
+  static redPinColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("MapKit_5d69670f0307b385", 3664881043530357, undefined, []); }
   /** init() */
-  static init(): Promise<MKPinAnnotationView> { return callSDKAsync<MKPinAnnotationView>("MapKit_212edf3d13b127f5", 4059993409487624, undefined, []); }
+  static init(): Promise<MKPinAnnotationView> { return callSDKAsync<MKPinAnnotationView>("MapKit_5d69670f0307b385", 4059993409487624, undefined, []); }
   /**
    * var animatesDrop: Bool { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 16.0
    */
-  get animatesDrop(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_212edf3d13b127f5", 906021495338630, this, []); }
-  setAnimatesDrop(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3110162665508604, this, [value]); }
+  get animatesDrop(): Promise<boolean> { return callSDKAsync<boolean>("MapKit_5d69670f0307b385", 906021495338630, this, []); }
+  setAnimatesDrop(value: boolean): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3110162665508604, this, [value]); }
   /**
    * var pinColor: MKPinAnnotationColor { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 9.0
    */
-  get pinColor(): Promise<MKPinAnnotationColor> { return callSDKAsync<MKPinAnnotationColor>("MapKit_212edf3d13b127f5", 4337318027732285, this, []); }
-  setPinColor(value: MKPinAnnotationColor): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1694917720871312, this, [value]); }
+  get pinColor(): Promise<MKPinAnnotationColor> { return callSDKAsync<MKPinAnnotationColor>("MapKit_5d69670f0307b385", 4337318027732285, this, []); }
+  setPinColor(value: MKPinAnnotationColor): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1694917720871312, this, [value]); }
   /**
    * var pinTintColor: UIColor! { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 16.0
    */
-  get pinTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("MapKit_212edf3d13b127f5", 2365288171930654, this, []); }
-  setPinTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3643545047237020, this, [value]); }
+  get pinTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("MapKit_5d69670f0307b385", 2365288171930654, this, []); }
+  setPinTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3643545047237020, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKPinAnnotationView": true; "c:objc(cs)MKAnnotationView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryOffset": true; "annotation": true; "calloutOffset": true; "canShowCallout": true; "centerOffset": true; "cluster": true; "clusteringIdentifier": true; "collisionMode": true; "detailCalloutAccessoryView": true; "displayPriority": true; "dragState": true; "isDraggable": true; "isEnabled": true; "isHighlighted": true; "image": true; "leftCalloutAccessoryView": true; "reuseIdentifier": true; "rightCalloutAccessoryView": true; "isSelected": true; "selectedZPriority": true; "zPriority": true; "animatesDrop": true; "pinColor": true; "pinTintColor": true };
 }
@@ -3701,25 +3701,25 @@ export class MKPlacemark extends SDKHandle {
    * @availability iOS 10.0+
    * @deprecated iOS 26.0
    */
-  static initCoordinate(coordinate: $SDK3): MKPlacemark { return callSDK<MKPlacemark>("MapKit_212edf3d13b127f5", 2079797200106471, undefined, [coordinate]); }
+  static initCoordinate(coordinate: $SDK3): MKPlacemark { return callSDK<MKPlacemark>("MapKit_5d69670f0307b385", 2079797200106471, undefined, [coordinate]); }
   /**
    * init(coordinate: CLLocationCoordinate2D, addressDictionary: [String : Any]?)
    * @availability iOS 3.0+
    * @deprecated iOS 26.0
    */
-  static initCoordinateAddressDictionary(coordinate: $SDK3, addressDictionary?: $SDK30): MKPlacemark { return callSDK<MKPlacemark>("MapKit_212edf3d13b127f5", 2096496384784095, undefined, [coordinate, addressDictionary]); }
+  static initCoordinateAddressDictionary(coordinate: $SDK3, addressDictionary?: $SDK30): MKPlacemark { return callSDK<MKPlacemark>("MapKit_5d69670f0307b385", 2096496384784095, undefined, [coordinate, addressDictionary]); }
   /**
    * init(coordinate: CLLocationCoordinate2D, postalAddress: CNPostalAddress)
    * @availability iOS 10.0+
    * @deprecated iOS 26.0
    */
-  static initCoordinatePostalAddress(coordinate: $SDK3, postalAddress: _Contacts_CNPostalAddress): MKPlacemark { return callSDK<MKPlacemark>("MapKit_212edf3d13b127f5", 1088347271845482, undefined, [coordinate, postalAddress]); }
+  static initCoordinatePostalAddress(coordinate: $SDK3, postalAddress: _Contacts_CNPostalAddress): MKPlacemark { return callSDK<MKPlacemark>("MapKit_5d69670f0307b385", 1088347271845482, undefined, [coordinate, postalAddress]); }
   /**
    * var countryCode: String? { get }
    * @availability iOS 3.0+
    * @deprecated iOS 26.0
    */
-  get countryCode(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 3925789450789770, this, []); }
+  get countryCode(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 3925789450789770, this, []); }
   declare readonly $type: { "c:objc(cs)MKPlacemark": true; "c:objc(cs)CLPlacemark": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "countryCode": true };
 }
@@ -3733,23 +3733,23 @@ export class MKPointAnnotation extends (MKShape as unknown as Omit<typeof MKShap
    * init()
    * @availability iOS 4.0+
    */
-  static init(): MKPointAnnotation { return callSDK<MKPointAnnotation>("MapKit_212edf3d13b127f5", 72985506081123, undefined, []); }
+  static init(): MKPointAnnotation { return callSDK<MKPointAnnotation>("MapKit_5d69670f0307b385", 72985506081123, undefined, []); }
   /**
    * convenience init(coordinate: CLLocationCoordinate2D)
    * @availability iOS 13.0+
    */
-  static initCoordinate(coordinate: $SDK3): MKPointAnnotation { return callSDK<MKPointAnnotation>("MapKit_212edf3d13b127f5", 4083436842725531, undefined, [coordinate]); }
+  static initCoordinate(coordinate: $SDK3): MKPointAnnotation { return callSDK<MKPointAnnotation>("MapKit_5d69670f0307b385", 4083436842725531, undefined, [coordinate]); }
   /**
    * convenience init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?)
    * @availability iOS 13.0+
    */
-  static initCoordinateTitleSubtitle(coordinate: $SDK3, title?: (string) | null, subtitle?: (string) | null): MKPointAnnotation { return callSDK<MKPointAnnotation>("MapKit_212edf3d13b127f5", 2708850613100646, undefined, [coordinate, title, subtitle]); }
+  static initCoordinateTitleSubtitle(coordinate: $SDK3, title?: (string) | null, subtitle?: (string) | null): MKPointAnnotation { return callSDK<MKPointAnnotation>("MapKit_5d69670f0307b385", 2708850613100646, undefined, [coordinate, title, subtitle]); }
   /**
    * var coordinate: CLLocationCoordinate2D { get set }
    * @availability iOS 4.0+
    */
-  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 3843762909658560, this, []); }
-  set coordinate(value: $SDK3) { callSDK<void>("MapKit_212edf3d13b127f5", 3622693922973595, this, [value]); }
+  get coordinate(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 3843762909658560, this, []); }
+  set coordinate(value: $SDK3) { callSDK<void>("MapKit_5d69670f0307b385", 3622693922973595, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKPointAnnotation": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "coordinate": true };
 }
@@ -3762,424 +3762,424 @@ export const MKPointOfInterestCategory = {
    * static let atm: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get atm(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 918335472604468, undefined, []); },
+  get atm(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 918335472604468, undefined, []); },
   /**
    * static let airport: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get airport(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4313711040882468, undefined, []); },
+  get airport(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4313711040882468, undefined, []); },
   /**
    * static let airportTerminal: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get airportTerminal(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 99780393764888, undefined, []); },
+  get airportTerminal(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 99780393764888, undefined, []); },
   /**
    * static let amusementPark: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get amusementPark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1079669169563126, undefined, []); },
+  get amusementPark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1079669169563126, undefined, []); },
   /**
    * static let animalService: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get animalService(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2596844771108981, undefined, []); },
+  get animalService(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2596844771108981, undefined, []); },
   /**
    * static let aquarium: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get aquarium(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 598592985590841, undefined, []); },
+  get aquarium(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 598592985590841, undefined, []); },
   /**
    * static let automotiveDealership: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get automotiveDealership(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1178329753858230, undefined, []); },
+  get automotiveDealership(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1178329753858230, undefined, []); },
   /**
    * static let automotiveRepair: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get automotiveRepair(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2212643862401005, undefined, []); },
+  get automotiveRepair(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2212643862401005, undefined, []); },
   /**
    * static let bakery: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get bakery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2865681809811351, undefined, []); },
+  get bakery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2865681809811351, undefined, []); },
   /**
    * static let bank: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get bank(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 19067642328171, undefined, []); },
+  get bank(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 19067642328171, undefined, []); },
   /**
    * static let baseball: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get baseball(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1799690479369969, undefined, []); },
+  get baseball(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1799690479369969, undefined, []); },
   /**
    * static let basketball: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get basketball(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3631063673958267, undefined, []); },
+  get basketball(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3631063673958267, undefined, []); },
   /**
    * static let beach: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get beach(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 290319733539377, undefined, []); },
+  get beach(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 290319733539377, undefined, []); },
   /**
    * static let beauty: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get beauty(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2595351076114671, undefined, []); },
+  get beauty(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2595351076114671, undefined, []); },
   /**
    * static let bowling: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get bowling(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3444330988602246, undefined, []); },
+  get bowling(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3444330988602246, undefined, []); },
   /**
    * static let brewery: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get brewery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3032957763631755, undefined, []); },
+  get brewery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3032957763631755, undefined, []); },
   /**
    * static let cafe: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get cafe(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4008933791352924, undefined, []); },
+  get cafe(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4008933791352924, undefined, []); },
   /**
    * static let campground: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get campground(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1781721020575396, undefined, []); },
+  get campground(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1781721020575396, undefined, []); },
   /**
    * static let carRental: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get carRental(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1832701754237797, undefined, []); },
+  get carRental(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1832701754237797, undefined, []); },
   /**
    * static let castle: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get castle(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1118314356874259, undefined, []); },
+  get castle(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1118314356874259, undefined, []); },
   /**
    * static let commercialVehicleDealership: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get commercialVehicleDealership(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1220661696293937, undefined, []); },
+  get commercialVehicleDealership(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1220661696293937, undefined, []); },
   /**
    * static let conventionCenter: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get conventionCenter(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1395302526345172, undefined, []); },
+  get conventionCenter(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1395302526345172, undefined, []); },
   /**
    * static let distillery: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get distillery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2055122803856974, undefined, []); },
+  get distillery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2055122803856974, undefined, []); },
   /**
    * static let evCharger: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get evCharger(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 830396792300289, undefined, []); },
+  get evCharger(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 830396792300289, undefined, []); },
   /**
    * static let fairground: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get fairground(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1814792784522404, undefined, []); },
+  get fairground(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1814792784522404, undefined, []); },
   /**
    * static let fireStation: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get fireStation(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2767668031210843, undefined, []); },
+  get fireStation(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2767668031210843, undefined, []); },
   /**
    * static let fishing: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get fishing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 79986495177546, undefined, []); },
+  get fishing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 79986495177546, undefined, []); },
   /**
    * static let fitnessCenter: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get fitnessCenter(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1731258201566665, undefined, []); },
+  get fitnessCenter(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1731258201566665, undefined, []); },
   /**
    * static let foodMarket: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get foodMarket(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2836116244944751, undefined, []); },
+  get foodMarket(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2836116244944751, undefined, []); },
   /**
    * static let fortress: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get fortress(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 424518793243797, undefined, []); },
+  get fortress(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 424518793243797, undefined, []); },
   /**
    * static let gasStation: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get gasStation(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3455506988139241, undefined, []); },
+  get gasStation(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3455506988139241, undefined, []); },
   /**
    * static let goKart: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get goKart(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 723748783110535, undefined, []); },
+  get goKart(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 723748783110535, undefined, []); },
   /**
    * static let golf: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get golf(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2475042059014320, undefined, []); },
+  get golf(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2475042059014320, undefined, []); },
   /**
    * static let hiking: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get hiking(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2795056218811634, undefined, []); },
+  get hiking(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2795056218811634, undefined, []); },
   /**
    * static let hospital: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get hospital(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3393575818172102, undefined, []); },
+  get hospital(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3393575818172102, undefined, []); },
   /**
    * static let hotel: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get hotel(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1693008719385635, undefined, []); },
+  get hotel(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1693008719385635, undefined, []); },
   /**
    * static let informationBooth: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get informationBooth(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4043108656357074, undefined, []); },
+  get informationBooth(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4043108656357074, undefined, []); },
   /**
    * static let kayaking: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get kayaking(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3717807617952432, undefined, []); },
+  get kayaking(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3717807617952432, undefined, []); },
   /**
    * static let landmark: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get landmark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1095000975679093, undefined, []); },
+  get landmark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1095000975679093, undefined, []); },
   /**
    * static let laundry: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get laundry(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2096285558441827, undefined, []); },
+  get laundry(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2096285558441827, undefined, []); },
   /**
    * static let library: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get library(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2437521099284058, undefined, []); },
+  get library(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2437521099284058, undefined, []); },
   /**
    * static let mailbox: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get mailbox(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3370935523492187, undefined, []); },
+  get mailbox(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3370935523492187, undefined, []); },
   /**
    * static let marina: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get marina(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 878814568188174, undefined, []); },
+  get marina(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 878814568188174, undefined, []); },
   /**
    * static let miniGolf: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get miniGolf(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1427464952006507, undefined, []); },
+  get miniGolf(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1427464952006507, undefined, []); },
   /**
    * static let motorbikeDealership: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get motorbikeDealership(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4342201102590415, undefined, []); },
+  get motorbikeDealership(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4342201102590415, undefined, []); },
   /**
    * static let movieTheater: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get movieTheater(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1535931703162236, undefined, []); },
+  get movieTheater(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1535931703162236, undefined, []); },
   /**
    * static let museum: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get museum(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 662656796775654, undefined, []); },
+  get museum(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 662656796775654, undefined, []); },
   /**
    * static let musicVenue: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get musicVenue(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3776346135857982, undefined, []); },
+  get musicVenue(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3776346135857982, undefined, []); },
   /**
    * static let nationalMonument: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get nationalMonument(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 827459096625876, undefined, []); },
+  get nationalMonument(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 827459096625876, undefined, []); },
   /**
    * static let nationalPark: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get nationalPark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1926752456036028, undefined, []); },
+  get nationalPark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1926752456036028, undefined, []); },
   /**
    * static let nightlife: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get nightlife(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1805817550513104, undefined, []); },
+  get nightlife(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1805817550513104, undefined, []); },
   /**
    * static let park: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get park(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 56365416919118, undefined, []); },
+  get park(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 56365416919118, undefined, []); },
   /**
    * static let parking: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get parking(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2384242068864840, undefined, []); },
+  get parking(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2384242068864840, undefined, []); },
   /**
    * static let pharmacy: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get pharmacy(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1693890442512614, undefined, []); },
+  get pharmacy(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1693890442512614, undefined, []); },
   /**
    * static let picnicArea: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get picnicArea(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4004074511247708, undefined, []); },
+  get picnicArea(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4004074511247708, undefined, []); },
   /**
    * static let planetarium: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get planetarium(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1235206906151569, undefined, []); },
+  get planetarium(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1235206906151569, undefined, []); },
   /**
    * static let police: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get police(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 724011060075722, undefined, []); },
+  get police(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 724011060075722, undefined, []); },
   /**
    * static let postOffice: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get postOffice(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1728549377515859, undefined, []); },
+  get postOffice(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1728549377515859, undefined, []); },
   /**
    * static let publicTransport: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get publicTransport(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 956405885437405, undefined, []); },
+  get publicTransport(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 956405885437405, undefined, []); },
   /**
    * static let rvPark: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get rvPark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2356741151829594, undefined, []); },
+  get rvPark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2356741151829594, undefined, []); },
   /**
    * static let rangerStation: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get rangerStation(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3581181374543502, undefined, []); },
+  get rangerStation(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3581181374543502, undefined, []); },
   /**
    * static let restArea: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get restArea(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1775723613553389, undefined, []); },
+  get restArea(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1775723613553389, undefined, []); },
   /**
    * static let restaurant: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get restaurant(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4414939166179345, undefined, []); },
+  get restaurant(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4414939166179345, undefined, []); },
   /**
    * static let restroom: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get restroom(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3787317804422226, undefined, []); },
+  get restroom(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3787317804422226, undefined, []); },
   /**
    * static let rockClimbing: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get rockClimbing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2415218219732149, undefined, []); },
+  get rockClimbing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2415218219732149, undefined, []); },
   /**
    * static let scenicView: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get scenicView(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2020450990310287, undefined, []); },
+  get scenicView(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2020450990310287, undefined, []); },
   /**
    * static let school: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get school(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2544652279862096, undefined, []); },
+  get school(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2544652279862096, undefined, []); },
   /**
    * static let skatePark: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get skatePark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2480996813321301, undefined, []); },
+  get skatePark(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2480996813321301, undefined, []); },
   /**
    * static let skating: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get skating(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2862234971632992, undefined, []); },
+  get skating(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2862234971632992, undefined, []); },
   /**
    * static let skiing: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get skiing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 558441995847374, undefined, []); },
+  get skiing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 558441995847374, undefined, []); },
   /**
    * static let soccer: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get soccer(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1791438632653021, undefined, []); },
+  get soccer(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1791438632653021, undefined, []); },
   /**
    * static let spa: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get spa(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1489742676294717, undefined, []); },
+  get spa(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1489742676294717, undefined, []); },
   /**
    * static let stadium: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get stadium(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 4087911230617408, undefined, []); },
+  get stadium(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 4087911230617408, undefined, []); },
   /**
    * static let store: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get store(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3996353375724112, undefined, []); },
+  get store(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3996353375724112, undefined, []); },
   /**
    * static let surfing: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get surfing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 219968439703096, undefined, []); },
+  get surfing(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 219968439703096, undefined, []); },
   /**
    * static let swimming: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get swimming(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 622856033761168, undefined, []); },
+  get swimming(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 622856033761168, undefined, []); },
   /**
    * static let tennis: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get tennis(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 695752856508033, undefined, []); },
+  get tennis(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 695752856508033, undefined, []); },
   /**
    * static let theater: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get theater(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 766785900247337, undefined, []); },
+  get theater(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 766785900247337, undefined, []); },
   /**
    * static let ticketOffice: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get ticketOffice(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1075128631775334, undefined, []); },
+  get ticketOffice(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1075128631775334, undefined, []); },
   /**
    * static let university: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get university(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 811019899243571, undefined, []); },
+  get university(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 811019899243571, undefined, []); },
   /**
    * static let visitorCenter: MKPointOfInterestCategory
    * @availability iOS 27.0+
    */
-  get visitorCenter(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3661676776587204, undefined, []); },
+  get visitorCenter(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3661676776587204, undefined, []); },
   /**
    * static let volleyball: MKPointOfInterestCategory
    * @availability iOS 18.0+
    */
-  get volleyball(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 2242289122847671, undefined, []); },
+  get volleyball(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 2242289122847671, undefined, []); },
   /**
    * static let winery: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get winery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3396165486456062, undefined, []); },
+  get winery(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3396165486456062, undefined, []); },
   /**
    * static let zoo: MKPointOfInterestCategory
    * @availability iOS 13.0+
    */
-  get zoo(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 1313410759297732, undefined, []); },
+  get zoo(): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 1313410759297732, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_212edf3d13b127f5", 3377973102639101, undefined, [rawValue]); }
+  init(rawValue: string): MKPointOfInterestCategory { return callSDK<MKPointOfInterestCategory>("MapKit_5d69670f0307b385", 3377973102639101, undefined, [rawValue]); }
 };
 
 /**
@@ -4191,32 +4191,32 @@ export class MKPointOfInterestFilter extends SDKHandle {
    * class var excludingAll: MKPointOfInterestFilter { get }
    * @availability iOS 13.0+
    */
-  static get excludingAll(): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_212edf3d13b127f5", 2751439595275556, undefined, []); }
+  static get excludingAll(): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_5d69670f0307b385", 2751439595275556, undefined, []); }
   /**
    * class var includingAll: MKPointOfInterestFilter { get }
    * @availability iOS 13.0+
    */
-  static get includingAll(): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_212edf3d13b127f5", 4303279545072569, undefined, []); }
+  static get includingAll(): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_5d69670f0307b385", 4303279545072569, undefined, []); }
   /**
    * func excludes(_ category: MKPointOfInterestCategory) -> Bool
    * @availability iOS 13.0+
    */
-  excludes(category: MKPointOfInterestCategory): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2723529632419434, this, [category]); }
+  excludes(category: MKPointOfInterestCategory): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2723529632419434, this, [category]); }
   /**
    * func includes(_ category: MKPointOfInterestCategory) -> Bool
    * @availability iOS 13.0+
    */
-  includes(category: MKPointOfInterestCategory): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1254314330900780, this, [category]); }
+  includes(category: MKPointOfInterestCategory): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1254314330900780, this, [category]); }
   /**
    * init(excluding categories: [MKPointOfInterestCategory])
    * @availability iOS 13.0+
    */
-  static initExcluding(categories: $SDK48): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_212edf3d13b127f5", 3411494026600895, undefined, [categories]); }
+  static initExcluding(categories: $SDK48): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_5d69670f0307b385", 3411494026600895, undefined, [categories]); }
   /**
    * init(including categories: [MKPointOfInterestCategory])
    * @availability iOS 13.0+
    */
-  static initIncluding(categories: $SDK48): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_212edf3d13b127f5", 1501433772507111, undefined, [categories]); }
+  static initIncluding(categories: $SDK48): MKPointOfInterestFilter { return callSDK<MKPointOfInterestFilter>("MapKit_5d69670f0307b385", 1501433772507111, undefined, [categories]); }
   declare readonly $type: { "c:objc(cs)MKPointOfInterestFilter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4229,27 +4229,27 @@ export class MKPolygon extends MKMultiPoint {
    * convenience init(coordinates coords: UnsafePointer<CLLocationCoordinate2D>, count: Int)
    * @availability iOS 4.0+
    */
-  static initCoordinatesCount(coords: $SDK14, count: number): MKPolygon { return callSDK<MKPolygon>("MapKit_212edf3d13b127f5", 527102880500717, undefined, [coords, count]); }
+  static initCoordinatesCount(coords: $SDK14, count: number): MKPolygon { return callSDK<MKPolygon>("MapKit_5d69670f0307b385", 527102880500717, undefined, [coords, count]); }
   /**
    * convenience init(coordinates coords: UnsafePointer<CLLocationCoordinate2D>, count: Int, interiorPolygons: [MKPolygon]?)
    * @availability iOS 4.0+
    */
-  static initCoordinatesCountInteriorPolygons(coords: $SDK14, count: number, interiorPolygons?: $SDK49): MKPolygon { return callSDK<MKPolygon>("MapKit_212edf3d13b127f5", 4308648323463277, undefined, [coords, count, interiorPolygons]); }
+  static initCoordinatesCountInteriorPolygons(coords: $SDK14, count: number, interiorPolygons?: $SDK49): MKPolygon { return callSDK<MKPolygon>("MapKit_5d69670f0307b385", 4308648323463277, undefined, [coords, count, interiorPolygons]); }
   /**
    * convenience init(points: UnsafePointer<MKMapPoint>, count: Int)
    * @availability iOS 4.0+
    */
-  static initPointsCount(points: SDKHandle, count: number): MKPolygon { return callSDK<MKPolygon>("MapKit_212edf3d13b127f5", 1243502878025350, undefined, [points, count]); }
+  static initPointsCount(points: SDKHandle, count: number): MKPolygon { return callSDK<MKPolygon>("MapKit_5d69670f0307b385", 1243502878025350, undefined, [points, count]); }
   /**
    * convenience init(points: UnsafePointer<MKMapPoint>, count: Int, interiorPolygons: [MKPolygon]?)
    * @availability iOS 4.0+
    */
-  static initPointsCountInteriorPolygons(points: SDKHandle, count: number, interiorPolygons?: $SDK49): MKPolygon { return callSDK<MKPolygon>("MapKit_212edf3d13b127f5", 4038777830676951, undefined, [points, count, interiorPolygons]); }
+  static initPointsCountInteriorPolygons(points: SDKHandle, count: number, interiorPolygons?: $SDK49): MKPolygon { return callSDK<MKPolygon>("MapKit_5d69670f0307b385", 4038777830676951, undefined, [points, count, interiorPolygons]); }
   /**
    * var interiorPolygons: [MKPolygon]? { get }
    * @availability iOS 4.0+
    */
-  get interiorPolygons(): $SDK49 { return callSDK<$SDK49>("MapKit_212edf3d13b127f5", 1101282477959931, this, []); }
+  get interiorPolygons(): $SDK49 { return callSDK<$SDK49>("MapKit_5d69670f0307b385", 1101282477959931, this, []); }
   declare readonly $type: { "c:objc(cs)MKPolygon": true; "c:objc(cs)MKMultiPoint": true; "c:objc(cs)MKShape": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "subtitle": true; "title": true; "pointCount": true; "interiorPolygons": true };
 }
@@ -4263,24 +4263,24 @@ export class MKPolygonRenderer extends (MKOverlayPathRenderer as unknown as Omit
    * init(polygon: MKPolygon)
    * @availability iOS 7.0+
    */
-  static init(polygon: MKPolygon): MKPolygonRenderer { return callSDK<MKPolygonRenderer>("MapKit_212edf3d13b127f5", 2432526380511932, undefined, [polygon]); }
+  static init(polygon: MKPolygon): MKPolygonRenderer { return callSDK<MKPolygonRenderer>("MapKit_5d69670f0307b385", 2432526380511932, undefined, [polygon]); }
   /**
    * var polygon: MKPolygon { get }
    * @availability iOS 7.0+
    */
-  get polygon(): MKPolygon { return callSDK<MKPolygon>("MapKit_212edf3d13b127f5", 2802332840664256, this, []); }
+  get polygon(): MKPolygon { return callSDK<MKPolygon>("MapKit_5d69670f0307b385", 2802332840664256, this, []); }
   /**
    * var strokeEnd: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get strokeEnd(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 757444100052345, this, []); }
-  set strokeEnd(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 3625562370378379, this, [value]); }
+  get strokeEnd(): number { return callSDK<number>("MapKit_5d69670f0307b385", 757444100052345, this, []); }
+  set strokeEnd(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 3625562370378379, this, [value]); }
   /**
    * var strokeStart: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get strokeStart(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 4418995172018677, this, []); }
-  set strokeStart(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 3231136757570718, this, [value]); }
+  get strokeStart(): number { return callSDK<number>("MapKit_5d69670f0307b385", 4418995172018677, this, []); }
+  set strokeStart(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 3231136757570718, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKPolygonRenderer": true; "c:objc(cs)MKOverlayPathRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true; "fillColor": true; "lineCap": true; "lineDashPattern": true; "lineDashPhase": true; "lineJoin": true; "lineWidth": true; "miterLimit": true; "path": true; "shouldRasterize": true; "strokeColor": true; "polygon": true; "strokeEnd": true; "strokeStart": true };
 }
@@ -4292,7 +4292,7 @@ export class MKPolygonRenderer extends (MKOverlayPathRenderer as unknown as Omit
  */
 export class MKPolygonView extends (MKOverlayPathView as unknown as Omit<typeof MKOverlayPathView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathView)) {
   /** init() */
-  static init(): Promise<MKPolygonView> { return callSDKAsync<MKPolygonView>("MapKit_212edf3d13b127f5", 2168292202169546, undefined, []); }
+  static init(): Promise<MKPolygonView> { return callSDKAsync<MKPolygonView>("MapKit_5d69670f0307b385", 2168292202169546, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKPolygonView": true; "c:objc(cs)MKOverlayPathView": true; "c:objc(cs)MKOverlayView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4303,7 +4303,7 @@ export class MKPolygonView extends (MKOverlayPathView as unknown as Omit<typeof 
  */
 export class MKPolylineView extends (MKOverlayPathView as unknown as Omit<typeof MKOverlayPathView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathView)) {
   /** init() */
-  static init(): Promise<MKPolylineView> { return callSDKAsync<MKPolylineView>("MapKit_212edf3d13b127f5", 1396643309012143, undefined, []); }
+  static init(): Promise<MKPolylineView> { return callSDKAsync<MKPolylineView>("MapKit_5d69670f0307b385", 1396643309012143, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKPolylineView": true; "c:objc(cs)MKOverlayPathView": true; "c:objc(cs)MKOverlayView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4316,38 +4316,38 @@ export class MKReverseGeocodingRequest extends SDKHandle {
    * func cancel()
    * @availability iOS 26.0+
    */
-  cancel(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2769896162845503, this, []); }
+  cancel(): void { return callSDK<void>("MapKit_5d69670f0307b385", 2769896162845503, this, []); }
   /**
    * var mapItems: [MKMapItem] { get async throws }
    * @availability iOS 26.0+
    */
-  getMapItems(completionHandler: $SDK13): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2755601747297938, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getMapItems(completionHandler: $SDK13): void { return callSDK<void>("MapKit_5d69670f0307b385", 2755601747297938, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * init?(location: CLLocation)
    * @availability iOS 26.0+
    */
-  static init(location: __LocationEssentials_CLLocation): (MKReverseGeocodingRequest) | null { return callSDK<(MKReverseGeocodingRequest) | null>("MapKit_212edf3d13b127f5", 2740537255207544, undefined, [location]); }
+  static init(location: __LocationEssentials_CLLocation): (MKReverseGeocodingRequest) | null { return callSDK<(MKReverseGeocodingRequest) | null>("MapKit_5d69670f0307b385", 2740537255207544, undefined, [location]); }
   /**
    * var isCancelled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isCancelled(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3427066460128267, this, []); }
+  get isCancelled(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3427066460128267, this, []); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 26.0+
    */
-  get isLoading(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 710454280952913, this, []); }
+  get isLoading(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 710454280952913, this, []); }
   /**
    * @NSCopying var location: CLLocation { get }
    * @availability iOS 26.0+
    */
-  get location(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("MapKit_212edf3d13b127f5", 3677764542627561, this, []); }
+  get location(): __LocationEssentials_CLLocation { return callSDK<__LocationEssentials_CLLocation>("MapKit_5d69670f0307b385", 3677764542627561, this, []); }
   /**
    * var preferredLocale: Locale? { get set }
    * @availability iOS 26.0+
    */
-  get preferredLocale(): $SDK12 { return callSDK<$SDK12>("MapKit_212edf3d13b127f5", 3734288262775245, this, []); }
-  set preferredLocale(value: $SDK12) { callSDK<void>("MapKit_212edf3d13b127f5", 3791215691102841, this, [value]); }
+  get preferredLocale(): $SDK12 { return callSDK<$SDK12>("MapKit_5d69670f0307b385", 3734288262775245, this, []); }
+  set preferredLocale(value: $SDK12) { callSDK<void>("MapKit_5d69670f0307b385", 3791215691102841, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKReverseGeocodingRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCancelled": true; "isLoading": true; "location": true; "preferredLocale": true };
 }
@@ -4358,52 +4358,52 @@ export class MKReverseGeocodingRequest extends SDKHandle {
  */
 export class MKRoute extends SDKHandle {
   /** init() */
-  static init(): MKRoute { return callSDK<MKRoute>("MapKit_212edf3d13b127f5", 3063722335291307, undefined, []); }
+  static init(): MKRoute { return callSDK<MKRoute>("MapKit_5d69670f0307b385", 3063722335291307, undefined, []); }
   /**
    * var advisoryNotices: [String] { get }
    * @availability iOS 7.0+
    */
-  get advisoryNotices(): Array<string> { return callSDK<Array<string>>("MapKit_212edf3d13b127f5", 313221873426793, this, []); }
+  get advisoryNotices(): Array<string> { return callSDK<Array<string>>("MapKit_5d69670f0307b385", 313221873426793, this, []); }
   /**
    * var distance: CLLocationDistance { get }
    * @availability iOS 7.0+
    */
-  get distance(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 943162591000337, this, []); }
+  get distance(): number { return callSDK<number>("MapKit_5d69670f0307b385", 943162591000337, this, []); }
   /**
    * var expectedTravelTime: TimeInterval { get }
    * @availability iOS 7.0+
    */
-  get expectedTravelTime(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2196712900527047, this, []); }
+  get expectedTravelTime(): number { return callSDK<number>("MapKit_5d69670f0307b385", 2196712900527047, this, []); }
   /**
    * var hasHighways: Bool { get }
    * @availability iOS 16.0+
    */
-  get hasHighways(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 1086487243793457, this, []); }
+  get hasHighways(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 1086487243793457, this, []); }
   /**
    * var hasTolls: Bool { get }
    * @availability iOS 16.0+
    */
-  get hasTolls(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3150479484820742, this, []); }
+  get hasTolls(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3150479484820742, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 7.0+
    */
-  get name(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 3961933413053934, this, []); }
+  get name(): string { return callSDK<string>("MapKit_5d69670f0307b385", 3961933413053934, this, []); }
   /**
    * var polyline: MKPolyline { get }
    * @availability iOS 7.0+
    */
-  get polyline(): MKPolyline { return callSDK<MKPolyline>("MapKit_212edf3d13b127f5", 72426722489961, this, []); }
+  get polyline(): MKPolyline { return callSDK<MKPolyline>("MapKit_5d69670f0307b385", 72426722489961, this, []); }
   /**
    * var steps: [MKRoute.Step] { get }
    * @availability iOS 7.0+
    */
-  get steps(): Array<MKRoute_Step> { return callSDK<Array<MKRoute_Step>>("MapKit_212edf3d13b127f5", 3369927007773070, this, []); }
+  get steps(): Array<MKRoute_Step> { return callSDK<Array<MKRoute_Step>>("MapKit_5d69670f0307b385", 3369927007773070, this, []); }
   /**
    * var transportType: MKDirectionsTransportType { get }
    * @availability iOS 7.0+
    */
-  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 4122441215303836, this, []); }
+  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 4122441215303836, this, []); }
   declare readonly $type: { "c:objc(cs)MKRoute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "advisoryNotices": true; "distance": true; "expectedTravelTime": true; "hasHighways": true; "hasTolls": true; "name": true; "polyline": true; "steps": true; "transportType": true };
 }
@@ -4414,32 +4414,32 @@ export class MKRoute extends SDKHandle {
  */
 export class MKRoute_Step extends SDKHandle {
   /** init() */
-  static init(): MKRoute_Step { return callSDK<MKRoute_Step>("MapKit_212edf3d13b127f5", 1982541546025877, undefined, []); }
+  static init(): MKRoute_Step { return callSDK<MKRoute_Step>("MapKit_5d69670f0307b385", 1982541546025877, undefined, []); }
   /**
    * var distance: CLLocationDistance { get }
    * @availability iOS 7.0+
    */
-  get distance(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 273383867641288, this, []); }
+  get distance(): number { return callSDK<number>("MapKit_5d69670f0307b385", 273383867641288, this, []); }
   /**
    * var instructions: String { get }
    * @availability iOS 7.0+
    */
-  get instructions(): string { return callSDK<string>("MapKit_212edf3d13b127f5", 904705536882708, this, []); }
+  get instructions(): string { return callSDK<string>("MapKit_5d69670f0307b385", 904705536882708, this, []); }
   /**
    * var notice: String? { get }
    * @availability iOS 7.0+
    */
-  get notice(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 4317974317638076, this, []); }
+  get notice(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 4317974317638076, this, []); }
   /**
    * var polyline: MKPolyline { get }
    * @availability iOS 7.0+
    */
-  get polyline(): MKPolyline { return callSDK<MKPolyline>("MapKit_212edf3d13b127f5", 1875253654046670, this, []); }
+  get polyline(): MKPolyline { return callSDK<MKPolyline>("MapKit_5d69670f0307b385", 1875253654046670, this, []); }
   /**
    * var transportType: MKDirectionsTransportType { get }
    * @availability iOS 7.0+
    */
-  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_212edf3d13b127f5", 1321540768891875, this, []); }
+  get transportType(): MKDirectionsTransportType { return callSDK<MKDirectionsTransportType>("MapKit_5d69670f0307b385", 1321540768891875, this, []); }
   declare readonly $type: { "c:objc(cs)MKRouteStep": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "distance": true; "instructions": true; "notice": true; "polyline": true; "transportType": true };
 }
@@ -4453,25 +4453,25 @@ export class MKScaleView extends SDKHandle {
    * convenience init(mapView: MKMapView?)
    * @availability iOS 11.0+
    */
-  static init(mapView?: (MKMapView) | null): Promise<MKScaleView> { return callSDKAsync<MKScaleView>("MapKit_212edf3d13b127f5", 906710707710951, undefined, [mapView]); }
+  static init(mapView?: (MKMapView) | null): Promise<MKScaleView> { return callSDKAsync<MKScaleView>("MapKit_5d69670f0307b385", 906710707710951, undefined, [mapView]); }
   /**
    * var legendAlignment: MKScaleView.Alignment { get set }
    * @availability iOS 11.0+
    */
-  get legendAlignment(): Promise<MKScaleView_Alignment> { return callSDKAsync<MKScaleView_Alignment>("MapKit_212edf3d13b127f5", 2496754321479864, this, []); }
-  setLegendAlignment(value: MKScaleView_Alignment): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 54925549032056, this, [value]); }
+  get legendAlignment(): Promise<MKScaleView_Alignment> { return callSDKAsync<MKScaleView_Alignment>("MapKit_5d69670f0307b385", 2496754321479864, this, []); }
+  setLegendAlignment(value: MKScaleView_Alignment): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 54925549032056, this, [value]); }
   /**
    * weak var mapView: MKMapView? { get set }
    * @availability iOS 11.0+
    */
-  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_212edf3d13b127f5", 2898698543896884, this, []); }
-  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 1401760643131739, this, [value]); }
+  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_5d69670f0307b385", 2898698543896884, this, []); }
+  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 1401760643131739, this, [value]); }
   /**
    * var scaleVisibility: MKFeatureVisibility { get set }
    * @availability iOS 11.0+
    */
-  get scaleVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_212edf3d13b127f5", 132260824272332, this, []); }
-  setScaleVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3445020951031881, this, [value]); }
+  get scaleVisibility(): Promise<MKFeatureVisibility> { return callSDKAsync<MKFeatureVisibility>("MapKit_5d69670f0307b385", 132260824272332, this, []); }
+  setScaleVisibility(value: MKFeatureVisibility): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3445020951031881, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKScaleView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "legendAlignment": true; "mapView": true; "scaleVisibility": true };
 }
@@ -4487,7 +4487,7 @@ export const MKScaleView_Alignment = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): Promise<(MKScaleView_Alignment) | null> { return callSDKAsync<(MKScaleView_Alignment) | null>("MapKit_212edf3d13b127f5", 2066246527067474, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(MKScaleView_Alignment) | null> { return callSDKAsync<(MKScaleView_Alignment) | null>("MapKit_5d69670f0307b385", 2066246527067474, undefined, [rawValue]); }
 };
 
 /**
@@ -4499,7 +4499,7 @@ export class MKSelectionAccessory extends SDKHandle {
    * class func mapItemDetail(_ presentationStyle: MKSelectionAccessory.MapItemDetailPresentationStyle) -> MKSelectionAccessory
    * @availability iOS 18.0+
    */
-  static mapItemDetail(presentationStyle: MKSelectionAccessory_MapItemDetailPresentationStyle): MKSelectionAccessory { return callSDK<MKSelectionAccessory>("MapKit_212edf3d13b127f5", 1168197126142826, undefined, [presentationStyle]); }
+  static mapItemDetail(presentationStyle: MKSelectionAccessory_MapItemDetailPresentationStyle): MKSelectionAccessory { return callSDK<MKSelectionAccessory>("MapKit_5d69670f0307b385", 1168197126142826, undefined, [presentationStyle]); }
   declare readonly $type: { "c:objc(cs)MKSelectionAccessory": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4512,27 +4512,27 @@ export class MKSelectionAccessory_MapItemDetailPresentationStyle extends SDKHand
    * class func sheet(presentedFrom viewController: UIViewController) -> MKSelectionAccessory.MapItemDetailPresentationStyle
    * @availability iOS 18.0+
    */
-  static sheet(viewController: _UIKit_UIViewController): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_212edf3d13b127f5", 4466830718970700, undefined, [viewController]); }
+  static sheet(viewController: _UIKit_UIViewController): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_5d69670f0307b385", 4466830718970700, undefined, [viewController]); }
   /**
    * class var callout: MKSelectionAccessory.MapItemDetailPresentationStyle { get }
    * @availability iOS 18.0+
    */
-  static get callout(): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_212edf3d13b127f5", 2897375992529757, undefined, []); }
+  static get callout(): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_5d69670f0307b385", 2897375992529757, undefined, []); }
   /**
    * class var openInMaps: MKSelectionAccessory.MapItemDetailPresentationStyle { get }
    * @availability iOS 18.0+
    */
-  static get openInMaps(): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_212edf3d13b127f5", 1908367241285613, undefined, []); }
+  static get openInMaps(): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_5d69670f0307b385", 1908367241285613, undefined, []); }
   /**
    * static func callout(_ style: MKSelectionAccessory.MapItemDetailPresentationStyle.CalloutStyle = .automatic) -> MKSelectionAccessory.MapItemDetailPresentationStyle
    * @availability iOS 18.0+
    */
-  static callout46858(style?: MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_212edf3d13b127f5", 343078736696507, undefined, [style]); }
+  static callout46858(style?: MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_5d69670f0307b385", 343078736696507, undefined, [style]); }
   /**
    * static func automatic(presentationViewController: UIViewController? = nil) -> MKSelectionAccessory.MapItemDetailPresentationStyle
    * @availability iOS 18.0+
    */
-  static automatic(presentationViewController?: (_UIKit_UIViewController) | null): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_212edf3d13b127f5", 111572118785991, undefined, [presentationViewController]); }
+  static automatic(presentationViewController?: (_UIKit_UIViewController) | null): MKSelectionAccessory_MapItemDetailPresentationStyle { return callSDK<MKSelectionAccessory_MapItemDetailPresentationStyle>("MapKit_5d69670f0307b385", 111572118785991, undefined, [presentationViewController]); }
   declare readonly $type: { "c:objc(cs)MKMapItemDetailSelectionAccessoryPresentationStyle": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4547,7 +4547,7 @@ export const MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle = 
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle) | null { return callSDK<(MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle) | null>("MapKit_212edf3d13b127f5", 3020022481429252, undefined, [rawValue]); }
+  init(rawValue: number): (MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle) | null { return callSDK<(MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle) | null>("MapKit_5d69670f0307b385", 3020022481429252, undefined, [rawValue]); }
 };
 
 /**
@@ -4559,40 +4559,40 @@ export class MKStandardMapConfiguration extends MKMapConfiguration {
    * init()
    * @availability iOS 16.0+
    */
-  static init(): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_212edf3d13b127f5", 1792752693124600, undefined, []); }
+  static init(): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_5d69670f0307b385", 1792752693124600, undefined, []); }
   /**
    * convenience init(elevationStyle: MKMapConfiguration.ElevationStyle)
    * @availability iOS 16.0+
    */
-  static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_212edf3d13b127f5", 3376022893794654, undefined, [elevationStyle]); }
+  static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_5d69670f0307b385", 3376022893794654, undefined, [elevationStyle]); }
   /**
    * convenience init(elevationStyle: MKMapConfiguration.ElevationStyle, emphasisStyle: MKStandardMapConfiguration.EmphasisStyle)
    * @availability iOS 16.0+
    */
-  static initElevationStyleEmphasisStyle(elevationStyle: MKMapConfiguration_ElevationStyle, emphasisStyle: MKStandardMapConfiguration_EmphasisStyle): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_212edf3d13b127f5", 2487514917959818, undefined, [elevationStyle, emphasisStyle]); }
+  static initElevationStyleEmphasisStyle(elevationStyle: MKMapConfiguration_ElevationStyle, emphasisStyle: MKStandardMapConfiguration_EmphasisStyle): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_5d69670f0307b385", 2487514917959818, undefined, [elevationStyle, emphasisStyle]); }
   /**
    * convenience init(emphasisStyle: MKStandardMapConfiguration.EmphasisStyle)
    * @availability iOS 16.0+
    */
-  static initEmphasisStyle(emphasisStyle: MKStandardMapConfiguration_EmphasisStyle): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_212edf3d13b127f5", 2598451821169384, undefined, [emphasisStyle]); }
+  static initEmphasisStyle(emphasisStyle: MKStandardMapConfiguration_EmphasisStyle): MKStandardMapConfiguration { return callSDK<MKStandardMapConfiguration>("MapKit_5d69670f0307b385", 2598451821169384, undefined, [emphasisStyle]); }
   /**
    * var emphasisStyle: MKStandardMapConfiguration.EmphasisStyle { get set }
    * @availability iOS 16.0+
    */
-  get emphasisStyle(): MKStandardMapConfiguration_EmphasisStyle { return callSDK<MKStandardMapConfiguration_EmphasisStyle>("MapKit_212edf3d13b127f5", 1301131379478692, this, []); }
-  set emphasisStyle(value: MKStandardMapConfiguration_EmphasisStyle) { callSDK<void>("MapKit_212edf3d13b127f5", 847045624210254, this, [value]); }
+  get emphasisStyle(): MKStandardMapConfiguration_EmphasisStyle { return callSDK<MKStandardMapConfiguration_EmphasisStyle>("MapKit_5d69670f0307b385", 1301131379478692, this, []); }
+  set emphasisStyle(value: MKStandardMapConfiguration_EmphasisStyle) { callSDK<void>("MapKit_5d69670f0307b385", 847045624210254, this, [value]); }
   /**
    * @NSCopying var pointOfInterestFilter: MKPointOfInterestFilter? { get set }
    * @availability iOS 16.0+
    */
-  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_212edf3d13b127f5", 1288011661666374, this, []); }
-  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_212edf3d13b127f5", 2151653736196328, this, [value]); }
+  get pointOfInterestFilter(): $SDK16 { return callSDK<$SDK16>("MapKit_5d69670f0307b385", 1288011661666374, this, []); }
+  set pointOfInterestFilter(value: $SDK16) { callSDK<void>("MapKit_5d69670f0307b385", 2151653736196328, this, [value]); }
   /**
    * var showsTraffic: Bool { get set }
    * @availability iOS 16.0+
    */
-  get showsTraffic(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 547168003978105, this, []); }
-  set showsTraffic(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 2719591477968176, this, [value]); }
+  get showsTraffic(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 547168003978105, this, []); }
+  set showsTraffic(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 2719591477968176, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKStandardMapConfiguration": true; "c:objc(cs)MKMapConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elevationStyle": true; "emphasisStyle": true; "pointOfInterestFilter": true; "showsTraffic": true };
 }
@@ -4608,7 +4608,7 @@ export const MKStandardMapConfiguration_EmphasisStyle = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (MKStandardMapConfiguration_EmphasisStyle) | null { return callSDK<(MKStandardMapConfiguration_EmphasisStyle) | null>("MapKit_212edf3d13b127f5", 2458448829107037, undefined, [rawValue]); }
+  init(rawValue: number): (MKStandardMapConfiguration_EmphasisStyle) | null { return callSDK<(MKStandardMapConfiguration_EmphasisStyle) | null>("MapKit_5d69670f0307b385", 2458448829107037, undefined, [rawValue]); }
 };
 
 /**
@@ -4617,49 +4617,49 @@ export const MKStandardMapConfiguration_EmphasisStyle = {
  */
 export class MKTileOverlay extends SDKHandle {
   /** func url(forTilePath path: MKTileOverlayPath) -> URL */
-  url(path: MKTileOverlayPath): string { return callSDK<string>("MapKit_212edf3d13b127f5", 4325611225220225, this, [path]); }
+  url(path: MKTileOverlayPath): string { return callSDK<string>("MapKit_5d69670f0307b385", 4325611225220225, this, [path]); }
   /**
    * init(urlTemplate URLTemplate: String?)
    * @availability iOS 7.0+
    */
-  static init(URLTemplate?: (string) | null): MKTileOverlay { return callSDK<MKTileOverlay>("MapKit_212edf3d13b127f5", 1500723813318637, undefined, [URLTemplate]); }
+  static init(URLTemplate?: (string) | null): MKTileOverlay { return callSDK<MKTileOverlay>("MapKit_5d69670f0307b385", 1500723813318637, undefined, [URLTemplate]); }
   /** func loadTile(at path: MKTileOverlayPath) async throws -> Data */
-  loadTile(path: MKTileOverlayPath, result: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_212edf3d13b127f5", 2289185595235600, this, [path, result], [null,{"callback":{"out":[]}}]); }
+  loadTile(path: MKTileOverlayPath, result: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MapKit_5d69670f0307b385", 2289185595235600, this, [path, result], [null,{"callback":{"out":[]}}]); }
   /**
    * var urlTemplate: String? { get }
    * @availability iOS 7.0+
    */
-  get urlTemplate(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 166769190974981, this, []); }
+  get urlTemplate(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 166769190974981, this, []); }
   /**
    * var canReplaceMapContent: Bool { get set }
    * @availability iOS 7.0+
    */
-  get canReplaceMapContent(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2856008791488049, this, []); }
-  set canReplaceMapContent(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 4243678394811995, this, [value]); }
+  get canReplaceMapContent(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2856008791488049, this, []); }
+  set canReplaceMapContent(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 4243678394811995, this, [value]); }
   /**
    * var isGeometryFlipped: Bool { get set }
    * @availability iOS 7.0+
    */
-  get isGeometryFlipped(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 287456803452068, this, []); }
-  set isGeometryFlipped(value: boolean) { callSDK<void>("MapKit_212edf3d13b127f5", 2405323391284790, this, [value]); }
+  get isGeometryFlipped(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 287456803452068, this, []); }
+  set isGeometryFlipped(value: boolean) { callSDK<void>("MapKit_5d69670f0307b385", 2405323391284790, this, [value]); }
   /**
    * var maximumZ: Int { get set }
    * @availability iOS 7.0+
    */
-  get maximumZ(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 4167720740559039, this, []); }
-  set maximumZ(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 4138969808222603, this, [value]); }
+  get maximumZ(): number { return callSDK<number>("MapKit_5d69670f0307b385", 4167720740559039, this, []); }
+  set maximumZ(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 4138969808222603, this, [value]); }
   /**
    * var minimumZ: Int { get set }
    * @availability iOS 7.0+
    */
-  get minimumZ(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 607031635412613, this, []); }
-  set minimumZ(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 3636588161464648, this, [value]); }
+  get minimumZ(): number { return callSDK<number>("MapKit_5d69670f0307b385", 607031635412613, this, []); }
+  set minimumZ(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 3636588161464648, this, [value]); }
   /**
    * var tileSize: CGSize { get set }
    * @availability iOS 7.0+
    */
-  get tileSize(): $SDK25 { return callSDK<$SDK25>("MapKit_212edf3d13b127f5", 3966267601128904, this, []); }
-  set tileSize(value: $SDK25) { callSDK<void>("MapKit_212edf3d13b127f5", 2344419334890103, this, [value]); }
+  get tileSize(): $SDK25 { return callSDK<$SDK25>("MapKit_5d69670f0307b385", 3966267601128904, this, []); }
+  set tileSize(value: $SDK25) { callSDK<void>("MapKit_5d69670f0307b385", 2344419334890103, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKTileOverlay": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "urlTemplate": true; "canReplaceMapContent": true; "isGeometryFlipped": true; "maximumZ": true; "minimumZ": true; "tileSize": true };
 }
@@ -4667,21 +4667,21 @@ export class MKTileOverlay extends SDKHandle {
 /** struct MKTileOverlayPath */
 export class MKTileOverlayPath extends SDKHandle {
   /** var contentScaleFactor: CGFloat */
-  get contentScaleFactor(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 3862279478687484, this, []); }
-  set contentScaleFactor(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 3803058408095237, this, [value]); }
+  get contentScaleFactor(): number { return callSDK<number>("MapKit_5d69670f0307b385", 3862279478687484, this, []); }
+  set contentScaleFactor(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 3803058408095237, this, [value]); }
   /** var x: Int */
-  get x(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 392522314720834, this, []); }
-  set x(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 417057011078090, this, [value]); }
+  get x(): number { return callSDK<number>("MapKit_5d69670f0307b385", 392522314720834, this, []); }
+  set x(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 417057011078090, this, [value]); }
   /** var y: Int */
-  get y(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 1955649303586652, this, []); }
-  set y(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 4327918954840108, this, [value]); }
+  get y(): number { return callSDK<number>("MapKit_5d69670f0307b385", 1955649303586652, this, []); }
+  set y(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 4327918954840108, this, [value]); }
   /** var z: Int */
-  get z(): number { return callSDK<number>("MapKit_212edf3d13b127f5", 655944464885869, this, []); }
-  set z(value: number) { callSDK<void>("MapKit_212edf3d13b127f5", 313368114199815, this, [value]); }
+  get z(): number { return callSDK<number>("MapKit_5d69670f0307b385", 655944464885869, this, []); }
+  set z(value: number) { callSDK<void>("MapKit_5d69670f0307b385", 313368114199815, this, [value]); }
   /** init(x: Int, y: Int, z: Int, contentScaleFactor: CGFloat) */
-  static initXYZContentScaleFactor(x: number, y: number, z: number, contentScaleFactor: number): MKTileOverlayPath { return callSDK<MKTileOverlayPath>("MapKit_212edf3d13b127f5", 3167622174039966, undefined, [x, y, z, contentScaleFactor]); }
+  static initXYZContentScaleFactor(x: number, y: number, z: number, contentScaleFactor: number): MKTileOverlayPath { return callSDK<MKTileOverlayPath>("MapKit_5d69670f0307b385", 3167622174039966, undefined, [x, y, z, contentScaleFactor]); }
   /** init() */
-  static init(): MKTileOverlayPath { return callSDK<MKTileOverlayPath>("MapKit_212edf3d13b127f5", 2048052409142575, undefined, []); }
+  static init(): MKTileOverlayPath { return callSDK<MKTileOverlayPath>("MapKit_5d69670f0307b385", 2048052409142575, undefined, []); }
   declare readonly $type: { "c:@SA@MKTileOverlayPath": true };
 }
 
@@ -4694,12 +4694,12 @@ export class MKTileOverlayRenderer extends (MKOverlayRenderer as unknown as Omit
    * init(tileOverlay overlay: MKTileOverlay)
    * @availability iOS 7.0+
    */
-  static init(overlay: MKTileOverlay): MKTileOverlayRenderer { return callSDK<MKTileOverlayRenderer>("MapKit_212edf3d13b127f5", 3692232997898726, undefined, [overlay]); }
+  static init(overlay: MKTileOverlay): MKTileOverlayRenderer { return callSDK<MKTileOverlayRenderer>("MapKit_5d69670f0307b385", 3692232997898726, undefined, [overlay]); }
   /**
    * func reloadData()
    * @availability iOS 7.0+
    */
-  reloadData(): void { return callSDK<void>("MapKit_212edf3d13b127f5", 1287842408802726, this, []); }
+  reloadData(): void { return callSDK<void>("MapKit_5d69670f0307b385", 1287842408802726, this, []); }
   declare readonly $type: { "c:objc(cs)MKTileOverlayRenderer": true; "c:objc(cs)MKOverlayRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alpha": true; "blendMode": true; "contentScaleFactor": true; "overlay": true };
 }
@@ -4710,34 +4710,34 @@ export class MKTileOverlayRenderer extends (MKOverlayRenderer as unknown as Omit
  */
 export class MKUserLocation extends SDKHandle {
   /** init() */
-  static init(): MKUserLocation { return callSDK<MKUserLocation>("MapKit_212edf3d13b127f5", 1833943380866057, undefined, []); }
+  static init(): MKUserLocation { return callSDK<MKUserLocation>("MapKit_5d69670f0307b385", 1833943380866057, undefined, []); }
   /**
    * var heading: CLHeading? { get }
    * @availability iOS 5.0+
    */
-  get heading(): (_CoreLocation_CLHeading) | null { return callSDK<(_CoreLocation_CLHeading) | null>("MapKit_212edf3d13b127f5", 564222744744643, this, []); }
+  get heading(): (_CoreLocation_CLHeading) | null { return callSDK<(_CoreLocation_CLHeading) | null>("MapKit_5d69670f0307b385", 564222744744643, this, []); }
   /**
    * var location: CLLocation? { get }
    * @availability iOS 3.0+
    */
-  get location(): (__LocationEssentials_CLLocation) | null { return callSDK<(__LocationEssentials_CLLocation) | null>("MapKit_212edf3d13b127f5", 215425924659210, this, []); }
+  get location(): (__LocationEssentials_CLLocation) | null { return callSDK<(__LocationEssentials_CLLocation) | null>("MapKit_5d69670f0307b385", 215425924659210, this, []); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 3.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 280887588061724, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 378012128187768, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 280887588061724, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 378012128187768, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 3.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("MapKit_212edf3d13b127f5", 3010738826042481, this, []); }
-  set title(value: (string) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 3070937758927127, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("MapKit_5d69670f0307b385", 3010738826042481, this, []); }
+  set title(value: (string) | null) { callSDK<void>("MapKit_5d69670f0307b385", 3070937758927127, this, [value]); }
   /**
    * var isUpdating: Bool { get }
    * @availability iOS 3.0+
    */
-  get isUpdating(): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2320317198668590, this, []); }
+  get isUpdating(): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2320317198668590, this, []); }
   declare readonly $type: { "c:objc(cs)MKUserLocation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "heading": true; "location": true; "subtitle": true; "title": true; "isUpdating": true };
 }
@@ -4748,7 +4748,7 @@ export class MKUserLocation extends SDKHandle {
  */
 export class MKUserLocationView extends MKAnnotationView {
   /** init() */
-  static init(): Promise<MKUserLocationView> { return callSDKAsync<MKUserLocationView>("MapKit_212edf3d13b127f5", 50028509046180, undefined, []); }
+  static init(): Promise<MKUserLocationView> { return callSDKAsync<MKUserLocationView>("MapKit_5d69670f0307b385", 50028509046180, undefined, []); }
   declare readonly $type: { "c:objc(cs)MKUserLocationView": true; "c:objc(cs)MKAnnotationView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryOffset": true; "annotation": true; "calloutOffset": true; "canShowCallout": true; "centerOffset": true; "cluster": true; "clusteringIdentifier": true; "collisionMode": true; "detailCalloutAccessoryView": true; "displayPriority": true; "dragState": true; "isDraggable": true; "isEnabled": true; "isHighlighted": true; "image": true; "leftCalloutAccessoryView": true; "reuseIdentifier": true; "rightCalloutAccessoryView": true; "isSelected": true; "selectedZPriority": true; "zPriority": true };
 }
@@ -4762,13 +4762,13 @@ export class MKUserTrackingBarButtonItem extends SDKHandle {
    * init(mapView: MKMapView?)
    * @availability iOS 5.0+
    */
-  static init(mapView?: (MKMapView) | null): Promise<MKUserTrackingBarButtonItem> { return callSDKAsync<MKUserTrackingBarButtonItem>("MapKit_212edf3d13b127f5", 3392595957272237, undefined, [mapView]); }
+  static init(mapView?: (MKMapView) | null): Promise<MKUserTrackingBarButtonItem> { return callSDKAsync<MKUserTrackingBarButtonItem>("MapKit_5d69670f0307b385", 3392595957272237, undefined, [mapView]); }
   /**
    * var mapView: MKMapView? { get set }
    * @availability iOS 5.0+
    */
-  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_212edf3d13b127f5", 1134106613929902, this, []); }
-  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 2029915491692223, this, [value]); }
+  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_5d69670f0307b385", 1134106613929902, this, []); }
+  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 2029915491692223, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKUserTrackingBarButtonItem": true; "c:objc(cs)UIBarButtonItem": true; "c:objc(cs)UIBarItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mapView": true };
 }
@@ -4782,13 +4782,13 @@ export class MKUserTrackingButton extends SDKHandle {
    * convenience init(mapView: MKMapView?)
    * @availability iOS 11.0+
    */
-  static init(mapView?: (MKMapView) | null): Promise<MKUserTrackingButton> { return callSDKAsync<MKUserTrackingButton>("MapKit_212edf3d13b127f5", 3469675513437088, undefined, [mapView]); }
+  static init(mapView?: (MKMapView) | null): Promise<MKUserTrackingButton> { return callSDKAsync<MKUserTrackingButton>("MapKit_5d69670f0307b385", 3469675513437088, undefined, [mapView]); }
   /**
    * weak var mapView: MKMapView? { get set }
    * @availability iOS 11.0+
    */
-  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_212edf3d13b127f5", 3314833640746462, this, []); }
-  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_212edf3d13b127f5", 3417858624333433, this, [value]); }
+  get mapView(): Promise<(MKMapView) | null> { return callSDKAsync<(MKMapView) | null>("MapKit_5d69670f0307b385", 3314833640746462, this, []); }
+  setMapView(value?: (MKMapView) | null): Promise<void> { return callSDKAsync<void>("MapKit_5d69670f0307b385", 3417858624333433, this, [value]); }
   declare readonly $type: { "c:objc(cs)MKUserTrackingButton": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mapView": true };
 }
@@ -4804,17 +4804,17 @@ export const MKUserTrackingMode = {
    * init?(rawValue: Int)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (MKUserTrackingMode) | null { return callSDK<(MKUserTrackingMode) | null>("MapKit_212edf3d13b127f5", 2238860334465420, undefined, [rawValue]); }
+  init(rawValue: number): (MKUserTrackingMode) | null { return callSDK<(MKUserTrackingMode) | null>("MapKit_5d69670f0307b385", 2238860334465420, undefined, [rawValue]); }
 };
 
 /** typealias MKZoomScale = CGFloat */
 export type MKZoomScale = number;
 
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioEngineConfigurationChange" | "AVAudioUnitComponentTagsDidChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderDomainDidChange" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMusicPlayerControllerQueueDidChange" | "MPMediaLibraryDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 
 export const NSNotification_Name = {
   /** static let MKAnnotationCalloutInfoDidChange: NSNotification.Name */
-  get MKAnnotationCalloutInfoDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MapKit_212edf3d13b127f5", 138245888184522, undefined, []); }
+  get MKAnnotationCalloutInfoDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MapKit_5d69670f0307b385", 138245888184522, undefined, []); }
 };
 
 export class NSUserActivity extends SDKHandle {
@@ -4822,21 +4822,21 @@ export class NSUserActivity extends SDKHandle {
    * var mapItem: MKMapItem! { get set }
    * @availability iOS 10.0+
    */
-  get mapItem(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_212edf3d13b127f5", 473605099495954, this, []); }
-  set mapItem(value: (MKMapItem) | null) { callSDK<void>("MapKit_212edf3d13b127f5", 2835573362531418, this, [value]); }
+  get mapItem(): (MKMapItem) | null { return callSDK<(MKMapItem) | null>("MapKit_5d69670f0307b385", 473605099495954, this, []); }
+  set mapItem(value: (MKMapItem) | null) { callSDK<void>("MapKit_5d69670f0307b385", 2835573362531418, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mapItem": true };
 }
 
 export class NSValue extends SDKHandle {
   /** init(MKCoordinate coordinate: CLLocationCoordinate2D) */
-  static initMkCoordinate(coordinate: $SDK3): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("MapKit_212edf3d13b127f5", 969966685201325, undefined, [coordinate]); }
+  static initMkCoordinate(coordinate: $SDK3): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("MapKit_5d69670f0307b385", 969966685201325, undefined, [coordinate]); }
   /** init(MKCoordinateSpan span: MKCoordinateSpan) */
-  static initMkCoordinateSpan(span: MKCoordinateSpan): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("MapKit_212edf3d13b127f5", 2232174082859218, undefined, [span]); }
+  static initMkCoordinateSpan(span: MKCoordinateSpan): _Foundation_NSValue { return callSDK<_Foundation_NSValue>("MapKit_5d69670f0307b385", 2232174082859218, undefined, [span]); }
   /** var mkCoordinateSpanValue: MKCoordinateSpan { get } */
-  get mkCoordinateSpanValue(): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_212edf3d13b127f5", 123333742406473, this, []); }
+  get mkCoordinateSpanValue(): MKCoordinateSpan { return callSDK<MKCoordinateSpan>("MapKit_5d69670f0307b385", 123333742406473, this, []); }
   /** var mkCoordinateValue: CLLocationCoordinate2D { get } */
-  get mkCoordinateValue(): $SDK3 { return callSDK<$SDK3>("MapKit_212edf3d13b127f5", 3559371264226635, this, []); }
+  get mkCoordinateValue(): $SDK3 { return callSDK<$SDK3>("MapKit_5d69670f0307b385", 3559371264226635, this, []); }
   declare readonly $type: { "c:objc(cs)NSValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mkCoordinateSpanValue": true; "mkCoordinateValue": true };
 }
@@ -4846,241 +4846,241 @@ export class PlaceDescriptor extends SDKHandle {
    * init?(item: MKMapItem)
    * @availability iOS 26.0+
    */
-  static init(item: MKMapItem): (_GeoToolbox_PlaceDescriptor) | null { return callSDK<(_GeoToolbox_PlaceDescriptor) | null>("MapKit_212edf3d13b127f5", 373727900770424, undefined, [item]); }
+  static init(item: MKMapItem): (_GeoToolbox_PlaceDescriptor) | null { return callSDK<(_GeoToolbox_PlaceDescriptor) | null>("MapKit_5d69670f0307b385", 373727900770424, undefined, [item]); }
   declare readonly $type: { "s:10GeoToolbox15PlaceDescriptorV": true };
 }
 
 /** func MKMapPointEqualToPoint(_ point1: MKMapPoint, _ point2: MKMapPoint) -> Bool */
-export function MKMapPointEqualToPoint(point1: MKMapPoint, point2: MKMapPoint): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2534961540127677, undefined, [point1, point2]); }
+export function MKMapPointEqualToPoint(point1: MKMapPoint, point2: MKMapPoint): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2534961540127677, undefined, [point1, point2]); }
 
 /**
  * func MKMapPointsPerMeterAtLatitude(_ latitude: CLLocationDegrees) -> Double
  * @availability iOS 4.0+
  */
-export function MKMapPointsPerMeterAtLatitude(latitude: number): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2785644936526984, undefined, [latitude]); }
+export function MKMapPointsPerMeterAtLatitude(latitude: number): number { return callSDK<number>("MapKit_5d69670f0307b385", 2785644936526984, undefined, [latitude]); }
 
 /**
  * func MKMapRectDivide(_ rect: MKMapRect, _ slice: UnsafeMutablePointer<MKMapRect>, _ remainder: UnsafeMutablePointer<MKMapRect>, _ amount: Double, _ edge: CGRectEdge)
  * @availability iOS 4.0+
  */
-export function MKMapRectDivide(rect: MKMapRect, slice: SDKHandle, remainder: SDKHandle, amount: number, edge: _CoreFoundation_CGRectEdge): void { return callSDK<void>("MapKit_212edf3d13b127f5", 3599490157741441, undefined, [rect, slice, remainder, amount, edge]); }
+export function MKMapRectDivide(rect: MKMapRect, slice: SDKHandle, remainder: SDKHandle, amount: number, edge: _CoreFoundation_CGRectEdge): void { return callSDK<void>("MapKit_5d69670f0307b385", 3599490157741441, undefined, [rect, slice, remainder, amount, edge]); }
 
 /** func MKMapRectEqualToRect(_ rect1: MKMapRect, _ rect2: MKMapRect) -> Bool */
-export function MKMapRectEqualToRect(rect1: MKMapRect, rect2: MKMapRect): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 3995032957856285, undefined, [rect1, rect2]); }
+export function MKMapRectEqualToRect(rect1: MKMapRect, rect2: MKMapRect): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 3995032957856285, undefined, [rect1, rect2]); }
 
 /** func MKMapSizeEqualToSize(_ size1: MKMapSize, _ size2: MKMapSize) -> Bool */
-export function MKMapSizeEqualToSize(size1: MKMapSize, size2: MKMapSize): boolean { return callSDK<boolean>("MapKit_212edf3d13b127f5", 2744376662103505, undefined, [size1, size2]); }
+export function MKMapSizeEqualToSize(size1: MKMapSize, size2: MKMapSize): boolean { return callSDK<boolean>("MapKit_5d69670f0307b385", 2744376662103505, undefined, [size1, size2]); }
 
 /**
  * func MKMetersPerMapPointAtLatitude(_ latitude: CLLocationDegrees) -> CLLocationDistance
  * @availability iOS 4.0+
  */
-export function MKMetersPerMapPointAtLatitude(latitude: number): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2425199730739975, undefined, [latitude]); }
+export function MKMetersPerMapPointAtLatitude(latitude: number): number { return callSDK<number>("MapKit_5d69670f0307b385", 2425199730739975, undefined, [latitude]); }
 
 /**
  * func MKRoadWidthAtZoomScale(_ zoomScale: MKZoomScale) -> CGFloat
  * @availability iOS 4.0+
  */
-export function MKRoadWidthAtZoomScale(zoomScale: number): number { return callSDK<number>("MapKit_212edf3d13b127f5", 2567222309304952, undefined, [zoomScale]); }
+export function MKRoadWidthAtZoomScale(zoomScale: number): number { return callSDK<number>("MapKit_5d69670f0307b385", 2567222309304952, undefined, [zoomScale]); }
 
 /** func MKStringFromMapPoint(_ point: MKMapPoint) -> String */
-export function MKStringFromMapPoint(point: MKMapPoint): string { return callSDK<string>("MapKit_212edf3d13b127f5", 2157808632759482, undefined, [point]); }
+export function MKStringFromMapPoint(point: MKMapPoint): string { return callSDK<string>("MapKit_5d69670f0307b385", 2157808632759482, undefined, [point]); }
 
 /** func MKStringFromMapRect(_ rect: MKMapRect) -> String */
-export function MKStringFromMapRect(rect: MKMapRect): string { return callSDK<string>("MapKit_212edf3d13b127f5", 479084568191773, undefined, [rect]); }
+export function MKStringFromMapRect(rect: MKMapRect): string { return callSDK<string>("MapKit_5d69670f0307b385", 479084568191773, undefined, [rect]); }
 
 /** func MKStringFromMapSize(_ size: MKMapSize) -> String */
-export function MKStringFromMapSize(size: MKMapSize): string { return callSDK<string>("MapKit_212edf3d13b127f5", 4481280426731943, undefined, [size]); }
+export function MKStringFromMapSize(size: MKMapSize): string { return callSDK<string>("MapKit_5d69670f0307b385", 4481280426731943, undefined, [size]); }
 
 /** let MKErrorDomain: String */
-export const MKErrorDomain: string = callSDK<string>("MapKit_212edf3d13b127f5", 2708950551152227, undefined, []);
+export const MKErrorDomain: string = callSDK<string>("MapKit_5d69670f0307b385", 2708950551152227, undefined, []);
 
 /**
  * let MKLaunchOptionsCameraKey: String
  * @availability iOS 7.1+
  */
-export const MKLaunchOptionsCameraKey: string = callSDK<string>("MapKit_212edf3d13b127f5", 103883835979319, undefined, []);
+export const MKLaunchOptionsCameraKey: string = callSDK<string>("MapKit_5d69670f0307b385", 103883835979319, undefined, []);
 
 /**
  * let MKLaunchOptionsDirectionsModeCycling: String
  * @availability iOS 14.0+
  */
-export const MKLaunchOptionsDirectionsModeCycling: string = callSDK<string>("MapKit_212edf3d13b127f5", 2757304404802865, undefined, []);
+export const MKLaunchOptionsDirectionsModeCycling: string = callSDK<string>("MapKit_5d69670f0307b385", 2757304404802865, undefined, []);
 
 /**
  * let MKLaunchOptionsDirectionsModeDefault: String
  * @availability iOS 10.0+
  */
-export const MKLaunchOptionsDirectionsModeDefault: string = callSDK<string>("MapKit_212edf3d13b127f5", 3455972083567229, undefined, []);
+export const MKLaunchOptionsDirectionsModeDefault: string = callSDK<string>("MapKit_5d69670f0307b385", 3455972083567229, undefined, []);
 
 /**
  * let MKLaunchOptionsDirectionsModeDriving: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsDirectionsModeDriving: string = callSDK<string>("MapKit_212edf3d13b127f5", 4349966154607004, undefined, []);
+export const MKLaunchOptionsDirectionsModeDriving: string = callSDK<string>("MapKit_5d69670f0307b385", 4349966154607004, undefined, []);
 
 /**
  * let MKLaunchOptionsDirectionsModeKey: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsDirectionsModeKey: string = callSDK<string>("MapKit_212edf3d13b127f5", 4306147644747309, undefined, []);
+export const MKLaunchOptionsDirectionsModeKey: string = callSDK<string>("MapKit_5d69670f0307b385", 4306147644747309, undefined, []);
 
 /**
  * let MKLaunchOptionsDirectionsModeTransit: String
  * @availability iOS 9.0+
  */
-export const MKLaunchOptionsDirectionsModeTransit: string = callSDK<string>("MapKit_212edf3d13b127f5", 409719141190396, undefined, []);
+export const MKLaunchOptionsDirectionsModeTransit: string = callSDK<string>("MapKit_5d69670f0307b385", 409719141190396, undefined, []);
 
 /**
  * let MKLaunchOptionsDirectionsModeWalking: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsDirectionsModeWalking: string = callSDK<string>("MapKit_212edf3d13b127f5", 411322050188868, undefined, []);
+export const MKLaunchOptionsDirectionsModeWalking: string = callSDK<string>("MapKit_5d69670f0307b385", 411322050188868, undefined, []);
 
 /**
  * let MKLaunchOptionsMapCenterKey: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsMapCenterKey: string = callSDK<string>("MapKit_212edf3d13b127f5", 1487281669456202, undefined, []);
+export const MKLaunchOptionsMapCenterKey: string = callSDK<string>("MapKit_5d69670f0307b385", 1487281669456202, undefined, []);
 
 /**
  * let MKLaunchOptionsMapSpanKey: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsMapSpanKey: string = callSDK<string>("MapKit_212edf3d13b127f5", 3060028753545009, undefined, []);
+export const MKLaunchOptionsMapSpanKey: string = callSDK<string>("MapKit_5d69670f0307b385", 3060028753545009, undefined, []);
 
 /**
  * let MKLaunchOptionsMapTypeKey: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsMapTypeKey: string = callSDK<string>("MapKit_212edf3d13b127f5", 1227290082419850, undefined, []);
+export const MKLaunchOptionsMapTypeKey: string = callSDK<string>("MapKit_5d69670f0307b385", 1227290082419850, undefined, []);
 
 /**
  * let MKLaunchOptionsShowsTrafficKey: String
  * @availability iOS 6.0+
  */
-export const MKLaunchOptionsShowsTrafficKey: string = callSDK<string>("MapKit_212edf3d13b127f5", 1867419815412457, undefined, []);
+export const MKLaunchOptionsShowsTrafficKey: string = callSDK<string>("MapKit_5d69670f0307b385", 1867419815412457, undefined, []);
 
 /**
  * let MKMapCameraZoomDefault: CLLocationDistance
  * @availability iOS 13.0+
  */
-export const MKMapCameraZoomDefault: number = callSDK<number>("MapKit_212edf3d13b127f5", 345767161605939, undefined, []);
+export const MKMapCameraZoomDefault: number = callSDK<number>("MapKit_5d69670f0307b385", 345767161605939, undefined, []);
 
 /**
  * let MKMapItemTypeIdentifier: String
  * @availability iOS 11.0+
  */
-export const MKMapItemTypeIdentifier: string = callSDK<string>("MapKit_212edf3d13b127f5", 1001580260567294, undefined, []);
+export const MKMapItemTypeIdentifier: string = callSDK<string>("MapKit_5d69670f0307b385", 1001580260567294, undefined, []);
 
 /**
  * let MKMapViewDefaultAnnotationViewReuseIdentifier: String
  * @availability iOS 11.0+
  */
-export const MKMapViewDefaultAnnotationViewReuseIdentifier: string = callSDK<string>("MapKit_212edf3d13b127f5", 2160000280755618, undefined, []);
+export const MKMapViewDefaultAnnotationViewReuseIdentifier: string = callSDK<string>("MapKit_5d69670f0307b385", 2160000280755618, undefined, []);
 
 /**
  * let MKMapViewDefaultClusterAnnotationViewReuseIdentifier: String
  * @availability iOS 11.0+
  */
-export const MKMapViewDefaultClusterAnnotationViewReuseIdentifier: string = callSDK<string>("MapKit_212edf3d13b127f5", 3362018220803938, undefined, []);
+export const MKMapViewDefaultClusterAnnotationViewReuseIdentifier: string = callSDK<string>("MapKit_5d69670f0307b385", 3362018220803938, undefined, []);
 
-registerSDKClass("MKAddress", MKAddress, { module: "MapKit_212edf3d13b127f5", properties: {"fullAddress":316408492109989,"shortAddress":1534282769778357} });
-registerSDKClass("MKAddressFilter", MKAddressFilter, { module: "MapKit_212edf3d13b127f5", properties: {}, methods: {"excludes":{"id":684536769617032},"includes":{"id":1532575705040069}} });
-registerSDKClass("MKAddressRepresentations", MKAddressRepresentations, { module: "MapKit_212edf3d13b127f5", properties: {"cityName":4190874252461958,"cityWithContext19911":2851095207456187,"regionName":2239362917696718}, methods: {"cityWithContext":{"id":2073746362676863},"fullAddress":{"id":1631790585299094}} });
+registerSDKClass("MKAddress", MKAddress, { module: "MapKit_5d69670f0307b385", properties: {"fullAddress":316408492109989,"shortAddress":1534282769778357} });
+registerSDKClass("MKAddressFilter", MKAddressFilter, { module: "MapKit_5d69670f0307b385", properties: {}, methods: {"excludes":{"id":684536769617032},"includes":{"id":1532575705040069}} });
+registerSDKClass("MKAddressRepresentations", MKAddressRepresentations, { module: "MapKit_5d69670f0307b385", properties: {"cityName":4190874252461958,"cityWithContext19911":2851095207456187,"regionName":2239362917696718}, methods: {"cityWithContext":{"id":2073746362676863},"fullAddress":{"id":1631790585299094}} });
 registerSDKProtocol("c:objc(pl)MKAnnotation", {});
-registerSDKClass("MKAnnotationView", MKAnnotationView, { module: "MapKit_212edf3d13b127f5", properties: {"accessoryOffset":2873879032540030,"annotation":1290776544582100,"calloutOffset":2726828484948335,"canShowCallout":200532324877821,"centerOffset":997951059616030,"cluster":1397514840090561,"clusteringIdentifier":2325589965627619,"collisionMode":183846528009342,"detailCalloutAccessoryView":1467624933950804,"displayPriority":609308877285073,"dragState":4037884778630324,"isDraggable":567523715769983,"isEnabled":857963248559047,"isHighlighted":2065329144155159,"image":1458340929896523,"leftCalloutAccessoryView":1047396744865891,"reuseIdentifier":2725092357649687,"rightCalloutAccessoryView":4089443631315320,"isSelected":1024797141818243,"selectedZPriority":62244940740837,"zPriority":1746732256668306}, methods: {"prepareForDisplay":{"id":4309116893675175},"prepareForReuse":{"id":2854454998048612},"setDragState":{"id":1964863206126586},"setSelected":{"id":1706355094388321}} });
-registerSDKClass("MKShape", MKShape, { module: "MapKit_212edf3d13b127f5", properties: {"subtitle":12173553644419,"title":2412294954329103} });
-registerSDKClass("MKCircle", MKCircle, { module: "MapKit_212edf3d13b127f5", properties: {"boundingMapRect":651328952600640,"coordinate":1982179887492866,"radius":1698410513764997} });
-registerSDKClass("MKOverlayRenderer", MKOverlayRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"alpha":4202567929002115,"blendMode":4427452710941153,"contentScaleFactor":2046841710796422,"overlay":1883693776948802}, methods: {"canDraw":{"id":1013100834061473},"draw":{"id":1955950188583644},"mapPoint":{"id":358317985552314},"mapRect":{"id":1255439574578732},"point":{"id":3893402517243675},"rect":{"id":2612510501336321},"setNeedsDisplay":{"id":2025111965474105},"setNeedsDisplay78809":{"id":188774462605148},"setNeedsDisplayZoomScale":{"id":3615342976538812}} });
-registerSDKClass("MKOverlayPathRenderer", MKOverlayPathRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"fillColor":1609118127874738,"lineCap":3103447373678161,"lineDashPattern":897307507910459,"lineDashPhase":1207221637675307,"lineJoin":836273103854592,"lineWidth":621637425292590,"miterLimit":3558400892814640,"path":1155172401900233,"shouldRasterize":2997591914770543,"strokeColor":3867185968425210}, methods: {"applyFillProperties":{"id":1551775148523129},"applyStrokeProperties":{"id":2784728898118545},"createPath":{"id":2377689415299596},"fillPath":{"id":3345457228508851},"invalidatePath":{"id":2575333195867422},"strokePath":{"id":4335004513862738}} });
-registerSDKClass("MKCircleRenderer", MKCircleRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"circle":1228471027851338,"strokeEnd":3408083950947644,"strokeStart":3821110166354562} });
-registerSDKClass("MKOverlayView", MKOverlayView, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKOverlayPathView", MKOverlayPathView, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKCircleView", MKCircleView, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKClusterAnnotation", MKClusterAnnotation, { module: "MapKit_212edf3d13b127f5", properties: {"memberAnnotations":3964881453727748,"subtitle":2812248446891790,"title":3835730904097282} });
-registerSDKClass("MKCompassButton", MKCompassButton, { module: "MapKit_212edf3d13b127f5", properties: {"compassVisibility":4264658866057437,"mapView":2538822344916778} });
-registerSDKClass("MapKit.MKCoordinateRegion", MKCoordinateRegion, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MapKit.MKCoordinateSpan", MKCoordinateSpan, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKDirections", MKDirections, { module: "MapKit_212edf3d13b127f5", properties: {"isCalculating":1026008915985355}, methods: {"calculate":{"id":2846112761186495,"hints":[{"callback":{"out":[]}}]},"calculateETA":{"id":1256732377510055,"hints":[{"callback":{"out":[]}}]},"cancel":{"id":1197430164248197}} });
-registerSDKClass("MKETAResponse", MKDirections_ETAResponse, { module: "MapKit_212edf3d13b127f5", properties: {"destination":4325804736131575,"distance":2001431194326494,"expectedArrivalDate":1991395252466589,"expectedDepartureDate":2738634883150642,"expectedTravelTime":65272979697736,"source":52247408955646,"transportType":4347663305633410} });
-registerSDKClass("MKDirectionsRequest", MKDirections_Request, { module: "MapKit_212edf3d13b127f5", properties: {"arrivalDate":1496794808742102,"departureDate":39387534418644,"destination":2321228314221119,"highwayPreference":672353308889650,"requestsAlternateRoutes":4075218489913600,"source":3139667276024387,"tollPreference":3804512643915468,"transportType":3960493291790223} });
-registerSDKClass("MKDirectionsResponse", MKDirections_Response, { module: "MapKit_212edf3d13b127f5", properties: {"destination":215860020229985,"routes":1937527990318370,"source":714428168545349} });
-registerSDKClass("MKDistanceFormatter", MKDistanceFormatter, { module: "MapKit_212edf3d13b127f5", properties: {"locale":541581364368498,"unitStyle":1950986433058394,"units":3454705998015421}, methods: {"distance":{"id":4239645230609769},"string":{"id":3971157598430875}} });
-registerSDKClass("MapKit.MKError", MKError, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKGeocodingRequest", MKGeocodingRequest, { module: "MapKit_212edf3d13b127f5", properties: {"addressString":1951564428133448,"isCancelled":1209864976850925,"isLoading":3823315693059667,"preferredLocale":1504524042488421,"region":2525757585847607}, methods: {"cancel":{"id":459336985444624},"getMapItems":{"id":731091785129852,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MKMultiPoint", MKMultiPoint, { module: "MapKit_212edf3d13b127f5", properties: {"pointCount":3850395598528052}, methods: {"getCoordinates":{"id":2073023702038789},"location":{"id":1412649591421208},"points":{"id":1057482472025096},"locations":{"id":1923013566310737}} });
-registerSDKClass("MKPolyline", MKPolyline, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKGeodesicPolyline", MKGeodesicPolyline, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKGeoJSONDecoder", MKGeoJSONDecoder, { module: "MapKit_212edf3d13b127f5", properties: {}, methods: {"decode":{"id":2426865148879394}} });
-registerSDKClass("MKGeoJSONFeature", MKGeoJSONFeature, { module: "MapKit_212edf3d13b127f5", properties: {"geometry":2967662576094170,"identifier":1502401199939726,"properties":3931110914528673} });
+registerSDKClass("MKAnnotationView", MKAnnotationView, { module: "MapKit_5d69670f0307b385", properties: {"accessoryOffset":2873879032540030,"annotation":1290776544582100,"calloutOffset":2726828484948335,"canShowCallout":200532324877821,"centerOffset":997951059616030,"cluster":1397514840090561,"clusteringIdentifier":2325589965627619,"collisionMode":183846528009342,"detailCalloutAccessoryView":1467624933950804,"displayPriority":609308877285073,"dragState":4037884778630324,"isDraggable":567523715769983,"isEnabled":857963248559047,"isHighlighted":2065329144155159,"image":1458340929896523,"leftCalloutAccessoryView":1047396744865891,"reuseIdentifier":2725092357649687,"rightCalloutAccessoryView":4089443631315320,"isSelected":1024797141818243,"selectedZPriority":62244940740837,"zPriority":1746732256668306}, methods: {"prepareForDisplay":{"id":4309116893675175},"prepareForReuse":{"id":2854454998048612},"setDragState":{"id":1964863206126586},"setSelected":{"id":1706355094388321}} });
+registerSDKClass("MKShape", MKShape, { module: "MapKit_5d69670f0307b385", properties: {"subtitle":12173553644419,"title":2412294954329103} });
+registerSDKClass("MKCircle", MKCircle, { module: "MapKit_5d69670f0307b385", properties: {"boundingMapRect":651328952600640,"coordinate":1982179887492866,"radius":1698410513764997} });
+registerSDKClass("MKOverlayRenderer", MKOverlayRenderer, { module: "MapKit_5d69670f0307b385", properties: {"alpha":4202567929002115,"blendMode":4427452710941153,"contentScaleFactor":2046841710796422,"overlay":1883693776948802}, methods: {"canDraw":{"id":1013100834061473},"draw":{"id":1955950188583644},"mapPoint":{"id":358317985552314},"mapRect":{"id":1255439574578732},"point":{"id":3893402517243675},"rect":{"id":2612510501336321},"setNeedsDisplay":{"id":2025111965474105},"setNeedsDisplay78809":{"id":188774462605148},"setNeedsDisplayZoomScale":{"id":3615342976538812}} });
+registerSDKClass("MKOverlayPathRenderer", MKOverlayPathRenderer, { module: "MapKit_5d69670f0307b385", properties: {"fillColor":1609118127874738,"lineCap":3103447373678161,"lineDashPattern":897307507910459,"lineDashPhase":1207221637675307,"lineJoin":836273103854592,"lineWidth":621637425292590,"miterLimit":3558400892814640,"path":1155172401900233,"shouldRasterize":2997591914770543,"strokeColor":3867185968425210}, methods: {"applyFillProperties":{"id":1551775148523129},"applyStrokeProperties":{"id":2784728898118545},"createPath":{"id":2377689415299596},"fillPath":{"id":3345457228508851},"invalidatePath":{"id":2575333195867422},"strokePath":{"id":4335004513862738}} });
+registerSDKClass("MKCircleRenderer", MKCircleRenderer, { module: "MapKit_5d69670f0307b385", properties: {"circle":1228471027851338,"strokeEnd":3408083950947644,"strokeStart":3821110166354562} });
+registerSDKClass("MKOverlayView", MKOverlayView, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKOverlayPathView", MKOverlayPathView, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKCircleView", MKCircleView, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKClusterAnnotation", MKClusterAnnotation, { module: "MapKit_5d69670f0307b385", properties: {"memberAnnotations":3964881453727748,"subtitle":2812248446891790,"title":3835730904097282} });
+registerSDKClass("MKCompassButton", MKCompassButton, { module: "MapKit_5d69670f0307b385", properties: {"compassVisibility":4264658866057437,"mapView":2538822344916778} });
+registerSDKClass("MapKit.MKCoordinateRegion", MKCoordinateRegion, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MapKit.MKCoordinateSpan", MKCoordinateSpan, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKDirections", MKDirections, { module: "MapKit_5d69670f0307b385", properties: {"isCalculating":1026008915985355}, methods: {"calculate":{"id":2846112761186495,"hints":[{"callback":{"out":[]}}]},"calculateETA":{"id":1256732377510055,"hints":[{"callback":{"out":[]}}]},"cancel":{"id":1197430164248197}} });
+registerSDKClass("MKETAResponse", MKDirections_ETAResponse, { module: "MapKit_5d69670f0307b385", properties: {"destination":4325804736131575,"distance":2001431194326494,"expectedArrivalDate":1991395252466589,"expectedDepartureDate":2738634883150642,"expectedTravelTime":65272979697736,"source":52247408955646,"transportType":4347663305633410} });
+registerSDKClass("MKDirectionsRequest", MKDirections_Request, { module: "MapKit_5d69670f0307b385", properties: {"arrivalDate":1496794808742102,"departureDate":39387534418644,"destination":2321228314221119,"highwayPreference":672353308889650,"requestsAlternateRoutes":4075218489913600,"source":3139667276024387,"tollPreference":3804512643915468,"transportType":3960493291790223} });
+registerSDKClass("MKDirectionsResponse", MKDirections_Response, { module: "MapKit_5d69670f0307b385", properties: {"destination":215860020229985,"routes":1937527990318370,"source":714428168545349} });
+registerSDKClass("MKDistanceFormatter", MKDistanceFormatter, { module: "MapKit_5d69670f0307b385", properties: {"locale":541581364368498,"unitStyle":1950986433058394,"units":3454705998015421}, methods: {"distance":{"id":4239645230609769},"string":{"id":3971157598430875}} });
+registerSDKClass("MapKit.MKError", MKError, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKGeocodingRequest", MKGeocodingRequest, { module: "MapKit_5d69670f0307b385", properties: {"addressString":1951564428133448,"isCancelled":1209864976850925,"isLoading":3823315693059667,"preferredLocale":1504524042488421,"region":2525757585847607}, methods: {"cancel":{"id":459336985444624},"getMapItems":{"id":731091785129852,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MKMultiPoint", MKMultiPoint, { module: "MapKit_5d69670f0307b385", properties: {"pointCount":3850395598528052}, methods: {"getCoordinates":{"id":2073023702038789},"location":{"id":1412649591421208},"points":{"id":1057482472025096},"locations":{"id":1923013566310737}} });
+registerSDKClass("MKPolyline", MKPolyline, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKGeodesicPolyline", MKGeodesicPolyline, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKGeoJSONDecoder", MKGeoJSONDecoder, { module: "MapKit_5d69670f0307b385", properties: {}, methods: {"decode":{"id":2426865148879394}} });
+registerSDKClass("MKGeoJSONFeature", MKGeoJSONFeature, { module: "MapKit_5d69670f0307b385", properties: {"geometry":2967662576094170,"identifier":1502401199939726,"properties":3931110914528673} });
 registerSDKProtocol("c:objc(pl)MKGeoJSONObject", {});
-registerSDKClass("MKPolylineRenderer", MKPolylineRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"polyline":2233052721358540,"strokeEnd":714910455602043,"strokeStart":1610857845408125} });
-registerSDKClass("MKGradientPolylineRenderer", MKGradientPolylineRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"colors":2068359403048789}, methods: {"setColors":{"id":6361287165251}} });
-registerSDKClass("MKMapConfiguration", MKMapConfiguration, { module: "MapKit_212edf3d13b127f5", properties: {"elevationStyle":2590741706934418} });
-registerSDKClass("MKHybridMapConfiguration", MKHybridMapConfiguration, { module: "MapKit_212edf3d13b127f5", properties: {"pointOfInterestFilter":516616955566588,"showsTraffic":3261700614242592} });
-registerSDKClass("MKIconStyle", MKIconStyle, { module: "MapKit_212edf3d13b127f5", properties: {"backgroundColor":3002782355489389,"image":1730593317784238} });
-registerSDKClass("MKImageryMapConfiguration", MKImageryMapConfiguration, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKLocalPointsOfInterestRequest", MKLocalPointsOfInterestRequest, { module: "MapKit_212edf3d13b127f5", properties: {"coordinate":1385579249673852,"pointOfInterestFilter":760487067357449,"radius":1235243453321191,"region":4111518639555415} });
-registerSDKClass("MKLocalSearch", MKLocalSearch, { module: "MapKit_212edf3d13b127f5", properties: {"isSearching":2179872818979605}, methods: {"cancel":{"id":4466978644014191},"start":{"id":3416207522896025,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MKLocalSearchRequest", MKLocalSearch_Request, { module: "MapKit_212edf3d13b127f5", properties: {"addressFilter":2623008364970568,"naturalLanguageQuery":1059505983047824,"pointOfInterestFilter":1846578620906785,"region":2718251908512139,"regionPriority":1905606238965336,"resultTypes":635627983108201} });
-registerSDKClass("MKLocalSearchResponse", MKLocalSearch_Response, { module: "MapKit_212edf3d13b127f5", properties: {"boundingRegion":371421792718014,"mapItems":1733944531085607} });
-registerSDKClass("MKLocalSearchCompleter", MKLocalSearchCompleter, { module: "MapKit_212edf3d13b127f5", properties: {"addressFilter":3251789385416932,"delegate":1974161511672800,"filterType":2098317115824848,"pointOfInterestFilter":443277698079315,"queryFragment":2326913367048242,"region":1711732812302946,"regionPriority":3102503295817197,"resultTypes":2565977942922035,"results":3381603810868303,"isSearching":1762459027170189}, methods: {"cancel":{"id":2036983434544208}} });
+registerSDKClass("MKPolylineRenderer", MKPolylineRenderer, { module: "MapKit_5d69670f0307b385", properties: {"polyline":2233052721358540,"strokeEnd":714910455602043,"strokeStart":1610857845408125} });
+registerSDKClass("MKGradientPolylineRenderer", MKGradientPolylineRenderer, { module: "MapKit_5d69670f0307b385", properties: {"colors":2068359403048789}, methods: {"setColors":{"id":6361287165251}} });
+registerSDKClass("MKMapConfiguration", MKMapConfiguration, { module: "MapKit_5d69670f0307b385", properties: {"elevationStyle":2590741706934418} });
+registerSDKClass("MKHybridMapConfiguration", MKHybridMapConfiguration, { module: "MapKit_5d69670f0307b385", properties: {"pointOfInterestFilter":516616955566588,"showsTraffic":3261700614242592} });
+registerSDKClass("MKIconStyle", MKIconStyle, { module: "MapKit_5d69670f0307b385", properties: {"backgroundColor":3002782355489389,"image":1730593317784238} });
+registerSDKClass("MKImageryMapConfiguration", MKImageryMapConfiguration, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKLocalPointsOfInterestRequest", MKLocalPointsOfInterestRequest, { module: "MapKit_5d69670f0307b385", properties: {"coordinate":1385579249673852,"pointOfInterestFilter":760487067357449,"radius":1235243453321191,"region":4111518639555415} });
+registerSDKClass("MKLocalSearch", MKLocalSearch, { module: "MapKit_5d69670f0307b385", properties: {"isSearching":2179872818979605}, methods: {"cancel":{"id":4466978644014191},"start":{"id":3416207522896025,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MKLocalSearchRequest", MKLocalSearch_Request, { module: "MapKit_5d69670f0307b385", properties: {"addressFilter":2623008364970568,"naturalLanguageQuery":1059505983047824,"pointOfInterestFilter":1846578620906785,"region":2718251908512139,"regionPriority":1905606238965336,"resultTypes":635627983108201} });
+registerSDKClass("MKLocalSearchResponse", MKLocalSearch_Response, { module: "MapKit_5d69670f0307b385", properties: {"boundingRegion":371421792718014,"mapItems":1733944531085607} });
+registerSDKClass("MKLocalSearchCompleter", MKLocalSearchCompleter, { module: "MapKit_5d69670f0307b385", properties: {"addressFilter":3251789385416932,"delegate":1974161511672800,"filterType":2098317115824848,"pointOfInterestFilter":443277698079315,"queryFragment":2326913367048242,"region":1711732812302946,"regionPriority":3102503295817197,"resultTypes":2565977942922035,"results":3381603810868303,"isSearching":1762459027170189}, methods: {"cancel":{"id":2036983434544208}} });
 registerSDKProtocol("c:objc(pl)MKLocalSearchCompleterDelegate", {"completerDidUpdateResults":"completerDidUpdateResults(_:)","completerDidFailWithError":"completer(_:didFailWithError:)"});
-registerSDKClass("MKLocalSearchCompletion", MKLocalSearchCompletion, { module: "MapKit_212edf3d13b127f5", properties: {"subtitle":1073220268241731,"subtitleHighlightRanges":1938487295228497,"title":3327817340140865,"titleHighlightRanges":14253858502771} });
-registerSDKClass("MKLookAroundScene", MKLookAroundScene, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKLookAroundSceneRequest", MKLookAroundSceneRequest, { module: "MapKit_212edf3d13b127f5", properties: {"isCancelled":3042944806484043,"coordinate":141215335133255,"isLoading":3178459422747059,"mapItem":3488632308196591}, methods: {"cancel":{"id":3857788551645608},"getSceneWithCompletionHandler":{"id":1982556756137263,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MKLookAroundSnapshotter", MKLookAroundSnapshotter, { module: "MapKit_212edf3d13b127f5", properties: {"isLoading":1829060537226693}, methods: {"cancel":{"id":954681282027527},"getSnapshotWithCompletionHandler":{"id":2458430101920898,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MKLookAroundSnapshotOptions", MKLookAroundSnapshotter_Options, { module: "MapKit_212edf3d13b127f5", properties: {"pointOfInterestFilter":2830604245954008,"size":2235213544292142,"traitCollection":579257562464665} });
-registerSDKClass("MKLookAroundSnapshot", MKLookAroundSnapshotter_Snapshot, { module: "MapKit_212edf3d13b127f5", properties: {"image":3040468009491486} });
-registerSDKClass("MKLookAroundViewController", MKLookAroundViewController, { module: "MapKit_212edf3d13b127f5", properties: {"badgePosition":2416899265305621,"delegate":1743340895087390,"isNavigationEnabled":3619587640169268,"pointOfInterestFilter":421401017763871,"scene":2242377814208128,"showsRoadLabels":3959436122668409} });
+registerSDKClass("MKLocalSearchCompletion", MKLocalSearchCompletion, { module: "MapKit_5d69670f0307b385", properties: {"subtitle":1073220268241731,"subtitleHighlightRanges":1938487295228497,"title":3327817340140865,"titleHighlightRanges":14253858502771} });
+registerSDKClass("MKLookAroundScene", MKLookAroundScene, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKLookAroundSceneRequest", MKLookAroundSceneRequest, { module: "MapKit_5d69670f0307b385", properties: {"isCancelled":3042944806484043,"coordinate":141215335133255,"isLoading":3178459422747059,"mapItem":3488632308196591}, methods: {"cancel":{"id":3857788551645608},"getSceneWithCompletionHandler":{"id":1982556756137263,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MKLookAroundSnapshotter", MKLookAroundSnapshotter, { module: "MapKit_5d69670f0307b385", properties: {"isLoading":1829060537226693}, methods: {"cancel":{"id":954681282027527},"getSnapshotWithCompletionHandler":{"id":2458430101920898,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MKLookAroundSnapshotOptions", MKLookAroundSnapshotter_Options, { module: "MapKit_5d69670f0307b385", properties: {"pointOfInterestFilter":2830604245954008,"size":2235213544292142,"traitCollection":579257562464665} });
+registerSDKClass("MKLookAroundSnapshot", MKLookAroundSnapshotter_Snapshot, { module: "MapKit_5d69670f0307b385", properties: {"image":3040468009491486} });
+registerSDKClass("MKLookAroundViewController", MKLookAroundViewController, { module: "MapKit_5d69670f0307b385", properties: {"badgePosition":2416899265305621,"delegate":1743340895087390,"isNavigationEnabled":3619587640169268,"pointOfInterestFilter":421401017763871,"scene":2242377814208128,"showsRoadLabels":3959436122668409} });
 registerSDKProtocol("c:objc(pl)MKLookAroundViewControllerDelegate", {"lookAroundViewControllerWillUpdateScene":"lookAroundViewControllerWillUpdateScene(_:)","lookAroundViewControllerDidUpdateScene":"lookAroundViewControllerDidUpdateScene(_:)","lookAroundViewControllerWillPresentFullScreen":"lookAroundViewControllerWillPresentFullScreen(_:)","lookAroundViewControllerDidPresentFullScreen":"lookAroundViewControllerDidPresentFullScreen(_:)","lookAroundViewControllerWillDismissFullScreen":"lookAroundViewControllerWillDismissFullScreen(_:)","lookAroundViewControllerDidDismissFullScreen":"lookAroundViewControllerDidDismissFullScreen(_:)"});
-registerSDKClass("MKMapCamera", MKMapCamera, { module: "MapKit_212edf3d13b127f5", properties: {"altitude":3319308337246204,"centerCoordinate":3301568572243084,"centerCoordinateDistance":2508894592664748,"heading":710405335288427,"pitch":1814167425356288} });
-registerSDKClass("MKMapFeatureAnnotation", MKMapFeatureAnnotation, { module: "MapKit_212edf3d13b127f5", properties: {"featureType":1161737884613988,"iconStyle":3368028412308733,"pointOfInterestCategory":2180765418497834} });
-registerSDKClass("MKMapItem", MKMapItem, { module: "MapKit_212edf3d13b127f5", properties: {"address":3818885022617184,"addressRepresentations":881263957520815,"alternateIdentifiers":2445603232845112,"identifier":1716383296835805,"isCurrentLocation":685129631369586,"location":536585167269597,"name":846491477661679,"phoneNumber":3313739813008085,"placemark":4045994014549471,"pointOfInterestCategory":1327800333937858,"timeZone":692200545527965,"url":4492737939561658}, methods: {"openInMapsLaunchOptions":{"id":3481448617665966},"openInMapsLaunchOptionsFromCompletionHandler":{"id":2134457740442486,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("MKMapItemIdentifier", MKMapItem_Identifier, { module: "MapKit_212edf3d13b127f5", properties: {"rawValue":2321488951116993} });
-registerSDKClass("MKMapItemAnnotation", MKMapItemAnnotation, { module: "MapKit_212edf3d13b127f5", properties: {"mapItem":3024192023278385} });
-registerSDKClass("MKMapItemDetailViewController", MKMapItemDetailViewController, { module: "MapKit_212edf3d13b127f5", properties: {"delegate":899791293208124,"mapItem":1703096870981218} });
+registerSDKClass("MKMapCamera", MKMapCamera, { module: "MapKit_5d69670f0307b385", properties: {"altitude":3319308337246204,"centerCoordinate":3301568572243084,"centerCoordinateDistance":2508894592664748,"heading":710405335288427,"pitch":1814167425356288} });
+registerSDKClass("MKMapFeatureAnnotation", MKMapFeatureAnnotation, { module: "MapKit_5d69670f0307b385", properties: {"featureType":1161737884613988,"iconStyle":3368028412308733,"pointOfInterestCategory":2180765418497834} });
+registerSDKClass("MKMapItem", MKMapItem, { module: "MapKit_5d69670f0307b385", properties: {"address":3818885022617184,"addressRepresentations":881263957520815,"alternateIdentifiers":2445603232845112,"identifier":1716383296835805,"isCurrentLocation":685129631369586,"location":536585167269597,"name":846491477661679,"phoneNumber":3313739813008085,"placemark":4045994014549471,"pointOfInterestCategory":1327800333937858,"timeZone":692200545527965,"url":4492737939561658}, methods: {"openInMapsLaunchOptions":{"id":3481448617665966},"openInMapsLaunchOptionsFromCompletionHandler":{"id":2134457740442486,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("MKMapItemIdentifier", MKMapItem_Identifier, { module: "MapKit_5d69670f0307b385", properties: {"rawValue":2321488951116993} });
+registerSDKClass("MKMapItemAnnotation", MKMapItemAnnotation, { module: "MapKit_5d69670f0307b385", properties: {"mapItem":3024192023278385} });
+registerSDKClass("MKMapItemDetailViewController", MKMapItemDetailViewController, { module: "MapKit_5d69670f0307b385", properties: {"delegate":899791293208124,"mapItem":1703096870981218} });
 registerSDKProtocol("c:objc(pl)MKMapItemDetailViewControllerDelegate", {"mapItemDetailViewControllerDidFinish":"mapItemDetailViewControllerDidFinish(_:)"});
-registerSDKClass("MKMapItemRequest", MKMapItemRequest, { module: "MapKit_212edf3d13b127f5", properties: {"isCancelled":3211570097446030,"featureAnnotation":666376871273218,"isLoading":1317297751096324,"mapFeatureAnnotation":3691825735315485,"mapItemIdentifier":2716312172194899}, methods: {"cancel":{"id":464380239966224},"getMapItem":{"id":4433108094332981,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MapKit.MKMapPoint", MKMapPoint, { module: "MapKit_212edf3d13b127f5", properties: {}, methods: {"distance":{"id":1424627459363550}} });
-registerSDKClass("MapKit.MKMapRect", MKMapRect, { module: "MapKit_212edf3d13b127f5", properties: {}, methods: {"contains":{"id":3069200572786617},"contains93149":{"id":3902944454527668},"insetBy":{"id":3500290618120127},"intersection":{"id":2121814659026995},"intersects":{"id":3785555036444143},"offsetBy":{"id":1296928156456885},"union":{"id":114918796597361}} });
-registerSDKClass("MapKit.MKMapSize", MKMapSize, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKMapSnapshotter", MKMapSnapshotter, { module: "MapKit_212edf3d13b127f5", properties: {"isLoading":3716164156744554}, methods: {"cancel":{"id":2067285960099912},"startCompletionHandler":{"id":4333315958339565,"hints":[{"callback":{"out":[]}}]},"startWithCompletionHandler":{"id":4130037213130098,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("MKMapSnapshotOptions", MKMapSnapshotter_Options, { module: "MapKit_212edf3d13b127f5", properties: {"camera":997640252504728,"mapRect":1404793241381947,"mapType":3143520924360923,"pointOfInterestFilter":500951520283476,"preferredConfiguration":639206926483896,"region":4330858561092164,"scale":1365601245996384,"showsBuildings":926830699397126,"showsPointsOfInterest":1389338729217343,"size":1304780009584260,"traitCollection":2832264386393934} });
-registerSDKClass("MKMapSnapshot", MKMapSnapshotter_Snapshot, { module: "MapKit_212edf3d13b127f5", properties: {"image":4142874174651956,"traitCollection":1311498699782596}, methods: {"point":{"id":2645582107436682}} });
-registerSDKClass("MKMapView", MKMapView, { module: "MapKit_212edf3d13b127f5", properties: {"annotationVisibleRect":3440820541453401,"annotations":1347723370252093,"camera":3593964817287227,"cameraBoundary":1503412179834258,"cameraZoomRange":3817525516516836,"centerCoordinate":2048778302449481,"delegate":3813210656980480,"mapType":2397905278200618,"overlays":1141417293887201,"pitchButtonVisibility":472366798371034,"isPitchEnabled":1643494592707477,"pointOfInterestFilter":3377635834758452,"preferredConfiguration":1448817410791991,"region":467532731470516,"isRotateEnabled":866254786924324,"isScrollEnabled":3650937223042649,"selectableMapFeatures":3261851615618434,"selectedAnnotations":2608821549624913,"showsBuildings":2612462905271212,"showsCompass":3085322283613780,"showsPointsOfInterest":874092324281944,"showsScale":2513374588735174,"showsTraffic":2296870097347495,"showsUserLocation":4366343574911225,"showsUserTrackingButton":514625961107655,"userLocation":3249104075693205,"isUserLocationVisible":2790554958371808,"userTrackingMode":1689730829532546,"visibleMapRect":604401200591396,"isZoomEnabled":1280367848158373}, methods: {"addAnnotation":{"id":1218605392524082},"addAnnotations":{"id":2737196481461877},"addOverlay":{"id":3006523396011154},"addOverlayLevel":{"id":3998594936608546},"addOverlays":{"id":3825929618042281},"addOverlaysLevel":{"id":4264794664724229},"annotationsIn":{"id":1063357200844601},"convertToPointTo":{"id":3086109855485599},"convertToCoordinateFrom":{"id":1213542024864473},"convertToRegionFrom":{"id":1729457078684044},"convertToRectTo":{"id":1187586793046027},"dequeueReusableAnnotationViewWithIdentifier":{"id":3343721510869922},"dequeueReusableAnnotationViewWithIdentifierFor":{"id":69268056946638},"deselectAnnotation":{"id":2395996392115377},"exchangeOverlayWith":{"id":1994280909906687},"exchangeOverlayAtWithOverlayAt":{"id":3193996675072532},"insertOverlayAbove":{"id":3742303635325615},"insertOverlayAt":{"id":3508519774250911},"insertOverlayAtLevel":{"id":231150006102781},"insertOverlayBelow":{"id":3403938018265037},"mapRectThatFits":{"id":3525860032465802},"mapRectThatFitsEdgePadding":{"id":1555515595437875},"overlaysIn":{"id":2233288045900945},"regionThatFits":{"id":2217907472509593},"register":{"id":526371109211142},"removeAnnotation":{"id":2076517412989218},"removeAnnotations":{"id":1704064952924801},"removeOverlay":{"id":3584858624480660},"removeOverlays":{"id":3033586856926630},"renderer":{"id":2913900823823550},"selectAnnotation":{"id":3022632415416225},"setCamera":{"id":366896860832404},"setCameraBoundary":{"id":383467034867677},"setCameraZoomRange":{"id":4041302614046743},"setCenter":{"id":4315723494004209},"setRegion":{"id":2088023247238460},"setUserTrackingMode":{"id":2749009982053746},"setVisibleMapRectAnimated":{"id":2025556680277629},"setVisibleMapRectEdgePaddingAnimated":{"id":3076912445303360},"showAnnotations":{"id":2887722411501291},"viewFor":{"id":3981351236103076},"viewFor41435":{"id":4345538034756547}} });
-registerSDKClass("MKMapCameraBoundary", MKMapView_CameraBoundary, { module: "MapKit_212edf3d13b127f5", properties: {"mapRect":1453669069720599,"region":4030010470528947} });
-registerSDKClass("MKMapCameraZoomRange", MKMapView_CameraZoomRange, { module: "MapKit_212edf3d13b127f5", properties: {"maxCenterCoordinateDistance":1375183409337333,"minCenterCoordinateDistance":3148229027231488} });
+registerSDKClass("MKMapItemRequest", MKMapItemRequest, { module: "MapKit_5d69670f0307b385", properties: {"isCancelled":3211570097446030,"featureAnnotation":666376871273218,"isLoading":1317297751096324,"mapFeatureAnnotation":3691825735315485,"mapItemIdentifier":2716312172194899}, methods: {"cancel":{"id":464380239966224},"getMapItem":{"id":4433108094332981,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MapKit.MKMapPoint", MKMapPoint, { module: "MapKit_5d69670f0307b385", properties: {}, methods: {"distance":{"id":1424627459363550}} });
+registerSDKClass("MapKit.MKMapRect", MKMapRect, { module: "MapKit_5d69670f0307b385", properties: {}, methods: {"contains":{"id":3069200572786617},"contains93149":{"id":3902944454527668},"insetBy":{"id":3500290618120127},"intersection":{"id":2121814659026995},"intersects":{"id":3785555036444143},"offsetBy":{"id":1296928156456885},"union":{"id":114918796597361}} });
+registerSDKClass("MapKit.MKMapSize", MKMapSize, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKMapSnapshotter", MKMapSnapshotter, { module: "MapKit_5d69670f0307b385", properties: {"isLoading":3716164156744554}, methods: {"cancel":{"id":2067285960099912},"startCompletionHandler":{"id":4333315958339565,"hints":[{"callback":{"out":[]}}]},"startWithCompletionHandler":{"id":4130037213130098,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("MKMapSnapshotOptions", MKMapSnapshotter_Options, { module: "MapKit_5d69670f0307b385", properties: {"camera":997640252504728,"mapRect":1404793241381947,"mapType":3143520924360923,"pointOfInterestFilter":500951520283476,"preferredConfiguration":639206926483896,"region":4330858561092164,"scale":1365601245996384,"showsBuildings":926830699397126,"showsPointsOfInterest":1389338729217343,"size":1304780009584260,"traitCollection":2832264386393934} });
+registerSDKClass("MKMapSnapshot", MKMapSnapshotter_Snapshot, { module: "MapKit_5d69670f0307b385", properties: {"image":4142874174651956,"traitCollection":1311498699782596}, methods: {"point":{"id":2645582107436682}} });
+registerSDKClass("MKMapView", MKMapView, { module: "MapKit_5d69670f0307b385", properties: {"annotationVisibleRect":3440820541453401,"annotations":1347723370252093,"camera":3593964817287227,"cameraBoundary":1503412179834258,"cameraZoomRange":3817525516516836,"centerCoordinate":2048778302449481,"delegate":3813210656980480,"mapType":2397905278200618,"overlays":1141417293887201,"pitchButtonVisibility":472366798371034,"isPitchEnabled":1643494592707477,"pointOfInterestFilter":3377635834758452,"preferredConfiguration":1448817410791991,"region":467532731470516,"isRotateEnabled":866254786924324,"isScrollEnabled":3650937223042649,"selectableMapFeatures":3261851615618434,"selectedAnnotations":2608821549624913,"showsBuildings":2612462905271212,"showsCompass":3085322283613780,"showsPointsOfInterest":874092324281944,"showsScale":2513374588735174,"showsTraffic":2296870097347495,"showsUserLocation":4366343574911225,"showsUserTrackingButton":514625961107655,"userLocation":3249104075693205,"isUserLocationVisible":2790554958371808,"userTrackingMode":1689730829532546,"visibleMapRect":604401200591396,"isZoomEnabled":1280367848158373}, methods: {"addAnnotation":{"id":1218605392524082},"addAnnotations":{"id":2737196481461877},"addOverlay":{"id":3006523396011154},"addOverlayLevel":{"id":3998594936608546},"addOverlays":{"id":3825929618042281},"addOverlaysLevel":{"id":4264794664724229},"annotationsIn":{"id":1063357200844601},"convertToPointTo":{"id":3086109855485599},"convertToCoordinateFrom":{"id":1213542024864473},"convertToRegionFrom":{"id":1729457078684044},"convertToRectTo":{"id":1187586793046027},"dequeueReusableAnnotationViewWithIdentifier":{"id":3343721510869922},"dequeueReusableAnnotationViewWithIdentifierFor":{"id":69268056946638},"deselectAnnotation":{"id":2395996392115377},"exchangeOverlayWith":{"id":1994280909906687},"exchangeOverlayAtWithOverlayAt":{"id":3193996675072532},"insertOverlayAbove":{"id":3742303635325615},"insertOverlayAt":{"id":3508519774250911},"insertOverlayAtLevel":{"id":231150006102781},"insertOverlayBelow":{"id":3403938018265037},"mapRectThatFits":{"id":3525860032465802},"mapRectThatFitsEdgePadding":{"id":1555515595437875},"overlaysIn":{"id":2233288045900945},"regionThatFits":{"id":2217907472509593},"register":{"id":526371109211142},"removeAnnotation":{"id":2076517412989218},"removeAnnotations":{"id":1704064952924801},"removeOverlay":{"id":3584858624480660},"removeOverlays":{"id":3033586856926630},"renderer":{"id":2913900823823550},"selectAnnotation":{"id":3022632415416225},"setCamera":{"id":366896860832404},"setCameraBoundary":{"id":383467034867677},"setCameraZoomRange":{"id":4041302614046743},"setCenter":{"id":4315723494004209},"setRegion":{"id":2088023247238460},"setUserTrackingMode":{"id":2749009982053746},"setVisibleMapRectAnimated":{"id":2025556680277629},"setVisibleMapRectEdgePaddingAnimated":{"id":3076912445303360},"showAnnotations":{"id":2887722411501291},"viewFor":{"id":3981351236103076},"viewFor41435":{"id":4345538034756547}} });
+registerSDKClass("MKMapCameraBoundary", MKMapView_CameraBoundary, { module: "MapKit_5d69670f0307b385", properties: {"mapRect":1453669069720599,"region":4030010470528947} });
+registerSDKClass("MKMapCameraZoomRange", MKMapView_CameraZoomRange, { module: "MapKit_5d69670f0307b385", properties: {"maxCenterCoordinateDistance":1375183409337333,"minCenterCoordinateDistance":3148229027231488} });
 registerSDKProtocol("c:objc(pl)MKMapViewDelegate", {"mapViewRegionWillChangeAnimated":"mapView(_:regionWillChangeAnimated:)","mapViewRegionDidChangeAnimated":"mapView(_:regionDidChangeAnimated:)","mapViewDidChangeVisibleRegion":"mapViewDidChangeVisibleRegion(_:)","mapViewWillStartLoadingMap":"mapViewWillStartLoadingMap(_:)","mapViewDidFinishLoadingMap":"mapViewDidFinishLoadingMap(_:)","mapViewDidFailLoadingMapWithError":"mapViewDidFailLoadingMap(_:withError:)","mapViewWillStartRenderingMap":"mapViewWillStartRenderingMap(_:)","mapViewDidFinishRenderingMapFullyRendered":"mapViewDidFinishRenderingMap(_:fullyRendered:)","mapViewDidAdd":"mapView(_:didAdd:)","mapViewAnnotationViewCalloutAccessoryControlTapped":"mapView(_:annotationView:calloutAccessoryControlTapped:)","mapViewDidSelect":"mapView(_:didSelect:)","mapViewDidDeselect":"mapView(_:didDeselect:)","mapViewWillStartLocatingUser":"mapViewWillStartLocatingUser(_:)","mapViewDidStopLocatingUser":"mapViewDidStopLocatingUser(_:)","mapViewDidUpdate":"mapView(_:didUpdate:)","mapViewDidFailToLocateUserWithError":"mapView(_:didFailToLocateUserWithError:)","mapViewAnnotationViewDidChangeFromOldState":"mapView(_:annotationView:didChange:fromOldState:)","mapViewDidChangeAnimated":"mapView(_:didChange:animated:)","mapViewDidAddOverlayViews":"mapView(_:didAddOverlayViews:)"});
-registerSDKClass("MKMarkerAnnotationView", MKMarkerAnnotationView, { module: "MapKit_212edf3d13b127f5", properties: {"animatesWhenAdded":2794110366058976,"glyphImage":3467384831746936,"glyphText":4123195258155557,"glyphTintColor":2107540527452797,"markerTintColor":3220405724842435,"selectedGlyphImage":1787957271745652,"subtitleVisibility":1408953883315216,"titleVisibility":1144560194583893} });
-registerSDKClass("MKMultiPolygon", MKMultiPolygon, { module: "MapKit_212edf3d13b127f5", properties: {"polygons":1326030766586996} });
-registerSDKClass("MKMultiPolygonRenderer", MKMultiPolygonRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"multiPolygon":26890160561027} });
-registerSDKClass("MKMultiPolyline", MKMultiPolyline, { module: "MapKit_212edf3d13b127f5", properties: {"polylines":1681203339497718} });
-registerSDKClass("MKMultiPolylineRenderer", MKMultiPolylineRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"multiPolyline":4052241739509883} });
+registerSDKClass("MKMarkerAnnotationView", MKMarkerAnnotationView, { module: "MapKit_5d69670f0307b385", properties: {"animatesWhenAdded":2794110366058976,"glyphImage":3467384831746936,"glyphText":4123195258155557,"glyphTintColor":2107540527452797,"markerTintColor":3220405724842435,"selectedGlyphImage":1787957271745652,"subtitleVisibility":1408953883315216,"titleVisibility":1144560194583893} });
+registerSDKClass("MKMultiPolygon", MKMultiPolygon, { module: "MapKit_5d69670f0307b385", properties: {"polygons":1326030766586996} });
+registerSDKClass("MKMultiPolygonRenderer", MKMultiPolygonRenderer, { module: "MapKit_5d69670f0307b385", properties: {"multiPolygon":26890160561027} });
+registerSDKClass("MKMultiPolyline", MKMultiPolyline, { module: "MapKit_5d69670f0307b385", properties: {"polylines":1681203339497718} });
+registerSDKClass("MKMultiPolylineRenderer", MKMultiPolylineRenderer, { module: "MapKit_5d69670f0307b385", properties: {"multiPolyline":4052241739509883} });
 registerSDKProtocol("c:objc(pl)MKOverlay", {});
-registerSDKClass("MKPinAnnotationView", MKPinAnnotationView, { module: "MapKit_212edf3d13b127f5", properties: {"animatesDrop":906021495338630,"pinColor":4337318027732285,"pinTintColor":2365288171930654} });
-registerSDKClass("MKPlacemark", MKPlacemark, { module: "MapKit_212edf3d13b127f5", properties: {"countryCode":3925789450789770} });
-registerSDKClass("MKPointAnnotation", MKPointAnnotation, { module: "MapKit_212edf3d13b127f5", properties: {"coordinate":3843762909658560} });
-registerSDKClass("MKPointOfInterestFilter", MKPointOfInterestFilter, { module: "MapKit_212edf3d13b127f5", properties: {}, methods: {"excludes":{"id":2723529632419434},"includes":{"id":1254314330900780}} });
-registerSDKClass("MKPolygon", MKPolygon, { module: "MapKit_212edf3d13b127f5", properties: {"interiorPolygons":1101282477959931} });
-registerSDKClass("MKPolygonRenderer", MKPolygonRenderer, { module: "MapKit_212edf3d13b127f5", properties: {"polygon":2802332840664256,"strokeEnd":757444100052345,"strokeStart":4418995172018677} });
-registerSDKClass("MKPolygonView", MKPolygonView, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKPolylineView", MKPolylineView, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKReverseGeocodingRequest", MKReverseGeocodingRequest, { module: "MapKit_212edf3d13b127f5", properties: {"isCancelled":3427066460128267,"isLoading":710454280952913,"location":3677764542627561,"preferredLocale":3734288262775245}, methods: {"cancel":{"id":2769896162845503},"getMapItems":{"id":2755601747297938,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MKRoute", MKRoute, { module: "MapKit_212edf3d13b127f5", properties: {"advisoryNotices":313221873426793,"distance":943162591000337,"expectedTravelTime":2196712900527047,"hasHighways":1086487243793457,"hasTolls":3150479484820742,"name":3961933413053934,"polyline":72426722489961,"steps":3369927007773070,"transportType":4122441215303836} });
-registerSDKClass("MKRouteStep", MKRoute_Step, { module: "MapKit_212edf3d13b127f5", properties: {"distance":273383867641288,"instructions":904705536882708,"notice":4317974317638076,"polyline":1875253654046670,"transportType":1321540768891875} });
-registerSDKClass("MKScaleView", MKScaleView, { module: "MapKit_212edf3d13b127f5", properties: {"legendAlignment":2496754321479864,"mapView":2898698543896884,"scaleVisibility":132260824272332} });
-registerSDKClass("MKSelectionAccessory", MKSelectionAccessory, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKMapItemDetailSelectionAccessoryPresentationStyle", MKSelectionAccessory_MapItemDetailPresentationStyle, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKStandardMapConfiguration", MKStandardMapConfiguration, { module: "MapKit_212edf3d13b127f5", properties: {"emphasisStyle":1301131379478692,"pointOfInterestFilter":1288011661666374,"showsTraffic":547168003978105} });
-registerSDKClass("MKTileOverlay", MKTileOverlay, { module: "MapKit_212edf3d13b127f5", properties: {"urlTemplate":166769190974981,"canReplaceMapContent":2856008791488049,"isGeometryFlipped":287456803452068,"maximumZ":4167720740559039,"minimumZ":607031635412613,"tileSize":3966267601128904}, methods: {"url":{"id":4325611225220225},"loadTile":{"id":2289185595235600,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("MapKit.MKTileOverlayPath", MKTileOverlayPath, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKTileOverlayRenderer", MKTileOverlayRenderer, { module: "MapKit_212edf3d13b127f5", properties: {}, methods: {"reloadData":{"id":1287842408802726}} });
-registerSDKClass("MKUserLocation", MKUserLocation, { module: "MapKit_212edf3d13b127f5", properties: {"heading":564222744744643,"location":215425924659210,"subtitle":280887588061724,"title":3010738826042481,"isUpdating":2320317198668590} });
-registerSDKClass("MKUserLocationView", MKUserLocationView, { module: "MapKit_212edf3d13b127f5", properties: {} });
-registerSDKClass("MKUserTrackingBarButtonItem", MKUserTrackingBarButtonItem, { module: "MapKit_212edf3d13b127f5", properties: {"mapView":1134106613929902} });
-registerSDKClass("MKUserTrackingButton", MKUserTrackingButton, { module: "MapKit_212edf3d13b127f5", properties: {"mapView":3314833640746462} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "MapKit_212edf3d13b127f5", properties: {"mapItem":473605099495954} }, true);
-registerSDKClass("NSValue", NSValue, { module: "MapKit_212edf3d13b127f5", properties: {"mkCoordinateSpanValue":123333742406473,"mkCoordinateValue":3559371264226635} }, true);
-registerSDKClass("GeoToolbox.PlaceDescriptor", PlaceDescriptor, { module: "MapKit_212edf3d13b127f5", properties: {} }, true);
+registerSDKClass("MKPinAnnotationView", MKPinAnnotationView, { module: "MapKit_5d69670f0307b385", properties: {"animatesDrop":906021495338630,"pinColor":4337318027732285,"pinTintColor":2365288171930654} });
+registerSDKClass("MKPlacemark", MKPlacemark, { module: "MapKit_5d69670f0307b385", properties: {"countryCode":3925789450789770} });
+registerSDKClass("MKPointAnnotation", MKPointAnnotation, { module: "MapKit_5d69670f0307b385", properties: {"coordinate":3843762909658560} });
+registerSDKClass("MKPointOfInterestFilter", MKPointOfInterestFilter, { module: "MapKit_5d69670f0307b385", properties: {}, methods: {"excludes":{"id":2723529632419434},"includes":{"id":1254314330900780}} });
+registerSDKClass("MKPolygon", MKPolygon, { module: "MapKit_5d69670f0307b385", properties: {"interiorPolygons":1101282477959931} });
+registerSDKClass("MKPolygonRenderer", MKPolygonRenderer, { module: "MapKit_5d69670f0307b385", properties: {"polygon":2802332840664256,"strokeEnd":757444100052345,"strokeStart":4418995172018677} });
+registerSDKClass("MKPolygonView", MKPolygonView, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKPolylineView", MKPolylineView, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKReverseGeocodingRequest", MKReverseGeocodingRequest, { module: "MapKit_5d69670f0307b385", properties: {"isCancelled":3427066460128267,"isLoading":710454280952913,"location":3677764542627561,"preferredLocale":3734288262775245}, methods: {"cancel":{"id":2769896162845503},"getMapItems":{"id":2755601747297938,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MKRoute", MKRoute, { module: "MapKit_5d69670f0307b385", properties: {"advisoryNotices":313221873426793,"distance":943162591000337,"expectedTravelTime":2196712900527047,"hasHighways":1086487243793457,"hasTolls":3150479484820742,"name":3961933413053934,"polyline":72426722489961,"steps":3369927007773070,"transportType":4122441215303836} });
+registerSDKClass("MKRouteStep", MKRoute_Step, { module: "MapKit_5d69670f0307b385", properties: {"distance":273383867641288,"instructions":904705536882708,"notice":4317974317638076,"polyline":1875253654046670,"transportType":1321540768891875} });
+registerSDKClass("MKScaleView", MKScaleView, { module: "MapKit_5d69670f0307b385", properties: {"legendAlignment":2496754321479864,"mapView":2898698543896884,"scaleVisibility":132260824272332} });
+registerSDKClass("MKSelectionAccessory", MKSelectionAccessory, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKMapItemDetailSelectionAccessoryPresentationStyle", MKSelectionAccessory_MapItemDetailPresentationStyle, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKStandardMapConfiguration", MKStandardMapConfiguration, { module: "MapKit_5d69670f0307b385", properties: {"emphasisStyle":1301131379478692,"pointOfInterestFilter":1288011661666374,"showsTraffic":547168003978105} });
+registerSDKClass("MKTileOverlay", MKTileOverlay, { module: "MapKit_5d69670f0307b385", properties: {"urlTemplate":166769190974981,"canReplaceMapContent":2856008791488049,"isGeometryFlipped":287456803452068,"maximumZ":4167720740559039,"minimumZ":607031635412613,"tileSize":3966267601128904}, methods: {"url":{"id":4325611225220225},"loadTile":{"id":2289185595235600,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("MapKit.MKTileOverlayPath", MKTileOverlayPath, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKTileOverlayRenderer", MKTileOverlayRenderer, { module: "MapKit_5d69670f0307b385", properties: {}, methods: {"reloadData":{"id":1287842408802726}} });
+registerSDKClass("MKUserLocation", MKUserLocation, { module: "MapKit_5d69670f0307b385", properties: {"heading":564222744744643,"location":215425924659210,"subtitle":280887588061724,"title":3010738826042481,"isUpdating":2320317198668590} });
+registerSDKClass("MKUserLocationView", MKUserLocationView, { module: "MapKit_5d69670f0307b385", properties: {} });
+registerSDKClass("MKUserTrackingBarButtonItem", MKUserTrackingBarButtonItem, { module: "MapKit_5d69670f0307b385", properties: {"mapView":1134106613929902} });
+registerSDKClass("MKUserTrackingButton", MKUserTrackingButton, { module: "MapKit_5d69670f0307b385", properties: {"mapView":3314833640746462} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "MapKit_5d69670f0307b385", properties: {"mapItem":473605099495954} }, true);
+registerSDKClass("NSValue", NSValue, { module: "MapKit_5d69670f0307b385", properties: {"mkCoordinateSpanValue":123333742406473,"mkCoordinateValue":3559371264226635} }, true);
+registerSDKClass("GeoToolbox.PlaceDescriptor", PlaceDescriptor, { module: "MapKit_5d69670f0307b385", properties: {} }, true);

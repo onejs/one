@@ -174,42 +174,42 @@ export class Bonjour_Endpoint extends SDKHandle {
    * var nwEndpoint: NWEndpoint { get }
    * @availability iOS 26.0+
    */
-  get nwEndpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_212edf3d13b127f5", 1763282491694565, this, []); }
+  get nwEndpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_5d69670f0307b385", 1763282491694565, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Network_212edf3d13b127f5", 392079240965893, this, []); }
+  get description(): string { return callSDK<string>("Network_5d69670f0307b385", 392079240965893, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("Network_212edf3d13b127f5", 4472535555662545, this, []); }
+  get id(): string { return callSDK<string>("Network_5d69670f0307b385", 4472535555662545, this, []); }
   /**
    * let name: String
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("Network_212edf3d13b127f5", 3456696269281759, this, []); }
+  get name(): string { return callSDK<string>("Network_5d69670f0307b385", 3456696269281759, this, []); }
   /**
    * let type: String
    * @availability iOS 26.0+
    */
-  get type(): string { return callSDK<string>("Network_212edf3d13b127f5", 2246684693876370, this, []); }
+  get type(): string { return callSDK<string>("Network_5d69670f0307b385", 2246684693876370, this, []); }
   /**
    * let domain: String
    * @availability iOS 26.0+
    */
-  get domain(): string { return callSDK<string>("Network_212edf3d13b127f5", 2936434837951886, this, []); }
+  get domain(): string { return callSDK<string>("Network_5d69670f0307b385", 2936434837951886, this, []); }
   /**
    * let result: NWBrowser.Result
    * @availability iOS 26.0+
    */
-  get result(): NWBrowser_Result { return callSDK<NWBrowser_Result>("Network_212edf3d13b127f5", 4251193010913145, this, []); }
+  get result(): NWBrowser_Result { return callSDK<NWBrowser_Result>("Network_5d69670f0307b385", 4251193010913145, this, []); }
   /**
    * let txtRecord: NWTXTRecord
    * @availability iOS 26.0+
    */
-  get txtRecord(): NWTXTRecord { return callSDK<NWTXTRecord>("Network_212edf3d13b127f5", 522040001219761, this, []); }
+  get txtRecord(): NWTXTRecord { return callSDK<NWTXTRecord>("Network_5d69670f0307b385", 522040001219761, this, []); }
   declare readonly $type: { "s:7Network7BonjourV8EndpointV": true };
 }
 
@@ -228,12 +228,12 @@ export class BonjourListenerProvider extends SDKHandle {
    * init(name: String? = nil, type: String, domain: String? = nil, txtRecord: NWTXTRecord? = nil)
    * @availability iOS 26.0+
    */
-  static init(name: (string) | null, type: string, domain?: (string) | null, txtRecord?: (NWTXTRecord) | null): BonjourListenerProvider { return callSDK<BonjourListenerProvider>("Network_212edf3d13b127f5", 308933687565042, undefined, [name, type, domain, txtRecord]); }
+  static init(name: (string) | null, type: string, domain?: (string) | null, txtRecord?: (NWTXTRecord) | null): BonjourListenerProvider { return callSDK<BonjourListenerProvider>("Network_5d69670f0307b385", 308933687565042, undefined, [name, type, domain, txtRecord]); }
   /**
    * var service: NWListener.Service { get }
    * @availability iOS 26.0+
    */
-  get service(): NWListener_Service { return callSDK<NWListener_Service>("Network_212edf3d13b127f5", 3964166910621049, this, []); }
+  get service(): NWListener_Service { return callSDK<NWListener_Service>("Network_5d69670f0307b385", 3964166910621049, this, []); }
   declare readonly $type: { "s:7Network23BonjourListenerProviderV": true };
 }
 
@@ -280,17 +280,17 @@ export class Coder_Metadata<Sending = unknown, Receiving = unknown, CoderType = 
    * let isComplete: Bool
    * @availability iOS 26.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3477993448272756, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3477993448272756, this, []); }
   /**
    * let lastMessage: Bool
    * @availability iOS 26.0+
    */
-  get lastMessage(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2730060952801333, this, []); }
+  get lastMessage(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2730060952801333, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 4217405450308266, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 4217405450308266, this, []); }
   declare readonly $type: { "s:7Network5CoderV8MetadataV": true };
 }
 
@@ -345,47 +345,47 @@ export class DTLS extends SDKHandle {
    * func cipherSuites(_ suites: [tls_ciphersuite_t]) -> DTLS
    * @availability iOS 27.0+
    */
-  cipherSuites(suites: $SDK2): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 1885175097095520, this, [suites]); }
+  cipherSuites(suites: $SDK2): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 1885175097095520, this, [suites]); }
   /**
    * func localIdentity(_ identity: sec_identity_t) -> DTLS
    * @availability iOS 27.0+
    */
-  localIdentity(identity: $SDK3): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 138279901495208, this, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
+  localIdentity(identity: $SDK3): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 138279901495208, this, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
   /**
    * func ticketsEnabled(_ enabled: Bool) -> DTLS
    * @availability iOS 27.0+
    */
-  ticketsEnabled(enabled: boolean): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 3975584655206771, this, [enabled]); }
+  ticketsEnabled(enabled: boolean): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 3975584655206771, this, [enabled]); }
   /**
    * func earlyDataEnabled(_ enabled: Bool) -> DTLS
    * @availability iOS 27.0+
    */
-  earlyDataEnabled(enabled: boolean): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 4330432690794707, this, [enabled]); }
+  earlyDataEnabled(enabled: boolean): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 4330432690794707, this, [enabled]); }
   /**
    * func cipherSuiteGroups(_ groups: [tls_ciphersuite_group_t]) -> DTLS
    * @availability iOS 27.0+
    */
-  cipherSuiteGroups(groups: $SDK4): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 3465630658252523, this, [groups]); }
+  cipherSuiteGroups(groups: $SDK4): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 3465630658252523, this, [groups]); }
   /**
    * func peerAuthentication(_ preference: DTLS.PeerAuthentication) -> DTLS
    * @availability iOS 27.0+
    */
-  peerAuthentication(preference: DTLS_PeerAuthentication): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 2466158178871631, this, [preference]); }
+  peerAuthentication(preference: DTLS_PeerAuthentication): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 2466158178871631, this, [preference]); }
   /**
    * func applicationProtocols(_ protocols: [String]) -> DTLS
    * @availability iOS 27.0+
    */
-  applicationProtocols(protocols: Array<string>): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 3362561608732945, this, [protocols]); }
+  applicationProtocols(protocols: Array<string>): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 3362561608732945, this, [protocols]); }
   /**
    * func version(min: tls_protocol_version_t? = nil, max: tls_protocol_version_t? = nil) -> DTLS
    * @availability iOS 27.0+
    */
-  version(min?: $SDK5, max?: $SDK5): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 1483483710399124, this, [min, max]); }
+  version(min?: $SDK5, max?: $SDK5): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 1483483710399124, this, [min, max]); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): DTLS { return callSDK<DTLS>("Network_212edf3d13b127f5", 3117869083687960, undefined, []); }
+  static init(): DTLS { return callSDK<DTLS>("Network_5d69670f0307b385", 3117869083687960, undefined, []); }
   declare readonly $type: { "s:7Network4DTLSV": true };
 }
 
@@ -416,7 +416,7 @@ export class DTLS_Metadata extends SDKHandle {
    * let other: [NWProtocolMetadata]
    * @availability iOS 27.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 1761145535953404, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 1761145535953404, this, []); }
   declare readonly $type: { "s:7Network4DTLSV8MetadataV": true };
 }
 
@@ -441,8 +441,8 @@ export class Framer<T = unknown> extends SDKHandle {
    * var options: NWProtocolFramer.Options
    * @availability iOS 26.0+
    */
-  get options(): NWProtocolFramer_Options { return callSDK<NWProtocolFramer_Options>("Network_212edf3d13b127f5", 2809123170241005, this, []); }
-  set options(value: NWProtocolFramer_Options) { callSDK<void>("Network_212edf3d13b127f5", 1213889350209202, this, [value]); }
+  get options(): NWProtocolFramer_Options { return callSDK<NWProtocolFramer_Options>("Network_5d69670f0307b385", 2809123170241005, this, []); }
+  set options(value: NWProtocolFramer_Options) { callSDK<void>("Network_5d69670f0307b385", 1213889350209202, this, [value]); }
   declare readonly $type: { "s:7Network6FramerV": true };
 }
 
@@ -473,22 +473,22 @@ export class Framer_Metadata<T = unknown> extends SDKHandle {
    * let isComplete: Bool
    * @availability iOS 26.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3597427592050390, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3597427592050390, this, []); }
   /**
    * let lastMessage: Bool
    * @availability iOS 26.0+
    */
-  get lastMessage(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 541159306595709, this, []); }
+  get lastMessage(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 541159306595709, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 3248792425318611, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 3248792425318611, this, []); }
   /**
    * let framer: NWProtocolFramer.Message
    * @availability iOS 26.0+
    */
-  get framer(): NWProtocolFramer_Message { return callSDK<NWProtocolFramer_Message>("Network_212edf3d13b127f5", 434318243590260, this, []); }
+  get framer(): NWProtocolFramer_Message { return callSDK<NWProtocolFramer_Message>("Network_5d69670f0307b385", 434318243590260, this, []); }
   declare readonly $type: { "s:7Network6FramerV8MetadataV": true };
 }
 
@@ -515,42 +515,42 @@ export class IP extends SDKHandle {
    * func minimumMTU(_ useMinimumMTU: Bool) -> IP
    * @availability iOS 26.0+
    */
-  minimumMTU(useMinimumMTU: boolean): IP { return callSDK<IP>("Network_212edf3d13b127f5", 2334353884699473, this, [useMinimumMTU]); }
+  minimumMTU(useMinimumMTU: boolean): IP { return callSDK<IP>("Network_5d69670f0307b385", 2334353884699473, this, [useMinimumMTU]); }
   /**
    * func fragmentationDisabled(_ dontFragment: Bool) -> IP
    * @availability iOS 26.0+
    */
-  fragmentationDisabled(dontFragment: boolean): IP { return callSDK<IP>("Network_212edf3d13b127f5", 1329460612859940, this, [dontFragment]); }
+  fragmentationDisabled(dontFragment: boolean): IP { return callSDK<IP>("Network_5d69670f0307b385", 1329460612859940, this, [dontFragment]); }
   /**
    * func receiveTimeCalculated(_ calculateReceiveTime: Bool) -> IP
    * @availability iOS 26.0+
    */
-  receiveTimeCalculated(calculateReceiveTime: boolean): IP { return callSDK<IP>("Network_212edf3d13b127f5", 3373712466685762, this, [calculateReceiveTime]); }
+  receiveTimeCalculated(calculateReceiveTime: boolean): IP { return callSDK<IP>("Network_5d69670f0307b385", 3373712466685762, this, [calculateReceiveTime]); }
   /**
    * func localAddressPreference(_ preference: NWProtocolIP.Options.AddressPreference) -> IP
    * @availability iOS 26.0+
    */
-  localAddressPreference(preference: NWProtocolIP_Options_AddressPreference): IP { return callSDK<IP>("Network_212edf3d13b127f5", 1736244459627243, this, [preference]); }
+  localAddressPreference(preference: NWProtocolIP_Options_AddressPreference): IP { return callSDK<IP>("Network_5d69670f0307b385", 1736244459627243, this, [preference]); }
   /**
    * func multicastLoopbackDisabled(_ disableMulticastLoopback: Bool) -> IP
    * @availability iOS 26.0+
    */
-  multicastLoopbackDisabled(disableMulticastLoopback: boolean): IP { return callSDK<IP>("Network_212edf3d13b127f5", 2344814112658965, this, [disableMulticastLoopback]); }
+  multicastLoopbackDisabled(disableMulticastLoopback: boolean): IP { return callSDK<IP>("Network_5d69670f0307b385", 2344814112658965, this, [disableMulticastLoopback]); }
   /**
    * func version(_ version: NWProtocolIP.Options.Version) -> IP
    * @availability iOS 26.0+
    */
-  version(version: NWProtocolIP_Options_Version): IP { return callSDK<IP>("Network_212edf3d13b127f5", 2480904702856014, this, [version]); }
+  version(version: NWProtocolIP_Options_Version): IP { return callSDK<IP>("Network_5d69670f0307b385", 2480904702856014, this, [version]); }
   /**
    * func hopLimit(_ limit: UInt8) -> IP
    * @availability iOS 26.0+
    */
-  hopLimit(limit: number): IP { return callSDK<IP>("Network_212edf3d13b127f5", 4381823066196135, this, [limit]); }
+  hopLimit(limit: number): IP { return callSDK<IP>("Network_5d69670f0307b385", 4381823066196135, this, [limit]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): IP { return callSDK<IP>("Network_212edf3d13b127f5", 4326655191839971, undefined, []); }
+  static init(): IP { return callSDK<IP>("Network_5d69670f0307b385", 4326655191839971, undefined, []); }
   declare readonly $type: { "s:7Network2IPV": true };
 }
 
@@ -569,7 +569,7 @@ export class IP_Metadata extends SDKHandle {
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 657709331385188, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 657709331385188, this, []); }
   declare readonly $type: { "s:7Network2IPV8MetadataV": true };
 }
 
@@ -607,77 +607,77 @@ export const IPv4Address = {
    * var isLoopback: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsLoopback($self: IPv4Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4293639341109497, $self, []); },
+  getIsLoopback($self: IPv4Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4293639341109497, $self, []); },
   /**
    * var isLinkLocal: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsLinkLocal($self: IPv4Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1881805167163847, $self, []); },
+  getIsLinkLocal($self: IPv4Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1881805167163847, $self, []); },
   /**
    * var isMulticast: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsMulticast($self: IPv4Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3936145824393694, $self, []); },
+  getIsMulticast($self: IPv4Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3936145824393694, $self, []); },
   /**
    * static let allHostsGroup: IPv4Address
    * @availability iOS 12.0+
    */
-  get allHostsGroup(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 3678488723336787, undefined, []); },
+  get allHostsGroup(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 3678488723336787, undefined, []); },
   /**
    * static let allReportsGroup: IPv4Address
    * @availability iOS 12.0+
    */
-  get allReportsGroup(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 1639171242239600, undefined, []); },
+  get allReportsGroup(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 1639171242239600, undefined, []); },
   /**
    * static let allRoutersGroup: IPv4Address
    * @availability iOS 12.0+
    */
-  get allRoutersGroup(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 903148988446597, undefined, []); },
+  get allRoutersGroup(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 903148988446597, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  getDebugDescription($self: IPv4Address): string { return callSDK<string>("Network_212edf3d13b127f5", 843017087392787, $self, []); },
+  getDebugDescription($self: IPv4Address): string { return callSDK<string>("Network_5d69670f0307b385", 843017087392787, $self, []); },
   /**
    * static let any: IPv4Address
    * @availability iOS 12.0+
    */
-  get any(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 4371799261276949, undefined, []); },
+  get any(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 4371799261276949, undefined, []); },
   /**
    * static let loopback: IPv4Address
    * @availability iOS 12.0+
    */
-  get loopback(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 1660179819756621, undefined, []); },
+  get loopback(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 1660179819756621, undefined, []); },
   /**
    * var rawValue: Data { get }
    * @availability iOS 12.0+
    */
-  getRawValue($self: IPv4Address): ArrayBuffer { return callSDK<ArrayBuffer>("Network_212edf3d13b127f5", 2463578261363788, $self, []); },
+  getRawValue($self: IPv4Address): ArrayBuffer { return callSDK<ArrayBuffer>("Network_5d69670f0307b385", 2463578261363788, $self, []); },
   /**
    * static let broadcast: IPv4Address
    * @availability iOS 12.0+
    */
-  get broadcast(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 276219015479937, undefined, []); },
+  get broadcast(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 276219015479937, undefined, []); },
   /**
    * let interface: NWInterface?
    * @availability iOS 12.0+
    */
-  getInterface($self: IPv4Address): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_212edf3d13b127f5", 3856714401153526, $self, []); },
+  getInterface($self: IPv4Address): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_5d69670f0307b385", 3856714401153526, $self, []); },
   /**
    * static let mdnsGroup: IPv4Address
    * @availability iOS 12.0+
    */
-  get mdnsGroup(): IPv4Address { return callSDK<IPv4Address>("Network_212edf3d13b127f5", 64760365054300, undefined, []); },
+  get mdnsGroup(): IPv4Address { return callSDK<IPv4Address>("Network_5d69670f0307b385", 64760365054300, undefined, []); },
   /**
    * init?(_ rawValue: Data, _ interface: NWInterface? = nil)
    * @availability iOS 12.0+
    */
-  init(rawValue: ArrayBuffer, interface_?: (NWInterface) | null): (IPv4Address) | null { return callSDK<(IPv4Address) | null>("Network_212edf3d13b127f5", 3122839475038908, undefined, [rawValue, interface_]); },
+  init(rawValue: ArrayBuffer, interface_?: (NWInterface) | null): (IPv4Address) | null { return callSDK<(IPv4Address) | null>("Network_5d69670f0307b385", 3122839475038908, undefined, [rawValue, interface_]); },
   /**
    * init?(_ string: String)
    * @availability iOS 12.0+
    */
-  init46997(string: string): (IPv4Address) | null { return callSDK<(IPv4Address) | null>("Network_212edf3d13b127f5", 2050987890748793, undefined, [string]); }
+  init46997(string: string): (IPv4Address) | null { return callSDK<(IPv4Address) | null>("Network_5d69670f0307b385", 2050987890748793, undefined, [string]); }
 };
 
 /**
@@ -691,108 +691,108 @@ export const IPv6Address = {
    * var isLoopback: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsLoopback($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2592651835017059, $self, []); },
+  getIsLoopback($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2592651835017059, $self, []); },
   /**
    * var isLinkLocal: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsLinkLocal($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1154519560962025, $self, []); },
+  getIsLinkLocal($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1154519560962025, $self, []); },
   /**
    * var isMulticast: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsMulticast($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1590769819580462, $self, []); },
+  getIsMulticast($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1590769819580462, $self, []); },
   /**
    * var isIPv4Mapped: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsIPv4Mapped($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4261169504701641, $self, []); },
+  getIsIPv4Mapped($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4261169504701641, $self, []); },
   /**
    * @backDeployed(before: macOS 14, iOS 17, watchOS 10, tvOS 17)
   var isUniqueLocal: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsUniqueLocal($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 491247603311026, $self, []); },
+  getIsUniqueLocal($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 491247603311026, $self, []); },
   /**
    * static let linkLocalNodes: IPv6Address
    * @availability iOS 12.0+
    */
-  get linkLocalNodes(): IPv6Address { return callSDK<IPv6Address>("Network_212edf3d13b127f5", 1772791734437659, undefined, []); },
+  get linkLocalNodes(): IPv6Address { return callSDK<IPv6Address>("Network_5d69670f0307b385", 1772791734437659, undefined, []); },
   /**
    * var multicastScope: IPv6Address.Scope? { get }
    * @availability iOS 12.0+
    */
-  getMulticastScope($self: IPv6Address): (IPv6Address_Scope) | null { return callSDK<(IPv6Address_Scope) | null>("Network_212edf3d13b127f5", 1755940714188167, $self, []); },
+  getMulticastScope($self: IPv6Address): (IPv6Address_Scope) | null { return callSDK<(IPv6Address_Scope) | null>("Network_5d69670f0307b385", 1755940714188167, $self, []); },
   /**
    * static let nodeLocalNodes: IPv6Address
    * @availability iOS 12.0+
    */
-  get nodeLocalNodes(): IPv6Address { return callSDK<IPv6Address>("Network_212edf3d13b127f5", 1991546740758353, undefined, []); },
+  get nodeLocalNodes(): IPv6Address { return callSDK<IPv6Address>("Network_5d69670f0307b385", 1991546740758353, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  getDebugDescription($self: IPv6Address): string { return callSDK<string>("Network_212edf3d13b127f5", 2610836259842792, $self, []); },
+  getDebugDescription($self: IPv6Address): string { return callSDK<string>("Network_5d69670f0307b385", 2610836259842792, $self, []); },
   /**
    * static let linkLocalRouters: IPv6Address
    * @availability iOS 12.0+
    */
-  get linkLocalRouters(): IPv6Address { return callSDK<IPv6Address>("Network_212edf3d13b127f5", 4260843749211708, undefined, []); },
+  get linkLocalRouters(): IPv6Address { return callSDK<IPv6Address>("Network_5d69670f0307b385", 4260843749211708, undefined, []); },
   /**
    * var isIPv4Compatabile: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsIPv4Compatabile($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1713725561438551, $self, []); },
+  getIsIPv4Compatabile($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1713725561438551, $self, []); },
   /**
    * static let any: IPv6Address
    * @availability iOS 12.0+
    */
-  get any(): IPv6Address { return callSDK<IPv6Address>("Network_212edf3d13b127f5", 946054031159431, undefined, []); },
+  get any(): IPv6Address { return callSDK<IPv6Address>("Network_5d69670f0307b385", 946054031159431, undefined, []); },
   /**
    * var isAny: Bool { get }
    * @availability iOS 12.0+
    */
-  getIsAny($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3446186831544603, $self, []); },
+  getIsAny($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3446186831544603, $self, []); },
   /**
    * var asIPv4: IPv4Address? { get }
    * @availability iOS 12.0+
    */
-  getAsIPv4($self: IPv6Address): (IPv4Address) | null { return callSDK<(IPv4Address) | null>("Network_212edf3d13b127f5", 3102026448727141, $self, []); },
+  getAsIPv4($self: IPv6Address): (IPv4Address) | null { return callSDK<(IPv4Address) | null>("Network_5d69670f0307b385", 3102026448727141, $self, []); },
   /**
    * var is6to4: Bool { get }
    * @availability iOS 12.0+
    */
-  getIs6to4($self: IPv6Address): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2307774669806584, $self, []); },
+  getIs6to4($self: IPv6Address): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2307774669806584, $self, []); },
   /**
    * static let loopback: IPv6Address
    * @availability iOS 12.0+
    */
-  get loopback(): IPv6Address { return callSDK<IPv6Address>("Network_212edf3d13b127f5", 3644898437504635, undefined, []); },
+  get loopback(): IPv6Address { return callSDK<IPv6Address>("Network_5d69670f0307b385", 3644898437504635, undefined, []); },
   /**
    * var rawValue: Data { get }
    * @availability iOS 12.0+
    */
-  getRawValue($self: IPv6Address): ArrayBuffer { return callSDK<ArrayBuffer>("Network_212edf3d13b127f5", 3555996577344320, $self, []); },
+  getRawValue($self: IPv6Address): ArrayBuffer { return callSDK<ArrayBuffer>("Network_5d69670f0307b385", 3555996577344320, $self, []); },
   /**
    * static let broadcast: IPv6Address
    * @availability iOS 12.0+
    */
-  get broadcast(): IPv6Address { return callSDK<IPv6Address>("Network_212edf3d13b127f5", 3288297354940116, undefined, []); },
+  get broadcast(): IPv6Address { return callSDK<IPv6Address>("Network_5d69670f0307b385", 3288297354940116, undefined, []); },
   /**
    * let interface: NWInterface?
    * @availability iOS 12.0+
    */
-  getInterface($self: IPv6Address): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_212edf3d13b127f5", 3539778407973165, $self, []); },
+  getInterface($self: IPv6Address): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_5d69670f0307b385", 3539778407973165, $self, []); },
   /**
    * init?(_ rawValue: Data, _ interface: NWInterface? = nil)
    * @availability iOS 12.0+
    */
-  init(rawValue: ArrayBuffer, interface_?: (NWInterface) | null): (IPv6Address) | null { return callSDK<(IPv6Address) | null>("Network_212edf3d13b127f5", 678462520951391, undefined, [rawValue, interface_]); },
+  init(rawValue: ArrayBuffer, interface_?: (NWInterface) | null): (IPv6Address) | null { return callSDK<(IPv6Address) | null>("Network_5d69670f0307b385", 678462520951391, undefined, [rawValue, interface_]); },
   /**
    * init?(_ string: String)
    * @availability iOS 12.0+
    */
-  init40195(string: string): (IPv6Address) | null { return callSDK<(IPv6Address) | null>("Network_212edf3d13b127f5", 3122213242833511, undefined, [string]); }
+  init40195(string: string): (IPv6Address) | null { return callSDK<(IPv6Address) | null>("Network_5d69670f0307b385", 3122213242833511, undefined, [string]); }
 };
 
 /**
@@ -806,12 +806,12 @@ export const IPv6Address_Scope = {
    * init?(rawValue: UInt8)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (IPv6Address_Scope) | null { return callSDK<(IPv6Address_Scope) | null>("Network_212edf3d13b127f5", 1554428048985147, undefined, [rawValue]); },
+  init(rawValue: number): (IPv6Address_Scope) | null { return callSDK<(IPv6Address_Scope) | null>("Network_5d69670f0307b385", 1554428048985147, undefined, [rawValue]); },
   /**
    * var rawValue: UInt8 { get }
    * @availability iOS 12.0+
    */
-  getRawValue($self: IPv6Address_Scope): number { return callSDK<number>("Network_212edf3d13b127f5", 2900477442297172, $self, []); }
+  getRawValue($self: IPv6Address_Scope): number { return callSDK<number>("Network_5d69670f0307b385", 2900477442297172, $self, []); }
 };
 
 /**
@@ -853,7 +853,7 @@ export class NetworkBrowser<Provider = unknown> extends SDKHandle {
    * final var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 507234602045273, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 507234602045273, this, []); }
   declare readonly $type: { "s:7Network0A7BrowserC": true };
 }
 
@@ -888,112 +888,112 @@ export class NetworkChannel<ApplicationProtocol = unknown> extends SDKHandle {
    * var parameters: NWParameters { get }
    * @availability iOS 26.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 2962396428883860, this, []); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 2962396428883860, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 1829468671949277, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 1829468671949277, this, []); }
   /**
    * func dataTransferReport() async throws -> NWConnection.DataTransferReport
    * @availability iOS 26.0+
    */
-  dataTransferReport(): Promise<NWConnection_DataTransferReport> { return callSDKAsync<NWConnection_DataTransferReport>("Network_212edf3d13b127f5", 3523150916259020, this, []); }
+  dataTransferReport(): Promise<NWConnection_DataTransferReport> { return callSDKAsync<NWConnection_DataTransferReport>("Network_5d69670f0307b385", 3523150916259020, this, []); }
   /**
    * func establishmentReport() async throws -> NWConnection.EstablishmentReport
    * @availability iOS 26.0+
    */
-  establishmentReport(): Promise<NWConnection_EstablishmentReport> { return callSDKAsync<NWConnection_EstablishmentReport>("Network_212edf3d13b127f5", 316687766315698, this, []); }
+  establishmentReport(): Promise<NWConnection_EstablishmentReport> { return callSDKAsync<NWConnection_EstablishmentReport>("Network_5d69670f0307b385", 316687766315698, this, []); }
   /**
    * var maximumDatagramSize: Int { get }
    * @availability iOS 26.0+
    */
-  get maximumDatagramSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 593378777858327, this, []); }
+  get maximumDatagramSize(): number { return callSDK<number>("Network_5d69670f0307b385", 593378777858327, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("Network_212edf3d13b127f5", 1990826962011764, this, []); }
+  get id(): string { return callSDK<string>("Network_5d69670f0307b385", 1990826962011764, this, []); }
   /**
    * var state: NetworkChannel<ApplicationProtocol>.State { get }
    * @availability iOS 26.0+
    */
-  get state(): NetworkChannel_State<SDKHandle> { return callSDK<NetworkChannel_State<SDKHandle>>("Network_212edf3d13b127f5", 3644176241376062, this, []); }
+  get state(): NetworkChannel_State<SDKHandle> { return callSDK<NetworkChannel_State<SDKHandle>>("Network_5d69670f0307b385", 3644176241376062, this, []); }
   /**
    * func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
    * @availability iOS 26.0+
    */
-  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_212edf3d13b127f5", 1528760603857202, this, [definition]); }
+  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_5d69670f0307b385", 1528760603857202, this, [definition]); }
   /**
    * @discardableResult func onPathUpdate(_ handler: @escaping @isolated(any) @Sendable (Self, NWPath) -> Void) -> Self
    * @availability iOS 27.0+
    */
-  onPathUpdate(handler: ((arg0: NetworkChannel<QUICStream>, arg1: NWPath) => void)): $SDK12 { return callSDK<$SDK12>("Network_212edf3d13b127f5", 2564370886861484, this, [handler], [{"callback":{"out":[]}}]); }
+  onPathUpdate(handler: ((arg0: NetworkChannel<QUICStream>, arg1: NWPath) => void)): $SDK12 { return callSDK<$SDK12>("Network_5d69670f0307b385", 2564370886861484, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * @discardableResult func onViabilityUpdate(_ handler: @escaping @isolated(any) @Sendable (Self, Bool) -> Void) -> Self
    * @availability iOS 27.0+
    */
-  onViabilityUpdate(handler: $SDK14): $SDK12 { return callSDK<$SDK12>("Network_212edf3d13b127f5", 3473728402693635, this, [handler], [{"callback":{"out":[]}}]); }
+  onViabilityUpdate(handler: $SDK14): $SDK12 { return callSDK<$SDK12>("Network_5d69670f0307b385", 3473728402693635, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * @discardableResult func onBetterPathUpdate(_ handler: @escaping @isolated(any) @Sendable (Self, Bool) -> Void) -> Self
    * @availability iOS 27.0+
    */
-  onBetterPathUpdate(handler: $SDK14): $SDK12 { return callSDK<$SDK12>("Network_212edf3d13b127f5", 1218678782306222, this, [handler], [{"callback":{"out":[]}}]); }
+  onBetterPathUpdate(handler: $SDK14): $SDK12 { return callSDK<$SDK12>("Network_5d69670f0307b385", 1218678782306222, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func sendIdempotent<Content>(_ content: Content, type: Int, lastMessage: Bool = false, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) where Content : DataProtocol
    * @availability iOS 26.0+
    */
-  sendIdempotentTypeLastMessage(content: ArrayBuffer, type: number, lastMessage?: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3091741435128619, this, [content, type, lastMessage]); }
+  sendIdempotentTypeLastMessage(content: ArrayBuffer, type: number, lastMessage?: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3091741435128619, this, [content, type, lastMessage]); }
   /**
    * func send<Content>(_ content: Content, type: Int, lastMessage: Bool = false, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws where Content : DataProtocol
    * @availability iOS 26.0+
    */
-  sendTypeLastMessage(content: ArrayBuffer, type: number, lastMessage?: boolean): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 2331516203719933, this, [content, type, lastMessage]); }
+  sendTypeLastMessage(content: ArrayBuffer, type: number, lastMessage?: boolean): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 2331516203719933, this, [content, type, lastMessage]); }
   /**
    * func receive() async throws -> ApplicationProtocol.Message<Data>
    * @availability iOS 26.0+
    */
-  receive(): Promise<"count" | SDKHandle> { return callSDKAsync<"count" | SDKHandle>("Network_212edf3d13b127f5", 1477630748938913, this, []); }
+  receive(): Promise<"count" | SDKHandle> { return callSDKAsync<"count" | SDKHandle>("Network_5d69670f0307b385", 1477630748938913, this, []); }
   /**
    * func sendIdempotent(_ content: String, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]})
    * @availability iOS 26.0+
    */
-  sendIdempotent(content: string): void { return callSDK<void>("Network_212edf3d13b127f5", 3010809744331630, this, [content]); }
+  sendIdempotent(content: string): void { return callSDK<void>("Network_5d69670f0307b385", 3010809744331630, this, [content]); }
   /**
    * func sendIdempotent<Content>(_ content: Content, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) where Content : DataProtocol
    * @availability iOS 26.0+
    */
-  sendIdempotent70447(content: ArrayBuffer): void { return callSDK<void>("Network_212edf3d13b127f5", 202673789553698, this, [content]); }
+  sendIdempotent70447(content: ArrayBuffer): void { return callSDK<void>("Network_5d69670f0307b385", 202673789553698, this, [content]); }
   /**
    * func ping<Content>(_ content: Content? = nil, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws where Content : DataProtocol
    * @availability iOS 26.0+
    */
-  ping(content?: (ArrayBuffer) | null): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 1597830053478989, this, [content]); }
+  ping(content?: (ArrayBuffer) | null): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 1597830053478989, this, [content]); }
   /**
    * func pong<Content>(_ content: Content? = nil, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws where Content : DataProtocol
    * @availability iOS 26.0+
    */
-  pong(content?: (ArrayBuffer) | null): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 577580767226939, this, [content]); }
+  pong(content?: (ArrayBuffer) | null): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 577580767226939, this, [content]); }
   /**
    * func send(_ content: String, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws
    * @availability iOS 26.0+
    */
-  send(content: string): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 4451076910974506, this, [content]); }
+  send(content: string): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 4451076910974506, this, [content]); }
   /**
    * func send<Content>(_ content: Content, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws where Content : DataProtocol
    * @availability iOS 26.0+
    */
-  send1536(content: ArrayBuffer): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 2961570298196208, this, [content]); }
+  send1536(content: ArrayBuffer): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 2961570298196208, this, [content]); }
   /**
    * func close(code: NWProtocolWebSocket.CloseCode = .protocolCode(.normalClosure), reason: String? = nil, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws
    * @availability iOS 26.0+
    */
-  close(code?: NWProtocolWebSocket_CloseCode, reason?: (string) | null): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 2663348658825258, this, [code, reason]); }
+  close(code?: NWProtocolWebSocket_CloseCode, reason?: (string) | null): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 2663348658825258, this, [code, reason]); }
   /**
    * func receive() async throws -> ApplicationProtocol.Message<Data>
    * @availability iOS 26.0+
    */
-  receive32396(): Promise<"count" | SDKHandle> { return callSDKAsync<"count" | SDKHandle>("Network_212edf3d13b127f5", 2066113900565384, this, []); }
+  receive32396(): Promise<"count" | SDKHandle> { return callSDKAsync<"count" | SDKHandle>("Network_5d69670f0307b385", 2066113900565384, this, []); }
   declare readonly $type: { "s:7Network0A7ChannelC": true };
 }
 
@@ -1042,89 +1042,89 @@ export class NetworkConnection<ApplicationProtocol = unknown> extends (NetworkCh
    * @discardableResult final func onPathUpdate(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>, NWPath) -> Void) -> Self
    * @availability iOS 27.0+
    */
-  onPathUpdate(handler: ((arg0: NetworkConnection<QUIC>, arg1: NWPath) => void)): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_212edf3d13b127f5", 2350722078037375, this, [handler], [{"callback":{"out":[]}}]); }
+  onPathUpdate(handler: ((arg0: NetworkConnection<QUIC>, arg1: NWPath) => void)): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_5d69670f0307b385", 2350722078037375, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * @discardableResult final func onViabilityUpdate(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>, Bool) -> Void) -> Self
    * @availability iOS 27.0+
    */
-  onViabilityUpdate(handler: $SDK16): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_212edf3d13b127f5", 341677043214461, this, [handler], [{"callback":{"out":[]}}]); }
+  onViabilityUpdate(handler: $SDK16): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_5d69670f0307b385", 341677043214461, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * @discardableResult final func onBetterPathUpdate(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>, Bool) -> Void) -> Self
    * @availability iOS 27.0+
    */
-  onBetterPathUpdate(handler: $SDK16): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_212edf3d13b127f5", 3815023159574261, this, [handler], [{"callback":{"out":[]}}]); }
+  onBetterPathUpdate(handler: $SDK16): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_5d69670f0307b385", 3815023159574261, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * convenience init(to endpoint: NWEndpoint, using builder: NWParametersBuilder<ApplicationProtocol>)
    * @availability iOS 26.0+
    */
-  static initToUsing(endpoint: NWEndpoint, builder: $SDK17): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_212edf3d13b127f5", 79642817321162, undefined, [endpoint, builder]); }
+  static initToUsing(endpoint: NWEndpoint, builder: $SDK17): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_5d69670f0307b385", 79642817321162, undefined, [endpoint, builder]); }
   /**
    * convenience init(to provider: any Connectable, using builder: NWParametersBuilder<ApplicationProtocol>)
    * @availability iOS 26.0+
    */
-  static initToUsing65965(provider: Implements<Connectable> | SDKHandle, builder: $SDK17): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_212edf3d13b127f5", 3737052307765481, undefined, [provider, builder], [{"protocol":"s:7Network11ConnectableP"},null]); }
+  static initToUsing65965(provider: Implements<Connectable> | SDKHandle, builder: $SDK17): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_5d69670f0307b385", 3737052307765481, undefined, [provider, builder], [{"protocol":"s:7Network11ConnectableP"},null]); }
   /**
    * final func start() -> Self
    * @availability iOS 26.0+
    */
-  start(): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_212edf3d13b127f5", 315654798115414, this, []); }
+  start(): NetworkConnection<QUIC> { return callSDK<NetworkConnection<QUIC>>("Network_5d69670f0307b385", 315654798115414, this, []); }
   /**
    * final func openStream(directionality: QUICStream.Directionality = .bidirectional) async throws -> QUIC.Stream<QUICStream>
    * @availability iOS 26.0+
    */
-  openStream(directionality?: QUICStream_Directionality): Promise<QUIC_Stream<QUICStream>> { return callSDKAsync<QUIC_Stream<QUICStream>>("Network_212edf3d13b127f5", 2960445808659149, this, [directionality]); }
+  openStream(directionality?: QUICStream_Directionality): Promise<QUIC_Stream<QUICStream>> { return callSDKAsync<QUIC_Stream<QUICStream>>("Network_5d69670f0307b385", 2960445808659149, this, [directionality]); }
   /**
    * final func inboundStreams(_ handler: @escaping @isolated(any) @Sendable (QUIC.Stream<QUICStream>) async throws -> Void) async throws
    * @availability iOS 26.0+
    */
-  inboundStreams(handler: ((arg0: QUIC_Stream<QUICStream>) => Promise<void>)): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 2353529816908813, this, [handler], [{"callback":{"out":[]}}]); }
+  inboundStreams(handler: ((arg0: QUIC_Stream<QUICStream>) => Promise<void>)): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 2353529816908813, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * final var negotiatedALPN: String? { get }
    * @availability iOS 26.0+
    */
-  get negotiatedALPN(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 3456727089184393, this, []); }
+  get negotiatedALPN(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 3456727089184393, this, []); }
   /**
    * final var applicationError: NWProtocolQUIC.ApplicationError { get set }
    * @availability iOS 26.0+
    */
-  get applicationError(): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_212edf3d13b127f5", 1402881346050556, this, []); }
-  set applicationError(value: NWProtocolQUIC_ApplicationError) { callSDK<void>("Network_212edf3d13b127f5", 1105432537264312, this, [value]); }
+  get applicationError(): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_5d69670f0307b385", 1402881346050556, this, []); }
+  set applicationError(value: NWProtocolQUIC_ApplicationError) { callSDK<void>("Network_5d69670f0307b385", 1105432537264312, this, [value]); }
   /**
    * final var remoteIdleTimeout: Int { get }
    * @availability iOS 26.0+
    */
-  get remoteIdleTimeout(): number { return callSDK<number>("Network_212edf3d13b127f5", 4263541943924491, this, []); }
+  get remoteIdleTimeout(): number { return callSDK<number>("Network_5d69670f0307b385", 4263541943924491, this, []); }
   /**
    * final var usableDatagramFrameSize: Int { get }
    * @availability iOS 26.0+
    */
-  get usableDatagramFrameSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 2573266124016592, this, []); }
+  get usableDatagramFrameSize(): number { return callSDK<number>("Network_5d69670f0307b385", 2573266124016592, this, []); }
   /**
    * final var securityProtocolMetadata: sec_protocol_metadata_t { get }
    * @availability iOS 26.0+
    */
-  get securityProtocolMetadata(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2454739900596808, this, []); }
+  get securityProtocolMetadata(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2454739900596808, this, []); }
   /**
    * final var remoteMaxStreamsBidirectional: Int { get }
    * @availability iOS 26.0+
    */
-  get remoteMaxStreamsBidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 2986203722917906, this, []); }
+  get remoteMaxStreamsBidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 2986203722917906, this, []); }
   /**
    * final var remoteMaxStreamsUnidirectional: Int { get }
    * @availability iOS 26.0+
    */
-  get remoteMaxStreamsUnidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 1851033840756584, this, []); }
+  get remoteMaxStreamsUnidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 1851033840756584, this, []); }
   /**
    * final var datagrams: QUIC.Datagrams<QUICDatagram> { get async throws }
    * @availability iOS 26.0+
    */
-  get datagrams(): Promise<QUIC_Datagrams<QUICDatagram>> { return callSDKAsync<QUIC_Datagrams<QUICDatagram>>("Network_212edf3d13b127f5", 889588670123582, this, []); }
+  get datagrams(): Promise<QUIC_Datagrams<QUICDatagram>> { return callSDKAsync<QUIC_Datagrams<QUICDatagram>>("Network_5d69670f0307b385", 889588670123582, this, []); }
   /**
    * final var keepalive: NWProtocolQUIC.Metadata.KeepAliveBehavior { get set }
    * @availability iOS 26.0+
    */
-  get keepalive(): NWProtocolQUIC_Metadata_KeepAliveBehavior { return callSDK<NWProtocolQUIC_Metadata_KeepAliveBehavior>("Network_212edf3d13b127f5", 509041294254264, this, []); }
-  set keepalive(value: NWProtocolQUIC_Metadata_KeepAliveBehavior) { callSDK<void>("Network_212edf3d13b127f5", 3266124374713557, this, [value]); }
+  get keepalive(): NWProtocolQUIC_Metadata_KeepAliveBehavior { return callSDK<NWProtocolQUIC_Metadata_KeepAliveBehavior>("Network_5d69670f0307b385", 509041294254264, this, []); }
+  set keepalive(value: NWProtocolQUIC_Metadata_KeepAliveBehavior) { callSDK<void>("Network_5d69670f0307b385", 3266124374713557, this, [value]); }
   declare readonly $type: { "s:7Network0A10ConnectionC": true; "s:7Network0A7ChannelC": true };
 }
 
@@ -1173,17 +1173,17 @@ export class NetworkJSONCoder extends SDKHandle {
    * func makeDecoder() -> JSONDecoder
    * @availability iOS 26.0+
    */
-  makeDecoder(): _Foundation_JSONDecoder { return callSDK<_Foundation_JSONDecoder>("Network_212edf3d13b127f5", 2807977933551880, this, []); }
+  makeDecoder(): _Foundation_JSONDecoder { return callSDK<_Foundation_JSONDecoder>("Network_5d69670f0307b385", 2807977933551880, this, []); }
   /**
    * func makeEncoder() -> JSONEncoder
    * @availability iOS 26.0+
    */
-  makeEncoder(): _Foundation_JSONEncoder { return callSDK<_Foundation_JSONEncoder>("Network_212edf3d13b127f5", 986526606105923, this, []); }
+  makeEncoder(): _Foundation_JSONEncoder { return callSDK<_Foundation_JSONEncoder>("Network_5d69670f0307b385", 986526606105923, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): NetworkJSONCoder { return callSDK<NetworkJSONCoder>("Network_212edf3d13b127f5", 4378114266022532, undefined, []); }
+  static init(): NetworkJSONCoder { return callSDK<NetworkJSONCoder>("Network_5d69670f0307b385", 4378114266022532, undefined, []); }
   declare readonly $type: { "s:7Network0A9JSONCoderV": true };
 }
 
@@ -1208,29 +1208,29 @@ export class NetworkListener<ApplicationProtocol = unknown> extends SDKHandle {
    * final var debugDescription: String { get }
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3882670409371200, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3882670409371200, this, []); }
   /**
    * final var newConnectionLimit: Int { get set }
    * @availability iOS 26.0+
    */
-  get newConnectionLimit(): number { return callSDK<number>("Network_212edf3d13b127f5", 204847438049761, this, []); }
-  set newConnectionLimit(value: number) { callSDK<void>("Network_212edf3d13b127f5", 2053974882417356, this, [value]); }
+  get newConnectionLimit(): number { return callSDK<number>("Network_5d69670f0307b385", 204847438049761, this, []); }
+  set newConnectionLimit(value: number) { callSDK<void>("Network_5d69670f0307b385", 2053974882417356, this, [value]); }
   /**
    * final var port: NWEndpoint.Port? { get }
    * @availability iOS 26.0+
    */
-  get port(): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_212edf3d13b127f5", 2218860562668277, this, []); }
+  get port(): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_5d69670f0307b385", 2218860562668277, this, []); }
   /**
    * final var service: NWListener.Service? { get set }
    * @availability iOS 26.0+
    */
-  get service(): $SDK22 { return callSDK<$SDK22>("Network_212edf3d13b127f5", 465432245049465, this, []); }
-  set service(value: $SDK22) { callSDK<void>("Network_212edf3d13b127f5", 1551792311924471, this, [value]); }
+  get service(): $SDK22 { return callSDK<$SDK22>("Network_5d69670f0307b385", 465432245049465, this, []); }
+  set service(value: $SDK22) { callSDK<void>("Network_5d69670f0307b385", 1551792311924471, this, [value]); }
   /**
    * final func run(_ handler: @escaping @isolated(any) @Sendable (NetworkConnection<ApplicationProtocol>) async throws -> Void) async throws
    * @availability iOS 26.0+
    */
-  run(handler: $SDK23): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 88905339280839, this, [handler], [{"callback":{"out":[]}}]); }
+  run(handler: $SDK23): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 88905339280839, this, [handler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Network0A8ListenerC": true };
 }
 
@@ -1279,17 +1279,17 @@ export class NetworkPropertyListCoder extends SDKHandle {
    * func makeDecoder() -> PropertyListDecoder
    * @availability iOS 26.0+
    */
-  makeDecoder(): _Foundation_PropertyListDecoder { return callSDK<_Foundation_PropertyListDecoder>("Network_212edf3d13b127f5", 2016653667251525, this, []); }
+  makeDecoder(): _Foundation_PropertyListDecoder { return callSDK<_Foundation_PropertyListDecoder>("Network_5d69670f0307b385", 2016653667251525, this, []); }
   /**
    * func makeEncoder() -> PropertyListEncoder
    * @availability iOS 26.0+
    */
-  makeEncoder(): _Foundation_PropertyListEncoder { return callSDK<_Foundation_PropertyListEncoder>("Network_212edf3d13b127f5", 16552943672627, this, []); }
+  makeEncoder(): _Foundation_PropertyListEncoder { return callSDK<_Foundation_PropertyListEncoder>("Network_5d69670f0307b385", 16552943672627, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): NetworkPropertyListCoder { return callSDK<NetworkPropertyListCoder>("Network_212edf3d13b127f5", 4115352701074338, undefined, []); }
+  static init(): NetworkPropertyListCoder { return callSDK<NetworkPropertyListCoder>("Network_5d69670f0307b385", 4115352701074338, undefined, []); }
   declare readonly $type: { "s:7Network0A17PropertyListCoderV": true };
 }
 
@@ -1345,12 +1345,12 @@ export type nw_browser_state_t = (number & {});
 
 export const nw_browser_state_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_browser_state_t { return callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 3429747939665053, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_browser_state_t { return callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 3429747939665053, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_browser_state_t): number { return callSDK<number>("Network_212edf3d13b127f5", 4153234018967999, $self, []); },
-  setRawValue($self: nw_browser_state_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 4203455130056197, $self, [value]); },
+  getRawValue($self: nw_browser_state_t): number { return callSDK<number>("Network_5d69670f0307b385", 4153234018967999, $self, []); },
+  setRawValue($self: nw_browser_state_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 4203455130056197, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_browser_state_t { return callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 381857181495711, undefined, [rawValue]); }
+  init(rawValue: number): nw_browser_state_t { return callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 381857181495711, undefined, [rawValue]); }
 };
 
 /** typealias nw_browser_t = any OS_nw_browser */
@@ -1376,12 +1376,12 @@ export type nw_connection_group_state_t = (number & {});
 
 export const nw_connection_group_state_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_connection_group_state_t { return callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 1423631566646627, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_connection_group_state_t { return callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 1423631566646627, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_connection_group_state_t): number { return callSDK<number>("Network_212edf3d13b127f5", 3246051982426497, $self, []); },
-  setRawValue($self: nw_connection_group_state_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 64448552619715, $self, [value]); },
+  getRawValue($self: nw_connection_group_state_t): number { return callSDK<number>("Network_5d69670f0307b385", 3246051982426497, $self, []); },
+  setRawValue($self: nw_connection_group_state_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 64448552619715, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_connection_group_state_t { return callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 1695590205230801, undefined, [rawValue]); }
+  init(rawValue: number): nw_connection_group_state_t { return callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 1695590205230801, undefined, [rawValue]); }
 };
 
 /** typealias nw_connection_group_t = any OS_nw_connection_group */
@@ -1404,12 +1404,12 @@ export type nw_connection_state_t = (number & {});
 
 export const nw_connection_state_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_connection_state_t { return callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 3599673618140007, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_connection_state_t { return callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 3599673618140007, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_connection_state_t): number { return callSDK<number>("Network_212edf3d13b127f5", 3863154081822966, $self, []); },
-  setRawValue($self: nw_connection_state_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1046794805553380, $self, [value]); },
+  getRawValue($self: nw_connection_state_t): number { return callSDK<number>("Network_5d69670f0307b385", 3863154081822966, $self, []); },
+  setRawValue($self: nw_connection_state_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1046794805553380, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_connection_state_t { return callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 2619025340515383, undefined, [rawValue]); }
+  init(rawValue: number): nw_connection_state_t { return callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 2619025340515383, undefined, [rawValue]); }
 };
 
 /** typealias nw_connection_t = any OS_nw_connection */
@@ -1426,12 +1426,12 @@ export type nw_data_transfer_report_state_t = (number & {});
 
 export const nw_data_transfer_report_state_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_data_transfer_report_state_t { return callSDK<nw_data_transfer_report_state_t>("Network_212edf3d13b127f5", 1581097346052584, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_data_transfer_report_state_t { return callSDK<nw_data_transfer_report_state_t>("Network_5d69670f0307b385", 1581097346052584, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_data_transfer_report_state_t): number { return callSDK<number>("Network_212edf3d13b127f5", 3606587601070847, $self, []); },
-  setRawValue($self: nw_data_transfer_report_state_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 4203670407232102, $self, [value]); },
+  getRawValue($self: nw_data_transfer_report_state_t): number { return callSDK<number>("Network_5d69670f0307b385", 3606587601070847, $self, []); },
+  setRawValue($self: nw_data_transfer_report_state_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 4203670407232102, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_data_transfer_report_state_t { return callSDK<nw_data_transfer_report_state_t>("Network_212edf3d13b127f5", 2139790445269124, undefined, [rawValue]); }
+  init(rawValue: number): nw_data_transfer_report_state_t { return callSDK<nw_data_transfer_report_state_t>("Network_5d69670f0307b385", 2139790445269124, undefined, [rawValue]); }
 };
 
 /** typealias nw_data_transfer_report_t = any OS_nw_data_transfer_report */
@@ -1445,12 +1445,12 @@ export type nw_endpoint_type_t = (number & {});
 
 export const nw_endpoint_type_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_endpoint_type_t { return callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 1433980415657779, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_endpoint_type_t { return callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 1433980415657779, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_endpoint_type_t): number { return callSDK<number>("Network_212edf3d13b127f5", 114104945303605, $self, []); },
-  setRawValue($self: nw_endpoint_type_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2442450231556384, $self, [value]); },
+  getRawValue($self: nw_endpoint_type_t): number { return callSDK<number>("Network_5d69670f0307b385", 114104945303605, $self, []); },
+  setRawValue($self: nw_endpoint_type_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 2442450231556384, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_endpoint_type_t { return callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 3486905924891481, undefined, [rawValue]); }
+  init(rawValue: number): nw_endpoint_type_t { return callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 3486905924891481, undefined, [rawValue]); }
 };
 
 /** struct nw_error_domain_t */
@@ -1458,12 +1458,12 @@ export type nw_error_domain_t = (number & {});
 
 export const nw_error_domain_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_error_domain_t { return callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 1935716644148228, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_error_domain_t { return callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 1935716644148228, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_error_domain_t): number { return callSDK<number>("Network_212edf3d13b127f5", 4503257789283078, $self, []); },
-  setRawValue($self: nw_error_domain_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 713960845895263, $self, [value]); },
+  getRawValue($self: nw_error_domain_t): number { return callSDK<number>("Network_5d69670f0307b385", 4503257789283078, $self, []); },
+  setRawValue($self: nw_error_domain_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 713960845895263, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_error_domain_t { return callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 78705099969300, undefined, [rawValue]); }
+  init(rawValue: number): nw_error_domain_t { return callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 78705099969300, undefined, [rawValue]); }
 };
 
 /** typealias nw_error_t = any OS_nw_error */
@@ -1507,12 +1507,12 @@ export type nw_framer_start_result_t = (number & {});
 
 export const nw_framer_start_result_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_framer_start_result_t { return callSDK<nw_framer_start_result_t>("Network_212edf3d13b127f5", 190095758136528, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_framer_start_result_t { return callSDK<nw_framer_start_result_t>("Network_5d69670f0307b385", 190095758136528, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_framer_start_result_t): number { return callSDK<number>("Network_212edf3d13b127f5", 1363476727817142, $self, []); },
-  setRawValue($self: nw_framer_start_result_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2045227036006876, $self, [value]); },
+  getRawValue($self: nw_framer_start_result_t): number { return callSDK<number>("Network_5d69670f0307b385", 1363476727817142, $self, []); },
+  setRawValue($self: nw_framer_start_result_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 2045227036006876, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_framer_start_result_t { return callSDK<nw_framer_start_result_t>("Network_212edf3d13b127f5", 368659899739192, undefined, [rawValue]); }
+  init(rawValue: number): nw_framer_start_result_t { return callSDK<nw_framer_start_result_t>("Network_5d69670f0307b385", 368659899739192, undefined, [rawValue]); }
 };
 
 /** typealias nw_framer_stop_handler_t = (nw_framer_t) -> Bool */
@@ -1535,12 +1535,12 @@ export type nw_interface_radio_type_t = (number & {});
 
 export const nw_interface_radio_type_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_interface_radio_type_t { return callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 1167037874321305, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_interface_radio_type_t { return callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 1167037874321305, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_interface_radio_type_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2036959489640978, $self, []); },
-  setRawValue($self: nw_interface_radio_type_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3278962816909843, $self, [value]); },
+  getRawValue($self: nw_interface_radio_type_t): number { return callSDK<number>("Network_5d69670f0307b385", 2036959489640978, $self, []); },
+  setRawValue($self: nw_interface_radio_type_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 3278962816909843, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_interface_radio_type_t { return callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2381921755110036, undefined, [rawValue]); }
+  init(rawValue: number): nw_interface_radio_type_t { return callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2381921755110036, undefined, [rawValue]); }
 };
 
 /** typealias nw_interface_t = any OS_nw_interface */
@@ -1551,12 +1551,12 @@ export type nw_interface_type_t = (number & {});
 
 export const nw_interface_type_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 3601945652587872, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 3601945652587872, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_interface_type_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2669329563891472, $self, []); },
-  setRawValue($self: nw_interface_type_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1520320939312637, $self, [value]); },
+  getRawValue($self: nw_interface_type_t): number { return callSDK<number>("Network_5d69670f0307b385", 2669329563891472, $self, []); },
+  setRawValue($self: nw_interface_type_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1520320939312637, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 1968885262932156, undefined, [rawValue]); }
+  init(rawValue: number): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 1968885262932156, undefined, [rawValue]); }
 };
 
 /** struct nw_ip_ecn_flag_t */
@@ -1564,12 +1564,12 @@ export type nw_ip_ecn_flag_t = (number & {});
 
 export const nw_ip_ecn_flag_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_ip_ecn_flag_t { return callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 3684473453404017, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ip_ecn_flag_t { return callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 3684473453404017, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_ip_ecn_flag_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2152734237881595, $self, []); },
-  setRawValue($self: nw_ip_ecn_flag_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1873582616352084, $self, [value]); },
+  getRawValue($self: nw_ip_ecn_flag_t): number { return callSDK<number>("Network_5d69670f0307b385", 2152734237881595, $self, []); },
+  setRawValue($self: nw_ip_ecn_flag_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1873582616352084, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_ip_ecn_flag_t { return callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 713083589210796, undefined, [rawValue]); }
+  init(rawValue: number): nw_ip_ecn_flag_t { return callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 713083589210796, undefined, [rawValue]); }
 };
 
 /** struct nw_ip_local_address_preference_t */
@@ -1577,12 +1577,12 @@ export type nw_ip_local_address_preference_t = (number & {});
 
 export const nw_ip_local_address_preference_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_ip_local_address_preference_t { return callSDK<nw_ip_local_address_preference_t>("Network_212edf3d13b127f5", 886060645733992, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ip_local_address_preference_t { return callSDK<nw_ip_local_address_preference_t>("Network_5d69670f0307b385", 886060645733992, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_ip_local_address_preference_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2229603534446805, $self, []); },
-  setRawValue($self: nw_ip_local_address_preference_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 380585559474815, $self, [value]); },
+  getRawValue($self: nw_ip_local_address_preference_t): number { return callSDK<number>("Network_5d69670f0307b385", 2229603534446805, $self, []); },
+  setRawValue($self: nw_ip_local_address_preference_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 380585559474815, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_ip_local_address_preference_t { return callSDK<nw_ip_local_address_preference_t>("Network_212edf3d13b127f5", 1601894678870707, undefined, [rawValue]); }
+  init(rawValue: number): nw_ip_local_address_preference_t { return callSDK<nw_ip_local_address_preference_t>("Network_5d69670f0307b385", 1601894678870707, undefined, [rawValue]); }
 };
 
 /** struct nw_ip_version_t */
@@ -1590,12 +1590,12 @@ export type nw_ip_version_t = (number & {});
 
 export const nw_ip_version_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_ip_version_t { return callSDK<nw_ip_version_t>("Network_212edf3d13b127f5", 4230358056316853, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ip_version_t { return callSDK<nw_ip_version_t>("Network_5d69670f0307b385", 4230358056316853, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_ip_version_t): number { return callSDK<number>("Network_212edf3d13b127f5", 564520391235239, $self, []); },
-  setRawValue($self: nw_ip_version_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1557908847596987, $self, [value]); },
+  getRawValue($self: nw_ip_version_t): number { return callSDK<number>("Network_5d69670f0307b385", 564520391235239, $self, []); },
+  setRawValue($self: nw_ip_version_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1557908847596987, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_ip_version_t { return callSDK<nw_ip_version_t>("Network_212edf3d13b127f5", 4099324390362111, undefined, [rawValue]); }
+  init(rawValue: number): nw_ip_version_t { return callSDK<nw_ip_version_t>("Network_5d69670f0307b385", 4099324390362111, undefined, [rawValue]); }
 };
 
 /** struct nw_link_quality_t */
@@ -1603,12 +1603,12 @@ export type nw_link_quality_t = (number & {});
 
 export const nw_link_quality_t = {
   /** init(rawValue: UInt8) */
-  initRawValue(rawValue: number): nw_link_quality_t { return callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 2279698215180644, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_link_quality_t { return callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 2279698215180644, undefined, [rawValue]); },
   /** var rawValue: UInt8 */
-  getRawValue($self: nw_link_quality_t): number { return callSDK<number>("Network_212edf3d13b127f5", 375180678703848, $self, []); },
-  setRawValue($self: nw_link_quality_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1099979338956905, $self, [value]); },
+  getRawValue($self: nw_link_quality_t): number { return callSDK<number>("Network_5d69670f0307b385", 375180678703848, $self, []); },
+  setRawValue($self: nw_link_quality_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1099979338956905, $self, [value]); },
   /** init(_ rawValue: UInt8) */
-  init(rawValue: number): nw_link_quality_t { return callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 2207472142513820, undefined, [rawValue]); }
+  init(rawValue: number): nw_link_quality_t { return callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 2207472142513820, undefined, [rawValue]); }
 };
 
 /** typealias nw_listener_advertised_endpoint_changed_handler_t = (nw_endpoint_t, Bool) -> Void */
@@ -1628,12 +1628,12 @@ export type nw_listener_state_t = (number & {});
 
 export const nw_listener_state_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_listener_state_t { return callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 1797451963341740, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_listener_state_t { return callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 1797451963341740, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_listener_state_t): number { return callSDK<number>("Network_212edf3d13b127f5", 3834742849066937, $self, []); },
-  setRawValue($self: nw_listener_state_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 126324628057610, $self, [value]); },
+  getRawValue($self: nw_listener_state_t): number { return callSDK<number>("Network_5d69670f0307b385", 3834742849066937, $self, []); },
+  setRawValue($self: nw_listener_state_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 126324628057610, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_listener_state_t { return callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 2405836696391648, undefined, [rawValue]); }
+  init(rawValue: number): nw_listener_state_t { return callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 2405836696391648, undefined, [rawValue]); }
 };
 
 /** typealias nw_listener_t = any OS_nw_listener */
@@ -1644,12 +1644,12 @@ export type nw_multipath_service_t = (number & {});
 
 export const nw_multipath_service_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_multipath_service_t { return callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 1981540829875238, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_multipath_service_t { return callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 1981540829875238, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_multipath_service_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2062722226333878, $self, []); },
-  setRawValue($self: nw_multipath_service_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3273327851426089, $self, [value]); },
+  getRawValue($self: nw_multipath_service_t): number { return callSDK<number>("Network_5d69670f0307b385", 2062722226333878, $self, []); },
+  setRawValue($self: nw_multipath_service_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 3273327851426089, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_multipath_service_t { return callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 2006921394654123, undefined, [rawValue]); }
+  init(rawValue: number): nw_multipath_service_t { return callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 2006921394654123, undefined, [rawValue]); }
 };
 
 /** struct nw_multipath_version_t */
@@ -1657,12 +1657,12 @@ export type nw_multipath_version_t = (number & {});
 
 export const nw_multipath_version_t = {
   /** init(rawValue: Int32) */
-  initRawValue(rawValue: number): nw_multipath_version_t { return callSDK<nw_multipath_version_t>("Network_212edf3d13b127f5", 2163143272268441, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_multipath_version_t { return callSDK<nw_multipath_version_t>("Network_5d69670f0307b385", 2163143272268441, undefined, [rawValue]); },
   /** var rawValue: Int32 */
-  getRawValue($self: nw_multipath_version_t): number { return callSDK<number>("Network_212edf3d13b127f5", 274806983488664, $self, []); },
-  setRawValue($self: nw_multipath_version_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 335793841840376, $self, [value]); },
+  getRawValue($self: nw_multipath_version_t): number { return callSDK<number>("Network_5d69670f0307b385", 274806983488664, $self, []); },
+  setRawValue($self: nw_multipath_version_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 335793841840376, $self, [value]); },
   /** init(_ rawValue: Int32) */
-  init(rawValue: number): nw_multipath_version_t { return callSDK<nw_multipath_version_t>("Network_212edf3d13b127f5", 533838320443839, undefined, [rawValue]); }
+  init(rawValue: number): nw_multipath_version_t { return callSDK<nw_multipath_version_t>("Network_5d69670f0307b385", 533838320443839, undefined, [rawValue]); }
 };
 
 /** typealias nw_object_t = any OS_nw_object */
@@ -1673,7 +1673,7 @@ export type nw_parameters_attribution_t = "developer" | "user";
 
 export const nw_parameters_attribution_t = {
   /** init?(rawValue: UInt8) */
-  init(rawValue: number): (nw_parameters_attribution_t) | null { return callSDK<(nw_parameters_attribution_t) | null>("Network_212edf3d13b127f5", 81672053605356, undefined, [rawValue]); }
+  init(rawValue: number): (nw_parameters_attribution_t) | null { return callSDK<(nw_parameters_attribution_t) | null>("Network_5d69670f0307b385", 81672053605356, undefined, [rawValue]); }
 };
 
 /** typealias nw_parameters_configure_protocol_block_t = (nw_protocol_options_t) -> Void */
@@ -1684,12 +1684,12 @@ export type nw_parameters_expired_dns_behavior_t = (number & {});
 
 export const nw_parameters_expired_dns_behavior_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_parameters_expired_dns_behavior_t { return callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 891934811101700, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_parameters_expired_dns_behavior_t { return callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 891934811101700, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_parameters_expired_dns_behavior_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2074606035717522, $self, []); },
-  setRawValue($self: nw_parameters_expired_dns_behavior_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1979510033537847, $self, [value]); },
+  getRawValue($self: nw_parameters_expired_dns_behavior_t): number { return callSDK<number>("Network_5d69670f0307b385", 2074606035717522, $self, []); },
+  setRawValue($self: nw_parameters_expired_dns_behavior_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1979510033537847, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_parameters_expired_dns_behavior_t { return callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 637823963873315, undefined, [rawValue]); }
+  init(rawValue: number): nw_parameters_expired_dns_behavior_t { return callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 637823963873315, undefined, [rawValue]); }
 };
 
 /** typealias nw_parameters_iterate_interface_types_block_t = (nw_interface_type_t) -> Bool */
@@ -1721,12 +1721,12 @@ export type nw_path_status_t = (number & {});
 
 export const nw_path_status_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_path_status_t { return callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 639324545764344, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_path_status_t { return callSDK<nw_path_status_t>("Network_5d69670f0307b385", 639324545764344, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_path_status_t): number { return callSDK<number>("Network_212edf3d13b127f5", 1310440357799232, $self, []); },
-  setRawValue($self: nw_path_status_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2945413319864315, $self, [value]); },
+  getRawValue($self: nw_path_status_t): number { return callSDK<number>("Network_5d69670f0307b385", 1310440357799232, $self, []); },
+  setRawValue($self: nw_path_status_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 2945413319864315, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_path_status_t { return callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 4267767639117856, undefined, [rawValue]); }
+  init(rawValue: number): nw_path_status_t { return callSDK<nw_path_status_t>("Network_5d69670f0307b385", 4267767639117856, undefined, [rawValue]); }
 };
 
 /** typealias nw_path_t = any OS_nw_path */
@@ -1737,12 +1737,12 @@ export type nw_path_unsatisfied_reason_t = (number & {});
 
 export const nw_path_unsatisfied_reason_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_path_unsatisfied_reason_t { return callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 1323907346614555, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_path_unsatisfied_reason_t { return callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 1323907346614555, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_path_unsatisfied_reason_t): number { return callSDK<number>("Network_212edf3d13b127f5", 1770862110403142, $self, []); },
-  setRawValue($self: nw_path_unsatisfied_reason_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1977284723215235, $self, [value]); },
+  getRawValue($self: nw_path_unsatisfied_reason_t): number { return callSDK<number>("Network_5d69670f0307b385", 1770862110403142, $self, []); },
+  setRawValue($self: nw_path_unsatisfied_reason_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 1977284723215235, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_path_unsatisfied_reason_t { return callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 3791175775202809, undefined, [rawValue]); }
+  init(rawValue: number): nw_path_unsatisfied_reason_t { return callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 3791175775202809, undefined, [rawValue]); }
 };
 
 /** typealias nw_privacy_context_t = any OS_nw_privacy_context */
@@ -1774,12 +1774,12 @@ export type nw_quic_stream_type_t = (number & {});
 
 export const nw_quic_stream_type_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_quic_stream_type_t { return callSDK<nw_quic_stream_type_t>("Network_212edf3d13b127f5", 688758128967785, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_quic_stream_type_t { return callSDK<nw_quic_stream_type_t>("Network_5d69670f0307b385", 688758128967785, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_quic_stream_type_t): number { return callSDK<number>("Network_212edf3d13b127f5", 4256471167817850, $self, []); },
-  setRawValue($self: nw_quic_stream_type_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 133873739746048, $self, [value]); },
+  getRawValue($self: nw_quic_stream_type_t): number { return callSDK<number>("Network_5d69670f0307b385", 4256471167817850, $self, []); },
+  setRawValue($self: nw_quic_stream_type_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 133873739746048, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_quic_stream_type_t { return callSDK<nw_quic_stream_type_t>("Network_212edf3d13b127f5", 924523203800183, undefined, [rawValue]); }
+  init(rawValue: number): nw_quic_stream_type_t { return callSDK<nw_quic_stream_type_t>("Network_5d69670f0307b385", 924523203800183, undefined, [rawValue]); }
 };
 
 /** typealias nw_relay_hop_t = any OS_nw_relay_hop */
@@ -1796,12 +1796,12 @@ export type nw_report_resolution_protocol_t = (number & {});
 
 export const nw_report_resolution_protocol_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_report_resolution_protocol_t { return callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 1615006555205410, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_report_resolution_protocol_t { return callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 1615006555205410, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_report_resolution_protocol_t): number { return callSDK<number>("Network_212edf3d13b127f5", 1903758743338790, $self, []); },
-  setRawValue($self: nw_report_resolution_protocol_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2826675934458242, $self, [value]); },
+  getRawValue($self: nw_report_resolution_protocol_t): number { return callSDK<number>("Network_5d69670f0307b385", 1903758743338790, $self, []); },
+  setRawValue($self: nw_report_resolution_protocol_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 2826675934458242, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_report_resolution_protocol_t { return callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 2954995145072791, undefined, [rawValue]); }
+  init(rawValue: number): nw_report_resolution_protocol_t { return callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 2954995145072791, undefined, [rawValue]); }
 };
 
 /** typealias nw_report_resolution_report_enumerator_t = (nw_resolution_report_t) -> Bool */
@@ -1812,12 +1812,12 @@ export type nw_report_resolution_source_t = (number & {});
 
 export const nw_report_resolution_source_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_report_resolution_source_t { return callSDK<nw_report_resolution_source_t>("Network_212edf3d13b127f5", 2106247564757231, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_report_resolution_source_t { return callSDK<nw_report_resolution_source_t>("Network_5d69670f0307b385", 2106247564757231, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_report_resolution_source_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2470510898644651, $self, []); },
-  setRawValue($self: nw_report_resolution_source_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 122065533101361, $self, [value]); },
+  getRawValue($self: nw_report_resolution_source_t): number { return callSDK<number>("Network_5d69670f0307b385", 2470510898644651, $self, []); },
+  setRawValue($self: nw_report_resolution_source_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 122065533101361, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_report_resolution_source_t { return callSDK<nw_report_resolution_source_t>("Network_212edf3d13b127f5", 2216401320534877, undefined, [rawValue]); }
+  init(rawValue: number): nw_report_resolution_source_t { return callSDK<nw_report_resolution_source_t>("Network_5d69670f0307b385", 2216401320534877, undefined, [rawValue]); }
 };
 
 /** typealias nw_resolution_report_t = any OS_nw_resolution_report */
@@ -1831,12 +1831,12 @@ export type nw_service_class_t = (number & {});
 
 export const nw_service_class_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_service_class_t { return callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 1560285306583515, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_service_class_t { return callSDK<nw_service_class_t>("Network_5d69670f0307b385", 1560285306583515, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_service_class_t): number { return callSDK<number>("Network_212edf3d13b127f5", 3746753320775084, $self, []); },
-  setRawValue($self: nw_service_class_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2731326503158216, $self, [value]); },
+  getRawValue($self: nw_service_class_t): number { return callSDK<number>("Network_5d69670f0307b385", 3746753320775084, $self, []); },
+  setRawValue($self: nw_service_class_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 2731326503158216, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_service_class_t { return callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 1418921547712709, undefined, [rawValue]); }
+  init(rawValue: number): nw_service_class_t { return callSDK<nw_service_class_t>("Network_5d69670f0307b385", 1418921547712709, undefined, [rawValue]); }
 };
 
 /** typealias nw_txt_record_access_bytes_t = (UnsafePointer<UInt8>, Int) -> Bool */
@@ -1853,12 +1853,12 @@ export type nw_txt_record_find_key_t = (number & {});
 
 export const nw_txt_record_find_key_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_txt_record_find_key_t { return callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 3476220693798474, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_txt_record_find_key_t { return callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 3476220693798474, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_txt_record_find_key_t): number { return callSDK<number>("Network_212edf3d13b127f5", 1070316128622411, $self, []); },
-  setRawValue($self: nw_txt_record_find_key_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 812050011997781, $self, [value]); },
+  getRawValue($self: nw_txt_record_find_key_t): number { return callSDK<number>("Network_5d69670f0307b385", 1070316128622411, $self, []); },
+  setRawValue($self: nw_txt_record_find_key_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 812050011997781, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_txt_record_find_key_t { return callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 467528787361108, undefined, [rawValue]); }
+  init(rawValue: number): nw_txt_record_find_key_t { return callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 467528787361108, undefined, [rawValue]); }
 };
 
 /** typealias nw_txt_record_t = any OS_nw_txt_record */
@@ -1875,12 +1875,12 @@ export type nw_ws_close_code_t = (number & {});
 
 export const nw_ws_close_code_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_ws_close_code_t { return callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 2616896187941526, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ws_close_code_t { return callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 2616896187941526, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_ws_close_code_t): number { return callSDK<number>("Network_212edf3d13b127f5", 3365528671443051, $self, []); },
-  setRawValue($self: nw_ws_close_code_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 4303454675425861, $self, [value]); },
+  getRawValue($self: nw_ws_close_code_t): number { return callSDK<number>("Network_5d69670f0307b385", 3365528671443051, $self, []); },
+  setRawValue($self: nw_ws_close_code_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 4303454675425861, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_ws_close_code_t { return callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 363428886362743, undefined, [rawValue]); }
+  init(rawValue: number): nw_ws_close_code_t { return callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 363428886362743, undefined, [rawValue]); }
 };
 
 /** struct nw_ws_opcode_t */
@@ -1888,12 +1888,12 @@ export type nw_ws_opcode_t = (number & {});
 
 export const nw_ws_opcode_t = {
   /** init(rawValue: Int32) */
-  initRawValue(rawValue: number): nw_ws_opcode_t { return callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 1301006018603733, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ws_opcode_t { return callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 1301006018603733, undefined, [rawValue]); },
   /** var rawValue: Int32 */
-  getRawValue($self: nw_ws_opcode_t): number { return callSDK<number>("Network_212edf3d13b127f5", 321584284110003, $self, []); },
-  setRawValue($self: nw_ws_opcode_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 932391022152003, $self, [value]); },
+  getRawValue($self: nw_ws_opcode_t): number { return callSDK<number>("Network_5d69670f0307b385", 321584284110003, $self, []); },
+  setRawValue($self: nw_ws_opcode_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 932391022152003, $self, [value]); },
   /** init(_ rawValue: Int32) */
-  init(rawValue: number): nw_ws_opcode_t { return callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 487648132089432, undefined, [rawValue]); }
+  init(rawValue: number): nw_ws_opcode_t { return callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 487648132089432, undefined, [rawValue]); }
 };
 
 /** typealias nw_ws_pong_handler_t = (nw_error_t?) -> Void */
@@ -1907,12 +1907,12 @@ export type nw_ws_response_status_t = (number & {});
 
 export const nw_ws_response_status_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_ws_response_status_t { return callSDK<nw_ws_response_status_t>("Network_212edf3d13b127f5", 2247702462128636, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ws_response_status_t { return callSDK<nw_ws_response_status_t>("Network_5d69670f0307b385", 2247702462128636, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_ws_response_status_t): number { return callSDK<number>("Network_212edf3d13b127f5", 1625141490660557, $self, []); },
-  setRawValue($self: nw_ws_response_status_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3080081476588825, $self, [value]); },
+  getRawValue($self: nw_ws_response_status_t): number { return callSDK<number>("Network_5d69670f0307b385", 1625141490660557, $self, []); },
+  setRawValue($self: nw_ws_response_status_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 3080081476588825, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_ws_response_status_t { return callSDK<nw_ws_response_status_t>("Network_212edf3d13b127f5", 3602107959953213, undefined, [rawValue]); }
+  init(rawValue: number): nw_ws_response_status_t { return callSDK<nw_ws_response_status_t>("Network_5d69670f0307b385", 3602107959953213, undefined, [rawValue]); }
 };
 
 /** typealias nw_ws_response_t = any OS_nw_ws_response */
@@ -1926,12 +1926,12 @@ export type nw_ws_version_t = (number & {});
 
 export const nw_ws_version_t = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): nw_ws_version_t { return callSDK<nw_ws_version_t>("Network_212edf3d13b127f5", 3087661256421765, undefined, [rawValue]); },
+  initRawValue(rawValue: number): nw_ws_version_t { return callSDK<nw_ws_version_t>("Network_5d69670f0307b385", 3087661256421765, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: nw_ws_version_t): number { return callSDK<number>("Network_212edf3d13b127f5", 2826334691299887, $self, []); },
-  setRawValue($self: nw_ws_version_t, value: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3943823776721077, $self, [value]); },
+  getRawValue($self: nw_ws_version_t): number { return callSDK<number>("Network_5d69670f0307b385", 2826334691299887, $self, []); },
+  setRawValue($self: nw_ws_version_t, value: number): void { return callSDK<void>("Network_5d69670f0307b385", 3943823776721077, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): nw_ws_version_t { return callSDK<nw_ws_version_t>("Network_212edf3d13b127f5", 218045524631519, undefined, [rawValue]); }
+  init(rawValue: number): nw_ws_version_t { return callSDK<nw_ws_version_t>("Network_5d69670f0307b385", 218045524631519, undefined, [rawValue]); }
 };
 
 /**
@@ -1943,59 +1943,59 @@ export class NWBrowser extends SDKHandle {
    * final let descriptor: NWBrowser.Descriptor
    * @availability iOS 13.0+
    */
-  get descriptor(): NWBrowser_Descriptor { return callSDK<NWBrowser_Descriptor>("Network_212edf3d13b127f5", 488868328452488, this, []); }
+  get descriptor(): NWBrowser_Descriptor { return callSDK<NWBrowser_Descriptor>("Network_5d69670f0307b385", 488868328452488, this, []); }
   /**
    * final let parameters: NWParameters
    * @availability iOS 13.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3617375931476533, this, []); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3617375931476533, this, []); }
   /**
    * final var browseResults: Set<NWBrowser.Result> { get }
    * @availability iOS 13.0+
    */
-  get browseResults(): Array<NWBrowser_Result> { return callSDK<Array<NWBrowser_Result>>("Network_212edf3d13b127f5", 2594781456372591, this, []); }
+  get browseResults(): Array<NWBrowser_Result> { return callSDK<Array<NWBrowser_Result>>("Network_5d69670f0307b385", 2594781456372591, this, []); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 2367325269177344, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 2367325269177344, this, []); }
   /**
    * @preconcurrency final var stateUpdateHandler: (@Sendable (NWBrowser.State) -> Void)? { get set }
    * @availability iOS 13.0+
    */
-  get stateUpdateHandler(): (((arg0: NWBrowser_State) => Promise<void>)) | null { return callSDK<(((arg0: NWBrowser_State) => Promise<void>)) | null>("Network_212edf3d13b127f5", 725448750606698, this, []); }
-  set stateUpdateHandler(value: (((arg0: NWBrowser_State) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 3549053765195100, this, [value], [{"callback":{"out":[]}}]); }
+  get stateUpdateHandler(): (((arg0: NWBrowser_State) => Promise<void>)) | null { return callSDK<(((arg0: NWBrowser_State) => Promise<void>)) | null>("Network_5d69670f0307b385", 725448750606698, this, []); }
+  set stateUpdateHandler(value: (((arg0: NWBrowser_State) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 3549053765195100, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var browseResultsChangedHandler: (@Sendable (Set<NWBrowser.Result>, Set<NWBrowser.Result.Change>) -> Void)? { get set }
    * @availability iOS 13.0+
    */
-  get browseResultsChangedHandler(): (((arg0: Array<NWBrowser_Result>, arg1: Array<NWBrowser_Result_Change>) => Promise<void>)) | null { return callSDK<(((arg0: Array<NWBrowser_Result>, arg1: Array<NWBrowser_Result_Change>) => Promise<void>)) | null>("Network_212edf3d13b127f5", 1875148605889092, this, []); }
-  set browseResultsChangedHandler(value: (((arg0: Array<NWBrowser_Result>, arg1: Array<NWBrowser_Result_Change>) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 3019324337516728, this, [value], [{"callback":{"out":[]}}]); }
+  get browseResultsChangedHandler(): (((arg0: Array<NWBrowser_Result>, arg1: Array<NWBrowser_Result_Change>) => Promise<void>)) | null { return callSDK<(((arg0: Array<NWBrowser_Result>, arg1: Array<NWBrowser_Result_Change>) => Promise<void>)) | null>("Network_5d69670f0307b385", 1875148605889092, this, []); }
+  set browseResultsChangedHandler(value: (((arg0: Array<NWBrowser_Result>, arg1: Array<NWBrowser_Result_Change>) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 3019324337516728, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * init(for descriptor: NWBrowser.Descriptor, using parameters: NWParameters)
    * @availability iOS 13.0+
    */
-  static init(descriptor: NWBrowser_Descriptor, parameters: NWParameters): NWBrowser { return callSDK<NWBrowser>("Network_212edf3d13b127f5", 4078214764388015, undefined, [descriptor, parameters]); }
+  static init(descriptor: NWBrowser_Descriptor, parameters: NWParameters): NWBrowser { return callSDK<NWBrowser>("Network_5d69670f0307b385", 4078214764388015, undefined, [descriptor, parameters]); }
   /**
    * final var queue: DispatchQueue? { get }
    * @availability iOS 13.0+
    */
-  get queue(): $SDK66 { return callSDK<$SDK66>("Network_212edf3d13b127f5", 1086419998936464, this, []); }
+  get queue(): $SDK66 { return callSDK<$SDK66>("Network_5d69670f0307b385", 1086419998936464, this, []); }
   /**
    * final func start(queue: DispatchQueue)
    * @availability iOS 13.0+
    */
-  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 2909680196995084, this, [queue]); }
+  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 2909680196995084, this, [queue]); }
   /**
    * final var state: NWBrowser.State { get }
    * @availability iOS 13.0+
    */
-  get state(): NWBrowser_State { return callSDK<NWBrowser_State>("Network_212edf3d13b127f5", 3563561722251805, this, []); }
+  get state(): NWBrowser_State { return callSDK<NWBrowser_State>("Network_5d69670f0307b385", 3563561722251805, this, []); }
   /**
    * final func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("Network_212edf3d13b127f5", 3848404489499340, this, []); }
+  cancel(): void { return callSDK<void>("Network_5d69670f0307b385", 3848404489499340, this, []); }
   declare readonly $type: { "s:7Network9NWBrowserC": true };
 }
 
@@ -2016,17 +2016,17 @@ export class NWBrowser_Result extends SDKHandle {
    * let interfaces: [NWInterface]
    * @availability iOS 13.0+
    */
-  get interfaces(): Array<NWInterface> { return callSDK<Array<NWInterface>>("Network_212edf3d13b127f5", 199748813530560, this, []); }
+  get interfaces(): Array<NWInterface> { return callSDK<Array<NWInterface>>("Network_5d69670f0307b385", 199748813530560, this, []); }
   /**
    * let endpoint: NWEndpoint
    * @availability iOS 13.0+
    */
-  get endpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_212edf3d13b127f5", 367449864470041, this, []); }
+  get endpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_5d69670f0307b385", 367449864470041, this, []); }
   /**
    * let metadata: NWBrowser.Result.Metadata
    * @availability iOS 13.0+
    */
-  get metadata(): NWBrowser_Result_Metadata { return callSDK<NWBrowser_Result_Metadata>("Network_212edf3d13b127f5", 2130979142830935, this, []); }
+  get metadata(): NWBrowser_Result_Metadata { return callSDK<NWBrowser_Result_Metadata>("Network_5d69670f0307b385", 2130979142830935, this, []); }
   declare readonly $type: { "s:7Network9NWBrowserC6ResultV": true };
 }
 
@@ -2039,7 +2039,7 @@ export class NWBrowser_Result_Change extends SDKHandle {
    * init(between old: NWBrowser.Result?, _ new: NWBrowser.Result?)
    * @availability iOS 13.0+
    */
-  static init(old?: (NWBrowser_Result) | null, new_?: (NWBrowser_Result) | null): NWBrowser_Result_Change { return callSDK<NWBrowser_Result_Change>("Network_212edf3d13b127f5", 4166994143629055, undefined, [old, new_]); }
+  static init(old?: (NWBrowser_Result) | null, new_?: (NWBrowser_Result) | null): NWBrowser_Result_Change { return callSDK<NWBrowser_Result_Change>("Network_5d69670f0307b385", 4166994143629055, undefined, [old, new_]); }
   declare readonly $type: { "s:7Network9NWBrowserC6ResultV6ChangeO": true };
 }
 
@@ -2054,32 +2054,32 @@ export const NWBrowser_Result_Change_Flags = {
    * static let interfaceAdded: NWBrowser.Result.Change.Flags
    * @availability iOS 13.0+
    */
-  get interfaceAdded(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_212edf3d13b127f5", 4436962323556607, undefined, []); },
+  get interfaceAdded(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_5d69670f0307b385", 4436962323556607, undefined, []); },
   /**
    * static let metadataChanged: NWBrowser.Result.Change.Flags
    * @availability iOS 13.0+
    */
-  get metadataChanged(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_212edf3d13b127f5", 561307994850345, undefined, []); },
+  get metadataChanged(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_5d69670f0307b385", 561307994850345, undefined, []); },
   /**
    * static let interfaceRemoved: NWBrowser.Result.Change.Flags
    * @availability iOS 13.0+
    */
-  get interfaceRemoved(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_212edf3d13b127f5", 2989232520475448, undefined, []); },
+  get interfaceRemoved(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_5d69670f0307b385", 2989232520475448, undefined, []); },
   /**
    * init(rawValue: UInt8)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_212edf3d13b127f5", 665856245101234, undefined, [rawValue]); },
+  init(rawValue: number): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_5d69670f0307b385", 665856245101234, undefined, [rawValue]); },
   /**
    * let rawValue: UInt8
    * @availability iOS 13.0+
    */
-  getRawValue($self: NWBrowser_Result_Change_Flags): number { return callSDK<number>("Network_212edf3d13b127f5", 4225330254715003, $self, []); },
+  getRawValue($self: NWBrowser_Result_Change_Flags): number { return callSDK<number>("Network_5d69670f0307b385", 4225330254715003, $self, []); },
   /**
    * static let identical: NWBrowser.Result.Change.Flags
    * @availability iOS 13.0+
    */
-  get identical(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_212edf3d13b127f5", 3121483722745415, undefined, []); }
+  get identical(): NWBrowser_Result_Change_Flags { return callSDK<NWBrowser_Result_Change_Flags>("Network_5d69670f0307b385", 3121483722745415, undefined, []); }
 };
 
 /**
@@ -2109,7 +2109,7 @@ export class NWBrowser_Result_Metadata extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 624259558267687, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 624259558267687, this, []); }
   declare readonly $type: { "s:7Network9NWBrowserC6ResultV8MetadataO": true };
 }
 
@@ -2130,156 +2130,156 @@ export class NWConnection extends SDKHandle {
    * final let parameters: NWParameters
    * @availability iOS 12.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 2878656505696499, this, []); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 2878656505696499, this, []); }
   /**
    * final var currentPath: NWPath? { get }
    * @availability iOS 12.0+
    */
-  get currentPath(): (NWPath) | null { return callSDK<(NWPath) | null>("Network_212edf3d13b127f5", 3447553079940344, this, []); }
+  get currentPath(): (NWPath) | null { return callSDK<(NWPath) | null>("Network_5d69670f0307b385", 3447553079940344, this, []); }
   /**
    * final func forceCancel()
    * @availability iOS 12.0+
    */
-  forceCancel(): void { return callSDK<void>("Network_212edf3d13b127f5", 464618613516975, this, []); }
+  forceCancel(): void { return callSDK<void>("Network_5d69670f0307b385", 464618613516975, this, []); }
   /**
    * @preconcurrency final func receiveMessage(completion: @escaping @Sendable (Data?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
    * @availability iOS 12.0+
    */
-  receiveMessage(completion: $SDK68): void { return callSDK<void>("Network_212edf3d13b127f5", 2948758481688987, this, [completion], [{"callback":{"out":[]}}]); }
+  receiveMessage(completion: $SDK68): void { return callSDK<void>("Network_5d69670f0307b385", 2948758481688987, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 542117892908272, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 542117892908272, this, []); }
   /**
    * @preconcurrency final var pathUpdateHandler: (@Sendable (NWPath) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get pathUpdateHandler(): $SDK69 { return callSDK<$SDK69>("Network_212edf3d13b127f5", 2584825816184660, this, []); }
-  set pathUpdateHandler(value: $SDK70) { callSDK<void>("Network_212edf3d13b127f5", 1494118362016846, this, [value], [{"callback":{"out":[]}}]); }
+  get pathUpdateHandler(): $SDK69 { return callSDK<$SDK69>("Network_5d69670f0307b385", 2584825816184660, this, []); }
+  set pathUpdateHandler(value: $SDK70) { callSDK<void>("Network_5d69670f0307b385", 1494118362016846, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var stateUpdateHandler: (@Sendable (NWConnection.State) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get stateUpdateHandler(): (((arg0: NWConnection_State) => Promise<void>)) | null { return callSDK<(((arg0: NWConnection_State) => Promise<void>)) | null>("Network_212edf3d13b127f5", 2289631673751078, this, []); }
-  set stateUpdateHandler(value: (((arg0: NWConnection_State) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 3395640091327848, this, [value], [{"callback":{"out":[]}}]); }
+  get stateUpdateHandler(): (((arg0: NWConnection_State) => Promise<void>)) | null { return callSDK<(((arg0: NWConnection_State) => Promise<void>)) | null>("Network_5d69670f0307b385", 2289631673751078, this, []); }
+  set stateUpdateHandler(value: (((arg0: NWConnection_State) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 3395640091327848, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * final var maximumDatagramSize: Int { get }
    * @availability iOS 13.0+
    */
-  get maximumDatagramSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 756137418319147, this, []); }
+  get maximumDatagramSize(): number { return callSDK<number>("Network_5d69670f0307b385", 756137418319147, this, []); }
   /**
    * @preconcurrency final func receiveDiscontiguous(minimumIncompleteLength: Int, maximumLength: Int, completion: @escaping @Sendable (DispatchData?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
    * @availability iOS 14.0+
    */
-  receiveDiscontiguous(minimumIncompleteLength: number, maximumLength: number, completion: $SDK73): void { return callSDK<void>("Network_212edf3d13b127f5", 3524626553882841, this, [minimumIncompleteLength, maximumLength, completion], [null,null,{"callback":{"out":[]}}]); }
+  receiveDiscontiguous(minimumIncompleteLength: number, maximumLength: number, completion: $SDK73): void { return callSDK<void>("Network_5d69670f0307b385", 3524626553882841, this, [minimumIncompleteLength, maximumLength, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * final func cancelCurrentEndpoint()
    * @availability iOS 12.0+
    */
-  cancelCurrentEndpoint(): void { return callSDK<void>("Network_212edf3d13b127f5", 4199795522767447, this, []); }
+  cancelCurrentEndpoint(): void { return callSDK<void>("Network_5d69670f0307b385", 4199795522767447, this, []); }
   /**
    * @preconcurrency final var viabilityUpdateHandler: (@Sendable (Bool) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get viabilityUpdateHandler(): $SDK74 { return callSDK<$SDK74>("Network_212edf3d13b127f5", 3527068230966711, this, []); }
-  set viabilityUpdateHandler(value: $SDK75) { callSDK<void>("Network_212edf3d13b127f5", 3109409376240076, this, [value], [{"callback":{"out":[]}}]); }
+  get viabilityUpdateHandler(): $SDK74 { return callSDK<$SDK74>("Network_5d69670f0307b385", 3527068230966711, this, []); }
+  set viabilityUpdateHandler(value: $SDK75) { callSDK<void>("Network_5d69670f0307b385", 3109409376240076, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var betterPathUpdateHandler: (@Sendable (Bool) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get betterPathUpdateHandler(): $SDK74 { return callSDK<$SDK74>("Network_212edf3d13b127f5", 3768824369030111, this, []); }
-  set betterPathUpdateHandler(value: $SDK75) { callSDK<void>("Network_212edf3d13b127f5", 715517603066223, this, [value], [{"callback":{"out":[]}}]); }
+  get betterPathUpdateHandler(): $SDK74 { return callSDK<$SDK74>("Network_5d69670f0307b385", 3768824369030111, this, []); }
+  set betterPathUpdateHandler(value: $SDK75) { callSDK<void>("Network_5d69670f0307b385", 715517603066223, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * final func startDataTransferReport() -> NWConnection.PendingDataTransferReport
    * @availability iOS 13.0+
    */
-  startDataTransferReport(): NWConnection_PendingDataTransferReport { return callSDK<NWConnection_PendingDataTransferReport>("Network_212edf3d13b127f5", 610374625446476, this, []); }
+  startDataTransferReport(): NWConnection_PendingDataTransferReport { return callSDK<NWConnection_PendingDataTransferReport>("Network_5d69670f0307b385", 610374625446476, this, []); }
   /**
    * @preconcurrency final func requestEstablishmentReport(queue: DispatchQueue, completion: @escaping @Sendable (NWConnection.EstablishmentReport?) -> Void)
    * @availability iOS 13.0+
    */
-  requestEstablishmentReport(queue: _Dispatch_DispatchQueue, completion: ((arg0: (NWConnection_EstablishmentReport) | null) => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 2199615442172904, this, [queue, completion], [null,{"callback":{"out":[]}}]); }
+  requestEstablishmentReport(queue: _Dispatch_DispatchQueue, completion: ((arg0: (NWConnection_EstablishmentReport) | null) => void)): void { return callSDK<void>("Network_5d69670f0307b385", 2199615442172904, this, [queue, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final func receiveMessageDiscontiguous(completion: @escaping @Sendable (DispatchData?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
    * @availability iOS 14.0+
    */
-  receiveMessageDiscontiguous(completion: $SDK73): void { return callSDK<void>("Network_212edf3d13b127f5", 2525179566636464, this, [completion], [{"callback":{"out":[]}}]); }
+  receiveMessageDiscontiguous(completion: $SDK73): void { return callSDK<void>("Network_5d69670f0307b385", 2525179566636464, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * init(to: NWEndpoint, using: NWParameters)
    * @availability iOS 12.0+
    */
-  static initToUsing(to: NWEndpoint, using: NWParameters): NWConnection { return callSDK<NWConnection>("Network_212edf3d13b127f5", 1298083749674393, undefined, [to, using]); }
+  static initToUsing(to: NWEndpoint, using: NWParameters): NWConnection { return callSDK<NWConnection>("Network_5d69670f0307b385", 1298083749674393, undefined, [to, using]); }
   /**
    * convenience init?(from: NWConnectionGroup, to: NWEndpoint? = nil, using: NWProtocolOptions? = nil)
    * @availability iOS 15.0+
    */
-  static initFromToUsing(from: NWConnectionGroup, to?: (NWEndpoint) | null, using?: $SDK77): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_212edf3d13b127f5", 3342316156636056, undefined, [from, to, using]); }
+  static initFromToUsing(from: NWConnectionGroup, to?: (NWEndpoint) | null, using?: $SDK77): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_5d69670f0307b385", 3342316156636056, undefined, [from, to, using]); }
   /**
    * convenience init(host: NWEndpoint.Host, port: NWEndpoint.Port, using: NWParameters)
    * @availability iOS 12.0+
    */
-  static initHostPortUsing(host: NWEndpoint_Host, port: NWEndpoint_Port, using: NWParameters): NWConnection { return callSDK<NWConnection>("Network_212edf3d13b127f5", 4064945982118944, undefined, [host, port, using]); }
+  static initHostPortUsing(host: NWEndpoint_Host, port: NWEndpoint_Port, using: NWParameters): NWConnection { return callSDK<NWConnection>("Network_5d69670f0307b385", 4064945982118944, undefined, [host, port, using]); }
   /**
    * @preconcurrency final func send(content: Data?, contentContext: NWConnection.ContentContext = .defaultMessage, isComplete: Bool = true, completion: NWConnection.SendCompletion)
    * @availability iOS 12.0+
    */
-  sendContentContentContextIsCompleteCompletion(content: (ArrayBuffer) | null, contentContext: NWConnection_ContentContext, isComplete: boolean, completion: NWConnection_SendCompletion): void { return callSDK<void>("Network_212edf3d13b127f5", 1930424488892912, this, [content, contentContext, isComplete, completion]); }
+  sendContentContentContextIsCompleteCompletion(content: (ArrayBuffer) | null, contentContext: NWConnection_ContentContext, isComplete: boolean, completion: NWConnection_SendCompletion): void { return callSDK<void>("Network_5d69670f0307b385", 1930424488892912, this, [content, contentContext, isComplete, completion]); }
   /**
    * @preconcurrency final func send<Content>(content: Content?, contentContext: NWConnection.ContentContext = .defaultMessage, isComplete: Bool = true, completion: NWConnection.SendCompletion) where Content : DataProtocol
    * @availability iOS 13.0+
    */
-  sendContentContentContextIsCompleteCompletion50355(content: (ArrayBuffer) | null, contentContext: NWConnection_ContentContext, isComplete: boolean, completion: NWConnection_SendCompletion): void { return callSDK<void>("Network_212edf3d13b127f5", 60545232504701, this, [content, contentContext, isComplete, completion]); }
+  sendContentContentContextIsCompleteCompletion50355(content: (ArrayBuffer) | null, contentContext: NWConnection_ContentContext, isComplete: boolean, completion: NWConnection_SendCompletion): void { return callSDK<void>("Network_5d69670f0307b385", 60545232504701, this, [content, contentContext, isComplete, completion]); }
   /**
    * final func batch(_ block: () -> Void)
    * @availability iOS 12.0+
    */
-  batch(block: (() => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 1115705570487431, this, [block], [{"callback":{"out":[]}}]); }
+  batch(block: (() => void)): void { return callSDK<void>("Network_5d69670f0307b385", 1115705570487431, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * final var queue: DispatchQueue? { get }
    * @availability iOS 12.0+
    */
-  get queue(): $SDK66 { return callSDK<$SDK66>("Network_212edf3d13b127f5", 2332333254837134, this, []); }
+  get queue(): $SDK66 { return callSDK<$SDK66>("Network_5d69670f0307b385", 2332333254837134, this, []); }
   /**
    * final func start(queue: DispatchQueue)
    * @availability iOS 12.0+
    */
-  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 976751272975861, this, [queue]); }
+  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 976751272975861, this, [queue]); }
   /**
    * final var state: NWConnection.State { get }
    * @availability iOS 12.0+
    */
-  get state(): NWConnection_State { return callSDK<NWConnection_State>("Network_212edf3d13b127f5", 2897316974768341, this, []); }
+  get state(): NWConnection_State { return callSDK<NWConnection_State>("Network_5d69670f0307b385", 2897316974768341, this, []); }
   /**
    * final func cancel()
    * @availability iOS 12.0+
    */
-  cancel(): void { return callSDK<void>("Network_212edf3d13b127f5", 4149438190861839, this, []); }
+  cancel(): void { return callSDK<void>("Network_5d69670f0307b385", 4149438190861839, this, []); }
   /**
    * convenience init?(message: NWConnectionGroup.Message)
    * @availability iOS 15.0+
    */
-  static initMessage(message: NWConnectionGroup_Message): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_212edf3d13b127f5", 2586963053758218, undefined, [message]); }
+  static initMessage(message: NWConnectionGroup_Message): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_5d69670f0307b385", 2586963053758218, undefined, [message]); }
   /**
    * @preconcurrency final func receive(minimumIncompleteLength: Int, maximumLength: Int, completion: @escaping @Sendable (Data?, NWConnection.ContentContext?, Bool, NWError?) -> Void)
    * @availability iOS 12.0+
    */
-  receive(minimumIncompleteLength: number, maximumLength: number, completion: $SDK68): void { return callSDK<void>("Network_212edf3d13b127f5", 1208605845313702, this, [minimumIncompleteLength, maximumLength, completion], [null,null,{"callback":{"out":[]}}]); }
+  receive(minimumIncompleteLength: number, maximumLength: number, completion: $SDK68): void { return callSDK<void>("Network_5d69670f0307b385", 1208605845313702, this, [minimumIncompleteLength, maximumLength, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * final func restart()
    * @availability iOS 12.0+
    */
-  restart(): void { return callSDK<void>("Network_212edf3d13b127f5", 3499949361790824, this, []); }
+  restart(): void { return callSDK<void>("Network_5d69670f0307b385", 3499949361790824, this, []); }
   /**
    * final let endpoint: NWEndpoint
    * @availability iOS 12.0+
    */
-  get endpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_212edf3d13b127f5", 3885417249924486, this, []); }
+  get endpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_5d69670f0307b385", 3885417249924486, this, []); }
   /**
    * final func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
    * @availability iOS 12.0+
    */
-  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_212edf3d13b127f5", 4193355308768437, this, [definition]); }
+  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_5d69670f0307b385", 4193355308768437, this, [definition]); }
   declare readonly $type: { "s:7Network12NWConnectionC": true };
 }
 
@@ -2292,57 +2292,57 @@ export class NWConnection_ContentContext extends SDKHandle {
    * final let antecedent: NWConnection.ContentContext?
    * @availability iOS 12.0+
    */
-  get antecedent(): $SDK78 { return callSDK<$SDK78>("Network_212edf3d13b127f5", 1645947882134315, this, []); }
+  get antecedent(): $SDK78 { return callSDK<$SDK78>("Network_5d69670f0307b385", 1645947882134315, this, []); }
   /**
    * init(identifier: String, expiration: UInt64 = 0, priority: Double = 0.5, isFinal: Bool = false, antecedent: NWConnection.ContentContext? = nil, metadata: [NWProtocolMetadata]? = [])
    * @availability iOS 12.0+
    */
-  static init(identifier: string, expiration?: number, priority?: number, isFinal?: boolean, antecedent?: $SDK78, metadata?: (Array<NWProtocolMetadata>) | null): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_212edf3d13b127f5", 883042471423051, undefined, [identifier, expiration, priority, isFinal, antecedent, metadata]); }
+  static init(identifier: string, expiration?: number, priority?: number, isFinal?: boolean, antecedent?: $SDK78, metadata?: (Array<NWProtocolMetadata>) | null): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_5d69670f0307b385", 883042471423051, undefined, [identifier, expiration, priority, isFinal, antecedent, metadata]); }
   /**
    * final let identifier: String
    * @availability iOS 12.0+
    */
-  get identifier(): string { return callSDK<string>("Network_212edf3d13b127f5", 2875726019972804, this, []); }
+  get identifier(): string { return callSDK<string>("Network_5d69670f0307b385", 2875726019972804, this, []); }
   /**
    * static let finalMessage: NWConnection.ContentContext
    * @availability iOS 12.0+
    */
-  static get finalMessage(): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_212edf3d13b127f5", 2816422046951568, undefined, []); }
+  static get finalMessage(): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_5d69670f0307b385", 2816422046951568, undefined, []); }
   /**
    * static let defaultStream: NWConnection.ContentContext
    * @availability iOS 12.0+
    */
-  static get defaultStream(): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_212edf3d13b127f5", 962269865221369, undefined, []); }
+  static get defaultStream(): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_5d69670f0307b385", 962269865221369, undefined, []); }
   /**
    * static let defaultMessage: NWConnection.ContentContext
    * @availability iOS 12.0+
    */
-  static get defaultMessage(): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_212edf3d13b127f5", 2467902461707614, undefined, []); }
+  static get defaultMessage(): NWConnection_ContentContext { return callSDK<NWConnection_ContentContext>("Network_5d69670f0307b385", 2467902461707614, undefined, []); }
   /**
    * func protocolMetadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
    * @availability iOS 12.0+
    */
-  protocolMetadataDefinition(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_212edf3d13b127f5", 314678343084909, this, [definition]); }
+  protocolMetadataDefinition(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_5d69670f0307b385", 314678343084909, this, [definition]); }
   /**
    * var protocolMetadata: [NWProtocolMetadata] { get }
    * @availability iOS 12.0+
    */
-  get protocolMetadata(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 1978980988250102, this, []); }
+  get protocolMetadata(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 1978980988250102, this, []); }
   /**
    * final let relativePriority: Double
    * @availability iOS 12.0+
    */
-  get relativePriority(): number { return callSDK<number>("Network_212edf3d13b127f5", 3562353257932338, this, []); }
+  get relativePriority(): number { return callSDK<number>("Network_5d69670f0307b385", 3562353257932338, this, []); }
   /**
    * final let expirationMilliseconds: UInt64
    * @availability iOS 12.0+
    */
-  get expirationMilliseconds(): number { return callSDK<number>("Network_212edf3d13b127f5", 3170397768016089, this, []); }
+  get expirationMilliseconds(): number { return callSDK<number>("Network_5d69670f0307b385", 3170397768016089, this, []); }
   /**
    * final let isFinal: Bool
    * @availability iOS 12.0+
    */
-  get isFinal(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 472215770668051, this, []); }
+  get isFinal(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 472215770668051, this, []); }
   declare readonly $type: { "s:7Network12NWConnectionC14ContentContextC": true };
 }
 
@@ -2355,22 +2355,22 @@ export class NWConnection_DataTransferReport extends SDKHandle {
    * let aggregatePathReport: NWConnection.DataTransferReport.PathReport
    * @availability iOS 13.0+
    */
-  get aggregatePathReport(): NWConnection_DataTransferReport_PathReport { return callSDK<NWConnection_DataTransferReport_PathReport>("Network_212edf3d13b127f5", 2052096022549402, this, []); }
+  get aggregatePathReport(): NWConnection_DataTransferReport_PathReport { return callSDK<NWConnection_DataTransferReport_PathReport>("Network_5d69670f0307b385", 2052096022549402, this, []); }
   /**
    * let pathReports: [NWConnection.DataTransferReport.PathReport]
    * @availability iOS 13.0+
    */
-  get pathReports(): Array<NWConnection_DataTransferReport_PathReport> { return callSDK<Array<NWConnection_DataTransferReport_PathReport>>("Network_212edf3d13b127f5", 4015106543324743, this, []); }
+  get pathReports(): Array<NWConnection_DataTransferReport_PathReport> { return callSDK<Array<NWConnection_DataTransferReport_PathReport>>("Network_5d69670f0307b385", 4015106543324743, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 2884922805643708, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 2884922805643708, this, []); }
   /**
    * let duration: TimeInterval
    * @availability iOS 13.0+
    */
-  get duration(): number { return callSDK<number>("Network_212edf3d13b127f5", 491081749338698, this, []); }
+  get duration(): number { return callSDK<number>("Network_5d69670f0307b385", 491081749338698, this, []); }
   declare readonly $type: { "s:7Network12NWConnectionC18DataTransferReportV": true };
 }
 
@@ -2383,72 +2383,72 @@ export class NWConnection_DataTransferReport_PathReport extends SDKHandle {
    * let sentIPPacketCount: UInt64
    * @availability iOS 13.0+
    */
-  get sentIPPacketCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 3313390233221854, this, []); }
+  get sentIPPacketCount(): number { return callSDK<number>("Network_5d69670f0307b385", 3313390233221854, this, []); }
   /**
    * let transportMinimumRTT: TimeInterval
    * @availability iOS 13.0+
    */
-  get transportMinimumRTT(): number { return callSDK<number>("Network_212edf3d13b127f5", 1836740819205231, this, []); }
+  get transportMinimumRTT(): number { return callSDK<number>("Network_5d69670f0307b385", 1836740819205231, this, []); }
   /**
    * let transportRTTVariance: TimeInterval
    * @availability iOS 13.0+
    */
-  get transportRTTVariance(): number { return callSDK<number>("Network_212edf3d13b127f5", 4492802957230686, this, []); }
+  get transportRTTVariance(): number { return callSDK<number>("Network_5d69670f0307b385", 4492802957230686, this, []); }
   /**
    * let transportSmoothedRTT: TimeInterval
    * @availability iOS 13.0+
    */
-  get transportSmoothedRTT(): number { return callSDK<number>("Network_212edf3d13b127f5", 4029288469971020, this, []); }
+  get transportSmoothedRTT(): number { return callSDK<number>("Network_5d69670f0307b385", 4029288469971020, this, []); }
   /**
    * let receivedIPPacketCount: UInt64
    * @availability iOS 13.0+
    */
-  get receivedIPPacketCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 802923686726810, this, []); }
+  get receivedIPPacketCount(): number { return callSDK<number>("Network_5d69670f0307b385", 802923686726810, this, []); }
   /**
    * let sentTransportByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get sentTransportByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 2929195965759024, this, []); }
+  get sentTransportByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 2929195965759024, this, []); }
   /**
    * let sentApplicationByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get sentApplicationByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 2810579629655558, this, []); }
+  get sentApplicationByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 2810579629655558, this, []); }
   /**
    * let receivedTransportByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get receivedTransportByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 2082737569889962, this, []); }
+  get receivedTransportByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 2082737569889962, this, []); }
   /**
    * let receivedApplicationByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get receivedApplicationByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 4239796815486756, this, []); }
+  get receivedApplicationByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 4239796815486756, this, []); }
   /**
    * let retransmittedTransportByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get retransmittedTransportByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 371206552105020, this, []); }
+  get retransmittedTransportByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 371206552105020, this, []); }
   /**
    * let receivedTransportDuplicateByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get receivedTransportDuplicateByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 2149641667912908, this, []); }
+  get receivedTransportDuplicateByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 2149641667912908, this, []); }
   /**
    * let receivedTransportOutOfOrderByteCount: UInt64
    * @availability iOS 13.0+
    */
-  get receivedTransportOutOfOrderByteCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 2646283560044474, this, []); }
+  get receivedTransportOutOfOrderByteCount(): number { return callSDK<number>("Network_5d69670f0307b385", 2646283560044474, this, []); }
   /**
    * let interface: NWInterface
    * @availability iOS 13.0+
    */
-  get interface(): NWInterface { return callSDK<NWInterface>("Network_212edf3d13b127f5", 3843566892083854, this, []); }
+  get interface(): NWInterface { return callSDK<NWInterface>("Network_5d69670f0307b385", 3843566892083854, this, []); }
   /**
    * var radioType: NWInterface.RadioType? { get }
    * @availability iOS 15.0+
    */
-  get radioType(): (NWInterface_RadioType) | null { return callSDK<(NWInterface_RadioType) | null>("Network_212edf3d13b127f5", 3715630677989248, this, []); }
+  get radioType(): (NWInterface_RadioType) | null { return callSDK<(NWInterface_RadioType) | null>("Network_5d69670f0307b385", 3715630677989248, this, []); }
   declare readonly $type: { "s:7Network12NWConnectionC18DataTransferReportV04PathE0V": true };
 }
 
@@ -2461,47 +2461,47 @@ export class NWConnection_EstablishmentReport extends SDKHandle {
    * let handshakes: [NWConnection.EstablishmentReport.Handshake]
    * @availability iOS 13.0+
    */
-  get handshakes(): Array<NWConnection_EstablishmentReport_Handshake> { return callSDK<Array<NWConnection_EstablishmentReport_Handshake>>("Network_212edf3d13b127f5", 486435347327587, this, []); }
+  get handshakes(): Array<NWConnection_EstablishmentReport_Handshake> { return callSDK<Array<NWConnection_EstablishmentReport_Handshake>>("Network_5d69670f0307b385", 486435347327587, this, []); }
   /**
    * let resolutions: [NWConnection.EstablishmentReport.Resolution]
    * @availability iOS 13.0+
    */
-  get resolutions(): Array<NWConnection_EstablishmentReport_Resolution> { return callSDK<Array<NWConnection_EstablishmentReport_Resolution>>("Network_212edf3d13b127f5", 4229450582667772, this, []); }
+  get resolutions(): Array<NWConnection_EstablishmentReport_Resolution> { return callSDK<Array<NWConnection_EstablishmentReport_Resolution>>("Network_5d69670f0307b385", 4229450582667772, this, []); }
   /**
    * let proxyEndpoint: NWEndpoint?
    * @availability iOS 13.0+
    */
-  get proxyEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 2610227993349285, this, []); }
+  get proxyEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 2610227993349285, this, []); }
   /**
    * let proxyConfigured: Bool
    * @availability iOS 13.0+
    */
-  get proxyConfigured(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 239453317838076, this, []); }
+  get proxyConfigured(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 239453317838076, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3210171218758366, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3210171218758366, this, []); }
   /**
    * let previousAttemptCount: Int
    * @availability iOS 13.0+
    */
-  get previousAttemptCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 810005426423782, this, []); }
+  get previousAttemptCount(): number { return callSDK<number>("Network_5d69670f0307b385", 810005426423782, this, []); }
   /**
    * let attemptStartedAfterInterval: TimeInterval
    * @availability iOS 13.0+
    */
-  get attemptStartedAfterInterval(): number { return callSDK<number>("Network_212edf3d13b127f5", 3998512783883472, this, []); }
+  get attemptStartedAfterInterval(): number { return callSDK<number>("Network_5d69670f0307b385", 3998512783883472, this, []); }
   /**
    * let duration: TimeInterval
    * @availability iOS 13.0+
    */
-  get duration(): number { return callSDK<number>("Network_212edf3d13b127f5", 2932143887003515, this, []); }
+  get duration(): number { return callSDK<number>("Network_5d69670f0307b385", 2932143887003515, this, []); }
   /**
    * let usedProxy: Bool
    * @availability iOS 13.0+
    */
-  get usedProxy(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3885770042907483, this, []); }
+  get usedProxy(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3885770042907483, this, []); }
   declare readonly $type: { "s:7Network12NWConnectionC19EstablishmentReportV": true };
 }
 
@@ -2514,17 +2514,17 @@ export class NWConnection_EstablishmentReport_Handshake extends SDKHandle {
    * let definition: NWProtocolDefinition
    * @availability iOS 13.0+
    */
-  get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 4403331529275568, this, []); }
+  get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 4403331529275568, this, []); }
   /**
    * let handshakeRTT: TimeInterval
    * @availability iOS 13.0+
    */
-  get handshakeRTT(): number { return callSDK<number>("Network_212edf3d13b127f5", 3184011981966212, this, []); }
+  get handshakeRTT(): number { return callSDK<number>("Network_5d69670f0307b385", 3184011981966212, this, []); }
   /**
    * let handshakeDuration: TimeInterval
    * @availability iOS 13.0+
    */
-  get handshakeDuration(): number { return callSDK<number>("Network_212edf3d13b127f5", 1084591200179718, this, []); }
+  get handshakeDuration(): number { return callSDK<number>("Network_5d69670f0307b385", 1084591200179718, this, []); }
   declare readonly $type: { "s:7Network12NWConnectionC19EstablishmentReportV9HandshakeV": true };
 }
 
@@ -2537,32 +2537,32 @@ export class NWConnection_EstablishmentReport_Resolution extends SDKHandle {
    * var dnsProtocol: NWConnection.EstablishmentReport.Resolution.DNSProtocol { get }
    * @availability iOS 14.0+
    */
-  get dnsProtocol(): NWConnection_EstablishmentReport_Resolution_DNSProtocol { return callSDK<NWConnection_EstablishmentReport_Resolution_DNSProtocol>("Network_212edf3d13b127f5", 3732413739417711, this, []); }
+  get dnsProtocol(): NWConnection_EstablishmentReport_Resolution_DNSProtocol { return callSDK<NWConnection_EstablishmentReport_Resolution_DNSProtocol>("Network_5d69670f0307b385", 3732413739417711, this, []); }
   /**
    * let endpointCount: Int
    * @availability iOS 13.0+
    */
-  get endpointCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 4020500453278510, this, []); }
+  get endpointCount(): number { return callSDK<number>("Network_5d69670f0307b385", 4020500453278510, this, []); }
   /**
    * let preferredEndpoint: NWEndpoint
    * @availability iOS 13.0+
    */
-  get preferredEndpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_212edf3d13b127f5", 3093381021507568, this, []); }
+  get preferredEndpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_5d69670f0307b385", 3093381021507568, this, []); }
   /**
    * let successfulEndpoint: NWEndpoint
    * @availability iOS 13.0+
    */
-  get successfulEndpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_212edf3d13b127f5", 671142354934557, this, []); }
+  get successfulEndpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_5d69670f0307b385", 671142354934557, this, []); }
   /**
    * let source: NWConnection.EstablishmentReport.Resolution.Source
    * @availability iOS 13.0+
    */
-  get source(): NWConnection_EstablishmentReport_Resolution_Source { return callSDK<NWConnection_EstablishmentReport_Resolution_Source>("Network_212edf3d13b127f5", 2942730591420940, this, []); }
+  get source(): NWConnection_EstablishmentReport_Resolution_Source { return callSDK<NWConnection_EstablishmentReport_Resolution_Source>("Network_5d69670f0307b385", 2942730591420940, this, []); }
   /**
    * let duration: TimeInterval
    * @availability iOS 13.0+
    */
-  get duration(): number { return callSDK<number>("Network_212edf3d13b127f5", 4482067972865904, this, []); }
+  get duration(): number { return callSDK<number>("Network_5d69670f0307b385", 4482067972865904, this, []); }
   declare readonly $type: { "s:7Network12NWConnectionC19EstablishmentReportV10ResolutionV": true };
 }
 
@@ -2587,7 +2587,7 @@ export class NWConnection_PendingDataTransferReport extends SDKHandle {
    * @preconcurrency func collect(queue: DispatchQueue, completion: @escaping @Sendable (NWConnection.DataTransferReport) -> Void)
    * @availability iOS 13.0+
    */
-  collect(queue: _Dispatch_DispatchQueue, completion: ((arg0: NWConnection_DataTransferReport) => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 2983130166211585, this, [queue, completion], [null,{"callback":{"out":[]}}]); }
+  collect(queue: _Dispatch_DispatchQueue, completion: ((arg0: NWConnection_DataTransferReport) => void)): void { return callSDK<void>("Network_5d69670f0307b385", 2983130166211585, this, [queue, completion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Network12NWConnectionC25PendingDataTransferReportC": true };
 }
 
@@ -2616,79 +2616,79 @@ export class NWConnectionGroup extends SDKHandle {
    * final let descriptor: any NWGroupDescriptor
    * @availability iOS 14.0+
    */
-  get descriptor(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3520420763087936, this, []); }
+  get descriptor(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3520420763087936, this, []); }
   /**
    * final let parameters: NWParameters
    * @availability iOS 14.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3529679319675463, this, []); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3529679319675463, this, []); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 4286784433516879, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 4286784433516879, this, []); }
   /**
    * @preconcurrency final func setReceiveHandler(maximumMessageSize: Int = Int.max, rejectOversizedMessages: Bool = true, handler: (@Sendable (NWConnectionGroup.Message, Data?, Bool) -> Void)?)
    * @availability iOS 14.0+
    */
-  setReceiveHandler(maximumMessageSize?: number, rejectOversizedMessages?: boolean, handler?: (((arg0: NWConnectionGroup_Message, arg1: (ArrayBuffer) | null, arg2: boolean) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 6795527838136, this, [maximumMessageSize, rejectOversizedMessages, handler], [null,null,{"callback":{"out":[]}}]); }
+  setReceiveHandler(maximumMessageSize?: number, rejectOversizedMessages?: boolean, handler?: (((arg0: NWConnectionGroup_Message, arg1: (ArrayBuffer) | null, arg2: boolean) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 6795527838136, this, [maximumMessageSize, rejectOversizedMessages, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var stateUpdateHandler: (@Sendable (NWConnectionGroup.State) -> Void)? { get set }
    * @availability iOS 14.0+
    */
-  get stateUpdateHandler(): (((arg0: NWConnectionGroup_State) => Promise<void>)) | null { return callSDK<(((arg0: NWConnectionGroup_State) => Promise<void>)) | null>("Network_212edf3d13b127f5", 2755247187229485, this, []); }
-  set stateUpdateHandler(value: (((arg0: NWConnectionGroup_State) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 735488374996636, this, [value], [{"callback":{"out":[]}}]); }
+  get stateUpdateHandler(): (((arg0: NWConnectionGroup_State) => Promise<void>)) | null { return callSDK<(((arg0: NWConnectionGroup_State) => Promise<void>)) | null>("Network_5d69670f0307b385", 2755247187229485, this, []); }
+  set stateUpdateHandler(value: (((arg0: NWConnectionGroup_State) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 735488374996636, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var newConnectionHandler: (@Sendable (NWConnection) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get newConnectionHandler(): $SDK88 { return callSDK<$SDK88>("Network_212edf3d13b127f5", 2244263634274130, this, []); }
-  set newConnectionHandler(value: $SDK89) { callSDK<void>("Network_212edf3d13b127f5", 3321042732051536, this, [value], [{"callback":{"out":[]}}]); }
+  get newConnectionHandler(): $SDK88 { return callSDK<$SDK88>("Network_5d69670f0307b385", 2244263634274130, this, []); }
+  set newConnectionHandler(value: $SDK89) { callSDK<void>("Network_5d69670f0307b385", 3321042732051536, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final func send(content: Data?, to: NWEndpoint? = nil, message: NWConnectionGroup.Message = .default, completion: @escaping (NWError?) -> Void)
    * @availability iOS 14.0+
    */
-  send(content: (ArrayBuffer) | null, to: (NWEndpoint) | null, message: NWConnectionGroup_Message, completion: $SDK90): void { return callSDK<void>("Network_212edf3d13b127f5", 1745479994326255, this, [content, to, message, completion], [null,null,null,{"callback":{"out":[]}}]); }
+  send(content: (ArrayBuffer) | null, to: (NWEndpoint) | null, message: NWConnectionGroup_Message, completion: $SDK90): void { return callSDK<void>("Network_5d69670f0307b385", 1745479994326255, this, [content, to, message, completion], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(with: any NWGroupDescriptor, using: NWParameters)
    * @availability iOS 14.0+
    */
-  static init(with_: SDKHandle, using: NWParameters): NWConnectionGroup { return callSDK<NWConnectionGroup>("Network_212edf3d13b127f5", 1420882488402491, undefined, [with_, using]); }
+  static init(with_: SDKHandle, using: NWParameters): NWConnectionGroup { return callSDK<NWConnectionGroup>("Network_5d69670f0307b385", 1420882488402491, undefined, [with_, using]); }
   /**
    * final var queue: DispatchQueue? { get }
    * @availability iOS 14.0+
    */
-  get queue(): $SDK66 { return callSDK<$SDK66>("Network_212edf3d13b127f5", 2233002754403345, this, []); }
+  get queue(): $SDK66 { return callSDK<$SDK66>("Network_5d69670f0307b385", 2233002754403345, this, []); }
   /**
    * final func start(queue: DispatchQueue)
    * @availability iOS 14.0+
    */
-  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 2662263457096744, this, [queue]); }
+  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 2662263457096744, this, [queue]); }
   /**
    * final var state: NWConnectionGroup.State { get }
    * @availability iOS 14.0+
    */
-  get state(): NWConnectionGroup_State { return callSDK<NWConnectionGroup_State>("Network_212edf3d13b127f5", 40317593905931, this, []); }
+  get state(): NWConnectionGroup_State { return callSDK<NWConnectionGroup_State>("Network_5d69670f0307b385", 40317593905931, this, []); }
   /**
    * final func cancel()
    * @availability iOS 14.0+
    */
-  cancel(): void { return callSDK<void>("Network_212edf3d13b127f5", 1417238636761890, this, []); }
+  cancel(): void { return callSDK<void>("Network_5d69670f0307b385", 1417238636761890, this, []); }
   /**
    * final func extract(connectionTo: NWEndpoint? = nil, using: NWProtocolOptions? = nil) -> NWConnection?
    * @availability iOS 15.0+
    */
-  extract(connectionTo?: (NWEndpoint) | null, using?: $SDK77): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_212edf3d13b127f5", 2163695086225520, this, [connectionTo, using]); }
+  extract(connectionTo?: (NWEndpoint) | null, using?: $SDK77): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_5d69670f0307b385", 2163695086225520, this, [connectionTo, using]); }
   /**
    * final func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
    * @availability iOS 15.0+
    */
-  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_212edf3d13b127f5", 3377632484551524, this, [definition]); }
+  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_5d69670f0307b385", 3377632484551524, this, [definition]); }
   /**
    * final func reinsert(connection: NWConnection) -> Bool
    * @availability iOS 15.0+
    */
-  reinsert(connection: NWConnection): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 324941688487674, this, [connection]); }
+  reinsert(connection: NWConnection): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 324941688487674, this, [connection]); }
   declare readonly $type: { "s:7Network17NWConnectionGroupC": true };
 }
 
@@ -2701,42 +2701,42 @@ export class NWConnectionGroup_Message extends (NWConnection_ContentContext as u
    * var localEndpoint: NWEndpoint? { get }
    * @availability iOS 14.0+
    */
-  get localEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 3176012389792354, this, []); }
+  get localEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 3176012389792354, this, []); }
   /**
    * var remoteEndpoint: NWEndpoint? { get }
    * @availability iOS 14.0+
    */
-  get remoteEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 3602822768156064, this, []); }
+  get remoteEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 3602822768156064, this, []); }
   /**
    * func extractConnection() -> NWConnection?
    * @availability iOS 14.0+
    */
-  extractConnection(): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_212edf3d13b127f5", 3616676945341145, this, []); }
+  extractConnection(): (NWConnection) | null { return callSDK<(NWConnection) | null>("Network_5d69670f0307b385", 3616676945341145, this, []); }
   /**
    * init(nw: nw_content_context_t)
    * @availability iOS 17.0+
    */
-  static init(nw: $SDK91): NWConnectionGroup_Message { return callSDK<NWConnectionGroup_Message>("Network_212edf3d13b127f5", 4467946077121081, undefined, [nw], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+  static init(nw: $SDK91): NWConnectionGroup_Message { return callSDK<NWConnectionGroup_Message>("Network_5d69670f0307b385", 4467946077121081, undefined, [nw], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
   /**
    * var path: NWPath? { get }
    * @availability iOS 14.0+
    */
-  get path(): (NWPath) | null { return callSDK<(NWPath) | null>("Network_212edf3d13b127f5", 2072444539565041, this, []); }
+  get path(): (NWPath) | null { return callSDK<(NWPath) | null>("Network_5d69670f0307b385", 2072444539565041, this, []); }
   /**
    * func reply(content: Data?, message: NWConnectionGroup.Message = .default)
    * @availability iOS 14.0+
    */
-  reply(content?: (ArrayBuffer) | null, message?: NWConnectionGroup_Message): void { return callSDK<void>("Network_212edf3d13b127f5", 150823963405180, this, [content, message]); }
+  reply(content?: (ArrayBuffer) | null, message?: NWConnectionGroup_Message): void { return callSDK<void>("Network_5d69670f0307b385", 150823963405180, this, [content, message]); }
   /**
    * static let `default`: NWConnectionGroup.Message
    * @availability iOS 14.0+
    */
-  static get default(): NWConnectionGroup_Message { return callSDK<NWConnectionGroup_Message>("Network_212edf3d13b127f5", 1106896396139460, undefined, []); }
+  static get default(): NWConnectionGroup_Message { return callSDK<NWConnectionGroup_Message>("Network_5d69670f0307b385", 1106896396139460, undefined, []); }
   /**
    * func metadata(definition: NWProtocolDefinition) -> NWProtocolMetadata?
    * @availability iOS 15.0+
    */
-  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_212edf3d13b127f5", 1419188074337949, this, [definition]); }
+  metadata(definition: NWProtocolDefinition): $SDK11 { return callSDK<$SDK11>("Network_5d69670f0307b385", 1419188074337949, this, [definition]); }
   declare readonly $type: { "s:7Network17NWConnectionGroupC7MessageC": true; "s:7Network12NWConnectionC14ContentContextC": true };
 }
 
@@ -2757,22 +2757,22 @@ export class NWEndpoint extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3775082578072482, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3775082578072482, this, []); }
   /**
    * init?(copying endpoint: NWEndpoint, newPort: NWEndpoint.Port)
    * @availability iOS 26.4+
    */
-  static init(endpoint: NWEndpoint, newPort: NWEndpoint_Port): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 2578115206811154, undefined, [endpoint, newPort]); }
+  static init(endpoint: NWEndpoint, newPort: NWEndpoint_Port): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 2578115206811154, undefined, [endpoint, newPort]); }
   /**
    * var interface: NWInterface? { get }
    * @availability iOS 12.0+
    */
-  get interface(): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_212edf3d13b127f5", 2001231688991238, this, []); }
+  get interface(): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_5d69670f0307b385", 2001231688991238, this, []); }
   /**
    * var txtRecord: NWTXTRecord? { get }
    * @availability iOS 16.0+
    */
-  get txtRecord(): (NWTXTRecord) | null { return callSDK<(NWTXTRecord) | null>("Network_212edf3d13b127f5", 2342212204021657, this, []); }
+  get txtRecord(): (NWTXTRecord) | null { return callSDK<(NWTXTRecord) | null>("Network_5d69670f0307b385", 2342212204021657, this, []); }
   declare readonly $type: { "s:7Network10NWEndpointO": true };
 }
 
@@ -2785,22 +2785,22 @@ export class NWEndpoint_Host extends SDKHandle {
    * init(stringLiteral: NWEndpoint.Host.StringLiteralType)
    * @availability iOS 12.0+
    */
-  static initStringLiteral(stringLiteral: string): NWEndpoint_Host { return callSDK<NWEndpoint_Host>("Network_212edf3d13b127f5", 3940035512677555, undefined, [stringLiteral]); }
+  static initStringLiteral(stringLiteral: string): NWEndpoint_Host { return callSDK<NWEndpoint_Host>("Network_5d69670f0307b385", 3940035512677555, undefined, [stringLiteral]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3526631250075264, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3526631250075264, this, []); }
   /**
    * var interface: NWInterface? { get }
    * @availability iOS 12.0+
    */
-  get interface(): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_212edf3d13b127f5", 3590741071422038, this, []); }
+  get interface(): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_5d69670f0307b385", 3590741071422038, this, []); }
   /**
    * init(_ string: String)
    * @availability iOS 12.0+
    */
-  static init(string: string): NWEndpoint_Host { return callSDK<NWEndpoint_Host>("Network_212edf3d13b127f5", 4490767341847881, undefined, [string]); }
+  static init(string: string): NWEndpoint_Host { return callSDK<NWEndpoint_Host>("Network_5d69670f0307b385", 4490767341847881, undefined, [string]); }
   declare readonly $type: { "s:7Network10NWEndpointO4HostO": true };
 }
 
@@ -2833,72 +2833,72 @@ export const NWEndpoint_Port = {
    * init(integerLiteral value: NWEndpoint.Port.IntegerLiteralType)
    * @availability iOS 12.0+
    */
-  initIntegerLiteral(value: number): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 1589995752977167, undefined, [value]); },
+  initIntegerLiteral(value: number): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 1589995752977167, undefined, [value]); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  getDebugDescription($self: NWEndpoint_Port): string { return callSDK<string>("Network_212edf3d13b127f5", 1012096194308972, $self, []); },
+  getDebugDescription($self: NWEndpoint_Port): string { return callSDK<string>("Network_5d69670f0307b385", 1012096194308972, $self, []); },
   /**
    * static let any: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get any(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 4328806879023135, undefined, []); },
+  get any(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 4328806879023135, undefined, []); },
   /**
    * static let pop: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get pop(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 1567376444099181, undefined, []); },
+  get pop(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 1567376444099181, undefined, []); },
   /**
    * static let ssh: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get ssh(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 1337176296143819, undefined, []); },
+  get ssh(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 1337176296143819, undefined, []); },
   /**
    * static let http: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get http(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 2070920170390285, undefined, []); },
+  get http(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 2070920170390285, undefined, []); },
   /**
    * static let imap: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get imap(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 2675230964825208, undefined, []); },
+  get imap(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 2675230964825208, undefined, []); },
   /**
    * static let smtp: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get smtp(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 1466474268962152, undefined, []); },
+  get smtp(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 1466474268962152, undefined, []); },
   /**
    * static let https: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get https(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 3289971354115673, undefined, []); },
+  get https(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 3289971354115673, undefined, []); },
   /**
    * static let imaps: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get imaps(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 3283294835691834, undefined, []); },
+  get imaps(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 3283294835691834, undefined, []); },
   /**
    * static let socks: NWEndpoint.Port
    * @availability iOS 12.0+
    */
-  get socks(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_212edf3d13b127f5", 960461376891261, undefined, []); },
+  get socks(): NWEndpoint_Port { return callSDK<NWEndpoint_Port>("Network_5d69670f0307b385", 960461376891261, undefined, []); },
   /**
    * init?(rawValue: UInt16)
    * @availability iOS 12.0+
    */
-  initRawValue(rawValue: number): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_212edf3d13b127f5", 1591305204579825, undefined, [rawValue]); },
+  initRawValue(rawValue: number): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_5d69670f0307b385", 1591305204579825, undefined, [rawValue]); },
   /**
    * var rawValue: UInt16 { get }
    * @availability iOS 12.0+
    */
-  getRawValue($self: NWEndpoint_Port): number { return callSDK<number>("Network_212edf3d13b127f5", 1217032227594223, $self, []); },
+  getRawValue($self: NWEndpoint_Port): number { return callSDK<number>("Network_5d69670f0307b385", 1217032227594223, $self, []); },
   /**
    * init?(_ service: String)
    * @availability iOS 12.0+
    */
-  init(service: string): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_212edf3d13b127f5", 1462827548068622, undefined, [service]); }
+  init(service: string): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_5d69670f0307b385", 1462827548068622, undefined, [service]); }
 };
 
 /**
@@ -2922,17 +2922,17 @@ export class NWError extends SDKHandle {
    * var errorUserInfo: [String : Any] { get }
    * @availability iOS 16.4+
    */
-  get errorUserInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("Network_212edf3d13b127f5", 2301382744513619, this, []); }
+  get errorUserInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("Network_5d69670f0307b385", 2301382744513619, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3970135580827481, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3970135580827481, this, []); }
   /**
    * var errorCode: Int { get }
    * @availability iOS 16.4+
    */
-  get errorCode(): number { return callSDK<number>("Network_212edf3d13b127f5", 2205602336025587, this, []); }
+  get errorCode(): number { return callSDK<number>("Network_5d69670f0307b385", 2205602336025587, this, []); }
   declare readonly $type: { "s:7Network7NWErrorO": true };
 }
 
@@ -2953,22 +2953,22 @@ export class NWInterface extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3201909334096448, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3201909334096448, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 12.0+
    */
-  get name(): string { return callSDK<string>("Network_212edf3d13b127f5", 4081004936199498, this, []); }
+  get name(): string { return callSDK<string>("Network_5d69670f0307b385", 4081004936199498, this, []); }
   /**
    * var type: NWInterface.InterfaceType { get }
    * @availability iOS 12.0+
    */
-  get type(): NWInterface_InterfaceType { return callSDK<NWInterface_InterfaceType>("Network_212edf3d13b127f5", 958328730854464, this, []); }
+  get type(): NWInterface_InterfaceType { return callSDK<NWInterface_InterfaceType>("Network_5d69670f0307b385", 958328730854464, this, []); }
   /**
    * var index: Int { get }
    * @availability iOS 12.0+
    */
-  get index(): number { return callSDK<number>("Network_212edf3d13b127f5", 488530248500622, this, []); }
+  get index(): number { return callSDK<number>("Network_5d69670f0307b385", 488530248500622, this, []); }
   declare readonly $type: { "s:7Network11NWInterfaceV": true };
 }
 
@@ -3015,93 +3015,93 @@ export class NWListener extends SDKHandle {
    * final let parameters: NWParameters
    * @availability iOS 12.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 1224526591003041, this, []); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 1224526591003041, this, []); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 2339151603623718, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 2339151603623718, this, []); }
   /**
    * convenience init(applicationService name: String, using parameters: NWParameters = .applicationService) throws
    * @availability iOS 16.0+
    */
-  static initApplicationServiceUsing(name: string, parameters?: NWParameters): NWListener { return callSDK<NWListener>("Network_212edf3d13b127f5", 425858327466911, undefined, [name, parameters]); }
+  static initApplicationServiceUsing(name: string, parameters?: NWParameters): NWListener { return callSDK<NWListener>("Network_5d69670f0307b385", 425858327466911, undefined, [name, parameters]); }
   /**
    * final var newConnectionLimit: Int { get set }
    * @availability iOS 13.0+
    */
-  get newConnectionLimit(): number { return callSDK<number>("Network_212edf3d13b127f5", 745290672448873, this, []); }
-  set newConnectionLimit(value: number) { callSDK<void>("Network_212edf3d13b127f5", 2288777936311567, this, [value]); }
+  get newConnectionLimit(): number { return callSDK<number>("Network_5d69670f0307b385", 745290672448873, this, []); }
+  set newConnectionLimit(value: number) { callSDK<void>("Network_5d69670f0307b385", 2288777936311567, this, [value]); }
   /**
    * @preconcurrency final var stateUpdateHandler: (@Sendable (NWListener.State) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get stateUpdateHandler(): (((arg0: NWListener_State) => Promise<void>)) | null { return callSDK<(((arg0: NWListener_State) => Promise<void>)) | null>("Network_212edf3d13b127f5", 223058620303282, this, []); }
-  set stateUpdateHandler(value: (((arg0: NWListener_State) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 2529576863064900, this, [value], [{"callback":{"out":[]}}]); }
+  get stateUpdateHandler(): (((arg0: NWListener_State) => Promise<void>)) | null { return callSDK<(((arg0: NWListener_State) => Promise<void>)) | null>("Network_5d69670f0307b385", 223058620303282, this, []); }
+  set stateUpdateHandler(value: (((arg0: NWListener_State) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 2529576863064900, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var newConnectionHandler: (@Sendable (NWConnection) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get newConnectionHandler(): $SDK88 { return callSDK<$SDK88>("Network_212edf3d13b127f5", 2575884051606376, this, []); }
-  set newConnectionHandler(value: $SDK89) { callSDK<void>("Network_212edf3d13b127f5", 1076720413652017, this, [value], [{"callback":{"out":[]}}]); }
+  get newConnectionHandler(): $SDK88 { return callSDK<$SDK88>("Network_5d69670f0307b385", 2575884051606376, this, []); }
+  set newConnectionHandler(value: $SDK89) { callSDK<void>("Network_5d69670f0307b385", 1076720413652017, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * static let InfiniteConnectionLimit: Int
    * @availability iOS 13.0+
    */
-  static get InfiniteConnectionLimit(): number { return callSDK<number>("Network_212edf3d13b127f5", 3947684470114143, undefined, []); }
+  static get InfiniteConnectionLimit(): number { return callSDK<number>("Network_5d69670f0307b385", 3947684470114143, undefined, []); }
   /**
    * @preconcurrency final var newConnectionGroupHandler: (@Sendable (NWConnectionGroup) -> Void)? { get set }
    * @availability iOS 15.0+
    */
-  get newConnectionGroupHandler(): (((arg0: NWConnectionGroup) => Promise<void>)) | null { return callSDK<(((arg0: NWConnectionGroup) => Promise<void>)) | null>("Network_212edf3d13b127f5", 2089472217842862, this, []); }
-  set newConnectionGroupHandler(value: (((arg0: NWConnectionGroup) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 1173325447253565, this, [value], [{"callback":{"out":[]}}]); }
+  get newConnectionGroupHandler(): (((arg0: NWConnectionGroup) => Promise<void>)) | null { return callSDK<(((arg0: NWConnectionGroup) => Promise<void>)) | null>("Network_5d69670f0307b385", 2089472217842862, this, []); }
+  set newConnectionGroupHandler(value: (((arg0: NWConnectionGroup) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 1173325447253565, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * @preconcurrency final var serviceRegistrationUpdateHandler: (@Sendable (NWListener.ServiceRegistrationChange) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get serviceRegistrationUpdateHandler(): (((arg0: NWListener_ServiceRegistrationChange) => Promise<void>)) | null { return callSDK<(((arg0: NWListener_ServiceRegistrationChange) => Promise<void>)) | null>("Network_212edf3d13b127f5", 2160036279093098, this, []); }
-  set serviceRegistrationUpdateHandler(value: (((arg0: NWListener_ServiceRegistrationChange) => void)) | null) { callSDK<void>("Network_212edf3d13b127f5", 3931785691256481, this, [value], [{"callback":{"out":[]}}]); }
+  get serviceRegistrationUpdateHandler(): (((arg0: NWListener_ServiceRegistrationChange) => Promise<void>)) | null { return callSDK<(((arg0: NWListener_ServiceRegistrationChange) => Promise<void>)) | null>("Network_5d69670f0307b385", 2160036279093098, this, []); }
+  set serviceRegistrationUpdateHandler(value: (((arg0: NWListener_ServiceRegistrationChange) => void)) | null) { callSDK<void>("Network_5d69670f0307b385", 3931785691256481, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * final var port: NWEndpoint.Port? { get }
    * @availability iOS 12.0+
    */
-  get port(): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_212edf3d13b127f5", 1124549246458684, this, []); }
+  get port(): (NWEndpoint_Port) | null { return callSDK<(NWEndpoint_Port) | null>("Network_5d69670f0307b385", 1124549246458684, this, []); }
   /**
    * final var queue: DispatchQueue? { get }
    * @availability iOS 12.0+
    */
-  get queue(): $SDK66 { return callSDK<$SDK66>("Network_212edf3d13b127f5", 3008780405933413, this, []); }
+  get queue(): $SDK66 { return callSDK<$SDK66>("Network_5d69670f0307b385", 3008780405933413, this, []); }
   /**
    * final func start(queue: DispatchQueue)
    * @availability iOS 12.0+
    */
-  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 2437345647553686, this, [queue]); }
+  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 2437345647553686, this, [queue]); }
   /**
    * final var state: NWListener.State { get }
    * @availability iOS 12.0+
    */
-  get state(): NWListener_State { return callSDK<NWListener_State>("Network_212edf3d13b127f5", 1425365477548321, this, []); }
+  get state(): NWListener_State { return callSDK<NWListener_State>("Network_5d69670f0307b385", 1425365477548321, this, []); }
   /**
    * init(using: NWParameters, on: NWEndpoint.Port = .any) throws
    * @availability iOS 12.0+
    */
-  static initUsingOn(using: NWParameters, on?: NWEndpoint_Port): NWListener { return callSDK<NWListener>("Network_212edf3d13b127f5", 2717262542341465, undefined, [using, on]); }
+  static initUsingOn(using: NWParameters, on?: NWEndpoint_Port): NWListener { return callSDK<NWListener>("Network_5d69670f0307b385", 2717262542341465, undefined, [using, on]); }
   /**
    * final func cancel()
    * @availability iOS 12.0+
    */
-  cancel(): void { return callSDK<void>("Network_212edf3d13b127f5", 510920433422571, this, []); }
+  cancel(): void { return callSDK<void>("Network_5d69670f0307b385", 510920433422571, this, []); }
   /**
    * convenience init(service: NWListener.Service, using parameters: NWParameters) throws
    * @availability iOS 16.0+
    */
-  static initServiceUsing(service: NWListener_Service, parameters: NWParameters): NWListener { return callSDK<NWListener>("Network_212edf3d13b127f5", 736181934909584, undefined, [service, parameters]); }
+  static initServiceUsing(service: NWListener_Service, parameters: NWParameters): NWListener { return callSDK<NWListener>("Network_5d69670f0307b385", 736181934909584, undefined, [service, parameters]); }
   /**
    * final var service: NWListener.Service? { get set }
    * @availability iOS 12.0+
    */
-  get service(): $SDK22 { return callSDK<$SDK22>("Network_212edf3d13b127f5", 2097156113511926, this, []); }
-  set service(value: $SDK22) { callSDK<void>("Network_212edf3d13b127f5", 1180671119487405, this, [value]); }
+  get service(): $SDK22 { return callSDK<$SDK22>("Network_5d69670f0307b385", 2097156113511926, this, []); }
+  set service(value: $SDK22) { callSDK<void>("Network_5d69670f0307b385", 1180671119487405, this, [value]); }
   declare readonly $type: { "s:7Network10NWListenerC": true };
 }
 
@@ -3114,54 +3114,54 @@ export class NWListener_Service extends SDKHandle {
    * init(applicationService: String)
    * @availability iOS 16.0+
    */
-  static initApplicationService(applicationService: string): NWListener_Service { return callSDK<NWListener_Service>("Network_212edf3d13b127f5", 4064219547921850, undefined, [applicationService]); }
+  static initApplicationService(applicationService: string): NWListener_Service { return callSDK<NWListener_Service>("Network_5d69670f0307b385", 4064219547921850, undefined, [applicationService]); }
   /**
    * var noAutoRename: Bool { get set }
    * @availability iOS 13.0+
    */
-  get noAutoRename(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1430353527931562, this, []); }
-  set noAutoRename(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 931315556818828, this, [value]); }
+  get noAutoRename(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1430353527931562, this, []); }
+  set noAutoRename(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 931315556818828, this, [value]); }
   /**
    * var txtRecordObject: NWTXTRecord? { get set }
    * @availability iOS 13.0+
    */
-  get txtRecordObject(): (NWTXTRecord) | null { return callSDK<(NWTXTRecord) | null>("Network_212edf3d13b127f5", 1743936000306309, this, []); }
-  set txtRecordObject(value: (NWTXTRecord) | null) { callSDK<void>("Network_212edf3d13b127f5", 4352611484192707, this, [value]); }
+  get txtRecordObject(): (NWTXTRecord) | null { return callSDK<(NWTXTRecord) | null>("Network_5d69670f0307b385", 1743936000306309, this, []); }
+  set txtRecordObject(value: (NWTXTRecord) | null) { callSDK<void>("Network_5d69670f0307b385", 4352611484192707, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 208611720580504, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 208611720580504, this, []); }
   /**
    * init(name: String? = nil, type: String, domain: String? = nil, txtRecord: Data? = nil)
    * @availability iOS 12.0+
    */
-  static initNameTypeDomainTxtRecord(name: (string) | null, type: string, domain?: (string) | null, txtRecord?: (ArrayBuffer) | null): NWListener_Service { return callSDK<NWListener_Service>("Network_212edf3d13b127f5", 3604191601754914, undefined, [name, type, domain, txtRecord]); }
+  static initNameTypeDomainTxtRecord(name: (string) | null, type: string, domain?: (string) | null, txtRecord?: (ArrayBuffer) | null): NWListener_Service { return callSDK<NWListener_Service>("Network_5d69670f0307b385", 3604191601754914, undefined, [name, type, domain, txtRecord]); }
   /**
    * init(name: String? = nil, type: String, domain: String? = nil, txtRecord: NWTXTRecord)
    * @availability iOS 13.0+
    */
-  static initNameTypeDomainTxtRecord45304(name: (string) | null, type: string, domain: (string) | null, txtRecord: NWTXTRecord): NWListener_Service { return callSDK<NWListener_Service>("Network_212edf3d13b127f5", 520593946960353, undefined, [name, type, domain, txtRecord]); }
+  static initNameTypeDomainTxtRecord45304(name: (string) | null, type: string, domain: (string) | null, txtRecord: NWTXTRecord): NWListener_Service { return callSDK<NWListener_Service>("Network_5d69670f0307b385", 520593946960353, undefined, [name, type, domain, txtRecord]); }
   /**
    * let name: String?
    * @availability iOS 12.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 461571026426971, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 461571026426971, this, []); }
   /**
    * let type: String
    * @availability iOS 12.0+
    */
-  get type(): string { return callSDK<string>("Network_212edf3d13b127f5", 2513959963021111, this, []); }
+  get type(): string { return callSDK<string>("Network_5d69670f0307b385", 2513959963021111, this, []); }
   /**
    * let domain: String?
    * @availability iOS 12.0+
    */
-  get domain(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 49878035627114, this, []); }
+  get domain(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 49878035627114, this, []); }
   /**
    * let txtRecord: Data?
    * @availability iOS 12.0+
    */
-  get txtRecord(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Network_212edf3d13b127f5", 3219409227375905, this, []); }
+  get txtRecord(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Network_5d69670f0307b385", 3219409227375905, this, []); }
   declare readonly $type: { "s:7Network10NWListenerC7ServiceV": true };
 }
 
@@ -3190,22 +3190,22 @@ export class NWMulticastGroup extends SDKHandle {
    * final let sourceFilter: NWEndpoint?
    * @availability iOS 14.0+
    */
-  get sourceFilter(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 1997943911843738, this, []); }
+  get sourceFilter(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 1997943911843738, this, []); }
   /**
    * final let isUnicastDisabled: Bool
    * @availability iOS 14.0+
    */
-  get isUnicastDisabled(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3326846871518260, this, []); }
+  get isUnicastDisabled(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3326846871518260, this, []); }
   /**
    * init(for groupAddresses: [NWEndpoint], from: NWEndpoint? = nil, disableUnicast: Bool = false) throws
    * @availability iOS 14.0+
    */
-  static init(groupAddresses: Array<NWEndpoint>, from?: (NWEndpoint) | null, disableUnicast?: boolean): NWMulticastGroup { return callSDK<NWMulticastGroup>("Network_212edf3d13b127f5", 1982219314712475, undefined, [groupAddresses, from, disableUnicast]); }
+  static init(groupAddresses: Array<NWEndpoint>, from?: (NWEndpoint) | null, disableUnicast?: boolean): NWMulticastGroup { return callSDK<NWMulticastGroup>("Network_5d69670f0307b385", 1982219314712475, undefined, [groupAddresses, from, disableUnicast]); }
   /**
    * var members: [NWEndpoint] { get }
    * @availability iOS 14.0+
    */
-  get members(): Array<NWEndpoint> { return callSDK<Array<NWEndpoint>>("Network_212edf3d13b127f5", 4255997883718059, this, []); }
+  get members(): Array<NWEndpoint> { return callSDK<Array<NWEndpoint>>("Network_5d69670f0307b385", 4255997883718059, this, []); }
   declare readonly $type: { "s:7Network16NWMulticastGroupC": true };
 }
 
@@ -3218,12 +3218,12 @@ export class NWMultiplexGroup extends SDKHandle {
    * init(to: NWEndpoint)
    * @availability iOS 15.0+
    */
-  static init(to: NWEndpoint): NWMultiplexGroup { return callSDK<NWMultiplexGroup>("Network_212edf3d13b127f5", 1813752226459802, undefined, [to]); }
+  static init(to: NWEndpoint): NWMultiplexGroup { return callSDK<NWMultiplexGroup>("Network_5d69670f0307b385", 1813752226459802, undefined, [to]); }
   /**
    * var members: [NWEndpoint] { get }
    * @availability iOS 15.0+
    */
-  get members(): Array<NWEndpoint> { return callSDK<Array<NWEndpoint>>("Network_212edf3d13b127f5", 3634740869666020, this, []); }
+  get members(): Array<NWEndpoint> { return callSDK<Array<NWEndpoint>>("Network_5d69670f0307b385", 3634740869666020, this, []); }
   declare readonly $type: { "s:7Network16NWMultiplexGroupC": true };
 }
 
@@ -3236,190 +3236,190 @@ export class NWParameters extends SDKHandle {
    * final var includePeerToPeer: Bool { get set }
    * @availability iOS 12.0+
    */
-  get includePeerToPeer(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 274062231412105, this, []); }
-  set includePeerToPeer(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1352588913000367, this, [value]); }
+  get includePeerToPeer(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 274062231412105, this, []); }
+  set includePeerToPeer(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1352588913000367, this, [value]); }
   /**
    * final var parameters: NWParameters { get }
    * @availability iOS 26.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 5030340440175, this, []); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 5030340440175, this, []); }
   /**
    * final var attribution: NWParameters.Attribution { get set }
    * @availability iOS 15.0+
    */
-  get attribution(): NWParameters_Attribution { return callSDK<NWParameters_Attribution>("Network_212edf3d13b127f5", 855923627982749, this, []); }
-  set attribution(value: NWParameters_Attribution) { callSDK<void>("Network_212edf3d13b127f5", 1917936800493776, this, [value]); }
+  get attribution(): NWParameters_Attribution { return callSDK<NWParameters_Attribution>("Network_5d69670f0307b385", 855923627982749, this, []); }
+  set attribution(value: NWParameters_Attribution) { callSDK<void>("Network_5d69670f0307b385", 1917936800493776, this, [value]); }
   /**
    * final class func quicDatagram(alpn: [String]) -> NWParameters
    * @availability iOS 16.0+
    */
-  static quicDatagram(alpn: Array<string>): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 152805945951667, undefined, [alpn]); }
+  static quicDatagram(alpn: Array<string>): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 152805945951667, undefined, [alpn]); }
   /**
    * final var serviceClass: NWParameters.ServiceClass { get set }
    * @availability iOS 12.0+
    */
-  get serviceClass(): NWParameters_ServiceClass { return callSDK<NWParameters_ServiceClass>("Network_212edf3d13b127f5", 3886903063570928, this, []); }
-  set serviceClass(value: NWParameters_ServiceClass) { callSDK<void>("Network_212edf3d13b127f5", 363515700666132, this, [value]); }
+  get serviceClass(): NWParameters_ServiceClass { return callSDK<NWParameters_ServiceClass>("Network_5d69670f0307b385", 3886903063570928, this, []); }
+  set serviceClass(value: NWParameters_ServiceClass) { callSDK<void>("Network_5d69670f0307b385", 363515700666132, this, [value]); }
   /**
    * final var allowFastOpen: Bool { get set }
    * @availability iOS 12.0+
    */
-  get allowFastOpen(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 448944375461815, this, []); }
-  set allowFastOpen(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1313405507197068, this, [value]); }
+  get allowFastOpen(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 448944375461815, this, []); }
+  set allowFastOpen(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1313405507197068, this, [value]); }
   /**
    * final var acceptLocalOnly: Bool { get set }
    * @availability iOS 12.0+
    */
-  get acceptLocalOnly(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1879194952473591, this, []); }
-  set acceptLocalOnly(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2689381002703258, this, [value]); }
+  get acceptLocalOnly(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1879194952473591, this, []); }
+  set acceptLocalOnly(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2689381002703258, this, [value]); }
   /**
    * final var preferNoProxies: Bool { get set }
    * @availability iOS 12.0+
    */
-  get preferNoProxies(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1145488342392733, this, []); }
-  set preferNoProxies(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2221713658720705, this, [value]); }
+  get preferNoProxies(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1145488342392733, this, []); }
+  set preferNoProxies(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2221713658720705, this, [value]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 839898520168452, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 839898520168452, this, []); }
   /**
    * final var requiredInterface: NWInterface? { get set }
    * @availability iOS 12.0+
    */
-  get requiredInterface(): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_212edf3d13b127f5", 3626432916935882, this, []); }
-  set requiredInterface(value: (NWInterface) | null) { callSDK<void>("Network_212edf3d13b127f5", 4348116288288779, this, [value]); }
+  get requiredInterface(): (NWInterface) | null { return callSDK<(NWInterface) | null>("Network_5d69670f0307b385", 3626432916935882, this, []); }
+  set requiredInterface(value: (NWInterface) | null) { callSDK<void>("Network_5d69670f0307b385", 4348116288288779, this, [value]); }
   /**
    * final func setPrivacyContext(_ privacyContext: NWParameters.PrivacyContext)
    * @availability iOS 14.0+
    */
-  setPrivacyContext(privacyContext: NWParameters_PrivacyContext): void { return callSDK<void>("Network_212edf3d13b127f5", 4321970724253634, this, [privacyContext]); }
+  setPrivacyContext(privacyContext: NWParameters_PrivacyContext): void { return callSDK<void>("Network_5d69670f0307b385", 4321970724253634, this, [privacyContext]); }
   /**
    * final class var applicationService: NWParameters { get }
    * @availability iOS 16.0+
    */
-  static get applicationService(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 2456190038627180, undefined, []); }
+  static get applicationService(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 2456190038627180, undefined, []); }
   /**
    * final var expiredDNSBehavior: NWParameters.ExpiredDNSBehavior { get set }
    * @availability iOS 12.0+
    */
-  get expiredDNSBehavior(): NWParameters_ExpiredDNSBehavior { return callSDK<NWParameters_ExpiredDNSBehavior>("Network_212edf3d13b127f5", 3606962945062837, this, []); }
-  set expiredDNSBehavior(value: NWParameters_ExpiredDNSBehavior) { callSDK<void>("Network_212edf3d13b127f5", 716903678048491, this, [value]); }
+  get expiredDNSBehavior(): NWParameters_ExpiredDNSBehavior { return callSDK<NWParameters_ExpiredDNSBehavior>("Network_5d69670f0307b385", 3606962945062837, this, []); }
+  set expiredDNSBehavior(value: NWParameters_ExpiredDNSBehavior) { callSDK<void>("Network_5d69670f0307b385", 716903678048491, this, [value]); }
   /**
    * final var defaultProtocolStack: NWParameters.ProtocolStack { get }
    * @availability iOS 12.0+
    */
-  get defaultProtocolStack(): NWParameters_ProtocolStack { return callSDK<NWParameters_ProtocolStack>("Network_212edf3d13b127f5", 576916341735331, this, []); }
+  get defaultProtocolStack(): NWParameters_ProtocolStack { return callSDK<NWParameters_ProtocolStack>("Network_5d69670f0307b385", 576916341735331, this, []); }
   /**
    * final var multipathServiceType: NWParameters.MultipathServiceType { get set }
    * @availability iOS 12.0+
    */
-  get multipathServiceType(): NWParameters_MultipathServiceType { return callSDK<NWParameters_MultipathServiceType>("Network_212edf3d13b127f5", 2440281827364734, this, []); }
-  set multipathServiceType(value: NWParameters_MultipathServiceType) { callSDK<void>("Network_212edf3d13b127f5", 3494345252525333, this, [value]); }
+  get multipathServiceType(): NWParameters_MultipathServiceType { return callSDK<NWParameters_MultipathServiceType>("Network_5d69670f0307b385", 2440281827364734, this, []); }
+  set multipathServiceType(value: NWParameters_MultipathServiceType) { callSDK<void>("Network_5d69670f0307b385", 3494345252525333, this, [value]); }
   /**
    * final var prohibitedInterfaces: [NWInterface]? { get set }
    * @availability iOS 12.0+
    */
-  get prohibitedInterfaces(): (Array<NWInterface>) | null { return callSDK<(Array<NWInterface>) | null>("Network_212edf3d13b127f5", 4437444406761798, this, []); }
-  set prohibitedInterfaces(value: (Array<NWInterface>) | null) { callSDK<void>("Network_212edf3d13b127f5", 652441183686831, this, [value]); }
+  get prohibitedInterfaces(): (Array<NWInterface>) | null { return callSDK<(Array<NWInterface>) | null>("Network_5d69670f0307b385", 4437444406761798, this, []); }
+  set prohibitedInterfaces(value: (Array<NWInterface>) | null) { callSDK<void>("Network_5d69670f0307b385", 652441183686831, this, [value]); }
   /**
    * final var requiredInterfaceType: NWInterface.InterfaceType { get set }
    * @availability iOS 12.0+
    */
-  get requiredInterfaceType(): NWInterface_InterfaceType { return callSDK<NWInterface_InterfaceType>("Network_212edf3d13b127f5", 3321721979360374, this, []); }
-  set requiredInterfaceType(value: NWInterface_InterfaceType) { callSDK<void>("Network_212edf3d13b127f5", 3993323822310418, this, [value]); }
+  get requiredInterfaceType(): NWInterface_InterfaceType { return callSDK<NWInterface_InterfaceType>("Network_5d69670f0307b385", 3321721979360374, this, []); }
+  set requiredInterfaceType(value: NWInterface_InterfaceType) { callSDK<void>("Network_5d69670f0307b385", 3993323822310418, this, [value]); }
   /**
    * final var requiredLocalEndpoint: NWEndpoint? { get set }
    * @availability iOS 12.0+
    */
-  get requiredLocalEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 223759895988129, this, []); }
-  set requiredLocalEndpoint(value: (NWEndpoint) | null) { callSDK<void>("Network_212edf3d13b127f5", 3490049051293737, this, [value]); }
+  get requiredLocalEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 223759895988129, this, []); }
+  set requiredLocalEndpoint(value: (NWEndpoint) | null) { callSDK<void>("Network_5d69670f0307b385", 3490049051293737, this, [value]); }
   /**
    * final var prohibitExpensivePaths: Bool { get set }
    * @availability iOS 12.0+
    */
-  get prohibitExpensivePaths(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4138730615467597, this, []); }
-  set prohibitExpensivePaths(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1044312611521672, this, [value]); }
+  get prohibitExpensivePaths(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4138730615467597, this, []); }
+  set prohibitExpensivePaths(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1044312611521672, this, [value]); }
   /**
    * final var allowLocalEndpointReuse: Bool { get set }
    * @availability iOS 12.0+
    */
-  get allowLocalEndpointReuse(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1377173698835727, this, []); }
-  set allowLocalEndpointReuse(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1059631333424368, this, [value]); }
+  get allowLocalEndpointReuse(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1377173698835727, this, []); }
+  set allowLocalEndpointReuse(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1059631333424368, this, [value]); }
   /**
    * final var prohibitConstrainedPaths: Bool { get set }
    * @availability iOS 13.0+
    */
-  get prohibitConstrainedPaths(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2864307228203549, this, []); }
-  set prohibitConstrainedPaths(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1267257169333119, this, [value]); }
+  get prohibitConstrainedPaths(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2864307228203549, this, []); }
+  set prohibitConstrainedPaths(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1267257169333119, this, [value]); }
   /**
    * final var prohibitedInterfaceTypes: [NWInterface.InterfaceType]? { get set }
    * @availability iOS 12.0+
    */
-  get prohibitedInterfaceTypes(): $SDK99 { return callSDK<$SDK99>("Network_212edf3d13b127f5", 2112310099507246, this, []); }
-  set prohibitedInterfaceTypes(value: $SDK99) { callSDK<void>("Network_212edf3d13b127f5", 2809427927117000, this, [value]); }
+  get prohibitedInterfaceTypes(): $SDK99 { return callSDK<$SDK99>("Network_5d69670f0307b385", 2112310099507246, this, []); }
+  set prohibitedInterfaceTypes(value: $SDK99) { callSDK<void>("Network_5d69670f0307b385", 2809427927117000, this, [value]); }
   /**
    * final var requiresDNSSECValidation: Bool { get set }
    * @availability iOS 16.0+
    */
-  get requiresDNSSECValidation(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2653525212557339, this, []); }
-  set requiresDNSSECValidation(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1177972461686615, this, [value]); }
+  get requiresDNSSECValidation(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2653525212557339, this, []); }
+  set requiresDNSSECValidation(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1177972461686615, this, [value]); }
   /**
    * final var allowUltraConstrainedPaths: Bool { get set }
    * @availability iOS 26.0+
    */
-  get allowUltraConstrainedPaths(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3132473389556703, this, []); }
-  set allowUltraConstrainedPaths(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 849650539934338, this, [value]); }
+  get allowUltraConstrainedPaths(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3132473389556703, this, []); }
+  set allowUltraConstrainedPaths(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 849650539934338, this, [value]); }
   /**
    * final class var tcp: NWParameters { get }
    * @availability iOS 12.0+
    */
-  static get tcp(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 897679018774004, undefined, []); }
+  static get tcp(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 897679018774004, undefined, []); }
   /**
    * convenience init(tls: NWProtocolTLS.Options?, tcp: NWProtocolTCP.Options = NWProtocolTCP.Options())
    * @availability iOS 12.0+
    */
-  static initTlsTcp(tls?: $SDK100, tcp?: NWProtocolTCP_Options): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3026020667501296, undefined, [tls, tcp]); }
+  static initTlsTcp(tls?: $SDK100, tcp?: NWProtocolTCP_Options): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3026020667501296, undefined, [tls, tcp]); }
   /**
    * final class var tls: NWParameters { get }
    * @availability iOS 12.0+
    */
-  static get tls(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 4243216683044069, undefined, []); }
+  static get tls(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 4243216683044069, undefined, []); }
   /**
    * final class var udp: NWParameters { get }
    * @availability iOS 12.0+
    */
-  static get udp(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3428425363012899, undefined, []); }
+  static get udp(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3428425363012899, undefined, []); }
   /**
    * final func copy() -> NWParameters
    * @availability iOS 12.0+
    */
-  copy(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 42231798204098, this, []); }
+  copy(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 42231798204098, this, []); }
   /**
    * convenience init(dtls: NWProtocolTLS.Options?, udp: NWProtocolUDP.Options = NWProtocolUDP.Options())
    * @availability iOS 12.0+
    */
-  static initDtlsUdp(dtls?: $SDK100, udp?: NWProtocolUDP_Options): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3435918895223391, undefined, [dtls, udp]); }
+  static initDtlsUdp(dtls?: $SDK100, udp?: NWProtocolUDP_Options): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3435918895223391, undefined, [dtls, udp]); }
   /**
    * final class var dtls: NWParameters { get }
    * @availability iOS 12.0+
    */
-  static get dtls(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 4059318049353345, undefined, []); }
+  static get dtls(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 4059318049353345, undefined, []); }
   /**
    * final class func quic(alpn: [String]) -> NWParameters
    * @availability iOS 15.0+
    */
-  static quic(alpn: Array<string>): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3423294132551246, undefined, [alpn]); }
+  static quic(alpn: Array<string>): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3423294132551246, undefined, [alpn]); }
   /**
    * convenience init(quic: NWProtocolQUIC.Options)
    * @availability iOS 15.0+
    */
-  static initQuic(quic: NWProtocolQUIC_Options): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 2854568322208827, undefined, [quic]); }
+  static initQuic(quic: NWProtocolQUIC_Options): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 2854568322208827, undefined, [quic]); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3359835177893349, undefined, []); }
+  static init(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3359835177893349, undefined, []); }
   declare readonly $type: { "s:7Network12NWParametersC": true };
 }
 
@@ -3450,38 +3450,38 @@ export class NWParameters_PrivacyContext extends SDKHandle {
    * func flushCache()
    * @availability iOS 14.0+
    */
-  flushCache(): void { return callSDK<void>("Network_212edf3d13b127f5", 3670802555443335, this, []); }
+  flushCache(): void { return callSDK<void>("Network_5d69670f0307b385", 3670802555443335, this, []); }
   /**
    * init(description: String)
    * @availability iOS 14.0+
    */
-  static init(description: string): NWParameters_PrivacyContext { return callSDK<NWParameters_PrivacyContext>("Network_212edf3d13b127f5", 4203178604659657, undefined, [description]); }
+  static init(description: string): NWParameters_PrivacyContext { return callSDK<NWParameters_PrivacyContext>("Network_5d69670f0307b385", 4203178604659657, undefined, [description]); }
   /**
    * func disableLogging()
    * @availability iOS 14.0+
    */
-  disableLogging(): void { return callSDK<void>("Network_212edf3d13b127f5", 1609464545736607, this, []); }
+  disableLogging(): void { return callSDK<void>("Network_5d69670f0307b385", 1609464545736607, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3352975669437853, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3352975669437853, this, []); }
   /**
    * var proxyConfigurations: [ProxyConfiguration] { get set }
    * @availability iOS 17.0+
    */
-  get proxyConfigurations(): $SDK101 { return callSDK<$SDK101>("Network_212edf3d13b127f5", 3504476813303893, this, []); }
-  set proxyConfigurations(value: $SDK101) { callSDK<void>("Network_212edf3d13b127f5", 3194344043993549, this, [value]); }
+  get proxyConfigurations(): $SDK101 { return callSDK<$SDK101>("Network_5d69670f0307b385", 3504476813303893, this, []); }
+  set proxyConfigurations(value: $SDK101) { callSDK<void>("Network_5d69670f0307b385", 3194344043993549, this, [value]); }
   /**
    * func requireEncryptedNameResolution(_ requireEncryption: Bool, fallbackResolver: NWParameters.PrivacyContext.ResolverConfiguration?)
    * @availability iOS 14.0+
    */
-  requireEncryptedNameResolution(requireEncryption: boolean, fallbackResolver?: (NWParameters_PrivacyContext_ResolverConfiguration) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 4385523960590708, this, [requireEncryption, fallbackResolver]); }
+  requireEncryptedNameResolution(requireEncryption: boolean, fallbackResolver?: (NWParameters_PrivacyContext_ResolverConfiguration) | null): void { return callSDK<void>("Network_5d69670f0307b385", 4385523960590708, this, [requireEncryption, fallbackResolver]); }
   /**
    * static let `default`: NWParameters.PrivacyContext
    * @availability iOS 14.0+
    */
-  static get default(): NWParameters_PrivacyContext { return callSDK<NWParameters_PrivacyContext>("Network_212edf3d13b127f5", 4456899149409614, undefined, []); }
+  static get default(): NWParameters_PrivacyContext { return callSDK<NWParameters_PrivacyContext>("Network_5d69670f0307b385", 4456899149409614, undefined, []); }
   declare readonly $type: { "s:7Network12NWParametersC14PrivacyContextC": true };
 }
 
@@ -3494,7 +3494,7 @@ export class NWParameters_PrivacyContext_ResolverConfiguration extends SDKHandle
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3398371452881761, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3398371452881761, this, []); }
   declare readonly $type: { "s:7Network12NWParametersC14PrivacyContextC21ResolverConfigurationO": true };
 }
 
@@ -3507,20 +3507,20 @@ export class NWParameters_ProtocolStack extends SDKHandle {
    * var internetProtocol: NWProtocolOptions? { get set }
    * @availability iOS 12.0+
    */
-  get internetProtocol(): $SDK77 { return callSDK<$SDK77>("Network_212edf3d13b127f5", 3754301804255705, this, []); }
-  set internetProtocol(value: $SDK77) { callSDK<void>("Network_212edf3d13b127f5", 4022995946039857, this, [value]); }
+  get internetProtocol(): $SDK77 { return callSDK<$SDK77>("Network_5d69670f0307b385", 3754301804255705, this, []); }
+  set internetProtocol(value: $SDK77) { callSDK<void>("Network_5d69670f0307b385", 4022995946039857, this, [value]); }
   /**
    * var transportProtocol: NWProtocolOptions? { get set }
    * @availability iOS 12.0+
    */
-  get transportProtocol(): $SDK77 { return callSDK<$SDK77>("Network_212edf3d13b127f5", 2589114431331070, this, []); }
-  set transportProtocol(value: $SDK77) { callSDK<void>("Network_212edf3d13b127f5", 492227664618200, this, [value]); }
+  get transportProtocol(): $SDK77 { return callSDK<$SDK77>("Network_5d69670f0307b385", 2589114431331070, this, []); }
+  set transportProtocol(value: $SDK77) { callSDK<void>("Network_5d69670f0307b385", 492227664618200, this, [value]); }
   /**
    * var applicationProtocols: [NWProtocolOptions] { get set }
    * @availability iOS 12.0+
    */
-  get applicationProtocols(): Array<NWProtocolOptions> { return callSDK<Array<NWProtocolOptions>>("Network_212edf3d13b127f5", 3104924580224987, this, []); }
-  set applicationProtocols(value: Array<NWProtocolOptions>) { callSDK<void>("Network_212edf3d13b127f5", 3853322875684746, this, [value]); }
+  get applicationProtocols(): Array<NWProtocolOptions> { return callSDK<Array<NWProtocolOptions>>("Network_5d69670f0307b385", 3104924580224987, this, []); }
+  set applicationProtocols(value: Array<NWProtocolOptions>) { callSDK<void>("Network_5d69670f0307b385", 3853322875684746, this, [value]); }
   declare readonly $type: { "s:7Network12NWParametersC13ProtocolStackC": true };
 }
 
@@ -3539,8 +3539,8 @@ export class NWParametersBuilder<Top = unknown, P = unknown> extends SDKHandle {
    * var parameters: NWParameters
    * @availability iOS 26.0+
    */
-  get parameters(): NWParameters { return callSDK<NWParameters>("Network_212edf3d13b127f5", 3965265330605682, this, []); }
-  set parameters(value: NWParameters) { callSDK<void>("Network_212edf3d13b127f5", 4343431988724821, this, [value]); }
+  get parameters(): NWParameters { return callSDK<NWParameters>("Network_5d69670f0307b385", 3965265330605682, this, []); }
+  set parameters(value: NWParameters) { callSDK<void>("Network_5d69670f0307b385", 4343431988724821, this, [value]); }
   declare readonly $type: { "s:7Network19NWParametersBuilderV": true };
 }
 
@@ -3650,77 +3650,77 @@ export class NWPath extends SDKHandle {
    * let isExpensive: Bool
    * @availability iOS 12.0+
    */
-  get isExpensive(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2188565119954352, this, []); }
+  get isExpensive(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2188565119954352, this, []); }
   /**
    * var linkQuality: NWPath.LinkQuality { get }
    * @availability iOS 26.0+
    */
-  get linkQuality(): NWPath_LinkQuality { return callSDK<NWPath_LinkQuality>("Network_212edf3d13b127f5", 2756248260989365, this, []); }
+  get linkQuality(): NWPath_LinkQuality { return callSDK<NWPath_LinkQuality>("Network_5d69670f0307b385", 2756248260989365, this, []); }
   /**
    * let supportsDNS: Bool
    * @availability iOS 12.0+
    */
-  get supportsDNS(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3957272685374933, this, []); }
+  get supportsDNS(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3957272685374933, this, []); }
   /**
    * let supportsIPv4: Bool
    * @availability iOS 12.0+
    */
-  get supportsIPv4(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2391956821616413, this, []); }
+  get supportsIPv4(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2391956821616413, this, []); }
   /**
    * let supportsIPv6: Bool
    * @availability iOS 12.0+
    */
-  get supportsIPv6(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3520460185038620, this, []); }
+  get supportsIPv6(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3520460185038620, this, []); }
   /**
    * var isConstrained: Bool { get }
    * @availability iOS 13.0+
    */
-  get isConstrained(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 166131578849631, this, []); }
+  get isConstrained(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 166131578849631, this, []); }
   /**
    * let localEndpoint: NWEndpoint?
    * @availability iOS 12.0+
    */
-  get localEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 2252825030903546, this, []); }
+  get localEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 2252825030903546, this, []); }
   /**
    * let remoteEndpoint: NWEndpoint?
    * @availability iOS 12.0+
    */
-  get remoteEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 3759683923210768, this, []); }
+  get remoteEndpoint(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 3759683923210768, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3416639720892235, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3416639720892235, this, []); }
   /**
    * var unsatisfiedReason: NWPath.UnsatisfiedReason { get }
    * @availability iOS 14.2+
    */
-  get unsatisfiedReason(): NWPath_UnsatisfiedReason { return callSDK<NWPath_UnsatisfiedReason>("Network_212edf3d13b127f5", 2814454685007391, this, []); }
+  get unsatisfiedReason(): NWPath_UnsatisfiedReason { return callSDK<NWPath_UnsatisfiedReason>("Network_5d69670f0307b385", 2814454685007391, this, []); }
   /**
    * func usesInterfaceType(_ type: NWInterface.InterfaceType) -> Bool
    * @availability iOS 12.0+
    */
-  usesInterfaceType(type: NWInterface_InterfaceType): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 988300611635494, this, [type]); }
+  usesInterfaceType(type: NWInterface_InterfaceType): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 988300611635494, this, [type]); }
   /**
    * var isUltraConstrained: Bool { get }
    * @availability iOS 26.0+
    */
-  get isUltraConstrained(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 641239396130072, this, []); }
+  get isUltraConstrained(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 641239396130072, this, []); }
   /**
    * let availableInterfaces: [NWInterface]
    * @availability iOS 12.0+
    */
-  get availableInterfaces(): Array<NWInterface> { return callSDK<Array<NWInterface>>("Network_212edf3d13b127f5", 2823140427031829, this, []); }
+  get availableInterfaces(): Array<NWInterface> { return callSDK<Array<NWInterface>>("Network_5d69670f0307b385", 2823140427031829, this, []); }
   /**
    * let status: NWPath.Status
    * @availability iOS 12.0+
    */
-  get status(): NWPath_Status { return callSDK<NWPath_Status>("Network_212edf3d13b127f5", 2901006137153530, this, []); }
+  get status(): NWPath_Status { return callSDK<NWPath_Status>("Network_5d69670f0307b385", 2901006137153530, this, []); }
   /**
    * var gateways: [NWEndpoint] { get }
    * @availability iOS 13.0+
    */
-  get gateways(): Array<NWEndpoint> { return callSDK<Array<NWEndpoint>>("Network_212edf3d13b127f5", 3883389900135029, this, []); }
+  get gateways(): Array<NWEndpoint> { return callSDK<Array<NWEndpoint>>("Network_5d69670f0307b385", 3883389900135029, this, []); }
   declare readonly $type: { "s:7Network6NWPathV": true };
 }
 
@@ -3751,54 +3751,54 @@ export class NWPathMonitor extends SDKHandle {
    * final var currentPath: NWPath { get set }
    * @availability iOS 12.0+
    */
-  get currentPath(): NWPath { return callSDK<NWPath>("Network_212edf3d13b127f5", 2642433068565327, this, []); }
-  set currentPath(value: NWPath) { callSDK<void>("Network_212edf3d13b127f5", 2655564135920458, this, [value]); }
+  get currentPath(): NWPath { return callSDK<NWPath>("Network_5d69670f0307b385", 2642433068565327, this, []); }
+  set currentPath(value: NWPath) { callSDK<void>("Network_5d69670f0307b385", 2655564135920458, this, [value]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 918863580245489, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 918863580245489, this, []); }
   /**
    * final func makeAsyncIterator() -> NWPathMonitor.Iterator
    * @availability iOS 17.0+
    */
-  makeAsyncIterator(): NWPathMonitor_Iterator { return callSDK<NWPathMonitor_Iterator>("Network_212edf3d13b127f5", 973193946699906, this, []); }
+  makeAsyncIterator(): NWPathMonitor_Iterator { return callSDK<NWPathMonitor_Iterator>("Network_5d69670f0307b385", 973193946699906, this, []); }
   /**
    * @preconcurrency final var pathUpdateHandler: (@Sendable (NWPath) -> Void)? { get set }
    * @availability iOS 12.0+
    */
-  get pathUpdateHandler(): $SDK69 { return callSDK<$SDK69>("Network_212edf3d13b127f5", 4244479561668066, this, []); }
-  set pathUpdateHandler(value: $SDK70) { callSDK<void>("Network_212edf3d13b127f5", 2162572115494008, this, [value], [{"callback":{"out":[]}}]); }
+  get pathUpdateHandler(): $SDK69 { return callSDK<$SDK69>("Network_5d69670f0307b385", 4244479561668066, this, []); }
+  set pathUpdateHandler(value: $SDK70) { callSDK<void>("Network_5d69670f0307b385", 2162572115494008, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * init(requiredInterfaceType: NWInterface.InterfaceType)
    * @availability iOS 12.0+
    */
-  static initRequiredInterfaceType(requiredInterfaceType: NWInterface_InterfaceType): NWPathMonitor { return callSDK<NWPathMonitor>("Network_212edf3d13b127f5", 1694426220095185, undefined, [requiredInterfaceType]); }
+  static initRequiredInterfaceType(requiredInterfaceType: NWInterface_InterfaceType): NWPathMonitor { return callSDK<NWPathMonitor>("Network_5d69670f0307b385", 1694426220095185, undefined, [requiredInterfaceType]); }
   /**
    * init(prohibitedInterfaceTypes: [NWInterface.InterfaceType])
    * @availability iOS 14.0+
    */
-  static initProhibitedInterfaceTypes(prohibitedInterfaceTypes: Array<NWInterface_InterfaceType>): NWPathMonitor { return callSDK<NWPathMonitor>("Network_212edf3d13b127f5", 1897957083897420, undefined, [prohibitedInterfaceTypes]); }
+  static initProhibitedInterfaceTypes(prohibitedInterfaceTypes: Array<NWInterface_InterfaceType>): NWPathMonitor { return callSDK<NWPathMonitor>("Network_5d69670f0307b385", 1897957083897420, undefined, [prohibitedInterfaceTypes]); }
   /**
    * final var queue: DispatchQueue? { get }
    * @availability iOS 12.0+
    */
-  get queue(): $SDK66 { return callSDK<$SDK66>("Network_212edf3d13b127f5", 106569754103966, this, []); }
+  get queue(): $SDK66 { return callSDK<$SDK66>("Network_5d69670f0307b385", 106569754103966, this, []); }
   /**
    * final func start(queue: DispatchQueue)
    * @availability iOS 12.0+
    */
-  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 3460323277631781, this, [queue]); }
+  start(queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 3460323277631781, this, [queue]); }
   /**
    * final func cancel()
    * @availability iOS 12.0+
    */
-  cancel(): void { return callSDK<void>("Network_212edf3d13b127f5", 1465625468786159, this, []); }
+  cancel(): void { return callSDK<void>("Network_5d69670f0307b385", 1465625468786159, this, []); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWPathMonitor { return callSDK<NWPathMonitor>("Network_212edf3d13b127f5", 136745217475058, undefined, []); }
+  static init(): NWPathMonitor { return callSDK<NWPathMonitor>("Network_5d69670f0307b385", 136745217475058, undefined, []); }
   declare readonly $type: { "s:7Network13NWPathMonitorC": true };
   declare readonly $element: NWPath;
 }
@@ -3824,7 +3824,7 @@ export class NWPathMonitor_Iterator extends SDKHandle {
    * mutating func next() async -> NWPathMonitor.Element?
    * @availability iOS 17.0+
    */
-  next(): Promise<(NWPath) | null> { return callSDKAsync<(NWPath) | null>("Network_212edf3d13b127f5", 1124719685799210, this, []); }
+  next(): Promise<(NWPath) | null> { return callSDKAsync<(NWPath) | null>("Network_5d69670f0307b385", 1124719685799210, this, []); }
   declare readonly $type: { "s:7Network13NWPathMonitorC8IteratorV": true };
 }
 
@@ -3851,12 +3851,12 @@ export class NWProtocolDefinition extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 153466701251275, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 153466701251275, this, []); }
   /**
    * final let name: String
    * @availability iOS 12.0+
    */
-  get name(): string { return callSDK<string>("Network_212edf3d13b127f5", 4142283287637415, this, []); }
+  get name(): string { return callSDK<string>("Network_5d69670f0307b385", 4142283287637415, this, []); }
   declare readonly $type: { "s:7Network20NWProtocolDefinitionC": true };
 }
 
@@ -3885,92 +3885,92 @@ export class NWProtocolFramer_Instance extends SDKHandle {
    * final func markFailed(error: NWError?)
    * @availability iOS 13.0+
    */
-  markFailed(error?: (NWError) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 2234465161033811, this, [error]); }
+  markFailed(error?: (NWError) | null): void { return callSDK<void>("Network_5d69670f0307b385", 2234465161033811, this, [error]); }
   /**
    * final var parameters: NWParameters? { get }
    * @availability iOS 13.0+
    */
-  get parameters(): (NWParameters) | null { return callSDK<(NWParameters) | null>("Network_212edf3d13b127f5", 3855387557285683, this, []); }
+  get parameters(): (NWParameters) | null { return callSDK<(NWParameters) | null>("Network_5d69670f0307b385", 3855387557285683, this, []); }
   /**
    * final func writeOutput(data: Data)
    * @availability iOS 13.0+
    */
-  writeOutputData(data: ArrayBuffer): void { return callSDK<void>("Network_212edf3d13b127f5", 982649768596638, this, [data]); }
+  writeOutputData(data: ArrayBuffer): void { return callSDK<void>("Network_5d69670f0307b385", 982649768596638, this, [data]); }
   /**
    * final func writeOutput<Output>(data: Output) where Output : DataProtocol
    * @availability iOS 13.0+
    */
-  writeOutputData25578(data: ArrayBuffer): void { return callSDK<void>("Network_212edf3d13b127f5", 4001358758949348, this, [data]); }
+  writeOutputData25578(data: ArrayBuffer): void { return callSDK<void>("Network_5d69670f0307b385", 4001358758949348, this, [data]); }
   /**
    * final func deliverInput(data: Data, message: NWProtocolFramer.Message, isComplete: Bool)
    * @availability iOS 13.0+
    */
-  deliverInput(data: ArrayBuffer, message: NWProtocolFramer_Message, isComplete: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 473313090193009, this, [data, message, isComplete]); }
+  deliverInput(data: ArrayBuffer, message: NWProtocolFramer_Message, isComplete: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 473313090193009, this, [data, message, isComplete]); }
   /**
    * final func scheduleWakeup(wakeupTime: NWProtocolFramer.Instance.WakeupTime)
    * @availability iOS 13.0+
    */
-  scheduleWakeup(wakeupTime: NWProtocolFramer_Instance_WakeupTime): void { return callSDK<void>("Network_212edf3d13b127f5", 3787178593430595, this, [wakeupTime]); }
+  scheduleWakeup(wakeupTime: NWProtocolFramer_Instance_WakeupTime): void { return callSDK<void>("Network_5d69670f0307b385", 3787178593430595, this, [wakeupTime]); }
   /**
    * final var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 2287642525386296, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 2287642525386296, this, []); }
   /**
    * final func passThroughInput()
    * @availability iOS 13.0+
    */
-  passThroughInput(): void { return callSDK<void>("Network_212edf3d13b127f5", 566726022586383, this, []); }
+  passThroughInput(): void { return callSDK<void>("Network_5d69670f0307b385", 566726022586383, this, []); }
   /**
    * final func passThroughOutput()
    * @availability iOS 13.0+
    */
-  passThroughOutput(): void { return callSDK<void>("Network_212edf3d13b127f5", 3675423446274326, this, []); }
+  passThroughOutput(): void { return callSDK<void>("Network_5d69670f0307b385", 3675423446274326, this, []); }
   /**
    * final func writeOutputNoCopy(length: Int) throws
    * @availability iOS 13.0+
    */
-  writeOutputNoCopy(length: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3448275309625211, this, [length]); }
+  writeOutputNoCopy(length: number): void { return callSDK<void>("Network_5d69670f0307b385", 3448275309625211, this, [length]); }
   /**
    * final func deliverInputNoCopy(length: Int, message: NWProtocolFramer.Message, isComplete: Bool) -> Bool
    * @availability iOS 13.0+
    */
-  deliverInputNoCopy(length: number, message: NWProtocolFramer_Message, isComplete: boolean): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4374958615760474, this, [length, message, isComplete]); }
+  deliverInputNoCopy(length: number, message: NWProtocolFramer_Message, isComplete: boolean): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4374958615760474, this, [length, message, isComplete]); }
   /**
    * final func prependApplicationProtocol(options: NWProtocolOptions) throws
    * @availability iOS 13.0+
    */
-  prependApplicationProtocol(options: NWProtocolOptions): void { return callSDK<void>("Network_212edf3d13b127f5", 3795269048856153, this, [options]); }
+  prependApplicationProtocol(options: NWProtocolOptions): void { return callSDK<void>("Network_5d69670f0307b385", 3795269048856153, this, [options]); }
   /**
    * final func prependApplicationProtocolIgnoringReady(options: NWProtocolOptions) throws
    * @availability iOS 27.0+
    */
-  prependApplicationProtocolIgnoringReady(options: NWProtocolOptions): void { return callSDK<void>("Network_212edf3d13b127f5", 913334783288353, this, [options]); }
+  prependApplicationProtocolIgnoringReady(options: NWProtocolOptions): void { return callSDK<void>("Network_5d69670f0307b385", 913334783288353, this, [options]); }
   /**
    * final func async(execute: @escaping () -> Void)
    * @availability iOS 13.0+
    */
-  async(execute: (() => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 3401865642611315, this, [execute], [{"callback":{"out":[]}}]); }
+  async(execute: (() => void)): void { return callSDK<void>("Network_5d69670f0307b385", 3401865642611315, this, [execute], [{"callback":{"out":[]}}]); }
   /**
    * final var local: NWEndpoint? { get }
    * @availability iOS 13.0+
    */
-  get local(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 598259744714883, this, []); }
+  get local(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 598259744714883, this, []); }
   /**
    * final var remote: NWEndpoint? { get }
    * @availability iOS 13.0+
    */
-  get remote(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_212edf3d13b127f5", 1290337121885233, this, []); }
+  get remote(): (NWEndpoint) | null { return callSDK<(NWEndpoint) | null>("Network_5d69670f0307b385", 1290337121885233, this, []); }
   /**
    * final var options: NWProtocolFramer.Options { get }
    * @availability iOS 15.4+
    */
-  get options(): NWProtocolFramer_Options { return callSDK<NWProtocolFramer_Options>("Network_212edf3d13b127f5", 1424966768126447, this, []); }
+  get options(): NWProtocolFramer_Options { return callSDK<NWProtocolFramer_Options>("Network_5d69670f0307b385", 1424966768126447, this, []); }
   /**
    * final func markReady()
    * @availability iOS 13.0+
    */
-  markReady(): void { return callSDK<void>("Network_212edf3d13b127f5", 280035071144137, this, []); }
+  markReady(): void { return callSDK<void>("Network_5d69670f0307b385", 280035071144137, this, []); }
   declare readonly $type: { "s:7Network16NWProtocolFramerC8InstanceC": true };
 }
 
@@ -3999,17 +3999,17 @@ export class NWProtocolFramer_Message extends NWProtocolMetadata {
    * init(definition: NWProtocolFramer.Definition)
    * @availability iOS 13.0+
    */
-  static initDefinition(definition: NWProtocolFramer_Definition): NWProtocolFramer_Message { return callSDK<NWProtocolFramer_Message>("Network_212edf3d13b127f5", 1480019185731416, undefined, [definition]); }
+  static initDefinition(definition: NWProtocolFramer_Definition): NWProtocolFramer_Message { return callSDK<NWProtocolFramer_Message>("Network_5d69670f0307b385", 1480019185731416, undefined, [definition]); }
   /**
    * init(instance: NWProtocolFramer.Instance)
    * @availability iOS 13.0+
    */
-  static initInstance(instance: NWProtocolFramer_Instance): NWProtocolFramer_Message { return callSDK<NWProtocolFramer_Message>("Network_212edf3d13b127f5", 1753701732409147, undefined, [instance]); }
+  static initInstance(instance: NWProtocolFramer_Instance): NWProtocolFramer_Message { return callSDK<NWProtocolFramer_Message>("Network_5d69670f0307b385", 1753701732409147, undefined, [instance]); }
   /**
    * subscript(key: String) -> Any? { get set }
    * @availability iOS 13.0+
    */
-  subscript(key: string): (unknown) | null { return callSDK<(unknown) | null>("Network_212edf3d13b127f5", 4150858016209103, this, [key]); }
+  subscript(key: string): (unknown) | null { return callSDK<(unknown) | null>("Network_5d69670f0307b385", 4150858016209103, this, [key]); }
   declare readonly $type: { "s:7Network16NWProtocolFramerC7MessageC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4030,12 +4030,12 @@ export class NWProtocolFramer_Options extends NWProtocolOptions {
    * init(definition: NWProtocolFramer.Definition)
    * @availability iOS 13.0+
    */
-  static init(definition: NWProtocolFramer_Definition): NWProtocolFramer_Options { return callSDK<NWProtocolFramer_Options>("Network_212edf3d13b127f5", 1960365550813686, undefined, [definition]); }
+  static init(definition: NWProtocolFramer_Definition): NWProtocolFramer_Options { return callSDK<NWProtocolFramer_Options>("Network_5d69670f0307b385", 1960365550813686, undefined, [definition]); }
   /**
    * subscript(key: String) -> Any? { get set }
    * @availability iOS 15.4+
    */
-  subscript(key: string): (unknown) | null { return callSDK<(unknown) | null>("Network_212edf3d13b127f5", 307520193053779, this, [key]); }
+  subscript(key: string): (unknown) | null { return callSDK<(unknown) | null>("Network_5d69670f0307b385", 307520193053779, this, [key]); }
   declare readonly $type: { "s:7Network16NWProtocolFramerC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4096,7 +4096,7 @@ export class NWProtocolIP extends NWProtocol {
    * static let definition: NWProtocolDefinition
    * @availability iOS 12.0+
    */
-  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 1924637933109612, undefined, []); }
+  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 1924637933109612, undefined, []); }
   declare readonly $type: { "s:7Network12NWProtocolIPC": true; "s:7Network10NWProtocolC": true };
 }
 
@@ -4115,34 +4115,34 @@ export class NWProtocolIP_Metadata extends NWProtocolMetadata {
    * var receiveTime: UInt64 { get }
    * @availability iOS 12.0+
    */
-  get receiveTime(): number { return callSDK<number>("Network_212edf3d13b127f5", 1903190465473523, this, []); }
+  get receiveTime(): number { return callSDK<number>("Network_5d69670f0307b385", 1903190465473523, this, []); }
   /**
    * var serviceClass: NWParameters.ServiceClass { get set }
    * @availability iOS 12.0+
    */
-  get serviceClass(): NWParameters_ServiceClass { return callSDK<NWParameters_ServiceClass>("Network_212edf3d13b127f5", 1148063537005857, this, []); }
-  set serviceClass(value: NWParameters_ServiceClass) { callSDK<void>("Network_212edf3d13b127f5", 286064169759158, this, [value]); }
+  get serviceClass(): NWParameters_ServiceClass { return callSDK<NWParameters_ServiceClass>("Network_5d69670f0307b385", 1148063537005857, this, []); }
+  set serviceClass(value: NWParameters_ServiceClass) { callSDK<void>("Network_5d69670f0307b385", 286064169759158, this, [value]); }
   /**
    * func serviceClass(_ serviceClass: NWParameters.ServiceClass) -> Self
    * @availability iOS 26.0+
    */
-  serviceClass28776(serviceClass: NWParameters_ServiceClass): NWProtocolIP_Metadata { return callSDK<NWProtocolIP_Metadata>("Network_212edf3d13b127f5", 256505842233048, this, [serviceClass]); }
+  serviceClass28776(serviceClass: NWParameters_ServiceClass): NWProtocolIP_Metadata { return callSDK<NWProtocolIP_Metadata>("Network_5d69670f0307b385", 256505842233048, this, [serviceClass]); }
   /**
    * var ecn: NWProtocolIP.ECN { get set }
    * @availability iOS 12.0+
    */
-  get ecn(): NWProtocolIP_ECN { return callSDK<NWProtocolIP_ECN>("Network_212edf3d13b127f5", 1759089992227634, this, []); }
-  set ecn(value: NWProtocolIP_ECN) { callSDK<void>("Network_212edf3d13b127f5", 1105132139452228, this, [value]); }
+  get ecn(): NWProtocolIP_ECN { return callSDK<NWProtocolIP_ECN>("Network_5d69670f0307b385", 1759089992227634, this, []); }
+  set ecn(value: NWProtocolIP_ECN) { callSDK<void>("Network_5d69670f0307b385", 1105132139452228, this, [value]); }
   /**
    * func ecn(_ ecn: NWProtocolIP.ECN) -> Self
    * @availability iOS 26.0+
    */
-  ecn61475(ecn: NWProtocolIP_ECN): NWProtocolIP_Metadata { return callSDK<NWProtocolIP_Metadata>("Network_212edf3d13b127f5", 2035274989953821, this, [ecn]); }
+  ecn61475(ecn: NWProtocolIP_ECN): NWProtocolIP_Metadata { return callSDK<NWProtocolIP_Metadata>("Network_5d69670f0307b385", 2035274989953821, this, [ecn]); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWProtocolIP_Metadata { return callSDK<NWProtocolIP_Metadata>("Network_212edf3d13b127f5", 4234843890469950, undefined, []); }
+  static init(): NWProtocolIP_Metadata { return callSDK<NWProtocolIP_Metadata>("Network_5d69670f0307b385", 4234843890469950, undefined, []); }
   declare readonly $type: { "s:7Network12NWProtocolIPC8MetadataC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4155,44 +4155,44 @@ export class NWProtocolIP_Options extends NWProtocolOptions {
    * var useMinimumMTU: Bool { get set }
    * @availability iOS 12.0+
    */
-  get useMinimumMTU(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2791987791145457, this, []); }
-  set useMinimumMTU(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 395815197671436, this, [value]); }
+  get useMinimumMTU(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2791987791145457, this, []); }
+  set useMinimumMTU(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 395815197671436, this, [value]); }
   /**
    * var disableFragmentation: Bool { get set }
    * @availability iOS 12.0+
    */
-  get disableFragmentation(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4462093625526374, this, []); }
-  set disableFragmentation(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2932417098688987, this, [value]); }
+  get disableFragmentation(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4462093625526374, this, []); }
+  set disableFragmentation(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2932417098688987, this, [value]); }
   /**
    * var localAddressPreference: NWProtocolIP.Options.AddressPreference { get set }
    * @availability iOS 14.0+
    */
-  get localAddressPreference(): NWProtocolIP_Options_AddressPreference { return callSDK<NWProtocolIP_Options_AddressPreference>("Network_212edf3d13b127f5", 2414700581586996, this, []); }
-  set localAddressPreference(value: NWProtocolIP_Options_AddressPreference) { callSDK<void>("Network_212edf3d13b127f5", 2250942395019235, this, [value]); }
+  get localAddressPreference(): NWProtocolIP_Options_AddressPreference { return callSDK<NWProtocolIP_Options_AddressPreference>("Network_5d69670f0307b385", 2414700581586996, this, []); }
+  set localAddressPreference(value: NWProtocolIP_Options_AddressPreference) { callSDK<void>("Network_5d69670f0307b385", 2250942395019235, this, [value]); }
   /**
    * var disableMulticastLoopback: Bool { get set }
    * @availability iOS 14.0+
    */
-  get disableMulticastLoopback(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1335482809415194, this, []); }
-  set disableMulticastLoopback(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1503161373655052, this, [value]); }
+  get disableMulticastLoopback(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1335482809415194, this, []); }
+  set disableMulticastLoopback(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1503161373655052, this, [value]); }
   /**
    * var shouldCalculateReceiveTime: Bool { get set }
    * @availability iOS 12.0+
    */
-  get shouldCalculateReceiveTime(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4229132464472517, this, []); }
-  set shouldCalculateReceiveTime(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 3096546836005894, this, [value]); }
+  get shouldCalculateReceiveTime(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4229132464472517, this, []); }
+  set shouldCalculateReceiveTime(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 3096546836005894, this, [value]); }
   /**
    * var version: NWProtocolIP.Options.Version { get set }
    * @availability iOS 12.0+
    */
-  get version(): NWProtocolIP_Options_Version { return callSDK<NWProtocolIP_Options_Version>("Network_212edf3d13b127f5", 4464818992614911, this, []); }
-  set version(value: NWProtocolIP_Options_Version) { callSDK<void>("Network_212edf3d13b127f5", 3655554649245646, this, [value]); }
+  get version(): NWProtocolIP_Options_Version { return callSDK<NWProtocolIP_Options_Version>("Network_5d69670f0307b385", 4464818992614911, this, []); }
+  set version(value: NWProtocolIP_Options_Version) { callSDK<void>("Network_5d69670f0307b385", 3655554649245646, this, [value]); }
   /**
    * var hopLimit: UInt8 { get set }
    * @availability iOS 12.0+
    */
-  get hopLimit(): number { return callSDK<number>("Network_212edf3d13b127f5", 281464568434812, this, []); }
-  set hopLimit(value: number) { callSDK<void>("Network_212edf3d13b127f5", 3215511958306988, this, [value]); }
+  get hopLimit(): number { return callSDK<number>("Network_5d69670f0307b385", 281464568434812, this, []); }
+  set hopLimit(value: number) { callSDK<void>("Network_5d69670f0307b385", 3215511958306988, this, [value]); }
   declare readonly $type: { "s:7Network12NWProtocolIPC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4217,7 +4217,7 @@ export class NWProtocolQUIC extends NWProtocol {
    * static let definition: NWProtocolDefinition
    * @availability iOS 15.0+
    */
-  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 2486658514715710, undefined, []); }
+  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 2486658514715710, undefined, []); }
   declare readonly $type: { "s:7Network14NWProtocolQUICC": true; "s:7Network10NWProtocolC": true };
 }
 
@@ -4230,22 +4230,22 @@ export class NWProtocolQUIC_ApplicationError extends SDKHandle {
    * init(integerLiteral code: UInt64)
    * @availability iOS 15.0+
    */
-  static initIntegerLiteral(code: number): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_212edf3d13b127f5", 4237857542983469, undefined, [code]); }
+  static initIntegerLiteral(code: number): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_5d69670f0307b385", 4237857542983469, undefined, [code]); }
   /**
    * init(code: UInt64, reason: String? = nil)
    * @availability iOS 15.0+
    */
-  static initCodeReason(code: number, reason?: (string) | null): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_212edf3d13b127f5", 2744063987926886, undefined, [code, reason]); }
+  static initCodeReason(code: number, reason?: (string) | null): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_5d69670f0307b385", 2744063987926886, undefined, [code, reason]); }
   /**
    * let code: UInt64
    * @availability iOS 15.0+
    */
-  get code(): number { return callSDK<number>("Network_212edf3d13b127f5", 3716511801281697, this, []); }
+  get code(): number { return callSDK<number>("Network_5d69670f0307b385", 3716511801281697, this, []); }
   /**
    * let reason: String?
    * @availability iOS 15.0+
    */
-  get reason(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 4142623296187489, this, []); }
+  get reason(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 4142623296187489, this, []); }
   declare readonly $type: { "s:7Network14NWProtocolQUICC16ApplicationErrorV": true };
 }
 
@@ -4264,67 +4264,67 @@ export class NWProtocolQUIC_Metadata extends NWProtocolMetadata {
    * var securityProtocolMetadata: sec_protocol_metadata_t { get }
    * @availability iOS 15.0+
    */
-  get securityProtocolMetadata(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3166435143006590, this, []); }
+  get securityProtocolMetadata(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3166435143006590, this, []); }
   /**
    * var negotiatedALPN: String? { get }
    * @availability iOS 15.0+
    */
-  get negotiatedALPN(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 3117286435000979, this, []); }
+  get negotiatedALPN(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 3117286435000979, this, []); }
   /**
    * var applicationError: NWProtocolQUIC.ApplicationError { get set }
    * @availability iOS 15.0+
    */
-  get applicationError(): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_212edf3d13b127f5", 3528076169414220, this, []); }
-  set applicationError(value: NWProtocolQUIC_ApplicationError) { callSDK<void>("Network_212edf3d13b127f5", 3910864256326029, this, [value]); }
+  get applicationError(): NWProtocolQUIC_ApplicationError { return callSDK<NWProtocolQUIC_ApplicationError>("Network_5d69670f0307b385", 3528076169414220, this, []); }
+  set applicationError(value: NWProtocolQUIC_ApplicationError) { callSDK<void>("Network_5d69670f0307b385", 3910864256326029, this, [value]); }
   /**
    * var streamIdentifier: UInt64 { get }
    * @availability iOS 15.0+
    */
-  get streamIdentifier(): number { return callSDK<number>("Network_212edf3d13b127f5", 1742123273394001, this, []); }
+  get streamIdentifier(): number { return callSDK<number>("Network_5d69670f0307b385", 1742123273394001, this, []); }
   /**
    * var remoteIdleTimeout: Int { get }
    * @availability iOS 15.0+
    */
-  get remoteIdleTimeout(): number { return callSDK<number>("Network_212edf3d13b127f5", 3764878940179519, this, []); }
+  get remoteIdleTimeout(): number { return callSDK<number>("Network_5d69670f0307b385", 3764878940179519, this, []); }
   /**
    * var usableDatagramFrameSize: Int { get }
    * @availability iOS 16.0+
    */
-  get usableDatagramFrameSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 575143186960829, this, []); }
+  get usableDatagramFrameSize(): number { return callSDK<number>("Network_5d69670f0307b385", 575143186960829, this, []); }
   /**
    * var streamApplicationErrorCode: UInt64 { get set }
    * @availability iOS 15.0+
    */
-  get streamApplicationErrorCode(): number { return callSDK<number>("Network_212edf3d13b127f5", 4366613975167064, this, []); }
-  set streamApplicationErrorCode(value: number) { callSDK<void>("Network_212edf3d13b127f5", 990031398666930, this, [value]); }
+  get streamApplicationErrorCode(): number { return callSDK<number>("Network_5d69670f0307b385", 4366613975167064, this, []); }
+  set streamApplicationErrorCode(value: number) { callSDK<void>("Network_5d69670f0307b385", 990031398666930, this, [value]); }
   /**
    * var localMaxStreamsBidirectional: Int { get set }
    * @availability iOS 15.0+
    */
-  get localMaxStreamsBidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 115853443797435, this, []); }
-  set localMaxStreamsBidirectional(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1290152311141948, this, [value]); }
+  get localMaxStreamsBidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 115853443797435, this, []); }
+  set localMaxStreamsBidirectional(value: number) { callSDK<void>("Network_5d69670f0307b385", 1290152311141948, this, [value]); }
   /**
    * var localMaxStreamsUnidirectional: Int { get set }
    * @availability iOS 15.0+
    */
-  get localMaxStreamsUnidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 1312563085062864, this, []); }
-  set localMaxStreamsUnidirectional(value: number) { callSDK<void>("Network_212edf3d13b127f5", 2931476066643758, this, [value]); }
+  get localMaxStreamsUnidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 1312563085062864, this, []); }
+  set localMaxStreamsUnidirectional(value: number) { callSDK<void>("Network_5d69670f0307b385", 2931476066643758, this, [value]); }
   /**
    * var remoteMaxStreamsBidirectional: Int { get }
    * @availability iOS 15.0+
    */
-  get remoteMaxStreamsBidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 2890996830046485, this, []); }
+  get remoteMaxStreamsBidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 2890996830046485, this, []); }
   /**
    * var remoteMaxStreamsUnidirectional: Int { get }
    * @availability iOS 15.0+
    */
-  get remoteMaxStreamsUnidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 733530645698342, this, []); }
+  get remoteMaxStreamsUnidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 733530645698342, this, []); }
   /**
    * var keepAlive: NWProtocolQUIC.Metadata.KeepAliveBehavior { get set }
    * @availability iOS 15.0+
    */
-  get keepAlive(): NWProtocolQUIC_Metadata_KeepAliveBehavior { return callSDK<NWProtocolQUIC_Metadata_KeepAliveBehavior>("Network_212edf3d13b127f5", 4372303850103024, this, []); }
-  set keepAlive(value: NWProtocolQUIC_Metadata_KeepAliveBehavior) { callSDK<void>("Network_212edf3d13b127f5", 724050440408943, this, [value]); }
+  get keepAlive(): NWProtocolQUIC_Metadata_KeepAliveBehavior { return callSDK<NWProtocolQUIC_Metadata_KeepAliveBehavior>("Network_5d69670f0307b385", 4372303850103024, this, []); }
+  set keepAlive(value: NWProtocolQUIC_Metadata_KeepAliveBehavior) { callSDK<void>("Network_5d69670f0307b385", 724050440408943, this, [value]); }
   declare readonly $type: { "s:7Network14NWProtocolQUICC8MetadataC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4345,89 +4345,89 @@ export class NWProtocolQUIC_Options extends NWProtocolOptions {
    * var securityProtocolOptions: sec_protocol_options_t { get }
    * @availability iOS 15.0+
    */
-  get securityProtocolOptions(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 724272472024304, this, []); }
+  get securityProtocolOptions(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 724272472024304, this, []); }
   /**
    * var isDatagram: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isDatagram(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1290755779478468, this, []); }
-  set isDatagram(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 3876521969226019, this, [value]); }
+  get isDatagram(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1290755779478468, this, []); }
+  set isDatagram(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 3876521969226019, this, [value]); }
   /**
    * var idleTimeout: Int { get set }
    * @availability iOS 15.0+
    */
-  get idleTimeout(): number { return callSDK<number>("Network_212edf3d13b127f5", 4184126765149829, this, []); }
-  set idleTimeout(value: number) { callSDK<void>("Network_212edf3d13b127f5", 716064922722279, this, [value]); }
+  get idleTimeout(): number { return callSDK<number>("Network_5d69670f0307b385", 4184126765149829, this, []); }
+  set idleTimeout(value: number) { callSDK<void>("Network_5d69670f0307b385", 716064922722279, this, [value]); }
   /**
    * var initialMaxData: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialMaxData(): number { return callSDK<number>("Network_212edf3d13b127f5", 2766095627287973, this, []); }
-  set initialMaxData(value: number) { callSDK<void>("Network_212edf3d13b127f5", 128187696856032, this, [value]); }
+  get initialMaxData(): number { return callSDK<number>("Network_5d69670f0307b385", 2766095627287973, this, []); }
+  set initialMaxData(value: number) { callSDK<void>("Network_5d69670f0307b385", 128187696856032, this, [value]); }
   /**
    * var maxUDPPayloadSize: Int { get set }
    * @availability iOS 15.0+
    */
-  get maxUDPPayloadSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 2121509404517354, this, []); }
-  set maxUDPPayloadSize(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1153026755745243, this, [value]); }
+  get maxUDPPayloadSize(): number { return callSDK<number>("Network_5d69670f0307b385", 2121509404517354, this, []); }
+  set maxUDPPayloadSize(value: number) { callSDK<void>("Network_5d69670f0307b385", 1153026755745243, this, [value]); }
   /**
    * var maxDatagramFrameSize: Int { get set }
    * @availability iOS 16.0+
    */
-  get maxDatagramFrameSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 3314115406236293, this, []); }
-  set maxDatagramFrameSize(value: number) { callSDK<void>("Network_212edf3d13b127f5", 896266277888165, this, [value]); }
+  get maxDatagramFrameSize(): number { return callSDK<number>("Network_5d69670f0307b385", 3314115406236293, this, []); }
+  set maxDatagramFrameSize(value: number) { callSDK<void>("Network_5d69670f0307b385", 896266277888165, this, [value]); }
   /**
    * var initialMaxStreamsBidirectional: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialMaxStreamsBidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 1730543213259649, this, []); }
-  set initialMaxStreamsBidirectional(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1196040379403899, this, [value]); }
+  get initialMaxStreamsBidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 1730543213259649, this, []); }
+  set initialMaxStreamsBidirectional(value: number) { callSDK<void>("Network_5d69670f0307b385", 1196040379403899, this, [value]); }
   /**
    * var initialMaxStreamsUnidirectional: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialMaxStreamsUnidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 3318768658800119, this, []); }
-  set initialMaxStreamsUnidirectional(value: number) { callSDK<void>("Network_212edf3d13b127f5", 2319503689732412, this, [value]); }
+  get initialMaxStreamsUnidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 3318768658800119, this, []); }
+  set initialMaxStreamsUnidirectional(value: number) { callSDK<void>("Network_5d69670f0307b385", 2319503689732412, this, [value]); }
   /**
    * var initialMaxStreamDataUnidirectional: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialMaxStreamDataUnidirectional(): number { return callSDK<number>("Network_212edf3d13b127f5", 2833042166311163, this, []); }
-  set initialMaxStreamDataUnidirectional(value: number) { callSDK<void>("Network_212edf3d13b127f5", 2382015292700146, this, [value]); }
+  get initialMaxStreamDataUnidirectional(): number { return callSDK<number>("Network_5d69670f0307b385", 2833042166311163, this, []); }
+  set initialMaxStreamDataUnidirectional(value: number) { callSDK<void>("Network_5d69670f0307b385", 2382015292700146, this, [value]); }
   /**
    * var initialMaxStreamDataBidirectionalLocal: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialMaxStreamDataBidirectionalLocal(): number { return callSDK<number>("Network_212edf3d13b127f5", 3205847623574141, this, []); }
-  set initialMaxStreamDataBidirectionalLocal(value: number) { callSDK<void>("Network_212edf3d13b127f5", 516058829476606, this, [value]); }
+  get initialMaxStreamDataBidirectionalLocal(): number { return callSDK<number>("Network_5d69670f0307b385", 3205847623574141, this, []); }
+  set initialMaxStreamDataBidirectionalLocal(value: number) { callSDK<void>("Network_5d69670f0307b385", 516058829476606, this, [value]); }
   /**
    * var initialMaxStreamDataBidirectionalRemote: Int { get set }
    * @availability iOS 15.0+
    */
-  get initialMaxStreamDataBidirectionalRemote(): number { return callSDK<number>("Network_212edf3d13b127f5", 1358500846640777, this, []); }
-  set initialMaxStreamDataBidirectionalRemote(value: number) { callSDK<void>("Network_212edf3d13b127f5", 258059200598448, this, [value]); }
+  get initialMaxStreamDataBidirectionalRemote(): number { return callSDK<number>("Network_5d69670f0307b385", 1358500846640777, this, []); }
+  set initialMaxStreamDataBidirectionalRemote(value: number) { callSDK<void>("Network_5d69670f0307b385", 258059200598448, this, [value]); }
   /**
    * convenience init(alpn: [String])
    * @availability iOS 15.0+
    */
-  static initAlpn(alpn: Array<string>): NWProtocolQUIC_Options { return callSDK<NWProtocolQUIC_Options>("Network_212edf3d13b127f5", 2511052395858380, undefined, [alpn]); }
+  static initAlpn(alpn: Array<string>): NWProtocolQUIC_Options { return callSDK<NWProtocolQUIC_Options>("Network_5d69670f0307b385", 2511052395858380, undefined, [alpn]); }
   /**
    * var alpn: [String] { get set }
    * @availability iOS 15.0+
    */
-  get alpn(): Array<string> { return callSDK<Array<string>>("Network_212edf3d13b127f5", 1898989345043767, this, []); }
-  set alpn(value: Array<string>) { callSDK<void>("Network_212edf3d13b127f5", 917450157027302, this, [value]); }
+  get alpn(): Array<string> { return callSDK<Array<string>>("Network_5d69670f0307b385", 1898989345043767, this, []); }
+  set alpn(value: Array<string>) { callSDK<void>("Network_5d69670f0307b385", 917450157027302, this, [value]); }
   /**
    * var direction: NWProtocolQUIC.Options.Direction { get set }
    * @availability iOS 15.0+
    */
-  get direction(): NWProtocolQUIC_Options_Direction { return callSDK<NWProtocolQUIC_Options_Direction>("Network_212edf3d13b127f5", 530495233033800, this, []); }
-  set direction(value: NWProtocolQUIC_Options_Direction) { callSDK<void>("Network_212edf3d13b127f5", 2051388941256947, this, [value]); }
+  get direction(): NWProtocolQUIC_Options_Direction { return callSDK<NWProtocolQUIC_Options_Direction>("Network_5d69670f0307b385", 530495233033800, this, []); }
+  set direction(value: NWProtocolQUIC_Options_Direction) { callSDK<void>("Network_5d69670f0307b385", 2051388941256947, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): NWProtocolQUIC_Options { return callSDK<NWProtocolQUIC_Options>("Network_212edf3d13b127f5", 2799387656436223, undefined, []); }
+  static init(): NWProtocolQUIC_Options { return callSDK<NWProtocolQUIC_Options>("Network_5d69670f0307b385", 2799387656436223, undefined, []); }
   declare readonly $type: { "s:7Network14NWProtocolQUICC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4446,7 +4446,7 @@ export class NWProtocolTCP extends NWProtocol {
    * static let definition: NWProtocolDefinition
    * @availability iOS 12.0+
    */
-  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 2692852979793767, undefined, []); }
+  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 2692852979793767, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolTCPC": true; "s:7Network10NWProtocolC": true };
 }
 
@@ -4459,17 +4459,17 @@ export class NWProtocolTCP_Metadata extends NWProtocolMetadata {
    * var availableSendBuffer: UInt32 { get }
    * @availability iOS 12.0+
    */
-  get availableSendBuffer(): number { return callSDK<number>("Network_212edf3d13b127f5", 2177569507072338, this, []); }
+  get availableSendBuffer(): number { return callSDK<number>("Network_5d69670f0307b385", 2177569507072338, this, []); }
   /**
    * var availableReceiveBuffer: UInt32 { get }
    * @availability iOS 12.0+
    */
-  get availableReceiveBuffer(): number { return callSDK<number>("Network_212edf3d13b127f5", 4353505317547969, this, []); }
+  get availableReceiveBuffer(): number { return callSDK<number>("Network_5d69670f0307b385", 4353505317547969, this, []); }
   /**
    * func setMaximumPacingRateBytesPerSecond(_ maximumPacingRateBytesPerSecond: UInt64?)
    * @availability iOS 27.0+
    */
-  setMaximumPacingRateBytesPerSecond(maximumPacingRateBytesPerSecond?: (number) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 1030780826639412, this, [maximumPacingRateBytesPerSecond]); }
+  setMaximumPacingRateBytesPerSecond(maximumPacingRateBytesPerSecond?: (number) | null): void { return callSDK<void>("Network_5d69670f0307b385", 1030780826639412, this, [maximumPacingRateBytesPerSecond]); }
   declare readonly $type: { "s:7Network13NWProtocolTCPC8MetadataC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4482,97 +4482,97 @@ export class NWProtocolTCP_Options extends NWProtocolOptions {
    * var noOptions: Bool { get set }
    * @availability iOS 12.0+
    */
-  get noOptions(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 217577537579639, this, []); }
-  set noOptions(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1867720231585914, this, [value]); }
+  get noOptions(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 217577537579639, this, []); }
+  set noOptions(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1867720231585914, this, [value]); }
   /**
    * var disableECN: Bool { get set }
    * @availability iOS 12.0+
    */
-  get disableECN(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 335432851755679, this, []); }
-  set disableECN(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 3575293701177419, this, [value]); }
+  get disableECN(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 335432851755679, this, []); }
+  set disableECN(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 3575293701177419, this, [value]); }
   /**
    * var keepaliveIdle: Int { get set }
    * @availability iOS 12.0+
    */
-  get keepaliveIdle(): number { return callSDK<number>("Network_212edf3d13b127f5", 803043876632339, this, []); }
-  set keepaliveIdle(value: number) { callSDK<void>("Network_212edf3d13b127f5", 2539959471233872, this, [value]); }
+  get keepaliveIdle(): number { return callSDK<number>("Network_5d69670f0307b385", 803043876632339, this, []); }
+  set keepaliveIdle(value: number) { callSDK<void>("Network_5d69670f0307b385", 2539959471233872, this, [value]); }
   /**
    * var enableFastOpen: Bool { get set }
    * @availability iOS 12.0+
    */
-  get enableFastOpen(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 573747163238733, this, []); }
-  set enableFastOpen(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2405651609995287, this, [value]); }
+  get enableFastOpen(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 573747163238733, this, []); }
+  set enableFastOpen(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2405651609995287, this, [value]); }
   /**
    * var keepaliveCount: Int { get set }
    * @availability iOS 12.0+
    */
-  get keepaliveCount(): number { return callSDK<number>("Network_212edf3d13b127f5", 2358140905082899, this, []); }
-  set keepaliveCount(value: number) { callSDK<void>("Network_212edf3d13b127f5", 4414330543416752, this, [value]); }
+  get keepaliveCount(): number { return callSDK<number>("Network_5d69670f0307b385", 2358140905082899, this, []); }
+  set keepaliveCount(value: number) { callSDK<void>("Network_5d69670f0307b385", 4414330543416752, this, [value]); }
   /**
    * var persistTimeout: Int { get set }
    * @availability iOS 12.0+
    */
-  get persistTimeout(): number { return callSDK<number>("Network_212edf3d13b127f5", 4109643808157090, this, []); }
-  set persistTimeout(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1620646561015802, this, [value]); }
+  get persistTimeout(): number { return callSDK<number>("Network_5d69670f0307b385", 4109643808157090, this, []); }
+  set persistTimeout(value: number) { callSDK<void>("Network_5d69670f0307b385", 1620646561015802, this, [value]); }
   /**
    * var enableKeepalive: Bool { get set }
    * @availability iOS 12.0+
    */
-  get enableKeepalive(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1189000304842367, this, []); }
-  set enableKeepalive(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 798207000817086, this, [value]); }
+  get enableKeepalive(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1189000304842367, this, []); }
+  set enableKeepalive(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 798207000817086, this, [value]); }
   /**
    * var connectionTimeout: Int { get set }
    * @availability iOS 12.0+
    */
-  get connectionTimeout(): number { return callSDK<number>("Network_212edf3d13b127f5", 759507395791674, this, []); }
-  set connectionTimeout(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1887113034445377, this, [value]); }
+  get connectionTimeout(): number { return callSDK<number>("Network_5d69670f0307b385", 759507395791674, this, []); }
+  set connectionTimeout(value: number) { callSDK<void>("Network_5d69670f0307b385", 1887113034445377, this, [value]); }
   /**
    * var keepaliveInterval: Int { get set }
    * @availability iOS 12.0+
    */
-  get keepaliveInterval(): number { return callSDK<number>("Network_212edf3d13b127f5", 89292602343983, this, []); }
-  set keepaliveInterval(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1564063988624305, this, [value]); }
+  get keepaliveInterval(): number { return callSDK<number>("Network_5d69670f0307b385", 89292602343983, this, []); }
+  set keepaliveInterval(value: number) { callSDK<void>("Network_5d69670f0307b385", 1564063988624305, this, [value]); }
   /**
    * var retransmitFinDrop: Bool { get set }
    * @availability iOS 12.0+
    */
-  get retransmitFinDrop(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4400805098439721, this, []); }
-  set retransmitFinDrop(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 624066847591020, this, [value]); }
+  get retransmitFinDrop(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4400805098439721, this, []); }
+  set retransmitFinDrop(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 624066847591020, this, [value]); }
   /**
    * var connectionDropTime: Int { get set }
    * @availability iOS 12.0+
    */
-  get connectionDropTime(): number { return callSDK<number>("Network_212edf3d13b127f5", 3842590718301703, this, []); }
-  set connectionDropTime(value: number) { callSDK<void>("Network_212edf3d13b127f5", 4209529902582412, this, [value]); }
+  get connectionDropTime(): number { return callSDK<number>("Network_5d69670f0307b385", 3842590718301703, this, []); }
+  set connectionDropTime(value: number) { callSDK<void>("Network_5d69670f0307b385", 4209529902582412, this, [value]); }
   /**
    * var maximumSegmentSize: Int { get set }
    * @availability iOS 12.0+
    */
-  get maximumSegmentSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 652099067361634, this, []); }
-  set maximumSegmentSize(value: number) { callSDK<void>("Network_212edf3d13b127f5", 1968768166228855, this, [value]); }
+  get maximumSegmentSize(): number { return callSDK<number>("Network_5d69670f0307b385", 652099067361634, this, []); }
+  set maximumSegmentSize(value: number) { callSDK<void>("Network_5d69670f0307b385", 1968768166228855, this, [value]); }
   /**
    * var disableAckStretching: Bool { get set }
    * @availability iOS 12.0+
    */
-  get disableAckStretching(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4374688042818242, this, []); }
-  set disableAckStretching(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 3345228367996325, this, [value]); }
+  get disableAckStretching(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4374688042818242, this, []); }
+  set disableAckStretching(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 3345228367996325, this, [value]); }
   /**
    * var noPush: Bool { get set }
    * @availability iOS 12.0+
    */
-  get noPush(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4265180664868868, this, []); }
-  set noPush(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 921931745323008, this, [value]); }
+  get noPush(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4265180664868868, this, []); }
+  set noPush(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 921931745323008, this, [value]); }
   /**
    * var noDelay: Bool { get set }
    * @availability iOS 12.0+
    */
-  get noDelay(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3749615996714544, this, []); }
-  set noDelay(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2867600537595384, this, [value]); }
+  get noDelay(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3749615996714544, this, []); }
+  set noDelay(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2867600537595384, this, [value]); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWProtocolTCP_Options { return callSDK<NWProtocolTCP_Options>("Network_212edf3d13b127f5", 3779658529795095, undefined, []); }
+  static init(): NWProtocolTCP_Options { return callSDK<NWProtocolTCP_Options>("Network_5d69670f0307b385", 3779658529795095, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolTCPC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4585,7 +4585,7 @@ export class NWProtocolTLS extends NWProtocol {
    * static let definition: NWProtocolDefinition
    * @availability iOS 12.0+
    */
-  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 2335948986780492, undefined, []); }
+  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 2335948986780492, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolTLSC": true; "s:7Network10NWProtocolC": true };
 }
 
@@ -4598,7 +4598,7 @@ export class NWProtocolTLS_Metadata extends NWProtocolMetadata {
    * var securityProtocolMetadata: sec_protocol_metadata_t { get }
    * @availability iOS 12.0+
    */
-  get securityProtocolMetadata(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2709678175066613, this, []); }
+  get securityProtocolMetadata(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2709678175066613, this, []); }
   declare readonly $type: { "s:7Network13NWProtocolTLSC8MetadataC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4611,12 +4611,12 @@ export class NWProtocolTLS_Options extends NWProtocolOptions {
    * var securityProtocolOptions: sec_protocol_options_t { get }
    * @availability iOS 12.0+
    */
-  get securityProtocolOptions(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2897993243314534, this, []); }
+  get securityProtocolOptions(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2897993243314534, this, []); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWProtocolTLS_Options { return callSDK<NWProtocolTLS_Options>("Network_212edf3d13b127f5", 2561411071172449, undefined, []); }
+  static init(): NWProtocolTLS_Options { return callSDK<NWProtocolTLS_Options>("Network_5d69670f0307b385", 2561411071172449, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolTLSC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4629,7 +4629,7 @@ export class NWProtocolUDP extends NWProtocol {
    * static let definition: NWProtocolDefinition
    * @availability iOS 12.0+
    */
-  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 4028218387204794, undefined, []); }
+  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 4028218387204794, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolUDPC": true; "s:7Network10NWProtocolC": true };
 }
 
@@ -4642,7 +4642,7 @@ export class NWProtocolUDP_Metadata extends NWProtocolMetadata {
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWProtocolUDP_Metadata { return callSDK<NWProtocolUDP_Metadata>("Network_212edf3d13b127f5", 3224783504180335, undefined, []); }
+  static init(): NWProtocolUDP_Metadata { return callSDK<NWProtocolUDP_Metadata>("Network_5d69670f0307b385", 3224783504180335, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolUDPC8MetadataC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4655,13 +4655,13 @@ export class NWProtocolUDP_Options extends NWProtocolOptions {
    * var preferNoChecksum: Bool { get set }
    * @availability iOS 12.0+
    */
-  get preferNoChecksum(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3312101971226681, this, []); }
-  set preferNoChecksum(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1251007082426925, this, [value]); }
+  get preferNoChecksum(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3312101971226681, this, []); }
+  set preferNoChecksum(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1251007082426925, this, [value]); }
   /**
    * init()
    * @availability iOS 12.0+
    */
-  static init(): NWProtocolUDP_Options { return callSDK<NWProtocolUDP_Options>("Network_212edf3d13b127f5", 2131784396439347, undefined, []); }
+  static init(): NWProtocolUDP_Options { return callSDK<NWProtocolUDP_Options>("Network_5d69670f0307b385", 2131784396439347, undefined, []); }
   declare readonly $type: { "s:7Network13NWProtocolUDPC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4674,7 +4674,7 @@ export class NWProtocolWebSocket extends NWProtocol {
    * static let definition: NWProtocolDefinition
    * @availability iOS 13.0+
    */
-  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_212edf3d13b127f5", 3015963150857988, undefined, []); }
+  static get definition(): NWProtocolDefinition { return callSDK<NWProtocolDefinition>("Network_5d69670f0307b385", 3015963150857988, undefined, []); }
   declare readonly $type: { "s:7Network19NWProtocolWebSocketC": true; "s:7Network10NWProtocolC": true };
 }
 
@@ -4687,7 +4687,7 @@ export class NWProtocolWebSocket_CloseCode extends SDKHandle {
    * init(rawValue: UInt16) throws
    * @availability iOS 13.0+
    */
-  static init(rawValue: number): NWProtocolWebSocket_CloseCode { return callSDK<NWProtocolWebSocket_CloseCode>("Network_212edf3d13b127f5", 2752273493147105, undefined, [rawValue]); }
+  static init(rawValue: number): NWProtocolWebSocket_CloseCode { return callSDK<NWProtocolWebSocket_CloseCode>("Network_5d69670f0307b385", 2752273493147105, undefined, [rawValue]); }
   declare readonly $type: { "s:7Network19NWProtocolWebSocketC9CloseCodeO": true };
 }
 
@@ -4702,12 +4702,12 @@ export const NWProtocolWebSocket_CloseCode_Defined = {
    * init?(rawValue: UInt16)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NWProtocolWebSocket_CloseCode_Defined) | null { return callSDK<(NWProtocolWebSocket_CloseCode_Defined) | null>("Network_212edf3d13b127f5", 4237676782766159, undefined, [rawValue]); },
+  init(rawValue: number): (NWProtocolWebSocket_CloseCode_Defined) | null { return callSDK<(NWProtocolWebSocket_CloseCode_Defined) | null>("Network_5d69670f0307b385", 4237676782766159, undefined, [rawValue]); },
   /**
    * var rawValue: UInt16 { get }
    * @availability iOS 13.0+
    */
-  getRawValue($self: NWProtocolWebSocket_CloseCode_Defined): number { return callSDK<number>("Network_212edf3d13b127f5", 1051525685579611, $self, []); }
+  getRawValue($self: NWProtocolWebSocket_CloseCode_Defined): number { return callSDK<number>("Network_5d69670f0307b385", 1051525685579611, $self, []); }
 };
 
 /**
@@ -4725,33 +4725,33 @@ export class NWProtocolWebSocket_Metadata extends NWProtocolMetadata {
    * @preconcurrency func setPongHandler(_ queue: DispatchQueue, handler: @escaping @Sendable (NWError?) -> Void)
    * @availability iOS 13.0+
    */
-  setPongHandler(queue: _Dispatch_DispatchQueue, handler: $SDK90): void { return callSDK<void>("Network_212edf3d13b127f5", 4166550550841626, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
+  setPongHandler(queue: _Dispatch_DispatchQueue, handler: $SDK90): void { return callSDK<void>("Network_5d69670f0307b385", 4166550550841626, this, [queue, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var selectedSubprotocol: String? { get }
    * @availability iOS 13.0+
    */
-  get selectedSubprotocol(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 701051243389162, this, []); }
+  get selectedSubprotocol(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 701051243389162, this, []); }
   /**
    * var additionalServerHeaders: [(String, String)]? { get }
    * @availability iOS 13.0+
    */
-  get additionalServerHeaders(): (Array<[string, string]>) | null { return callSDK<(Array<[string, string]>) | null>("Network_212edf3d13b127f5", 4103316433626990, this, []); }
+  get additionalServerHeaders(): (Array<[string, string]>) | null { return callSDK<(Array<[string, string]>) | null>("Network_5d69670f0307b385", 4103316433626990, this, []); }
   /**
    * final let opcode: NWProtocolWebSocket.Opcode
    * @availability iOS 13.0+
    */
-  get opcode(): NWProtocolWebSocket_Opcode { return callSDK<NWProtocolWebSocket_Opcode>("Network_212edf3d13b127f5", 3324588078471463, this, []); }
+  get opcode(): NWProtocolWebSocket_Opcode { return callSDK<NWProtocolWebSocket_Opcode>("Network_5d69670f0307b385", 3324588078471463, this, []); }
   /**
    * init(opcode: NWProtocolWebSocket.Opcode)
    * @availability iOS 13.0+
    */
-  static init(opcode: NWProtocolWebSocket_Opcode): NWProtocolWebSocket_Metadata { return callSDK<NWProtocolWebSocket_Metadata>("Network_212edf3d13b127f5", 3953546589136234, undefined, [opcode]); }
+  static init(opcode: NWProtocolWebSocket_Opcode): NWProtocolWebSocket_Metadata { return callSDK<NWProtocolWebSocket_Metadata>("Network_5d69670f0307b385", 3953546589136234, undefined, [opcode]); }
   /**
    * var closeCode: NWProtocolWebSocket.CloseCode { get set }
    * @availability iOS 13.0+
    */
-  get closeCode(): NWProtocolWebSocket_CloseCode { return callSDK<NWProtocolWebSocket_CloseCode>("Network_212edf3d13b127f5", 3371039575260270, this, []); }
-  set closeCode(value: NWProtocolWebSocket_CloseCode) { callSDK<void>("Network_212edf3d13b127f5", 3666290497254376, this, [value]); }
+  get closeCode(): NWProtocolWebSocket_CloseCode { return callSDK<NWProtocolWebSocket_CloseCode>("Network_5d69670f0307b385", 3371039575260270, this, []); }
+  set closeCode(value: NWProtocolWebSocket_CloseCode) { callSDK<void>("Network_5d69670f0307b385", 3666290497254376, this, [value]); }
   declare readonly $type: { "s:7Network19NWProtocolWebSocketC8MetadataC": true; "s:7Network18NWProtocolMetadataC": true };
 }
 
@@ -4766,12 +4766,12 @@ export const NWProtocolWebSocket_Opcode = {
    * init?(rawValue: UInt8)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NWProtocolWebSocket_Opcode) | null { return callSDK<(NWProtocolWebSocket_Opcode) | null>("Network_212edf3d13b127f5", 2973655465940174, undefined, [rawValue]); },
+  init(rawValue: number): (NWProtocolWebSocket_Opcode) | null { return callSDK<(NWProtocolWebSocket_Opcode) | null>("Network_5d69670f0307b385", 2973655465940174, undefined, [rawValue]); },
   /**
    * var rawValue: UInt8 { get }
    * @availability iOS 13.0+
    */
-  getRawValue($self: NWProtocolWebSocket_Opcode): number { return callSDK<number>("Network_212edf3d13b127f5", 2057652692107493, $self, []); }
+  getRawValue($self: NWProtocolWebSocket_Opcode): number { return callSDK<number>("Network_5d69670f0307b385", 2057652692107493, $self, []); }
 };
 
 /**
@@ -4789,35 +4789,35 @@ export class NWProtocolWebSocket_Options extends NWProtocolOptions {
    * var autoReplyPing: Bool { get set }
    * @availability iOS 13.0+
    */
-  get autoReplyPing(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4426613216129919, this, []); }
-  set autoReplyPing(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2649777846187555, this, [value]); }
+  get autoReplyPing(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4426613216129919, this, []); }
+  set autoReplyPing(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2649777846187555, this, [value]); }
   /**
    * var skipHandshake: Bool { get set }
    * @availability iOS 13.0+
    */
-  get skipHandshake(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3496400517725110, this, []); }
-  set skipHandshake(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 1087095555857565, this, [value]); }
+  get skipHandshake(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3496400517725110, this, []); }
+  set skipHandshake(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 1087095555857565, this, [value]); }
   /**
    * func setSubprotocols(_ subprotocols: [String])
    * @availability iOS 13.0+
    */
-  setSubprotocols(subprotocols: Array<string>): void { return callSDK<void>("Network_212edf3d13b127f5", 2978317283622640, this, [subprotocols]); }
+  setSubprotocols(subprotocols: Array<string>): void { return callSDK<void>("Network_5d69670f0307b385", 2978317283622640, this, [subprotocols]); }
   /**
    * var maximumMessageSize: Int { get set }
    * @availability iOS 13.0+
    */
-  get maximumMessageSize(): number { return callSDK<number>("Network_212edf3d13b127f5", 4218444554834802, this, []); }
-  set maximumMessageSize(value: number) { callSDK<void>("Network_212edf3d13b127f5", 149683910070606, this, [value]); }
+  get maximumMessageSize(): number { return callSDK<number>("Network_5d69670f0307b385", 4218444554834802, this, []); }
+  set maximumMessageSize(value: number) { callSDK<void>("Network_5d69670f0307b385", 149683910070606, this, [value]); }
   /**
    * func setAdditionalHeaders(_ headers: [(name: String, value: String)])
    * @availability iOS 13.0+
    */
-  setAdditionalHeaders(headers: $SDK106): void { return callSDK<void>("Network_212edf3d13b127f5", 879754653085038, this, [headers]); }
+  setAdditionalHeaders(headers: $SDK106): void { return callSDK<void>("Network_5d69670f0307b385", 879754653085038, this, [headers]); }
   /**
    * init(_ version: NWProtocolWebSocket.Version = .version13)
    * @availability iOS 13.0+
    */
-  static init(version?: NWProtocolWebSocket_Version): NWProtocolWebSocket_Options { return callSDK<NWProtocolWebSocket_Options>("Network_212edf3d13b127f5", 1711132021432595, undefined, [version]); }
+  static init(version?: NWProtocolWebSocket_Version): NWProtocolWebSocket_Options { return callSDK<NWProtocolWebSocket_Options>("Network_5d69670f0307b385", 1711132021432595, undefined, [version]); }
   declare readonly $type: { "s:7Network19NWProtocolWebSocketC7OptionsC": true; "s:7Network17NWProtocolOptionsC": true };
 }
 
@@ -4830,22 +4830,22 @@ export class NWProtocolWebSocket_Response extends SDKHandle {
    * let subprotocol: String?
    * @availability iOS 13.0+
    */
-  get subprotocol(): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 740995628865335, this, []); }
+  get subprotocol(): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 740995628865335, this, []); }
   /**
    * let additionalHeaders: [(name: String, value: String)]?
    * @availability iOS 13.0+
    */
-  get additionalHeaders(): $SDK107 { return callSDK<$SDK107>("Network_212edf3d13b127f5", 3357581153338466, this, []); }
+  get additionalHeaders(): $SDK107 { return callSDK<$SDK107>("Network_5d69670f0307b385", 3357581153338466, this, []); }
   /**
    * init(status: NWProtocolWebSocket.Response.Status, subprotocol: String?, additionalHeaders: [(name: String, value: String)]? = nil)
    * @availability iOS 13.0+
    */
-  static init(status: NWProtocolWebSocket_Response_Status, subprotocol?: (string) | null, additionalHeaders?: $SDK107): NWProtocolWebSocket_Response { return callSDK<NWProtocolWebSocket_Response>("Network_212edf3d13b127f5", 3788338621965597, undefined, [status, subprotocol, additionalHeaders]); }
+  static init(status: NWProtocolWebSocket_Response_Status, subprotocol?: (string) | null, additionalHeaders?: $SDK107): NWProtocolWebSocket_Response { return callSDK<NWProtocolWebSocket_Response>("Network_5d69670f0307b385", 3788338621965597, undefined, [status, subprotocol, additionalHeaders]); }
   /**
    * let status: NWProtocolWebSocket.Response.Status
    * @availability iOS 13.0+
    */
-  get status(): NWProtocolWebSocket_Response_Status { return callSDK<NWProtocolWebSocket_Response_Status>("Network_212edf3d13b127f5", 858956227736384, this, []); }
+  get status(): NWProtocolWebSocket_Response_Status { return callSDK<NWProtocolWebSocket_Response_Status>("Network_5d69670f0307b385", 858956227736384, this, []); }
   declare readonly $type: { "s:7Network19NWProtocolWebSocketC8ResponseV": true };
 }
 
@@ -4870,87 +4870,87 @@ export class NWTXTRecord extends SDKHandle {
    * var dictionary: [String : String] { get }
    * @availability iOS 13.0+
    */
-  get dictionary(): Record<string, string> { return callSDK<Record<string, string>>("Network_212edf3d13b127f5", 1765497337026945, this, []); }
+  get dictionary(): Record<string, string> { return callSDK<Record<string, string>>("Network_5d69670f0307b385", 1765497337026945, this, []); }
   /**
    * var startIndex: NWTXTRecord.Index { get }
    * @availability iOS 13.0+
    */
-  get startIndex(): NWTXTRecord_Index { return callSDK<NWTXTRecord_Index>("Network_212edf3d13b127f5", 572353990359674, this, []); }
+  get startIndex(): NWTXTRecord_Index { return callSDK<NWTXTRecord_Index>("Network_5d69670f0307b385", 572353990359674, this, []); }
   /**
    * @discardableResult mutating func removeEntry(key: String) -> Bool
    * @availability iOS 13.0+
    */
-  removeEntry(key: string): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1848690184219809, this, [key]); }
+  removeEntry(key: string): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1848690184219809, this, [key]); }
   /**
    * var dataDictionary: [String : Data] { get }
    * @availability iOS 26.4+
    */
-  get dataDictionary(): Record<string, ArrayBuffer> { return callSDK<Record<string, ArrayBuffer>>("Network_212edf3d13b127f5", 933031819851707, this, []); }
+  get dataDictionary(): Record<string, ArrayBuffer> { return callSDK<Record<string, ArrayBuffer>>("Network_5d69670f0307b385", 933031819851707, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3700059066072257, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3700059066072257, this, []); }
   /**
    * var data: Data { get }
    * @availability iOS 16.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Network_212edf3d13b127f5", 3249558237142332, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("Network_5d69670f0307b385", 3249558237142332, this, []); }
   /**
    * func index(after i: NWTXTRecord.Index) -> NWTXTRecord.Index
    * @availability iOS 13.0+
    */
-  index(i: NWTXTRecord_Index): NWTXTRecord_Index { return callSDK<NWTXTRecord_Index>("Network_212edf3d13b127f5", 118798991481781, this, [i]); }
+  index(i: NWTXTRecord_Index): NWTXTRecord_Index { return callSDK<NWTXTRecord_Index>("Network_5d69670f0307b385", 118798991481781, this, [i]); }
   /**
    * var entries: [String : NWTXTRecord.Entry] { get }
    * @availability iOS 26.4+
    */
-  get entries(): $SDK109 { return callSDK<$SDK109>("Network_212edf3d13b127f5", 3351644907108369, this, []); }
+  get entries(): $SDK109 { return callSDK<$SDK109>("Network_5d69670f0307b385", 3351644907108369, this, []); }
   /**
    * var endIndex: NWTXTRecord.Index { get }
    * @availability iOS 13.0+
    */
-  get endIndex(): NWTXTRecord_Index { return callSDK<NWTXTRecord_Index>("Network_212edf3d13b127f5", 3875994701941124, this, []); }
+  get endIndex(): NWTXTRecord_Index { return callSDK<NWTXTRecord_Index>("Network_5d69670f0307b385", 3875994701941124, this, []); }
   /**
    * func getEntry(for key: String) -> NWTXTRecord.Entry?
    * @availability iOS 13.0+
    */
-  getEntry(key: string): (NWTXTRecord_Entry) | null { return callSDK<(NWTXTRecord_Entry) | null>("Network_212edf3d13b127f5", 3231619576946484, this, [key]); }
+  getEntry(key: string): (NWTXTRecord_Entry) | null { return callSDK<(NWTXTRecord_Entry) | null>("Network_5d69670f0307b385", 3231619576946484, this, [key]); }
   /**
    * @discardableResult mutating func setEntry(_ entry: NWTXTRecord.Entry, for key: String) -> Bool
    * @availability iOS 13.0+
    */
-  setEntry(entry: NWTXTRecord_Entry, key: string): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 179176522199075, this, [entry, key]); }
+  setEntry(entry: NWTXTRecord_Entry, key: string): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 179176522199075, this, [entry, key]); }
   /**
    * init(_ data: Data)
    * @availability iOS 16.0+
    */
-  static init(data: ArrayBuffer): NWTXTRecord { return callSDK<NWTXTRecord>("Network_212edf3d13b127f5", 1534327436930659, undefined, [data]); }
+  static init(data: ArrayBuffer): NWTXTRecord { return callSDK<NWTXTRecord>("Network_5d69670f0307b385", 1534327436930659, undefined, [data]); }
   /**
    * init(_ dictionary: [String : String] = [:])
    * @availability iOS 13.0+
    */
-  static init95449(dictionary?: Record<string, string>): NWTXTRecord { return callSDK<NWTXTRecord>("Network_212edf3d13b127f5", 2183385726270896, undefined, [dictionary]); }
+  static init95449(dictionary?: Record<string, string>): NWTXTRecord { return callSDK<NWTXTRecord>("Network_5d69670f0307b385", 2183385726270896, undefined, [dictionary]); }
   /**
    * init(_ dataDictionary: [String : Data])
    * @availability iOS 26.4+
    */
-  static init27839(dataDictionary: Record<string, ArrayBuffer>): NWTXTRecord { return callSDK<NWTXTRecord>("Network_212edf3d13b127f5", 3663226919995751, undefined, [dataDictionary]); }
+  static init27839(dataDictionary: Record<string, ArrayBuffer>): NWTXTRecord { return callSDK<NWTXTRecord>("Network_5d69670f0307b385", 3663226919995751, undefined, [dataDictionary]); }
   /**
    * init(_ entryDictionary: [String : NWTXTRecord.Entry])
    * @availability iOS 26.4+
    */
-  static init14563(entryDictionary: $SDK109): NWTXTRecord { return callSDK<NWTXTRecord>("Network_212edf3d13b127f5", 2306502208068851, undefined, [entryDictionary]); }
+  static init14563(entryDictionary: $SDK109): NWTXTRecord { return callSDK<NWTXTRecord>("Network_5d69670f0307b385", 2306502208068851, undefined, [entryDictionary]); }
   /**
    * subscript(position: NWTXTRecord.Index) -> NWTXTRecord.Element { get }
    * @availability iOS 13.0+
    */
-  subscript(position: NWTXTRecord_Index): $SDK111 { return callSDK<$SDK111>("Network_212edf3d13b127f5", 2031573896050096, this, [position]); }
+  subscript(position: NWTXTRecord_Index): $SDK111 { return callSDK<$SDK111>("Network_5d69670f0307b385", 2031573896050096, this, [position]); }
   /**
    * subscript(key: String) -> String? { get set }
    * @availability iOS 13.0+
    */
-  subscript75626(key: string): (string) | null { return callSDK<(string) | null>("Network_212edf3d13b127f5", 1547586422254892, this, [key]); }
+  subscript75626(key: string): (string) | null { return callSDK<(string) | null>("Network_5d69670f0307b385", 1547586422254892, this, [key]); }
   declare readonly $type: { "s:7Network11NWTXTRecordV": true };
 }
 
@@ -4969,17 +4969,17 @@ export class NWTXTRecord_Entry extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 13.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 3018033253162016, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 3018033253162016, this, []); }
   /**
    * var data: Data? { get }
    * @availability iOS 16.0+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Network_212edf3d13b127f5", 761293086078429, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("Network_5d69670f0307b385", 761293086078429, this, []); }
   /**
    * init(_ data: Data?)
    * @availability iOS 16.0+
    */
-  static init(data?: (ArrayBuffer) | null): NWTXTRecord_Entry { return callSDK<NWTXTRecord_Entry>("Network_212edf3d13b127f5", 4179307583544285, undefined, [data]); }
+  static init(data?: (ArrayBuffer) | null): NWTXTRecord_Entry { return callSDK<NWTXTRecord_Entry>("Network_5d69670f0307b385", 4179307583544285, undefined, [data]); }
   declare readonly $type: { "s:7Network11NWTXTRecordV5EntryO": true };
 }
 
@@ -5202,50 +5202,50 @@ export class ProxyConfiguration extends SDKHandle {
    * init(socksv5Proxy: NWEndpoint)
    * @availability iOS 17.0+
    */
-  static initSocksv5Proxy(socksv5Proxy: NWEndpoint): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_212edf3d13b127f5", 3397521639507569, undefined, [socksv5Proxy]); }
+  static initSocksv5Proxy(socksv5Proxy: NWEndpoint): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_5d69670f0307b385", 3397521639507569, undefined, [socksv5Proxy]); }
   /**
    * var matchDomains: [String] { get set }
    * @availability iOS 17.0+
    */
-  get matchDomains(): Array<string> { return callSDK<Array<string>>("Network_212edf3d13b127f5", 457477538110938, this, []); }
-  set matchDomains(value: Array<string>) { callSDK<void>("Network_212edf3d13b127f5", 2187497411127250, this, [value]); }
+  get matchDomains(): Array<string> { return callSDK<Array<string>>("Network_5d69670f0307b385", 457477538110938, this, []); }
+  set matchDomains(value: Array<string>) { callSDK<void>("Network_5d69670f0307b385", 2187497411127250, this, [value]); }
   /**
    * var allowFailover: Bool { get set }
    * @availability iOS 17.0+
    */
-  get allowFailover(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 86311577469454, this, []); }
-  set allowFailover(value: boolean) { callSDK<void>("Network_212edf3d13b127f5", 2355440495625814, this, [value]); }
+  get allowFailover(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 86311577469454, this, []); }
+  set allowFailover(value: boolean) { callSDK<void>("Network_5d69670f0307b385", 2355440495625814, this, [value]); }
   /**
    * func applyCredential(username: String, password: String)
    * @availability iOS 17.0+
    */
-  applyCredential(username: string, password: string): void { return callSDK<void>("Network_212edf3d13b127f5", 1184888814670065, this, [username, password]); }
+  applyCredential(username: string, password: string): void { return callSDK<void>("Network_5d69670f0307b385", 1184888814670065, this, [username, password]); }
   /**
    * var excludedDomains: [String] { get set }
    * @availability iOS 17.0+
    */
-  get excludedDomains(): Array<string> { return callSDK<Array<string>>("Network_212edf3d13b127f5", 4404638331271118, this, []); }
-  set excludedDomains(value: Array<string>) { callSDK<void>("Network_212edf3d13b127f5", 2676580184707544, this, [value]); }
+  get excludedDomains(): Array<string> { return callSDK<Array<string>>("Network_5d69670f0307b385", 4404638331271118, this, []); }
+  set excludedDomains(value: Array<string>) { callSDK<void>("Network_5d69670f0307b385", 2676580184707544, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 758973567870205, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 758973567870205, this, []); }
   /**
    * init(httpCONNECTProxy: NWEndpoint, tlsOptions: NWProtocolTLS.Options? = nil)
    * @availability iOS 17.0+
    */
-  static initHttpCONNECTProxyTlsOptions(httpCONNECTProxy: NWEndpoint, tlsOptions?: $SDK100): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_212edf3d13b127f5", 3147350678567591, undefined, [httpCONNECTProxy, tlsOptions]); }
+  static initHttpCONNECTProxyTlsOptions(httpCONNECTProxy: NWEndpoint, tlsOptions?: $SDK100): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_5d69670f0307b385", 3147350678567591, undefined, [httpCONNECTProxy, tlsOptions]); }
   /**
    * init(obliviousHTTPRelay: ProxyConfiguration.RelayHop, relayResourcePath: String, gatewayKeyConfig: Data, matchDomains: [String])
    * @availability iOS 17.0+
    */
-  static initObliviousHTTPRelayRelayResourcePathGatewayKeyConfigMatchDomains(obliviousHTTPRelay: ProxyConfiguration_RelayHop, relayResourcePath: string, gatewayKeyConfig: ArrayBuffer, matchDomains: Array<string>): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_212edf3d13b127f5", 3103406263814880, undefined, [obliviousHTTPRelay, relayResourcePath, gatewayKeyConfig, matchDomains]); }
+  static initObliviousHTTPRelayRelayResourcePathGatewayKeyConfigMatchDomains(obliviousHTTPRelay: ProxyConfiguration_RelayHop, relayResourcePath: string, gatewayKeyConfig: ArrayBuffer, matchDomains: Array<string>): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_5d69670f0307b385", 3103406263814880, undefined, [obliviousHTTPRelay, relayResourcePath, gatewayKeyConfig, matchDomains]); }
   /**
    * init(relayHops: [ProxyConfiguration.RelayHop])
    * @availability iOS 17.0+
    */
-  static initRelayHops(relayHops: Array<ProxyConfiguration_RelayHop>): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_212edf3d13b127f5", 3976511533439625, undefined, [relayHops]); }
+  static initRelayHops(relayHops: Array<ProxyConfiguration_RelayHop>): ProxyConfiguration { return callSDK<ProxyConfiguration>("Network_5d69670f0307b385", 3976511533439625, undefined, [relayHops]); }
   declare readonly $type: { "s:7Network18ProxyConfigurationV": true };
 }
 
@@ -5258,17 +5258,17 @@ export class ProxyConfiguration_RelayHop extends SDKHandle {
    * init(http2RelayEndpoint: NWEndpoint, tlsOptions: NWProtocolTLS.Options = .init(), additionalHTTPHeaderFields: [String : String] = [:])
    * @availability iOS 17.0+
    */
-  static initHttp2RelayEndpointTlsOptionsAdditionalHTTPHeaderFields(http2RelayEndpoint: NWEndpoint, tlsOptions?: NWProtocolTLS_Options, additionalHTTPHeaderFields?: Record<string, string>): ProxyConfiguration_RelayHop { return callSDK<ProxyConfiguration_RelayHop>("Network_212edf3d13b127f5", 1373886566045589, undefined, [http2RelayEndpoint, tlsOptions, additionalHTTPHeaderFields]); }
+  static initHttp2RelayEndpointTlsOptionsAdditionalHTTPHeaderFields(http2RelayEndpoint: NWEndpoint, tlsOptions?: NWProtocolTLS_Options, additionalHTTPHeaderFields?: Record<string, string>): ProxyConfiguration_RelayHop { return callSDK<ProxyConfiguration_RelayHop>("Network_5d69670f0307b385", 1373886566045589, undefined, [http2RelayEndpoint, tlsOptions, additionalHTTPHeaderFields]); }
   /**
    * init(http3RelayEndpoint: NWEndpoint, http2RelayEndpoint: NWEndpoint? = nil, tlsOptions: NWProtocolTLS.Options = .init(), additionalHTTPHeaderFields: [String : String] = [:])
    * @availability iOS 17.0+
    */
-  static initHttp3RelayEndpointHttp2RelayEndpointTlsOptionsAdditionalHTTPHeaderFields(http3RelayEndpoint: NWEndpoint, http2RelayEndpoint?: (NWEndpoint) | null, tlsOptions?: NWProtocolTLS_Options, additionalHTTPHeaderFields?: Record<string, string>): ProxyConfiguration_RelayHop { return callSDK<ProxyConfiguration_RelayHop>("Network_212edf3d13b127f5", 3356959628788888, undefined, [http3RelayEndpoint, http2RelayEndpoint, tlsOptions, additionalHTTPHeaderFields]); }
+  static initHttp3RelayEndpointHttp2RelayEndpointTlsOptionsAdditionalHTTPHeaderFields(http3RelayEndpoint: NWEndpoint, http2RelayEndpoint?: (NWEndpoint) | null, tlsOptions?: NWProtocolTLS_Options, additionalHTTPHeaderFields?: Record<string, string>): ProxyConfiguration_RelayHop { return callSDK<ProxyConfiguration_RelayHop>("Network_5d69670f0307b385", 3356959628788888, undefined, [http3RelayEndpoint, http2RelayEndpoint, tlsOptions, additionalHTTPHeaderFields]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 17.0+
    */
-  get debugDescription(): string { return callSDK<string>("Network_212edf3d13b127f5", 1332836248625461, this, []); }
+  get debugDescription(): string { return callSDK<string>("Network_5d69670f0307b385", 1332836248625461, this, []); }
   declare readonly $type: { "s:7Network18ProxyConfigurationV8RelayHopV": true };
 }
 
@@ -5281,57 +5281,57 @@ export class QUIC extends SDKHandle {
    * func idleTimeout(_ timeout: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  idleTimeout(timeout: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 550405528230111, this, [timeout]); }
+  idleTimeout(timeout: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 550405528230111, this, [timeout]); }
   /**
    * func initialMaxData(_ initialMaxData: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  initialMaxData(initialMaxData: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 1357278408502207, this, [initialMaxData]); }
+  initialMaxData(initialMaxData: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 1357278408502207, this, [initialMaxData]); }
   /**
    * func maxUDPPayloadSize(_ size: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  maxUDPPayloadSize(size: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 338932690542942, this, [size]); }
+  maxUDPPayloadSize(size: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 338932690542942, this, [size]); }
   /**
    * func maxDatagramFrameSize(_ size: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  maxDatagramFrameSize(size: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 721509171716166, this, [size]); }
+  maxDatagramFrameSize(size: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 721509171716166, this, [size]); }
   /**
    * func initialMaxBidirectionalStreams(_ initialMaxStreamsBidi: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  initialMaxBidirectionalStreams(initialMaxStreamsBidi: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 3659994627004326, this, [initialMaxStreamsBidi]); }
+  initialMaxBidirectionalStreams(initialMaxStreamsBidi: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 3659994627004326, this, [initialMaxStreamsBidi]); }
   /**
    * func initialMaxUnidirectionalStreams(_ initialMaxStreamDataUni: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  initialMaxUnidirectionalStreams(initialMaxStreamDataUni: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 1872746814557215, this, [initialMaxStreamDataUni]); }
+  initialMaxUnidirectionalStreams(initialMaxStreamDataUni: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 1872746814557215, this, [initialMaxStreamDataUni]); }
   /**
    * func initialMaxStreamDataUnidirectional(_ initialMaxStreamDataUni: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  initialMaxStreamDataUnidirectional(initialMaxStreamDataUni: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 3176397153764007, this, [initialMaxStreamDataUni]); }
+  initialMaxStreamDataUnidirectional(initialMaxStreamDataUni: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 3176397153764007, this, [initialMaxStreamDataUni]); }
   /**
    * func initialMaxStreamDataBidirectionalLocal(_ initialMaxStreamDataBidiLocal: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  initialMaxStreamDataBidirectionalLocal(initialMaxStreamDataBidiLocal: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 2690130436302237, this, [initialMaxStreamDataBidiLocal]); }
+  initialMaxStreamDataBidirectionalLocal(initialMaxStreamDataBidiLocal: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 2690130436302237, this, [initialMaxStreamDataBidiLocal]); }
   /**
    * func initialMaxStreamDataBidirectionalRemote(_ initialMaxStreamDataBidiRemote: Int) -> QUIC
    * @availability iOS 26.0+
    */
-  initialMaxStreamDataBidirectionalRemote(initialMaxStreamDataBidiRemote: number): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 2031718034560350, this, [initialMaxStreamDataBidiRemote]); }
+  initialMaxStreamDataBidirectionalRemote(initialMaxStreamDataBidiRemote: number): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 2031718034560350, this, [initialMaxStreamDataBidiRemote]); }
   /**
    * var tls: QUIC.TLS { get }
    * @availability iOS 26.0+
    */
-  get tls(): QUIC_TLS { return callSDK<QUIC_TLS>("Network_212edf3d13b127f5", 511849498030904, this, []); }
+  get tls(): QUIC_TLS { return callSDK<QUIC_TLS>("Network_5d69670f0307b385", 511849498030904, this, []); }
   /**
    * init(alpn: [String])
    * @availability iOS 26.0+
    */
-  static init(alpn: Array<string>): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 2326979699978995, undefined, [alpn]); }
+  static init(alpn: Array<string>): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 2326979699978995, undefined, [alpn]); }
   declare readonly $type: { "s:7Network4QUICV": true };
 }
 
@@ -5366,7 +5366,7 @@ export class QUIC_ProtocolStorage extends SDKHandle {
    * init()
    * @availability iOS 26.0+
    */
-  static init(): QUIC_ProtocolStorage { return callSDK<QUIC_ProtocolStorage>("Network_212edf3d13b127f5", 283377630192936, undefined, []); }
+  static init(): QUIC_ProtocolStorage { return callSDK<QUIC_ProtocolStorage>("Network_5d69670f0307b385", 283377630192936, undefined, []); }
   declare readonly $type: { "s:7Network4QUICV15ProtocolStorageV": true };
 }
 
@@ -5387,22 +5387,22 @@ export class QUIC_TLS extends SDKHandle {
    * func cipherSuites(_ suites: [tls_ciphersuite_t]) -> QUIC
    * @availability iOS 26.0+
    */
-  cipherSuites(suites: $SDK2): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 2139390320563546, this, [suites]); }
+  cipherSuites(suites: $SDK2): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 2139390320563546, this, [suites]); }
   /**
    * func localIdentity(_ identity: sec_identity_t) -> QUIC
    * @availability iOS 26.0+
    */
-  localIdentity(identity: $SDK3): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 2249818853816795, this, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
+  localIdentity(identity: $SDK3): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 2249818853816795, this, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
   /**
    * func ciphersuiteGroups(_ groups: [tls_ciphersuite_group_t]) -> QUIC
    * @availability iOS 26.0+
    */
-  ciphersuiteGroups(groups: $SDK4): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 3030481245433878, this, [groups]); }
+  ciphersuiteGroups(groups: $SDK4): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 3030481245433878, this, [groups]); }
   /**
    * func peerAuthentication(_ preference: TLS.PeerAuthentication) -> QUIC
    * @availability iOS 26.0+
    */
-  peerAuthentication(preference: TLS_PeerAuthentication): QUIC { return callSDK<QUIC>("Network_212edf3d13b127f5", 733324750226847, this, [preference]); }
+  peerAuthentication(preference: TLS_PeerAuthentication): QUIC { return callSDK<QUIC>("Network_5d69670f0307b385", 733324750226847, this, [preference]); }
   declare readonly $type: { "s:7Network4QUICV3TLSV": true };
 }
 
@@ -5441,7 +5441,7 @@ export class QUICDatagram_Metadata extends SDKHandle {
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 3782014198247360, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 3782014198247360, this, []); }
   declare readonly $type: { "s:7Network12QUICDatagramV8MetadataV": true };
 }
 
@@ -5486,12 +5486,12 @@ export class QUICStream_Metadata extends SDKHandle {
    * let endOfStream: Bool
    * @availability iOS 26.0+
    */
-  get endOfStream(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4371737656794995, this, []); }
+  get endOfStream(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4371737656794995, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 3166794247803957, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 3166794247803957, this, []); }
   declare readonly $type: { "s:7Network10QUICStreamV8MetadataV": true };
 }
 
@@ -5518,67 +5518,67 @@ export class TCP extends SDKHandle {
    * func ecnDisabled(_ disableECN: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  ecnDisabled(disableECN: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 4332681476272655, this, [disableECN]); }
+  ecnDisabled(disableECN: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 4332681476272655, this, [disableECN]); }
   /**
    * func persistTimeout(_ timeout: UInt32) -> TCP
    * @availability iOS 26.0+
    */
-  persistTimeout(timeout: number): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 3984548951654126, this, [timeout]); }
+  persistTimeout(timeout: number): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 3984548951654126, this, [timeout]); }
   /**
    * func fastOpenAllowed(_ allowed: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  fastOpenAllowed(allowed: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 3633939974373815, this, [allowed]); }
+  fastOpenAllowed(allowed: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 3633939974373815, this, [allowed]); }
   /**
    * func connectionTimeout(_ timeout: UInt32) -> TCP
    * @availability iOS 26.0+
    */
-  connectionTimeout(timeout: number): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 4045522271734185, this, [timeout]); }
+  connectionTimeout(timeout: number): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 4045522271734185, this, [timeout]); }
   /**
    * func retransmitFinDrop(_ drop: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  retransmitFinDrop(drop: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 1159013569943999, this, [drop]); }
+  retransmitFinDrop(drop: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 1159013569943999, this, [drop]); }
   /**
    * func maximumSegmentSize(_ bytes: UInt32) -> TCP
    * @availability iOS 26.0+
    */
-  maximumSegmentSize(bytes: number): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 4502047992951541, this, [bytes]); }
+  maximumSegmentSize(bytes: number): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 4502047992951541, this, [bytes]); }
   /**
    * func ackStretchingDisabled(_ disableAckStretching: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  ackStretchingDisabled(disableAckStretching: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 4027788477445588, this, [disableAckStretching]); }
+  ackStretchingDisabled(disableAckStretching: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 4027788477445588, this, [disableAckStretching]); }
   /**
    * func retransmitConnectionDropTime(_ timeout: UInt32) -> TCP
    * @availability iOS 26.0+
    */
-  retransmitConnectionDropTime(timeout: number): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 974157487925148, this, [timeout]); }
+  retransmitConnectionDropTime(timeout: number): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 974157487925148, this, [timeout]); }
   /**
    * func noPush(_ noPush: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  noPush(noPush: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 93636260913168, this, [noPush]); }
+  noPush(noPush: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 93636260913168, this, [noPush]); }
   /**
    * func noDelay(_ noDelay: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  noDelay(noDelay: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 4343802539314512, this, [noDelay]); }
+  noDelay(noDelay: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 4343802539314512, this, [noDelay]); }
   /**
    * func keepalive(idleTimeInSeconds: UInt32, count: UInt32, intervalInSeconds: UInt32) -> TCP
    * @availability iOS 26.0+
    */
-  keepalive(idleTimeInSeconds: number, count: number, intervalInSeconds: number): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 293721163170921, this, [idleTimeInSeconds, count, intervalInSeconds]); }
+  keepalive(idleTimeInSeconds: number, count: number, intervalInSeconds: number): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 293721163170921, this, [idleTimeInSeconds, count, intervalInSeconds]); }
   /**
    * func noOptions(_ noOptions: Bool) -> TCP
    * @availability iOS 26.0+
    */
-  noOptions(noOptions: boolean): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 2565815909555963, this, [noOptions]); }
+  noOptions(noOptions: boolean): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 2565815909555963, this, [noOptions]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TCP { return callSDK<TCP>("Network_212edf3d13b127f5", 4139055247185554, undefined, []); }
+  static init(): TCP { return callSDK<TCP>("Network_5d69670f0307b385", 4139055247185554, undefined, []); }
   declare readonly $type: { "s:7Network3TCPV": true };
 }
 
@@ -5597,12 +5597,12 @@ export class TCP_Metadata extends SDKHandle {
    * let endOfStream: Bool
    * @availability iOS 26.0+
    */
-  get endOfStream(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1748630560253596, this, []); }
+  get endOfStream(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1748630560253596, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 2578630719306703, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 2578630719306703, this, []); }
   declare readonly $type: { "s:7Network3TCPV8MetadataV": true };
 }
 
@@ -5621,47 +5621,47 @@ export class TLS extends SDKHandle {
    * func cipherSuites(_ suites: [tls_ciphersuite_t]) -> TLS
    * @availability iOS 26.0+
    */
-  cipherSuites(suites: $SDK2): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 4195107334815815, this, [suites]); }
+  cipherSuites(suites: $SDK2): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 4195107334815815, this, [suites]); }
   /**
    * func localIdentity(_ identity: sec_identity_t) -> TLS
    * @availability iOS 26.0+
    */
-  localIdentity(identity: $SDK3): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 2105567244766923, this, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
+  localIdentity(identity: $SDK3): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 2105567244766923, this, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
   /**
    * func ticketsEnabled(_ enabled: Bool) -> TLS
    * @availability iOS 26.0+
    */
-  ticketsEnabled(enabled: boolean): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 820201072944275, this, [enabled]); }
+  ticketsEnabled(enabled: boolean): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 820201072944275, this, [enabled]); }
   /**
    * func earlyDataEnabled(_ enabled: Bool) -> TLS
    * @availability iOS 26.0+
    */
-  earlyDataEnabled(enabled: boolean): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 3113693999472179, this, [enabled]); }
+  earlyDataEnabled(enabled: boolean): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 3113693999472179, this, [enabled]); }
   /**
    * func cipherSuiteGroups(_ groups: [tls_ciphersuite_group_t]) -> TLS
    * @availability iOS 26.0+
    */
-  cipherSuiteGroups(groups: $SDK4): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 2752863361857150, this, [groups]); }
+  cipherSuiteGroups(groups: $SDK4): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 2752863361857150, this, [groups]); }
   /**
    * func peerAuthentication(_ preference: TLS.PeerAuthentication) -> TLS
    * @availability iOS 26.0+
    */
-  peerAuthentication(preference: TLS_PeerAuthentication): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 4329374696797927, this, [preference]); }
+  peerAuthentication(preference: TLS_PeerAuthentication): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 4329374696797927, this, [preference]); }
   /**
    * func applicationProtocols(_ protocols: [String]) -> TLS
    * @availability iOS 26.0+
    */
-  applicationProtocols(protocols: Array<string>): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 31058976781055, this, [protocols]); }
+  applicationProtocols(protocols: Array<string>): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 31058976781055, this, [protocols]); }
   /**
    * func version(min: tls_protocol_version_t? = nil, max: tls_protocol_version_t? = nil) -> TLS
    * @availability iOS 26.0+
    */
-  version(min?: $SDK5, max?: $SDK5): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 4285926447832242, this, [min, max]); }
+  version(min?: $SDK5, max?: $SDK5): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 4285926447832242, this, [min, max]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): TLS { return callSDK<TLS>("Network_212edf3d13b127f5", 1703469990465493, undefined, []); }
+  static init(): TLS { return callSDK<TLS>("Network_5d69670f0307b385", 1703469990465493, undefined, []); }
   declare readonly $type: { "s:7Network3TLSV": true };
 }
 
@@ -5680,12 +5680,12 @@ export class TLS_Metadata extends SDKHandle {
    * let endOfStream: Bool
    * @availability iOS 26.0+
    */
-  get endOfStream(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3320232737586540, this, []); }
+  get endOfStream(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3320232737586540, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 71058005097762, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 71058005097762, this, []); }
   declare readonly $type: { "s:7Network3TLSV8MetadataV": true };
 }
 
@@ -5736,27 +5736,27 @@ export class TLV_Metadata extends SDKHandle {
    * let isComplete: Bool
    * @availability iOS 26.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1661953505997725, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1661953505997725, this, []); }
   /**
    * let lastMessage: Bool
    * @availability iOS 26.0+
    */
-  get lastMessage(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2364342954192389, this, []); }
+  get lastMessage(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2364342954192389, this, []); }
   /**
    * let type: Int
    * @availability iOS 26.0+
    */
-  get type(): number { return callSDK<number>("Network_212edf3d13b127f5", 3421516508768147, this, []); }
+  get type(): number { return callSDK<number>("Network_5d69670f0307b385", 3421516508768147, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 2633992403301586, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 2633992403301586, this, []); }
   /**
    * let length: Int
    * @availability iOS 26.0+
    */
-  get length(): number { return callSDK<number>("Network_212edf3d13b127f5", 3454091791586457, this, []); }
+  get length(): number { return callSDK<number>("Network_5d69670f0307b385", 3454091791586457, this, []); }
   declare readonly $type: { "s:7Network3TLVV8MetadataV": true };
 }
 
@@ -5775,12 +5775,12 @@ export class TXTRecordDecoder extends SDKHandle {
    * func decode<T>(_ type: T.Type, from txtRecord: NWTXTRecord) throws -> T where T : Decodable
    * @availability iOS 18.0+
    */
-  decode(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID", txtRecord: NWTXTRecord): unknown { return callSDK<unknown>("Network_212edf3d13b127f5", 3213573416738112, this, [type, txtRecord]); }
+  decode(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID", txtRecord: NWTXTRecord): unknown { return callSDK<unknown>("Network_5d69670f0307b385", 3213573416738112, this, [type, txtRecord]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): TXTRecordDecoder { return callSDK<TXTRecordDecoder>("Network_212edf3d13b127f5", 1906314200383492, undefined, []); }
+  static init(): TXTRecordDecoder { return callSDK<TXTRecordDecoder>("Network_5d69670f0307b385", 1906314200383492, undefined, []); }
   declare readonly $type: { "s:7Network16TXTRecordDecoderV": true };
 }
 
@@ -5793,12 +5793,12 @@ export class UDP extends SDKHandle {
    * func noChecksumPreferred(_ noChecksum: Bool) -> UDP
    * @availability iOS 26.0+
    */
-  noChecksumPreferred(noChecksum: boolean): UDP { return callSDK<UDP>("Network_212edf3d13b127f5", 2602069015183469, this, [noChecksum]); }
+  noChecksumPreferred(noChecksum: boolean): UDP { return callSDK<UDP>("Network_5d69670f0307b385", 2602069015183469, this, [noChecksum]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): UDP { return callSDK<UDP>("Network_212edf3d13b127f5", 4330830663357929, undefined, []); }
+  static init(): UDP { return callSDK<UDP>("Network_5d69670f0307b385", 4330830663357929, undefined, []); }
   declare readonly $type: { "s:7Network3UDPV": true };
 }
 
@@ -5829,7 +5829,7 @@ export class UDP_Metadata extends SDKHandle {
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 2258210753480567, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 2258210753480567, this, []); }
   declare readonly $type: { "s:7Network3UDPV8MetadataV": true };
 }
 
@@ -5848,12 +5848,12 @@ export class UnexpectedEndpointType extends SDKHandle {
    * let endpoint: NWEndpoint
    * @availability iOS 26.0+
    */
-  get endpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_212edf3d13b127f5", 2777841145784062, this, []); }
+  get endpoint(): NWEndpoint { return callSDK<NWEndpoint>("Network_5d69670f0307b385", 2777841145784062, this, []); }
   /**
    * init(endpoint: NWEndpoint)
    * @availability iOS 26.0+
    */
-  static init(endpoint: NWEndpoint): UnexpectedEndpointType { return callSDK<UnexpectedEndpointType>("Network_212edf3d13b127f5", 3506765654028723, undefined, [endpoint]); }
+  static init(endpoint: NWEndpoint): UnexpectedEndpointType { return callSDK<UnexpectedEndpointType>("Network_5d69670f0307b385", 3506765654028723, undefined, [endpoint]); }
   declare readonly $type: { "s:7Network22UnexpectedEndpointTypeV": true };
 }
 
@@ -5862,8 +5862,8 @@ export class URLSessionConfiguration extends SDKHandle {
    * var proxyConfigurations: [ProxyConfiguration] { get set }
    * @availability iOS 17.0+
    */
-  get proxyConfigurations(): $SDK101 { return callSDK<$SDK101>("Network_212edf3d13b127f5", 2794824183778384, this, []); }
-  set proxyConfigurations(value: $SDK101) { callSDK<void>("Network_212edf3d13b127f5", 1238874412229308, this, [value]); }
+  get proxyConfigurations(): $SDK101 { return callSDK<$SDK101>("Network_5d69670f0307b385", 2794824183778384, this, []); }
+  set proxyConfigurations(value: $SDK101) { callSDK<void>("Network_5d69670f0307b385", 1238874412229308, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSURLSessionConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5876,27 +5876,27 @@ export class WebSocket extends SDKHandle {
    * func subprotocols(_ subprotocols: [String]) -> WebSocket
    * @availability iOS 26.0+
    */
-  subprotocols(subprotocols: Array<string>): WebSocket { return callSDK<WebSocket>("Network_212edf3d13b127f5", 3678283463916796, this, [subprotocols]); }
+  subprotocols(subprotocols: Array<string>): WebSocket { return callSDK<WebSocket>("Network_5d69670f0307b385", 3678283463916796, this, [subprotocols]); }
   /**
    * func autoReplyPing(_ reply: Bool) -> WebSocket
    * @availability iOS 26.0+
    */
-  autoReplyPing(reply: boolean): WebSocket { return callSDK<WebSocket>("Network_212edf3d13b127f5", 4381829504977496, this, [reply]); }
+  autoReplyPing(reply: boolean): WebSocket { return callSDK<WebSocket>("Network_5d69670f0307b385", 4381829504977496, this, [reply]); }
   /**
    * func skipHandshake(_ skip: Bool) -> WebSocket
    * @availability iOS 26.0+
    */
-  skipHandshake(skip: boolean): WebSocket { return callSDK<WebSocket>("Network_212edf3d13b127f5", 3985611193652119, this, [skip]); }
+  skipHandshake(skip: boolean): WebSocket { return callSDK<WebSocket>("Network_5d69670f0307b385", 3985611193652119, this, [skip]); }
   /**
    * func additionalHeaders(_ headers: [(name: String, value: String)]) -> WebSocket
    * @availability iOS 26.0+
    */
-  additionalHeaders(headers: $SDK106): WebSocket { return callSDK<WebSocket>("Network_212edf3d13b127f5", 1775270740787807, this, [headers]); }
+  additionalHeaders(headers: $SDK106): WebSocket { return callSDK<WebSocket>("Network_5d69670f0307b385", 1775270740787807, this, [headers]); }
   /**
    * func maximumMessageSize(_ size: Int) -> WebSocket
    * @availability iOS 26.0+
    */
-  maximumMessageSize(size: number): WebSocket { return callSDK<WebSocket>("Network_212edf3d13b127f5", 2733871337178710, this, [size]); }
+  maximumMessageSize(size: number): WebSocket { return callSDK<WebSocket>("Network_5d69670f0307b385", 2733871337178710, this, [size]); }
   declare readonly $type: { "s:7Network9WebSocketV": true };
 }
 
@@ -5927,27 +5927,27 @@ export class WebSocket_Metadata extends SDKHandle {
    * let isComplete: Bool
    * @availability iOS 26.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3043277104437330, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3043277104437330, this, []); }
   /**
    * let lastMessage: Bool
    * @availability iOS 26.0+
    */
-  get lastMessage(): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3496801749876009, this, []); }
+  get lastMessage(): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3496801749876009, this, []); }
   /**
    * let other: [NWProtocolMetadata]
    * @availability iOS 26.0+
    */
-  get other(): $SDK1 { return callSDK<$SDK1>("Network_212edf3d13b127f5", 2101359320549882, this, []); }
+  get other(): $SDK1 { return callSDK<$SDK1>("Network_5d69670f0307b385", 2101359320549882, this, []); }
   /**
    * let opcode: NWProtocolWebSocket.Opcode
    * @availability iOS 26.0+
    */
-  get opcode(): NWProtocolWebSocket_Opcode { return callSDK<NWProtocolWebSocket_Opcode>("Network_212edf3d13b127f5", 4493434486471471, this, []); }
+  get opcode(): NWProtocolWebSocket_Opcode { return callSDK<NWProtocolWebSocket_Opcode>("Network_5d69670f0307b385", 4493434486471471, this, []); }
   /**
    * let closeCode: NWProtocolWebSocket.CloseCode?
    * @availability iOS 26.0+
    */
-  get closeCode(): (NWProtocolWebSocket_CloseCode) | null { return callSDK<(NWProtocolWebSocket_CloseCode) | null>("Network_212edf3d13b127f5", 2645415926798139, this, []); }
+  get closeCode(): (NWProtocolWebSocket_CloseCode) | null { return callSDK<(NWProtocolWebSocket_CloseCode) | null>("Network_5d69670f0307b385", 2645415926798139, this, []); }
   declare readonly $type: { "s:7Network9WebSocketV8MetadataV": true };
 }
 
@@ -5961,3018 +5961,3018 @@ export type WebSocket_ProtocolStorage = DefaultProtocolStorage;
  * func nw_advertise_descriptor_copy_txt_record_object(_ advertise_descriptor: nw_advertise_descriptor_t) -> nw_txt_record_t?
  * @availability iOS 13.0+
  */
-export function nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor: $SDK116): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 429344485551060, undefined, [advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
+export function nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor: $SDK116): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 429344485551060, undefined, [advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
 
 /**
  * func nw_advertise_descriptor_create_application_service(_ application_service_name: UnsafePointer<CChar>) -> nw_advertise_descriptor_t
  * @availability iOS 16.0+
  */
-export function nw_advertise_descriptor_create_application_service(application_service_name: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3000313903133434, undefined, [application_service_name]); }
+export function nw_advertise_descriptor_create_application_service(application_service_name: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3000313903133434, undefined, [application_service_name]); }
 
 /**
  * func nw_advertise_descriptor_create_bonjour_service(_ name: UnsafePointer<CChar>?, _ type: UnsafePointer<CChar>, _ domain: UnsafePointer<CChar>?) -> nw_advertise_descriptor_t?
  * @availability iOS 12.0+
  */
-export function nw_advertise_descriptor_create_bonjour_service(name: (SDKHandle) | null, type: SDKHandle, domain?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1190296061445684, undefined, [name, type, domain]); }
+export function nw_advertise_descriptor_create_bonjour_service(name: (SDKHandle) | null, type: SDKHandle, domain?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1190296061445684, undefined, [name, type, domain]); }
 
 /**
  * func nw_advertise_descriptor_get_application_service_name(_ advertise_descriptor: nw_advertise_descriptor_t) -> UnsafePointer<CChar>?
  * @availability iOS 16.0+
  */
-export function nw_advertise_descriptor_get_application_service_name(advertise_descriptor: $SDK116): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1341696187088229, undefined, [advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
+export function nw_advertise_descriptor_get_application_service_name(advertise_descriptor: $SDK116): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1341696187088229, undefined, [advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
 
 /**
  * func nw_advertise_descriptor_get_no_auto_rename(_ advertise_descriptor: nw_advertise_descriptor_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor: $SDK116): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1556576460469839, undefined, [advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
+export function nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor: $SDK116): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1556576460469839, undefined, [advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
 
 /**
  * func nw_advertise_descriptor_set_no_auto_rename(_ advertise_descriptor: nw_advertise_descriptor_t, _ no_auto_rename: Bool)
  * @availability iOS 12.0+
  */
-export function nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor: $SDK116, no_auto_rename: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 1035229542511392, undefined, [advertise_descriptor, no_auto_rename], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"},null]); }
+export function nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor: $SDK116, no_auto_rename: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 1035229542511392, undefined, [advertise_descriptor, no_auto_rename], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"},null]); }
 
 /**
  * func nw_advertise_descriptor_set_txt_record(_ advertise_descriptor: nw_advertise_descriptor_t, _ txt_record: UnsafeRawPointer?, _ txt_length: Int)
  * @availability iOS 12.0+
  */
-export function nw_advertise_descriptor_set_txt_record(advertise_descriptor: $SDK116, txt_record: (SDKHandle) | null, txt_length: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2309540577754910, undefined, [advertise_descriptor, txt_record, txt_length], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"},null,null]); }
+export function nw_advertise_descriptor_set_txt_record(advertise_descriptor: $SDK116, txt_record: (SDKHandle) | null, txt_length: number): void { return callSDK<void>("Network_5d69670f0307b385", 2309540577754910, undefined, [advertise_descriptor, txt_record, txt_length], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"},null,null]); }
 
 /**
  * func nw_advertise_descriptor_set_txt_record_object(_ advertise_descriptor: nw_advertise_descriptor_t, _ txt_record: nw_txt_record_t?)
  * @availability iOS 13.0+
  */
-export function nw_advertise_descriptor_set_txt_record_object(advertise_descriptor: $SDK116, txt_record?: $SDK117): void { return callSDK<void>("Network_212edf3d13b127f5", 657796698024890, undefined, [advertise_descriptor, txt_record], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"},{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
+export function nw_advertise_descriptor_set_txt_record_object(advertise_descriptor: $SDK116, txt_record?: $SDK117): void { return callSDK<void>("Network_5d69670f0307b385", 657796698024890, undefined, [advertise_descriptor, txt_record], [{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"},{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
 
 /**
  * func nw_browse_descriptor_create_application_service(_ application_service_name: UnsafePointer<CChar>) -> nw_browse_descriptor_t
  * @availability iOS 16.0+
  */
-export function nw_browse_descriptor_create_application_service(application_service_name: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4119490052359197, undefined, [application_service_name]); }
+export function nw_browse_descriptor_create_application_service(application_service_name: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4119490052359197, undefined, [application_service_name]); }
 
 /**
  * func nw_browse_descriptor_create_bonjour_service(_ type: UnsafePointer<CChar>, _ domain: UnsafePointer<CChar>?) -> nw_browse_descriptor_t
  * @availability iOS 13.0+
  */
-export function nw_browse_descriptor_create_bonjour_service(type: SDKHandle, domain?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1463601433562937, undefined, [type, domain]); }
+export function nw_browse_descriptor_create_bonjour_service(type: SDKHandle, domain?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1463601433562937, undefined, [type, domain]); }
 
 /**
  * func nw_browse_descriptor_get_application_service_name(_ descriptor: nw_browse_descriptor_t) -> UnsafePointer<CChar>?
  * @availability iOS 16.0+
  */
-export function nw_browse_descriptor_get_application_service_name(descriptor: $SDK118): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 2166787522764038, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
+export function nw_browse_descriptor_get_application_service_name(descriptor: $SDK118): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 2166787522764038, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
 
 /**
  * func nw_browse_descriptor_get_bonjour_service_domain(_ descriptor: nw_browse_descriptor_t) -> UnsafePointer<CChar>?
  * @availability iOS 13.0+
  */
-export function nw_browse_descriptor_get_bonjour_service_domain(descriptor: $SDK118): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 2832924791150710, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
+export function nw_browse_descriptor_get_bonjour_service_domain(descriptor: $SDK118): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 2832924791150710, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
 
 /**
  * func nw_browse_descriptor_get_bonjour_service_type(_ descriptor: nw_browse_descriptor_t) -> UnsafePointer<CChar>
  * @availability iOS 13.0+
  */
-export function nw_browse_descriptor_get_bonjour_service_type(descriptor: $SDK118): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3641392990934948, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
+export function nw_browse_descriptor_get_bonjour_service_type(descriptor: $SDK118): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3641392990934948, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
 
 /**
  * func nw_browse_descriptor_get_include_txt_record(_ descriptor: nw_browse_descriptor_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_browse_descriptor_get_include_txt_record(descriptor: $SDK118): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4259977459459412, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
+export function nw_browse_descriptor_get_include_txt_record(descriptor: $SDK118): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4259977459459412, undefined, [descriptor], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"}]); }
 
 /**
  * func nw_browse_descriptor_set_include_txt_record(_ descriptor: nw_browse_descriptor_t, _ include_txt_record: Bool)
  * @availability iOS 13.0+
  */
-export function nw_browse_descriptor_set_include_txt_record(descriptor: $SDK118, include_txt_record: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 2324534151320668, undefined, [descriptor, include_txt_record], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"},null]); }
+export function nw_browse_descriptor_set_include_txt_record(descriptor: $SDK118, include_txt_record: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 2324534151320668, undefined, [descriptor, include_txt_record], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"},null]); }
 
 /**
  * func nw_browse_result_copy_endpoint(_ result: nw_browse_result_t) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export function nw_browse_result_copy_endpoint(result: $SDK119): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2623301184623137, undefined, [result], [{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
+export function nw_browse_result_copy_endpoint(result: $SDK119): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2623301184623137, undefined, [result], [{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
 
 /**
  * func nw_browse_result_copy_txt_record_object(_ result: nw_browse_result_t) -> nw_txt_record_t?
  * @availability iOS 13.0+
  */
-export function nw_browse_result_copy_txt_record_object(result: $SDK119): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 4186818793909777, undefined, [result], [{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
+export function nw_browse_result_copy_txt_record_object(result: $SDK119): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 4186818793909777, undefined, [result], [{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
 
 /**
  * func nw_browse_result_get_changes(_ old_result: nw_browse_result_t?, _ new_result: nw_browse_result_t?) -> nw_browse_result_change_t
  * @availability iOS 13.0+
  */
-export function nw_browse_result_get_changes(old_result?: $SDK120, new_result?: $SDK120): number { return callSDK<number>("Network_212edf3d13b127f5", 63361257450781, undefined, [old_result, new_result], [{"protocol":"c:objc(pl)OS_nw_browse_result"},{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
+export function nw_browse_result_get_changes(old_result?: $SDK120, new_result?: $SDK120): number { return callSDK<number>("Network_5d69670f0307b385", 63361257450781, undefined, [old_result, new_result], [{"protocol":"c:objc(pl)OS_nw_browse_result"},{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
 
 /**
  * func nw_browse_result_get_interfaces_count(_ result: nw_browse_result_t) -> Int
  * @availability iOS 13.0+
  */
-export function nw_browse_result_get_interfaces_count(result: $SDK119): number { return callSDK<number>("Network_212edf3d13b127f5", 2230483351099132, undefined, [result], [{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
+export function nw_browse_result_get_interfaces_count(result: $SDK119): number { return callSDK<number>("Network_5d69670f0307b385", 2230483351099132, undefined, [result], [{"protocol":"c:objc(pl)OS_nw_browse_result"}]); }
 
 /**
  * func nw_browser_cancel(_ browser: nw_browser_t)
  * @availability iOS 13.0+
  */
-export function nw_browser_cancel(browser: $SDK121): void { return callSDK<void>("Network_212edf3d13b127f5", 778778920370370, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
+export function nw_browser_cancel(browser: $SDK121): void { return callSDK<void>("Network_5d69670f0307b385", 778778920370370, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
 
 /**
  * func nw_browser_copy_browse_descriptor(_ browser: nw_browser_t) -> nw_browse_descriptor_t
  * @availability iOS 13.0+
  */
-export function nw_browser_copy_browse_descriptor(browser: $SDK121): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4168715957871617, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
+export function nw_browser_copy_browse_descriptor(browser: $SDK121): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4168715957871617, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
 
 /**
  * func nw_browser_copy_parameters(_ browser: nw_browser_t) -> nw_parameters_t
  * @availability iOS 13.0+
  */
-export function nw_browser_copy_parameters(browser: $SDK121): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3833125881547892, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
+export function nw_browser_copy_parameters(browser: $SDK121): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3833125881547892, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
 
 /**
  * func nw_browser_create(_ descriptor: nw_browse_descriptor_t, _ parameters: nw_parameters_t?) -> nw_browser_t
  * @availability iOS 13.0+
  */
-export function nw_browser_create(descriptor: $SDK118, parameters?: (Implements<OS_nw_parameters> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1293930478177956, undefined, [descriptor, parameters], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_browser_create(descriptor: $SDK118, parameters?: (Implements<OS_nw_parameters> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1293930478177956, undefined, [descriptor, parameters], [{"protocol":"c:objc(pl)OS_nw_browse_descriptor"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_browser_set_browse_results_changed_handler(_ browser: nw_browser_t, _ handler: nw_browser_browse_results_changed_handler_t?)
  * @availability iOS 13.0+
  */
-export function nw_browser_set_browse_results_changed_handler(browser: $SDK121, handler?: (((arg0: SDKHandle, arg1: SDKHandle, arg2: boolean) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 717992336745218, undefined, [browser, handler], [{"protocol":"c:objc(pl)OS_nw_browser"},{"callback":{"out":[]}}]); }
+export function nw_browser_set_browse_results_changed_handler(browser: $SDK121, handler?: (((arg0: SDKHandle, arg1: SDKHandle, arg2: boolean) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 717992336745218, undefined, [browser, handler], [{"protocol":"c:objc(pl)OS_nw_browser"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_browser_set_queue(_ browser: nw_browser_t, _ queue: dispatch_queue_t)
  * @availability iOS 13.0+
  */
-export function nw_browser_set_queue(browser: $SDK121, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 335703181242483, undefined, [browser, queue], [{"protocol":"c:objc(pl)OS_nw_browser"},null]); }
+export function nw_browser_set_queue(browser: $SDK121, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 335703181242483, undefined, [browser, queue], [{"protocol":"c:objc(pl)OS_nw_browser"},null]); }
 
 /**
  * func nw_browser_set_state_changed_handler(_ browser: nw_browser_t, _ state_changed_handler: nw_browser_state_changed_handler_t?)
  * @availability iOS 13.0+
  */
-export function nw_browser_set_state_changed_handler(browser: $SDK121, state_changed_handler?: (((arg0: nw_browser_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 2194925963980963, undefined, [browser, state_changed_handler], [{"protocol":"c:objc(pl)OS_nw_browser"},{"callback":{"out":[]}}]); }
+export function nw_browser_set_state_changed_handler(browser: $SDK121, state_changed_handler?: (((arg0: nw_browser_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 2194925963980963, undefined, [browser, state_changed_handler], [{"protocol":"c:objc(pl)OS_nw_browser"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_browser_start(_ browser: nw_browser_t)
  * @availability iOS 13.0+
  */
-export function nw_browser_start(browser: $SDK121): void { return callSDK<void>("Network_212edf3d13b127f5", 4381776141315515, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
+export function nw_browser_start(browser: $SDK121): void { return callSDK<void>("Network_5d69670f0307b385", 4381776141315515, undefined, [browser], [{"protocol":"c:objc(pl)OS_nw_browser"}]); }
 
 /**
  * func nw_connection_access_establishment_report(_ connection: nw_connection_t, _ queue: dispatch_queue_t, _ access_block: @escaping nw_establishment_report_access_block_t)
  * @availability iOS 13.0+
  */
-export function nw_connection_access_establishment_report(connection: $SDK125, queue: _Dispatch_DispatchQueue, access_block: $SDK126): void { return callSDK<void>("Network_212edf3d13b127f5", 4107661897373908, undefined, [connection, queue, access_block], [{"protocol":"c:objc(pl)OS_nw_connection"},null,{"callback":{"out":[]}}]); }
+export function nw_connection_access_establishment_report(connection: $SDK125, queue: _Dispatch_DispatchQueue, access_block: $SDK126): void { return callSDK<void>("Network_5d69670f0307b385", 4107661897373908, undefined, [connection, queue, access_block], [{"protocol":"c:objc(pl)OS_nw_connection"},null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_batch(_ connection: nw_connection_t, _ batch_block: () -> Void)
  * @availability iOS 12.0+
  */
-export function nw_connection_batch(connection: $SDK125, batch_block: (() => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 1193245286240090, undefined, [connection, batch_block], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
+export function nw_connection_batch(connection: $SDK125, batch_block: (() => void)): void { return callSDK<void>("Network_5d69670f0307b385", 1193245286240090, undefined, [connection, batch_block], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_cancel(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_cancel(connection: $SDK125): void { return callSDK<void>("Network_212edf3d13b127f5", 3543667196296605, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_cancel(connection: $SDK125): void { return callSDK<void>("Network_5d69670f0307b385", 3543667196296605, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_cancel_current_endpoint(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_cancel_current_endpoint(connection: $SDK125): void { return callSDK<void>("Network_212edf3d13b127f5", 2684009476333546, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_cancel_current_endpoint(connection: $SDK125): void { return callSDK<void>("Network_5d69670f0307b385", 2684009476333546, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_copy_current_path(_ connection: nw_connection_t) -> nw_path_t?
  * @availability iOS 12.0+
  */
-export function nw_connection_copy_current_path(connection: $SDK125): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1960298801633710, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_copy_current_path(connection: $SDK125): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1960298801633710, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_copy_description(_ connection: nw_connection_t) -> UnsafeMutablePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_connection_copy_description(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 322450078280126, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_copy_description(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 322450078280126, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_copy_endpoint(_ connection: nw_connection_t) -> nw_endpoint_t
  * @availability iOS 12.0+
  */
-export function nw_connection_copy_endpoint(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3962198674380473, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_copy_endpoint(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3962198674380473, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_copy_parameters(_ connection: nw_connection_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export function nw_connection_copy_parameters(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 756398096631661, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_copy_parameters(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 756398096631661, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_copy_protocol_metadata(_ connection: nw_connection_t, _ definition: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 12.0+
  */
-export function nw_connection_copy_protocol_metadata(connection: $SDK125, definition: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 116342527524932, undefined, [connection, definition], [{"protocol":"c:objc(pl)OS_nw_connection"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_connection_copy_protocol_metadata(connection: $SDK125, definition: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 116342527524932, undefined, [connection, definition], [{"protocol":"c:objc(pl)OS_nw_connection"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_connection_create(_ endpoint: nw_endpoint_t, _ parameters: nw_parameters_t) -> nw_connection_t
  * @availability iOS 12.0+
  */
-export function nw_connection_create(endpoint: $SDK128, parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3402140504301744, undefined, [endpoint, parameters], [{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_connection_create(endpoint: $SDK128, parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3402140504301744, undefined, [endpoint, parameters], [{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_connection_create_new_data_transfer_report(_ connection: nw_connection_t) -> nw_data_transfer_report_t
  * @availability iOS 13.0+
  */
-export function nw_connection_create_new_data_transfer_report(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2377668130742255, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_create_new_data_transfer_report(connection: $SDK125): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2377668130742255, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_force_cancel(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_force_cancel(connection: $SDK125): void { return callSDK<void>("Network_212edf3d13b127f5", 2595124660947870, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_force_cancel(connection: $SDK125): void { return callSDK<void>("Network_5d69670f0307b385", 2595124660947870, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_get_maximum_datagram_size(_ connection: nw_connection_t) -> UInt32
  * @availability iOS 12.0+
  */
-export function nw_connection_get_maximum_datagram_size(connection: $SDK125): number { return callSDK<number>("Network_212edf3d13b127f5", 2364605094900908, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_get_maximum_datagram_size(connection: $SDK125): number { return callSDK<number>("Network_5d69670f0307b385", 2364605094900908, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_group_cancel(_ group: nw_connection_group_t)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_cancel(group: $SDK130): void { return callSDK<void>("Network_212edf3d13b127f5", 4254494335407779, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
+export function nw_connection_group_cancel(group: $SDK130): void { return callSDK<void>("Network_5d69670f0307b385", 4254494335407779, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
 
 /**
  * func nw_connection_group_copy_descriptor(_ group: nw_connection_group_t) -> nw_group_descriptor_t
  * @availability iOS 14.0+
  */
-export function nw_connection_group_copy_descriptor(group: $SDK130): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3314622968156219, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
+export function nw_connection_group_copy_descriptor(group: $SDK130): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3314622968156219, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
 
 /**
  * func nw_connection_group_copy_local_endpoint_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_endpoint_t?
  * @availability iOS 14.0+
  */
-export function nw_connection_group_copy_local_endpoint_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 854144211794998, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_connection_group_copy_local_endpoint_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 854144211794998, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_connection_group_copy_parameters(_ group: nw_connection_group_t) -> nw_parameters_t
  * @availability iOS 14.0+
  */
-export function nw_connection_group_copy_parameters(group: $SDK130): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 800313090950808, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
+export function nw_connection_group_copy_parameters(group: $SDK130): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 800313090950808, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
 
 /**
  * func nw_connection_group_copy_path_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_path_t?
  * @availability iOS 14.0+
  */
-export function nw_connection_group_copy_path_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1877175398833276, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_connection_group_copy_path_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1877175398833276, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_connection_group_copy_protocol_metadata(_ group: nw_connection_group_t, _ definition: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 15.0+
  */
-export function nw_connection_group_copy_protocol_metadata(group: $SDK130, definition: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 3279966325846413, undefined, [group, definition], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_connection_group_copy_protocol_metadata(group: $SDK130, definition: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 3279966325846413, undefined, [group, definition], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_connection_group_copy_protocol_metadata_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t, _ definition: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 15.0+
  */
-export function nw_connection_group_copy_protocol_metadata_for_message(group: $SDK130, context: $SDK91, definition: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1560385959916206, undefined, [group, context, definition], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_connection_group_copy_protocol_metadata_for_message(group: $SDK130, context: $SDK91, definition: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1560385959916206, undefined, [group, context, definition], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_connection_group_copy_remote_endpoint_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_endpoint_t?
  * @availability iOS 14.0+
  */
-export function nw_connection_group_copy_remote_endpoint_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 656176055294988, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_connection_group_copy_remote_endpoint_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 656176055294988, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_connection_group_create(_ group_descriptor: nw_group_descriptor_t, _ parameters: nw_parameters_t) -> nw_connection_group_t
  * @availability iOS 14.0+
  */
-export function nw_connection_group_create(group_descriptor: $SDK131, parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 424121953223744, undefined, [group_descriptor, parameters], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_connection_group_create(group_descriptor: $SDK131, parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 424121953223744, undefined, [group_descriptor, parameters], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_connection_group_extract_connection(_ group: nw_connection_group_t, _ endpoint: nw_endpoint_t?, _ protocol_options: nw_protocol_options_t?) -> nw_connection_t?
  * @availability iOS 15.0+
  */
-export function nw_connection_group_extract_connection(group: $SDK130, endpoint?: $SDK132, protocol_options?: $SDK133): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 4080683148086768, undefined, [group, endpoint, protocol_options], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_connection_group_extract_connection(group: $SDK130, endpoint?: $SDK132, protocol_options?: $SDK133): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 4080683148086768, undefined, [group, endpoint, protocol_options], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_connection_group_extract_connection_for_message(_ group: nw_connection_group_t, _ context: nw_content_context_t) -> nw_connection_t?
  * @availability iOS 14.0+
  */
-export function nw_connection_group_extract_connection_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 124587527705611, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_connection_group_extract_connection_for_message(group: $SDK130, context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 124587527705611, undefined, [group, context], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_connection_group_reinsert_extracted_connection(_ group: nw_connection_group_t, _ connection: nw_connection_t) -> Bool
  * @availability iOS 15.0+
  */
-export function nw_connection_group_reinsert_extracted_connection(group: $SDK130, connection: $SDK125): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 172350703064598, undefined, [group, connection], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_group_reinsert_extracted_connection(group: $SDK130, connection: $SDK125): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 172350703064598, undefined, [group, connection], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_group_reply(_ group: nw_connection_group_t, _ inbound_message: nw_content_context_t, _ outbound_message: nw_content_context_t, _ content: dispatch_data_t?)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_reply(group: $SDK130, inbound_message: $SDK91, outbound_message: $SDK91, content?: (SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 954331379269297, undefined, [group, inbound_message, outbound_message, content], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
+export function nw_connection_group_reply(group: $SDK130, inbound_message: $SDK91, outbound_message: $SDK91, content?: (SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 954331379269297, undefined, [group, inbound_message, outbound_message, content], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
 
 /**
  * func nw_connection_group_send_message(_ group: nw_connection_group_t, _ content: dispatch_data_t?, _ endpoint: nw_endpoint_t?, _ context: nw_content_context_t, _ completion: @escaping nw_connection_group_send_completion_t)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_send_message(group: $SDK130, content: (SDKHandle) | null, endpoint: $SDK132, context: $SDK91, completion: $SDK126): void { return callSDK<void>("Network_212edf3d13b127f5", 3313108073599777, undefined, [group, content, endpoint, context, completion], [{"protocol":"c:objc(pl)OS_nw_connection_group"},null,{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_content_context"},{"callback":{"out":[]}}]); }
+export function nw_connection_group_send_message(group: $SDK130, content: (SDKHandle) | null, endpoint: $SDK132, context: $SDK91, completion: $SDK126): void { return callSDK<void>("Network_5d69670f0307b385", 3313108073599777, undefined, [group, content, endpoint, context, completion], [{"protocol":"c:objc(pl)OS_nw_connection_group"},null,{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_content_context"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_group_set_new_connection_handler(_ group: nw_connection_group_t, _ new_connection_handler: nw_connection_group_new_connection_handler_t?)
  * @availability iOS 15.0+
  */
-export function nw_connection_group_set_new_connection_handler(group: $SDK130, new_connection_handler?: $SDK134): void { return callSDK<void>("Network_212edf3d13b127f5", 3884211805641328, undefined, [group, new_connection_handler], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"callback":{"out":[]}}]); }
+export function nw_connection_group_set_new_connection_handler(group: $SDK130, new_connection_handler?: $SDK134): void { return callSDK<void>("Network_5d69670f0307b385", 3884211805641328, undefined, [group, new_connection_handler], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_group_set_queue(_ group: nw_connection_group_t, _ queue: dispatch_queue_t)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_set_queue(group: $SDK130, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 3865412988854227, undefined, [group, queue], [{"protocol":"c:objc(pl)OS_nw_connection_group"},null]); }
+export function nw_connection_group_set_queue(group: $SDK130, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 3865412988854227, undefined, [group, queue], [{"protocol":"c:objc(pl)OS_nw_connection_group"},null]); }
 
 /**
  * func nw_connection_group_set_receive_handler(_ group: nw_connection_group_t, _ maximum_message_size: UInt32, _ reject_oversized_messages: Bool, _ receive_handler: nw_connection_group_receive_handler_t?)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_set_receive_handler(group: $SDK130, maximum_message_size: number, reject_oversized_messages: boolean, receive_handler?: (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: boolean) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 100014857888675, undefined, [group, maximum_message_size, reject_oversized_messages, receive_handler], [{"protocol":"c:objc(pl)OS_nw_connection_group"},null,null,{"callback":{"out":[]}}]); }
+export function nw_connection_group_set_receive_handler(group: $SDK130, maximum_message_size: number, reject_oversized_messages: boolean, receive_handler?: (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: boolean) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 100014857888675, undefined, [group, maximum_message_size, reject_oversized_messages, receive_handler], [{"protocol":"c:objc(pl)OS_nw_connection_group"},null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_group_set_state_changed_handler(_ group: nw_connection_group_t, _ state_changed_handler: nw_connection_group_state_changed_handler_t?)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_set_state_changed_handler(group: $SDK130, state_changed_handler?: (((arg0: nw_connection_group_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 4428143854241570, undefined, [group, state_changed_handler], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"callback":{"out":[]}}]); }
+export function nw_connection_group_set_state_changed_handler(group: $SDK130, state_changed_handler?: (((arg0: nw_connection_group_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 4428143854241570, undefined, [group, state_changed_handler], [{"protocol":"c:objc(pl)OS_nw_connection_group"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_group_start(_ group: nw_connection_group_t)
  * @availability iOS 14.0+
  */
-export function nw_connection_group_start(group: $SDK130): void { return callSDK<void>("Network_212edf3d13b127f5", 441904536329401, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
+export function nw_connection_group_start(group: $SDK130): void { return callSDK<void>("Network_5d69670f0307b385", 441904536329401, undefined, [group], [{"protocol":"c:objc(pl)OS_nw_connection_group"}]); }
 
 /**
  * func nw_connection_receive(_ connection: nw_connection_t, _ minimum_incomplete_length: UInt32, _ maximum_length: UInt32, _ completion: @escaping nw_connection_receive_completion_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_receive(connection: $SDK125, minimum_incomplete_length: number, maximum_length: number, completion: $SDK137): void { return callSDK<void>("Network_212edf3d13b127f5", 1891762418605652, undefined, [connection, minimum_incomplete_length, maximum_length, completion], [{"protocol":"c:objc(pl)OS_nw_connection"},null,null,{"callback":{"out":[]}}]); }
+export function nw_connection_receive(connection: $SDK125, minimum_incomplete_length: number, maximum_length: number, completion: $SDK137): void { return callSDK<void>("Network_5d69670f0307b385", 1891762418605652, undefined, [connection, minimum_incomplete_length, maximum_length, completion], [{"protocol":"c:objc(pl)OS_nw_connection"},null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_receive_message(_ connection: nw_connection_t, _ completion: @escaping nw_connection_receive_completion_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_receive_message(connection: $SDK125, completion: $SDK137): void { return callSDK<void>("Network_212edf3d13b127f5", 1052537257607136, undefined, [connection, completion], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
+export function nw_connection_receive_message(connection: $SDK125, completion: $SDK137): void { return callSDK<void>("Network_5d69670f0307b385", 1052537257607136, undefined, [connection, completion], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_restart(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_restart(connection: $SDK125): void { return callSDK<void>("Network_212edf3d13b127f5", 741589565924235, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_restart(connection: $SDK125): void { return callSDK<void>("Network_5d69670f0307b385", 741589565924235, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_connection_send(_ connection: nw_connection_t, _ content: dispatch_data_t?, _ context: nw_content_context_t, _ is_complete: Bool, _ completion: @escaping nw_connection_send_completion_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_send(connection: $SDK125, content: (SDKHandle) | null, context: $SDK91, is_complete: boolean, completion: $SDK126): void { return callSDK<void>("Network_212edf3d13b127f5", 75942515540924, undefined, [connection, content, context, is_complete, completion], [{"protocol":"c:objc(pl)OS_nw_connection"},null,{"protocol":"c:objc(pl)OS_nw_content_context"},null,{"callback":{"out":[]}}]); }
+export function nw_connection_send(connection: $SDK125, content: (SDKHandle) | null, context: $SDK91, is_complete: boolean, completion: $SDK126): void { return callSDK<void>("Network_5d69670f0307b385", 75942515540924, undefined, [connection, content, context, is_complete, completion], [{"protocol":"c:objc(pl)OS_nw_connection"},null,{"protocol":"c:objc(pl)OS_nw_content_context"},null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_set_better_path_available_handler(_ connection: nw_connection_t, _ handler: nw_connection_boolean_event_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_connection_set_better_path_available_handler(connection: $SDK125, handler?: $SDK75): void { return callSDK<void>("Network_212edf3d13b127f5", 891827182942386, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
+export function nw_connection_set_better_path_available_handler(connection: $SDK125, handler?: $SDK75): void { return callSDK<void>("Network_5d69670f0307b385", 891827182942386, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_set_path_changed_handler(_ connection: nw_connection_t, _ handler: nw_connection_path_event_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_connection_set_path_changed_handler(connection: $SDK125, handler?: $SDK134): void { return callSDK<void>("Network_212edf3d13b127f5", 2859663594395541, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
+export function nw_connection_set_path_changed_handler(connection: $SDK125, handler?: $SDK134): void { return callSDK<void>("Network_5d69670f0307b385", 2859663594395541, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_set_queue(_ connection: nw_connection_t, _ queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_set_queue(connection: $SDK125, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 3214052746862092, undefined, [connection, queue], [{"protocol":"c:objc(pl)OS_nw_connection"},null]); }
+export function nw_connection_set_queue(connection: $SDK125, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 3214052746862092, undefined, [connection, queue], [{"protocol":"c:objc(pl)OS_nw_connection"},null]); }
 
 /**
  * func nw_connection_set_state_changed_handler(_ connection: nw_connection_t, _ handler: nw_connection_state_changed_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_connection_set_state_changed_handler(connection: $SDK125, handler?: (((arg0: nw_connection_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 381026563668423, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
+export function nw_connection_set_state_changed_handler(connection: $SDK125, handler?: (((arg0: nw_connection_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 381026563668423, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_set_viability_changed_handler(_ connection: nw_connection_t, _ handler: nw_connection_boolean_event_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_connection_set_viability_changed_handler(connection: $SDK125, handler?: $SDK75): void { return callSDK<void>("Network_212edf3d13b127f5", 3957741330743496, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
+export function nw_connection_set_viability_changed_handler(connection: $SDK125, handler?: $SDK75): void { return callSDK<void>("Network_5d69670f0307b385", 3957741330743496, undefined, [connection, handler], [{"protocol":"c:objc(pl)OS_nw_connection"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_connection_start(_ connection: nw_connection_t)
  * @availability iOS 12.0+
  */
-export function nw_connection_start(connection: $SDK125): void { return callSDK<void>("Network_212edf3d13b127f5", 4137157687317665, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
+export function nw_connection_start(connection: $SDK125): void { return callSDK<void>("Network_5d69670f0307b385", 4137157687317665, undefined, [connection], [{"protocol":"c:objc(pl)OS_nw_connection"}]); }
 
 /**
  * func nw_content_context_copy_antecedent(_ context: nw_content_context_t) -> nw_content_context_t?
  * @availability iOS 12.0+
  */
-export function nw_content_context_copy_antecedent(context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1286752195526258, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_content_context_copy_antecedent(context: $SDK91): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1286752195526258, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_content_context_copy_protocol_metadata(_ context: nw_content_context_t, _ protocol: nw_protocol_definition_t) -> nw_protocol_metadata_t?
  * @availability iOS 12.0+
  */
-export function nw_content_context_copy_protocol_metadata(context: $SDK91, protocol: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 4436324465605394, undefined, [context, protocol], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_content_context_copy_protocol_metadata(context: $SDK91, protocol: $SDK127): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 4436324465605394, undefined, [context, protocol], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_content_context_create(_ context_identifier: UnsafePointer<CChar>) -> nw_content_context_t
  * @availability iOS 12.0+
  */
-export function nw_content_context_create(context_identifier: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2435864904807748, undefined, [context_identifier]); }
+export function nw_content_context_create(context_identifier: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2435864904807748, undefined, [context_identifier]); }
 
 /**
  * func nw_content_context_foreach_protocol_metadata(_ context: nw_content_context_t, _ foreach_block: @escaping (nw_protocol_definition_t, nw_protocol_metadata_t) -> Void)
  * @availability iOS 12.0+
  */
-export function nw_content_context_foreach_protocol_metadata(context: $SDK91, foreach_block: ((arg0: SDKHandle, arg1: SDKHandle) => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 3016657101950696, undefined, [context, foreach_block], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"callback":{"out":[]}}]); }
+export function nw_content_context_foreach_protocol_metadata(context: $SDK91, foreach_block: ((arg0: SDKHandle, arg1: SDKHandle) => void)): void { return callSDK<void>("Network_5d69670f0307b385", 3016657101950696, undefined, [context, foreach_block], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_content_context_get_expiration_milliseconds(_ context: nw_content_context_t) -> UInt64
  * @availability iOS 12.0+
  */
-export function nw_content_context_get_expiration_milliseconds(context: $SDK91): number { return callSDK<number>("Network_212edf3d13b127f5", 933618626731790, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_content_context_get_expiration_milliseconds(context: $SDK91): number { return callSDK<number>("Network_5d69670f0307b385", 933618626731790, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_content_context_get_identifier(_ context: nw_content_context_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_content_context_get_identifier(context: $SDK91): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2744235696267762, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_content_context_get_identifier(context: $SDK91): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2744235696267762, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_content_context_get_is_final(_ context: nw_content_context_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_content_context_get_is_final(context: $SDK91): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3677817117512761, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_content_context_get_is_final(context: $SDK91): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3677817117512761, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_content_context_get_relative_priority(_ context: nw_content_context_t) -> Double
  * @availability iOS 12.0+
  */
-export function nw_content_context_get_relative_priority(context: $SDK91): number { return callSDK<number>("Network_212edf3d13b127f5", 2874751555693613, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_content_context_get_relative_priority(context: $SDK91): number { return callSDK<number>("Network_5d69670f0307b385", 2874751555693613, undefined, [context], [{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_content_context_set_antecedent(_ context: nw_content_context_t, _ antecedent_context: nw_content_context_t?)
  * @availability iOS 12.0+
  */
-export function nw_content_context_set_antecedent(context: $SDK91, antecedent_context?: (Implements<OS_nw_content_context> | SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 3877947275484916, undefined, [context, antecedent_context], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
+export function nw_content_context_set_antecedent(context: $SDK91, antecedent_context?: (Implements<OS_nw_content_context> | SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 3877947275484916, undefined, [context, antecedent_context], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_content_context"}]); }
 
 /**
  * func nw_content_context_set_expiration_milliseconds(_ context: nw_content_context_t, _ expiration_milliseconds: UInt64)
  * @availability iOS 12.0+
  */
-export function nw_content_context_set_expiration_milliseconds(context: $SDK91, expiration_milliseconds: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1485392372025099, undefined, [context, expiration_milliseconds], [{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
+export function nw_content_context_set_expiration_milliseconds(context: $SDK91, expiration_milliseconds: number): void { return callSDK<void>("Network_5d69670f0307b385", 1485392372025099, undefined, [context, expiration_milliseconds], [{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
 
 /**
  * func nw_content_context_set_is_final(_ context: nw_content_context_t, _ is_final: Bool)
  * @availability iOS 12.0+
  */
-export function nw_content_context_set_is_final(context: $SDK91, is_final: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 42101491615874, undefined, [context, is_final], [{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
+export function nw_content_context_set_is_final(context: $SDK91, is_final: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 42101491615874, undefined, [context, is_final], [{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
 
 /**
  * func nw_content_context_set_metadata_for_protocol(_ context: nw_content_context_t, _ protocol_metadata: nw_protocol_metadata_t)
  * @availability iOS 12.0+
  */
-export function nw_content_context_set_metadata_for_protocol(context: $SDK91, protocol_metadata: $SDK141): void { return callSDK<void>("Network_212edf3d13b127f5", 3892193278516398, undefined, [context, protocol_metadata], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_content_context_set_metadata_for_protocol(context: $SDK91, protocol_metadata: $SDK141): void { return callSDK<void>("Network_5d69670f0307b385", 3892193278516398, undefined, [context, protocol_metadata], [{"protocol":"c:objc(pl)OS_nw_content_context"},{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_content_context_set_relative_priority(_ context: nw_content_context_t, _ relative_priority: Double)
  * @availability iOS 12.0+
  */
-export function nw_content_context_set_relative_priority(context: $SDK91, relative_priority: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3036138053749521, undefined, [context, relative_priority], [{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
+export function nw_content_context_set_relative_priority(context: $SDK91, relative_priority: number): void { return callSDK<void>("Network_5d69670f0307b385", 3036138053749521, undefined, [context, relative_priority], [{"protocol":"c:objc(pl)OS_nw_content_context"},null]); }
 
 /**
  * func nw_data_transfer_report_collect(_ report: nw_data_transfer_report_t, _ queue: dispatch_queue_t, _ collect_block: @escaping nw_data_transfer_report_collect_block_t)
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_collect(report: $SDK142, queue: _Dispatch_DispatchQueue, collect_block: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 666405271185910, undefined, [report, queue, collect_block], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null,{"callback":{"out":[]}}]); }
+export function nw_data_transfer_report_collect(report: $SDK142, queue: _Dispatch_DispatchQueue, collect_block: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 666405271185910, undefined, [report, queue, collect_block], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_data_transfer_report_copy_path_interface(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> nw_interface_t
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_copy_path_interface(report: $SDK142, path_index: number): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1539108955611250, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_copy_path_interface(report: $SDK142, path_index: number): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1539108955611250, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_duration_milliseconds(_ report: nw_data_transfer_report_t) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_duration_milliseconds(report: $SDK142): number { return callSDK<number>("Network_212edf3d13b127f5", 339094773159016, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"}]); }
+export function nw_data_transfer_report_get_duration_milliseconds(report: $SDK142): number { return callSDK<number>("Network_5d69670f0307b385", 339094773159016, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"}]); }
 
 /**
  * func nw_data_transfer_report_get_path_count(_ report: nw_data_transfer_report_t) -> UInt32
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_path_count(report: $SDK142): number { return callSDK<number>("Network_212edf3d13b127f5", 3591572286476557, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"}]); }
+export function nw_data_transfer_report_get_path_count(report: $SDK142): number { return callSDK<number>("Network_5d69670f0307b385", 3591572286476557, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"}]); }
 
 /**
  * func nw_data_transfer_report_get_path_radio_type(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> nw_interface_radio_type_t
  * @availability iOS 15.0+
  */
-export function nw_data_transfer_report_get_path_radio_type(report: $SDK142, path_index: number): nw_interface_radio_type_t { return callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 382452243348296, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_path_radio_type(report: $SDK142, path_index: number): nw_interface_radio_type_t { return callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 382452243348296, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_received_application_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_received_application_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 3928465617886394, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_received_application_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 3928465617886394, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_received_ip_packet_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_received_ip_packet_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 3755839758217664, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_received_ip_packet_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 3755839758217664, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_received_transport_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_received_transport_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 2790591348024618, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_received_transport_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 2790591348024618, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_received_transport_duplicate_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_received_transport_duplicate_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 2555407362163757, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_received_transport_duplicate_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 2555407362163757, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_received_transport_out_of_order_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_received_transport_out_of_order_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 3007809239870999, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_received_transport_out_of_order_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 3007809239870999, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_sent_application_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_sent_application_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 603612751131413, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_sent_application_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 603612751131413, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_sent_ip_packet_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_sent_ip_packet_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 3382853029844996, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_sent_ip_packet_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 3382853029844996, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_sent_transport_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_sent_transport_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 2029176821331174, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_sent_transport_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 2029176821331174, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 2292859230007746, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 2292859230007746, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_state(_ report: nw_data_transfer_report_t) -> nw_data_transfer_report_state_t
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_state(report: $SDK142): nw_data_transfer_report_state_t { return callSDK<nw_data_transfer_report_state_t>("Network_212edf3d13b127f5", 2070070628715809, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"}]); }
+export function nw_data_transfer_report_get_state(report: $SDK142): nw_data_transfer_report_state_t { return callSDK<nw_data_transfer_report_state_t>("Network_5d69670f0307b385", 2070070628715809, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"}]); }
 
 /**
  * func nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 1608387006152678, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 1608387006152678, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_transport_rtt_variance(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_transport_rtt_variance(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 3180316286869666, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_transport_rtt_variance(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 3180316286869666, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(_ report: nw_data_transfer_report_t, _ path_index: UInt32) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report: $SDK142, path_index: number): number { return callSDK<number>("Network_212edf3d13b127f5", 4282250294387821, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
+export function nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report: $SDK142, path_index: number): number { return callSDK<number>("Network_5d69670f0307b385", 4282250294387821, undefined, [report, path_index], [{"protocol":"c:objc(pl)OS_nw_data_transfer_report"},null]); }
 
 /**
  * func nw_endpoint_copy_address_string(_ endpoint: nw_endpoint_t) -> UnsafeMutablePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_copy_address_string(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2468714172667595, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_copy_address_string(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2468714172667595, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_copy_port_string(_ endpoint: nw_endpoint_t) -> UnsafeMutablePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_copy_port_string(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 440634300383880, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_copy_port_string(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 440634300383880, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_copy_txt_record(_ endpoint: nw_endpoint_t) -> nw_txt_record_t?
  * @availability iOS 16.0+
  */
-export function nw_endpoint_copy_txt_record(endpoint: $SDK128): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1326473171550168, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_copy_txt_record(endpoint: $SDK128): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1326473171550168, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_create_address(_ address: UnsafePointer<sockaddr>) -> nw_endpoint_t
  * @availability iOS 12.0+
  */
-export function nw_endpoint_create_address(address: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4121843810849096, undefined, [address]); }
+export function nw_endpoint_create_address(address: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4121843810849096, undefined, [address]); }
 
 /**
  * func nw_endpoint_create_bonjour_service(_ name: UnsafePointer<CChar>, _ type: UnsafePointer<CChar>, _ domain: UnsafePointer<CChar>) -> nw_endpoint_t
  * @availability iOS 12.0+
  */
-export function nw_endpoint_create_bonjour_service(name: SDKHandle, type: SDKHandle, domain: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 274097422890973, undefined, [name, type, domain]); }
+export function nw_endpoint_create_bonjour_service(name: SDKHandle, type: SDKHandle, domain: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 274097422890973, undefined, [name, type, domain]); }
 
 /**
  * func nw_endpoint_create_host(_ hostname: UnsafePointer<CChar>, _ port: UnsafePointer<CChar>) -> nw_endpoint_t
  * @availability iOS 12.0+
  */
-export function nw_endpoint_create_host(hostname: SDKHandle, port: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2909943289213547, undefined, [hostname, port]); }
+export function nw_endpoint_create_host(hostname: SDKHandle, port: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2909943289213547, undefined, [hostname, port]); }
 
 /**
  * func nw_endpoint_create_url(_ url: UnsafePointer<CChar>) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export function nw_endpoint_create_url(url: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2296000619748134, undefined, [url]); }
+export function nw_endpoint_create_url(url: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2296000619748134, undefined, [url]); }
 
 /**
  * func nw_endpoint_get_address(_ endpoint: nw_endpoint_t) -> UnsafePointer<sockaddr>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_address(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2283279532603833, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_address(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2283279532603833, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_bonjour_service_domain(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_bonjour_service_domain(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4324781303449984, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_bonjour_service_domain(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4324781303449984, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_bonjour_service_name(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_bonjour_service_name(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3485765335271290, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_bonjour_service_name(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3485765335271290, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_bonjour_service_type(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_bonjour_service_type(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3341534966540743, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_bonjour_service_type(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3341534966540743, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_hostname(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_hostname(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 379647050060143, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_hostname(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 379647050060143, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_port(_ endpoint: nw_endpoint_t) -> UInt16
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_port(endpoint: $SDK128): number { return callSDK<number>("Network_212edf3d13b127f5", 3023401950302429, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_port(endpoint: $SDK128): number { return callSDK<number>("Network_5d69670f0307b385", 3023401950302429, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_signature(_ endpoint: nw_endpoint_t, _ out_signature_length: UnsafeMutablePointer<Int>) -> UnsafePointer<UInt8>?
  * @availability iOS 16.0+
  */
-export function nw_endpoint_get_signature(endpoint: $SDK128, out_signature_length: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1875615084178136, undefined, [endpoint, out_signature_length], [{"protocol":"c:objc(pl)OS_nw_endpoint"},null]); }
+export function nw_endpoint_get_signature(endpoint: $SDK128, out_signature_length: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1875615084178136, undefined, [endpoint, out_signature_length], [{"protocol":"c:objc(pl)OS_nw_endpoint"},null]); }
 
 /**
  * func nw_endpoint_get_type(_ endpoint: nw_endpoint_t) -> nw_endpoint_type_t
  * @availability iOS 12.0+
  */
-export function nw_endpoint_get_type(endpoint: $SDK128): nw_endpoint_type_t { return callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 2824529810577412, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_type(endpoint: $SDK128): nw_endpoint_type_t { return callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 2824529810577412, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_endpoint_get_url(_ endpoint: nw_endpoint_t) -> UnsafePointer<CChar>
  * @availability iOS 13.0+
  */
-export function nw_endpoint_get_url(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 660391000536245, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_endpoint_get_url(endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 660391000536245, undefined, [endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_error_copy_cf_error(_ error: nw_error_t) -> Unmanaged<CFError>
  * @availability iOS 12.0+
  */
-export function nw_error_copy_cf_error(error: $SDK144): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 641131560129025, undefined, [error], [{"protocol":"c:objc(pl)OS_nw_error"}]); }
+export function nw_error_copy_cf_error(error: $SDK144): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 641131560129025, undefined, [error], [{"protocol":"c:objc(pl)OS_nw_error"}]); }
 
 /**
  * func nw_error_get_error_code(_ error: nw_error_t) -> Int32
  * @availability iOS 12.0+
  */
-export function nw_error_get_error_code(error: $SDK144): number { return callSDK<number>("Network_212edf3d13b127f5", 1250603372796037, undefined, [error], [{"protocol":"c:objc(pl)OS_nw_error"}]); }
+export function nw_error_get_error_code(error: $SDK144): number { return callSDK<number>("Network_5d69670f0307b385", 1250603372796037, undefined, [error], [{"protocol":"c:objc(pl)OS_nw_error"}]); }
 
 /**
  * func nw_error_get_error_domain(_ error: nw_error_t) -> nw_error_domain_t
  * @availability iOS 12.0+
  */
-export function nw_error_get_error_domain(error: $SDK144): nw_error_domain_t { return callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 232288988656081, undefined, [error], [{"protocol":"c:objc(pl)OS_nw_error"}]); }
+export function nw_error_get_error_domain(error: $SDK144): nw_error_domain_t { return callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 232288988656081, undefined, [error], [{"protocol":"c:objc(pl)OS_nw_error"}]); }
 
 /**
  * func nw_establishment_report_copy_proxy_endpoint(_ report: nw_establishment_report_t) -> nw_endpoint_t?
  * @availability iOS 13.0+
  */
-export function nw_establishment_report_copy_proxy_endpoint(report: $SDK145): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 678814623243812, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
+export function nw_establishment_report_copy_proxy_endpoint(report: $SDK145): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 678814623243812, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
 
 /**
  * func nw_establishment_report_get_attempt_started_after_milliseconds(_ report: nw_establishment_report_t) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_establishment_report_get_attempt_started_after_milliseconds(report: $SDK145): number { return callSDK<number>("Network_212edf3d13b127f5", 3826062528113845, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
+export function nw_establishment_report_get_attempt_started_after_milliseconds(report: $SDK145): number { return callSDK<number>("Network_5d69670f0307b385", 3826062528113845, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
 
 /**
  * func nw_establishment_report_get_duration_milliseconds(_ report: nw_establishment_report_t) -> UInt64
  * @availability iOS 13.0+
  */
-export function nw_establishment_report_get_duration_milliseconds(report: $SDK145): number { return callSDK<number>("Network_212edf3d13b127f5", 3432687638143479, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
+export function nw_establishment_report_get_duration_milliseconds(report: $SDK145): number { return callSDK<number>("Network_5d69670f0307b385", 3432687638143479, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
 
 /**
  * func nw_establishment_report_get_previous_attempt_count(_ report: nw_establishment_report_t) -> UInt32
  * @availability iOS 13.0+
  */
-export function nw_establishment_report_get_previous_attempt_count(report: $SDK145): number { return callSDK<number>("Network_212edf3d13b127f5", 4145755649499487, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
+export function nw_establishment_report_get_previous_attempt_count(report: $SDK145): number { return callSDK<number>("Network_5d69670f0307b385", 4145755649499487, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
 
 /**
  * func nw_establishment_report_get_proxy_configured(_ report: nw_establishment_report_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_establishment_report_get_proxy_configured(report: $SDK145): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2235837394580611, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
+export function nw_establishment_report_get_proxy_configured(report: $SDK145): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2235837394580611, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
 
 /**
  * func nw_establishment_report_get_used_proxy(_ report: nw_establishment_report_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_establishment_report_get_used_proxy(report: $SDK145): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4375592346945384, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
+export function nw_establishment_report_get_used_proxy(report: $SDK145): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4375592346945384, undefined, [report], [{"protocol":"c:objc(pl)OS_nw_establishment_report"}]); }
 
 /**
  * func nw_framer_async(_ framer: nw_framer_t, _ async_block: @escaping nw_framer_block_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_async(framer: $SDK146, async_block: (() => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 3148690726036989, undefined, [framer, async_block], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
+export function nw_framer_async(framer: $SDK146, async_block: (() => void)): void { return callSDK<void>("Network_5d69670f0307b385", 3148690726036989, undefined, [framer, async_block], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_framer_copy_local_endpoint(_ framer: nw_framer_t) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export function nw_framer_copy_local_endpoint(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1400469336090840, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_copy_local_endpoint(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1400469336090840, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_copy_options(_ framer: nw_framer_t) -> nw_protocol_options_t
  * @availability iOS 15.4+
  */
-export function nw_framer_copy_options(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 533483460887321, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_copy_options(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 533483460887321, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_copy_parameters(_ framer: nw_framer_t) -> nw_parameters_t
  * @availability iOS 13.0+
  */
-export function nw_framer_copy_parameters(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4234414610595315, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_copy_parameters(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4234414610595315, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_copy_remote_endpoint(_ framer: nw_framer_t) -> nw_endpoint_t
  * @availability iOS 13.0+
  */
-export function nw_framer_copy_remote_endpoint(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1439350864742138, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_copy_remote_endpoint(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1439350864742138, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_create_options(_ framer_definition: nw_protocol_definition_t) -> nw_protocol_options_t
  * @availability iOS 13.0+
  */
-export function nw_framer_create_options(framer_definition: $SDK127): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3056906595185613, undefined, [framer_definition], [{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_framer_create_options(framer_definition: $SDK127): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3056906595185613, undefined, [framer_definition], [{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_framer_deliver_input(_ framer: nw_framer_t, _ input_buffer: UnsafePointer<UInt8>, _ input_length: Int, _ message: nw_framer_message_t, _ is_complete: Bool)
  * @availability iOS 13.0+
  */
-export function nw_framer_deliver_input(framer: $SDK146, input_buffer: SDKHandle, input_length: number, message: $SDK141, is_complete: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 444043448794431, undefined, [framer, input_buffer, input_length, message, is_complete], [{"protocol":"c:objc(pl)OS_nw_framer"},null,null,{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_framer_deliver_input(framer: $SDK146, input_buffer: SDKHandle, input_length: number, message: $SDK141, is_complete: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 444043448794431, undefined, [framer, input_buffer, input_length, message, is_complete], [{"protocol":"c:objc(pl)OS_nw_framer"},null,null,{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_framer_deliver_input_no_copy(_ framer: nw_framer_t, _ input_length: Int, _ message: nw_framer_message_t, _ is_complete: Bool) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_framer_deliver_input_no_copy(framer: $SDK146, input_length: number, message: $SDK141, is_complete: boolean): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3962396041561184, undefined, [framer, input_length, message, is_complete], [{"protocol":"c:objc(pl)OS_nw_framer"},null,{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_framer_deliver_input_no_copy(framer: $SDK146, input_length: number, message: $SDK141, is_complete: boolean): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3962396041561184, undefined, [framer, input_length, message, is_complete], [{"protocol":"c:objc(pl)OS_nw_framer"},null,{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_framer_mark_failed_with_error(_ framer: nw_framer_t, _ error_code: Int32)
  * @availability iOS 13.0+
  */
-export function nw_framer_mark_failed_with_error(framer: $SDK146, error_code: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3744163107877250, undefined, [framer, error_code], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
+export function nw_framer_mark_failed_with_error(framer: $SDK146, error_code: number): void { return callSDK<void>("Network_5d69670f0307b385", 3744163107877250, undefined, [framer, error_code], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
 
 /**
  * func nw_framer_mark_ready(_ framer: nw_framer_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_mark_ready(framer: $SDK146): void { return callSDK<void>("Network_212edf3d13b127f5", 289839279114399, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_mark_ready(framer: $SDK146): void { return callSDK<void>("Network_5d69670f0307b385", 289839279114399, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_message_copy_object_value(_ message: nw_framer_message_t, _ key: UnsafePointer<CChar>) -> Any?
  * @availability iOS 13.0+
  */
-export function nw_framer_message_copy_object_value(message: $SDK141, key: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("Network_212edf3d13b127f5", 4028287338312846, undefined, [message, key], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_framer_message_copy_object_value(message: $SDK141, key: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("Network_5d69670f0307b385", 4028287338312846, undefined, [message, key], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_framer_message_create(_ framer: nw_framer_t) -> nw_framer_message_t
  * @availability iOS 13.0+
  */
-export function nw_framer_message_create(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 337495488525859, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_message_create(framer: $SDK146): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 337495488525859, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_message_set_object_value(_ message: nw_framer_message_t, _ key: UnsafePointer<CChar>, _ value: Any?)
  * @availability iOS 13.0+
  */
-export function nw_framer_message_set_object_value(message: $SDK141, key: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 3459324353263455, undefined, [message, key, value], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,null]); }
+export function nw_framer_message_set_object_value(message: $SDK141, key: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("Network_5d69670f0307b385", 3459324353263455, undefined, [message, key, value], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,null]); }
 
 /**
  * func nw_framer_message_set_value(_ message: nw_framer_message_t, _ key: UnsafePointer<CChar>, _ value: UnsafeMutableRawPointer?, _ dispose_value: nw_framer_message_dispose_value_t?)
  * @availability iOS 13.0+
  */
-export function nw_framer_message_set_value(message: $SDK141, key: SDKHandle, value?: (SDKHandle) | null, dispose_value?: $SDK134): void { return callSDK<void>("Network_212edf3d13b127f5", 2206111970667238, undefined, [message, key, value, dispose_value], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,null,{"callback":{"out":[]}}]); }
+export function nw_framer_message_set_value(message: $SDK141, key: SDKHandle, value?: (SDKHandle) | null, dispose_value?: $SDK134): void { return callSDK<void>("Network_5d69670f0307b385", 2206111970667238, undefined, [message, key, value, dispose_value], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_framer_options_copy_object_value(_ options: nw_protocol_options_t, _ key: UnsafePointer<CChar>) -> Any?
  * @availability iOS 15.4+
  */
-export function nw_framer_options_copy_object_value(options: $SDK147, key: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("Network_212edf3d13b127f5", 713861928647964, undefined, [options, key], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_framer_options_copy_object_value(options: $SDK147, key: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("Network_5d69670f0307b385", 713861928647964, undefined, [options, key], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_framer_options_set_object_value(_ options: nw_protocol_options_t, _ key: UnsafePointer<CChar>, _ value: Any?)
  * @availability iOS 15.4+
  */
-export function nw_framer_options_set_object_value(options: $SDK147, key: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 580841845813512, undefined, [options, key, value], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null,null]); }
+export function nw_framer_options_set_object_value(options: $SDK147, key: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("Network_5d69670f0307b385", 580841845813512, undefined, [options, key, value], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null,null]); }
 
 /**
  * func nw_framer_pass_through_input(_ framer: nw_framer_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_pass_through_input(framer: $SDK146): void { return callSDK<void>("Network_212edf3d13b127f5", 784483112135982, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_pass_through_input(framer: $SDK146): void { return callSDK<void>("Network_5d69670f0307b385", 784483112135982, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_pass_through_output(_ framer: nw_framer_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_pass_through_output(framer: $SDK146): void { return callSDK<void>("Network_212edf3d13b127f5", 3358920815388415, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
+export function nw_framer_pass_through_output(framer: $SDK146): void { return callSDK<void>("Network_5d69670f0307b385", 3358920815388415, undefined, [framer], [{"protocol":"c:objc(pl)OS_nw_framer"}]); }
 
 /**
  * func nw_framer_prepend_application_protocol(_ framer: nw_framer_t, _ protocol_options: nw_protocol_options_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_framer_prepend_application_protocol(framer: $SDK146, protocol_options: $SDK147): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3218670835514612, undefined, [framer, protocol_options], [{"protocol":"c:objc(pl)OS_nw_framer"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_framer_prepend_application_protocol(framer: $SDK146, protocol_options: $SDK147): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3218670835514612, undefined, [framer, protocol_options], [{"protocol":"c:objc(pl)OS_nw_framer"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_framer_protocol_create_message(_ definition: nw_protocol_definition_t) -> nw_framer_message_t
  * @availability iOS 13.0+
  */
-export function nw_framer_protocol_create_message(definition: $SDK127): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3583333863194448, undefined, [definition], [{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_framer_protocol_create_message(definition: $SDK127): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3583333863194448, undefined, [definition], [{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_framer_schedule_wakeup(_ framer: nw_framer_t, _ milliseconds: UInt64)
  * @availability iOS 13.0+
  */
-export function nw_framer_schedule_wakeup(framer: $SDK146, milliseconds: number): void { return callSDK<void>("Network_212edf3d13b127f5", 238313346998808, undefined, [framer, milliseconds], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
+export function nw_framer_schedule_wakeup(framer: $SDK146, milliseconds: number): void { return callSDK<void>("Network_5d69670f0307b385", 238313346998808, undefined, [framer, milliseconds], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
 
 /**
  * func nw_framer_set_cleanup_handler(_ framer: nw_framer_t, _ cleanup_handler: @escaping nw_framer_cleanup_handler_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_set_cleanup_handler(framer: $SDK146, cleanup_handler: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 4191911390647459, undefined, [framer, cleanup_handler], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
+export function nw_framer_set_cleanup_handler(framer: $SDK146, cleanup_handler: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 4191911390647459, undefined, [framer, cleanup_handler], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_framer_set_output_handler(_ framer: nw_framer_t, _ output_handler: @escaping nw_framer_output_handler_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_set_output_handler(framer: $SDK146, output_handler: ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: boolean) => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 3977027308655720, undefined, [framer, output_handler], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
+export function nw_framer_set_output_handler(framer: $SDK146, output_handler: ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: boolean) => void)): void { return callSDK<void>("Network_5d69670f0307b385", 3977027308655720, undefined, [framer, output_handler], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_framer_set_wakeup_handler(_ framer: nw_framer_t, _ wakeup_handler: @escaping nw_framer_wakeup_handler_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_set_wakeup_handler(framer: $SDK146, wakeup_handler: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 3949105220781283, undefined, [framer, wakeup_handler], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
+export function nw_framer_set_wakeup_handler(framer: $SDK146, wakeup_handler: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 3949105220781283, undefined, [framer, wakeup_handler], [{"protocol":"c:objc(pl)OS_nw_framer"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_framer_write_output(_ framer: nw_framer_t, _ output_buffer: UnsafePointer<UInt8>, _ output_length: Int)
  * @availability iOS 13.0+
  */
-export function nw_framer_write_output(framer: $SDK146, output_buffer: SDKHandle, output_length: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3915589382977987, undefined, [framer, output_buffer, output_length], [{"protocol":"c:objc(pl)OS_nw_framer"},null,null]); }
+export function nw_framer_write_output(framer: $SDK146, output_buffer: SDKHandle, output_length: number): void { return callSDK<void>("Network_5d69670f0307b385", 3915589382977987, undefined, [framer, output_buffer, output_length], [{"protocol":"c:objc(pl)OS_nw_framer"},null,null]); }
 
 /**
  * func nw_framer_write_output_data(_ framer: nw_framer_t, _ output_data: dispatch_data_t)
  * @availability iOS 13.0+
  */
-export function nw_framer_write_output_data(framer: $SDK146, output_data: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 3554742723516782, undefined, [framer, output_data], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
+export function nw_framer_write_output_data(framer: $SDK146, output_data: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 3554742723516782, undefined, [framer, output_data], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
 
 /**
  * func nw_framer_write_output_no_copy(_ framer: nw_framer_t, _ output_length: Int) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_framer_write_output_no_copy(framer: $SDK146, output_length: number): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2503691852875161, undefined, [framer, output_length], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
+export function nw_framer_write_output_no_copy(framer: $SDK146, output_length: number): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2503691852875161, undefined, [framer, output_length], [{"protocol":"c:objc(pl)OS_nw_framer"},null]); }
 
 /**
  * func nw_group_descriptor_add_endpoint(_ descriptor: nw_group_descriptor_t, _ endpoint: nw_endpoint_t) -> Bool
  * @availability iOS 14.0+
  */
-export function nw_group_descriptor_add_endpoint(descriptor: $SDK131, endpoint: $SDK128): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 609395763129642, undefined, [descriptor, endpoint], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_group_descriptor_add_endpoint(descriptor: $SDK131, endpoint: $SDK128): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 609395763129642, undefined, [descriptor, endpoint], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_group_descriptor_create_multicast(_ multicast_group: nw_endpoint_t) -> nw_group_descriptor_t
  * @availability iOS 14.0+
  */
-export function nw_group_descriptor_create_multicast(multicast_group: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2189307165432978, undefined, [multicast_group], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_group_descriptor_create_multicast(multicast_group: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2189307165432978, undefined, [multicast_group], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_group_descriptor_create_multiplex(_ remote_endpoint: nw_endpoint_t) -> nw_group_descriptor_t
  * @availability iOS 15.0+
  */
-export function nw_group_descriptor_create_multiplex(remote_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2497762435758754, undefined, [remote_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_group_descriptor_create_multiplex(remote_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2497762435758754, undefined, [remote_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_interface_get_index(_ interface: nw_interface_t) -> UInt32
  * @availability iOS 12.0+
  */
-export function nw_interface_get_index(interface_: $SDK149): number { return callSDK<number>("Network_212edf3d13b127f5", 2286810915928459, undefined, [interface_], [{"protocol":"c:objc(pl)OS_nw_interface"}]); }
+export function nw_interface_get_index(interface_: $SDK149): number { return callSDK<number>("Network_5d69670f0307b385", 2286810915928459, undefined, [interface_], [{"protocol":"c:objc(pl)OS_nw_interface"}]); }
 
 /**
  * func nw_interface_get_name(_ interface: nw_interface_t) -> UnsafePointer<CChar>
  * @availability iOS 12.0+
  */
-export function nw_interface_get_name(interface_: $SDK149): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 803464845068606, undefined, [interface_], [{"protocol":"c:objc(pl)OS_nw_interface"}]); }
+export function nw_interface_get_name(interface_: $SDK149): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 803464845068606, undefined, [interface_], [{"protocol":"c:objc(pl)OS_nw_interface"}]); }
 
 /**
  * func nw_interface_get_type(_ interface: nw_interface_t) -> nw_interface_type_t
  * @availability iOS 12.0+
  */
-export function nw_interface_get_type(interface_: $SDK149): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 1761024306215149, undefined, [interface_], [{"protocol":"c:objc(pl)OS_nw_interface"}]); }
+export function nw_interface_get_type(interface_: $SDK149): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 1761024306215149, undefined, [interface_], [{"protocol":"c:objc(pl)OS_nw_interface"}]); }
 
 /**
  * func nw_ip_create_metadata() -> nw_protocol_metadata_t
  * @availability iOS 12.0+
  */
-export function nw_ip_create_metadata(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2469466734836499, undefined, []); }
+export function nw_ip_create_metadata(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2469466734836499, undefined, []); }
 
 /**
  * func nw_ip_metadata_get_ecn_flag(_ metadata: nw_protocol_metadata_t) -> nw_ip_ecn_flag_t
  * @availability iOS 12.0+
  */
-export function nw_ip_metadata_get_ecn_flag(metadata: $SDK141): nw_ip_ecn_flag_t { return callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 674839360319234, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_ip_metadata_get_ecn_flag(metadata: $SDK141): nw_ip_ecn_flag_t { return callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 674839360319234, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_ip_metadata_get_receive_time(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 12.0+
  */
-export function nw_ip_metadata_get_receive_time(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 1671234379826159, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_ip_metadata_get_receive_time(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 1671234379826159, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_ip_metadata_get_service_class(_ metadata: nw_protocol_metadata_t) -> nw_service_class_t
  * @availability iOS 12.0+
  */
-export function nw_ip_metadata_get_service_class(metadata: $SDK141): nw_service_class_t { return callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 4016417383036952, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_ip_metadata_get_service_class(metadata: $SDK141): nw_service_class_t { return callSDK<nw_service_class_t>("Network_5d69670f0307b385", 4016417383036952, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_ip_metadata_set_ecn_flag(_ metadata: nw_protocol_metadata_t, _ ecn_flag: nw_ip_ecn_flag_t)
  * @availability iOS 12.0+
  */
-export function nw_ip_metadata_set_ecn_flag(metadata: $SDK141, ecn_flag: nw_ip_ecn_flag_t): void { return callSDK<void>("Network_212edf3d13b127f5", 2491800858771583, undefined, [metadata, ecn_flag], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_ip_metadata_set_ecn_flag(metadata: $SDK141, ecn_flag: nw_ip_ecn_flag_t): void { return callSDK<void>("Network_5d69670f0307b385", 2491800858771583, undefined, [metadata, ecn_flag], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_ip_metadata_set_service_class(_ metadata: nw_protocol_metadata_t, _ service_class: nw_service_class_t)
  * @availability iOS 12.0+
  */
-export function nw_ip_metadata_set_service_class(metadata: $SDK141, service_class: nw_service_class_t): void { return callSDK<void>("Network_212edf3d13b127f5", 2307754608368844, undefined, [metadata, service_class], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_ip_metadata_set_service_class(metadata: $SDK141, service_class: nw_service_class_t): void { return callSDK<void>("Network_5d69670f0307b385", 2307754608368844, undefined, [metadata, service_class], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_ip_options_set_calculate_receive_time(_ options: nw_protocol_options_t, _ calculate_receive_time: Bool)
  * @availability iOS 12.0+
  */
-export function nw_ip_options_set_calculate_receive_time(options: $SDK147, calculate_receive_time: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 2118085394442011, undefined, [options, calculate_receive_time], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_calculate_receive_time(options: $SDK147, calculate_receive_time: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 2118085394442011, undefined, [options, calculate_receive_time], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ip_options_set_disable_fragmentation(_ options: nw_protocol_options_t, _ disable_fragmentation: Bool)
  * @availability iOS 12.0+
  */
-export function nw_ip_options_set_disable_fragmentation(options: $SDK147, disable_fragmentation: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3239844157695978, undefined, [options, disable_fragmentation], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_disable_fragmentation(options: $SDK147, disable_fragmentation: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3239844157695978, undefined, [options, disable_fragmentation], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ip_options_set_disable_multicast_loopback(_ options: nw_protocol_options_t, _ disable_multicast_loopback: Bool)
  * @availability iOS 14.0+
  */
-export function nw_ip_options_set_disable_multicast_loopback(options: $SDK147, disable_multicast_loopback: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3228239447802138, undefined, [options, disable_multicast_loopback], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_disable_multicast_loopback(options: $SDK147, disable_multicast_loopback: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3228239447802138, undefined, [options, disable_multicast_loopback], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ip_options_set_hop_limit(_ options: nw_protocol_options_t, _ hop_limit: UInt8)
  * @availability iOS 12.0+
  */
-export function nw_ip_options_set_hop_limit(options: $SDK147, hop_limit: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2666772906841236, undefined, [options, hop_limit], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_hop_limit(options: $SDK147, hop_limit: number): void { return callSDK<void>("Network_5d69670f0307b385", 2666772906841236, undefined, [options, hop_limit], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ip_options_set_local_address_preference(_ options: nw_protocol_options_t, _ preference: nw_ip_local_address_preference_t)
  * @availability iOS 13.0+
  */
-export function nw_ip_options_set_local_address_preference(options: $SDK147, preference: nw_ip_local_address_preference_t): void { return callSDK<void>("Network_212edf3d13b127f5", 3639524531860365, undefined, [options, preference], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_local_address_preference(options: $SDK147, preference: nw_ip_local_address_preference_t): void { return callSDK<void>("Network_5d69670f0307b385", 3639524531860365, undefined, [options, preference], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ip_options_set_use_minimum_mtu(_ options: nw_protocol_options_t, _ use_minimum_mtu: Bool)
  * @availability iOS 12.0+
  */
-export function nw_ip_options_set_use_minimum_mtu(options: $SDK147, use_minimum_mtu: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 758402984197189, undefined, [options, use_minimum_mtu], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_use_minimum_mtu(options: $SDK147, use_minimum_mtu: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 758402984197189, undefined, [options, use_minimum_mtu], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ip_options_set_version(_ options: nw_protocol_options_t, _ version: nw_ip_version_t)
  * @availability iOS 12.0+
  */
-export function nw_ip_options_set_version(options: $SDK147, version: nw_ip_version_t): void { return callSDK<void>("Network_212edf3d13b127f5", 366413647161625, undefined, [options, version], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ip_options_set_version(options: $SDK147, version: nw_ip_version_t): void { return callSDK<void>("Network_5d69670f0307b385", 366413647161625, undefined, [options, version], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_listener_cancel(_ listener: nw_listener_t)
  * @availability iOS 12.0+
  */
-export function nw_listener_cancel(listener: $SDK150): void { return callSDK<void>("Network_212edf3d13b127f5", 2274874707560480, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
+export function nw_listener_cancel(listener: $SDK150): void { return callSDK<void>("Network_5d69670f0307b385", 2274874707560480, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
 
 /**
  * func nw_listener_create(_ parameters: nw_parameters_t) -> nw_listener_t?
  * @availability iOS 12.0+
  */
-export function nw_listener_create(parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1990357766373263, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_listener_create(parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1990357766373263, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_listener_create_with_connection(_ connection: nw_connection_t, _ parameters: nw_parameters_t) -> nw_listener_t?
  * @availability iOS 12.0+
  */
-export function nw_listener_create_with_connection(connection: $SDK125, parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 90812091203201, undefined, [connection, parameters], [{"protocol":"c:objc(pl)OS_nw_connection"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_listener_create_with_connection(connection: $SDK125, parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 90812091203201, undefined, [connection, parameters], [{"protocol":"c:objc(pl)OS_nw_connection"},{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_listener_create_with_port(_ port: UnsafePointer<CChar>, _ parameters: nw_parameters_t) -> nw_listener_t?
  * @availability iOS 12.0+
  */
-export function nw_listener_create_with_port(port: SDKHandle, parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 136636319975633, undefined, [port, parameters], [null,{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_listener_create_with_port(port: SDKHandle, parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 136636319975633, undefined, [port, parameters], [null,{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_listener_get_new_connection_limit(_ listener: nw_listener_t) -> UInt32
  * @availability iOS 12.0+
  */
-export function nw_listener_get_new_connection_limit(listener: $SDK150): number { return callSDK<number>("Network_212edf3d13b127f5", 3708203912127342, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
+export function nw_listener_get_new_connection_limit(listener: $SDK150): number { return callSDK<number>("Network_5d69670f0307b385", 3708203912127342, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
 
 /**
  * func nw_listener_get_port(_ listener: nw_listener_t) -> UInt16
  * @availability iOS 12.0+
  */
-export function nw_listener_get_port(listener: $SDK150): number { return callSDK<number>("Network_212edf3d13b127f5", 749883088758604, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
+export function nw_listener_get_port(listener: $SDK150): number { return callSDK<number>("Network_5d69670f0307b385", 749883088758604, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
 
 /**
  * func nw_listener_set_advertise_descriptor(_ listener: nw_listener_t, _ advertise_descriptor: nw_advertise_descriptor_t?)
  * @availability iOS 12.0+
  */
-export function nw_listener_set_advertise_descriptor(listener: $SDK150, advertise_descriptor?: (Implements<OS_nw_advertise_descriptor> | SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 4340571523985689, undefined, [listener, advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_listener"},{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
+export function nw_listener_set_advertise_descriptor(listener: $SDK150, advertise_descriptor?: (Implements<OS_nw_advertise_descriptor> | SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 4340571523985689, undefined, [listener, advertise_descriptor], [{"protocol":"c:objc(pl)OS_nw_listener"},{"protocol":"c:objc(pl)OS_nw_advertise_descriptor"}]); }
 
 /**
  * func nw_listener_set_advertised_endpoint_changed_handler(_ listener: nw_listener_t, _ handler: nw_listener_advertised_endpoint_changed_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_listener_set_advertised_endpoint_changed_handler(listener: $SDK150, handler?: (((arg0: SDKHandle, arg1: boolean) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 1622708012231727, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
+export function nw_listener_set_advertised_endpoint_changed_handler(listener: $SDK150, handler?: (((arg0: SDKHandle, arg1: boolean) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 1622708012231727, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_listener_set_new_connection_group_handler(_ listener: nw_listener_t, _ handler: nw_listener_new_connection_group_handler_t?)
  * @availability iOS 15.0+
  */
-export function nw_listener_set_new_connection_group_handler(listener: $SDK150, handler?: $SDK134): void { return callSDK<void>("Network_212edf3d13b127f5", 3272282928195542, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
+export function nw_listener_set_new_connection_group_handler(listener: $SDK150, handler?: $SDK134): void { return callSDK<void>("Network_5d69670f0307b385", 3272282928195542, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_listener_set_new_connection_handler(_ listener: nw_listener_t, _ handler: nw_listener_new_connection_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_listener_set_new_connection_handler(listener: $SDK150, handler?: $SDK134): void { return callSDK<void>("Network_212edf3d13b127f5", 4470642568145162, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
+export function nw_listener_set_new_connection_handler(listener: $SDK150, handler?: $SDK134): void { return callSDK<void>("Network_5d69670f0307b385", 4470642568145162, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_listener_set_new_connection_limit(_ listener: nw_listener_t, _ new_connection_limit: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_listener_set_new_connection_limit(listener: $SDK150, new_connection_limit: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3234391822497727, undefined, [listener, new_connection_limit], [{"protocol":"c:objc(pl)OS_nw_listener"},null]); }
+export function nw_listener_set_new_connection_limit(listener: $SDK150, new_connection_limit: number): void { return callSDK<void>("Network_5d69670f0307b385", 3234391822497727, undefined, [listener, new_connection_limit], [{"protocol":"c:objc(pl)OS_nw_listener"},null]); }
 
 /**
  * func nw_listener_set_queue(_ listener: nw_listener_t, _ queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export function nw_listener_set_queue(listener: $SDK150, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 2509185565320517, undefined, [listener, queue], [{"protocol":"c:objc(pl)OS_nw_listener"},null]); }
+export function nw_listener_set_queue(listener: $SDK150, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 2509185565320517, undefined, [listener, queue], [{"protocol":"c:objc(pl)OS_nw_listener"},null]); }
 
 /**
  * func nw_listener_set_state_changed_handler(_ listener: nw_listener_t, _ handler: nw_listener_state_changed_handler_t?)
  * @availability iOS 12.0+
  */
-export function nw_listener_set_state_changed_handler(listener: $SDK150, handler?: (((arg0: nw_listener_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 3042218551746592, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
+export function nw_listener_set_state_changed_handler(listener: $SDK150, handler?: (((arg0: nw_listener_state_t, arg1: (SDKHandle) | null) => void)) | null): void { return callSDK<void>("Network_5d69670f0307b385", 3042218551746592, undefined, [listener, handler], [{"protocol":"c:objc(pl)OS_nw_listener"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_listener_start(_ listener: nw_listener_t)
  * @availability iOS 12.0+
  */
-export function nw_listener_start(listener: $SDK150): void { return callSDK<void>("Network_212edf3d13b127f5", 791499351367526, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
+export function nw_listener_start(listener: $SDK150): void { return callSDK<void>("Network_5d69670f0307b385", 791499351367526, undefined, [listener], [{"protocol":"c:objc(pl)OS_nw_listener"}]); }
 
 /**
  * func nw_multicast_group_descriptor_get_disable_unicast_traffic(_ multicast_descriptor: nw_group_descriptor_t) -> Bool
  * @availability iOS 14.0+
  */
-export function nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor: $SDK131): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2365679779935757, undefined, [multicast_descriptor], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"}]); }
+export function nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor: $SDK131): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2365679779935757, undefined, [multicast_descriptor], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"}]); }
 
 /**
  * func nw_multicast_group_descriptor_set_disable_unicast_traffic(_ multicast_descriptor: nw_group_descriptor_t, _ disable_unicast_traffic: Bool)
  * @availability iOS 14.0+
  */
-export function nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor: $SDK131, disable_unicast_traffic: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3925515088106998, undefined, [multicast_descriptor, disable_unicast_traffic], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},null]); }
+export function nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor: $SDK131, disable_unicast_traffic: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3925515088106998, undefined, [multicast_descriptor, disable_unicast_traffic], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},null]); }
 
 /**
  * func nw_multicast_group_descriptor_set_specific_source(_ multicast_descriptor: nw_group_descriptor_t, _ source: nw_endpoint_t)
  * @availability iOS 14.0+
  */
-export function nw_multicast_group_descriptor_set_specific_source(multicast_descriptor: $SDK131, source: $SDK128): void { return callSDK<void>("Network_212edf3d13b127f5", 3175294402353169, undefined, [multicast_descriptor, source], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_multicast_group_descriptor_set_specific_source(multicast_descriptor: $SDK131, source: $SDK128): void { return callSDK<void>("Network_5d69670f0307b385", 3175294402353169, undefined, [multicast_descriptor, source], [{"protocol":"c:objc(pl)OS_nw_group_descriptor"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_parameters_clear_prohibited_interface_types(_ parameters: nw_parameters_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_clear_prohibited_interface_types(parameters: $SDK129): void { return callSDK<void>("Network_212edf3d13b127f5", 496316678340166, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_clear_prohibited_interface_types(parameters: $SDK129): void { return callSDK<void>("Network_5d69670f0307b385", 496316678340166, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_clear_prohibited_interfaces(_ parameters: nw_parameters_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_clear_prohibited_interfaces(parameters: $SDK129): void { return callSDK<void>("Network_212edf3d13b127f5", 1677738481263006, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_clear_prohibited_interfaces(parameters: $SDK129): void { return callSDK<void>("Network_5d69670f0307b385", 1677738481263006, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_copy(_ parameters: nw_parameters_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_copy(parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2779789568235288, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_copy(parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2779789568235288, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_copy_default_protocol_stack(_ parameters: nw_parameters_t) -> nw_protocol_stack_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_copy_default_protocol_stack(parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 981850179955136, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_copy_default_protocol_stack(parameters: $SDK129): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 981850179955136, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_copy_local_endpoint(_ parameters: nw_parameters_t) -> nw_endpoint_t?
  * @availability iOS 12.0+
  */
-export function nw_parameters_copy_local_endpoint(parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 3888257399723591, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_copy_local_endpoint(parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 3888257399723591, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_copy_required_interface(_ parameters: nw_parameters_t) -> nw_interface_t?
  * @availability iOS 12.0+
  */
-export function nw_parameters_copy_required_interface(parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1020893534365941, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_copy_required_interface(parameters: $SDK129): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1020893534365941, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_create() -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_create(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3125573599714575, undefined, []); }
+export function nw_parameters_create(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3125573599714575, undefined, []); }
 
 /**
  * func nw_parameters_create_application_service() -> nw_parameters_t
  * @availability iOS 16.0+
  */
-export function nw_parameters_create_application_service(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3724538791482628, undefined, []); }
+export function nw_parameters_create_application_service(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3724538791482628, undefined, []); }
 
 /**
  * func nw_parameters_create_quic(_ configure_quic: @escaping nw_parameters_configure_protocol_block_t) -> nw_parameters_t
  * @availability iOS 15.0+
  */
-export function nw_parameters_create_quic(configure_quic: $SDK143): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4199121556639621, undefined, [configure_quic], [{"callback":{"out":[]}}]); }
+export function nw_parameters_create_quic(configure_quic: $SDK143): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4199121556639621, undefined, [configure_quic], [{"callback":{"out":[]}}]); }
 
 /**
  * func nw_parameters_create_secure_tcp(_ configure_tls: @escaping nw_parameters_configure_protocol_block_t, _ configure_tcp: @escaping nw_parameters_configure_protocol_block_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_create_secure_tcp(configure_tls: $SDK143, configure_tcp: $SDK143): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3595685284173560, undefined, [configure_tls, configure_tcp], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+export function nw_parameters_create_secure_tcp(configure_tls: $SDK143, configure_tcp: $SDK143): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3595685284173560, undefined, [configure_tls, configure_tcp], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_parameters_create_secure_udp(_ configure_dtls: @escaping nw_parameters_configure_protocol_block_t, _ configure_udp: @escaping nw_parameters_configure_protocol_block_t) -> nw_parameters_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_create_secure_udp(configure_dtls: $SDK143, configure_udp: $SDK143): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3659009857117270, undefined, [configure_dtls, configure_udp], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+export function nw_parameters_create_secure_udp(configure_dtls: $SDK143, configure_udp: $SDK143): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3659009857117270, undefined, [configure_dtls, configure_udp], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_parameters_get_allow_ultra_constrained(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 26.0+
  */
-export function nw_parameters_get_allow_ultra_constrained(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 274444383691963, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_allow_ultra_constrained(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 274444383691963, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_attribution(_ parameters: nw_parameters_t) -> nw_parameters_attribution_t
  * @availability iOS 15.0+
  */
-export function nw_parameters_get_attribution(parameters: $SDK129): nw_parameters_attribution_t { return callSDK<nw_parameters_attribution_t>("Network_212edf3d13b127f5", 652483947467741, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_attribution(parameters: $SDK129): nw_parameters_attribution_t { return callSDK<nw_parameters_attribution_t>("Network_5d69670f0307b385", 652483947467741, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_expired_dns_behavior(_ parameters: nw_parameters_t) -> nw_parameters_expired_dns_behavior_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_expired_dns_behavior(parameters: $SDK129): nw_parameters_expired_dns_behavior_t { return callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 3330979319446565, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_expired_dns_behavior(parameters: $SDK129): nw_parameters_expired_dns_behavior_t { return callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 3330979319446565, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_fast_open_enabled(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_fast_open_enabled(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3508649247795736, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_fast_open_enabled(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3508649247795736, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_include_peer_to_peer(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_include_peer_to_peer(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1732170422416320, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_include_peer_to_peer(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1732170422416320, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_local_only(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_local_only(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 20100941444414, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_local_only(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 20100941444414, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_multipath_service(_ parameters: nw_parameters_t) -> nw_multipath_service_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_multipath_service(parameters: $SDK129): nw_multipath_service_t { return callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 697840357772132, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_multipath_service(parameters: $SDK129): nw_multipath_service_t { return callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 697840357772132, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_prefer_no_proxy(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_prefer_no_proxy(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3591140820613672, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_prefer_no_proxy(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3591140820613672, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_prohibit_constrained(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_parameters_get_prohibit_constrained(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 634959952838638, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_prohibit_constrained(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 634959952838638, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_prohibit_expensive(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_prohibit_expensive(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2569538241288094, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_prohibit_expensive(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2569538241288094, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_required_interface_type(_ parameters: nw_parameters_t) -> nw_interface_type_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_required_interface_type(parameters: $SDK129): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 1563264083804828, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_required_interface_type(parameters: $SDK129): nw_interface_type_t { return callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 1563264083804828, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_reuse_local_address(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_reuse_local_address(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1971863083600371, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_reuse_local_address(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1971863083600371, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_get_service_class(_ parameters: nw_parameters_t) -> nw_service_class_t
  * @availability iOS 12.0+
  */
-export function nw_parameters_get_service_class(parameters: $SDK129): nw_service_class_t { return callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 3192438221202324, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_get_service_class(parameters: $SDK129): nw_service_class_t { return callSDK<nw_service_class_t>("Network_5d69670f0307b385", 3192438221202324, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_prohibit_interface(_ parameters: nw_parameters_t, _ interface: nw_interface_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_prohibit_interface(parameters: $SDK129, interface_: $SDK149): void { return callSDK<void>("Network_212edf3d13b127f5", 2664255162070005, undefined, [parameters, interface_], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_interface"}]); }
+export function nw_parameters_prohibit_interface(parameters: $SDK129, interface_: $SDK149): void { return callSDK<void>("Network_5d69670f0307b385", 2664255162070005, undefined, [parameters, interface_], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_interface"}]); }
 
 /**
  * func nw_parameters_prohibit_interface_type(_ parameters: nw_parameters_t, _ interface_type: nw_interface_type_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_prohibit_interface_type(parameters: $SDK129, interface_type: nw_interface_type_t): void { return callSDK<void>("Network_212edf3d13b127f5", 1602450247862470, undefined, [parameters, interface_type], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_prohibit_interface_type(parameters: $SDK129, interface_type: nw_interface_type_t): void { return callSDK<void>("Network_5d69670f0307b385", 1602450247862470, undefined, [parameters, interface_type], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_require_interface(_ parameters: nw_parameters_t, _ interface: nw_interface_t?)
  * @availability iOS 12.0+
  */
-export function nw_parameters_require_interface(parameters: $SDK129, interface_?: (Implements<OS_nw_interface> | SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 1605425506056654, undefined, [parameters, interface_], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_interface"}]); }
+export function nw_parameters_require_interface(parameters: $SDK129, interface_?: (Implements<OS_nw_interface> | SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 1605425506056654, undefined, [parameters, interface_], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_interface"}]); }
 
 /**
  * func nw_parameters_requires_dnssec_validation(_ parameters: nw_parameters_t) -> Bool
  * @availability iOS 16.0+
  */
-export function nw_parameters_requires_dnssec_validation(parameters: $SDK129): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1291388664704885, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
+export function nw_parameters_requires_dnssec_validation(parameters: $SDK129): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1291388664704885, undefined, [parameters], [{"protocol":"c:objc(pl)OS_nw_parameters"}]); }
 
 /**
  * func nw_parameters_set_allow_ultra_constrained(_ parameters: nw_parameters_t, _ allow_ultra_constrained: Bool)
  * @availability iOS 26.0+
  */
-export function nw_parameters_set_allow_ultra_constrained(parameters: $SDK129, allow_ultra_constrained: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 4293112228615337, undefined, [parameters, allow_ultra_constrained], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_allow_ultra_constrained(parameters: $SDK129, allow_ultra_constrained: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 4293112228615337, undefined, [parameters, allow_ultra_constrained], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_attribution(_ parameters: nw_parameters_t, _ attribution: nw_parameters_attribution_t)
  * @availability iOS 15.0+
  */
-export function nw_parameters_set_attribution(parameters: $SDK129, attribution: nw_parameters_attribution_t): void { return callSDK<void>("Network_212edf3d13b127f5", 3387065543713060, undefined, [parameters, attribution], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_attribution(parameters: $SDK129, attribution: nw_parameters_attribution_t): void { return callSDK<void>("Network_5d69670f0307b385", 3387065543713060, undefined, [parameters, attribution], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_expired_dns_behavior(_ parameters: nw_parameters_t, _ expired_dns_behavior: nw_parameters_expired_dns_behavior_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_expired_dns_behavior(parameters: $SDK129, expired_dns_behavior: nw_parameters_expired_dns_behavior_t): void { return callSDK<void>("Network_212edf3d13b127f5", 4137153750089147, undefined, [parameters, expired_dns_behavior], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_expired_dns_behavior(parameters: $SDK129, expired_dns_behavior: nw_parameters_expired_dns_behavior_t): void { return callSDK<void>("Network_5d69670f0307b385", 4137153750089147, undefined, [parameters, expired_dns_behavior], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_fast_open_enabled(_ parameters: nw_parameters_t, _ fast_open_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_fast_open_enabled(parameters: $SDK129, fast_open_enabled: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3778925637781380, undefined, [parameters, fast_open_enabled], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_fast_open_enabled(parameters: $SDK129, fast_open_enabled: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3778925637781380, undefined, [parameters, fast_open_enabled], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_include_peer_to_peer(_ parameters: nw_parameters_t, _ include_peer_to_peer: Bool)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_include_peer_to_peer(parameters: $SDK129, include_peer_to_peer: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3664959089181377, undefined, [parameters, include_peer_to_peer], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_include_peer_to_peer(parameters: $SDK129, include_peer_to_peer: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3664959089181377, undefined, [parameters, include_peer_to_peer], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_local_endpoint(_ parameters: nw_parameters_t, _ local_endpoint: nw_endpoint_t?)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_local_endpoint(parameters: $SDK129, local_endpoint?: $SDK132): void { return callSDK<void>("Network_212edf3d13b127f5", 3899167932385415, undefined, [parameters, local_endpoint], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_parameters_set_local_endpoint(parameters: $SDK129, local_endpoint?: $SDK132): void { return callSDK<void>("Network_5d69670f0307b385", 3899167932385415, undefined, [parameters, local_endpoint], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_parameters_set_local_only(_ parameters: nw_parameters_t, _ local_only: Bool)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_local_only(parameters: $SDK129, local_only: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3261787990933449, undefined, [parameters, local_only], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_local_only(parameters: $SDK129, local_only: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3261787990933449, undefined, [parameters, local_only], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_multipath_service(_ parameters: nw_parameters_t, _ multipath_service: nw_multipath_service_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_multipath_service(parameters: $SDK129, multipath_service: nw_multipath_service_t): void { return callSDK<void>("Network_212edf3d13b127f5", 1138350615236385, undefined, [parameters, multipath_service], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_multipath_service(parameters: $SDK129, multipath_service: nw_multipath_service_t): void { return callSDK<void>("Network_5d69670f0307b385", 1138350615236385, undefined, [parameters, multipath_service], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_prefer_no_proxy(_ parameters: nw_parameters_t, _ prefer_no_proxy: Bool)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_prefer_no_proxy(parameters: $SDK129, prefer_no_proxy: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 523912070524612, undefined, [parameters, prefer_no_proxy], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_prefer_no_proxy(parameters: $SDK129, prefer_no_proxy: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 523912070524612, undefined, [parameters, prefer_no_proxy], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_privacy_context(_ parameters: nw_parameters_t, _ privacy_context: nw_privacy_context_t)
  * @availability iOS 14.0+
  */
-export function nw_parameters_set_privacy_context(parameters: $SDK129, privacy_context: $SDK155): void { return callSDK<void>("Network_212edf3d13b127f5", 2217883163731700, undefined, [parameters, privacy_context], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
+export function nw_parameters_set_privacy_context(parameters: $SDK129, privacy_context: $SDK155): void { return callSDK<void>("Network_5d69670f0307b385", 2217883163731700, undefined, [parameters, privacy_context], [{"protocol":"c:objc(pl)OS_nw_parameters"},{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
 
 /**
  * func nw_parameters_set_prohibit_constrained(_ parameters: nw_parameters_t, _ prohibit_constrained: Bool)
  * @availability iOS 13.0+
  */
-export function nw_parameters_set_prohibit_constrained(parameters: $SDK129, prohibit_constrained: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 476748055429465, undefined, [parameters, prohibit_constrained], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_prohibit_constrained(parameters: $SDK129, prohibit_constrained: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 476748055429465, undefined, [parameters, prohibit_constrained], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_prohibit_expensive(_ parameters: nw_parameters_t, _ prohibit_expensive: Bool)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_prohibit_expensive(parameters: $SDK129, prohibit_expensive: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 4457990635485840, undefined, [parameters, prohibit_expensive], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_prohibit_expensive(parameters: $SDK129, prohibit_expensive: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 4457990635485840, undefined, [parameters, prohibit_expensive], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_required_interface_type(_ parameters: nw_parameters_t, _ interface_type: nw_interface_type_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_required_interface_type(parameters: $SDK129, interface_type: nw_interface_type_t): void { return callSDK<void>("Network_212edf3d13b127f5", 249107445547018, undefined, [parameters, interface_type], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_required_interface_type(parameters: $SDK129, interface_type: nw_interface_type_t): void { return callSDK<void>("Network_5d69670f0307b385", 249107445547018, undefined, [parameters, interface_type], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_requires_dnssec_validation(_ parameters: nw_parameters_t, _ requires_dnssec_validation: Bool)
  * @availability iOS 16.0+
  */
-export function nw_parameters_set_requires_dnssec_validation(parameters: $SDK129, requires_dnssec_validation: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 1499630358153258, undefined, [parameters, requires_dnssec_validation], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_requires_dnssec_validation(parameters: $SDK129, requires_dnssec_validation: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 1499630358153258, undefined, [parameters, requires_dnssec_validation], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_reuse_local_address(_ parameters: nw_parameters_t, _ reuse_local_address: Bool)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_reuse_local_address(parameters: $SDK129, reuse_local_address: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 1257911535378484, undefined, [parameters, reuse_local_address], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_reuse_local_address(parameters: $SDK129, reuse_local_address: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 1257911535378484, undefined, [parameters, reuse_local_address], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_parameters_set_service_class(_ parameters: nw_parameters_t, _ service_class: nw_service_class_t)
  * @availability iOS 12.0+
  */
-export function nw_parameters_set_service_class(parameters: $SDK129, service_class: nw_service_class_t): void { return callSDK<void>("Network_212edf3d13b127f5", 3483909374404568, undefined, [parameters, service_class], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
+export function nw_parameters_set_service_class(parameters: $SDK129, service_class: nw_service_class_t): void { return callSDK<void>("Network_5d69670f0307b385", 3483909374404568, undefined, [parameters, service_class], [{"protocol":"c:objc(pl)OS_nw_parameters"},null]); }
 
 /**
  * func nw_path_copy_effective_local_endpoint(_ path: nw_path_t) -> nw_endpoint_t?
  * @availability iOS 12.0+
  */
-export function nw_path_copy_effective_local_endpoint(path: $SDK156): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 2050297505080288, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_copy_effective_local_endpoint(path: $SDK156): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 2050297505080288, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_copy_effective_remote_endpoint(_ path: nw_path_t) -> nw_endpoint_t?
  * @availability iOS 12.0+
  */
-export function nw_path_copy_effective_remote_endpoint(path: $SDK156): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 799477911583908, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_copy_effective_remote_endpoint(path: $SDK156): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 799477911583908, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_get_link_quality(_ path: nw_path_t) -> nw_link_quality_t
  * @availability iOS 26.0+
  */
-export function nw_path_get_link_quality(path: $SDK156): nw_link_quality_t { return callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 4287294650456263, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_get_link_quality(path: $SDK156): nw_link_quality_t { return callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 4287294650456263, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_get_status(_ path: nw_path_t) -> nw_path_status_t
  * @availability iOS 12.0+
  */
-export function nw_path_get_status(path: $SDK156): nw_path_status_t { return callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 1146143722047818, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_get_status(path: $SDK156): nw_path_status_t { return callSDK<nw_path_status_t>("Network_5d69670f0307b385", 1146143722047818, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_get_unsatisfied_reason(_ path: nw_path_t) -> nw_path_unsatisfied_reason_t
  * @availability iOS 14.2+
  */
-export function nw_path_get_unsatisfied_reason(path: $SDK156): nw_path_unsatisfied_reason_t { return callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 4188497140160312, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_get_unsatisfied_reason(path: $SDK156): nw_path_unsatisfied_reason_t { return callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 4188497140160312, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_has_dns(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_path_has_dns(path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3859092757889764, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_has_dns(path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3859092757889764, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_has_ipv4(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_path_has_ipv4(path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3397826014908469, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_has_ipv4(path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3397826014908469, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_has_ipv6(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_path_has_ipv6(path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2811382618165584, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_has_ipv6(path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2811382618165584, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_is_constrained(_ path: nw_path_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_path_is_constrained(path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2190418492863988, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_is_constrained(path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2190418492863988, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_is_equal(_ path: nw_path_t, _ other_path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_path_is_equal(path: $SDK156, other_path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2671124950021586, undefined, [path, other_path], [{"protocol":"c:objc(pl)OS_nw_path"},{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_is_equal(path: $SDK156, other_path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2671124950021586, undefined, [path, other_path], [{"protocol":"c:objc(pl)OS_nw_path"},{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_is_expensive(_ path: nw_path_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_path_is_expensive(path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1500646452384136, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_is_expensive(path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1500646452384136, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_is_ultra_constrained(_ path: nw_path_t) -> Bool
  * @availability iOS 26.0+
  */
-export function nw_path_is_ultra_constrained(path: $SDK156): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2628747323830543, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
+export function nw_path_is_ultra_constrained(path: $SDK156): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2628747323830543, undefined, [path], [{"protocol":"c:objc(pl)OS_nw_path"}]); }
 
 /**
  * func nw_path_monitor_cancel(_ monitor: nw_path_monitor_t)
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_cancel(monitor: $SDK157): void { return callSDK<void>("Network_212edf3d13b127f5", 446907574519024, undefined, [monitor], [{"protocol":"c:objc(pl)OS_nw_path_monitor"}]); }
+export function nw_path_monitor_cancel(monitor: $SDK157): void { return callSDK<void>("Network_5d69670f0307b385", 446907574519024, undefined, [monitor], [{"protocol":"c:objc(pl)OS_nw_path_monitor"}]); }
 
 /**
  * func nw_path_monitor_create() -> nw_path_monitor_t
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_create(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1409271430572554, undefined, []); }
+export function nw_path_monitor_create(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1409271430572554, undefined, []); }
 
 /**
  * func nw_path_monitor_create_with_type(_ required_interface_type: nw_interface_type_t) -> nw_path_monitor_t
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_create_with_type(required_interface_type: nw_interface_type_t): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4204685396921788, undefined, [required_interface_type]); }
+export function nw_path_monitor_create_with_type(required_interface_type: nw_interface_type_t): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4204685396921788, undefined, [required_interface_type]); }
 
 /**
  * func nw_path_monitor_prohibit_interface_type(_ monitor: nw_path_monitor_t, _ interface_type: nw_interface_type_t)
  * @availability iOS 14.0+
  */
-export function nw_path_monitor_prohibit_interface_type(monitor: $SDK157, interface_type: nw_interface_type_t): void { return callSDK<void>("Network_212edf3d13b127f5", 3075552587958751, undefined, [monitor, interface_type], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},null]); }
+export function nw_path_monitor_prohibit_interface_type(monitor: $SDK157, interface_type: nw_interface_type_t): void { return callSDK<void>("Network_5d69670f0307b385", 3075552587958751, undefined, [monitor, interface_type], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},null]); }
 
 /**
  * func nw_path_monitor_set_cancel_handler(_ monitor: nw_path_monitor_t, _ cancel_handler: @escaping nw_path_monitor_cancel_handler_t)
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_set_cancel_handler(monitor: $SDK157, cancel_handler: (() => void)): void { return callSDK<void>("Network_212edf3d13b127f5", 340223136816512, undefined, [monitor, cancel_handler], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},{"callback":{"out":[]}}]); }
+export function nw_path_monitor_set_cancel_handler(monitor: $SDK157, cancel_handler: (() => void)): void { return callSDK<void>("Network_5d69670f0307b385", 340223136816512, undefined, [monitor, cancel_handler], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_path_monitor_set_queue(_ monitor: nw_path_monitor_t, _ queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_set_queue(monitor: $SDK157, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_212edf3d13b127f5", 4120849088934039, undefined, [monitor, queue], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},null]); }
+export function nw_path_monitor_set_queue(monitor: $SDK157, queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Network_5d69670f0307b385", 4120849088934039, undefined, [monitor, queue], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},null]); }
 
 /**
  * func nw_path_monitor_set_update_handler(_ monitor: nw_path_monitor_t, _ update_handler: @escaping nw_path_monitor_update_handler_t)
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_set_update_handler(monitor: $SDK157, update_handler: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 2605455353036072, undefined, [monitor, update_handler], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},{"callback":{"out":[]}}]); }
+export function nw_path_monitor_set_update_handler(monitor: $SDK157, update_handler: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 2605455353036072, undefined, [monitor, update_handler], [{"protocol":"c:objc(pl)OS_nw_path_monitor"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_path_monitor_start(_ monitor: nw_path_monitor_t)
  * @availability iOS 12.0+
  */
-export function nw_path_monitor_start(monitor: $SDK157): void { return callSDK<void>("Network_212edf3d13b127f5", 2734373357006618, undefined, [monitor], [{"protocol":"c:objc(pl)OS_nw_path_monitor"}]); }
+export function nw_path_monitor_start(monitor: $SDK157): void { return callSDK<void>("Network_5d69670f0307b385", 2734373357006618, undefined, [monitor], [{"protocol":"c:objc(pl)OS_nw_path_monitor"}]); }
 
 /**
  * func nw_path_uses_interface_type(_ path: nw_path_t, _ interface_type: nw_interface_type_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_path_uses_interface_type(path: $SDK156, interface_type: nw_interface_type_t): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2049920891205929, undefined, [path, interface_type], [{"protocol":"c:objc(pl)OS_nw_path"},null]); }
+export function nw_path_uses_interface_type(path: $SDK156, interface_type: nw_interface_type_t): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2049920891205929, undefined, [path, interface_type], [{"protocol":"c:objc(pl)OS_nw_path"},null]); }
 
 /**
  * func nw_privacy_context_add_proxy(_ privacy_context: nw_privacy_context_t, _ proxy_config: nw_proxy_config_t)
  * @availability iOS 17.0+
  */
-export function nw_privacy_context_add_proxy(privacy_context: $SDK155, proxy_config: $SDK158): void { return callSDK<void>("Network_212edf3d13b127f5", 2321581606685312, undefined, [privacy_context, proxy_config], [{"protocol":"c:objc(pl)OS_nw_privacy_context"},{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
+export function nw_privacy_context_add_proxy(privacy_context: $SDK155, proxy_config: $SDK158): void { return callSDK<void>("Network_5d69670f0307b385", 2321581606685312, undefined, [privacy_context, proxy_config], [{"protocol":"c:objc(pl)OS_nw_privacy_context"},{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
 
 /**
  * func nw_privacy_context_clear_proxies(_ privacy_context: nw_privacy_context_t)
  * @availability iOS 17.0+
  */
-export function nw_privacy_context_clear_proxies(privacy_context: $SDK155): void { return callSDK<void>("Network_212edf3d13b127f5", 3745568719032947, undefined, [privacy_context], [{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
+export function nw_privacy_context_clear_proxies(privacy_context: $SDK155): void { return callSDK<void>("Network_5d69670f0307b385", 3745568719032947, undefined, [privacy_context], [{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
 
 /**
  * func nw_privacy_context_create(_ description: UnsafePointer<CChar>) -> nw_privacy_context_t
  * @availability iOS 14.0+
  */
-export function nw_privacy_context_create(description: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 819046286868429, undefined, [description]); }
+export function nw_privacy_context_create(description: SDKHandle): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 819046286868429, undefined, [description]); }
 
 /**
  * func nw_privacy_context_disable_logging(_ privacy_context: nw_privacy_context_t)
  * @availability iOS 14.0+
  */
-export function nw_privacy_context_disable_logging(privacy_context: $SDK155): void { return callSDK<void>("Network_212edf3d13b127f5", 2056701190650783, undefined, [privacy_context], [{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
+export function nw_privacy_context_disable_logging(privacy_context: $SDK155): void { return callSDK<void>("Network_5d69670f0307b385", 2056701190650783, undefined, [privacy_context], [{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
 
 /**
  * func nw_privacy_context_flush_cache(_ privacy_context: nw_privacy_context_t)
  * @availability iOS 14.0+
  */
-export function nw_privacy_context_flush_cache(privacy_context: $SDK155): void { return callSDK<void>("Network_212edf3d13b127f5", 766862207364572, undefined, [privacy_context], [{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
+export function nw_privacy_context_flush_cache(privacy_context: $SDK155): void { return callSDK<void>("Network_5d69670f0307b385", 766862207364572, undefined, [privacy_context], [{"protocol":"c:objc(pl)OS_nw_privacy_context"}]); }
 
 /**
  * func nw_privacy_context_require_encrypted_name_resolution(_ privacy_context: nw_privacy_context_t, _ require_encrypted_name_resolution: Bool, _ fallback_resolver_config: nw_resolver_config_t?)
  * @availability iOS 14.0+
  */
-export function nw_privacy_context_require_encrypted_name_resolution(privacy_context: $SDK155, require_encrypted_name_resolution: boolean, fallback_resolver_config?: (Implements<OS_nw_resolver_config> | SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 83058682495472, undefined, [privacy_context, require_encrypted_name_resolution, fallback_resolver_config], [{"protocol":"c:objc(pl)OS_nw_privacy_context"},null,{"protocol":"c:objc(pl)OS_nw_resolver_config"}]); }
+export function nw_privacy_context_require_encrypted_name_resolution(privacy_context: $SDK155, require_encrypted_name_resolution: boolean, fallback_resolver_config?: (Implements<OS_nw_resolver_config> | SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 83058682495472, undefined, [privacy_context, require_encrypted_name_resolution, fallback_resolver_config], [{"protocol":"c:objc(pl)OS_nw_privacy_context"},null,{"protocol":"c:objc(pl)OS_nw_resolver_config"}]); }
 
 /**
  * func nw_protocol_copy_ip_definition() -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export function nw_protocol_copy_ip_definition(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4385499121551371, undefined, []); }
+export function nw_protocol_copy_ip_definition(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4385499121551371, undefined, []); }
 
 /**
  * func nw_protocol_copy_quic_definition() -> nw_protocol_definition_t
  * @availability iOS 15.0+
  */
-export function nw_protocol_copy_quic_definition(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2868261432541070, undefined, []); }
+export function nw_protocol_copy_quic_definition(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2868261432541070, undefined, []); }
 
 /**
  * func nw_protocol_copy_tcp_definition() -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export function nw_protocol_copy_tcp_definition(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 300883141242344, undefined, []); }
+export function nw_protocol_copy_tcp_definition(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 300883141242344, undefined, []); }
 
 /**
  * func nw_protocol_copy_tls_definition() -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export function nw_protocol_copy_tls_definition(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2269279577456948, undefined, []); }
+export function nw_protocol_copy_tls_definition(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2269279577456948, undefined, []); }
 
 /**
  * func nw_protocol_copy_udp_definition() -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export function nw_protocol_copy_udp_definition(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2140277479583461, undefined, []); }
+export function nw_protocol_copy_udp_definition(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2140277479583461, undefined, []); }
 
 /**
  * func nw_protocol_copy_ws_definition() -> nw_protocol_definition_t
  * @availability iOS 13.0+
  */
-export function nw_protocol_copy_ws_definition(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 560787398805067, undefined, []); }
+export function nw_protocol_copy_ws_definition(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 560787398805067, undefined, []); }
 
 /**
  * func nw_protocol_definition_is_equal(_ definition1: nw_protocol_definition_t, _ definition2: nw_protocol_definition_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_protocol_definition_is_equal(definition1: $SDK127, definition2: $SDK127): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3584356915634830, undefined, [definition1, definition2], [{"protocol":"c:objc(pl)OS_nw_protocol_definition"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
+export function nw_protocol_definition_is_equal(definition1: $SDK127, definition2: $SDK127): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3584356915634830, undefined, [definition1, definition2], [{"protocol":"c:objc(pl)OS_nw_protocol_definition"},{"protocol":"c:objc(pl)OS_nw_protocol_definition"}]); }
 
 /**
  * func nw_protocol_metadata_copy_definition(_ metadata: nw_protocol_metadata_t) -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export function nw_protocol_metadata_copy_definition(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1230049926078384, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_copy_definition(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1230049926078384, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_framer_message(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_protocol_metadata_is_framer_message(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 586862745521715, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_framer_message(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 586862745521715, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_ip(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_protocol_metadata_is_ip(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2159328608877107, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_ip(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2159328608877107, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_quic(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 15.0+
  */
-export function nw_protocol_metadata_is_quic(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3702438693787546, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_quic(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3702438693787546, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_tcp(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_protocol_metadata_is_tcp(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2016891117680085, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_tcp(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2016891117680085, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_tls(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_protocol_metadata_is_tls(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3482938482404633, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_tls(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3482938482404633, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_udp(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function nw_protocol_metadata_is_udp(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1750180384452122, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_udp(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1750180384452122, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_metadata_is_ws(_ metadata: nw_protocol_metadata_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_protocol_metadata_is_ws(metadata: $SDK141): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2538965188288295, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_protocol_metadata_is_ws(metadata: $SDK141): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2538965188288295, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_protocol_options_copy_definition(_ options: nw_protocol_options_t) -> nw_protocol_definition_t
  * @availability iOS 12.0+
  */
-export function nw_protocol_options_copy_definition(options: $SDK147): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3229761763997280, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_protocol_options_copy_definition(options: $SDK147): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3229761763997280, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_protocol_options_is_quic(_ options: nw_protocol_options_t) -> Bool
  * @availability iOS 15.0+
  */
-export function nw_protocol_options_is_quic(options: $SDK147): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2027826216229630, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_protocol_options_is_quic(options: $SDK147): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2027826216229630, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_protocol_stack_clear_application_protocols(_ stack: nw_protocol_stack_t)
  * @availability iOS 12.0+
  */
-export function nw_protocol_stack_clear_application_protocols(stack: $SDK160): void { return callSDK<void>("Network_212edf3d13b127f5", 2114404664186760, undefined, [stack], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"}]); }
+export function nw_protocol_stack_clear_application_protocols(stack: $SDK160): void { return callSDK<void>("Network_5d69670f0307b385", 2114404664186760, undefined, [stack], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"}]); }
 
 /**
  * func nw_protocol_stack_copy_internet_protocol(_ stack: nw_protocol_stack_t) -> nw_protocol_options_t?
  * @availability iOS 12.0+
  */
-export function nw_protocol_stack_copy_internet_protocol(stack: $SDK160): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1069523705100628, undefined, [stack], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"}]); }
+export function nw_protocol_stack_copy_internet_protocol(stack: $SDK160): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1069523705100628, undefined, [stack], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"}]); }
 
 /**
  * func nw_protocol_stack_copy_transport_protocol(_ stack: nw_protocol_stack_t) -> nw_protocol_options_t?
  * @availability iOS 12.0+
  */
-export function nw_protocol_stack_copy_transport_protocol(stack: $SDK160): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 3653939690375284, undefined, [stack], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"}]); }
+export function nw_protocol_stack_copy_transport_protocol(stack: $SDK160): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 3653939690375284, undefined, [stack], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"}]); }
 
 /**
  * func nw_protocol_stack_iterate_application_protocols(_ stack: nw_protocol_stack_t, _ iterate_block: (nw_protocol_options_t) -> Void)
  * @availability iOS 12.0+
  */
-export function nw_protocol_stack_iterate_application_protocols(stack: $SDK160, iterate_block: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 1168611894179362, undefined, [stack, iterate_block], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"},{"callback":{"out":[]}}]); }
+export function nw_protocol_stack_iterate_application_protocols(stack: $SDK160, iterate_block: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 1168611894179362, undefined, [stack, iterate_block], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_protocol_stack_prepend_application_protocol(_ stack: nw_protocol_stack_t, _ protocol: nw_protocol_options_t)
  * @availability iOS 12.0+
  */
-export function nw_protocol_stack_prepend_application_protocol(stack: $SDK160, protocol: $SDK147): void { return callSDK<void>("Network_212edf3d13b127f5", 3783856701509899, undefined, [stack, protocol], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_protocol_stack_prepend_application_protocol(stack: $SDK160, protocol: $SDK147): void { return callSDK<void>("Network_5d69670f0307b385", 3783856701509899, undefined, [stack, protocol], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_protocol_stack_set_transport_protocol(_ stack: nw_protocol_stack_t, _ protocol: nw_protocol_options_t)
  * @availability iOS 12.0+
  */
-export function nw_protocol_stack_set_transport_protocol(stack: $SDK160, protocol: $SDK147): void { return callSDK<void>("Network_212edf3d13b127f5", 3422961073418010, undefined, [stack, protocol], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_protocol_stack_set_transport_protocol(stack: $SDK160, protocol: $SDK147): void { return callSDK<void>("Network_5d69670f0307b385", 3422961073418010, undefined, [stack, protocol], [{"protocol":"c:objc(pl)OS_nw_protocol_stack"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_proxy_config_add_excluded_domain(_ config: nw_proxy_config_t, _ excluded_domain: UnsafePointer<CChar>)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_add_excluded_domain(config: $SDK158, excluded_domain: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 3288156870679244, undefined, [config, excluded_domain], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null]); }
+export function nw_proxy_config_add_excluded_domain(config: $SDK158, excluded_domain: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 3288156870679244, undefined, [config, excluded_domain], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null]); }
 
 /**
  * func nw_proxy_config_add_match_domain(_ config: nw_proxy_config_t, _ match_domain: UnsafePointer<CChar>)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_add_match_domain(config: $SDK158, match_domain: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 292341839843476, undefined, [config, match_domain], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null]); }
+export function nw_proxy_config_add_match_domain(config: $SDK158, match_domain: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 292341839843476, undefined, [config, match_domain], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null]); }
 
 /**
  * func nw_proxy_config_clear_excluded_domains(_ config: nw_proxy_config_t)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_clear_excluded_domains(config: $SDK158): void { return callSDK<void>("Network_212edf3d13b127f5", 3695732847635671, undefined, [config], [{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
+export function nw_proxy_config_clear_excluded_domains(config: $SDK158): void { return callSDK<void>("Network_5d69670f0307b385", 3695732847635671, undefined, [config], [{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
 
 /**
  * func nw_proxy_config_clear_match_domains(_ config: nw_proxy_config_t)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_clear_match_domains(config: $SDK158): void { return callSDK<void>("Network_212edf3d13b127f5", 1459529769021766, undefined, [config], [{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
+export function nw_proxy_config_clear_match_domains(config: $SDK158): void { return callSDK<void>("Network_5d69670f0307b385", 1459529769021766, undefined, [config], [{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
 
 /**
  * func nw_proxy_config_create_http_connect(_ proxy_endpoint: nw_endpoint_t, _ proxy_tls_options: nw_protocol_options_t?) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_create_http_connect(proxy_endpoint: $SDK128, proxy_tls_options?: $SDK133): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 240712089785369, undefined, [proxy_endpoint, proxy_tls_options], [{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_proxy_config_create_http_connect(proxy_endpoint: $SDK128, proxy_tls_options?: $SDK133): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 240712089785369, undefined, [proxy_endpoint, proxy_tls_options], [{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_proxy_config_create_oblivious_http(_ relay: nw_relay_hop_t, _ relay_resource_path: UnsafePointer<CChar>, _ gateway_key_config: UnsafePointer<UInt8>, _ gateway_key_config_length: Int) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_create_oblivious_http(relay: $SDK161, relay_resource_path: SDKHandle, gateway_key_config: SDKHandle, gateway_key_config_length: number): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1573650975645425, undefined, [relay, relay_resource_path, gateway_key_config, gateway_key_config_length], [{"protocol":"c:objc(pl)OS_nw_relay_hop"},null,null,null]); }
+export function nw_proxy_config_create_oblivious_http(relay: $SDK161, relay_resource_path: SDKHandle, gateway_key_config: SDKHandle, gateway_key_config_length: number): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1573650975645425, undefined, [relay, relay_resource_path, gateway_key_config, gateway_key_config_length], [{"protocol":"c:objc(pl)OS_nw_relay_hop"},null,null,null]); }
 
 /**
  * func nw_proxy_config_create_relay(_ first_hop: nw_relay_hop_t, _ second_hop: nw_relay_hop_t?) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_create_relay(first_hop: $SDK161, second_hop?: (Implements<OS_nw_relay_hop> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4045245485675139, undefined, [first_hop, second_hop], [{"protocol":"c:objc(pl)OS_nw_relay_hop"},{"protocol":"c:objc(pl)OS_nw_relay_hop"}]); }
+export function nw_proxy_config_create_relay(first_hop: $SDK161, second_hop?: (Implements<OS_nw_relay_hop> | SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4045245485675139, undefined, [first_hop, second_hop], [{"protocol":"c:objc(pl)OS_nw_relay_hop"},{"protocol":"c:objc(pl)OS_nw_relay_hop"}]); }
 
 /**
  * func nw_proxy_config_create_socksv5(_ proxy_endpoint: nw_endpoint_t) -> nw_proxy_config_t
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_create_socksv5(proxy_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3093470803424974, undefined, [proxy_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_proxy_config_create_socksv5(proxy_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3093470803424974, undefined, [proxy_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_proxy_config_enumerate_excluded_domains(_ config: nw_proxy_config_t, _ enumerator: (UnsafePointer<CChar>) -> Void)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_enumerate_excluded_domains(config: $SDK158, enumerator: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 1804136758475421, undefined, [config, enumerator], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},{"callback":{"out":[]}}]); }
+export function nw_proxy_config_enumerate_excluded_domains(config: $SDK158, enumerator: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 1804136758475421, undefined, [config, enumerator], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_proxy_config_enumerate_match_domains(_ config: nw_proxy_config_t, _ enumerator: (UnsafePointer<CChar>) -> Void)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_enumerate_match_domains(config: $SDK158, enumerator: $SDK143): void { return callSDK<void>("Network_212edf3d13b127f5", 1943512435191277, undefined, [config, enumerator], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},{"callback":{"out":[]}}]); }
+export function nw_proxy_config_enumerate_match_domains(config: $SDK158, enumerator: $SDK143): void { return callSDK<void>("Network_5d69670f0307b385", 1943512435191277, undefined, [config, enumerator], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},{"callback":{"out":[]}}]); }
 
 /**
  * func nw_proxy_config_get_failover_allowed(_ proxy_config: nw_proxy_config_t) -> Bool
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_get_failover_allowed(proxy_config: $SDK158): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 1059612625073400, undefined, [proxy_config], [{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
+export function nw_proxy_config_get_failover_allowed(proxy_config: $SDK158): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 1059612625073400, undefined, [proxy_config], [{"protocol":"c:objc(pl)OS_nw_proxy_config"}]); }
 
 /**
  * func nw_proxy_config_set_failover_allowed(_ proxy_config: nw_proxy_config_t, _ failover_allowed: Bool)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_set_failover_allowed(proxy_config: $SDK158, failover_allowed: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 1724878828420970, undefined, [proxy_config, failover_allowed], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null]); }
+export function nw_proxy_config_set_failover_allowed(proxy_config: $SDK158, failover_allowed: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 1724878828420970, undefined, [proxy_config, failover_allowed], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null]); }
 
 /**
  * func nw_proxy_config_set_username_and_password(_ proxy_config: nw_proxy_config_t, _ username: UnsafePointer<CChar>, _ password: UnsafePointer<CChar>?)
  * @availability iOS 17.0+
  */
-export function nw_proxy_config_set_username_and_password(proxy_config: $SDK158, username: SDKHandle, password?: (SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 22845051069468, undefined, [proxy_config, username, password], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null,null]); }
+export function nw_proxy_config_set_username_and_password(proxy_config: $SDK158, username: SDKHandle, password?: (SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 22845051069468, undefined, [proxy_config, username, password], [{"protocol":"c:objc(pl)OS_nw_proxy_config"},null,null]); }
 
 /**
  * func nw_quic_add_tls_application_protocol(_ options: nw_protocol_options_t, _ application_protocol: UnsafePointer<CChar>)
  * @availability iOS 15.0+
  */
-export function nw_quic_add_tls_application_protocol(options: $SDK147, application_protocol: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 3764294988219842, undefined, [options, application_protocol], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_add_tls_application_protocol(options: $SDK147, application_protocol: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 3764294988219842, undefined, [options, application_protocol], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_copy_sec_protocol_metadata(_ metadata: nw_protocol_metadata_t) -> sec_protocol_metadata_t
  * @availability iOS 15.0+
  */
-export function nw_quic_copy_sec_protocol_metadata(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 967166882607483, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_copy_sec_protocol_metadata(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 967166882607483, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_copy_sec_protocol_options(_ options: nw_protocol_options_t) -> sec_protocol_options_t
  * @availability iOS 15.0+
  */
-export function nw_quic_copy_sec_protocol_options(options: $SDK147): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 486275263821475, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_copy_sec_protocol_options(options: $SDK147): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 486275263821475, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_create_options() -> nw_protocol_options_t
  * @availability iOS 15.0+
  */
-export function nw_quic_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3431712708468480, undefined, []); }
+export function nw_quic_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3431712708468480, undefined, []); }
 
 /**
  * func nw_quic_get_application_error(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_application_error(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 147522195330227, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_application_error(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 147522195330227, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_application_error_reason(_ metadata: nw_protocol_metadata_t) -> UnsafePointer<CChar>?
  * @availability iOS 15.0+
  */
-export function nw_quic_get_application_error_reason(metadata: $SDK141): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1524132762271763, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_application_error_reason(metadata: $SDK141): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1524132762271763, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_idle_timeout(_ options: nw_protocol_options_t) -> UInt32
  * @availability iOS 15.0+
  */
-export function nw_quic_get_idle_timeout(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 3449391331610824, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_idle_timeout(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 3449391331610824, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_initial_max_data(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_initial_max_data(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 375264974296724, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_initial_max_data(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 375264974296724, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_initial_max_stream_data_bidirectional_local(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_initial_max_stream_data_bidirectional_local(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 2340057764431127, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_initial_max_stream_data_bidirectional_local(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 2340057764431127, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_initial_max_stream_data_bidirectional_remote(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_initial_max_stream_data_bidirectional_remote(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 656831464287171, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_initial_max_stream_data_bidirectional_remote(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 656831464287171, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_initial_max_stream_data_unidirectional(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_initial_max_stream_data_unidirectional(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 106142524108176, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_initial_max_stream_data_unidirectional(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 106142524108176, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_initial_max_streams_bidirectional(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_initial_max_streams_bidirectional(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 2033713141800892, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_initial_max_streams_bidirectional(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 2033713141800892, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_initial_max_streams_unidirectional(_ options: nw_protocol_options_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_initial_max_streams_unidirectional(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 4174550185738240, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_initial_max_streams_unidirectional(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 4174550185738240, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_keepalive_interval(_ metadata: nw_protocol_metadata_t) -> UInt16
  * @availability iOS 15.0+
  */
-export function nw_quic_get_keepalive_interval(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 253393756992445, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_keepalive_interval(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 253393756992445, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_local_max_streams_bidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_local_max_streams_bidirectional(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 1469069130930937, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_local_max_streams_bidirectional(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 1469069130930937, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_local_max_streams_unidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_local_max_streams_unidirectional(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 1928268574461645, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_local_max_streams_unidirectional(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 1928268574461645, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_max_datagram_frame_size(_ options: nw_protocol_options_t) -> UInt16
  * @availability iOS 16.0+
  */
-export function nw_quic_get_max_datagram_frame_size(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 1635010190442701, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_max_datagram_frame_size(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 1635010190442701, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_max_udp_payload_size(_ options: nw_protocol_options_t) -> UInt16
  * @availability iOS 15.0+
  */
-export function nw_quic_get_max_udp_payload_size(options: $SDK147): number { return callSDK<number>("Network_212edf3d13b127f5", 4332444331239619, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_max_udp_payload_size(options: $SDK147): number { return callSDK<number>("Network_5d69670f0307b385", 4332444331239619, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_remote_idle_timeout(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_remote_idle_timeout(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 4269250484777904, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_remote_idle_timeout(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 4269250484777904, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_remote_max_streams_bidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_remote_max_streams_bidirectional(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 3974445157029753, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_remote_max_streams_bidirectional(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 3974445157029753, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_remote_max_streams_unidirectional(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_remote_max_streams_unidirectional(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 3817980801938925, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_remote_max_streams_unidirectional(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 3817980801938925, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_stream_application_error(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_stream_application_error(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 1791854921042276, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_stream_application_error(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 1791854921042276, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_stream_id(_ metadata: nw_protocol_metadata_t) -> UInt64
  * @availability iOS 15.0+
  */
-export function nw_quic_get_stream_id(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 1681350970075244, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_stream_id(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 1681350970075244, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_stream_is_datagram(_ options: nw_protocol_options_t) -> Bool
  * @availability iOS 16.0+
  */
-export function nw_quic_get_stream_is_datagram(options: $SDK147): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 934232791901769, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_stream_is_datagram(options: $SDK147): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 934232791901769, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_stream_is_unidirectional(_ options: nw_protocol_options_t) -> Bool
  * @availability iOS 15.0+
  */
-export function nw_quic_get_stream_is_unidirectional(options: $SDK147): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 3208493631450767, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_quic_get_stream_is_unidirectional(options: $SDK147): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 3208493631450767, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_quic_get_stream_type(_ stream_metadata: nw_protocol_metadata_t) -> UInt8
  * @availability iOS 15.0+
  */
-export function nw_quic_get_stream_type(stream_metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 2483809524352777, undefined, [stream_metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_stream_type(stream_metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 2483809524352777, undefined, [stream_metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_get_stream_usable_datagram_frame_size(_ metadata: nw_protocol_metadata_t) -> UInt16
  * @availability iOS 16.0+
  */
-export function nw_quic_get_stream_usable_datagram_frame_size(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 3104964776731886, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_quic_get_stream_usable_datagram_frame_size(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 3104964776731886, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_quic_set_application_error(_ metadata: nw_protocol_metadata_t, _ application_error: UInt64, _ reason: UnsafePointer<CChar>?)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_application_error(metadata: $SDK141, application_error: number, reason?: (SDKHandle) | null): void { return callSDK<void>("Network_212edf3d13b127f5", 1108811247528803, undefined, [metadata, application_error, reason], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,null]); }
+export function nw_quic_set_application_error(metadata: $SDK141, application_error: number, reason?: (SDKHandle) | null): void { return callSDK<void>("Network_5d69670f0307b385", 1108811247528803, undefined, [metadata, application_error, reason], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,null]); }
 
 /**
  * func nw_quic_set_idle_timeout(_ options: nw_protocol_options_t, _ idle_timeout: UInt32)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_idle_timeout(options: $SDK147, idle_timeout: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1860432647331620, undefined, [options, idle_timeout], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_idle_timeout(options: $SDK147, idle_timeout: number): void { return callSDK<void>("Network_5d69670f0307b385", 1860432647331620, undefined, [options, idle_timeout], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_initial_max_data(_ options: nw_protocol_options_t, _ initial_max_data: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_initial_max_data(options: $SDK147, initial_max_data: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1772006190953148, undefined, [options, initial_max_data], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_initial_max_data(options: $SDK147, initial_max_data: number): void { return callSDK<void>("Network_5d69670f0307b385", 1772006190953148, undefined, [options, initial_max_data], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_initial_max_stream_data_bidirectional_local(_ options: nw_protocol_options_t, _ initial_max_stream_data_bidirectional_local: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_initial_max_stream_data_bidirectional_local(options: $SDK147, initial_max_stream_data_bidirectional_local: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2853806545393148, undefined, [options, initial_max_stream_data_bidirectional_local], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_initial_max_stream_data_bidirectional_local(options: $SDK147, initial_max_stream_data_bidirectional_local: number): void { return callSDK<void>("Network_5d69670f0307b385", 2853806545393148, undefined, [options, initial_max_stream_data_bidirectional_local], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_initial_max_stream_data_bidirectional_remote(_ options: nw_protocol_options_t, _ initial_max_stream_data_bidirectional_remote: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_initial_max_stream_data_bidirectional_remote(options: $SDK147, initial_max_stream_data_bidirectional_remote: number): void { return callSDK<void>("Network_212edf3d13b127f5", 93146612383723, undefined, [options, initial_max_stream_data_bidirectional_remote], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_initial_max_stream_data_bidirectional_remote(options: $SDK147, initial_max_stream_data_bidirectional_remote: number): void { return callSDK<void>("Network_5d69670f0307b385", 93146612383723, undefined, [options, initial_max_stream_data_bidirectional_remote], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_initial_max_stream_data_unidirectional(_ options: nw_protocol_options_t, _ initial_max_stream_data_unidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_initial_max_stream_data_unidirectional(options: $SDK147, initial_max_stream_data_unidirectional: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3000022118043907, undefined, [options, initial_max_stream_data_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_initial_max_stream_data_unidirectional(options: $SDK147, initial_max_stream_data_unidirectional: number): void { return callSDK<void>("Network_5d69670f0307b385", 3000022118043907, undefined, [options, initial_max_stream_data_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_initial_max_streams_bidirectional(_ options: nw_protocol_options_t, _ initial_max_streams_bidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_initial_max_streams_bidirectional(options: $SDK147, initial_max_streams_bidirectional: number): void { return callSDK<void>("Network_212edf3d13b127f5", 504462238315507, undefined, [options, initial_max_streams_bidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_initial_max_streams_bidirectional(options: $SDK147, initial_max_streams_bidirectional: number): void { return callSDK<void>("Network_5d69670f0307b385", 504462238315507, undefined, [options, initial_max_streams_bidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_initial_max_streams_unidirectional(_ options: nw_protocol_options_t, _ initial_max_streams_unidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_initial_max_streams_unidirectional(options: $SDK147, initial_max_streams_unidirectional: number): void { return callSDK<void>("Network_212edf3d13b127f5", 4020947720688912, undefined, [options, initial_max_streams_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_initial_max_streams_unidirectional(options: $SDK147, initial_max_streams_unidirectional: number): void { return callSDK<void>("Network_5d69670f0307b385", 4020947720688912, undefined, [options, initial_max_streams_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_keepalive_interval(_ metadata: nw_protocol_metadata_t, _ keepalive_interval: UInt16)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_keepalive_interval(metadata: $SDK141, keepalive_interval: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1646429242451353, undefined, [metadata, keepalive_interval], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_quic_set_keepalive_interval(metadata: $SDK141, keepalive_interval: number): void { return callSDK<void>("Network_5d69670f0307b385", 1646429242451353, undefined, [metadata, keepalive_interval], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_quic_set_local_max_streams_bidirectional(_ metadata: nw_protocol_metadata_t, _ max_streams_bidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_local_max_streams_bidirectional(metadata: $SDK141, max_streams_bidirectional: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2133223418319082, undefined, [metadata, max_streams_bidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_quic_set_local_max_streams_bidirectional(metadata: $SDK141, max_streams_bidirectional: number): void { return callSDK<void>("Network_5d69670f0307b385", 2133223418319082, undefined, [metadata, max_streams_bidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_quic_set_local_max_streams_unidirectional(_ metadata: nw_protocol_metadata_t, _ max_streams_unidirectional: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_local_max_streams_unidirectional(metadata: $SDK141, max_streams_unidirectional: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1944819363724534, undefined, [metadata, max_streams_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_quic_set_local_max_streams_unidirectional(metadata: $SDK141, max_streams_unidirectional: number): void { return callSDK<void>("Network_5d69670f0307b385", 1944819363724534, undefined, [metadata, max_streams_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_quic_set_max_datagram_frame_size(_ options: nw_protocol_options_t, _ max_datagram_frame_size: UInt16)
  * @availability iOS 16.0+
  */
-export function nw_quic_set_max_datagram_frame_size(options: $SDK147, max_datagram_frame_size: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1390765744936145, undefined, [options, max_datagram_frame_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_max_datagram_frame_size(options: $SDK147, max_datagram_frame_size: number): void { return callSDK<void>("Network_5d69670f0307b385", 1390765744936145, undefined, [options, max_datagram_frame_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_max_udp_payload_size(_ options: nw_protocol_options_t, _ max_udp_payload_size: UInt16)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_max_udp_payload_size(options: $SDK147, max_udp_payload_size: number): void { return callSDK<void>("Network_212edf3d13b127f5", 319606591017248, undefined, [options, max_udp_payload_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_max_udp_payload_size(options: $SDK147, max_udp_payload_size: number): void { return callSDK<void>("Network_5d69670f0307b385", 319606591017248, undefined, [options, max_udp_payload_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_stream_application_error(_ metadata: nw_protocol_metadata_t, _ application_error: UInt64)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_stream_application_error(metadata: $SDK141, application_error: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3845656401707573, undefined, [metadata, application_error], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_quic_set_stream_application_error(metadata: $SDK141, application_error: number): void { return callSDK<void>("Network_5d69670f0307b385", 3845656401707573, undefined, [metadata, application_error], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_quic_set_stream_is_datagram(_ options: nw_protocol_options_t, _ is_datagram: Bool)
  * @availability iOS 16.0+
  */
-export function nw_quic_set_stream_is_datagram(options: $SDK147, is_datagram: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 435183591453895, undefined, [options, is_datagram], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_stream_is_datagram(options: $SDK147, is_datagram: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 435183591453895, undefined, [options, is_datagram], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_quic_set_stream_is_unidirectional(_ options: nw_protocol_options_t, _ is_unidirectional: Bool)
  * @availability iOS 15.0+
  */
-export function nw_quic_set_stream_is_unidirectional(options: $SDK147, is_unidirectional: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 2227824809513512, undefined, [options, is_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_quic_set_stream_is_unidirectional(options: $SDK147, is_unidirectional: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 2227824809513512, undefined, [options, is_unidirectional], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_relay_hop_add_additional_http_header_field(_ relay_hop: nw_relay_hop_t, _ field_name: UnsafePointer<CChar>, _ field_value: UnsafePointer<CChar>)
  * @availability iOS 17.0+
  */
-export function nw_relay_hop_add_additional_http_header_field(relay_hop: $SDK161, field_name: SDKHandle, field_value: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 4303472933749704, undefined, [relay_hop, field_name, field_value], [{"protocol":"c:objc(pl)OS_nw_relay_hop"},null,null]); }
+export function nw_relay_hop_add_additional_http_header_field(relay_hop: $SDK161, field_name: SDKHandle, field_value: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 4303472933749704, undefined, [relay_hop, field_name, field_value], [{"protocol":"c:objc(pl)OS_nw_relay_hop"},null,null]); }
 
 /**
  * func nw_relay_hop_create(_ http3_relay_endpoint: nw_endpoint_t?, _ http2_relay_endpoint: nw_endpoint_t?, _ relay_tls_options: nw_protocol_options_t?) -> nw_relay_hop_t
  * @availability iOS 17.0+
  */
-export function nw_relay_hop_create(http3_relay_endpoint?: $SDK132, http2_relay_endpoint?: $SDK132, relay_tls_options?: $SDK133): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 352330843758743, undefined, [http3_relay_endpoint, http2_relay_endpoint, relay_tls_options], [{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_relay_hop_create(http3_relay_endpoint?: $SDK132, http2_relay_endpoint?: $SDK132, relay_tls_options?: $SDK133): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 352330843758743, undefined, [http3_relay_endpoint, http2_relay_endpoint, relay_tls_options], [{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_endpoint"},{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_resolution_report_copy_preferred_endpoint(_ resolution_report: nw_resolution_report_t) -> nw_endpoint_t
  * @availability iOS 14.0+
  */
-export function nw_resolution_report_copy_preferred_endpoint(resolution_report: $SDK163): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3758065209257095, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
+export function nw_resolution_report_copy_preferred_endpoint(resolution_report: $SDK163): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3758065209257095, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
 
 /**
  * func nw_resolution_report_copy_successful_endpoint(_ resolution_report: nw_resolution_report_t) -> nw_endpoint_t
  * @availability iOS 14.0+
  */
-export function nw_resolution_report_copy_successful_endpoint(resolution_report: $SDK163): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3503062423858254, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
+export function nw_resolution_report_copy_successful_endpoint(resolution_report: $SDK163): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3503062423858254, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
 
 /**
  * func nw_resolution_report_get_endpoint_count(_ resolution_report: nw_resolution_report_t) -> UInt32
  * @availability iOS 14.0+
  */
-export function nw_resolution_report_get_endpoint_count(resolution_report: $SDK163): number { return callSDK<number>("Network_212edf3d13b127f5", 3054234665841112, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
+export function nw_resolution_report_get_endpoint_count(resolution_report: $SDK163): number { return callSDK<number>("Network_5d69670f0307b385", 3054234665841112, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
 
 /**
  * func nw_resolution_report_get_milliseconds(_ resolution_report: nw_resolution_report_t) -> UInt64
  * @availability iOS 14.0+
  */
-export function nw_resolution_report_get_milliseconds(resolution_report: $SDK163): number { return callSDK<number>("Network_212edf3d13b127f5", 3547908197634499, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
+export function nw_resolution_report_get_milliseconds(resolution_report: $SDK163): number { return callSDK<number>("Network_5d69670f0307b385", 3547908197634499, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
 
 /**
  * func nw_resolution_report_get_protocol(_ resolution_report: nw_resolution_report_t) -> nw_report_resolution_protocol_t
  * @availability iOS 14.0+
  */
-export function nw_resolution_report_get_protocol(resolution_report: $SDK163): nw_report_resolution_protocol_t { return callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 2059922779065347, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
+export function nw_resolution_report_get_protocol(resolution_report: $SDK163): nw_report_resolution_protocol_t { return callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 2059922779065347, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
 
 /**
  * func nw_resolution_report_get_source(_ resolution_report: nw_resolution_report_t) -> nw_report_resolution_source_t
  * @availability iOS 14.0+
  */
-export function nw_resolution_report_get_source(resolution_report: $SDK163): nw_report_resolution_source_t { return callSDK<nw_report_resolution_source_t>("Network_212edf3d13b127f5", 1392126671351188, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
+export function nw_resolution_report_get_source(resolution_report: $SDK163): nw_report_resolution_source_t { return callSDK<nw_report_resolution_source_t>("Network_5d69670f0307b385", 1392126671351188, undefined, [resolution_report], [{"protocol":"c:objc(pl)OS_nw_resolution_report"}]); }
 
 /**
  * func nw_resolver_config_add_server_address(_ config: nw_resolver_config_t, _ server_address: nw_endpoint_t)
  * @availability iOS 14.0+
  */
-export function nw_resolver_config_add_server_address(config: Implements<OS_nw_resolver_config> | SDKHandle, server_address: $SDK128): void { return callSDK<void>("Network_212edf3d13b127f5", 2436634872986922, undefined, [config, server_address], [{"protocol":"c:objc(pl)OS_nw_resolver_config"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_resolver_config_add_server_address(config: Implements<OS_nw_resolver_config> | SDKHandle, server_address: $SDK128): void { return callSDK<void>("Network_5d69670f0307b385", 2436634872986922, undefined, [config, server_address], [{"protocol":"c:objc(pl)OS_nw_resolver_config"},{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_resolver_config_create_https(_ url_endpoint: nw_endpoint_t) -> nw_resolver_config_t
  * @availability iOS 14.0+
  */
-export function nw_resolver_config_create_https(url_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1078654423079089, undefined, [url_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_resolver_config_create_https(url_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1078654423079089, undefined, [url_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_resolver_config_create_tls(_ server_endpoint: nw_endpoint_t) -> nw_resolver_config_t
  * @availability iOS 14.0+
  */
-export function nw_resolver_config_create_tls(server_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3412052800303500, undefined, [server_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
+export function nw_resolver_config_create_tls(server_endpoint: $SDK128): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3412052800303500, undefined, [server_endpoint], [{"protocol":"c:objc(pl)OS_nw_endpoint"}]); }
 
 /**
  * func nw_tcp_create_options() -> nw_protocol_options_t
  * @availability iOS 12.0+
  */
-export function nw_tcp_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4367892892567467, undefined, []); }
+export function nw_tcp_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4367892892567467, undefined, []); }
 
 /**
  * func nw_tcp_get_available_receive_buffer(_ metadata: nw_protocol_metadata_t) -> UInt32
  * @availability iOS 12.0+
  */
-export function nw_tcp_get_available_receive_buffer(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 3065288582159937, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_tcp_get_available_receive_buffer(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 3065288582159937, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_tcp_get_available_send_buffer(_ metadata: nw_protocol_metadata_t) -> UInt32
  * @availability iOS 12.0+
  */
-export function nw_tcp_get_available_send_buffer(metadata: $SDK141): number { return callSDK<number>("Network_212edf3d13b127f5", 3456588777412276, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_tcp_get_available_send_buffer(metadata: $SDK141): number { return callSDK<number>("Network_5d69670f0307b385", 3456588777412276, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_tcp_options_set_connection_timeout(_ options: nw_protocol_options_t, _ connection_timeout: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_connection_timeout(options: $SDK147, connection_timeout: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3212230390150925, undefined, [options, connection_timeout], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_connection_timeout(options: $SDK147, connection_timeout: number): void { return callSDK<void>("Network_5d69670f0307b385", 3212230390150925, undefined, [options, connection_timeout], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_disable_ack_stretching(_ options: nw_protocol_options_t, _ disable_ack_stretching: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_disable_ack_stretching(options: $SDK147, disable_ack_stretching: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3658577382708387, undefined, [options, disable_ack_stretching], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_disable_ack_stretching(options: $SDK147, disable_ack_stretching: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3658577382708387, undefined, [options, disable_ack_stretching], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_disable_ecn(_ options: nw_protocol_options_t, _ disable_ecn: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_disable_ecn(options: $SDK147, disable_ecn: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3146824884221331, undefined, [options, disable_ecn], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_disable_ecn(options: $SDK147, disable_ecn: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3146824884221331, undefined, [options, disable_ecn], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_enable_fast_open(_ options: nw_protocol_options_t, _ enable_fast_open: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_enable_fast_open(options: $SDK147, enable_fast_open: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 1103940295530531, undefined, [options, enable_fast_open], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_enable_fast_open(options: $SDK147, enable_fast_open: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 1103940295530531, undefined, [options, enable_fast_open], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_enable_keepalive(_ options: nw_protocol_options_t, _ enable_keepalive: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_enable_keepalive(options: $SDK147, enable_keepalive: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3372668599082441, undefined, [options, enable_keepalive], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_enable_keepalive(options: $SDK147, enable_keepalive: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3372668599082441, undefined, [options, enable_keepalive], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_keepalive_count(_ options: nw_protocol_options_t, _ keepalive_count: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_keepalive_count(options: $SDK147, keepalive_count: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1020121947539785, undefined, [options, keepalive_count], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_keepalive_count(options: $SDK147, keepalive_count: number): void { return callSDK<void>("Network_5d69670f0307b385", 1020121947539785, undefined, [options, keepalive_count], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_keepalive_idle_time(_ options: nw_protocol_options_t, _ keepalive_idle_time: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_keepalive_idle_time(options: $SDK147, keepalive_idle_time: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1396421083559027, undefined, [options, keepalive_idle_time], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_keepalive_idle_time(options: $SDK147, keepalive_idle_time: number): void { return callSDK<void>("Network_5d69670f0307b385", 1396421083559027, undefined, [options, keepalive_idle_time], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_keepalive_interval(_ options: nw_protocol_options_t, _ keepalive_interval: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_keepalive_interval(options: $SDK147, keepalive_interval: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2449274421270604, undefined, [options, keepalive_interval], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_keepalive_interval(options: $SDK147, keepalive_interval: number): void { return callSDK<void>("Network_5d69670f0307b385", 2449274421270604, undefined, [options, keepalive_interval], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_maximum_segment_size(_ options: nw_protocol_options_t, _ maximum_segment_size: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_maximum_segment_size(options: $SDK147, maximum_segment_size: number): void { return callSDK<void>("Network_212edf3d13b127f5", 3653664536735360, undefined, [options, maximum_segment_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_maximum_segment_size(options: $SDK147, maximum_segment_size: number): void { return callSDK<void>("Network_5d69670f0307b385", 3653664536735360, undefined, [options, maximum_segment_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_multipath_force_version(_ options: nw_protocol_options_t, _ multipath_force_version: nw_multipath_version_t)
  * @availability iOS 15.0+
  */
-export function nw_tcp_options_set_multipath_force_version(options: $SDK147, multipath_force_version: nw_multipath_version_t): void { return callSDK<void>("Network_212edf3d13b127f5", 88377422096815, undefined, [options, multipath_force_version], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_multipath_force_version(options: $SDK147, multipath_force_version: nw_multipath_version_t): void { return callSDK<void>("Network_5d69670f0307b385", 88377422096815, undefined, [options, multipath_force_version], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_no_delay(_ options: nw_protocol_options_t, _ no_delay: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_no_delay(options: $SDK147, no_delay: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 1702249447473968, undefined, [options, no_delay], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_no_delay(options: $SDK147, no_delay: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 1702249447473968, undefined, [options, no_delay], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_no_options(_ options: nw_protocol_options_t, _ no_options: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_no_options(options: $SDK147, no_options: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 805694054745538, undefined, [options, no_options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_no_options(options: $SDK147, no_options: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 805694054745538, undefined, [options, no_options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_no_push(_ options: nw_protocol_options_t, _ no_push: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_no_push(options: $SDK147, no_push: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 2167196328818611, undefined, [options, no_push], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_no_push(options: $SDK147, no_push: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 2167196328818611, undefined, [options, no_push], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_persist_timeout(_ options: nw_protocol_options_t, _ persist_timeout: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_persist_timeout(options: $SDK147, persist_timeout: number): void { return callSDK<void>("Network_212edf3d13b127f5", 1081301527490786, undefined, [options, persist_timeout], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_persist_timeout(options: $SDK147, persist_timeout: number): void { return callSDK<void>("Network_5d69670f0307b385", 1081301527490786, undefined, [options, persist_timeout], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_retransmit_connection_drop_time(_ options: nw_protocol_options_t, _ retransmit_connection_drop_time: UInt32)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_retransmit_connection_drop_time(options: $SDK147, retransmit_connection_drop_time: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2512415743297570, undefined, [options, retransmit_connection_drop_time], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_retransmit_connection_drop_time(options: $SDK147, retransmit_connection_drop_time: number): void { return callSDK<void>("Network_5d69670f0307b385", 2512415743297570, undefined, [options, retransmit_connection_drop_time], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_options_set_retransmit_fin_drop(_ options: nw_protocol_options_t, _ retransmit_fin_drop: Bool)
  * @availability iOS 12.0+
  */
-export function nw_tcp_options_set_retransmit_fin_drop(options: $SDK147, retransmit_fin_drop: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3931268197009133, undefined, [options, retransmit_fin_drop], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_tcp_options_set_retransmit_fin_drop(options: $SDK147, retransmit_fin_drop: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3931268197009133, undefined, [options, retransmit_fin_drop], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_tcp_set_max_pacing_rate(_ metadata: nw_protocol_metadata_t, _ max_pacing_rate: UInt64) -> Int32
  * @availability iOS 27.0+
  */
-export function nw_tcp_set_max_pacing_rate(metadata: $SDK141, max_pacing_rate: number): number { return callSDK<number>("Network_212edf3d13b127f5", 426983973626469, undefined, [metadata, max_pacing_rate], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_tcp_set_max_pacing_rate(metadata: $SDK141, max_pacing_rate: number): number { return callSDK<number>("Network_5d69670f0307b385", 426983973626469, undefined, [metadata, max_pacing_rate], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_tls_copy_sec_protocol_metadata(_ metadata: nw_protocol_metadata_t) -> sec_protocol_metadata_t
  * @availability iOS 12.0+
  */
-export function nw_tls_copy_sec_protocol_metadata(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3999138177700544, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_tls_copy_sec_protocol_metadata(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3999138177700544, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_tls_copy_sec_protocol_options(_ options: nw_protocol_options_t) -> sec_protocol_options_t
  * @availability iOS 12.0+
  */
-export function nw_tls_copy_sec_protocol_options(options: $SDK147): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2241138009855786, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
+export function nw_tls_copy_sec_protocol_options(options: $SDK147): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2241138009855786, undefined, [options], [{"protocol":"c:objc(pl)OS_nw_protocol_options"}]); }
 
 /**
  * func nw_tls_create_options() -> nw_protocol_options_t
  * @availability iOS 12.0+
  */
-export function nw_tls_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1463808620326455, undefined, []); }
+export function nw_tls_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1463808620326455, undefined, []); }
 
 /**
  * func nw_txt_record_copy(_ txt_record: nw_txt_record_t?) -> nw_txt_record_t?
  * @availability iOS 13.0+
  */
-export function nw_txt_record_copy(txt_record?: $SDK117): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 1603328092028839, undefined, [txt_record], [{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
+export function nw_txt_record_copy(txt_record?: $SDK117): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 1603328092028839, undefined, [txt_record], [{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
 
 /**
  * func nw_txt_record_create_dictionary() -> nw_txt_record_t
  * @availability iOS 13.0+
  */
-export function nw_txt_record_create_dictionary(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 920499986351470, undefined, []); }
+export function nw_txt_record_create_dictionary(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 920499986351470, undefined, []); }
 
 /**
  * func nw_txt_record_create_with_bytes(_ txt_bytes: UnsafePointer<UInt8>, _ txt_len: Int) -> nw_txt_record_t
  * @availability iOS 13.0+
  */
-export function nw_txt_record_create_with_bytes(txt_bytes: SDKHandle, txt_len: number): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 204384092296931, undefined, [txt_bytes, txt_len]); }
+export function nw_txt_record_create_with_bytes(txt_bytes: SDKHandle, txt_len: number): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 204384092296931, undefined, [txt_bytes, txt_len]); }
 
 /**
  * func nw_txt_record_find_key(_ txt_record: nw_txt_record_t, _ key: UnsafePointer<CChar>) -> nw_txt_record_find_key_t
  * @availability iOS 13.0+
  */
-export function nw_txt_record_find_key(txt_record: $SDK165, key: SDKHandle): nw_txt_record_find_key_t { return callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 2325588354489282, undefined, [txt_record, key], [{"protocol":"c:objc(pl)OS_nw_txt_record"},null]); }
+export function nw_txt_record_find_key(txt_record: $SDK165, key: SDKHandle): nw_txt_record_find_key_t { return callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 2325588354489282, undefined, [txt_record, key], [{"protocol":"c:objc(pl)OS_nw_txt_record"},null]); }
 
 /**
  * func nw_txt_record_get_key_count(_ txt_record: nw_txt_record_t?) -> Int
  * @availability iOS 13.0+
  */
-export function nw_txt_record_get_key_count(txt_record?: $SDK117): number { return callSDK<number>("Network_212edf3d13b127f5", 484826171897666, undefined, [txt_record], [{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
+export function nw_txt_record_get_key_count(txt_record?: $SDK117): number { return callSDK<number>("Network_5d69670f0307b385", 484826171897666, undefined, [txt_record], [{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
 
 /**
  * func nw_txt_record_is_dictionary(_ txt_record: nw_txt_record_t) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_txt_record_is_dictionary(txt_record: $SDK165): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 92698787069895, undefined, [txt_record], [{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
+export function nw_txt_record_is_dictionary(txt_record: $SDK165): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 92698787069895, undefined, [txt_record], [{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
 
 /**
  * func nw_txt_record_is_equal(_ left: nw_txt_record_t?, _ right: nw_txt_record_t?) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_txt_record_is_equal(left?: $SDK117, right?: $SDK117): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4348949026488721, undefined, [left, right], [{"protocol":"c:objc(pl)OS_nw_txt_record"},{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
+export function nw_txt_record_is_equal(left?: $SDK117, right?: $SDK117): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4348949026488721, undefined, [left, right], [{"protocol":"c:objc(pl)OS_nw_txt_record"},{"protocol":"c:objc(pl)OS_nw_txt_record"}]); }
 
 /**
  * func nw_txt_record_remove_key(_ txt_record: nw_txt_record_t, _ key: UnsafePointer<CChar>) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_txt_record_remove_key(txt_record: $SDK165, key: SDKHandle): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 2162026856533369, undefined, [txt_record, key], [{"protocol":"c:objc(pl)OS_nw_txt_record"},null]); }
+export function nw_txt_record_remove_key(txt_record: $SDK165, key: SDKHandle): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 2162026856533369, undefined, [txt_record, key], [{"protocol":"c:objc(pl)OS_nw_txt_record"},null]); }
 
 /**
  * func nw_txt_record_set_key(_ txt_record: nw_txt_record_t, _ key: UnsafePointer<CChar>, _ value: UnsafePointer<UInt8>?, _ value_len: Int) -> Bool
  * @availability iOS 13.0+
  */
-export function nw_txt_record_set_key(txt_record: $SDK165, key: SDKHandle, value: (SDKHandle) | null, value_len: number): boolean { return callSDK<boolean>("Network_212edf3d13b127f5", 4364631511861185, undefined, [txt_record, key, value, value_len], [{"protocol":"c:objc(pl)OS_nw_txt_record"},null,null,null]); }
+export function nw_txt_record_set_key(txt_record: $SDK165, key: SDKHandle, value: (SDKHandle) | null, value_len: number): boolean { return callSDK<boolean>("Network_5d69670f0307b385", 4364631511861185, undefined, [txt_record, key, value, value_len], [{"protocol":"c:objc(pl)OS_nw_txt_record"},null,null,null]); }
 
 /**
  * func nw_udp_create_metadata() -> nw_protocol_metadata_t
  * @availability iOS 12.0+
  */
-export function nw_udp_create_metadata(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 4141932942569244, undefined, []); }
+export function nw_udp_create_metadata(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 4141932942569244, undefined, []); }
 
 /**
  * func nw_udp_create_options() -> nw_protocol_options_t
  * @availability iOS 12.0+
  */
-export function nw_udp_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 1516409682277346, undefined, []); }
+export function nw_udp_create_options(): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 1516409682277346, undefined, []); }
 
 /**
  * func nw_udp_options_set_prefer_no_checksum(_ options: nw_protocol_options_t, _ prefer_no_checksum: Bool)
  * @availability iOS 12.0+
  */
-export function nw_udp_options_set_prefer_no_checksum(options: $SDK147, prefer_no_checksum: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 2543660141606507, undefined, [options, prefer_no_checksum], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_udp_options_set_prefer_no_checksum(options: $SDK147, prefer_no_checksum: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 2543660141606507, undefined, [options, prefer_no_checksum], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ws_create_metadata(_ opcode: nw_ws_opcode_t) -> nw_protocol_metadata_t
  * @availability iOS 13.0+
  */
-export function nw_ws_create_metadata(opcode: nw_ws_opcode_t): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 3759618148262402, undefined, [opcode]); }
+export function nw_ws_create_metadata(opcode: nw_ws_opcode_t): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 3759618148262402, undefined, [opcode]); }
 
 /**
  * func nw_ws_create_options(_ version: nw_ws_version_t) -> nw_protocol_options_t
  * @availability iOS 13.0+
  */
-export function nw_ws_create_options(version: nw_ws_version_t): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2935738997234760, undefined, [version]); }
+export function nw_ws_create_options(version: nw_ws_version_t): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2935738997234760, undefined, [version]); }
 
 /**
  * func nw_ws_metadata_copy_server_response(_ metadata: nw_protocol_metadata_t) -> nw_ws_response_t
  * @availability iOS 13.0+
  */
-export function nw_ws_metadata_copy_server_response(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2672663114003655, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_ws_metadata_copy_server_response(metadata: $SDK141): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2672663114003655, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_ws_metadata_get_close_code(_ metadata: nw_protocol_metadata_t) -> nw_ws_close_code_t
  * @availability iOS 13.0+
  */
-export function nw_ws_metadata_get_close_code(metadata: $SDK141): nw_ws_close_code_t { return callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 1659358515300708, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_ws_metadata_get_close_code(metadata: $SDK141): nw_ws_close_code_t { return callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 1659358515300708, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_ws_metadata_get_opcode(_ metadata: nw_protocol_metadata_t) -> nw_ws_opcode_t
  * @availability iOS 13.0+
  */
-export function nw_ws_metadata_get_opcode(metadata: $SDK141): nw_ws_opcode_t { return callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 2927362365883073, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
+export function nw_ws_metadata_get_opcode(metadata: $SDK141): nw_ws_opcode_t { return callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 2927362365883073, undefined, [metadata], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"}]); }
 
 /**
  * func nw_ws_metadata_set_close_code(_ metadata: nw_protocol_metadata_t, _ close_code: nw_ws_close_code_t)
  * @availability iOS 13.0+
  */
-export function nw_ws_metadata_set_close_code(metadata: $SDK141, close_code: nw_ws_close_code_t): void { return callSDK<void>("Network_212edf3d13b127f5", 668784925067424, undefined, [metadata, close_code], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
+export function nw_ws_metadata_set_close_code(metadata: $SDK141, close_code: nw_ws_close_code_t): void { return callSDK<void>("Network_5d69670f0307b385", 668784925067424, undefined, [metadata, close_code], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null]); }
 
 /**
  * func nw_ws_metadata_set_pong_handler(_ metadata: nw_protocol_metadata_t, _ client_queue: dispatch_queue_t, _ pong_handler: @escaping nw_ws_pong_handler_t)
  * @availability iOS 13.0+
  */
-export function nw_ws_metadata_set_pong_handler(metadata: $SDK141, client_queue: _Dispatch_DispatchQueue, pong_handler: $SDK126): void { return callSDK<void>("Network_212edf3d13b127f5", 2511739929547345, undefined, [metadata, client_queue, pong_handler], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,{"callback":{"out":[]}}]); }
+export function nw_ws_metadata_set_pong_handler(metadata: $SDK141, client_queue: _Dispatch_DispatchQueue, pong_handler: $SDK126): void { return callSDK<void>("Network_5d69670f0307b385", 2511739929547345, undefined, [metadata, client_queue, pong_handler], [{"protocol":"c:objc(pl)OS_nw_protocol_metadata"},null,{"callback":{"out":[]}}]); }
 
 /**
  * func nw_ws_options_add_additional_header(_ options: nw_protocol_options_t, _ name: UnsafePointer<CChar>, _ value: UnsafePointer<CChar>)
  * @availability iOS 13.0+
  */
-export function nw_ws_options_add_additional_header(options: $SDK147, name: SDKHandle, value: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 69661405959326, undefined, [options, name, value], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null,null]); }
+export function nw_ws_options_add_additional_header(options: $SDK147, name: SDKHandle, value: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 69661405959326, undefined, [options, name, value], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null,null]); }
 
 /**
  * func nw_ws_options_add_subprotocol(_ options: nw_protocol_options_t, _ subprotocol: UnsafePointer<CChar>)
  * @availability iOS 13.0+
  */
-export function nw_ws_options_add_subprotocol(options: $SDK147, subprotocol: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 602152048919391, undefined, [options, subprotocol], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ws_options_add_subprotocol(options: $SDK147, subprotocol: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 602152048919391, undefined, [options, subprotocol], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ws_options_set_auto_reply_ping(_ options: nw_protocol_options_t, _ auto_reply_ping: Bool)
  * @availability iOS 13.0+
  */
-export function nw_ws_options_set_auto_reply_ping(options: $SDK147, auto_reply_ping: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3260264075137503, undefined, [options, auto_reply_ping], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ws_options_set_auto_reply_ping(options: $SDK147, auto_reply_ping: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3260264075137503, undefined, [options, auto_reply_ping], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ws_options_set_maximum_message_size(_ options: nw_protocol_options_t, _ maximum_message_size: Int)
  * @availability iOS 13.0+
  */
-export function nw_ws_options_set_maximum_message_size(options: $SDK147, maximum_message_size: number): void { return callSDK<void>("Network_212edf3d13b127f5", 2246955397382241, undefined, [options, maximum_message_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ws_options_set_maximum_message_size(options: $SDK147, maximum_message_size: number): void { return callSDK<void>("Network_5d69670f0307b385", 2246955397382241, undefined, [options, maximum_message_size], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ws_options_set_skip_handshake(_ options: nw_protocol_options_t, _ skip_handshake: Bool)
  * @availability iOS 13.0+
  */
-export function nw_ws_options_set_skip_handshake(options: $SDK147, skip_handshake: boolean): void { return callSDK<void>("Network_212edf3d13b127f5", 3530765714267980, undefined, [options, skip_handshake], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
+export function nw_ws_options_set_skip_handshake(options: $SDK147, skip_handshake: boolean): void { return callSDK<void>("Network_5d69670f0307b385", 3530765714267980, undefined, [options, skip_handshake], [{"protocol":"c:objc(pl)OS_nw_protocol_options"},null]); }
 
 /**
  * func nw_ws_response_add_additional_header(_ response: nw_ws_response_t, _ name: UnsafePointer<CChar>, _ value: UnsafePointer<CChar>)
  * @availability iOS 13.0+
  */
-export function nw_ws_response_add_additional_header(response: $SDK166, name: SDKHandle, value: SDKHandle): void { return callSDK<void>("Network_212edf3d13b127f5", 3865723259440084, undefined, [response, name, value], [{"protocol":"c:objc(pl)OS_nw_ws_response"},null,null]); }
+export function nw_ws_response_add_additional_header(response: $SDK166, name: SDKHandle, value: SDKHandle): void { return callSDK<void>("Network_5d69670f0307b385", 3865723259440084, undefined, [response, name, value], [{"protocol":"c:objc(pl)OS_nw_ws_response"},null,null]); }
 
 /**
  * func nw_ws_response_create(_ status: nw_ws_response_status_t, _ selected_subprotocol: UnsafePointer<CChar>?) -> nw_ws_response_t
  * @availability iOS 13.0+
  */
-export function nw_ws_response_create(status: nw_ws_response_status_t, selected_subprotocol?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_212edf3d13b127f5", 2631699580674987, undefined, [status, selected_subprotocol]); }
+export function nw_ws_response_create(status: nw_ws_response_status_t, selected_subprotocol?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("Network_5d69670f0307b385", 2631699580674987, undefined, [status, selected_subprotocol]); }
 
 /**
  * func nw_ws_response_get_selected_subprotocol(_ response: nw_ws_response_t) -> UnsafePointer<CChar>?
  * @availability iOS 13.0+
  */
-export function nw_ws_response_get_selected_subprotocol(response: $SDK166): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_212edf3d13b127f5", 3844760291256227, undefined, [response], [{"protocol":"c:objc(pl)OS_nw_ws_response"}]); }
+export function nw_ws_response_get_selected_subprotocol(response: $SDK166): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Network_5d69670f0307b385", 3844760291256227, undefined, [response], [{"protocol":"c:objc(pl)OS_nw_ws_response"}]); }
 
 /**
  * func nw_ws_response_get_status(_ response: nw_ws_response_t?) -> nw_ws_response_status_t
  * @availability iOS 13.0+
  */
-export function nw_ws_response_get_status(response?: (Implements<OS_nw_ws_response> | SDKHandle) | null): nw_ws_response_status_t { return callSDK<nw_ws_response_status_t>("Network_212edf3d13b127f5", 2224336775272599, undefined, [response], [{"protocol":"c:objc(pl)OS_nw_ws_response"}]); }
+export function nw_ws_response_get_status(response?: (Implements<OS_nw_ws_response> | SDKHandle) | null): nw_ws_response_status_t { return callSDK<nw_ws_response_status_t>("Network_5d69670f0307b385", 2224336775272599, undefined, [response], [{"protocol":"c:objc(pl)OS_nw_ws_response"}]); }
 
 /**
  * nonisolated(nonsending) func withNetworkConnection<ApplicationProtocol>(to endpoint: NWEndpoint, using builder: NWParametersBuilder<ApplicationProtocol>, _ handler: (NetworkConnection<ApplicationProtocol>) async throws -> Void) async throws where ApplicationProtocol : MultiplexProtocol
  * @availability iOS 26.0+
  */
-export function withNetworkConnection(endpoint: NWEndpoint, builder: $SDK17, handler: $SDK23): Promise<void> { return callSDKAsync<void>("Network_212edf3d13b127f5", 3362778569565922, undefined, [endpoint, builder, handler], [null,null,{"callback":{"out":[]}}]); }
+export function withNetworkConnection(endpoint: NWEndpoint, builder: $SDK17, handler: $SDK23): Promise<void> { return callSDKAsync<void>("Network_5d69670f0307b385", 3362778569565922, undefined, [endpoint, builder, handler], [null,null,{"callback":{"out":[]}}]); }
 
 /** var nw_browser_state_cancelled: nw_browser_state_t { get } */
-export const nw_browser_state_cancelled: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 962119894333280, undefined, []);
+export const nw_browser_state_cancelled: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 962119894333280, undefined, []);
 
 /** var nw_browser_state_failed: nw_browser_state_t { get } */
-export const nw_browser_state_failed: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 3445761437238756, undefined, []);
+export const nw_browser_state_failed: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 3445761437238756, undefined, []);
 
 /** var nw_browser_state_invalid: nw_browser_state_t { get } */
-export const nw_browser_state_invalid: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 3145512930688574, undefined, []);
+export const nw_browser_state_invalid: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 3145512930688574, undefined, []);
 
 /** var nw_browser_state_ready: nw_browser_state_t { get } */
-export const nw_browser_state_ready: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 2928079571467511, undefined, []);
+export const nw_browser_state_ready: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 2928079571467511, undefined, []);
 
 /** var nw_browser_state_waiting: nw_browser_state_t { get } */
-export const nw_browser_state_waiting: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_212edf3d13b127f5", 410777289080666, undefined, []);
+export const nw_browser_state_waiting: nw_browser_state_t = callSDK<nw_browser_state_t>("Network_5d69670f0307b385", 410777289080666, undefined, []);
 
 /** var nw_connection_group_state_cancelled: nw_connection_group_state_t { get } */
-export const nw_connection_group_state_cancelled: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 2372771756068345, undefined, []);
+export const nw_connection_group_state_cancelled: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 2372771756068345, undefined, []);
 
 /** var nw_connection_group_state_failed: nw_connection_group_state_t { get } */
-export const nw_connection_group_state_failed: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 601263565341971, undefined, []);
+export const nw_connection_group_state_failed: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 601263565341971, undefined, []);
 
 /** var nw_connection_group_state_invalid: nw_connection_group_state_t { get } */
-export const nw_connection_group_state_invalid: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 3542311136770672, undefined, []);
+export const nw_connection_group_state_invalid: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 3542311136770672, undefined, []);
 
 /** var nw_connection_group_state_ready: nw_connection_group_state_t { get } */
-export const nw_connection_group_state_ready: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 1836269346582323, undefined, []);
+export const nw_connection_group_state_ready: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 1836269346582323, undefined, []);
 
 /** var nw_connection_group_state_waiting: nw_connection_group_state_t { get } */
-export const nw_connection_group_state_waiting: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_212edf3d13b127f5", 3482309377868684, undefined, []);
+export const nw_connection_group_state_waiting: nw_connection_group_state_t = callSDK<nw_connection_group_state_t>("Network_5d69670f0307b385", 3482309377868684, undefined, []);
 
 /** var nw_connection_state_cancelled: nw_connection_state_t { get } */
-export const nw_connection_state_cancelled: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 1423395611827068, undefined, []);
+export const nw_connection_state_cancelled: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 1423395611827068, undefined, []);
 
 /** var nw_connection_state_failed: nw_connection_state_t { get } */
-export const nw_connection_state_failed: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 2885102209845769, undefined, []);
+export const nw_connection_state_failed: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 2885102209845769, undefined, []);
 
 /** var nw_connection_state_invalid: nw_connection_state_t { get } */
-export const nw_connection_state_invalid: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 4156951493782047, undefined, []);
+export const nw_connection_state_invalid: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 4156951493782047, undefined, []);
 
 /** var nw_connection_state_preparing: nw_connection_state_t { get } */
-export const nw_connection_state_preparing: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 3730260121791996, undefined, []);
+export const nw_connection_state_preparing: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 3730260121791996, undefined, []);
 
 /** var nw_connection_state_ready: nw_connection_state_t { get } */
-export const nw_connection_state_ready: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 1088278269291902, undefined, []);
+export const nw_connection_state_ready: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 1088278269291902, undefined, []);
 
 /** var nw_connection_state_waiting: nw_connection_state_t { get } */
-export const nw_connection_state_waiting: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_212edf3d13b127f5", 1317457934115673, undefined, []);
+export const nw_connection_state_waiting: nw_connection_state_t = callSDK<nw_connection_state_t>("Network_5d69670f0307b385", 1317457934115673, undefined, []);
 
 /** var nw_data_transfer_report_state_collected: nw_data_transfer_report_state_t { get } */
-export const nw_data_transfer_report_state_collected: nw_data_transfer_report_state_t = callSDK<nw_data_transfer_report_state_t>("Network_212edf3d13b127f5", 1900296203552043, undefined, []);
+export const nw_data_transfer_report_state_collected: nw_data_transfer_report_state_t = callSDK<nw_data_transfer_report_state_t>("Network_5d69670f0307b385", 1900296203552043, undefined, []);
 
 /** var nw_data_transfer_report_state_collecting: nw_data_transfer_report_state_t { get } */
-export const nw_data_transfer_report_state_collecting: nw_data_transfer_report_state_t = callSDK<nw_data_transfer_report_state_t>("Network_212edf3d13b127f5", 4441940085977874, undefined, []);
+export const nw_data_transfer_report_state_collecting: nw_data_transfer_report_state_t = callSDK<nw_data_transfer_report_state_t>("Network_5d69670f0307b385", 4441940085977874, undefined, []);
 
 /** var nw_endpoint_type_address: nw_endpoint_type_t { get } */
-export const nw_endpoint_type_address: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 1854116100282957, undefined, []);
+export const nw_endpoint_type_address: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 1854116100282957, undefined, []);
 
 /** var nw_endpoint_type_bonjour_service: nw_endpoint_type_t { get } */
-export const nw_endpoint_type_bonjour_service: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 2726029923786363, undefined, []);
+export const nw_endpoint_type_bonjour_service: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 2726029923786363, undefined, []);
 
 /** var nw_endpoint_type_host: nw_endpoint_type_t { get } */
-export const nw_endpoint_type_host: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 3838956056825697, undefined, []);
+export const nw_endpoint_type_host: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 3838956056825697, undefined, []);
 
 /** var nw_endpoint_type_invalid: nw_endpoint_type_t { get } */
-export const nw_endpoint_type_invalid: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 233312305662434, undefined, []);
+export const nw_endpoint_type_invalid: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 233312305662434, undefined, []);
 
 /** var nw_endpoint_type_url: nw_endpoint_type_t { get } */
-export const nw_endpoint_type_url: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_212edf3d13b127f5", 3511824173467464, undefined, []);
+export const nw_endpoint_type_url: nw_endpoint_type_t = callSDK<nw_endpoint_type_t>("Network_5d69670f0307b385", 3511824173467464, undefined, []);
 
 /** var nw_error_domain_dns: nw_error_domain_t { get } */
-export const nw_error_domain_dns: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 3911328542355481, undefined, []);
+export const nw_error_domain_dns: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 3911328542355481, undefined, []);
 
 /** var nw_error_domain_invalid: nw_error_domain_t { get } */
-export const nw_error_domain_invalid: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 820095840152163, undefined, []);
+export const nw_error_domain_invalid: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 820095840152163, undefined, []);
 
 /** var nw_error_domain_posix: nw_error_domain_t { get } */
-export const nw_error_domain_posix: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 767361734211164, undefined, []);
+export const nw_error_domain_posix: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 767361734211164, undefined, []);
 
 /** var nw_error_domain_tls: nw_error_domain_t { get } */
-export const nw_error_domain_tls: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 1051270201342607, undefined, []);
+export const nw_error_domain_tls: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 1051270201342607, undefined, []);
 
 /**
  * var nw_error_domain_wifi_aware: nw_error_domain_t { get }
  * @availability iOS 26.0+
  */
-export const nw_error_domain_wifi_aware: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_212edf3d13b127f5", 3141838860432797, undefined, []);
+export const nw_error_domain_wifi_aware: nw_error_domain_t = callSDK<nw_error_domain_t>("Network_5d69670f0307b385", 3141838860432797, undefined, []);
 
 /** var nw_ethernet_channel_state_cancelled: nw_ethernet_channel_state_t { get } */
-export const nw_ethernet_channel_state_cancelled: SDKHandle = callSDK<SDKHandle>("Network_212edf3d13b127f5", 2300509694560747, undefined, []);
+export const nw_ethernet_channel_state_cancelled: SDKHandle = callSDK<SDKHandle>("Network_5d69670f0307b385", 2300509694560747, undefined, []);
 
 /** var nw_ethernet_channel_state_failed: nw_ethernet_channel_state_t { get } */
-export const nw_ethernet_channel_state_failed: SDKHandle = callSDK<SDKHandle>("Network_212edf3d13b127f5", 3193445857353610, undefined, []);
+export const nw_ethernet_channel_state_failed: SDKHandle = callSDK<SDKHandle>("Network_5d69670f0307b385", 3193445857353610, undefined, []);
 
 /** var nw_ethernet_channel_state_invalid: nw_ethernet_channel_state_t { get } */
-export const nw_ethernet_channel_state_invalid: SDKHandle = callSDK<SDKHandle>("Network_212edf3d13b127f5", 3739146680169448, undefined, []);
+export const nw_ethernet_channel_state_invalid: SDKHandle = callSDK<SDKHandle>("Network_5d69670f0307b385", 3739146680169448, undefined, []);
 
 /** var nw_ethernet_channel_state_preparing: nw_ethernet_channel_state_t { get } */
-export const nw_ethernet_channel_state_preparing: SDKHandle = callSDK<SDKHandle>("Network_212edf3d13b127f5", 4255018728854566, undefined, []);
+export const nw_ethernet_channel_state_preparing: SDKHandle = callSDK<SDKHandle>("Network_5d69670f0307b385", 4255018728854566, undefined, []);
 
 /** var nw_ethernet_channel_state_ready: nw_ethernet_channel_state_t { get } */
-export const nw_ethernet_channel_state_ready: SDKHandle = callSDK<SDKHandle>("Network_212edf3d13b127f5", 295958999586780, undefined, []);
+export const nw_ethernet_channel_state_ready: SDKHandle = callSDK<SDKHandle>("Network_5d69670f0307b385", 295958999586780, undefined, []);
 
 /** var nw_ethernet_channel_state_waiting: nw_ethernet_channel_state_t { get } */
-export const nw_ethernet_channel_state_waiting: SDKHandle = callSDK<SDKHandle>("Network_212edf3d13b127f5", 3174314577010040, undefined, []);
+export const nw_ethernet_channel_state_waiting: SDKHandle = callSDK<SDKHandle>("Network_5d69670f0307b385", 3174314577010040, undefined, []);
 
 /** var nw_framer_start_result_ready: nw_framer_start_result_t { get } */
-export const nw_framer_start_result_ready: nw_framer_start_result_t = callSDK<nw_framer_start_result_t>("Network_212edf3d13b127f5", 4008763053899783, undefined, []);
+export const nw_framer_start_result_ready: nw_framer_start_result_t = callSDK<nw_framer_start_result_t>("Network_5d69670f0307b385", 4008763053899783, undefined, []);
 
 /** var nw_framer_start_result_will_mark_ready: nw_framer_start_result_t { get } */
-export const nw_framer_start_result_will_mark_ready: nw_framer_start_result_t = callSDK<nw_framer_start_result_t>("Network_212edf3d13b127f5", 3357030258970414, undefined, []);
+export const nw_framer_start_result_will_mark_ready: nw_framer_start_result_t = callSDK<nw_framer_start_result_t>("Network_5d69670f0307b385", 3357030258970414, undefined, []);
 
 /** var nw_interface_radio_type_cell_cdma: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_cdma: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 3641772526858491, undefined, []);
+export const nw_interface_radio_type_cell_cdma: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 3641772526858491, undefined, []);
 
 /** var nw_interface_radio_type_cell_endc_mmw: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_endc_mmw: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 3239508213477741, undefined, []);
+export const nw_interface_radio_type_cell_endc_mmw: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 3239508213477741, undefined, []);
 
 /** var nw_interface_radio_type_cell_endc_sub6: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_endc_sub6: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2185459518560497, undefined, []);
+export const nw_interface_radio_type_cell_endc_sub6: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2185459518560497, undefined, []);
 
 /** var nw_interface_radio_type_cell_evdo: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_evdo: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 785736007848790, undefined, []);
+export const nw_interface_radio_type_cell_evdo: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 785736007848790, undefined, []);
 
 /** var nw_interface_radio_type_cell_gsm: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_gsm: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2578746395916087, undefined, []);
+export const nw_interface_radio_type_cell_gsm: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2578746395916087, undefined, []);
 
 /** var nw_interface_radio_type_cell_lte: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_lte: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 430939206672433, undefined, []);
+export const nw_interface_radio_type_cell_lte: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 430939206672433, undefined, []);
 
 /** var nw_interface_radio_type_cell_nr_sa_mmw: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_nr_sa_mmw: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 3567986212870009, undefined, []);
+export const nw_interface_radio_type_cell_nr_sa_mmw: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 3567986212870009, undefined, []);
 
 /** var nw_interface_radio_type_cell_nr_sa_sub6: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_nr_sa_sub6: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2069672487329456, undefined, []);
+export const nw_interface_radio_type_cell_nr_sa_sub6: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2069672487329456, undefined, []);
 
 /** var nw_interface_radio_type_cell_wcdma: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_cell_wcdma: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 532787362887394, undefined, []);
+export const nw_interface_radio_type_cell_wcdma: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 532787362887394, undefined, []);
 
 /** var nw_interface_radio_type_unknown: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_unknown: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2222771872678257, undefined, []);
+export const nw_interface_radio_type_unknown: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2222771872678257, undefined, []);
 
 /** var nw_interface_radio_type_wifi_a: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_wifi_a: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2106226327848405, undefined, []);
+export const nw_interface_radio_type_wifi_a: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2106226327848405, undefined, []);
 
 /** var nw_interface_radio_type_wifi_ac: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_wifi_ac: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 352059069592842, undefined, []);
+export const nw_interface_radio_type_wifi_ac: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 352059069592842, undefined, []);
 
 /** var nw_interface_radio_type_wifi_ax: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_wifi_ax: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 1625625615428580, undefined, []);
+export const nw_interface_radio_type_wifi_ax: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 1625625615428580, undefined, []);
 
 /** var nw_interface_radio_type_wifi_b: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_wifi_b: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2118574349737704, undefined, []);
+export const nw_interface_radio_type_wifi_b: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2118574349737704, undefined, []);
 
 /** var nw_interface_radio_type_wifi_g: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_wifi_g: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 2437386845259863, undefined, []);
+export const nw_interface_radio_type_wifi_g: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 2437386845259863, undefined, []);
 
 /** var nw_interface_radio_type_wifi_n: nw_interface_radio_type_t { get } */
-export const nw_interface_radio_type_wifi_n: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_212edf3d13b127f5", 4048685882523950, undefined, []);
+export const nw_interface_radio_type_wifi_n: nw_interface_radio_type_t = callSDK<nw_interface_radio_type_t>("Network_5d69670f0307b385", 4048685882523950, undefined, []);
 
 /** var nw_interface_type_cellular: nw_interface_type_t { get } */
-export const nw_interface_type_cellular: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 2707252254110841, undefined, []);
+export const nw_interface_type_cellular: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 2707252254110841, undefined, []);
 
 /** var nw_interface_type_loopback: nw_interface_type_t { get } */
-export const nw_interface_type_loopback: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 2072210982608995, undefined, []);
+export const nw_interface_type_loopback: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 2072210982608995, undefined, []);
 
 /** var nw_interface_type_other: nw_interface_type_t { get } */
-export const nw_interface_type_other: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 2328771403510121, undefined, []);
+export const nw_interface_type_other: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 2328771403510121, undefined, []);
 
 /** var nw_interface_type_wifi: nw_interface_type_t { get } */
-export const nw_interface_type_wifi: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 3601821217037685, undefined, []);
+export const nw_interface_type_wifi: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 3601821217037685, undefined, []);
 
 /** var nw_interface_type_wired: nw_interface_type_t { get } */
-export const nw_interface_type_wired: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_212edf3d13b127f5", 165860367101619, undefined, []);
+export const nw_interface_type_wired: nw_interface_type_t = callSDK<nw_interface_type_t>("Network_5d69670f0307b385", 165860367101619, undefined, []);
 
 /** var nw_ip_ecn_flag_ce: nw_ip_ecn_flag_t { get } */
-export const nw_ip_ecn_flag_ce: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 2272112191325119, undefined, []);
+export const nw_ip_ecn_flag_ce: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 2272112191325119, undefined, []);
 
 /** var nw_ip_ecn_flag_ect_0: nw_ip_ecn_flag_t { get } */
-export const nw_ip_ecn_flag_ect_0: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 2192271623696938, undefined, []);
+export const nw_ip_ecn_flag_ect_0: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 2192271623696938, undefined, []);
 
 /** var nw_ip_ecn_flag_ect_1: nw_ip_ecn_flag_t { get } */
-export const nw_ip_ecn_flag_ect_1: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 594004273196127, undefined, []);
+export const nw_ip_ecn_flag_ect_1: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 594004273196127, undefined, []);
 
 /** var nw_ip_ecn_flag_non_ect: nw_ip_ecn_flag_t { get } */
-export const nw_ip_ecn_flag_non_ect: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_212edf3d13b127f5", 1518292315001135, undefined, []);
+export const nw_ip_ecn_flag_non_ect: nw_ip_ecn_flag_t = callSDK<nw_ip_ecn_flag_t>("Network_5d69670f0307b385", 1518292315001135, undefined, []);
 
 /** var nw_ip_local_address_preference_default: nw_ip_local_address_preference_t { get } */
-export const nw_ip_local_address_preference_default: nw_ip_local_address_preference_t = callSDK<nw_ip_local_address_preference_t>("Network_212edf3d13b127f5", 3504758465782647, undefined, []);
+export const nw_ip_local_address_preference_default: nw_ip_local_address_preference_t = callSDK<nw_ip_local_address_preference_t>("Network_5d69670f0307b385", 3504758465782647, undefined, []);
 
 /** var nw_ip_local_address_preference_stable: nw_ip_local_address_preference_t { get } */
-export const nw_ip_local_address_preference_stable: nw_ip_local_address_preference_t = callSDK<nw_ip_local_address_preference_t>("Network_212edf3d13b127f5", 1998596992007810, undefined, []);
+export const nw_ip_local_address_preference_stable: nw_ip_local_address_preference_t = callSDK<nw_ip_local_address_preference_t>("Network_5d69670f0307b385", 1998596992007810, undefined, []);
 
 /** var nw_ip_local_address_preference_temporary: nw_ip_local_address_preference_t { get } */
-export const nw_ip_local_address_preference_temporary: nw_ip_local_address_preference_t = callSDK<nw_ip_local_address_preference_t>("Network_212edf3d13b127f5", 177104888425703, undefined, []);
+export const nw_ip_local_address_preference_temporary: nw_ip_local_address_preference_t = callSDK<nw_ip_local_address_preference_t>("Network_5d69670f0307b385", 177104888425703, undefined, []);
 
 /** var nw_ip_version_4: nw_ip_version_t { get } */
-export const nw_ip_version_4: nw_ip_version_t = callSDK<nw_ip_version_t>("Network_212edf3d13b127f5", 1663265630864421, undefined, []);
+export const nw_ip_version_4: nw_ip_version_t = callSDK<nw_ip_version_t>("Network_5d69670f0307b385", 1663265630864421, undefined, []);
 
 /** var nw_ip_version_6: nw_ip_version_t { get } */
-export const nw_ip_version_6: nw_ip_version_t = callSDK<nw_ip_version_t>("Network_212edf3d13b127f5", 3977420714330583, undefined, []);
+export const nw_ip_version_6: nw_ip_version_t = callSDK<nw_ip_version_t>("Network_5d69670f0307b385", 3977420714330583, undefined, []);
 
 /** var nw_ip_version_any: nw_ip_version_t { get } */
-export const nw_ip_version_any: nw_ip_version_t = callSDK<nw_ip_version_t>("Network_212edf3d13b127f5", 304518000211002, undefined, []);
+export const nw_ip_version_any: nw_ip_version_t = callSDK<nw_ip_version_t>("Network_5d69670f0307b385", 304518000211002, undefined, []);
 
 /** var nw_link_quality_good: nw_link_quality_t { get } */
-export const nw_link_quality_good: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 3613579173057839, undefined, []);
+export const nw_link_quality_good: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 3613579173057839, undefined, []);
 
 /** var nw_link_quality_minimal: nw_link_quality_t { get } */
-export const nw_link_quality_minimal: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 1055507333640304, undefined, []);
+export const nw_link_quality_minimal: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 1055507333640304, undefined, []);
 
 /** var nw_link_quality_moderate: nw_link_quality_t { get } */
-export const nw_link_quality_moderate: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 1294071732471181, undefined, []);
+export const nw_link_quality_moderate: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 1294071732471181, undefined, []);
 
 /** var nw_link_quality_unknown: nw_link_quality_t { get } */
-export const nw_link_quality_unknown: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_212edf3d13b127f5", 1920249132222552, undefined, []);
+export const nw_link_quality_unknown: nw_link_quality_t = callSDK<nw_link_quality_t>("Network_5d69670f0307b385", 1920249132222552, undefined, []);
 
 /** var nw_listener_state_cancelled: nw_listener_state_t { get } */
-export const nw_listener_state_cancelled: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 3435811081090520, undefined, []);
+export const nw_listener_state_cancelled: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 3435811081090520, undefined, []);
 
 /** var nw_listener_state_failed: nw_listener_state_t { get } */
-export const nw_listener_state_failed: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 3323282869417449, undefined, []);
+export const nw_listener_state_failed: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 3323282869417449, undefined, []);
 
 /** var nw_listener_state_invalid: nw_listener_state_t { get } */
-export const nw_listener_state_invalid: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 2544550001461378, undefined, []);
+export const nw_listener_state_invalid: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 2544550001461378, undefined, []);
 
 /** var nw_listener_state_ready: nw_listener_state_t { get } */
-export const nw_listener_state_ready: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 108257891181720, undefined, []);
+export const nw_listener_state_ready: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 108257891181720, undefined, []);
 
 /** var nw_listener_state_waiting: nw_listener_state_t { get } */
-export const nw_listener_state_waiting: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_212edf3d13b127f5", 2015458355205436, undefined, []);
+export const nw_listener_state_waiting: nw_listener_state_t = callSDK<nw_listener_state_t>("Network_5d69670f0307b385", 2015458355205436, undefined, []);
 
 /** var nw_multipath_service_aggregate: nw_multipath_service_t { get } */
-export const nw_multipath_service_aggregate: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 2692863493536344, undefined, []);
+export const nw_multipath_service_aggregate: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 2692863493536344, undefined, []);
 
 /** var nw_multipath_service_disabled: nw_multipath_service_t { get } */
-export const nw_multipath_service_disabled: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 2289369916473364, undefined, []);
+export const nw_multipath_service_disabled: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 2289369916473364, undefined, []);
 
 /** var nw_multipath_service_handover: nw_multipath_service_t { get } */
-export const nw_multipath_service_handover: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 1699023342572536, undefined, []);
+export const nw_multipath_service_handover: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 1699023342572536, undefined, []);
 
 /** var nw_multipath_service_interactive: nw_multipath_service_t { get } */
-export const nw_multipath_service_interactive: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_212edf3d13b127f5", 2338642140571556, undefined, []);
+export const nw_multipath_service_interactive: nw_multipath_service_t = callSDK<nw_multipath_service_t>("Network_5d69670f0307b385", 2338642140571556, undefined, []);
 
 /** var nw_multipath_version_0: nw_multipath_version_t { get } */
-export const nw_multipath_version_0: nw_multipath_version_t = callSDK<nw_multipath_version_t>("Network_212edf3d13b127f5", 2340584726084578, undefined, []);
+export const nw_multipath_version_0: nw_multipath_version_t = callSDK<nw_multipath_version_t>("Network_5d69670f0307b385", 2340584726084578, undefined, []);
 
 /** var nw_multipath_version_1: nw_multipath_version_t { get } */
-export const nw_multipath_version_1: nw_multipath_version_t = callSDK<nw_multipath_version_t>("Network_212edf3d13b127f5", 188980168122859, undefined, []);
+export const nw_multipath_version_1: nw_multipath_version_t = callSDK<nw_multipath_version_t>("Network_5d69670f0307b385", 188980168122859, undefined, []);
 
 /** var nw_multipath_version_unspecified: nw_multipath_version_t { get } */
-export const nw_multipath_version_unspecified: nw_multipath_version_t = callSDK<nw_multipath_version_t>("Network_212edf3d13b127f5", 4072692014919666, undefined, []);
+export const nw_multipath_version_unspecified: nw_multipath_version_t = callSDK<nw_multipath_version_t>("Network_5d69670f0307b385", 4072692014919666, undefined, []);
 
 /** var nw_parameters_expired_dns_behavior_allow: nw_parameters_expired_dns_behavior_t { get } */
-export const nw_parameters_expired_dns_behavior_allow: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 3107537250158925, undefined, []);
+export const nw_parameters_expired_dns_behavior_allow: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 3107537250158925, undefined, []);
 
 /** var nw_parameters_expired_dns_behavior_default: nw_parameters_expired_dns_behavior_t { get } */
-export const nw_parameters_expired_dns_behavior_default: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 2948141924220063, undefined, []);
+export const nw_parameters_expired_dns_behavior_default: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 2948141924220063, undefined, []);
 
 /**
  * var nw_parameters_expired_dns_behavior_persistent: nw_parameters_expired_dns_behavior_t { get }
  * @availability iOS 18.0+
  */
-export const nw_parameters_expired_dns_behavior_persistent: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 2165146037230782, undefined, []);
+export const nw_parameters_expired_dns_behavior_persistent: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 2165146037230782, undefined, []);
 
 /** var nw_parameters_expired_dns_behavior_prohibit: nw_parameters_expired_dns_behavior_t { get } */
-export const nw_parameters_expired_dns_behavior_prohibit: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_212edf3d13b127f5", 4376828709473763, undefined, []);
+export const nw_parameters_expired_dns_behavior_prohibit: nw_parameters_expired_dns_behavior_t = callSDK<nw_parameters_expired_dns_behavior_t>("Network_5d69670f0307b385", 4376828709473763, undefined, []);
 
 /** var nw_path_status_invalid: nw_path_status_t { get } */
-export const nw_path_status_invalid: nw_path_status_t = callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 43628545446628, undefined, []);
+export const nw_path_status_invalid: nw_path_status_t = callSDK<nw_path_status_t>("Network_5d69670f0307b385", 43628545446628, undefined, []);
 
 /** var nw_path_status_satisfiable: nw_path_status_t { get } */
-export const nw_path_status_satisfiable: nw_path_status_t = callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 1761546548801726, undefined, []);
+export const nw_path_status_satisfiable: nw_path_status_t = callSDK<nw_path_status_t>("Network_5d69670f0307b385", 1761546548801726, undefined, []);
 
 /** var nw_path_status_satisfied: nw_path_status_t { get } */
-export const nw_path_status_satisfied: nw_path_status_t = callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 4451936739834909, undefined, []);
+export const nw_path_status_satisfied: nw_path_status_t = callSDK<nw_path_status_t>("Network_5d69670f0307b385", 4451936739834909, undefined, []);
 
 /** var nw_path_status_unsatisfied: nw_path_status_t { get } */
-export const nw_path_status_unsatisfied: nw_path_status_t = callSDK<nw_path_status_t>("Network_212edf3d13b127f5", 160516068079496, undefined, []);
+export const nw_path_status_unsatisfied: nw_path_status_t = callSDK<nw_path_status_t>("Network_5d69670f0307b385", 160516068079496, undefined, []);
 
 /** var nw_path_unsatisfied_reason_cellular_denied: nw_path_unsatisfied_reason_t { get } */
-export const nw_path_unsatisfied_reason_cellular_denied: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 3869978440911500, undefined, []);
+export const nw_path_unsatisfied_reason_cellular_denied: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 3869978440911500, undefined, []);
 
 /** var nw_path_unsatisfied_reason_local_network_denied: nw_path_unsatisfied_reason_t { get } */
-export const nw_path_unsatisfied_reason_local_network_denied: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 149385755229660, undefined, []);
+export const nw_path_unsatisfied_reason_local_network_denied: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 149385755229660, undefined, []);
 
 /** var nw_path_unsatisfied_reason_not_available: nw_path_unsatisfied_reason_t { get } */
-export const nw_path_unsatisfied_reason_not_available: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 3170168846316049, undefined, []);
+export const nw_path_unsatisfied_reason_not_available: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 3170168846316049, undefined, []);
 
 /**
  * var nw_path_unsatisfied_reason_vpn_inactive: nw_path_unsatisfied_reason_t { get }
  * @availability iOS 17.0+
  */
-export const nw_path_unsatisfied_reason_vpn_inactive: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 1291960061052725, undefined, []);
+export const nw_path_unsatisfied_reason_vpn_inactive: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 1291960061052725, undefined, []);
 
 /** var nw_path_unsatisfied_reason_wifi_denied: nw_path_unsatisfied_reason_t { get } */
-export const nw_path_unsatisfied_reason_wifi_denied: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_212edf3d13b127f5", 3082944252681139, undefined, []);
+export const nw_path_unsatisfied_reason_wifi_denied: nw_path_unsatisfied_reason_t = callSDK<nw_path_unsatisfied_reason_t>("Network_5d69670f0307b385", 3082944252681139, undefined, []);
 
 /** var nw_quic_stream_type_bidirectional: nw_quic_stream_type_t { get } */
-export const nw_quic_stream_type_bidirectional: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_212edf3d13b127f5", 130784282445774, undefined, []);
+export const nw_quic_stream_type_bidirectional: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_5d69670f0307b385", 130784282445774, undefined, []);
 
 /** var nw_quic_stream_type_datagram: nw_quic_stream_type_t { get } */
-export const nw_quic_stream_type_datagram: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_212edf3d13b127f5", 3652719312892737, undefined, []);
+export const nw_quic_stream_type_datagram: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_5d69670f0307b385", 3652719312892737, undefined, []);
 
 /** var nw_quic_stream_type_unidirectional: nw_quic_stream_type_t { get } */
-export const nw_quic_stream_type_unidirectional: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_212edf3d13b127f5", 2963357470299685, undefined, []);
+export const nw_quic_stream_type_unidirectional: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_5d69670f0307b385", 2963357470299685, undefined, []);
 
 /** var nw_quic_stream_type_unknown: nw_quic_stream_type_t { get } */
-export const nw_quic_stream_type_unknown: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_212edf3d13b127f5", 2524634005328613, undefined, []);
+export const nw_quic_stream_type_unknown: nw_quic_stream_type_t = callSDK<nw_quic_stream_type_t>("Network_5d69670f0307b385", 2524634005328613, undefined, []);
 
 /** var nw_report_resolution_protocol_https: nw_report_resolution_protocol_t { get } */
-export const nw_report_resolution_protocol_https: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 808695872501354, undefined, []);
+export const nw_report_resolution_protocol_https: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 808695872501354, undefined, []);
 
 /** var nw_report_resolution_protocol_tcp: nw_report_resolution_protocol_t { get } */
-export const nw_report_resolution_protocol_tcp: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 921047286757133, undefined, []);
+export const nw_report_resolution_protocol_tcp: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 921047286757133, undefined, []);
 
 /** var nw_report_resolution_protocol_tls: nw_report_resolution_protocol_t { get } */
-export const nw_report_resolution_protocol_tls: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 4049825047751720, undefined, []);
+export const nw_report_resolution_protocol_tls: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 4049825047751720, undefined, []);
 
 /** var nw_report_resolution_protocol_udp: nw_report_resolution_protocol_t { get } */
-export const nw_report_resolution_protocol_udp: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 3234873072059210, undefined, []);
+export const nw_report_resolution_protocol_udp: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 3234873072059210, undefined, []);
 
 /** var nw_report_resolution_protocol_unknown: nw_report_resolution_protocol_t { get } */
-export const nw_report_resolution_protocol_unknown: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_212edf3d13b127f5", 570684591053462, undefined, []);
+export const nw_report_resolution_protocol_unknown: nw_report_resolution_protocol_t = callSDK<nw_report_resolution_protocol_t>("Network_5d69670f0307b385", 570684591053462, undefined, []);
 
 /** var nw_report_resolution_source_cache: nw_report_resolution_source_t { get } */
-export const nw_report_resolution_source_cache: nw_report_resolution_source_t = callSDK<nw_report_resolution_source_t>("Network_212edf3d13b127f5", 4080453507884897, undefined, []);
+export const nw_report_resolution_source_cache: nw_report_resolution_source_t = callSDK<nw_report_resolution_source_t>("Network_5d69670f0307b385", 4080453507884897, undefined, []);
 
 /** var nw_report_resolution_source_expired_cache: nw_report_resolution_source_t { get } */
-export const nw_report_resolution_source_expired_cache: nw_report_resolution_source_t = callSDK<nw_report_resolution_source_t>("Network_212edf3d13b127f5", 2629715759524285, undefined, []);
+export const nw_report_resolution_source_expired_cache: nw_report_resolution_source_t = callSDK<nw_report_resolution_source_t>("Network_5d69670f0307b385", 2629715759524285, undefined, []);
 
 /** var nw_report_resolution_source_query: nw_report_resolution_source_t { get } */
-export const nw_report_resolution_source_query: nw_report_resolution_source_t = callSDK<nw_report_resolution_source_t>("Network_212edf3d13b127f5", 1569375963119989, undefined, []);
+export const nw_report_resolution_source_query: nw_report_resolution_source_t = callSDK<nw_report_resolution_source_t>("Network_5d69670f0307b385", 1569375963119989, undefined, []);
 
 /** var nw_service_class_background: nw_service_class_t { get } */
-export const nw_service_class_background: nw_service_class_t = callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 3955254174293948, undefined, []);
+export const nw_service_class_background: nw_service_class_t = callSDK<nw_service_class_t>("Network_5d69670f0307b385", 3955254174293948, undefined, []);
 
 /** var nw_service_class_best_effort: nw_service_class_t { get } */
-export const nw_service_class_best_effort: nw_service_class_t = callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 2712955877108825, undefined, []);
+export const nw_service_class_best_effort: nw_service_class_t = callSDK<nw_service_class_t>("Network_5d69670f0307b385", 2712955877108825, undefined, []);
 
 /** var nw_service_class_interactive_video: nw_service_class_t { get } */
-export const nw_service_class_interactive_video: nw_service_class_t = callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 2555319358574046, undefined, []);
+export const nw_service_class_interactive_video: nw_service_class_t = callSDK<nw_service_class_t>("Network_5d69670f0307b385", 2555319358574046, undefined, []);
 
 /** var nw_service_class_interactive_voice: nw_service_class_t { get } */
-export const nw_service_class_interactive_voice: nw_service_class_t = callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 358650356852244, undefined, []);
+export const nw_service_class_interactive_voice: nw_service_class_t = callSDK<nw_service_class_t>("Network_5d69670f0307b385", 358650356852244, undefined, []);
 
 /** var nw_service_class_responsive_data: nw_service_class_t { get } */
-export const nw_service_class_responsive_data: nw_service_class_t = callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 748776368570717, undefined, []);
+export const nw_service_class_responsive_data: nw_service_class_t = callSDK<nw_service_class_t>("Network_5d69670f0307b385", 748776368570717, undefined, []);
 
 /** var nw_service_class_signaling: nw_service_class_t { get } */
-export const nw_service_class_signaling: nw_service_class_t = callSDK<nw_service_class_t>("Network_212edf3d13b127f5", 1163004321687557, undefined, []);
+export const nw_service_class_signaling: nw_service_class_t = callSDK<nw_service_class_t>("Network_5d69670f0307b385", 1163004321687557, undefined, []);
 
 /** var nw_txt_record_find_key_empty_value: nw_txt_record_find_key_t { get } */
-export const nw_txt_record_find_key_empty_value: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 991896085252720, undefined, []);
+export const nw_txt_record_find_key_empty_value: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 991896085252720, undefined, []);
 
 /** var nw_txt_record_find_key_invalid: nw_txt_record_find_key_t { get } */
-export const nw_txt_record_find_key_invalid: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 2811974355642580, undefined, []);
+export const nw_txt_record_find_key_invalid: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 2811974355642580, undefined, []);
 
 /** var nw_txt_record_find_key_no_value: nw_txt_record_find_key_t { get } */
-export const nw_txt_record_find_key_no_value: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 1061381486666800, undefined, []);
+export const nw_txt_record_find_key_no_value: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 1061381486666800, undefined, []);
 
 /** var nw_txt_record_find_key_non_empty_value: nw_txt_record_find_key_t { get } */
-export const nw_txt_record_find_key_non_empty_value: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 2990331520484128, undefined, []);
+export const nw_txt_record_find_key_non_empty_value: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 2990331520484128, undefined, []);
 
 /** var nw_txt_record_find_key_not_present: nw_txt_record_find_key_t { get } */
-export const nw_txt_record_find_key_not_present: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_212edf3d13b127f5", 3091337297990715, undefined, []);
+export const nw_txt_record_find_key_not_present: nw_txt_record_find_key_t = callSDK<nw_txt_record_find_key_t>("Network_5d69670f0307b385", 3091337297990715, undefined, []);
 
 /** var nw_ws_close_code_abnormal_closure: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_abnormal_closure: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 540960708075392, undefined, []);
+export const nw_ws_close_code_abnormal_closure: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 540960708075392, undefined, []);
 
 /** var nw_ws_close_code_going_away: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_going_away: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 3528012631702894, undefined, []);
+export const nw_ws_close_code_going_away: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 3528012631702894, undefined, []);
 
 /** var nw_ws_close_code_internal_server_error: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_internal_server_error: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 4483585104714607, undefined, []);
+export const nw_ws_close_code_internal_server_error: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 4483585104714607, undefined, []);
 
 /** var nw_ws_close_code_invalid_frame_payload_data: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_invalid_frame_payload_data: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 4171864348636941, undefined, []);
+export const nw_ws_close_code_invalid_frame_payload_data: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 4171864348636941, undefined, []);
 
 /** var nw_ws_close_code_mandatory_extension: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_mandatory_extension: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 2650587541785810, undefined, []);
+export const nw_ws_close_code_mandatory_extension: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 2650587541785810, undefined, []);
 
 /** var nw_ws_close_code_message_too_big: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_message_too_big: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 2689203579939767, undefined, []);
+export const nw_ws_close_code_message_too_big: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 2689203579939767, undefined, []);
 
 /** var nw_ws_close_code_no_status_received: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_no_status_received: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 4474576500039621, undefined, []);
+export const nw_ws_close_code_no_status_received: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 4474576500039621, undefined, []);
 
 /** var nw_ws_close_code_normal_closure: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_normal_closure: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 165868487957922, undefined, []);
+export const nw_ws_close_code_normal_closure: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 165868487957922, undefined, []);
 
 /** var nw_ws_close_code_policy_violation: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_policy_violation: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 4037472234970090, undefined, []);
+export const nw_ws_close_code_policy_violation: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 4037472234970090, undefined, []);
 
 /** var nw_ws_close_code_protocol_error: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_protocol_error: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 3124914139655038, undefined, []);
+export const nw_ws_close_code_protocol_error: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 3124914139655038, undefined, []);
 
 /** var nw_ws_close_code_tls_handshake: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_tls_handshake: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 1466592594803219, undefined, []);
+export const nw_ws_close_code_tls_handshake: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 1466592594803219, undefined, []);
 
 /** var nw_ws_close_code_unsupported_data: nw_ws_close_code_t { get } */
-export const nw_ws_close_code_unsupported_data: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_212edf3d13b127f5", 4467585331479123, undefined, []);
+export const nw_ws_close_code_unsupported_data: nw_ws_close_code_t = callSDK<nw_ws_close_code_t>("Network_5d69670f0307b385", 4467585331479123, undefined, []);
 
 /** var nw_ws_opcode_binary: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_binary: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 220726019695693, undefined, []);
+export const nw_ws_opcode_binary: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 220726019695693, undefined, []);
 
 /** var nw_ws_opcode_close: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_close: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 2919045447174691, undefined, []);
+export const nw_ws_opcode_close: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 2919045447174691, undefined, []);
 
 /** var nw_ws_opcode_cont: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_cont: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 3029373881182337, undefined, []);
+export const nw_ws_opcode_cont: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 3029373881182337, undefined, []);
 
 /** var nw_ws_opcode_invalid: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_invalid: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 1255662602031616, undefined, []);
+export const nw_ws_opcode_invalid: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 1255662602031616, undefined, []);
 
 /** var nw_ws_opcode_ping: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_ping: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 761369953134502, undefined, []);
+export const nw_ws_opcode_ping: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 761369953134502, undefined, []);
 
 /** var nw_ws_opcode_pong: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_pong: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 1211589452121558, undefined, []);
+export const nw_ws_opcode_pong: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 1211589452121558, undefined, []);
 
 /** var nw_ws_opcode_text: nw_ws_opcode_t { get } */
-export const nw_ws_opcode_text: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_212edf3d13b127f5", 815969929623198, undefined, []);
+export const nw_ws_opcode_text: nw_ws_opcode_t = callSDK<nw_ws_opcode_t>("Network_5d69670f0307b385", 815969929623198, undefined, []);
 
 /** var nw_ws_response_status_accept: nw_ws_response_status_t { get } */
-export const nw_ws_response_status_accept: nw_ws_response_status_t = callSDK<nw_ws_response_status_t>("Network_212edf3d13b127f5", 3547674263641495, undefined, []);
+export const nw_ws_response_status_accept: nw_ws_response_status_t = callSDK<nw_ws_response_status_t>("Network_5d69670f0307b385", 3547674263641495, undefined, []);
 
 /** var nw_ws_response_status_invalid: nw_ws_response_status_t { get } */
-export const nw_ws_response_status_invalid: nw_ws_response_status_t = callSDK<nw_ws_response_status_t>("Network_212edf3d13b127f5", 19660536065886, undefined, []);
+export const nw_ws_response_status_invalid: nw_ws_response_status_t = callSDK<nw_ws_response_status_t>("Network_5d69670f0307b385", 19660536065886, undefined, []);
 
 /** var nw_ws_response_status_reject: nw_ws_response_status_t { get } */
-export const nw_ws_response_status_reject: nw_ws_response_status_t = callSDK<nw_ws_response_status_t>("Network_212edf3d13b127f5", 1713757536031498, undefined, []);
+export const nw_ws_response_status_reject: nw_ws_response_status_t = callSDK<nw_ws_response_status_t>("Network_5d69670f0307b385", 1713757536031498, undefined, []);
 
 /** var nw_ws_version_13: nw_ws_version_t { get } */
-export const nw_ws_version_13: nw_ws_version_t = callSDK<nw_ws_version_t>("Network_212edf3d13b127f5", 2221709567308411, undefined, []);
+export const nw_ws_version_13: nw_ws_version_t = callSDK<nw_ws_version_t>("Network_5d69670f0307b385", 2221709567308411, undefined, []);
 
 /** var nw_ws_version_invalid: nw_ws_version_t { get } */
-export const nw_ws_version_invalid: nw_ws_version_t = callSDK<nw_ws_version_t>("Network_212edf3d13b127f5", 658231555707613, undefined, []);
+export const nw_ws_version_invalid: nw_ws_version_t = callSDK<nw_ws_version_t>("Network_5d69670f0307b385", 658231555707613, undefined, []);
 
 /** var nw_browse_result_change_identical: Int { get } */
-export const nw_browse_result_change_identical: number = callSDK<number>("Network_212edf3d13b127f5", 1380095718187791, undefined, []);
+export const nw_browse_result_change_identical: number = callSDK<number>("Network_5d69670f0307b385", 1380095718187791, undefined, []);
 
 /** var nw_browse_result_change_interface_added: Int { get } */
-export const nw_browse_result_change_interface_added: number = callSDK<number>("Network_212edf3d13b127f5", 4486157708446695, undefined, []);
+export const nw_browse_result_change_interface_added: number = callSDK<number>("Network_5d69670f0307b385", 4486157708446695, undefined, []);
 
 /** var nw_browse_result_change_interface_removed: Int { get } */
-export const nw_browse_result_change_interface_removed: number = callSDK<number>("Network_212edf3d13b127f5", 3345114833591777, undefined, []);
+export const nw_browse_result_change_interface_removed: number = callSDK<number>("Network_5d69670f0307b385", 3345114833591777, undefined, []);
 
 /** var nw_browse_result_change_invalid: Int { get } */
-export const nw_browse_result_change_invalid: number = callSDK<number>("Network_212edf3d13b127f5", 881714778449591, undefined, []);
+export const nw_browse_result_change_invalid: number = callSDK<number>("Network_5d69670f0307b385", 881714778449591, undefined, []);
 
 /** var nw_browse_result_change_result_added: Int { get } */
-export const nw_browse_result_change_result_added: number = callSDK<number>("Network_212edf3d13b127f5", 1629589216016704, undefined, []);
+export const nw_browse_result_change_result_added: number = callSDK<number>("Network_5d69670f0307b385", 1629589216016704, undefined, []);
 
 /** var nw_browse_result_change_result_removed: Int { get } */
-export const nw_browse_result_change_result_removed: number = callSDK<number>("Network_212edf3d13b127f5", 405709970877519, undefined, []);
+export const nw_browse_result_change_result_removed: number = callSDK<number>("Network_5d69670f0307b385", 405709970877519, undefined, []);
 
 /** var nw_browse_result_change_txt_record_changed: Int { get } */
-export const nw_browse_result_change_txt_record_changed: number = callSDK<number>("Network_212edf3d13b127f5", 1020431718768138, undefined, []);
+export const nw_browse_result_change_txt_record_changed: number = callSDK<number>("Network_5d69670f0307b385", 1020431718768138, undefined, []);
 
 /**
  * let kNWErrorDomainDNS: CFString
  * @availability iOS 12.0+
  */
-export const kNWErrorDomainDNS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_212edf3d13b127f5", 1503392553131905, undefined, []);
+export const kNWErrorDomainDNS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_5d69670f0307b385", 1503392553131905, undefined, []);
 
 /**
  * let kNWErrorDomainPOSIX: CFString
  * @availability iOS 12.0+
  */
-export const kNWErrorDomainPOSIX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_212edf3d13b127f5", 1706568508720914, undefined, []);
+export const kNWErrorDomainPOSIX: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_5d69670f0307b385", 1706568508720914, undefined, []);
 
 /**
  * let kNWErrorDomainTLS: CFString
  * @availability iOS 12.0+
  */
-export const kNWErrorDomainTLS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_212edf3d13b127f5", 3862116302738964, undefined, []);
+export const kNWErrorDomainTLS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_5d69670f0307b385", 3862116302738964, undefined, []);
 
 /**
  * let kNWErrorDomainWiFiAware: CFString
  * @availability iOS 26.0+
  */
-export const kNWErrorDomainWiFiAware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_212edf3d13b127f5", 1414593276927836, undefined, []);
+export const kNWErrorDomainWiFiAware: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Network_5d69670f0307b385", 1414593276927836, undefined, []);
 
 /** var NW_FRAMER_CREATE_FLAGS_DEFAULT: Int32 { get } */
-export const NW_FRAMER_CREATE_FLAGS_DEFAULT: number = callSDK<number>("Network_212edf3d13b127f5", 3266177148146151, undefined, []);
+export const NW_FRAMER_CREATE_FLAGS_DEFAULT: number = callSDK<number>("Network_5d69670f0307b385", 3266177148146151, undefined, []);
 
 /** var NW_FRAMER_WAKEUP_TIME_FOREVER: UInt64 { get } */
-export const NW_FRAMER_WAKEUP_TIME_FOREVER: number = callSDK<number>("Network_212edf3d13b127f5", 2604412757822227, undefined, []);
+export const NW_FRAMER_WAKEUP_TIME_FOREVER: number = callSDK<number>("Network_5d69670f0307b385", 2604412757822227, undefined, []);
 
 /** var NW_LISTENER_INFINITE_CONNECTION_LIMIT: UInt32 { get } */
-export const NW_LISTENER_INFINITE_CONNECTION_LIMIT: number = callSDK<number>("Network_212edf3d13b127f5", 2337822412309518, undefined, []);
+export const NW_LISTENER_INFINITE_CONNECTION_LIMIT: number = callSDK<number>("Network_5d69670f0307b385", 2337822412309518, undefined, []);
 
 /** var NW_QUIC_CONNECTION_DEFAULT_KEEPALIVE: Int32 { get } */
-export const NW_QUIC_CONNECTION_DEFAULT_KEEPALIVE: number = callSDK<number>("Network_212edf3d13b127f5", 592848150499085, undefined, []);
+export const NW_QUIC_CONNECTION_DEFAULT_KEEPALIVE: number = callSDK<number>("Network_5d69670f0307b385", 592848150499085, undefined, []);
 
-registerSDKClass("Network.Bonjour", Bonjour, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.Bonjour.Endpoint", Bonjour_Endpoint, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.BonjourListenerProvider", BonjourListenerProvider, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.Bonjour", Bonjour, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.Bonjour.Endpoint", Bonjour_Endpoint, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.BonjourListenerProvider", BonjourListenerProvider, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network15BrowserProviderP", {});
-registerSDKClass("Network.Coder", Coder, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.Coder.Metadata", Coder_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.Coder", Coder, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.Coder.Metadata", Coder_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network11ConnectableP", {});
 registerSDKProtocol("s:7Network17ConnectionStorageP", {"init":"init()"});
 registerSDKProtocol("s:7Network16DatagramProtocolP", {});
-registerSDKClass("Network.DefaultProtocolStorage", DefaultProtocolStorage, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.DTLS", DTLS, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"cipherSuites":{"id":1885175097095520},"localIdentity":{"id":138279901495208,"hints":[{"protocol":"c:objc(pl)OS_sec_identity"}]},"ticketsEnabled":{"id":3975584655206771},"earlyDataEnabled":{"id":4330432690794707},"cipherSuiteGroups":{"id":3465630658252523},"peerAuthentication":{"id":2466158178871631},"applicationProtocols":{"id":3362561608732945},"version":{"id":1483483710399124}} });
-registerSDKClass("Network.DTLS.Metadata", DTLS_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.Framer", Framer, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.Framer.Metadata", Framer_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.DefaultProtocolStorage", DefaultProtocolStorage, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.DTLS", DTLS, { module: "Network_5d69670f0307b385", properties: {}, methods: {"cipherSuites":{"id":1885175097095520},"localIdentity":{"id":138279901495208,"hints":[{"protocol":"c:objc(pl)OS_sec_identity"}]},"ticketsEnabled":{"id":3975584655206771},"earlyDataEnabled":{"id":4330432690794707},"cipherSuiteGroups":{"id":3465630658252523},"peerAuthentication":{"id":2466158178871631},"applicationProtocols":{"id":3362561608732945},"version":{"id":1483483710399124}} });
+registerSDKClass("Network.DTLS.Metadata", DTLS_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.Framer", Framer, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.Framer.Metadata", Framer_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network14FramerProtocolP", {});
-registerSDKClass("Network.IP", IP, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"minimumMTU":{"id":2334353884699473},"fragmentationDisabled":{"id":1329460612859940},"receiveTimeCalculated":{"id":3373712466685762},"localAddressPreference":{"id":1736244459627243},"multicastLoopbackDisabled":{"id":2344814112658965},"version":{"id":2480904702856014},"hopLimit":{"id":4381823066196135}} });
-registerSDKClass("Network.IP.Metadata", IP_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.IP", IP, { module: "Network_5d69670f0307b385", properties: {}, methods: {"minimumMTU":{"id":2334353884699473},"fragmentationDisabled":{"id":1329460612859940},"receiveTimeCalculated":{"id":3373712466685762},"localAddressPreference":{"id":1736244459627243},"multicastLoopbackDisabled":{"id":2344814112658965},"version":{"id":2480904702856014},"hopLimit":{"id":4381823066196135}} });
+registerSDKClass("Network.IP.Metadata", IP_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network9IPAddressP", {"init":"init(_:_:)","init1":"init(_:)"});
 registerSDKProtocol("s:7Network16ListenerProviderP", {});
 registerSDKProtocol("s:7Network15MessageProtocolP", {});
 registerSDKProtocol("s:7Network17MultiplexProtocolP", {});
-registerSDKClass("Network.NetworkBrowser", NetworkBrowser, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NetworkBrowser.RunResult", NetworkBrowser_RunResult, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NetworkBrowser.State", NetworkBrowser_State, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NetworkChannel", NetworkChannel, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"dataTransferReport":{"id":3523150916259020},"establishmentReport":{"id":316687766315698},"metadata":{"id":1528760603857202},"onPathUpdate":{"id":2564370886861484,"hints":[{"callback":{"out":[]}}]},"onViabilityUpdate":{"id":3473728402693635,"hints":[{"callback":{"out":[]}}]},"onBetterPathUpdate":{"id":1218678782306222,"hints":[{"callback":{"out":[]}}]},"sendIdempotentTypeLastMessage":{"id":3091741435128619},"sendTypeLastMessage":{"id":2331516203719933},"receive":{"id":1477630748938913},"sendIdempotent":{"id":3010809744331630},"sendIdempotent70447":{"id":202673789553698},"ping":{"id":1597830053478989},"pong":{"id":577580767226939},"send":{"id":4451076910974506},"send1536":{"id":2961570298196208},"close":{"id":2663348658825258},"receive32396":{"id":2066113900565384}} });
-registerSDKClass("Network.NetworkChannel.State", NetworkChannel_State, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.NetworkBrowser", NetworkBrowser, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NetworkBrowser.RunResult", NetworkBrowser_RunResult, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NetworkBrowser.State", NetworkBrowser_State, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NetworkChannel", NetworkChannel, { module: "Network_5d69670f0307b385", properties: {}, methods: {"dataTransferReport":{"id":3523150916259020},"establishmentReport":{"id":316687766315698},"metadata":{"id":1528760603857202},"onPathUpdate":{"id":2564370886861484,"hints":[{"callback":{"out":[]}}]},"onViabilityUpdate":{"id":3473728402693635,"hints":[{"callback":{"out":[]}}]},"onBetterPathUpdate":{"id":1218678782306222,"hints":[{"callback":{"out":[]}}]},"sendIdempotentTypeLastMessage":{"id":3091741435128619},"sendTypeLastMessage":{"id":2331516203719933},"receive":{"id":1477630748938913},"sendIdempotent":{"id":3010809744331630},"sendIdempotent70447":{"id":202673789553698},"ping":{"id":1597830053478989},"pong":{"id":577580767226939},"send":{"id":4451076910974506},"send1536":{"id":2961570298196208},"close":{"id":2663348658825258},"receive32396":{"id":2066113900565384}} });
+registerSDKClass("Network.NetworkChannel.State", NetworkChannel_State, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network0A5CoderP", {"init":"init()","makeEncoder":"makeEncoder()","makeDecoder":"makeDecoder()"});
-registerSDKClass("Network.NetworkConnection", NetworkConnection, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"onPathUpdate":{"id":2350722078037375,"hints":[{"callback":{"out":[]}}]},"onViabilityUpdate":{"id":341677043214461,"hints":[{"callback":{"out":[]}}]},"onBetterPathUpdate":{"id":3815023159574261,"hints":[{"callback":{"out":[]}}]},"start":{"id":315654798115414},"openStream":{"id":2960445808659149},"inboundStreams":{"id":2353529816908813,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("Network.NetworkConnection", NetworkConnection, { module: "Network_5d69670f0307b385", properties: {}, methods: {"onPathUpdate":{"id":2350722078037375,"hints":[{"callback":{"out":[]}}]},"onViabilityUpdate":{"id":341677043214461,"hints":[{"callback":{"out":[]}}]},"onBetterPathUpdate":{"id":3815023159574261,"hints":[{"callback":{"out":[]}}]},"start":{"id":315654798115414},"openStream":{"id":2960445808659149},"inboundStreams":{"id":2353529816908813,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("s:7Network0A7DecoderP", {"decodeFrom":"decode(_:from:)"});
 registerSDKProtocol("s:7Network0A7EncoderP", {"encode":"encode(_:)"});
 registerSDKProtocol("s:7Network0A17FixedWidthIntegerP", {"initBigEndian":"init(bigEndian:)"});
-registerSDKClass("Network.NetworkJSONCoder", NetworkJSONCoder, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"makeDecoder":{"id":2807977933551880},"makeEncoder":{"id":986526606105923}} });
-registerSDKClass("Network.NetworkListener", NetworkListener, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"run":{"id":88905339280839,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("Network.NetworkListener.ServiceRegistrationChange", NetworkListener_ServiceRegistrationChange, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NetworkListener.State", NetworkListener_State, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.NetworkJSONCoder", NetworkJSONCoder, { module: "Network_5d69670f0307b385", properties: {}, methods: {"makeDecoder":{"id":2807977933551880},"makeEncoder":{"id":986526606105923}} });
+registerSDKClass("Network.NetworkListener", NetworkListener, { module: "Network_5d69670f0307b385", properties: {}, methods: {"run":{"id":88905339280839,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("Network.NetworkListener.ServiceRegistrationChange", NetworkListener_ServiceRegistrationChange, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NetworkListener.State", NetworkListener_State, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network0A16MetadataProtocolP", {});
-registerSDKClass("Network.NetworkPropertyListCoder", NetworkPropertyListCoder, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"makeDecoder":{"id":2016653667251525},"makeEncoder":{"id":16552943672627}} });
+registerSDKClass("Network.NetworkPropertyListCoder", NetworkPropertyListCoder, { module: "Network_5d69670f0307b385", properties: {}, methods: {"makeDecoder":{"id":2016653667251525},"makeEncoder":{"id":16552943672627}} });
 registerSDKProtocol("s:7Network0A15ProtocolOptionsP", {});
-registerSDKClass("Network.NWBrowser", NWBrowser, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"start":{"id":2909680196995084},"cancel":{"id":3848404489499340}} });
-registerSDKClass("Network.NWBrowser.Descriptor", NWBrowser_Descriptor, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWBrowser.Result", NWBrowser_Result, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWBrowser.Result.Change", NWBrowser_Result_Change, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWBrowser.Result.Metadata", NWBrowser_Result_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWBrowser.State", NWBrowser_State, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection", NWConnection, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"forceCancel":{"id":464618613516975},"receiveMessage":{"id":2948758481688987,"hints":[{"callback":{"out":[]}}]},"receiveDiscontiguous":{"id":3524626553882841,"hints":[null,null,{"callback":{"out":[]}}]},"cancelCurrentEndpoint":{"id":4199795522767447},"startDataTransferReport":{"id":610374625446476},"requestEstablishmentReport":{"id":2199615442172904,"hints":[null,{"callback":{"out":[]}}]},"receiveMessageDiscontiguous":{"id":2525179566636464,"hints":[{"callback":{"out":[]}}]},"sendContentContentContextIsCompleteCompletion":{"id":1930424488892912},"sendContentContentContextIsCompleteCompletion50355":{"id":60545232504701},"batch":{"id":1115705570487431,"hints":[{"callback":{"out":[]}}]},"start":{"id":976751272975861},"cancel":{"id":4149438190861839},"receive":{"id":1208605845313702,"hints":[null,null,{"callback":{"out":[]}}]},"restart":{"id":3499949361790824},"metadata":{"id":4193355308768437}} });
-registerSDKClass("Network.NWConnection.ContentContext", NWConnection_ContentContext, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"protocolMetadataDefinition":{"id":314678343084909}} });
-registerSDKClass("Network.NWConnection.DataTransferReport", NWConnection_DataTransferReport, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection.DataTransferReport.PathReport", NWConnection_DataTransferReport_PathReport, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection.EstablishmentReport", NWConnection_EstablishmentReport, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection.EstablishmentReport.Handshake", NWConnection_EstablishmentReport_Handshake, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection.EstablishmentReport.Resolution", NWConnection_EstablishmentReport_Resolution, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection.PendingDataTransferReport", NWConnection_PendingDataTransferReport, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"collect":{"id":2983130166211585,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("Network.NWConnection.SendCompletion", NWConnection_SendCompletion, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnection.State", NWConnection_State, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWConnectionGroup", NWConnectionGroup, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"setReceiveHandler":{"id":6795527838136,"hints":[null,null,{"callback":{"out":[]}}]},"send":{"id":1745479994326255,"hints":[null,null,null,{"callback":{"out":[]}}]},"start":{"id":2662263457096744},"cancel":{"id":1417238636761890},"extract":{"id":2163695086225520},"metadata":{"id":3377632484551524},"reinsert":{"id":324941688487674}} });
-registerSDKClass("Network.NWConnectionGroup.Message", NWConnectionGroup_Message, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"extractConnection":{"id":3616676945341145},"reply":{"id":150823963405180},"metadata":{"id":1419188074337949}} });
-registerSDKClass("Network.NWConnectionGroup.State", NWConnectionGroup_State, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWEndpoint", NWEndpoint, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWEndpoint.Host", NWEndpoint_Host, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWError", NWError, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.NWBrowser", NWBrowser, { module: "Network_5d69670f0307b385", properties: {}, methods: {"start":{"id":2909680196995084},"cancel":{"id":3848404489499340}} });
+registerSDKClass("Network.NWBrowser.Descriptor", NWBrowser_Descriptor, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWBrowser.Result", NWBrowser_Result, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWBrowser.Result.Change", NWBrowser_Result_Change, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWBrowser.Result.Metadata", NWBrowser_Result_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWBrowser.State", NWBrowser_State, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection", NWConnection, { module: "Network_5d69670f0307b385", properties: {}, methods: {"forceCancel":{"id":464618613516975},"receiveMessage":{"id":2948758481688987,"hints":[{"callback":{"out":[]}}]},"receiveDiscontiguous":{"id":3524626553882841,"hints":[null,null,{"callback":{"out":[]}}]},"cancelCurrentEndpoint":{"id":4199795522767447},"startDataTransferReport":{"id":610374625446476},"requestEstablishmentReport":{"id":2199615442172904,"hints":[null,{"callback":{"out":[]}}]},"receiveMessageDiscontiguous":{"id":2525179566636464,"hints":[{"callback":{"out":[]}}]},"sendContentContentContextIsCompleteCompletion":{"id":1930424488892912},"sendContentContentContextIsCompleteCompletion50355":{"id":60545232504701},"batch":{"id":1115705570487431,"hints":[{"callback":{"out":[]}}]},"start":{"id":976751272975861},"cancel":{"id":4149438190861839},"receive":{"id":1208605845313702,"hints":[null,null,{"callback":{"out":[]}}]},"restart":{"id":3499949361790824},"metadata":{"id":4193355308768437}} });
+registerSDKClass("Network.NWConnection.ContentContext", NWConnection_ContentContext, { module: "Network_5d69670f0307b385", properties: {}, methods: {"protocolMetadataDefinition":{"id":314678343084909}} });
+registerSDKClass("Network.NWConnection.DataTransferReport", NWConnection_DataTransferReport, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection.DataTransferReport.PathReport", NWConnection_DataTransferReport_PathReport, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection.EstablishmentReport", NWConnection_EstablishmentReport, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection.EstablishmentReport.Handshake", NWConnection_EstablishmentReport_Handshake, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection.EstablishmentReport.Resolution", NWConnection_EstablishmentReport_Resolution, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection.PendingDataTransferReport", NWConnection_PendingDataTransferReport, { module: "Network_5d69670f0307b385", properties: {}, methods: {"collect":{"id":2983130166211585,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("Network.NWConnection.SendCompletion", NWConnection_SendCompletion, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnection.State", NWConnection_State, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWConnectionGroup", NWConnectionGroup, { module: "Network_5d69670f0307b385", properties: {}, methods: {"setReceiveHandler":{"id":6795527838136,"hints":[null,null,{"callback":{"out":[]}}]},"send":{"id":1745479994326255,"hints":[null,null,null,{"callback":{"out":[]}}]},"start":{"id":2662263457096744},"cancel":{"id":1417238636761890},"extract":{"id":2163695086225520},"metadata":{"id":3377632484551524},"reinsert":{"id":324941688487674}} });
+registerSDKClass("Network.NWConnectionGroup.Message", NWConnectionGroup_Message, { module: "Network_5d69670f0307b385", properties: {}, methods: {"extractConnection":{"id":3616676945341145},"reply":{"id":150823963405180},"metadata":{"id":1419188074337949}} });
+registerSDKClass("Network.NWConnectionGroup.State", NWConnectionGroup_State, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWEndpoint", NWEndpoint, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWEndpoint.Host", NWEndpoint_Host, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWError", NWError, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network17NWGroupDescriptorP", {});
-registerSDKClass("Network.NWInterface", NWInterface, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWInterface.RadioType", NWInterface_RadioType, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWInterface.RadioType.Cellular", NWInterface_RadioType_Cellular, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWListener", NWListener, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"start":{"id":2437345647553686},"cancel":{"id":510920433422571}} });
-registerSDKClass("Network.NWListener.Service", NWListener_Service, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWListener.ServiceRegistrationChange", NWListener_ServiceRegistrationChange, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWListener.State", NWListener_State, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWMulticastGroup", NWMulticastGroup, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWMultiplexGroup", NWMultiplexGroup, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWParameters", NWParameters, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"setPrivacyContext":{"id":4321970724253634},"copy":{"id":42231798204098}} });
-registerSDKClass("Network.NWParameters.PrivacyContext", NWParameters_PrivacyContext, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"flushCache":{"id":3670802555443335},"disableLogging":{"id":1609464545736607},"requireEncryptedNameResolution":{"id":4385523960590708}} });
-registerSDKClass("Network.NWParameters.PrivacyContext.ResolverConfiguration", NWParameters_PrivacyContext_ResolverConfiguration, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWParameters.ProtocolStack", NWParameters_ProtocolStack, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWParametersBuilder", NWParametersBuilder, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.NWInterface", NWInterface, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWInterface.RadioType", NWInterface_RadioType, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWInterface.RadioType.Cellular", NWInterface_RadioType_Cellular, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWListener", NWListener, { module: "Network_5d69670f0307b385", properties: {}, methods: {"start":{"id":2437345647553686},"cancel":{"id":510920433422571}} });
+registerSDKClass("Network.NWListener.Service", NWListener_Service, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWListener.ServiceRegistrationChange", NWListener_ServiceRegistrationChange, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWListener.State", NWListener_State, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWMulticastGroup", NWMulticastGroup, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWMultiplexGroup", NWMultiplexGroup, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWParameters", NWParameters, { module: "Network_5d69670f0307b385", properties: {}, methods: {"setPrivacyContext":{"id":4321970724253634},"copy":{"id":42231798204098}} });
+registerSDKClass("Network.NWParameters.PrivacyContext", NWParameters_PrivacyContext, { module: "Network_5d69670f0307b385", properties: {}, methods: {"flushCache":{"id":3670802555443335},"disableLogging":{"id":1609464545736607},"requireEncryptedNameResolution":{"id":4385523960590708}} });
+registerSDKClass("Network.NWParameters.PrivacyContext.ResolverConfiguration", NWParameters_PrivacyContext_ResolverConfiguration, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWParameters.ProtocolStack", NWParameters_ProtocolStack, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWParametersBuilder", NWParametersBuilder, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network20NWParametersProviderP", {"requiredInterface":"requiredInterface(_:)","requiredInterfaceType":"requiredInterfaceType(_:)","prohibitedInterfaces":"prohibitedInterfaces(_:)","prohibitedInterfaceTypes":"prohibitedInterfaceTypes(_:)","expensivePathsProhibited":"expensivePathsProhibited(_:)","constrainedPathsProhibited":"constrainedPathsProhibited(_:)","noProxiesPreferred":"noProxiesPreferred(_:)","localEndpoint":"localEndpoint(_:)","localPort":"localPort(_:)","localEndpointReuseAllowed":"localEndpointReuseAllowed(_:)","localOnly":"localOnly(_:)","peerToPeerIncluded":"peerToPeerIncluded(_:)","dnssecValidationRequired":"dnssecValidationRequired(_:)","serviceClass":"serviceClass(_:)","multipathServiceType":"multipathServiceType(_:)","fastOpenAllowed":"fastOpenAllowed(_:)","expiredDNSBehavior":"expiredDNSBehavior(_:)","ultraConstrainedPathsAllowed":"ultraConstrainedPathsAllowed(_:)"});
-registerSDKClass("Network.NWPath", NWPath, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"usesInterfaceType":{"id":988300611635494}} });
-registerSDKClass("Network.NWPathMonitor", NWPathMonitor, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"makeAsyncIterator":{"id":973193946699906},"start":{"id":3460323277631781},"cancel":{"id":1465625468786159}} });
-registerSDKClass("Network.NWPathMonitor.Iterator", NWPathMonitor_Iterator, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"next":{"id":1124719685799210}} });
-registerSDKClass("Network.NWProtocol", NWProtocol, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolDefinition", NWProtocolDefinition, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolFramer", NWProtocolFramer, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolFramer.Definition", NWProtocolFramer_Definition, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolFramer.Instance", NWProtocolFramer_Instance, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"markFailed":{"id":2234465161033811},"writeOutputData":{"id":982649768596638},"writeOutputData25578":{"id":4001358758949348},"deliverInput":{"id":473313090193009},"scheduleWakeup":{"id":3787178593430595},"passThroughInput":{"id":566726022586383},"passThroughOutput":{"id":3675423446274326},"writeOutputNoCopy":{"id":3448275309625211},"deliverInputNoCopy":{"id":4374958615760474},"prependApplicationProtocol":{"id":3795269048856153},"prependApplicationProtocolIgnoringReady":{"id":913334783288353},"async":{"id":3401865642611315,"hints":[{"callback":{"out":[]}}]},"markReady":{"id":280035071144137}} });
-registerSDKClass("Network.NWProtocolFramer.Instance.WakeupTime", NWProtocolFramer_Instance_WakeupTime, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolMetadata", NWProtocolMetadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolFramer.Message", NWProtocolFramer_Message, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":4150858016209103}} });
-registerSDKClass("Network.NWProtocolOptions", NWProtocolOptions, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolFramer.Options", NWProtocolFramer_Options, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"subscript":{"id":307520193053779}} });
+registerSDKClass("Network.NWPath", NWPath, { module: "Network_5d69670f0307b385", properties: {}, methods: {"usesInterfaceType":{"id":988300611635494}} });
+registerSDKClass("Network.NWPathMonitor", NWPathMonitor, { module: "Network_5d69670f0307b385", properties: {}, methods: {"makeAsyncIterator":{"id":973193946699906},"start":{"id":3460323277631781},"cancel":{"id":1465625468786159}} });
+registerSDKClass("Network.NWPathMonitor.Iterator", NWPathMonitor_Iterator, { module: "Network_5d69670f0307b385", properties: {}, methods: {"next":{"id":1124719685799210}} });
+registerSDKClass("Network.NWProtocol", NWProtocol, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolDefinition", NWProtocolDefinition, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolFramer", NWProtocolFramer, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolFramer.Definition", NWProtocolFramer_Definition, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolFramer.Instance", NWProtocolFramer_Instance, { module: "Network_5d69670f0307b385", properties: {}, methods: {"markFailed":{"id":2234465161033811},"writeOutputData":{"id":982649768596638},"writeOutputData25578":{"id":4001358758949348},"deliverInput":{"id":473313090193009},"scheduleWakeup":{"id":3787178593430595},"passThroughInput":{"id":566726022586383},"passThroughOutput":{"id":3675423446274326},"writeOutputNoCopy":{"id":3448275309625211},"deliverInputNoCopy":{"id":4374958615760474},"prependApplicationProtocol":{"id":3795269048856153},"prependApplicationProtocolIgnoringReady":{"id":913334783288353},"async":{"id":3401865642611315,"hints":[{"callback":{"out":[]}}]},"markReady":{"id":280035071144137}} });
+registerSDKClass("Network.NWProtocolFramer.Instance.WakeupTime", NWProtocolFramer_Instance_WakeupTime, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolMetadata", NWProtocolMetadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolFramer.Message", NWProtocolFramer_Message, { module: "Network_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":4150858016209103}} });
+registerSDKClass("Network.NWProtocolOptions", NWProtocolOptions, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolFramer.Options", NWProtocolFramer_Options, { module: "Network_5d69670f0307b385", properties: {}, methods: {"subscript":{"id":307520193053779}} });
 registerSDKProtocol("s:7Network30NWProtocolFramerImplementationP", {"initFramer":"init(framer:)","startFramer":"start(framer:)","handleInputFramer":"handleInput(framer:)","handleOutputFramerMessageMessageLengthIsComplete":"handleOutput(framer:message:messageLength:isComplete:)","wakeupFramer":"wakeup(framer:)","stopFramer":"stop(framer:)","cleanupFramer":"cleanup(framer:)"});
-registerSDKClass("Network.NWProtocolIP", NWProtocolIP, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolIP.Metadata", NWProtocolIP_Metadata, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"serviceClass28776":{"id":256505842233048},"ecn61475":{"id":2035274989953821}} });
-registerSDKClass("Network.NWProtocolIP.Options", NWProtocolIP_Options, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolQUIC", NWProtocolQUIC, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolQUIC.ApplicationError", NWProtocolQUIC_ApplicationError, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolQUIC.Metadata", NWProtocolQUIC_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolQUIC.Metadata.KeepAliveBehavior", NWProtocolQUIC_Metadata_KeepAliveBehavior, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolQUIC.Options", NWProtocolQUIC_Options, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolTCP", NWProtocolTCP, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolTCP.Metadata", NWProtocolTCP_Metadata, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"setMaximumPacingRateBytesPerSecond":{"id":1030780826639412}} });
-registerSDKClass("Network.NWProtocolTCP.Options", NWProtocolTCP_Options, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolTLS", NWProtocolTLS, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolTLS.Metadata", NWProtocolTLS_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolTLS.Options", NWProtocolTLS_Options, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolUDP", NWProtocolUDP, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolUDP.Metadata", NWProtocolUDP_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolUDP.Options", NWProtocolUDP_Options, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolWebSocket", NWProtocolWebSocket, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolWebSocket.CloseCode", NWProtocolWebSocket_CloseCode, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWProtocolWebSocket.Metadata", NWProtocolWebSocket_Metadata, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"setPongHandler":{"id":4166550550841626,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("Network.NWProtocolWebSocket.Options", NWProtocolWebSocket_Options, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"setSubprotocols":{"id":2978317283622640},"setAdditionalHeaders":{"id":879754653085038}} });
-registerSDKClass("Network.NWProtocolWebSocket.Response", NWProtocolWebSocket_Response, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWTXTRecord", NWTXTRecord, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"removeEntry":{"id":1848690184219809},"index":{"id":118798991481781},"getEntry":{"id":3231619576946484},"setEntry":{"id":179176522199075},"subscript":{"id":2031573896050096},"subscript75626":{"id":1547586422254892}} });
-registerSDKClass("Network.NWTXTRecord.Entry", NWTXTRecord_Entry, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.NWTXTRecord.Index", NWTXTRecord_Index, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.NWProtocolIP", NWProtocolIP, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolIP.Metadata", NWProtocolIP_Metadata, { module: "Network_5d69670f0307b385", properties: {}, methods: {"serviceClass28776":{"id":256505842233048},"ecn61475":{"id":2035274989953821}} });
+registerSDKClass("Network.NWProtocolIP.Options", NWProtocolIP_Options, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolQUIC", NWProtocolQUIC, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolQUIC.ApplicationError", NWProtocolQUIC_ApplicationError, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolQUIC.Metadata", NWProtocolQUIC_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolQUIC.Metadata.KeepAliveBehavior", NWProtocolQUIC_Metadata_KeepAliveBehavior, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolQUIC.Options", NWProtocolQUIC_Options, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolTCP", NWProtocolTCP, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolTCP.Metadata", NWProtocolTCP_Metadata, { module: "Network_5d69670f0307b385", properties: {}, methods: {"setMaximumPacingRateBytesPerSecond":{"id":1030780826639412}} });
+registerSDKClass("Network.NWProtocolTCP.Options", NWProtocolTCP_Options, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolTLS", NWProtocolTLS, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolTLS.Metadata", NWProtocolTLS_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolTLS.Options", NWProtocolTLS_Options, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolUDP", NWProtocolUDP, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolUDP.Metadata", NWProtocolUDP_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolUDP.Options", NWProtocolUDP_Options, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolWebSocket", NWProtocolWebSocket, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolWebSocket.CloseCode", NWProtocolWebSocket_CloseCode, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWProtocolWebSocket.Metadata", NWProtocolWebSocket_Metadata, { module: "Network_5d69670f0307b385", properties: {}, methods: {"setPongHandler":{"id":4166550550841626,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("Network.NWProtocolWebSocket.Options", NWProtocolWebSocket_Options, { module: "Network_5d69670f0307b385", properties: {}, methods: {"setSubprotocols":{"id":2978317283622640},"setAdditionalHeaders":{"id":879754653085038}} });
+registerSDKClass("Network.NWProtocolWebSocket.Response", NWProtocolWebSocket_Response, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWTXTRecord", NWTXTRecord, { module: "Network_5d69670f0307b385", properties: {}, methods: {"removeEntry":{"id":1848690184219809},"index":{"id":118798991481781},"getEntry":{"id":3231619576946484},"setEntry":{"id":179176522199075},"subscript":{"id":2031573896050096},"subscript75626":{"id":1547586422254892}} });
+registerSDKClass("Network.NWTXTRecord.Entry", NWTXTRecord_Entry, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.NWTXTRecord.Index", NWTXTRecord_Index, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network05OneToB8ProtocolP", {});
 registerSDKProtocol("c:objc(pl)OS_nw_advertise_descriptor", {});
 registerSDKProtocol("c:objc(pl)OS_nw_browse_descriptor", {});
@@ -9006,32 +9006,32 @@ registerSDKProtocol("c:objc(pl)OS_nw_resolver_config", {});
 registerSDKProtocol("c:objc(pl)OS_nw_txt_record", {});
 registerSDKProtocol("c:objc(pl)OS_nw_ws_request", {});
 registerSDKProtocol("c:objc(pl)OS_nw_ws_response", {});
-registerSDKClass("Network.ProtocolMetadataBuilder", ProtocolMetadataBuilder, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.ProtocolStackBuilder", ProtocolStackBuilder, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.ProxyConfiguration", ProxyConfiguration, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"applyCredential":{"id":1184888814670065}} });
-registerSDKClass("Network.ProxyConfiguration.RelayHop", ProxyConfiguration_RelayHop, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUIC", QUIC, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"idleTimeout":{"id":550405528230111},"initialMaxData":{"id":1357278408502207},"maxUDPPayloadSize":{"id":338932690542942},"maxDatagramFrameSize":{"id":721509171716166},"initialMaxBidirectionalStreams":{"id":3659994627004326},"initialMaxUnidirectionalStreams":{"id":1872746814557215},"initialMaxStreamDataUnidirectional":{"id":3176397153764007},"initialMaxStreamDataBidirectionalLocal":{"id":2690130436302237},"initialMaxStreamDataBidirectionalRemote":{"id":2031718034560350}} });
-registerSDKClass("Network.QUIC.Datagrams", QUIC_Datagrams, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUIC.Metadata", QUIC_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUIC.ProtocolStorage", QUIC_ProtocolStorage, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUIC.Stream", QUIC_Stream, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUIC.TLS", QUIC_TLS, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"cipherSuites":{"id":2139390320563546},"localIdentity":{"id":2249818853816795,"hints":[{"protocol":"c:objc(pl)OS_sec_identity"}]},"ciphersuiteGroups":{"id":3030481245433878},"peerAuthentication":{"id":733324750226847}} });
-registerSDKClass("Network.QUICDatagram", QUICDatagram, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUICDatagram.Metadata", QUICDatagram_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUICStream", QUICStream, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.QUICStream.Metadata", QUICStream_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.ProtocolMetadataBuilder", ProtocolMetadataBuilder, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.ProtocolStackBuilder", ProtocolStackBuilder, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.ProxyConfiguration", ProxyConfiguration, { module: "Network_5d69670f0307b385", properties: {}, methods: {"applyCredential":{"id":1184888814670065}} });
+registerSDKClass("Network.ProxyConfiguration.RelayHop", ProxyConfiguration_RelayHop, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUIC", QUIC, { module: "Network_5d69670f0307b385", properties: {}, methods: {"idleTimeout":{"id":550405528230111},"initialMaxData":{"id":1357278408502207},"maxUDPPayloadSize":{"id":338932690542942},"maxDatagramFrameSize":{"id":721509171716166},"initialMaxBidirectionalStreams":{"id":3659994627004326},"initialMaxUnidirectionalStreams":{"id":1872746814557215},"initialMaxStreamDataUnidirectional":{"id":3176397153764007},"initialMaxStreamDataBidirectionalLocal":{"id":2690130436302237},"initialMaxStreamDataBidirectionalRemote":{"id":2031718034560350}} });
+registerSDKClass("Network.QUIC.Datagrams", QUIC_Datagrams, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUIC.Metadata", QUIC_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUIC.ProtocolStorage", QUIC_ProtocolStorage, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUIC.Stream", QUIC_Stream, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUIC.TLS", QUIC_TLS, { module: "Network_5d69670f0307b385", properties: {}, methods: {"cipherSuites":{"id":2139390320563546},"localIdentity":{"id":2249818853816795,"hints":[{"protocol":"c:objc(pl)OS_sec_identity"}]},"ciphersuiteGroups":{"id":3030481245433878},"peerAuthentication":{"id":733324750226847}} });
+registerSDKClass("Network.QUICDatagram", QUICDatagram, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUICDatagram.Metadata", QUICDatagram_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUICStream", QUICStream, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.QUICStream.Metadata", QUICStream_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("s:7Network14StreamProtocolP", {});
-registerSDKClass("Network.TCP", TCP, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"ecnDisabled":{"id":4332681476272655},"persistTimeout":{"id":3984548951654126},"fastOpenAllowed":{"id":3633939974373815},"connectionTimeout":{"id":4045522271734185},"retransmitFinDrop":{"id":1159013569943999},"maximumSegmentSize":{"id":4502047992951541},"ackStretchingDisabled":{"id":4027788477445588},"retransmitConnectionDropTime":{"id":974157487925148},"noPush":{"id":93636260913168},"noDelay":{"id":4343802539314512},"keepalive":{"id":293721163170921},"noOptions":{"id":2565815909555963}} });
-registerSDKClass("Network.TCP.Metadata", TCP_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.TLS", TLS, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"cipherSuites":{"id":4195107334815815},"localIdentity":{"id":2105567244766923,"hints":[{"protocol":"c:objc(pl)OS_sec_identity"}]},"ticketsEnabled":{"id":820201072944275},"earlyDataEnabled":{"id":3113693999472179},"cipherSuiteGroups":{"id":2752863361857150},"peerAuthentication":{"id":4329374696797927},"applicationProtocols":{"id":31058976781055},"version":{"id":4285926447832242}} });
-registerSDKClass("Network.TLS.Metadata", TLS_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.TLV", TLV, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.TLV.Metadata", TLV_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.TXTRecordDecoder", TXTRecordDecoder, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"decode":{"id":3213573416738112}} });
-registerSDKClass("Network.UDP", UDP, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"noChecksumPreferred":{"id":2602069015183469}} });
-registerSDKClass("Network.UDP.Metadata", UDP_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("Network.UnexpectedEndpointType", UnexpectedEndpointType, { module: "Network_212edf3d13b127f5", properties: {} });
-registerSDKClass("NSURLSessionConfiguration", URLSessionConfiguration, { module: "Network_212edf3d13b127f5", properties: {} }, true);
-registerSDKClass("Network.WebSocket", WebSocket, { module: "Network_212edf3d13b127f5", properties: {}, methods: {"subprotocols":{"id":3678283463916796},"autoReplyPing":{"id":4381829504977496},"skipHandshake":{"id":3985611193652119},"additionalHeaders":{"id":1775270740787807},"maximumMessageSize":{"id":2733871337178710}} });
-registerSDKClass("Network.WebSocket.Metadata", WebSocket_Metadata, { module: "Network_212edf3d13b127f5", properties: {} });
+registerSDKClass("Network.TCP", TCP, { module: "Network_5d69670f0307b385", properties: {}, methods: {"ecnDisabled":{"id":4332681476272655},"persistTimeout":{"id":3984548951654126},"fastOpenAllowed":{"id":3633939974373815},"connectionTimeout":{"id":4045522271734185},"retransmitFinDrop":{"id":1159013569943999},"maximumSegmentSize":{"id":4502047992951541},"ackStretchingDisabled":{"id":4027788477445588},"retransmitConnectionDropTime":{"id":974157487925148},"noPush":{"id":93636260913168},"noDelay":{"id":4343802539314512},"keepalive":{"id":293721163170921},"noOptions":{"id":2565815909555963}} });
+registerSDKClass("Network.TCP.Metadata", TCP_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.TLS", TLS, { module: "Network_5d69670f0307b385", properties: {}, methods: {"cipherSuites":{"id":4195107334815815},"localIdentity":{"id":2105567244766923,"hints":[{"protocol":"c:objc(pl)OS_sec_identity"}]},"ticketsEnabled":{"id":820201072944275},"earlyDataEnabled":{"id":3113693999472179},"cipherSuiteGroups":{"id":2752863361857150},"peerAuthentication":{"id":4329374696797927},"applicationProtocols":{"id":31058976781055},"version":{"id":4285926447832242}} });
+registerSDKClass("Network.TLS.Metadata", TLS_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.TLV", TLV, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.TLV.Metadata", TLV_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.TXTRecordDecoder", TXTRecordDecoder, { module: "Network_5d69670f0307b385", properties: {}, methods: {"decode":{"id":3213573416738112}} });
+registerSDKClass("Network.UDP", UDP, { module: "Network_5d69670f0307b385", properties: {}, methods: {"noChecksumPreferred":{"id":2602069015183469}} });
+registerSDKClass("Network.UDP.Metadata", UDP_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("Network.UnexpectedEndpointType", UnexpectedEndpointType, { module: "Network_5d69670f0307b385", properties: {} });
+registerSDKClass("NSURLSessionConfiguration", URLSessionConfiguration, { module: "Network_5d69670f0307b385", properties: {} }, true);
+registerSDKClass("Network.WebSocket", WebSocket, { module: "Network_5d69670f0307b385", properties: {}, methods: {"subprotocols":{"id":3678283463916796},"autoReplyPing":{"id":4381829504977496},"skipHandshake":{"id":3985611193652119},"additionalHeaders":{"id":1775270740787807},"maximumMessageSize":{"id":2733871337178710}} });
+registerSDKClass("Network.WebSocket.Metadata", WebSocket_Metadata, { module: "Network_5d69670f0307b385", properties: {} });
 registerSDKProtocol("c:objc(pl)OS_sec_identity", {});
