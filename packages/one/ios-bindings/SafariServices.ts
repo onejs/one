@@ -29,18 +29,18 @@ export class SFAddToHomeScreenInfo extends SDKHandle {
    * init(manifest: BEWebAppManifest)
    * @availability iOS 18.2+
    */
-  static init(manifest: _BrowserEngineKit_BEWebAppManifest): SFAddToHomeScreenInfo { return callSDK<SFAddToHomeScreenInfo>("SafariServices_6be9a005889899ab", 2740892552092112, undefined, [manifest]); }
+  static init(manifest: _BrowserEngineKit_BEWebAppManifest): SFAddToHomeScreenInfo { return callSDK<SFAddToHomeScreenInfo>("SafariServices_c1f28409f8601238", 2740892552092112, undefined, [manifest]); }
   /**
    * @NSCopying var manifest: BEWebAppManifest { get }
    * @availability iOS 18.2+
    */
-  get manifest(): _BrowserEngineKit_BEWebAppManifest { return callSDK<_BrowserEngineKit_BEWebAppManifest>("SafariServices_6be9a005889899ab", 2165692518100642, this, []); }
+  get manifest(): _BrowserEngineKit_BEWebAppManifest { return callSDK<_BrowserEngineKit_BEWebAppManifest>("SafariServices_c1f28409f8601238", 2165692518100642, this, []); }
   /**
    * var websiteCookies: [HTTPCookie] { get set }
    * @availability iOS 18.2+
    */
-  get websiteCookies(): $SDK0 { return callSDK<$SDK0>("SafariServices_6be9a005889899ab", 4093670260156476, this, []); }
-  set websiteCookies(value: $SDK0) { callSDK<void>("SafariServices_6be9a005889899ab", 3022080032537945, this, [value]); }
+  get websiteCookies(): $SDK0 { return callSDK<$SDK0>("SafariServices_c1f28409f8601238", 4093670260156476, this, []); }
+  set websiteCookies(value: $SDK0) { callSDK<void>("SafariServices_c1f28409f8601238", 3022080032537945, this, [value]); }
   declare readonly $type: { "c:objc(cs)SFAddToHomeScreenInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "manifest": true; "websiteCookies": true };
 }
@@ -56,13 +56,13 @@ export class SFAuthenticationError extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 12.0
    */
-  static get errorDomain(): string { return callSDK<string>("SafariServices_6be9a005889899ab", 319546010561241, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SafariServices_c1f28409f8601238", 319546010561241, undefined, []); }
   /**
    * static var canceledLogin: SFAuthenticationError.Code { get }
    * @availability iOS 11.0+
    * @deprecated iOS 12.0
    */
-  static get canceledLogin(): SFAuthenticationError_Code { return callSDK<SFAuthenticationError_Code>("SafariServices_6be9a005889899ab", 4221067667907412, undefined, []); }
+  static get canceledLogin(): SFAuthenticationError_Code { return callSDK<SFAuthenticationError_Code>("SafariServices_c1f28409f8601238", 4221067667907412, undefined, []); }
   declare readonly $type: { "s:SC21SFAuthenticationErrorLeV": true };
 }
 
@@ -79,7 +79,7 @@ export const SFAuthenticationError_Code = {
    * @availability iOS 11.0+
    * @deprecated iOS 12.0
    */
-  init(rawValue: number): (SFAuthenticationError_Code) | null { return callSDK<(SFAuthenticationError_Code) | null>("SafariServices_6be9a005889899ab", 1005803396263864, undefined, [rawValue]); }
+  init(rawValue: number): (SFAuthenticationError_Code) | null { return callSDK<(SFAuthenticationError_Code) | null>("SafariServices_c1f28409f8601238", 1005803396263864, undefined, [rawValue]); }
 };
 
 /**
@@ -93,19 +93,19 @@ export class SFAuthenticationSession extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 12.0
    */
-  cancel(): void { return callSDK<void>("SafariServices_6be9a005889899ab", 1985978961127051, this, []); }
+  cancel(): void { return callSDK<void>("SafariServices_c1f28409f8601238", 1985978961127051, this, []); }
   /**
    * init(url URL: URL, callbackURLScheme: String?, completionHandler: @escaping SFAuthenticationSession.CompletionHandler)
    * @availability iOS 11.0+
    * @deprecated iOS 12.0
    */
-  static init(URL: string, callbackURLScheme: (string) | null, completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): SFAuthenticationSession { return callSDK<SFAuthenticationSession>("SafariServices_6be9a005889899ab", 1418131361610677, undefined, [URL, callbackURLScheme, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static init(URL: string, callbackURLScheme: (string) | null, completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): SFAuthenticationSession { return callSDK<SFAuthenticationSession>("SafariServices_c1f28409f8601238", 1418131361610677, undefined, [URL, callbackURLScheme, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func start() -> Bool
    * @availability iOS 11.0+
    * @deprecated iOS 12.0
    */
-  start(): boolean { return callSDK<boolean>("SafariServices_6be9a005889899ab", 596099172372173, this, []); }
+  start(): boolean { return callSDK<boolean>("SafariServices_c1f28409f8601238", 596099172372173, this, []); }
   declare readonly $type: { "c:objc(cs)SFAuthenticationSession": true; "c:objc(cs)NSObject": true };
 }
 
@@ -125,7 +125,7 @@ export const SFContentBlockerErrorCode = {
    * @availability iOS 9.0+
    * @deprecated iOS 10.0
    */
-  init(rawValue: number): (SFContentBlockerErrorCode) | null { return callSDK<(SFContentBlockerErrorCode) | null>("SafariServices_6be9a005889899ab", 3214960153916286, undefined, [rawValue]); }
+  init(rawValue: number): (SFContentBlockerErrorCode) | null { return callSDK<(SFContentBlockerErrorCode) | null>("SafariServices_c1f28409f8601238", 3214960153916286, undefined, [rawValue]); }
 };
 
 /**
@@ -137,14 +137,14 @@ export class SFContentBlockerManager extends SDKHandle {
    * class func stateOfContentBlocker(withIdentifier identifier: String) async throws -> SFContentBlockerState
    * @availability iOS 10.0+
    */
-  static getStateOfContentBlocker(identifier: string, completionHandler: ((arg0: (SFContentBlockerState) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafariServices_6be9a005889899ab", 494936272053224, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static getStateOfContentBlocker(identifier: string, completionHandler: ((arg0: (SFContentBlockerState) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafariServices_c1f28409f8601238", 494936272053224, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func reloadContentBlocker(withIdentifier identifier: String) async throws
    * @availability iOS 9.0+
    */
-  static reloadContentBlocker(identifier: string, completionHandler?: $SDK4): void { return callSDK<void>("SafariServices_6be9a005889899ab", 834551963695944, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static reloadContentBlocker(identifier: string, completionHandler?: $SDK4): void { return callSDK<void>("SafariServices_c1f28409f8601238", 834551963695944, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): SFContentBlockerManager { return callSDK<SFContentBlockerManager>("SafariServices_6be9a005889899ab", 3630710898017815, undefined, []); }
+  static init(): SFContentBlockerManager { return callSDK<SFContentBlockerManager>("SafariServices_c1f28409f8601238", 3630710898017815, undefined, []); }
   declare readonly $type: { "c:objc(cs)SFContentBlockerManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -154,12 +154,12 @@ export class SFContentBlockerManager extends SDKHandle {
  */
 export class SFContentBlockerState extends SDKHandle {
   /** init() */
-  static init(): SFContentBlockerState { return callSDK<SFContentBlockerState>("SafariServices_6be9a005889899ab", 3096611432502906, undefined, []); }
+  static init(): SFContentBlockerState { return callSDK<SFContentBlockerState>("SafariServices_c1f28409f8601238", 3096611432502906, undefined, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 10.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SafariServices_6be9a005889899ab", 974305154200776, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("SafariServices_c1f28409f8601238", 974305154200776, this, []); }
   declare readonly $type: { "c:objc(cs)SFContentBlockerState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true };
 }
@@ -173,37 +173,37 @@ export class SFError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("SafariServices_6be9a005889899ab", 2058268739652801, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SafariServices_c1f28409f8601238", 2058268739652801, undefined, []); }
   /**
    * static var internalError: SFError.Code { get }
    * @availability iOS 10.0+
    */
-  static get internalError(): SFError_Code { return callSDK<SFError_Code>("SafariServices_6be9a005889899ab", 3997018624921689, undefined, []); }
+  static get internalError(): SFError_Code { return callSDK<SFError_Code>("SafariServices_c1f28409f8601238", 3997018624921689, undefined, []); }
   /**
    * static var noExtensionFound: SFError.Code { get }
    * @availability iOS 10.0+
    */
-  static get noExtensionFound(): SFError_Code { return callSDK<SFError_Code>("SafariServices_6be9a005889899ab", 2965055321740224, undefined, []); }
+  static get noExtensionFound(): SFError_Code { return callSDK<SFError_Code>("SafariServices_c1f28409f8601238", 2965055321740224, undefined, []); }
   /**
    * static var noAttachmentFound: SFError.Code { get }
    * @availability iOS 10.0+
    */
-  static get noAttachmentFound(): SFError_Code { return callSDK<SFError_Code>("SafariServices_6be9a005889899ab", 4178396619247877, undefined, []); }
+  static get noAttachmentFound(): SFError_Code { return callSDK<SFError_Code>("SafariServices_c1f28409f8601238", 4178396619247877, undefined, []); }
   /**
    * static var loadingInterrupted: SFError.Code { get }
    * @availability iOS 10.0+
    */
-  static get loadingInterrupted(): SFError_Code { return callSDK<SFError_Code>("SafariServices_6be9a005889899ab", 2968223314075390, undefined, []); }
+  static get loadingInterrupted(): SFError_Code { return callSDK<SFError_Code>("SafariServices_c1f28409f8601238", 2968223314075390, undefined, []); }
   /**
    * static var missingEntitlement: SFError.Code { get }
    * @availability iOS 10.0+
    */
-  static get missingEntitlement(): SFError_Code { return callSDK<SFError_Code>("SafariServices_6be9a005889899ab", 3206368816482535, undefined, []); }
+  static get missingEntitlement(): SFError_Code { return callSDK<SFError_Code>("SafariServices_c1f28409f8601238", 3206368816482535, undefined, []); }
   /**
    * static var maximumAttemptsExceeded: SFError.Code { get }
    * @availability iOS 10.0+
    */
-  static get maximumAttemptsExceeded(): SFError_Code { return callSDK<SFError_Code>("SafariServices_6be9a005889899ab", 3546505636799687, undefined, []); }
+  static get maximumAttemptsExceeded(): SFError_Code { return callSDK<SFError_Code>("SafariServices_c1f28409f8601238", 3546505636799687, undefined, []); }
   declare readonly $type: { "s:SC11SFErrorCodeLeV": true };
 }
 
@@ -218,7 +218,7 @@ export const SFError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SFError_Code) | null { return callSDK<(SFError_Code) | null>("SafariServices_6be9a005889899ab", 274436899961538, undefined, [rawValue]); }
+  init(rawValue: number): (SFError_Code) | null { return callSDK<(SFError_Code) | null>("SafariServices_c1f28409f8601238", 274436899961538, undefined, [rawValue]); }
 };
 
 /**
@@ -230,7 +230,7 @@ export class SFSafariExtensionManager extends SDKHandle {
    * class func stateOfExtension(withIdentifier identifier: String) async throws -> SFSafariExtensionState
    * @availability iOS 26.2+
    */
-  static getStateOfExtension(identifier: string, completionHandler: ((arg0: (SFSafariExtensionState) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafariServices_6be9a005889899ab", 3455156721836387, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static getStateOfExtension(identifier: string, completionHandler: ((arg0: (SFSafariExtensionState) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("SafariServices_c1f28409f8601238", 3455156721836387, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SFSafariExtensionManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -240,12 +240,12 @@ export class SFSafariExtensionManager extends SDKHandle {
  */
 export class SFSafariExtensionState extends SDKHandle {
   /** init() */
-  static init(): SFSafariExtensionState { return callSDK<SFSafariExtensionState>("SafariServices_6be9a005889899ab", 132854679595979, undefined, []); }
+  static init(): SFSafariExtensionState { return callSDK<SFSafariExtensionState>("SafariServices_c1f28409f8601238", 132854679595979, undefined, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 26.2+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SafariServices_6be9a005889899ab", 2929590390273062, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("SafariServices_c1f28409f8601238", 2929590390273062, this, []); }
   declare readonly $type: { "c:objc(cs)SFSafariExtensionState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true };
 }
@@ -259,12 +259,12 @@ export class SFSafariSettings extends SDKHandle {
    * class func openExportBrowsingDataSettings() async throws
    * @availability iOS 26.0+
    */
-  static openExportBrowsingDataSettings(completionHandler?: $SDK4): void { return callSDK<void>("SafariServices_6be9a005889899ab", 2221442358774807, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static openExportBrowsingDataSettings(completionHandler?: $SDK4): void { return callSDK<void>("SafariServices_c1f28409f8601238", 2221442358774807, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func openExtensionsSettings(forIdentifiers extensionIdentifiers: [String]) async throws
    * @availability iOS 26.2+
    */
-  static openExtensionsSettings(extensionIdentifiers: Array<string>, completionHandler?: $SDK4): void { return callSDK<void>("SafariServices_6be9a005889899ab", 1903842130971225, undefined, [extensionIdentifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static openExtensionsSettings(extensionIdentifiers: Array<string>, completionHandler?: $SDK4): void { return callSDK<void>("SafariServices_c1f28409f8601238", 1903842130971225, undefined, [extensionIdentifiers, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SFSafariSettings": true; "c:objc(cs)NSObject": true };
 }
 
@@ -277,54 +277,54 @@ export class SFSafariViewController extends SDKHandle {
    * class func prewarmConnections(to URLs: [URL]) -> SFSafariViewController.PrewarmingToken
    * @availability iOS 15.0+
    */
-  static prewarmConnections(URLs: Array<string>): Promise<SFSafariViewController_PrewarmingToken> { return callSDKAsync<SFSafariViewController_PrewarmingToken>("SafariServices_6be9a005889899ab", 540294357303114, undefined, [URLs]); }
+  static prewarmConnections(URLs: Array<string>): Promise<SFSafariViewController_PrewarmingToken> { return callSDKAsync<SFSafariViewController_PrewarmingToken>("SafariServices_c1f28409f8601238", 540294357303114, undefined, [URLs]); }
   /**
    * convenience init(url URL: URL)
    * @availability iOS 9.0+
    */
-  static initUrl(URL: string): Promise<SFSafariViewController> { return callSDKAsync<SFSafariViewController>("SafariServices_6be9a005889899ab", 19220109255350, undefined, [URL]); }
+  static initUrl(URL: string): Promise<SFSafariViewController> { return callSDKAsync<SFSafariViewController>("SafariServices_c1f28409f8601238", 19220109255350, undefined, [URL]); }
   /**
    * init(url URL: URL, configuration: SFSafariViewController.Configuration)
    * @availability iOS 11.0+
    */
-  static initUrlConfiguration(URL: string, configuration: SFSafariViewController_Configuration): Promise<SFSafariViewController> { return callSDKAsync<SFSafariViewController>("SafariServices_6be9a005889899ab", 4064628526563874, undefined, [URL, configuration]); }
+  static initUrlConfiguration(URL: string, configuration: SFSafariViewController_Configuration): Promise<SFSafariViewController> { return callSDKAsync<SFSafariViewController>("SafariServices_c1f28409f8601238", 4064628526563874, undefined, [URL, configuration]); }
   /**
    * init(url URL: URL, entersReaderIfAvailable: Bool)
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static initUrlEntersReaderIfAvailable(URL: string, entersReaderIfAvailable: boolean): Promise<SFSafariViewController> { return callSDKAsync<SFSafariViewController>("SafariServices_6be9a005889899ab", 885328375023617, undefined, [URL, entersReaderIfAvailable]); }
+  static initUrlEntersReaderIfAvailable(URL: string, entersReaderIfAvailable: boolean): Promise<SFSafariViewController> { return callSDKAsync<SFSafariViewController>("SafariServices_c1f28409f8601238", 885328375023617, undefined, [URL, entersReaderIfAvailable]); }
   /**
    * @NSCopying var configuration: SFSafariViewController.Configuration { get }
    * @availability iOS 11.0+
    */
-  get configuration(): Promise<SFSafariViewController_Configuration> { return callSDKAsync<SFSafariViewController_Configuration>("SafariServices_6be9a005889899ab", 4298598788528190, this, []); }
+  get configuration(): Promise<SFSafariViewController_Configuration> { return callSDKAsync<SFSafariViewController_Configuration>("SafariServices_c1f28409f8601238", 4298598788528190, this, []); }
   /**
    * weak var delegate: (any SFSafariViewControllerDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SafariServices_6be9a005889899ab", 667374208238249, this, []); }
-  setDelegate(value?: (Implements<SFSafariViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 3404648853960619, this, [value], [{"protocol":"c:objc(pl)SFSafariViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("SafariServices_c1f28409f8601238", 667374208238249, this, []); }
+  setDelegate(value?: (Implements<SFSafariViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 3404648853960619, this, [value], [{"protocol":"c:objc(pl)SFSafariViewControllerDelegate"}]); }
   /**
    * var dismissButtonStyle: SFSafariViewController.DismissButtonStyle { get set }
    * @availability iOS 11.0+
    */
-  get dismissButtonStyle(): Promise<SFSafariViewController_DismissButtonStyle> { return callSDKAsync<SFSafariViewController_DismissButtonStyle>("SafariServices_6be9a005889899ab", 307960397683549, this, []); }
-  setDismissButtonStyle(value: SFSafariViewController_DismissButtonStyle): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 850927089839874, this, [value]); }
+  get dismissButtonStyle(): Promise<SFSafariViewController_DismissButtonStyle> { return callSDKAsync<SFSafariViewController_DismissButtonStyle>("SafariServices_c1f28409f8601238", 307960397683549, this, []); }
+  setDismissButtonStyle(value: SFSafariViewController_DismissButtonStyle): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 850927089839874, this, [value]); }
   /**
    * var preferredBarTintColor: UIColor? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 26.0
    */
-  get preferredBarTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("SafariServices_6be9a005889899ab", 3400401531984573, this, []); }
-  setPreferredBarTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 3988222144475234, this, [value]); }
+  get preferredBarTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("SafariServices_c1f28409f8601238", 3400401531984573, this, []); }
+  setPreferredBarTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 3988222144475234, this, [value]); }
   /**
    * var preferredControlTintColor: UIColor? { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 26.0
    */
-  get preferredControlTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("SafariServices_6be9a005889899ab", 3256631010940682, this, []); }
-  setPreferredControlTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 4467141441238095, this, [value]); }
+  get preferredControlTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("SafariServices_c1f28409f8601238", 3256631010940682, this, []); }
+  setPreferredControlTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 4467141441238095, this, [value]); }
   declare readonly $type: { "c:objc(cs)SFSafariViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "delegate": true; "dismissButtonStyle": true; "preferredBarTintColor": true; "preferredControlTintColor": true };
 }
@@ -338,17 +338,17 @@ export class SFSafariViewController_ActivityButton extends SDKHandle {
    * init(templateImage: UIImage, extensionIdentifier: String)
    * @availability iOS 15.0+
    */
-  static init(templateImage: _UIKit_UIImage, extensionIdentifier: string): Promise<SFSafariViewController_ActivityButton> { return callSDKAsync<SFSafariViewController_ActivityButton>("SafariServices_6be9a005889899ab", 3741828716684259, undefined, [templateImage, extensionIdentifier]); }
+  static init(templateImage: _UIKit_UIImage, extensionIdentifier: string): Promise<SFSafariViewController_ActivityButton> { return callSDKAsync<SFSafariViewController_ActivityButton>("SafariServices_c1f28409f8601238", 3741828716684259, undefined, [templateImage, extensionIdentifier]); }
   /**
    * var extensionIdentifier: String? { get }
    * @availability iOS 15.0+
    */
-  get extensionIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SafariServices_6be9a005889899ab", 2223737214796871, this, []); }
+  get extensionIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SafariServices_c1f28409f8601238", 2223737214796871, this, []); }
   /**
    * @NSCopying var templateImage: UIImage? { get }
    * @availability iOS 15.0+
    */
-  get templateImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("SafariServices_6be9a005889899ab", 3359330043850188, this, []); }
+  get templateImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("SafariServices_c1f28409f8601238", 3359330043850188, this, []); }
   declare readonly $type: { "c:objc(cs)SFSafariViewControllerActivityButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "extensionIdentifier": true; "templateImage": true };
 }
@@ -359,31 +359,31 @@ export class SFSafariViewController_ActivityButton extends SDKHandle {
  */
 export class SFSafariViewController_Configuration extends SDKHandle {
   /** init() */
-  static init(): Promise<SFSafariViewController_Configuration> { return callSDKAsync<SFSafariViewController_Configuration>("SafariServices_6be9a005889899ab", 551069470020153, undefined, []); }
+  static init(): Promise<SFSafariViewController_Configuration> { return callSDKAsync<SFSafariViewController_Configuration>("SafariServices_c1f28409f8601238", 551069470020153, undefined, []); }
   /**
    * @NSCopying var activityButton: SFSafariViewController.ActivityButton? { get set }
    * @availability iOS 15.0+
    */
-  get activityButton(): Promise<$SDK7> { return callSDKAsync<$SDK7>("SafariServices_6be9a005889899ab", 2879769513041182, this, []); }
-  setActivityButton(value?: $SDK7): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 1046225906954285, this, [value]); }
+  get activityButton(): Promise<$SDK7> { return callSDKAsync<$SDK7>("SafariServices_c1f28409f8601238", 2879769513041182, this, []); }
+  setActivityButton(value?: $SDK7): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 1046225906954285, this, [value]); }
   /**
    * var barCollapsingEnabled: Bool { get set }
    * @availability iOS 11.0+
    */
-  get barCollapsingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("SafariServices_6be9a005889899ab", 291842933014481, this, []); }
-  setBarCollapsingEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 1217616287510620, this, [value]); }
+  get barCollapsingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("SafariServices_c1f28409f8601238", 291842933014481, this, []); }
+  setBarCollapsingEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 1217616287510620, this, [value]); }
   /**
    * var entersReaderIfAvailable: Bool { get set }
    * @availability iOS 11.0+
    */
-  get entersReaderIfAvailable(): Promise<boolean> { return callSDKAsync<boolean>("SafariServices_6be9a005889899ab", 4037696667532299, this, []); }
-  setEntersReaderIfAvailable(value: boolean): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 561960743943432, this, [value]); }
+  get entersReaderIfAvailable(): Promise<boolean> { return callSDKAsync<boolean>("SafariServices_c1f28409f8601238", 4037696667532299, this, []); }
+  setEntersReaderIfAvailable(value: boolean): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 561960743943432, this, [value]); }
   /**
    * @NSCopying var eventAttribution: UIEventAttribution? { get set }
    * @availability iOS 15.2+
    */
-  get eventAttribution(): Promise<$SDK8> { return callSDKAsync<$SDK8>("SafariServices_6be9a005889899ab", 1571111630040997, this, []); }
-  setEventAttribution(value?: $SDK8): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 4470004019636538, this, [value]); }
+  get eventAttribution(): Promise<$SDK8> { return callSDKAsync<$SDK8>("SafariServices_c1f28409f8601238", 1571111630040997, this, []); }
+  setEventAttribution(value?: $SDK8): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 4470004019636538, this, [value]); }
   declare readonly $type: { "c:objc(cs)SFSafariViewControllerConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activityButton": true; "barCollapsingEnabled": true; "entersReaderIfAvailable": true; "eventAttribution": true };
 }
@@ -397,12 +397,12 @@ export class SFSafariViewController_DataStore extends SDKHandle {
    * class var `default`: SFSafariViewController.DataStore { get }
    * @availability iOS 16.0+
    */
-  static get default(): Promise<SFSafariViewController_DataStore> { return callSDKAsync<SFSafariViewController_DataStore>("SafariServices_6be9a005889899ab", 1953421772144917, undefined, []); }
+  static get default(): Promise<SFSafariViewController_DataStore> { return callSDKAsync<SFSafariViewController_DataStore>("SafariServices_c1f28409f8601238", 1953421772144917, undefined, []); }
   /**
    * func clearWebsiteData() async
    * @availability iOS 16.0+
    */
-  clearWebsiteData(completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 2209731637976201, this, [completion], [{"callback":{"out":[]}}]); }
+  clearWebsiteData(completion?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 2209731637976201, this, [completion], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SFSafariViewControllerDataStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -417,7 +417,7 @@ export const SFSafariViewController_DismissButtonStyle = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): Promise<(SFSafariViewController_DismissButtonStyle) | null> { return callSDKAsync<(SFSafariViewController_DismissButtonStyle) | null>("SafariServices_6be9a005889899ab", 1085627497651492, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(SFSafariViewController_DismissButtonStyle) | null> { return callSDKAsync<(SFSafariViewController_DismissButtonStyle) | null>("SafariServices_c1f28409f8601238", 1085627497651492, undefined, [rawValue]); }
 };
 
 /**
@@ -429,7 +429,7 @@ export class SFSafariViewController_PrewarmingToken extends SDKHandle {
    * func invalidate()
    * @availability iOS 15.0+
    */
-  invalidate(): Promise<void> { return callSDKAsync<void>("SafariServices_6be9a005889899ab", 4397878201713461, this, []); }
+  invalidate(): Promise<void> { return callSDKAsync<void>("SafariServices_c1f28409f8601238", 4397878201713461, this, []); }
   declare readonly $type: { "c:objc(cs)SFSafariViewControllerPrewarmingToken": true; "c:objc(cs)NSObject": true };
 }
 
@@ -469,17 +469,17 @@ export class SSReadingList extends SDKHandle {
    * class func `default`() -> SSReadingList?
    * @availability iOS 7.0+
    */
-  static default(): (SSReadingList) | null { return callSDK<(SSReadingList) | null>("SafariServices_6be9a005889899ab", 380425216721696, undefined, []); }
+  static default(): (SSReadingList) | null { return callSDK<(SSReadingList) | null>("SafariServices_c1f28409f8601238", 380425216721696, undefined, []); }
   /**
    * class func supportsURL(_ URL: URL) -> Bool
    * @availability iOS 7.0+
    */
-  static supportsURL(URL: string): boolean { return callSDK<boolean>("SafariServices_6be9a005889899ab", 1215841016631560, undefined, [URL]); }
+  static supportsURL(URL: string): boolean { return callSDK<boolean>("SafariServices_c1f28409f8601238", 1215841016631560, undefined, [URL]); }
   /**
    * func addItem(with URL: URL, title: String?, previewText: String?) throws
    * @availability iOS 7.0+
    */
-  addItem(URL: string, title?: (string) | null, previewText?: (string) | null): void { return callSDK<void>("SafariServices_6be9a005889899ab", 1793681648318821, this, [URL, title, previewText]); }
+  addItem(URL: string, title?: (string) | null, previewText?: (string) | null): void { return callSDK<void>("SafariServices_c1f28409f8601238", 1793681648318821, this, [URL, title, previewText]); }
   declare readonly $type: { "c:objc(cs)SSReadingList": true; "c:objc(cs)NSObject": true };
 }
 
@@ -492,12 +492,12 @@ export class SSReadingListError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 7.0+
    */
-  static get errorDomain(): string { return callSDK<string>("SafariServices_6be9a005889899ab", 1841844411621461, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SafariServices_c1f28409f8601238", 1841844411621461, undefined, []); }
   /**
    * static var urlSchemeNotAllowed: SSReadingListError.Code { get }
    * @availability iOS 7.0+
    */
-  static get urlSchemeNotAllowed(): SSReadingListError_Code { return callSDK<SSReadingListError_Code>("SafariServices_6be9a005889899ab", 2533928581372016, undefined, []); }
+  static get urlSchemeNotAllowed(): SSReadingListError_Code { return callSDK<SSReadingListError_Code>("SafariServices_c1f28409f8601238", 2533928581372016, undefined, []); }
   declare readonly $type: { "s:SC22SSReadingListErrorCodeLeV": true };
 }
 
@@ -512,7 +512,7 @@ export const SSReadingListError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SSReadingListError_Code) | null { return callSDK<(SSReadingListError_Code) | null>("SafariServices_6be9a005889899ab", 2544254841152689, undefined, [rawValue]); }
+  init(rawValue: number): (SSReadingListError_Code) | null { return callSDK<(SSReadingListError_Code) | null>("SafariServices_c1f28409f8601238", 2544254841152689, undefined, [rawValue]); }
 };
 
 /**
@@ -520,54 +520,54 @@ export const SSReadingListError_Code = {
  * @availability iOS 11.0+
  * @deprecated iOS 12.0
  */
-export const SFAuthenticationErrorDomain: string = callSDK<string>("SafariServices_6be9a005889899ab", 2666078207466183, undefined, []);
+export const SFAuthenticationErrorDomain: string = callSDK<string>("SafariServices_c1f28409f8601238", 2666078207466183, undefined, []);
 
 /**
  * let SFContentBlockerErrorDomain: String
  * @availability iOS 9.0+
  * @deprecated iOS 10.0
  */
-export const SFContentBlockerErrorDomain: string = callSDK<string>("SafariServices_6be9a005889899ab", 28795455622516, undefined, []);
+export const SFContentBlockerErrorDomain: string = callSDK<string>("SafariServices_c1f28409f8601238", 28795455622516, undefined, []);
 
 /**
  * let SFErrorDomain: String
  * @availability iOS 10.0+
  */
-export const SFErrorDomain: string = callSDK<string>("SafariServices_6be9a005889899ab", 2433353842022579, undefined, []);
+export const SFErrorDomain: string = callSDK<string>("SafariServices_c1f28409f8601238", 2433353842022579, undefined, []);
 
 /**
  * let SFExtensionMessageKey: String
  * @availability iOS 15.0+
  */
-export const SFExtensionMessageKey: string = callSDK<string>("SafariServices_6be9a005889899ab", 176986205317005, undefined, []);
+export const SFExtensionMessageKey: string = callSDK<string>("SafariServices_c1f28409f8601238", 176986205317005, undefined, []);
 
 /**
  * let SFExtensionProfileKey: String
  * @availability iOS 17.0+
  */
-export const SFExtensionProfileKey: string = callSDK<string>("SafariServices_6be9a005889899ab", 2386286166696785, undefined, []);
+export const SFExtensionProfileKey: string = callSDK<string>("SafariServices_c1f28409f8601238", 2386286166696785, undefined, []);
 
 /**
  * let SSReadingListErrorDomain: String
  * @availability iOS 7.0+
  */
-export const SSReadingListErrorDomain: string = callSDK<string>("SafariServices_6be9a005889899ab", 1406700343592186, undefined, []);
+export const SSReadingListErrorDomain: string = callSDK<string>("SafariServices_c1f28409f8601238", 1406700343592186, undefined, []);
 
 registerSDKProtocol("c:objc(pl)SFAddToHomeScreenActivityItem", {});
-registerSDKClass("SFAddToHomeScreenInfo", SFAddToHomeScreenInfo, { module: "SafariServices_6be9a005889899ab", properties: {"manifest":2165692518100642,"websiteCookies":4093670260156476} });
-registerSDKClass("SafariServices.SFAuthenticationError", SFAuthenticationError, { module: "SafariServices_6be9a005889899ab", properties: {} });
-registerSDKClass("SFAuthenticationSession", SFAuthenticationSession, { module: "SafariServices_6be9a005889899ab", properties: {}, methods: {"cancel":{"id":1985978961127051},"start":{"id":596099172372173}} });
-registerSDKClass("SFContentBlockerManager", SFContentBlockerManager, { module: "SafariServices_6be9a005889899ab", properties: {} });
-registerSDKClass("SFContentBlockerState", SFContentBlockerState, { module: "SafariServices_6be9a005889899ab", properties: {"isEnabled":974305154200776} });
-registerSDKClass("SafariServices.SFError", SFError, { module: "SafariServices_6be9a005889899ab", properties: {} });
-registerSDKClass("SFSafariExtensionManager", SFSafariExtensionManager, { module: "SafariServices_6be9a005889899ab", properties: {} });
-registerSDKClass("SFSafariExtensionState", SFSafariExtensionState, { module: "SafariServices_6be9a005889899ab", properties: {"isEnabled":2929590390273062} });
-registerSDKClass("SFSafariSettings", SFSafariSettings, { module: "SafariServices_6be9a005889899ab", properties: {} });
-registerSDKClass("SFSafariViewController", SFSafariViewController, { module: "SafariServices_6be9a005889899ab", properties: {"configuration":4298598788528190,"delegate":667374208238249,"dismissButtonStyle":307960397683549,"preferredBarTintColor":3400401531984573,"preferredControlTintColor":3256631010940682} });
-registerSDKClass("SFSafariViewControllerActivityButton", SFSafariViewController_ActivityButton, { module: "SafariServices_6be9a005889899ab", properties: {"extensionIdentifier":2223737214796871,"templateImage":3359330043850188} });
-registerSDKClass("SFSafariViewControllerConfiguration", SFSafariViewController_Configuration, { module: "SafariServices_6be9a005889899ab", properties: {"activityButton":2879769513041182,"barCollapsingEnabled":291842933014481,"entersReaderIfAvailable":4037696667532299,"eventAttribution":1571111630040997} });
-registerSDKClass("SFSafariViewControllerDataStore", SFSafariViewController_DataStore, { module: "SafariServices_6be9a005889899ab", properties: {}, methods: {"clearWebsiteData":{"id":2209731637976201,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("SFSafariViewControllerPrewarmingToken", SFSafariViewController_PrewarmingToken, { module: "SafariServices_6be9a005889899ab", properties: {}, methods: {"invalidate":{"id":4397878201713461}} });
+registerSDKClass("SFAddToHomeScreenInfo", SFAddToHomeScreenInfo, { module: "SafariServices_c1f28409f8601238", properties: {"manifest":2165692518100642,"websiteCookies":4093670260156476} });
+registerSDKClass("SafariServices.SFAuthenticationError", SFAuthenticationError, { module: "SafariServices_c1f28409f8601238", properties: {} });
+registerSDKClass("SFAuthenticationSession", SFAuthenticationSession, { module: "SafariServices_c1f28409f8601238", properties: {}, methods: {"cancel":{"id":1985978961127051},"start":{"id":596099172372173}} });
+registerSDKClass("SFContentBlockerManager", SFContentBlockerManager, { module: "SafariServices_c1f28409f8601238", properties: {} });
+registerSDKClass("SFContentBlockerState", SFContentBlockerState, { module: "SafariServices_c1f28409f8601238", properties: {"isEnabled":974305154200776} });
+registerSDKClass("SafariServices.SFError", SFError, { module: "SafariServices_c1f28409f8601238", properties: {} });
+registerSDKClass("SFSafariExtensionManager", SFSafariExtensionManager, { module: "SafariServices_c1f28409f8601238", properties: {} });
+registerSDKClass("SFSafariExtensionState", SFSafariExtensionState, { module: "SafariServices_c1f28409f8601238", properties: {"isEnabled":2929590390273062} });
+registerSDKClass("SFSafariSettings", SFSafariSettings, { module: "SafariServices_c1f28409f8601238", properties: {} });
+registerSDKClass("SFSafariViewController", SFSafariViewController, { module: "SafariServices_c1f28409f8601238", properties: {"configuration":4298598788528190,"delegate":667374208238249,"dismissButtonStyle":307960397683549,"preferredBarTintColor":3400401531984573,"preferredControlTintColor":3256631010940682} });
+registerSDKClass("SFSafariViewControllerActivityButton", SFSafariViewController_ActivityButton, { module: "SafariServices_c1f28409f8601238", properties: {"extensionIdentifier":2223737214796871,"templateImage":3359330043850188} });
+registerSDKClass("SFSafariViewControllerConfiguration", SFSafariViewController_Configuration, { module: "SafariServices_c1f28409f8601238", properties: {"activityButton":2879769513041182,"barCollapsingEnabled":291842933014481,"entersReaderIfAvailable":4037696667532299,"eventAttribution":1571111630040997} });
+registerSDKClass("SFSafariViewControllerDataStore", SFSafariViewController_DataStore, { module: "SafariServices_c1f28409f8601238", properties: {}, methods: {"clearWebsiteData":{"id":2209731637976201,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("SFSafariViewControllerPrewarmingToken", SFSafariViewController_PrewarmingToken, { module: "SafariServices_c1f28409f8601238", properties: {}, methods: {"invalidate":{"id":4397878201713461}} });
 registerSDKProtocol("c:objc(pl)SFSafariViewControllerDelegate", {"safariViewControllerDidFinish":"safariViewControllerDidFinish(_:)","safariViewControllerDidCompleteInitialLoad":"safariViewController(_:didCompleteInitialLoad:)","safariViewControllerInitialLoadDidRedirectTo":"safariViewController(_:initialLoadDidRedirectTo:)","safariViewControllerWillOpenInBrowser":"safariViewControllerWillOpenInBrowser(_:)"});
-registerSDKClass("SSReadingList", SSReadingList, { module: "SafariServices_6be9a005889899ab", properties: {}, methods: {"addItem":{"id":1793681648318821}} });
-registerSDKClass("SafariServices.SSReadingListError", SSReadingListError, { module: "SafariServices_6be9a005889899ab", properties: {} });
+registerSDKClass("SSReadingList", SSReadingList, { module: "SafariServices_c1f28409f8601238", properties: {}, methods: {"addItem":{"id":1793681648318821}} });
+registerSDKClass("SafariServices.SSReadingListError", SSReadingListError, { module: "SafariServices_c1f28409f8601238", properties: {} });

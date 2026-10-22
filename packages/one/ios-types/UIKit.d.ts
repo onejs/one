@@ -9,7 +9,7 @@ import type { CLRegion as _CoreLocation_CLRegion } from "one/ios/CoreLocation";
 import type { AttributedString_AdaptiveImageGlyph as _CoreText_AttributedString_AdaptiveImageGlyph, CTTextAlignment as _CoreText_CTTextAlignment } from "one/ios/CoreText";
 import type { DDMatchMoneyAmount as _DataDetection_DDMatchMoneyAmount, DDMatchPhoneNumber as _DataDetection_DDMatchPhoneNumber, DDMatchFlightNumber as _DataDetection_DDMatchFlightNumber, DDMatchCalendarEvent as _DataDetection_DDMatchCalendarEvent, DDMatchEmailAddress as _DataDetection_DDMatchEmailAddress, DDMatchPostalAddress as _DataDetection_DDMatchPostalAddress, DDMatchShipmentTrackingNumber as _DataDetection_DDMatchShipmentTrackingNumber, DDMatchLink as _DataDetection_DDMatchLink } from "one/ios/DataDetection";
 import type { ColorResource as _DeveloperToolsSupport_ColorResource, ImageResource as _DeveloperToolsSupport_ImageResource } from "one/ios/DeveloperToolsSupport";
-import type { AttributeScopes_FoundationAttributes as _Foundation_AttributeScopes_FoundationAttributes, AttributedString_AttributeRunBoundaries as _Foundation_AttributedString_AttributeRunBoundaries, AttributeScopeCodableConfiguration as _Foundation_AttributeScopeCodableConfiguration, NSNumber as _Foundation_NSNumber, NSAttributedString as _Foundation_NSAttributedString, IndexPath as _Foundation_IndexPath, NSCoder as _Foundation_NSCoder, NSAttributedString_Key as _Foundation_NSAttributedString_Key, FileWrapper as _Foundation_FileWrapper, NSDictionary as _Foundation_NSDictionary, Bundle as _Foundation_Bundle, NSIndexPath as _Foundation_NSIndexPath, NSNotification_Name as _Foundation_NSNotification_Name, OperationQueue as _Foundation_OperationQueue, ComparisonResult as _Foundation_ComparisonResult, NSString_EnumerationOptions as _Foundation_NSString_EnumerationOptions, CharacterSet as _Foundation_CharacterSet, Locale as _Foundation_Locale, NSValue as _Foundation_NSValue, RunLoop_Mode as _Foundation_RunLoop_Mode, Notification as _Foundation_Notification, NSUserActivity as _Foundation_NSUserActivity, UndoManager as _Foundation_UndoManager, NSItemProvider as _Foundation_NSItemProvider, NSExceptionName as _Foundation_NSExceptionName, NSExtensionContext as _Foundation_NSExtensionContext, AttributedString as _Foundation_AttributedString, DateComponents as _Foundation_DateComponents, DateInterval as _Foundation_DateInterval, Calendar as _Foundation_Calendar, TimeZone as _Foundation_TimeZone, IndexSet as _Foundation_IndexSet, AttributeContainer as _Foundation_AttributeContainer, PersonNameComponents as _Foundation_PersonNameComponents, Progress as _Foundation_Progress, NSPredicate as _Foundation_NSPredicate, Predicate as _Foundation_Predicate, NSCalendar_Unit as _Foundation_NSCalendar_Unit, NSArray as _Foundation_NSArray, NSTextCheckingResult as _Foundation_NSTextCheckingResult, LocalizedStringResource as _Foundation_LocalizedStringResource, NSString_CompareOptions as _Foundation_NSString_CompareOptions, Locale_Language as _Foundation_Locale_Language, URLRequest as _Foundation_URLRequest, URLThumbnailDictionaryItem as _Foundation_URLThumbnailDictionaryItem, NSMutableData as _Foundation_NSMutableData } from "one/ios/Foundation";
+import type { AttributeScopes_FoundationAttributes as _Foundation_AttributeScopes_FoundationAttributes, AttributedString_AttributeRunBoundaries as _Foundation_AttributedString_AttributeRunBoundaries, AttributeScopeCodableConfiguration as _Foundation_AttributeScopeCodableConfiguration, NSNumber as _Foundation_NSNumber, NSAttributedString as _Foundation_NSAttributedString, IndexPath as _Foundation_IndexPath, NSCoder as _Foundation_NSCoder, NSAttributedString_Key as _Foundation_NSAttributedString_Key, FileWrapper as _Foundation_FileWrapper, NSDictionary as _Foundation_NSDictionary, Bundle as _Foundation_Bundle, NSIndexPath as _Foundation_NSIndexPath, NSNotification_Name as _Foundation_NSNotification_Name, OperationQueue as _Foundation_OperationQueue, ComparisonResult as _Foundation_ComparisonResult, NSString_EnumerationOptions as _Foundation_NSString_EnumerationOptions, CharacterSet as _Foundation_CharacterSet, Locale as _Foundation_Locale, NSValue as _Foundation_NSValue, RunLoop_Mode as _Foundation_RunLoop_Mode, Notification as _Foundation_Notification, NSUserActivity as _Foundation_NSUserActivity, UndoManager as _Foundation_UndoManager, NSItemProvider as _Foundation_NSItemProvider, NSExceptionName as _Foundation_NSExceptionName, NSExtensionContext as _Foundation_NSExtensionContext, AttributedString as _Foundation_AttributedString, DateComponents as _Foundation_DateComponents, DateInterval as _Foundation_DateInterval, Calendar as _Foundation_Calendar, TimeZone as _Foundation_TimeZone, IndexSet as _Foundation_IndexSet, AttributeContainer as _Foundation_AttributeContainer, PersonNameComponents as _Foundation_PersonNameComponents, Progress as _Foundation_Progress, NSPredicate as _Foundation_NSPredicate, Predicate as _Foundation_Predicate, NSCalendar_Unit as _Foundation_NSCalendar_Unit, NSArray as _Foundation_NSArray, NSTextCheckingResult as _Foundation_NSTextCheckingResult, LocalizedStringResource as _Foundation_LocalizedStringResource, NSString_CompareOptions as _Foundation_NSString_CompareOptions, Locale_Language as _Foundation_Locale_Language, URLThumbnailDictionaryItem as _Foundation_URLThumbnailDictionaryItem, NSMutableData as _Foundation_NSMutableData } from "one/ios/Foundation";
 import type { LPLinkMetadata as _LinkPresentation_LPLinkMetadata } from "one/ios/LinkPresentation";
 import type { Selector as _ObjectiveC_Selector, NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 import type { CALayer as _QuartzCore_CALayer, CATransform3D as _QuartzCore_CATransform3D, CALayerCornerCurve as _QuartzCore_CALayerCornerCurve, CAFrameRateRange as _QuartzCore_CAFrameRateRange, CADisplayLink as _QuartzCore_CADisplayLink } from "one/ios/QuartzCore";
@@ -241,9 +241,9 @@ type $SDK561 = (Array<UIUserNotificationCategory>) | null;
 type $SDK563 = (UIView_LayoutRegion_AdaptivityAxis) | null;
 type $SDK567 = UIViewController_ViewLoading<unknown>;
 type $SDK568 = (((arg0: SDKHandle) => Promise<void>)) | null;
-type $SDK578 = (UISceneClosureConfirmation) | null;
-type $SDK586 = (UIWindowScene_ActivationRequestOptions) | null;
-type $SDK588 = (UIInterfaceOrientationMask) | null;
+type $SDK576 = (UISceneClosureConfirmation) | null;
+type $SDK584 = (UIWindowScene_ActivationRequestOptions) | null;
+type $SDK586 = (UIInterfaceOrientationMask) | null;
 /**
  * struct UIKitAttributes
  * @availability iOS 15.0+
@@ -62756,359 +62756,6 @@ export declare class UIVisualEffectView extends UIVisualEffectView_base {
         "effect": true;
     };
 }
-declare const UIWebView_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
-/**
- * @MainActor class UIWebView
- * @availability iOS 2.0+
- * @deprecated iOS 12.0
- */
-export declare class UIWebView extends UIWebView_base {
-    /**
-     * func goBack()
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    goBack(): Promise<void>;
-    /**
-     * func goForward()
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    goForward(): Promise<void>;
-    /** init() */
-    static init(): Promise<UIWebView>;
-    /**
-     * func load(_ data: Data, mimeType MIMEType: String, textEncodingName: String, baseURL: URL)
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    load(data: ArrayBuffer, MIMEType: string, textEncodingName: string, baseURL: string): Promise<void>;
-    /**
-     * func loadHTMLString(_ string: String, baseURL: URL?)
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    loadHTMLString(string: string, baseURL?: (string) | null): Promise<void>;
-    /**
-     * func loadRequest(_ request: URLRequest)
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    loadRequest(request: _Foundation_URLRequest): Promise<void>;
-    /**
-     * func reload()
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    reload(): Promise<void>;
-    /**
-     * func stopLoading()
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    stopLoading(): Promise<void>;
-    /**
-     * func stringByEvaluatingJavaScript(from script: String) -> String?
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    stringByEvaluatingJavaScript(script: string): Promise<(string) | null>;
-    /**
-     * var allowsInlineMediaPlayback: Bool { get set }
-     * @availability iOS 4.0+
-     * @deprecated iOS 12.0
-     */
-    get allowsInlineMediaPlayback(): Promise<boolean>;
-    setAllowsInlineMediaPlayback(value: boolean): Promise<void>;
-    /**
-     * var allowsLinkPreview: Bool { get set }
-     * @availability iOS 9.0+
-     * @deprecated iOS 12.0
-     */
-    get allowsLinkPreview(): Promise<boolean>;
-    setAllowsLinkPreview(value: boolean): Promise<void>;
-    /**
-     * var allowsPictureInPictureMediaPlayback: Bool { get set }
-     * @availability iOS 9.0+
-     * @deprecated iOS 12.0
-     */
-    get allowsPictureInPictureMediaPlayback(): Promise<boolean>;
-    setAllowsPictureInPictureMediaPlayback(value: boolean): Promise<void>;
-    /**
-     * var canGoBack: Bool { get }
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    get canGoBack(): Promise<boolean>;
-    /**
-     * var canGoForward: Bool { get }
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    get canGoForward(): Promise<boolean>;
-    /**
-     * var dataDetectorTypes: UIDataDetectorTypes { get set }
-     * @availability iOS 3.0+
-     * @deprecated iOS 12.0
-     */
-    get dataDetectorTypes(): Promise<UIDataDetectorTypes>;
-    setDataDetectorTypes(value: UIDataDetectorTypes): Promise<void>;
-    /**
-     * unowned(unsafe) var delegate: (any UIWebViewDelegate)? { get set }
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    get delegate(): Promise<(SDKHandle) | null>;
-    setDelegate(value?: (Implements<UIWebViewDelegate> | SDKHandle) | null): Promise<void>;
-    /**
-     * var gapBetweenPages: CGFloat { get set }
-     * @availability iOS 7.0+
-     * @deprecated iOS 12.0
-     */
-    get gapBetweenPages(): Promise<number>;
-    setGapBetweenPages(value: number): Promise<void>;
-    /**
-     * var keyboardDisplayRequiresUserAction: Bool { get set }
-     * @availability iOS 6.0+
-     * @deprecated iOS 12.0
-     */
-    get keyboardDisplayRequiresUserAction(): Promise<boolean>;
-    setKeyboardDisplayRequiresUserAction(value: boolean): Promise<void>;
-    /**
-     * var isLoading: Bool { get }
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    get isLoading(): Promise<boolean>;
-    /**
-     * var mediaPlaybackAllowsAirPlay: Bool { get set }
-     * @availability iOS 5.0+
-     * @deprecated iOS 12.0
-     */
-    get mediaPlaybackAllowsAirPlay(): Promise<boolean>;
-    setMediaPlaybackAllowsAirPlay(value: boolean): Promise<void>;
-    /**
-     * var mediaPlaybackRequiresUserAction: Bool { get set }
-     * @availability iOS 4.0+
-     * @deprecated iOS 12.0
-     */
-    get mediaPlaybackRequiresUserAction(): Promise<boolean>;
-    setMediaPlaybackRequiresUserAction(value: boolean): Promise<void>;
-    /**
-     * var pageCount: Int { get }
-     * @availability iOS 7.0+
-     * @deprecated iOS 12.0
-     */
-    get pageCount(): Promise<number>;
-    /**
-     * var pageLength: CGFloat { get set }
-     * @availability iOS 7.0+
-     * @deprecated iOS 12.0
-     */
-    get pageLength(): Promise<number>;
-    setPageLength(value: number): Promise<void>;
-    /**
-     * var paginationBreakingMode: UIWebView.PaginationBreakingMode { get set }
-     * @availability iOS 7.0+
-     * @deprecated iOS 12.0
-     */
-    get paginationBreakingMode(): Promise<UIWebView_PaginationBreakingMode>;
-    setPaginationBreakingMode(value: UIWebView_PaginationBreakingMode): Promise<void>;
-    /**
-     * var paginationMode: UIWebView.PaginationMode { get set }
-     * @availability iOS 7.0+
-     * @deprecated iOS 12.0
-     */
-    get paginationMode(): Promise<UIWebView_PaginationMode>;
-    setPaginationMode(value: UIWebView_PaginationMode): Promise<void>;
-    /**
-     * var request: URLRequest? { get }
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    get request(): Promise<(_Foundation_URLRequest) | null>;
-    /**
-     * var scalesPageToFit: Bool { get set }
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    get scalesPageToFit(): Promise<boolean>;
-    setScalesPageToFit(value: boolean): Promise<void>;
-    /**
-     * var scrollView: UIScrollView { get }
-     * @availability iOS 5.0+
-     * @deprecated iOS 12.0
-     */
-    get scrollView(): Promise<UIScrollView>;
-    /**
-     * var suppressesIncrementalRendering: Bool { get set }
-     * @availability iOS 6.0+
-     * @deprecated iOS 12.0
-     */
-    get suppressesIncrementalRendering(): Promise<boolean>;
-    setSuppressesIncrementalRendering(value: boolean): Promise<void>;
-    readonly $type: {
-        "c:objc(cs)UIWebView": true;
-        "c:objc(cs)UIView": true;
-        "c:objc(cs)UIResponder": true;
-        "c:objc(cs)NSObject": true;
-    };
-    readonly $observable: {
-        "activityItemsConfiguration": true;
-        "canBecomeFirstResponder": true;
-        "canResignFirstResponder": true;
-        "editingInteractionConfiguration": true;
-        "inputAccessoryView": true;
-        "inputAccessoryViewController": true;
-        "inputAssistantItem": true;
-        "inputView": true;
-        "inputViewController": true;
-        "isFirstResponder": true;
-        "keyCommands": true;
-        "next": true;
-        "textInputContextIdentifier": true;
-        "textInputMode": true;
-        "undoManager": true;
-        "userActivity": true;
-        "accessibilityIgnoresInvertColors": true;
-        "alignmentRectInsets": true;
-        "alpha": true;
-        "anchorPoint": true;
-        "appliedContentSizeCategoryLimitsDescription": true;
-        "autoresizesSubviews": true;
-        "autoresizingMask": true;
-        "backgroundColor": true;
-        "bottomAnchor": true;
-        "bounds": true;
-        "canBecomeFocused": true;
-        "center": true;
-        "centerXAnchor": true;
-        "centerYAnchor": true;
-        "clearsContextBeforeDrawing": true;
-        "clipsToBounds": true;
-        "constraints": true;
-        "contentMode": true;
-        "contentScaleFactor": true;
-        "directionalLayoutMargins": true;
-        "effectiveUserInterfaceLayoutDirection": true;
-        "isExclusiveTouch": true;
-        "firstBaselineAnchor": true;
-        "focusEffect": true;
-        "focusGroupIdentifier": true;
-        "focusGroupPriority": true;
-        "isFocused": true;
-        "frame": true;
-        "gestureRecognizers": true;
-        "hasAmbiguousLayout": true;
-        "heightAnchor": true;
-        "isHidden": true;
-        "hoverStyle": true;
-        "insetsLayoutMarginsFromSafeArea": true;
-        "interactions": true;
-        "intrinsicContentSize": true;
-        "keyboardLayoutGuide": true;
-        "largeContentImage": true;
-        "largeContentImageInsets": true;
-        "largeContentTitle": true;
-        "lastBaselineAnchor": true;
-        "layer": true;
-        "layoutGuides": true;
-        "layoutMargins": true;
-        "layoutMarginsGuide": true;
-        "leadingAnchor": true;
-        "leftAnchor": true;
-        "mask": true;
-        "maximumContentSizeCategory": true;
-        "minimumContentSizeCategory": true;
-        "motionEffects": true;
-        "isMultipleTouchEnabled": true;
-        "isOpaque": true;
-        "overrideUserInterfaceStyle": true;
-        "preservesSuperviewLayoutMargins": true;
-        "readableContentGuide": true;
-        "restorationIdentifier": true;
-        "rightAnchor": true;
-        "safeAreaInsets": true;
-        "safeAreaLayoutGuide": true;
-        "scalesLargeContentImage": true;
-        "semanticContentAttribute": true;
-        "showsLargeContentViewer": true;
-        "subviews": true;
-        "superview": true;
-        "tag": true;
-        "tintAdjustmentMode": true;
-        "tintColor": true;
-        "topAnchor": true;
-        "trailingAnchor": true;
-        "transform3D": true;
-        "transform": true;
-        "translatesAutoresizingMaskIntoConstraints": true;
-        "isUserInteractionEnabled": true;
-        "forFirstBaselineLayout": true;
-        "forLastBaselineLayout": true;
-        "widthAnchor": true;
-        "window": true;
-        "allowsInlineMediaPlayback": true;
-        "allowsLinkPreview": true;
-        "allowsPictureInPictureMediaPlayback": true;
-        "canGoBack": true;
-        "canGoForward": true;
-        "dataDetectorTypes": true;
-        "delegate": true;
-        "gapBetweenPages": true;
-        "keyboardDisplayRequiresUserAction": true;
-        "isLoading": true;
-        "mediaPlaybackAllowsAirPlay": true;
-        "mediaPlaybackRequiresUserAction": true;
-        "pageCount": true;
-        "pageLength": true;
-        "paginationBreakingMode": true;
-        "paginationMode": true;
-        "request": true;
-        "scalesPageToFit": true;
-        "scrollView": true;
-        "suppressesIncrementalRendering": true;
-    };
-}
-/** enum NavigationType */
-export type UIWebView_NavigationType = "linkClicked" | "formSubmitted" | "backForward" | "reload" | "formResubmitted" | "other";
-export declare const UIWebView_NavigationType: {
-    /** init?(rawValue: Int) */
-    init(rawValue: number): Promise<(UIWebView_NavigationType) | null>;
-};
-/** enum PaginationBreakingMode */
-export type UIWebView_PaginationBreakingMode = "page" | "column";
-export declare const UIWebView_PaginationBreakingMode: {
-    /** init?(rawValue: Int) */
-    init(rawValue: number): Promise<(UIWebView_PaginationBreakingMode) | null>;
-};
-/** enum PaginationMode */
-export type UIWebView_PaginationMode = "unpaginated" | "leftToRight" | "topToBottom" | "bottomToTop" | "rightToLeft";
-export declare const UIWebView_PaginationMode: {
-    /** init?(rawValue: Int) */
-    init(rawValue: number): Promise<(UIWebView_PaginationMode) | null>;
-};
-/** @MainActor protocol UIWebViewDelegate : NSObjectProtocol */
-export interface UIWebViewDelegate {
-    /**
-     * optional func webViewDidStartLoad(_ webView: UIWebView)
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    "webViewDidStartLoad"?: (arg0: UIWebView) => void;
-    /**
-     * optional func webViewDidFinishLoad(_ webView: UIWebView)
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    "webViewDidFinishLoad"?: (arg0: UIWebView) => void;
-    /**
-     * optional func webView(_ webView: UIWebView, didFailLoadWithError error: any Error)
-     * @availability iOS 2.0+
-     * @deprecated iOS 12.0
-     */
-    "webViewDidFailLoadWithError"?: (arg0: UIWebView, arg1: NativeError) => void;
-}
 declare const UIWindow_base: Omit<typeof UIView, "init" | "initFrame" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIView, "convertFrom" | "convertTo">);
 /**
  * @MainActor class UIWindow
@@ -63535,8 +63182,8 @@ export declare class UIWindowScene extends UIScene {
      * @NSCopying var closureConfirmation: UISceneClosureConfirmation? { get set }
      * @availability iOS 27.0+
      */
-    get closureConfirmation(): Promise<$SDK578>;
-    setClosureConfirmation(value?: $SDK578): Promise<void>;
+    get closureConfirmation(): Promise<$SDK576>;
+    setClosureConfirmation(value?: $SDK576): Promise<void>;
     /**
      * var coordinateSpace: any UICoordinateSpace { get }
      * @availability iOS 13.0+
@@ -63721,8 +63368,8 @@ export declare class UIWindowScene_ActivationConfiguration extends SDKHandle {
      * var options: UIWindowScene.ActivationRequestOptions? { get set }
      * @availability iOS 15.0+
      */
-    get options(): Promise<$SDK586>;
-    setOptions(value?: $SDK586): Promise<void>;
+    get options(): Promise<$SDK584>;
+    setOptions(value?: $SDK584): Promise<void>;
     /**
      * var preview: UITargetedPreview? { get set }
      * @availability iOS 15.0+
@@ -63738,7 +63385,7 @@ export declare class UIWindowScene_ActivationConfiguration extends SDKHandle {
      * convenience init(userActivity: NSUserActivity, options: UIWindowScene.ActivationRequestOptions? = nil, preview: UITargetedPreview? = nil)
      * @availability iOS 15.0+
      */
-    static init(userActivity: _Foundation_NSUserActivity, options?: $SDK586, preview?: $SDK223): Promise<UIWindowScene_ActivationConfiguration>;
+    static init(userActivity: _Foundation_NSUserActivity, options?: $SDK584, preview?: $SDK223): Promise<UIWindowScene_ActivationConfiguration>;
     readonly $type: {
         "c:objc(cs)UIWindowSceneActivationConfiguration": true;
         "c:objc(cs)NSObject": true;
@@ -63875,8 +63522,8 @@ export declare class UIWindowScene_GeometryPreferences_iOS extends UIWindowScene
      * var interfaceOrientations: UIInterfaceOrientationMask? { get set }
      * @availability iOS 16.0+
      */
-    get interfaceOrientations(): Promise<$SDK588>;
-    setInterfaceOrientations(value?: $SDK588): Promise<void>;
+    get interfaceOrientations(): Promise<$SDK586>;
+    setInterfaceOrientations(value?: $SDK586): Promise<void>;
     readonly $type: {
         "c:objc(cs)UIWindowSceneGeometryPreferencesIOS": true;
         "c:objc(cs)UIWindowSceneGeometryPreferences": true;

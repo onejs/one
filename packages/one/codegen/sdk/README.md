@@ -29,6 +29,14 @@ special C pointer sentinel for `CFAllocatorCreate`, so it is unsupported as an
 SDK handle and omitted from dispatch, facades and declarations. Coverage records
 that reason. Null and real allocator constants remain available.
 
+App Store processing rejects a new app whose binary references `UIWebView`
+(ITMS-90809), so `UIWebView`, its delegate, its enums and every member whose
+signature carries one of them are left out of dispatch, facades and
+declarations.
+
+Bindings typecheck against both the device and the simulator SDK, and drop
+what either rejects: each declares API the other lacks.
+
 Same-framework classes extend their generated parent. Only members a class owns
 and inherited members that need a different JavaScript name are emitted. Swift
 permits incompatible overrides, so those names are removed from the parent's

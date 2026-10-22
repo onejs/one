@@ -13,15 +13,15 @@ export type gss_buffer_desc = gss_buffer_desc_struct;
 /** struct gss_buffer_desc_struct */
 export class gss_buffer_desc_struct extends SDKHandle {
   /** var length: Int */
-  get length(): number { return callSDK<number>("GSS_6be9a005889899ab", 3454411593840648, this, []); }
-  set length(value: number) { callSDK<void>("GSS_6be9a005889899ab", 3149786103007067, this, [value]); }
+  get length(): number { return callSDK<number>("GSS_c1f28409f8601238", 3454411593840648, this, []); }
+  set length(value: number) { callSDK<void>("GSS_c1f28409f8601238", 3149786103007067, this, [value]); }
   /** var value: UnsafeMutableRawPointer! */
-  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 2352766990854669, this, []); }
-  set value(value: (SDKHandle) | null) { callSDK<void>("GSS_6be9a005889899ab", 273563010892126, this, [value]); }
+  get value(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 2352766990854669, this, []); }
+  set value(value: (SDKHandle) | null) { callSDK<void>("GSS_c1f28409f8601238", 273563010892126, this, [value]); }
   /** init(length: Int, value: UnsafeMutableRawPointer!) */
-  static initLengthValue(length: number, value?: (SDKHandle) | null): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_6be9a005889899ab", 3634526373459940, undefined, [length, value]); }
+  static initLengthValue(length: number, value?: (SDKHandle) | null): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_c1f28409f8601238", 3634526373459940, undefined, [length, value]); }
   /** init() */
-  static init(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_6be9a005889899ab", 1789859943269500, undefined, []); }
+  static init(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_c1f28409f8601238", 1789859943269500, undefined, []); }
   declare readonly $type: { "c:@S@gss_buffer_desc_struct": true };
 }
 
@@ -31,15 +31,15 @@ export type gss_buffer_set_desc = gss_buffer_set_desc_struct;
 /** struct gss_buffer_set_desc_struct */
 export class gss_buffer_set_desc_struct extends SDKHandle {
   /** var count: Int */
-  get count(): number { return callSDK<number>("GSS_6be9a005889899ab", 4194386951505425, this, []); }
-  set count(value: number) { callSDK<void>("GSS_6be9a005889899ab", 498826086102696, this, [value]); }
+  get count(): number { return callSDK<number>("GSS_c1f28409f8601238", 4194386951505425, this, []); }
+  set count(value: number) { callSDK<void>("GSS_c1f28409f8601238", 498826086102696, this, [value]); }
   /** var elements: UnsafeMutablePointer<gss_buffer_desc>! */
-  get elements(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 1168218842389631, this, []); }
-  set elements(value: (SDKHandle) | null) { callSDK<void>("GSS_6be9a005889899ab", 763214899100479, this, [value]); }
+  get elements(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 1168218842389631, this, []); }
+  set elements(value: (SDKHandle) | null) { callSDK<void>("GSS_c1f28409f8601238", 763214899100479, this, [value]); }
   /** init(count: Int, elements: UnsafeMutablePointer<gss_buffer_desc>!) */
-  static initCountElements(count: number, elements?: (SDKHandle) | null): gss_buffer_set_desc_struct { return callSDK<gss_buffer_set_desc_struct>("GSS_6be9a005889899ab", 420358065774109, undefined, [count, elements]); }
+  static initCountElements(count: number, elements?: (SDKHandle) | null): gss_buffer_set_desc_struct { return callSDK<gss_buffer_set_desc_struct>("GSS_c1f28409f8601238", 420358065774109, undefined, [count, elements]); }
   /** init() */
-  static init(): gss_buffer_set_desc_struct { return callSDK<gss_buffer_set_desc_struct>("GSS_6be9a005889899ab", 3097692954087375, undefined, []); }
+  static init(): gss_buffer_set_desc_struct { return callSDK<gss_buffer_set_desc_struct>("GSS_c1f28409f8601238", 3097692954087375, undefined, []); }
   declare readonly $type: { "c:@S@gss_buffer_set_desc_struct": true };
 }
 
@@ -52,24 +52,24 @@ export type gss_buffer_t = SDKHandle;
 /** struct gss_channel_bindings_struct */
 export class gss_channel_bindings_struct extends SDKHandle {
   /** var acceptor_address: gss_buffer_desc */
-  get acceptor_address(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_6be9a005889899ab", 430669348531066, this, []); }
-  set acceptor_address(value: gss_buffer_desc_struct) { callSDK<void>("GSS_6be9a005889899ab", 4015385553233896, this, [value]); }
+  get acceptor_address(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_c1f28409f8601238", 430669348531066, this, []); }
+  set acceptor_address(value: gss_buffer_desc_struct) { callSDK<void>("GSS_c1f28409f8601238", 4015385553233896, this, [value]); }
   /** var acceptor_addrtype: OM_uint32 */
-  get acceptor_addrtype(): number { return callSDK<number>("GSS_6be9a005889899ab", 1089269487094706, this, []); }
-  set acceptor_addrtype(value: number) { callSDK<void>("GSS_6be9a005889899ab", 394888676365422, this, [value]); }
+  get acceptor_addrtype(): number { return callSDK<number>("GSS_c1f28409f8601238", 1089269487094706, this, []); }
+  set acceptor_addrtype(value: number) { callSDK<void>("GSS_c1f28409f8601238", 394888676365422, this, [value]); }
   /** var application_data: gss_buffer_desc */
-  get application_data(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_6be9a005889899ab", 2990546493529687, this, []); }
-  set application_data(value: gss_buffer_desc_struct) { callSDK<void>("GSS_6be9a005889899ab", 2393436175728231, this, [value]); }
+  get application_data(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_c1f28409f8601238", 2990546493529687, this, []); }
+  set application_data(value: gss_buffer_desc_struct) { callSDK<void>("GSS_c1f28409f8601238", 2393436175728231, this, [value]); }
   /** var initiator_address: gss_buffer_desc */
-  get initiator_address(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_6be9a005889899ab", 1567772860985758, this, []); }
-  set initiator_address(value: gss_buffer_desc_struct) { callSDK<void>("GSS_6be9a005889899ab", 1507437404343553, this, [value]); }
+  get initiator_address(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_c1f28409f8601238", 1567772860985758, this, []); }
+  set initiator_address(value: gss_buffer_desc_struct) { callSDK<void>("GSS_c1f28409f8601238", 1507437404343553, this, [value]); }
   /** var initiator_addrtype: OM_uint32 */
-  get initiator_addrtype(): number { return callSDK<number>("GSS_6be9a005889899ab", 4122508307069491, this, []); }
-  set initiator_addrtype(value: number) { callSDK<void>("GSS_6be9a005889899ab", 3852433041148706, this, [value]); }
+  get initiator_addrtype(): number { return callSDK<number>("GSS_c1f28409f8601238", 4122508307069491, this, []); }
+  set initiator_addrtype(value: number) { callSDK<void>("GSS_c1f28409f8601238", 3852433041148706, this, [value]); }
   /** init(initiator_addrtype: OM_uint32, initiator_address: gss_buffer_desc, acceptor_addrtype: OM_uint32, acceptor_address: gss_buffer_desc, application_data: gss_buffer_desc) */
-  static initInitiator_addrtypeInitiator_addressAcceptor_addrtypeAcceptor_addressApplication_data(initiator_addrtype: number, initiator_address: gss_buffer_desc_struct, acceptor_addrtype: number, acceptor_address: gss_buffer_desc_struct, application_data: gss_buffer_desc_struct): gss_channel_bindings_struct { return callSDK<gss_channel_bindings_struct>("GSS_6be9a005889899ab", 4487495200138034, undefined, [initiator_addrtype, initiator_address, acceptor_addrtype, acceptor_address, application_data]); }
+  static initInitiator_addrtypeInitiator_addressAcceptor_addrtypeAcceptor_addressApplication_data(initiator_addrtype: number, initiator_address: gss_buffer_desc_struct, acceptor_addrtype: number, acceptor_address: gss_buffer_desc_struct, application_data: gss_buffer_desc_struct): gss_channel_bindings_struct { return callSDK<gss_channel_bindings_struct>("GSS_c1f28409f8601238", 4487495200138034, undefined, [initiator_addrtype, initiator_address, acceptor_addrtype, acceptor_address, application_data]); }
   /** init() */
-  static init(): gss_channel_bindings_struct { return callSDK<gss_channel_bindings_struct>("GSS_6be9a005889899ab", 4403973378266170, undefined, []); }
+  static init(): gss_channel_bindings_struct { return callSDK<gss_channel_bindings_struct>("GSS_c1f28409f8601238", 4403973378266170, undefined, []); }
   declare readonly $type: { "c:@S@gss_channel_bindings_struct": true };
 }
 
@@ -109,15 +109,15 @@ export type gss_iov_buffer_desc = gss_iov_buffer_desc_struct;
 /** struct gss_iov_buffer_desc_struct */
 export class gss_iov_buffer_desc_struct extends SDKHandle {
   /** var buffer: gss_buffer_desc */
-  get buffer(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_6be9a005889899ab", 1945209866272467, this, []); }
-  set buffer(value: gss_buffer_desc_struct) { callSDK<void>("GSS_6be9a005889899ab", 4106372850504330, this, [value]); }
+  get buffer(): gss_buffer_desc_struct { return callSDK<gss_buffer_desc_struct>("GSS_c1f28409f8601238", 1945209866272467, this, []); }
+  set buffer(value: gss_buffer_desc_struct) { callSDK<void>("GSS_c1f28409f8601238", 4106372850504330, this, [value]); }
   /** var type: OM_uint32 */
-  get type(): number { return callSDK<number>("GSS_6be9a005889899ab", 3315429925158956, this, []); }
-  set type(value: number) { callSDK<void>("GSS_6be9a005889899ab", 3653638801379486, this, [value]); }
+  get type(): number { return callSDK<number>("GSS_c1f28409f8601238", 3315429925158956, this, []); }
+  set type(value: number) { callSDK<void>("GSS_c1f28409f8601238", 3653638801379486, this, [value]); }
   /** init(type: OM_uint32, buffer: gss_buffer_desc) */
-  static initTypeBuffer(type: number, buffer: gss_buffer_desc_struct): gss_iov_buffer_desc_struct { return callSDK<gss_iov_buffer_desc_struct>("GSS_6be9a005889899ab", 4412730058825521, undefined, [type, buffer]); }
+  static initTypeBuffer(type: number, buffer: gss_buffer_desc_struct): gss_iov_buffer_desc_struct { return callSDK<gss_iov_buffer_desc_struct>("GSS_c1f28409f8601238", 4412730058825521, undefined, [type, buffer]); }
   /** init() */
-  static init(): gss_iov_buffer_desc_struct { return callSDK<gss_iov_buffer_desc_struct>("GSS_6be9a005889899ab", 4316396298693087, undefined, []); }
+  static init(): gss_iov_buffer_desc_struct { return callSDK<gss_iov_buffer_desc_struct>("GSS_c1f28409f8601238", 4316396298693087, undefined, []); }
   declare readonly $type: { "c:@S@gss_iov_buffer_desc_struct": true };
 }
 
@@ -127,18 +127,18 @@ export type gss_iov_buffer_t = SDKHandle;
 /** struct gss_krb5_cfx_keydata */
 export class gss_krb5_cfx_keydata extends SDKHandle {
   /** var acceptor_subkey: gss_krb5_lucid_key_t */
-  get acceptor_subkey(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_6be9a005889899ab", 4264607396602479, this, []); }
-  set acceptor_subkey(value: gss_krb5_lucid_key) { callSDK<void>("GSS_6be9a005889899ab", 2092100404717511, this, [value]); }
+  get acceptor_subkey(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_c1f28409f8601238", 4264607396602479, this, []); }
+  set acceptor_subkey(value: gss_krb5_lucid_key) { callSDK<void>("GSS_c1f28409f8601238", 2092100404717511, this, [value]); }
   /** var ctx_key: gss_krb5_lucid_key_t */
-  get ctx_key(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_6be9a005889899ab", 4489840533235330, this, []); }
-  set ctx_key(value: gss_krb5_lucid_key) { callSDK<void>("GSS_6be9a005889899ab", 1777367159322465, this, [value]); }
+  get ctx_key(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_c1f28409f8601238", 4489840533235330, this, []); }
+  set ctx_key(value: gss_krb5_lucid_key) { callSDK<void>("GSS_c1f28409f8601238", 1777367159322465, this, [value]); }
   /** var have_acceptor_subkey: OM_uint32 */
-  get have_acceptor_subkey(): number { return callSDK<number>("GSS_6be9a005889899ab", 3654301747072409, this, []); }
-  set have_acceptor_subkey(value: number) { callSDK<void>("GSS_6be9a005889899ab", 1447748040245270, this, [value]); }
+  get have_acceptor_subkey(): number { return callSDK<number>("GSS_c1f28409f8601238", 3654301747072409, this, []); }
+  set have_acceptor_subkey(value: number) { callSDK<void>("GSS_c1f28409f8601238", 1447748040245270, this, [value]); }
   /** init(have_acceptor_subkey: OM_uint32, ctx_key: gss_krb5_lucid_key_t, acceptor_subkey: gss_krb5_lucid_key_t) */
-  static initHave_acceptor_subkeyCtx_keyAcceptor_subkey(have_acceptor_subkey: number, ctx_key: gss_krb5_lucid_key, acceptor_subkey: gss_krb5_lucid_key): gss_krb5_cfx_keydata { return callSDK<gss_krb5_cfx_keydata>("GSS_6be9a005889899ab", 557615200469144, undefined, [have_acceptor_subkey, ctx_key, acceptor_subkey]); }
+  static initHave_acceptor_subkeyCtx_keyAcceptor_subkey(have_acceptor_subkey: number, ctx_key: gss_krb5_lucid_key, acceptor_subkey: gss_krb5_lucid_key): gss_krb5_cfx_keydata { return callSDK<gss_krb5_cfx_keydata>("GSS_c1f28409f8601238", 557615200469144, undefined, [have_acceptor_subkey, ctx_key, acceptor_subkey]); }
   /** init() */
-  static init(): gss_krb5_cfx_keydata { return callSDK<gss_krb5_cfx_keydata>("GSS_6be9a005889899ab", 1053932195819075, undefined, []); }
+  static init(): gss_krb5_cfx_keydata { return callSDK<gss_krb5_cfx_keydata>("GSS_c1f28409f8601238", 1053932195819075, undefined, []); }
   declare readonly $type: { "c:@S@gss_krb5_cfx_keydata": true };
 }
 
@@ -148,33 +148,33 @@ export type gss_krb5_cfx_keydata_t = gss_krb5_cfx_keydata;
 /** struct gss_krb5_lucid_context_v1 */
 export class gss_krb5_lucid_context_v1 extends SDKHandle {
   /** var cfx_kd: gss_krb5_cfx_keydata_t */
-  get cfx_kd(): gss_krb5_cfx_keydata { return callSDK<gss_krb5_cfx_keydata>("GSS_6be9a005889899ab", 4237457274661500, this, []); }
-  set cfx_kd(value: gss_krb5_cfx_keydata) { callSDK<void>("GSS_6be9a005889899ab", 681944909275457, this, [value]); }
+  get cfx_kd(): gss_krb5_cfx_keydata { return callSDK<gss_krb5_cfx_keydata>("GSS_c1f28409f8601238", 4237457274661500, this, []); }
+  set cfx_kd(value: gss_krb5_cfx_keydata) { callSDK<void>("GSS_c1f28409f8601238", 681944909275457, this, [value]); }
   /** var endtime: OM_uint32 */
-  get endtime(): number { return callSDK<number>("GSS_6be9a005889899ab", 149882445579353, this, []); }
-  set endtime(value: number) { callSDK<void>("GSS_6be9a005889899ab", 4359248422668618, this, [value]); }
+  get endtime(): number { return callSDK<number>("GSS_c1f28409f8601238", 149882445579353, this, []); }
+  set endtime(value: number) { callSDK<void>("GSS_c1f28409f8601238", 4359248422668618, this, [value]); }
   /** var initiate: OM_uint32 */
-  get initiate(): number { return callSDK<number>("GSS_6be9a005889899ab", 628116965655084, this, []); }
-  set initiate(value: number) { callSDK<void>("GSS_6be9a005889899ab", 3423531474150615, this, [value]); }
+  get initiate(): number { return callSDK<number>("GSS_c1f28409f8601238", 628116965655084, this, []); }
+  set initiate(value: number) { callSDK<void>("GSS_c1f28409f8601238", 3423531474150615, this, [value]); }
   /** var `protocol`: OM_uint32 */
-  get protocol(): number { return callSDK<number>("GSS_6be9a005889899ab", 2734692738686307, this, []); }
-  set protocol(value: number) { callSDK<void>("GSS_6be9a005889899ab", 4497263615139042, this, [value]); }
+  get protocol(): number { return callSDK<number>("GSS_c1f28409f8601238", 2734692738686307, this, []); }
+  set protocol(value: number) { callSDK<void>("GSS_c1f28409f8601238", 4497263615139042, this, [value]); }
   /** var recv_seq: OM_uint64 */
-  get recv_seq(): number { return callSDK<number>("GSS_6be9a005889899ab", 3459560281893831, this, []); }
-  set recv_seq(value: number) { callSDK<void>("GSS_6be9a005889899ab", 354308481734558, this, [value]); }
+  get recv_seq(): number { return callSDK<number>("GSS_c1f28409f8601238", 3459560281893831, this, []); }
+  set recv_seq(value: number) { callSDK<void>("GSS_c1f28409f8601238", 354308481734558, this, [value]); }
   /** var rfc1964_kd: gss_krb5_rfc1964_keydata_t */
-  get rfc1964_kd(): gss_krb5_rfc1964_keydata { return callSDK<gss_krb5_rfc1964_keydata>("GSS_6be9a005889899ab", 144359273407091, this, []); }
-  set rfc1964_kd(value: gss_krb5_rfc1964_keydata) { callSDK<void>("GSS_6be9a005889899ab", 2036466415686261, this, [value]); }
+  get rfc1964_kd(): gss_krb5_rfc1964_keydata { return callSDK<gss_krb5_rfc1964_keydata>("GSS_c1f28409f8601238", 144359273407091, this, []); }
+  set rfc1964_kd(value: gss_krb5_rfc1964_keydata) { callSDK<void>("GSS_c1f28409f8601238", 2036466415686261, this, [value]); }
   /** var send_seq: OM_uint64 */
-  get send_seq(): number { return callSDK<number>("GSS_6be9a005889899ab", 888928172441634, this, []); }
-  set send_seq(value: number) { callSDK<void>("GSS_6be9a005889899ab", 188509621392847, this, [value]); }
+  get send_seq(): number { return callSDK<number>("GSS_c1f28409f8601238", 888928172441634, this, []); }
+  set send_seq(value: number) { callSDK<void>("GSS_c1f28409f8601238", 188509621392847, this, [value]); }
   /** var version: OM_uint32 */
-  get version(): number { return callSDK<number>("GSS_6be9a005889899ab", 1406451307251598, this, []); }
-  set version(value: number) { callSDK<void>("GSS_6be9a005889899ab", 3189534077188608, this, [value]); }
+  get version(): number { return callSDK<number>("GSS_c1f28409f8601238", 1406451307251598, this, []); }
+  set version(value: number) { callSDK<void>("GSS_c1f28409f8601238", 3189534077188608, this, [value]); }
   /** init(version: OM_uint32, initiate: OM_uint32, endtime: OM_uint32, send_seq: OM_uint64, recv_seq: OM_uint64, protocol: OM_uint32, rfc1964_kd: gss_krb5_rfc1964_keydata_t, cfx_kd: gss_krb5_cfx_keydata_t) */
-  static initVersionInitiateEndtimeSend_seqRecv_seqProtocolRfc1964_kdCfx_kd(version: number, initiate: number, endtime: number, send_seq: number, recv_seq: number, protocol: number, rfc1964_kd: gss_krb5_rfc1964_keydata, cfx_kd: gss_krb5_cfx_keydata): gss_krb5_lucid_context_v1 { return callSDK<gss_krb5_lucid_context_v1>("GSS_6be9a005889899ab", 3151853986363438, undefined, [version, initiate, endtime, send_seq, recv_seq, protocol, rfc1964_kd, cfx_kd]); }
+  static initVersionInitiateEndtimeSend_seqRecv_seqProtocolRfc1964_kdCfx_kd(version: number, initiate: number, endtime: number, send_seq: number, recv_seq: number, protocol: number, rfc1964_kd: gss_krb5_rfc1964_keydata, cfx_kd: gss_krb5_cfx_keydata): gss_krb5_lucid_context_v1 { return callSDK<gss_krb5_lucid_context_v1>("GSS_c1f28409f8601238", 3151853986363438, undefined, [version, initiate, endtime, send_seq, recv_seq, protocol, rfc1964_kd, cfx_kd]); }
   /** init() */
-  static init(): gss_krb5_lucid_context_v1 { return callSDK<gss_krb5_lucid_context_v1>("GSS_6be9a005889899ab", 3370397693573552, undefined, []); }
+  static init(): gss_krb5_lucid_context_v1 { return callSDK<gss_krb5_lucid_context_v1>("GSS_c1f28409f8601238", 3370397693573552, undefined, []); }
   declare readonly $type: { "c:@S@gss_krb5_lucid_context_v1": true };
 }
 
@@ -184,12 +184,12 @@ export type gss_krb5_lucid_context_v1_t = gss_krb5_lucid_context_v1;
 /** struct gss_krb5_lucid_context_version */
 export class gss_krb5_lucid_context_version extends SDKHandle {
   /** var version: OM_uint32 */
-  get version(): number { return callSDK<number>("GSS_6be9a005889899ab", 4281141503793249, this, []); }
-  set version(value: number) { callSDK<void>("GSS_6be9a005889899ab", 1149871806591915, this, [value]); }
+  get version(): number { return callSDK<number>("GSS_c1f28409f8601238", 4281141503793249, this, []); }
+  set version(value: number) { callSDK<void>("GSS_c1f28409f8601238", 1149871806591915, this, [value]); }
   /** init(version: OM_uint32) */
-  static initVersion(version: number): gss_krb5_lucid_context_version { return callSDK<gss_krb5_lucid_context_version>("GSS_6be9a005889899ab", 2480157075852157, undefined, [version]); }
+  static initVersion(version: number): gss_krb5_lucid_context_version { return callSDK<gss_krb5_lucid_context_version>("GSS_c1f28409f8601238", 2480157075852157, undefined, [version]); }
   /** init() */
-  static init(): gss_krb5_lucid_context_version { return callSDK<gss_krb5_lucid_context_version>("GSS_6be9a005889899ab", 2359959620976912, undefined, []); }
+  static init(): gss_krb5_lucid_context_version { return callSDK<gss_krb5_lucid_context_version>("GSS_c1f28409f8601238", 2359959620976912, undefined, []); }
   declare readonly $type: { "c:@S@gss_krb5_lucid_context_version": true };
 }
 
@@ -199,18 +199,18 @@ export type gss_krb5_lucid_context_version_t = gss_krb5_lucid_context_version;
 /** struct gss_krb5_lucid_key */
 export class gss_krb5_lucid_key extends SDKHandle {
   /** var data: UnsafeMutableRawPointer? */
-  get data(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 757572687879188, this, []); }
-  set data(value: (SDKHandle) | null) { callSDK<void>("GSS_6be9a005889899ab", 1578373306484948, this, [value]); }
+  get data(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 757572687879188, this, []); }
+  set data(value: (SDKHandle) | null) { callSDK<void>("GSS_c1f28409f8601238", 1578373306484948, this, [value]); }
   /** var length: OM_uint32 */
-  get length(): number { return callSDK<number>("GSS_6be9a005889899ab", 1843932777301519, this, []); }
-  set length(value: number) { callSDK<void>("GSS_6be9a005889899ab", 380912017721084, this, [value]); }
+  get length(): number { return callSDK<number>("GSS_c1f28409f8601238", 1843932777301519, this, []); }
+  set length(value: number) { callSDK<void>("GSS_c1f28409f8601238", 380912017721084, this, [value]); }
   /** var type: OM_uint32 */
-  get type(): number { return callSDK<number>("GSS_6be9a005889899ab", 2753624635138122, this, []); }
-  set type(value: number) { callSDK<void>("GSS_6be9a005889899ab", 4187347542360099, this, [value]); }
+  get type(): number { return callSDK<number>("GSS_c1f28409f8601238", 2753624635138122, this, []); }
+  set type(value: number) { callSDK<void>("GSS_c1f28409f8601238", 4187347542360099, this, [value]); }
   /** init(type: OM_uint32, length: OM_uint32, data: UnsafeMutableRawPointer?) */
-  static initTypeLengthData(type: number, length: number, data?: (SDKHandle) | null): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_6be9a005889899ab", 2494219192923946, undefined, [type, length, data]); }
+  static initTypeLengthData(type: number, length: number, data?: (SDKHandle) | null): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_c1f28409f8601238", 2494219192923946, undefined, [type, length, data]); }
   /** init() */
-  static init(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_6be9a005889899ab", 3206725727256964, undefined, []); }
+  static init(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_c1f28409f8601238", 3206725727256964, undefined, []); }
   declare readonly $type: { "c:@S@gss_krb5_lucid_key": true };
 }
 
@@ -220,18 +220,18 @@ export type gss_krb5_lucid_key_t = gss_krb5_lucid_key;
 /** struct gss_krb5_rfc1964_keydata */
 export class gss_krb5_rfc1964_keydata extends SDKHandle {
   /** var ctx_key: gss_krb5_lucid_key_t */
-  get ctx_key(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_6be9a005889899ab", 1937561400709046, this, []); }
-  set ctx_key(value: gss_krb5_lucid_key) { callSDK<void>("GSS_6be9a005889899ab", 4407095275804287, this, [value]); }
+  get ctx_key(): gss_krb5_lucid_key { return callSDK<gss_krb5_lucid_key>("GSS_c1f28409f8601238", 1937561400709046, this, []); }
+  set ctx_key(value: gss_krb5_lucid_key) { callSDK<void>("GSS_c1f28409f8601238", 4407095275804287, this, [value]); }
   /** var seal_alg: OM_uint32 */
-  get seal_alg(): number { return callSDK<number>("GSS_6be9a005889899ab", 2495405744115279, this, []); }
-  set seal_alg(value: number) { callSDK<void>("GSS_6be9a005889899ab", 4361124057550717, this, [value]); }
+  get seal_alg(): number { return callSDK<number>("GSS_c1f28409f8601238", 2495405744115279, this, []); }
+  set seal_alg(value: number) { callSDK<void>("GSS_c1f28409f8601238", 4361124057550717, this, [value]); }
   /** var sign_alg: OM_uint32 */
-  get sign_alg(): number { return callSDK<number>("GSS_6be9a005889899ab", 3711177572961649, this, []); }
-  set sign_alg(value: number) { callSDK<void>("GSS_6be9a005889899ab", 4216403648952534, this, [value]); }
+  get sign_alg(): number { return callSDK<number>("GSS_c1f28409f8601238", 3711177572961649, this, []); }
+  set sign_alg(value: number) { callSDK<void>("GSS_c1f28409f8601238", 4216403648952534, this, [value]); }
   /** init(sign_alg: OM_uint32, seal_alg: OM_uint32, ctx_key: gss_krb5_lucid_key_t) */
-  static initSign_algSeal_algCtx_key(sign_alg: number, seal_alg: number, ctx_key: gss_krb5_lucid_key): gss_krb5_rfc1964_keydata { return callSDK<gss_krb5_rfc1964_keydata>("GSS_6be9a005889899ab", 1410713637928330, undefined, [sign_alg, seal_alg, ctx_key]); }
+  static initSign_algSeal_algCtx_key(sign_alg: number, seal_alg: number, ctx_key: gss_krb5_lucid_key): gss_krb5_rfc1964_keydata { return callSDK<gss_krb5_rfc1964_keydata>("GSS_c1f28409f8601238", 1410713637928330, undefined, [sign_alg, seal_alg, ctx_key]); }
   /** init() */
-  static init(): gss_krb5_rfc1964_keydata { return callSDK<gss_krb5_rfc1964_keydata>("GSS_6be9a005889899ab", 1810265444739717, undefined, []); }
+  static init(): gss_krb5_rfc1964_keydata { return callSDK<gss_krb5_rfc1964_keydata>("GSS_c1f28409f8601238", 1810265444739717, undefined, []); }
   declare readonly $type: { "c:@S@gss_krb5_rfc1964_keydata": true };
 }
 
@@ -250,15 +250,15 @@ export type gss_OID_desc = gss_OID_desc_struct;
 /** struct gss_OID_desc_struct */
 export class gss_OID_desc_struct extends SDKHandle {
   /** var elements: UnsafeMutableRawPointer! */
-  get elements(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 3937637761782570, this, []); }
-  set elements(value: (SDKHandle) | null) { callSDK<void>("GSS_6be9a005889899ab", 1760526729349878, this, [value]); }
+  get elements(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 3937637761782570, this, []); }
+  set elements(value: (SDKHandle) | null) { callSDK<void>("GSS_c1f28409f8601238", 1760526729349878, this, [value]); }
   /** var length: OM_uint32 */
-  get length(): number { return callSDK<number>("GSS_6be9a005889899ab", 661585371873119, this, []); }
-  set length(value: number) { callSDK<void>("GSS_6be9a005889899ab", 926058930194535, this, [value]); }
+  get length(): number { return callSDK<number>("GSS_c1f28409f8601238", 661585371873119, this, []); }
+  set length(value: number) { callSDK<void>("GSS_c1f28409f8601238", 926058930194535, this, [value]); }
   /** init(length: OM_uint32, elements: UnsafeMutableRawPointer!) */
-  static initLengthElements(length: number, elements?: (SDKHandle) | null): gss_OID_desc_struct { return callSDK<gss_OID_desc_struct>("GSS_6be9a005889899ab", 2512715478789957, undefined, [length, elements]); }
+  static initLengthElements(length: number, elements?: (SDKHandle) | null): gss_OID_desc_struct { return callSDK<gss_OID_desc_struct>("GSS_c1f28409f8601238", 2512715478789957, undefined, [length, elements]); }
   /** init() */
-  static init(): gss_OID_desc_struct { return callSDK<gss_OID_desc_struct>("GSS_6be9a005889899ab", 1552762339741966, undefined, []); }
+  static init(): gss_OID_desc_struct { return callSDK<gss_OID_desc_struct>("GSS_c1f28409f8601238", 1552762339741966, undefined, []); }
   declare readonly $type: { "c:@S@gss_OID_desc_struct": true };
 }
 
@@ -271,15 +271,15 @@ export type gss_OID_set_desc = gss_OID_set_desc_struct;
 /** struct gss_OID_set_desc_struct */
 export class gss_OID_set_desc_struct extends SDKHandle {
   /** var count: Int */
-  get count(): number { return callSDK<number>("GSS_6be9a005889899ab", 1471812304768413, this, []); }
-  set count(value: number) { callSDK<void>("GSS_6be9a005889899ab", 1546737620473073, this, [value]); }
+  get count(): number { return callSDK<number>("GSS_c1f28409f8601238", 1471812304768413, this, []); }
+  set count(value: number) { callSDK<void>("GSS_c1f28409f8601238", 1546737620473073, this, [value]); }
   /** var elements: gss_OID! */
-  get elements(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 141674591218619, this, []); }
-  set elements(value: (SDKHandle) | null) { callSDK<void>("GSS_6be9a005889899ab", 2550351863591551, this, [value]); }
+  get elements(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 141674591218619, this, []); }
+  set elements(value: (SDKHandle) | null) { callSDK<void>("GSS_c1f28409f8601238", 2550351863591551, this, [value]); }
   /** init(count: Int, elements: gss_OID!) */
-  static initCountElements(count: number, elements?: (SDKHandle) | null): gss_OID_set_desc_struct { return callSDK<gss_OID_set_desc_struct>("GSS_6be9a005889899ab", 3123512494922381, undefined, [count, elements]); }
+  static initCountElements(count: number, elements?: (SDKHandle) | null): gss_OID_set_desc_struct { return callSDK<gss_OID_set_desc_struct>("GSS_c1f28409f8601238", 3123512494922381, undefined, [count, elements]); }
   /** init() */
-  static init(): gss_OID_set_desc_struct { return callSDK<gss_OID_set_desc_struct>("GSS_6be9a005889899ab", 3657538230180578, undefined, []); }
+  static init(): gss_OID_set_desc_struct { return callSDK<gss_OID_set_desc_struct>("GSS_c1f28409f8601238", 3657538230180578, undefined, []); }
   declare readonly $type: { "c:@S@gss_OID_set_desc_struct": true };
 }
 
@@ -302,787 +302,787 @@ export type OM_uint64 = number;
  * func GSSCreateCredentialFromUUID(_ uuid: CFUUID) -> gss_cred_id_t?
  * @availability iOS 7.0+
  */
-export function GSSCreateCredentialFromUUID(uuid: _CoreFoundation_CFUUID): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 916495979893155, undefined, [uuid]); }
+export function GSSCreateCredentialFromUUID(uuid: _CoreFoundation_CFUUID): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 916495979893155, undefined, [uuid]); }
 
 /**
  * func GSSCreateError(_ mech: gss_const_OID, _ major_status: OM_uint32, _ minor_status: OM_uint32) -> Unmanaged<CFError>?
  * @availability iOS 8.0+
  */
-export function GSSCreateError(mech: SDKHandle, major_status: number, minor_status: number): $SDK0 { return callSDK<$SDK0>("GSS_6be9a005889899ab", 2119899796207186, undefined, [mech, major_status, minor_status]); }
+export function GSSCreateError(mech: SDKHandle, major_status: number, minor_status: number): $SDK0 { return callSDK<$SDK0>("GSS_c1f28409f8601238", 2119899796207186, undefined, [mech, major_status, minor_status]); }
 
 /**
  * func GSSCreateName(_ name: CFTypeRef, _ name_type: gss_const_OID, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> gss_name_t?
  * @availability iOS 7.0+
  */
-export function GSSCreateName(name: unknown, name_type: SDKHandle): { $ret: (SDKHandle) | null; $out: { "error": $SDK0 } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "error": $SDK0 } }>("GSS_6be9a005889899ab", 2481998943737914, undefined, [name, name_type, null]); }
+export function GSSCreateName(name: unknown, name_type: SDKHandle): { $ret: (SDKHandle) | null; $out: { "error": $SDK0 } } { return callSDK<{ $ret: (SDKHandle) | null; $out: { "error": $SDK0 } }>("GSS_c1f28409f8601238", 2481998943737914, undefined, [name, name_type, null]); }
 
 /**
  * func GSSCredentialCopyName(_ cred: gss_cred_id_t) -> gss_name_t?
  * @availability iOS 7.0+
  */
-export function GSSCredentialCopyName(cred: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_6be9a005889899ab", 2844188665829831, undefined, [cred]); }
+export function GSSCredentialCopyName(cred: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("GSS_c1f28409f8601238", 2844188665829831, undefined, [cred]); }
 
 /**
  * func GSSCredentialCopyUUID(_ credential: gss_cred_id_t) -> Unmanaged<CFUUID>?
  * @availability iOS 7.0+
  */
-export function GSSCredentialCopyUUID(credential: SDKHandle): (_CoreFoundation_CFUUID) | null { return callSDK<(_CoreFoundation_CFUUID) | null>("GSS_6be9a005889899ab", 2388707360556455, undefined, [credential]); }
+export function GSSCredentialCopyUUID(credential: SDKHandle): (_CoreFoundation_CFUUID) | null { return callSDK<(_CoreFoundation_CFUUID) | null>("GSS_c1f28409f8601238", 2388707360556455, undefined, [credential]); }
 
 /**
  * func GSSCredentialGetLifetime(_ cred: gss_cred_id_t) -> OM_uint32
  * @availability iOS 7.0+
  */
-export function GSSCredentialGetLifetime(cred: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 782477846480514, undefined, [cred]); }
+export function GSSCredentialGetLifetime(cred: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 782477846480514, undefined, [cred]); }
 
 /**
  * func GSSNameCreateDisplayString(_ name: gss_name_t) -> Unmanaged<CFString>?
  * @availability iOS 7.0+
  */
-export function GSSNameCreateDisplayString(name: SDKHandle): (_CoreFoundation_CFString) | null { return callSDK<(_CoreFoundation_CFString) | null>("GSS_6be9a005889899ab", 3768515830490052, undefined, [name]); }
+export function GSSNameCreateDisplayString(name: SDKHandle): (_CoreFoundation_CFString) | null { return callSDK<(_CoreFoundation_CFString) | null>("GSS_c1f28409f8601238", 3768515830490052, undefined, [name]); }
 
 /**
  * func gss_aapl_change_password(_ name: gss_name_t, _ mech: gss_const_OID, _ attributes: CFDictionary, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> OM_uint32
  * @availability iOS 6.0+
  */
-export function gss_aapl_change_password(name: SDKHandle, mech: SDKHandle, attributes: _CoreFoundation_CFDictionary): { $ret: number; $out: { "error": $SDK0 } } { return callSDK<{ $ret: number; $out: { "error": $SDK0 } }>("GSS_6be9a005889899ab", 2213482202337004, undefined, [name, mech, attributes, null]); }
+export function gss_aapl_change_password(name: SDKHandle, mech: SDKHandle, attributes: _CoreFoundation_CFDictionary): { $ret: number; $out: { "error": $SDK0 } } { return callSDK<{ $ret: number; $out: { "error": $SDK0 } }>("GSS_c1f28409f8601238", 2213482202337004, undefined, [name, mech, attributes, null]); }
 
 /**
  * func gss_aapl_initial_cred(_ desired_name: gss_name_t, _ desired_mech: gss_const_OID, _ attributes: CFDictionary?, _ output_cred_handle: UnsafeMutablePointer<gss_cred_id_t?>, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_aapl_initial_cred(desired_name: SDKHandle, desired_mech: SDKHandle, attributes?: (_CoreFoundation_CFDictionary) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "error": $SDK0 } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "error": $SDK0 } }>("GSS_6be9a005889899ab", 2928969439034367, undefined, [desired_name, desired_mech, attributes, null, null]); }
+export function gss_aapl_initial_cred(desired_name: SDKHandle, desired_mech: SDKHandle, attributes?: (_CoreFoundation_CFDictionary) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "error": $SDK0 } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "error": $SDK0 } }>("GSS_c1f28409f8601238", 2928969439034367, undefined, [desired_name, desired_mech, attributes, null, null]); }
 
 /**
  * func gss_accept_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: UnsafeMutablePointer<gss_ctx_id_t?>, _ acceptor_cred_handle: gss_cred_id_t?, _ input_token: gss_buffer_t?, _ input_chan_bindings: gss_channel_bindings_t?, _ src_name: UnsafeMutablePointer<gss_name_t?>?, _ mech_type: UnsafeMutablePointer<gss_OID?>?, _ output_token: gss_buffer_t, _ ret_flags: UnsafeMutablePointer<OM_uint32>?, _ time_rec: UnsafeMutablePointer<OM_uint32>?, _ delegated_cred_handle: UnsafeMutablePointer<gss_cred_id_t?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_accept_sec_context(minor_status: SDKHandle, acceptor_cred_handle: (SDKHandle) | null, input_token: (SDKHandle) | null, input_chan_bindings: (SDKHandle) | null, output_token: SDKHandle, ret_flags?: (SDKHandle) | null, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null; "src_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null; "delegated_cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null; "src_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null; "delegated_cred_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2535498121033541, undefined, [minor_status, null, acceptor_cred_handle, input_token, input_chan_bindings, null, null, output_token, ret_flags, time_rec, null]); }
+export function gss_accept_sec_context(minor_status: SDKHandle, acceptor_cred_handle: (SDKHandle) | null, input_token: (SDKHandle) | null, input_chan_bindings: (SDKHandle) | null, output_token: SDKHandle, ret_flags?: (SDKHandle) | null, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null; "src_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null; "delegated_cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null; "src_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null; "delegated_cred_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2535498121033541, undefined, [minor_status, null, acceptor_cred_handle, input_token, input_chan_bindings, null, null, output_token, ret_flags, time_rec, null]); }
 
 /**
  * func gss_acquire_cred(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ desired_name: gss_name_t?, _ time_req: OM_uint32, _ desired_mechs: gss_OID_set?, _ cred_usage: gss_cred_usage_t, _ output_cred_handle: UnsafeMutablePointer<gss_cred_id_t?>, _ actual_mechs: UnsafeMutablePointer<gss_OID_set?>?, _ time_rec: UnsafeMutablePointer<OM_uint32>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_acquire_cred(minor_status: SDKHandle, desired_name: (SDKHandle) | null, time_req: number, desired_mechs: (SDKHandle) | null, cred_usage: number, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 4097300731070655, undefined, [minor_status, desired_name, time_req, desired_mechs, cred_usage, null, null, time_rec]); }
+export function gss_acquire_cred(minor_status: SDKHandle, desired_name: (SDKHandle) | null, time_req: number, desired_mechs: (SDKHandle) | null, cred_usage: number, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 4097300731070655, undefined, [minor_status, desired_name, time_req, desired_mechs, cred_usage, null, null, time_rec]); }
 
 /**
  * func gss_acquire_cred_with_password(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ desired_name: gss_name_t, _ password: gss_buffer_t, _ time_req: OM_uint32, _ desired_mechs: gss_OID_set?, _ cred_usage: gss_cred_usage_t, _ output_cred_handle: UnsafeMutablePointer<gss_cred_id_t?>, _ actual_mechs: UnsafeMutablePointer<gss_OID_set?>?, _ time_rec: UnsafeMutablePointer<OM_uint32>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_acquire_cred_with_password(minor_status: SDKHandle, desired_name: SDKHandle, password: SDKHandle, time_req: number, desired_mechs: (SDKHandle) | null, cred_usage: number, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2703282323827234, undefined, [minor_status, desired_name, password, time_req, desired_mechs, cred_usage, null, null, time_rec]); }
+export function gss_acquire_cred_with_password(minor_status: SDKHandle, desired_name: SDKHandle, password: SDKHandle, time_req: number, desired_mechs: (SDKHandle) | null, cred_usage: number, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2703282323827234, undefined, [minor_status, desired_name, password, time_req, desired_mechs, cred_usage, null, null, time_rec]); }
 
 /**
  * func gss_add_buffer_set_member(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ member_buffer: gss_buffer_t, _ buffer_set: UnsafeMutablePointer<gss_buffer_set_t>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_add_buffer_set_member(minor_status: SDKHandle, member_buffer: SDKHandle, buffer_set: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 1768724103093762, undefined, [minor_status, member_buffer, buffer_set]); }
+export function gss_add_buffer_set_member(minor_status: SDKHandle, member_buffer: SDKHandle, buffer_set: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 1768724103093762, undefined, [minor_status, member_buffer, buffer_set]); }
 
 /**
  * func gss_add_cred(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_cred_handle: gss_cred_id_t?, _ desired_name: gss_name_t?, _ desired_mech: gss_OID?, _ cred_usage: gss_cred_usage_t, _ initiator_time_req: OM_uint32, _ acceptor_time_req: OM_uint32, _ output_cred_handle: UnsafeMutablePointer<gss_cred_id_t?>, _ actual_mechs: UnsafeMutablePointer<gss_OID_set?>?, _ initiator_time_rec: UnsafeMutablePointer<OM_uint32>?, _ acceptor_time_rec: UnsafeMutablePointer<OM_uint32>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_add_cred(minor_status: SDKHandle, input_cred_handle: (SDKHandle) | null, desired_name: (SDKHandle) | null, desired_mech: (SDKHandle) | null, cred_usage: number, initiator_time_req: number, acceptor_time_req: number, initiator_time_rec?: (SDKHandle) | null, acceptor_time_rec?: (SDKHandle) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1339822096994316, undefined, [minor_status, input_cred_handle, desired_name, desired_mech, cred_usage, initiator_time_req, acceptor_time_req, null, null, initiator_time_rec, acceptor_time_rec]); }
+export function gss_add_cred(minor_status: SDKHandle, input_cred_handle: (SDKHandle) | null, desired_name: (SDKHandle) | null, desired_mech: (SDKHandle) | null, cred_usage: number, initiator_time_req: number, acceptor_time_req: number, initiator_time_rec?: (SDKHandle) | null, acceptor_time_rec?: (SDKHandle) | null): { $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_cred_handle": (SDKHandle) | null; "actual_mechs": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1339822096994316, undefined, [minor_status, input_cred_handle, desired_name, desired_mech, cred_usage, initiator_time_req, acceptor_time_req, null, null, initiator_time_rec, acceptor_time_rec]); }
 
 /**
  * func gss_add_oid_set_member(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ member_oid: gss_const_OID, _ oid_set: UnsafeMutablePointer<gss_OID_set>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_add_oid_set_member(minor_status: SDKHandle, member_oid: SDKHandle, oid_set: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 2100178260314314, undefined, [minor_status, member_oid, oid_set]); }
+export function gss_add_oid_set_member(minor_status: SDKHandle, member_oid: SDKHandle, oid_set: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 2100178260314314, undefined, [minor_status, member_oid, oid_set]); }
 
 /**
  * func gss_canonicalize_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name: gss_name_t, _ mech_type: gss_OID, _ output_name: UnsafeMutablePointer<gss_name_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_canonicalize_name(minor_status: SDKHandle, input_name: SDKHandle, mech_type: SDKHandle): { $ret: number; $out: { "output_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_name": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1391664257679221, undefined, [minor_status, input_name, mech_type, null]); }
+export function gss_canonicalize_name(minor_status: SDKHandle, input_name: SDKHandle, mech_type: SDKHandle): { $ret: number; $out: { "output_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_name": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1391664257679221, undefined, [minor_status, input_name, mech_type, null]); }
 
 /**
  * func gss_compare_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ name1_arg: gss_name_t, _ name2_arg: gss_name_t, _ name_equal: UnsafeMutablePointer<Int32>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_compare_name(minor_status: SDKHandle, name1_arg: SDKHandle, name2_arg: SDKHandle, name_equal: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 3818833725816859, undefined, [minor_status, name1_arg, name2_arg, name_equal]); }
+export function gss_compare_name(minor_status: SDKHandle, name1_arg: SDKHandle, name2_arg: SDKHandle, name_equal: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 3818833725816859, undefined, [minor_status, name1_arg, name2_arg, name_equal]); }
 
 /**
  * func gss_context_time(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ time_rec: UnsafeMutablePointer<OM_uint32>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_context_time(minor_status: SDKHandle, context_handle: SDKHandle, time_rec: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 4254733569776844, undefined, [minor_status, context_handle, time_rec]); }
+export function gss_context_time(minor_status: SDKHandle, context_handle: SDKHandle, time_rec: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 4254733569776844, undefined, [minor_status, context_handle, time_rec]); }
 
 /**
  * func gss_create_empty_buffer_set(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ buffer_set: UnsafeMutablePointer<gss_buffer_set_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_create_empty_buffer_set(minor_status: SDKHandle): { $ret: number; $out: { "buffer_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "buffer_set": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1914434226941080, undefined, [minor_status, null]); }
+export function gss_create_empty_buffer_set(minor_status: SDKHandle): { $ret: number; $out: { "buffer_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "buffer_set": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1914434226941080, undefined, [minor_status, null]); }
 
 /**
  * func gss_create_empty_oid_set(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ oid_set: UnsafeMutablePointer<gss_OID_set?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_create_empty_oid_set(minor_status: SDKHandle): { $ret: number; $out: { "oid_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "oid_set": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1089998753886344, undefined, [minor_status, null]); }
+export function gss_create_empty_oid_set(minor_status: SDKHandle): { $ret: number; $out: { "oid_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "oid_set": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1089998753886344, undefined, [minor_status, null]); }
 
 /**
  * func gss_decapsulate_token(_ input_token: gss_const_buffer_t, _ oid: gss_const_OID, _ output_token: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_decapsulate_token(input_token: SDKHandle, oid: SDKHandle, output_token: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 4179155805278573, undefined, [input_token, oid, output_token]); }
+export function gss_decapsulate_token(input_token: SDKHandle, oid: SDKHandle, output_token: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 4179155805278573, undefined, [input_token, oid, output_token]); }
 
 /**
  * func gss_delete_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: UnsafeMutablePointer<gss_ctx_id_t?>, _ output_token: gss_buffer_t?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_delete_sec_context(minor_status: SDKHandle, output_token?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2249911890030804, undefined, [minor_status, null, output_token]); }
+export function gss_delete_sec_context(minor_status: SDKHandle, output_token?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2249911890030804, undefined, [minor_status, null, output_token]); }
 
 /**
  * func gss_destroy_cred(_ min_stat: UnsafeMutablePointer<OM_uint32>, _ cred_handle: UnsafeMutablePointer<gss_cred_id_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_destroy_cred(min_stat: SDKHandle): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 458697018202775, undefined, [min_stat, null]); }
+export function gss_destroy_cred(min_stat: SDKHandle): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 458697018202775, undefined, [min_stat, null]); }
 
 /**
  * func gss_display_mech_attr(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ mech_attr: gss_const_OID, _ name: gss_buffer_t?, _ short_desc: gss_buffer_t?, _ long_desc: gss_buffer_t?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_display_mech_attr(minor_status: SDKHandle, mech_attr: SDKHandle, name?: (SDKHandle) | null, short_desc?: (SDKHandle) | null, long_desc?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 1833972509263989, undefined, [minor_status, mech_attr, name, short_desc, long_desc]); }
+export function gss_display_mech_attr(minor_status: SDKHandle, mech_attr: SDKHandle, name?: (SDKHandle) | null, short_desc?: (SDKHandle) | null, long_desc?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 1833972509263989, undefined, [minor_status, mech_attr, name, short_desc, long_desc]); }
 
 /**
  * func gss_display_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name: gss_name_t, _ output_name_buffer: gss_buffer_t, _ output_name_type: UnsafeMutablePointer<gss_OID?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_display_name(minor_status: SDKHandle, input_name: SDKHandle, output_name_buffer: SDKHandle): { $ret: number; $out: { "output_name_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_name_type": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 534955742480523, undefined, [minor_status, input_name, output_name_buffer, null]); }
+export function gss_display_name(minor_status: SDKHandle, input_name: SDKHandle, output_name_buffer: SDKHandle): { $ret: number; $out: { "output_name_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_name_type": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 534955742480523, undefined, [minor_status, input_name, output_name_buffer, null]); }
 
 /**
  * func gss_display_status(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ status_value: OM_uint32, _ status_type: Int32, _ mech_type: gss_OID?, _ message_content: UnsafeMutablePointer<OM_uint32>, _ status_string: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_display_status(minor_status: SDKHandle, status_value: number, status_type: number, mech_type: (SDKHandle) | null, message_content: SDKHandle, status_string: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 3808036521381621, undefined, [minor_status, status_value, status_type, mech_type, message_content, status_string]); }
+export function gss_display_status(minor_status: SDKHandle, status_value: number, status_type: number, mech_type: (SDKHandle) | null, message_content: SDKHandle, status_string: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 3808036521381621, undefined, [minor_status, status_value, status_type, mech_type, message_content, status_string]); }
 
 /**
  * func gss_duplicate_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ src_name: gss_name_t, _ dest_name: UnsafeMutablePointer<gss_name_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_duplicate_name(minor_status: SDKHandle, src_name: SDKHandle): { $ret: number; $out: { "dest_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "dest_name": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1994029734992249, undefined, [minor_status, src_name, null]); }
+export function gss_duplicate_name(minor_status: SDKHandle, src_name: SDKHandle): { $ret: number; $out: { "dest_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "dest_name": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1994029734992249, undefined, [minor_status, src_name, null]); }
 
 /**
  * func gss_encapsulate_token(_ input_token: gss_const_buffer_t, _ oid: gss_const_OID, _ output_token: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_encapsulate_token(input_token: SDKHandle, oid: SDKHandle, output_token: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 2398354822038681, undefined, [input_token, oid, output_token]); }
+export function gss_encapsulate_token(input_token: SDKHandle, oid: SDKHandle, output_token: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 2398354822038681, undefined, [input_token, oid, output_token]); }
 
 /**
  * func gss_export_cred(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred_handle: gss_cred_id_t, _ token: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_export_cred(minor_status: SDKHandle, cred_handle: SDKHandle, token: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 940758338916237, undefined, [minor_status, cred_handle, token]); }
+export function gss_export_cred(minor_status: SDKHandle, cred_handle: SDKHandle, token: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 940758338916237, undefined, [minor_status, cred_handle, token]); }
 
 /**
  * func gss_export_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name: gss_name_t, _ exported_name: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_export_name(minor_status: SDKHandle, input_name: SDKHandle, exported_name: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 1677431815867424, undefined, [minor_status, input_name, exported_name]); }
+export function gss_export_name(minor_status: SDKHandle, input_name: SDKHandle, exported_name: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 1677431815867424, undefined, [minor_status, input_name, exported_name]); }
 
 /**
  * func gss_export_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: UnsafeMutablePointer<gss_ctx_id_t?>, _ interprocess_token: gss_buffer_t?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_export_sec_context(minor_status: SDKHandle, interprocess_token?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 3768533942133634, undefined, [minor_status, null, interprocess_token]); }
+export function gss_export_sec_context(minor_status: SDKHandle, interprocess_token?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 3768533942133634, undefined, [minor_status, null, interprocess_token]); }
 
 /**
  * func gss_get_mic(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ qop_req: gss_qop_t, _ message_buffer: gss_buffer_t, _ message_token: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_get_mic(minor_status: SDKHandle, context_handle: SDKHandle, qop_req: number, message_buffer: SDKHandle, message_token: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 1964505718670314, undefined, [minor_status, context_handle, qop_req, message_buffer, message_token]); }
+export function gss_get_mic(minor_status: SDKHandle, context_handle: SDKHandle, qop_req: number, message_buffer: SDKHandle, message_token: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 1964505718670314, undefined, [minor_status, context_handle, qop_req, message_buffer, message_token]); }
 
 /**
  * func gss_import_cred(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ token: gss_buffer_t, _ cred_handle: UnsafeMutablePointer<gss_cred_id_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_import_cred(minor_status: SDKHandle, token: SDKHandle): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1787368780522381, undefined, [minor_status, token, null]); }
+export function gss_import_cred(minor_status: SDKHandle, token: SDKHandle): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1787368780522381, undefined, [minor_status, token, null]); }
 
 /**
  * func gss_import_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name_buffer: gss_buffer_t, _ input_name_type: gss_const_OID?, _ output_name: UnsafeMutablePointer<gss_name_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_import_name(minor_status: SDKHandle, input_name_buffer: SDKHandle, input_name_type?: (SDKHandle) | null): { $ret: number; $out: { "output_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_name": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 4485052655761877, undefined, [minor_status, input_name_buffer, input_name_type, null]); }
+export function gss_import_name(minor_status: SDKHandle, input_name_buffer: SDKHandle, input_name_type?: (SDKHandle) | null): { $ret: number; $out: { "output_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "output_name": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 4485052655761877, undefined, [minor_status, input_name_buffer, input_name_type, null]); }
 
 /**
  * func gss_import_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ interprocess_token: gss_buffer_t, _ context_handle: UnsafeMutablePointer<gss_ctx_id_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_import_sec_context(minor_status: SDKHandle, interprocess_token: SDKHandle): { $ret: number; $out: { "context_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2478388722494844, undefined, [minor_status, interprocess_token, null]); }
+export function gss_import_sec_context(minor_status: SDKHandle, interprocess_token: SDKHandle): { $ret: number; $out: { "context_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2478388722494844, undefined, [minor_status, interprocess_token, null]); }
 
 /**
  * func gss_indicate_mechs(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ mech_set: UnsafeMutablePointer<gss_OID_set?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_indicate_mechs(minor_status: SDKHandle): { $ret: number; $out: { "mech_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_set": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1725083870833253, undefined, [minor_status, null]); }
+export function gss_indicate_mechs(minor_status: SDKHandle): { $ret: number; $out: { "mech_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_set": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1725083870833253, undefined, [minor_status, null]); }
 
 /**
  * func gss_indicate_mechs_by_attrs(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ desired_mech_attrs: gss_const_OID_set?, _ except_mech_attrs: gss_const_OID_set?, _ critical_mech_attrs: gss_const_OID_set?, _ mechs: UnsafeMutablePointer<gss_OID_set?>) -> OM_uint32
  * @availability iOS 8.0+
  */
-export function gss_indicate_mechs_by_attrs(minor_status: SDKHandle, desired_mech_attrs?: (SDKHandle) | null, except_mech_attrs?: (SDKHandle) | null, critical_mech_attrs?: (SDKHandle) | null): { $ret: number; $out: { "mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mechs": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 3878839754295175, undefined, [minor_status, desired_mech_attrs, except_mech_attrs, critical_mech_attrs, null]); }
+export function gss_indicate_mechs_by_attrs(minor_status: SDKHandle, desired_mech_attrs?: (SDKHandle) | null, except_mech_attrs?: (SDKHandle) | null, critical_mech_attrs?: (SDKHandle) | null): { $ret: number; $out: { "mechs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mechs": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 3878839754295175, undefined, [minor_status, desired_mech_attrs, except_mech_attrs, critical_mech_attrs, null]); }
 
 /**
  * func gss_init_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ initiator_cred_handle: gss_cred_id_t?, _ context_handle: UnsafeMutablePointer<gss_ctx_id_t?>, _ target_name: gss_name_t, _ input_mech_type: gss_OID?, _ req_flags: OM_uint32, _ time_req: OM_uint32, _ input_chan_bindings: gss_channel_bindings_t?, _ input_token: gss_buffer_t?, _ actual_mech_type: UnsafeMutablePointer<gss_OID?>?, _ output_token: gss_buffer_t, _ ret_flags: UnsafeMutablePointer<OM_uint32>?, _ time_rec: UnsafeMutablePointer<OM_uint32>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_init_sec_context(minor_status: SDKHandle, initiator_cred_handle: (SDKHandle) | null, target_name: SDKHandle, input_mech_type: (SDKHandle) | null, req_flags: number, time_req: number, input_chan_bindings: (SDKHandle) | null, input_token: (SDKHandle) | null, output_token: SDKHandle, ret_flags?: (SDKHandle) | null, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null; "actual_mech_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null; "actual_mech_type": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1467745668686673, undefined, [minor_status, initiator_cred_handle, null, target_name, input_mech_type, req_flags, time_req, input_chan_bindings, input_token, null, output_token, ret_flags, time_rec]); }
+export function gss_init_sec_context(minor_status: SDKHandle, initiator_cred_handle: (SDKHandle) | null, target_name: SDKHandle, input_mech_type: (SDKHandle) | null, req_flags: number, time_req: number, input_chan_bindings: (SDKHandle) | null, input_token: (SDKHandle) | null, output_token: SDKHandle, ret_flags?: (SDKHandle) | null, time_rec?: (SDKHandle) | null): { $ret: number; $out: { "context_handle": (SDKHandle) | null; "actual_mech_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "context_handle": (SDKHandle) | null; "actual_mech_type": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1467745668686673, undefined, [minor_status, initiator_cred_handle, null, target_name, input_mech_type, req_flags, time_req, input_chan_bindings, input_token, null, output_token, ret_flags, time_rec]); }
 
 /**
  * func gss_inquire_attrs_for_mech(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ mech: gss_const_OID, _ mech_attr: UnsafeMutablePointer<gss_OID_set?>?, _ known_mech_attrs: UnsafeMutablePointer<gss_OID_set?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_attrs_for_mech(minor_status: SDKHandle, mech: SDKHandle): { $ret: number; $out: { "mech_attr": (SDKHandle) | null; "known_mech_attrs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_attr": (SDKHandle) | null; "known_mech_attrs": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 3753169008303814, undefined, [minor_status, mech, null, null]); }
+export function gss_inquire_attrs_for_mech(minor_status: SDKHandle, mech: SDKHandle): { $ret: number; $out: { "mech_attr": (SDKHandle) | null; "known_mech_attrs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_attr": (SDKHandle) | null; "known_mech_attrs": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 3753169008303814, undefined, [minor_status, mech, null, null]); }
 
 /**
  * func gss_inquire_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ src_name: UnsafeMutablePointer<gss_name_t?>?, _ targ_name: UnsafeMutablePointer<gss_name_t?>?, _ lifetime_rec: UnsafeMutablePointer<OM_uint32>?, _ mech_type: UnsafeMutablePointer<gss_OID?>?, _ ctx_flags: UnsafeMutablePointer<OM_uint32>?, _ locally_initiated: UnsafeMutablePointer<Int32>?, _ xopen: UnsafeMutablePointer<Int32>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_context(minor_status: SDKHandle, context_handle: SDKHandle, lifetime_rec?: (SDKHandle) | null, ctx_flags?: (SDKHandle) | null, locally_initiated?: (SDKHandle) | null, xopen?: (SDKHandle) | null): { $ret: number; $out: { "src_name": (SDKHandle) | null; "targ_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "src_name": (SDKHandle) | null; "targ_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 4497255352686909, undefined, [minor_status, context_handle, null, null, lifetime_rec, null, ctx_flags, locally_initiated, xopen]); }
+export function gss_inquire_context(minor_status: SDKHandle, context_handle: SDKHandle, lifetime_rec?: (SDKHandle) | null, ctx_flags?: (SDKHandle) | null, locally_initiated?: (SDKHandle) | null, xopen?: (SDKHandle) | null): { $ret: number; $out: { "src_name": (SDKHandle) | null; "targ_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "src_name": (SDKHandle) | null; "targ_name": (SDKHandle) | null; "mech_type": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 4497255352686909, undefined, [minor_status, context_handle, null, null, lifetime_rec, null, ctx_flags, locally_initiated, xopen]); }
 
 /**
  * func gss_inquire_cred(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred_handle: gss_cred_id_t?, _ name_ret: UnsafeMutablePointer<gss_name_t?>?, _ lifetime: UnsafeMutablePointer<OM_uint32>?, _ cred_usage: UnsafeMutablePointer<gss_cred_usage_t>?, _ mechanisms: UnsafeMutablePointer<gss_OID_set?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_cred(minor_status: SDKHandle, cred_handle?: (SDKHandle) | null, lifetime?: (SDKHandle) | null, cred_usage?: (SDKHandle) | null): { $ret: number; $out: { "name_ret": (SDKHandle) | null; "mechanisms": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "name_ret": (SDKHandle) | null; "mechanisms": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 974103296784748, undefined, [minor_status, cred_handle, null, lifetime, cred_usage, null]); }
+export function gss_inquire_cred(minor_status: SDKHandle, cred_handle?: (SDKHandle) | null, lifetime?: (SDKHandle) | null, cred_usage?: (SDKHandle) | null): { $ret: number; $out: { "name_ret": (SDKHandle) | null; "mechanisms": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "name_ret": (SDKHandle) | null; "mechanisms": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 974103296784748, undefined, [minor_status, cred_handle, null, lifetime, cred_usage, null]); }
 
 /**
  * func gss_inquire_cred_by_mech(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred_handle: gss_cred_id_t?, _ mech_type: gss_OID, _ cred_name: UnsafeMutablePointer<gss_name_t?>?, _ initiator_lifetime: UnsafeMutablePointer<OM_uint32>?, _ acceptor_lifetime: UnsafeMutablePointer<OM_uint32>?, _ cred_usage: UnsafeMutablePointer<gss_cred_usage_t>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_cred_by_mech(minor_status: SDKHandle, cred_handle: (SDKHandle) | null, mech_type: SDKHandle, initiator_lifetime?: (SDKHandle) | null, acceptor_lifetime?: (SDKHandle) | null, cred_usage?: (SDKHandle) | null): { $ret: number; $out: { "cred_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_name": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1151385779451904, undefined, [minor_status, cred_handle, mech_type, null, initiator_lifetime, acceptor_lifetime, cred_usage]); }
+export function gss_inquire_cred_by_mech(minor_status: SDKHandle, cred_handle: (SDKHandle) | null, mech_type: SDKHandle, initiator_lifetime?: (SDKHandle) | null, acceptor_lifetime?: (SDKHandle) | null, cred_usage?: (SDKHandle) | null): { $ret: number; $out: { "cred_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_name": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1151385779451904, undefined, [minor_status, cred_handle, mech_type, null, initiator_lifetime, acceptor_lifetime, cred_usage]); }
 
 /**
  * func gss_inquire_cred_by_oid(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred_handle: gss_cred_id_t, _ desired_object: gss_OID, _ data_set: UnsafeMutablePointer<gss_buffer_set_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_cred_by_oid(minor_status: SDKHandle, cred_handle: SDKHandle, desired_object: SDKHandle): { $ret: number; $out: { "data_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "data_set": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 4377647196614435, undefined, [minor_status, cred_handle, desired_object, null]); }
+export function gss_inquire_cred_by_oid(minor_status: SDKHandle, cred_handle: SDKHandle, desired_object: SDKHandle): { $ret: number; $out: { "data_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "data_set": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 4377647196614435, undefined, [minor_status, cred_handle, desired_object, null]); }
 
 /**
  * func gss_inquire_mech_for_saslname(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ sasl_mech_name: gss_buffer_t?, _ mech_type: UnsafeMutablePointer<gss_OID?>) -> OM_uint32
  * @availability iOS 8.0+
  */
-export function gss_inquire_mech_for_saslname(minor_status: SDKHandle, sasl_mech_name?: (SDKHandle) | null): { $ret: number; $out: { "mech_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_type": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2682537008200822, undefined, [minor_status, sasl_mech_name, null]); }
+export function gss_inquire_mech_for_saslname(minor_status: SDKHandle, sasl_mech_name?: (SDKHandle) | null): { $ret: number; $out: { "mech_type": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_type": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2682537008200822, undefined, [minor_status, sasl_mech_name, null]); }
 
 /**
  * func gss_inquire_mechs_for_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name: gss_name_t, _ mech_types: UnsafeMutablePointer<gss_OID_set?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_mechs_for_name(minor_status: SDKHandle, input_name: SDKHandle): { $ret: number; $out: { "mech_types": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_types": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1526743263741333, undefined, [minor_status, input_name, null]); }
+export function gss_inquire_mechs_for_name(minor_status: SDKHandle, input_name: SDKHandle): { $ret: number; $out: { "mech_types": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "mech_types": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1526743263741333, undefined, [minor_status, input_name, null]); }
 
 /**
  * func gss_inquire_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name: gss_name_t, _ name_is_MN: UnsafeMutablePointer<Int32>, _ MN_mech: UnsafeMutablePointer<gss_OID?>?, _ attrs: UnsafeMutablePointer<gss_buffer_set_t?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_name(minor_status: SDKHandle, input_name: SDKHandle, name_is_MN: SDKHandle): { $ret: number; $out: { "MN_mech": (SDKHandle) | null; "attrs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "MN_mech": (SDKHandle) | null; "attrs": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1004617665251240, undefined, [minor_status, input_name, name_is_MN, null, null]); }
+export function gss_inquire_name(minor_status: SDKHandle, input_name: SDKHandle, name_is_MN: SDKHandle): { $ret: number; $out: { "MN_mech": (SDKHandle) | null; "attrs": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "MN_mech": (SDKHandle) | null; "attrs": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1004617665251240, undefined, [minor_status, input_name, name_is_MN, null, null]); }
 
 /**
  * func gss_inquire_names_for_mech(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ mechanism: gss_const_OID, _ name_types: UnsafeMutablePointer<gss_OID_set?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_names_for_mech(minor_status: SDKHandle, mechanism: SDKHandle): { $ret: number; $out: { "name_types": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "name_types": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2554906516397702, undefined, [minor_status, mechanism, null]); }
+export function gss_inquire_names_for_mech(minor_status: SDKHandle, mechanism: SDKHandle): { $ret: number; $out: { "name_types": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "name_types": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2554906516397702, undefined, [minor_status, mechanism, null]); }
 
 /**
  * func gss_inquire_saslname_for_mech(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ desired_mech: gss_OID, _ sasl_mech_name: gss_buffer_t?, _ mech_name: gss_buffer_t?, _ mech_description: gss_buffer_t?) -> OM_uint32
  * @availability iOS 8.0+
  */
-export function gss_inquire_saslname_for_mech(minor_status: SDKHandle, desired_mech: SDKHandle, sasl_mech_name?: (SDKHandle) | null, mech_name?: (SDKHandle) | null, mech_description?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 122306861260214, undefined, [minor_status, desired_mech, sasl_mech_name, mech_name, mech_description]); }
+export function gss_inquire_saslname_for_mech(minor_status: SDKHandle, desired_mech: SDKHandle, sasl_mech_name?: (SDKHandle) | null, mech_name?: (SDKHandle) | null, mech_description?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 122306861260214, undefined, [minor_status, desired_mech, sasl_mech_name, mech_name, mech_description]); }
 
 /**
  * func gss_inquire_sec_context_by_oid(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ desired_object: gss_OID, _ data_set: UnsafeMutablePointer<gss_buffer_set_t>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_inquire_sec_context_by_oid(minor_status: SDKHandle, context_handle: SDKHandle, desired_object: SDKHandle, data_set?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 891388245006633, undefined, [minor_status, context_handle, desired_object, data_set]); }
+export function gss_inquire_sec_context_by_oid(minor_status: SDKHandle, context_handle: SDKHandle, desired_object: SDKHandle, data_set?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 891388245006633, undefined, [minor_status, context_handle, desired_object, data_set]); }
 
 /**
  * func gss_iter_creds(_ min_stat: UnsafeMutablePointer<OM_uint32>, _ flags: OM_uint32, _ mech: gss_const_OID?, _ useriter: @escaping (gss_OID?, gss_cred_id_t?) -> Void) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_iter_creds(min_stat: SDKHandle, flags: number, mech: (SDKHandle) | null, useriter: ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => void)): number { return callSDK<number>("GSS_6be9a005889899ab", 3253780796272788, undefined, [min_stat, flags, mech, useriter], [null,null,null,{"callback":{"out":[]}}]); }
+export function gss_iter_creds(min_stat: SDKHandle, flags: number, mech: (SDKHandle) | null, useriter: ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => void)): number { return callSDK<number>("GSS_c1f28409f8601238", 3253780796272788, undefined, [min_stat, flags, mech, useriter], [null,null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func gss_krb5_ccache_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ name: UnsafePointer<CChar>?, _ out_name: UnsafeMutablePointer<UnsafePointer<CChar>?>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_krb5_ccache_name(minor_status: SDKHandle, name?: (SDKHandle) | null): { $ret: number; $out: { "out_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "out_name": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 2819342681444283, undefined, [minor_status, name, null]); }
+export function gss_krb5_ccache_name(minor_status: SDKHandle, name?: (SDKHandle) | null): { $ret: number; $out: { "out_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "out_name": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 2819342681444283, undefined, [minor_status, name, null]); }
 
 /**
  * func gss_krb5_free_lucid_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ c: UnsafeMutableRawPointer) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_krb5_free_lucid_sec_context(minor_status: SDKHandle, c: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 1114757867813275, undefined, [minor_status, c]); }
+export function gss_krb5_free_lucid_sec_context(minor_status: SDKHandle, c: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 1114757867813275, undefined, [minor_status, c]); }
 
 /**
  * func gss_krb5_set_allowable_enctypes(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred: gss_cred_id_t, _ num_enctypes: OM_uint32, _ enctypes: UnsafeMutablePointer<Int32>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_krb5_set_allowable_enctypes(minor_status: SDKHandle, cred: SDKHandle, num_enctypes: number, enctypes: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 369556371746820, undefined, [minor_status, cred, num_enctypes, enctypes]); }
+export function gss_krb5_set_allowable_enctypes(minor_status: SDKHandle, cred: SDKHandle, num_enctypes: number, enctypes: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 369556371746820, undefined, [minor_status, cred, num_enctypes, enctypes]); }
 
 /**
  * func gss_oid_equal(_ a: gss_const_OID?, _ b: gss_const_OID?) -> Int32
  * @availability iOS 5.0+
  */
-export function gss_oid_equal(a?: (SDKHandle) | null, b?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 498533842418710, undefined, [a, b]); }
+export function gss_oid_equal(a?: (SDKHandle) | null, b?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 498533842418710, undefined, [a, b]); }
 
 /**
  * func gss_oid_to_str(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ oid: gss_OID, _ oid_str: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_oid_to_str(minor_status: SDKHandle, oid: SDKHandle, oid_str: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 2217567607963986, undefined, [minor_status, oid, oid_str]); }
+export function gss_oid_to_str(minor_status: SDKHandle, oid: SDKHandle, oid_str: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 2217567607963986, undefined, [minor_status, oid, oid_str]); }
 
 /**
  * func gss_process_context_token(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ token_buffer: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_process_context_token(minor_status: SDKHandle, context_handle: SDKHandle, token_buffer: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 4432855181672950, undefined, [minor_status, context_handle, token_buffer]); }
+export function gss_process_context_token(minor_status: SDKHandle, context_handle: SDKHandle, token_buffer: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 4432855181672950, undefined, [minor_status, context_handle, token_buffer]); }
 
 /**
  * func gss_pseudo_random(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context: gss_ctx_id_t, _ prf_key: Int32, _ prf_in: gss_buffer_t, _ desired_output_len: Int, _ prf_out: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_pseudo_random(minor_status: SDKHandle, context: SDKHandle, prf_key: number, prf_in: SDKHandle, desired_output_len: number, prf_out: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 619112796950010, undefined, [minor_status, context, prf_key, prf_in, desired_output_len, prf_out]); }
+export function gss_pseudo_random(minor_status: SDKHandle, context: SDKHandle, prf_key: number, prf_in: SDKHandle, desired_output_len: number, prf_out: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 619112796950010, undefined, [minor_status, context, prf_key, prf_in, desired_output_len, prf_out]); }
 
 /**
  * func gss_release_buffer(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ buffer: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_release_buffer(minor_status: SDKHandle, buffer: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 3460524115732139, undefined, [minor_status, buffer]); }
+export function gss_release_buffer(minor_status: SDKHandle, buffer: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 3460524115732139, undefined, [minor_status, buffer]); }
 
 /**
  * func gss_release_buffer_set(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ buffer_set: UnsafeMutablePointer<gss_buffer_set_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_release_buffer_set(minor_status: SDKHandle): { $ret: number; $out: { "buffer_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "buffer_set": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1313620318982564, undefined, [minor_status, null]); }
+export function gss_release_buffer_set(minor_status: SDKHandle): { $ret: number; $out: { "buffer_set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "buffer_set": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1313620318982564, undefined, [minor_status, null]); }
 
 /**
  * func gss_release_cred(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred_handle: UnsafeMutablePointer<gss_cred_id_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_release_cred(minor_status: SDKHandle): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1377613817490540, undefined, [minor_status, null]); }
+export function gss_release_cred(minor_status: SDKHandle): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1377613817490540, undefined, [minor_status, null]); }
 
 /**
  * func gss_release_name(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ input_name: UnsafeMutablePointer<gss_name_t?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_release_name(minor_status: SDKHandle): { $ret: number; $out: { "input_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "input_name": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 511709860955809, undefined, [minor_status, null]); }
+export function gss_release_name(minor_status: SDKHandle): { $ret: number; $out: { "input_name": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "input_name": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 511709860955809, undefined, [minor_status, null]); }
 
 /**
  * func gss_release_oid_set(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ set: UnsafeMutablePointer<gss_OID_set?>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_release_oid_set(minor_status: SDKHandle): { $ret: number; $out: { "set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "set": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 3873716036550158, undefined, [minor_status, null]); }
+export function gss_release_oid_set(minor_status: SDKHandle): { $ret: number; $out: { "set": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "set": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 3873716036550158, undefined, [minor_status, null]); }
 
 /**
  * func gss_set_cred_option(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ cred_handle: UnsafeMutablePointer<gss_cred_id_t?>?, _ object: gss_OID, _ value: gss_buffer_t?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_set_cred_option(minor_status: SDKHandle, object: SDKHandle, value?: (SDKHandle) | null): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_6be9a005889899ab", 1006534620200917, undefined, [minor_status, null, object, value]); }
+export function gss_set_cred_option(minor_status: SDKHandle, object: SDKHandle, value?: (SDKHandle) | null): { $ret: number; $out: { "cred_handle": (SDKHandle) | null } } { return callSDK<{ $ret: number; $out: { "cred_handle": (SDKHandle) | null } }>("GSS_c1f28409f8601238", 1006534620200917, undefined, [minor_status, null, object, value]); }
 
 /**
  * func gss_set_sec_context_option(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: UnsafeMutablePointer<gss_ctx_id_t>?, _ object: gss_OID, _ value: gss_buffer_t?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_set_sec_context_option(minor_status: SDKHandle, context_handle: (SDKHandle) | null, object: SDKHandle, value?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 4479746148058371, undefined, [minor_status, context_handle, object, value]); }
+export function gss_set_sec_context_option(minor_status: SDKHandle, context_handle: (SDKHandle) | null, object: SDKHandle, value?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 4479746148058371, undefined, [minor_status, context_handle, object, value]); }
 
 /**
  * func gss_test_oid_set_member(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ member: gss_const_OID, _ set: gss_OID_set, _ present: UnsafeMutablePointer<Int32>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_test_oid_set_member(minor_status: SDKHandle, member: SDKHandle, set: SDKHandle, present: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 2013897470700071, undefined, [minor_status, member, set, present]); }
+export function gss_test_oid_set_member(minor_status: SDKHandle, member: SDKHandle, set: SDKHandle, present: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 2013897470700071, undefined, [minor_status, member, set, present]); }
 
 /**
  * func gss_unwrap(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ input_message_buffer: gss_buffer_t, _ output_message_buffer: gss_buffer_t, _ conf_state: UnsafeMutablePointer<Int32>?, _ qop_state: UnsafeMutablePointer<gss_qop_t>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_unwrap(minor_status: SDKHandle, context_handle: SDKHandle, input_message_buffer: SDKHandle, output_message_buffer: SDKHandle, conf_state?: (SDKHandle) | null, qop_state?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 2499257028337744, undefined, [minor_status, context_handle, input_message_buffer, output_message_buffer, conf_state, qop_state]); }
+export function gss_unwrap(minor_status: SDKHandle, context_handle: SDKHandle, input_message_buffer: SDKHandle, output_message_buffer: SDKHandle, conf_state?: (SDKHandle) | null, qop_state?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 2499257028337744, undefined, [minor_status, context_handle, input_message_buffer, output_message_buffer, conf_state, qop_state]); }
 
 /**
  * func gss_userok(_ name: gss_name_t, _ user: UnsafePointer<CChar>) -> Int32
  * @availability iOS 7.0+
  */
-export function gss_userok(name: SDKHandle, user: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 398918441153125, undefined, [name, user]); }
+export function gss_userok(name: SDKHandle, user: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 398918441153125, undefined, [name, user]); }
 
 /**
  * func gss_verify_mic(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ message_buffer: gss_buffer_t, _ token_buffer: gss_buffer_t, _ qop_state: UnsafeMutablePointer<gss_qop_t>?) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_verify_mic(minor_status: SDKHandle, context_handle: SDKHandle, message_buffer: SDKHandle, token_buffer: SDKHandle, qop_state?: (SDKHandle) | null): number { return callSDK<number>("GSS_6be9a005889899ab", 3906322389602548, undefined, [minor_status, context_handle, message_buffer, token_buffer, qop_state]); }
+export function gss_verify_mic(minor_status: SDKHandle, context_handle: SDKHandle, message_buffer: SDKHandle, token_buffer: SDKHandle, qop_state?: (SDKHandle) | null): number { return callSDK<number>("GSS_c1f28409f8601238", 3906322389602548, undefined, [minor_status, context_handle, message_buffer, token_buffer, qop_state]); }
 
 /**
  * func gss_wrap(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ conf_req_flag: Int32, _ qop_req: gss_qop_t, _ input_message_buffer: gss_buffer_t, _ conf_state: UnsafeMutablePointer<Int32>?, _ output_message_buffer: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_wrap(minor_status: SDKHandle, context_handle: SDKHandle, conf_req_flag: number, qop_req: number, input_message_buffer: SDKHandle, conf_state: (SDKHandle) | null, output_message_buffer: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 2257405569058728, undefined, [minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer]); }
+export function gss_wrap(minor_status: SDKHandle, context_handle: SDKHandle, conf_req_flag: number, qop_req: number, input_message_buffer: SDKHandle, conf_state: (SDKHandle) | null, output_message_buffer: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 2257405569058728, undefined, [minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer]); }
 
 /**
  * func gss_wrap_size_limit(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ conf_req_flag: Int32, _ qop_req: gss_qop_t, _ req_output_size: OM_uint32, _ max_input_size: UnsafeMutablePointer<OM_uint32>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gss_wrap_size_limit(minor_status: SDKHandle, context_handle: SDKHandle, conf_req_flag: number, qop_req: number, req_output_size: number, max_input_size: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 2333110602757049, undefined, [minor_status, context_handle, conf_req_flag, qop_req, req_output_size, max_input_size]); }
+export function gss_wrap_size_limit(minor_status: SDKHandle, context_handle: SDKHandle, conf_req_flag: number, qop_req: number, req_output_size: number, max_input_size: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 2333110602757049, undefined, [minor_status, context_handle, conf_req_flag, qop_req, req_output_size, max_input_size]); }
 
 /**
  * func gsskrb5_extract_authz_data_from_sec_context(_ minor_status: UnsafeMutablePointer<OM_uint32>, _ context_handle: gss_ctx_id_t, _ ad_type: Int32, _ ad_data: gss_buffer_t) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gsskrb5_extract_authz_data_from_sec_context(minor_status: SDKHandle, context_handle: SDKHandle, ad_type: number, ad_data: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 342379221418973, undefined, [minor_status, context_handle, ad_type, ad_data]); }
+export function gsskrb5_extract_authz_data_from_sec_context(minor_status: SDKHandle, context_handle: SDKHandle, ad_type: number, ad_data: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 342379221418973, undefined, [minor_status, context_handle, ad_type, ad_data]); }
 
 /**
  * func gsskrb5_register_acceptor_identity(_ identity: UnsafePointer<CChar>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function gsskrb5_register_acceptor_identity(identity: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 3013766233282267, undefined, [identity]); }
+export function gsskrb5_register_acceptor_identity(identity: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 3013766233282267, undefined, [identity]); }
 
 /**
  * func krb5_gss_register_acceptor_identity(_ identity: UnsafePointer<CChar>) -> OM_uint32
  * @availability iOS 5.0+
  */
-export function krb5_gss_register_acceptor_identity(identity: SDKHandle): number { return callSDK<number>("GSS_6be9a005889899ab", 760297630770641, undefined, [identity]); }
+export function krb5_gss_register_acceptor_identity(identity: SDKHandle): number { return callSDK<number>("GSS_c1f28409f8601238", 760297630770641, undefined, [identity]); }
 
 /** var GSS_C_ACCEPT: Int32 { get } */
-export const GSS_C_ACCEPT: number = callSDK<number>("GSS_6be9a005889899ab", 1205630800572331, undefined, []);
+export const GSS_C_ACCEPT: number = callSDK<number>("GSS_c1f28409f8601238", 1205630800572331, undefined, []);
 
 /** var GSS_C_AF_APPLETALK: Int32 { get } */
-export const GSS_C_AF_APPLETALK: number = callSDK<number>("GSS_6be9a005889899ab", 2806414624824254, undefined, []);
+export const GSS_C_AF_APPLETALK: number = callSDK<number>("GSS_c1f28409f8601238", 2806414624824254, undefined, []);
 
 /** var GSS_C_AF_BSC: Int32 { get } */
-export const GSS_C_AF_BSC: number = callSDK<number>("GSS_6be9a005889899ab", 1609074451261334, undefined, []);
+export const GSS_C_AF_BSC: number = callSDK<number>("GSS_c1f28409f8601238", 1609074451261334, undefined, []);
 
 /** var GSS_C_AF_CCITT: Int32 { get } */
-export const GSS_C_AF_CCITT: number = callSDK<number>("GSS_6be9a005889899ab", 1027967133992067, undefined, []);
+export const GSS_C_AF_CCITT: number = callSDK<number>("GSS_c1f28409f8601238", 1027967133992067, undefined, []);
 
 /** var GSS_C_AF_CHAOS: Int32 { get } */
-export const GSS_C_AF_CHAOS: number = callSDK<number>("GSS_6be9a005889899ab", 1476169910684048, undefined, []);
+export const GSS_C_AF_CHAOS: number = callSDK<number>("GSS_c1f28409f8601238", 1476169910684048, undefined, []);
 
 /** var GSS_C_AF_DATAKIT: Int32 { get } */
-export const GSS_C_AF_DATAKIT: number = callSDK<number>("GSS_6be9a005889899ab", 2927384305550888, undefined, []);
+export const GSS_C_AF_DATAKIT: number = callSDK<number>("GSS_c1f28409f8601238", 2927384305550888, undefined, []);
 
 /** var GSS_C_AF_DECnet: Int32 { get } */
-export const GSS_C_AF_DECnet: number = callSDK<number>("GSS_6be9a005889899ab", 2393434167451993, undefined, []);
+export const GSS_C_AF_DECnet: number = callSDK<number>("GSS_c1f28409f8601238", 2393434167451993, undefined, []);
 
 /** var GSS_C_AF_DLI: Int32 { get } */
-export const GSS_C_AF_DLI: number = callSDK<number>("GSS_6be9a005889899ab", 2863275093856598, undefined, []);
+export const GSS_C_AF_DLI: number = callSDK<number>("GSS_c1f28409f8601238", 2863275093856598, undefined, []);
 
 /** var GSS_C_AF_DSS: Int32 { get } */
-export const GSS_C_AF_DSS: number = callSDK<number>("GSS_6be9a005889899ab", 2118680971999929, undefined, []);
+export const GSS_C_AF_DSS: number = callSDK<number>("GSS_c1f28409f8601238", 2118680971999929, undefined, []);
 
 /** var GSS_C_AF_ECMA: Int32 { get } */
-export const GSS_C_AF_ECMA: number = callSDK<number>("GSS_6be9a005889899ab", 4441967494006157, undefined, []);
+export const GSS_C_AF_ECMA: number = callSDK<number>("GSS_c1f28409f8601238", 4441967494006157, undefined, []);
 
 /** var GSS_C_AF_HYLINK: Int32 { get } */
-export const GSS_C_AF_HYLINK: number = callSDK<number>("GSS_6be9a005889899ab", 4193841480305189, undefined, []);
+export const GSS_C_AF_HYLINK: number = callSDK<number>("GSS_c1f28409f8601238", 4193841480305189, undefined, []);
 
 /** var GSS_C_AF_IMPLINK: Int32 { get } */
-export const GSS_C_AF_IMPLINK: number = callSDK<number>("GSS_6be9a005889899ab", 1754674344100269, undefined, []);
+export const GSS_C_AF_IMPLINK: number = callSDK<number>("GSS_c1f28409f8601238", 1754674344100269, undefined, []);
 
 /** var GSS_C_AF_INET6: Int32 { get } */
-export const GSS_C_AF_INET6: number = callSDK<number>("GSS_6be9a005889899ab", 1219885028081009, undefined, []);
+export const GSS_C_AF_INET6: number = callSDK<number>("GSS_c1f28409f8601238", 1219885028081009, undefined, []);
 
 /** var GSS_C_AF_INET: Int32 { get } */
-export const GSS_C_AF_INET: number = callSDK<number>("GSS_6be9a005889899ab", 2237493523299262, undefined, []);
+export const GSS_C_AF_INET: number = callSDK<number>("GSS_c1f28409f8601238", 2237493523299262, undefined, []);
 
 /** var GSS_C_AF_LAT: Int32 { get } */
-export const GSS_C_AF_LAT: number = callSDK<number>("GSS_6be9a005889899ab", 641632002597642, undefined, []);
+export const GSS_C_AF_LAT: number = callSDK<number>("GSS_c1f28409f8601238", 641632002597642, undefined, []);
 
 /** var GSS_C_AF_LOCAL: Int32 { get } */
-export const GSS_C_AF_LOCAL: number = callSDK<number>("GSS_6be9a005889899ab", 642602133511998, undefined, []);
+export const GSS_C_AF_LOCAL: number = callSDK<number>("GSS_c1f28409f8601238", 642602133511998, undefined, []);
 
 /** var GSS_C_AF_NBS: Int32 { get } */
-export const GSS_C_AF_NBS: number = callSDK<number>("GSS_6be9a005889899ab", 4198620211967992, undefined, []);
+export const GSS_C_AF_NBS: number = callSDK<number>("GSS_c1f28409f8601238", 4198620211967992, undefined, []);
 
 /** var GSS_C_AF_NS: Int32 { get } */
-export const GSS_C_AF_NS: number = callSDK<number>("GSS_6be9a005889899ab", 4348189619614245, undefined, []);
+export const GSS_C_AF_NS: number = callSDK<number>("GSS_c1f28409f8601238", 4348189619614245, undefined, []);
 
 /** var GSS_C_AF_NULLADDR: Int32 { get } */
-export const GSS_C_AF_NULLADDR: number = callSDK<number>("GSS_6be9a005889899ab", 1603998976591693, undefined, []);
+export const GSS_C_AF_NULLADDR: number = callSDK<number>("GSS_c1f28409f8601238", 1603998976591693, undefined, []);
 
 /** var GSS_C_AF_OSI: Int32 { get } */
-export const GSS_C_AF_OSI: number = callSDK<number>("GSS_6be9a005889899ab", 1524436317599379, undefined, []);
+export const GSS_C_AF_OSI: number = callSDK<number>("GSS_c1f28409f8601238", 1524436317599379, undefined, []);
 
 /** var GSS_C_AF_PUP: Int32 { get } */
-export const GSS_C_AF_PUP: number = callSDK<number>("GSS_6be9a005889899ab", 1306044306634972, undefined, []);
+export const GSS_C_AF_PUP: number = callSDK<number>("GSS_c1f28409f8601238", 1306044306634972, undefined, []);
 
 /** var GSS_C_AF_SNA: Int32 { get } */
-export const GSS_C_AF_SNA: number = callSDK<number>("GSS_6be9a005889899ab", 619255567706733, undefined, []);
+export const GSS_C_AF_SNA: number = callSDK<number>("GSS_c1f28409f8601238", 619255567706733, undefined, []);
 
 /** var GSS_C_AF_UNSPEC: Int32 { get } */
-export const GSS_C_AF_UNSPEC: number = callSDK<number>("GSS_6be9a005889899ab", 1012116103545355, undefined, []);
+export const GSS_C_AF_UNSPEC: number = callSDK<number>("GSS_c1f28409f8601238", 1012116103545355, undefined, []);
 
 /** var GSS_C_AF_X25: Int32 { get } */
-export const GSS_C_AF_X25: number = callSDK<number>("GSS_6be9a005889899ab", 3229515268009553, undefined, []);
+export const GSS_C_AF_X25: number = callSDK<number>("GSS_c1f28409f8601238", 3229515268009553, undefined, []);
 
 /** var GSS_C_ANON_FLAG: Int32 { get } */
-export const GSS_C_ANON_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 3483420323493864, undefined, []);
+export const GSS_C_ANON_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 3483420323493864, undefined, []);
 
 /** var GSS_C_BOTH: Int32 { get } */
-export const GSS_C_BOTH: number = callSDK<number>("GSS_6be9a005889899ab", 859288922373507, undefined, []);
+export const GSS_C_BOTH: number = callSDK<number>("GSS_c1f28409f8601238", 859288922373507, undefined, []);
 
 /** var GSS_C_CALLING_ERROR_MASK: UInt { get } */
-export const GSS_C_CALLING_ERROR_MASK: number = callSDK<number>("GSS_6be9a005889899ab", 2475491209355232, undefined, []);
+export const GSS_C_CALLING_ERROR_MASK: number = callSDK<number>("GSS_c1f28409f8601238", 2475491209355232, undefined, []);
 
 /** var GSS_C_CALLING_ERROR_OFFSET: Int32 { get } */
-export const GSS_C_CALLING_ERROR_OFFSET: number = callSDK<number>("GSS_6be9a005889899ab", 3174508864446644, undefined, []);
+export const GSS_C_CALLING_ERROR_OFFSET: number = callSDK<number>("GSS_c1f28409f8601238", 3174508864446644, undefined, []);
 
 /** var GSS_C_CONF_FLAG: Int32 { get } */
-export const GSS_C_CONF_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 1620672981170740, undefined, []);
+export const GSS_C_CONF_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 1620672981170740, undefined, []);
 
 /** var GSS_C_CRED_NO_UI: Int32 { get } */
-export const GSS_C_CRED_NO_UI: number = callSDK<number>("GSS_6be9a005889899ab", 753576346837544, undefined, []);
+export const GSS_C_CRED_NO_UI: number = callSDK<number>("GSS_c1f28409f8601238", 753576346837544, undefined, []);
 
 /** var GSS_C_DCE_STYLE: Int32 { get } */
-export const GSS_C_DCE_STYLE: number = callSDK<number>("GSS_6be9a005889899ab", 1608361769889586, undefined, []);
+export const GSS_C_DCE_STYLE: number = callSDK<number>("GSS_c1f28409f8601238", 1608361769889586, undefined, []);
 
 /** var GSS_C_DELEG_FLAG: Int32 { get } */
-export const GSS_C_DELEG_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 4150894971338377, undefined, []);
+export const GSS_C_DELEG_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 4150894971338377, undefined, []);
 
 /** var GSS_C_DELEG_POLICY_FLAG: Int32 { get } */
-export const GSS_C_DELEG_POLICY_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 2614115557895554, undefined, []);
+export const GSS_C_DELEG_POLICY_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 2614115557895554, undefined, []);
 
 /** var GSS_C_EXTENDED_ERROR_FLAG: Int32 { get } */
-export const GSS_C_EXTENDED_ERROR_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 770558372932766, undefined, []);
+export const GSS_C_EXTENDED_ERROR_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 770558372932766, undefined, []);
 
 /** var GSS_C_GSS_CODE: Int32 { get } */
-export const GSS_C_GSS_CODE: number = callSDK<number>("GSS_6be9a005889899ab", 3872788932110508, undefined, []);
+export const GSS_C_GSS_CODE: number = callSDK<number>("GSS_c1f28409f8601238", 3872788932110508, undefined, []);
 
 /** var GSS_C_IDENTIFY_FLAG: Int32 { get } */
-export const GSS_C_IDENTIFY_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 1672882576317126, undefined, []);
+export const GSS_C_IDENTIFY_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 1672882576317126, undefined, []);
 
 /** var GSS_C_INDEFINITE: UInt { get } */
-export const GSS_C_INDEFINITE: number = callSDK<number>("GSS_6be9a005889899ab", 1607489329008750, undefined, []);
+export const GSS_C_INDEFINITE: number = callSDK<number>("GSS_c1f28409f8601238", 1607489329008750, undefined, []);
 
 /** var GSS_C_INITIATE: Int32 { get } */
-export const GSS_C_INITIATE: number = callSDK<number>("GSS_6be9a005889899ab", 2155293645311137, undefined, []);
+export const GSS_C_INITIATE: number = callSDK<number>("GSS_c1f28409f8601238", 2155293645311137, undefined, []);
 
 /** var GSS_C_INTEG_FLAG: Int32 { get } */
-export const GSS_C_INTEG_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 1878787708023029, undefined, []);
+export const GSS_C_INTEG_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 1878787708023029, undefined, []);
 
 /** var GSS_C_MECH_CODE: Int32 { get } */
-export const GSS_C_MECH_CODE: number = callSDK<number>("GSS_6be9a005889899ab", 4400403859227865, undefined, []);
+export const GSS_C_MECH_CODE: number = callSDK<number>("GSS_c1f28409f8601238", 4400403859227865, undefined, []);
 
 /** var GSS_C_MUTUAL_FLAG: Int32 { get } */
-export const GSS_C_MUTUAL_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 1993817926484191, undefined, []);
+export const GSS_C_MUTUAL_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 1993817926484191, undefined, []);
 
 /** var GSS_C_OPTION_MASK: Int32 { get } */
-export const GSS_C_OPTION_MASK: number = callSDK<number>("GSS_6be9a005889899ab", 1628249007626726, undefined, []);
+export const GSS_C_OPTION_MASK: number = callSDK<number>("GSS_c1f28409f8601238", 1628249007626726, undefined, []);
 
 /** var GSS_C_PRF_KEY_FULL: Int32 { get } */
-export const GSS_C_PRF_KEY_FULL: number = callSDK<number>("GSS_6be9a005889899ab", 1301320628601348, undefined, []);
+export const GSS_C_PRF_KEY_FULL: number = callSDK<number>("GSS_c1f28409f8601238", 1301320628601348, undefined, []);
 
 /** var GSS_C_PRF_KEY_PARTIAL: Int32 { get } */
-export const GSS_C_PRF_KEY_PARTIAL: number = callSDK<number>("GSS_6be9a005889899ab", 3064353649667275, undefined, []);
+export const GSS_C_PRF_KEY_PARTIAL: number = callSDK<number>("GSS_c1f28409f8601238", 3064353649667275, undefined, []);
 
 /** var GSS_C_PROT_READY_FLAG: Int32 { get } */
-export const GSS_C_PROT_READY_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 2990455667353117, undefined, []);
+export const GSS_C_PROT_READY_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 2990455667353117, undefined, []);
 
 /** var GSS_C_QOP_DEFAULT: Int32 { get } */
-export const GSS_C_QOP_DEFAULT: number = callSDK<number>("GSS_6be9a005889899ab", 1049144505912754, undefined, []);
+export const GSS_C_QOP_DEFAULT: number = callSDK<number>("GSS_c1f28409f8601238", 1049144505912754, undefined, []);
 
 /** var GSS_C_REPLAY_FLAG: Int32 { get } */
-export const GSS_C_REPLAY_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 1731370053347357, undefined, []);
+export const GSS_C_REPLAY_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 1731370053347357, undefined, []);
 
 /** var GSS_C_ROUTINE_ERROR_MASK: UInt { get } */
-export const GSS_C_ROUTINE_ERROR_MASK: number = callSDK<number>("GSS_6be9a005889899ab", 2927791866953152, undefined, []);
+export const GSS_C_ROUTINE_ERROR_MASK: number = callSDK<number>("GSS_c1f28409f8601238", 2927791866953152, undefined, []);
 
 /** var GSS_C_ROUTINE_ERROR_OFFSET: Int32 { get } */
-export const GSS_C_ROUTINE_ERROR_OFFSET: number = callSDK<number>("GSS_6be9a005889899ab", 3350325379684929, undefined, []);
+export const GSS_C_ROUTINE_ERROR_OFFSET: number = callSDK<number>("GSS_c1f28409f8601238", 3350325379684929, undefined, []);
 
 /** var GSS_C_SEQUENCE_FLAG: Int32 { get } */
-export const GSS_C_SEQUENCE_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 4000447208979351, undefined, []);
+export const GSS_C_SEQUENCE_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 4000447208979351, undefined, []);
 
 /** var GSS_C_SUPPLEMENTARY_MASK: UInt { get } */
-export const GSS_C_SUPPLEMENTARY_MASK: number = callSDK<number>("GSS_6be9a005889899ab", 3290055051021484, undefined, []);
+export const GSS_C_SUPPLEMENTARY_MASK: number = callSDK<number>("GSS_c1f28409f8601238", 3290055051021484, undefined, []);
 
 /** var GSS_C_SUPPLEMENTARY_OFFSET: Int32 { get } */
-export const GSS_C_SUPPLEMENTARY_OFFSET: number = callSDK<number>("GSS_6be9a005889899ab", 3738794931110232, undefined, []);
+export const GSS_C_SUPPLEMENTARY_OFFSET: number = callSDK<number>("GSS_c1f28409f8601238", 3738794931110232, undefined, []);
 
 /** var GSS_C_TRANS_FLAG: Int32 { get } */
-export const GSS_C_TRANS_FLAG: number = callSDK<number>("GSS_6be9a005889899ab", 2356542513047964, undefined, []);
+export const GSS_C_TRANS_FLAG: number = callSDK<number>("GSS_c1f28409f8601238", 2356542513047964, undefined, []);
 
 /** var GSS_IOV_BUFFER_FLAG_ALLOCATE: Int32 { get } */
-export const GSS_IOV_BUFFER_FLAG_ALLOCATE: number = callSDK<number>("GSS_6be9a005889899ab", 1603489832785877, undefined, []);
+export const GSS_IOV_BUFFER_FLAG_ALLOCATE: number = callSDK<number>("GSS_c1f28409f8601238", 1603489832785877, undefined, []);
 
 /** var GSS_IOV_BUFFER_FLAG_ALLOCATED: Int32 { get } */
-export const GSS_IOV_BUFFER_FLAG_ALLOCATED: number = callSDK<number>("GSS_6be9a005889899ab", 3197789926310485, undefined, []);
+export const GSS_IOV_BUFFER_FLAG_ALLOCATED: number = callSDK<number>("GSS_c1f28409f8601238", 3197789926310485, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_DATA: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_DATA: number = callSDK<number>("GSS_6be9a005889899ab", 4087264961467619, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_DATA: number = callSDK<number>("GSS_c1f28409f8601238", 4087264961467619, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_EMPTY: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_EMPTY: number = callSDK<number>("GSS_6be9a005889899ab", 1442666198087095, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_EMPTY: number = callSDK<number>("GSS_c1f28409f8601238", 1442666198087095, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_FLAG_ALLOCATE: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_FLAG_ALLOCATE: number = callSDK<number>("GSS_6be9a005889899ab", 4191352455657795, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_FLAG_ALLOCATE: number = callSDK<number>("GSS_c1f28409f8601238", 4191352455657795, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_FLAG_ALLOCATED: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_FLAG_ALLOCATED: number = callSDK<number>("GSS_6be9a005889899ab", 2774975561168503, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_FLAG_ALLOCATED: number = callSDK<number>("GSS_c1f28409f8601238", 2774975561168503, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_FLAG_MASK: UInt32 { get } */
-export const GSS_IOV_BUFFER_TYPE_FLAG_MASK: number = callSDK<number>("GSS_6be9a005889899ab", 3799079186672408, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_FLAG_MASK: number = callSDK<number>("GSS_c1f28409f8601238", 3799079186672408, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_HEADER: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_HEADER: number = callSDK<number>("GSS_6be9a005889899ab", 1410306675356351, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_HEADER: number = callSDK<number>("GSS_c1f28409f8601238", 1410306675356351, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_MECH_PARAMS: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_MECH_PARAMS: number = callSDK<number>("GSS_6be9a005889899ab", 3833982286765298, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_MECH_PARAMS: number = callSDK<number>("GSS_c1f28409f8601238", 3833982286765298, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_PADDING: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_PADDING: number = callSDK<number>("GSS_6be9a005889899ab", 2895236411919515, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_PADDING: number = callSDK<number>("GSS_c1f28409f8601238", 2895236411919515, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_SIGN_ONLY: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_SIGN_ONLY: number = callSDK<number>("GSS_6be9a005889899ab", 4211503379732367, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_SIGN_ONLY: number = callSDK<number>("GSS_c1f28409f8601238", 4211503379732367, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_STREAM: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_STREAM: number = callSDK<number>("GSS_6be9a005889899ab", 2117775668409554, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_STREAM: number = callSDK<number>("GSS_c1f28409f8601238", 2117775668409554, undefined, []);
 
 /** var GSS_IOV_BUFFER_TYPE_TRAILER: Int32 { get } */
-export const GSS_IOV_BUFFER_TYPE_TRAILER: number = callSDK<number>("GSS_6be9a005889899ab", 726495366209338, undefined, []);
+export const GSS_IOV_BUFFER_TYPE_TRAILER: number = callSDK<number>("GSS_c1f28409f8601238", 726495366209338, undefined, []);
 
 /** var GSS_KRB5_CONF_C_QOP_DES3_KD: Int32 { get } */
-export const GSS_KRB5_CONF_C_QOP_DES3_KD: number = callSDK<number>("GSS_6be9a005889899ab", 2089592918484061, undefined, []);
+export const GSS_KRB5_CONF_C_QOP_DES3_KD: number = callSDK<number>("GSS_c1f28409f8601238", 2089592918484061, undefined, []);
 
 /** var GSS_KRB5_CONF_C_QOP_DES: Int32 { get } */
-export const GSS_KRB5_CONF_C_QOP_DES: number = callSDK<number>("GSS_6be9a005889899ab", 497659755797944, undefined, []);
+export const GSS_KRB5_CONF_C_QOP_DES: number = callSDK<number>("GSS_c1f28409f8601238", 497659755797944, undefined, []);
 
 /** var GSS_S_BAD_BINDINGS: UInt { get } */
-export const GSS_S_BAD_BINDINGS: number = callSDK<number>("GSS_6be9a005889899ab", 49899974513278, undefined, []);
+export const GSS_S_BAD_BINDINGS: number = callSDK<number>("GSS_c1f28409f8601238", 49899974513278, undefined, []);
 
 /** var GSS_S_BAD_MECH: UInt { get } */
-export const GSS_S_BAD_MECH: number = callSDK<number>("GSS_6be9a005889899ab", 687455802015077, undefined, []);
+export const GSS_S_BAD_MECH: number = callSDK<number>("GSS_c1f28409f8601238", 687455802015077, undefined, []);
 
 /** var GSS_S_BAD_MECH_ATTR: UInt { get } */
-export const GSS_S_BAD_MECH_ATTR: number = callSDK<number>("GSS_6be9a005889899ab", 2903182477744774, undefined, []);
+export const GSS_S_BAD_MECH_ATTR: number = callSDK<number>("GSS_c1f28409f8601238", 2903182477744774, undefined, []);
 
 /** var GSS_S_BAD_MIC: UInt { get } */
-export const GSS_S_BAD_MIC: number = callSDK<number>("GSS_6be9a005889899ab", 3526207308198749, undefined, []);
+export const GSS_S_BAD_MIC: number = callSDK<number>("GSS_c1f28409f8601238", 3526207308198749, undefined, []);
 
 /** var GSS_S_BAD_NAME: UInt { get } */
-export const GSS_S_BAD_NAME: number = callSDK<number>("GSS_6be9a005889899ab", 3349393353443287, undefined, []);
+export const GSS_S_BAD_NAME: number = callSDK<number>("GSS_c1f28409f8601238", 3349393353443287, undefined, []);
 
 /** var GSS_S_BAD_NAMETYPE: UInt { get } */
-export const GSS_S_BAD_NAMETYPE: number = callSDK<number>("GSS_6be9a005889899ab", 1294990819073586, undefined, []);
+export const GSS_S_BAD_NAMETYPE: number = callSDK<number>("GSS_c1f28409f8601238", 1294990819073586, undefined, []);
 
 /** var GSS_S_BAD_QOP: UInt { get } */
-export const GSS_S_BAD_QOP: number = callSDK<number>("GSS_6be9a005889899ab", 2044819114918088, undefined, []);
+export const GSS_S_BAD_QOP: number = callSDK<number>("GSS_c1f28409f8601238", 2044819114918088, undefined, []);
 
 /** var GSS_S_BAD_SIG: UInt { get } */
-export const GSS_S_BAD_SIG: number = callSDK<number>("GSS_6be9a005889899ab", 2117454706755967, undefined, []);
+export const GSS_S_BAD_SIG: number = callSDK<number>("GSS_c1f28409f8601238", 2117454706755967, undefined, []);
 
 /** var GSS_S_BAD_STATUS: UInt { get } */
-export const GSS_S_BAD_STATUS: number = callSDK<number>("GSS_6be9a005889899ab", 3895523667258677, undefined, []);
+export const GSS_S_BAD_STATUS: number = callSDK<number>("GSS_c1f28409f8601238", 3895523667258677, undefined, []);
 
 /** var GSS_S_CALL_BAD_STRUCTURE: UInt { get } */
-export const GSS_S_CALL_BAD_STRUCTURE: number = callSDK<number>("GSS_6be9a005889899ab", 4151436807758117, undefined, []);
+export const GSS_S_CALL_BAD_STRUCTURE: number = callSDK<number>("GSS_c1f28409f8601238", 4151436807758117, undefined, []);
 
 /** var GSS_S_CALL_INACCESSIBLE_READ: UInt { get } */
-export const GSS_S_CALL_INACCESSIBLE_READ: number = callSDK<number>("GSS_6be9a005889899ab", 3978243764643739, undefined, []);
+export const GSS_S_CALL_INACCESSIBLE_READ: number = callSDK<number>("GSS_c1f28409f8601238", 3978243764643739, undefined, []);
 
 /** var GSS_S_CALL_INACCESSIBLE_WRITE: UInt { get } */
-export const GSS_S_CALL_INACCESSIBLE_WRITE: number = callSDK<number>("GSS_6be9a005889899ab", 4499457777683952, undefined, []);
+export const GSS_S_CALL_INACCESSIBLE_WRITE: number = callSDK<number>("GSS_c1f28409f8601238", 4499457777683952, undefined, []);
 
 /** var GSS_S_COMPLETE: Int32 { get } */
-export const GSS_S_COMPLETE: number = callSDK<number>("GSS_6be9a005889899ab", 2085784035889839, undefined, []);
+export const GSS_S_COMPLETE: number = callSDK<number>("GSS_c1f28409f8601238", 2085784035889839, undefined, []);
 
 /** var GSS_S_CONTEXT_EXPIRED: UInt { get } */
-export const GSS_S_CONTEXT_EXPIRED: number = callSDK<number>("GSS_6be9a005889899ab", 2342226011537083, undefined, []);
+export const GSS_S_CONTEXT_EXPIRED: number = callSDK<number>("GSS_c1f28409f8601238", 2342226011537083, undefined, []);
 
 /** var GSS_S_CREDENTIALS_EXPIRED: UInt { get } */
-export const GSS_S_CREDENTIALS_EXPIRED: number = callSDK<number>("GSS_6be9a005889899ab", 527711311711383, undefined, []);
+export const GSS_S_CREDENTIALS_EXPIRED: number = callSDK<number>("GSS_c1f28409f8601238", 527711311711383, undefined, []);
 
 /** var GSS_S_CRED_UNAVAIL: UInt { get } */
-export const GSS_S_CRED_UNAVAIL: number = callSDK<number>("GSS_6be9a005889899ab", 3385342978189569, undefined, []);
+export const GSS_S_CRED_UNAVAIL: number = callSDK<number>("GSS_c1f28409f8601238", 3385342978189569, undefined, []);
 
 /** var GSS_S_DEFECTIVE_CREDENTIAL: UInt { get } */
-export const GSS_S_DEFECTIVE_CREDENTIAL: number = callSDK<number>("GSS_6be9a005889899ab", 423655000603256, undefined, []);
+export const GSS_S_DEFECTIVE_CREDENTIAL: number = callSDK<number>("GSS_c1f28409f8601238", 423655000603256, undefined, []);
 
 /** var GSS_S_DEFECTIVE_TOKEN: UInt { get } */
-export const GSS_S_DEFECTIVE_TOKEN: number = callSDK<number>("GSS_6be9a005889899ab", 1848559736684429, undefined, []);
+export const GSS_S_DEFECTIVE_TOKEN: number = callSDK<number>("GSS_c1f28409f8601238", 1848559736684429, undefined, []);
 
 /** var GSS_S_DUPLICATE_ELEMENT: UInt { get } */
-export const GSS_S_DUPLICATE_ELEMENT: number = callSDK<number>("GSS_6be9a005889899ab", 3619645273136698, undefined, []);
+export const GSS_S_DUPLICATE_ELEMENT: number = callSDK<number>("GSS_c1f28409f8601238", 3619645273136698, undefined, []);
 
 /** var GSS_S_FAILURE: UInt { get } */
-export const GSS_S_FAILURE: number = callSDK<number>("GSS_6be9a005889899ab", 3783973367771964, undefined, []);
+export const GSS_S_FAILURE: number = callSDK<number>("GSS_c1f28409f8601238", 3783973367771964, undefined, []);
 
 /** var GSS_S_NAME_NOT_MN: UInt { get } */
-export const GSS_S_NAME_NOT_MN: number = callSDK<number>("GSS_6be9a005889899ab", 2319787456018891, undefined, []);
+export const GSS_S_NAME_NOT_MN: number = callSDK<number>("GSS_c1f28409f8601238", 2319787456018891, undefined, []);
 
 /** var GSS_S_NO_CONTEXT: UInt { get } */
-export const GSS_S_NO_CONTEXT: number = callSDK<number>("GSS_6be9a005889899ab", 979910425602126, undefined, []);
+export const GSS_S_NO_CONTEXT: number = callSDK<number>("GSS_c1f28409f8601238", 979910425602126, undefined, []);
 
 /** var GSS_S_NO_CRED: UInt { get } */
-export const GSS_S_NO_CRED: number = callSDK<number>("GSS_6be9a005889899ab", 306192232965184, undefined, []);
+export const GSS_S_NO_CRED: number = callSDK<number>("GSS_c1f28409f8601238", 306192232965184, undefined, []);
 
 /** var GSS_S_UNAUTHORIZED: UInt { get } */
-export const GSS_S_UNAUTHORIZED: number = callSDK<number>("GSS_6be9a005889899ab", 445364316766081, undefined, []);
+export const GSS_S_UNAUTHORIZED: number = callSDK<number>("GSS_c1f28409f8601238", 445364316766081, undefined, []);
 
 /** var GSS_S_UNAVAILABLE: UInt { get } */
-export const GSS_S_UNAVAILABLE: number = callSDK<number>("GSS_6be9a005889899ab", 1252795386574399, undefined, []);
+export const GSS_S_UNAVAILABLE: number = callSDK<number>("GSS_c1f28409f8601238", 1252795386574399, undefined, []);
 
 /** var kGSSChangePasswordNewPassword: String { get } */
-export const kGSSChangePasswordNewPassword: string = callSDK<string>("GSS_6be9a005889899ab", 4162448759824975, undefined, []);
+export const kGSSChangePasswordNewPassword: string = callSDK<string>("GSS_c1f28409f8601238", 4162448759824975, undefined, []);
 
 /** var kGSSChangePasswordOldPassword: String { get } */
-export const kGSSChangePasswordOldPassword: string = callSDK<string>("GSS_6be9a005889899ab", 14627240803003, undefined, []);
+export const kGSSChangePasswordOldPassword: string = callSDK<string>("GSS_c1f28409f8601238", 14627240803003, undefined, []);
 
 /** var kGSSCredentialUsage: String { get } */
-export const kGSSCredentialUsage: string = callSDK<string>("GSS_6be9a005889899ab", 1799430778371942, undefined, []);
+export const kGSSCredentialUsage: string = callSDK<string>("GSS_c1f28409f8601238", 1799430778371942, undefined, []);
 
 /** var kGSSICAppIdentifierACL: String { get } */
-export const kGSSICAppIdentifierACL: string = callSDK<string>("GSS_6be9a005889899ab", 862529081266279, undefined, []);
+export const kGSSICAppIdentifierACL: string = callSDK<string>("GSS_c1f28409f8601238", 862529081266279, undefined, []);
 
 /** var kGSSICAppleSourceApp: String { get } */
-export const kGSSICAppleSourceApp: string = callSDK<string>("GSS_6be9a005889899ab", 2494514554362582, undefined, []);
+export const kGSSICAppleSourceApp: string = callSDK<string>("GSS_c1f28409f8601238", 2494514554362582, undefined, []);
 
 /** var kGSSICAppleSourceAppAuditToken: String { get } */
-export const kGSSICAppleSourceAppAuditToken: string = callSDK<string>("GSS_6be9a005889899ab", 3498536453172657, undefined, []);
+export const kGSSICAppleSourceAppAuditToken: string = callSDK<string>("GSS_c1f28409f8601238", 3498536453172657, undefined, []);
 
 /** var kGSSICAppleSourceAppPID: String { get } */
-export const kGSSICAppleSourceAppPID: string = callSDK<string>("GSS_6be9a005889899ab", 2775281243146068, undefined, []);
+export const kGSSICAppleSourceAppPID: string = callSDK<string>("GSS_c1f28409f8601238", 2775281243146068, undefined, []);
 
 /** var kGSSICAppleSourceAppSigningIdentity: String { get } */
-export const kGSSICAppleSourceAppSigningIdentity: string = callSDK<string>("GSS_6be9a005889899ab", 2708901558892191, undefined, []);
+export const kGSSICAppleSourceAppSigningIdentity: string = callSDK<string>("GSS_c1f28409f8601238", 2708901558892191, undefined, []);
 
 /** var kGSSICAuthenticationContext: String { get } */
-export const kGSSICAuthenticationContext: string = callSDK<string>("GSS_6be9a005889899ab", 4151822350372740, undefined, []);
+export const kGSSICAuthenticationContext: string = callSDK<string>("GSS_c1f28409f8601238", 4151822350372740, undefined, []);
 
 /** var kGSSICCertificate: String { get } */
-export const kGSSICCertificate: string = callSDK<string>("GSS_6be9a005889899ab", 304097795351299, undefined, []);
+export const kGSSICCertificate: string = callSDK<string>("GSS_c1f28409f8601238", 304097795351299, undefined, []);
 
 /** var kGSSICCreateNewCredential: String { get } */
-export const kGSSICCreateNewCredential: string = callSDK<string>("GSS_6be9a005889899ab", 3384943418592556, undefined, []);
+export const kGSSICCreateNewCredential: string = callSDK<string>("GSS_c1f28409f8601238", 3384943418592556, undefined, []);
 
 /** var kGSSICKerberosCacheName: String { get } */
-export const kGSSICKerberosCacheName: string = callSDK<string>("GSS_6be9a005889899ab", 4310431936984797, undefined, []);
+export const kGSSICKerberosCacheName: string = callSDK<string>("GSS_c1f28409f8601238", 4310431936984797, undefined, []);
 
 /** var kGSSICLKDCHostname: String { get } */
-export const kGSSICLKDCHostname: string = callSDK<string>("GSS_6be9a005889899ab", 2883111841592060, undefined, []);
+export const kGSSICLKDCHostname: string = callSDK<string>("GSS_c1f28409f8601238", 2883111841592060, undefined, []);
 
 /** var kGSSICPassword: String { get } */
-export const kGSSICPassword: string = callSDK<string>("GSS_6be9a005889899ab", 4040593329037965, undefined, []);
+export const kGSSICPassword: string = callSDK<string>("GSS_c1f28409f8601238", 4040593329037965, undefined, []);
 
 /** var kGSSICSiteName: String { get } */
-export const kGSSICSiteName: string = callSDK<string>("GSS_6be9a005889899ab", 3695617060911771, undefined, []);
+export const kGSSICSiteName: string = callSDK<string>("GSS_c1f28409f8601238", 3695617060911771, undefined, []);
 
 /** var kGSSICVerifyCredential: String { get } */
-export const kGSSICVerifyCredential: string = callSDK<string>("GSS_6be9a005889899ab", 958884787003983, undefined, []);
+export const kGSSICVerifyCredential: string = callSDK<string>("GSS_c1f28409f8601238", 958884787003983, undefined, []);
 
 /** var kGSSICVerifyCredentialAcceptorName: String { get } */
-export const kGSSICVerifyCredentialAcceptorName: string = callSDK<string>("GSS_6be9a005889899ab", 994743755226606, undefined, []);
+export const kGSSICVerifyCredentialAcceptorName: string = callSDK<string>("GSS_c1f28409f8601238", 994743755226606, undefined, []);
 
 /** var kGSS_C_ACCEPT: String { get } */
-export const kGSS_C_ACCEPT: string = callSDK<string>("GSS_6be9a005889899ab", 1372712322240428, undefined, []);
+export const kGSS_C_ACCEPT: string = callSDK<string>("GSS_c1f28409f8601238", 1372712322240428, undefined, []);
 
 /** var kGSS_C_BOTH: String { get } */
-export const kGSS_C_BOTH: string = callSDK<string>("GSS_6be9a005889899ab", 3458068242899116, undefined, []);
+export const kGSS_C_BOTH: string = callSDK<string>("GSS_c1f28409f8601238", 3458068242899116, undefined, []);
 
 /** var kGSS_C_INITIATE: String { get } */
-export const kGSS_C_INITIATE: string = callSDK<string>("GSS_6be9a005889899ab", 344418841485896, undefined, []);
+export const kGSS_C_INITIATE: string = callSDK<string>("GSS_c1f28409f8601238", 344418841485896, undefined, []);
 
-registerSDKClass("GSS.gss_buffer_desc_struct", gss_buffer_desc_struct, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_buffer_set_desc_struct", gss_buffer_set_desc_struct, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_channel_bindings_struct", gss_channel_bindings_struct, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_iov_buffer_desc_struct", gss_iov_buffer_desc_struct, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_krb5_cfx_keydata", gss_krb5_cfx_keydata, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_krb5_lucid_context_v1", gss_krb5_lucid_context_v1, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_krb5_lucid_context_version", gss_krb5_lucid_context_version, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_krb5_lucid_key", gss_krb5_lucid_key, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_krb5_rfc1964_keydata", gss_krb5_rfc1964_keydata, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_OID_desc_struct", gss_OID_desc_struct, { module: "GSS_6be9a005889899ab", properties: {} });
-registerSDKClass("GSS.gss_OID_set_desc_struct", gss_OID_set_desc_struct, { module: "GSS_6be9a005889899ab", properties: {} });
+registerSDKClass("GSS.gss_buffer_desc_struct", gss_buffer_desc_struct, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_buffer_set_desc_struct", gss_buffer_set_desc_struct, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_channel_bindings_struct", gss_channel_bindings_struct, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_iov_buffer_desc_struct", gss_iov_buffer_desc_struct, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_krb5_cfx_keydata", gss_krb5_cfx_keydata, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_krb5_lucid_context_v1", gss_krb5_lucid_context_v1, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_krb5_lucid_context_version", gss_krb5_lucid_context_version, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_krb5_lucid_key", gss_krb5_lucid_key, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_krb5_rfc1964_keydata", gss_krb5_rfc1964_keydata, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_OID_desc_struct", gss_OID_desc_struct, { module: "GSS_c1f28409f8601238", properties: {} });
+registerSDKClass("GSS.gss_OID_set_desc_struct", gss_OID_set_desc_struct, { module: "GSS_c1f28409f8601238", properties: {} });

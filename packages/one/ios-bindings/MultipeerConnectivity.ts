@@ -15,44 +15,44 @@ export class MCAdvertiserAssistant extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static init(serviceType: string, info: $SDK0, session: MCSession): MCAdvertiserAssistant { return callSDK<MCAdvertiserAssistant>("MultipeerConnectivity_6be9a005889899ab", 2212043039308715, undefined, [serviceType, info, session]); }
+  static init(serviceType: string, info: $SDK0, session: MCSession): MCAdvertiserAssistant { return callSDK<MCAdvertiserAssistant>("MultipeerConnectivity_c1f28409f8601238", 2212043039308715, undefined, [serviceType, info, session]); }
   /**
    * func start()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  start(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3855034439188335, this, []); }
+  start(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3855034439188335, this, []); }
   /**
    * func stop()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  stop(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 2713162458281302, this, []); }
+  stop(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 2713162458281302, this, []); }
   /**
    * weak var delegate: (any MCAdvertiserAssistantDelegate)? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_6be9a005889899ab", 4080727619438729, this, []); }
-  set delegate(value: (Implements<MCAdvertiserAssistantDelegate> | SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 956825406160310, this, [value], [{"protocol":"c:objc(pl)MCAdvertiserAssistantDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_c1f28409f8601238", 4080727619438729, this, []); }
+  set delegate(value: (Implements<MCAdvertiserAssistantDelegate> | SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 956825406160310, this, [value], [{"protocol":"c:objc(pl)MCAdvertiserAssistantDelegate"}]); }
   /**
    * var discoveryInfo: [String : String]? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get discoveryInfo(): $SDK0 { return callSDK<$SDK0>("MultipeerConnectivity_6be9a005889899ab", 3329483050215705, this, []); }
+  get discoveryInfo(): $SDK0 { return callSDK<$SDK0>("MultipeerConnectivity_c1f28409f8601238", 3329483050215705, this, []); }
   /**
    * var serviceType: String { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get serviceType(): string { return callSDK<string>("MultipeerConnectivity_6be9a005889899ab", 3124086219595978, this, []); }
+  get serviceType(): string { return callSDK<string>("MultipeerConnectivity_c1f28409f8601238", 3124086219595978, this, []); }
   /**
    * var session: MCSession { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get session(): MCSession { return callSDK<MCSession>("MultipeerConnectivity_6be9a005889899ab", 4310207954633244, this, []); }
+  get session(): MCSession { return callSDK<MCSession>("MultipeerConnectivity_c1f28409f8601238", 4310207954633244, this, []); }
   declare readonly $type: { "c:objc(cs)MCAdvertiserAssistant": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "discoveryInfo": true; "serviceType": true; "session": true };
 }
@@ -88,46 +88,46 @@ export class MCBrowserViewController extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static initBrowserSession(browser: MCNearbyServiceBrowser, session: MCSession): Promise<MCBrowserViewController> { return callSDKAsync<MCBrowserViewController>("MultipeerConnectivity_6be9a005889899ab", 960266256383631, undefined, [browser, session]); }
+  static initBrowserSession(browser: MCNearbyServiceBrowser, session: MCSession): Promise<MCBrowserViewController> { return callSDKAsync<MCBrowserViewController>("MultipeerConnectivity_c1f28409f8601238", 960266256383631, undefined, [browser, session]); }
   /**
    * convenience init(serviceType: String, session: MCSession)
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static initServiceTypeSession(serviceType: string, session: MCSession): Promise<MCBrowserViewController> { return callSDKAsync<MCBrowserViewController>("MultipeerConnectivity_6be9a005889899ab", 3465566847700958, undefined, [serviceType, session]); }
+  static initServiceTypeSession(serviceType: string, session: MCSession): Promise<MCBrowserViewController> { return callSDKAsync<MCBrowserViewController>("MultipeerConnectivity_c1f28409f8601238", 3465566847700958, undefined, [serviceType, session]); }
   /**
    * var browser: MCNearbyServiceBrowser? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get browser(): Promise<(MCNearbyServiceBrowser) | null> { return callSDKAsync<(MCNearbyServiceBrowser) | null>("MultipeerConnectivity_6be9a005889899ab", 2496367735492941, this, []); }
+  get browser(): Promise<(MCNearbyServiceBrowser) | null> { return callSDKAsync<(MCNearbyServiceBrowser) | null>("MultipeerConnectivity_c1f28409f8601238", 2496367735492941, this, []); }
   /**
    * weak var delegate: (any MCBrowserViewControllerDelegate)? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MultipeerConnectivity_6be9a005889899ab", 2048669964296418, this, []); }
-  setDelegate(value?: (Implements<MCBrowserViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MultipeerConnectivity_6be9a005889899ab", 1601574692680304, this, [value], [{"protocol":"c:objc(pl)MCBrowserViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MultipeerConnectivity_c1f28409f8601238", 2048669964296418, this, []); }
+  setDelegate(value?: (Implements<MCBrowserViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MultipeerConnectivity_c1f28409f8601238", 1601574692680304, this, [value], [{"protocol":"c:objc(pl)MCBrowserViewControllerDelegate"}]); }
   /**
    * var maximumNumberOfPeers: Int { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get maximumNumberOfPeers(): Promise<number> { return callSDKAsync<number>("MultipeerConnectivity_6be9a005889899ab", 409059795007478, this, []); }
-  setMaximumNumberOfPeers(value: number): Promise<void> { return callSDKAsync<void>("MultipeerConnectivity_6be9a005889899ab", 4128017486661410, this, [value]); }
+  get maximumNumberOfPeers(): Promise<number> { return callSDKAsync<number>("MultipeerConnectivity_c1f28409f8601238", 409059795007478, this, []); }
+  setMaximumNumberOfPeers(value: number): Promise<void> { return callSDKAsync<void>("MultipeerConnectivity_c1f28409f8601238", 4128017486661410, this, [value]); }
   /**
    * var minimumNumberOfPeers: Int { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get minimumNumberOfPeers(): Promise<number> { return callSDKAsync<number>("MultipeerConnectivity_6be9a005889899ab", 2591415475480232, this, []); }
-  setMinimumNumberOfPeers(value: number): Promise<void> { return callSDKAsync<void>("MultipeerConnectivity_6be9a005889899ab", 659805653278663, this, [value]); }
+  get minimumNumberOfPeers(): Promise<number> { return callSDKAsync<number>("MultipeerConnectivity_c1f28409f8601238", 2591415475480232, this, []); }
+  setMinimumNumberOfPeers(value: number): Promise<void> { return callSDKAsync<void>("MultipeerConnectivity_c1f28409f8601238", 659805653278663, this, [value]); }
   /**
    * var session: MCSession { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get session(): Promise<MCSession> { return callSDKAsync<MCSession>("MultipeerConnectivity_6be9a005889899ab", 1353951711707130, this, []); }
+  get session(): Promise<MCSession> { return callSDKAsync<MCSession>("MultipeerConnectivity_c1f28409f8601238", 1353951711707130, this, []); }
   declare readonly $type: { "c:objc(cs)MCBrowserViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "browser": true; "delegate": true; "maximumNumberOfPeers": true; "minimumNumberOfPeers": true; "session": true };
 }
@@ -165,7 +165,7 @@ export const MCEncryptionPreference = {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (MCEncryptionPreference) | null { return callSDK<(MCEncryptionPreference) | null>("MultipeerConnectivity_6be9a005889899ab", 1687418286735989, undefined, [rawValue]); }
+  init(rawValue: number): (MCEncryptionPreference) | null { return callSDK<(MCEncryptionPreference) | null>("MultipeerConnectivity_c1f28409f8601238", 1687418286735989, undefined, [rawValue]); }
 };
 
 /**
@@ -179,49 +179,49 @@ export class MCError extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get errorDomain(): string { return callSDK<string>("MultipeerConnectivity_6be9a005889899ab", 759171385075215, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("MultipeerConnectivity_c1f28409f8601238", 759171385075215, undefined, []); }
   /**
    * static var unavailable: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get unavailable(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 3378205934682414, undefined, []); }
+  static get unavailable(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 3378205934682414, undefined, []); }
   /**
    * static var unsupported: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get unsupported(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 539919379164961, undefined, []); }
+  static get unsupported(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 539919379164961, undefined, []); }
   /**
    * static var notConnected: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get notConnected(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 2172202090280371, undefined, []); }
+  static get notConnected(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 2172202090280371, undefined, []); }
   /**
    * static var invalidParameter: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get invalidParameter(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 3844142985618603, undefined, []); }
+  static get invalidParameter(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 3844142985618603, undefined, []); }
   /**
    * static var unknown: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get unknown(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 4207460543648751, undefined, []); }
+  static get unknown(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 4207460543648751, undefined, []); }
   /**
    * static var timedOut: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get timedOut(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 502086385745345, undefined, []); }
+  static get timedOut(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 502086385745345, undefined, []); }
   /**
    * static var cancelled: MCError.Code { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static get cancelled(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_6be9a005889899ab", 4268641567293095, undefined, []); }
+  static get cancelled(): MCError_Code { return callSDK<MCError_Code>("MultipeerConnectivity_c1f28409f8601238", 4268641567293095, undefined, []); }
   declare readonly $type: { "s:SC11MCErrorCodeLeV": true };
 }
 
@@ -238,7 +238,7 @@ export const MCError_Code = {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (MCError_Code) | null { return callSDK<(MCError_Code) | null>("MultipeerConnectivity_6be9a005889899ab", 4226864749738942, undefined, [rawValue]); }
+  init(rawValue: number): (MCError_Code) | null { return callSDK<(MCError_Code) | null>("MultipeerConnectivity_c1f28409f8601238", 4226864749738942, undefined, [rawValue]); }
 };
 
 /**
@@ -252,44 +252,44 @@ export class MCNearbyServiceAdvertiser extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static init(myPeerID: MCPeerID, info: $SDK0, serviceType: string): MCNearbyServiceAdvertiser { return callSDK<MCNearbyServiceAdvertiser>("MultipeerConnectivity_6be9a005889899ab", 134266156273628, undefined, [myPeerID, info, serviceType]); }
+  static init(myPeerID: MCPeerID, info: $SDK0, serviceType: string): MCNearbyServiceAdvertiser { return callSDK<MCNearbyServiceAdvertiser>("MultipeerConnectivity_c1f28409f8601238", 134266156273628, undefined, [myPeerID, info, serviceType]); }
   /**
    * func startAdvertisingPeer()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  startAdvertisingPeer(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 2884247890075829, this, []); }
+  startAdvertisingPeer(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 2884247890075829, this, []); }
   /**
    * func stopAdvertisingPeer()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  stopAdvertisingPeer(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 1663480859288885, this, []); }
+  stopAdvertisingPeer(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 1663480859288885, this, []); }
   /**
    * weak var delegate: (any MCNearbyServiceAdvertiserDelegate)? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_6be9a005889899ab", 582428025689393, this, []); }
-  set delegate(value: (SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 4365220353659343, this, [value]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_c1f28409f8601238", 582428025689393, this, []); }
+  set delegate(value: (SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 4365220353659343, this, [value]); }
   /**
    * var discoveryInfo: [String : String]? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get discoveryInfo(): $SDK0 { return callSDK<$SDK0>("MultipeerConnectivity_6be9a005889899ab", 2579334993044743, this, []); }
+  get discoveryInfo(): $SDK0 { return callSDK<$SDK0>("MultipeerConnectivity_c1f28409f8601238", 2579334993044743, this, []); }
   /**
    * var myPeerID: MCPeerID { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get myPeerID(): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_6be9a005889899ab", 466048036766934, this, []); }
+  get myPeerID(): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_c1f28409f8601238", 466048036766934, this, []); }
   /**
    * var serviceType: String { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get serviceType(): string { return callSDK<string>("MultipeerConnectivity_6be9a005889899ab", 251173492812849, this, []); }
+  get serviceType(): string { return callSDK<string>("MultipeerConnectivity_c1f28409f8601238", 251173492812849, this, []); }
   declare readonly $type: { "c:objc(cs)MCNearbyServiceAdvertiser": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "discoveryInfo": true; "myPeerID": true; "serviceType": true };
 }
@@ -325,44 +325,44 @@ export class MCNearbyServiceBrowser extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static init(myPeerID: MCPeerID, serviceType: string): MCNearbyServiceBrowser { return callSDK<MCNearbyServiceBrowser>("MultipeerConnectivity_6be9a005889899ab", 3861899429886648, undefined, [myPeerID, serviceType]); }
+  static init(myPeerID: MCPeerID, serviceType: string): MCNearbyServiceBrowser { return callSDK<MCNearbyServiceBrowser>("MultipeerConnectivity_c1f28409f8601238", 3861899429886648, undefined, [myPeerID, serviceType]); }
   /**
    * func invitePeer(_ peerID: MCPeerID, to session: MCSession, withContext context: Data?, timeout: TimeInterval)
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  invitePeer(peerID: MCPeerID, session: MCSession, context: (ArrayBuffer) | null, timeout: number): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3023220259219508, this, [peerID, session, context, timeout]); }
+  invitePeer(peerID: MCPeerID, session: MCSession, context: (ArrayBuffer) | null, timeout: number): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3023220259219508, this, [peerID, session, context, timeout]); }
   /**
    * func startBrowsingForPeers()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  startBrowsingForPeers(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3512813856359637, this, []); }
+  startBrowsingForPeers(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3512813856359637, this, []); }
   /**
    * func stopBrowsingForPeers()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  stopBrowsingForPeers(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 4359843843305782, this, []); }
+  stopBrowsingForPeers(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 4359843843305782, this, []); }
   /**
    * weak var delegate: (any MCNearbyServiceBrowserDelegate)? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_6be9a005889899ab", 3595710943296087, this, []); }
-  set delegate(value: (Implements<MCNearbyServiceBrowserDelegate> | SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3089236213152206, this, [value], [{"protocol":"c:objc(pl)MCNearbyServiceBrowserDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_c1f28409f8601238", 3595710943296087, this, []); }
+  set delegate(value: (Implements<MCNearbyServiceBrowserDelegate> | SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3089236213152206, this, [value], [{"protocol":"c:objc(pl)MCNearbyServiceBrowserDelegate"}]); }
   /**
    * var myPeerID: MCPeerID { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get myPeerID(): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_6be9a005889899ab", 811356438484607, this, []); }
+  get myPeerID(): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_c1f28409f8601238", 811356438484607, this, []); }
   /**
    * var serviceType: String { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get serviceType(): string { return callSDK<string>("MultipeerConnectivity_6be9a005889899ab", 1482678402983492, this, []); }
+  get serviceType(): string { return callSDK<string>("MultipeerConnectivity_c1f28409f8601238", 1482678402983492, this, []); }
   declare readonly $type: { "c:objc(cs)MCNearbyServiceBrowser": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "myPeerID": true; "serviceType": true };
 }
@@ -404,13 +404,13 @@ export class MCPeerID extends SDKHandle {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static init(myDisplayName: string): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_6be9a005889899ab", 2625160244359328, undefined, [myDisplayName]); }
+  static init(myDisplayName: string): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_c1f28409f8601238", 2625160244359328, undefined, [myDisplayName]); }
   /**
    * var displayName: String { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get displayName(): string { return callSDK<string>("MultipeerConnectivity_6be9a005889899ab", 3107259066453426, this, []); }
+  get displayName(): string { return callSDK<string>("MultipeerConnectivity_c1f28409f8601238", 3107259066453426, this, []); }
   declare readonly $type: { "c:objc(cs)MCPeerID": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true };
 }
@@ -422,78 +422,78 @@ export class MCPeerID extends SDKHandle {
  */
 export class MCSession extends SDKHandle {
   /** func cancelConnectPeer(_ peerID: MCPeerID) */
-  cancelConnectPeer(peerID: MCPeerID): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 2094242450615350, this, [peerID]); }
+  cancelConnectPeer(peerID: MCPeerID): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 2094242450615350, this, [peerID]); }
   /** func connectPeer(_ peerID: MCPeerID, withNearbyConnectionData data: Data) */
-  connectPeer(peerID: MCPeerID, data: ArrayBuffer): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 1295725384580832, this, [peerID, data]); }
+  connectPeer(peerID: MCPeerID, data: ArrayBuffer): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 1295725384580832, this, [peerID, data]); }
   /**
    * func disconnect()
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  disconnect(): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 872677964060224, this, []); }
+  disconnect(): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 872677964060224, this, []); }
   /**
    * convenience init(peer myPeerID: MCPeerID)
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static initPeer(myPeerID: MCPeerID): MCSession { return callSDK<MCSession>("MultipeerConnectivity_6be9a005889899ab", 3515926864102087, undefined, [myPeerID]); }
+  static initPeer(myPeerID: MCPeerID): MCSession { return callSDK<MCSession>("MultipeerConnectivity_c1f28409f8601238", 3515926864102087, undefined, [myPeerID]); }
   /**
    * init(peer myPeerID: MCPeerID, securityIdentity identity: [Any]?, encryptionPreference: MCEncryptionPreference)
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  static initPeerSecurityIdentityEncryptionPreference(myPeerID: MCPeerID, identity: (Array<unknown>) | null, encryptionPreference: MCEncryptionPreference): MCSession { return callSDK<MCSession>("MultipeerConnectivity_6be9a005889899ab", 487477663371889, undefined, [myPeerID, identity, encryptionPreference]); }
+  static initPeerSecurityIdentityEncryptionPreference(myPeerID: MCPeerID, identity: (Array<unknown>) | null, encryptionPreference: MCEncryptionPreference): MCSession { return callSDK<MCSession>("MultipeerConnectivity_c1f28409f8601238", 487477663371889, undefined, [myPeerID, identity, encryptionPreference]); }
   /** func nearbyConnectionData(forPeer peerID: MCPeerID) async throws -> Data */
-  nearbyConnectionData(peerID: MCPeerID, completionHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3995050451971573, this, [peerID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  nearbyConnectionData(peerID: MCPeerID, completionHandler: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3995050451971573, this, [peerID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func send(_ data: Data, toPeers peerIDs: [MCPeerID], with mode: MCSessionSendDataMode) throws
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  send(data: ArrayBuffer, peerIDs: Array<MCPeerID>, mode: MCSessionSendDataMode): void { return callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3533020913857396, this, [data, peerIDs, mode]); }
+  send(data: ArrayBuffer, peerIDs: Array<MCPeerID>, mode: MCSessionSendDataMode): void { return callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3533020913857396, this, [data, peerIDs, mode]); }
   /**
    * func sendResource(at resourceURL: URL, withName resourceName: String, toPeer peerID: MCPeerID, withCompletionHandler completionHandler: (((any Error)?) -> Void)? = nil) -> Progress?
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  sendResource(resourceURL: string, resourceName: string, peerID: MCPeerID, completionHandler?: (((arg0: (NativeError) | null) => void)) | null): (_Foundation_Progress) | null { return callSDK<(_Foundation_Progress) | null>("MultipeerConnectivity_6be9a005889899ab", 3223779661587720, this, [resourceURL, resourceName, peerID, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  sendResource(resourceURL: string, resourceName: string, peerID: MCPeerID, completionHandler?: (((arg0: (NativeError) | null) => void)) | null): (_Foundation_Progress) | null { return callSDK<(_Foundation_Progress) | null>("MultipeerConnectivity_c1f28409f8601238", 3223779661587720, this, [resourceURL, resourceName, peerID, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func startStream(withName streamName: String, toPeer peerID: MCPeerID) throws -> OutputStream
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  startStream(streamName: string, peerID: MCPeerID): _Foundation_OutputStream { return callSDK<_Foundation_OutputStream>("MultipeerConnectivity_6be9a005889899ab", 862470946192226, this, [streamName, peerID]); }
+  startStream(streamName: string, peerID: MCPeerID): _Foundation_OutputStream { return callSDK<_Foundation_OutputStream>("MultipeerConnectivity_c1f28409f8601238", 862470946192226, this, [streamName, peerID]); }
   /**
    * var connectedPeers: [MCPeerID] { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get connectedPeers(): Array<MCPeerID> { return callSDK<Array<MCPeerID>>("MultipeerConnectivity_6be9a005889899ab", 1608076394058118, this, []); }
+  get connectedPeers(): Array<MCPeerID> { return callSDK<Array<MCPeerID>>("MultipeerConnectivity_c1f28409f8601238", 1608076394058118, this, []); }
   /**
    * weak var delegate: (any MCSessionDelegate)? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_6be9a005889899ab", 871656699568550, this, []); }
-  set delegate(value: (Implements<MCSessionDelegate> | SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_6be9a005889899ab", 3672978446796326, this, [value], [{"protocol":"c:objc(pl)MCSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MultipeerConnectivity_c1f28409f8601238", 871656699568550, this, []); }
+  set delegate(value: (Implements<MCSessionDelegate> | SDKHandle) | null) { callSDK<void>("MultipeerConnectivity_c1f28409f8601238", 3672978446796326, this, [value], [{"protocol":"c:objc(pl)MCSessionDelegate"}]); }
   /**
    * var encryptionPreference: MCEncryptionPreference { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get encryptionPreference(): MCEncryptionPreference { return callSDK<MCEncryptionPreference>("MultipeerConnectivity_6be9a005889899ab", 3409309445201636, this, []); }
+  get encryptionPreference(): MCEncryptionPreference { return callSDK<MCEncryptionPreference>("MultipeerConnectivity_c1f28409f8601238", 3409309445201636, this, []); }
   /**
    * var myPeerID: MCPeerID { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get myPeerID(): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_6be9a005889899ab", 4067709079951596, this, []); }
+  get myPeerID(): MCPeerID { return callSDK<MCPeerID>("MultipeerConnectivity_c1f28409f8601238", 4067709079951596, this, []); }
   /**
    * var securityIdentity: [Any]? { get }
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  get securityIdentity(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MultipeerConnectivity_6be9a005889899ab", 4016121245905715, this, []); }
+  get securityIdentity(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MultipeerConnectivity_c1f28409f8601238", 4016121245905715, this, []); }
   declare readonly $type: { "c:objc(cs)MCSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "connectedPeers": true; "delegate": true; "encryptionPreference": true; "myPeerID": true; "securityIdentity": true };
 }
@@ -549,7 +549,7 @@ export const MCSessionSendDataMode = {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (MCSessionSendDataMode) | null { return callSDK<(MCSessionSendDataMode) | null>("MultipeerConnectivity_6be9a005889899ab", 1664592157257345, undefined, [rawValue]); }
+  init(rawValue: number): (MCSessionSendDataMode) | null { return callSDK<(MCSessionSendDataMode) | null>("MultipeerConnectivity_c1f28409f8601238", 1664592157257345, undefined, [rawValue]); }
 };
 
 /**
@@ -565,7 +565,7 @@ export const MCSessionState = {
    * @availability iOS 7.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (MCSessionState) | null { return callSDK<(MCSessionState) | null>("MultipeerConnectivity_6be9a005889899ab", 1640532868628273, undefined, [rawValue]); }
+  init(rawValue: number): (MCSessionState) | null { return callSDK<(MCSessionState) | null>("MultipeerConnectivity_c1f28409f8601238", 1640532868628273, undefined, [rawValue]); }
 };
 
 /**
@@ -573,31 +573,31 @@ export const MCSessionState = {
  * @availability iOS 7.0+
  * @deprecated iOS 27.0
  */
-export const MCErrorDomain: string = callSDK<string>("MultipeerConnectivity_6be9a005889899ab", 3749776386378170, undefined, []);
+export const MCErrorDomain: string = callSDK<string>("MultipeerConnectivity_c1f28409f8601238", 3749776386378170, undefined, []);
 
 /**
  * let kMCSessionMaximumNumberOfPeers: Int
  * @availability iOS 7.0+
  * @deprecated iOS 27.0
  */
-export const kMCSessionMaximumNumberOfPeers: number = callSDK<number>("MultipeerConnectivity_6be9a005889899ab", 235558475851047, undefined, []);
+export const kMCSessionMaximumNumberOfPeers: number = callSDK<number>("MultipeerConnectivity_c1f28409f8601238", 235558475851047, undefined, []);
 
 /**
  * let kMCSessionMinimumNumberOfPeers: Int
  * @availability iOS 7.0+
  * @deprecated iOS 27.0
  */
-export const kMCSessionMinimumNumberOfPeers: number = callSDK<number>("MultipeerConnectivity_6be9a005889899ab", 2522513884669587, undefined, []);
+export const kMCSessionMinimumNumberOfPeers: number = callSDK<number>("MultipeerConnectivity_c1f28409f8601238", 2522513884669587, undefined, []);
 
-registerSDKClass("MCAdvertiserAssistant", MCAdvertiserAssistant, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {"delegate":4080727619438729,"discoveryInfo":3329483050215705,"serviceType":3124086219595978,"session":4310207954633244}, methods: {"start":{"id":3855034439188335},"stop":{"id":2713162458281302}} });
+registerSDKClass("MCAdvertiserAssistant", MCAdvertiserAssistant, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {"delegate":4080727619438729,"discoveryInfo":3329483050215705,"serviceType":3124086219595978,"session":4310207954633244}, methods: {"start":{"id":3855034439188335},"stop":{"id":2713162458281302}} });
 registerSDKProtocol("c:objc(pl)MCAdvertiserAssistantDelegate", {"advertiserAssistantWillPresentInvitation":"advertiserAssistantWillPresentInvitation(_:)","advertiserAssistantDidDismissInvitation":"advertiserAssistantDidDismissInvitation(_:)"});
-registerSDKClass("MCBrowserViewController", MCBrowserViewController, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {"browser":2496367735492941,"delegate":2048669964296418,"maximumNumberOfPeers":409059795007478,"minimumNumberOfPeers":2591415475480232,"session":1353951711707130} });
+registerSDKClass("MCBrowserViewController", MCBrowserViewController, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {"browser":2496367735492941,"delegate":2048669964296418,"maximumNumberOfPeers":409059795007478,"minimumNumberOfPeers":2591415475480232,"session":1353951711707130} });
 registerSDKProtocol("c:objc(pl)MCBrowserViewControllerDelegate", {"browserViewControllerDidFinish":"browserViewControllerDidFinish(_:)","browserViewControllerWasCancelled":"browserViewControllerWasCancelled(_:)"});
-registerSDKClass("MultipeerConnectivity.MCError", MCError, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {} });
-registerSDKClass("MCNearbyServiceAdvertiser", MCNearbyServiceAdvertiser, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {"delegate":582428025689393,"discoveryInfo":2579334993044743,"myPeerID":466048036766934,"serviceType":251173492812849}, methods: {"startAdvertisingPeer":{"id":2884247890075829},"stopAdvertisingPeer":{"id":1663480859288885}} });
+registerSDKClass("MultipeerConnectivity.MCError", MCError, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {} });
+registerSDKClass("MCNearbyServiceAdvertiser", MCNearbyServiceAdvertiser, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {"delegate":582428025689393,"discoveryInfo":2579334993044743,"myPeerID":466048036766934,"serviceType":251173492812849}, methods: {"startAdvertisingPeer":{"id":2884247890075829},"stopAdvertisingPeer":{"id":1663480859288885}} });
 registerSDKProtocol("c:objc(pl)MCNearbyServiceAdvertiserDelegate", {"advertiserDidReceiveInvitationFromPeerWithContextInvitationHandler":"advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)","advertiserDidNotStartAdvertisingPeer":"advertiser(_:didNotStartAdvertisingPeer:)"});
-registerSDKClass("MCNearbyServiceBrowser", MCNearbyServiceBrowser, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {"delegate":3595710943296087,"myPeerID":811356438484607,"serviceType":1482678402983492}, methods: {"invitePeer":{"id":3023220259219508},"startBrowsingForPeers":{"id":3512813856359637},"stopBrowsingForPeers":{"id":4359843843305782}} });
+registerSDKClass("MCNearbyServiceBrowser", MCNearbyServiceBrowser, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {"delegate":3595710943296087,"myPeerID":811356438484607,"serviceType":1482678402983492}, methods: {"invitePeer":{"id":3023220259219508},"startBrowsingForPeers":{"id":3512813856359637},"stopBrowsingForPeers":{"id":4359843843305782}} });
 registerSDKProtocol("c:objc(pl)MCNearbyServiceBrowserDelegate", {"browserFoundPeerWithDiscoveryInfo":"browser(_:foundPeer:withDiscoveryInfo:)","browserLostPeer":"browser(_:lostPeer:)","browserDidNotStartBrowsingForPeers":"browser(_:didNotStartBrowsingForPeers:)"});
-registerSDKClass("MCPeerID", MCPeerID, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {"displayName":3107259066453426} });
-registerSDKClass("MCSession", MCSession, { module: "MultipeerConnectivity_6be9a005889899ab", properties: {"connectedPeers":1608076394058118,"delegate":871656699568550,"encryptionPreference":3409309445201636,"myPeerID":4067709079951596,"securityIdentity":4016121245905715}, methods: {"cancelConnectPeer":{"id":2094242450615350},"connectPeer":{"id":1295725384580832},"disconnect":{"id":872677964060224},"nearbyConnectionData":{"id":3995050451971573,"hints":[null,{"callback":{"out":[]}}]},"send":{"id":3533020913857396},"sendResource":{"id":3223779661587720,"hints":[null,null,null,{"callback":{"out":[]}}]},"startStream":{"id":862470946192226}} });
+registerSDKClass("MCPeerID", MCPeerID, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {"displayName":3107259066453426} });
+registerSDKClass("MCSession", MCSession, { module: "MultipeerConnectivity_c1f28409f8601238", properties: {"connectedPeers":1608076394058118,"delegate":871656699568550,"encryptionPreference":3409309445201636,"myPeerID":4067709079951596,"securityIdentity":4016121245905715}, methods: {"cancelConnectPeer":{"id":2094242450615350},"connectPeer":{"id":1295725384580832},"disconnect":{"id":872677964060224},"nearbyConnectionData":{"id":3995050451971573,"hints":[null,{"callback":{"out":[]}}]},"send":{"id":3533020913857396},"sendResource":{"id":3223779661587720,"hints":[null,null,null,{"callback":{"out":[]}}]},"startStream":{"id":862470946192226}} });
 registerSDKProtocol("c:objc(pl)MCSessionDelegate", {"sessionPeerDidChange":"session(_:peer:didChange:)","sessionDidReceiveFromPeer":"session(_:didReceive:fromPeer:)","sessionDidReceiveWithNameFromPeer":"session(_:didReceive:withName:fromPeer:)","sessionDidStartReceivingResourceWithNameFromPeerWith":"session(_:didStartReceivingResourceWithName:fromPeer:with:)","sessionDidFinishReceivingResourceWithNameFromPeerAtWithError":"session(_:didFinishReceivingResourceWithName:fromPeer:at:withError:)"});
