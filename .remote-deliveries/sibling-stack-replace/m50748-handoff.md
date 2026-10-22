@@ -1,0 +1,4 @@
+Goal: native same-stack sibling replace animation fix. No source edits or PR yet.
+Confirmed source cause: packages/one/src/router/router.ts action construction uses event === REPLACE ? null, then !action calls resetRoot(state), bypassing stack replace. Adjacent resets handle route groups and must be preserved.
+Successor s63379 (sibling-stack-replace) owns implementation in managed isolated worktree; launched with full original scope, owner quote, validation, review and delivery requirements. Transferred directly to m50170. Source checkout remains unchanged except this handoff; unrelated untracked files preserved.
+Next: successor traces state/action helpers, fixes only native sibling stack replace, builds via bun release --into ~/contrast and captures project picker on Peach. Lead assigns large independent review before merge; CI owner ci-manager. Deliver PR and Contrast pickup version. No stable publishing.
