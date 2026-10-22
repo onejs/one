@@ -106,6 +106,7 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-generated-options`
         | `/one-native-geofencing`
         | `/one-native-geometry-reader`
         | `/one-native-gestures`
@@ -180,7 +181,6 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`
-        | `/one-native-generated-options`
         | `/one-native-swift-gestures`
         | `/one-native-swipe-actions`
         | `/one-native-system`
@@ -192,6 +192,7 @@ declare module 'one' {
         | `/one-native-tabview`
         | `/one-native-timeline-view`
         | `/one-native-ui-map`
+        | `/one-native-uikit-content`
         | `/one-native-uikit-view`
         | `/one-native-updates`
         | `/one-native-view-slot`
